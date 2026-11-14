@@ -1,0 +1,714 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native observation of same-source controls whose BRep journal was truncated before later features; measures what Fusion shows on open and after computeAll",
+  "cases": [
+    {
+      "name": "FilletDirtyUpdate",
+      "control": "Fillet",
+      "sha256": "7e4b0dbe3b8bdb4b1a500ccd2387b621dfb949e4e7613897025e9f34a5be7682",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.961372,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "FilletDirtyEdited",
+      "control": "Fillet",
+      "sha256": "c09a4bc98cfaae73bd939517f3b39b3498e9619636ada7a7b94583bc9412992f",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 4,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.961372,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "FilletDirtySort",
+      "control": "Fillet",
+      "sha256": "fa2b367e326d85051facd4a1ed8071c6cde9380d654124198301d7042b027900",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.961372,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "FilletDirtyParam",
+      "control": "Fillet",
+      "sha256": "ec78f31be0bc5391a77d41bc081c45b9b79a7bba11241edbd7061280b32e90cf",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.961372,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    },
+    {
+      "name": "FilletDirtyAll",
+      "control": "Fillet",
+      "sha256": "b28cabd228910e742223c8cba5860366893cf18a908580dd5ee5ef1a3d82f352",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 4,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "expected_signature": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "opened_matches_control": false,
+      "compute_all": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner fillet",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ]
+          }
+        ]
+      },
+      "recomputed_matches_control": true,
+      "markers": [
+        {
+          "position": 0,
+          "bodies": []
+        },
+        {
+          "position": 1,
+          "bodies": []
+        },
+        {
+          "position": 2,
+          "bodies": [
+            [
+              24.0,
+              6,
+              12,
+              8
+            ]
+          ]
+        },
+        {
+          "position": 3,
+          "bodies": [
+            [
+              23.961372,
+              7,
+              15,
+              10
+            ]
+          ]
+        }
+      ],
+      "final": [
+        [
+          23.961372,
+          7,
+          15,
+          10
+        ]
+      ],
+      "status": "observed"
+    }
+  ],
+  "status": "observed",
+  "documents_after": 0
+}

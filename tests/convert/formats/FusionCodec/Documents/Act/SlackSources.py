@@ -1,0 +1,27 @@
+KSlackCases: tuple[tuple[str, str, int], ...] = (
+    (
+        "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneControl.f3d",
+        "7d09d4698b57fefff528de75bb35757c615312f1eb6bdd7f1570751ab1ea219a",
+        2,
+    ),
+    (
+        "re/Fusion/LocalOracle/Authored/vendor_production_parameter.f3d",
+        "50a0f9f58e6f0895c92ae84855f4b7234c5afff17c438d9128873da9a5cf5c17",
+        26,
+    ),
+    (
+        "re/Fusion/LocalOracle/PublicAdapter/vendor_parameterEdited.f3d",
+        "42a5b2dd2f1fe47588b9a7e3296c6c90ed5a79028b159c2d8b4f23d0eab15697",
+        16,
+    ),
+    (
+        "re/Fusion/LocalOracle/ActSlack/Saves/FreshFirst.f3d",
+        "a13f790b730c7db6d487ca361b391047db903329b4abe6317ec475571aa0bb58",
+        0,
+    ),
+    (
+        "re/Fusion/LocalOracle/ActSlack/Saves/FreshReopened.f3d",
+        "e122fee14996b2559d352ac115372bdd6123cbe55ac9532f0dc5e6b26d6b6a60",
+        2,
+    ),
+)

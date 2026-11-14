@@ -1,0 +1,2074 @@
+{
+ "A018": {
+  "class": "Metal",
+  "type": "Metal",
+  "kit_schemas": [
+   "PrismMetalSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismMetalSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Titanium 6Al-4V",
+    "Density": 4430.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.7490196078431373,
+      "GreenValue": 0.7294117647058823,
+      "BlueValue": 0.7019607843137254,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Metal",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 113763350000.0,
+      "PoissonRatio": 0.35,
+      "ShearModulus": 42134575000.0,
+      "YieldStrength": 882528000.0,
+      "TensileStrength": 1034213000.0,
+      "Conductivity": 6.7,
+      "SpecificHeat": 526.3,
+      "Expansion": 8.599999999999999e-06,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 4430.0,
+      "Conductivity": 6.7,
+      "SpecificHeat": 526.3,
+      "Emissivity": 0.2,
+      "Resistivity": 4.2e-07,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Titanium - Polished",
+      "Metallic": true,
+      "ColorSpace": 1,
+      "Roughness": 0.0774596669241,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Metal"
+   }
+  }
+ },
+ "M003": {
+  "class": "Plastic",
+  "type": "Plastic",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralPlasticSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralPlasticSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Acetal Resin, Black",
+    "Density": 1425.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.09803921568627451,
+      "GreenValue": 0.09803921568627451,
+      "BlueValue": 0.09803921568627451,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Plastic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 2900000000.0,
+      "PoissonRatio": 0.39,
+      "ShearModulus": 1040000000.0,
+      "YieldStrength": 68210000.0,
+      "TensileStrength": 68210000.0,
+      "Conductivity": 0.16,
+      "SpecificHeat": 1465.4499999999998,
+      "Expansion": 0.00010999999999999999,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": null,
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Plastic - Glossy (Black)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.122474487139,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0529,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Plastic"
+   }
+  }
+ },
+ "M012": {
+  "class": "Metal",
+  "type": "Metal",
+  "kit_schemas": [
+   "PrismMetalSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismMetalSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Aluminum 1100-O",
+    "Density": 2700.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9607843137254902,
+      "GreenValue": 0.9607843137254902,
+      "BlueValue": 0.9647058823529412,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Metal",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 68947200000.0,
+      "PoissonRatio": 0.33,
+      "ShearModulus": 25510500000.0,
+      "YieldStrength": 34473600.0,
+      "TensileStrength": 89631400.0,
+      "Conductivity": 221.777,
+      "SpecificHeat": 900.0,
+      "Expansion": 2.3579799999999997e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 2700.0,
+      "Conductivity": 221.777,
+      "SpecificHeat": 900.0,
+      "Emissivity": 0.2,
+      "Resistivity": 2.82e-08,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Aluminum - Satin",
+      "Metallic": true,
+      "ColorSpace": 1,
+      "Roughness": 0.264575131106,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Metal"
+   }
+  }
+ },
+ "M072": {
+  "class": "Metal",
+  "type": "Metal",
+  "kit_schemas": [
+   "PrismMetalSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismMetalSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Copper",
+    "Density": 8940.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9294117647058824,
+      "GreenValue": 0.807843137254902,
+      "BlueValue": 0.7647058823529411,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Metal",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 117500000000.0,
+      "PoissonRatio": 0.345,
+      "ShearModulus": 46000000000.0,
+      "YieldStrength": 33300000.0,
+      "TensileStrength": 210000000.0,
+      "Conductivity": 401.0,
+      "SpecificHeat": 450.0,
+      "Expansion": 1.67e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 8940.0,
+      "Conductivity": 401.0,
+      "SpecificHeat": 450.0,
+      "Emissivity": 0.4,
+      "Resistivity": 1.68e-08,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Copper - Polished",
+      "Metallic": true,
+      "ColorSpace": 1,
+      "Roughness": 0.0774596669241,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Metal"
+   }
+  }
+ },
+ "M092": {
+  "class": "Generic",
+  "type": "Glass",
+  "kit_schemas": [
+   "PrismTransparentSchema",
+   "StructuralGenericSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismTransparentSchema",
+   "StructuralGenericSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Glass, Clear Glazing",
+    "Density": 2180.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9647058823529412,
+      "GreenValue": 0.9647058823529412,
+      "BlueValue": 0.9529411764705882,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Generic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 68000000000.0,
+      "PoissonRatio": 0.19,
+      "ShearModulus": 28500000000.0,
+      "YieldStrength": 33000000.0,
+      "TensileStrength": 33000000.0,
+      "Conductivity": 1.38,
+      "SpecificHeat": 750.0,
+      "Expansion": 7.499999999999999e-06,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 2480.0,
+      "Conductivity": 1.1,
+      "SpecificHeat": 840.0,
+      "Emissivity": 0.95,
+      "Resistivity": 10000000000.0,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": true,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Glass (Clear)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": 1.52,
+      "ColorDepth": 50.0,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Glass"
+   }
+  }
+ },
+ "M113": {
+  "class": "Wood",
+  "type": "Wood",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralWoodSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralWoodSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Jarrah",
+    "Density": 624.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.7019607843137254,
+      "GreenValue": 0.7019607843137254,
+      "BlueValue": 0.7019607843137254,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Wood",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 12900000000.0,
+      "PoissonRatio": 0.0001,
+      "ShearModulus": 10.0,
+      "YieldStrength": 10.0,
+      "TensileStrength": 10.0,
+      "Conductivity": 0.17,
+      "SpecificHeat": 1600.0,
+      "Expansion": 3.7999999999999995e-05,
+      "Damping": 0.0,
+      "AverageModulus": 12900000000.0,
+      "Bending": 106990551.5,
+      "CompressAlong": 61487695.5,
+      "CompressAcross": 11800000.0,
+      "ShearAlong": 14709975.0,
+      "TensionAlong": 10.0,
+      "TensionAcross": 10.0,
+      "Behavior": "Orthotropic",
+      "Directional": {
+       "tuple": [
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "12",
+          "Value": 0.45
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "23",
+          "Value": 0.45
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "X",
+          "Value": 0.45
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "Y",
+          "Value": 0.45
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "Z",
+          "Value": 0.45
+         }
+        }
+       ]
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 630.0,
+      "Conductivity": 0.18,
+      "SpecificHeat": 2385.0,
+      "Emissivity": 0.85,
+      "Resistivity": 10000000.0,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Surface - Matte",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.707106781187,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0676,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Wood"
+   }
+  }
+ },
+ "M130": {
+  "class": "Wood",
+  "type": "Wood",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralWoodSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralWoodSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Maple",
+    "Density": 705.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.7019607843137254,
+      "GreenValue": 0.7019607843137254,
+      "BlueValue": 0.7019607843137254,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Wood",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 12617383030.7,
+      "PoissonRatio": 0.0001,
+      "ShearModulus": 668721300.625,
+      "YieldStrength": 10.0,
+      "TensileStrength": 10.0,
+      "Conductivity": 0.18,
+      "SpecificHeat": 1600.0,
+      "Expansion": 3.7999999999999995e-05,
+      "Damping": 0.0,
+      "AverageModulus": 12617383030.7,
+      "Bending": 177794564.5,
+      "CompressAlong": 53985851.9836,
+      "CompressAcross": 10150000.0,
+      "ShearAlong": 12500000.0,
+      "TensionAlong": 10.0,
+      "TensionAcross": 4600000.0,
+      "Behavior": "Orthotropic",
+      "Directional": {
+       "tuple": [
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "12",
+          "Value": 0.477
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "23",
+          "Value": 0.477
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "X",
+          "Value": 0.434
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "Y",
+          "Value": 0.509
+         }
+        },
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "PoissonRatio",
+          "Direction": "Z",
+          "Value": 0.762
+         }
+        }
+       ]
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 570.0,
+      "Conductivity": 0.15,
+      "SpecificHeat": 2301.0,
+      "Emissivity": 0.85,
+      "Resistivity": 10000000.0,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Surface - Matte",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.707106781187,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0676,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Wood"
+   }
+  }
+ },
+ "M131": {
+  "class": "Generic",
+  "type": "Stone",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralGenericSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralGenericSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Marble",
+    "Density": 2690.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.7019607843137254,
+      "GreenValue": 0.7019607843137254,
+      "BlueValue": 0.7019607843137254,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Generic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 54000000000.0,
+      "PoissonRatio": 0.2,
+      "ShearModulus": 27000000000.0,
+      "YieldStrength": 9000000.0,
+      "TensileStrength": 9000000.0,
+      "Conductivity": 3.1,
+      "SpecificHeat": 870.0,
+      "Expansion": 2.1e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 2750.0,
+      "Conductivity": 2.9,
+      "SpecificHeat": 840.0,
+      "Emissivity": 0.75,
+      "Resistivity": 10000000.0,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Surface - Matte",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.707106781187,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0676,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Stone"
+   }
+  }
+ },
+ "M134": {
+  "class": "Gas",
+  "type": "Gas",
+  "kit_schemas": [
+   "PrismTransparentSchema",
+   "StructuralGasSchema",
+   "ThermalGasSchema"
+  ],
+  "fusion_schemas": [
+   "PrismTransparentSchema",
+   "StructuralGasSchema",
+   "ThermalGasSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Nitrogen",
+    "Density": 1.185,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 1.0,
+      "GreenValue": 1.0,
+      "BlueValue": 1.0,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Gas",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": null,
+      "PoissonRatio": null,
+      "ShearModulus": null,
+      "YieldStrength": null,
+      "TensileStrength": null,
+      "Conductivity": 0.024,
+      "SpecificHeat": 1040.0,
+      "Expansion": 500.0,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": null,
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 1.185,
+      "Conductivity": 0.024,
+      "SpecificHeat": 1040.0,
+      "Emissivity": 0.001,
+      "Resistivity": null,
+      "Permeability": null,
+      "Porosity": null,
+      "Reflectivity": null,
+      "TransmitsLight": null,
+      "Compressibility": 0.9997,
+      "Viscosity": 1.7500000000000002e-05,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Air",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": 1.0,
+      "ColorDepth": 10000.0,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Gas"
+   }
+  }
+ },
+ "M136": {
+  "class": "Plastic",
+  "type": "Plastic",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralPlasticSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralPlasticSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Nylon 6",
+    "Density": 1120.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9725490196078431,
+      "GreenValue": 0.9686274509803922,
+      "BlueValue": 0.9294117647058824,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Plastic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 2758050058.61,
+      "PoissonRatio": 0.35,
+      "ShearModulus": 1000000000.0,
+      "YieldStrength": 70400000.0,
+      "TensileStrength": 75700000.0,
+      "Conductivity": 0.281,
+      "SpecificHeat": 1670.0,
+      "Expansion": 9.53e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": [
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "Expansion",
+          "Direction": "2",
+          "Value": 0.00011999999999999999
+         }
+        }
+       ]
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 1120.0,
+      "Conductivity": 0.243,
+      "SpecificHeat": 1527.0,
+      "Emissivity": 0.95,
+      "Resistivity": 1e+19,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Nylon 6-6 (White)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.264575131106,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0529,
+      "Translucent": true,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 0.8,
+        "BlueValue": 0.4,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Plastic"
+   }
+  }
+ },
+ "M143": {
+  "class": "Gas",
+  "type": "Gas",
+  "kit_schemas": [
+   "PrismTransparentSchema",
+   "StructuralGasSchema",
+   "ThermalGasSchema"
+  ],
+  "fusion_schemas": [
+   "PrismTransparentSchema",
+   "StructuralGasSchema",
+   "ThermalGasSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Oxygen",
+    "Density": 1.354,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 1.0,
+      "GreenValue": 1.0,
+      "BlueValue": 1.0,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Gas",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": null,
+      "PoissonRatio": null,
+      "ShearModulus": null,
+      "YieldStrength": null,
+      "TensileStrength": null,
+      "Conductivity": 0.02424,
+      "SpecificHeat": 918.0,
+      "Expansion": 500.0,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": null,
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 1.354,
+      "Conductivity": 0.02424,
+      "SpecificHeat": 918.0,
+      "Emissivity": 0.001,
+      "Resistivity": null,
+      "Permeability": null,
+      "Porosity": null,
+      "Reflectivity": null,
+      "TransmitsLight": null,
+      "Compressibility": 0.9994,
+      "Viscosity": 1.909e-05,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Air",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": 1.0,
+      "ColorDepth": 10000.0,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Gas"
+   }
+  }
+ },
+ "M155": {
+  "class": "Generic",
+  "type": "Generic",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralGenericSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralGenericSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "PTFE",
+    "Density": 2200.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9725490196078431,
+      "GreenValue": 0.9686274509803922,
+      "BlueValue": 0.9294117647058824,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Generic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 500000000.0,
+      "PoissonRatio": 0.03,
+      "ShearModulus": 10.0,
+      "YieldStrength": 10.0,
+      "TensileStrength": 10.0,
+      "Conductivity": 0.25,
+      "SpecificHeat": 1000.0,
+      "Expansion": 1e-07,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": null,
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Nylon 6-6 (White)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.264575131106,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0529,
+      "Translucent": true,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 0.8,
+        "BlueValue": 0.4,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Generic"
+   }
+  }
+ },
+ "M175": {
+  "class": "Plastic",
+  "type": "Plastic",
+  "kit_schemas": [
+   "PrismTransparentSchema",
+   "StructuralPlasticSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismTransparentSchema",
+   "StructuralPlasticSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Polycarbonate, Clear",
+    "Density": 1200.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9647058823529412,
+      "GreenValue": 0.9647058823529412,
+      "BlueValue": 0.9529411764705882,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Plastic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 2275000000.0,
+      "PoissonRatio": 0.38,
+      "ShearModulus": 786000000.0,
+      "YieldStrength": 62010000.0,
+      "TensileStrength": 68900000.0,
+      "Conductivity": 0.137,
+      "SpecificHeat": 1256.1,
+      "Expansion": 6.75e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": [
+        {
+         "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue.DirectionValue",
+         "fields": {
+          "FieldKey": "Expansion",
+          "Direction": "2",
+          "Value": 6.72e-05
+         }
+        }
+       ]
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 1350.0,
+      "Conductivity": 0.192,
+      "SpecificHeat": 1674.0,
+      "Emissivity": 0.95,
+      "Resistivity": 1e+20,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": true,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Polycarbonate (Clear)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": 1.585,
+      "ColorDepth": 50.0,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Plastic"
+   }
+  }
+ },
+ "M179": {
+  "class": "Plastic",
+  "type": "Plastic",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralBasicSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralBasicSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Polyisocyanurate",
+    "Density": 32.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.7019607843137254,
+      "GreenValue": 0.7019607843137254,
+      "BlueValue": 0.7019607843137254,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Plastic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": null,
+      "PoissonRatio": null,
+      "ShearModulus": null,
+      "YieldStrength": null,
+      "TensileStrength": null,
+      "Conductivity": 0.02,
+      "SpecificHeat": 920.0,
+      "Expansion": null,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": null,
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 32.0,
+      "Conductivity": 0.02,
+      "SpecificHeat": 920.0,
+      "Emissivity": 0.95,
+      "Resistivity": 100000000000000.0,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Surface - Matte",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.707106781187,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0676,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Plastic"
+   }
+  }
+ },
+ "M199": {
+  "class": "Plastic",
+  "type": "Plastic",
+  "kit_schemas": [
+   "PrismTransparentSchema",
+   "StructuralPlasticSchema"
+  ],
+  "fusion_schemas": [
+   "PrismTransparentSchema",
+   "StructuralPlasticSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "SAN Plastic",
+    "Density": 1068.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.9647058823529412,
+      "GreenValue": 0.9647058823529412,
+      "BlueValue": 0.9529411764705882,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Plastic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 3570000000.0,
+      "PoissonRatio": 0.38,
+      "ShearModulus": 2463300000.0,
+      "YieldStrength": 72300000.0,
+      "TensileStrength": 72300000.0,
+      "Conductivity": 0.2,
+      "SpecificHeat": 2185.0,
+      "Expansion": 6.5e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": null,
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Acrylic (Clear)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": 1.491,
+      "ColorDepth": 50.0,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Plastic"
+   }
+  }
+ },
+ "M203": {
+  "class": "Generic",
+  "type": "Stone",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralBasicSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralBasicSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Slate",
+    "Density": 2760.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.7019607843137254,
+      "GreenValue": 0.7019607843137254,
+      "BlueValue": 0.7019607843137254,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Generic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": null,
+      "PoissonRatio": null,
+      "ShearModulus": null,
+      "YieldStrength": null,
+      "TensileStrength": null,
+      "Conductivity": 1.883,
+      "SpecificHeat": 836.0,
+      "Expansion": null,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": null,
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 2760.0,
+      "Conductivity": 1.883,
+      "SpecificHeat": 836.0,
+      "Emissivity": 0.75,
+      "Resistivity": 100000.0,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Surface - Matte",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.707106781187,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.0676,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Stone"
+   }
+  }
+ },
+ "M302": {
+  "class": "Metal",
+  "type": "Metal",
+  "kit_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismOpaqueSchema",
+   "StructuralMetalSchema",
+   "ThermalSolidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Steel, Paint Finish, Blue",
+    "Density": 7850.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.18823529411764706,
+      "GreenValue": 0.23137254901960785,
+      "BlueValue": 0.5882352941176471,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Metal",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 199959000000.0,
+      "PoissonRatio": 0.3,
+      "ShearModulus": 76908000000.0,
+      "YieldStrength": 248224505.275,
+      "TensileStrength": 399900000.0,
+      "Conductivity": 45.0,
+      "SpecificHeat": 480.0,
+      "Expansion": 1.1699999999999998e-05,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 7850.0,
+      "Conductivity": 45.0,
+      "SpecificHeat": 480.0,
+      "Emissivity": 0.4,
+      "Resistivity": 1.69e-07,
+      "Permeability": 0.0,
+      "Porosity": 0.001,
+      "Reflectivity": 0.0,
+      "TransmitsLight": false,
+      "Compressibility": null,
+      "Viscosity": null,
+      "VaporPressure": null,
+      "Vaporization": null
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Paint - Enamel Glossy (Blue)",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0774596669241,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": 0.06027025,
+      "Translucent": false,
+      "ScatterDistance": 0.5,
+      "ScatterColor": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Metal"
+   }
+  }
+ },
+ "M310": {
+  "class": "Generic",
+  "type": "Generic",
+  "kit_schemas": [
+   "PrismMetalSchema",
+   "StructuralGenericSchema"
+  ],
+  "fusion_schemas": [
+   "PrismMetalSchema",
+   "StructuralGenericSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Tin (Sn)",
+    "Density": 7265.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.984313725490196,
+      "GreenValue": 0.9803921568627451,
+      "BlueValue": 0.9607843137254902,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Generic",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": 50000000000.0,
+      "PoissonRatio": 0.03,
+      "ShearModulus": 10.0,
+      "YieldStrength": 10.0,
+      "TensileStrength": 10.0,
+      "Conductivity": 66.8,
+      "SpecificHeat": 1000.0,
+      "Expansion": 1e-07,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": "Isotropic",
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": null,
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Silver - Polished",
+      "Metallic": true,
+      "ColorSpace": 1,
+      "Roughness": 0.0774596669241,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": null,
+      "ColorDepth": null,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Generic"
+   }
+  }
+ },
+ "W01": {
+  "class": "Liquid",
+  "type": "Liquid",
+  "kit_schemas": [
+   "PrismTransparentSchema",
+   "StructuralLiquidSchema",
+   "ThermalLiquidSchema"
+  ],
+  "fusion_schemas": [
+   "PrismTransparentSchema",
+   "StructuralLiquidSchema",
+   "ThermalLiquidSchema"
+  ],
+  "input": {
+   "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec",
+   "fields": {
+    "NameValue": "Kit Liquid Accept",
+    "Density": 1050.0,
+    "Color": {
+     "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+     "fields": {
+      "RedValue": 0.4235294117647059,
+      "GreenValue": 0.7686274509803922,
+      "BlueValue": 0.8549019607843137,
+      "AlphaValue": 1.0
+     }
+    },
+    "ClassName": "Liquid",
+    "Mechanics": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec.MechanicSpec",
+     "fields": {
+      "YoungModulus": null,
+      "PoissonRatio": null,
+      "ShearModulus": null,
+      "YieldStrength": null,
+      "TensileStrength": null,
+      "Conductivity": 0.62,
+      "SpecificHeat": 3900.0,
+      "Expansion": 300.0,
+      "Damping": 0.0,
+      "AverageModulus": null,
+      "Bending": null,
+      "CompressAlong": null,
+      "CompressAcross": null,
+      "ShearAlong": null,
+      "TensionAlong": null,
+      "TensionAcross": null,
+      "Behavior": null,
+      "Directional": {
+       "tuple": []
+      }
+     }
+    },
+    "Thermal": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec.ThermalSpec",
+     "fields": {
+      "Density": 1040.0,
+      "Conductivity": 0.61,
+      "SpecificHeat": 3950.0,
+      "Emissivity": 0.7,
+      "Resistivity": null,
+      "Permeability": null,
+      "Porosity": null,
+      "Reflectivity": null,
+      "TransmitsLight": null,
+      "Compressibility": 0.0,
+      "Viscosity": 0.0015,
+      "VaporPressure": 1200.0,
+      "Vaporization": 2100000.0
+     }
+    },
+    "Finish": {
+     "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec.FinishSpec",
+     "fields": {
+      "NameValue": "Water - Clear",
+      "Metallic": false,
+      "ColorSpace": 1,
+      "Roughness": 0.0,
+      "Anisotropy": 0.0,
+      "Rotation": 0.0,
+      "Tint": {
+       "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue",
+       "fields": {
+        "RedValue": 1.0,
+        "GreenValue": 1.0,
+        "BlueValue": 1.0,
+        "AlphaValue": 1.0
+       }
+      },
+      "Reflectance": null,
+      "Translucent": null,
+      "ScatterDistance": null,
+      "ScatterColor": null,
+      "Refraction": 1.333,
+      "ColorDepth": 1500.0,
+      "LayerColor": null,
+      "LayerFraction": null,
+      "LayerRoughness": null
+     }
+    },
+    "TypeName": "Liquid"
+   }
+  }
+ }
+}

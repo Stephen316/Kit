@@ -1,0 +1,246 @@
+{
+  "schema": "FusionNativeVersionDifferences/1",
+  "source": "Versions.json",
+  "sourceSha256": "54d93410a407ff808e5824c5ad797bf63fa89b3686e15be848960ca49ba4a161",
+  "scope": "Own registered field differences only; no inference of migration transforms or historical base versions",
+  "classes": [
+    {
+      "class": "DcDraftFeatureMetaType",
+      "identifier": "F4163A07-9E71-4C46-BD92-ACE5B5B40BED",
+      "oldVersion": 5,
+      "newVersion": 6,
+      "added": [
+        {
+          "registration_index": 12,
+          "name": "m_fixedPlaneDraftAngleMode",
+          "script_id": "m_fixedPlaneDraftAngleMode",
+          "debug_type_name": "j",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypeuint32",
+            "identifier": "IntrinsicMetaTypeuint32",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        }
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "class": "DRMatrixMetaType",
+      "identifier": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+      "oldVersion": 15,
+      "newVersion": 16,
+      "added": [],
+      "removed": [],
+      "changed": [
+        {
+          "name": "arcLengthForPeriodicFace",
+          "changes": {
+            "debug_type_name": {
+              "before": "d",
+              "after": "N2Ns9StrongRefIN2Na13DesignCapture17DcDoubleParameterEEE"
+            },
+            "metatype": {
+              "before": {
+                "name": "IntrinsicMetaTypedouble",
+                "identifier": "IntrinsicMetaTypedouble",
+                "category": {
+                  "value": 0,
+                  "name": "intrinsic"
+                }
+              },
+              "after": {
+                "name": "StrongRefMetaType",
+                "identifier": "StrongRefMetaType",
+                "category": {
+                  "value": 4,
+                  "name": "strong_reference"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "class": "ParameterMetaType",
+      "identifier": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+      "oldVersion": 9,
+      "newVersion": 10,
+      "added": [
+        {
+          "registration_index": 20,
+          "name": "isExternal",
+          "script_id": "isExternal",
+          "debug_type_name": "b",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypebool",
+            "identifier": "IntrinsicMetaTypebool",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        }
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "class": "ComponentBaseInstanceMetaType",
+      "identifier": "D4CBC599-0FFB-4d32-BF14-A7F0AFA25013",
+      "oldVersion": 10,
+      "newVersion": 11,
+      "added": [
+        {
+          "registration_index": 13,
+          "name": "initialTransform",
+          "script_id": "initialTransform",
+          "debug_type_name": "12AcGeMatrix3d",
+          "option_mask": 51,
+          "metatype": {
+            "name": "AcGeMatrix3dValueMetaType",
+            "identifier": "FCFA11CB-9D87-41D6-9FD8-92E23427386D",
+            "category": {
+              "value": 3,
+              "name": "value"
+            }
+          }
+        }
+      ],
+      "removed": [],
+      "changed": []
+    },
+    {
+      "class": "BaseOccurrencePathValueMetaType",
+      "identifier": "4C835764-5BAB-4421-B5D2-06015BEF6EB2",
+      "oldVersion": 4,
+      "newVersion": 5,
+      "added": [
+        {
+          "registration_index": 3,
+          "name": "passiveOccurrencePath",
+          "script_id": "passiveOccurrencePath",
+          "debug_type_name": "N2Ns3ACT14ACTPassivePathE",
+          "option_mask": 51,
+          "metatype": {
+            "name": "ACTPassivePathValueMetaType",
+            "identifier": "C7F1A2B3-4D5E-6F70-8190-A1B2C3D4E5F6",
+            "category": {
+              "value": 3,
+              "name": "value"
+            }
+          }
+        }
+      ],
+      "removed": [
+        {
+          "registration_index": 3,
+          "name": "instanceIndices",
+          "script_id": "instanceIndices",
+          "debug_type_name": "NSt3__16vectorIjNS_9allocatorIjEEEE",
+          "option_mask": 51,
+          "metatype": {
+            "name": "Vector",
+            "identifier": "Vector",
+            "category": {
+              "value": 1,
+              "name": "collection"
+            }
+          }
+        }
+      ],
+      "changed": []
+    },
+    {
+      "class": "PMISettingsMetaType",
+      "identifier": "D572415C-6C2C-460B-8C84-265C52D89EDF",
+      "oldVersion": 2,
+      "newVersion": 4,
+      "added": [
+        {
+          "registration_index": 7,
+          "name": "defaultLeadingZero",
+          "script_id": "defaultLeadingZero",
+          "debug_type_name": "b",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypebool",
+            "identifier": "IntrinsicMetaTypebool",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        },
+        {
+          "registration_index": 6,
+          "name": "defaultPrecision",
+          "script_id": "defaultPrecision",
+          "debug_type_name": "i",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypeint32",
+            "identifier": "IntrinsicMetaTypeint32",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        },
+        {
+          "registration_index": 8,
+          "name": "defaultTrailingZero",
+          "script_id": "defaultTrailingZero",
+          "debug_type_name": "b",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypebool",
+            "identifier": "IntrinsicMetaTypebool",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        },
+        {
+          "registration_index": 10,
+          "name": "generalNoteCustomSize",
+          "script_id": "generalNoteCustomSize",
+          "debug_type_name": "d",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypedouble",
+            "identifier": "IntrinsicMetaTypedouble",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        },
+        {
+          "registration_index": 9,
+          "name": "generalNoteSizeOption",
+          "script_id": "generalNoteSizeOption",
+          "debug_type_name": "N2Ns8Geometry22eGeneralNoteSizeOptionE",
+          "option_mask": 51,
+          "metatype": {
+            "name": "IntrinsicMetaTypeuint32",
+            "identifier": "IntrinsicMetaTypeuint32",
+            "category": {
+              "value": 0,
+              "name": "intrinsic"
+            }
+          }
+        }
+      ],
+      "removed": [],
+      "changed": []
+    }
+  ]
+}

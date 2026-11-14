@@ -1,0 +1,204 @@
+{
+  "scope": "Complete F3D authoring from dimensions and fresh semantic identities; production API has no native runtime, source archive, captured entity record, or payload/template input",
+  "cases": [
+    {
+      "profile": "rectangle",
+      "path": "re/Fusion/LocalOracle/DimensionAuthoring/DimensionedRectangle.f3d",
+      "sha256": "4fbcc6e18301a5c4cbcc9ec06aa422afe75dfdffa67f04938ef9f8efa054c627",
+      "bytes": 57994,
+      "specification": {
+        "Title": "Independent constrained rectangle",
+        "ParamName": "boxHeight",
+        "LengthMm": 31.0,
+        "ProfileKind": "rectangle",
+        "RadiusMm": 12.5,
+        "ParamComment": "",
+        "SketchName": "Constrained rectangle",
+        "ExtrusionName": "Dimension driven cuboid",
+        "BodyName": "Dimension driven body",
+        "WidthMm": 17.0,
+        "DepthMm": 23.0,
+        "Material": {
+          "NameValue": "Dimension driven material",
+          "Density": 2870.0,
+          "Color": {
+            "RedValue": 0.8,
+            "GreenValue": 0.8,
+            "BlueValue": 0.8,
+            "AlphaValue": 1.0
+          }
+        },
+        "TaperDegrees": 0.0,
+        "ConstrainRectangle": true,
+        "WidthParamName": "boxWidth",
+        "DepthParamName": "boxDepth"
+      },
+      "expected": {
+        "cornerCoordinatesCm": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1.7,
+            0,
+            0
+          ],
+          [
+            1.7,
+            2.3,
+            0
+          ],
+          [
+            0,
+            2.3,
+            0
+          ]
+        ],
+        "sketchProfiles": 1,
+        "geometricConstraints": 4,
+        "dimensions": 2,
+        "fullyConstrained": true,
+        "volumeCm3": null,
+        "massKg": null,
+        "centerCm": null
+      },
+      "suggestedNativeEdits": {
+        "boxWidth": "19 mm",
+        "boxDepth": "29 mm",
+        "boxHeight": "37 mm"
+      },
+      "editedExpected": {
+        "cornerCoordinatesCm": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1.9,
+            0,
+            0
+          ],
+          [
+            1.9,
+            2.9,
+            0
+          ],
+          [
+            0,
+            2.9,
+            0
+          ]
+        ],
+        "volumeCm3": null,
+        "centerCm": null
+      }
+    },
+    {
+      "profile": "cuboid",
+      "path": "re/Fusion/LocalOracle/DimensionAuthoring/DimensionedCuboid.f3d",
+      "sha256": "dd8d4197f480115091378bbf90df1a8179bee47e1cba20339f172594e73bd41d",
+      "bytes": 113517,
+      "specification": {
+        "Title": "Independent constrained cuboid",
+        "ParamName": "boxHeight",
+        "LengthMm": 31.0,
+        "ProfileKind": "cuboid",
+        "RadiusMm": 12.5,
+        "ParamComment": "",
+        "SketchName": "Constrained rectangle",
+        "ExtrusionName": "Dimension driven cuboid",
+        "BodyName": "Dimension driven body",
+        "WidthMm": 17.0,
+        "DepthMm": 23.0,
+        "Material": {
+          "NameValue": "Dimension driven material",
+          "Density": 2870.0,
+          "Color": {
+            "RedValue": 0.8,
+            "GreenValue": 0.8,
+            "BlueValue": 0.8,
+            "AlphaValue": 1.0
+          }
+        },
+        "TaperDegrees": 0.0,
+        "ConstrainRectangle": true,
+        "WidthParamName": "boxWidth",
+        "DepthParamName": "boxDepth"
+      },
+      "expected": {
+        "cornerCoordinatesCm": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1.7,
+            0,
+            0
+          ],
+          [
+            1.7,
+            2.3,
+            0
+          ],
+          [
+            0,
+            2.3,
+            0
+          ]
+        ],
+        "sketchProfiles": 1,
+        "geometricConstraints": 4,
+        "dimensions": 2,
+        "fullyConstrained": true,
+        "volumeCm3": 12.121,
+        "massKg": 0.03478727,
+        "centerCm": [
+          0.85,
+          1.15,
+          1.55
+        ]
+      },
+      "suggestedNativeEdits": {
+        "boxWidth": "19 mm",
+        "boxDepth": "29 mm",
+        "boxHeight": "37 mm"
+      },
+      "editedExpected": {
+        "cornerCoordinatesCm": [
+          [
+            0,
+            0,
+            0
+          ],
+          [
+            1.9,
+            0,
+            0
+          ],
+          [
+            1.9,
+            2.9,
+            0
+          ],
+          [
+            0,
+            2.9,
+            0
+          ]
+        ],
+        "volumeCm3": 20.387,
+        "centerCm": [
+          0.95,
+          1.45,
+          1.85
+        ]
+      }
+    }
+  ],
+  "verification": "Artifact generation only; native acceptance pending; no local tests"
+}

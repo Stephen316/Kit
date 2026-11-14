@@ -1,0 +1,119 @@
+{
+ "scope": "Non-unit TSM knot intervals on a plane grid and a box cage: uniform scaling, consistent column and row intervals, a boundary column and a single inconsistent edge, imported into Fusion and converted",
+ "python": "3.14.7",
+ "cages": [
+  {
+   "cage": "Plane4x4",
+   "source": {
+    "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Plane4x4.tsm",
+    "sha256": "dac8ba33b2dc912aa8be30dff901393b951b62dc9a77b4275cdf322e1c249988"
+   },
+   "variants": [
+    {
+     "variant": "Base",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Base.tsm",
+     "tsm_sha256": "dac8ba33b2dc912aa8be30dff901393b951b62dc9a77b4275cdf322e1c249988",
+     "intervals": {
+      "1.0": 40
+     }
+    },
+    {
+     "variant": "Uniform2",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Uniform2.tsm",
+     "tsm_sha256": "6f56f48ff31008b959e0c90c4f087c70eeff8deb77f7820efba8728d39571952",
+     "intervals": {
+      "2.0": 40
+     }
+    },
+    {
+     "variant": "Half",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Half.tsm",
+     "tsm_sha256": "59b798a65dd7474e2d43ac070500db0f835d256f5a1f4ad085abe4a803edb752",
+     "intervals": {
+      "0.5": 40
+     }
+    },
+    {
+     "variant": "Column1",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Column1.tsm",
+     "tsm_sha256": "8832897b3a253aeeb0667c5e509e2738297934a041bda46ef710ce0035b14d23",
+     "intervals": {
+      "1.0": 35,
+      "2.0": 5
+     }
+    },
+    {
+     "variant": "Column0",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Column0.tsm",
+     "tsm_sha256": "5223ff2b6384b515e60014e92bdabce843c83238e3a3ede1c0baac1fbf9cb16b",
+     "intervals": {
+      "2.0": 5,
+      "1.0": 35
+     }
+    },
+    {
+     "variant": "Row2",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Row2.tsm",
+     "tsm_sha256": "4382cf1922199ce4ac2c7cc3f1325e62bfa3b9abb460c1a3d43bb7d1047e845f",
+     "intervals": {
+      "1.0": 35,
+      "3.0": 5
+     }
+    },
+    {
+     "variant": "ColumnRow",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/ColumnRow.tsm",
+     "tsm_sha256": "5db9165f556b821a433203ebd0ad89f2ca81b0765fb23ad5a2842932b9b3813c",
+     "intervals": {
+      "1.0": 30,
+      "2.0": 5,
+      "0.5": 5
+     }
+    },
+    {
+     "variant": "Single",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Single.tsm",
+     "tsm_sha256": "7c7ded7ea96c344e3c114ddd57267ba8003f32bc97e2b87fbf21c631ba669972",
+     "intervals": {
+      "1.0": 39,
+      "2.0": 1
+     }
+    }
+   ]
+  },
+  {
+   "cage": "Box",
+   "source": {
+    "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Box.tsm",
+    "sha256": "67dac2ffda99938b9e29e4c8958c328e6192e76d94b1d27faeff99988a9259b5"
+   },
+   "variants": [
+    {
+     "variant": "Base",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Base.tsm",
+     "tsm_sha256": "67dac2ffda99938b9e29e4c8958c328e6192e76d94b1d27faeff99988a9259b5",
+     "intervals": {
+      "1.0": 48
+     }
+    },
+    {
+     "variant": "Uniform2",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Uniform2.tsm",
+     "tsm_sha256": "31b06cf7814726815479a8fb19ab25ee664aeeb2acd8fa9024b753ce798aae6a",
+     "intervals": {
+      "2.0": 48
+     }
+    },
+    {
+     "variant": "Single",
+     "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Single.tsm",
+     "tsm_sha256": "6d2ca6e2e5aba664c7fac0a559431e9dfdffdf4ec2b41fe04f99cee983040a79",
+     "intervals": {
+      "2.0": 1,
+      "1.0": 47
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -13,3 +13,4 @@ class NativeParam:
     BindingId: int | None
     NativeIndex: int
     Metadata: bytes
+    CollectionId: int

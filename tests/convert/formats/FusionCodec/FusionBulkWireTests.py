@@ -7,6 +7,7 @@ from pytest import MonkeyPatch as PatchContext
 from pytest import mark as TestMarks, raises as Raises, skip as SkipCase
 
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.formats.Fusion.ContainerCodec.ContainerLayout import KCoreSegments
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SegmentCodec.Bulk.BulkBounds import (
@@ -145,7 +146,7 @@ def TestIndexLimits(MonkeyPatch: PatchContext) -> None:
 
 # real records verify the new framing without relying on a guessed payload model
 @TestMarks.parametrize("FileName", ("offset.f3d", "angle.f3d"))
-@TestMarks.parametrize("Segment", tuple(SegmentKind))
+@TestMarks.parametrize("Segment", KCoreSegments)
 def TestBulkNative(FileName: str, Segment: SegmentKind) -> None:
     SourcePath = FilePath(__file__).resolve().parents[4] / KFixtureRoot / FileName
     Prefix = f"FusionAssetName[Active]/{Segment.value}1/"

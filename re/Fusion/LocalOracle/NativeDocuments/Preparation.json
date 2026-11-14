@@ -1,0 +1,102 @@
+{
+  "scope": "Qualified complete native-document reserialization",
+  "cases": [
+    {
+      "name": "OrdinaryRectangle",
+      "source": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "source_sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "output_file": "re/Fusion/LocalOracle/NativeDocuments/OrdinaryRectangle.f3d",
+      "output_sha256": "0203674063f58504d037a51236a1aff9cc3283ed1b8b107cc8307e1e73f10e92",
+      "output_bytes": 198848,
+      "geometry_mm": {
+        "Width": 40.0,
+        "Depth": 30.0,
+        "Height": 25.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "height_parameter": "d1",
+      "edited_height_mm": 37.0,
+      "typed_counts": {
+        "segments": 3,
+        "records": 347,
+        "histories": 1,
+        "materials": 1,
+        "snapshots": 1,
+        "configurations": 2,
+        "graphics_objects": 39,
+        "graphics_streams": 1
+      },
+      "graphics": [
+        {
+          "member": "OGS.BlobFolder/OGS/DefaultScene/world",
+          "bytes": 14552,
+          "sha256": "5c3fbcebc7f08703edd75d795f995edb0f441d24b54fc13998ca89d330df6e0d",
+          "source_sha256": "5c3fbcebc7f08703edd75d795f995edb0f441d24b54fc13998ca89d330df6e0d",
+          "identical": true
+        },
+        {
+          "member": "OGS.BlobFolder/OGS/DefaultScene/stream_mesh_000",
+          "bytes": 860,
+          "sha256": "14d09dabd98c21c6735c5a9fac7d034e19a434f487d97abdf3dc56e03981e524",
+          "source_sha256": "14d09dabd98c21c6735c5a9fac7d034e19a434f487d97abdf3dc56e03981e524",
+          "identical": true
+        }
+      ],
+      "construction": "Complete ReadDocument -> EmitParsed; all three entity segments, BRep history and snapshot, material packages, configuration payloads and graphics are typed-decoded and independently serialized. Preview images remain explicit image parts",
+      "native_acceptance": "Pending parent-coordinated native execution"
+    },
+    {
+      "name": "SavedCuboid",
+      "source": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionCuboid37mm.f3d",
+      "source_sha256": "62c03b7aa11ce2c79193e51376e4405e6bbfd34aa5ab8097b72043ad49f38683",
+      "output_file": "re/Fusion/LocalOracle/NativeDocuments/SavedCuboid.f3d",
+      "output_sha256": "49f92bbe4f33fc7c1413ca8a8d433ff3ba948c1822c6513363934425f626ec31",
+      "output_bytes": 203703,
+      "geometry_mm": {
+        "Width": 17.0,
+        "Depth": 23.0,
+        "Height": 37.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "height_parameter": "authoredLength",
+      "edited_height_mm": 43.0,
+      "typed_counts": {
+        "segments": 3,
+        "records": 246,
+        "histories": 1,
+        "materials": 1,
+        "snapshots": 1,
+        "configurations": 2,
+        "graphics_objects": 41,
+        "graphics_streams": 1
+      },
+      "graphics": [
+        {
+          "member": "OGS.BlobFolder/OGS/DefaultScene/world",
+          "bytes": 24382,
+          "sha256": "1ff6fb64ee545e01838a7c2e2e649ee6118b12c726a612ba3dfc8ec6865991e6",
+          "source_sha256": "1ff6fb64ee545e01838a7c2e2e649ee6118b12c726a612ba3dfc8ec6865991e6",
+          "identical": true
+        },
+        {
+          "member": "OGS.BlobFolder/OGS/DefaultScene/stream_mesh_000",
+          "bytes": 956,
+          "sha256": "778c4d932ff8fc9de9afb2e8127188bff6673c2513c556c4eadfd6a99fe87e93",
+          "source_sha256": "778c4d932ff8fc9de9afb2e8127188bff6673c2513c556c4eadfd6a99fe87e93",
+          "identical": true
+        }
+      ],
+      "construction": "Complete ReadDocument -> EmitParsed; all three entity segments, BRep history and snapshot, material packages, configuration payloads and graphics are typed-decoded and independently serialized. Preview images remain explicit image parts",
+      "native_acceptance": "Pending parent-coordinated native execution"
+    }
+  ],
+  "execution": "Authorized native artifact generation, no local tests or native application calls"
+}

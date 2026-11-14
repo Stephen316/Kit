@@ -1,0 +1,583 @@
+[
+  {
+    "ClassGuid": "60403D47-0C49-49B0-BDE8-1679608164A2",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "ParentNode",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "constraintType",
+        "ValueType": {
+          "KindValue": "u64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "geometries",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isConfliction",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "isVisible",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SketchGeomConstraint",
+    "ClassSpace": "MSketch"
+  },
+  {
+    "ClassGuid": "8C780195-72C0-4a56-A911-E43AB14357F2",
+    "BaseGuid": "0C3F3829-F0DB-4379-9479-CFEF71087971",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "LinearDimensionInfo",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "735FD678-4ADD-4F4B-A8B1-88CAA010394E"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "RefPositions",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "f64"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "FusionSketchLinearDim",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "0C3F3829-F0DB-4379-9479-CFEF71087971",
+    "BaseGuid": "855F0A64-6286-4FFC-B918-BC394F600107",
+    "SchemaVersion": 6,
+    "Members": [
+      {
+        "FieldName": "constraintType",
+        "ValueType": {
+          "KindValue": "u64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dcParameter",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "flags",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "geometries",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSick",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SketchDimension",
+    "ClassSpace": "MSketch"
+  },
+  {
+    "ClassGuid": "855F0A64-6286-4FFC-B918-BC394F600107",
+    "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "ParentNode",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "color",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "red",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "green",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "blue",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "alpha",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isVisible",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "Dimension",
+    "ClassSpace": "Dimension"
+  },
+  {
+    "ClassGuid": "735FD678-4ADD-4F4B-A8B1-88CAA010394E",
+    "BaseGuid": "C2C193F2-E833-4842-8C93-A5B903F3A345",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "DimEndPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "DimStartPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "extnStartPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSingleArrow",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "length",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "LinearDimensionInfoValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "C2C193F2-E833-4842-8C93-A5B903F3A345",
+    "BaseGuid": "",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "bDriven",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "color",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "red",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "green",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "blue",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "alpha",
+              "ValueType": {
+                "KindValue": "f32"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "hasTextPoint",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "plane",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "normalReversed",
+              "ValueType": {
+                "KindValue": "bool"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "origin",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "uAxis",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "vAxis",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "prefix",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "text",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "textPosition",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "DimensionInfoValue",
+    "ClassSpace": ""
+  }
+]

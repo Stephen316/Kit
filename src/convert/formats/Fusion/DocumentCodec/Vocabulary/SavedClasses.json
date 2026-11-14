@@ -1,0 +1,134 @@
+[
+  {
+    "ClassGuid": "D87EC2D8-35C1-4AA2-A308-09AF07C490FF",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "TransientEntityHolder",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F4163A07-9E71-4C46-BD92-ACE5B5B40BED",
+    "BaseGuid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+    "SchemaVersion": 6,
+    "Members": [
+      {
+        "FieldName": "MovingPartingLineDraftAngleType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "draftType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_bFlipped",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_bTangentPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_directionType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_draftAngle1",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_draftAngle2",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_facePickPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_facesRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_fixedPlaneDraftAngleMode",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_rFixedEdgesDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_rRefPlaneDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rPartingLineToolDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcDraftFeature",
+    "ClassSpace": "Fusion"
+  }
+]

@@ -1,0 +1,1400 @@
+{
+ "status": "captured",
+ "layout": {
+  "body_lod": [
+   "NodeData payload",
+   "HasLODs u32: zero or one set bit",
+   "when HasLODs != 0 and render geometry exists: DisplayItemType u32",
+   "DisplayItemType 0: RenderGeom link (flag, class text, object)",
+   "DisplayItemType 6: OgsEnhancedEdge Props u32[4]",
+   "DisplayItemType 7: OgsEnhancedFace Props u32[6], EdgeNum u32, Props u32[EdgeNum]",
+   "WorldBox f64[6]",
+   "UseClosestLOD u8"
+  ],
+  "enhanced_edge_props": [
+   "stream index",
+   "byte offset",
+   "position float count (3 per vertex)",
+   "normal float count (equals position count)"
+  ],
+  "enhanced_edge_stream": "per vertex f32 px py pz nx ny nz at Fusion_mesh_%03d[offset]",
+  "enhanced_face_props": [
+   "stream index",
+   "byte offset",
+   "position float count",
+   "normal float count",
+   "texture float count (2 per vertex, rounded even)",
+   "index count"
+  ],
+  "enhanced_face_stream": "per vertex f32 px py pz nx ny nz u v, then u32 triangle indices, at Fusion_mesh_%03d[offset]",
+  "enhanced_face_edges": "EdgeNum then one u32 per edge: the body-local serialization ordinal of an earlier OgsEnhancedEdge in the same body map",
+  "stream_advance": "the writer adds the written bytes to the offset and moves to the next stream index with offset 0 after a size limit; from earlier binary inspection, not confirmed by a black-box experiment",
+  "stream_family": "Fusion_mesh_NNN holds enhanced mesh data and is distinct from stream_mesh_NNN used by OgsSimpleMesh buffers",
+  "object_identity": "GroupNode and other graphics object ids are %p text: 0x-prefixed lowercase on macOS saves, 16 uppercase hex digits on Windows saves",
+  "billboard_v1": "BillBoardAttribute version 1 carries Style, Anchor, Axis, Compensation; version 2 adds FlipVisibility u32; field names from earlier binary inspection"
+ },
+ "saved_observation": {
+  "grouped.f3d first enhanced edge": "type 6 Props (0, 0, 180, 180), 60 vertices, 1440 bytes",
+  "grouped.f3d first enhanced face": "type 7 Props (0, 2880, 177, 177, 118, 171), EdgeNum 1, edges (0)",
+  "grouped.f3d Fusion_mesh_000": "last face ends at 32464 + 102 * 32 + 300 * 4 = 36928 bytes, the full member"
+ },
+ "acceptance": {
+  "documents": {
+   "re/Fusion/Study/timeline-5867579925b5/grouped.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 6,
+    "faces": 9
+   },
+   "re/Fusion/Study/timeline-5867579925b5/reordered_b.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   },
+   "re/Fusion/Study/timeline-5867579925b5/rolled_back.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   },
+   "re/Fusion/Study/timeline-5867579925b5/suppressed_b.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   },
+   "re/Fusion/Study/timeline-72406b67a839/reordered_b.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   },
+   "re/Fusion/Study/timeline-72406b67a839/suppressed_b.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   },
+   "re/Fusion/Study/timeline-expanded-2396e32f2574/expanded.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 6,
+    "faces": 9
+   },
+   "re/Fusion/Study/timeline-fee448f6a592/suppressed_b.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   },
+   "re/Fusion/LocalOracle/RolledHistory/RolledHistoryReemitted.f3d": {
+    "model_equal": true,
+    "same_names": true,
+    "changed": [],
+    "scene_members_equal": true,
+    "scene_members": [
+     "",
+     "Fusion_mesh_000",
+     "stream_mesh_000",
+     "world"
+    ],
+    "edges": 2,
+    "faces": 3
+   }
+  },
+  "scenes": {
+   "example1 member 0": "ValueError: Unsupported graphics attribute class: FProteinEffectAttribute",
+   "example1 member 1": "ValueError: Unsupported graphics attribute class: OverrideTransformAttribute",
+   "example1 member 2": "ValueError: Unsupported graphics serializer versions or environment",
+   "example1 member 3": [
+    true,
+    {
+     "world": 288477,
+     "stream_mesh_000": 55004,
+     "Fusion_mesh_000": 85232
+    }
+   ],
+   "example1 member 4": "ValueError: Trailing graphics mesh bytes",
+   "example1 member 5": [
+    true,
+    {
+     "world": 481142,
+     "stream_mesh_000": 61324,
+     "Fusion_mesh_000": 115328
+    }
+   ],
+   "example1 member 6": [
+    true,
+    {}
+   ],
+   "example1 member 7": "ValueError: Trailing graphics mesh bytes",
+   "example1 member 8": [
+    true,
+    {
+     "world": 511613,
+     "stream_mesh_000": 61092,
+     "Fusion_mesh_000": 125336
+    }
+   ],
+   "examples/.f3d/example2.f3d": [
+    true,
+    {
+     "world": 663171,
+     "stream_mesh_000": 42596,
+     "Fusion_mesh_000": 81208
+    }
+   ]
+  },
+  "bundles": {
+   "examples/.f3z/example1.f3z": true,
+   "re/Fusion/LocalOracle/Bundles/kit_production_example1.f3z": true
+  },
+  "edge_rejection": "Unsupported graphics enhanced edge layout",
+  "face_rejection": "Unsupported graphics enhanced display item references"
+ },
+ "census": {
+  "baseline": {
+   "pass": 903,
+   "read": 169
+  },
+  "branch": {
+   "pass": 912,
+   "read": 160
+  },
+  "regressions": 0,
+  "new_differing_members": 0
+ },
+ "bundles": {
+  "examples/.f3z/example1.f3z": "Fusion-saved outer archive: deflate members with save timestamps",
+  "re/Fusion/LocalOracle/Bundles/kit_production_example1.f3z": "Kit-made outer archive: stored members, 1980 timestamps, reordered; every inner document is byte-identical to the Fusion-saved bundle"
+ },
+ "remaining": {
+  "class_gaps_example1": [
+   {
+    "guid": "B2BEE56B-6815-497F-B154-5FD9183808A2",
+    "version": 12,
+    "name": "CanvasMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 2,
+    "reflected": true,
+    "current": 12,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "B2BEE56B",
+      12,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "F193B033-8CB7-4CC9-B18E-D1E06A07D72E",
+    "version": 0,
+    "name": "DcBoxPrimitiveMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 5,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "F193B033",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "CAA90BED-408E-4F03-A4E5-B1552D95C8EE",
+    "version": 0,
+    "name": "DcBoxToolBodyMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 5,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "CAA90BED",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "0EE4A83E-464B-4235-A62F-984F15834C27",
+    "version": 1,
+    "name": "DcCanvasMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 2,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "0EE4A83E",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "D0F69AAA-7BA0-4C9C-8A6D-7D01ADB39593",
+    "version": 1,
+    "name": "DcGeometricRelationshipFeatureMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "D0F69AAA",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "DC7DCD71-6902-48CC-802E-BEC2073750D0",
+    "version": 0,
+    "name": "DcGeometricRelationshipOccurrenceMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "DC7DCD71",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "0A6FC6E5-B9ED-491B-B388-900913C48F2B",
+    "version": 0,
+    "name": "DcGeometricRelationshipOccurrenceStateValueMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "0A6FC6E5",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "A917FE80-93D6-45AD-B741-93BB1ACA5E61",
+    "version": 1,
+    "name": "DcGroupFeatureMetaType",
+    "known": [
+     2
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 2,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "2BB91A84-0D2F-4E70-86A8-4DCA3A932DF4",
+    "version": 0,
+    "name": "DcPCBBaseBodyMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 2,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "2BB91A84",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "94B9F77E-1761-4A24-94BB-36FD7D990059",
+    "version": 4,
+    "name": "DcPCBExtrudeMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 4,
+    "reflected": true,
+    "current": 4,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "94B9F77E",
+      4,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "369DDC0A-731F-4096-83AA-F8E9E2E129EC",
+    "version": 18,
+    "name": "DcPCBSettingsMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 18,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "369DDC0A",
+      18,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "F22BC522-674C-441F-A860-B48E1BA62E59",
+    "version": 0,
+    "name": "DcPCBToolBodyMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 4,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "F22BC522",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "8DBAF917-44EA-4D28-8410-201D9454C98B",
+    "version": 3,
+    "name": "DcPlacePCBInstanceMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 33,
+    "reflected": true,
+    "current": 3,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "8DBAF917",
+      3,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "7CFC0787-730F-4AB5-9C1E-27A29E1BB259",
+    "version": 1,
+    "name": "PCBBodyCacheValueMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "7CFC0787",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "EDFFD64E-2C03-4F11-A82F-BF3B733ED1BA",
+    "version": 1,
+    "name": "PCBHoleDataValueMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "EDFFD64E",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+    "version": 12,
+    "name": "DRMatrixMetaType",
+    "known": [
+     15,
+     16
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 3,
+    "reflected": true,
+    "current": 16,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+    "version": 14,
+    "name": "DRMatrixMetaType",
+    "known": [
+     15,
+     16
+    ],
+    "segment": "KDesign",
+    "files": 7,
+    "owners": 18,
+    "reflected": true,
+    "current": 16,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "019B95B1-BD83-4A94-9490-F43DD0E6B624",
+    "version": 0,
+    "name": "DcAlignGeometricConstraintDataMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "019B95B1",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "A2D4EE52-1B04-42D2-836A-2219A0972213",
+    "version": 4,
+    "name": "DcGeometricConstraintDataMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 4,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "A2D4EE52",
+      4,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "D5DF1ED7-91F4-4CD6-88B8-0D467B0204F9",
+    "version": 0,
+    "name": "FusionBodyBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 5,
+    "owners": 21,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "D5DF1ED7",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "3A75695E-E7A4-40C1-9921-442D9E20F5ED",
+    "version": 0,
+    "name": "FusionMSketchBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 1,
+    "owners": 5,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "3A75695E",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "0FAF9824-8ECA-45ED-B199-589022ED5F6D",
+    "version": 9,
+    "name": "VisualAnalysesMetaType",
+    "known": [
+     10
+    ],
+    "segment": "KDesign",
+    "files": 9,
+    "owners": 9,
+    "reflected": true,
+    "current": 10,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "D956D02C-2806-4E57-8B2E-EFA323A5C2B8",
+    "version": 0,
+    "name": "ACTComponentMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 9,
+    "owners": 21,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "596618BE-CD74-4BC9-A627-2DA799696C2D",
+    "version": 0,
+    "name": "ACTComponentsRootMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 9,
+    "owners": 9,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "96E1B59A-1989-4493-AA92-67E6072135F6",
+    "version": 0,
+    "name": "ACTInstanceMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 9,
+    "owners": 67,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "F01D16CF-95D5-4239-A488-00448AC88023",
+    "version": 0,
+    "name": "ACTInstancesMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 9,
+    "owners": 21,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "F3E2665C-F3E1-4BA7-8676-8B90579B56D3",
+    "version": 1,
+    "name": "ACTInstancesRootMetaType",
+    "known": [
+     2
+    ],
+    "segment": "KAct",
+    "files": 9,
+    "owners": 9,
+    "reflected": true,
+    "current": 2,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "23FD63FB-4EBE-4C85-A42B-5D9809AA3499",
+    "version": 17,
+    "name": "CommonDataAssetSettingsMetaType",
+    "known": [
+     18
+    ],
+    "segment": "KDesign",
+    "files": 9,
+    "owners": 9,
+    "reflected": true,
+    "current": 18,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "123F7725-50F0-4CD9-B4BC-1FF66D221799",
+    "version": 0,
+    "name": "AlignAssemblyConstraintDataMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "123F7725",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "E498D957-D80F-49A9-987E-001433852257",
+    "version": 0,
+    "name": "AssemblyConstraintDataMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "E498D957",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "B4684D72-1151-4C9F-9517-4EE1CCAE9F10",
+    "version": 0,
+    "name": "BodyBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 5,
+    "owners": 0,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "B4684D72",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "3BB84081-FD5A-42BA-A77C-18B7991CCF94",
+    "version": 1,
+    "name": "ColorHintOverrideMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 2,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "3BB84081",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "5C6811EC-6F83-4D9E-A504-F28AAA0B6ACA",
+    "version": 1,
+    "name": "ComponentObjectVisibilityOverrideMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 12,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "5C6811EC",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "0DE5B1AE-D2AC-4E38-A7E4-E38209E56793",
+    "version": 1,
+    "name": "CullModeOverrideMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 2,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "0DE5B1AE",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "239CEEDA-7044-4EFB-9014-D8C643BC0E9B",
+    "version": 7,
+    "name": "GeomConstraintMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 7,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "239CEEDA",
+      7,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "B28DF3D0-D15C-42DE-A8BF-5D41200CDC00",
+    "version": 1,
+    "name": "GeometricRelationshipMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "B28DF3D0",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "06251EFA-909F-4ED5-9C64-A70433810941",
+    "version": 0,
+    "name": "GeometricRelationshipOccurrenceMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 63,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "06251EFA",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "1EB4DC19-42BC-477B-960E-427089308F47",
+    "version": 1,
+    "name": "InstanceOffsetOverrideMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 2,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "1eb4dc19",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "7F5A0426-1D2A-4DC4-9F06-58631F69D2F5",
+    "version": 5,
+    "name": "JointMetaType",
+    "known": [
+     6
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 6,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "1C131D3C-1FD1-492E-9972-1CEEABA99DC8",
+    "version": 1,
+    "name": "OffsetAssemblyConstraintDataMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "1C131D3C",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "76BE44F9-5982-4643-8EF3-5D2D13C880A5",
+    "version": 0,
+    "name": "SketchBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "76BE44F9",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "2BB3BB69-B0FD-4D56-B4CD-DEBD30847BE3",
+    "version": 1,
+    "name": "VisibilitySuppressionOverrideMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 3,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "2BB3BB69",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "10506394-5BEB-4090-9B33-CF4AC5EBF26D",
+    "version": 2,
+    "name": "VisualMaterialOverrideMetaType",
+    "known": [],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 28,
+    "reflected": true,
+    "current": 2,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "10506394",
+      2,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "4ABFFBB1-67E8-4356-9BA1-3BF4C4AFD497",
+    "version": 1,
+    "name": "DesignExperienceMetaType",
+    "known": [],
+    "segment": "KAct",
+    "files": 8,
+    "owners": 8,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "4ABFFBB1",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "D5C7CC79-EEE8-4389-B64F-00978B5A6FAA",
+    "version": 0,
+    "name": "DocumentDataRootMetaType",
+    "known": [],
+    "segment": "KAct",
+    "files": 8,
+    "owners": 8,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "D5C7CC79",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+    "version": 7,
+    "name": "ParameterMetaType",
+    "known": [
+     9,
+     10
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 8,
+    "reflected": true,
+    "current": 10,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+    "version": 8,
+    "name": "ParameterMetaType",
+    "known": [
+     9,
+     10
+    ],
+    "segment": "KDesign",
+    "files": 8,
+    "owners": 204,
+    "reflected": true,
+    "current": 10,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+    "version": 3,
+    "name": "ParameterTableMetaType",
+    "known": [
+     4
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 4,
+    "lookup": "absent",
+    "relations": []
+   }
+  ],
+  "class_gaps_example2": [
+   {
+    "guid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355",
+    "version": 14,
+    "name": "DRMatrixMetaType",
+    "known": [
+     15,
+     16
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 8,
+    "reflected": true,
+    "current": 16,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "D5DF1ED7-91F4-4CD6-88B8-0D467B0204F9",
+    "version": 0,
+    "name": "FusionBodyBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "D5DF1ED7",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "3A75695E-E7A4-40C1-9921-442D9E20F5ED",
+    "version": 0,
+    "name": "FusionMSketchBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 1,
+    "owners": 5,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "3A75695E",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "0FAF9824-8ECA-45ED-B199-589022ED5F6D",
+    "version": 9,
+    "name": "VisualAnalysesMetaType",
+    "known": [
+     10
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 10,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "D956D02C-2806-4E57-8B2E-EFA323A5C2B8",
+    "version": 0,
+    "name": "ACTComponentMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "596618BE-CD74-4BC9-A627-2DA799696C2D",
+    "version": 0,
+    "name": "ACTComponentsRootMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "96E1B59A-1989-4493-AA92-67E6072135F6",
+    "version": 0,
+    "name": "ACTInstanceMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "F01D16CF-95D5-4239-A488-00448AC88023",
+    "version": 0,
+    "name": "ACTInstancesMetaType",
+    "known": [
+     1
+    ],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 1,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "F3E2665C-F3E1-4BA7-8676-8B90579B56D3",
+    "version": 1,
+    "name": "ACTInstancesRootMetaType",
+    "known": [
+     2
+    ],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 2,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "23FD63FB-4EBE-4C85-A42B-5D9809AA3499",
+    "version": 17,
+    "name": "CommonDataAssetSettingsMetaType",
+    "known": [
+     18
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 18,
+    "lookup": "absent",
+    "relations": []
+   },
+   {
+    "guid": "B4684D72-1151-4C9F-9517-4EE1CCAE9F10",
+    "version": 0,
+    "name": "BodyBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "B4684D72",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "76BE44F9-5982-4643-8EF3-5D2D13C880A5",
+    "version": 0,
+    "name": "SketchBrowserEntryMetaType",
+    "known": [],
+    "segment": "KBrowser",
+    "files": 1,
+    "owners": 0,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "76BE44F9",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "4ABFFBB1-67E8-4356-9BA1-3BF4C4AFD497",
+    "version": 1,
+    "name": "DesignExperienceMetaType",
+    "known": [],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 1,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "4ABFFBB1",
+      1,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "D5C7CC79-EEE8-4389-B64F-00978B5A6FAA",
+    "version": 0,
+    "name": "DocumentDataRootMetaType",
+    "known": [],
+    "segment": "KAct",
+    "files": 1,
+    "owners": 1,
+    "reflected": true,
+    "current": 0,
+    "lookup": "uninitialized",
+    "relations": [
+     [
+      "own",
+      "D5C7CC79",
+      0,
+      0
+     ]
+    ]
+   },
+   {
+    "guid": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+    "version": 8,
+    "name": "ParameterMetaType",
+    "known": [
+     9,
+     10
+    ],
+    "segment": "KDesign",
+    "files": 1,
+    "owners": 42,
+    "reflected": true,
+    "current": 10,
+    "lookup": "absent",
+    "relations": []
+   }
+  ],
+  "scene_gaps": {
+   "example1 member 0": "FProteinEffectAttribute: EffectAttribute base plus AssetReference text, not modelled",
+   "example1 member 1": "OverrideTransformAttribute: TransformAttribute plus a linked object, not modelled",
+   "example1 member 2": "globals lack GraphicsBlobFeatures and carry F360InstanceNode version 0",
+   "example1 member 4": "Fusion_mesh_000 world references 64048 of 128096 bytes, the tail is unreferenced mesh data",
+   "example1 member 7": "stream_mesh_000 references 35460 of 91620 bytes and Fusion_mesh_000 57680 of 706104 bytes"
+  }
+ }
+}

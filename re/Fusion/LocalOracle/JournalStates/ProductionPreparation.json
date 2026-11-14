@@ -1,0 +1,173 @@
+{
+  "schema": "FusionProductionJournalNativePreparation/1",
+  "productionApis": [
+    "ReadJournal",
+    "EmitJournal",
+    "Materialize",
+    "PermuteJournal"
+  ],
+  "nativeAcceptance": "pending",
+  "scope": "Each source-specific archive retains its own non-history members; all history bytes are emitted from typed semantic models, with explicit allocation permutation in two candidates; no independent Design authoring claim",
+  "outputs": [
+    {
+      "label": "OffsetCylinder",
+      "variant": "Production",
+      "source": "re/Fusion/Study/faceedits-3f120cbee8d9/offset_cylinder.f3d",
+      "sourceArchiveSha256": "383eeb7bd5fb037e6cc63967865a8704c6b0d725dc2a62c0bc1bef2e4fd3a9a5",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7b14d8a9-c451-4459-b755-b5cf10754b78.smbh",
+      "sourceHistorySha256": "c3c7b93422fee99e50aadc9d8107597f5ce5c2a36ae92dadcdf176aac5e528da",
+      "target": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderProductionHistory.f3d",
+      "targetArchiveSha256": "d93f8e534b7f0e8721c98f1cb6cbccea28d1be961b9c8869a39fbb84f0a0432d",
+      "history": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderProductionHistory.smbh",
+      "historySha256": "c3c7b93422fee99e50aadc9d8107597f5ce5c2a36ae92dadcdf176aac5e528da",
+      "historyBytes": 9490,
+      "byteIdentical": true,
+      "activeCount": 35,
+      "entityCount": 60,
+      "stream": {
+        "CurrentStateId": 14,
+        "MaxStateId": 14,
+        "MaxStatesToKeep": 0,
+        "NextEntityTag": 4,
+        "WorkingNode": -1,
+        "ActiveNode": 0,
+        "InitialNode": 1,
+        "OwnerEntity": -1
+      },
+      "states": [
+        {
+          "stateId": 14,
+          "entityCount": 35
+        },
+        {
+          "stateId": 9,
+          "entityCount": 36
+        },
+        {
+          "stateId": 2,
+          "entityCount": 1
+        }
+      ]
+    },
+    {
+      "label": "OffsetCylinder",
+      "variant": "ProductionPermuted",
+      "source": "re/Fusion/Study/faceedits-3f120cbee8d9/offset_cylinder.f3d",
+      "sourceArchiveSha256": "383eeb7bd5fb037e6cc63967865a8704c6b0d725dc2a62c0bc1bef2e4fd3a9a5",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.7b14d8a9-c451-4459-b755-b5cf10754b78.smbh",
+      "sourceHistorySha256": "c3c7b93422fee99e50aadc9d8107597f5ce5c2a36ae92dadcdf176aac5e528da",
+      "target": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderProductionPermutedHistory.f3d",
+      "targetArchiveSha256": "42edefd871b36f8b315076cb8f0dbab1edd76bfb522f90b35854bbddf833b611",
+      "history": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderProductionPermutedHistory.smbh",
+      "historySha256": "bb1046f76a728bbd53f42aa89fbc1caa3581c55f767ee53316f89fc767908071",
+      "historyBytes": 9490,
+      "byteIdentical": false,
+      "activeCount": 35,
+      "entityCount": 60,
+      "stream": {
+        "CurrentStateId": 14,
+        "MaxStateId": 14,
+        "MaxStatesToKeep": 0,
+        "NextEntityTag": 4,
+        "WorkingNode": -1,
+        "ActiveNode": 0,
+        "InitialNode": 1,
+        "OwnerEntity": -1
+      },
+      "states": [
+        {
+          "stateId": 14,
+          "entityCount": 35
+        },
+        {
+          "stateId": 9,
+          "entityCount": 36
+        },
+        {
+          "stateId": 2,
+          "entityCount": 1
+        }
+      ]
+    },
+    {
+      "label": "Draft",
+      "variant": "Production",
+      "source": "re/Fusion/Study/moretools-88a2cd6cad0b/Draft.f3d",
+      "sourceArchiveSha256": "e202bf150795df3dc4f0673229ecade94e17328f54fb2860946aa60090ec2300",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c59a0050-b719-4b62-b74e-87f964eca8ab.smbh",
+      "sourceHistorySha256": "fad05f92da2549ede8cd36db86271c8b3629352f1a0179f187ab7d0876c6e359",
+      "target": "re/Fusion/LocalOracle/JournalStates/DraftProductionHistory.f3d",
+      "targetArchiveSha256": "e684b5f22ff6dae136b5d9144a01927e1944ed0ef2ef74cb92c343cfe516ea47",
+      "history": "re/Fusion/LocalOracle/JournalStates/DraftProductionHistory.smbh",
+      "historySha256": "fad05f92da2549ede8cd36db86271c8b3629352f1a0179f187ab7d0876c6e359",
+      "historyBytes": 9116,
+      "byteIdentical": true,
+      "activeCount": 35,
+      "entityCount": 57,
+      "stream": {
+        "CurrentStateId": 14,
+        "MaxStateId": 14,
+        "MaxStatesToKeep": 0,
+        "NextEntityTag": 2,
+        "WorkingNode": -1,
+        "ActiveNode": 0,
+        "InitialNode": 1,
+        "OwnerEntity": -1
+      },
+      "states": [
+        {
+          "stateId": 14,
+          "entityCount": 35
+        },
+        {
+          "stateId": 9,
+          "entityCount": 36
+        },
+        {
+          "stateId": 2,
+          "entityCount": 1
+        }
+      ]
+    },
+    {
+      "label": "Draft",
+      "variant": "ProductionPermuted",
+      "source": "re/Fusion/Study/moretools-88a2cd6cad0b/Draft.f3d",
+      "sourceArchiveSha256": "e202bf150795df3dc4f0673229ecade94e17328f54fb2860946aa60090ec2300",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.c59a0050-b719-4b62-b74e-87f964eca8ab.smbh",
+      "sourceHistorySha256": "fad05f92da2549ede8cd36db86271c8b3629352f1a0179f187ab7d0876c6e359",
+      "target": "re/Fusion/LocalOracle/JournalStates/DraftProductionPermutedHistory.f3d",
+      "targetArchiveSha256": "4fc83e11c00936607c65173c903c22dea253e0e4ffc3415acc2200cd5d60f8fc",
+      "history": "re/Fusion/LocalOracle/JournalStates/DraftProductionPermutedHistory.smbh",
+      "historySha256": "7948baa206e05c1e4f4f22b3ad6da42ee826281a8f153813c39ce3712bc56e5b",
+      "historyBytes": 9116,
+      "byteIdentical": false,
+      "activeCount": 35,
+      "entityCount": 57,
+      "stream": {
+        "CurrentStateId": 14,
+        "MaxStateId": 14,
+        "MaxStatesToKeep": 0,
+        "NextEntityTag": 2,
+        "WorkingNode": -1,
+        "ActiveNode": 0,
+        "InitialNode": 1,
+        "OwnerEntity": -1
+      },
+      "states": [
+        {
+          "stateId": 14,
+          "entityCount": 35
+        },
+        {
+          "stateId": 9,
+          "entityCount": 36
+        },
+        {
+          "stateId": 2,
+          "entityCount": 1
+        }
+      ]
+    }
+  ]
+}

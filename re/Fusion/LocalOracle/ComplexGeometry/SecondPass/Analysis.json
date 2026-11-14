@@ -1,0 +1,851 @@
+{
+ "schema": "FusionComplexSecondAnalysis/3",
+ "script": "re/Fusion/Reconstruction/ComplexGeometry/AnalyzeSecondPass.py",
+ "runs": [
+  {
+   "run": "Diagnose",
+   "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Runs/Diagnose.json",
+   "sha256": "70c0540137ae0d490a3acf9ad2d5e34cb118829644d48a885c4d447c17ba1cd5",
+   "status": "failed",
+   "fusionVersion": "2706.1.17",
+   "documentsBefore": 0,
+   "documentsAfter": 0,
+   "cases": [
+    "StitchHint",
+    "TolerantFormRefine"
+   ],
+   "failures": [
+    "TolerantFormRefine: prediction not reflected"
+   ]
+  },
+  {
+   "run": "Remaining",
+   "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Runs/Remaining.json",
+   "sha256": "04331a7d4b3f497dea32f9b2af296a6799e8a38d7f0430abb9ff94ba35af72fd",
+   "status": "accepted",
+   "fusionVersion": "2706.1.17",
+   "documentsBefore": 0,
+   "documentsAfter": 0,
+   "cases": [
+    "HoledPatch",
+    "CollapsedPatch",
+    "CappedTube",
+    "DomedCylinder",
+    "NurbsTorus",
+    "CylSplRefine",
+    "CylSplCurveRefine"
+   ],
+   "failures": []
+  },
+  {
+   "run": "Subtypes",
+   "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Runs/Subtypes.json",
+   "sha256": "b7e5f02c83cbf4b7a6d68b30c951d14f1ad5deb8e4ad4332df9f9bef9937a5dc",
+   "status": "failed",
+   "fusionVersion": "2706.1.17",
+   "documentsBefore": 0,
+   "documentsAfter": 0,
+   "cases": [
+    "TolerantEdge",
+    "TolerantVertex",
+    "StitchHint",
+    "SumSplRefine",
+    "ClLoftRefine",
+    "PcurveFormRefine",
+    "TolerantFormRefine",
+    "PcurveRefine",
+    "CurveRefine"
+   ],
+   "failures": [
+    "StitchHint: error",
+    "TolerantFormRefine: prediction not reflected"
+   ]
+  }
+ ],
+ "authored": [
+  {
+   "run": "Remaining",
+   "label": "HoledPatch",
+   "status": "accepted",
+   "stage": "done",
+   "temporary": {
+    "valid": true,
+    "solid": false,
+    "faces": 1,
+    "edges": 8,
+    "vertices": 8,
+    "areaCm2": 6.809012806990166,
+    "volumeCm3": null,
+    "boundsCm": [
+     [
+      0.5,
+      -1.0,
+      -0.03792494209239079
+     ],
+     [
+      3.5,
+      1.0,
+      0.7462497200311351
+     ]
+    ],
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ]
+   },
+   "persisted": {
+    "valid": true,
+    "solid": false,
+    "faces": 1,
+    "edges": 8,
+    "vertices": 8,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 6.809012806990166,
+    "areaRelativeError": 1.4006493872443794e-09,
+    "volumeCm3": null,
+    "volumeRelativeError": null,
+    "centerDriftCm": null,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": null,
+    "worstSampleDriftCm": 5.23691153334427e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       3,
+       3
+      ],
+      "count": [
+       5,
+       4
+      ],
+      "properties": [
+       1,
+       1
+      ],
+      "weights": 0
+     }
+    ],
+    "pcurvesExpected": 8,
+    "pcurvesMatched": 8,
+    "fusionPcurves": 8,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "reopened": {
+    "valid": true,
+    "solid": false,
+    "faces": 1,
+    "edges": 8,
+    "vertices": 8,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 6.809012806990166,
+    "areaRelativeError": 1.4006493872443794e-09,
+    "volumeCm3": null,
+    "volumeRelativeError": null,
+    "centerDriftCm": null,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": null,
+    "worstSampleDriftCm": 5.23691153334427e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       3,
+       3
+      ],
+      "count": [
+       5,
+       4
+      ],
+      "properties": [
+       1,
+       1
+      ],
+      "weights": 0
+     }
+    ],
+    "pcurvesExpected": 8,
+    "pcurvesMatched": 8,
+    "fusionPcurves": 8,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "savedSha256": "f7070f621e6a2e90e414c937d8cddef01906a874529c8f6253f83e428fa89013",
+   "reopenedSummaryEqual": true
+  },
+  {
+   "run": "Remaining",
+   "label": "CollapsedPatch",
+   "status": "accepted",
+   "stage": "done",
+   "temporary": {
+    "valid": true,
+    "solid": false,
+    "faces": 1,
+    "edges": 3,
+    "vertices": 3,
+    "areaCm2": 4.429902308098689,
+    "volumeCm3": null,
+    "boundsCm": [
+     [
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      3.0,
+      2.4,
+      1.0079223961110408
+     ]
+    ],
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ]
+   },
+   "persisted": {
+    "valid": true,
+    "solid": false,
+    "faces": 1,
+    "edges": 3,
+    "vertices": 3,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 4.429902308098689,
+    "areaRelativeError": 2.7467974468976266e-14,
+    "volumeCm3": null,
+    "volumeRelativeError": null,
+    "centerDriftCm": null,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": null,
+    "worstSampleDriftCm": 5.087681048627601e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       3,
+       3
+      ],
+      "count": [
+       4,
+       4
+      ],
+      "properties": [
+       1,
+       1
+      ],
+      "weights": 0
+     }
+    ],
+    "pcurvesExpected": 3,
+    "pcurvesMatched": 3,
+    "fusionPcurves": 3,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "reopened": {
+    "valid": true,
+    "solid": false,
+    "faces": 1,
+    "edges": 3,
+    "vertices": 3,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 4.429902308098689,
+    "areaRelativeError": 2.7467974468976266e-14,
+    "volumeCm3": null,
+    "volumeRelativeError": null,
+    "centerDriftCm": null,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": null,
+    "worstSampleDriftCm": 5.087681048627601e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       3,
+       3
+      ],
+      "count": [
+       4,
+       4
+      ],
+      "properties": [
+       1,
+       1
+      ],
+      "weights": 0
+     }
+    ],
+    "pcurvesExpected": 3,
+    "pcurvesMatched": 3,
+    "fusionPcurves": 3,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "savedSha256": "eee028c49a8e4db9cf9a102dbf7e36c1b97780afbae19f78a5369f5251116843",
+   "reopenedSummaryEqual": true
+  },
+  {
+   "run": "Remaining",
+   "label": "CappedTube",
+   "status": "accepted",
+   "stage": "done",
+   "temporary": {
+    "valid": true,
+    "solid": true,
+    "faces": 3,
+    "edges": 3,
+    "vertices": 2,
+    "areaCm2": 19.80532565024299,
+    "volumeCm3": 6.96792035947401,
+    "boundsCm": [
+     [
+      -1.140840786061492,
+      -1.140840786061492,
+      0.0
+     ],
+     [
+      1.1408407860614924,
+      1.140840786061492,
+      2.0
+     ]
+    ],
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface",
+     "adsk::core::Plane",
+     "adsk::core::Plane"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ]
+   },
+   "persisted": {
+    "valid": true,
+    "solid": true,
+    "faces": 3,
+    "edges": 3,
+    "vertices": 2,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface",
+     "adsk::core::Plane",
+     "adsk::core::Plane"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 19.80532565024299,
+    "areaRelativeError": 3.6941695125282564e-10,
+    "volumeCm3": 6.967693466662093,
+    "volumeRelativeError": 2.3012200909944208e-11,
+    "centerDriftCm": 1.2098988480446014e-11,
+    "bodyVolumeCm3": 6.96792035947401,
+    "bodyVolumeRelativeError": 3.2563569759509334e-05,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": 0.0,
+    "worstSampleDriftCm": 5.661048867003676e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       2,
+       3
+      ],
+      "count": [
+       9,
+       4
+      ],
+      "properties": [
+       14,
+       9
+      ],
+      "weights": 36
+     }
+    ],
+    "pcurvesExpected": 4,
+    "pcurvesMatched": 4,
+    "fusionPcurves": 6,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "reopened": {
+    "valid": true,
+    "solid": true,
+    "faces": 3,
+    "edges": 3,
+    "vertices": 2,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface",
+     "adsk::core::Plane",
+     "adsk::core::Plane"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 19.80532565024299,
+    "areaRelativeError": 3.6941695125282564e-10,
+    "volumeCm3": 6.967693466662093,
+    "volumeRelativeError": 2.3012200909944208e-11,
+    "centerDriftCm": 1.2098988480446014e-11,
+    "bodyVolumeCm3": 6.96792035947401,
+    "bodyVolumeRelativeError": 3.2563569759509334e-05,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": 0.0,
+    "worstSampleDriftCm": 5.661048867003676e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       2,
+       3
+      ],
+      "count": [
+       9,
+       4
+      ],
+      "properties": [
+       14,
+       9
+      ],
+      "weights": 36
+     }
+    ],
+    "pcurvesExpected": 4,
+    "pcurvesMatched": 4,
+    "fusionPcurves": 6,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "savedSha256": "27fc67c183948a47cbe9d22ec97bc70b0428f3f9ce82b24997d84638bd84f23e",
+   "reopenedSummaryEqual": true
+  },
+  {
+   "run": "Remaining",
+   "label": "DomedCylinder",
+   "status": "accepted",
+   "stage": "done",
+   "temporary": {
+    "valid": true,
+    "solid": true,
+    "faces": 3,
+    "edges": 3,
+    "vertices": 3,
+    "areaCm2": 18.93842138073986,
+    "volumeCm3": 6.850844430134102,
+    "boundsCm": [
+     [
+      -1.0,
+      -1.0,
+      0.0
+     ],
+     [
+      1.0,
+      1.0,
+      2.5
+     ]
+    ],
+    "surfaceTypes": [
+     "adsk::core::Cylinder",
+     "adsk::core::NurbsSurface",
+     "adsk::core::Plane"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ]
+   },
+   "persisted": {
+    "valid": true,
+    "solid": true,
+    "faces": 3,
+    "edges": 3,
+    "vertices": 3,
+    "surfaceTypes": [
+     "adsk::core::Cylinder",
+     "adsk::core::NurbsSurface",
+     "adsk::core::Plane"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 18.93842138073986,
+    "areaRelativeError": 8.441681190419168e-15,
+    "volumeCm3": 6.850930940044274,
+    "volumeRelativeError": 7.31204695059003e-11,
+    "centerDriftCm": 5.682632142637667e-11,
+    "bodyVolumeCm3": 6.850844430134102,
+    "bodyVolumeRelativeError": 1.2627394728170835e-05,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": 0.0,
+    "worstSampleDriftCm": 7.021666937153402e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       2,
+       3
+      ],
+      "count": [
+       9,
+       4
+      ],
+      "properties": [
+       14,
+       9
+      ],
+      "weights": 36
+     }
+    ],
+    "pcurvesExpected": 3,
+    "pcurvesMatched": 3,
+    "fusionPcurves": 6,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "reopened": {
+    "valid": true,
+    "solid": true,
+    "faces": 3,
+    "edges": 3,
+    "vertices": 3,
+    "surfaceTypes": [
+     "adsk::core::Cylinder",
+     "adsk::core::NurbsSurface",
+     "adsk::core::Plane"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 18.93842138073986,
+    "areaRelativeError": 8.441681190419168e-15,
+    "volumeCm3": 6.850930940044274,
+    "volumeRelativeError": 7.31204695059003e-11,
+    "centerDriftCm": 5.682632142637667e-11,
+    "bodyVolumeCm3": 6.850844430134102,
+    "bodyVolumeRelativeError": 1.2627394728170835e-05,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": 0.0,
+    "worstSampleDriftCm": 7.021666937153402e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       2,
+       3
+      ],
+      "count": [
+       9,
+       4
+      ],
+      "properties": [
+       14,
+       9
+      ],
+      "weights": 36
+     }
+    ],
+    "pcurvesExpected": 3,
+    "pcurvesMatched": 3,
+    "fusionPcurves": 6,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "savedSha256": "a4a2de670ed64000b13c77a0824eec8d78ff33dcfb89f2f9e63b94be91f7c0c4",
+   "reopenedSummaryEqual": true
+  },
+  {
+   "run": "Remaining",
+   "label": "NurbsTorus",
+   "status": "accepted",
+   "stage": "done",
+   "temporary": {
+    "valid": true,
+    "solid": true,
+    "faces": 1,
+    "edges": 2,
+    "vertices": 1,
+    "areaCm2": 39.47841761360506,
+    "volumeCm3": 9.869604403401263,
+    "boundsCm": [
+     [
+      -2.5,
+      -2.5,
+      -0.5
+     ],
+     [
+      2.5,
+      2.5,
+      0.5
+     ]
+    ],
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ]
+   },
+   "persisted": {
+    "valid": true,
+    "solid": true,
+    "faces": 1,
+    "edges": 2,
+    "vertices": 1,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 39.47841761360506,
+    "areaRelativeError": 2.342451648763325e-10,
+    "volumeCm3": 9.869604403401263,
+    "volumeRelativeError": 2.3424498489375494e-10,
+    "centerDriftCm": 5.090676041743483e-16,
+    "bodyVolumeCm3": 9.869604403401263,
+    "bodyVolumeRelativeError": 2.3424498489375494e-10,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": 0.0,
+    "worstSampleDriftCm": 6.661338147750939e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       2,
+       2
+      ],
+      "count": [
+       9,
+       9
+      ],
+      "properties": [
+       14,
+       14
+      ],
+      "weights": 81
+     }
+    ],
+    "pcurvesExpected": 4,
+    "pcurvesMatched": 4,
+    "fusionPcurves": 4,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "reopened": {
+    "valid": true,
+    "solid": true,
+    "faces": 1,
+    "edges": 2,
+    "vertices": 1,
+    "surfaceTypes": [
+     "adsk::core::NurbsSurface"
+    ],
+    "curveTypes": [
+     "adsk::core::NurbsCurve3D",
+     "adsk::core::NurbsCurve3D"
+    ],
+    "areaCm2": 39.47841761360506,
+    "areaRelativeError": 2.342451648763325e-10,
+    "volumeCm3": 9.869604403401263,
+    "volumeRelativeError": 2.3424498489375494e-10,
+    "centerDriftCm": 5.090676041743483e-16,
+    "bodyVolumeCm3": 9.869604403401263,
+    "bodyVolumeRelativeError": 2.3424498489375494e-10,
+    "nurbsFaces": 1,
+    "surfacesMatched": 1,
+    "poleDriftCm": 0.0,
+    "knotDrift": 0.0,
+    "weightDrift": 0.0,
+    "worstSampleDriftCm": 6.661338147750939e-16,
+    "fusionSurfaces": [
+     {
+      "degree": [
+       2,
+       2
+      ],
+      "count": [
+       9,
+       9
+      ],
+      "properties": [
+       14,
+       14
+      ],
+      "weights": 81
+     }
+    ],
+    "pcurvesExpected": 4,
+    "pcurvesMatched": 4,
+    "fusionPcurves": 4,
+    "vertexDriftCm": 0.0,
+    "problems": []
+   },
+   "savedSha256": "375c1e14b52569305c19717b2a369e517f9af5371a5b2be36c6153e7ded4deee",
+   "reopenedSummaryEqual": true
+  }
+ ],
+ "attributes": [
+  {
+   "run": "Diagnose",
+   "label": "StitchHint",
+   "attribute": "stitch_hint-sys-attrib",
+   "expectedOriginal": [
+    0.0011554212243761065,
+    0.0,
+    0.0
+   ],
+   "expectedMutant": [
+    0.12615542122437612,
+    0.0,
+    0.0
+   ],
+   "original": {
+    "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Exported/StitchHintOriginal.smb",
+    "sha256": "58815bf22711668f2ecbcc9e308cc6b0a6314d0af339a98f54a1e0d1a661ee25",
+    "bytes": 24410,
+    "header": "ASM BinaryFile8\u00a0Z\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\u0010Autodesk Neutro",
+    "containsStitchName": true,
+    "decoded": true,
+    "byteExact": true,
+    "records": 84,
+    "stitchHints": [
+     [
+      0.0011554212243761065,
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "mutant": {
+    "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Exported/StitchHintMutant.smb",
+    "sha256": "2c6b1cb4eb39230609187c4148685ec7ba60f52277548aa9acb08d0392b1ca22",
+    "bytes": 24410,
+    "header": "ASM BinaryFile8\u00a0Z\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0005\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0002\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0007\u0010Autodesk Neutro",
+    "containsStitchName": true,
+    "decoded": true,
+    "byteExact": true,
+    "records": 84,
+    "stitchHints": [
+     [
+      0.12615542122437612,
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "retained": true
+  }
+ ],
+ "representations": [
+  {
+   "label": "TolerantFormRefine",
+   "pcurve": 280,
+   "form": 2,
+   "insertedKnot": -2.3126131813790116,
+   "degree": 3,
+   "predictedPoles": 5,
+   "reportedPoles": 7,
+   "reportedKnots": [
+    -4.625226362758023,
+    -4.625226362758023,
+    -4.625226362758023,
+    -4.625226362758023,
+    -2.3126131813790116,
+    -2.3126131813790116,
+    -2.3126131813790116,
+    -0.0,
+    -0.0,
+    -0.0,
+    -0.0
+   ],
+   "recomputedPredictionGap": 0.0,
+   "reportedKnotMultiplicity": 3,
+   "fullMultiplicityKnotsEqual": true,
+   "fullMultiplicityPoleGap": 0.0,
+   "geometryDrift": 8.899114524108741e-16,
+   "samples": 201,
+   "run": "Diagnose"
+  }
+ ]
+}

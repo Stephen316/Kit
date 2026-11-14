@@ -1,0 +1,20 @@
+def policies():
+    return {
+        'DcExtrudeFeature': dict(ProfileFromEntityRef=None, bIsAGDExtrudeFeature=False, bPreviewNormal=False, booleanOperation=4, directionType=1, extendFaceOption=2, isFlipDirection=False, isSolidOperation=True, profileLocaltionType=0, profileNormal={'x': 0.0, 'y': 0.0, 'z': 1.0}, profileOffset=None, rAgainstDistance=None, rAlongDistance=None, rExtrudeToolBody=None, rFromEntityRef=None, rTaperAngle=None, rToEntityRef=None, side1ExtentType=1, side1Offset=None, side1SolutionType=0, side2ExtendFaceOption=0, side2ExtentType=0, side2FlipDirection=False, side2Offset=None, side2SolutionType=0, side2TaperAngle=None, startDirectionFlip=False, symmetricMeasurementType=0, thinExtrude=False, thinExtrudeSide1WallLocation=0, thinExtrudeSide1WallThickness=None, thinExtrudeSide2WallLocation=0, thinExtrudeSide2WallThickness=None),
+        'DcProfileBasedFeature': {'profileDataRefs': []},
+        'DcBodyFeature': {'targetDataRefs': []},
+        'DcMultiBodyFeature': {'cachedDcBodies': [], 'dcBodies': [], 'removedBodies': []},
+        'SketchRegionRef': {'rRecipe': None},
+        'SketchRegionRecipe': {'rSketchRegionRef': None, 'skRegionRecipe': None},
+        'DcDoubleParameter': {'value': 0.0},
+        'DcParameter': {'parameter': None, 'rparamId': 0, 'rrOwnerFeature': None},
+        'DcExtrudeToolBody': {'rExtrudeFeature': None},
+        'DcToolBody': {'toolbodyCaches': []},
+        'SketchCurveProgenitor': {'rRecipe': None},
+        'SketchCurveRecipe': {'profileEdgeTagData': None},
+        'BodyProgenitor': dict(alternativeProgenitor=None, bodyUuid='', centerOrder=0, featureTagOccMap=[], rRefBodyOfTagInherit=None, shareTargetBodyAddress=False),
+        'DcBody': dict(bodyUuid='', isEliminated=False, isVisibleBeforeRollback=True, rBody=None, rOwnFeature=None),
+        'Body': dict(actIdentifier='', bodyType=2, cache=None, creationIndex=1, edgeSelection=True, faceVisualMaterialByAttrTagID=[], facetVersion=0, isSelectable=True, isVisible=True, massProperties=None, opacity=1.0, overriddenBody=None, overriddenToOverridingId=[], overridingToOverriddenId=[], passiveIdGenerator=None, persistentId='', physicalMaterial=None, rGroupParent=None, rOwningDeriveFeature=None, textureMapping=None, userName='', visualMaterial=None, wireStyle=1),
+        'BodiesRoot': {},
+        'VisualMaterialValue': dict(CustomizedColor={'red': 0.8, 'green': 0.8, 'blue': 0.8, 'alpha': 1.0}, ProteinAssetManager=None, UseCustomizedColor=True, assetReference='', libraryID='', name='', proteinMaterialID='', proteinMaterialRotation=0.0, proteinMaterialScale=1.0),
+    }

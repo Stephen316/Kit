@@ -1,0 +1,5937 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "suite": "Offsets",
+  "scope": "Kit-authored part feature documents compared with same-script native API controls: open without recompute, every rollback marker, computeAll, driving parameter edits, export and reopen",
+  "cases": [
+    {
+      "name": "OffsetTop",
+      "file": "OffsetTop.f3d",
+      "sha256": "fc8a10953623cc4fd6b10400bd269e997c2053d219165335497ae217f596b4b0",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "offset",
+          "amount": "5 mm",
+          "name": "Top offset"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Top offset",
+          "role": "distance",
+          "expression": "8 mm"
+        },
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 30.0,
+          "area_cm2": 59.0,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 30.0,
+              "area_cm2": 59.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.0,
+                1.4999999999999998,
+                1.25
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "5 mm",
+              "value": 0.5,
+              "unit": "mm",
+              "owner": "Top offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 mm",
+                "value": 0.5,
+                "unit": "mm",
+                "owner": "Top offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 mm",
+                "value": 0.5,
+                "unit": "mm",
+                "owner": "Top offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 mm",
+                "value": 0.5,
+                "unit": "mm",
+                "owner": "Top offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 30.0,
+                "area_cm2": 59.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.5
+                ],
+                "center_cm": [
+                  2.0,
+                  1.4999999999999998,
+                  1.25
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 mm",
+                "value": 0.5,
+                "unit": "mm",
+                "owner": "Top offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 39.599999999999994,
+              "area_cm2": 70.19999999999999,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                3.3
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                1.6499999999999997
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "Top offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 mm",
+              "value": 0.5,
+              "unit": "mm",
+              "owner": "Top offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 mm",
+              "value": 0.5,
+              "unit": "mm",
+              "owner": "Top offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 mm",
+              "value": 0.5,
+              "unit": "mm",
+              "owner": "Top offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 30.0,
+              "area_cm2": 59.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                1.25
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 mm",
+              "value": 0.5,
+              "unit": "mm",
+              "owner": "Top offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "Top offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 39.599999999999994,
+            "area_cm2": 70.19999999999999,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              3.3
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.6500000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 39.599999999999994,
+            "area_cm2": 70.19999999999999,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              3.3
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.6500000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 39.599999999999994,
+            "area_cm2": 70.19999999999999,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              3.3
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.6500000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "a90e42dbfb285488afe750f5b260dbe18a1e35d7468aded40a545a1c833ced73",
+      "status": "accepted"
+    },
+    {
+      "name": "OffsetTopTrim",
+      "file": "OffsetTopTrim.f3d",
+      "sha256": "6e82c76f99398c2a20788ad85c4b2ea2d6b47c9e4313f52fca43be7ff9f7f010",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "offset",
+          "amount": "-5 mm",
+          "name": "Top trim"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Top trim",
+          "role": "distance",
+          "expression": "-8 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 18.0,
+          "area_cm2": 45.0,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top trim",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 18.0,
+              "area_cm2": 45.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                1.5
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                0.75
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "-5 mm",
+              "value": -0.5,
+              "unit": "mm",
+              "owner": "Top trim",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top trim",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 mm",
+                "value": -0.5,
+                "unit": "mm",
+                "owner": "Top trim",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top trim",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 mm",
+                "value": -0.5,
+                "unit": "mm",
+                "owner": "Top trim",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top trim",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 mm",
+                "value": -0.5,
+                "unit": "mm",
+                "owner": "Top trim",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top trim",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 18.0,
+                "area_cm2": 45.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  1.5
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  0.75
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 mm",
+                "value": -0.5,
+                "unit": "mm",
+                "owner": "Top trim",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top trim",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 14.399999999999999,
+              "area_cm2": 40.8,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                1.2
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                0.6
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "-8 mm",
+              "value": -0.8,
+              "unit": "mm",
+              "owner": "Top trim",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top trim",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.0,
+            "area_cm2": 45.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              1.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              0.75
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-5 mm",
+            "value": -0.5,
+            "unit": "mm",
+            "owner": "Top trim",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top trim",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 mm",
+              "value": -0.5,
+              "unit": "mm",
+              "owner": "Top trim",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top trim",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 mm",
+              "value": -0.5,
+              "unit": "mm",
+              "owner": "Top trim",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top trim",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 mm",
+              "value": -0.5,
+              "unit": "mm",
+              "owner": "Top trim",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top trim",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 18.0,
+              "area_cm2": 45.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                1.5
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                0.75
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 mm",
+              "value": -0.5,
+              "unit": "mm",
+              "owner": "Top trim",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top trim",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.0,
+            "area_cm2": 45.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              1.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              0.75
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-5 mm",
+            "value": -0.5,
+            "unit": "mm",
+            "owner": "Top trim",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top trim",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.399999999999999,
+            "area_cm2": 40.8,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              1.2
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              0.6
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-8 mm",
+            "value": -0.8,
+            "unit": "mm",
+            "owner": "Top trim",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top trim",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.399999999999999,
+            "area_cm2": 40.8,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              1.2
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              0.6
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-8 mm",
+            "value": -0.8,
+            "unit": "mm",
+            "owner": "Top trim",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top trim",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.399999999999999,
+            "area_cm2": 40.8,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              1.2
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              0.6
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-8 mm",
+            "value": -0.8,
+            "unit": "mm",
+            "owner": "Top trim",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "a99ad7177741bd0cb1de13744b1d184ceef59e0345c9c5e26d13c73ac6e170b2",
+      "status": "accepted"
+    },
+    {
+      "name": "OffsetSide",
+      "file": "OffsetSide.f3d",
+      "sha256": "2932417f2e8742a348856571bbb703878c72e957b0482f8f1c81bd6c718ea532",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "offset",
+          "amount": "4 mm",
+          "name": "Side offset",
+          "side_cm": [
+            4.0,
+            1.5
+          ]
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Side offset",
+          "role": "distance",
+          "expression": "6 mm"
+        },
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 26.400000000000002,
+          "area_cm2": 56.00000000000001,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 26.400000000000002,
+              "area_cm2": 56.00000000000001,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.4,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.2,
+                1.5,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Side offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Side offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Side offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Side offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 26.400000000000002,
+                "area_cm2": 56.00000000000001,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.4,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.2,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Side offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 34.5,
+              "area_cm2": 65.6,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.6,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.2999999999999994,
+                1.4999999999999998,
+                1.25
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Side offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.400000000000002,
+            "area_cm2": 56.00000000000001,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.4,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.2,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Side offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Side offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Side offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Side offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 26.400000000000002,
+              "area_cm2": 56.00000000000001,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.4,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.2,
+                1.5,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Side offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.400000000000002,
+            "area_cm2": 56.00000000000001,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.4,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.2,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Side offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 34.5,
+            "area_cm2": 65.6,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.6,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.2999999999999994,
+              1.4999999999999998,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Side offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 34.5,
+            "area_cm2": 65.6,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.6,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.2999999999999994,
+              1.4999999999999998,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Side offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 34.5,
+            "area_cm2": 65.6,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.6,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.2999999999999994,
+              1.4999999999999998,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Side offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "82d91e6ec178b3ebdf26f7f1be26d2b7798a7ef3508aaf792939139120eac7c7",
+      "status": "accepted"
+    },
+    {
+      "name": "OffsetRoundFront",
+      "file": "OffsetRoundFront.f3d",
+      "sha256": "c42141a1a48113d9501e3f2237c8294f79264a9cd2b1b6647dbd6248fdf919dc",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "fillet",
+          "corner_cm": [
+            4.0,
+            3.0
+          ],
+          "amount": "3 mm",
+          "name": "Corner round"
+        },
+        {
+          "kind": "offset",
+          "amount": "4 mm",
+          "name": "Front offset",
+          "side_cm": [
+            2.0,
+            0.0
+          ]
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Front offset",
+          "role": "distance",
+          "expression": "-5 mm"
+        },
+        {
+          "feature": "Corner round",
+          "expression": "4 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 23.96137166941154,
+          "area_cm2": 51.703849465488474,
+          "faces": 7,
+          "edges": 15
+        },
+        {
+          "volume_cm3": 27.161371669411544,
+          "area_cm2": 56.503849465488486,
+          "faces": 7,
+          "edges": 15
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 5,
+          "control_positions": 5,
+          "each": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 27.16137166941154,
+              "area_cm2": 56.50384946548847,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                -0.39999999999999997,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.997250942886494,
+                1.2976775965664913,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d5",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Corner round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Front offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Corner round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner round",
+                "role": "Radius"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Front offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Corner round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Front offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Corner round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner round",
+                "role": "Radius"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Front offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Corner round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Front offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Corner round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner round",
+                "role": "Radius"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Front offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Corner round",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Front offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.96137166941154,
+                "area_cm2": 51.703849465488474,
+                "faces": 7,
+                "edges": 15,
+                "vertices": 10,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  1.9968838110342533,
+                  1.497689865276919,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Corner round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner round",
+                "role": "Radius"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Front offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Corner round",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Front offset",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 27.16137166941154,
+                "area_cm2": 56.50384946548847,
+                "faces": 7,
+                "edges": 15,
+                "vertices": 10,
+                "min_cm": [
+                  0.0,
+                  -0.39999999999999997,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  1.997250942886494,
+                  1.2976775965664913,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Corner round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner round",
+                "role": "Radius"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Front offset",
+                "role": "distance"
+              }
+            ],
+            "work": [],
+            "marker": 4
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 19.93132741228718,
+              "area_cm2": 45.58796447372309,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.5,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9934169224678457,
+                1.7460010173311342,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d4",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d5",
+              "expression": "-5 mm",
+              "value": -0.5,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Front offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 27.16137166941154,
+            "area_cm2": 56.503849465488486,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              -0.4,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.997250942886494,
+              1.2976775965664915,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Corner round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Corner round",
+            "role": "Radius"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Front offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.96137166941154,
+              "area_cm2": 51.703849465488474,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9968838110342533,
+                1.4976898652769193,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Front offset",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 27.16137166941154,
+              "area_cm2": 56.503849465488486,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                -0.4,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.997250942886494,
+                1.2976775965664915,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Corner round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner round",
+              "role": "Radius"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Front offset",
+              "role": "distance"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Front offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 27.16137166941154,
+            "area_cm2": 56.50384946548847,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              -0.39999999999999997,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.997250942886494,
+              1.2976775965664915,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Corner round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Corner round",
+            "role": "Radius"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Front offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Front offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 19.93132741228718,
+            "area_cm2": 45.58796447372309,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.5,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9934169224678457,
+              1.7460010173311342,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Corner round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Corner round",
+            "role": "Radius"
+          },
+          {
+            "name": "d6",
+            "expression": "-5 mm",
+            "value": -0.5,
+            "unit": "mm",
+            "owner": "Front offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Front offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 19.93132741228718,
+            "area_cm2": 45.58796447372309,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.5,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9934169224678457,
+              1.7460010173311342,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Corner round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Corner round",
+            "role": "Radius"
+          },
+          {
+            "name": "d6",
+            "expression": "-5 mm",
+            "value": -0.5,
+            "unit": "mm",
+            "owner": "Front offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Front offset",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 19.93132741228718,
+            "area_cm2": 45.58796447372309,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.5,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9934169224678457,
+              1.7460010173311342,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Corner round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Corner round",
+            "role": "Radius"
+          },
+          {
+            "name": "d6",
+            "expression": "-5 mm",
+            "value": -0.5,
+            "unit": "mm",
+            "owner": "Front offset",
+            "role": "distance"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "saved_sha256": "bc3f7c43b87967300719ed76ab761951f0b5a8dc664a6978b372ff1034e3865d",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

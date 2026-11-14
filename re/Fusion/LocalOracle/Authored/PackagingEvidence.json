@@ -1,0 +1,21 @@
+{
+  "candidates": {
+    "deflate_no_directories": "91fda6a666e843a525a2fb7b6cee3aedf34cd0dff92040a091dc41d4f6391487",
+    "stored_no_directories": "0c7658b3962a49d57e18fb7c6e5409aee958c526191c93fd3e64c695480324de",
+    "stored_with_directories": "2bee9d409dbdc8f651a08bb035213d6491edd15da3ddb47068f3e5c1e162b11e"
+  },
+  "payloads_changed": false,
+  "native_log_excerpts": [
+    "20261112T034340 I .62104889 Begin:\tOpening the document at path: re/Fusion/Reconstruction/ContainerAuthoring/StoredOnly/AuthoredParameter.f3d",
+    "20261112T034340 E .62104889 Document : AuthoredParameter.f3d, Asset : FusionAssetName, Error loading Segment : Initializing segment meta stream failed!\t\tThreadID: 62104889, Function: operator(), Line: 602",
+    "20261112T034340 E .62104889 Document : AuthoredParameter.f3d, Asset : FusionAssetName, Error loading Segment : 2 x Initializing segment meta stream failed!\t\tThreadID: 62104889, Function: operator(), Line: 602",
+    "20261112T034340 E .62104889 Document : AuthoredParameter.f3d, Asset :  : Error loading asset manifest : 2 x Initializing segment meta stream failed!\t\tThreadID: 62104889, Function: dumpError, Line: 56",
+    "20261112T034340 E .62104889 2 x Initializing segment meta stream failed!",
+    "20261112T034340 I .62104889 End:\tOpening the document at path: re/Fusion/Reconstruction/ContainerAuthoring/StoredOnly/AuthoredParameter.f3d Time Taken:\t0.0046855409999999997",
+    "20261112T034437 I .62104889 Begin:\tOpening the document at path: re/Fusion/Reconstruction/ContainerAuthoring/StoredFolders/AuthoredParameter.f3d",
+    "20261112T034437 I .62104889 End:\tOpening the document at path: re/Fusion/Reconstruction/ContainerAuthoring/StoredFolders/AuthoredParameter.f3d Time Taken:\t0.0036440000000000001",
+    "20261112T034437 E 62113535 Document : Untitled, Asset : FusionAssetName, Error loading Segment : Negative offset found - Error: The offset for current entity is negative. The current operation will be aborted.\t\tThreadID: 62113535, Function: loadBulk, Line: 572",
+    "20261112T034437 E .62104889 NEUTRON_BUG_ALERT(Negative offset found - Error: The offset for current entity is negative. The current operation will be aborted.)"
+  ],
+  "interpretation": "Changing only compression did not repair stream lookup. Adding explicit directory entries advanced the same member payloads to entity bulk loading. Bulk offsets remain rejected."
+}

@@ -2,6 +2,7 @@ from math import isfinite as IsFinite
 from re import fullmatch as MatchFull
 from struct import unpack as Unpack
 
+from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.NativeParam import NativeParam
 
@@ -22,7 +23,6 @@ def ReadParamBind(Cursor: MetaCursor) -> int | None:
     return BindingId
 
 
-# the newer zero extension is accepted only for the observed bound numeric layout
 def ReadRoleMut(Cursor: MetaCursor, BindingId: int | None) -> tuple[str, bytes]:
     Metadata = Cursor.TakeBytes(10)
     if Metadata[:4] != bytes(4):
@@ -31,11 +31,11 @@ def ReadRoleMut(Cursor: MetaCursor, BindingId: int | None) -> tuple[str, bytes]:
     try:
         return Cursor.ReadText(True, Maximum=1024), Metadata
     except ValueError:
-        if BindingId is None or Metadata != bytes(10):
+        if Metadata[:8] != bytes(8) or Metadata[8] not in (0, 1) or Metadata[9] != 0:
             raise
         Cursor.Offset = RoleStart
         ExtraByte = Cursor.TakeBytes(1)
-        if ExtraByte != b"\0":
+        if ExtraByte != bytes((BindingId is None,)):
             raise ValueError("Unsupported Fusion parameter metadata extension")
         return Cursor.ReadText(True, Maximum=1024), Metadata + ExtraByte
 
@@ -62,10 +62,11 @@ def ReadNativeNum(BodyValue: bytes) -> NativeParam:
     Number = float(Unpack("<d", Cursor.TakeBytes(8))[0])
     if not IsFinite(Number):
         raise ValueError("Non-finite Fusion numeric parameter")
-    if Cursor.TakeBytes(12) != b"\0\1\x10" + bytes(9) or Cursor.Offset != len(
-        BodyValue
-    ):
+    if Cursor.TakeBytes(1) != bytes(1):
         raise ValueError("Unsupported Fusion numeric parameter trailer")
+    CollectionId = ReadNativeRef(Cursor)
+    if CollectionId == 0 or Cursor.Offset != len(BodyValue):
+        raise ValueError("Unsupported Fusion numeric parameter collection")
     return NativeParam(
         RoleName,
         ParamName,
@@ -76,4 +77,5 @@ def ReadNativeNum(BodyValue: bytes) -> NativeParam:
         BindingId,
         NativeIndex,
         Metadata,
+        CollectionId,
     )

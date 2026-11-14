@@ -1,0 +1,32 @@
+KSnapshotStates: tuple[tuple[str, str, str, int], ...] = (
+    (
+        "re/Fusion/Study/namedvertexprobe-8d81619f74e6/construction_polynomial_vertex0.f3d",
+        "79d9f7f5296e4c2f66ca1a6d67c5bf1511d5aa63b9ada74882e063f92cd8f323",
+        "69f18a6e33a9b6394735da932faa06e0a0b0c630458a638aa6491f06e0b1c75f",
+        6,
+    ),
+    (
+        "re/Fusion/Study/namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d",
+        "9a4c72fd047d5f7c8fcab2c7a12c1a927737b0b5c98a1623f6eb89d6c63926e6",
+        "28e0dc351e51905e8f566586d4c0ca5c7a1fac010ffb78ee88e913187e857ceb",
+        6,
+    ),
+    (
+        "re/Fusion/Study/pipepaths-3d11bd427946/spline_circular.f3d",
+        "8c02fddc9a653d198da9d23466dc04ce4eaf722cb1005040e8fa93ca2078b069",
+        "3359ef54e272c8319a9e1c8ff72887861a80fa5f174bbf6995f8c3d802ec5a27",
+        3,
+    ),
+    (
+        "re/Fusion/Study/splinepatches-900d152c2380/splinepatches.f3d",
+        "2d3d799102fb9d6f0f75cfebb6ef84cade887a2aa95f90a646f5b5bb39e2e377",
+        "9a5beecb39e5d0e571c757ee3c9c027540cda671225ba2f93de93b8233509a57",
+        6,
+    ),
+    (
+        "re/Fusion/Study/splinepatches-ac5e846e59c0/splinepatches.f3d",
+        "600351235ad2fd34ad02c6d41e3db370f9e6594174acd68c3c8c4349ae8b546b",
+        "66d4067e255cba13ff93a6cc565b22430f82481a505ef7f06fd6b4448257c083",
+        4,
+    ),
+)

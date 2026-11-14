@@ -1,0 +1,944 @@
+{
+  "schema": "FusionSketchConstraintDifferential/1",
+  "scope": "Read-only native corpus analysis using the research decoder; no product execution, local tests or native calls",
+  "captureSha256": "d9a1746380d6cdbf41ef6926c5a1fe9c3c05e213b596f6320e8499caab841edf",
+  "scriptSha256": "24f29809d13ad2306d5f15b317ea1d4bf07bd3128c9490585bb06de37fcb180d",
+  "artifact": "ConstraintGraphs.json.xz",
+  "artifactSha256": "15ea83fe008f98acc1908453c8d6e85fe3dae0f0dc4cc8e862c16132c801b3b2",
+  "uncompressedSha256": "da6840d74a3ccbbd8b3ce3fdcbfa042d7264e554ecc287248c04ad1a7bfc1dd1",
+  "stages": [
+    {
+      "stage": "Baseline",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/Baseline.f3d",
+      "sourceSha256": "e730aacd8689518d8adf423a2fa358c1d3bf0d062c844c04fcb8df07d463c324",
+      "recordCount": 256,
+      "primaryCount": 232,
+      "payloadBytes": 24069
+    },
+    {
+      "stage": "Orientation1",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/Orientation1.f3d",
+      "sourceSha256": "00293d972db2441811bbfad7e7ce08a8391ae2e8603c2785b2bc245dc12c99ac",
+      "recordCount": 257,
+      "primaryCount": 233,
+      "payloadBytes": 24196
+    },
+    {
+      "stage": "Orientation2",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/Orientation2.f3d",
+      "sourceSha256": "93a0c7fd4ff23606cb1c1b558b80bd8cf68d38d95f490137d81e5bdf68cb3121",
+      "recordCount": 258,
+      "primaryCount": 234,
+      "payloadBytes": 24323
+    },
+    {
+      "stage": "Orientation3",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/Orientation3.f3d",
+      "sourceSha256": "9728efdc8c47f4fba411093c568d734224a27ebc5e2e61463858603e857b5943",
+      "recordCount": 259,
+      "primaryCount": 235,
+      "payloadBytes": 24450
+    },
+    {
+      "stage": "Orientation4",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/Orientation4.f3d",
+      "sourceSha256": "41bd3c6d53d73f43ff22ff3a60da59af2cf22f008a5ef380c866a361ab086aab",
+      "recordCount": 260,
+      "primaryCount": 236,
+      "payloadBytes": 24577
+    },
+    {
+      "stage": "FixedAnchor",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/FixedAnchor.f3d",
+      "sourceSha256": "aa216fdebdeec9f592f207010f29be15bb6950842490f67caee355a3b34f1ff0",
+      "recordCount": 260,
+      "primaryCount": 236,
+      "payloadBytes": 24577
+    },
+    {
+      "stage": "WidthDimension",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/WidthDimension.f3d",
+      "sourceSha256": "3aea9a4a1e7da1a6a03639159ee90161795432c66c864386b9dd49586ee9cc4e",
+      "recordCount": 266,
+      "primaryCount": 240,
+      "payloadBytes": 25570
+    },
+    {
+      "stage": "WidthDepthDimensions",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/WidthDepthDimensions.f3d",
+      "sourceSha256": "aa138a22efe10dbd8c0df3df949cd20dd5856ec217a536272f79dd97affa3954",
+      "recordCount": 272,
+      "primaryCount": 244,
+      "payloadBytes": 26563
+    },
+    {
+      "stage": "EditedDimensions",
+      "source": "re/Fusion/LocalOracle/RectangleConstraints/EditedDimensions.f3d",
+      "sourceSha256": "760b3e80ec3a2a35399e4113465bab0be7246756309b5b71f6eea500f0e50841",
+      "recordCount": 272,
+      "primaryCount": 244,
+      "payloadBytes": 26563
+    }
+  ],
+  "deltas": [
+    {
+      "before": "Baseline",
+      "after": "Orientation1",
+      "added": [
+        {
+          "entityId": 245,
+          "primary": true,
+          "className": "SketchGeomConstraintMetaType",
+          "classId": "60403D47-0C49-49B0-BDE8-1679608164A2",
+          "schemaVersion": 3
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        }
+      ]
+    },
+    {
+      "before": "Orientation1",
+      "after": "Orientation2",
+      "added": [
+        {
+          "entityId": 246,
+          "primary": true,
+          "className": "SketchGeomConstraintMetaType",
+          "classId": "60403D47-0C49-49B0-BDE8-1679608164A2",
+          "schemaVersion": 3
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        }
+      ]
+    },
+    {
+      "before": "Orientation2",
+      "after": "Orientation3",
+      "added": [
+        {
+          "entityId": 247,
+          "primary": true,
+          "className": "SketchGeomConstraintMetaType",
+          "classId": "60403D47-0C49-49B0-BDE8-1679608164A2",
+          "schemaVersion": 3
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        }
+      ]
+    },
+    {
+      "before": "Orientation3",
+      "after": "Orientation4",
+      "added": [
+        {
+          "entityId": 248,
+          "primary": true,
+          "className": "SketchGeomConstraintMetaType",
+          "classId": "60403D47-0C49-49B0-BDE8-1679608164A2",
+          "schemaVersion": 3
+        }
+      ],
+      "removed": [],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        }
+      ]
+    },
+    {
+      "before": "Orientation4",
+      "after": "FixedAnchor",
+      "added": [
+        {
+          "entityId": 249,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType",
+          "classId": "CC54ECAD-6DE8-4DE1-803D-BBE0E751975B",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 250,
+          "primary": true,
+          "className": "EntityProgenitorMetaType",
+          "classId": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+          "schemaVersion": 2
+        },
+        {
+          "entityId": 251,
+          "primary": true,
+          "className": "EntityRecipeMetaType",
+          "classId": "90055C05-546C-4EE7-B3C9-3DD922AD0C9C",
+          "schemaVersion": 0
+        }
+      ],
+      "removed": [
+        {
+          "entityId": 240,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType"
+        },
+        {
+          "entityId": 241,
+          "primary": true,
+          "className": "EntityProgenitorMetaType"
+        },
+        {
+          "entityId": 242,
+          "primary": true,
+          "className": "EntityRecipeMetaType"
+        }
+      ],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 25,
+          "primary": true,
+          "className": "PassiveIdGeneratorMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        },
+        {
+          "entityId": 207,
+          "primary": true,
+          "className": "DcSketchMetaType"
+        },
+        {
+          "entityId": 208,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 211,
+          "primary": true,
+          "className": "EntityDataRefMetaType"
+        },
+        {
+          "entityId": 215,
+          "primary": true,
+          "className": "DRMatrixMetaType"
+        },
+        {
+          "entityId": 228,
+          "primary": true,
+          "className": "Point3DMetaType"
+        }
+      ]
+    },
+    {
+      "before": "FixedAnchor",
+      "after": "WidthDimension",
+      "added": [
+        {
+          "entityId": 252,
+          "primary": false,
+          "className": "DimensionMetaType",
+          "classId": "855F0A64-6286-4FFC-B918-BC394F600107",
+          "schemaVersion": 1
+        },
+        {
+          "entityId": 252,
+          "primary": true,
+          "className": "FusionSketchLinearDimMetaType",
+          "classId": "8C780195-72C0-4A56-A911-E43AB14357F2",
+          "schemaVersion": 3
+        },
+        {
+          "entityId": 253,
+          "primary": true,
+          "className": "ParameterMetaType",
+          "classId": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "schemaVersion": 10
+        },
+        {
+          "entityId": 254,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "schemaVersion": 1
+        },
+        {
+          "entityId": 254,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType",
+          "classId": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 255,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType",
+          "classId": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "schemaVersion": 1
+        },
+        {
+          "entityId": 259,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType",
+          "classId": "CC54ECAD-6DE8-4DE1-803D-BBE0E751975B",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 260,
+          "primary": true,
+          "className": "EntityProgenitorMetaType",
+          "classId": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+          "schemaVersion": 2
+        },
+        {
+          "entityId": 261,
+          "primary": true,
+          "className": "EntityRecipeMetaType",
+          "classId": "90055C05-546C-4EE7-B3C9-3DD922AD0C9C",
+          "schemaVersion": 0
+        }
+      ],
+      "removed": [
+        {
+          "entityId": 249,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType"
+        },
+        {
+          "entityId": 250,
+          "primary": true,
+          "className": "EntityProgenitorMetaType"
+        },
+        {
+          "entityId": 251,
+          "primary": true,
+          "className": "EntityRecipeMetaType"
+        }
+      ],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 16,
+          "primary": true,
+          "className": "ParameterTableMetaType"
+        },
+        {
+          "entityId": 17,
+          "primary": true,
+          "className": "ParameterSearchByNameHelperMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 25,
+          "primary": true,
+          "className": "PassiveIdGeneratorMetaType"
+        },
+        {
+          "entityId": 26,
+          "primary": true,
+          "className": "DcDesignFragmentMetaType"
+        },
+        {
+          "entityId": 27,
+          "primary": false,
+          "className": "ManagedGroupEntityMetaType"
+        },
+        {
+          "entityId": 28,
+          "primary": true,
+          "className": "DcComputeManagerMetaType"
+        },
+        {
+          "entityId": 29,
+          "primary": true,
+          "className": "DcDependencyManagerMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": false,
+          "className": "SketchMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        },
+        {
+          "entityId": 207,
+          "primary": true,
+          "className": "DcSketchMetaType"
+        },
+        {
+          "entityId": 208,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 211,
+          "primary": true,
+          "className": "EntityDataRefMetaType"
+        },
+        {
+          "entityId": 215,
+          "primary": true,
+          "className": "DRMatrixMetaType"
+        }
+      ]
+    },
+    {
+      "before": "WidthDimension",
+      "after": "WidthDepthDimensions",
+      "added": [
+        {
+          "entityId": 262,
+          "primary": false,
+          "className": "DimensionMetaType",
+          "classId": "855F0A64-6286-4FFC-B918-BC394F600107",
+          "schemaVersion": 1
+        },
+        {
+          "entityId": 262,
+          "primary": true,
+          "className": "FusionSketchLinearDimMetaType",
+          "classId": "8C780195-72C0-4A56-A911-E43AB14357F2",
+          "schemaVersion": 3
+        },
+        {
+          "entityId": 263,
+          "primary": true,
+          "className": "ParameterMetaType",
+          "classId": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "schemaVersion": 10
+        },
+        {
+          "entityId": 264,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "schemaVersion": 1
+        },
+        {
+          "entityId": 264,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType",
+          "classId": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 265,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType",
+          "classId": "6CCF41D5-40BE-48ED-A834-18F3EAED6C57",
+          "schemaVersion": 1
+        },
+        {
+          "entityId": 269,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType",
+          "classId": "CC54ECAD-6DE8-4DE1-803D-BBE0E751975B",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 270,
+          "primary": true,
+          "className": "EntityProgenitorMetaType",
+          "classId": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+          "schemaVersion": 2
+        },
+        {
+          "entityId": 271,
+          "primary": true,
+          "className": "EntityRecipeMetaType",
+          "classId": "90055C05-546C-4EE7-B3C9-3DD922AD0C9C",
+          "schemaVersion": 0
+        }
+      ],
+      "removed": [
+        {
+          "entityId": 259,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType"
+        },
+        {
+          "entityId": 260,
+          "primary": true,
+          "className": "EntityProgenitorMetaType"
+        },
+        {
+          "entityId": 261,
+          "primary": true,
+          "className": "EntityRecipeMetaType"
+        }
+      ],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 16,
+          "primary": true,
+          "className": "ParameterTableMetaType"
+        },
+        {
+          "entityId": 17,
+          "primary": true,
+          "className": "ParameterSearchByNameHelperMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 25,
+          "primary": true,
+          "className": "PassiveIdGeneratorMetaType"
+        },
+        {
+          "entityId": 26,
+          "primary": true,
+          "className": "DcDesignFragmentMetaType"
+        },
+        {
+          "entityId": 27,
+          "primary": false,
+          "className": "ManagedGroupEntityMetaType"
+        },
+        {
+          "entityId": 28,
+          "primary": true,
+          "className": "DcComputeManagerMetaType"
+        },
+        {
+          "entityId": 29,
+          "primary": true,
+          "className": "DcDependencyManagerMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": false,
+          "className": "SketchMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        },
+        {
+          "entityId": 207,
+          "primary": true,
+          "className": "DcSketchMetaType"
+        },
+        {
+          "entityId": 208,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 211,
+          "primary": true,
+          "className": "EntityDataRefMetaType"
+        },
+        {
+          "entityId": 215,
+          "primary": true,
+          "className": "DRMatrixMetaType"
+        }
+      ]
+    },
+    {
+      "before": "WidthDepthDimensions",
+      "after": "EditedDimensions",
+      "added": [
+        {
+          "entityId": 281,
+          "primary": true,
+          "className": "ETCachedMatrix3dMetaType",
+          "classId": "2DF7DA30-A4E4-4260-AFD1-D9C7154CB44B",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 285,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType",
+          "classId": "CC54ECAD-6DE8-4DE1-803D-BBE0E751975B",
+          "schemaVersion": 0
+        },
+        {
+          "entityId": 286,
+          "primary": true,
+          "className": "EntityProgenitorMetaType",
+          "classId": "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C",
+          "schemaVersion": 2
+        },
+        {
+          "entityId": 287,
+          "primary": true,
+          "className": "EntityRecipeMetaType",
+          "classId": "90055C05-546C-4EE7-B3C9-3DD922AD0C9C",
+          "schemaVersion": 0
+        }
+      ],
+      "removed": [
+        {
+          "entityId": 221,
+          "primary": true,
+          "className": "ETCachedMatrix3dMetaType"
+        },
+        {
+          "entityId": 269,
+          "primary": true,
+          "className": "ETCachedPlaneMetaType"
+        },
+        {
+          "entityId": 270,
+          "primary": true,
+          "className": "EntityProgenitorMetaType"
+        },
+        {
+          "entityId": 271,
+          "primary": true,
+          "className": "EntityRecipeMetaType"
+        }
+      ],
+      "changed": [
+        {
+          "entityId": 1,
+          "primary": true,
+          "className": "ProteinAssetManagerMetaType"
+        },
+        {
+          "entityId": 3,
+          "primary": false,
+          "className": "ComponentMetaType"
+        },
+        {
+          "entityId": 24,
+          "primary": true,
+          "className": "BRepSerializerMetaType"
+        },
+        {
+          "entityId": 25,
+          "primary": true,
+          "className": "PassiveIdGeneratorMetaType"
+        },
+        {
+          "entityId": 34,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 200,
+          "primary": true,
+          "className": "DesignConfigurationTableSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 201,
+          "primary": true,
+          "className": "DesignConfigurationRuleSerializerTriggerMetaType"
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType"
+        },
+        {
+          "entityId": 207,
+          "primary": true,
+          "className": "DcSketchMetaType"
+        },
+        {
+          "entityId": 208,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 211,
+          "primary": true,
+          "className": "EntityDataRefMetaType"
+        },
+        {
+          "entityId": 212,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 215,
+          "primary": true,
+          "className": "DRMatrixMetaType"
+        },
+        {
+          "entityId": 216,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 230,
+          "primary": true,
+          "className": "Point3DMetaType"
+        },
+        {
+          "entityId": 232,
+          "primary": true,
+          "className": "Point3DMetaType"
+        },
+        {
+          "entityId": 234,
+          "primary": true,
+          "className": "Point3DMetaType"
+        },
+        {
+          "entityId": 236,
+          "primary": true,
+          "className": "Line3DMetaType"
+        },
+        {
+          "entityId": 237,
+          "primary": true,
+          "className": "Line3DMetaType"
+        },
+        {
+          "entityId": 238,
+          "primary": true,
+          "className": "Line3DMetaType"
+        },
+        {
+          "entityId": 239,
+          "primary": true,
+          "className": "Line3DMetaType"
+        },
+        {
+          "entityId": 243,
+          "primary": true,
+          "className": "ParameterMetaType"
+        },
+        {
+          "entityId": 244,
+          "primary": true,
+          "className": "ParameterMetaType"
+        },
+        {
+          "entityId": 252,
+          "primary": true,
+          "className": "FusionSketchLinearDimMetaType"
+        },
+        {
+          "entityId": 253,
+          "primary": true,
+          "className": "ParameterMetaType"
+        },
+        {
+          "entityId": 254,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType"
+        },
+        {
+          "entityId": 255,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        },
+        {
+          "entityId": 262,
+          "primary": true,
+          "className": "FusionSketchLinearDimMetaType"
+        },
+        {
+          "entityId": 263,
+          "primary": true,
+          "className": "ParameterMetaType"
+        },
+        {
+          "entityId": 264,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType"
+        },
+        {
+          "entityId": 265,
+          "primary": true,
+          "className": "DynamicUpdateDataMetaType"
+        }
+      ]
+    }
+  ]
+}

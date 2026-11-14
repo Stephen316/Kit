@@ -15,7 +15,7 @@ import adsk.fusion
 
 CAPTURE = 'rulefilletsurfaces-9dd46198ca8a'
 SOURCE_SHA256 = '6acfc86ee89a9d811959db7218509dadc295b5f28f944e38a0587460da5eb305'
-ARCHIVE_SHA256 = 'e4920ced5f952f99fe0bed8eda71ead47098afa4d26308fdd53dc3141f35fd52'
+ARCHIVE_SHA256 = '9ef641d04fd0c86aef4083fa9c1a13c7ee320c722d36c56075a9b8a1e238a6d4'
 WITNESS = '_fusion_study_rule_surface_witness_halted_native_handles'
 DOCUMENTS = '_fusion_study_rule_surface_halted_documents'
 RECOVERY = '_fusion_study_rule_surface_recovery_halted_native_handles'
@@ -24,12 +24,12 @@ HANDLE_KEYS = frozenset(('design','root','offsets','source_face','source_body','
                         'feature','looked_up_feature'))
 
 V1_CAPTURE = 'recoverrulesurfacewitness-b0a35766ba60'
-V1_SOURCE_SHA256 = '6d8b0963db1caa7ac2050152b1ebd27528ed82b40a5201b3964ae7216491272a'
-V1_REPORT_SHA256 = 'df282bfea4fc22061c24ea77fb1ae8b77d7a83c45d5e56d18967969657bf0dc9'
+V1_SOURCE_SHA256 = 'ac3972301f02d93a298e284cdae6cac7d4bf54b94a2193a192a52f1c2485a0cb'
+V1_REPORT_SHA256 = 'cb047c4c0ac1344796ea5becb4a3f12fc022d6b2af008ae5d1e33d224f06faa5'
 INSPECTION = 'inspectrulewitnessquarantine-151086054fb5'
-INSPECTION_SHA256 = '6ae9f013c5b410200aa4ca7d3ae173e4b179375514121065a8f19c10c07e8899'
+INSPECTION_SHA256 = 'd42dbb34575a4826cb3cd141b09a9721e77bd85a88d09336c358c7417bfdac0e'
 OWNERSHIP_INSPECTION = 'inspectrulewitnessquarantine-2a852f50f1a0'
-OWNERSHIP_INSPECTION_SHA256 = '0e76bb722ce8223726f24b9cf9ea1f36cb9931d7208abda6e58fc5f76743dc78'
+OWNERSHIP_INSPECTION_SHA256 = '3a0766d801a4e498a629aa9862398c2b541c807fde6e16ffec9eee35b9d8cd37'
 RECOVERY_HANDLE_KEYS = frozenset(('design','root','offsets','resolved','input_faces',
                                 'quarantine_rows','quarantine_entry','native_handles'))
 

@@ -1,0 +1,50 @@
+{
+  "scope": "Truncated-journal fillet control with explicit persisted dirty-state edits on the unsolved feature; tests whether any saved state triggers regeneration on open",
+  "cases": [
+    {
+      "name": "FilletDirtyUpdate",
+      "source": "Fillet.f3d",
+      "target": "FilletDirtyUpdate.f3d",
+      "source_sha256": "f45e44860e7a5ef5ff551b9d96126a4714d6ce1ce2393bb13824ab4a9fa8402d",
+      "target_sha256": "7e4b0dbe3b8bdb4b1a500ccd2387b621dfb949e4e7613897025e9f34a5be7682",
+      "feature": "DcFilletEdgeFeature",
+      "mode": "update"
+    },
+    {
+      "name": "FilletDirtyEdited",
+      "source": "Fillet.f3d",
+      "target": "FilletDirtyEdited.f3d",
+      "source_sha256": "f45e44860e7a5ef5ff551b9d96126a4714d6ce1ce2393bb13824ab4a9fa8402d",
+      "target_sha256": "c09a4bc98cfaae73bd939517f3b39b3498e9619636ada7a7b94583bc9412992f",
+      "feature": "DcFilletEdgeFeature",
+      "mode": "edited"
+    },
+    {
+      "name": "FilletDirtySort",
+      "source": "Fillet.f3d",
+      "target": "FilletDirtySort.f3d",
+      "source_sha256": "f45e44860e7a5ef5ff551b9d96126a4714d6ce1ce2393bb13824ab4a9fa8402d",
+      "target_sha256": "fa2b367e326d85051facd4a1ed8071c6cde9380d654124198301d7042b027900",
+      "feature": "DcFilletEdgeFeature",
+      "mode": "sort"
+    },
+    {
+      "name": "FilletDirtyParam",
+      "source": "Fillet.f3d",
+      "target": "FilletDirtyParam.f3d",
+      "source_sha256": "f45e44860e7a5ef5ff551b9d96126a4714d6ce1ce2393bb13824ab4a9fa8402d",
+      "target_sha256": "ec78f31be0bc5391a77d41bc081c45b9b79a7bba11241edbd7061280b32e90cf",
+      "feature": "DcFilletEdgeFeature",
+      "mode": "param"
+    },
+    {
+      "name": "FilletDirtyAll",
+      "source": "Fillet.f3d",
+      "target": "FilletDirtyAll.f3d",
+      "source_sha256": "f45e44860e7a5ef5ff551b9d96126a4714d6ce1ce2393bb13824ab4a9fa8402d",
+      "target_sha256": "b28cabd228910e742223c8cba5860366893cf18a908580dd5ee5ef1a3d82f352",
+      "feature": "DcFilletEdgeFeature",
+      "mode": "all"
+    }
+  ]
+}

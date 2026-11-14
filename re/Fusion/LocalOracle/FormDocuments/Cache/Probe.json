@@ -1,0 +1,57 @@
+{
+ "fusion_version": "2706.1.17",
+ "scope": "Converted Form surface cache authority: open, measure, edit, convert, save and reopen each prepared variant",
+ "documents_before": 0,
+ "rows": [
+  {
+   "case": "Plane",
+   "variant": "Control",
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneControl.f3d",
+   "stages": {},
+   "status": "error",
+   "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 146, in <module>\n    exercise(row)\n    ~~~~~~~~^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 113, in exercise\n    stages['loaded'] = solved(design)\n                       ~~~~~~^^^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 77, in solved\n    'face_rows': [face_row(face) for face in body.faces],\n                  ~~~~~~~~^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 47, in face_row\n    ok, box = evaluator.getParameterExtents()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'SurfaceEvaluator' object has no attribute 'getParameterExtents'. Did you mean: 'getParametersAtPoints'?\n"
+  },
+  {
+   "case": "Plane",
+   "variant": "SurfNone",
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfNone.f3d",
+   "stages": {},
+   "status": "error",
+   "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 146, in <module>\n    exercise(row)\n    ~~~~~~~~^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 110, in exercise\n    document = open_archive(root / row['file'])\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 98, in open_archive\n    document = app.importManager.importToNewDocument(app.importManager.createFusionArchiveImportOptions(str(path)))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/core.py\", line 16045, in importToNewDocument\n    return _core.ImportManager_importToNewDocument(self, importOptions)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 2 : InternalValidationError : isSuccessfullyOpened && status.isOk()\n"
+  },
+  {
+   "case": "Plane",
+   "variant": "SurfShifted",
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfShifted.f3d",
+   "stages": {},
+   "status": "error",
+   "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 146, in <module>\n    exercise(row)\n    ~~~~~~~~^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 113, in exercise\n    stages['loaded'] = solved(design)\n                       ~~~~~~^^^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 77, in solved\n    'face_rows': [face_row(face) for face in body.faces],\n                  ~~~~~~~~^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 47, in face_row\n    ok, box = evaluator.getParameterExtents()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'SurfaceEvaluator' object has no attribute 'getParameterExtents'. Did you mean: 'getParametersAtPoints'?\n"
+  },
+  {
+   "case": "Box",
+   "variant": "Control",
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxControl.f3d",
+   "stages": {},
+   "status": "error",
+   "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 146, in <module>\n    exercise(row)\n    ~~~~~~~~^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 113, in exercise\n    stages['loaded'] = solved(design)\n                       ~~~~~~^^^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 77, in solved\n    'face_rows': [face_row(face) for face in body.faces],\n                  ~~~~~~~~^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 47, in face_row\n    ok, box = evaluator.getParameterExtents()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'SurfaceEvaluator' object has no attribute 'getParameterExtents'. Did you mean: 'getParametersAtPoints'?\n"
+  },
+  {
+   "case": "Box",
+   "variant": "SurfNone",
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxSurfNone.f3d",
+   "stages": {},
+   "status": "error",
+   "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 146, in <module>\n    exercise(row)\n    ~~~~~~~~^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 110, in exercise\n    document = open_archive(root / row['file'])\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 98, in open_archive\n    document = app.importManager.importToNewDocument(app.importManager.createFusionArchiveImportOptions(str(path)))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/core.py\", line 16045, in importToNewDocument\n    return _core.ImportManager_importToNewDocument(self, importOptions)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 2 : InternalValidationError : isSuccessfullyOpened && status.isOk()\n"
+  },
+  {
+   "case": "Box",
+   "variant": "SurfShifted",
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxSurfShifted.f3d",
+   "stages": {},
+   "status": "error",
+   "traceback": "Traceback (most recent call last):\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 146, in <module>\n    exercise(row)\n    ~~~~~~~~^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 113, in exercise\n    stages['loaded'] = solved(design)\n                       ~~~~~~^^^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 77, in solved\n    'face_rows': [face_row(face) for face in body.faces],\n                  ~~~~~~~~^^^^^^\n  File \"<repo>/re/Fusion/LocalOracle/FormDocuments/ProbeCache.py\", line 47, in face_row\n    ok, box = evaluator.getParameterExtents()\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'SurfaceEvaluator' object has no attribute 'getParameterExtents'. Did you mean: 'getParametersAtPoints'?\n"
+  }
+ ],
+ "status": "completed",
+ "documents_after": 0
+}

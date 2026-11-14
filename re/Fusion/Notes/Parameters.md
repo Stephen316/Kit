@@ -100,7 +100,7 @@ unit count followed by twice that many bytes of UTF-16LE text.
 | Display unit           | End of reserved text     |       variable | counted string | Display label such as `mm` or `deg`.                                                                   |
 | Parameter name         | End of display unit      |       variable | counted string | Stored parameter identifier.                                                                           |
 | Cached value           | End of name              |              8 | binary64       | Finite value. Lengths use centimetres, angles use radians, and scalars are unitless.                   |
-| Trailer                | End of cached value      |             12 | bytes          | `00 01 10` followed by nine zero bytes in the SDK's supported layouts.                                 |
+| Collection footer      | End of cached value      |             12 | local reference | Zero separator, `01`, owning collection u64, and two zero bytes. Collection 16 is common, not mandatory. |
 
 | Metadata field  | Byte offset | Width in bytes | Type  | 10-byte layout                                                                     | 11-byte layout                                      |
 | --------------- | ----------- | -------------: | ----- | ---------------------------------------------------------------------------------- | --------------------------------------------------- |

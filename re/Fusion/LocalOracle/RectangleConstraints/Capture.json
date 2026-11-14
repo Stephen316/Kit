@@ -1,0 +1,1126 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native controlled differential capture of rectangular orientation constraints, fixed anchor and driving dimensions; not Kit writer acceptance",
+  "captures": [
+    {
+      "name": "Baseline",
+      "file": "Baseline.f3d",
+      "sha256": "e730aacd8689518d8adf423a2fa358c1d3bf0d062c844c04fcb8df07d463c324",
+      "bytes": 88778,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "Orientation1",
+      "file": "Orientation1.f3d",
+      "sha256": "00293d972db2441811bbfad7e7ce08a8391ae2e8603c2785b2bc245dc12c99ac",
+      "bytes": 89505,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint"
+      ],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "Orientation2",
+      "file": "Orientation2.f3d",
+      "sha256": "93a0c7fd4ff23606cb1c1b558b80bd8cf68d38d95f490137d81e5bdf68cb3121",
+      "bytes": 89765,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "Orientation3",
+      "file": "Orientation3.f3d",
+      "sha256": "9728efdc8c47f4fba411093c568d734224a27ebc5e2e61463858603e857b5943",
+      "bytes": 89885,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::HorizontalConstraint"
+      ],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "Orientation4",
+      "file": "Orientation4.f3d",
+      "sha256": "41bd3c6d53d73f43ff22ff3a60da59af2cf22f008a5ef380c866a361ab086aab",
+      "bytes": 89953,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "FixedAnchor",
+      "file": "FixedAnchor.f3d",
+      "sha256": "aa216fdebdeec9f592f207010f29be15bb6950842490f67caee355a3b34f1ff0",
+      "bytes": 90045,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "WidthDimension",
+      "file": "WidthDimension.f3d",
+      "sha256": "3aea9a4a1e7da1a6a03639159ee90161795432c66c864386b9dd49586ee9cc4e",
+      "bytes": 90680,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        },
+        {
+          "name": "d3",
+          "expression": "controlledWidth",
+          "value": 1.7000000000000002
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d3",
+          "value": 1.7000000000000002,
+          "expression": "controlledWidth"
+        }
+      ],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": false,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "WidthDepthDimensions",
+      "file": "WidthDepthDimensions.f3d",
+      "sha256": "aa138a22efe10dbd8c0df3df949cd20dd5856ec217a536272f79dd97affa3954",
+      "bytes": 91508,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        },
+        {
+          "name": "d3",
+          "expression": "controlledWidth",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "d4",
+          "expression": "controlledDepth",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d3",
+          "value": 1.7000000000000002,
+          "expression": "controlledWidth"
+        },
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d4",
+          "value": 2.3000000000000003,
+          "expression": "controlledDepth"
+        }
+      ],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": true,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    },
+    {
+      "name": "EditedDimensions",
+      "file": "EditedDimensions.f3d",
+      "sha256": "760b3e80ec3a2a35399e4113465bab0be7246756309b5b71f6eea500f0e50841",
+      "bytes": 91610,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "19 mm",
+          "value": 1.9000000000000001
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "29 mm",
+          "value": 2.9000000000000004
+        },
+        {
+          "name": "d3",
+          "expression": "controlledWidth",
+          "value": 1.9000000000000001
+        },
+        {
+          "name": "d4",
+          "expression": "controlledDepth",
+          "value": 2.9000000000000004
+        }
+      ],
+      "constraints": [
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint",
+        "adsk::fusion::HorizontalConstraint",
+        "adsk::fusion::VerticalConstraint"
+      ],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d3",
+          "value": 1.9000000000000001,
+          "expression": "controlledWidth"
+        },
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d4",
+          "value": 2.9000000000000004,
+          "expression": "controlledDepth"
+        }
+      ],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.9000000000000001,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.9000000000000001,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.9000000000000001,
+            2.9000000000000004,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.9000000000000001,
+            2.9000000000000004,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.9000000000000004,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.9000000000000004,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1,
+      "fully_constrained": true,
+      "points": [
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "fixed": true
+        },
+        {
+          "xyz_cm": [
+            1.9000000000000001,
+            0.0,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            1.9000000000000001,
+            2.9000000000000004,
+            0.0
+          ],
+          "fixed": false
+        },
+        {
+          "xyz_cm": [
+            0.0,
+            2.9000000000000004,
+            0.0
+          ],
+          "fixed": false
+        }
+      ]
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

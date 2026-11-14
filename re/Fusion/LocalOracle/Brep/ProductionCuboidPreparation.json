@@ -1,0 +1,53 @@
+{
+  "purpose": "Independently authored standalone cuboid for parent-coordinated native acceptance",
+  "source_payload_dependencies": [],
+  "dimensions_mm": [
+    17.0,
+    23.0,
+    31.0
+  ],
+  "base_mm": [
+    -7.0,
+    13.0,
+    5.0
+  ],
+  "expected_volume_cm3": 12.121,
+  "expected_bbox_mm": [
+    [
+      -7.0,
+      13.0,
+      5.0
+    ],
+    [
+      10.0,
+      36.0,
+      36.0
+    ]
+  ],
+  "expected_center_mm": [
+    1.5,
+    24.5,
+    20.5
+  ],
+  "expected_topology": {
+    "bodies": 1,
+    "faces": 6,
+    "edges": 12,
+    "vertices": 8
+  },
+  "curve_parameterization": "C(u)=start+u*(end-start), edges bounded at u=0 and u=1",
+  "outputs": [
+    {
+      "file": "kit_production_cuboid.smt",
+      "bytes": 4131,
+      "sha256": "b733961dd412d61fdc06650a3a69b04ae0ae0fe2b09e3bcb21840ce69c5ef89c",
+      "producer": "convert.formats.Fusion.GeometryCodec.Prism.EmitCuboidSmt"
+    },
+    {
+      "file": "kit_production_cuboid.smb",
+      "bytes": 7720,
+      "sha256": "a33e7a8acd2aed33aa44e34ee6e362010a1f16c1d60329b1143a7a92c0efd03b",
+      "producer": "convert.formats.Fusion.GeometryCodec.Prism.EmitCuboidSmb"
+    }
+  ]
+}

@@ -1,0 +1,1475 @@
+{
+ "fusion_version": "2706.1.17",
+ "route": "object-level grafts on the A3 control (D0Plain base, BuildUnknowns.py); only the fields named in each edit change",
+ "run": "Native/EdgeRound.py and Native/BisectRound.py: upload, open, read the views; RunGuarded.mjs reads any message dialog",
+ "base": "D0Plain.f3z",
+ "base_objects": 377,
+ "grafts": {
+  "Y0Base": {
+   "sha256": "00745058ac7ffbf4772f7f1fbf4ce7832f923639d8ca563491c85cc8197b0ba4",
+   "dwg_sha256": "b32e005f0025d9d1b3da522536ea59ebd754ef4796f19d4acb64c8353e4c400b",
+   "objects": 377,
+   "edits": [],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns1",
+     "open_seconds": 16.6,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "boxes": [
+      [
+       100.4688,
+       80.6094,
+       260.4688,
+       160.6094
+      ],
+      [
+       278.0,
+       80.6094,
+       318.0,
+       160.6094
+      ],
+      [
+       100.4688,
+       177.2031,
+       260.4688,
+       217.2031
+      ]
+     ]
+    }
+   ]
+  },
+  "Y1Zeros": {
+   "sha256": "d8d913934333c6824ae61fc0f2a11d31ce47ae4c0bb6c92f5a4c6be97556033f",
+   "dwg_sha256": "b98542299c4f3beb7b384f693ca4588fff8f132473492b20f1f33152f62b3eeb",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "DIMENSION_LINEAR",
+     "part": "Data",
+     "field": "DimFlags",
+     "old": 11,
+     "new": 3
+    },
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerFlag",
+     "old": 1,
+     "new": 0
+    },
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 0
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongOne",
+     "old": 2,
+     "new": 0
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongTwo",
+     "old": 1,
+     "new": 0
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongThree",
+     "old": 1,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "by hand",
+     "continue_pressed": true,
+     "open_seconds": 640.5,
+     "views_after_continue": [
+      5,
+      4,
+      4
+     ]
+    }
+   ]
+  },
+  "Y2Raised": {
+   "sha256": "56e39ec7b2b0e10c0956e0556da3de1f8f8c054d9b36a4938a356ebe468161af",
+   "dwg_sha256": "39d57ca9632b95140ea657e8ba52bf6479cd22da23bb44a2b0d25deed950fdef",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "MTEXT",
+     "part": "Data",
+     "field": "UnknownBit",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "DRAWINGVIEW",
+     "part": "Data",
+     "field": "RealSix",
+     "old": 0.0,
+     "new": 1.0
+    },
+    {
+     "class": "DRAWINGVIEW",
+     "part": "Data",
+     "field": "RealSix",
+     "old": 0.0,
+     "new": 1.0
+    },
+    {
+     "class": "DRAWINGVIEW",
+     "part": "Data",
+     "field": "RealSix",
+     "old": 0.0,
+     "new": 1.0
+    },
+    {
+     "class": "DIMENSION_LINEAR",
+     "part": "Data",
+     "field": "Unknown",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerRaw",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagOne",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "TextFive",
+     "old": "",
+     "new": "x"
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCGEOMDEPENDENCY",
+     "part": "Data",
+     "field": "GeomLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCGEOMDEPENDENCY",
+     "part": "Data",
+     "field": "GeomFlag",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "stalled",
+     "round": "Unknowns3",
+     "seconds": 240
+    },
+    {
+     "outcome": "stalled",
+     "round": "Unknowns5",
+     "seconds": 903
+    }
+   ]
+  },
+  "Y3Manager": {
+   "sha256": "a7f1920cb17180410bb95c0923d824ebcb7a060d70b5166650e8aa27441c887b",
+   "dwg_sha256": "d4a9097aeb0564123e56c517a92b2a8c51b0e184d0889cd19c2f40ab9b62b5cd",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerFlag",
+     "old": 1,
+     "new": 0
+    },
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns4",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "Y4Reference": {
+   "sha256": "226e7f807e289a1dfbd17eda8133c925f5b5b80c2e957cad12151ecb7e630319",
+   "dwg_sha256": "30f87c49f907299715576baad55f75c24238b2207e83dcfd3fa58cef11c3f833",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongOne",
+     "old": 2,
+     "new": 0
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongTwo",
+     "old": 1,
+     "new": 0
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongThree",
+     "old": 1,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns4",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "Y5DimBit": {
+   "sha256": "f109210272cfea03c1892d5cb8a9c6dc29443c9f041bb8f7e5c75e7f5f163aa7",
+   "dwg_sha256": "80f8094164d516a45dce8d5ba3d2412d88637fb54411efa8d0facc454cf2d7cf",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "DIMENSION_LINEAR",
+     "part": "Data",
+     "field": "DimFlags",
+     "old": 11,
+     "new": 3
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns4",
+     "open_seconds": 203.5,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "Z1Flag": {
+   "sha256": "e267dc6f5196a4918ccca4ae4061e6408906142861684b8a8823c4a6080d6978",
+   "dwg_sha256": "2ddb0d7c3e07e4765a1be68f51424c261aeee5c6a1963e30f35c757d75f3cf21",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerFlag",
+     "old": 1,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns6",
+     "open_seconds": 69.8,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "Z2Long": {
+   "sha256": "afbaec6fa14c515c8940325181aa1d2b15b2eb095f38359d1cf6ffef0572ec19",
+   "dwg_sha256": "e039bb4c2df7603a72808a376b60ca5399780ff312a6349da41f8b6f7d0e053a",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "stalled",
+     "round": "Unknowns6",
+     "seconds": 301
+    },
+    {
+     "outcome": "stalled",
+     "round": "Unknowns8",
+     "seconds": 901
+    }
+   ]
+  },
+  "Z3Long65": {
+   "sha256": "1e6a18dab187a39c4a41161ad847da85fb3ef71ac99945627239f7da720c34ca",
+   "dwg_sha256": "739e4199c886d6630645c0b9f0ab06af9acc8cc267596326af8daf5ac940fea1",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 65
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns6",
+     "open_seconds": 11.9,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "Z4One": {
+   "sha256": "0ca745ee48bca0d684dc10d8f6b31d503f7070d0a90f3fd421de422248d03a77",
+   "dwg_sha256": "2488d5a1e68cc28dfc9d2096a13719e2abbcd8be4949273a3443d6925bbba41c",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongOne",
+     "old": 2,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns6",
+     "seconds_to_message": 122
+    }
+   ]
+  },
+  "Z5Two": {
+   "sha256": "eeab5f43a5f3a4d36ec416cd23157a7765f448cf13c219500e4de9e95615becd",
+   "dwg_sha256": "7e39df577ccac26c95645ad4f2aa5df2fd1ed47b7e5661975ae95217a82b9d04",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongTwo",
+     "old": 1,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns6",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "Z6Three": {
+   "sha256": "3751bfd1e23e5548814f57f673f99e97aa7300ac1073e8335c5e9355b89c06c3",
+   "dwg_sha256": "73691a51d074acc56dc050e71f77be648b775ba8cb2127b61d2620284f4f663f",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongThree",
+     "old": 1,
+     "new": 0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns6",
+     "seconds_to_message": 178
+    }
+   ]
+  },
+  "Z7One3": {
+   "sha256": "91675a59b88c7dc967bb60d3f2506da05e2275f08b44812458f59fb8c2b033a6",
+   "dwg_sha256": "ced1ae6d9e14da6fa17ebd35d8578f076884a029b05756ff96eb6784023b6f73",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongOne",
+     "old": 2,
+     "new": 3
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns6",
+     "open_seconds": 5.9,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "Z8Long1": {
+   "sha256": "1e69c1bcc170e4118257706f1e65a958359c5ba1f3925243351699d69f5c693f",
+   "dwg_sha256": "a98370f17fa5ef4d94d0e29e5730dc4490a00b06f399d09e89641d2feefa26ab",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns7",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "Z9One1": {
+   "sha256": "eb02eb563b00f36a636e5908a6efb1b02747b11ab60dd444c165185bc252c929",
+   "dwg_sha256": "b80a9c13da00484bbee706e14e4360d9b26e66c5bfb612481a1e07f8e3f50a90",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongOne",
+     "old": 2,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns7",
+     "open_seconds": 4.8,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "ZaTwo2": {
+   "sha256": "73c445ec5e07871fa6f7695ac62ee15d608421d827b1c204bee5b2e7d05900a1",
+   "dwg_sha256": "46fd8d2fc567e96b7ae225a6f218511d2c89f7a2d672b0c2e3c0aaeb616c540a",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongTwo",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns7",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "ZbThree2": {
+   "sha256": "0c27aa0f02b656e84164edc199bb7e20472e6e9d5959b389a539ba958232edd7",
+   "dwg_sha256": "2fddc01014b3c83bc894d4e44499c88dac30812fa5aa91dd04f21a106bc92eea",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "LongThree",
+     "old": 1,
+     "new": 2
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns7",
+     "open_seconds": 11.4,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "R1Geom": {
+   "sha256": "57e95ee0fe7cf6938c91ae9c36972ca35a1964a4c6921adbb3e6d000aaf91f84",
+   "dwg_sha256": "2e030eb59d6389a01fdc035feb577ccf01b7dc55f8cf6b9ced4fcf11b74d316d",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCGEOMDEPENDENCY",
+     "part": "Data",
+     "field": "GeomLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCGEOMDEPENDENCY",
+     "part": "Data",
+     "field": "GeomFlag",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns9",
+     "open_seconds": 177.1,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "R2Raw": {
+   "sha256": "2a7ccfd8949b08ec9ea8a349589308f9ad064b2cc2dc4d691796d824b60f8a91",
+   "dwg_sha256": "a5edd44b393245d3d26123caccc33193c5a0d34fa30565b00794cc925935960a",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerRaw",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns9",
+     "open_seconds": 43.3,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "R3Hatch": {
+   "sha256": "af89a6267a4a967dcfa1b188e4e2be8f89e457c6af4ce67f60c87ea8fa77dda6",
+   "dwg_sha256": "498976444542533365fe74fbdeb4e8e05b93c5d8a30af9fbef53d5b5909fb1e6",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "stalled",
+     "round": "Unknowns9",
+     "seconds": 300
+    }
+   ]
+  },
+  "R4RefFlags": {
+   "sha256": "777e2a1c137f3fcba3152cc4522254a5bf77236e3a1ab21d84ea45ac6d8c4222",
+   "dwg_sha256": "d63232552e53cbcb8dddd2b0302609e247b9cb66aa95d3d725ee63cd9e917d3e",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagOne",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "TextFive",
+     "old": "",
+     "new": "x"
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns9",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "R5DimUnknown": {
+   "sha256": "f126686382687c33981e2ab146d151f0cdfa5cc06405656f69dca4975b753936",
+   "dwg_sha256": "93f667aed50bfee7b16666f94b41814a4c9e8fb73b7af9047d4814cd989586fc",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "DIMENSION_LINEAR",
+     "part": "Data",
+     "field": "Unknown",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns9",
+     "open_seconds": 4.3,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "R6Mtext": {
+   "sha256": "6273878adb2b68bd28d62a0cf138128732eaa25641ef88c24cef072bb17fbafc",
+   "dwg_sha256": "b885c8756f1ff7506eaca751953970f2635ec29e59fbce8595f34e7226d88e1b",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "MTEXT",
+     "part": "Data",
+     "field": "UnknownBit",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns9",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "R7ViewReal": {
+   "sha256": "bdfbb156413135172c82c566bfdee5e24227f5b750e7daf87c4e90f9efe3af2a",
+   "dwg_sha256": "f215ec7713a8aeb09fbf6ba972310346cfd77576ad6e3cf612166e865d9545e9",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "DRAWINGVIEW",
+     "part": "Data",
+     "field": "RealSix",
+     "old": 0.0,
+     "new": 1.0
+    },
+    {
+     "class": "DRAWINGVIEW",
+     "part": "Data",
+     "field": "RealSix",
+     "old": 0.0,
+     "new": 1.0
+    },
+    {
+     "class": "DRAWINGVIEW",
+     "part": "Data",
+     "field": "RealSix",
+     "old": 0.0,
+     "new": 1.0
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns9",
+     "open_seconds": 5.3,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "MLong2": {
+   "sha256": "b3430203ef138e58c2e10283768e6b6e1ed46c5fd66601d70ff8a5c6056a0b63",
+   "dwg_sha256": "37ff330934f3cffbd6ce7251c1322ed48bb305a08a6e0c3298d88733988578c7",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 2
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "MLong8": {
+   "sha256": "3e13337a863d8bc77c47033d8a2971142868f217f38e2758c6c5cbf1a74920a4",
+   "dwg_sha256": "2a6ad1b91f29f8dd9a913e6eea3354c1282e76cad647a626cd112f0ff9b779c0",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 8
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "MLong16": {
+   "sha256": "c13bede19a79590226003c9155967678230cb1c088a8cbdf5645e783989f5c5e",
+   "dwg_sha256": "c9da388d3d36d17b5a05f7184438f8b1fa6e53259b42ec0484e844fed78aed7d",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 16
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "MLong32": {
+   "sha256": "a607755bbf6feb8d39ffa255ab4f1392c1fbe4d46941477b077617f9e28f9271",
+   "dwg_sha256": "6e484938d284e044bfd968df3340143a0b0a9178a13a4a46bd996469f0e499a3",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 32
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "MLong48": {
+   "sha256": "a5d273aed68df9b38fd1cee279d5ff28a578be071f8e95fe504c5610d21c1397",
+   "dwg_sha256": "f05dec4d48d68f81fc332bba9b0a25fad30f5dedf033403c1209be88550e4a78",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 48
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 8
+    }
+   ]
+  },
+  "MLong63": {
+   "sha256": "ee27eab1d2c810c53ba75b48e8755b2c534be8f7e518643a6ee9c8b2acc32da3",
+   "dwg_sha256": "462bdee55f537c300a8aa01ec303ab40459da199c5c0e081b31ac0e9fca38371",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 63
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "MLong1000": {
+   "sha256": "4ee94a4366658e2d875602601d5689eef70971965d2d255eaaa6ed0a0abf9e28",
+   "dwg_sha256": "f56ac3e599ebe80cc196c1db05a3aae41da99a63fae4bfcb63cf3c80fe8bf98b",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 1000
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns10",
+     "seconds_to_message": 8
+    }
+   ]
+  },
+  "MLong66": {
+   "sha256": "2b09aac4a5e75575664475d71753d37dfcfb8b5ff52e0a48d1510a427a5229bf",
+   "dwg_sha256": "800b34c677a7bab55c37f0075069abce2123c2999d1e5d19bd9be5085bc2cafc",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 66
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns12",
+     "open_seconds": 4.3,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "MLong96": {
+   "sha256": "d10c2eff89728d1becbe8ca3c3764cf94ee29f54cb14c371c8442d0fb4ec8930",
+   "dwg_sha256": "a2180a6a0e5890e90c2fde1be23a374a86329fa417b47cc55e79e663db83833c",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 96
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns12",
+     "open_seconds": 3.3,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "MLong127": {
+   "sha256": "91c48b5947c62587f28f928a8319673abf0b48fec0084309e967688ffb803484",
+   "dwg_sha256": "a41816eaca3d60685c4d7aa8a8dfdee93cdaf2ef355323940f4f03b2b6d9a19d",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 127
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns12",
+     "open_seconds": 3.4,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "MLong128": {
+   "sha256": "47754f21619de4436279a57746ec9ba69f1113ce587ef8cbf53df452dba9a92b",
+   "dwg_sha256": "e2e40c4f8708da5c3479bdc361ea156a3a99224ca92b2ff0515567370ab3d82c",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 128
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns12",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "MLong192": {
+   "sha256": "ba4b35ed90681172634e544b040e54af9aeb52e351ffd996c480f9870d8657bc",
+   "dwg_sha256": "568d3b3982eb1e5a9cb856b648b1935a0efba8b073528b885276593bdd5cbc01",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 192
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns12",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "MLong256": {
+   "sha256": "13d43699cb619e3a754b6454e15072e60514f0c7834ec89f196b1435c90a0186",
+   "dwg_sha256": "0cf40d5a8cbe5a0ef208d7d8316a0aee2de1d06043d1998288685f4b5ca2598c",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
+     "part": "Data",
+     "field": "ManagerLong",
+     "old": 64,
+     "new": 256
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns12",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "HTwo": {
+   "sha256": "eb490ce22afef83bfd66030f26f8c1144468de060ffddcc8df13f5f15df8120a",
+   "dwg_sha256": "c3c7bfc53cf50907907978bc77c3775952340a5df77c815021194bdf4a5e0a72",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongTwo",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns11",
+     "open_seconds": 4.5,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "HThree": {
+   "sha256": "c1328f6854d47a919cc51f872b5832212a5feb0d948819da51c7fc85a7ea0900",
+   "dwg_sha256": "72f6df98d4ef62e56fdd605e86365b00bf2b574b984aec021c7c48984df41ec3",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongThree",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns11",
+     "seconds_to_message": 6
+    }
+   ]
+  },
+  "HFour": {
+   "sha256": "869ebe59eb7413eb5a6e28235fdda1ddffc79d91638a94c9011686594df5f64d",
+   "dwg_sha256": "235fa093d2b86232b086fed83ad3e1b67ef7427b5133ab2359434eeb52e18544",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFour",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns11",
+     "open_seconds": 4.1,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  },
+  "HFive": {
+   "sha256": "79d40b2aa0fa8072c49883b5a75baf82deb71b2ccdf8e1a10fed5b8a855106cc",
+   "dwg_sha256": "5896ad375f4b5e1c0a152063f89b21816adc03c171f5bd49580c3d4c1e4e041f",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    },
+    {
+     "class": "ACDBASSOCVIEWREPHATCHMANAGER",
+     "part": "Data",
+     "field": "ManagerLongFive",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns11",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "FFlagOne": {
+   "sha256": "d2106e4c9d1e62b6d4ac1f39d4d92d0248c88981c6594948d278166a9e02e733",
+   "dwg_sha256": "950447c17ad72c932fa211bdaa2c2a09d63c91792bb1a5d20dee651d10955dc8",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagOne",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "damaged",
+     "round": "Unknowns11",
+     "seconds_to_message": 5
+    }
+   ]
+  },
+  "FFlagTwo": {
+   "sha256": "410b69dd1a017c722962350f4a78b5a5b38fbfc3570315bef16e082c269584d2",
+   "dwg_sha256": "b8c71e136fc8a8cb938db6645814f4b387d15f6955871bd1f61d6c9b7b5c5e70",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagTwo",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "stalled",
+     "round": "Unknowns11",
+     "seconds": 301
+    }
+   ]
+  },
+  "FFlagThree": {
+   "sha256": "722afb51d21b75117d73275aed9efacb0160ef49c2802b3b7b61e129a5100205",
+   "dwg_sha256": "021eb0684c7463317edb2b1d58829ab02d7eeb7b9502f46b4d49ee23d73fa52d",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "FlagThree",
+     "old": 0,
+     "new": 1
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "stalled",
+     "round": "Unknowns11",
+     "seconds": 301
+    }
+   ]
+  },
+  "FTextFive": {
+   "sha256": "15d65b7533b8163748ccceb49e8b2e3e4cd541d6c0ff91fcc0205cc740d2f3c5",
+   "dwg_sha256": "0a42af69711940470a7c5b477772e868b59e93aafaf44fbbb0bb1241754bdf5a",
+   "objects": 377,
+   "edits": [
+    {
+     "class": "ACDBREFERENCEDATA",
+     "part": "Data",
+     "field": "TextFive",
+     "old": "",
+     "new": "x"
+    }
+   ],
+   "runs": [
+    {
+     "outcome": "opened",
+     "round": "Unknowns11",
+     "open_seconds": 3.8,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1
+    }
+   ]
+  }
+ }
+}

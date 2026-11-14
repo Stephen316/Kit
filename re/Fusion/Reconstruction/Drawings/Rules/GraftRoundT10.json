@@ -1,0 +1,1218 @@
+{
+ "fusion_version": "2706.1.17",
+ "route": "object-level grafts on the A3 control (D0Plain base); header untouched; only the leaves that differ between Kit build A (right and above views) and Kit build B copied in, Kit handles mapped to the control",
+ "paper": "A3 Landscape",
+ "kit_layouts_mm": {
+  "A": "base (180.47, 120.61) scale 4; right (298, 120.61); above (180.47, 197.2)",
+  "V1LeftBelow": "left (62.94, 120.61); below (180.47, 44.02)",
+  "V2RightBack": "base (103.75, 120.61); right (214.25, 120.61); back right of right (324.75, 120.61)",
+  "V3AboveBelow": "below (180.47, 44.02); above (180.47, 197.2)"
+ },
+ "stale": "T15 marks the view actions, their dependencies and network as changed (status 1) or sets view flag 0x2000 on the edgeless base",
+ "update": "T13 and T14 set the base view scale to half and back after open, then read the curves again",
+ "grafts": {
+  "V1LeftBelow": {
+   "objects": 15,
+   "sha256": "0ddb7c27766ec6af3dd6b644740a5d0a4dd5d1e75f2f3622bf0cd98aa4d6c6e6",
+   "kinds": [
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 32,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0
+  },
+  "V2RightBack": {
+   "objects": 19,
+   "sha256": "d32c87bcff8220b48d30e1ed6141f422ff387ccfb053311dee66ff439876743c",
+   "kinds": [
+    "ACDBASSOCACTION",
+    "ACDBASSOCDEPENDENCY",
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 45,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0
+  },
+  "V3AboveBelow": {
+   "objects": 8,
+   "sha256": "2b248133d4c89228bc250d55573abf88130f10747cbcbf12902f7b636baec30c",
+   "kinds": [
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 27,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0
+  },
+  "V4KitModel": {
+   "objects": 0,
+   "sha256": "b43cf4d6769d202344e223568b699f3c56b53f28d4a3343e7107fca7af9499c3",
+   "kinds": [],
+   "leaves": 0,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "kit_model": [
+    [
+     "VIEWPORT",
+     [
+      "UcsOrigin",
+      "ViewTarget"
+     ]
+    ],
+    [
+     "VIEWPORT",
+     [
+      "UcsOrigin",
+      "ViewTarget"
+     ]
+    ],
+    [
+     "ACDBVIEWREPBLOCKREFERENCE",
+     [
+      "Insertion"
+     ]
+    ],
+    [
+     "ACDBVIEWREPBLOCKREFERENCE",
+     [
+      "Insertion"
+     ]
+    ]
+   ]
+  },
+  "V5AboveBelowKitModel": {
+   "objects": 8,
+   "sha256": "2f346157345c18c9f14954f652b80a5079016d1cbd546b92f72aaf996f9598a0",
+   "kinds": [
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 27,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "kit_model": [
+    [
+     "VIEWPORT",
+     [
+      "UcsOrigin",
+      "ViewTarget"
+     ]
+    ],
+    [
+     "VIEWPORT",
+     [
+      "UcsOrigin",
+      "ViewTarget"
+     ]
+    ],
+    [
+     "ACDBVIEWREPBLOCKREFERENCE",
+     [
+      "Insertion"
+     ]
+    ],
+    [
+     "ACDBVIEWREPBLOCKREFERENCE",
+     [
+      "Insertion"
+     ]
+    ]
+   ]
+  },
+  "V6RightBackKitModel": {
+   "objects": 19,
+   "sha256": "aae9e8cf2163d4d78f3cb11f558408e501a90ddeeea01a6a33984766babc0811",
+   "kinds": [
+    "ACDBASSOCACTION",
+    "ACDBASSOCDEPENDENCY",
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 45,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "kit_model": [
+    [
+     "VIEWPORT",
+     [
+      "UcsOrigin",
+      "ViewTarget"
+     ]
+    ],
+    [
+     "VIEWPORT",
+     [
+      "UcsOrigin",
+      "ViewTarget"
+     ]
+    ],
+    [
+     "ACDBVIEWREPBLOCKREFERENCE",
+     [
+      "Insertion"
+     ]
+    ],
+    [
+     "ACDBVIEWREPBLOCKREFERENCE",
+     [
+      "Insertion"
+     ]
+    ]
+   ]
+  },
+  "V7NoEdges": {
+   "objects": 0,
+   "sha256": "d1ac25a592245787afd7704b1049ce17216a8222fa92e87e4c2e0fa0c02bde94",
+   "kinds": [],
+   "leaves": 0,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {}
+   }
+  },
+  "V8AboveBelowNoEdges": {
+   "objects": 8,
+   "sha256": "5580660607be89619004348eb845693f4c0900834a7ac5dcc02e3a5cd2cca6af",
+   "kinds": [
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 27,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {}
+   }
+  },
+  "V9AboveBelowNoCurves": {
+   "objects": 8,
+   "sha256": "f5c8e63a19a260b7c262e378368d28302b5ca2b1e361ce26e9612822243da0e5",
+   "kinds": [
+    "ACDBASSOCVIEWREPACTIONBODY",
+    "ACDBVIEWREP",
+    "ACDBVIEWREPORIENTATION",
+    "DRAWINGVIEW",
+    "VIEWPORT",
+    "XRECORD"
+   ],
+   "leaves": 27,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {
+     "LINE": 12,
+     "CIRCLE": 1,
+     "SORTENTSTABLE": 3
+    }
+   }
+  },
+  "V10ActionChanged": {
+   "objects": 0,
+   "sha256": "8ab6774a5f91a2d1a5c9d240bbd5c474a182f0e7665eb42329944a9f74e23022",
+   "kinds": [],
+   "leaves": 0,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {}
+   }
+  },
+  "V11DependencyChanged": {
+   "objects": 0,
+   "sha256": "4b82ca14004d67435a223d87316ad25f27becbdb025424595e44a6f5b5a89616",
+   "kinds": [],
+   "leaves": 0,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {}
+   }
+  },
+  "V12ApiFlag": {
+   "objects": 0,
+   "sha256": "a0c8ede840856a044d10399f25037f678fd28dd3197e26f8769f891c4303c2df",
+   "kinds": [],
+   "leaves": 0,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {}
+   }
+  },
+  "V13AllChanged": {
+   "objects": 0,
+   "sha256": "c755704adf6d72df825b9fd6a697b582fa8b300ad4d1c9e8e601c9dc6dc35478",
+   "kinds": [],
+   "leaves": 0,
+   "conflicts": [],
+   "unpaired": [],
+   "unmapped": [],
+   "control_differs_from_kit_a": 0,
+   "edgeless": {
+    "edges": 13,
+    "removed": {}
+   }
+  }
+ },
+ "rounds": {
+  "T10": [
+   {
+    "label": "V1LeftBelow",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 4.5,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V2RightBack",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 2.5,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V3AboveBelow",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.0,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   }
+  ],
+  "T11": [
+   {
+    "label": "V4KitModel",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 4.0,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V5AboveBelowKitModel",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 2.6,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V6RightBackKitModel",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 2.8,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   }
+  ],
+  "T12": [
+   {
+    "label": "V7NoEdges",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.6,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V8AboveBelowNoEdges",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 2.7,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V9AboveBelowNoCurves",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.1,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   }
+  ],
+  "T13": [
+   {
+    "label": "V7NoEdges",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.4,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": true
+   },
+   {
+    "label": "V3AboveBelow",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.0,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": true
+   },
+   {
+    "label": "V8AboveBelowNoEdges",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 2.8,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": true
+   }
+  ],
+  "T14": [
+   {
+    "label": "V1LeftBelow",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.9,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": true
+   },
+   {
+    "label": "V2RightBack",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 2.8,
+     "modified_after_open": true,
+     "views": [
+      5,
+      4,
+      4
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": true
+   }
+  ],
+  "T15": [
+   {
+    "label": "V10ActionChanged",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.4,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V11DependencyChanged",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.6,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V12ApiFlag",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.9,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   },
+   {
+    "label": "V13AllChanged",
+    "guard": "completed",
+    "dialog": null,
+    "result": {
+     "ready": true,
+     "open_seconds": 3.6,
+     "modified_after_open": true,
+     "views": [
+      0,
+      0,
+      0
+     ],
+     "dimensions": 1,
+     "sheet_mm": [
+      420.0,
+      297.0
+     ]
+    },
+    "updated": false
+   }
+  ]
+ },
+ "views": {
+  "V1LeftBelow": {
+   "from_round": "T14",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      42.94,
+      80.61,
+      82.94,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      24.02,
+      260.47,
+      64.02
+     ]
+    }
+   ],
+   "views_after_scale_change": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      42.94,
+      80.61,
+      82.94,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      24.02,
+      260.47,
+      64.02
+     ]
+    }
+   ]
+  },
+  "V2RightBack": {
+   "from_round": "T14",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      23.75,
+      80.61,
+      183.75,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      194.25,
+      80.61,
+      234.25,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      244.75,
+      80.61,
+      404.75,
+      80.61
+     ]
+    }
+   ],
+   "views_after_scale_change": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      23.75,
+      80.61,
+      183.75,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      194.25,
+      80.61,
+      234.25,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 5,
+     "box_mm": [
+      244.75,
+      80.61,
+      404.75,
+      160.61
+     ]
+    }
+   ]
+  },
+  "V3AboveBelow": {
+   "from_round": "T13",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      24.02,
+      100.47,
+      64.02
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      177.2,
+      260.47,
+      217.2
+     ]
+    }
+   ],
+   "views_after_scale_change": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      24.02,
+      260.47,
+      64.02
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      177.2,
+      260.47,
+      217.2
+     ]
+    }
+   ]
+  },
+  "V4KitModel": {
+   "from_round": "T11",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      278.0,
+      80.61,
+      318.0,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      177.2,
+      260.47,
+      217.2
+     ]
+    }
+   ]
+  },
+  "V5AboveBelowKitModel": {
+   "from_round": "T11",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      24.02,
+      100.47,
+      64.02
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      177.2,
+      260.47,
+      217.2
+     ]
+    }
+   ]
+  },
+  "V6RightBackKitModel": {
+   "from_round": "T11",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      23.75,
+      80.61,
+      183.75,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      194.25,
+      80.61,
+      234.25,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      244.75,
+      80.61,
+      404.75,
+      80.61
+     ]
+    }
+   ]
+  },
+  "V7NoEdges": {
+   "from_round": "T13",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ],
+   "views_after_scale_change": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      278.0,
+      80.61,
+      318.0,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      177.2,
+      260.47,
+      217.2
+     ]
+    }
+   ]
+  },
+  "V8AboveBelowNoEdges": {
+   "from_round": "T13",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ],
+   "views_after_scale_change": [
+    {
+     "type": 0,
+     "curves": 5,
+     "box_mm": [
+      100.47,
+      80.61,
+      260.47,
+      160.61
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      24.02,
+      260.47,
+      64.02
+     ]
+    },
+    {
+     "type": 1,
+     "curves": 4,
+     "box_mm": [
+      100.47,
+      177.2,
+      260.47,
+      217.2
+     ]
+    }
+   ]
+  },
+  "V9AboveBelowNoCurves": {
+   "from_round": "T12",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ]
+  },
+  "V10ActionChanged": {
+   "from_round": "T15",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ]
+  },
+  "V11DependencyChanged": {
+   "from_round": "T15",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ]
+  },
+  "V12ApiFlag": {
+   "from_round": "T15",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ]
+  },
+  "V13AllChanged": {
+   "from_round": "T15",
+   "views_after_open": [
+    {
+     "type": 0,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    },
+    {
+     "type": 1,
+     "curves": 0,
+     "box_mm": null
+    }
+   ]
+  }
+ }
+}

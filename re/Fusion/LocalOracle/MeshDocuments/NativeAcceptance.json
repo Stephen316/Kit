@@ -1,0 +1,2899 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Complete production ReadDocument -> EmitParsed: typed segments, meshes, materials, configurations and graphics; preview images retained explicitly",
+  "cases": [
+    {
+      "name": "PreparedMesh00",
+      "variants": [
+        {
+          "name": "Control",
+          "source_sha256": "8096aea900bcb59feb84fc29a1c721d38fd13f9ce988a29b3facdb2215b7765d",
+          "stages": {
+            "opened": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 1.7320508591880142,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": false
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "52ed7d633a6818bc2bdece5b367fb85368a6cbfd1d99285ee10d59994a379ce7"
+                  }
+                }
+              ]
+            },
+            "rolled_back": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "29101ebf1ead685029508789eee51c4d4fff65524064d8e32a48efded7036982"
+                  }
+                }
+              ]
+            },
+            "rebuilt": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 1.7320508591880142,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": false
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "52ed7d633a6818bc2bdece5b367fb85368a6cbfd1d99285ee10d59994a379ce7"
+                  }
+                }
+              ]
+            },
+            "edited": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 6.928203436752057,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "677fa2df2254c7ad2cfdcf25373a5c0dc259d0a092f9b2e46ffca8b72a1b4bbc"
+                  }
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 6.928203436752057,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "677fa2df2254c7ad2cfdcf25373a5c0dc259d0a092f9b2e46ffca8b72a1b4bbc"
+                  }
+                }
+              ]
+            }
+          },
+          "saved_sha256": "d7da9efa89acd1d1bb01407ab5aa18f218deed040e2bc011204d592b3e6e720a",
+          "status": "accepted"
+        },
+        {
+          "name": "Reemitted",
+          "source_sha256": "d0acf4a696b7349153ddeffed90d10ddb574d8a949eded38459320aea11c6b73",
+          "stages": {
+            "opened": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 1.7320508591880142,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": false
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "52ed7d633a6818bc2bdece5b367fb85368a6cbfd1d99285ee10d59994a379ce7"
+                  }
+                }
+              ]
+            },
+            "rolled_back": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "29101ebf1ead685029508789eee51c4d4fff65524064d8e32a48efded7036982"
+                  }
+                }
+              ]
+            },
+            "rebuilt": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          0.0,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          0.0,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        -0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 1.7320508591880142,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": false
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          -1.0000000149011612,
+                          0.0
+                        ],
+                        [
+                          1.0000000149011612,
+                          0.0,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        -0.3333333383003871,
+                        0.3333333383003871
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 0.8660254295940071,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          0.0
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.3333333383003871,
+                        0.3333333383003871,
+                        -0.3333333383003871
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "52ed7d633a6818bc2bdece5b367fb85368a6cbfd1d99285ee10d59994a379ce7"
+                  }
+                }
+              ]
+            },
+            "edited": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 6.928203436752057,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "677fa2df2254c7ad2cfdcf25373a5c0dc259d0a092f9b2e46ffca8b72a1b4bbc"
+                  }
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 4,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "20.0 deg",
+                  "value": 0.3490658503988659,
+                  "unit": "deg"
+                },
+                {
+                  "name": "d2",
+                  "expression": "0.01 mm",
+                  "value": 0.001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d3",
+                  "expression": "0.02",
+                  "value": 0.02,
+                  "unit": ""
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned octahedron import adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedPreparationFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshCombineFaceGroups_adjacent_pair",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedCombineFaceGroupsSource_adjacent_pair",
+                  "vertices": 6,
+                  "triangles": 8,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 6.928203230275508,
+                  "volume_cm3": 1.333333392937979,
+                  "bounds_cm": [
+                    [
+                      -1.0,
+                      -1.0,
+                      -1.0
+                    ],
+                    [
+                      1.0,
+                      1.0,
+                      1.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 6.928203436752057,
+                      "bounds_cm": [
+                        [
+                          -1.0000000149011612,
+                          -1.0000000149011612,
+                          -1.0000000149011612
+                        ],
+                        [
+                          1.0000000149011612,
+                          1.0000000149011612,
+                          1.0000000149011612
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.0,
+                        0.0,
+                        0.0
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "a322e775f0f340dfa50c50a6aeeabf55f070bb4bac158f8ba1c0e474e6ca7f3f",
+                    "normals": "cd7b82b45d74208c51a66142c575f6693698620d07b405c324a3048d72f738eb",
+                    "corners": "ae7c07be47da917ada174efc8274b5c71a2f63fad44285b4c889ab88961bf4f5",
+                    "groups": "677fa2df2254c7ad2cfdcf25373a5c0dc259d0a092f9b2e46ffca8b72a1b4bbc"
+                  }
+                }
+              ]
+            }
+          },
+          "saved_sha256": "a7a67e3ad6e5fecbc05ab3c614590f8f5afefd7cd5b2f2699db423b6fea804c7",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "name": "PreparedMesh01",
+      "variants": [
+        {
+          "name": "Control",
+          "source_sha256": "2e5a016479dbf07c3cffdf907b1b023b1854f8236a4a90cb7d4811ce297dbf1f",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.00 mm",
+                  "value": 0.1,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2745,
+                  "triangles": 5482,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 33.70058955367961,
+                  "volume_cm3": 1.7886043499910853,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 12.890340261935018,
+                      "bounds_cm": [
+                        [
+                          0.10000000298023226,
+                          0.09999999552965155,
+                          0.09999999552965155
+                        ],
+                        [
+                          1.6723194371509464,
+                          2.384937321915288,
+                          3.1621425623020905
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4971180870461382,
+                        0.7540240524344625,
+                        1.0167623271204296
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "2a3be46ee3b4d35af7bd58524ea9f22e0b1cbab71ba9851064dc30dcdd27d38f",
+                    "normals": "57ba9b4640b92ccab24b19efb0fe04f3ad14bd2caee9faf383b8ca704e7052b6",
+                    "corners": "25c6ab6936023ee291a412debb634bb7d992fdb22fa2ff7769f1558eaef5d4e1",
+                    "groups": "7ff85bf8accb82fe4e13761586f6fe5dc96dbad702110f9338669ac910d3e84e"
+                  }
+                }
+              ]
+            },
+            "rolled_back": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.00 mm",
+                  "value": 0.1,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "0a911118698ea8b4f05a5a60ae281b086554bec511701acb27f684be27e777c6",
+                    "normals": "0ecfd1fda838a97ec9faeed35e0d588a1435c5cf72b35004dcca1c219b85feea",
+                    "corners": "a24ae373a2cb80339c98543e35126140ebe8cfa1543f3e64311385ecd9ef535d",
+                    "groups": "1c10b03518fff8fc374a20bbf5107c66496656bec0662d6c6db123d4a898f121"
+                  }
+                }
+              ]
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.00 mm",
+                  "value": 0.1,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2745,
+                  "triangles": 5482,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 33.70058955367961,
+                  "volume_cm3": 1.7886043499910853,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 12.890340261935018,
+                      "bounds_cm": [
+                        [
+                          0.10000000298023226,
+                          0.09999999552965155,
+                          0.09999999552965155
+                        ],
+                        [
+                          1.6723194371509464,
+                          2.384937321915288,
+                          3.1621425623020905
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4971180870461382,
+                        0.7540240524344625,
+                        1.0167623271204296
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "2a3be46ee3b4d35af7bd58524ea9f22e0b1cbab71ba9851064dc30dcdd27d38f",
+                    "normals": "ad5157636c7a409a1fd6fa54b7fdcef06f081b8669a788165de1ba58dca378e9",
+                    "corners": "25c6ab6936023ee291a412debb634bb7d992fdb22fa2ff7769f1558eaef5d4e1",
+                    "groups": "7ff85bf8accb82fe4e13761586f6fe5dc96dbad702110f9338669ac910d3e84e"
+                  }
+                }
+              ]
+            },
+            "edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.5 mm",
+                  "value": 0.15000000000000002,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2307,
+                  "triangles": 4606,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 31.163807378867183,
+                  "volume_cm3": 2.4168816259885424,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 10.353558011520569,
+                      "bounds_cm": [
+                        [
+                          0.1499999783933159,
+                          0.1499999783933159,
+                          0.1499999783933159
+                        ],
+                        [
+                          1.5805411574325134,
+                          2.2521572448634686,
+                          2.924619241425681
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.5090159141012096,
+                        0.7341602350415202,
+                        0.9604609304658454
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "e6cf9a6b75a0f61a4513df0e4882a727f8f4bc81206b12fe20c5f7e01c40ebd4",
+                    "normals": "9c960e22a6a950abee826bbfc43c505db039b1c642dce96e9077da9dbc2f31d8",
+                    "corners": "517d53e77703f01213ec96d769fc09706c0aeef82c2c0550f6b5a6c4cb30f777",
+                    "groups": "9c7e617ccf1f77217323c2e1c5b799aef88fa846d15f5ccb09e2ef306f3b61f2"
+                  }
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.5 mm",
+                  "value": 0.15000000000000002,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2307,
+                  "triangles": 4606,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 31.163807378867183,
+                  "volume_cm3": 2.4168816259885424,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 10.353558011520569,
+                      "bounds_cm": [
+                        [
+                          0.1499999783933159,
+                          0.1499999783933159,
+                          0.1499999783933159
+                        ],
+                        [
+                          1.5805411574325134,
+                          2.2521572448634686,
+                          2.924619241425681
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.5090159141012096,
+                        0.7341602350415202,
+                        0.9604609304658454
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "e6cf9a6b75a0f61a4513df0e4882a727f8f4bc81206b12fe20c5f7e01c40ebd4",
+                    "normals": "9c960e22a6a950abee826bbfc43c505db039b1c642dce96e9077da9dbc2f31d8",
+                    "corners": "517d53e77703f01213ec96d769fc09706c0aeef82c2c0550f6b5a6c4cb30f777",
+                    "groups": "9c7e617ccf1f77217323c2e1c5b799aef88fa846d15f5ccb09e2ef306f3b61f2"
+                  }
+                }
+              ]
+            }
+          },
+          "saved_sha256": "229c059cf84222499233eb8f884e153701e154bc91f16854db468996e44a9ba4",
+          "status": "accepted"
+        },
+        {
+          "name": "Reemitted",
+          "source_sha256": "1a74e49c91ae393247e61b4f8af9ef00f2c0fb19eaea16c92b5d8f5bcc6012e7",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.00 mm",
+                  "value": 0.1,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2745,
+                  "triangles": 5482,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 33.70058955367961,
+                  "volume_cm3": 1.7886043499910853,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 12.890340261935018,
+                      "bounds_cm": [
+                        [
+                          0.10000000298023226,
+                          0.09999999552965155,
+                          0.09999999552965155
+                        ],
+                        [
+                          1.6723194371509464,
+                          2.384937321915288,
+                          3.1621425623020905
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4971180870461382,
+                        0.7540240524344625,
+                        1.0167623271204296
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "2a3be46ee3b4d35af7bd58524ea9f22e0b1cbab71ba9851064dc30dcdd27d38f",
+                    "normals": "57ba9b4640b92ccab24b19efb0fe04f3ad14bd2caee9faf383b8ca704e7052b6",
+                    "corners": "25c6ab6936023ee291a412debb634bb7d992fdb22fa2ff7769f1558eaef5d4e1",
+                    "groups": "7ff85bf8accb82fe4e13761586f6fe5dc96dbad702110f9338669ac910d3e84e"
+                  }
+                }
+              ]
+            },
+            "rolled_back": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.00 mm",
+                  "value": 0.1,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "0a911118698ea8b4f05a5a60ae281b086554bec511701acb27f684be27e777c6",
+                    "normals": "0ecfd1fda838a97ec9faeed35e0d588a1435c5cf72b35004dcca1c219b85feea",
+                    "corners": "a24ae373a2cb80339c98543e35126140ebe8cfa1543f3e64311385ecd9ef535d",
+                    "groups": "1c10b03518fff8fc374a20bbf5107c66496656bec0662d6c6db123d4a898f121"
+                  }
+                }
+              ]
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.00 mm",
+                  "value": 0.1,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2745,
+                  "triangles": 5482,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 33.70058955367961,
+                  "volume_cm3": 1.7886043499910853,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 12.890340261935018,
+                      "bounds_cm": [
+                        [
+                          0.10000000298023226,
+                          0.09999999552965155,
+                          0.09999999552965155
+                        ],
+                        [
+                          1.6723194371509464,
+                          2.384937321915288,
+                          3.1621425623020905
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4971180870461382,
+                        0.7540240524344625,
+                        1.0167623271204296
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "2a3be46ee3b4d35af7bd58524ea9f22e0b1cbab71ba9851064dc30dcdd27d38f",
+                    "normals": "ad5157636c7a409a1fd6fa54b7fdcef06f081b8669a788165de1ba58dca378e9",
+                    "corners": "25c6ab6936023ee291a412debb634bb7d992fdb22fa2ff7769f1558eaef5d4e1",
+                    "groups": "7ff85bf8accb82fe4e13761586f6fe5dc96dbad702110f9338669ac910d3e84e"
+                  }
+                }
+              ]
+            },
+            "edited": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.5 mm",
+                  "value": 0.15000000000000002,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2307,
+                  "triangles": 4606,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 31.163807378867183,
+                  "volume_cm3": 2.4168816259885424,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 10.353558011520569,
+                      "bounds_cm": [
+                        [
+                          0.1499999783933159,
+                          0.1499999783933159,
+                          0.1499999783933159
+                        ],
+                        [
+                          1.5805411574325134,
+                          2.2521572448634686,
+                          2.924619241425681
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.5090159141012096,
+                        0.7341602350415202,
+                        0.9604609304658454
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "e6cf9a6b75a0f61a4513df0e4882a727f8f4bc81206b12fe20c5f7e01c40ebd4",
+                    "normals": "9c960e22a6a950abee826bbfc43c505db039b1c642dce96e9077da9dbc2f31d8",
+                    "corners": "517d53e77703f01213ec96d769fc09706c0aeef82c2c0550f6b5a6c4cb30f777",
+                    "groups": "9c7e617ccf1f77217323c2e1c5b799aef88fa846d15f5ccb09e2ef306f3b61f2"
+                  }
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1.5 mm",
+                  "value": 0.15000000000000002,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Owned tetra import closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                },
+                {
+                  "name": "OwnedMeshShell_closed_thickness_point_one",
+                  "health": 0,
+                  "message": "",
+                  "group": false
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_closed_thickness_point_one",
+                  "vertices": 2307,
+                  "triangles": 4606,
+                  "quads": 0,
+                  "polygons": 0,
+                  "closed": true,
+                  "oriented": true,
+                  "area_cm2": 31.163807378867183,
+                  "volume_cm3": 2.4168816259885424,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": [
+                    {
+                      "area_cm2": 20.81025029610043,
+                      "bounds_cm": [
+                        [
+                          0.0,
+                          0.0,
+                          0.0
+                        ],
+                        [
+                          2.0000000298023224,
+                          3.0000000447034836,
+                          4.000000059604645
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.4744536987701574,
+                        0.8077870370705444,
+                        1.1411203753709316
+                      ],
+                      "planar": true
+                    },
+                    {
+                      "area_cm2": 10.353558011520569,
+                      "bounds_cm": [
+                        [
+                          0.1499999783933159,
+                          0.1499999783933159,
+                          0.1499999783933159
+                        ],
+                        [
+                          1.5805411574325134,
+                          2.2521572448634686,
+                          2.924619241425681
+                        ]
+                      ],
+                      "centroid_cm": [
+                        0.5090159141012096,
+                        0.7341602350415202,
+                        0.9604609304658454
+                      ],
+                      "planar": false
+                    }
+                  ],
+                  "geometry_sha256": {
+                    "positions": "e6cf9a6b75a0f61a4513df0e4882a727f8f4bc81206b12fe20c5f7e01c40ebd4",
+                    "normals": "9c960e22a6a950abee826bbfc43c505db039b1c642dce96e9077da9dbc2f31d8",
+                    "corners": "517d53e77703f01213ec96d769fc09706c0aeef82c2c0550f6b5a6c4cb30f777",
+                    "groups": "9c7e617ccf1f77217323c2e1c5b799aef88fa846d15f5ccb09e2ef306f3b61f2"
+                  }
+                }
+              ]
+            }
+          },
+          "saved_sha256": "5671b73c335de38df1933a5e4f936aa2dd3fe65d13e7813724b97396c8b78bb4",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    }
+  ],
+  "observation_sha256": "820a8f055753146857692183162f96dd237ac98b2f582c0b0a12a2a2091454a8",
+  "status": "accepted",
+  "documents_after": 0
+}

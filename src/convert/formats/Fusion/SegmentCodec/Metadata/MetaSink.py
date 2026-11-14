@@ -2,22 +2,25 @@ from struct import pack as PackValue
 
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaLimits import (
     KMaxMetaSize,
-    KMaxMetaText,
 )
+from convert.formats.Fusion.SegmentCodec.Metadata.EncodeMetaText import EncodeMetaText
 
 
 # a bounded sink prevents oversized output even for otherwise valid typed values
 class MetaSink:
-    __slots__ = ("Buffer",)
+    __slots__ = ("Buffer", "Maximum")
 
     # a single mutable buffer avoids rebuilding the accumulated wire output
-    def __init__(self) -> None:
+    def __init__(self, Maximum: int = KMaxMetaSize) -> None:
         super().__init__()
+        if type(Maximum) is not int or not 0 < Maximum <= KMaxMetaSize:
+            raise ValueError("Invalid Fusion output size limit")
+        self.Maximum = Maximum
         self.Buffer = bytearray()
 
     # bytes from any field share the same cumulative member limit
     def AddBytes(self, Content: bytes) -> None:
-        if len(self.Buffer) + len(Content) > KMaxMetaSize:
+        if len(self.Buffer) + len(Content) > self.Maximum:
             raise ValueError("Oversized Fusion MetaStream")
         self.Buffer.extend(Content)
 
@@ -35,16 +38,7 @@ class MetaSink:
 
     # text counts describe encoded units rather than unicode scalar values
     def AddText(self, Content: str, *, WideText: bool = False) -> None:
-        if (
-            type(Content) is not str
-            or len(Content) > KMaxMetaText
-            or not all(Letter.isprintable() for Letter in Content)
-        ):
-            raise ValueError("Invalid Fusion MetaStream string")
-        DataValue = Content.encode("utf-16le" if WideText else "ascii")
-        Count = len(DataValue) // (2 if WideText else 1)
-        if Count > KMaxMetaText:
-            raise ValueError("Oversized Fusion MetaStream string")
+        DataValue, Count = EncodeMetaText(Content, WideText)
         self.AddWord(Count)
         self.AddBytes(DataValue)
 

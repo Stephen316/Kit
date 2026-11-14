@@ -1,0 +1,1786 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Complete native ReadDocument\u2192EmitParsed reconstruction: entity graphs, history, snapshots, materials, configurations and graphics; original preview image parts retained",
+  "cases": [
+    {
+      "name": "OrdinaryRectangle",
+      "variants": [
+        {
+          "name": "Control",
+          "source_sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+          "stages": {
+            "opened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.5,
+                  "expression": "25.00 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 30.0,
+                  "area_cm2": 59.0,
+                  "mass_kg": 0.2355,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.4999999999999998,
+                    1.25
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    1.197125,
+                    1.7466249999999999,
+                    1.9625,
+                    -0.7064999999999999,
+                    -0.44156249999999997,
+                    -0.58875
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      2.5
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "rollback": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.5,
+                  "expression": "25.00 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": []
+            },
+            "rebuilt": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.5,
+                  "expression": "25.00 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 30.0,
+                  "area_cm2": 59.0,
+                  "mass_kg": 0.2355,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.4999999999999998,
+                    1.25
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    1.197125,
+                    1.7466249999999999,
+                    1.9625,
+                    -0.7064999999999999,
+                    -0.44156249999999997,
+                    -0.58875
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      2.5
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "edited": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 3.7,
+                  "expression": "37.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 44.400000000000006,
+                  "area_cm2": 75.80000000000001,
+                  "mass_kg": 0.34854,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.5,
+                    1.8499999999999999
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    2.6361242,
+                    3.4493842,
+                    2.9044999999999996,
+                    -1.04562,
+                    -0.9671985000000002,
+                    -1.289598
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      3.7
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 3.7,
+                  "expression": "37.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 44.400000000000006,
+                  "area_cm2": 75.80000000000001,
+                  "mass_kg": 0.34854,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.5,
+                    1.8499999999999999
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    2.6361242,
+                    3.4493842,
+                    2.9044999999999996,
+                    -1.04562,
+                    -0.9671985000000002,
+                    -1.289598
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      3.7
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            }
+          },
+          "saved_sha256": "3731fac7d5069a4247110a273d9fe8dd2ef22c586fed16dcda1429b087222c7f",
+          "status": "accepted"
+        },
+        {
+          "name": "Reemitted",
+          "source_sha256": "0203674063f58504d037a51236a1aff9cc3283ed1b8b107cc8307e1e73f10e92",
+          "stages": {
+            "opened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.5,
+                  "expression": "25.00 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 30.0,
+                  "area_cm2": 59.0,
+                  "mass_kg": 0.2355,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.4999999999999998,
+                    1.25
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    1.197125,
+                    1.7466249999999999,
+                    1.9625,
+                    -0.7064999999999999,
+                    -0.44156249999999997,
+                    -0.58875
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      2.5
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "rollback": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.5,
+                  "expression": "25.00 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": []
+            },
+            "rebuilt": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 2.5,
+                  "expression": "25.00 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 30.0,
+                  "area_cm2": 59.0,
+                  "mass_kg": 0.2355,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.4999999999999998,
+                    1.25
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    1.197125,
+                    1.7466249999999999,
+                    1.9625,
+                    -0.7064999999999999,
+                    -0.44156249999999997,
+                    -0.58875
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      2.5
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "edited": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 3.7,
+                  "expression": "37.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 44.400000000000006,
+                  "area_cm2": 75.80000000000001,
+                  "mass_kg": 0.34854,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.5,
+                    1.8499999999999999
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    2.6361242,
+                    3.4493842,
+                    2.9044999999999996,
+                    -1.04562,
+                    -0.9671985000000002,
+                    -1.289598
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      3.7
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "value": 3.7,
+                  "expression": "37.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 0.0,
+                  "expression": "0.0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "ThinProbeSource",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbeOrdinaryExtrudeControl",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "ThinProbeSource",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "volume_cm3": 44.400000000000006,
+                  "area_cm2": 75.80000000000001,
+                  "mass_kg": 0.34854,
+                  "density_kg_per_cm3": 0.00785,
+                  "center_cm": [
+                    2.0,
+                    1.5,
+                    1.8499999999999999
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    2.6361242,
+                    3.4493842,
+                    2.9044999999999996,
+                    -1.04562,
+                    -0.9671985000000002,
+                    -1.289598
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      4.0,
+                      3.0,
+                      3.7
+                    ]
+                  ],
+                  "material": "Steel",
+                  "appearance": "Steel - Satin",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        160,
+                        160,
+                        160,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            }
+          },
+          "saved_sha256": "bda5c08dbf0c8aaff83b4c8e8c0c747f30e916ec5476d4e3cf0cd6f61ef98e72",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "name": "SavedCuboid",
+      "variants": [
+        {
+          "name": "Control",
+          "source_sha256": "62c03b7aa11ce2c79193e51376e4405e6bbfd34aa5ab8097b72043ad49f38683",
+          "stages": {
+            "opened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 3.7,
+                  "expression": "37 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 3.7,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 14.466999999999999,
+                  "area_cm2": 37.419999999999995,
+                  "mass_kg": 0.014466999999999999,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    1.85
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.09152788666666666,
+                    0.07995428666666667,
+                    0.039446686666666654,
+                    -0.014141492499999998,
+                    -0.0307785425,
+                    -0.022749357499999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      3.7
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "rollback": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 3.7,
+                  "expression": "37 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 3.7,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": []
+            },
+            "rebuilt": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 3.7,
+                  "expression": "37 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 3.7,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 14.466999999999999,
+                  "area_cm2": 37.419999999999995,
+                  "mass_kg": 0.014466999999999999,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    1.85
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.09152788666666666,
+                    0.07995428666666667,
+                    0.039446686666666654,
+                    -0.014141492499999998,
+                    -0.0307785425,
+                    -0.022749357499999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      3.7
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "edited": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 4.3,
+                  "expression": "43.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 4.3,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 16.813,
+                  "area_cm2": 42.21999999999999,
+                  "mass_kg": 0.016812999999999998,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    2.15
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.13327104666666664,
+                    0.11982064666666666,
+                    0.04584344666666665,
+                    -0.0164347075,
+                    -0.04157014249999999,
+                    -0.030725757499999996
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      4.3
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 4.3,
+                  "expression": "43.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 4.3,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 16.813,
+                  "area_cm2": 42.21999999999999,
+                  "mass_kg": 0.016812999999999998,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    2.15
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.13327104666666664,
+                    0.11982064666666666,
+                    0.04584344666666665,
+                    -0.0164347075,
+                    -0.04157014249999999,
+                    -0.030725757499999996
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      4.3
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            }
+          },
+          "saved_sha256": "9ab4577bc924f13e39739d4b2c7252a76c7a175829cf364369fc60c2a57fb5c7",
+          "status": "accepted"
+        },
+        {
+          "name": "Reemitted",
+          "source_sha256": "49f92bbe4f33fc7c1413ca8a8d433ff3ba948c1822c6513363934425f626ec31",
+          "stages": {
+            "opened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 3.7,
+                  "expression": "37 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 3.7,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 14.466999999999999,
+                  "area_cm2": 37.419999999999995,
+                  "mass_kg": 0.014466999999999999,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    1.85
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.09152788666666666,
+                    0.07995428666666667,
+                    0.039446686666666654,
+                    -0.014141492499999998,
+                    -0.0307785425,
+                    -0.022749357499999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      3.7
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "rollback": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 3.7,
+                  "expression": "37 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 3.7,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": []
+            },
+            "rebuilt": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 3.7,
+                  "expression": "37 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 3.7,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 14.466999999999999,
+                  "area_cm2": 37.419999999999995,
+                  "mass_kg": 0.014466999999999999,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    1.85
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.09152788666666666,
+                    0.07995428666666667,
+                    0.039446686666666654,
+                    -0.014141492499999998,
+                    -0.0307785425,
+                    -0.022749357499999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      3.7
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "edited": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 4.3,
+                  "expression": "43.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 4.3,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 16.813,
+                  "area_cm2": 42.21999999999999,
+                  "mass_kg": 0.016812999999999998,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    2.15
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.13327104666666664,
+                    0.11982064666666666,
+                    0.04584344666666665,
+                    -0.0164347075,
+                    -0.04157014249999999,
+                    -0.030725757499999996
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      4.3
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "authoredLength",
+                  "value": 4.3,
+                  "expression": "43.0 mm"
+                },
+                {
+                  "name": "d2",
+                  "value": 4.3,
+                  "expression": "authoredLength"
+                },
+                {
+                  "name": "d3",
+                  "value": 0.0,
+                  "expression": "0 deg"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Authored Rectangle",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Authored Cuboid Extrusion",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "sketches": [
+                {
+                  "name": "Authored Rectangle",
+                  "profiles": 1,
+                  "lines": 4,
+                  "dimensions": 0,
+                  "fully_constrained": false
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Authored Cuboid",
+                  "volume_cm3": 16.813,
+                  "area_cm2": 42.21999999999999,
+                  "mass_kg": 0.016812999999999998,
+                  "density_kg_per_cm3": 0.001,
+                  "center_cm": [
+                    0.85,
+                    1.15,
+                    2.15
+                  ],
+                  "inertia_kg_cm2": [
+                    true,
+                    0.13327104666666664,
+                    0.11982064666666666,
+                    0.04584344666666665,
+                    -0.0164347075,
+                    -0.04157014249999999,
+                    -0.030725757499999996
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      1.7,
+                      2.3,
+                      4.3
+                    ]
+                  ],
+                  "material": "Kit Generic Material",
+                  "appearance": "Kit Generic Material Appearance",
+                  "colors": [
+                    {
+                      "id": "metal_f0",
+                      "rgba": [
+                        204,
+                        204,
+                        204,
+                        255
+                      ]
+                    },
+                    {
+                      "id": "surface_albedo",
+                      "rgba": [
+                        255,
+                        255,
+                        255,
+                        255
+                      ]
+                    }
+                  ],
+                  "faces": 6,
+                  "edges": 12,
+                  "vertices": 8
+                }
+              ]
+            }
+          },
+          "saved_sha256": "ad502f51c7b5ef030ebc6b213a9182eae832fc5f908537a0c8b73c220d588eea",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

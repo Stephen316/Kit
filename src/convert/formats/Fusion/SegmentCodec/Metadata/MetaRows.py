@@ -6,7 +6,7 @@ from dataclasses import dataclass as MakeDataClass
 class MetaClass:
     ClassGuid: str
     BaseGuid: str
-    Flags: int
+    SchemaVersion: int
     ClassSpace: str
     OwnerIds: tuple[int, ...]
 

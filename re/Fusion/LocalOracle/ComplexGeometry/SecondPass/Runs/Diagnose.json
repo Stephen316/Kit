@@ -1,0 +1,2148 @@
+{
+ "schema": "FusionComplexSecondAcceptance/2",
+ "run": "Diagnose",
+ "selection": {
+  "run": "Diagnose",
+  "authored": [],
+  "subtypes": [
+   "StitchHint",
+   "TolerantFormRefine"
+  ]
+ },
+ "fusion_version": "2706.1.17",
+ "documents_before": 0,
+ "authored": [],
+ "subtypes": [
+  {
+   "label": "StitchHint",
+   "covers": [
+    "stitch_hint"
+   ],
+   "source": "re/Fusion/Study/patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+   "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0fe6384e-1436-4bb3-a550-ff30240d0188.smb",
+   "original_sha256": "4a3012e2629eb0ac68d8be61634279e07caed4daaef927ab1ff973fec745d8f8",
+   "mutant_sha256": "b72969a8633d85eb28ea69455647f1fe9d1678dd55c890ecf14bccd1c4ed4a23",
+   "editedType": "StitchAttrib",
+   "detail": {
+    "entity": 67,
+    "owner": 36,
+    "ownerType": "EdgeNode",
+    "before": [
+     0.0011554212243761065,
+     0.0,
+     0.0
+    ],
+    "after": [
+     0.12615542122437612,
+     0.0,
+     0.0
+    ],
+    "note": "The API exposes no attribute values, so the bodies are exported from Fusion and decoded"
+   },
+   "stage": "done",
+   "original": [
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 1,
+     "vertices": 1,
+     "areaCm2": 1.5392589433772597,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -0.7005857761474862,
+       -0.7001007890809671,
+       0.0
+      ],
+      [
+       0.6992771032664719,
+       0.6998896301141445,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::NurbsSurface"
+     ],
+     "curveTypes": [
+      "adsk::core::NurbsCurve3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 2,
+     "vertices": 2,
+     "areaCm2": 11.026990214100174,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       2.0,
+       2.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Circle3D",
+      "adsk::core::Circle3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 2,
+     "vertices": 2,
+     "areaCm2": 11.026990214100174,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       2.0,
+       2.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Circle3D",
+      "adsk::core::Circle3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 2,
+     "edges": 2,
+     "vertices": 2,
+     "areaCm2": 12.566370614359172,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       2.0,
+       2.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Circle3D",
+      "adsk::core::Circle3D"
+     ]
+    }
+   ],
+   "mutant": [
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 1,
+     "vertices": 1,
+     "areaCm2": 1.5392589433772597,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -0.7005857761474862,
+       -0.7001007890809671,
+       0.0
+      ],
+      [
+       0.6992771032664719,
+       0.6998896301141445,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::NurbsSurface"
+     ],
+     "curveTypes": [
+      "adsk::core::NurbsCurve3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 2,
+     "vertices": 2,
+     "areaCm2": 11.026990214100174,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       2.0,
+       2.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Circle3D",
+      "adsk::core::Circle3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 2,
+     "vertices": 2,
+     "areaCm2": 11.026990214100174,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       2.0,
+       2.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Circle3D",
+      "adsk::core::Circle3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 2,
+     "edges": 2,
+     "vertices": 2,
+     "areaCm2": 12.566370614359172,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       2.0,
+       2.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Circle3D",
+      "adsk::core::Circle3D"
+     ]
+    }
+   ],
+   "verdict": {
+    "kind": "export_attribute",
+    "hard": false,
+    "reflected": null
+   },
+   "exported": {
+    "original": {
+     "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Exported/StitchHintOriginal.smb",
+     "sha256": "58815bf22711668f2ecbcc9e308cc6b0a6314d0af339a98f54a1e0d1a661ee25",
+     "bytes": 24410
+    },
+    "mutant": {
+     "path": "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Exported/StitchHintMutant.smb",
+     "sha256": "2c6b1cb4eb39230609187c4148685ec7ba60f52277548aa9acb08d0392b1ca22",
+     "bytes": 24410
+    }
+   },
+   "originalRoundtrip": {
+    "saved_sha256": "cae521200774dea9191c873b826a216851943d0655d2df7a1fb3b8ef100194b3",
+    "persisted": [
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 1,
+      "vertices": 1,
+      "areaCm2": 1.5392589433772597,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -0.7005857761474862,
+        -0.7001007890809671,
+        0.0
+       ],
+       [
+        0.6992771032664719,
+        0.6998896301141445,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::NurbsSurface"
+      ],
+      "curveTypes": [
+       "adsk::core::NurbsCurve3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 2,
+      "vertices": 2,
+      "areaCm2": 11.026990214100174,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        2.0,
+        2.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Circle3D",
+       "adsk::core::Circle3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 2,
+      "vertices": 2,
+      "areaCm2": 11.026990214100174,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        2.0,
+        2.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Circle3D",
+       "adsk::core::Circle3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 2,
+      "edges": 2,
+      "vertices": 2,
+      "areaCm2": 12.566370614359172,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        2.0,
+        2.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Circle3D",
+       "adsk::core::Circle3D"
+      ]
+     }
+    ],
+    "reopenedEqual": true
+   },
+   "mutantRoundtrip": {
+    "saved_sha256": "7d5c769275e46c5075e36de34994e83ce2f11adea5157a9a0e074cc65e657ffc",
+    "persisted": [
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 1,
+      "vertices": 1,
+      "areaCm2": 1.5392589433772597,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -0.7005857761474862,
+        -0.7001007890809671,
+        0.0
+       ],
+       [
+        0.6992771032664719,
+        0.6998896301141445,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::NurbsSurface"
+      ],
+      "curveTypes": [
+       "adsk::core::NurbsCurve3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 2,
+      "vertices": 2,
+      "areaCm2": 11.026990214100174,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        2.0,
+        2.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Circle3D",
+       "adsk::core::Circle3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 2,
+      "vertices": 2,
+      "areaCm2": 11.026990214100174,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        2.0,
+        2.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Circle3D",
+       "adsk::core::Circle3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 2,
+      "edges": 2,
+      "vertices": 2,
+      "areaCm2": 12.566370614359172,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        2.0,
+        2.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Circle3D",
+       "adsk::core::Circle3D"
+      ]
+     }
+    ],
+    "reopenedEqual": true
+   },
+   "allValid": true,
+   "status": "observed"
+  },
+  {
+   "label": "TolerantFormRefine",
+   "covers": [
+    "pcurve form 2",
+    "int_int_cur"
+   ],
+   "source": "re/Fusion/Study/solidsweeps-7d2677669e3d/solid_twist.f3d",
+   "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dd4e60ad-b3a3-4f7d-a558-0afa7b5b531f.smb",
+   "original_sha256": "ae2a84121182b35d76cffa413c2eb74390a36af5969556522fb2b2a7b7fdcbd1",
+   "mutant_sha256": "62fe9c819c40fa1ae25581d94bdb243bd6ab237f88ee484ab213b384719e1d2a",
+   "editedType": "IntcurveNode",
+   "detail": {
+    "entity": 282,
+    "insertedKnot": -2.3126131813790116,
+    "degree": 3,
+    "polesBefore": 4,
+    "polesAfter": 5,
+    "geometryDrift": 8.899114524108741e-16,
+    "intcurve": 282,
+    "subtype": "int_int_cur",
+    "pcurveSlot": 2,
+    "users": [
+     {
+      "pcurve": 280,
+      "form": 2,
+      "offsetU": 0.0,
+      "offsetV": 0.0
+     }
+    ]
+   },
+   "stage": "done",
+   "original": [
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 22,
+     "edges": 52,
+     "vertices": 32,
+     "areaCm2": 10.207994449360095,
+     "volumeCm3": 1.104081950688768,
+     "boundsCm": [
+      [
+       -0.2,
+       -0.3049038105676658,
+       -0.20490381056766582
+      ],
+      [
+       5.2,
+       0.29150635094610966,
+       0.42810889132455354
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 6,
+     "edges": 12,
+     "vertices": 8,
+     "areaCm2": 1.12,
+     "volumeCm3": 0.08000000000000002,
+     "boundsCm": [
+      [
+       -0.2,
+       -0.15000000000000002,
+       -0.15000000000000002
+      ],
+      [
+       0.2,
+       0.25,
+       0.35
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 6,
+     "edges": 12,
+     "vertices": 8,
+     "areaCm2": 1.12,
+     "volumeCm3": 0.08000000000000002,
+     "boundsCm": [
+      [
+       -0.2,
+       -0.15000000000000002,
+       -0.15000000000000002
+      ],
+      [
+       0.2,
+       0.25,
+       0.35
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 0.2,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       0.0,
+       -0.15000000000000002,
+       -0.15000000000000002
+      ],
+      [
+       0.0,
+       0.25,
+       0.35
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 0.2,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -0.35,
+       -0.15000000000000002,
+       0.0
+      ],
+      [
+       0.15000000000000002,
+       0.25,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 6,
+     "edges": 12,
+     "vertices": 8,
+     "areaCm2": 212.0,
+     "volumeCm3": 144.0,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       -1.0
+      ],
+      [
+       7.0,
+       6.0,
+       1.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 72.0,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       7.0,
+       6.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 72.0,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       7.0,
+       6.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    }
+   ],
+   "mutant": [
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 22,
+     "edges": 52,
+     "vertices": 32,
+     "areaCm2": 10.207994449360097,
+     "volumeCm3": 1.104081950688768,
+     "boundsCm": [
+      [
+       -0.2,
+       -0.3049038105676658,
+       -0.20490381056766582
+      ],
+      [
+       5.2,
+       0.29150635094610966,
+       0.42810889132455354
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::NurbsSurface",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D",
+      "adsk::core::NurbsCurve3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 6,
+     "edges": 12,
+     "vertices": 8,
+     "areaCm2": 1.12,
+     "volumeCm3": 0.08000000000000002,
+     "boundsCm": [
+      [
+       -0.2,
+       -0.15000000000000002,
+       -0.15000000000000002
+      ],
+      [
+       0.2,
+       0.25,
+       0.35
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 6,
+     "edges": 12,
+     "vertices": 8,
+     "areaCm2": 1.12,
+     "volumeCm3": 0.08000000000000002,
+     "boundsCm": [
+      [
+       -0.2,
+       -0.15000000000000002,
+       -0.15000000000000002
+      ],
+      [
+       0.2,
+       0.25,
+       0.35
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 0.2,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       0.0,
+       -0.15000000000000002,
+       -0.15000000000000002
+      ],
+      [
+       0.0,
+       0.25,
+       0.35
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 0.2,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -0.35,
+       -0.15000000000000002,
+       0.0
+      ],
+      [
+       0.15000000000000002,
+       0.25,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": true,
+     "faces": 6,
+     "edges": 12,
+     "vertices": 8,
+     "areaCm2": 212.0,
+     "volumeCm3": 144.0,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       -1.0
+      ],
+      [
+       7.0,
+       6.0,
+       1.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane",
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 72.0,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       7.0,
+       6.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    },
+    {
+     "valid": true,
+     "solid": false,
+     "faces": 1,
+     "edges": 4,
+     "vertices": 4,
+     "areaCm2": 72.0,
+     "volumeCm3": null,
+     "boundsCm": [
+      [
+       -2.0,
+       -2.0,
+       0.0
+      ],
+      [
+       7.0,
+       6.0,
+       0.0
+      ]
+     ],
+     "surfaceTypes": [
+      "adsk::core::Plane"
+     ],
+     "curveTypes": [
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D",
+      "adsk::core::Line3D"
+     ]
+    }
+   ],
+   "verdict": {
+    "kind": "coedge_pairs",
+    "hard": true,
+    "pairs": [
+     {
+      "kind": "coedge_poles",
+      "hard": true,
+      "counts": {
+       "originalBefore": 1,
+       "originalAfter": 0,
+       "mutantBefore": 0,
+       "mutantAfter": 0
+      },
+      "sites": 1,
+      "reflected": false,
+      "pcurve": 280,
+      "form": 2,
+      "offsetU": 0.0,
+      "diagnosis": {
+       "originalSites": [
+        [
+         0,
+         14,
+         0,
+         0
+        ]
+       ],
+       "original": [
+        {
+         "edge": 1,
+         "opposed": false,
+         "range": [
+          -4.625226362758023,
+          -0.0
+         ],
+         "nurbs": {
+          "ok": true,
+          "degree": 3,
+          "knots": [
+           -4.625226362758023,
+           -4.625226362758023,
+           -4.625226362758023,
+           -4.625226362758023,
+           -0.0,
+           -0.0,
+           -0.0,
+           -0.0
+          ],
+          "rational": false,
+          "weights": [],
+          "periodic": false,
+          "controlPoints": [
+           [
+            -0.2426685451316189,
+            0.4
+           ],
+           [
+            -0.24266854513161887,
+            1.9407071501133855
+           ],
+           [
+            -0.24266854513161867,
+            3.459292849886615
+           ],
+           [
+            -0.24266854513161867,
+            5.0
+           ]
+          ]
+         }
+        }
+       ],
+       "mutant": [
+        {
+         "edge": 1,
+         "opposed": false,
+         "range": [
+          -4.625226362758023,
+          -0.0
+         ],
+         "nurbs": {
+          "ok": true,
+          "degree": 3,
+          "knots": [
+           -4.625226362758023,
+           -4.625226362758023,
+           -4.625226362758023,
+           -4.625226362758023,
+           -2.3126131813790116,
+           -2.3126131813790116,
+           -2.3126131813790116,
+           -0.0,
+           -0.0,
+           -0.0,
+           -0.0
+          ],
+          "rational": false,
+          "weights": [],
+          "periodic": false,
+          "controlPoints": [
+           [
+            -0.2426685451316189,
+            0.4
+           ],
+           [
+            -0.2426685451316189,
+            1.1703535750566927
+           ],
+           [
+            -0.24266854513161884,
+            1.9351767875283463
+           ],
+           [
+            -0.24266854513161878,
+            2.7
+           ],
+           [
+            -0.24266854513161873,
+            3.464823212471654
+           ],
+           [
+            -0.24266854513161867,
+            4.229646424943308
+           ],
+           [
+            -0.24266854513161867,
+            5.0
+           ]
+          ]
+         }
+        }
+       ],
+       "predicted": [
+        [
+         -0.2426685451316189,
+         0.4
+        ],
+        [
+         -0.2426685451316189,
+         1.1703535750566927
+        ],
+        [
+         -0.24266854513161878,
+         2.7
+        ],
+        [
+         -0.24266854513161867,
+         4.229646424943308
+        ],
+        [
+         -0.24266854513161867,
+         5.0
+        ]
+       ]
+      }
+     }
+    ],
+    "reflected": false
+   },
+   "originalRoundtrip": {
+    "saved_sha256": "c5645f9e300d14c071709653417c9efb9067f0101990b90ab3c5d0f3eb362722",
+    "persisted": [
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 22,
+      "edges": 52,
+      "vertices": 32,
+      "areaCm2": 10.207994449360095,
+      "volumeCm3": 1.104081950688768,
+      "boundsCm": [
+       [
+        -0.2,
+        -0.3049038105676658,
+        -0.20490381056766582
+       ],
+       [
+        5.2,
+        0.29150635094610966,
+        0.42810889132455354
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "areaCm2": 1.12,
+      "volumeCm3": 0.08000000000000002,
+      "boundsCm": [
+       [
+        -0.2,
+        -0.15000000000000002,
+        -0.15000000000000002
+       ],
+       [
+        0.2,
+        0.25,
+        0.35
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "areaCm2": 1.12,
+      "volumeCm3": 0.08000000000000002,
+      "boundsCm": [
+       [
+        -0.2,
+        -0.15000000000000002,
+        -0.15000000000000002
+       ],
+       [
+        0.2,
+        0.25,
+        0.35
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 0.2,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        0.0,
+        -0.15000000000000002,
+        -0.15000000000000002
+       ],
+       [
+        0.0,
+        0.25,
+        0.35
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 0.2,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -0.35,
+        -0.15000000000000002,
+        0.0
+       ],
+       [
+        0.15000000000000002,
+        0.25,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "areaCm2": 212.0,
+      "volumeCm3": 144.0,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        -1.0
+       ],
+       [
+        7.0,
+        6.0,
+        1.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 72.0,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        7.0,
+        6.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 72.0,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        7.0,
+        6.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     }
+    ],
+    "reopenedEqual": true
+   },
+   "mutantRoundtrip": {
+    "saved_sha256": "a4baef2c16b098df6750519b0e7d84f2d4241affee4b5aa9731e4d611cfde724",
+    "persisted": [
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 22,
+      "edges": 52,
+      "vertices": 32,
+      "areaCm2": 10.207994449360097,
+      "volumeCm3": 1.104081950688768,
+      "boundsCm": [
+       [
+        -0.2,
+        -0.3049038105676658,
+        -0.20490381056766582
+       ],
+       [
+        5.2,
+        0.29150635094610966,
+        0.42810889132455354
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::NurbsSurface",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D",
+       "adsk::core::NurbsCurve3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "areaCm2": 1.12,
+      "volumeCm3": 0.08000000000000002,
+      "boundsCm": [
+       [
+        -0.2,
+        -0.15000000000000002,
+        -0.15000000000000002
+       ],
+       [
+        0.2,
+        0.25,
+        0.35
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "areaCm2": 1.12,
+      "volumeCm3": 0.08000000000000002,
+      "boundsCm": [
+       [
+        -0.2,
+        -0.15000000000000002,
+        -0.15000000000000002
+       ],
+       [
+        0.2,
+        0.25,
+        0.35
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 0.2,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        0.0,
+        -0.15000000000000002,
+        -0.15000000000000002
+       ],
+       [
+        0.0,
+        0.25,
+        0.35
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 0.2,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -0.35,
+        -0.15000000000000002,
+        0.0
+       ],
+       [
+        0.15000000000000002,
+        0.25,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": true,
+      "faces": 6,
+      "edges": 12,
+      "vertices": 8,
+      "areaCm2": 212.0,
+      "volumeCm3": 144.0,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        -1.0
+       ],
+       [
+        7.0,
+        6.0,
+        1.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane",
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 72.0,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        7.0,
+        6.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     },
+     {
+      "valid": true,
+      "solid": false,
+      "faces": 1,
+      "edges": 4,
+      "vertices": 4,
+      "areaCm2": 72.0,
+      "volumeCm3": null,
+      "boundsCm": [
+       [
+        -2.0,
+        -2.0,
+        0.0
+       ],
+       [
+        7.0,
+        6.0,
+        0.0
+       ]
+      ],
+      "surfaceTypes": [
+       "adsk::core::Plane"
+      ],
+      "curveTypes": [
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D",
+       "adsk::core::Line3D"
+      ]
+     }
+    ],
+    "reopenedEqual": true,
+    "persistedVerdict": [
+     {
+      "pcurve": 280,
+      "after": 0,
+      "before": 0
+     }
+    ],
+    "reopenedVerdict": [
+     {
+      "pcurve": 280,
+      "after": 0,
+      "before": 0
+     }
+    ]
+   },
+   "allValid": true,
+   "status": "not reflected"
+  }
+ ],
+ "failures": [
+  "TolerantFormRefine: prediction not reflected"
+ ],
+ "status": "failed",
+ "documents_after": 0
+}

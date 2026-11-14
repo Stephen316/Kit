@@ -6,11 +6,14 @@ title = "Kit gitleaks policy"
 useDefault = true
 
 [allowlist]
-description = "Paths outside the CI security boundary"
+description = "Paths outside the CI security boundary, and DWG named object dictionary keys"
 paths = [
     '''(^|/)\.venv(/|$)''',
     '''(^|/)examples(/|$)''',
     '''(^|/)Parashell(/|$)''',
     '''(^|/)modules(/|$)''',
     '''(^|/)re(/|$)''',
+]
+regexes = [
+    '''^NOD/[A-Za-z_]+$''',
 ]

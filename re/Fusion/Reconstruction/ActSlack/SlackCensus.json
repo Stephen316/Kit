@@ -1,0 +1,3360 @@
+{
+ "scope": "ACT bulk stream slack after the final record; read, re-emit and compare every local archive",
+ "python": "3.14.7",
+ "focus_archives": 72,
+ "focus_missing": [],
+ "focus_read": 72,
+ "focus_model_equal": 72,
+ "focus_streams_byte_exact": 72,
+ "focus_parts_changed": [
+  [
+   "ProteinAssets.BlobParts",
+   27
+  ],
+  [
+   "ParaMeshGeometry.BlobParts ProteinAssets.BlobParts",
+   21
+  ],
+  [
+   "Breps.BlobParts ProteinAssets.BlobParts",
+   20
+  ],
+  [
+   "none",
+   4
+  ]
+ ],
+ "corpus_parts_changed": [
+  [
+   "ProteinAssets.BlobParts",
+   95
+  ],
+  [
+   "none",
+   68
+  ],
+  [
+   "Breps.BlobParts ProteinAssets.BlobParts",
+   56
+  ],
+  [
+   "ParaMeshGeometry.BlobParts ProteinAssets.BlobParts",
+   21
+  ]
+ ],
+ "edited_forms": [
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+   "sha256": "90abb8dce3e0cb95b397260eb21cd9b6641171bdd53a105658145197aef645da",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+   "sha256": "b15fbcda87ec38983c6aaea21b81beaaf2536c764b5b81262c8174687099e8ed",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+   "sha256": "fb66fb0d81c7d602f008d8286a8bf01cc507c6b96a705e04a48d473c2be20486",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  }
+ ],
+ "focus_slack_lengths": {
+  "16": 1,
+  "2": 68,
+  "26": 1,
+  "28": 2
+ },
+ "corpus_archives": 308,
+ "corpus_summary": {
+  "read slack=False equal=True streams=True": 164,
+  "read slack=True equal=True streams=True": 76,
+  "refused slack=False equal=None streams=None": 68
+ },
+ "refusals": [
+  [
+   "Unqualified Fusion native class or schema version",
+   28
+  ],
+  [
+   "Fusion container directories must be empty and stored",
+   12
+  ],
+  [
+   "Unsupported graphics vertex field layout",
+   9
+  ],
+  [
+   "Unsupported graphics primitive topology",
+   8
+  ],
+  [
+   "Converted Form BRep embeds a T-spline program absent from its parts",
+   4
+  ],
+  [
+   "Unsupported Fusion BRep semantic field",
+   4
+  ],
+  [
+   "Fusion entity profile does not qualify nonidentity matrices",
+   2
+  ],
+  [
+   "Missing directories or unaccounted Fusion container members",
+   1
+  ]
+ ],
+ "rows": [
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/FreshFirst.f3d",
+   "sha256": "a13f790b730c7db6d487ca361b391047db903329b4abe6317ec475571aa0bb58",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/FreshReopened.f3d",
+   "sha256": "e122fee14996b2559d352ac115372bdd6123cbe55ac9532f0dc5e6b26d6b6a60",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "aa4fb8a61cab7db73f42671f2bb987a7291a436929b3d5f17ffe05f96be13371",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/FreshSecond.f3d",
+   "sha256": "753d02cb3340968041a35a7c5d1ed9cf357bd5c48d6026d56ae433dacf698b8e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneFirst.f3d",
+   "sha256": "0933e4de12d010d80b359fc6b78a9528be24abdac3098ee95fa4562e7b197b72",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneReopened.f3d",
+   "sha256": "e199835505e2c41273f430698bc1c7075d84178885833a381708698bf79f4e45",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "047ccb73bd5552a12c254b4c31a5f50e1333745b87560a9db9d3dab473a5d2e3",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneSecond.f3d",
+   "sha256": "73112eb2fd4b93571e49f8516a7d84cabf4dde502b11f9656922994dff184873",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Allocation/added_third.f3d",
+   "sha256": "57c812a29d9823de60aec2cda8f94d363bebc37f588b37297cbe5f2e1e774391",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Allocation/deleted_first.f3d",
+   "sha256": "055bb9a68fe33c017387d34525d97e18832be12d9d97b9595ce0b200b0125b91",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Allocation/empty.f3d",
+   "sha256": "3cd4ac5186a51c8e6239ee04dd585639927b23f5314c867ef875a21746141298",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Allocation/two_parameters.f3d",
+   "sha256": "41f8e24875f47dc84b8652788fd5a356e46f77a46c9713dbb463869ed34e97a3",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/NativeHistoryReemitted.f3d",
+   "sha256": "29f70738c26cab17f8abab536b08fa9ece6381c53608e6530295209f7e206797",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/ProductionCircle.f3d",
+   "sha256": "c5e2eab570f4d86f8e3a559996f5bb062cb080b94b91f1d819d045e9ce449690",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/ProductionEdited.f3d",
+   "sha256": "ddc7f0ad8ba4ac4b83a44f8c8d4729bb340b05074d104472a5d06bea6b225d9e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/ProductionExtrusion.f3d",
+   "sha256": "5645020130771517c674eac3854c2d96c00100e9bb277e353f87f35295a3d995",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/ProductionMaterialExtrusion.f3d",
+   "sha256": "9f2d11fc13dd407c4b07711be7c6d11811bda336a8fc45d872b263db2dc00359",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/ProductionParameter.f3d",
+   "sha256": "2ffcaf982519c106fa900192451b665828974f6192f4d84b879c123b3e80f997",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/ProductionReemitted.f3d",
+   "sha256": "5645020130771517c674eac3854c2d96c00100e9bb277e353f87f35295a3d995",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/kit_production_container.f3d",
+   "sha256": "44516aa895a6fa5a028ef4a2656ed50332747dc8df067e868205a8c1c714cb08",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_authored_circle.f3d",
+   "sha256": "77e11b53650ad3afd6f2079b2a8886cf0c3ad81f09fc3e428094eab67ffe19cd",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_authored_extrusion.f3d",
+   "sha256": "664a3a2bc8a8ca9a2b13516f11b9726b3b2c60b8eae82c8a707bb401866cd3f1",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_authored_parameter.f3d",
+   "sha256": "98cd0b822e3ca4e23255ce5d2723eb3dfda3c8e63793b945ef1bd37e37c89949",
+   "act_slack_bytes": 28,
+   "act_slack_sha256": "b0c5f86cf7fe65003aa8d663739854cd67ee66186b171d9a50fa33e7167f464a",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_circle_extrusion.f3d",
+   "sha256": "555690fd43a76746634157f712ea6cc2a6e0d008cd83315a1d9c8956e9a12253",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_fresh_extrusion.f3d",
+   "sha256": "faea60100a4a5f6614177eedbb7edc40c5c6c41592acc94db030ed010463d8d6",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_fresh_parameter.f3d",
+   "sha256": "40f99790a141f2b8538aa46f44f56f7ebe74c3b8e30ec850937d01fd401af506",
+   "act_slack_bytes": 28,
+   "act_slack_sha256": "9858ef97ce42e19bb8b1a2cc43a84ebf4b94bb8756500171756dd2c60209f6c4",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_independent_extrusion23mm.f3d",
+   "sha256": "81c5f35d8bdda4f2cee8721299cc2757e496f2f386a9c26741c6d46ece000199",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_native_history23mm.f3d",
+   "sha256": "6eb79af28340240f43fced7894c81af4aa28413887c458b9a5ac300d6f894cc3",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "f44b6f48ee1c4c4ccbdba60aab4e4aa2292231ecbe1302da92643dd1699f43dd",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_circle.f3d",
+   "sha256": "f2994a52712a405de53d16c356886a0f2b9ae012265116b11b19c7bf36546ea8",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_circle_extrusion.f3d",
+   "sha256": "78e08cc66d75420164485a29e1ab4652a25b201865fd2d7175c0e90dc4b9ea01",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_container23mm.f3d",
+   "sha256": "40af414ab111159e46a375cb17b57cf2d50e089cf68f475a9487c1d3d60ecd36",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_document23mm.f3d",
+   "sha256": "fcce745b873b6758ebd72cd25c1dbef72004f6b028ad4e95974a10b32b0aa3b9",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_edited23mm.f3d",
+   "sha256": "04d83de4359a3bfa1c0e7d2630005a6b4038adf913dd35309c55105f76f6cf82",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_material_document23mm.f3d",
+   "sha256": "1a2ace125ada2843a80fac604239ba51d9626963ba9e51d02f9427c41ff2ad70",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_parameter.f3d",
+   "sha256": "50a0f9f58e6f0895c92ae84855f4b7234c5afff17c438d9128873da9a5cf5c17",
+   "act_slack_bytes": 26,
+   "act_slack_sha256": "659d36ca563ba4622daabb36a71dafaf6060cdcbf89bb12e75426198496d272c",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Authored/vendor_production_parameter_extrusion.f3d",
+   "sha256": "9fccf372a6dbe0f2e3ac190e6258ac825fd3089bef02b2a58c00f4e380eb3b85",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/native_cuboid_12_18_24.f3d",
+   "sha256": "1ad68f9965e8b24326222bdbbb1cb4b5f2c1fb814cf904099a5f0fdded7b7bf4",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/vendor_binary_temporary.f3d",
+   "sha256": "ce4ae6efcdb7814eb06284eb1b0eb3858bf80451fa3b13d31971676d11ce360c",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/vendor_kit_cylinder.f3d",
+   "sha256": "232920ff6a315fa7281b4c2139756618721dda221a1141a01145b401f930e0d4",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/vendor_production_cuboid.f3d",
+   "sha256": "30bc527e3c8531f8620f981b4be7e2a832f5328b6b261ff3c1065006a27ccde8",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/vendor_production_cuboid_smb.f3d",
+   "sha256": "83ae650c219e07f7db93b9ad61881e420e36b65104ccab65a9ecffd983decbd7",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/vendor_production_cylinder.f3d",
+   "sha256": "c79c675d8695dcf6c82960e34b3d3d868e7250c82b1ffd4293f8a7fbc2ca46bc",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Brep/vendor_production_smb.f3d",
+   "sha256": "5c226d1e885d11468abee483d038301c33f2dc97f190a9a81516904675db5207",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DimensionAuthoring/DimensionedCuboid.f3d",
+   "sha256": "dd8d4197f480115091378bbf90df1a8179bee47e1cba20339f172594e73bd41d",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DimensionAuthoring/DimensionedCuboidReemitted.f3d",
+   "sha256": "dd8d4197f480115091378bbf90df1a8179bee47e1cba20339f172594e73bd41d",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DimensionAuthoring/DimensionedRectangle.f3d",
+   "sha256": "4fbcc6e18301a5c4cbcc9ec06aa422afe75dfdffa67f04938ef9f8efa054c627",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DimensionAuthoring/DimensionedRectangleReemitted.f3d",
+   "sha256": "4fbcc6e18301a5c4cbcc9ec06aa422afe75dfdffa67f04938ef9f8efa054c627",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DimensionAuthoring/vendor_DimensionedCuboidEdited.f3d",
+   "sha256": "e74dd6e3bed9bc425c9387f8648fd115cce64e7910017e2956f47875c1ca2015",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DimensionAuthoring/vendor_DimensionedRectangleEdited.f3d",
+   "sha256": "287e8af69f262b735e8e5197ccc8bb0cabbeee4a9e9836d48873d418a94454c4",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/BaseClosed.f3d",
+   "sha256": "c8b1670f2b027b0a55c41659b2527cd7c11270f0584ad671076ba188fde44cd7",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/BaseOpen.f3d",
+   "sha256": "929c606144e321e4e62bf6a36387dc79d40d582413d0d7ef117465a872a2c3c4",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/FacetedClosed.f3d",
+   "sha256": "5d682d74a8a8ea11574287888050690052d5382be5f487ffb299fe3e20ef70f3",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/FacetedOpen.f3d",
+   "sha256": "1903de7e0676faddf5014f7115fa578a14270c3d8f5eaf57eec7c464fad7dffb",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/TriangularPipe.f3d",
+   "sha256": "d5502eeac71bf49a305330dd0253c8ea75e8079022ce4ca324c0126ba5f922e8",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/TwoBodies.f3d",
+   "sha256": "f2c6a76e2462c3107f521a453129e650695b749683fd4c6a7792bd636af73cea",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_BaseClosedControl.f3d",
+   "sha256": "8df58054babbd810ab3a10f622681e19b8e61f4e07eb3806afbdb77e69f2cccd",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_BaseClosedReemitted.f3d",
+   "sha256": "bb779de97fffdc1ee4f57d024e335ec49b009ff0eec7d711675b22ff36c44c4d",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ceb827ad3d3884fd4d50ae6099d6d50c09a21e72ebd309708e8b69d93df19e55",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_BaseOpenControl.f3d",
+   "sha256": "fd2d08f674e2c61c1780ebfd9317373ca8967e8f11f89886b15c620838e8cc5a",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "166f829e016f2315a8099e3a8d2dbec6d91572379ff02c760ba4e0335789d47f",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_BaseOpenReemitted.f3d",
+   "sha256": "b839dc60304e227fb36c3966dbc437b3b8eb507ffea79c90e31fba344324db9d",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ceb827ad3d3884fd4d50ae6099d6d50c09a21e72ebd309708e8b69d93df19e55",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_FacetedClosedControl.f3d",
+   "sha256": "034e3c06eda9d2d0c4821d1b0628bef8ada44a1ce79cc03105f94cc89a0d78bd",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "6c179f21e6f62b629055d8ab40f454ed02e48b68563913473b857d3638e23b28",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_FacetedClosedReemitted.f3d",
+   "sha256": "a472cc9ba354f2c71490193404da97a1923bcd78dfe812c7741ed5a4180e1aba",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_FacetedOpenControl.f3d",
+   "sha256": "a8faf5cb6803ed9d725d0882ca7af21273190f444d7f4fe068e81b6d1708eede",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "58ceeac666a2c1f8d25fcebdf807d13baa7270caf3bd3606f2ba3cc4dd9cc857",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_FacetedOpenReemitted.f3d",
+   "sha256": "6a563092f3e90601c1d6a91d6f1a3821f5d02e037f663ee2891c0972146ec1da",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "e5e0093f285a4fb94c3fcc2ad7fd04edd10d429ccda87a9aa5e4718efadf182e",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_TriangularPipeControl.f3d",
+   "sha256": "154a0c87308f14e65b76a424fbb2454cc86ac42bf27bb79aa9ba18b873c02582",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_TriangularPipeReemitted.f3d",
+   "sha256": "2217dd120284311cb548a5ae093d1895dd6724288227891086bee5c35b6f8f78",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_TwoBodiesControl.f3d",
+   "sha256": "6cd1b25ed4c6e29283a08a1dae1f78ab163bc4e36daf1f21c35b5dca3673a553",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "6c179f21e6f62b629055d8ab40f454ed02e48b68563913473b857d3638e23b28",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/DocumentGeometry/vendor_TwoBodiesReemitted.f3d",
+   "sha256": "b626951afdda67320d85e1ad8d58d01eaec7f6292a320febc0af0e47424c6b6b",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/circle_sketch.f3d",
+   "sha256": "b2e1f2213abae29960f87c5b5db8b9ae2760e5b61c1aba95273b18414ea01156",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/extrude_07mm.f3d",
+   "sha256": "ff7730152b56ef608e690df79788ee5658473d59b33e398dc96743e306adacd1",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/extrude_13mm.f3d",
+   "sha256": "25a1547213e492f7887f32f029673d287cba3fe435aa64a508038951a65b0f55",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_19mm.f3d",
+   "sha256": "48ff492c05f0890ea93ae1e72941c83372f273e7ced3fe7c9e98272fb43f040b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_cached_19mm.f3d",
+   "sha256": "150b3d2f2eee8c8e81bbd8f5adab1294138260af3938a9fb808555f7924af86b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_cacheless_19mm.f3d",
+   "sha256": "23b01576ce5eaf635eeabb76bcce520d5c57777bfdd00e7dec496578e9c66bfa",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_changed_materials_19mm.f3d",
+   "sha256": "47fed6feef81213e0cd756ab7fe237e6e5585bd81b38d594276709208e28ce86",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_features_19mm.f3d",
+   "sha256": "b8cae8f2978c222bc1626aeac013aff09c150c1ac9fdcbacb7d256dabdfeb2a3",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_full_brep_19mm.f3d",
+   "sha256": "7a67ce6bd8592af0a14966d7f8bf877663dd0d35e1971afc5b9335575620563a",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_materials_19mm.f3d",
+   "sha256": "a0f8aa1fe3fb6461794a069c626f16e7383b093884db7309e3dafc31970e0de7",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_production_brep_19mm.f3d",
+   "sha256": "5510161a089ea849eae785c12895b34d742643520e5561c9f34616d9304d0b4e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/kit_production_materials_19mm.f3d",
+   "sha256": "104d3aeb906eba7e59f568e039e5c796b8a4fa1f11bfcc10a4108123b2b4451b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_23mm.f3d",
+   "sha256": "8e657ca5aa1591cdd18d4948995ecb384e2ea2bc571972bd46de5894fee71658",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_cached23mm.f3d",
+   "sha256": "34ffd05771e10959c526ca1a8cf9652964ee575b87ebbb67ff482517f4dda4b4",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_cacheless23mm.f3d",
+   "sha256": "70cbc0c6a5c200793c195ca233efc16f206e109b9c4ed1640a70f0da94fc248c",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_changed_materials23mm.f3d",
+   "sha256": "b444c5561a7e2eb49b829296710b57f62c31ffa7dfd5537c86f36e039704ba5b",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_full_brep23mm.f3d",
+   "sha256": "16ec3ba2d6e7f012be41a9fa1c21f714d6af3acc21eae64443aca7fc4597e53b",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "99fa1b5ea02dfd58fef25f20cf95431097110094b038bd4e7a16910b5dcd1940",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_graph23mm.f3d",
+   "sha256": "1d13ded8aebde131a0771a8d1792c48bdbf843ea77f6cc4d2cacab738364979e",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_materials23mm.f3d",
+   "sha256": "6b11eab7f31c8590c5cca277b9c9d5566ac509427ca6b1a68bec1f14390f3eac",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "dda187a897147b31b727b3a7580aace2bbeea8591cdff537ffaa0e78385fc2ec",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_production_brep23mm.f3d",
+   "sha256": "f2d35ef8058b289fe82024dd10d3273a761befaeff2996f5330e3f5517b6dee2",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "dda187a897147b31b727b3a7580aace2bbeea8591cdff537ffaa0e78385fc2ec",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_production_materials23mm.f3d",
+   "sha256": "b1cb8eddd9ada07db6e1511c949f5da418e12649519a798c0da92dc9ec1b9069",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "dda187a897147b31b727b3a7580aace2bbeea8591cdff537ffaa0e78385fc2ec",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Features/vendor_rollback23mm.f3d",
+   "sha256": "67725d254203949d1546f37bb8003fb14ec80acb5602179aacf82b8d5262b548",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedBox.f3d",
+   "sha256": "1225f091003ae595234b0293f343fb37dcc19d92a4b056f5784614e169ce617c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedPlane.f3d",
+   "sha256": "37a9ac17cea5ea06a237bf772d2c1ca44606024005292a89f7d0b1cb18f2797a",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedPlaneCreased.f3d",
+   "sha256": "aceefcca42793c8d3a11372185d042e8b5ac52508eed0d9d348915985459168c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedSymmetricBox.f3d",
+   "sha256": "a8f3a107240fa70d94752df7d0c34fb81554174f7d3677aa7af6a0724cef8bdd",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxControl.f3d",
+   "sha256": "7201e611c9e68d49397f6d877e95f1aba94b8e058e29d1fa516e9a179b6a9755",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxReemitted.f3d",
+   "sha256": "1300089847bd5349a748ef1404984a37defc11643362f8f9ad1c22c93848e5c0",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneControl.f3d",
+   "sha256": "7d09d4698b57fefff528de75bb35757c615312f1eb6bdd7f1570751ab1ea219a",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneCreasedControl.f3d",
+   "sha256": "5bb5a4256990d72cd8e60756729a37f90415162a738b99cee9a2d467c3e3bf2a",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "78f993c3392521c9db0e0819b09f95c5c4141ef1cad923ade3bee913bc6bdfd2",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneCreasedReemitted.f3d",
+   "sha256": "d9a5c0cf71f7aff32816eb8938b350cf51a85f2ab22d536daaf12ebf29fea4ea",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneReemitted.f3d",
+   "sha256": "27c02700f259809d6527c254aea1f92df33c12368bc7cf19912566cf0189ccc7",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/SymmetricBoxControl.f3d",
+   "sha256": "d32e8683c61cddbdca2f1e430b229a38e0174c31af5012091bb7fdc07640634e",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "f0446776c10fd150bc58cf7939e15d3b6522b28e384a4f29e63380a74b34b146",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/SymmetricBoxReemitted.f3d",
+   "sha256": "08716afd00949a709d2cae53b850ccd475aa68a849b0af264996091e20972e6b",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "7e53c0011fdbbb272719d77dbae78f679a556bf47c8d246f265d76faf6c2f9e7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxBothMoved.f3d",
+   "sha256": "7347769830a33410b7c43213be7cc4b5710d5938cdbf97f8558f1f32f980c52c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxBrepMoved.f3d",
+   "sha256": "98171cad400303637ac76a0bead61af57ea872c10f0bbb99eb0e3fc25633d3bc",
+   "status": "refused",
+   "message": "Converted Form BRep embeds a T-spline program absent from its parts"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxMemberMoved.f3d",
+   "sha256": "67517082d7b4b1670d2c84e18495ad667a909225663d35cc380fd8f55ddacdbc",
+   "status": "refused",
+   "message": "Converted Form BRep embeds a T-spline program absent from its parts"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxNoBrep.f3d",
+   "sha256": "0ee790e8bb471a58f441ab003f9a529184883bcc6e2e55a82fa934c469ae3674",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneBothMoved.f3d",
+   "sha256": "faa40f9dc136e457edc2c35394608d8f284024dae89583694b93bc04fa7ad2ba",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneBrepMoved.f3d",
+   "sha256": "3678fc969f0a40cbcfe60f1a38174f1d864cc9d611fe8b75a0d79aa9cec3521c",
+   "status": "refused",
+   "message": "Converted Form BRep embeds a T-spline program absent from its parts"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneMemberMoved.f3d",
+   "sha256": "da66c483fcd30ae28650c477de317bfbc101324b0a63bf866ae81d607a103cde",
+   "status": "refused",
+   "message": "Converted Form BRep embeds a T-spline program absent from its parts"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneNoBrep.f3d",
+   "sha256": "d0efe591d92e52b5b386403e24b3f3f152973bc0119a3d561fe370d75125b39e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Frustums/vendor_CylindricalLimit_smb.f3d",
+   "sha256": "b04961cad332b89c95afae3b8434447a1a5f5674aa70c7cadf4d24935f850d54",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Frustums/vendor_CylindricalLimit_smt.f3d",
+   "sha256": "48c9109f49a06f6fc6afc6eeeeb223c22531fd6d05c2a30f9a446fae69cf24b9",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Frustums/vendor_Expanding_smb.f3d",
+   "sha256": "8f1c603005a2c753460a87abd0db83ed5c609aef563abccb4e93f0c7829a3252",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Frustums/vendor_Expanding_smt.f3d",
+   "sha256": "bda9fff67ad25abd7b8b120204300b3d927f5c35671cc38d6d4f3863e7a92051",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Frustums/vendor_Shrinking_smb.f3d",
+   "sha256": "a19495f8e31be5961f1f6ffcfd88f2eb37df8520cbca8a0e34f9efb6691e1f7b",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Frustums/vendor_Shrinking_smt.f3d",
+   "sha256": "b74d5410173e6d15e6594ff7b7c5ce0ef855eab961a77c60311b2612dda4aef4",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/DraftPermutedHistory.f3d",
+   "sha256": "4edd8124365a79484579198e7fc63e3fba46b45c639c98de8015f580f84c46ec",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/DraftProductionHistory.f3d",
+   "sha256": "e684b5f22ff6dae136b5d9144a01927e1944ed0ef2ef74cb92c343cfe516ea47",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/DraftProductionPermutedHistory.f3d",
+   "sha256": "4fc83e11c00936607c65173c903c22dea253e0e4ffc3415acc2200cd5d60f8fc",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/DraftTypedHistory.f3d",
+   "sha256": "97fb3d6548b6bd15378eb90783b439e1dda34da992c19f692cd1c80b2e8a9298",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderPermutedHistory.f3d",
+   "sha256": "d0f1a822f6daf13c0f547dff628e53cd945ccc368c7ab30489f0fd168da877ce",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderProductionHistory.f3d",
+   "sha256": "d93f8e534b7f0e8721c98f1cb6cbccea28d1be961b9c8869a39fbb84f0a0432d",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderProductionPermutedHistory.f3d",
+   "sha256": "42edefd871b36f8b315076cb8f0dbab1edd76bfb522f90b35854bbddf833b611",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/OffsetCylinderTypedHistory.f3d",
+   "sha256": "68b13075196317fd4fab19b02ba013b8af0340f4892e5ac21e038b86108872b3",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_DraftControlEdited.f3d",
+   "sha256": "90cbe3eb13813bf84e8ee7d61c20f7957312b6d8fd1db71f96c433a0ce1399fa",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_DraftReemittedEdited.f3d",
+   "sha256": "6920b4b1d36e4383ae793c8838f6a2437736fd78b6bf9fa56239396b8408ef49",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_OffsetCylinderControlEdited.f3d",
+   "sha256": "72204dc8c1e1395187b9a178e7b1346a629eb36f4bf3b76a73d225d69809f48c",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_OffsetCylinderReemittedEdited.f3d",
+   "sha256": "84bb41dcca8e85d34400b16c4c9230c7f5af6ead40a25407fc8fbdb40413c188",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "4cf78defbc6e8d4befcdbf7504db6fafac5d86ab1325713b9e66f3486d268f1f",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_PermutationDraftControlEdited.f3d",
+   "sha256": "35c3aaf11d3eb2619ae78bf1f9c1b503f9069d58aeb0fb6e62d956681f09bb67",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_PermutationDraftPermutedEdited.f3d",
+   "sha256": "51d543188b1a2663066528a7121ba71358f00a111bc221da89ed287d006d22bf",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_PermutationOffsetCylinderControlEdited.f3d",
+   "sha256": "e5e7a2070fdbe93eef8a387f06d1b22a04d354bc3313fc5a8be690a2f83f70ec",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_PermutationOffsetCylinderPermutedEdited.f3d",
+   "sha256": "1ae5421d68a0bbf259c0c0f3c0bf59a16c5751a67e66a8caf1e2012cf5212115",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalDraftControlEdited.f3d",
+   "sha256": "97f9c2d8f625e40ba90d1a0eea7565cd88cbd368ccac5b50332dab5fdf21732d",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalDraftProductionEdited.f3d",
+   "sha256": "b0ebc9be707f4bb56e1e57b3ea6272449b257e06d047dcc87148cc67b22362e0",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalDraftProductionPermutedEdited.f3d",
+   "sha256": "b810d63b7b52db15e9a615b8f3e719e64da33e138cb79d0e440c12f0fda67829",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalOffsetCylinderControlEdited.f3d",
+   "sha256": "aa8598309d205cab443401d48b8fa75faf14a952e90381bb5dcf539fd47adeb9",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalOffsetCylinderProductionEdited.f3d",
+   "sha256": "119a28d69d0cebd4185b5ffcc63bec61d5d79f24bf2ca03c42f7602336c1d8df",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalOffsetCylinderProductionPermutedEdited.f3d",
+   "sha256": "f5b9cf6bea843914049ba4b4126e3b73efa9820cf7292737644f635dfceb090e",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/MeshDocuments/PreparedMesh00.f3d",
+   "sha256": "d0acf4a696b7349153ddeffed90d10ddb574d8a949eded38459320aea11c6b73",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/MeshDocuments/PreparedMesh01.f3d",
+   "sha256": "1a74e49c91ae393247e61b4f8af9ef00f2c0fb19eaea16c92b5d8f5bcc6012e7",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/MeshDocuments/vendor_PreparedMesh00ControlEdited.f3d",
+   "sha256": "d7da9efa89acd1d1bb01407ab5aa18f218deed040e2bc011204d592b3e6e720a",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/MeshDocuments/vendor_PreparedMesh00ReemittedEdited.f3d",
+   "sha256": "a7a67e3ad6e5fecbc05ab3c614590f8f5afefd7cd5b2f2699db423b6fea804c7",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/MeshDocuments/vendor_PreparedMesh01ControlEdited.f3d",
+   "sha256": "229c059cf84222499233eb8f884e153701e154bc91f16854db468996e44a9ba4",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "69f59c273b6e669ac32a6dd5e1b2cb63333d8b004f9696447aee2d422ce63763",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/MeshDocuments/vendor_PreparedMesh01ReemittedEdited.f3d",
+   "sha256": "5671b73c335de38df1933a5e4f936aa2dd3fe65d13e7813724b97396c8b78bb4",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "06eb7d6a69ee19e5fbdf749018d3d2abfa04bcbd1365db312eb86dc7169389b8",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeDocuments/OrdinaryRectangle.f3d",
+   "sha256": "0203674063f58504d037a51236a1aff9cc3283ed1b8b107cc8307e1e73f10e92",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeDocuments/SavedCuboid.f3d",
+   "sha256": "49f92bbe4f33fc7c1413ca8a8d433ff3ba948c1822c6513363934425f626ec31",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeDocuments/vendor_OrdinaryRectangleControlEdited.f3d",
+   "sha256": "3731fac7d5069a4247110a273d9fe8dd2ef22c586fed16dcda1429b087222c7f",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeDocuments/vendor_OrdinaryRectangleReemittedEdited.f3d",
+   "sha256": "bda5c08dbf0c8aaff83b4c8e8c0c747f30e916ec5476d4e3cf0cd6f61ef98e72",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "4cf78defbc6e8d4befcdbf7504db6fafac5d86ab1325713b9e66f3486d268f1f",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeDocuments/vendor_SavedCuboidControlEdited.f3d",
+   "sha256": "9ab4577bc924f13e39739d4b2c7252a76c7a175829cf364369fc60c2a57fb5c7",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeDocuments/vendor_SavedCuboidReemittedEdited.f3d",
+   "sha256": "ad502f51c7b5ef030ebc6b213a9182eae832fc5f908537a0c8b73c220d588eea",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativePublicAdapter/OrdinaryRectangle.f3d",
+   "sha256": "0203674063f58504d037a51236a1aff9cc3283ed1b8b107cc8307e1e73f10e92",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativePublicAdapter/SavedCuboid.f3d",
+   "sha256": "49f92bbe4f33fc7c1413ca8a8d433ff3ba948c1822c6513363934425f626ec31",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeRotationalPublic/circle.f3d",
+   "sha256": "1b2a7c2d57ca750030c75514ccb977c0cf8bb9dcfea7c0018de08716ef161610",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeRotationalPublic/extrusion.f3d",
+   "sha256": "29b666aa7afc20267e273bbd4d29f98143d3c2157af3ca2e353785724f2e4176",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/NativeRotationalPublic/frustum.f3d",
+   "sha256": "fa018c7ec54ae00ebbb0da84312eafb5915a3ce3ed90e57149cf78c8caa39e81",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ParaMesh/PreparedMesh00.f3d",
+   "sha256": "22f05e19506660ceba8b313f6c632c5fa556b14c1ca482a99cd4104b41335828",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ParaMesh/PreparedMesh01.f3d",
+   "sha256": "a0042790e260dcddfae779f7165df004d7e4e7c72441f26561d5cb31a5c7ca95",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ParaMesh/vendor_PreparedMesh00ControlEdited.f3d",
+   "sha256": "3edf2de3da43abed59bd8bc85fd11f55b27fe5c83ab470f14c8440000c589c28",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ParaMesh/vendor_PreparedMesh00ReemittedEdited.f3d",
+   "sha256": "91f9f4e7aaf7eca9527293a1945411c500bd30dc05f64ed3f665dff178cd39b1",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ParaMesh/vendor_PreparedMesh01ControlEdited.f3d",
+   "sha256": "dcbfa13ca26debdc9e91e9f2166bdf0da73fbd67f6d88f926f19587d73f50896",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ParaMesh/vendor_PreparedMesh01ReemittedEdited.f3d",
+   "sha256": "f245cca770154f404ff85cff15327fea9ddaaf7c955526c5ef830211506c107c",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "47dc540c94ceb704a23875c11273e16bb0b8a87aed84de911f2133568115f254",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/TetrahedronPermuted.f3d",
+   "sha256": "ca353c361b2522b1869dff102455310cc4b9f5ef96e473468f57b6e4ebe372e6",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/TetrahedronProduction.f3d",
+   "sha256": "6c00fadd975e68e723f15925f015478140e702454efbb636696548ee626c15c8",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/TriangularPipePermuted.f3d",
+   "sha256": "6ce94bec878d0fb0e235898c2a333ea14d9dcee8a67ea2fd8e9688d42a5d97ce",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/TriangularPipeProduction.f3d",
+   "sha256": "de661d76819d08843bbdf63cd157bcb4c1db208673aba2240418cf5e1a3ae0ba",
+   "status": "refused",
+   "message": "Fusion container directories must be empty and stored"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_IndependentTetrahedron.f3d",
+   "sha256": "02d6fcae5d88f58bf42c6ac806cfd2ecfbfc94d539969f44f516c55a5a186b5b",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_IndependentTriangularPrism.f3d",
+   "sha256": "29c46f9320355f1a229376b856c342641c2ab83c3b65973c241f12d37e01e12c",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlacedTetrahedron.f3d",
+   "sha256": "96fe8a4da142aeea616676b59cd49ad59c5b896c4a05e1c8e727af0a1647b820",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlanarTetrahedronControl.f3d",
+   "sha256": "46cfe9652e2a7b0a17569a35d578e25c4efb39e117dc5020c8d629a5a9e952af",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "3776096e9733584bd622e7e6417b65ba6640f8a8b809f475cd15ed5923cce3f6",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlanarTetrahedronPermuted.f3d",
+   "sha256": "a6acaeae5e93c49543ed2d06c03cca1060a0d5a99e740f614816319d56e77469",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlanarTetrahedronProduction.f3d",
+   "sha256": "6c773b09111dc031ce2a33b5807c3af42b39218ecbcdc9b52264c956a9c4f8f5",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "28a3d6d537e5d5090d33c042ad97db2081e47f9cc713e983ebb94121172153c8",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ParaMeshGeometry.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlanarTriangularPipeControl.f3d",
+   "sha256": "0fc4c8d6d08447086a17e9f751fc15e191f607220ab2fe33d723d3e91d347593",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlanarTriangularPipePermuted.f3d",
+   "sha256": "e54e1fd16e38bba6a9eb1e0f7bd6720d28de33a180b8244f82e227f56538f6e1",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PlanarTopology/vendor_PlanarTriangularPipeProduction.f3d",
+   "sha256": "08dfa43b7b3fae666f38471a97998c5aa85cf4f11c8a4d3d7d664e0f36327733",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismHistory/HistoryAuthored.f3d",
+   "sha256": "8799e3e4e38a924d96997e66c055a2c9d1b746525e9a2ac044965ace2ec17a5d",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismHistory/HistoryReemitted.f3d",
+   "sha256": "80491698af376d758f96b5117f2aacff5caa19ab1aac756d4a65ae485075f006",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismHistory/vendor_HistoryAuthored37mm.f3d",
+   "sha256": "c1ce5036156644170c115388f462716926b11f23479e247408ca7e9b4721e13d",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismHistory/vendor_HistoryReemitted37mm.f3d",
+   "sha256": "65c0f83c1926f1e444c67c418273ea2f453946dc2ed8c511f6e795f4e151074f",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismSnapshot/OrdinaryRectangleSnapshot.f3d",
+   "sha256": "1b70cbd58414d0e5bb8338596d2cbf4edde41be52b8f5f9a6fa86cb47db5486b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismSnapshot/SavedCuboidSnapshot.f3d",
+   "sha256": "83466b231452394a0d8f0f493da1465a0c3f31b413f135ec6aceb2dfab738d1b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismSnapshot/vendor_OrdinaryRectangleEdited.f3d",
+   "sha256": "0a18470d94432620098a5ba9c15f5db64b35e16665f3db148a45dba5bb835605",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "043d49e8713f1c1661acf1cc9356300e29b7c8821e39d8dba905591b31c6366c",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PrismSnapshot/vendor_SavedCuboidEdited.f3d",
+   "sha256": "d0c3b50de86adc0c1f3a53a797778c719996f60b1fbcb6c4c9a250ec990d3024",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/circle.f3d",
+   "sha256": "78139d9d93a0b0cffcb1dd95bbfce6d4ed79548151b18034445cdfc54c8cf33c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/circle.reemit.f3d",
+   "sha256": "78139d9d93a0b0cffcb1dd95bbfce6d4ed79548151b18034445cdfc54c8cf33c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/cuboid.f3d",
+   "sha256": "ea09e975bd4550924e1a06baf0863f7336b52ce481099aea0a1e46bb74fe3e37",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/cuboid.reemit.f3d",
+   "sha256": "ea09e975bd4550924e1a06baf0863f7336b52ce481099aea0a1e46bb74fe3e37",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/extrusion.f3d",
+   "sha256": "f9aa0cd9ca84d468fbce73f49ebe2cbb9d31dfaa8dc3e9eb460a010c6f8b3566",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/extrusion.reemit.f3d",
+   "sha256": "f9aa0cd9ca84d468fbce73f49ebe2cbb9d31dfaa8dc3e9eb460a010c6f8b3566",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/frustum.f3d",
+   "sha256": "59ea741f54f5d47d87f67981d9756511931add01234dc806bfec5ea52c1701ed",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/frustum.reemit.f3d",
+   "sha256": "59ea741f54f5d47d87f67981d9756511931add01234dc806bfec5ea52c1701ed",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/parameter.f3d",
+   "sha256": "11c175f89ad9677816cf4c21b0f8d7f1abb179444109d4bb120200a6bdecff07",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/parameter.reemit.f3d",
+   "sha256": "11c175f89ad9677816cf4c21b0f8d7f1abb179444109d4bb120200a6bdecff07",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/rectangle.f3d",
+   "sha256": "dabcd2f455d0ee302fa31dfcc0ee928e7b5467efe4660fe00a30519e67c8e4c0",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/rectangle.reemit.f3d",
+   "sha256": "dabcd2f455d0ee302fa31dfcc0ee928e7b5467efe4660fe00a30519e67c8e4c0",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/vendor_circleEdited.f3d",
+   "sha256": "699c12b242a416a6ae761b6186759246df9b09a5b6501cd58c04dc4a340db14e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/vendor_cuboidEdited.f3d",
+   "sha256": "359625d185c9ad2a23504430d9eb534cc445c7820b390649ecfecc2b972db12a",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/vendor_extrusionEdited.f3d",
+   "sha256": "33e7b098ddb6677b3bd9816b3c6133ccc850aea9d5d58fcd65b445c796ecc3a5",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/vendor_frustumEdited.f3d",
+   "sha256": "bc85b3edc96328a0c906cd413f7dac75e83b1e35104d8c21a2d711b5bfb473b2",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/vendor_parameterEdited.f3d",
+   "sha256": "42a5b2dd2f1fe47588b9a7e3296c6c90ed5a79028b159c2d8b4f23d0eab15697",
+   "act_slack_bytes": 16,
+   "act_slack_sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/PublicAdapter/vendor_rectangleEdited.f3d",
+   "sha256": "2989e4fe254e6e0a36adc446d1917f096c7040f736daa0f252e7f6be762523c6",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/Initial/ProductionCuboid.f3d",
+   "sha256": "44a1eebfeef9e36ba891bba70a90f8c0f2ae8026cf82d0dbf07a25bf1b3aeb6a",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/Initial/ProductionRectangle.f3d",
+   "sha256": "bef5aa3e148f9076c4eaf82c73677d6fbb953db954d02e74e87fef33b41ca066",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/Initial/vendor_ProductionCuboid37mm.f3d",
+   "sha256": "297d48a946cea3343a66b02d2328d9796c399b8c68e9ec646ea3a0aa7f9c9e38",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/Initial/vendor_ProductionRectangle37mm.f3d",
+   "sha256": "195a6cf8d3d0943d1c95ddecff2fea925ef1ff4c7e146528ffea874416626fc0",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/Initial/vendor_rectangle_sketch.f3d",
+   "sha256": "b2a132cfa96036486acc1b6ea70caafa2a2df937c75cad4d266f8d648387870c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/ProductionCuboid.f3d",
+   "sha256": "9a8bef0ec7d6d0a9012bfb282da594baf3527076b40274a988068d62aa1ece41",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/ProductionCuboidEditedMaterial.f3d",
+   "sha256": "ba5659ad57a3d2f77e8bf40c3cbd215d751e0d66cce353b5d0a8f165fb2e7959",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/ProductionCuboidReemitted.f3d",
+   "sha256": "9a8bef0ec7d6d0a9012bfb282da594baf3527076b40274a988068d62aa1ece41",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/ProductionRectangle.f3d",
+   "sha256": "bef5aa3e148f9076c4eaf82c73677d6fbb953db954d02e74e87fef33b41ca066",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/mass_probe_ProductionCuboid.f3d",
+   "sha256": "4486d381db49daaebcb31d2e0da4da860ad468203469bbe2fd3e45f27eb51cc8",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/mass_probe_ProductionExtrusion.f3d",
+   "sha256": "4efeccb7ebd06a060cde01280619671b3b66dc5a8f5d93ff68dbb92e7e078105",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionCuboid37mm.f3d",
+   "sha256": "62c03b7aa11ce2c79193e51376e4405e6bbfd34aa5ab8097b72043ad49f38683",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionCuboidEditedMaterial37mm.f3d",
+   "sha256": "49514fd3480dbaeca868a7955b46dd95b72fd34237002f2db53c5573be766df7",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionRectangle37mm.f3d",
+   "sha256": "895e92193e6c6e9060474119ea8f0bcb389803161f4dd17bd464551a84f35ae0",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_rectangle_sketch.f3d",
+   "sha256": "1484fb71b8a6ced3b78864647aae450d58c7fc2a53be86d83e49ca897be40e91",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/Baseline.f3d",
+   "sha256": "e730aacd8689518d8adf423a2fa358c1d3bf0d062c844c04fcb8df07d463c324",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/EditedDimensions.f3d",
+   "sha256": "760b3e80ec3a2a35399e4113465bab0be7246756309b5b71f6eea500f0e50841",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/FixedAnchor.f3d",
+   "sha256": "aa216fdebdeec9f592f207010f29be15bb6950842490f67caee355a3b34f1ff0",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/Orientation1.f3d",
+   "sha256": "00293d972db2441811bbfad7e7ce08a8391ae2e8603c2785b2bc245dc12c99ac",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/Orientation2.f3d",
+   "sha256": "93a0c7fd4ff23606cb1c1b558b80bd8cf68d38d95f490137d81e5bdf68cb3121",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/Orientation3.f3d",
+   "sha256": "9728efdc8c47f4fba411093c568d734224a27ebc5e2e61463858603e857b5943",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/Orientation4.f3d",
+   "sha256": "41bd3c6d53d73f43ff22ff3a60da59af2cf22f008a5ef380c866a361ab086aab",
+   "status": "refused",
+   "message": "Unsupported graphics vertex field layout"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/WidthDepthDimensions.f3d",
+   "sha256": "aa138a22efe10dbd8c0df3df949cd20dd5856ec217a536272f79dd97affa3954",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleConstraints/WidthDimension.f3d",
+   "sha256": "3aea9a4a1e7da1a6a03639159ee90161795432c66c864386b9dd49586ee9cc4e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleDimensions/Baseline.f3d",
+   "sha256": "a27741a82f16c9ae5839588a33a7eafccd1b42be248874f4721b209b123b2f87",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleDimensions/EditedDimensions.f3d",
+   "sha256": "2d35e30d9e7bdb315116d175890cc0eb60510112d55cf8acc27796375b32b367",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleDimensions/WidthDepthDimensions.f3d",
+   "sha256": "376cdae975d87e683f140a273020e0e4ec58beb003bf320c4bb334efb8dc9be7",
+   "status": "refused",
+   "message": "Unsupported graphics primitive topology"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RectangleDimensions/WidthDimension.f3d",
+   "sha256": "1aaa7bb5862654a833f2932b3f936cdc2d42715c181cd8888b102bafb5e1220b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Rewritten/edited_parameters.f3d",
+   "sha256": "ca22b7c19d1559b91cf6757f90b1280f99800b060e40f73fe964dd64c6e666a5",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/Rewritten/vendor_rebuilt.f3d",
+   "sha256": "0ab6c5198fe5a230c1d4cb004014a4065ca0ab9209111d4087225b5e1cca8bc2",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "d98ef49a7788d78f0492028759b34a721d827d1c2ca22b6f688e6570fdc155f0",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RolledHistory/RolledHistoryReemitted.f3d",
+   "sha256": "3fe405fabad823a99cbf932e65aa63dac5d7567f792eb7041e876961a26f7bc0",
+   "status": "refused",
+   "message": "Missing directories or unaccounted Fusion container members"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RolledHistory/vendor_ControlEdited.f3d",
+   "sha256": "1a485e2f44de6f6c08934d09007c322f075bbd0376d974aa9b30c3b95c20189a",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RolledHistory/vendor_ReemittedEdited.f3d",
+   "sha256": "b786514b517c79149521423b90dcf2eeb1371971b04c1c540de9a5119487eb2b",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/NativeCircle.f3d",
+   "sha256": "1b2a7c2d57ca750030c75514ccb977c0cf8bb9dcfea7c0018de08716ef161610",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/NativeCylinder.f3d",
+   "sha256": "29b666aa7afc20267e273bbd4d29f98143d3c2157af3ca2e353785724f2e4176",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/NativeFrustum.f3d",
+   "sha256": "fa018c7ec54ae00ebbb0da84312eafb5915a3ce3ed90e57149cf78c8caa39e81",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeCircleControl.f3d",
+   "sha256": "949acf09b31e2cc9a4cb92a68e19de616e7501b32d80a23c93925c8d1f182d08",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeCircleReemitted.f3d",
+   "sha256": "d28603eed2249dc9fa17f8eba8e0d1046b1f8b7416133040f5e470f85bf879d0",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeCylinderControl.f3d",
+   "sha256": "2a1f884592430b0a162aabdd5eeff954d9ea92e7743d65ad7dc415975ad56380",
+   "status": "refused",
+   "message": "Unsupported Fusion BRep semantic field"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeCylinderReemitted.f3d",
+   "sha256": "c76394f0170107c9aa379a4ad33879d515563b74a06ea36bcdb0995e62795af0",
+   "status": "refused",
+   "message": "Unsupported Fusion BRep semantic field"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeFrustumControl.f3d",
+   "sha256": "671a911689fdf648f50e79430e0cc77d2bf26e7ef8c4ae23fea268c10f223e37",
+   "status": "refused",
+   "message": "Unsupported Fusion BRep semantic field"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeFrustumReemitted.f3d",
+   "sha256": "36028be4d02cec8abd148c2302425157335924b4d260dda3832c650a8276f216",
+   "status": "refused",
+   "message": "Unsupported Fusion BRep semantic field"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/CompositeCircularHistory.f3d",
+   "sha256": "9ce3118e2bb7b5838efb46d3d3b2520dd88be7db9f11d4bbbb5a9e7fcd02e2b6",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/PartialClosedHistory.f3d",
+   "sha256": "73e3acddbdeb607ec06889da633330e86acbb9b977d84ee722146b0c247ed501",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/RoundFilletsHistory.f3d",
+   "sha256": "8f0dab359895ab96bd447a15cb24ad1ec9487edb11d5efaef858c13105d92a19",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_AuthoredSphere.f3d",
+   "sha256": "59a5720e96414e98b2c5bf9bd5d5acf21a3e680320acfefa0c3b4c5485f24e97",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_AuthoredTilted.f3d",
+   "sha256": "6d2e77cb8419d5aacb2fb67c3f98b68b1058142657cc0731f318b33e11abbaab",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_AuthoredTorus.f3d",
+   "sha256": "5bf7b1ea88a484174cf13e291390ae862befe7eec6b35bf5982643708207587e",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_CompositeCircularControl.f3d",
+   "sha256": "2d3dde9352d8fb05cebb91bf8544cf30fec0d1f56ced83c24ccaa419e4399bdc",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_CompositeCircularReemitted.f3d",
+   "sha256": "409d121998916bddcc999855ffa2b1927c2201330f1ee15cee33a89894f4b585",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_DecodedPlacedTorus.f3d",
+   "sha256": "fce207bb2e7ddaa84187a19c0deacaec12c13f780ba207d0493b16dd280d3164",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_DecodedSphere.f3d",
+   "sha256": "cf358cb95cd264d6adc2e865ed6b27b43d2b93e71e1b8f732a020bba14d3685d",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_DecodedTiltedTorus.f3d",
+   "sha256": "eab4dfc8ba09376d101bac96e10f0c1bcd3e6d41792b25a22950bb466d2a2025",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_DecodedTorus.f3d",
+   "sha256": "1c942e58886b9a379ae99b97122a9033561a27ff718c6065ed744b3c0f1f09d1",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_PartialClosedControl.f3d",
+   "sha256": "ae97bf482e561df097f9c3392e688b169db9da053081635ed0ec07e119d14207",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_PartialClosedReemitted.f3d",
+   "sha256": "d7ce5074a9c8bf70aa53cc37591eccad0e1e276208cb1e3f61334fe1fe036ccf",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_RoundFilletsControl.f3d",
+   "sha256": "886d5a619d3a2b6c0c69b7060acfbfb3348444996baae31938028013996086fc",
+   "status": "refused",
+   "message": "Fusion entity profile does not qualify nonidentity matrices"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundBodies/vendor_RoundFilletsReemitted.f3d",
+   "sha256": "ef6d1be585032be8ee5b33d45bd75745c8f59d2a5f4123c702ba96a78628ae5f",
+   "status": "refused",
+   "message": "Fusion entity profile does not qualify nonidentity matrices"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundCarriers/PlacedTorus.f3d",
+   "sha256": "ff37d796759c85436ea3fabc292796960957d7f7101dde8b90e421edb6486282",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundCarriers/Sphere.f3d",
+   "sha256": "80e6d3614554dc350102129aba7393b0f9418610dc9e84e1405e645c5171f22b",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundCarriers/TiltedTorus.f3d",
+   "sha256": "0437023d7d78965a886958736df3484c76eb457fd165b61586d305fd7c308290",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/RoundCarriers/Torus.f3d",
+   "sha256": "736fd3dbdbb3a2eaff45a0dac83945e84aa03cc1e64f227cf1025aecb295cb48",
+   "status": "refused",
+   "message": "Unqualified Fusion native class or schema version"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/Box.f3d",
+   "sha256": "24f533c68c2efb8e718789b79a4c3494d504f8f224a040b527db806e9b4d7a45",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+   "sha256": "90abb8dce3e0cb95b397260eb21cd9b6641171bdd53a105658145197aef645da",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/Plane.f3d",
+   "sha256": "a81662369ddd6407b98975c335d6510b2eb9c7445214617e1df2e248c0d19612",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+   "sha256": "b15fbcda87ec38983c6aaea21b81beaaf2536c764b5b81262c8174687099e8ed",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBox.f3d",
+   "sha256": "d6af6d6a493d7ca8436c660bf1ba4be32d9d5d9f5c873f8582ba4002a43e4d21",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+   "sha256": "fb66fb0d81c7d602f008d8286a8bf01cc507c6b96a705e04a48d473c2be20486",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageAuthored.f3d",
+   "sha256": "741f856b8ffea6c39703413a5d8e0cdc1258b5b97408bef510ef420314bba4d3",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageNativePrimitive.f3d",
+   "sha256": "713b92c9599e2d2014da52e2494a28fe96efabd7367bbafcd2f41f163a9b7202",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxControl.f3d",
+   "sha256": "0d97f36de6a9b5478e67b59f3949064dece148109d8ada6dd111e8451b2e73a1",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialControl.f3d",
+   "sha256": "220bf1bf2cf47e0c4545811737eb5bb374cb3c264b65973b6c1df26828a7d1e1",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialReemitted.f3d",
+   "sha256": "f19d8d72b59552ef3b49a4443cabc7ce19812cafa4eb4ba9c588919617d1f742",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedControl.f3d",
+   "sha256": "6f644a8c2af88f6e21baca6e8c62b7e381bcadba4cf87957e87648873445e815",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedReemitted.f3d",
+   "sha256": "1f989fa783f6fae63a16c3c16172c5e5b9e9691cfcddc15342c10a4df9afd183",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedControl.f3d",
+   "sha256": "7d6d301d0e3b0b1d21611e3d4213acf8a83fb52c2688191b48d02ca95bc5283c",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedReemitted.f3d",
+   "sha256": "cc0efc9660ee2ca930dcb2be6e6d347c612e759faccc79aa01310995456b308a",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxReemitted.f3d",
+   "sha256": "347820f173a3f97bc200f6295439227af5209aeb5c576079dfff576eeb99e696",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedControl.f3d",
+   "sha256": "e3cdcf87445dd2bce8a742c1397692a29d887f348580b5e348a76cdae18ae923",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedReemitted.f3d",
+   "sha256": "94eb7df9ead0bf43dda9f10fc4adcb921d2f293c5557d905271f37f6a78535a2",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneControl.f3d",
+   "sha256": "8f102bcf26b59e4f49ab027bcf11021bdc7c535b1688125ebadab842862ebfc9",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialControl.f3d",
+   "sha256": "71d819200030dd4135ab93bf36033884eba88b2ec92174342ef0d74f2648992e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialReemitted.f3d",
+   "sha256": "a2b7b1e2be961ee5ef2f7bb33f5f7719dc622ed6120c8aacdc65f62bc635f4de",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedControl.f3d",
+   "sha256": "b2a7661e07216078072f69c17c13c5e09c0995cf2e582208a4bffb77b09d9031",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedReemitted.f3d",
+   "sha256": "1e8035ae9abee9a7ce2ffe1498f1abbb09bbe5c764ae1a28883aa55187f389b2",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedControl.f3d",
+   "sha256": "b5205f108e64e9e69a5729265b0ed1b375961f3adf9f6f7b7e81ac822ac042bd",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedReemitted.f3d",
+   "sha256": "c71ede66097f76c81ed201af52b2c050feb3b6ca4a4e140caad6b0e0916ab9a8",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneReemitted.f3d",
+   "sha256": "c49e50eb5739e0744cef976d3395ef4f90ca328e3811ad66a74511db858fc69b",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedControl.f3d",
+   "sha256": "5048fbd4615f9d447f6ca598641b985ee1ee38fc03226bbeb18806c3bed649c4",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedReemitted.f3d",
+   "sha256": "e22f558b0e49fac0f43e8d28e43703491a0aa5a54cdbaf1fdc1100f9029043ab",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxControl.f3d",
+   "sha256": "d286157665e8edca1c03800dcbc60d1b9c3799640e11b488347a4e7bd1fe78c8",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedControl.f3d",
+   "sha256": "ce06c8742d65b594df9a55e419110ca0f98ced1f6036d03d4a91217e933c68af",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedReemitted.f3d",
+   "sha256": "0c06ca647f2e70a7f554ddcfbc1396582694117b1b58fedc262a21a9b2bacc8a",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxReemitted.f3d",
+   "sha256": "31e89e33cf37d345ee0861b18ec41aa32c8e257758b5fff47eb0aa9ec45f0cf7",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/Contracting5deg.f3d",
+   "sha256": "7384dcc335a2263affe322338afa585e67be9604c228cc4e756255d47551ab03",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/Contracting5degReemitted.f3d",
+   "sha256": "7384dcc335a2263affe322338afa585e67be9604c228cc4e756255d47551ab03",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/Expanding7deg.f3d",
+   "sha256": "d7a548387c6cc6583204937b9010ba5c7c5c4c5e239c15750cb62dcec4a1bbbe",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/Expanding7degReemitted.f3d",
+   "sha256": "d7a548387c6cc6583204937b9010ba5c7c5c4c5e239c15750cb62dcec4a1bbbe",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/ZeroAngleLimit.f3d",
+   "sha256": "a533f88786f9a88fa561b30cdba654d1c7d520fdad1ffee8ee1e3ef2e8f472b1",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/ZeroAngleLimitReemitted.f3d",
+   "sha256": "a533f88786f9a88fa561b30cdba654d1c7d520fdad1ffee8ee1e3ef2e8f472b1",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/vendor_Contracting5deg27mmMinus3deg.f3d",
+   "sha256": "e4d3b31fc12af43ce8127e06cf33a7ff1a83c6b07fe605849ab1ec70d1144d2e",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/vendor_Expanding7deg27mmMinus3deg.f3d",
+   "sha256": "a407e64da8aa9e6b5653924b27d88130d46ceef51bb0d49daa61bf3e4bcf2156",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedAuthoring/vendor_ZeroAngleLimit27mmMinus3deg.f3d",
+   "sha256": "d96ff853c333cda39a51a73fa0bb3d799e404aa85504b42e06465e0c98bb8848",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/FreshFrame7deg.f3d",
+   "sha256": "c04effe929934c3bb41353f2ae96c6b7e7f1fe01a2bb5ed28ea093e2cbd83499",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/HoldoutFrame5deg.f3d",
+   "sha256": "171946a5d1d1f9e467bcf0206a2a389607be988cab890a24246580f64c065464",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/ScaledFrame7deg.f3d",
+   "sha256": "ae816c5e7d3bfc9e0e6546d5f5a5f853d33dd4785e54b3aaabf3bd141cf590dc",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/SourceFrame7deg.f3d",
+   "sha256": "de84079a9a03e226c51900bf3486edcbd425c20bf6b1a3084449a79862f2df69",
+   "act_slack_bytes": 0,
+   "act_slack_sha256": null,
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/vendor_FreshFrame7deg27mmMinus3deg.f3d",
+   "sha256": "1b01b573681e3f17f6d3ec2bfdf70ed96d3904ee1de69f8084b4122d25adeb96",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "f44b6f48ee1c4c4ccbdba60aab4e4aa2292231ecbe1302da92643dd1699f43dd",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/vendor_HoldoutFrame5deg27mmMinus3deg.f3d",
+   "sha256": "dbf28a9ad652a352a8e6be020fe3e5e2c393c8fe51d67c8c6b3002b34b9d18db",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "ca2fd00fa001190744c15c317643ab092e7048ce086a243e2be9437c898de1bb",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/vendor_ScaledFrame7deg27mmMinus3deg.f3d",
+   "sha256": "5677eb45a4fdc638bfb274490a1d479cff9a47dde6ffa404a6d69ae7a76a43b8",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "96a296d224f285c67bee93c30f8a309157f0daa35dc5b87e410b78630a09cfc7",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TaperedHistory/vendor_SourceFrame7deg27mmMinus3deg.f3d",
+   "sha256": "8a66f9b195ee46e819fb813cb69e4f416f0acda3c4952c7638e903be91fc4ddb",
+   "act_slack_bytes": 2,
+   "act_slack_sha256": "4cf78defbc6e8d4befcdbf7504db6fafac5d86ab1325713b9e66f3486d268f1f",
+   "model_equal": true,
+   "streams_byte_exact": true,
+   "parts_changed": [
+    "Breps.BlobParts",
+    "ProteinAssets.BlobParts"
+   ],
+   "status": "read"
+  }
+ ]
+}

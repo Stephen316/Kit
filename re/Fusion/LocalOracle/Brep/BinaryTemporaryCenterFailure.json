@@ -1,0 +1,33 @@
+{
+  "fusion_version": "2706.1.17",
+  "source_sha256": "e543149d548412263728f3c33cabf115badbbc459d43e5a124a8df8f62d2e407",
+  "scope": "Independent generated SMB cylinder through TemporaryBRepManager.createFromFile, geometry inspection, native save and reopen; no parametric feature history is generated",
+  "documents_before": 1,
+  "observations": [
+    {
+      "is_solid": true,
+      "faces": 3,
+      "edges": 2,
+      "vertices": 2,
+      "volume_cm3": 7.7754418176350715,
+      "center_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "min_cm": [
+        0.5,
+        -4.5,
+        0.5
+      ],
+      "max_cm": [
+        3.5,
+        -1.5,
+        1.6
+      ]
+    }
+  ],
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/AcceptTemporaryBrep.py\", line 46, in <module>\n    report[\"temporary\"] = inspect_body(bodies.item(0))\n                          ~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"re/Fusion/LocalOracle/AcceptTemporaryBrep.py\", line 37, in inspect_body\n    raise RuntimeError(\"Generated cylinder spatial extent differs: \" + name)\nRuntimeError: Generated cylinder spatial extent differs: center_cm\n",
+  "documents_after": 1
+}

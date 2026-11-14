@@ -1,0 +1,65 @@
+[
+  {
+    "ClassGuid": "8D398934-5EB0-461B-A8F1-BEC91F2BD020",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 2,
+    "Members": [
+      {"FieldName": "isXRefReadonly", "ValueType": {"KindValue": "bool"}, "IsSaved": true},
+      {"FieldName": "rOwnerComponent", "ValueType": {"KindValue": "ref", "ClassGuid": "E03784ED-5E19-4E14-B9F2-3B07017018CD"}, "IsSaved": true}
+    ],
+    "IsValue": false,
+    "NameValue": "XRefManager",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "A1F7759C-4C5A-410B-ADC7-305AB1E0AF2E",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {"FieldName": "ACTRefdTableEntries", "ValueType": {"KindValue": "map", "Arguments": [{"KindValue": "utf16"}, {"KindValue": "struct", "Members": [{"FieldName": "trackedTypes", "ValueType": {"KindValue": "set", "Arguments": [{"KindValue": "ascii"}]}, "IsSaved": true}, {"FieldName": "referenceCount", "ValueType": {"KindValue": "u32"}, "IsSaved": true}]}]}, "IsSaved": true},
+      {"FieldName": "CachedRevGuid", "ValueType": {"KindValue": "utf16"}, "IsSaved": true},
+      {"FieldName": "RefdAsset", "ValueType": {"KindValue": "u64"}, "IsSaved": false},
+      {"FieldName": "RefdAssetGuid", "ValueType": {"KindValue": "utf16"}, "IsSaved": true},
+      {"FieldName": "RefdDocLinkName", "ValueType": {"KindValue": "utf16"}, "IsSaved": true},
+      {"FieldName": "RevisionGuidForChangeType", "ValueType": {"KindValue": "map", "Arguments": [{"KindValue": "ascii"}, {"KindValue": "utf16"}]}, "IsSaved": true}
+    ],
+    "IsValue": false,
+    "NameValue": "ACTRefdTable",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "428B5C6E-8F2C-42D7-83B7-2C09BD91F83E",
+    "BaseGuid": "54F9ACE8-B5B8-4A6E-B582-64F629511DE4",
+    "SchemaVersion": 3,
+    "Members": [
+      {"FieldName": "missingCompInstances", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "ref", "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"}]}, "IsSaved": true},
+      {"FieldName": "refedDocAssetsHashCache", "ValueType": {"KindValue": "u64"}, "IsSaved": true}
+    ],
+    "IsValue": false,
+    "NameValue": "DcXRefPCIFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "54F9ACE8-B5B8-4A6E-B582-64F629511DE4",
+    "BaseGuid": "BADF6309-013D-48F0-9AB0-0C05FB086CF4",
+    "SchemaVersion": 2,
+    "Members": [
+      {"FieldName": "occTransformMap", "ValueType": {"KindValue": "map", "Arguments": [{"KindValue": "ref", "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957"}, {"KindValue": "matrix", "HasMatrixRows": true}]}, "IsSaved": true},
+      {"FieldName": "rComponentInstance", "ValueType": {"KindValue": "ref", "ClassGuid": "2D6E13A1-BBEF-4FB3-9277-00D99F634136"}, "IsSaved": true},
+      {"FieldName": "showInBrowser", "ValueType": {"KindValue": "bool"}, "IsSaved": true},
+      {"FieldName": "transform", "ValueType": {"KindValue": "matrix", "HasMatrixRows": true}, "IsSaved": true}
+    ],
+    "IsValue": false,
+    "NameValue": "DcPlaceComponentInstance",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "BADF6309-013D-48F0-9AB0-0C05FB086CF4",
+    "BaseGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DcAssemblyFeature",
+    "ClassSpace": "Fusion"
+  }
+]

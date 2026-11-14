@@ -1,0 +1,988 @@
+[
+  {
+    "source": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+    "sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+    "refs": [
+      {
+        "record": 311,
+        "class": "D3937028-C20C-4E65-B010-94AD418A5C20",
+        "field": "physicalMaterial",
+        "value": {
+          "Groups": [
+            {
+              "ClassGuid": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+              "Fields": [
+                {
+                  "FieldName": "ProteinAssetManager",
+                  "Value": {
+                    "ObjectId": 1
+                  }
+                },
+                {
+                  "FieldName": "assetReference",
+                  "Value": "1F0C32AB-3C6B-E6B9-D51F-FD7C4CBCBC66"
+                },
+                {
+                  "FieldName": "libraryID",
+                  "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C"
+                },
+                {
+                  "FieldName": "name",
+                  "Value": ""
+                },
+                {
+                  "FieldName": "proteinMaterialID",
+                  "Value": "PrismMaterial-018"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "record": 311,
+        "class": "D3937028-C20C-4E65-B010-94AD418A5C20",
+        "field": "visualMaterial",
+        "value": {
+          "Groups": [
+            {
+              "ClassGuid": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+              "Fields": [
+                {
+                  "FieldName": "CustomizedColor",
+                  "Value": {
+                    "Fields": [
+                      {
+                        "FieldName": "red",
+                        "Value": 0.0
+                      },
+                      {
+                        "FieldName": "green",
+                        "Value": 0.0
+                      },
+                      {
+                        "FieldName": "blue",
+                        "Value": 0.0
+                      },
+                      {
+                        "FieldName": "alpha",
+                        "Value": 1.0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "FieldName": "ProteinAssetManager",
+                  "Value": {
+                    "ObjectId": 1
+                  }
+                },
+                {
+                  "FieldName": "UseCustomizedColor",
+                  "Value": false
+                },
+                {
+                  "FieldName": "assetReference",
+                  "Value": "2D6BCC68-0904-BF00-D2D5-812C14591A46"
+                },
+                {
+                  "FieldName": "libraryID",
+                  "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C"
+                },
+                {
+                  "FieldName": "name",
+                  "Value": ""
+                },
+                {
+                  "FieldName": "proteinMaterialID",
+                  "Value": "PrismMaterial-018_physmat_aspects:Prism-256"
+                },
+                {
+                  "FieldName": "proteinMaterialRotation",
+                  "Value": 0.0
+                },
+                {
+                  "FieldName": "proteinMaterialScale",
+                  "Value": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "assets": [
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.fed8c19c-aa11-47f9-bcc5-0f6df728f5d1.protein",
+        "instance": "1F0C32AB-3C6B-E6B9-D51F-FD7C4CBCBC66",
+        "definition": "PrismMaterial-018",
+        "role": "physicalmaterial",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "PrismMaterial-018",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.fed8c19c-aa11-47f9-bcc5-0f6df728f5d1.protein",
+        "instance": "2D6BCC68-0904-BF00-D2D5-812C14591A46",
+        "definition": "Generic",
+        "role": "materialappearance",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "314DE259-5443-4621-BFBD-1730C6CC9AE9",
+            "Connections": null
+          },
+          {
+            "FieldName": "ExchangeGUID",
+            "Value": "",
+            "Connections": null
+          },
+          {
+            "FieldName": "color_by_object",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Shared_Asset",
+            "Value": 0,
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Tint_color",
+            "Value": {
+              "RedValue": 0.315,
+              "GreenValue": 0.315,
+              "BlueValue": 0.315,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Tint_color_colorspace",
+            "Value": 2,
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Tint_toggle",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_details",
+            "Value": true,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_distance",
+            "Value": 4.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_on",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_samples",
+            "Value": 16,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_backface_cull",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_bump_amount",
+            "Value": 0.3,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_bump_map",
+            "Value": {
+              "RedValue": 0.0,
+              "GreenValue": 0.0,
+              "BlueValue": 0.0,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_cutout_opacity",
+            "Value": 1.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_diffuse",
+            "Value": {
+              "RedValue": 0.626209681225,
+              "GreenValue": 0.626209681225,
+              "BlueValue": 0.626209681225,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_diffuse_colorspace",
+            "Value": 2,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_diffuse_image_fade",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_glossiness",
+            "Value": 0.7015873193740845,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_is_metal",
+            "Value": true,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refl_depth",
+            "Value": 0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_reflection_glossy_samples",
+            "Value": 12,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_reflectivity_at_0deg",
+            "Value": 0.6262096762657166,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_reflectivity_at_90deg",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refr_depth",
+            "Value": -1,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refraction_glossy_samples",
+            "Value": 12,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refraction_index",
+            "Value": 1.4,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refraction_translucency_weight",
+            "Value": 0.5,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_roundcorners_allow_different_materials",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_roundcorners_radius",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_color_temperature",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_filter_map",
+            "Value": {
+              "RedValue": 1.0,
+              "GreenValue": 1.0,
+              "BlueValue": 1.0,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_filter_map_colorspace",
+            "Value": 2,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_luminance",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_transparency",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_transparency_image_fade",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "mode",
+            "Value": 4,
+            "Connections": null
+          },
+          {
+            "FieldName": "revision",
+            "Value": 1,
+            "Connections": null
+          },
+          {
+            "FieldName": "swatch",
+            "Value": "Swatch-Torus",
+            "Connections": null
+          },
+          {
+            "FieldName": "version",
+            "Value": 4,
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "BaseSchema",
+            "Value": "GenericSchema",
+            "Connections": null
+          },
+          {
+            "FieldName": "Hidden",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "UIName",
+            "Value": "Generic",
+            "Connections": null
+          },
+          {
+            "FieldName": "VersionGUID",
+            "Value": "Generic",
+            "Connections": null
+          },
+          {
+            "FieldName": "category",
+            "Value": [
+              "Default",
+              "Miscellaneous"
+            ],
+            "Connections": null
+          },
+          {
+            "FieldName": "description",
+            "Value": "Generic material.",
+            "Connections": null
+          },
+          {
+            "FieldName": "keyword",
+            "Value": [
+              "materials",
+              "generic"
+            ],
+            "Connections": null
+          },
+          {
+            "FieldName": "thumbnail",
+            "Value": [
+              "Mats/Generic/generic.png"
+            ],
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.fed8c19c-aa11-47f9-bcc5-0f6df728f5d1.protein",
+        "instance": "2D6BCC68-0904-BF00-D2D5-812C14591A46_Post2015",
+        "definition": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "role": "materialappearance",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Prism-256",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.fed8c19c-aa11-47f9-bcc5-0f6df728f5d1.protein",
+        "instance": "3D9B71CA-0167-A46D-02CC-B1745FBED680",
+        "definition": "PrismMaterial-018_physmat_aspects_1:PhysicalMetal_124",
+        "role": "Structural",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "PhysicalMetal_124",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.fed8c19c-aa11-47f9-bcc5-0f6df728f5d1.protein",
+        "instance": "B3D65E72-F609-5AC8-F748-61FECC8AAF31",
+        "definition": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "role": "materialappearance",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Prism-256",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.fed8c19c-aa11-47f9-bcc5-0f6df728f5d1.protein",
+        "instance": "CAF5CB64-C631-E6E7-B098-0C951A673E9E",
+        "definition": "PrismMaterial-018_physmat_aspects_2:ThermalSolid-092-2",
+        "role": "Thermal",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "ThermalSolid-092-2",
+            "Connections": null
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "source": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionCuboid37mm.f3d",
+    "sha256": "62c03b7aa11ce2c79193e51376e4405e6bbfd34aa5ab8097b72043ad49f38683",
+    "refs": [
+      {
+        "record": 1140,
+        "class": "D3937028-C20C-4E65-B010-94AD418A5C20",
+        "field": "physicalMaterial",
+        "value": {
+          "Groups": [
+            {
+              "ClassGuid": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+              "Fields": [
+                {
+                  "FieldName": "ProteinAssetManager",
+                  "Value": {
+                    "ObjectId": 1001
+                  }
+                },
+                {
+                  "FieldName": "assetReference",
+                  "Value": "1cb32570-2829-4b83-91b8-83225d0b1671"
+                },
+                {
+                  "FieldName": "libraryID",
+                  "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e"
+                },
+                {
+                  "FieldName": "name",
+                  "Value": ""
+                },
+                {
+                  "FieldName": "proteinMaterialID",
+                  "Value": "dc00ec9f-25d5-4053-8ef4-dd7edafcdf85"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "record": 1140,
+        "class": "D3937028-C20C-4E65-B010-94AD418A5C20",
+        "field": "visualMaterial",
+        "value": {
+          "Groups": [
+            {
+              "ClassGuid": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+              "Fields": [
+                {
+                  "FieldName": "CustomizedColor",
+                  "Value": {
+                    "Fields": [
+                      {
+                        "FieldName": "red",
+                        "Value": 0.800000011920929
+                      },
+                      {
+                        "FieldName": "green",
+                        "Value": 0.800000011920929
+                      },
+                      {
+                        "FieldName": "blue",
+                        "Value": 0.800000011920929
+                      },
+                      {
+                        "FieldName": "alpha",
+                        "Value": 1.0
+                      }
+                    ]
+                  }
+                },
+                {
+                  "FieldName": "ProteinAssetManager",
+                  "Value": {
+                    "ObjectId": 1001
+                  }
+                },
+                {
+                  "FieldName": "UseCustomizedColor",
+                  "Value": false
+                },
+                {
+                  "FieldName": "assetReference",
+                  "Value": "ba2fe107-69a0-4d8d-8c84-4bc10d8d88c5"
+                },
+                {
+                  "FieldName": "libraryID",
+                  "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e"
+                },
+                {
+                  "FieldName": "name",
+                  "Value": ""
+                },
+                {
+                  "FieldName": "proteinMaterialID",
+                  "Value": "88e89dff-3fe5-4b92-ba1e-5acb244a8c7d"
+                },
+                {
+                  "FieldName": "proteinMaterialRotation",
+                  "Value": 0.0
+                },
+                {
+                  "FieldName": "proteinMaterialScale",
+                  "Value": 1.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "assets": [
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.d3c4722b-1523-4121-849d-c5ed2f8d1726.protein",
+        "instance": "1cb32570-2829-4b83-91b8-83225d0b1671",
+        "definition": "dc00ec9f-25d5-4053-8ef4-dd7edafcdf85",
+        "role": "physicalmaterial",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Kit Generic Material",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.d3c4722b-1523-4121-849d-c5ed2f8d1726.protein",
+        "instance": "3BFC33A0-1121-E099-C221-DA8E595309E3",
+        "definition": "6d18407e-42fc-4cc6-8d5d-8d3852439d24",
+        "role": "Structural",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Kit Generic Material Structural",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.d3c4722b-1523-4121-849d-c5ed2f8d1726.protein",
+        "instance": "485BE7FF-081E-299B-0C5D-B474E951543E",
+        "definition": "e266eb79-54c9-4633-b130-cac052804a0d",
+        "role": "Thermal",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Kit Generic Material Thermal",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.d3c4722b-1523-4121-849d-c5ed2f8d1726.protein",
+        "instance": "990B0C88-BAEC-CD9B-BFB3-56900AC7E46C",
+        "definition": "88e89dff-3fe5-4b92-ba1e-5acb244a8c7d",
+        "role": "materialappearance",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Kit Generic Material Appearance",
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.d3c4722b-1523-4121-849d-c5ed2f8d1726.protein",
+        "instance": "ba2fe107-69a0-4d8d-8c84-4bc10d8d88c5",
+        "definition": "Generic",
+        "role": "materialappearance",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "314DE259-5443-4621-BFBD-1730C6CC9AE9",
+            "Connections": null
+          },
+          {
+            "FieldName": "ExchangeGUID",
+            "Value": "",
+            "Connections": null
+          },
+          {
+            "FieldName": "color_by_object",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Shared_Asset",
+            "Value": 0,
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Tint_color",
+            "Value": {
+              "RedValue": 0.315,
+              "GreenValue": 0.315,
+              "BlueValue": 0.315,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Tint_color_colorspace",
+            "Value": 2,
+            "Connections": null
+          },
+          {
+            "FieldName": "common_Tint_toggle",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_details",
+            "Value": true,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_distance",
+            "Value": 4.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_on",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_ao_samples",
+            "Value": 16,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_backface_cull",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_bump_amount",
+            "Value": 0.3,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_bump_map",
+            "Value": {
+              "RedValue": 0.0,
+              "GreenValue": 0.0,
+              "BlueValue": 0.0,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_cutout_opacity",
+            "Value": 1.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_diffuse",
+            "Value": {
+              "RedValue": 0.8,
+              "GreenValue": 0.8,
+              "BlueValue": 0.8,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_diffuse_colorspace",
+            "Value": 2,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_diffuse_image_fade",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_glossiness",
+            "Value": 1.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_is_metal",
+            "Value": true,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refl_depth",
+            "Value": 0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_reflection_glossy_samples",
+            "Value": 12,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_reflectivity_at_0deg",
+            "Value": 0.800000011920929,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_reflectivity_at_90deg",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refr_depth",
+            "Value": -1,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refraction_glossy_samples",
+            "Value": 12,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refraction_index",
+            "Value": 1.4,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_refraction_translucency_weight",
+            "Value": 0.5,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_roundcorners_allow_different_materials",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_roundcorners_radius",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_color_temperature",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_filter_map",
+            "Value": {
+              "RedValue": 1.0,
+              "GreenValue": 1.0,
+              "BlueValue": 1.0,
+              "AlphaValue": 1.0
+            },
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_filter_map_colorspace",
+            "Value": 2,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_self_illum_luminance",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_transparency",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "generic_transparency_image_fade",
+            "Value": 0.0,
+            "Connections": null
+          },
+          {
+            "FieldName": "mode",
+            "Value": 4,
+            "Connections": null
+          },
+          {
+            "FieldName": "revision",
+            "Value": 1,
+            "Connections": null
+          },
+          {
+            "FieldName": "swatch",
+            "Value": "",
+            "Connections": null
+          },
+          {
+            "FieldName": "version",
+            "Value": 4,
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "BaseSchema",
+            "Value": "GenericSchema",
+            "Connections": null
+          },
+          {
+            "FieldName": "Hidden",
+            "Value": false,
+            "Connections": null
+          },
+          {
+            "FieldName": "UIName",
+            "Value": "Generic",
+            "Connections": null
+          },
+          {
+            "FieldName": "VersionGUID",
+            "Value": "Generic",
+            "Connections": null
+          },
+          {
+            "FieldName": "category",
+            "Value": [
+              "Default",
+              "Miscellaneous"
+            ],
+            "Connections": null
+          },
+          {
+            "FieldName": "description",
+            "Value": "Generic material.",
+            "Connections": null
+          },
+          {
+            "FieldName": "keyword",
+            "Value": [
+              "materials",
+              "generic"
+            ],
+            "Connections": null
+          },
+          {
+            "FieldName": "thumbnail",
+            "Value": [
+              "Mats/Generic/generic.png"
+            ],
+            "Connections": null
+          }
+        ]
+      },
+      {
+        "package": "ProteinAssets.BlobParts/ProteinAsset.d3c4722b-1523-4121-849d-c5ed2f8d1726.protein",
+        "instance": "ba2fe107-69a0-4d8d-8c84-4bc10d8d88c5_Post2015",
+        "definition": "88e89dff-3fe5-4b92-ba1e-5acb244a8c7d",
+        "role": "materialappearance",
+        "fields": [
+          {
+            "FieldName": "AssetLibID",
+            "Value": "39c14688-429b-4f9f-a6d7-a5ae18fc6e8e",
+            "Connections": null
+          }
+        ],
+        "definitions": [
+          {
+            "FieldName": "UIName",
+            "Value": "Kit Generic Material Appearance",
+            "Connections": null
+          }
+        ]
+      }
+    ]
+  }
+]

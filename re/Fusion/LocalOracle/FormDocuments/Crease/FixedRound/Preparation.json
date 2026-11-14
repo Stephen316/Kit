@@ -1,0 +1,252 @@
+{
+ "scope": "Fixed-point probe: closed boxes with crease junctions on the top face",
+ "report": "FixedRound/Probe.json",
+ "python": "3.14.7",
+ "cages": [
+  {
+   "cage": "LTurn",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/LTurn.tsm",
+   "tsm_sha256": "7065309b3832c211fbfa4a3cbd2c9620580adf97ed1ccef5730dc328c5aec63a",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     3,
+     3,
+     1
+    ],
+    "top_creases": [
+     [
+      [
+       1,
+       0
+      ],
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      [
+       1,
+       2
+      ],
+      [
+       3,
+       2
+      ]
+     ]
+    ],
+    "listed_top": [],
+    "creased_edges": 32,
+    "crease_vertices": 10
+   }
+  },
+  {
+   "cage": "LTurnWide",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/LTurnWide.tsm",
+   "tsm_sha256": "9c13d8557dd0f038828c91fc048be33c944c46c82ba0d9d1b007654c828585c4",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     4,
+     4,
+     1
+    ],
+    "top_creases": [
+     [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       2
+      ]
+     ],
+     [
+      [
+       2,
+       2
+      ],
+      [
+       4,
+       2
+      ]
+     ]
+    ],
+    "listed_top": [],
+    "creased_edges": 40,
+    "crease_vertices": 10
+   }
+  },
+  {
+   "cage": "TJunction",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/TJunction.tsm",
+   "tsm_sha256": "3d4c1181ec258ebec2e1d51d900f9b7ce6ffb3e7c7f9b237d4f9724ec04c58d1",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     2,
+     2,
+     1
+    ],
+    "top_creases": [
+     [
+      [
+       1,
+       0
+      ],
+      [
+       1,
+       2
+      ]
+     ],
+     [
+      [
+       1,
+       1
+      ],
+      [
+       2,
+       1
+      ]
+     ]
+    ],
+    "listed_top": [],
+    "creased_edges": 23,
+    "crease_vertices": 12
+   }
+  },
+  {
+   "cage": "TJunctionWide",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/TJunctionWide.tsm",
+   "tsm_sha256": "f17c7022f95d2ff2f1f252cb2a4029925af364157ec8b16f2d5d53620272f99d",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     4,
+     4,
+     1
+    ],
+    "top_creases": [
+     [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       4
+      ]
+     ],
+     [
+      [
+       2,
+       2
+      ],
+      [
+       4,
+       2
+      ]
+     ]
+    ],
+    "listed_top": [],
+    "creased_edges": 42,
+    "crease_vertices": 12
+   }
+  },
+  {
+   "cage": "Cross",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/Cross.tsm",
+   "tsm_sha256": "47ac244e7cfc4397cd7067b2124f17fa497536fa2f23a7a1f6de93f15a15cd44",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     4,
+     4,
+     1
+    ],
+    "top_creases": [
+     [
+      [
+       2,
+       0
+      ],
+      [
+       2,
+       4
+      ]
+     ],
+     [
+      [
+       0,
+       2
+      ],
+      [
+       4,
+       2
+      ]
+     ]
+    ],
+    "listed_top": [],
+    "creased_edges": 44,
+    "crease_vertices": 13
+   }
+  },
+  {
+   "cage": "ListedFlat",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/ListedFlat.tsm",
+   "tsm_sha256": "2be08fd8417bde587476ae769646bf53270174e0b90bfc7f05084dd9806069b3",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     2,
+     2,
+     1
+    ],
+    "top_creases": [],
+    "listed_top": [
+     [
+      1,
+      1
+     ]
+    ],
+    "creased_edges": 20,
+    "crease_vertices": 9
+   }
+  },
+  {
+   "cage": "ListedLine",
+   "tsm_file": "re/Fusion/LocalOracle/FormDocuments/Crease/FixedRound/ListedLine.tsm",
+   "tsm_sha256": "14fcf38f569b161d81cff4e8c1311a5e45a73165389687ca4b6b73e4737a5a9c",
+   "design": {
+    "layout": "fixed point box",
+    "quads": [
+     2,
+     2,
+     1
+    ],
+    "top_creases": [
+     [
+      [
+       1,
+       0
+      ],
+      [
+       1,
+       2
+      ]
+     ]
+    ],
+    "listed_top": [
+     [
+      1,
+      1
+     ]
+    ],
+    "creased_edges": 22,
+    "crease_vertices": 11
+   }
+  }
+ ]
+}

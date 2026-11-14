@@ -1,0 +1,233 @@
+{
+  "source": "re/Fusion/LocalOracle/Features/extrude_07mm.entities.json",
+  "records": [
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 239,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Na::ET::SketchRegionRef",
+        "segment": 39,
+        "rRecipe": {
+          "segId": 39,
+          "entityId": 242,
+          "rootId": ""
+        },
+        "rScope": [
+          {
+            "assetId": "1b93b4dd-3ffe-45e6-83b7-1f2fa4445f45",
+            "scopeEntityIdentifier": "203",
+            "scopeIdType": 1,
+            "segmentId": 0
+          }
+        ],
+        "caches": [
+          {
+            "segId": 39,
+            "entityId": 278,
+            "rootId": ""
+          }
+        ],
+        "refBodies": [],
+        "trackingType": 65,
+        "updateFlag": 0,
+        "xRefAssetHash": 0,
+        "birthday": 260,
+        "computeTime": 0.00028225,
+        "firstBirthday": 260,
+        "status": {
+          "segId": 39,
+          "entityId": 241,
+          "rootId": ""
+        },
+        "isActive": true,
+        "isEdited": false,
+        "isEliminated": false,
+        "rDynamicUpdateData": {
+          "segId": 39,
+          "entityId": 240,
+          "rootId": ""
+        },
+        "rGroupRepresentative": {},
+        "rParentFeature": {
+          "segId": 39,
+          "entityId": 235,
+          "rootId": ""
+        },
+        "rParent": {
+          "segId": 39,
+          "entityId": 27,
+          "rootId": ""
+        }
+      }
+    },
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 278,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Ns::EntityTracking::ETCachedTopology",
+        "segment": 39,
+        "cachedEntityId": 4,
+        "scope": {
+          "assetId": "1b93b4dd-3ffe-45e6-83b7-1f2fa4445f45",
+          "scopeEntityIdentifier": "77dc8960-634d-4445-a9d9-c411a1579607",
+          "scopeIdType": 2,
+          "segmentId": 0
+        },
+        "progenitor": {}
+      }
+    },
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 280,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Ns::EntityTracking::ETCachedTopology",
+        "segment": 39,
+        "cachedEntityId": 5,
+        "scope": {
+          "assetId": "1b93b4dd-3ffe-45e6-83b7-1f2fa4445f45",
+          "scopeEntityIdentifier": "77dc8960-634d-4445-a9d9-c411a1579607",
+          "scopeIdType": 2,
+          "segmentId": 0
+        },
+        "progenitor": {}
+      }
+    },
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 249,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Na::DesignCapture::DcExtrudeToolBody",
+        "segment": 39,
+        "rExtrudeFeature": {
+          "segId": 39,
+          "entityId": 235,
+          "rootId": ""
+        },
+        "toolbodyCaches": [
+          {
+            "segId": 39,
+            "entityId": 280,
+            "rootId": ""
+          }
+        ],
+        "birthday": 260,
+        "computeTime": 0.000348792,
+        "firstBirthday": 260,
+        "status": {
+          "segId": 39,
+          "entityId": 251,
+          "rootId": ""
+        },
+        "isActive": true,
+        "isEdited": false,
+        "isEliminated": false,
+        "rDynamicUpdateData": {
+          "segId": 39,
+          "entityId": 250,
+          "rootId": ""
+        },
+        "rGroupRepresentative": {},
+        "rParentFeature": {
+          "segId": 39,
+          "entityId": 235,
+          "rootId": ""
+        },
+        "rParent": {
+          "segId": 39,
+          "entityId": 27,
+          "rootId": ""
+        }
+      }
+    },
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 25,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Ns::Entity",
+        "segment": 39,
+        "addressOfTopEntities": [
+          52756598272,
+          52718742016,
+          52718736896
+        ],
+        "nextId": 6,
+        "rBodies": {},
+        "rBody": {},
+        "scanOrderIndex": [
+          5,
+          4,
+          3
+        ]
+      }
+    },
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 24,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Ns::BREP::BRepSerializer",
+        "segment": 39,
+        "rTopEntityPIDGenerator": {
+          "segId": 39,
+          "entityId": 25,
+          "rootId": ""
+        },
+        "mapBodyId": [],
+        "rBodies": {
+          "segId": 39,
+          "entityId": 22,
+          "rootId": ""
+        },
+        "rBody": {},
+        "partName": "BREP.6b7f67e0-2eb6-4db1-9a3c-b5d54f9a9fe5.smb"
+      }
+    },
+    {
+      "identity": {
+        "segId": 39,
+        "entityId": 22,
+        "rootId": ""
+      },
+      "properties": {
+        "interfaceId": "Ns::BREP::Bodies",
+        "segment": 39,
+        "isAlterateBodies": false,
+        "creationIndex": 0,
+        "groupChildren": [],
+        "isVisible": true,
+        "rPassiveIdGenerator": {},
+        "rBRepSerializer": {
+          "segId": 39,
+          "entityId": 24,
+          "rootId": ""
+        },
+        "isSelectable": true,
+        "rSurfaceGroups": {},
+        "rClientObject": {},
+        "children": [],
+        "rParent": {
+          "segId": 39,
+          "entityId": 3,
+          "rootId": ""
+        }
+      }
+    }
+  ]
+}

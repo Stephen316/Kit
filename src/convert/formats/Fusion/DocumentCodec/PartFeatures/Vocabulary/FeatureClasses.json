@@ -1,0 +1,3543 @@
+[
+  {
+    "ClassGuid": "0D383DB2-A6E5-48C7-82D5-ED3DD0C275C5",
+    "BaseGuid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "bIsComputeChain",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bflip",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "chamferAngleParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "chamferDistanceOneParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "chamferDistanceTwoParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "chamferType",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rInputEdgesRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rInputFacesRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rInputFeatureRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "selIndex",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcChamferData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "0F97B226-5384-46FD-8A4D-FE418E735F8E",
+    "BaseGuid": "",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": true,
+    "NameValue": "AcGeLineSeg3dValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "11F1A5CE-2B57-4476-8480-6994621493C9",
+    "BaseGuid": "4F7231DF-25A3-48AB-9327-8D79B19E4B4D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DcCircularPattern",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "162D3DA8-6A30-4BFE-BC78-698FA32D28DC",
+    "BaseGuid": "",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "actDataForCIs",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "4624CDED-E181-493B-BC82-3372738D683C"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "actRef",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "deepTracking",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "path",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "4C835764-5BAB-4421-B5D2-06015BEF6EB2"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "topCompActRef",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "OccurrenceACTRefValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "1C037A07-4A15-43F6-ABFC-BBF61B9038D4",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 7,
+    "Members": [
+      {
+        "FieldName": "HoleTapType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bInside1",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bInside2",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bThroughAll",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bUseFastener",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "extendFaceOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "fastenerFamily",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "fastenerFit",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "fastenerSize",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "fastenerType",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "holeType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isFlipDir",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "originRefType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "origins2IDs",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+            },
+            {
+              "KindValue": "u64"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rCBDepth",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rCBDiameter",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rCSAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rCSDiameter",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rDRMultipleOrigins",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rDRNormal",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rHoleDepth",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rHoleDiameter",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rHoleToolBody",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "3CDCCC70-F7AD-47C4-9112-38A52DD802D8"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rOriginGeomRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRefDim1",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRefDim2",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRefObj1",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRefObj2",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rThreadFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "584D9526-EF22-4F6F-9FE1-5FCF1F3CE575"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rTipAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rToEntityRefs",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "taperDepthTol",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcHoleFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2A94257F-2020-4B19-9A68-103A2672F1B7",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "booleanOperation",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "deletedBodies",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "4A782808-FBDD-4351-A10A-F7AE5693D330"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isKeepTools",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isNewComponent",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "occDR2FeatIdMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957"
+            },
+            {
+              "KindValue": "u64"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "toolBodiesDateRefs",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcCombineFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 5,
+    "Members": [
+      {
+        "FieldName": "OccurrenceACTRef",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "162D3DA8-6A30-4BFE-BC78-698FA32D28DC"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bEnableACTTracking",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "cachedOccurrence",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "549FBB80-B890-473E-A5C0-415D3D9BF4E6"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "cachedTransform",
+        "ValueType": {
+          "KindValue": "matrix",
+          "HasMatrixRows": true
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "contextFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "428956BD-1956-4BAF-A4F8-D01D0C465FF1"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "parentFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "recipe",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "70F5E801-1E8E-436E-8A09-36487F8A2859"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "referenceType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "updateFlag",
+        "ValueType": {
+          "KindValue": "u16"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "OccurrenceDataRef",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2F3200BA-FDFB-48C6-97D4-71A4A0D86190",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "mappingPoints",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "struct",
+              "Members": [
+                {
+                  "FieldName": "x",
+                  "ValueType": {
+                    "KindValue": "f64"
+                  },
+                  "IsSaved": true
+                },
+                {
+                  "FieldName": "y",
+                  "ValueType": {
+                    "KindValue": "f64"
+                  },
+                  "IsSaved": true
+                },
+                {
+                  "FieldName": "z",
+                  "ValueType": {
+                    "KindValue": "f64"
+                  },
+                  "IsSaved": true
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "paramOnEdges",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "pair",
+              "Arguments": [
+                {
+                  "KindValue": "f64"
+                },
+                {
+                  "KindValue": "sequence",
+                  "Arguments": [
+                    {
+                      "KindValue": "sketch-tag"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rParentFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B6678572-C095-4DD1-9348-614677DD0B4A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSectionRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "sectionType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcLoftSectionData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "3A811FA5-5AF2-4A00-8758-104C9D09C5C4",
+    "BaseGuid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "guideFaceProg",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "pathProg",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "profileProg",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "vertexProg",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SweepFaceProgenitor",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99",
+    "BaseGuid": "",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "actRefdTable",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A1F7759C-4C5A-410B-ADC7-305AB1E0AF2E"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "changeTypesToTrack",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ascii"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "crossAsset",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "owningEntity",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rActData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "19E286C3-1C58-4F13-8050-3F00EC2F1562"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "refdEntity",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "ACTRefValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "3CDCCC70-F7AD-47C4-9112-38A52DD802D8",
+    "BaseGuid": "60F291CB-499B-4AB1-B0E5-340368671724",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rHoleFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "1C037A07-4A15-43F6-ABFC-BBF61B9038D4"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcHoleToolBody",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "3CE194E6-A591-44AB-9AF1-C695B3DCF486",
+    "BaseGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "isVisibleBeforeRollback",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcWorkGeometry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "3EF91258-FE47-45A5-957D-1295C3679496",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 9,
+    "Members": [
+      {
+        "FieldName": "additionalAffectedBodies",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "D26351F0-5940-4D23-AA20-2C35475A6D9E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "cachedDcCIs",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2D6E13A1-BBEF-4FB3-9277-00D99F634136"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "cachedWorkGeometriesByOccTagId",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u32"
+            },
+            {
+              "KindValue": "sequence",
+              "Arguments": [
+                {
+                  "KindValue": "ref",
+                  "ClassGuid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40"
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "computeOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "computeType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "countUMax",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "extengType",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "occOperationIdsMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u64"
+            },
+            {
+              "KindValue": "u64"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "patternOccurrences",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "CB818863-9C9D-432E-858A-4B4B3963F7E0"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rCountUParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A085449A-5144-4B2B-B455-7F7035A40559"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rDcFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSourceRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "suppressedOccIds",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "u32"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcPatternBaseData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "4A557CE2-375C-4F69-AA76-2403109F1493",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 10,
+    "Members": [
+      {
+        "FieldName": "bAsymmetric",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bChord",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bConstantRadius",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bFlip",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bG2Blend",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bIsComputeChain",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bRuleFillet",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "chordLen",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "connectedEdgeRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "curveChainStartPoint",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "edgeOffset1Value",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "edgeOffset2Value",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "edgeSequence",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "i32"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "midPointParams",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "pointParams",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "f64"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "pointRadii",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rFaceRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rFeatureRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rFullRoundRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRuleRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "radiusValue",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "scopeOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "selSetIndex",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tangencyWeight",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "topologyOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcFilletEdgeData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE",
+    "BaseGuid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "m_brepRecipe",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "BrepProgenitor",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "4F7231DF-25A3-48AB-9327-8D79B19E4B4D",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "rPatternBaseData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "3EF91258-FE47-45A5-957D-1295C3679496"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rPatternSource",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "8DB90DAE-3FF5-4E01-BACC-00AAA3EBB3EF"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcPatternFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D",
+    "BaseGuid": "518AD6D6-763A-472C-9F19-9CFF03E8DC45",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rCachedGeometry",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "startPoint",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "displacement",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ETCachedLineSeg3d",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "518AD6D6-763A-472C-9F19-9CFF03E8DC45",
+    "BaseGuid": "872045B4-F653-4691-9752-ABC7684834BF",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "endPtProgenitor",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rCachedEdge",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "C46D3EEB-40E1-43FA-83DC-9CB204335417"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startPtProgenitor",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ETCachedCurve3d",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "5662F619-2281-4AD9-93DC-1FCFDA1062E7",
+    "BaseGuid": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "bAlwaysRecompute",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bDirReversedAgainstRefEntity",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRecipe",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "BrepRef",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "5F40832C-61AA-4A05-95B1-EFA0BA483138",
+    "BaseGuid": "3CE194E6-A591-44AB-9AF1-C695B3DCF486",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "chainPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "creationType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "pointOnPathType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rWorkPoint",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "0E18EEF2-0D6F-480C-997E-5EBC7369AE5F"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rWorkPointRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcWorkPoint",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "63D2920D-7EC2-49C4-9F08-315197F9E657",
+    "BaseGuid": "60F291CB-499B-4AB1-B0E5-340368671724",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rRevolveFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "E3849A15-2FC6-42A0-AF3A-2F1D7273B406"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcRevolveToolBody",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "64E40C8E-E564-469C-8690-5C4E77C1B02C",
+    "BaseGuid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "dcMoveMatrix",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "84E6245F-1CDC-4FB8-8048-163A85FAD3F0"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcMoveFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "65CA3206-E33A-471E-8E40-2C72B57C6181",
+    "BaseGuid": "A561CA2A-E017-48D0-951F-DE677BA2CFE8",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DcSplitBodyFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44",
+    "BaseGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "boundingboxIndex",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "param",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "pickPtParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "point3d",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "refType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tangentPointData",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "7ACE3A9E-A339-4754-B283-3AD3BDDD5314"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DRPoint",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "7493A99D-EDFC-4932-8B75-4120A8FA7875",
+    "BaseGuid": "3EF91258-FE47-45A5-957D-1295C3679496",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "isMid",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAxisDir",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcCircularPatternData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "7ACC2A03-0261-4879-A14A-A93D661A5BDC",
+    "BaseGuid": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "m_Recipe",
+        "ValueType": {
+          "KindValue": "optional",
+          "Arguments": [
+            {
+              "KindValue": "recipe"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ASMRecipe",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "7ACE3A9E-A339-4754-B283-3AD3BDDD5314",
+    "BaseGuid": "",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "tangentPointParam0",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tangentPointParam1",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tangentPointParam2",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "TangentPointDataValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "803DEC43-AEA6-42CC-B8D0-F593B5124BDD",
+    "BaseGuid": "3CE194E6-A591-44AB-9AF1-C695B3DCF486",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "creationType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rWorkAxis",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "19031004-3AB6-4D13-ABBF-C51EE214688D"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rWorkAxisRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcWorkAxis",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "84E6245F-1CDC-4FB8-8048-163A85FAD3F0",
+    "BaseGuid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "alignAngle",
+        "ValueType": {
+          "KindValue": "f64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignGeometryOrigin",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignGeometryTarget",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignOriginDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignPointOrigin",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignPointTarget",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignSense",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "alignTargetDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "moveDirectionType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "moveMethodType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "moveTransform",
+        "ValueType": {
+          "KindValue": "matrix",
+          "HasMatrixRows": true
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "point2PointOrigin",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "point2PointTarget",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "point2PositionCSType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "point2PositionPoint",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "69EE2FA7-BCC7-449E-9CA9-976CEFDFED44"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rotateAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rotateAxis",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateAnchorOccRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateAxis",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateDistance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateSharedFirstComponentFrame",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateX",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateY",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "translateZ",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcMoveMatrix",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "8DB90DAE-3FF5-4E01-BACC-00AAA3EBB3EF",
+    "BaseGuid": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "adjacentFaceCaches",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "C46D3EEB-40E1-43FA-83DC-9CB204335417"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "caches",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "pair",
+              "Arguments": [
+                {
+                  "KindValue": "ref",
+                  "ClassGuid": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F"
+                },
+                {
+                  "KindValue": "sequence",
+                  "Arguments": [
+                    {
+                      "KindValue": "ref",
+                      "ClassGuid": "C46D3EEB-40E1-43FA-83DC-9CB204335417"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "patternFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "4F7231DF-25A3-48AB-9327-8D79B19E4B4D"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcPatternSource",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "9716F783-676D-42E0-93F9-EBF273E7C035",
+    "BaseGuid": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "operIdTypeMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u64"
+            },
+            {
+              "KindValue": "u32"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRecipe",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "70F5E801-1E8E-436E-8A09-36487F8A2859"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DRBody",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "994C518A-A831-400A-B7C7-16DAC55F4F1C",
+    "BaseGuid": "872045B4-F653-4691-9752-ABC7684834BF",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rCachedGeometry",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ETCachedPoint3d",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "A07D5F17-68CB-464D-9935-BF68E98A865F",
+    "BaseGuid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "filletEdgeData",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "4A557CE2-375C-4F69-AA76-2403109F1493"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "filletType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isRollingBallCorners",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSheetMetalFillet",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isTangentPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rParamRadius",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "scopeOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "topologyOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcFilletEdgeFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "A085449A-5144-4B2B-B455-7F7035A40559",
+    "BaseGuid": "B24D5130-8751-4272-8143-D230D8757873",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "isRoundToNearestInt",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "value",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcIntParameter",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "A561CA2A-E017-48D0-951F-DE677BA2CFE8",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "isExtendTool",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "occDR2FeatIdMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2E3AC990-483D-4A55-8662-C064B976A957"
+            },
+            {
+              "KindValue": "u64"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "toolBodiesDR",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcSplitFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "AD719C1A-11AF-4537-BB41-030A9091D36B",
+    "BaseGuid": "CB818863-9C9D-432E-858A-4B4B3963F7E0",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DcPatternBodyOccurrence",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "AE12AD3F-BB81-4B59-9D34-A599E58E4BF6",
+    "BaseGuid": "4F7231DF-25A3-48AB-9327-8D79B19E4B4D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DcRectangularPattern",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "B0387387-0FAA-4928-B189-FEB34071D524",
+    "BaseGuid": "60F291CB-499B-4AB1-B0E5-340368671724",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rLoftFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B6678572-C095-4DD1-9348-614677DD0B4A"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcLoftToolBody",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "B0B3FA59-C374-444F-B424-24AA5DE41645",
+    "BaseGuid": "518AD6D6-763A-472C-9F19-9CFF03E8DC45",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rCachedGeometry",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "center",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "normal",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "refVec",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "radius",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "startAngle",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "endAngle",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ETCachedCircleArc",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "B28C1CCE-7FBD-43D2-8313-02BEC60F73FD",
+    "BaseGuid": "",
+    "SchemaVersion": 2,
+    "Members": [],
+    "IsValue": true,
+    "NameValue": "RECIPEValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "B3E4AB56-412B-45EA-85E5-79BE88865B41",
+    "BaseGuid": "60F291CB-499B-4AB1-B0E5-340368671724",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "isAgainstDistanceParameterValid",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isAgainstRailDistanceParameterValid",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isAlongDistanceParameterValid",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isAlongRailDistanceParameterValid",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSweepFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "FCBB1707-4450-46B3-9E65-0F61682EA8CA"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcSweepToolBody",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "B6678572-C095-4DD1-9348-614677DD0B4A",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 9,
+    "Members": [
+      {
+        "FieldName": "IsEndTangencyFlippedDirection",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "IsStartTangencyFlippedDirection",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bChainOption",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bMergeCurves",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "booleanOperation",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "centerLineRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endRailsTakeOffIndex",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endRailsTakeOffOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endSectionEdgeAlignmentOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endSectionTakeOffAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endSectionTakeOffOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "endSectionWeight",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "guidRailRefs",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isClosedLoft",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSolidOperation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "mappingCount",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rLoftToolBody",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B0387387-0FAA-4928-B189-FEB34071D524"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "sectionDatas",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2F3200BA-FDFB-48C6-97D4-71A4A0D86190"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startRailsTakeOffIndex",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startRailsTakeOffOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startSectionEdgeAlignmentOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startSectionTakeOffAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startSectionTakeOffOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "startSectionWeight",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcLoftFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "C444E6AD-33DC-4877-B037-A3A5518856B1",
+    "BaseGuid": "3EF91258-FE47-45A5-957D-1295C3679496",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "Combine",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "mirrorStitchTolerance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRefPlaneDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcMirrorPatternData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "C6ACC94D-2248-421C-BFC3-885A5026559F",
+    "BaseGuid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "sectionProgenitors",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "5C069ACB-169F-4555-9792-815B4671DDA0"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "LoftProgenitor",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "CB818863-9C9D-432E-858A-4B4B3963F7E0",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "occTagId",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rPatternData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "3EF91258-FE47-45A5-957D-1295C3679496"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcPatternOccurrence",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "D087EFE5-2D28-42e6-BB45-61739E7D0204",
+    "BaseGuid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rParamDistance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcOffsetFacesFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "D1728651-3640-4CCF-8083-AF7703013978",
+    "BaseGuid": "4F7231DF-25A3-48AB-9327-8D79B19E4B4D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DcMirrorPattern",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "D869265F-F339-4751-A066-91D30F81FF08",
+    "BaseGuid": "3CE194E6-A591-44AB-9AF1-C695B3DCF486",
+    "SchemaVersion": 4,
+    "Members": [
+      {
+        "FieldName": "chainPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "creationType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "extraOffset",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isProportionalParam",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rWorkPlane",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "8D424E29-DE23-4B1F-A3AD-84C52A497D1A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rWorkPlaneMatrix",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "7B6C3C2D-4096-4E6D-B225-699E8C2D9355"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcWorkPlane",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "D95DBAC0-238B-4429-A0AD-4AE5BEE79ADF",
+    "BaseGuid": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "sketchId",
+        "ValueType": {
+          "KindValue": "u64"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tag",
+        "ValueType": {
+          "KindValue": "u64"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SketchEntityRecipe",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8",
+    "BaseGuid": "D95DBAC0-238B-4429-A0AD-4AE5BEE79ADF",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "secondaryTag",
+        "ValueType": {
+          "KindValue": "u64"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "SketchCurveEntityRecipe",
+    "ClassSpace": "EntityTracking"
+  },
+  {
+    "ClassGuid": "E3849A15-2FC6-42A0-AF3A-2F1D7273B406",
+    "BaseGuid": "3FED63D9-CDC5-4334-A5C5-6C10271320D5",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "booleanOperation",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "extendFaceOption",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isFullRevolve",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isProjectAxis",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSolidOperation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSymmetric",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isTwoSide",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAgainstAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAlongAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAxisDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rFromEntityRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rRevolveToolBody",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "63D2920D-7EC2-49C4-9F08-315197F9E657"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rToEntityRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcRevolveFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "E8063467-BC05-4688-8196-AECB90F0EFEE",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "TangentPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "UseDistanceFieldShell",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rParamInnerThickness",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rParamOuterThickness",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcShellFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "EA0E146E-3126-42F0-9280-0DE74AB17D78",
+    "BaseGuid": "3EF91258-FE47-45A5-957D-1295C3679496",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "computedRectVector",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "D9822DC7-1E50-4DE4-8498-BE31157778CA"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "countVMax",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "deducedDir",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dirU",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dirV",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isMidU",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isMidV",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "lastCountU",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "lastCountV",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "rCountVParam",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A085449A-5144-4B2B-B455-7F7035A40559"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rUDirMR",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rVDirMR",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcRectangularPatternData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F2A7590D-6654-4674-B393-A2AEF4FEC48A",
+    "BaseGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+    "SchemaVersion": 4,
+    "Members": [
+      {
+        "FieldName": "axisTrackType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "line3d",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "pointOnLine",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "parametricDirection",
+              "ValueType": {
+                "KindValue": "struct",
+                "Members": [
+                  {
+                    "FieldName": "x",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "y",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  },
+                  {
+                    "FieldName": "z",
+                    "ValueType": {
+                      "KindValue": "f64"
+                    },
+                    "IsSaved": true
+                  }
+                ]
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "param",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "refType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "resizeType",
+        "ValueType": {
+          "KindValue": "u8"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tangentPointData",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "7ACE3A9E-A339-4754-B283-3AD3BDDD5314"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DRVector",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F4163A07-9E71-4C46-BD92-ACE5B5B40BED",
+    "BaseGuid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+    "SchemaVersion": 6,
+    "Members": [
+      {
+        "FieldName": "MovingPartingLineDraftAngleType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "draftType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_bFlipped",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_bTangentPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_directionType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_draftAngle1",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_draftAngle2",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_facePickPoint",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_facesRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_fixedPlaneDraftAngleMode",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_rFixedEdgesDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "m_rRefPlaneDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rPartingLineToolDataRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcDraftFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F757D611-217B-4B72-9C41-B617BDCE43DA",
+    "BaseGuid": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "cornerType",
+        "ValueType": {
+          "KindValue": "i32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSheetMetalChamfer",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isTangentPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "primaryIDRowIndexMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u64"
+            },
+            {
+              "KindValue": "u16"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rChamferData",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "0D383DB2-A6E5-48C7-82D5-ED3DD0C275C5"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcChamferFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "FCBB1707-4450-46B3-9E65-0F61682EA8CA",
+    "BaseGuid": "3FED63D9-CDC5-4334-A5C5-6C10271320D5",
+    "SchemaVersion": 6,
+    "Members": [
+      {
+        "FieldName": "booleanOperation",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "chainPropagation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isAlongDirectionSameAsProfileNormal",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isEndtoEndMatching",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isLinearMapping",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isSolidOperation",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isXScale",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isYScale",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "profileNormal",
+        "ValueType": {
+          "KindValue": "struct",
+          "Members": [
+            {
+              "FieldName": "x",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "y",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            },
+            {
+              "FieldName": "z",
+              "ValueType": {
+                "KindValue": "f64"
+              },
+              "IsSaved": true
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAgainstDistance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAgainstRailDistance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAlongDistance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rAlongRailDistance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSweepGuideSurfacesRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSweepPathsRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSweepRailsRef",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSweepToolBody",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "B3E4AB56-412B-45EA-85E5-79BE88865B41"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rTaperAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rTwistAngle",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D91D429C-1BB5-4640-B49F-69AF14F463E9"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "sweepType",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcSweepFeature",
+    "ClassSpace": "Fusion"
+  }
+]

@@ -1,0 +1,504 @@
+[
+  {
+    "ClassGuid": "19E286C3-1C58-4F13-8050-3F00EC2F1562",
+    "BaseGuid": "4624CDED-E181-493B-BC82-3372738D683C",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ACTChangeDataMany",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99",
+    "BaseGuid": "",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "actRefdTable",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A1F7759C-4C5A-410B-ADC7-305AB1E0AF2E"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "changeTypesToTrack",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ascii"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "crossAsset",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "owningEntity",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rActData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "19E286C3-1C58-4F13-8050-3F00EC2F1562"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "refdEntity",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "ACTRefValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "4624CDED-E181-493B-BC82-3372738D683C",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "actIdentifier",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTChangeData",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "596618BE-CD74-4BC9-A627-2DA799696C2D",
+    "BaseGuid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+    "SchemaVersion": 1,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ACTComponentsRoot",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "70BD8285-AEDC-4E05-9632-B8B57FEA1E42",
+    "BaseGuid": "",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rActData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "19E286C3-1C58-4F13-8050-3F00EC2F1562"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "tgtIdentifier",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": true,
+    "NameValue": "ACTTableEntryValue",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+    "BaseGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "children",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "unOrderedChildren",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
+            },
+            {
+              "KindValue": "i32"
+            }
+          ]
+        },
+        "IsSaved": false
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ManagedGroupEntity",
+    "ClassSpace": "DataModel"
+  },
+  {
+    "ClassGuid": "8EF12734-4D22-4F6A-8A80-1462E6B40A13",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "ACTTableEntries",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "object",
+              "ClassGuid": "70BD8285-AEDC-4E05-9632-B8B57FEA1E42"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "AssetRevGuid",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "RevisionGuid",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "refdTables",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "A1F7759C-4C5A-410B-ADC7-305AB1E0AF2E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "revisionGuidForChangeType",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ascii"
+            },
+            {
+              "KindValue": "utf16"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTTable",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6",
+    "BaseGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "ACTRef",
+        "ValueType": {
+          "KindValue": "object",
+          "ClassGuid": "3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "actIdentifier",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bSoftDeleted",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "designInstance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "instanceId",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "targetComponent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D956D02C-2806-4E57-8B2E-EFA323A5C2B8"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTInstance",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "BaseGuid": "",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "Entity",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "ABC8C0E3-50FB-4E8C-AFF3-116759A36073",
+    "BaseGuid": "19E286C3-1C58-4F13-8050-3F00EC2F1562",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "revGuidMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ascii"
+            },
+            {
+              "KindValue": "utf16"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "RevGUIDACTDataMany",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "expanded",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "rParent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ManagedEntity",
+    "ClassSpace": "DataModel"
+  },
+  {
+    "ClassGuid": "D956D02C-2806-4E57-8B2E-EFA323A5C2B8",
+    "BaseGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "ACTInstances",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "F01D16CF-95D5-4239-A488-00448AC88023"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "actIdentifier",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "designComponent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "name",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "reffingInstances",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": false
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTComponent",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+    "BaseGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "rootId",
+        "ValueType": {
+          "KindValue": "ascii"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rooted",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ManagedRootCollection",
+    "ClassSpace": "DataModel"
+  },
+  {
+    "ClassGuid": "F01D16CF-95D5-4239-A488-00448AC88023",
+    "BaseGuid": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "ACTInstancesMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u32"
+            },
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "rDesignInstances",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "softDeletedInstances",
+        "ValueType": {
+          "KindValue": "set",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTInstances",
+    "ClassSpace": "ACT"
+  },
+  {
+    "ClassGuid": "F3E2665C-F3E1-4BA7-8676-8B90579B56D3",
+    "BaseGuid": "E47053DB-8AF6-4521-81D6-523964C0C97A",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "instancesMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "u32"
+            },
+            {
+              "KindValue": "ref",
+              "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "nextInstanceId",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ACTInstancesRoot",
+    "ClassSpace": "ACT"
+  }
+]

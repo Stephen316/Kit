@@ -1,0 +1,1253 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native external-reference controls exported from Fusion, sanitized, and replayed through ReadDocument and EmitParsed",
+  "sanitization": "Lineage keys become KitLinkLineageNNNNNNNN, the home directory becomes a generic user directory, the cache key becomes SYNTHCACHE000000, and root link paths become /synthetic/... with equal length",
+  "controls": [
+    {
+      "name": "P_A0_unsaved",
+      "note": "Part A before cloud save",
+      "native_export": {
+        "file": "P_A0_unsaved.f3d",
+        "bytes": 66395,
+        "sha256": "76f4d3ec96daaf64b2d0b0d18fcf6d515b6108a693fcb8db3c7b32e204d78a4b"
+      },
+      "native_occurrences": [],
+      "native_references": [],
+      "native_joints": [],
+      "is_saved": false
+    },
+    {
+      "name": "P_A1_saved",
+      "note": "Part A after cloud save",
+      "native_export": {
+        "file": "P_A1_saved.f3d",
+        "bytes": 43262,
+        "sha256": "5924efe0a3694ec43610914fdfd3a19a28f1c37043b9a01acfa113720c52457c"
+      },
+      "native_occurrences": [],
+      "native_references": [],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/P_A1_saved.f3d",
+        "bytes": 43195,
+        "sha256": "4eba038c69168bbcf6408a2a68a2583e106fb90d9167f21dd8c98ac5eb5380af"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 27,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein",
+          "smb",
+          "smbh"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 0,
+        "asset_links": 0,
+        "contexts_per_segment": {
+          "KDesign": 0,
+          "KAct": 0,
+          "KBrowser": 0
+        }
+      }
+    },
+    {
+      "name": "P_B1_saved",
+      "note": "Part B after cloud save",
+      "native_export": {
+        "file": "P_B1_saved.f3d",
+        "bytes": 43435,
+        "sha256": "875648439eae07bb1eded5409fac2ab05315c2d0efa64ed85f0672288a795d60"
+      },
+      "native_occurrences": [],
+      "native_references": [],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/P_B1_saved.f3d",
+        "bytes": 43374,
+        "sha256": "adaae424a20416bf14c00ad8f6fa7a8bd08bb91ba4ceaef666287897f8ee0c5b"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 27,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein",
+          "smb",
+          "smbh"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 0,
+        "asset_links": 0,
+        "contexts_per_segment": {
+          "KDesign": 0,
+          "KAct": 0,
+          "KBrowser": 0
+        }
+      }
+    },
+    {
+      "name": "S0_inserted",
+      "note": "Subassembly with Part B reference at translation (1,2,0) cm",
+      "native_export": {
+        "file": "S0_inserted.f3d",
+        "bytes": 55707,
+        "sha256": "4eef9855a2cb7df7a43bdd20c0b1d24a252d7ad55e053e66ae1d51b049d63b3e"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkPartB",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": false,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/S0_inserted.f3d",
+        "bytes": 55477,
+        "sha256": "6eb84010a592abb1349c324cdecccfc8bd826c708ad6357a8c57b890cf015a85"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 28,
+        "same_member_names": true,
+        "byte_identical_members": 27,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 1,
+        "asset_links": 1,
+        "contexts_per_segment": {
+          "KDesign": 1,
+          "KAct": 1,
+          "KBrowser": 1
+        }
+      }
+    },
+    {
+      "name": "S1_saved",
+      "note": "Subassembly after cloud save",
+      "native_export": {
+        "file": "S1_saved.f3d",
+        "bytes": 33414,
+        "sha256": "68b8c60ace17123b249de488bd5861e1d4c9860f945ea257941349f1b28fb1dd"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            1.0,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkPartB",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/S1_saved.f3d",
+        "bytes": 33197,
+        "sha256": "66e58ffb2367713379c1e4e7f60f6c4043beacf5a7ee6918be4bde165cbf9a3d"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 25,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 1,
+        "asset_links": 1,
+        "contexts_per_segment": {
+          "KDesign": 1,
+          "KAct": 1,
+          "KBrowser": 1
+        }
+      }
+    },
+    {
+      "name": "R0_empty",
+      "note": "Empty root design",
+      "native_export": {
+        "file": "R0_empty.f3d",
+        "bytes": 30629,
+        "sha256": "9d25af9ab1566310bf7f49dea0d9eb2efd8cf9fe69dea8c92a791ce8f42a1301"
+      },
+      "native_occurrences": [],
+      "native_references": [],
+      "native_joints": [],
+      "is_saved": false,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R0_empty.f3d",
+        "bytes": 30577,
+        "sha256": "2ab1b10314f94cd3372084f0d3df4850a71951145e8c26e446c02501430386ee"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 28,
+        "same_member_names": true,
+        "byte_identical_members": 27,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 0,
+        "asset_links": 0,
+        "contexts_per_segment": {
+          "KDesign": 0,
+          "KAct": 0,
+          "KBrowser": 0
+        }
+      }
+    },
+    {
+      "name": "R1_part_a",
+      "note": "Part A reference, rotation 30 deg about Z, translation (5,2,1) cm",
+      "native_export": {
+        "file": "R1_part_a.f3d",
+        "bytes": 43868,
+        "sha256": "a3705bc7fe47d44c877578638d9bb66abb1b10087ef0ac2846d4768c2b3e45ee"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkPartA",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": false,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R1_part_a.f3d",
+        "bytes": 43653,
+        "sha256": "5a76f33f20e5b825f8d817b72f9a10da9c6276f4088126da63ebc2f195f7ab5f"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 28,
+        "same_member_names": true,
+        "byte_identical_members": 27,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 1,
+        "asset_links": 1,
+        "contexts_per_segment": {
+          "KDesign": 1,
+          "KAct": 1,
+          "KBrowser": 1
+        }
+      }
+    },
+    {
+      "name": "R2_grounded",
+      "note": "Part A occurrence grounded",
+      "native_export": {
+        "file": "R2_grounded.f3d",
+        "bytes": 44397,
+        "sha256": "e3b8e7c88c97a6259968c23196344eb2c8847012e5a6befb20bf0ba8d5070694"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkPartA",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": false,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R2_grounded.f3d",
+        "bytes": 44173,
+        "sha256": "6f122404349575db813112277e4e213e4bb9ecfd567c814ff34ce25a20c7a9c7"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 28,
+        "same_member_names": true,
+        "byte_identical_members": 27,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 1,
+        "asset_links": 1,
+        "contexts_per_segment": {
+          "KDesign": 1,
+          "KAct": 1,
+          "KBrowser": 1
+        }
+      }
+    },
+    {
+      "name": "R3_nested",
+      "note": "Subassembly reference, rotation 90 deg about X, translation (0,6,0) cm",
+      "native_export": {
+        "file": "R3_nested.f3d",
+        "bytes": 48941,
+        "sha256": "120aeacf1d43010c5ed731c11ec2c3138ff5bee40f7836ae63beb1ece7920734"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1+KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1",
+          "component": "KitLinkSub",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkSub",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkSub",
+          "version": 1,
+          "out_of_date": false
+        },
+        {
+          "name": "KitLinkPartA",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": false,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R3_nested.f3d",
+        "bytes": 48602,
+        "sha256": "0a5be7d89cb556c29deed0d59ecfcbd72637ae2e311b130f8791577ae3387687"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 28,
+        "same_member_names": true,
+        "byte_identical_members": 27,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    },
+    {
+      "name": "R4_joint",
+      "note": "Rigid as-built joint between Part A and subassembly occurrences",
+      "native_export": {
+        "file": "R4_joint.f3d",
+        "bytes": 50126,
+        "sha256": "d8e49fadfe2dbee19bf08c274bcaeecd4d3690f92a9b41f14367301dee40968d"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1+KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1",
+          "component": "KitLinkSub",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkSub",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkSub",
+          "version": 1,
+          "out_of_date": false
+        },
+        {
+          "name": "KitLinkPartA",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": false,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R4_joint.f3d",
+        "bytes": 49790,
+        "sha256": "21accdaafef42f43b46d138e4d096f79e9bf0e67fcb2aca884639e0a78b607a5"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 28,
+        "same_member_names": true,
+        "byte_identical_members": 27,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    },
+    {
+      "name": "R5_saved",
+      "note": "Root after cloud save",
+      "native_export": {
+        "file": "R5_saved.f3d",
+        "bytes": 37725,
+        "sha256": "b5978128a5d98c17b75fd7a3f154f179d08833df624b3420c8085e64b63ec979"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1+KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1",
+          "component": "KitLinkSub",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkSub",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkSub",
+          "version": 1,
+          "out_of_date": false
+        },
+        {
+          "name": "KitLinkPartA",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R5_saved.f3d",
+        "bytes": 37379,
+        "sha256": "a36ff33898b07cbe4846bb869da59d9a6dfb1c7d6b3d76c547997e02a37d9ec1"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 25,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    },
+    {
+      "name": "R6_out_of_date",
+      "note": "Root after Part A version 2, before reference update",
+      "native_export": {
+        "file": "R6_out_of_date.f3d",
+        "bytes": 37775,
+        "sha256": "c4f2a3c0ecd7bd9f18a49551794a319d445ca735e08b1e4e227f68fbd7cf4525"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1+KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1",
+          "component": "KitLinkSub",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkSub",
+            "version": 1
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkSub",
+          "version": 1,
+          "out_of_date": false
+        },
+        {
+          "name": "KitLinkPartA",
+          "version": 1,
+          "out_of_date": true
+        }
+      ],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R6_out_of_date.f3d",
+        "bytes": 37424,
+        "sha256": "981e0ca783c93b5ce0e313b758e5d673facd4829bdaf8c08809c72cdc7c25de2"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 25,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    },
+    {
+      "name": "R7_updated",
+      "note": "Root after updateAllReferences",
+      "native_export": {
+        "file": "R7_updated.f3d",
+        "bytes": 37765,
+        "sha256": "58b2c503c43a249bf62ab3e5c847732e47fd269ece05a5382ea45a690b82b85a"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkSub:1+KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1",
+          "component": "KitLinkSub",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkSub",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 2
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkPartA",
+          "version": 2,
+          "out_of_date": false
+        },
+        {
+          "name": "KitLinkSub",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R7_updated.f3d",
+        "bytes": 37436,
+        "sha256": "49baac8fc4cc8bee15ec8622e9226385fd6e6e10dc6ed3c418c9704938fb9e1c"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 25,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    },
+    {
+      "name": "R8_updated_saved",
+      "note": "Root version 2 after cloud save",
+      "native_export": {
+        "file": "R8_updated_saved.f3d",
+        "bytes": 37675,
+        "sha256": "e5d453335cd5f6fc03ce2d2512a4e0dff386eb8f39e9b0597ba96ccaea577765"
+      },
+      "native_occurrences": [
+        {
+          "path": "KitLinkSub:1+KitLinkPartB:1",
+          "component": "KitLinkPartB",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            1.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            2.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartB",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkSub:1",
+          "component": "KitLinkSub",
+          "referenced": true,
+          "grounded": false,
+          "transform2": [
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            2.220446049250313e-16,
+            -1.0,
+            6.0,
+            0.0,
+            1.0,
+            2.220446049250313e-16,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkSub",
+            "version": 1
+          }
+        },
+        {
+          "path": "KitLinkPartA:1",
+          "component": "KitLinkPartA",
+          "referenced": true,
+          "grounded": true,
+          "transform2": [
+            0.8660254037844387,
+            -0.49999999999999994,
+            0.0,
+            5.0,
+            0.49999999999999994,
+            0.8660254037844387,
+            0.0,
+            2.0,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ],
+          "reference": {
+            "name": "KitLinkPartA",
+            "version": 2
+          }
+        }
+      ],
+      "native_references": [
+        {
+          "name": "KitLinkPartA",
+          "version": 2,
+          "out_of_date": false
+        },
+        {
+          "name": "KitLinkSub",
+          "version": 1,
+          "out_of_date": false
+        }
+      ],
+      "native_joints": [],
+      "is_saved": true,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R8_updated_saved.f3d",
+        "bytes": 37334,
+        "sha256": "0b5d6179a6b348d25474ef244b7a90c8e8b505b6f7ea5f119fdd93bc5c2387dd"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 25,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    },
+    {
+      "name": "R9_archive",
+      "note": "Saved root assembly exported through the F3Z archive option",
+      "native_export": {
+        "file": "R9_archive.f3z.f3d",
+        "bytes": 37861,
+        "sha256": "6b1ba0e5201bcab8702a5175dbbf0d0d703405f7a88672ad1eb4538183062e02"
+      },
+      "native_occurrences": [],
+      "native_references": [],
+      "native_joints": [],
+      "is_saved": null,
+      "fixture": {
+        "path": "re/Fusion/LocalOracle/LinksConfigs/Fixtures/R9_archive.f3d",
+        "bytes": 37503,
+        "sha256": "e29ec1807fcf12519adc83634dac0ffc7f6ea5b4ad2420f10a44519a07b1d3c8"
+      },
+      "kit_replay": {
+        "model_equal_after_reread": true,
+        "member_count": 25,
+        "same_member_names": true,
+        "byte_identical_members": 24,
+        "changed_member_kinds": [
+          "protein"
+        ],
+        "changed_outside_reencoded_kinds": [],
+        "root_links": 2,
+        "asset_links": 2,
+        "contexts_per_segment": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "status": "blocked",
+    "call": "Design.createConfiguredDesign",
+    "error": "RuntimeError: 3 : Cannot create configuration top table as the user is restricted.",
+    "plain_part_exported": [
+      {
+        "file": "C0_plain.f3d",
+        "bytes": 48973,
+        "sha256": "ca0392bb9be055f2bdb06ed9dcbef4946d788ba31bb08b7677cc53f5e64b3590"
+      }
+    ]
+  },
+  "runs": {
+    "link_controls": {
+      "status": "completed",
+      "documents_after": 0
+    },
+    "configuration_controls": {
+      "status": "failed",
+      "stage": "configured",
+      "documents_after": 0
+    }
+  }
+}

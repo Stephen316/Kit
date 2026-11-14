@@ -1,0 +1,847 @@
+{
+  "operation": "load_representative_corpus_for_schema_initialization",
+  "imports": [
+    {
+      "path": "re/Fusion/Study/jointmodes-20d3aef2a07d/pin_slot.f3d",
+      "sha256": "5839271bf11e4fcbe9f1151875d09cb5fa38a1d34869166b7412945eca0cf878",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/pathpatterncomposites-b6b4cf615504/spline_along.f3d",
+      "sha256": "b15edb1bb1bc771854cc269d1dbbfb00f13c22b1115bbf97e08e4a53857f4a2f",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+      "sha256": "ddf4dcac983c748405f084dd19cab7b03b90371b84c0bede77b434a03dcabbfd",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/embosstext-cd769aa41cdf/text_deboss.f3d",
+      "sha256": "aec87d4aa59dc4e77e774c95e98b74d83651395697d57c921257d07219ca89c8",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/sketchtools-85066e723410/sketchtools.f3d",
+      "sha256": "c224ab8c79f70f2b33e6c1988f7592a50b2213f515d2f9ecd7fa208a4b17046e",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/rulefilletsurfaces-7b26b40f98f7/offsets_one_three_witnesses.f3d",
+      "sha256": "e2aebce531cea29fae0e1a95aaf28ea98da69e28fff7ee393e24e025661d6255",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/dimensions-f83a2edd2f72/dimensions.f3d",
+      "sha256": "26bd97755ee574099c63dcd4551f6a165db7313a37003ab673f6bc5cccb3dcb4",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/ruled_direction.f3d",
+      "sha256": "d4cef7122b2814e2b03c71ef397eed1f5ff63378811a5fe2d7f55f6bc794c387",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+      "sha256": "363706dd7e634577ead81908ea327570920be027d82399eb0a6c8d02c73d383a",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+      "sha256": "24ee7310ebf5e8dbb4725cf43966f0b8b078afbbfa661f0ef2eed18061259215",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/sketchsurfaceconstraints-5a2cd669cd19/coincident_to_plane.f3d",
+      "sha256": "57fb1d2a6d82ff780d3cf25c213efd85cd96078ac25eda3a2df81fa15fcf7bab",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
+      "sha256": "78401cfaa71b4061c02bc262b06d05d3b2252e81071fd39619aa6720adaa4e25",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/sweeps-5f87eff25e24/arc_parallel.f3d",
+      "sha256": "ca7c5ad8ae8fac4e8be8fd252d60adb28cde18ee96a9ef29eb60401f079e464e",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/boundaryfills-a0953038318b/plane_first.f3d",
+      "sha256": "869e46f2d23f4a582537824cb277c0eabfa6c0c755188119c9695d3d6aee3276",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/specialfillets-d50f7a4f04e0/full_explicit.f3d",
+      "sha256": "3b6f907ec713f04afa321eb72dc312d9af55707960a4868a8fb81fa8d94c8302",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/partinglinedrafts-c4d07c76fcd5/fixed_three.f3d",
+      "sha256": "87b499b3d9ce3d1fcb87fadd9f22eb76dd3c6365fb2214fc80d12b1c070d0729",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+      "sha256": "db516e24d877f32d8a96c84f14d1d971d7f009758474bf9bde4de850c7f1789d",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/holeplacements-04adf73afe93/sketch_point.f3d",
+      "sha256": "b761d8a477fbcce38d0245398c8e647c8cf1691d24d9a7052007e304860b530f",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/pathpatterninputs-7edfa558db34/root_occurrence.f3d",
+      "sha256": "7d48d3f9a81deffe3cf60086de6a3249d835872834958199bb1b64d93f4d66be",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/advanced-627f7fe095f4/advanced.f3d",
+      "sha256": "456ceccee3b551311d208298bdbe6974eaa4f22cde3512fbbf55e5f803f7a480",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshremoves-8b2188cd274d/one_remove_one.f3d",
+      "sha256": "757a1d4065fae22280748abb46c85ac3423758b863e9c64d90202e911f9cba13",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d",
+      "sha256": "9a1c4fd65e2b90e16ff6698cbe9f7afa12c5d30006f842e4c70e0277ee4d2cd8",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/trim_positive.f3d",
+      "sha256": "ca3131f840d94b41e41bc208e8b1f00d0cf149a8f0ee046fb54143004f0cfd86",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshconverts-4b42d39fb1d5/faceted_open.f3d",
+      "sha256": "b645d6e125bab477c1ffd0f3f33051fb4dfdbb4e511c1165d227357323a97e7d",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/pipemodes-87cfa7d8d82b/square.f3d",
+      "sha256": "76590704a94ffa35bd654e03aee9221083f6ffc636534e0172bee127416eda85",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/movemodes-34cba3ced135/free.f3d",
+      "sha256": "c5c7a86e3488631aa659a7e402484648818c375fd510998f1dc151a8c3767f1d",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/stitch_tight.f3d",
+      "sha256": "9c65e9c2968f8e8b3a7f6646436ed33e76e1543476fd94c8b476504792395df5",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/circularmodes-45f859c1f1b6/body_suppressed.f3d",
+      "sha256": "dc827b20fd2147acbc3607b7b12cabff8c763ec9b32e6a359533712c49e1afc6",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/rectmodes-a069f8f4b8a2/body_negative.f3d",
+      "sha256": "49f5aaa83a8a1a256074c2e5d20a591904dc8826a7c91a39db8176e63f7777e4",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/edgemodes-87edbf67527b/chamfer_two_flipped.f3d",
+      "sha256": "490d320f4f0840a422feb60a2cb0229cb25f85352593ee0b00a0589535637c77",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/sketches-0ccea2ac0f9c/radius.f3d",
+      "sha256": "b4cd3fac6847f549c51c4a6ced747c016e3dc107ee9cc4456a61364e43be3ac8",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+      "sha256": "5a03d107325718dda9c03b884832db472a5af8b3f66b1cf746d1e22ffba1de89",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/sketchpatterngaps-330282788fce/rectangular_point.f3d",
+      "sha256": "8551fe2b718bc801188292819a6da8510b0073ab3cf29fcd501bc739bed62f08",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d",
+      "sha256": "0e190763e2f2d78e4453f8409d08c2afbb1648905620cb2d81503f470fc8c1ff",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshsmooths-56f38f13430a/smooth_point_two_five.f3d",
+      "sha256": "381e342e1b30480690d841d10fdac49693a0140aeaa201af0b0acc67b288bfa6",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/reverse_normal.f3d",
+      "sha256": "d3f14d733b0d308780f71e8df45fcb23b22b0ef66ebba06c1d18279f3b859e69",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d",
+      "sha256": "71b0d45def0498af22e2d0907aec9046801c14dd48939b6dc9585559c0cbdfc9",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/untrim_all.f3d",
+      "sha256": "4fb209ac268b43eaa657f40432e6c21dba65365059b857d92f194fcfb9e4c29a",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshreversenormals-2bc2dd3780cc/closed_once.f3d",
+      "sha256": "3cec2f18c389b4d719c84e54d84df377bcd98c081fbc114385f3f4f3173fc93a",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshrepairs-2387e4f9c2d2/open_close_holes.f3d",
+      "sha256": "765c5d2f79d6ee5c25eaa4435969eca7034b747e4145cf857209b301fabffa1f",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/extend_two_edges.f3d",
+      "sha256": "fd0308c8696e4f83cb60dc92d0cee17a448089187b296cd95f6a9b4d5a050d84",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshseparates-41126250c03f/connected_shell_control.f3d",
+      "sha256": "6deb8f679f359909cb90405fa11b52c2970bdb089eb6b00f4c44f0751c59485d",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/patchcontinuity-b9b0be85a281/brep_free.f3d",
+      "sha256": "96a9d009201a36ffed05b20934e594dc1181739fb3182cfa6b5f766a6dd190e4",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+      "sha256": "1da1466c9dda93bad60632f2b5fe23c2538e588825734894d8be10eb8333b349",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/removecontrasts-9c5f83456a0e/root_body.f3d",
+      "sha256": "8a0b3ba20c6c97b84c08937a9e688153e7745b3477b007ee49dbe96c88a50d98",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/delete_opening.f3d",
+      "sha256": "05da11986def4cf40c002079f2f27ae3e02a9f0a821ce44bb1dc5cac70c7ee0e",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/unstitch_face.f3d",
+      "sha256": "6f21d95b96a1a47c65fe33062a9892189ed5f3605b09091b25a32c033f8bb3f4",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/replacefacetargets-670e35eedbc8/sheet_face_tangent.f3d",
+      "sha256": "a87a88ebf56417731941401ff87c771d56aabe9780ad2e35ece80c3eee7dbf78",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/rigidgroups-0784a68632cd/root_active.f3d",
+      "sha256": "acdafcd39d58f897c7bb860091e34c3990ac575c1c293a183e9caed0fa74b5a8",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/faceedits-3f120cbee8d9/offset_negative.f3d",
+      "sha256": "eeb7aafa6b91e03904c308ad043dff0eedc82df606a9a4695bea7889afa2089e",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/sketchtextpaths-63fe53b89eed/line_along_below.f3d",
+      "sha256": "ec39598210981e2986f0c7d216123a122f3122ed69ce2aadce6ad6a4715bc0fc",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/splits-efce4ef164c9/offset_plane.f3d",
+      "sha256": "bd64b71e1bf0b08777edf49807ca2bb716bcf3fa66fd1ba5625e29e7e02520cf",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/faceedits-3f120cbee8d9/delete_hole_face.f3d",
+      "sha256": "041b03653f9330ae39aa5ab36d89e753759b4ed6e45476f00f298db0a5ef0064",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/removecontrasts-9c5f83456a0e/root_occurrence.f3d",
+      "sha256": "acfcc772e1f5e50e9d7e9d24a56eb3a9448965f5f0a8bffd20da17f8a93b972c",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshremeshes-f07f97514069/adaptive_edge_one_point_five.f3d",
+      "sha256": "2082352b214680608520c0434974e20ffacc0bfc3935e7a1fb361124b4229bf6",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/combinemodes-dcb4956eca6b/join_consume.f3d",
+      "sha256": "72867e54825a800bf592838a29d4f0fbad74bcb7f5f525b582757e9c70e8c3ff",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/bodymodes-d696a14d5f0b/mirror_xy_combine.f3d",
+      "sha256": "eee36d35b55c85be6011d4ee0c1d5268c927a779bbe67a23d8cd0e09c458b8ba",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshcombines-541ebb6cc93f/intersect.f3d",
+      "sha256": "efdf998990fd3cc2d73f7aa7340b5eff353fd3c4b496c140213bd68349830f57",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/assembly-acc48a9dc05d/assembly.f3d",
+      "sha256": "6ffe10b64fcc97308f2d7084e18548d24bcde4f66b0b7e3261ba7f7743e4d057",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshshells-f5a2d6730f62/closed_thickness_point_one.f3d",
+      "sha256": "2e5a016479dbf07c3cffdf907b1b023b1854f8236a4a90cb7d4811ce297dbf1f",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/thickenmodes-17612e4ff890/cut.f3d",
+      "sha256": "7e4771cdcb08060988231905d9bb33f5f3c87b14aaf1ca2ea49a94e224673b60",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/tappedholes-409e96788503/modeled_full.f3d",
+      "sha256": "65bb1d47005da234d5902a5b4b6ab23d26e32534e55418de2415783ea3529944",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/timeline-5867579925b5/rolled_back.f3d",
+      "sha256": "4e5c99de29a515f95cba4a4f4e900c4de0e7b7a652fa1730d2d3dae76a4c8a87",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/splines-9a18bae21127/splines.f3d",
+      "sha256": "41132e6e45ed0fa6becadfc062d8b0ea6199f9166032a6b41da0864dc1d59554",
+      "status": "opened"
+    }
+  ],
+  "snapshots": [
+    {
+      "file": "Schema001.json",
+      "sha256": "4eec5c9570249f129405529a0e7606db826184dbc2219a9bd1d89bfe6b0161e5",
+      "metatype_count": 1958,
+      "initialized_schema_count": 299,
+      "registered_member_count": 1087,
+      "after_imports": 1
+    },
+    {
+      "file": "Schema002.json",
+      "sha256": "f714380a86a8ea7239c49a29e918c2a2dc3b4551c748ea3f97ed4a47dc0cec8b",
+      "metatype_count": 1958,
+      "initialized_schema_count": 320,
+      "registered_member_count": 1154,
+      "after_imports": 2
+    },
+    {
+      "file": "Schema003.json",
+      "sha256": "b3ccfe5c9b3e08ffea68d7463dbdf86d0ac531ff8f2e5d0d66cd84b577709a97",
+      "metatype_count": 1958,
+      "initialized_schema_count": 339,
+      "registered_member_count": 1231,
+      "after_imports": 3
+    },
+    {
+      "file": "Schema004.json",
+      "sha256": "9a6186278984614b932a5c5c645c8f178ea2e41da1c2f6a37b5732d2ad2715a6",
+      "metatype_count": 1958,
+      "initialized_schema_count": 352,
+      "registered_member_count": 1279,
+      "after_imports": 4
+    },
+    {
+      "file": "Schema005.json",
+      "sha256": "a32ced5b9217d62275a16dddcd6dc2132556b6e82c29791a2088a105680409ed",
+      "metatype_count": 1958,
+      "initialized_schema_count": 364,
+      "registered_member_count": 1337,
+      "after_imports": 5
+    },
+    {
+      "file": "Schema006.json",
+      "sha256": "267625e8ccfd2f15690b24b5c58ae0bc69ce853f1b4f3d8529aeb4f3ad03eb9e",
+      "metatype_count": 1958,
+      "initialized_schema_count": 372,
+      "registered_member_count": 1381,
+      "after_imports": 6
+    },
+    {
+      "file": "Schema007.json",
+      "sha256": "c65ca350f75332cbe73cd9af56e1393c26c9032f169d9212d3caf5638d6bf6a0",
+      "metatype_count": 1958,
+      "initialized_schema_count": 380,
+      "registered_member_count": 1396,
+      "after_imports": 7
+    },
+    {
+      "file": "Schema008.json",
+      "sha256": "7ea9f758fbf87171fd89451ad11b8bcbe5f73f618947382808e4df944ad70705",
+      "metatype_count": 1958,
+      "initialized_schema_count": 386,
+      "registered_member_count": 1426,
+      "after_imports": 8
+    },
+    {
+      "file": "Schema009.json",
+      "sha256": "484fb5cf074b4c6d8ab5cf3b68a96f5d9c609e19c0ae2399dc11feffdbaed56e",
+      "metatype_count": 1958,
+      "initialized_schema_count": 393,
+      "registered_member_count": 1474,
+      "after_imports": 9
+    },
+    {
+      "file": "Schema010.json",
+      "sha256": "ab9472104e1305588aeb4cc1936168e01266ee755d34ccba69173f23f7573ea9",
+      "metatype_count": 1958,
+      "initialized_schema_count": 398,
+      "registered_member_count": 1510,
+      "after_imports": 10
+    },
+    {
+      "file": "Schema011.json",
+      "sha256": "c73741e35e6f1057fbc7ebda5e61320d6df31a51255934015f16f821e0a89354",
+      "metatype_count": 1958,
+      "initialized_schema_count": 402,
+      "registered_member_count": 1515,
+      "after_imports": 11
+    },
+    {
+      "file": "Schema012.json",
+      "sha256": "1e0c29ade92820c3775fb5c66909b5b55b3fcbac78c5b785ef4b29dda3800802",
+      "metatype_count": 1958,
+      "initialized_schema_count": 406,
+      "registered_member_count": 1523,
+      "after_imports": 12
+    },
+    {
+      "file": "Schema013.json",
+      "sha256": "aa6b4603f88e81b35909cfae4f8365683e98d55cdc0c57db5ecc95586e5a7622",
+      "metatype_count": 1958,
+      "initialized_schema_count": 410,
+      "registered_member_count": 1553,
+      "after_imports": 13
+    },
+    {
+      "file": "Schema014.json",
+      "sha256": "ff9babed8dc1b40ffdd07201d29b01d5ea3052d80898ed0c0a56679f1334ec5b",
+      "metatype_count": 1958,
+      "initialized_schema_count": 414,
+      "registered_member_count": 1571,
+      "after_imports": 14
+    },
+    {
+      "file": "Schema015.json",
+      "sha256": "a63d40e46f1805d0bd3ed0db344cff08257301ba6465d74f2fb117242a4ca4b6",
+      "metatype_count": 1958,
+      "initialized_schema_count": 417,
+      "registered_member_count": 1579,
+      "after_imports": 15
+    },
+    {
+      "file": "Schema016.json",
+      "sha256": "842ed89f5a6402a352002353ef0d40dffb328af9f14b92e4ce2d861c83577da8",
+      "metatype_count": 1958,
+      "initialized_schema_count": 420,
+      "registered_member_count": 1598,
+      "after_imports": 16
+    },
+    {
+      "file": "Schema017.json",
+      "sha256": "6c678eea6b292808f2ad58af79183522bb696c06149cba2e00dfd68c7b24a2aa",
+      "metatype_count": 1958,
+      "initialized_schema_count": 423,
+      "registered_member_count": 1615,
+      "after_imports": 17
+    },
+    {
+      "file": "Schema018.json",
+      "sha256": "202fff36e32fdedaa95992d1ba8dcadbc8f9f6603dfb176e7f790f52ef0853d4",
+      "metatype_count": 1958,
+      "initialized_schema_count": 426,
+      "registered_member_count": 1658,
+      "after_imports": 18
+    },
+    {
+      "file": "Schema019.json",
+      "sha256": "2232c7eb3563221d25f1831063a4988482440f44fda93c9d21d32856ddbef911",
+      "metatype_count": 1958,
+      "initialized_schema_count": 429,
+      "registered_member_count": 1663,
+      "after_imports": 19
+    },
+    {
+      "file": "Schema020.json",
+      "sha256": "efa104ca09c27dfdecc58ae9d00d88234897bf514dca02db07043f598cfb07da",
+      "metatype_count": 1958,
+      "initialized_schema_count": 432,
+      "registered_member_count": 1670,
+      "after_imports": 20
+    },
+    {
+      "file": "Schema021.json",
+      "sha256": "a8969597a04cbb0d9caf45dce62ba10cf3523aad3046168b5a64464ab86df847",
+      "metatype_count": 1958,
+      "initialized_schema_count": 434,
+      "registered_member_count": 1671,
+      "after_imports": 21
+    },
+    {
+      "file": "Schema022.json",
+      "sha256": "1b5a11dc4f8d68aac2f58af753263d6ec4290ccb999930abd47fac534190f31d",
+      "metatype_count": 1958,
+      "initialized_schema_count": 436,
+      "registered_member_count": 1676,
+      "after_imports": 22
+    },
+    {
+      "file": "Schema023.json",
+      "sha256": "4f5e26457e6240a53164f9d8cb030ec02dac392861b9deb42bf21bb35708831d",
+      "metatype_count": 1958,
+      "initialized_schema_count": 438,
+      "registered_member_count": 1679,
+      "after_imports": 23
+    },
+    {
+      "file": "Schema024.json",
+      "sha256": "1d5ffb980e3a091f5465b2c97fad9057e582ac79532c1a0545a77bfcbbc57623",
+      "metatype_count": 1958,
+      "initialized_schema_count": 440,
+      "registered_member_count": 1686,
+      "after_imports": 24
+    },
+    {
+      "file": "Schema025.json",
+      "sha256": "17cb20f1b7c2a1aa3263ae41a1f5e2fc671ba9e2c6085bb3f859ff0617094ec6",
+      "metatype_count": 1958,
+      "initialized_schema_count": 442,
+      "registered_member_count": 1699,
+      "after_imports": 25
+    },
+    {
+      "file": "Schema026.json",
+      "sha256": "bcbf3df5641723b54e8fec933af9d710d928fd4f85bd9d36432d271ed16cc812",
+      "metatype_count": 1958,
+      "initialized_schema_count": 444,
+      "registered_member_count": 1725,
+      "after_imports": 26
+    },
+    {
+      "file": "Schema027.json",
+      "sha256": "e970ca9f58b51d1fa3612a08f60d70f130a50a9f563671594afa6eea806109db",
+      "metatype_count": 1958,
+      "initialized_schema_count": 446,
+      "registered_member_count": 1733,
+      "after_imports": 27
+    },
+    {
+      "file": "Schema028.json",
+      "sha256": "c37642eb7df736dcb0b077e62bbcb4fbd77a734383511f6d5365579e28bb1ab5",
+      "metatype_count": 1958,
+      "initialized_schema_count": 448,
+      "registered_member_count": 1736,
+      "after_imports": 28
+    },
+    {
+      "file": "Schema029.json",
+      "sha256": "66bdf738c4dc543bbf427a6b77e0665d555f47a6bb3b7dc52283a7b6bdf9fd88",
+      "metatype_count": 1958,
+      "initialized_schema_count": 450,
+      "registered_member_count": 1748,
+      "after_imports": 29
+    },
+    {
+      "file": "Schema030.json",
+      "sha256": "cc7168fa5b83534424281fa81dd6f788ddaf8abc2671d802e1b6e5158f76c6c0",
+      "metatype_count": 1958,
+      "initialized_schema_count": 452,
+      "registered_member_count": 1763,
+      "after_imports": 30
+    },
+    {
+      "file": "Schema031.json",
+      "sha256": "2e08a5d9f60c33a94139271916aac28e34bb43c2f993f5ce55b899281ea116f2",
+      "metatype_count": 1958,
+      "initialized_schema_count": 454,
+      "registered_member_count": 1769,
+      "after_imports": 31
+    },
+    {
+      "file": "Schema032.json",
+      "sha256": "e4a9704f3b1033c2cf52391ce241509249bcf9a83fa1ef86c88f76ec662d5ff4",
+      "metatype_count": 1958,
+      "initialized_schema_count": 456,
+      "registered_member_count": 1776,
+      "after_imports": 32
+    },
+    {
+      "file": "Schema033.json",
+      "sha256": "8a052ebd2b67b67fde09977034c5a60e60c888c47047b8bd05041b39868c9172",
+      "metatype_count": 1958,
+      "initialized_schema_count": 457,
+      "registered_member_count": 1792,
+      "after_imports": 33
+    },
+    {
+      "file": "Schema034.json",
+      "sha256": "4301c769564821766eae64fd8f1f2ee40052f14d136504aabb872fd25f5cbaae",
+      "metatype_count": 1958,
+      "initialized_schema_count": 458,
+      "registered_member_count": 1801,
+      "after_imports": 34
+    },
+    {
+      "file": "Schema035.json",
+      "sha256": "9a7c3267bde61d17ac7c5a78afaac37a00cddea056011a57f593c3bf59be44f9",
+      "metatype_count": 1958,
+      "initialized_schema_count": 459,
+      "registered_member_count": 1802,
+      "after_imports": 35
+    },
+    {
+      "file": "Schema036.json",
+      "sha256": "6c72e952118cc22521acb9a080562203ff617a265f579d04d971fa2e52a6bb54",
+      "metatype_count": 1958,
+      "initialized_schema_count": 460,
+      "registered_member_count": 1802,
+      "after_imports": 36
+    },
+    {
+      "file": "Schema037.json",
+      "sha256": "7c1d7b3fc7d9299f6a1a4735b6f5b235944a2ee1311ac60ae80384a353117062",
+      "metatype_count": 1958,
+      "initialized_schema_count": 461,
+      "registered_member_count": 1808,
+      "after_imports": 37
+    },
+    {
+      "file": "Schema038.json",
+      "sha256": "ac51c75b5a3a9b01794de65bfb2bf0fc6d93af9ecdeb232290e0e2550c921d62",
+      "metatype_count": 1958,
+      "initialized_schema_count": 462,
+      "registered_member_count": 1811,
+      "after_imports": 38
+    },
+    {
+      "file": "Schema039.json",
+      "sha256": "8a3ac6a617594d8c16649605dd8e90443118e74ac04aeb2734a31ca07ecdf9a7",
+      "metatype_count": 1958,
+      "initialized_schema_count": 463,
+      "registered_member_count": 1811,
+      "after_imports": 39
+    },
+    {
+      "file": "Schema040.json",
+      "sha256": "3b65c45438c0d881411e412cbd033f09cb0cdaaa2129eb0494468e52e28d3d23",
+      "metatype_count": 1958,
+      "initialized_schema_count": 464,
+      "registered_member_count": 1815,
+      "after_imports": 40
+    },
+    {
+      "file": "Schema041.json",
+      "sha256": "4ed8b08744754bad03cccbd1b85e38d740722b6e46440d4ce0a09d841be28284",
+      "metatype_count": 1958,
+      "initialized_schema_count": 465,
+      "registered_member_count": 1818,
+      "after_imports": 41
+    },
+    {
+      "file": "Schema042.json",
+      "sha256": "6b13cf275f391a5a5b32560194e32f79d4b94d59c43122e78bae90d45d72ea36",
+      "metatype_count": 1958,
+      "initialized_schema_count": 466,
+      "registered_member_count": 1822,
+      "after_imports": 42
+    },
+    {
+      "file": "Schema043.json",
+      "sha256": "64c8aa59c723da0408dc6aa88000bba51bc641765c3db266814968dec90550dd",
+      "metatype_count": 1958,
+      "initialized_schema_count": 467,
+      "registered_member_count": 1827,
+      "after_imports": 43
+    },
+    {
+      "file": "Schema044.json",
+      "sha256": "aaaf911652ca2e51777dda92a34702c8e3d9a866bb5d4c750db91d7bc1cee786",
+      "metatype_count": 1958,
+      "initialized_schema_count": 468,
+      "registered_member_count": 1830,
+      "after_imports": 44
+    },
+    {
+      "file": "Schema045.json",
+      "sha256": "42e0e65d4b8154cc32fa035bd4467ee5d2e8eded57f5e38ed4f74dc3032ff37b",
+      "metatype_count": 1958,
+      "initialized_schema_count": 469,
+      "registered_member_count": 1831,
+      "after_imports": 45
+    },
+    {
+      "file": "Schema046.json",
+      "sha256": "e64112bd925a463f787588df08d72afaee74e62b6e1ba434710557b69cf3befb",
+      "metatype_count": 1958,
+      "initialized_schema_count": 470,
+      "registered_member_count": 1831,
+      "after_imports": 46
+    },
+    {
+      "file": "Schema047.json",
+      "sha256": "db775555dcdfc2efb0a7d5be2338720881e60ef702bc50005973e4f3b23d82d6",
+      "metatype_count": 1958,
+      "initialized_schema_count": 471,
+      "registered_member_count": 1832,
+      "after_imports": 47
+    },
+    {
+      "file": "Schema048.json",
+      "sha256": "52aeff17aac6dd76e448bf6e09a1f9439fe022fb5983c78ef5b0bf89bf70b87c",
+      "metatype_count": 1958,
+      "initialized_schema_count": 472,
+      "registered_member_count": 1834,
+      "after_imports": 48
+    },
+    {
+      "file": "Schema049.json",
+      "sha256": "3cbb3792825a77b647edf402a279555bcea42a07a99f3cc8b0271b5f0e12db89",
+      "metatype_count": 1958,
+      "initialized_schema_count": 473,
+      "registered_member_count": 1836,
+      "after_imports": 49
+    },
+    {
+      "file": "Schema050.json",
+      "sha256": "14a733fd31acf2691528d44d96af59c35f0f318af99b3a545f9b07126734773e",
+      "metatype_count": 1958,
+      "initialized_schema_count": 474,
+      "registered_member_count": 1837,
+      "after_imports": 50
+    },
+    {
+      "file": "Schema051.json",
+      "sha256": "b1303d5405a07dc3bf9c68aba6a1ea3cebd595d67e5fd75e2bfb1a09a22c2a43",
+      "metatype_count": 1958,
+      "initialized_schema_count": 475,
+      "registered_member_count": 1840,
+      "after_imports": 51
+    },
+    {
+      "file": "Schema052.json",
+      "sha256": "cbf6929dcb35b79a45a855c201b08a957cdac9182cdcf7bde897ff42074289f6",
+      "metatype_count": 1958,
+      "initialized_schema_count": 476,
+      "registered_member_count": 1840,
+      "after_imports": 52
+    },
+    {
+      "file": "Schema053.json",
+      "sha256": "28648930f64ce12ae0d1f1c7189d05b0e5f0ae8216f1de5b6d5fcf63ffb6e306",
+      "metatype_count": 1958,
+      "initialized_schema_count": 477,
+      "registered_member_count": 1840,
+      "after_imports": 53
+    },
+    {
+      "file": "Schema054.json",
+      "sha256": "6bcfdb1639d9747f8d593ed81e314c16831210cc3d7dbfe6a184e23f5f0b54b7",
+      "metatype_count": 1958,
+      "initialized_schema_count": 478,
+      "registered_member_count": 1844,
+      "after_imports": 54
+    },
+    {
+      "file": "Schema055.json",
+      "sha256": "ea76cb4c2246b5a110f83460daaa444fa0ec4a26fbbfb99208b69e9fde744fcf",
+      "metatype_count": 1958,
+      "initialized_schema_count": 479,
+      "registered_member_count": 1851,
+      "after_imports": 55
+    },
+    {
+      "file": "Schema056.json",
+      "sha256": "a2e0b6b91302b3028a486aff20d3e89020e6f5394a454e0bbb0a3fa53b832541",
+      "metatype_count": 1958,
+      "initialized_schema_count": 480,
+      "registered_member_count": 1857,
+      "after_imports": 56
+    },
+    {
+      "file": "Schema057.json",
+      "sha256": "0240caa3bb1e31537510320302b93ea85897e1101525bab1ede32a4d3a3349b1",
+      "metatype_count": 1958,
+      "initialized_schema_count": 481,
+      "registered_member_count": 1857,
+      "after_imports": 57
+    },
+    {
+      "file": "Schema058.json",
+      "sha256": "ac591b7c6c80e186ca5e5ddc6588a3f5b4b2a985eba043915230f804225f51c1",
+      "metatype_count": 1958,
+      "initialized_schema_count": 482,
+      "registered_member_count": 1861,
+      "after_imports": 58
+    },
+    {
+      "file": "Schema059.json",
+      "sha256": "6c86ef310e3a1a22ffbf756d6330732fa3041e96b3b88a65010d8b1b14f30ed2",
+      "metatype_count": 1958,
+      "initialized_schema_count": 483,
+      "registered_member_count": 1865,
+      "after_imports": 59
+    },
+    {
+      "file": "Schema060.json",
+      "sha256": "d46612d1bd365c44ea3ab8e44dd2808dadd6908cda9e74d89dcd80575cb687a7",
+      "metatype_count": 1958,
+      "initialized_schema_count": 484,
+      "registered_member_count": 1866,
+      "after_imports": 60
+    },
+    {
+      "file": "Schema061.json",
+      "sha256": "f919109350d01c9b5e8eda49aedad381810fd9700119482e4721faf8ab0d2f02",
+      "metatype_count": 1958,
+      "initialized_schema_count": 485,
+      "registered_member_count": 1872,
+      "after_imports": 61
+    },
+    {
+      "file": "Schema062.json",
+      "sha256": "d7e60fb8cb6e9c38a12066eaef8dd4646deb8cf506e137b8882edf689795cc3f",
+      "metatype_count": 1958,
+      "initialized_schema_count": 486,
+      "registered_member_count": 1896,
+      "after_imports": 62
+    },
+    {
+      "file": "Schema063.json",
+      "sha256": "669fecf1a1ce48b4a8ecf8cd1dec1abc718e134932d43e783622b3345ac9bb9d",
+      "metatype_count": 1958,
+      "initialized_schema_count": 487,
+      "registered_member_count": 1902,
+      "after_imports": 63
+    },
+    {
+      "file": "Schema064.json",
+      "sha256": "556ffbdf72ae2a6554602f2dd6e298931cfe2ea0f76f7d6ac2f9ce1b6fd2b9e0",
+      "metatype_count": 1958,
+      "initialized_schema_count": 488,
+      "registered_member_count": 1910,
+      "after_imports": 64
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0,
+  "fusion_version": "2706.1.17",
+  "snapshot_archive": {
+    "file": "Snapshots.tar.xz",
+    "sha256": "e8ebe400c8673392f8802367f155a09c63fd4f0f9ba9df769fdb41d69c8b2d81",
+    "members": 64
+  }
+}

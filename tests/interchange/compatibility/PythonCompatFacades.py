@@ -124,6 +124,7 @@ KPythonCompatFacades = (
             "TopologySummary",
         ),
     ),
+    ("interchange.materials", ("MaterialRecord",)),
     ("interchange.mesh", ("Mesh",)),
     (
         "interchange.serialization",

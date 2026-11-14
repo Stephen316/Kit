@@ -11,6 +11,12 @@ KAsmValue: TypeAlias = int | float | str | bytes | tuple[float, ...] | None
 # each serialized token keeps the wire discriminator needed by field readers
 KAsmToken: TypeAlias = tuple[int, KAsmValue]
 
+KRecordTokens = 1 << 20
+
+KIntCodes = {4: "<i", 8: "<q"}
+
+KAsmWidths = {b"ASM BinaryFile8": 8, b"ASM BinaryFile4": 4}
+
 
 # initial entity ordinals are separate from stored body handles and history slots
 @MakeDataClass(frozen=True, slots=True)
@@ -27,18 +33,24 @@ class AsmTable:
 
 
 # a focused initial reader consumes every token by its bounded wire grammar
-def ReadAsmToken(Cursor: MetaCursor) -> KAsmToken:
+def ReadAsmToken(Cursor: MetaCursor, Width: int = 8) -> KAsmToken:
     TagValue = Cursor.TakeBytes(1)[0]
     if TagValue in (4, 12, 21, 23):
-        Value = Unpack("<q", Cursor.TakeBytes(8))[0]
+        Value = Unpack(KIntCodes[Width], Cursor.TakeBytes(Width))[0]
     elif TagValue == 6:
         Value = Unpack("<d", Cursor.TakeBytes(8))[0]
         if not IsFinite(Value):
             raise ValueError("Nonfinite Fusion ASM scalar")
     elif TagValue in (7, 13, 14):
-        Value = Cursor.TakeBytes(Cursor.TakeBytes(1)[0]).decode("ascii")
+        Value = Cursor.TakeBytes(Cursor.TakeBytes(1)[0]).decode(
+            "utf-8" if TagValue == 7 else "ascii"
+        )
+    elif TagValue == 8:
+        Value = Cursor.TakeBytes(Unpack("<H", Cursor.TakeBytes(2))[0]).decode("utf-8")
+    elif TagValue == 9:
+        Value = Cursor.TakeBytes(Unpack("<q", Cursor.TakeBytes(8))[0]).decode("utf-8")
     elif TagValue == 18:
-        SizeValue = Unpack("<q", Cursor.TakeBytes(8))[0]
+        SizeValue = Unpack(KIntCodes[Width], Cursor.TakeBytes(Width))[0]
         Value = Cursor.TakeBytes(SizeValue)
     elif TagValue in (19, 20):
         Value = Unpack("<3d", Cursor.TakeBytes(24))
@@ -52,11 +64,11 @@ def ReadAsmToken(Cursor: MetaCursor) -> KAsmToken:
 
 
 # recursive entity subtype delimiters are framed but not evaluated
-def ReadAsmRecord(Cursor: MetaCursor, NameValue: str) -> AsmRecord:
+def ReadAsmRecord(Cursor: MetaCursor, NameValue: str, Width: int = 8) -> AsmRecord:
     Tokens: list[KAsmToken] = []
     Depth = 0
-    for _ in range(4096):
-        Token = ReadAsmToken(Cursor)
+    for _ in range(KRecordTokens):
+        Token = ReadAsmToken(Cursor, Width)
         TagValue = Token[0]
         if TagValue == 17:
             if Depth:
@@ -96,15 +108,17 @@ def ReadAsmTable(BlobData: bytes) -> AsmTable:
     if Cursor.TakeBytes(15) != b"ASM BinaryFile8":
         raise ValueError("Unsupported Fusion ASM file header")
     Version, Stored, Roots, Flags = Unpack("<4q", Cursor.TakeBytes(32))
-    if Version <= 0 or Stored != 0 or not 2 <= Roots <= 256 or Flags != 3:
-        raise ValueError("Unsupported Fusion ASM history header")
+    if Version <= 0 or Stored != 0 or not 2 <= Roots <= 256 or Flags not in (2, 3):
+        raise ValueError("Unsupported Fusion ASM header")
     Header = tuple(ReadAsmToken(Cursor) for _ in range(6))
     if tuple(Token[0] for Token in Header) != (7, 7, 7, 6, 6, 6):
         raise ValueError("Invalid Fusion ASM header tokens")
     Records: list[AsmRecord] = []
     for _ in range(8192):
         NameValue = ReadAsmName(Cursor)
-        if NameValue == "Begin-of-ASM-History-Data":
+        if NameValue in ("Begin-of-ASM-History-Data", "End-of-ASM-data"):
+            if NameValue == "End-of-ASM-data" and Cursor.Offset != len(BlobData):
+                raise ValueError("Trailing Fusion ASM data")
             if not Roots <= len(Records) or Records[0].Name != "asmheader":
                 raise ValueError("Invalid Fusion ASM root table extent")
             return AsmTable(Roots, tuple(Records))

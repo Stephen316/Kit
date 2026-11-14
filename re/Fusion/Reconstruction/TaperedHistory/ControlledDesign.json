@@ -1,0 +1,4230 @@
+{
+  "schema": "FusionTaperedDesignJoins/1",
+  "scope": "Selected saved Design fields decoded read-only with research schema; no native queries or production codec execution",
+  "samples": [
+    {
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/distance_positive.f3d",
+      "sourceSha256": "dd9067920bccc513668d479ae4e32c88456aac037c2dcf976e5d9d7dc310ffe0",
+      "metadataSha256": "e8f4b6e1840b19be1a8a7c8e834e2ccec1420f47aafd395f5add44e9b175ff27",
+      "bulkSha256": "5bd1db2135e6fb9f4fc93580bc5bab4605cdf8a9b2c422be05997b0c08b7e2fe",
+      "records": [
+        {
+          "entityId": 8,
+          "primary": true,
+          "className": "BRepHistorySerializerMetaType",
+          "classId": "74CA4562-59F8-4C97-8AD1-F8297C21F9AA",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "74CA4562-59F8-4C97-8AD1-F8297C21F9AA",
+              "fields": {}
+            },
+            {
+              "identifier": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+              "fields": {
+                "mapBodyId": [
+                  {
+                    "key": 0,
+                    "value": 260
+                  }
+                ],
+                "rBodies": {
+                  "entityId": 7
+                },
+                "rBody": null
+              }
+            },
+            {
+              "identifier": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+              "fields": {
+                "partName": "BREP.78c4a6cb-708e-4d67-b9c5-6b12f06a115a.smbh"
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 16,
+          "primary": true,
+          "className": "ParameterTableMetaType",
+          "classId": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+              "fields": {
+                "bIsStateChangedByUser": false,
+                "expandedNodeSet": [],
+                "groupOrder": [],
+                "highWaterMark": 2,
+                "rParameterSearchByNameHelper": {
+                  "entityId": 17
+                }
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 242
+                  },
+                  {
+                    "entityId": 245
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 17,
+          "primary": true,
+          "className": "ParameterSearchByNameHelperMetaType",
+          "classId": "E276745D-D84E-40D5-88BC-8C94DD4ACCDF",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": true,
+            "subjects": [
+              {
+                "subject": {
+                  "entityId": 16
+                },
+                "indexInObserverVec": 0
+              },
+              {
+                "subject": {
+                  "entityId": 242
+                },
+                "indexInObserverVec": 0
+              },
+              {
+                "subject": {
+                  "entityId": 245
+                },
+                "indexInObserverVec": 0
+              }
+            ],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "E276745D-D84E-40D5-88BC-8C94DD4ACCDF",
+              "fields": {
+                "parameterMap": [
+                  {
+                    "key": "d2",
+                    "value": {
+                      "entityId": 245
+                    }
+                  },
+                  {
+                    "key": "d1",
+                    "value": {
+                      "entityId": 242
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 31,
+          "primary": true,
+          "className": "DcFeatureIdManagerMetaType",
+          "classId": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+              "fields": {
+                "enetityIdMap": [
+                  {
+                    "key": 234,
+                    "value": [
+                      301,
+                      302
+                    ]
+                  },
+                  {
+                    "key": 207,
+                    "value": [
+                      300
+                    ]
+                  }
+                ],
+                "featureIdMap": [
+                  {
+                    "key": 300,
+                    "value": 207
+                  },
+                  {
+                    "key": 301,
+                    "value": 234
+                  },
+                  {
+                    "key": 302,
+                    "value": 234
+                  }
+                ],
+                "obsoleteFeatureIds": [],
+                "rOwnerFragment": {
+                  "entityId": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType",
+          "classId": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
+              "fields": {
+                "actIdentifier": "0_202",
+                "bodyId": 3,
+                "canModify": true,
+                "constraints": [],
+                "constructionGeometryVisibility": true,
+                "dimensions": [],
+                "firstDimensionScaled": false,
+                "flag": 0,
+                "fullyConstrainedVersion": 7,
+                "hideProfile": false,
+                "occurrenceTransform": {
+                  "identity": true
+                },
+                "offsets": [],
+                "placementFaceBody": null,
+                "projectedGeometryVisibility": true,
+                "rDcNode": {
+                  "entityId": 207
+                },
+                "rOwningDeriveFeature": null,
+                "showAllDimension": false,
+                "showConstraint": true,
+                "showDimensionWhenEditing": true
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 202,
+          "primary": false,
+          "className": "SketchMetaType",
+          "classId": "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9",
+              "fields": {
+                "UCS": {
+                  "entityId": 204
+                },
+                "creationIndex": 1,
+                "hideSketchPoints": false,
+                "isVisible": false,
+                "rSketchGroupParent": {
+                  "entityId": 9
+                },
+                "userName": "ProbeProfile"
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 205
+                  },
+                  {
+                    "entityId": 228
+                  },
+                  {
+                    "entityId": 230
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 9
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 205,
+          "primary": true,
+          "className": "Point3DMetaType",
+          "classId": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              },
+              {
+                "name": "pt_tag",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 100
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+              "fields": {
+                "curveUses": {
+                  "entityId": 206
+                },
+                "isCachedProjected": false,
+                "isCoincident": false,
+                "isConstraintOnPlane": false,
+                "isFixed": true,
+                "isFullyConstrained": true,
+                "isOrigin": true,
+                "isProjected": false,
+                "lowerSelectionPriority": false,
+                "point": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "specialType": 0
+              }
+            },
+            {
+              "identifier": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+              "fields": {
+                "DAGNodeParents": []
+              }
+            },
+            {
+              "identifier": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+              "fields": {
+                "isVisible": false,
+                "lineColor": {
+                  "red": 0.0,
+                  "green": 0.0,
+                  "blue": 0.0,
+                  "alpha": 1.0
+                },
+                "lineThickness": 1.0
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 206
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 202
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 207,
+          "primary": true,
+          "className": "DcSketchMetaType",
+          "classId": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+              "fields": {
+                "bIsAGDDcSketchFeature": false,
+                "dcParameters": [],
+                "isVisibleBeforeRollback": true,
+                "meshSections": [],
+                "rSketch": {
+                  "entityId": 202
+                },
+                "rSketchPlaneMatrix": {
+                  "entityId": 215
+                },
+                "sketchIsoCurves": [],
+                "sketchProjects": [],
+                "sketchSurfaces": []
+              }
+            },
+            {
+              "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+              "fields": {
+                "associationId": "00000000-0000-0000-0000-000000000000",
+                "bDisabled": false,
+                "bLockedForTimelineReorder": false,
+                "bLockedForTimelineRoll": false,
+                "childNodes": [
+                  {
+                    "entityId": 211
+                  },
+                  {
+                    "entityId": 215
+                  }
+                ],
+                "endModelHS": -1,
+                "featureBaseName": "Sketch",
+                "featureIndex": 1,
+                "featureUserName": "",
+                "groupMembers": [],
+                "isImplicitlySuppressed": false,
+                "isSuppressed": false,
+                "isZombieFeature": false,
+                "rProgenitorTable": {
+                  "entityId": 210
+                },
+                "rReferencedContext": null,
+                "startModelHS": -1
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.000559084,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 209
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 208
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 207,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 210,
+          "primary": true,
+          "className": "ProgenitorTableMetaType",
+          "classId": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+              "fields": {
+                "ProgenitorTagVec": [],
+                "tagId": 1
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 210,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 228,
+          "primary": true,
+          "className": "Point3DMetaType",
+          "classId": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              },
+              {
+                "name": "pt_tag",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 101
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+              "fields": {
+                "curveUses": {
+                  "entityId": 229
+                },
+                "isCachedProjected": false,
+                "isCoincident": false,
+                "isConstraintOnPlane": false,
+                "isFixed": false,
+                "isFullyConstrained": false,
+                "isOrigin": false,
+                "isProjected": false,
+                "lowerSelectionPriority": false,
+                "point": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "specialType": 0
+              }
+            },
+            {
+              "identifier": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+              "fields": {
+                "DAGNodeParents": []
+              }
+            },
+            {
+              "identifier": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+              "fields": {
+                "isVisible": true,
+                "lineColor": {
+                  "red": 0.0,
+                  "green": 0.0,
+                  "blue": 0.0,
+                  "alpha": 1.0
+                },
+                "lineThickness": 1.0
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 229
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 202
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 230,
+          "primary": true,
+          "className": "CircArc3DMetaType",
+          "classId": "F0130424-8B7E-4092-93C9-1CA807482534",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              },
+              {
+                "name": "crv_primary_id",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 102
+              },
+              {
+                "name": "crv_secondary_id",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 0
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "F0130424-8B7E-4092-93C9-1CA807482534",
+              "fields": {
+                "arcCurve": {
+                  "center": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  },
+                  "normal": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 1.0
+                  },
+                  "refVec": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": -0.0
+                  },
+                  "radius": 1.0,
+                  "startAngle": 0.0,
+                  "endAngle": 6.283185307179586
+                },
+                "rCenterPoint": {
+                  "entityId": 228
+                },
+                "rEndPoint": null,
+                "rStartPoint": null
+              }
+            },
+            {
+              "identifier": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+              "fields": {
+                "isCachedProjected": false,
+                "isConstraintOnPlane": false,
+                "isFixed": false,
+                "isFullyConstrained": false,
+                "isProjected": false,
+                "isReference": false,
+                "isoCurve": false,
+                "m_eLineStyle": 0,
+                "useEnvironmentColors": true
+              }
+            },
+            {
+              "identifier": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+              "fields": {
+                "DAGNodeParents": []
+              }
+            },
+            {
+              "identifier": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+              "fields": {
+                "isVisible": true,
+                "lineColor": {
+                  "red": 0.0,
+                  "green": 0.0,
+                  "blue": 0.0,
+                  "alpha": 1.0
+                },
+                "lineThickness": 1.0
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": []
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 202
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 234,
+          "primary": true,
+          "className": "DcExtrudeFeatureMetaType",
+          "classId": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+              "fields": {
+                "ProfileFromEntityRef": null,
+                "bIsAGDExtrudeFeature": false,
+                "bPreviewNormal": false,
+                "booleanOperation": 4,
+                "directionType": 1,
+                "extendFaceOption": 2,
+                "isFlipDirection": false,
+                "isSolidOperation": true,
+                "profileLocaltionType": 0,
+                "profileNormal": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1.0
+                },
+                "profileOffset": null,
+                "rAgainstDistance": null,
+                "rAlongDistance": {
+                  "entityId": 243
+                },
+                "rExtrudeToolBody": {
+                  "entityId": 248
+                },
+                "rFromEntityRef": null,
+                "rTaperAngle": {
+                  "entityId": 246
+                },
+                "rToEntityRef": null,
+                "side1ExtentType": 1,
+                "side1Offset": null,
+                "side1SolutionType": 0,
+                "side2ExtendFaceOption": 0,
+                "side2ExtentType": 0,
+                "side2FlipDirection": false,
+                "side2Offset": null,
+                "side2SolutionType": 0,
+                "side2TaperAngle": null,
+                "startDirectionFlip": false,
+                "symmetricMeasurementType": 0,
+                "thinExtrude": false,
+                "thinExtrudeSide1WallLocation": 0,
+                "thinExtrudeSide1WallThickness": null,
+                "thinExtrudeSide2WallLocation": 0,
+                "thinExtrudeSide2WallThickness": null
+              }
+            },
+            {
+              "identifier": "3FED63D9-CDC5-4334-A5C5-6C10271320D5",
+              "fields": {
+                "profileDataRefs": [
+                  {
+                    "entityId": 235
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+              "fields": {
+                "cachedDcBodies": [],
+                "dcBodies": [
+                  {
+                    "entityId": 266
+                  }
+                ],
+                "removedBodies": []
+              }
+            },
+            {
+              "identifier": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+              "fields": {
+                "targetDataRefs": []
+              }
+            },
+            {
+              "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+              "fields": {
+                "associationId": "00000000-0000-0000-0000-000000000000",
+                "bDisabled": false,
+                "bLockedForTimelineReorder": false,
+                "bLockedForTimelineRoll": false,
+                "childNodes": [
+                  {
+                    "entityId": 235
+                  },
+                  {
+                    "entityId": 238
+                  },
+                  {
+                    "entityId": 243
+                  },
+                  {
+                    "entityId": 246
+                  },
+                  {
+                    "entityId": 248
+                  }
+                ],
+                "endModelHS": 4,
+                "featureBaseName": "Extrude",
+                "featureIndex": 1,
+                "featureUserName": "ProbeExtrusion",
+                "groupMembers": [],
+                "isImplicitlySuppressed": false,
+                "isSuppressed": false,
+                "isZombieFeature": false,
+                "rProgenitorTable": {
+                  "entityId": 253
+                },
+                "rReferencedContext": null,
+                "startModelHS": 2
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.00028637499999999995,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 252
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 251
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 234,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 235,
+          "primary": true,
+          "className": "ModelDataRefMetaType",
+          "classId": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+              "fields": {
+                "dataRefs": [
+                  {
+                    "entityId": 238
+                  }
+                ],
+                "rOwnerOccurrence": null,
+                "rTargetOccurrence": null
+              }
+            },
+            {
+              "identifier": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+              "fields": {
+                "caches": [
+                  {
+                    "entityId": 278
+                  }
+                ],
+                "refBodies": [],
+                "trackingType": 65,
+                "updateFlag": 0,
+                "xRefAssetHash": 0
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 1.5208000000000062e-05,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 237
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 236
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 235,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 238,
+          "primary": true,
+          "className": "SketchRegionRefMetaType",
+          "classId": "4BD53E5A-0B3E-45E5-AE8B-02044306485A",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "4BD53E5A-0B3E-45E5-AE8B-02044306485A",
+              "fields": {
+                "rRecipe": {
+                  "entityId": 241
+                }
+              }
+            },
+            {
+              "identifier": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+              "fields": {
+                "rScope": [
+                  {
+                    "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+                    "fields": {
+                      "assetId": "17d7430d-272d-4fac-be3b-bf0e8c759f88",
+                      "scopeEntityIdentifier": "202",
+                      "scopeIdType": 1,
+                      "segmentId": 0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+              "fields": {
+                "caches": [
+                  {
+                    "entityId": 277
+                  }
+                ],
+                "refBodies": [],
+                "trackingType": 65,
+                "updateFlag": 0,
+                "xRefAssetHash": 0
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.00038024999999999995,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 240
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 239
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 238,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 241,
+          "primary": true,
+          "className": "SketchRegionRecipeMetaType",
+          "classId": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+              "fields": {
+                "rSketchRegionRef": {
+                  "entityId": 238
+                },
+                "skRegionRecipe": [
+                  [
+                    {
+                      "identifier": "FA8C53C4-4FEC-4643-8A9F-5A95FF0B9F8A",
+                      "fields": {
+                        "faceRecipe": [
+                          {
+                            "first": [
+                              {
+                                "version": 3,
+                                "tagId": 102,
+                                "secondaryTagId": 0,
+                                "direction": 0,
+                                "splitSequenceId": 1,
+                                "splitTotalNumber": 1,
+                                "objectOffset20": 0
+                              }
+                            ],
+                            "second": true
+                          }
+                        ],
+                        "originalFaceRecipes": []
+                      }
+                    }
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 241,
+          "primary": false,
+          "className": "RecipeMetaType",
+          "classId": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+              "fields": {}
+            }
+          ]
+        },
+        {
+          "entityId": 242,
+          "primary": true,
+          "className": "ParameterMetaType",
+          "classId": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "fields": {
+                "UserDefaultUnit": false,
+                "actIdentifier": "",
+                "birthday": 6,
+                "booleanValue": false,
+                "comment": "",
+                "creationIndex": 1,
+                "dcParameter": {
+                  "entityId": 243
+                },
+                "expression": "17 mm",
+                "expressionType": 0,
+                "group": null,
+                "isDirty": false,
+                "isDriven": false,
+                "isFavourite": false,
+                "isOrphan": false,
+                "isUserDefined": false,
+                "name": "AlongDistance",
+                "textValue": "",
+                "unit": "mm",
+                "userName": "d1",
+                "value": 1.7000000000000002
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 16
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 243,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType",
+          "classId": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": true,
+            "subjects": [
+              {
+                "subject": {
+                  "entityId": 234
+                },
+                "indexInObserverVec": 0
+              }
+            ],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+              "fields": {
+                "value": 1.7000000000000002
+              }
+            },
+            {
+              "identifier": "B24D5130-8751-4272-8143-D230D8757873",
+              "fields": {
+                "parameter": {
+                  "entityId": 242
+                },
+                "rparamId": 1,
+                "rrOwnerFeature": {
+                  "entityId": 234
+                }
+              }
+            },
+            {
+              "identifier": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 244
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 243,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 245,
+          "primary": true,
+          "className": "ParameterMetaType",
+          "classId": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "fields": {
+                "UserDefaultUnit": false,
+                "actIdentifier": "",
+                "birthday": 6,
+                "booleanValue": false,
+                "comment": "",
+                "creationIndex": 2,
+                "dcParameter": {
+                  "entityId": 246
+                },
+                "expression": "0 deg",
+                "expressionType": 0,
+                "group": null,
+                "isDirty": false,
+                "isDriven": false,
+                "isFavourite": false,
+                "isOrphan": false,
+                "isUserDefined": false,
+                "name": "TaperAngle",
+                "textValue": "",
+                "unit": "deg",
+                "userName": "d2",
+                "value": 0.0
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 16
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 246,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType",
+          "classId": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": true,
+            "subjects": [
+              {
+                "subject": {
+                  "entityId": 234
+                },
+                "indexInObserverVec": 1
+              }
+            ],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+              "fields": {
+                "value": 0.0
+              }
+            },
+            {
+              "identifier": "B24D5130-8751-4272-8143-D230D8757873",
+              "fields": {
+                "parameter": {
+                  "entityId": 245
+                },
+                "rparamId": 2,
+                "rrOwnerFeature": {
+                  "entityId": 234
+                }
+              }
+            },
+            {
+              "identifier": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 247
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 246,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 248,
+          "primary": true,
+          "className": "DcExtrudeToolBodyMetaType",
+          "classId": "0897AF07-EF1B-42E5-BDD9-1C746A085CBC",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "0897AF07-EF1B-42E5-BDD9-1C746A085CBC",
+              "fields": {
+                "rExtrudeFeature": {
+                  "entityId": 234
+                }
+              }
+            },
+            {
+              "identifier": "60F291CB-499B-4AB1-B0E5-340368671724",
+              "fields": {
+                "toolbodyCaches": [
+                  {
+                    "entityId": 279
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.0004337079999999999,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 250
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 249
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 248,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 253,
+          "primary": true,
+          "className": "ProgenitorTableMetaType",
+          "classId": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+              "fields": {
+                "ProgenitorTagVec": [
+                  {
+                    "first": {
+                      "entityId": 256
+                    },
+                    "second": 3
+                  },
+                  {
+                    "first": {
+                      "entityId": 259
+                    },
+                    "second": 4
+                  }
+                ],
+                "tagId": 5
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 253,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 256,
+          "primary": true,
+          "className": "SketchCurveProgenitorMetaType",
+          "classId": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+              "fields": {
+                "rRecipe": {
+                  "entityId": 257
+                }
+              }
+            },
+            {
+              "identifier": "5C069ACB-169F-4555-9792-815B4671DDA0",
+              "fields": {}
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 257,
+          "primary": true,
+          "className": "SketchCurveRecipeMetaType",
+          "classId": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+              "fields": {
+                "profileEdgeTagData": {
+                  "version": 0,
+                  "sketchTags": [
+                    {
+                      "version": 3,
+                      "tagId": 102,
+                      "secondaryTagId": 0,
+                      "direction": 1,
+                      "splitSequenceId": 1,
+                      "splitTotalNumber": 1,
+                      "objectOffset20": 0
+                    }
+                  ],
+                  "objectOffset20Set": [],
+                  "objectOffset38Set": []
+                }
+              }
+            },
+            {
+              "identifier": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+              "fields": {}
+            }
+          ]
+        },
+        {
+          "entityId": 259,
+          "primary": true,
+          "className": "BodyProgenitorMetaType",
+          "classId": "ABA79BE7-D8D2-4C17-B59B-C2035E111F77",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "ABA79BE7-D8D2-4C17-B59B-C2035E111F77",
+              "fields": {
+                "alternativeProgenitor": null,
+                "bodyUuid": "7270e698-1374-49f6-a5e4-80243e4123d4",
+                "centerOrder": 0,
+                "featureTagOccMap": [
+                  {
+                    "key": [
+                      {
+                        "identifier": "1E8B9FB0-77E5-4489-B63D-EEC6408D1283",
+                        "fields": {
+                          "facePrimIdData": [
+                            51
+                          ],
+                          "facePrimIdOffsets": [
+                            0,
+                            1
+                          ],
+                          "operationId": 301,
+                          "primary": false
+                        }
+                      }
+                    ],
+                    "value": 1
+                  }
+                ],
+                "rRefBodyOfTagInherit": null,
+                "shareTargetBodyAddress": false
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 259,
+          "primary": false,
+          "className": "ProgenitorMetaType",
+          "classId": "5C069ACB-169F-4555-9792-815B4671DDA0",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "5C069ACB-169F-4555-9792-815B4671DDA0",
+              "fields": {}
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 260,
+          "primary": true,
+          "className": "BodyMetaType",
+          "classId": "D3937028-C20C-4E65-B010-94AD418A5C20",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D3937028-C20C-4E65-B010-94AD418A5C20",
+              "fields": {
+                "actIdentifier": "0_260",
+                "bodyType": 2,
+                "cache": [
+                  {
+                    "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+                    "fields": {
+                      "area": 16.964600329384886,
+                      "areaPrec": 0.0,
+                      "cog": {
+                        "x": 1.0456815644736537e-10,
+                        "y": 0.0,
+                        "z": 0.8500000000000003
+                      },
+                      "inertiaPrec": 0.00036244530820017396,
+                      "moi": {
+                        "x": 6.480058188152828,
+                        "y": 6.480058533022158,
+                        "z": 2.670353583116773
+                      },
+                      "moiOffDiag": {
+                        "x": 8.881784197001252e-16,
+                        "y": -4.746958381929289e-10,
+                        "z": 8.881784197001252e-16
+                      },
+                      "revisionGuid": "6ab24af6-b66b-417f-baff-cb5ac481cd6f",
+                      "volume": 5.3407075111028774,
+                      "volumePrec": 0.00036244530820017396
+                    }
+                  }
+                ],
+                "creationIndex": 1,
+                "edgeSelection": true,
+                "faceVisualMaterialByAttrTagID": [],
+                "facetVersion": 2320500,
+                "isSelectable": true,
+                "isVisible": true,
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "opacity": 1.0,
+                "overriddenBody": null,
+                "overriddenToOverridingId": [],
+                "overridingToOverriddenId": [],
+                "passiveIdGenerator": null,
+                "persistentId": "7270e698-1374-49f6-a5e4-80243e4123d4",
+                "physicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": {
+                        "entityId": 1
+                      },
+                      "assetReference": "68D2E0CB-7898-7171-A2FD-97B32973D511",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018"
+                    }
+                  }
+                ],
+                "rGroupParent": {
+                  "entityId": 7
+                },
+                "rOwningDeriveFeature": null,
+                "textureMapping": {
+                  "entityId": 261
+                },
+                "userName": "",
+                "visualMaterial": [
+                  {
+                    "identifier": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+                    "fields": {
+                      "CustomizedColor": {
+                        "red": 0.0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "alpha": 1.0
+                      },
+                      "ProteinAssetManager": {
+                        "entityId": 1
+                      },
+                      "UseCustomizedColor": false,
+                      "assetReference": "5000FFF0-6133-41FB-B57D-18A521440ACC",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018_physmat_aspects:Prism-256",
+                      "proteinMaterialRotation": 0.0,
+                      "proteinMaterialScale": 1.0
+                    }
+                  }
+                ],
+                "wireStyle": 1
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 7
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 266,
+          "primary": true,
+          "className": "DcBodyMetaType",
+          "classId": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+              "fields": {
+                "bodyUuid": "7270e698-1374-49f6-a5e4-80243e4123d4",
+                "isEliminated": false,
+                "isVisibleBeforeRollback": true,
+                "rBody": {
+                  "entityId": 260
+                },
+                "rOwnFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 266,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 277,
+          "primary": true,
+          "className": "ETCachedTopologyMetaType",
+          "classId": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+              "fields": {
+                "cachedEntityId": 4,
+                "scope": [
+                  {
+                    "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+                    "fields": {
+                      "assetId": "17d7430d-272d-4fac-be3b-bf0e8c759f88",
+                      "scopeEntityIdentifier": "6445fe3a-b88e-4366-991b-6bab2f577e3a",
+                      "scopeIdType": 2,
+                      "segmentId": 0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082",
+              "fields": {
+                "progenitor": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 279,
+          "primary": true,
+          "className": "ETCachedTopologyMetaType",
+          "classId": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+              "fields": {
+                "cachedEntityId": 5,
+                "scope": [
+                  {
+                    "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+                    "fields": {
+                      "assetId": "17d7430d-272d-4fac-be3b-bf0e8c759f88",
+                      "scopeEntityIdentifier": "6445fe3a-b88e-4366-991b-6bab2f577e3a",
+                      "scopeIdType": 2,
+                      "segmentId": 0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082",
+              "fields": {
+                "progenitor": null
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/taper.f3d",
+      "sourceSha256": "d5e776fa897782747e699b1ed366f9bf51bf6652c19a21001676651c2cd4118f",
+      "metadataSha256": "4eecea93d3161dc8f91644a88597467b54f60913c5cf177ba8035b61a22967ed",
+      "bulkSha256": "778564a50ff31736d385df680a21b1d83301cfdc49fbcc02cef7b9e8d6c6946e",
+      "records": [
+        {
+          "entityId": 8,
+          "primary": true,
+          "className": "BRepHistorySerializerMetaType",
+          "classId": "74CA4562-59F8-4C97-8AD1-F8297C21F9AA",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "74CA4562-59F8-4C97-8AD1-F8297C21F9AA",
+              "fields": {}
+            },
+            {
+              "identifier": "E8DCB040-6A0E-4AD1-BCF3-1E1AEDD35EE4",
+              "fields": {
+                "mapBodyId": [
+                  {
+                    "key": 0,
+                    "value": 260
+                  }
+                ],
+                "rBodies": {
+                  "entityId": 7
+                },
+                "rBody": null
+              }
+            },
+            {
+              "identifier": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+              "fields": {
+                "partName": "BREP.299112e4-f409-4233-89b9-e59b88e80317.smbh"
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 16,
+          "primary": true,
+          "className": "ParameterTableMetaType",
+          "classId": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "B0556F58-EE09-46A7-B18F-E296F48E5B13",
+              "fields": {
+                "bIsStateChangedByUser": false,
+                "expandedNodeSet": [],
+                "groupOrder": [],
+                "highWaterMark": 2,
+                "rParameterSearchByNameHelper": {
+                  "entityId": 17
+                }
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 242
+                  },
+                  {
+                    "entityId": 245
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 3
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 17,
+          "primary": true,
+          "className": "ParameterSearchByNameHelperMetaType",
+          "classId": "E276745D-D84E-40D5-88BC-8C94DD4ACCDF",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": true,
+            "subjects": [
+              {
+                "subject": {
+                  "entityId": 16
+                },
+                "indexInObserverVec": 0
+              },
+              {
+                "subject": {
+                  "entityId": 242
+                },
+                "indexInObserverVec": 0
+              },
+              {
+                "subject": {
+                  "entityId": 245
+                },
+                "indexInObserverVec": 0
+              }
+            ],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "E276745D-D84E-40D5-88BC-8C94DD4ACCDF",
+              "fields": {
+                "parameterMap": [
+                  {
+                    "key": "d2",
+                    "value": {
+                      "entityId": 245
+                    }
+                  },
+                  {
+                    "key": "d1",
+                    "value": {
+                      "entityId": 242
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 31,
+          "primary": true,
+          "className": "DcFeatureIdManagerMetaType",
+          "classId": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "5D89B935-3F04-4CAB-81F5-E7B309E7E13F",
+              "fields": {
+                "enetityIdMap": [
+                  {
+                    "key": 234,
+                    "value": [
+                      301,
+                      302
+                    ]
+                  },
+                  {
+                    "key": 207,
+                    "value": [
+                      300
+                    ]
+                  }
+                ],
+                "featureIdMap": [
+                  {
+                    "key": 300,
+                    "value": 207
+                  },
+                  {
+                    "key": 301,
+                    "value": 234
+                  },
+                  {
+                    "key": 302,
+                    "value": 234
+                  }
+                ],
+                "obsoleteFeatureIds": [],
+                "rOwnerFragment": {
+                  "entityId": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 202,
+          "primary": true,
+          "className": "MSketchMetaType",
+          "classId": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "44A64366-4BD3-4B24-881A-F94C206E8F2D",
+              "fields": {
+                "actIdentifier": "0_202",
+                "bodyId": 3,
+                "canModify": true,
+                "constraints": [],
+                "constructionGeometryVisibility": true,
+                "dimensions": [],
+                "firstDimensionScaled": false,
+                "flag": 0,
+                "fullyConstrainedVersion": 7,
+                "hideProfile": false,
+                "occurrenceTransform": {
+                  "identity": true
+                },
+                "offsets": [],
+                "placementFaceBody": null,
+                "projectedGeometryVisibility": true,
+                "rDcNode": {
+                  "entityId": 207
+                },
+                "rOwningDeriveFeature": null,
+                "showAllDimension": false,
+                "showConstraint": true,
+                "showDimensionWhenEditing": true
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 202,
+          "primary": false,
+          "className": "SketchMetaType",
+          "classId": "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "37AD519C-AFB3-4CE2-9E6D-E3269FC6CDB9",
+              "fields": {
+                "UCS": {
+                  "entityId": 204
+                },
+                "creationIndex": 1,
+                "hideSketchPoints": false,
+                "isVisible": false,
+                "rSketchGroupParent": {
+                  "entityId": 9
+                },
+                "userName": "ProbeProfile"
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 205
+                  },
+                  {
+                    "entityId": 228
+                  },
+                  {
+                    "entityId": 230
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 9
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 205,
+          "primary": true,
+          "className": "Point3DMetaType",
+          "classId": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              },
+              {
+                "name": "pt_tag",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 100
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+              "fields": {
+                "curveUses": {
+                  "entityId": 206
+                },
+                "isCachedProjected": false,
+                "isCoincident": false,
+                "isConstraintOnPlane": false,
+                "isFixed": true,
+                "isFullyConstrained": true,
+                "isOrigin": true,
+                "isProjected": false,
+                "lowerSelectionPriority": false,
+                "point": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "specialType": 0
+              }
+            },
+            {
+              "identifier": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+              "fields": {
+                "DAGNodeParents": []
+              }
+            },
+            {
+              "identifier": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+              "fields": {
+                "isVisible": false,
+                "lineColor": {
+                  "red": 0.0,
+                  "green": 0.0,
+                  "blue": 0.0,
+                  "alpha": 1.0
+                },
+                "lineThickness": 1.0
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 206
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 202
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 207,
+          "primary": true,
+          "className": "DcSketchMetaType",
+          "classId": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "8DA771B7-52ED-42FC-94E2-2353FE141373",
+              "fields": {
+                "bIsAGDDcSketchFeature": false,
+                "dcParameters": [],
+                "isVisibleBeforeRollback": true,
+                "meshSections": [],
+                "rSketch": {
+                  "entityId": 202
+                },
+                "rSketchPlaneMatrix": {
+                  "entityId": 215
+                },
+                "sketchIsoCurves": [],
+                "sketchProjects": [],
+                "sketchSurfaces": []
+              }
+            },
+            {
+              "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+              "fields": {
+                "associationId": "00000000-0000-0000-0000-000000000000",
+                "bDisabled": false,
+                "bLockedForTimelineReorder": false,
+                "bLockedForTimelineRoll": false,
+                "childNodes": [
+                  {
+                    "entityId": 211
+                  },
+                  {
+                    "entityId": 215
+                  }
+                ],
+                "endModelHS": -1,
+                "featureBaseName": "Sketch",
+                "featureIndex": 1,
+                "featureUserName": "",
+                "groupMembers": [],
+                "isImplicitlySuppressed": false,
+                "isSuppressed": false,
+                "isZombieFeature": false,
+                "rProgenitorTable": {
+                  "entityId": 210
+                },
+                "rReferencedContext": null,
+                "startModelHS": -1
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.000280708,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 209
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 208
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 207,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 210,
+          "primary": true,
+          "className": "ProgenitorTableMetaType",
+          "classId": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+              "fields": {
+                "ProgenitorTagVec": [],
+                "tagId": 1
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 210,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 228,
+          "primary": true,
+          "className": "Point3DMetaType",
+          "classId": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              },
+              {
+                "name": "pt_tag",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 101
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "C2CEDAE7-1716-47C1-B7B1-07B70081D0FB",
+              "fields": {
+                "curveUses": {
+                  "entityId": 229
+                },
+                "isCachedProjected": false,
+                "isCoincident": false,
+                "isConstraintOnPlane": false,
+                "isFixed": false,
+                "isFullyConstrained": false,
+                "isOrigin": false,
+                "isProjected": false,
+                "lowerSelectionPriority": false,
+                "point": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0.0
+                },
+                "specialType": 0
+              }
+            },
+            {
+              "identifier": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+              "fields": {
+                "DAGNodeParents": []
+              }
+            },
+            {
+              "identifier": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+              "fields": {
+                "isVisible": true,
+                "lineColor": {
+                  "red": 0.0,
+                  "green": 0.0,
+                  "blue": 0.0,
+                  "alpha": 1.0
+                },
+                "lineThickness": 1.0
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": [
+                  {
+                    "entityId": 229
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 202
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 230,
+          "primary": true,
+          "className": "CircArc3DMetaType",
+          "classId": "F0130424-8B7E-4092-93C9-1CA807482534",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": [
+              {
+                "name": "EntityGenesis",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 2
+              },
+              {
+                "name": "crv_primary_id",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 102
+              },
+              {
+                "name": "crv_secondary_id",
+                "metatype": "IntrinsicMetaTypeuint64",
+                "value": 0
+              }
+            ]
+          },
+          "groups": [
+            {
+              "identifier": "F0130424-8B7E-4092-93C9-1CA807482534",
+              "fields": {
+                "arcCurve": {
+                  "center": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                  },
+                  "normal": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 1.0
+                  },
+                  "refVec": {
+                    "x": 1.0,
+                    "y": 0.0,
+                    "z": -0.0
+                  },
+                  "radius": 1.0,
+                  "startAngle": 0.0,
+                  "endAngle": 6.283185307179586
+                },
+                "rCenterPoint": {
+                  "entityId": 228
+                },
+                "rEndPoint": null,
+                "rStartPoint": null
+              }
+            },
+            {
+              "identifier": "9FF71F46-205F-484B-A2B5-A245D0D8FE33",
+              "fields": {
+                "isCachedProjected": false,
+                "isConstraintOnPlane": false,
+                "isFixed": false,
+                "isFullyConstrained": false,
+                "isProjected": false,
+                "isReference": false,
+                "isoCurve": false,
+                "m_eLineStyle": 0,
+                "useEnvironmentColors": true
+              }
+            },
+            {
+              "identifier": "8E9D588C-28EF-43C4-B9A6-AA5430A68D4B",
+              "fields": {
+                "DAGNodeParents": []
+              }
+            },
+            {
+              "identifier": "F405DA34-6952-47F3-9C43-ABE392459FFF",
+              "fields": {
+                "isVisible": true,
+                "lineColor": {
+                  "red": 0.0,
+                  "green": 0.0,
+                  "blue": 0.0,
+                  "alpha": 1.0
+                },
+                "lineThickness": 1.0
+              }
+            },
+            {
+              "identifier": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "834C9DEF-4C39-4587-A08D-A5BD1267B7B4",
+              "fields": {
+                "children": []
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 202
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 234,
+          "primary": true,
+          "className": "DcExtrudeFeatureMetaType",
+          "classId": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "DD405BC2-D673-44F0-8833-5CB2A1C186C7",
+              "fields": {
+                "ProfileFromEntityRef": null,
+                "bIsAGDExtrudeFeature": false,
+                "bPreviewNormal": false,
+                "booleanOperation": 4,
+                "directionType": 1,
+                "extendFaceOption": 2,
+                "isFlipDirection": false,
+                "isSolidOperation": true,
+                "profileLocaltionType": 0,
+                "profileNormal": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1.0
+                },
+                "profileOffset": null,
+                "rAgainstDistance": null,
+                "rAlongDistance": {
+                  "entityId": 243
+                },
+                "rExtrudeToolBody": {
+                  "entityId": 248
+                },
+                "rFromEntityRef": null,
+                "rTaperAngle": {
+                  "entityId": 246
+                },
+                "rToEntityRef": null,
+                "side1ExtentType": 1,
+                "side1Offset": null,
+                "side1SolutionType": 0,
+                "side2ExtendFaceOption": 0,
+                "side2ExtentType": 0,
+                "side2FlipDirection": false,
+                "side2Offset": null,
+                "side2SolutionType": 0,
+                "side2TaperAngle": null,
+                "startDirectionFlip": false,
+                "symmetricMeasurementType": 0,
+                "thinExtrude": false,
+                "thinExtrudeSide1WallLocation": 0,
+                "thinExtrudeSide1WallThickness": null,
+                "thinExtrudeSide2WallLocation": 0,
+                "thinExtrudeSide2WallThickness": null
+              }
+            },
+            {
+              "identifier": "3FED63D9-CDC5-4334-A5C5-6C10271320D5",
+              "fields": {
+                "profileDataRefs": [
+                  {
+                    "entityId": 235
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+              "fields": {
+                "cachedDcBodies": [],
+                "dcBodies": [
+                  {
+                    "entityId": 266
+                  }
+                ],
+                "removedBodies": []
+              }
+            },
+            {
+              "identifier": "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47",
+              "fields": {
+                "targetDataRefs": []
+              }
+            },
+            {
+              "identifier": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB",
+              "fields": {
+                "associationId": "00000000-0000-0000-0000-000000000000",
+                "bDisabled": false,
+                "bLockedForTimelineReorder": false,
+                "bLockedForTimelineRoll": false,
+                "childNodes": [
+                  {
+                    "entityId": 235
+                  },
+                  {
+                    "entityId": 238
+                  },
+                  {
+                    "entityId": 243
+                  },
+                  {
+                    "entityId": 246
+                  },
+                  {
+                    "entityId": 248
+                  }
+                ],
+                "endModelHS": 4,
+                "featureBaseName": "Extrude",
+                "featureIndex": 1,
+                "featureUserName": "ProbeExtrusion",
+                "groupMembers": [],
+                "isImplicitlySuppressed": false,
+                "isSuppressed": false,
+                "isZombieFeature": false,
+                "rProgenitorTable": {
+                  "entityId": 253
+                },
+                "rReferencedContext": null,
+                "startModelHS": 2
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.00017445799999999995,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 252
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 251
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 234,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 235,
+          "primary": true,
+          "className": "ModelDataRefMetaType",
+          "classId": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2CA5A1CD-C99B-4C9B-91AF-57989148E841",
+              "fields": {
+                "dataRefs": [
+                  {
+                    "entityId": 238
+                  }
+                ],
+                "rOwnerOccurrence": null,
+                "rTargetOccurrence": null
+              }
+            },
+            {
+              "identifier": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+              "fields": {
+                "caches": [
+                  {
+                    "entityId": 278
+                  }
+                ],
+                "refBodies": [],
+                "trackingType": 65,
+                "updateFlag": 0,
+                "xRefAssetHash": 0
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 1.1333999999999997e-05,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 237
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 236
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 235,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 238,
+          "primary": true,
+          "className": "SketchRegionRefMetaType",
+          "classId": "4BD53E5A-0B3E-45E5-AE8B-02044306485A",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "4BD53E5A-0B3E-45E5-AE8B-02044306485A",
+              "fields": {
+                "rRecipe": {
+                  "entityId": 241
+                }
+              }
+            },
+            {
+              "identifier": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+              "fields": {
+                "rScope": [
+                  {
+                    "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+                    "fields": {
+                      "assetId": "3c2e7f6d-2289-4e47-9099-0109e1ab2316",
+                      "scopeEntityIdentifier": "202",
+                      "scopeIdType": 1,
+                      "segmentId": 0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "F8CD0BB3-2CE6-4236-8C1B-6D0638BF215F",
+              "fields": {
+                "caches": [
+                  {
+                    "entityId": 277
+                  }
+                ],
+                "refBodies": [],
+                "trackingType": 65,
+                "updateFlag": 0,
+                "xRefAssetHash": 0
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.00025058299999999997,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 240
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 239
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 238,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 241,
+          "primary": true,
+          "className": "SketchRegionRecipeMetaType",
+          "classId": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+              "fields": {
+                "rSketchRegionRef": {
+                  "entityId": 238
+                },
+                "skRegionRecipe": [
+                  [
+                    {
+                      "identifier": "FA8C53C4-4FEC-4643-8A9F-5A95FF0B9F8A",
+                      "fields": {
+                        "faceRecipe": [
+                          {
+                            "first": [
+                              {
+                                "version": 3,
+                                "tagId": 102,
+                                "secondaryTagId": 0,
+                                "direction": 0,
+                                "splitSequenceId": 1,
+                                "splitTotalNumber": 1,
+                                "objectOffset20": 0
+                              }
+                            ],
+                            "second": true
+                          }
+                        ],
+                        "originalFaceRecipes": []
+                      }
+                    }
+                  ]
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 241,
+          "primary": false,
+          "className": "RecipeMetaType",
+          "classId": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+              "fields": {}
+            }
+          ]
+        },
+        {
+          "entityId": 242,
+          "primary": true,
+          "className": "ParameterMetaType",
+          "classId": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "fields": {
+                "UserDefaultUnit": false,
+                "actIdentifier": "",
+                "birthday": 6,
+                "booleanValue": false,
+                "comment": "",
+                "creationIndex": 1,
+                "dcParameter": {
+                  "entityId": 243
+                },
+                "expression": "17 mm",
+                "expressionType": 0,
+                "group": null,
+                "isDirty": false,
+                "isDriven": false,
+                "isFavourite": false,
+                "isOrphan": false,
+                "isUserDefined": false,
+                "name": "AlongDistance",
+                "textValue": "",
+                "unit": "mm",
+                "userName": "d1",
+                "value": 1.7000000000000002
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 16
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 243,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType",
+          "classId": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": true,
+            "subjects": [
+              {
+                "subject": {
+                  "entityId": 234
+                },
+                "indexInObserverVec": 0
+              }
+            ],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+              "fields": {
+                "value": 1.7000000000000002
+              }
+            },
+            {
+              "identifier": "B24D5130-8751-4272-8143-D230D8757873",
+              "fields": {
+                "parameter": {
+                  "entityId": 242
+                },
+                "rparamId": 1,
+                "rrOwnerFeature": {
+                  "entityId": 234
+                }
+              }
+            },
+            {
+              "identifier": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 244
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 243,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 245,
+          "primary": true,
+          "className": "ParameterMetaType",
+          "classId": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+              "fields": {
+                "UserDefaultUnit": false,
+                "actIdentifier": "",
+                "birthday": 6,
+                "booleanValue": false,
+                "comment": "",
+                "creationIndex": 2,
+                "dcParameter": {
+                  "entityId": 246
+                },
+                "expression": "7 deg",
+                "expressionType": 0,
+                "group": null,
+                "isDirty": false,
+                "isDriven": false,
+                "isFavourite": false,
+                "isOrphan": false,
+                "isUserDefined": false,
+                "name": "TaperAngle",
+                "textValue": "",
+                "unit": "deg",
+                "userName": "d2",
+                "value": 0.12217304763960307
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 16
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 246,
+          "primary": true,
+          "className": "DcDoubleParameterMetaType",
+          "classId": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": true,
+            "subjects": [
+              {
+                "subject": {
+                  "entityId": 234
+                },
+                "indexInObserverVec": 1
+              }
+            ],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+              "fields": {
+                "value": 0.12217304763960307
+              }
+            },
+            {
+              "identifier": "B24D5130-8751-4272-8143-D230D8757873",
+              "fields": {
+                "parameter": {
+                  "entityId": 245
+                },
+                "rparamId": 2,
+                "rrOwnerFeature": {
+                  "entityId": 234
+                }
+              }
+            },
+            {
+              "identifier": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 247
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 246,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 248,
+          "primary": true,
+          "className": "DcExtrudeToolBodyMetaType",
+          "classId": "0897AF07-EF1B-42E5-BDD9-1C746A085CBC",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "0897AF07-EF1B-42E5-BDD9-1C746A085CBC",
+              "fields": {
+                "rExtrudeFeature": {
+                  "entityId": 234
+                }
+              }
+            },
+            {
+              "identifier": "60F291CB-499B-4AB1-B0E5-340368671724",
+              "fields": {
+                "toolbodyCaches": [
+                  {
+                    "entityId": 279
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+              "fields": {
+                "birthday": 257,
+                "computeTime": 0.0005032500000000001,
+                "firstBirthday": 257,
+                "status": {
+                  "entityId": 250
+                }
+              }
+            },
+            {
+              "identifier": "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",
+              "fields": {}
+            },
+            {
+              "identifier": "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",
+              "fields": {
+                "isActive": true,
+                "isEdited": false,
+                "isEliminated": false,
+                "rDynamicUpdateData": {
+                  "entityId": 249
+                },
+                "rGroupRepresentative": null,
+                "rParentFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 248,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 27
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 253,
+          "primary": true,
+          "className": "ProgenitorTableMetaType",
+          "classId": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "B7F34D7B-DAC4-41A5-B67D-D672537C3BFA",
+              "fields": {
+                "ProgenitorTagVec": [
+                  {
+                    "first": {
+                      "entityId": 256
+                    },
+                    "second": 3
+                  },
+                  {
+                    "first": {
+                      "entityId": 259
+                    },
+                    "second": 4
+                  }
+                ],
+                "tagId": 5
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 253,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 256,
+          "primary": true,
+          "className": "SketchCurveProgenitorMetaType",
+          "classId": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": true,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "335CC7BD-BBE5-40AA-9E8C-5EC99D427A3A",
+              "fields": {
+                "rRecipe": {
+                  "entityId": 257
+                }
+              }
+            },
+            {
+              "identifier": "5C069ACB-169F-4555-9792-815B4671DDA0",
+              "fields": {}
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 257,
+          "primary": true,
+          "className": "SketchCurveRecipeMetaType",
+          "classId": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+              "fields": {
+                "profileEdgeTagData": {
+                  "version": 0,
+                  "sketchTags": [
+                    {
+                      "version": 3,
+                      "tagId": 102,
+                      "secondaryTagId": 0,
+                      "direction": 1,
+                      "splitSequenceId": 1,
+                      "splitTotalNumber": 1,
+                      "objectOffset20": 0
+                    }
+                  ],
+                  "objectOffset20Set": [],
+                  "objectOffset38Set": []
+                }
+              }
+            },
+            {
+              "identifier": "70F5E801-1E8E-436E-8A09-36487F8A2859",
+              "fields": {}
+            }
+          ]
+        },
+        {
+          "entityId": 259,
+          "primary": true,
+          "className": "BodyProgenitorMetaType",
+          "classId": "ABA79BE7-D8D2-4C17-B59B-C2035E111F77",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "ABA79BE7-D8D2-4C17-B59B-C2035E111F77",
+              "fields": {
+                "alternativeProgenitor": null,
+                "bodyUuid": "a75d9ca9-7d2c-4474-82bb-bee11bac9fa3",
+                "centerOrder": 0,
+                "featureTagOccMap": [
+                  {
+                    "key": [
+                      {
+                        "identifier": "1E8B9FB0-77E5-4489-B63D-EEC6408D1283",
+                        "fields": {
+                          "facePrimIdData": [
+                            51
+                          ],
+                          "facePrimIdOffsets": [
+                            0,
+                            1
+                          ],
+                          "operationId": 301,
+                          "primary": false
+                        }
+                      }
+                    ],
+                    "value": 1
+                  }
+                ],
+                "rRefBodyOfTagInherit": null,
+                "shareTargetBodyAddress": false
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 259,
+          "primary": false,
+          "className": "ProgenitorMetaType",
+          "classId": "5C069ACB-169F-4555-9792-815B4671DDA0",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "5C069ACB-169F-4555-9792-815B4671DDA0",
+              "fields": {}
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 260,
+          "primary": true,
+          "className": "BodyMetaType",
+          "classId": "D3937028-C20C-4E65-B010-94AD418A5C20",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D3937028-C20C-4E65-B010-94AD418A5C20",
+              "fields": {
+                "actIdentifier": "0_260",
+                "bodyType": 2,
+                "cache": [
+                  {
+                    "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+                    "fields": {
+                      "area": 19.61636501856793,
+                      "areaPrec": 5.397489203864596e-22,
+                      "cog": {
+                        "x": 1.509638417077369e-10,
+                        "y": 1.3595140753111367e-16,
+                        "z": 0.9033932075833666
+                      },
+                      "inertiaPrec": 0.0005232590124995953,
+                      "moi": {
+                        "x": 8.911809723623081,
+                        "y": 8.91181045979142,
+                        "z": 4.043132092296158
+                      },
+                      "moiOffDiag": {
+                        "x": -1.7763568394002505e-15,
+                        "y": -8.383187477534193e-10,
+                        "z": -8.881784197001252e-16
+                      },
+                      "revisionGuid": "8c5bc136-a6dc-45a8-82f3-f6036e5b8139",
+                      "volume": 6.533057919954656,
+                      "volumePrec": 0.0005232590124995953
+                    }
+                  }
+                ],
+                "creationIndex": 1,
+                "edgeSelection": true,
+                "faceVisualMaterialByAttrTagID": [],
+                "facetVersion": 2320500,
+                "isSelectable": true,
+                "isVisible": true,
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "opacity": 1.0,
+                "overriddenBody": null,
+                "overriddenToOverridingId": [],
+                "overridingToOverriddenId": [],
+                "passiveIdGenerator": null,
+                "persistentId": "a75d9ca9-7d2c-4474-82bb-bee11bac9fa3",
+                "physicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": {
+                        "entityId": 1
+                      },
+                      "assetReference": "68D2E0CB-7898-7171-A2FD-97B32973D511",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018"
+                    }
+                  }
+                ],
+                "rGroupParent": {
+                  "entityId": 7
+                },
+                "rOwningDeriveFeature": null,
+                "textureMapping": {
+                  "entityId": 261
+                },
+                "userName": "",
+                "visualMaterial": [
+                  {
+                    "identifier": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+                    "fields": {
+                      "CustomizedColor": {
+                        "red": 0.0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "alpha": 1.0
+                      },
+                      "ProteinAssetManager": {
+                        "entityId": 1
+                      },
+                      "UseCustomizedColor": false,
+                      "assetReference": "5000FFF0-6133-41FB-B57D-18A521440ACC",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018_physmat_aspects:Prism-256",
+                      "proteinMaterialRotation": 0.0,
+                      "proteinMaterialScale": 1.0
+                    }
+                  }
+                ],
+                "wireStyle": 1
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 7
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 266,
+          "primary": true,
+          "className": "DcBodyMetaType",
+          "classId": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+              "fields": {
+                "bodyUuid": "a75d9ca9-7d2c-4474-82bb-bee11bac9fa3",
+                "isEliminated": false,
+                "isVisibleBeforeRollback": true,
+                "rBody": {
+                  "entityId": 260
+                },
+                "rOwnFeature": {
+                  "entityId": 234
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 266,
+          "primary": false,
+          "className": "ManagedEntityMetaType",
+          "classId": "CB844AB6-240D-4FC9-9C9F-3679DC896D6F",
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 26
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 277,
+          "primary": true,
+          "className": "ETCachedTopologyMetaType",
+          "classId": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+              "fields": {
+                "cachedEntityId": 4,
+                "scope": [
+                  {
+                    "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+                    "fields": {
+                      "assetId": "3c2e7f6d-2289-4e47-9099-0109e1ab2316",
+                      "scopeEntityIdentifier": "bf070ca5-bc16-4329-9608-db58de5678dc",
+                      "scopeIdType": 2,
+                      "segmentId": 0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082",
+              "fields": {
+                "progenitor": null
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 279,
+          "primary": true,
+          "className": "ETCachedTopologyMetaType",
+          "classId": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+              "fields": {
+                "cachedEntityId": 5,
+                "scope": [
+                  {
+                    "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+                    "fields": {
+                      "assetId": "3c2e7f6d-2289-4e47-9099-0109e1ab2316",
+                      "scopeEntityIdentifier": "bf070ca5-bc16-4329-9608-db58de5678dc",
+                      "scopeIdType": 2,
+                      "segmentId": 0
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "identifier": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082",
+              "fields": {
+                "progenitor": null
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "changes": [
+    {
+      "entityId": 8,
+      "className": "BRepHistorySerializerMetaType",
+      "group": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+      "field": "partName",
+      "before": "BREP.78c4a6cb-708e-4d67-b9c5-6b12f06a115a.smbh",
+      "after": "BREP.299112e4-f409-4233-89b9-e59b88e80317.smbh"
+    },
+    {
+      "entityId": 207,
+      "className": "DcSketchMetaType",
+      "group": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+      "field": "computeTime",
+      "before": 0.000559084,
+      "after": 0.000280708
+    },
+    {
+      "entityId": 234,
+      "className": "DcExtrudeFeatureMetaType",
+      "group": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+      "field": "computeTime",
+      "before": 0.00028637499999999995,
+      "after": 0.00017445799999999995
+    },
+    {
+      "entityId": 235,
+      "className": "ModelDataRefMetaType",
+      "group": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+      "field": "computeTime",
+      "before": 1.5208000000000062e-05,
+      "after": 1.1333999999999997e-05
+    },
+    {
+      "entityId": 238,
+      "className": "SketchRegionRefMetaType",
+      "group": "6144EA59-3ACA-4172-9F14-A6531E94D69B",
+      "field": "rScope",
+      "before": [
+        {
+          "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+          "fields": {
+            "assetId": "17d7430d-272d-4fac-be3b-bf0e8c759f88",
+            "scopeEntityIdentifier": "202",
+            "scopeIdType": 1,
+            "segmentId": 0
+          }
+        }
+      ],
+      "after": [
+        {
+          "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+          "fields": {
+            "assetId": "3c2e7f6d-2289-4e47-9099-0109e1ab2316",
+            "scopeEntityIdentifier": "202",
+            "scopeIdType": 1,
+            "segmentId": 0
+          }
+        }
+      ]
+    },
+    {
+      "entityId": 238,
+      "className": "SketchRegionRefMetaType",
+      "group": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+      "field": "computeTime",
+      "before": 0.00038024999999999995,
+      "after": 0.00025058299999999997
+    },
+    {
+      "entityId": 245,
+      "className": "ParameterMetaType",
+      "group": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+      "field": "expression",
+      "before": "0 deg",
+      "after": "7 deg"
+    },
+    {
+      "entityId": 245,
+      "className": "ParameterMetaType",
+      "group": "7A6A3D31-BE74-4E19-9115-20642944C2E4",
+      "field": "value",
+      "before": 0.0,
+      "after": 0.12217304763960307
+    },
+    {
+      "entityId": 246,
+      "className": "DcDoubleParameterMetaType",
+      "group": "D91D429C-1BB5-4640-B49F-69AF14F463E9",
+      "field": "value",
+      "before": 0.0,
+      "after": 0.12217304763960307
+    },
+    {
+      "entityId": 248,
+      "className": "DcExtrudeToolBodyMetaType",
+      "group": "E8BDB9D4-2E39-405C-B05E-E2206AD3F125",
+      "field": "computeTime",
+      "before": 0.0004337079999999999,
+      "after": 0.0005032500000000001
+    },
+    {
+      "entityId": 259,
+      "className": "BodyProgenitorMetaType",
+      "group": "ABA79BE7-D8D2-4C17-B59B-C2035E111F77",
+      "field": "bodyUuid",
+      "before": "7270e698-1374-49f6-a5e4-80243e4123d4",
+      "after": "a75d9ca9-7d2c-4474-82bb-bee11bac9fa3"
+    },
+    {
+      "entityId": 260,
+      "className": "BodyMetaType",
+      "group": "D3937028-C20C-4E65-B010-94AD418A5C20",
+      "field": "cache",
+      "before": [
+        {
+          "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+          "fields": {
+            "area": 16.964600329384886,
+            "areaPrec": 0.0,
+            "cog": {
+              "x": 1.0456815644736537e-10,
+              "y": 0.0,
+              "z": 0.8500000000000003
+            },
+            "inertiaPrec": 0.00036244530820017396,
+            "moi": {
+              "x": 6.480058188152828,
+              "y": 6.480058533022158,
+              "z": 2.670353583116773
+            },
+            "moiOffDiag": {
+              "x": 8.881784197001252e-16,
+              "y": -4.746958381929289e-10,
+              "z": 8.881784197001252e-16
+            },
+            "revisionGuid": "6ab24af6-b66b-417f-baff-cb5ac481cd6f",
+            "volume": 5.3407075111028774,
+            "volumePrec": 0.00036244530820017396
+          }
+        }
+      ],
+      "after": [
+        {
+          "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+          "fields": {
+            "area": 19.61636501856793,
+            "areaPrec": 5.397489203864596e-22,
+            "cog": {
+              "x": 1.509638417077369e-10,
+              "y": 1.3595140753111367e-16,
+              "z": 0.9033932075833666
+            },
+            "inertiaPrec": 0.0005232590124995953,
+            "moi": {
+              "x": 8.911809723623081,
+              "y": 8.91181045979142,
+              "z": 4.043132092296158
+            },
+            "moiOffDiag": {
+              "x": -1.7763568394002505e-15,
+              "y": -8.383187477534193e-10,
+              "z": -8.881784197001252e-16
+            },
+            "revisionGuid": "8c5bc136-a6dc-45a8-82f3-f6036e5b8139",
+            "volume": 6.533057919954656,
+            "volumePrec": 0.0005232590124995953
+          }
+        }
+      ]
+    },
+    {
+      "entityId": 260,
+      "className": "BodyMetaType",
+      "group": "D3937028-C20C-4E65-B010-94AD418A5C20",
+      "field": "persistentId",
+      "before": "7270e698-1374-49f6-a5e4-80243e4123d4",
+      "after": "a75d9ca9-7d2c-4474-82bb-bee11bac9fa3"
+    },
+    {
+      "entityId": 266,
+      "className": "DcBodyMetaType",
+      "group": "D26351F0-5940-4D23-AA20-2C35475A6D9E",
+      "field": "bodyUuid",
+      "before": "7270e698-1374-49f6-a5e4-80243e4123d4",
+      "after": "a75d9ca9-7d2c-4474-82bb-bee11bac9fa3"
+    },
+    {
+      "entityId": 277,
+      "className": "ETCachedTopologyMetaType",
+      "group": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+      "field": "scope",
+      "before": [
+        {
+          "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+          "fields": {
+            "assetId": "17d7430d-272d-4fac-be3b-bf0e8c759f88",
+            "scopeEntityIdentifier": "6445fe3a-b88e-4366-991b-6bab2f577e3a",
+            "scopeIdType": 2,
+            "segmentId": 0
+          }
+        }
+      ],
+      "after": [
+        {
+          "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+          "fields": {
+            "assetId": "3c2e7f6d-2289-4e47-9099-0109e1ab2316",
+            "scopeEntityIdentifier": "bf070ca5-bc16-4329-9608-db58de5678dc",
+            "scopeIdType": 2,
+            "segmentId": 0
+          }
+        }
+      ]
+    },
+    {
+      "entityId": 279,
+      "className": "ETCachedTopologyMetaType",
+      "group": "C46D3EEB-40E1-43FA-83DC-9CB204335417",
+      "field": "scope",
+      "before": [
+        {
+          "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+          "fields": {
+            "assetId": "17d7430d-272d-4fac-be3b-bf0e8c759f88",
+            "scopeEntityIdentifier": "6445fe3a-b88e-4366-991b-6bab2f577e3a",
+            "scopeIdType": 2,
+            "segmentId": 0
+          }
+        }
+      ],
+      "after": [
+        {
+          "identifier": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A",
+          "fields": {
+            "assetId": "3c2e7f6d-2289-4e47-9099-0109e1ab2316",
+            "scopeEntityIdentifier": "bf070ca5-bc16-4329-9608-db58de5678dc",
+            "scopeIdType": 2,
+            "segmentId": 0
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1132 @@
+{
+  "scope": "Native Fusion acceptance of Kit ReadDocument and EmitParsed outputs for designs with external references",
+  "prepared_outputs": [
+    {
+      "name": "KitLinkReplayR5",
+      "source_control": "R5_saved",
+      "operation": "ReadDocument then EmitParsed",
+      "source_sha256": "b5978128a5d98c17b75fd7a3f154f179d08833df624b3420c8085e64b63ec979",
+      "output_bytes": 140057,
+      "output_sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9",
+      "model_equal_after_reread": true,
+      "member_count": 25,
+      "same_member_names": true,
+      "changed_members": [
+        "protein"
+      ]
+    },
+    {
+      "name": "KitLinkMovedR1",
+      "source_control": "R1_part_a",
+      "operation": "ReadDocument, replace the Part A occurrence matrix in the typed model, then EmitParsed",
+      "native_matrix": [
+        0.8660254037844387,
+        -0.49999999999999994,
+        0.0,
+        5.0,
+        0.49999999999999994,
+        0.8660254037844387,
+        0.0,
+        2.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "written_matrix": [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0.0,
+        7.0,
+        0.7071067811865476,
+        0.7071067811865476,
+        0.0,
+        -3.0,
+        0.0,
+        0.0,
+        1.0,
+        2.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "replaced_matrix_fields": 4,
+      "source_sha256": "a3705bc7fe47d44c877578638d9bb66abb1b10087ef0ac2846d4768c2b3e45ee",
+      "output_bytes": 135024,
+      "output_sha256": "feb364e1f0b8a23415f01b6326e983c8d7a9259893badc0dc9d78562ddffa297",
+      "model_equal_after_reread": true,
+      "member_count": 28,
+      "same_member_names": true,
+      "changed_members": [
+        "FusionAssetName[Active]/FusionDesignSegmentType1/BulkStream.dat",
+        "protein"
+      ]
+    }
+  ],
+  "files": [
+    {
+      "name": "KitLinkReplayR5.f3d",
+      "bytes": 140057,
+      "sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9"
+    },
+    {
+      "name": "KitLinkMovedR1.f3d",
+      "bytes": 135024,
+      "sha256": "feb364e1f0b8a23415f01b6326e983c8d7a9259893badc0dc9d78562ddffa297"
+    }
+  ],
+  "runs": {
+    "Accept1": {
+      "fusion_version": "2706.1.17",
+      "run": "Accept1",
+      "documents_before": 0,
+      "cases": [
+        {
+          "name": "KitLinkReplayR5",
+          "source_control": "R5_saved",
+          "file_sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9",
+          "prepared_sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9"
+        }
+      ],
+      "folder": "Accept1",
+      "status": "failed",
+      "traceback_last_line": "RuntimeError: 3 : New design cannot be created from a local file containing external references",
+      "documents_after": 0
+    },
+    "Accept2_upload": {
+      "fusion_version": "2706.1.17",
+      "run": "Accept2",
+      "documents_before": 0,
+      "uploads": [
+        {
+          "name": "KitLinkReplayR5",
+          "file_sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9",
+          "prepared_sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9",
+          "upload_state": 0
+        },
+        {
+          "name": "KitLinkMovedR1",
+          "file_sha256": "feb364e1f0b8a23415f01b6326e983c8d7a9259893badc0dc9d78562ddffa297",
+          "prepared_sha256": "feb364e1f0b8a23415f01b6326e983c8d7a9259893badc0dc9d78562ddffa297",
+          "upload_state": 0
+        }
+      ],
+      "folder": "Accept2",
+      "status": "started",
+      "documents_after": 0
+    },
+    "Accept2": {
+      "fusion_version": "2706.1.17",
+      "run": "Accept2",
+      "documents_before": 0,
+      "cases": [
+        {
+          "name": "KitLinkRoot",
+          "source_control": "native cloud root after R8_updated_saved",
+          "found": true,
+          "version": 2,
+          "stage": "closed",
+          "documents_after_open": 4,
+          "references_settled": true,
+          "opened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              },
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          },
+          "documents_after_close": 0
+        },
+        {
+          "name": "KitLinkReplayR5",
+          "source_control": "R5_saved",
+          "prepared_sha256": "f89b39397f705117b85592be15c0c146b1e25f289d2a5fef427830962b66cda9",
+          "uploaded": true,
+          "uploaded_version": 1,
+          "uploaded_complete": true,
+          "stage": "done",
+          "documents_after_open": 4,
+          "references_settled": true,
+          "opened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 1,
+                "out_of_date": true
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.5
+              },
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          },
+          "update_all": true,
+          "update_settled": true,
+          "updated": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              },
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          },
+          "saved": false,
+          "saved_version": 1,
+          "documents_after_close": 0,
+          "reopen_settled": true,
+          "reopened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 1,
+                "out_of_date": true
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.5
+              },
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          }
+        },
+        {
+          "name": "KitLinkMovedR1",
+          "source_control": "R1_part_a",
+          "prepared_sha256": "feb364e1f0b8a23415f01b6326e983c8d7a9259893badc0dc9d78562ddffa297",
+          "uploaded": true,
+          "uploaded_version": 1,
+          "uploaded_complete": true,
+          "stage": "done",
+          "documents_after_open": 2,
+          "references_settled": true,
+          "opened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 1,
+                "out_of_date": true
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  0.7071067811865476,
+                  -0.7071067811865476,
+                  0.0,
+                  7.0,
+                  0.7071067811865476,
+                  0.7071067811865476,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.5
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 1,
+            "unhealthy_timeline_items": 0
+          },
+          "update_all": true,
+          "update_settled": true,
+          "updated": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  0.7071067811865476,
+                  -0.7071067811865476,
+                  0.0,
+                  7.0,
+                  0.7071067811865476,
+                  0.7071067811865476,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 1,
+            "unhealthy_timeline_items": 0
+          },
+          "saved": false,
+          "saved_version": 1,
+          "documents_after_close": 0,
+          "reopen_settled": true,
+          "reopened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 1,
+                "out_of_date": true
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  0.7071067811865476,
+                  -0.7071067811865476,
+                  0.0,
+                  7.0,
+                  0.7071067811865476,
+                  0.7071067811865476,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.5
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 1,
+            "unhealthy_timeline_items": 0
+          }
+        }
+      ],
+      "folder": "Accept2",
+      "status": "completed",
+      "documents_after": 0
+    },
+    "SaveProbe": {
+      "fusion_version": "2706.1.17",
+      "documents_before": 0,
+      "steps": [
+        {
+          "stage": "found",
+          "version": 1,
+          "read_only": true
+        },
+        {
+          "stage": "opened",
+          "modified": false,
+          "saved": true,
+          "documents": 2
+        },
+        {
+          "stage": "updated",
+          "result": true,
+          "modified": true,
+          "versions": [
+            2
+          ]
+        },
+        {
+          "stage": "save_called",
+          "result": true,
+          "modified": false,
+          "local_version": 1
+        },
+        {
+          "stage": "after_wait",
+          "grew": true,
+          "cloud_version": 2,
+          "modified": false,
+          "saved": true
+        }
+      ],
+      "status": "completed",
+      "documents_after": 0
+    },
+    "Accept2_saves": {
+      "fusion_version": "2706.1.17",
+      "run": "Accept2_saves",
+      "documents_before": 0,
+      "cases": [
+        {
+          "name": "KitLinkReplayR5",
+          "start_version": 1,
+          "read_only": true,
+          "stage": "done",
+          "opened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 1,
+                "out_of_date": true
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.5
+              },
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          },
+          "update_all": true,
+          "update_settled": true,
+          "updated": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              },
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          },
+          "save_result": true,
+          "saved": true,
+          "reopen_version": 2,
+          "reopened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              },
+              {
+                "name": "KitLinkSub",
+                "version": 1,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkSub:1+KitLinkPartB:1": {
+                "component": "KitLinkPartB",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 1.2000000000000002
+              },
+              "KitLinkSub:1": {
+                "component": "KitLinkSub",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  2.220446049250313e-16,
+                  -1.0,
+                  6.0,
+                  0.0,
+                  1.0,
+                  2.220446049250313e-16,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": null
+              },
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": true,
+                "transform2": [
+                  0.8660254037844387,
+                  -0.49999999999999994,
+                  0.0,
+                  5.0,
+                  0.49999999999999994,
+                  0.8660254037844387,
+                  0.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 4,
+            "unhealthy_timeline_items": 0
+          },
+          "documents_after_close": 0
+        },
+        {
+          "name": "KitLinkMovedR1",
+          "start_version": 2,
+          "read_only": false,
+          "stage": "done",
+          "opened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  0.7071067811865476,
+                  -0.7071067811865476,
+                  0.0,
+                  7.0,
+                  0.7071067811865476,
+                  0.7071067811865476,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 1,
+            "unhealthy_timeline_items": 0
+          },
+          "reopen_version": 2,
+          "reopened": {
+            "references": [
+              {
+                "name": "KitLinkPartA",
+                "version": 2,
+                "out_of_date": false
+              }
+            ],
+            "occurrences": {
+              "KitLinkPartA:1": {
+                "component": "KitLinkPartA",
+                "referenced": true,
+                "grounded": false,
+                "transform2": [
+                  0.7071067811865476,
+                  -0.7071067811865476,
+                  0.0,
+                  7.0,
+                  0.7071067811865476,
+                  0.7071067811865476,
+                  0.0,
+                  -3.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  2.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0
+                ],
+                "body_height_cm": 0.8
+              }
+            },
+            "transform_check": {
+              "paths_equal": true,
+              "max_abs_transform_error": 0.0
+            },
+            "timeline_count": 1,
+            "unhealthy_timeline_items": 0
+          },
+          "documents_after_close": 0
+        }
+      ],
+      "status": "completed",
+      "documents_after": 0
+    },
+    "FolderState": {
+      "fusion_version": "2706.1.17",
+      "documents_before": 0,
+      "open_names": [],
+      "futures": null,
+      "files": [
+        {
+          "name": "KitLinkMovedR1",
+          "extension": "f3d",
+          "version": 2,
+          "complete": true
+        },
+        {
+          "name": "KitLinkReplayR5",
+          "extension": "f3d",
+          "version": 1,
+          "complete": true
+        }
+      ],
+      "status": "completed",
+      "documents_after": 0
+    }
+  }
+}

@@ -1,0 +1,982 @@
+{
+  "scope": "Native Fusion acceptance of Kit EmitAssembly outputs that reference uploaded Kit parts",
+  "parts": {
+    "outputs": [
+      {
+        "name": "KitAsmPartA",
+        "operation": "EncodeDocument(MakeFusionDoc(DocumentSpec))",
+        "profile": "extrusion",
+        "parameter": "heightA",
+        "length_mm": 5.0,
+        "radius_mm": 10.0,
+        "output_bytes": 97709,
+        "output_sha256": "c8784c623d0b36aa8af552d73e59c1649b7735a87ba1d4a004cb4bcd73117b9f"
+      },
+      {
+        "name": "KitAsmPartB",
+        "operation": "EncodeDocument(MakeFusionDoc(DocumentSpec))",
+        "profile": "extrusion",
+        "parameter": "lengthB",
+        "length_mm": 12.0,
+        "radius_mm": 4.0,
+        "output_bytes": 97711,
+        "output_sha256": "4a2b0ac06e8a06ad268c920b563d2e3760e56223d3d51b9518399f0158703609"
+      }
+    ]
+  },
+  "assemblies": {
+    "outputs": [
+      {
+        "name": "KitAsmSub",
+        "operation": "EmitAssembly(AssemblySpec)",
+        "targets": [
+          "KitAsmPartB"
+        ],
+        "placements": [
+          {
+            "target": "KitAsmPartB",
+            "matrix_cm": [
+              0.0,
+              -1.0,
+              0.0,
+              2.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "grounded": false
+          }
+        ],
+        "joint": null,
+        "design_next_id": 1098,
+        "contexts": {
+          "KDesign": 1,
+          "KAct": 1,
+          "KBrowser": 1
+        },
+        "links": 1,
+        "output_bytes": 57799,
+        "output_sha256": "ecfb252f4891e44d07a63c855352c44146c66eebb03114c0d13481f59bbe53ec"
+      },
+      {
+        "name": "KitAsmRoot",
+        "operation": "EmitAssembly(AssemblySpec)",
+        "targets": [
+          "KitAsmPartA",
+          "KitAsmSub"
+        ],
+        "placements": [
+          {
+            "target": "KitAsmPartA",
+            "matrix_cm": [
+              0.6,
+              -0.8,
+              0.0,
+              5.0,
+              0.8,
+              0.6,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "grounded": true
+          },
+          {
+            "target": "KitAsmSub",
+            "matrix_cm": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              -1.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "grounded": false
+          }
+        ],
+        "joint": [
+          0,
+          1
+        ],
+        "design_next_id": 1131,
+        "contexts": {
+          "KDesign": 2,
+          "KAct": 2,
+          "KBrowser": 2
+        },
+        "links": 2,
+        "output_bytes": 70234,
+        "output_sha256": "f6c389ffa898b7f2439aac9d795a80c875bb4ebbccb228e7f738ae30aa27b86c"
+      }
+    ]
+  },
+  "files": [
+    {
+      "name": "KitAsmPartA.f3d",
+      "bytes": 97709,
+      "sha256": "c8784c623d0b36aa8af552d73e59c1649b7735a87ba1d4a004cb4bcd73117b9f"
+    },
+    {
+      "name": "KitAsmPartB.f3d",
+      "bytes": 97711,
+      "sha256": "4a2b0ac06e8a06ad268c920b563d2e3760e56223d3d51b9518399f0158703609"
+    },
+    {
+      "name": "KitAsmSub.f3d",
+      "bytes": 57799,
+      "sha256": "ecfb252f4891e44d07a63c855352c44146c66eebb03114c0d13481f59bbe53ec"
+    },
+    {
+      "name": "KitAsmRoot.f3d",
+      "bytes": 70234,
+      "sha256": "f6c389ffa898b7f2439aac9d795a80c875bb4ebbccb228e7f738ae30aa27b86c"
+    }
+  ],
+  "uploads": {
+    "parts": {
+      "fusion_version": "2706.1.17",
+      "run": "Author1",
+      "documents_before": 0,
+      "uploads": [
+        {
+          "name": "KitAsmPartA",
+          "file_sha256": "c8784c623d0b36aa8af552d73e59c1649b7735a87ba1d4a004cb4bcd73117b9f",
+          "planned_sha256": "c8784c623d0b36aa8af552d73e59c1649b7735a87ba1d4a004cb4bcd73117b9f",
+          "upload_state": 0
+        },
+        {
+          "name": "KitAsmPartB",
+          "file_sha256": "4a2b0ac06e8a06ad268c920b563d2e3760e56223d3d51b9518399f0158703609",
+          "planned_sha256": "4a2b0ac06e8a06ad268c920b563d2e3760e56223d3d51b9518399f0158703609",
+          "upload_state": 0
+        }
+      ],
+      "folder": "Author1",
+      "status": "started",
+      "documents_after": 0
+    },
+    "sub": {
+      "fusion_version": "2706.1.17",
+      "run": "Author1",
+      "documents_before": 0,
+      "uploads": [
+        {
+          "name": "KitAsmSub",
+          "file_sha256": "ecfb252f4891e44d07a63c855352c44146c66eebb03114c0d13481f59bbe53ec",
+          "planned_sha256": "ecfb252f4891e44d07a63c855352c44146c66eebb03114c0d13481f59bbe53ec",
+          "upload_state": 0
+        }
+      ],
+      "folder": "Author1",
+      "status": "started",
+      "documents_after": 0
+    },
+    "root": {
+      "fusion_version": "2706.1.17",
+      "run": "Author1",
+      "documents_before": 0,
+      "uploads": [
+        {
+          "name": "KitAsmRoot",
+          "file_sha256": "f6c389ffa898b7f2439aac9d795a80c875bb4ebbccb228e7f738ae30aa27b86c",
+          "planned_sha256": "f6c389ffa898b7f2439aac9d795a80c875bb4ebbccb228e7f738ae30aa27b86c",
+          "upload_state": 0
+        }
+      ],
+      "folder": "Author1",
+      "status": "started",
+      "documents_after": 0
+    }
+  },
+  "probes": {
+    "A": {
+      "fusion_version": "2706.1.17",
+      "run": "Author1",
+      "documents_before": 0,
+      "probes": [
+        {
+          "name": "KitAsmPartA",
+          "found": true,
+          "complete": true,
+          "version": 1,
+          "inserted": true,
+          "occurrence": "KitAsmPartA:1",
+          "exports": [
+            {
+              "file": "ProbeKitAsmPartA.f3d",
+              "bytes": 60456,
+              "sha256": "0164048f7926ca328743d4336ddffc5c3e5f1086f07d2bbc089acc1669a1ef28"
+            }
+          ],
+          "documents_open": 2
+        }
+      ],
+      "upload_states": {
+        "KitAsmPartA": 1,
+        "KitAsmPartB": 1
+      },
+      "folder": "Author1",
+      "status": "failed",
+      "traceback_last_line": "TypeError: cannot use 'adsk.fusion.FusionDocument' as a set element (unhashable type: 'FusionDocument')",
+      "close_errors_last_line": "TypeError: cannot use 'adsk.fusion.FusionDocument' as a set element (unhashable type: 'FusionDocument')",
+      "documents_after": 2
+    },
+    "B": {
+      "fusion_version": "2706.1.17",
+      "run": "Author1",
+      "documents_before": 0,
+      "probes": [
+        {
+          "name": "KitAsmPartB",
+          "found": true,
+          "complete": true,
+          "version": 1,
+          "inserted": true,
+          "occurrence": "KitAsmPartB:1",
+          "exports": [
+            {
+              "file": "ProbeKitAsmPartB.f3d",
+              "bytes": 57148,
+              "sha256": "9fc8ccdd7525641b7fac88da404e73da2be60dc1d302150403a8c6bf168e950d"
+            }
+          ],
+          "documents_open": 2
+        }
+      ],
+      "folder": "Author1",
+      "status": "completed",
+      "documents_after": 0
+    },
+    "Sub": {
+      "fusion_version": "2706.1.17",
+      "run": "Author1",
+      "documents_before": 0,
+      "probes": [
+        {
+          "name": "KitAsmSub",
+          "found": true,
+          "complete": true,
+          "version": 1,
+          "inserted": true,
+          "occurrence": "KitAsmSub:1",
+          "exports": [
+            {
+              "file": "ProbeKitAsmSub.f3d",
+              "bytes": 56924,
+              "sha256": "580ef05413157a45b5820dbc5f96c6af835bbb7968c25da3e8769b3260025f56"
+            }
+          ],
+          "documents_open": 3
+        }
+      ],
+      "upload_states": {
+        "KitAsmSub": 1
+      },
+      "folder": "Author1",
+      "status": "completed",
+      "documents_after": 0
+    }
+  },
+  "native_probe_exports": {
+    "ProbeKitAsmPartA": {
+      "name": "ProbeKitAsmPartA.f3d",
+      "bytes": 60456,
+      "sha256": "0164048f7926ca328743d4336ddffc5c3e5f1086f07d2bbc089acc1669a1ef28",
+      "links": 1,
+      "contexts_per_segment": [
+        1,
+        1,
+        1
+      ],
+      "context_revision_equals_target_document_id": true,
+      "asset_link_snapshot_equals_target_snapshot": true,
+      "asset_link_physical_guid_zero": [
+        true
+      ],
+      "matrix_fields": 6,
+      "empty_matrix_fields": 6
+    },
+    "ProbeKitAsmPartB": {
+      "name": "ProbeKitAsmPartB.f3d",
+      "bytes": 57148,
+      "sha256": "9fc8ccdd7525641b7fac88da404e73da2be60dc1d302150403a8c6bf168e950d",
+      "links": 1,
+      "contexts_per_segment": [
+        1,
+        1,
+        1
+      ],
+      "context_revision_equals_target_document_id": true,
+      "asset_link_snapshot_equals_target_snapshot": true,
+      "asset_link_physical_guid_zero": [
+        true
+      ],
+      "matrix_fields": 6,
+      "empty_matrix_fields": 6
+    },
+    "ProbeKitAsmSub": {
+      "name": "ProbeKitAsmSub.f3d",
+      "bytes": 56924,
+      "sha256": "580ef05413157a45b5820dbc5f96c6af835bbb7968c25da3e8769b3260025f56",
+      "links": 1,
+      "contexts_per_segment": [
+        1,
+        1,
+        1
+      ],
+      "context_revision_equals_target_document_id": true,
+      "asset_link_snapshot_equals_target_snapshot": true,
+      "asset_link_physical_guid_zero": [
+        true
+      ],
+      "matrix_fields": 7,
+      "empty_matrix_fields": 6
+    }
+  },
+  "acceptance": {
+    "fusion_version": "2706.1.17",
+    "run": "Author1",
+    "documents_before": 0,
+    "stages": {
+      "opened": {
+        "references": [
+          {
+            "name": "KitAsmPartA",
+            "version": 1,
+            "out_of_date": false
+          },
+          {
+            "name": "KitAsmSub",
+            "version": 1,
+            "out_of_date": false
+          }
+        ],
+        "occurrences": {
+          "KitAsmPartA:1": {
+            "component": "KitAsmPartA",
+            "referenced": true,
+            "grounded": true,
+            "transform2": [
+              0.6,
+              -0.8,
+              0.0,
+              5.0,
+              0.8,
+              0.6,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 0.5
+          },
+          "KitAsmSub:1+KitAsmPartB:1": {
+            "component": "KitAsmPartB",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              3.0,
+              1.0,
+              0.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 1.2
+          },
+          "KitAsmSub:1": {
+            "component": "KitAsmSub",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              -1.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 0,
+            "body_height_cm": null
+          }
+        },
+        "transform_check": {
+          "paths_equal": true,
+          "max_abs_transform_error": 0.0,
+          "exact_transform_paths": [
+            "KitAsmPartA:1",
+            "KitAsmSub:1",
+            "KitAsmSub:1+KitAsmPartB:1"
+          ]
+        },
+        "grounded": [
+          "KitAsmPartA:1"
+        ],
+        "joints": [
+          {
+            "name": "Rigid 1",
+            "type": 0,
+            "one": "KitAsmPartA:1",
+            "two": "KitAsmSub:1",
+            "health": 0
+          }
+        ],
+        "timeline_count": 4,
+        "unhealthy_timeline_items": 0
+      },
+      "before_update": {
+        "references": [
+          {
+            "name": "KitAsmPartA",
+            "version": 1,
+            "out_of_date": true
+          },
+          {
+            "name": "KitAsmSub",
+            "version": 1,
+            "out_of_date": false
+          }
+        ],
+        "occurrences": {
+          "KitAsmPartA:1": {
+            "component": "KitAsmPartA",
+            "referenced": true,
+            "grounded": true,
+            "transform2": [
+              0.6,
+              -0.8,
+              0.0,
+              5.0,
+              0.8,
+              0.6,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 0.5
+          },
+          "KitAsmSub:1+KitAsmPartB:1": {
+            "component": "KitAsmPartB",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              3.0,
+              1.0,
+              0.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 1.2
+          },
+          "KitAsmSub:1": {
+            "component": "KitAsmSub",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              -1.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 0,
+            "body_height_cm": null
+          }
+        },
+        "transform_check": {
+          "paths_equal": true,
+          "max_abs_transform_error": 0.0,
+          "exact_transform_paths": [
+            "KitAsmPartA:1",
+            "KitAsmSub:1",
+            "KitAsmSub:1+KitAsmPartB:1"
+          ]
+        },
+        "grounded": [
+          "KitAsmPartA:1"
+        ],
+        "joints": [
+          {
+            "name": "Rigid 1",
+            "type": 0,
+            "one": "KitAsmPartA:1",
+            "two": "KitAsmSub:1",
+            "health": 0
+          }
+        ],
+        "timeline_count": 4,
+        "unhealthy_timeline_items": 0
+      },
+      "after_update": {
+        "references": [
+          {
+            "name": "KitAsmPartA",
+            "version": 2,
+            "out_of_date": false
+          },
+          {
+            "name": "KitAsmSub",
+            "version": 1,
+            "out_of_date": false
+          }
+        ],
+        "occurrences": {
+          "KitAsmSub:1+KitAsmPartB:1": {
+            "component": "KitAsmPartB",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              3.0,
+              1.0,
+              0.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 1.2
+          },
+          "KitAsmSub:1": {
+            "component": "KitAsmSub",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              -1.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 0,
+            "body_height_cm": null
+          },
+          "KitAsmPartA:1": {
+            "component": "KitAsmPartA",
+            "referenced": true,
+            "grounded": true,
+            "transform2": [
+              0.6,
+              -0.8,
+              0.0,
+              5.0,
+              0.8,
+              0.6,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 0.8
+          }
+        },
+        "transform_check": {
+          "paths_equal": true,
+          "max_abs_transform_error": 0.0,
+          "exact_transform_paths": [
+            "KitAsmPartA:1",
+            "KitAsmSub:1",
+            "KitAsmSub:1+KitAsmPartB:1"
+          ]
+        },
+        "grounded": [
+          "KitAsmPartA:1"
+        ],
+        "joints": [
+          {
+            "name": "Rigid 1",
+            "type": 0,
+            "one": "KitAsmPartA:1",
+            "two": "KitAsmSub:1",
+            "health": 0
+          }
+        ],
+        "timeline_count": 4,
+        "unhealthy_timeline_items": 0
+      },
+      "reopened": {
+        "references": [
+          {
+            "name": "KitAsmPartA",
+            "version": 2,
+            "out_of_date": false
+          },
+          {
+            "name": "KitAsmSub",
+            "version": 1,
+            "out_of_date": false
+          }
+        ],
+        "occurrences": {
+          "KitAsmSub:1+KitAsmPartB:1": {
+            "component": "KitAsmPartB",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              0.0,
+              -1.0,
+              0.0,
+              -1.0,
+              0.0,
+              0.0,
+              -1.0,
+              3.0,
+              1.0,
+              0.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 1.2
+          },
+          "KitAsmSub:1": {
+            "component": "KitAsmSub",
+            "referenced": true,
+            "grounded": false,
+            "transform2": [
+              1.0,
+              0.0,
+              0.0,
+              -3.0,
+              0.0,
+              0.0,
+              -1.0,
+              4.0,
+              0.0,
+              1.0,
+              0.0,
+              0.5,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 0,
+            "body_height_cm": null
+          },
+          "KitAsmPartA:1": {
+            "component": "KitAsmPartA",
+            "referenced": true,
+            "grounded": true,
+            "transform2": [
+              0.6,
+              -0.8,
+              0.0,
+              5.0,
+              0.8,
+              0.6,
+              0.0,
+              2.0,
+              0.0,
+              0.0,
+              1.0,
+              1.0,
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ],
+            "bodies": 1,
+            "body_height_cm": 0.8
+          }
+        },
+        "transform_check": {
+          "paths_equal": true,
+          "max_abs_transform_error": 0.0,
+          "exact_transform_paths": [
+            "KitAsmPartA:1",
+            "KitAsmSub:1",
+            "KitAsmSub:1+KitAsmPartB:1"
+          ]
+        },
+        "grounded": [
+          "KitAsmPartA:1"
+        ],
+        "joints": [
+          {
+            "name": "Rigid 1",
+            "type": 0,
+            "one": "KitAsmPartA:1",
+            "two": "KitAsmSub:1",
+            "health": 0
+          }
+        ],
+        "timeline_count": 4,
+        "unhealthy_timeline_items": 0
+      }
+    },
+    "root_complete": true,
+    "root_version_start": 1,
+    "stage": "reopen",
+    "documents_after_first_close": 0,
+    "part_edit": {
+      "name": "KitAsmPartA",
+      "start_version": 1,
+      "parameter_before": "5.0 mm",
+      "parameter_after": "8 mm",
+      "save_result": true,
+      "saved": true,
+      "end_version": 2
+    },
+    "update_all": true,
+    "update_settled": true,
+    "edit_propagated": true,
+    "root_save_result": true,
+    "root_saved": true,
+    "root_version_end": 2,
+    "export": [
+      {
+        "file": "AcceptedKitAsmRoot.f3d",
+        "bytes": 24786,
+        "sha256": "9addebfb2bc3621fad7fa87addecaf7aedf299d857f403ef149c0fe571288d27"
+      }
+    ],
+    "status": "completed",
+    "documents_after": 0
+  },
+  "fusion_exports": {
+    "AcceptedKitAsmRoot": {
+      "name": "AcceptedKitAsmRoot.f3d",
+      "bytes": 24786,
+      "sha256": "9addebfb2bc3621fad7fa87addecaf7aedf299d857f403ef149c0fe571288d27",
+      "bulk_streams": {
+        "KDesign": {
+          "records": 168,
+          "bytes": 17946,
+          "last_object_continuation": true
+        },
+        "KAct": {
+          "records": 16,
+          "bytes": 7492,
+          "last_object_continuation": false
+        },
+        "KBrowser": {
+          "records": 36,
+          "bytes": 6525,
+          "last_object_continuation": false
+        }
+      },
+      "kit_read": true,
+      "links": 2,
+      "contexts_per_segment": [
+        2,
+        2,
+        2
+      ],
+      "link_names": [
+        "KitAsmPartA",
+        "KitAsmSub"
+      ]
+    },
+    "ReexportFirstKitAsmRoot": {
+      "name": "ReexportFirstKitAsmRoot.f3d",
+      "bytes": 24794,
+      "sha256": "c477e0657f2668775b5865d9c6a466628314c22619fcfb958b0b5d92a710f9eb",
+      "bulk_streams": {
+        "KDesign": {
+          "records": 168,
+          "bytes": 17946,
+          "last_object_continuation": true
+        },
+        "KBrowser": {
+          "records": 36,
+          "bytes": 6525,
+          "last_object_continuation": false
+        },
+        "KAct": {
+          "records": 16,
+          "bytes": 7492,
+          "last_object_continuation": false
+        }
+      },
+      "kit_read": true,
+      "links": 2,
+      "contexts_per_segment": [
+        2,
+        2,
+        2
+      ],
+      "link_names": [
+        "KitAsmPartA",
+        "KitAsmSub"
+      ]
+    },
+    "ReexportSecondKitAsmRoot": {
+      "name": "ReexportSecondKitAsmRoot.f3d",
+      "bytes": 24804,
+      "sha256": "eab25cb1ad2b67dfd57e87f8050f435d654f8628ffa14775327304e3d08fd5c7",
+      "bulk_streams": {
+        "KDesign": {
+          "records": 168,
+          "bytes": 17946,
+          "last_object_continuation": true
+        },
+        "KBrowser": {
+          "records": 36,
+          "bytes": 6525,
+          "last_object_continuation": false
+        },
+        "KAct": {
+          "records": 16,
+          "bytes": 7492,
+          "last_object_continuation": false
+        }
+      },
+      "kit_read": true,
+      "links": 2,
+      "contexts_per_segment": [
+        2,
+        2,
+        2
+      ],
+      "link_names": [
+        "KitAsmPartA",
+        "KitAsmSub"
+      ]
+    }
+  },
+  "reexport": {
+    "fusion_version": "2706.1.17",
+    "run": "Author1",
+    "documents_before": 0,
+    "exports": [
+      {
+        "First": [
+          {
+            "file": "ReexportFirstKitAsmRoot.f3d",
+            "bytes": 24794,
+            "sha256": "c477e0657f2668775b5865d9c6a466628314c22619fcfb958b0b5d92a710f9eb"
+          }
+        ]
+      },
+      {
+        "Second": [
+          {
+            "file": "ReexportSecondKitAsmRoot.f3d",
+            "bytes": 24804,
+            "sha256": "eab25cb1ad2b67dfd57e87f8050f435d654f8628ffa14775327304e3d08fd5c7"
+          }
+        ]
+      }
+    ],
+    "root_version": 2,
+    "status": "completed",
+    "documents_after": 0
+  }
+}

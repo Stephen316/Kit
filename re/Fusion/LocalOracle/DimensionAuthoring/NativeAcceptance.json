@@ -1,0 +1,1733 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Independent complete constrained rectangle/cuboid documents: native constraint and dimension semantics, anchored width/depth edits, solid height edit, rollback/rebuild/save/reopen",
+  "cases": [
+    {
+      "name": "DimensionedRectangle",
+      "source_sha256": "4fbcc6e18301a5c4cbcc9ec06aa422afe75dfdffa67f04938ef9f8efa054c627",
+      "stage": "reopened",
+      "opened": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "17.0 mm",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d4",
+            "expression": "boxWidth",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "d5",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d4",
+              "expression": "boxWidth",
+              "value": 1.7000000000000002
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d5",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "rebuilt": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "17.0 mm",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d4",
+            "expression": "boxWidth",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "d5",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d4",
+              "expression": "boxWidth",
+              "value": 1.7000000000000002
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d5",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "width_edited": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d4",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d5",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d4",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d5",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "depth_edited": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "29 mm",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d4",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d5",
+            "expression": "boxDepth",
+            "value": 2.9000000000000004
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d4",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d5",
+              "expression": "boxDepth",
+              "value": 2.9000000000000004
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "height_edited": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "37 mm",
+            "value": 3.7
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "29 mm",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d4",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d5",
+            "expression": "boxDepth",
+            "value": 2.9000000000000004
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d4",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d5",
+              "expression": "boxDepth",
+              "value": 2.9000000000000004
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "reopened": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "37 mm",
+            "value": 3.7
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "29 mm",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d4",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d5",
+            "expression": "boxDepth",
+            "value": 2.9000000000000004
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d4",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d5",
+              "expression": "boxDepth",
+              "value": 2.9000000000000004
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "saved_sha256": "287e8af69f262b735e8e5197ccc8bb0cabbeee4a9e9836d48873d418a94454c4",
+      "status": "accepted"
+    },
+    {
+      "name": "DimensionedCuboid",
+      "source_sha256": "dd8d4197f480115091378bbf90df1a8179bee47e1cba20339f172594e73bd41d",
+      "stage": "reopened",
+      "opened": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "17.0 mm",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.1
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.7000000000000002
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": [
+          {
+            "volume_cm3": 12.120999999999999,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.7,
+              2.3,
+              3.1
+            ],
+            "center_cm": [
+              0.8500000000000001,
+              1.15,
+              1.55
+            ],
+            "mass_kg": 0.034787269999999995,
+            "density_kg_per_cm3": 0.0028699999999999997,
+            "material": "Dimension driven material",
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "rolled_back": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "17.0 mm",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.1
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.7000000000000002
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": []
+      },
+      "rebuilt": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "17.0 mm",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.7000000000000002
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.1
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.7000000000000002
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.7,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.7,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": [
+          {
+            "volume_cm3": 12.120999999999999,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.7,
+              2.3,
+              3.1
+            ],
+            "center_cm": [
+              0.8500000000000001,
+              1.15,
+              1.55
+            ],
+            "mass_kg": 0.034787269999999995,
+            "density_kg_per_cm3": 0.0028699999999999997,
+            "material": "Dimension driven material",
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "width_edited": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "23.0 mm",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.3000000000000003
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.1
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.3000000000000003
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.3,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.3,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": [
+          {
+            "volume_cm3": 13.547,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.9000000000000001,
+              2.3,
+              3.1
+            ],
+            "center_cm": [
+              0.9500000000000001,
+              1.15,
+              1.5500000000000003
+            ],
+            "mass_kg": 0.03887989,
+            "density_kg_per_cm3": 0.0028699999999999997,
+            "material": "Dimension driven material",
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "depth_edited": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "31.0 mm",
+            "value": 3.1
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "29 mm",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.1
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.9000000000000004
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": [
+          {
+            "volume_cm3": 17.081000000000003,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.9000000000000001,
+              2.9000000000000004,
+              3.1
+            ],
+            "center_cm": [
+              0.9500000000000002,
+              1.4500000000000002,
+              1.5499999999999998
+            ],
+            "mass_kg": 0.049022470000000005,
+            "density_kg_per_cm3": 0.0028699999999999997,
+            "material": "Dimension driven material",
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "height_edited": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "37 mm",
+            "value": 3.7
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "29 mm",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.7
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.9000000000000004
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": [
+          {
+            "volume_cm3": 20.387000000000004,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.9000000000000001,
+              2.9000000000000004,
+              3.7
+            ],
+            "center_cm": [
+              0.9500000000000001,
+              1.4500000000000002,
+              1.8499999999999999
+            ],
+            "mass_kg": 0.058510690000000004,
+            "density_kg_per_cm3": 0.0028699999999999997,
+            "material": "Dimension driven material",
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "reopened": {
+        "parameters": [
+          {
+            "name": "boxHeight",
+            "expression": "37 mm",
+            "value": 3.7
+          },
+          {
+            "name": "boxWidth",
+            "expression": "19 mm",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "boxDepth",
+            "expression": "29 mm",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d6",
+            "expression": "boxWidth",
+            "value": 1.9000000000000001
+          },
+          {
+            "name": "d7",
+            "expression": "boxDepth",
+            "value": 2.9000000000000004
+          },
+          {
+            "name": "d2",
+            "expression": "boxHeight",
+            "value": 3.7
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0
+          }
+        ],
+        "timeline": [
+          {
+            "name": "Constrained rectangle",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Dimension driven cuboid",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "sketch": {
+          "name": "Constrained rectangle",
+          "fully_constrained": true,
+          "profiles": 1,
+          "constraints": [
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint",
+            "adsk::fusion::HorizontalConstraint",
+            "adsk::fusion::VerticalConstraint"
+          ],
+          "dimensions": [
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d6",
+              "expression": "boxWidth",
+              "value": 1.9000000000000001
+            },
+            {
+              "type": "adsk::fusion::SketchLinearDimension",
+              "parameter": "d7",
+              "expression": "boxDepth",
+              "value": 2.9000000000000004
+            }
+          ],
+          "lines": [
+            {
+              "start_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                1.9000000000000001,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ]
+            },
+            {
+              "start_cm": [
+                0.0,
+                2.9000000000000004,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0,
+                0.0
+              ]
+            }
+          ]
+        },
+        "bodies": [
+          {
+            "volume_cm3": 20.387000000000004,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              1.9000000000000001,
+              2.9000000000000004,
+              3.7
+            ],
+            "center_cm": [
+              0.9500000000000001,
+              1.4500000000000002,
+              1.8499999999999999
+            ],
+            "mass_kg": 0.058510690000000004,
+            "density_kg_per_cm3": 0.0028699999999999997,
+            "material": "Dimension driven material",
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "saved_sha256": "e74dd6e3bed9bc425c9387f8648fd115cce64e7910017e2956f47875c1ca2015",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

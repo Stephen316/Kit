@@ -1,0 +1,2048 @@
+{
+  "fusion_version": "2706.1.17",
+  "source_sha256": "104d3aeb906eba7e59f568e039e5c796b8a4fa1f11bfcc10a4108123b2b4451b",
+  "scope": "Production material semantics fully reserialized into new nested package with zeroed unused allocation bytes; explicitly changed density6300 and color RGBA51/102/153/255, parameter rebuild, save and reopen",
+  "baseline": {
+    "materials": [
+      {
+        "id": "PrismMaterial-018",
+        "name": "Steel",
+        "appearance": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "properties": [
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "physmat_Comments",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Cost",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keynote",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keywords",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Label",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Manufacturer",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Mark",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Model",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "physmat_metal"
+          },
+          {
+            "id": "physmat_URL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_class",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_classification",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk.Material Classifications.Metal.Ferrous.Carbon Steel"
+          },
+          {
+            "id": "structural_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "structural_isotropic"
+          },
+          {
+            "id": "structural_Damping_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 7850.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_ExternalMaterialID",
+            "type": "adsk::core::StringProperty",
+            "value": "2:MATERIAL:MI_InventorSustainability:443FF4C0-B220-406B-A03C-AE1602BB69A3:48745BB7-BE14-4E5F-B4E0-4C3D4A7AE7A5:0"
+          },
+          {
+            "id": "structural_Minimum_tensile_strength",
+            "type": "adsk::core::FloatProperty",
+            "value": 345000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Minimum_yield_stress",
+            "type": "adsk::core::FloatProperty",
+            "value": 207000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_23",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 12.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermally_treated",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "structural_Young_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "structural_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "structural_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Steel"
+          },
+          {
+            "id": "thermal_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "thermal_isotropic"
+          },
+          {
+            "id": "thermal_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 7850.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Electrical_resistivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 1.69e-07,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Emissivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.4,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Permeability",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Porosity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.001,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Reflectivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Transmits_light",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "thermal_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "thermal_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "thermal_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Metal"
+          }
+        ]
+      }
+    ],
+    "appearances": [
+      {
+        "id": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "name": "Steel - Satin",
+        "properties": [
+          {
+            "id": "interior_model",
+            "type": "adsk::core::IntegerProperty",
+            "value": 1
+          },
+          {
+            "id": "metal_f0",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              160,
+              160,
+              160,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "metal_f0_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "metal_f0_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_albedo",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "surface_albedo_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "surface_albedo_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_anisotropy",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_anisotropy_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_cutout",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_cutout_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_ndf_type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "surface_ndf_ggx"
+          },
+          {
+            "id": "surface_normal",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_normal_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_rotation",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_rotation_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_roughness",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.264575131106,
+            "has_texture": false
+          },
+          {
+            "id": "surface_roughness_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "body_materials": [
+      "PrismMaterial-018"
+    ]
+  },
+  "expected": {
+    "materials": [
+      {
+        "id": "PrismMaterial-018",
+        "name": "Steel",
+        "appearance": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "properties": [
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "physmat_Comments",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Cost",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keynote",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keywords",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Label",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Manufacturer",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Mark",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Model",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "physmat_metal"
+          },
+          {
+            "id": "physmat_URL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_class",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_classification",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk.Material Classifications.Metal.Ferrous.Carbon Steel"
+          },
+          {
+            "id": "structural_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "structural_isotropic"
+          },
+          {
+            "id": "structural_Damping_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 6300.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_ExternalMaterialID",
+            "type": "adsk::core::StringProperty",
+            "value": "2:MATERIAL:MI_InventorSustainability:443FF4C0-B220-406B-A03C-AE1602BB69A3:48745BB7-BE14-4E5F-B4E0-4C3D4A7AE7A5:0"
+          },
+          {
+            "id": "structural_Minimum_tensile_strength",
+            "type": "adsk::core::FloatProperty",
+            "value": 345000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Minimum_yield_stress",
+            "type": "adsk::core::FloatProperty",
+            "value": 207000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_23",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 12.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermally_treated",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "structural_Young_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "structural_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "structural_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Steel"
+          },
+          {
+            "id": "thermal_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "thermal_isotropic"
+          },
+          {
+            "id": "thermal_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 6300.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Electrical_resistivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 1.69e-07,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Emissivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.4,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Permeability",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Porosity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.001,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Reflectivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Transmits_light",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "thermal_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "thermal_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "thermal_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Metal"
+          }
+        ]
+      }
+    ],
+    "appearances": [
+      {
+        "id": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "name": "Steel - Satin",
+        "properties": [
+          {
+            "id": "interior_model",
+            "type": "adsk::core::IntegerProperty",
+            "value": 1
+          },
+          {
+            "id": "metal_f0",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              51,
+              102,
+              153,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "metal_f0_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "metal_f0_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_albedo",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "surface_albedo_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "surface_albedo_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_anisotropy",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_anisotropy_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_cutout",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_cutout_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_ndf_type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "surface_ndf_ggx"
+          },
+          {
+            "id": "surface_normal",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_normal_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_rotation",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_rotation_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_roughness",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.264575131106,
+            "has_texture": false
+          },
+          {
+            "id": "surface_roughness_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "body_materials": [
+      "PrismMaterial-018"
+    ]
+  },
+  "opened": {
+    "materials": [
+      {
+        "id": "PrismMaterial-018",
+        "name": "Steel",
+        "appearance": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "properties": [
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "physmat_Comments",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Cost",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keynote",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keywords",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Label",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Manufacturer",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Mark",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Model",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "physmat_metal"
+          },
+          {
+            "id": "physmat_URL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_class",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_classification",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk.Material Classifications.Metal.Ferrous.Carbon Steel"
+          },
+          {
+            "id": "structural_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "structural_isotropic"
+          },
+          {
+            "id": "structural_Damping_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 6300.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_ExternalMaterialID",
+            "type": "adsk::core::StringProperty",
+            "value": "2:MATERIAL:MI_InventorSustainability:443FF4C0-B220-406B-A03C-AE1602BB69A3:48745BB7-BE14-4E5F-B4E0-4C3D4A7AE7A5:0"
+          },
+          {
+            "id": "structural_Minimum_tensile_strength",
+            "type": "adsk::core::FloatProperty",
+            "value": 345000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Minimum_yield_stress",
+            "type": "adsk::core::FloatProperty",
+            "value": 207000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_23",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 12.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermally_treated",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "structural_Young_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "structural_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "structural_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Steel"
+          },
+          {
+            "id": "thermal_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "thermal_isotropic"
+          },
+          {
+            "id": "thermal_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 6300.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Electrical_resistivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 1.69e-07,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Emissivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.4,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Permeability",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Porosity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.001,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Reflectivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Transmits_light",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "thermal_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "thermal_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "thermal_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Metal"
+          }
+        ]
+      }
+    ],
+    "appearances": [
+      {
+        "id": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "name": "Steel - Satin",
+        "properties": [
+          {
+            "id": "interior_model",
+            "type": "adsk::core::IntegerProperty",
+            "value": 1
+          },
+          {
+            "id": "metal_f0",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              51,
+              102,
+              153,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "metal_f0_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "metal_f0_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_albedo",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "surface_albedo_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "surface_albedo_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_anisotropy",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_anisotropy_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_cutout",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_cutout_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_ndf_type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "surface_ndf_ggx"
+          },
+          {
+            "id": "surface_normal",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_normal_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_rotation",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_rotation_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_roughness",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.264575131106,
+            "has_texture": false
+          },
+          {
+            "id": "surface_roughness_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "body_materials": [
+      "PrismMaterial-018"
+    ]
+  },
+  "reopened": {
+    "materials": [
+      {
+        "id": "PrismMaterial-018",
+        "name": "Steel",
+        "appearance": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "properties": [
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "common_Shared_Asset",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "common_shared"
+          },
+          {
+            "id": "physmat_Comments",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Cost",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keynote",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Keywords",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Label",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Manufacturer",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Mark",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Model",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_Type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "physmat_metal"
+          },
+          {
+            "id": "physmat_URL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_class",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "physmat_classification",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk.Material Classifications.Metal.Ferrous.Carbon Steel"
+          },
+          {
+            "id": "structural_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "structural_isotropic"
+          },
+          {
+            "id": "structural_Damping_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 6300.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_ExternalMaterialID",
+            "type": "adsk::core::StringProperty",
+            "value": "2:MATERIAL:MI_InventorSustainability:443FF4C0-B220-406B-A03C-AE1602BB69A3:48745BB7-BE14-4E5F-B4E0-4C3D4A7AE7A5:0"
+          },
+          {
+            "id": "structural_Minimum_tensile_strength",
+            "type": "adsk::core::FloatProperty",
+            "value": 345000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Minimum_yield_stress",
+            "type": "adsk::core::FloatProperty",
+            "value": 207000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_23",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Poisson_ratio_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.3,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_12",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Shear_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 80000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient",
+            "type": "adsk::core::FloatProperty",
+            "value": 12.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermal_expansion_coefficient_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.1,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Thermally_treated",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "structural_Young_modulus",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_1",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_2",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_Young_modulus_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 210000000.0,
+            "has_texture": false
+          },
+          {
+            "id": "structural_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "structural_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "structural_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Steel"
+          },
+          {
+            "id": "thermal_Behavior",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "thermal_isotropic"
+          },
+          {
+            "id": "thermal_Density",
+            "type": "adsk::core::FloatProperty",
+            "value": 6300.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Electrical_resistivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 1.69e-07,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Emissivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.4,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Permeability",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Porosity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.001,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Reflectivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Specific_heat",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.48,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_X",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Y",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Thermal_conductivity_Z",
+            "type": "adsk::core::FloatProperty",
+            "value": 56.0,
+            "has_texture": false
+          },
+          {
+            "id": "thermal_Transmits_light",
+            "type": "adsk::core::BooleanProperty",
+            "value": false
+          },
+          {
+            "id": "thermal_source",
+            "type": "adsk::core::StringProperty",
+            "value": "Autodesk"
+          },
+          {
+            "id": "thermal_sourceURL",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "thermal_subclass",
+            "type": "adsk::core::StringProperty",
+            "value": "Metal"
+          }
+        ]
+      }
+    ],
+    "appearances": [
+      {
+        "id": "PrismMaterial-018_physmat_aspects:Prism-256",
+        "name": "Steel - Satin",
+        "properties": [
+          {
+            "id": "interior_model",
+            "type": "adsk::core::IntegerProperty",
+            "value": 1
+          },
+          {
+            "id": "metal_f0",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              51,
+              102,
+              153,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "metal_f0_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "metal_f0_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_albedo",
+            "type": "adsk::core::ColorProperty",
+            "value": [
+              255,
+              255,
+              255,
+              255
+            ],
+            "has_texture": false
+          },
+          {
+            "id": "surface_albedo_colorspace",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "colorspace_sRGB_gamma24"
+          },
+          {
+            "id": "surface_albedo_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_anisotropy",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_anisotropy_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_cutout",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_cutout_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_ndf_type",
+            "type": "adsk::core::ChoiceProperty",
+            "value": "surface_ndf_ggx"
+          },
+          {
+            "id": "surface_normal",
+            "type": "adsk::core::AppearanceTextureProperty",
+            "value": null
+          },
+          {
+            "id": "surface_normal_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_rotation",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.0,
+            "has_texture": false
+          },
+          {
+            "id": "surface_rotation_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          },
+          {
+            "id": "surface_roughness",
+            "type": "adsk::core::FloatProperty",
+            "value": 0.264575131106,
+            "has_texture": false
+          },
+          {
+            "id": "surface_roughness_urn",
+            "type": "adsk::core::StringProperty",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "body_materials": [
+      "PrismMaterial-018"
+    ]
+  },
+  "saved_sha256": "b1cb8eddd9ada07db6e1511c949f5da418e12649519a798c0da92dc9ec1b9069",
+  "status": "accepted",
+  "documents_after": 0
+}

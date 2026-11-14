@@ -525,7 +525,7 @@ def TestSFMRADK() -> None:
         {
             SuffixName.casefold()
             for AdapterData in AdapterSet
-            if AdapterData.info.format_id != "interchange.json"
+            if AdapterData.info.format_id not in ("interchange.json", "fusion.f3d")
             for SuffixName in AdapterData.info.extensions
         }
         for AdapterSet in (Registry.readers(), Registry.writers())

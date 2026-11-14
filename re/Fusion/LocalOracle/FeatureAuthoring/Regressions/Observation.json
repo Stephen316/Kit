@@ -1,0 +1,290 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native open of Kit journal-swap variants; diagnostic evidence only",
+  "leftovers_closed": [
+    "Untitled",
+    "Untitled",
+    "Untitled",
+    "Untitled"
+  ],
+  "cases": [
+    {
+      "name": "FilletAccepted",
+      "purpose": "accepted writer output for the fillet case",
+      "sha256": "58afe245de6c93dff79eea0221d19755b874683574fbf9d5d6959c132bc4c6d4",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Fillet",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10
+          }
+        ]
+      },
+      "markers": [
+        [],
+        [],
+        [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ],
+        [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10
+          }
+        ]
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Fillet",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10
+          }
+        ]
+      },
+      "status": "opened"
+    },
+    {
+      "name": "ShellAccepted",
+      "purpose": "accepted writer output for the shell case",
+      "sha256": "58aacaea1a7bf31e56b9fecb988c1951cb689f7b90e11dc601f5b21018356107",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Shell",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 7.152000000000001,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16
+          }
+        ]
+      },
+      "markers": [
+        [],
+        [],
+        [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ],
+        [
+          {
+            "name": "Body1",
+            "volume_cm3": 7.152000000000001,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16
+          }
+        ]
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Shell",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 7.152000000000008,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16
+          }
+        ]
+      },
+      "status": "opened"
+    },
+    {
+      "name": "FilletReusedTags",
+      "purpose": "fillet with the earlier ledger: a replaced trimmed face reuses the deleted face tag",
+      "sha256": "a24738cf06cf1b18911a5e6a58b980a4e41b4cac2f29496b177885c77d8412a2",
+      "status": "failed",
+      "error": "RuntimeError: 2 : InternalValidationError : isSuccessfullyOpened && status.isOk()"
+    },
+    {
+      "name": "ShellBodyScope",
+      "purpose": "shell whose BrepRef and ETCachedTopology scopes carry the body identifier",
+      "sha256": "3a0e0d759fbe460218e2e5ada8a58458734dac41e44d8ed79e884da2b21c34fa",
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Shell",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 7.152000000000001,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16
+          }
+        ]
+      },
+      "markers": [
+        [],
+        [],
+        [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ],
+        [
+          {
+            "name": "Body1",
+            "volume_cm3": 7.152000000000001,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16
+          }
+        ]
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Shell",
+            "health": 1,
+            "message": "Face 1 missing<b>1 Reference Failures</b><br/>The face reference is lost and this feature is using cached geometry.<br/>Edit this feature and select new face references.Shell"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8
+          }
+        ]
+      },
+      "status": "opened"
+    }
+  ],
+  "documents_after_cleanup": 0,
+  "status": "observed",
+  "documents_after": 0
+}

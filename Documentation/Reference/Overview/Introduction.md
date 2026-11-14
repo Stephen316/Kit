@@ -41,7 +41,7 @@ It does not establish that every reader populates it or every writer emits it na
 
 Use [the format procedure](../../Tasks/SelectFormat.md) to inspect the installed catalogue.
 SOLIDWORKS, FreeCAD, CATIA, and interchange JSON have registered adapters.
-Fusion parsing remains an explicit research interface.
+The [Fusion public adapter](../../Changes/Fusion/Adapter/FusionPublicAdapter.md) supports qualified authored parameter, circle, rectangle, cylinder, cuboid, and frustum profiles. The earlier partial reader remains an explicit `strict=False` option.
 Adapter registration is not a general support guarantee.
 
 ## Output evidence

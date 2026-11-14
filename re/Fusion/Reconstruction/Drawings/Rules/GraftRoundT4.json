@@ -1,0 +1,261 @@
+{
+ "fusion_version": "2706.1.17",
+ "route": "T3Sheet: object-level graft on the A3 control, header untouched, Kit border and title block entities on handles freed by L4Core. C0-C2: container-level typed re-emission of the control with its Fusion-saved DWG member untouched (re/Fusion/Reconstruction/Drawings/Rules/BuildContainer.py).",
+ "paper": "A3 Landscape",
+ "transplants": {
+  "T3Sheet": {
+   "changed": [
+    [
+     "LAYER",
+     "FD_Dimensions"
+    ],
+    [
+     "LAYER",
+     "Hidden"
+    ],
+    [
+     "LAYER",
+     "Smart Centers"
+    ],
+    [
+     "LAYER",
+     "Visible"
+    ],
+    [
+     "LTYPE",
+     "ACAD_VIEWBORDER_LINETYPE"
+    ],
+    [
+     "LTYPE",
+     "ByBlock"
+    ],
+    [
+     "LTYPE",
+     "ByLayer"
+    ],
+    [
+     "LAYER",
+     "0"
+    ],
+    [
+     "LAYER",
+     "Defpoints"
+    ],
+    [
+     "LAYER",
+     "BORDER"
+    ],
+    [
+     "LAYER",
+     "TITLEBLOCK"
+    ],
+    [
+     "STYLE",
+     "Standard"
+    ],
+    [
+     "STYLE",
+     "FusionTitle"
+    ],
+    [
+     "LTYPE",
+     "Continuous"
+    ],
+    [
+     "LTYPE",
+     "CENTER2"
+    ],
+    [
+     "LTYPE",
+     "HIDDEN2"
+    ],
+    [
+     "VPORT",
+     "*Active"
+    ],
+    [
+     "DIMSTYLE",
+     "Dim-ISO-25"
+    ],
+    [
+     "LAYOUT",
+     "KitDrw Source 20261112114717",
+     "plot fields"
+    ],
+    [
+     "LAYOUT",
+     "Model",
+     "plot fields"
+    ],
+    [
+     "MATERIAL",
+     "ByBlock"
+    ],
+    [
+     "MATERIAL",
+     "ByLayer"
+    ],
+    [
+     "MLINESTYLE",
+     "STANDARD"
+    ],
+    [
+     "ACDBVIEWREPSTANDARD",
+     "standard"
+    ]
+   ],
+   "unmapped_links": [],
+   "sheet_blocks": {
+    "blocks": {
+     "ISO_A3_SHEET": {
+      "removed": 102,
+      "added": 64
+     },
+     "ISO_TITLEBLOCK": {
+      "removed": 102,
+      "added": 48,
+      "attribs": 15
+     }
+    },
+    "removed": {
+     "LINE": 48,
+     "TEXT": 39,
+     "ATTDEF": 15,
+     "DICTIONARY": 15
+    },
+    "unmapped_links": []
+   }
+  }
+ },
+ "variants": [
+  {
+   "label": "T3Sheet",
+   "objects": 382,
+   "sha256": "560e8fab8dcbc06b556ba977bf844074bc32fb03a87a449b795a343e9b7223ed",
+   "note": null,
+   "check": null,
+   "guard": "completed",
+   "dialog": null,
+   "result": {
+    "ready": true,
+    "open_seconds": 4.0,
+    "modified_after_open": true,
+    "views": [
+     5,
+     4,
+     4
+    ],
+    "dimensions": 1,
+    "sheet_mm": [
+     420.0,
+     297.0
+    ]
+   }
+  },
+  {
+   "label": "C0Reemitted",
+   "objects": null,
+   "sha256": "66829798e2d64baec74b454f8140d50a3148ddc554235989032109c1743babc7",
+   "note": {},
+   "check": {
+    "images": 5,
+    "dwg_same": true
+   },
+   "guard": "completed",
+   "dialog": null,
+   "result": {
+    "ready": true,
+    "open_seconds": 2.9,
+    "modified_after_open": true,
+    "views": [
+     5,
+     4,
+     4
+    ],
+    "dimensions": 1,
+    "sheet_mm": [
+     420.0,
+     297.0
+    ]
+   }
+  },
+  {
+   "label": "C1NoTemplateThumbs",
+   "objects": null,
+   "sha256": "9181af0684621dc658847c0ec093795eb9bd49e2dabbb905b15f69029a6ae4c8",
+   "note": {
+    "dropped_images": 2
+   },
+   "check": {
+    "images": 3,
+    "dwg_same": true
+   },
+   "guard": "completed",
+   "dialog": null,
+   "result": {
+    "ready": true,
+    "open_seconds": 5.1,
+    "modified_after_open": true,
+    "views": [
+     5,
+     4,
+     4
+    ],
+    "dimensions": 1,
+    "sheet_mm": [
+     420.0,
+     297.0
+    ]
+   }
+  },
+  {
+   "label": "C2NeutralCycle",
+   "objects": null,
+   "sha256": "ea68bc4c3c8c4fe240109fa90ff84923fbcf9742c76e8f02341103dcc9f20fa8",
+   "note": {
+    "old_colours": [
+     [
+      0.3059000074863434,
+      0.5881999731063843,
+      0.7372999787330627,
+      1.0
+     ]
+    ],
+    "new_colour": [
+     0.8,
+     0.8,
+     0.8
+    ]
+   },
+   "check": {
+    "images": 5,
+    "dwg_same": true,
+    "read_back_colours": [
+     [
+      0.800000011920929,
+      0.800000011920929,
+      0.800000011920929,
+      1.0
+     ]
+    ]
+   },
+   "guard": "completed",
+   "dialog": null,
+   "result": {
+    "ready": true,
+    "open_seconds": 3.1,
+    "modified_after_open": true,
+    "views": [
+     5,
+     4,
+     4
+    ],
+    "dimensions": 1,
+    "sheet_mm": [
+     420.0,
+     297.0
+    ]
+   }
+  }
+ ]
+}

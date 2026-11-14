@@ -1,0 +1,8 @@
+{
+  "fusion_version": "2706.1.17",
+  "source_sha256": "4e5c99de29a515f95cba4a4f4e900c4de0e7b7a652fa1730d2d3dae76a4c8a87",
+  "marker": 2,
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/InspectRolledHistory.py\", line 24, in <module>\n    report[\"timeline\"] = [{\"index\": i.index, \"name\": i.name, \"health\": i.healthState, \"message\": i.errorOrWarningMessage, \"type\": i.entity.objectType} for i in design.timeline]\n                                                                                                                                  ^^^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'objectType'\n",
+  "documents_after": 0
+}

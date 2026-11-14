@@ -1,3 +1,4 @@
+from interchange.materials.MaterialRecord import MaterialRecord
 from dataclasses import is_dataclass as IsDataClass
 from enum import Enum as EnumBase
 
@@ -214,6 +215,7 @@ types = TypesModule
 
 # package consumers need one intentional stable list of supported public symbols
 __all__ = (
+    "MaterialRecord",
     "AdapterCapabilities",
     "ArcEllipseGeometry",
     "ArcGeometry",

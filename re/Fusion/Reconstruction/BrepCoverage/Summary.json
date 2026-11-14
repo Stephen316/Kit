@@ -1,0 +1,211 @@
+{
+  "schema": "FusionBrepCorpusInventory/1",
+  "scope": "Structural token and ownership inspection, not complete semantic decoding or vendor acceptance; blob bodies include selection caches and historical/current model state",
+  "archives": 712,
+  "archivesWithBrep": 582,
+  "members": 1170,
+  "uniqueBlobCount": 1083,
+  "extensions": {
+    ".smb": 605,
+    ".smbh": 565
+  },
+  "parseFailures": [],
+  "recordTypeCountsIncludingRepeatedBlobs": {
+    "coedge": 45507,
+    "ATTRIB_CUSTOM-attrib": 37058,
+    "edge": 26129,
+    "straight-curve": 22303,
+    "point": 19935,
+    "vertex": 19927,
+    "loop": 13338,
+    "face": 12548,
+    "plane-surface": 11086,
+    "shell": 3994,
+    "lump": 3982,
+    "body": 3828,
+    "ellipse-curve": 2475,
+    "pcurve": 2076,
+    "intcurve-curve": 1242,
+    "asmheader": 1170,
+    "cone-surface": 748,
+    "spline-surface": 475,
+    "transform": 305,
+    "no_merge_attribute-st-attrib": 18,
+    "tcoedge-coedge": 16,
+    "torus-surface": 14,
+    "sphere-surface": 10,
+    "tedge-edge": 8,
+    "tvertex-vertex": 8,
+    "wire": 5,
+    "stitch_hint-sys-attrib": 4,
+    "vertedge-sys-attrib": 4,
+    "int64_attrib-name_attrib-gen-attrib": 1
+  },
+  "attributeTypeCountsIncludingRepeatedBlobs": {
+    "sketch_attrib_def": 21717,
+    "generic_tag_attrib_def": 13968,
+    "Timestamp_attrib_def": 1249,
+    "FPM_tracked_attrib_def": 96,
+    "FDM_feature_attrib_def": 28
+  },
+  "bodyCandidateCountsIncludingRepeatedBlobs": {
+    "planarLinearCandidate": 2454,
+    "axisAlignedBoxCandidate": 1052,
+    "topologyUnresolved": 2
+  },
+  "bodyExamples": {
+    "planarLinearCandidate": {
+      "path": "re/Fusion/Study/analytic-86a12b291d0a/analytic.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.46dcc685-cf13-4602-b6c8-f57b2a7da8ed.smb",
+      "sha256": "63a2d720a21592975b8de949e12409be3faf7a9d0c518af3d8a9e0f16450c7da",
+      "size": 15022,
+      "extension": ".smb",
+      "body": {
+        "bodyOrdinal": 2,
+        "bodyKey": -1,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 1,
+        "loops": 1,
+        "coedges": 3,
+        "edges": 3,
+        "vertices": 3,
+        "ringLengths": [
+          3
+        ],
+        "surfaces": {
+          "plane-surface": 1
+        },
+        "curves": {
+          "straight-curve": 3
+        },
+        "boundsCm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            2.0,
+            3.0,
+            0.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": false
+      }
+    },
+    "axisAlignedBoxCandidate": {
+      "path": "re/Fusion/Study/asbuiltjoints-790406c4498b/revolute.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.b7468958-19b8-4a74-9b0e-0de74f1f063f.smbh",
+      "sha256": "2bc7584bda193b6eca6604422c531a5f60c77f7ea5d299fe6362adfe931dd43d",
+      "size": 13481,
+      "extension": ".smbh",
+      "body": {
+        "bodyOrdinal": 1,
+        "bodyKey": 0,
+        "transformRef": -1,
+        "lumps": 1,
+        "shells": 1,
+        "faces": 6,
+        "loops": 6,
+        "coedges": 24,
+        "edges": 12,
+        "vertices": 8,
+        "ringLengths": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "surfaces": {
+          "plane-surface": 6
+        },
+        "curves": {
+          "straight-curve": 12
+        },
+        "boundsCm": [
+          [
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1.0,
+            1.0,
+            1.0
+          ]
+        ],
+        "planarLinearCandidate": true,
+        "axisAlignedBoxCandidate": true
+      }
+    },
+    "topologyUnresolved": {
+      "path": "re/Fusion/Study/solidsweeps-7d2677669e3d/solid_twist.f3d",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.dd4e60ad-b3a3-4f7d-a558-0afa7b5b531f.smb",
+      "sha256": "ae2a84121182b35d76cffa413c2eb74390a36af5969556522fb2b2a7b7fdcbd1",
+      "size": 121454,
+      "extension": ".smb",
+      "body": {
+        "bodyOrdinal": 1,
+        "topologyUnresolved": "ValueError('Invalid coedge ring')"
+      }
+    }
+  },
+  "mostCommonInitialShapes": [
+    {
+      "signature": "(('asmheader', 1), ('body', 3), ('coedge', 32), ('edge', 20), ('face', 8), ('loop', 8), ('lump', 3), ('plane-surface', 8), ('point', 16), ('shell', 3), ('straight-curve', 20), ('vertex', 16))",
+      "members": 90
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 1), ('coedge', 24), ('edge', 12), ('face', 6), ('loop', 6), ('lump', 1), ('plane-surface', 6), ('point', 8), ('shell', 1), ('straight-curve', 12), ('vertex', 8))",
+      "members": 70
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 4), ('coedge', 56), ('edge', 32), ('face', 14), ('loop', 14), ('lump', 4), ('plane-surface', 14), ('point', 24), ('shell', 4), ('straight-curve', 32), ('vertex', 24))",
+      "members": 59
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 1), ('coedge', 4), ('cone-surface', 1), ('edge', 2), ('ellipse-curve', 2), ('face', 3), ('loop', 4), ('lump', 1), ('plane-surface', 2), ('point', 2), ('shell', 1), ('vertex', 2))",
+      "members": 47
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 4), ('coedge', 36), ('edge', 24), ('face', 9), ('loop', 9), ('lump', 4), ('plane-surface', 9), ('point', 20), ('shell', 4), ('straight-curve', 24), ('vertex', 20))",
+      "members": 31
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 3), ('coedge', 6), ('cone-surface', 1), ('edge', 4), ('ellipse-curve', 4), ('face', 5), ('loop', 6), ('lump', 3), ('plane-surface', 4), ('point', 4), ('shell', 3), ('vertex', 4))",
+      "members": 30
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 3), ('coedge', 12), ('edge', 12), ('face', 3), ('loop', 3), ('lump', 3), ('plane-surface', 3), ('point', 12), ('shell', 3), ('straight-curve', 12), ('vertex', 12))",
+      "members": 30
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 2), ('coedge', 48), ('edge', 24), ('face', 12), ('loop', 12), ('lump', 2), ('plane-surface', 12), ('point', 16), ('shell', 2), ('straight-curve', 24), ('vertex', 16))",
+      "members": 28
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 1), ('coedge', 24), ('edge', 12), ('face', 6), ('loop', 6), ('lump', 1), ('plane-surface', 6), ('point', 8), ('shell', 1), ('straight-curve', 12), ('transform', 1), ('vertex', 8))",
+      "members": 28
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 4), ('coedge', 96), ('edge', 48), ('face', 24), ('loop', 24), ('lump', 4), ('plane-surface', 24), ('point', 32), ('shell', 4), ('straight-curve', 48), ('vertex', 32))",
+      "members": 22
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 3), ('coedge', 72), ('edge', 36), ('face', 18), ('loop', 18), ('lump', 3), ('plane-surface', 18), ('point', 24), ('shell', 3), ('straight-curve', 36), ('vertex', 24))",
+      "members": 16
+    },
+    {
+      "signature": "(('asmheader', 1), ('body', 4), ('coedge', 8), ('cone-surface', 2), ('edge', 6), ('ellipse-curve', 6), ('face', 6), ('loop', 8), ('lump', 4), ('plane-surface', 4), ('point', 6), ('shell', 4), ('vertex', 6))",
+      "members": 15
+    }
+  ],
+  "detailArchive": "Inventory.json.xz",
+  "uncompressedSha256": "388548f353aeacdf09ab5d54084b0f1cf7b93beda597a1c695aa9bf38a6f824b",
+  "compressedSha256": "a72b79bd16cb9b5a9f46d7be0fda01296c69838fbe7164b32cee1b7cc04da67e"
+}

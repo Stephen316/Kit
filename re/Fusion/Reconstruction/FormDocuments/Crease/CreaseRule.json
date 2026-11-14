@@ -1,0 +1,34 @@
+{
+ "scope": "Fusion 2706.1.17 crease edge convexity and crease edge splits of converted Form bodies, found by black-box probes: Kit-built TSM cages imported through the public Form API (formFeatures.add, startEdit, addByTSMFile, finishEdit), Fusion's own saved archives decoded, the dihedral angle measured on Fusion's stored surfaces and pcurves (MeasureCrease.py). Rounds and cages: CreaseCages.py; per-cage ridge pieces: CreaseSummary.json; rule replay over every Fusion-saved Form archive: CreaseRuleCheck.json.",
+ "measure": "Signed dihedral angle between the two face normals (S_u x S_v of each face at its pcurve point), positive when the face of the forward coedge turns towards the other face's normal along the edge tangent; 48 samples per knot span of the edge curve.",
+ "label_rule": {
+  "rule": "A converted edge piece is 'tangent' iff the largest absolute dihedral angle over the piece, ends included, is at most 1 degree; otherwise 'unknown'. Sign, scale and length do not matter.",
+  "evidence": [
+   ["constant folds 0, 0.5, 0.9, 0.95, 0.9999, 0.99999, 1.0 deg and -0.5 to -1.0 deg", "one tangent edge", "Pilot, RoundOne, RoundThree"],
+   ["constant folds 1.000001, 1.00001, 1.0001, 1.001 to 10 deg and -1.001 to -2 deg", "one unknown edge", "Pilot, RoundOne, RoundThree"],
+   ["0.5 and 0.9 deg at scale 10 and 0.1, and on a 4 times longer roof; 1.1 and 2 deg likewise", "tangent; unknown", "RoundOne, RoundTwo"],
+   ["ramps 0 to 1.0006, 0 to 1.002, 1.0006 to 0, 0.9 to 1.0006 deg (largest angle at an edge end)", "one unknown edge", "RoundFive"],
+   ["mid-span peak 0.999 deg; peak 1.002 and 1.01 deg", "tangent; unknown", "RoundFive"],
+   ["CreasedPlane carrier grip moves with peaks 0.608, 0.667, 0.775 deg; peak 1.216 deg", "tangent; unknown", "RoundNine"]
+  ]
+ },
+ "old_gap": "The 0.65 to 1.15 degree band that ClassifyEdges used to refuse has no special behaviour: up to 1 degree is tangent, above is unknown, and a crease of steady sign and no zero inside is never split (RoundThree bisection 0.9999 to 1.04 deg, RoundNine 0.667 and 0.775 deg tangent, 1.096 and 1.118 deg pieces unknown).",
+ "split_rules": [
+  {"case": "the dihedral has no zero inside the edge", "fusion": "never split", "kit": "one edge, labelled by the 1 degree rule", "evidence": "every constant fold, Ramp0To3, Ramp0p5To1p5, StepSmall, Roof*Long, Ramp0To1p0006"},
+  {"case": "the whole edge stays within 1 degree", "fusion": "one tangent edge, also across exact zeros and flat spans", "kit": "tangent pieces merge", "evidence": "Rampm0p6To0p6, Rampm0p9To0p9, Rampm0p8To0p4, Rampm0p4To0p8, VeeSmall, StepFlatSmall, Dart0p5, Dart1, Bump1, Plane31Xp0p4"},
+  {"case": "the faces meet flat (zero dihedral) over a whole knot span next to an unknown part", "fusion": "split at the knot where the flat span ends", "kit": "predicted", "evidence": "StepEnd2, StepConcave, StepStart2, Bump3, Dart2, Dart5, Dart20, PeakMid1p002, PeakKnot1p002, Plane31Xm0p4, Plane12Xp0p2, Plane30Xp0p4, Plane12Xm0p2"},
+  {"case": "the dihedral touches zero exactly at an interior knot without changing sign", "fusion": "split at the knot", "kit": "predicted", "evidence": "VeeLarge (unknown, unknown), VeeMixed (tangent, unknown)"},
+  {"case": "the dihedral changes sign exactly at an interior knot and both sides pass 1 degree", "fusion": "split at the knot, both pieces unknown", "kit": "predicted", "evidence": "Rampm3To3, Rampm1p2To1p2, Rampm1p2To2p4, Rampm3To3Edited"},
+  {"case": "the dihedral changes sign away from a knot and one side stays within 1 degree", "fusion": "no split, one unknown edge", "kit": "predicted", "evidence": "Ramp2Tom0p6, Rampm1p5To0p5, Rampm0p5To1p5, Rampm0p75To1p05, Rampm0p6To2, Rampm0p6To2Edited, RootAt5p5, RootAt0p5 (root 1e-6 off a knot), StepSign"},
+  {"case": "the edge turns past 1 degree both ways (convex and concave parts) with the sign change away from a knot", "fusion": "split at the root of the dihedral, found to about 1e-11 in curve parameter (RootOff offsets 1e-2 down to 1e-8 all split at 3 plus the offset); three linear ramps whose concave part ends near knot 0.5 split at knot 1 instead", "kit": "refused: Fusion places the vertex at a computed root", "evidence": "Rampm2p5To3p5, Rampm3p25To2p75, RootOff*, OracleCreasedPlaneFresh and its import replay EditedCreasedPlane (split at 1.5747418242971716); Rampm1p25To1p75, Rampm1p3To1p7, Rampm1p2To1p8 split at 1"},
+  {"case": "the dihedral changes sign exactly at an interior knot with one tangent side", "fusion": "split at the knot in 20 cages; no split in 5 cages, all exactly linear ramps with the zero at knot 2 or 4; the trigger was not found (not the knot position, slope, tangent side size or end ratio alone: KnotFourEnd0p7 to 0p9 differ from Rampm1p6To0p8 only in the last row and split)", "kit": "refused", "evidence": "split: Ramp0p3Tom1p5, Rampm0p3To1p5, Ramp1p5Tom0p3, Rampm1p5To0p3, Rampm1p5To0p3Edited, KnotOneSlope0p6, KnotOneSlope0p8, KnotFourSide0p4, KnotFourSide0p6, KnotFourSlope0p6, KnotThreeSide0p3, KnotThreeSide0p9, KnotThreeSlope0p8, KnotFourEnd0p7, KnotFourEnd0p75, KnotFourEnd0p85, KnotFourEnd0p9, KnotThreeFar1p5, KnotThreeFar1p7, KnotThreeFar2; no split: Rampm1p6To0p8, Rampm1p6To0p8Again, Rampm0p8To1p6, Rampm2To1, Rampm0p6To1p2"}
+ ],
+ "edit_path": "Editing a Form (startEdit, vertex move, finishEdit) gives the same pieces and labels as importing the edited cage: RoundEight edited six roofs and matched the import results, and RoundSeven re-imported the cage of OracleCreasedPlaneFresh.f3d and reproduced its split at 1.5747418242971716.",
+ "kit_constants": {
+  "KTangentTurn": "1 degree, the measured label limit above.",
+  "KFlatTurn": "1e-12 rad. Exact zeros on Fusion's own surfaces evaluate to at most 2.4e-13 deg (4e-15 rad) at the knot; the smallest deliberate miss (RootOff1em08) evaluates to 1e-8 deg (1.7e-10 rad) at knot 3 and Fusion split at the root, not at the knot. 1e-12 rad sits between with two decades of margin each way.",
+  "KCreaseSamples": "8 equal steps per knot span, both ends included, so the edge ends that decide Ramp0To1p0006 are sampled.",
+  "KPeakSteps": "32 golden-section steps around the largest sample when it is between KFlatTurn and 1 degree; the bracket of two sample gaps shrinks by 0.618^32 (about 2e-7)."
+ },
+ "rule_check": "CreaseRuleCheck.json: part one replays the rule on every two-sided curve of 333 Fusion-saved Form archives (5555 curve groups): 5509 equal to Fusion's pieces and labels, 46 refused, 0 different. Part two builds CageBody from the cage of every archive with a Kit body shape (107): 99 accepted and equal to Fusion's topology and labels, 8 refused where Fusion's topology differs from the Kit shape, none accepted wrongly."
+}

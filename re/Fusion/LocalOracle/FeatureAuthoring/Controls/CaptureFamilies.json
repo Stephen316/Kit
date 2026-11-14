@@ -1,0 +1,1694 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native boundary boolean, round extent, edge feature, offset face and feature pattern controls created through the Fusion API and exported locally; evidence for Kit feature authoring, not Kit acceptance",
+  "controls": [
+    {
+      "name": "HoleOffset",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Offset hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d4",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "role": "TipAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.748672587712804,
+            "area_cm2": 54.26194671058465,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleOffset.f3d",
+      "sha256": "56b0d70c7442928055a4d2d5e600c6810a7adf4f7dd7c5218f9d27da651926a3",
+      "bytes": 83614
+    },
+    {
+      "name": "HoleNotch",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Notch sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Notch extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Offset hole",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d4",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "role": "TipAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 20.60707993412301,
+            "area_cm2": 53.40353936417444,
+            "faces": 9,
+            "edges": 20,
+            "vertices": 14,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "HoleNotch.f3d",
+      "sha256": "b30a12386c08201fae39ff2bd5f00389da0ca094c19729123b71d76655f3306d",
+      "bytes": 89438
+    },
+    {
+      "name": "DiscBore",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Extrude1",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket ring",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Center bore",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "4",
+            "value": 4.0,
+            "unit": "",
+            "role": "countU"
+          },
+          {
+            "name": "d6",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "role": "TotalAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d8",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d9",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d10",
+            "expression": "14 mm",
+            "value": 1.4000000000000001,
+            "unit": "mm",
+            "role": "CBDiameter"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 13.383184704293095,
+            "area_cm2": 47.50088092227767,
+            "faces": 14,
+            "edges": 14,
+            "vertices": 14,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              1.2000000000000002
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "DiscBore.f3d",
+      "sha256": "c5cd9844c1d8a0a1f9d22223e8f5c0b30b16883458cde00ee9b86e07d233a065",
+      "bytes": 89217
+    },
+    {
+      "name": "EdgeNotch",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Notch sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Notch",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.21460183660255,
+            "area_cm2": 52.356194490192344,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "EdgeNotch.f3d",
+      "sha256": "8abfcbf6d3597219ad42b16a0c2b29547b64c277cf1178089f045103abde5f47",
+      "bytes": 81787
+    },
+    {
+      "name": "EdgeBoss",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Boss sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Boss",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.785398163397446,
+            "area_cm2": 53.92699081698724,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.5,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "EdgeBoss.f3d",
+      "sha256": "5f9acc56edd638414ab695b695ac0cc0c62b13bed2493f39d9b7b894a4d8b623",
+      "bytes": 81249
+    },
+    {
+      "name": "EdgeCore",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Core sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Core",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.141592653589793,
+            "area_cm2": 13.42477796076938,
+            "faces": 4,
+            "edges": 6,
+            "vertices": 4,
+            "min_cm": [
+              3.0,
+              0.5,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              2.5,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "EdgeCore.f3d",
+      "sha256": "61a36aa83f3596352001f3eff4ab4b49bef5b4e9dfc83310a09e792a29ae9677",
+      "bytes": 71782
+    },
+    {
+      "name": "CornerCut",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.0,
+            "area_cm2": 50.0,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "CornerCut.f3d",
+      "sha256": "ff98e823db121b0187b3aa27f51e3fb665ad2b361c5e196973c1296d07b8a621",
+      "bytes": 79678
+    },
+    {
+      "name": "SideJoin",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Side sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Side",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 62.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "SideJoin.f3d",
+      "sha256": "5a80480bb04bc2e73e7cf697d61594e358bb79e475231ed690a0e2aaf8c77f64",
+      "bytes": 82210
+    },
+    {
+      "name": "DiscSymmetric",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.283185307179318,
+            "area_cm2": 18.84955592153876,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              1.0,
+              0.5,
+              -1.0
+            ],
+            "max_cm": [
+              3.0,
+              2.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "DiscSymmetric.f3d",
+      "sha256": "77e672bdffab1de7ae2f155e8e5f5ea04dc08798cac3fba60eaf816b48076e4f",
+      "bytes": 70882
+    },
+    {
+      "name": "DiscTwoSided",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "role": "AgainstDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "Side2TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 7.853981633974148,
+            "area_cm2": 21.991148575128552,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              1.0,
+              0.5,
+              -0.5
+            ],
+            "max_cm": [
+              3.0,
+              2.5,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "DiscTwoSided.f3d",
+      "sha256": "687502e1159e01f14acf93631e7b2c761944b6d4815be18fde0273e67b882a78",
+      "bytes": 69668
+    },
+    {
+      "name": "DiscFlip",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "-( 20 mm )",
+            "value": -2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.283185307179318,
+            "area_cm2": 18.84955592153876,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              1.0,
+              0.5,
+              -2.0
+            ],
+            "max_cm": [
+              3.0,
+              2.5,
+              0.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "DiscFlip.f3d",
+      "sha256": "b9857107474ebf709dd541c293d9e035e8f11eea7d0d1ad36ba2550b39be0dd8",
+      "bytes": 71271
+    },
+    {
+      "name": "FilletTwoEdges",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner rounds",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d4",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "role": "Radius"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.922743338823082,
+            "area_cm2": 51.40769893097696,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "FilletTwoEdges.f3d",
+      "sha256": "e32901d45cb88435ae9283bf40edb2bd5675f6d717a309bad14d792cf27c5821",
+      "bytes": 80345
+    },
+    {
+      "name": "ChamferTwoEdges",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner bevels",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "role": "Distance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.82,
+            "area_cm2": 51.11705627484771,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ChamferTwoEdges.f3d",
+      "sha256": "c22cff3017338c71164de4318481454df658721f4c8075bbe679d80fcbfd3609",
+      "bytes": 77713
+    },
+    {
+      "name": "ChamferTwoDistances",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner bevel",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "role": "Distance 1"
+          },
+          {
+            "name": "d4",
+            "expression": "2 mm",
+            "value": 0.2,
+            "unit": "mm",
+            "role": "Distance 2"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.939999999999998,
+            "area_cm2": 51.661110255092794,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ChamferTwoDistances.f3d",
+      "sha256": "9130a24e0df4b19536c7df8f7fcbbef44a79de900a18b5e5dd80a73a2693619f",
+      "bytes": 78780
+    },
+    {
+      "name": "ChamferDistanceAngle",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner bevel",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "role": "Distance"
+          },
+          {
+            "name": "d4",
+            "expression": "30 deg",
+            "value": 0.5235987755982988,
+            "unit": "deg",
+            "role": "Rotate Angle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.948038475772933,
+            "area_cm2": 51.69444863728671,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ChamferDistanceAngle.f3d",
+      "sha256": "c1812381cb83f75883ec2ac5c74fa75ec7c10a7a97f4eec6debb5decfced44c8",
+      "bytes": 78870
+    },
+    {
+      "name": "ShellOpenSide",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Open shell",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "2 mm",
+            "value": 0.2,
+            "unit": "mm",
+            "role": "innerThickness"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 5.856000000000007,
+            "area_cm2": 62.08,
+            "faces": 10,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ShellOpenSide.f3d",
+      "sha256": "c8467ae131f8bbf36eb7a121ef5f214af92df0ce39e21651ffc1e14060e7ec55",
+      "bytes": 92524
+    },
+    {
+      "name": "OffsetTop",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureFamilies.py\", line 308, in <module>\n    build(design.rootComponent, design)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureFamilies.py\", line 153, in c_offset_top\n    inp = feats.createInput(coll(planar_face(body, 0, 0, 1)), vi(\"5 mm\"))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 58852, in createInput\n    return _fusion.OffsetFacesFeatures_createInput(self, faces, distance)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: in method 'OffsetFacesFeatures_createInput', argument 2 of type 'std::vector< adsk::core::Ptr< adsk::fusion::BRepFace >,std::allocator< adsk::core::Ptr< adsk::fusion::BRepFace > > > const &'\n"
+    },
+    {
+      "name": "OffsetSide",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureFamilies.py\", line 308, in <module>\n    build(design.rootComponent, design)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureFamilies.py\", line 161, in c_offset_side\n    inp = feats.createInput(coll(planar_face(body, 1, 0, 0)), vi(\"4 mm\"))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 58852, in createInput\n    return _fusion.OffsetFacesFeatures_createInput(self, faces, distance)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: in method 'OffsetFacesFeatures_createInput', argument 2 of type 'std::vector< adsk::core::Ptr< adsk::fusion::BRepFace >,std::allocator< adsk::core::Ptr< adsk::fusion::BRepFace > > > const &'\n"
+    },
+    {
+      "name": "OffsetBore",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureFamilies.py\", line 308, in <module>\n    build(design.rootComponent, design)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureFamilies.py\", line 172, in c_offset_bore\n    inp = feats.createInput(coll(bore), vi(\"1 mm\"))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 58852, in createInput\n    return _fusion.OffsetFacesFeatures_createInput(self, faces, distance)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: in method 'OffsetFacesFeatures_createInput', argument 2 of type 'std::vector< adsk::core::Ptr< adsk::fusion::BRepFace >,std::allocator< adsk::core::Ptr< adsk::fusion::BRepFace > > > const &'\n"
+    },
+    {
+      "name": "CircPatternInside",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket arc",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "3",
+            "value": 3.0,
+            "unit": "",
+            "role": "countU"
+          },
+          {
+            "name": "d6",
+            "expression": "40 deg",
+            "value": 0.6981317007977318,
+            "unit": "deg",
+            "role": "TotalAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.303539967061468,
+            "area_cm2": 61.61327351998476,
+            "faces": 9,
+            "edges": 18,
+            "vertices": 14,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "CircPatternInside.f3d",
+      "sha256": "f0cd3a99053cb76a3a9aa74539ac01d753833352a79f2fcd29e65108bdd2a776",
+      "bytes": 93063
+    },
+    {
+      "name": "ConstructionSet",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Offset plane",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Edge axis",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner point",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "15 mm",
+            "value": 1.5,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "role": "ExtraOffset"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "ConstructionSet.f3d",
+      "sha256": "758d760d1cd937b602f5eeed0c453b2bd58925ca0351490a5021016aa20a4d67",
+      "bytes": 79461
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

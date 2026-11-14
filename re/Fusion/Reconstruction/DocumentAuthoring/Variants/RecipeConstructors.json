@@ -1,0 +1,28 @@
+{
+  "schema": "FusionCanonicalSketchRecipeEvidence/1",
+  "build": "2706.1.17",
+  "scope": "Canonical recipe values used by RecipeFields.py. The constructor evidence that first suggested them came from binary inspection and was removed. The values are authored policy. Fusion accepted them in the authored extrusion candidate; see ../Acceptance.md.",
+  "unsplitTag": {
+    "fields": [
+      {"name": "version", "value": 3},
+      {"name": "tagId", "value": "caller uint64 argument"},
+      {"name": "secondaryTagId", "value": 0},
+      {"name": "direction", "value": "caller bool argument"},
+      {"name": "objectOffset20", "value": 0, "semanticName": null},
+      {"name": "splitSequenceId", "value": 1},
+      {"name": "splitTotalNumber", "value": 1}
+    ],
+    "qualification": "objectOffset20 is a research label for a uint64 field with an unknown nonzero meaning. Canonical authoring writes zero and does not accept an arbitrary value for it."
+  },
+  "profileEdgeData": {
+    "version": {"value": 0},
+    "sketchTags": {"value": []},
+    "objectOffset20Set": {"value": [], "semanticName": null},
+    "objectOffset38Set": {"value": [], "semanticName": null},
+    "qualification": "Canonical authoring starts both unnamed sets empty and inserts only the supplied sketch tag. No nonempty set meaning is claimed."
+  },
+  "faceRecipeLoop": {
+    "pairSecondSemanticName": "isOuterLoop",
+    "qualification": "The name isOuterLoop came from binary inspection and is not confirmed by a black-box experiment. For the declared positive-Z full circle the authored face has one outer loop and one non-reversed tag. Arbitrary multi-loop region orientation is not established."
+  }
+}

@@ -1,0 +1,563 @@
+{
+  "python": "3.14.7",
+  "codec": "ReadDocument then EmitParsed",
+  "cases": [
+    {
+      "label": "DraftV6",
+      "covers": "DcDraftFeature v6 with m_fixedPlaneDraftAngleMode and DRMatrix v16 under a parametric timeline",
+      "source": "re/Fusion/LocalOracle/JournalStates/vendor_DraftControlEdited.f3d",
+      "source_sha256": "90cbe3eb13813bf84e8ee7d61c20f7957312b6d8fd1db71f96c433a0ce1399fa",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/DraftV6Reemitted.f3d",
+      "output_sha256": "cc733888e4b42500cf4132417c7de24465cf80e6b11f32f0267f9327807bcc0b",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.61b5334d-44c5-47c8-9b48-016ff4ac15c3.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "TransientHolder",
+      "covers": "TransientEntityHolder v0 and newest-version closure of classes absent from metadata",
+      "source": "re/Fusion/LocalOracle/Brep/vendor_binary_temporary.f3d",
+      "source_sha256": "ce4ae6efcdb7814eb06284eb1b0eb3858bf80451fa3b13d31971676d11ce360c",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/TransientHolderReemitted.f3d",
+      "output_sha256": "5e71de387ade780c62c61948fb4706e488b99e0910d752f366aaebcb1dce01bb",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.325d9095-80e7-4d92-8ca7-83739296517e.protein"
+      ],
+      "views": {
+        "bodies": [],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "DecodedSphere",
+      "covers": "TransientEntityHolder v0 in a decoded round body document",
+      "source": "re/Fusion/LocalOracle/RoundBodies/vendor_DecodedSphere.f3d",
+      "source_sha256": "cf358cb95cd264d6adc2e865ed6b27b43d2b93e71e1b8f732a020bba14d3685d",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/DecodedSphereReemitted.f3d",
+      "output_sha256": "3230947bf50feb706a5e97fb3ecff60f4e2c0d3a654bde01ddc4aa009320cd21",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.4bee1ce1-bc44-44f8-bd38-a0e7325edf79.protein"
+      ],
+      "views": {
+        "bodies": [],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "RoundFillets",
+      "covers": "DRMatrix v16 nonidentity matrix3d rows",
+      "source": "re/Fusion/LocalOracle/RoundBodies/vendor_RoundFilletsControl.f3d",
+      "source_sha256": "886d5a619d3a2b6c0c69b7060acfbfb3348444996baae31938028013996086fc",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/RoundFilletsReemitted.f3d",
+      "output_sha256": "5cd79a9d3033ee3038201f1ed4d340aa2bc7ca46c160341e6cd6af733657c7bc",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.c30349c2-5313-47df-acec-4aa5337c22a1.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "StripCuboid",
+      "covers": "OgsSimpleMesh triangle-strip primitive 5 in mesh streams",
+      "source": "re/Fusion/LocalOracle/PublicAdapter/vendor_cuboidEdited.f3d",
+      "source_sha256": "359625d185c9ad2a23504430d9eb534cc445c7820b390649ecfecc2b972db12a",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/StripCuboidReemitted.f3d",
+      "output_sha256": "43c9efcf0a985bfdd7ca8755b6e4df336d0d6294369afd5317091d019308d122",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.1de008d6-1807-4e61-a8d4-b6ce066ef33c.smb",
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.cdff80af-ebbf-4647-bc9c-c9e5409ce762.smbh",
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.11a53653-6a86-46e2-8c33-c35df24c9015.protein"
+      ],
+      "views": {
+        "bodies": [
+          "PrismHistory"
+        ],
+        "snapshots": [
+          "PrismSnapshot"
+        ]
+      }
+    },
+    {
+      "label": "StripRectangle",
+      "covers": "triangle-strip primitive 5 for dimension arrowheads",
+      "source": "re/Fusion/LocalOracle/DimensionAuthoring/vendor_DimensionedRectangleEdited.f3d",
+      "source_sha256": "287e8af69f262b735e8e5197ccc8bb0cabbeee4a9e9836d48873d418a94454c4",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/StripRectangleReemitted.f3d",
+      "output_sha256": "f6c2e71e9e4e4613dcbcc8287c893e1eb19f9b940a9fda87e370bac62609865b",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [],
+      "views": {
+        "bodies": [],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "CylinderIds",
+      "covers": "typed cylinder history with assigned face and vertex entity ids",
+      "source": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeCylinderControl.f3d",
+      "source_sha256": "2a1f884592430b0a162aabdd5eeff954d9ea92e7743d65ad7dc415975ad56380",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/CylinderIdsReemitted.f3d",
+      "output_sha256": "08383fb9a5b2bfcf532afec50eb5e131fce5468fae7b0eb649d16c3d314f93a7",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.0f35f1c5-382b-4bd9-a234-4d6b13120da7.smbh",
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.9c73299c-ccf9-4702-8743-2dcc3e79d63f.smb",
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.5d668d5a-8d6a-44e5-820b-d4a9831b15ea.protein"
+      ],
+      "views": {
+        "bodies": [
+          "HistoryModel"
+        ],
+        "snapshots": [
+          "SnapshotModel"
+        ]
+      }
+    },
+    {
+      "label": "FrustumIds",
+      "covers": "typed frustum history with assigned face and vertex entity ids",
+      "source": "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeFrustumControl.f3d",
+      "source_sha256": "671a911689fdf648f50e79430e0cc77d2bf26e7ef8c4ae23fea268c10f223e37",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/FrustumIdsReemitted.f3d",
+      "output_sha256": "1274f3f3b65f4134383711565502cbe22b7653e45d93728ef0cf5acceaa6dc02",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.afc76f83-40ea-4501-995c-6b35f2469c73.smbh",
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.ce2c2aed-de08-4a9a-8a2d-f795a95f3e9f.protein"
+      ],
+      "views": {
+        "bodies": [
+          "FrustumHistory"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "JournalFallback",
+      "covers": "typed body view disagrees, exact journal model kept",
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/offset_negative.f3d",
+      "source_sha256": "e9bd6d5af4ce1b8f3272ae81b2e418a6eb20e5c2bb854201c03b5cfe3485a8ff",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/JournalFallbackReemitted.f3d",
+      "output_sha256": "8f9c1221f114e10a7b8776782be139695992b3e992cb1422d18d9f69856a9053",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.e37eb707-9e97-41d9-a71d-60d4730f3ea9.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "SnapshotFallback",
+      "covers": "typed snapshot view disagrees, exact geometry state kept",
+      "source": "re/Fusion/Study/namedbodies-3c7c11fc2924/namedbodies.f3d",
+      "source_sha256": "c868160a0e516a560733acf0b41fbb7dcdefe9a8a650e0d5cf62e3972d8c58e1",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/SnapshotFallbackReemitted.f3d",
+      "output_sha256": "621659b99286cf1f0401592db1579626c5a54c26d9a47dfb8e3232d4f7870f2b",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.421e3a2a-aa5d-4ee0-a2c2-66f58bc70d56.smb",
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.8d35bfd8-deb9-4cdb-b556-e55109c2d511.smb",
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.aa20f8fe-174f-4b23-9575-2e86e809a32e.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel",
+          "JournalModel",
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState",
+          "PrismSnapshot",
+          "PrismSnapshot"
+        ]
+      }
+    },
+    {
+      "label": "PrismFallback",
+      "covers": "prism record inventory outside the typed view, exact journal model kept",
+      "source": "re/Fusion/Study/thinextrudes-f758eff14202/open_line_side1.f3d",
+      "source_sha256": "5ddd7613eeb8ada1550adf71d0d719073ba4c18198ef501b627f67e7e9c9541b",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/PrismFallbackReemitted.f3d",
+      "output_sha256": "c8539cf2fc4d74b6ed525abbdb63830d70c5d331ca1f392a3e8d6d2a099e155a",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.05c37385-a612-4906-9273-d3716faf8d80.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "AssemblyIds",
+      "covers": "multi-component document with assigned BRep entity ids",
+      "source": "re/Fusion/Study/assembly-acc48a9dc05d/assembly.f3d",
+      "source_sha256": "6ffe10b64fcc97308f2d7084e18548d24bcde4f66b0b7e3261ba7f7743e4d057",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/AssemblyIdsReemitted.f3d",
+      "output_sha256": "ccf88e7401013fd987d4d2ad670153a2a0a5940c12d54c06b020de9c8e7db038",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.3bdcb874-a5d9-4cb1-b45a-0462569bca30.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel",
+          "JournalModel",
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState",
+          "GeometryState",
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "DeflatedFolders",
+      "covers": "container with deflated empty directory entries",
+      "source": "re/Fusion/LocalOracle/JournalStates/DraftTypedHistory.f3d",
+      "source_sha256": "97fb3d6548b6bd15378eb90783b439e1dda34da992c19f692cd1c80b2e8a9298",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/DeflatedFoldersReemitted.f3d",
+      "output_sha256": "105e1ffbf48c299c4409acedd42c585337e7d3b46f9c48da18077386de6e7459",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.b2f2acfd-761f-4704-a388-f9d95fad96a2.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "WireShell",
+      "covers": "journal shell holding a wire and no face, and wire-owned coedges",
+      "source": "re/Fusion/Study/splitfacemodes-4fc4adf2a868/along_vector.f3d",
+      "source_sha256": "f5682d1a45dadef4d1109883b78c6b589cf6c715d2da739ff72788ad0d29b9fc",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/WireShellReemitted.f3d",
+      "output_sha256": "20c70001ce286203365cda2ae02ee81f8f94f789cd93a0ba1be0501e5032464b",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.61f99b57-e551-472e-a8ae-732a9cab1566.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "NestedTag",
+      "covers": "journal generic tags owning a nested tag with an empty identifier",
+      "source": "re/Fusion/Study/moretools-88a2cd6cad0b/MoveRotate.f3d",
+      "source_sha256": "659682467fe1a10a6f5047f659e9bee05957f31147f47767de65b1e06ea75472",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/NestedTagReemitted.f3d",
+      "output_sha256": "81faf6b90cd7d9a5f94ed39511e11b9acac147d3aea0ca58a1d1891e9380e91b",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.e079c580-75f0-415f-8423-0030e85dca49.smb",
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.90d625d0-5592-420d-8110-e3375fb73e22.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "SnapshotModel"
+        ]
+      }
+    },
+    {
+      "label": "ThreadFace",
+      "covers": "journal thread face feature attributes with two payloads",
+      "source": "re/Fusion/Study/threadmodes-d51d2ae60564/modeled_full.f3d",
+      "source_sha256": "9cf80b1299f94fb50b622fcd2ae4640bc03bbc488ea2a52ced3ef5e40e46914a",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/ThreadFaceReemitted.f3d",
+      "output_sha256": "c2250abcbe47f9ca9873ee530da767f913dc0789b63951ee532a6121fb1f8518",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.1f30de72-ae6b-451d-b74f-97739875fd32.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "EdgeRing",
+      "covers": "four-use alternating nonmanifold edge rings in saved geometry and journal",
+      "source": "re/Fusion/Study/thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d",
+      "source_sha256": "5b6fc0a8f0f90209e87460cf9785e983482bdc53ef1cfa06f246e10382fbd0d7",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/EdgeRingReemitted.f3d",
+      "output_sha256": "4d3c8827b2faf26d999a90013dea3b444b825d700d025fa93c46c7b3afe0abbd",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.2bd096a5-00ba-4511-ac12-05b987f4516d.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "FillRing",
+      "covers": "boundary fill journal with four-use mixed-sense edge rings and 64-bit sculpt name attributes",
+      "source": "re/Fusion/Study/boundaryfills-a0953038318b/plane_first.f3d",
+      "source_sha256": "869e46f2d23f4a582537824cb277c0eabfa6c0c755188119c9695d3d6aee3276",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/FillRingReemitted.f3d",
+      "output_sha256": "2a7aa6f48d590ed41c505c78bc48f46b7c3185cc4acf84274a08438d6a67bb08",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.3e399b41-47f8-43f4-9f75-e82235c6d016.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "FillCells",
+      "covers": "boundary fill journal with three-use edge rings and 64-bit sculpt name attributes",
+      "source": "re/Fusion/Study/boundaryfills-a0953038318b/component_middle.f3d",
+      "source_sha256": "8b69892dc941f9a8cf9dfbd6f43650de0da0f8beaf4c34da078df18e26185749",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/FillCellsReemitted.f3d",
+      "output_sha256": "30ef8cd4b10d8feedf07a432130c041f11aaf18aa2c057cf9efd7bd645acd38d",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.224e890b-b7eb-4ed3-a781-3cd0277abbb8.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel",
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState",
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "ApexEdge",
+      "covers": "journal cone apex edges without a curve",
+      "source": "re/Fusion/Study/holes-926347c1eaa8/simple.f3d",
+      "source_sha256": "8d972f6927e0a3f6ca980bfce544007f61b4453d46cb679f1855d22345ba42f9",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/ApexEdgeReemitted.f3d",
+      "output_sha256": "1ce480b84ead6f0f31304d540ec1b2e439d9550e929e2adcca3a4786a5013292",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.d67a66eb-de93-4a50-bff3-53ae9c0b620e.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "TorusSign",
+      "covers": "journal torus carriers with a negative minor radius",
+      "source": "re/Fusion/Study/specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+      "source_sha256": "8901220d0724d1e6e7ac40410d02b4cea1fd39f4fd4c8a8afa4f5738d5b0f7d7",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/TorusSignReemitted.f3d",
+      "output_sha256": "f519bb59cd1f0bfd7421860e7bd9db75068cce901643c4456b059e9e086f6975",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.a125d6e4-079b-4eee-a5c5-c1ecc7001e8b.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "FreeRoots",
+      "covers": "journal root count including free faces and free edges",
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/from_plane.f3d",
+      "source_sha256": "535708797f1600c2b314019077462326bc371363cf75da9195e6cb0d60f0e23e",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/FreeRootsReemitted.f3d",
+      "output_sha256": "847c8c6c47f61105e1988c1173f217bd91be539498988100b9e4be09d80f07f0",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.c5d0e8c7-319c-4d04-bb56-8831c4e6b0e8.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "WorkingDelta",
+      "covers": "journal saved with an open working delta state",
+      "source": "re/Fusion/Study/pathpatterns-de9857f6a1bc/arc_along.f3d",
+      "source_sha256": "415853fccc3349646b028d7fa1efce563ca5526beec25eddffeb3e3c649a0d79",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/WorkingDeltaReemitted.f3d",
+      "output_sha256": "ee1a8d6ecf3bfd590a188fdde149169c367ad6ce42151ce31edd09a6c87db993",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.3e64e6e4-db2e-4f72-89c9-15855b50600d.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "BoardSize",
+      "covers": "journal bulletin board with more than 1000 changes",
+      "source": "re/Fusion/Study/patterns-35e49809a812/symmetric_one.f3d",
+      "source_sha256": "b9b10cd0abf07ca6b3e9a143a4005843cc3216d016bf52b925117ad519a24bb0",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/BoardSizeReemitted.f3d",
+      "output_sha256": "e2fad2ebc01b490a1f7ffb01a6950f174cc4250b032bd16a6407331f7c057697",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.963b8b08-7038-479d-b82f-647c9cd4e080.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "SceneMesh",
+      "covers": "Fusion_mesh enhanced edge and face display items in graphics scenes",
+      "source": "re/Fusion/Study/timeline-5867579925b5/grouped.f3d",
+      "source_sha256": "9593df203ee97e6333cc01c318195f3f5b88b6fe1b2302c2cdb8ed27a9ce06a3",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/SceneMeshReemitted.f3d",
+      "output_sha256": "6c123ca4121826436272052ca8ee048addf29d039169733146fa7c12980a1c2d",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.4f3a2f3d-16d4-4b9a-8930-e7ec2c7d7e36.protein"
+      ],
+      "views": {
+        "bodies": [
+          "JournalModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    },
+    {
+      "label": "RolledScene",
+      "covers": "Fusion_mesh scenes in a rolled-back timeline",
+      "source": "re/Fusion/Study/timeline-5867579925b5/rolled_back.f3d",
+      "source_sha256": "4e5c99de29a515f95cba4a4f4e900c4de0e7b7a652fa1730d2d3dae76a4c8a87",
+      "output": "re/Fusion/LocalOracle/ReaderCoverage/RolledSceneReemitted.f3d",
+      "output_sha256": "30c52cd36c7d927ad1d4d75ffc9b4d97d5537ff4193ee55ffa01bd883385e4e9",
+      "model_equal": true,
+      "byte_identical": false,
+      "differing_members": [
+        "FusionAssetName[Active]/Breps.BlobParts/BREP.963d7e25-dc7d-4a41-a3d5-fdfc695a5509.smbh",
+        "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.e8cbd06e-a33c-47a6-9760-ac90cf9350af.protein"
+      ],
+      "views": {
+        "bodies": [
+          "HistoryModel"
+        ],
+        "snapshots": [
+          "GeometryState"
+        ]
+      }
+    }
+  ]
+}

@@ -22,6 +22,7 @@ Preserve exact API spelling inside code spans.
 | B-rep                | Boundary representation of geometry and topology                        | A B-rep alone does not preserve a feature history             |
 | capability           | Category of information represented in a document                       | Inspect each transfer result                                  |
 | carrier              | Representation that retains information outside native target semantics | It can be unusable in the target application                  |
+| case-specific value  | Value captured from one document or fitted to one case                  | Do not use it in production output                            |
 | CI                   | Continuous integration                                                  | Identify the revision and run for each result                 |
 | configuration        | Named variant of a CAD document                                         | Do not confuse it with SDK installation settings              |
 | control document     | Known document used to check an oracle session                          | Record its identity and expected measurements                 |
@@ -29,7 +30,9 @@ Preserve exact API spelling inside code spans.
 | destination          | Output path or writable stream                                          | Do not call it a source                                       |
 | digest               | Hash value calculated from data                                         | It does not authenticate an untrusted sender                  |
 | donor block          | Recorded vendor bytes from an unrelated document                        | Do not use it in production output                            |
+| donor file           | Vendor-saved file used as a base, template, or patch target for output  | Do not read it in production code                             |
 | feature history      | Ordered modeling operations and their dependencies                      | Do not substitute a mesh for this history                     |
+| format vocabulary    | Declared format facts such as class names, enum codes, and field order  | Trace each entry to a finding in `re/`                        |
 | instance             | One occurrence of a component definition                                | It has its own position and state                             |
 | interchange document | Neutral `CadDocument` object                                            | It is not a vendor application session                        |
 | lossless             | Result that meets all repository acceptance requirements                | Do not infer it from a successful API return                  |
@@ -40,7 +43,9 @@ Preserve exact API spelling inside code spans.
 | oracle               | Isolated vendor application used for measurement                        | Never part of a production conversion                         |
 | opaque               | Data whose semantics are not fully decoded                              | Preserve the limitation in result reports                     |
 | payload              | Bytes associated with a document record                                 | Identify the format, role, and source                         |
+| per-case table       | Table with one captured or fitted entry for each layout, size, or value | Do not use it in production output                            |
 | PR                   | Pull request                                                            | Keep review evidence tied to its head revision                |
+| proven constant      | Value that is the same in unrelated documents, with its reason recorded | Record the documents and the reason                           |
 | replay               | Re-emission of the source document's own data                           | It does not prove translation to another format               |
 | SDK                  | Software development kit                                                | Kit exposes a Python API                                      |
 | source               | Input document or input bytes                                           | Preserve the original during conversion                       |

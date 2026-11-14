@@ -63,13 +63,14 @@ def GetDocErrors(DocumentValue: CadDocument) -> tuple[str, ...]:
         ErrorValues.append("document has no configuration")
     if (
         not DocumentValue.feature_timeline
+        and not DocumentValue.parameters
         and DocumentValue.brep is None
         and not DocumentValue.brep_payloads
         and not DocumentValue.meshes
         and DocumentValue.assembly is None
     ):
         ErrorValues.append(
-            "document has neither feature history, B-rep, mesh, nor assembly data"
+            "document has neither parameters, feature history, B-rep, mesh, nor assembly data"
         )
     return tuple(ErrorValues)
 

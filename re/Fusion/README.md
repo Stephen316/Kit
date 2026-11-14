@@ -7,6 +7,9 @@ to you under it immediately and permanently.
 
 # Fusion native-file research
 
+The maintained [native persistence data model](../../Documentation/Reference/Research/FusionDataModel.md)
+consolidates the container, parameter, identity, and B-rep relationships with explicit evidence limits.
+
 Start with the matching feature row. Open its notes and focused test to check
 what the saved evidence supports. The [saved-file workflow](Notes/Workflow.md)
 covers reproducing checks and [querying the SDK source graph](Notes/Workflow.md#navigate-sdk-source-with-graphify).

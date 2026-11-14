@@ -1,0 +1,659 @@
+{
+  "$type": "CadDocument",
+  "assembly": null,
+  "bodies": {
+    "$tuple": []
+  },
+  "brep": null,
+  "brep_payloads": {
+    "$tuple": []
+  },
+  "capabilities": {
+    "$frozenset": []
+  },
+  "configurations": {
+    "$tuple": [
+      {
+        "$type": "Configuration",
+        "active": true,
+        "attributes": {},
+        "id": "default",
+        "name": "Public rectangle",
+        "overrides": {
+          "$tuple": []
+        },
+        "parent_id": null,
+        "suppressed_feature_ids": {
+          "$tuple": []
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "$tuple": []
+  },
+  "feature_timeline": {
+    "$tuple": [
+      {
+        "$type": "FeatureStep",
+        "attributes": {},
+        "configuration_states": {
+          "$tuple": []
+        },
+        "definition": null,
+        "id": "sketch",
+        "input_feature_ids": {
+          "$tuple": []
+        },
+        "kind": {
+          "$enum": "FeatureKind",
+          "value": "reference"
+        },
+        "name": "Public Profile",
+        "operation": null,
+        "order": 0,
+        "parameter_ids": {
+          "$tuple": [
+            "width-dimension",
+            "depth-dimension"
+          ]
+        },
+        "provenance": null,
+        "selection_ids": {
+          "$tuple": []
+        },
+        "sketch_id": "sketch",
+        "suppressed": false
+      }
+    ]
+  },
+  "materials": {
+    "$tuple": []
+  },
+  "meshes": {
+    "$tuple": []
+  },
+  "metadata": {
+    "fusion.authoring": {
+      "spec": {
+        "fields": {
+          "BodyName": "Public Solid",
+          "ConstrainRectangle": true,
+          "DepthMm": 23.0,
+          "DepthParamName": "rectangleDepth",
+          "ExtrusionName": "Public Extrusion",
+          "LengthMm": 17.0,
+          "Material": {
+            "fields": {
+              "Color": {
+                "fields": {
+                  "AlphaValue": 1.0,
+                  "BlueValue": 0.6,
+                  "GreenValue": 0.4,
+                  "RedValue": 0.2
+                },
+                "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue"
+              },
+              "Density": 2870.0,
+              "NameValue": "Public Material"
+            },
+            "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec"
+          },
+          "ParamComment": "",
+          "ParamName": "publicHeight",
+          "ProfileKind": "rectangle",
+          "RadiusMm": 12.0,
+          "SketchName": "Public Profile",
+          "TaperDegrees": 0.0,
+          "Title": "Public rectangle",
+          "WidthMm": 19.0,
+          "WidthParamName": "rectangleWidth"
+        },
+        "record": "convert.formats.Fusion.DocumentCodec.Model.DocumentSpec.DocumentSpec"
+      },
+      "version": 1
+    }
+  },
+  "parameters": {
+    "$tuple": [
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": null,
+        "id": "length",
+        "name": "publicHeight",
+        "owner_id": "",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 17.0
+        }
+      },
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": null,
+        "id": "width",
+        "name": "rectangleWidth",
+        "owner_id": "",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 19.0
+        }
+      },
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": null,
+        "id": "depth",
+        "name": "rectangleDepth",
+        "owner_id": "",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 23.0
+        }
+      },
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": {
+          "$type": "Expression",
+          "language": "kit",
+          "parameter_ids": {
+            "$tuple": [
+              "width"
+            ]
+          },
+          "source": "rectangleWidth"
+        },
+        "id": "width-dimension",
+        "name": "Width",
+        "owner_id": "sketch",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 19.0
+        }
+      },
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": {
+          "$type": "Expression",
+          "language": "kit",
+          "parameter_ids": {
+            "$tuple": [
+              "depth"
+            ]
+          },
+          "source": "rectangleDepth"
+        },
+        "id": "depth-dimension",
+        "name": "Depth",
+        "owner_id": "sketch",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 23.0
+        }
+      }
+    ]
+  },
+  "schema_version": "1.0",
+  "selections": {
+    "$tuple": []
+  },
+  "sketches": {
+    "$tuple": [
+      {
+        "$type": "Sketch",
+        "attributes": {},
+        "closed_profile_entity_ids": {
+          "$tuple": [
+            {
+              "$tuple": [
+                "line-0",
+                "line-1",
+                "line-2",
+                "line-3"
+              ]
+            }
+          ]
+        },
+        "constraints": {
+          "$tuple": [
+            {
+              "$type": "SketchConstraint",
+              "attributes": {},
+              "driving": true,
+              "id": "constraint-0",
+              "kind": "horizontal",
+              "parameter_id": null,
+              "provenance": null,
+              "references": {
+                "$tuple": [
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "line-0",
+                    "point": ""
+                  }
+                ]
+              },
+              "suppressed": false
+            },
+            {
+              "$type": "SketchConstraint",
+              "attributes": {},
+              "driving": true,
+              "id": "constraint-1",
+              "kind": "vertical",
+              "parameter_id": null,
+              "provenance": null,
+              "references": {
+                "$tuple": [
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "line-1",
+                    "point": ""
+                  }
+                ]
+              },
+              "suppressed": false
+            },
+            {
+              "$type": "SketchConstraint",
+              "attributes": {},
+              "driving": true,
+              "id": "constraint-2",
+              "kind": "horizontal",
+              "parameter_id": null,
+              "provenance": null,
+              "references": {
+                "$tuple": [
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "line-2",
+                    "point": ""
+                  }
+                ]
+              },
+              "suppressed": false
+            },
+            {
+              "$type": "SketchConstraint",
+              "attributes": {},
+              "driving": true,
+              "id": "constraint-3",
+              "kind": "vertical",
+              "parameter_id": null,
+              "provenance": null,
+              "references": {
+                "$tuple": [
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "line-3",
+                    "point": ""
+                  }
+                ]
+              },
+              "suppressed": false
+            },
+            {
+              "$type": "SketchConstraint",
+              "attributes": {},
+              "driving": true,
+              "id": "dimension-width",
+              "kind": "distance_x",
+              "parameter_id": "width-dimension",
+              "provenance": null,
+              "references": {
+                "$tuple": [
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "point-0",
+                    "point": ""
+                  },
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "point-1",
+                    "point": ""
+                  }
+                ]
+              },
+              "suppressed": false
+            },
+            {
+              "$type": "SketchConstraint",
+              "attributes": {},
+              "driving": true,
+              "id": "dimension-depth",
+              "kind": "distance_y",
+              "parameter_id": "depth-dimension",
+              "provenance": null,
+              "references": {
+                "$tuple": [
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "point-0",
+                    "point": ""
+                  },
+                  {
+                    "$type": "ConstraintReference",
+                    "entity_id": "point-3",
+                    "point": ""
+                  }
+                ]
+              },
+              "suppressed": false
+            }
+          ]
+        },
+        "entities": {
+          "$tuple": [
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": true,
+              "geometry": {
+                "$type": "PointGeometry",
+                "point": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 0.0
+                }
+              },
+              "id": "point-0",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "point"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "PointGeometry",
+                "point": {
+                  "$type": "Vector2",
+                  "x": 19.0,
+                  "y": 0.0
+                }
+              },
+              "id": "point-1",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "point"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "PointGeometry",
+                "point": {
+                  "$type": "Vector2",
+                  "x": 19.0,
+                  "y": 23.0
+                }
+              },
+              "id": "point-2",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "point"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "PointGeometry",
+                "point": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 23.0
+                }
+              },
+              "id": "point-3",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "point"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "LineGeometry",
+                "end": {
+                  "$type": "Vector2",
+                  "x": 19.0,
+                  "y": 0.0
+                },
+                "start": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 0.0
+                }
+              },
+              "id": "line-0",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "line"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "LineGeometry",
+                "end": {
+                  "$type": "Vector2",
+                  "x": 19.0,
+                  "y": 23.0
+                },
+                "start": {
+                  "$type": "Vector2",
+                  "x": 19.0,
+                  "y": 0.0
+                }
+              },
+              "id": "line-1",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "line"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "LineGeometry",
+                "end": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 23.0
+                },
+                "start": {
+                  "$type": "Vector2",
+                  "x": 19.0,
+                  "y": 23.0
+                }
+              },
+              "id": "line-2",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "line"
+              },
+              "provenance": null
+            },
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "LineGeometry",
+                "end": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "start": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 23.0
+                }
+              },
+              "id": "line-3",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "line"
+              },
+              "provenance": null
+            }
+          ]
+        },
+        "id": "sketch",
+        "name": "Public Profile",
+        "parameter_ids": {
+          "$tuple": [
+            "width-dimension",
+            "depth-dimension"
+          ]
+        },
+        "provenance": null,
+        "support_plane_id": "plane",
+        "suppressed": false
+      }
+    ]
+  },
+  "source": {
+    "$type": "CadSource",
+    "application_version": "",
+    "attributes": {},
+    "container_version": "",
+    "format_id": "fusion.f3d",
+    "path": "",
+    "sha256": ""
+  },
+  "support_planes": {
+    "$tuple": [
+      {
+        "$type": "SupportPlane",
+        "attributes": {},
+        "id": "plane",
+        "name": "XY",
+        "offset_parameter_id": null,
+        "provenance": null,
+        "support_selection_id": null,
+        "transform": {
+          "$type": "Transform",
+          "origin": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "x_axis": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "y_axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          },
+          "z_axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "units": {
+    "$enum": "UnitSystem",
+    "value": "mm"
+  }
+}

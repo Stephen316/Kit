@@ -54,6 +54,7 @@ It does not prove every branch or target-application acceptance.
 
 Record the status next to the field or feature family.
 Do not replace an unknown field with recorded donor bytes in production output.
+The [Fusion donor data ban](FusionDonorBan.md) gives the replacement procedure and a review checklist.
 
 ## Caches and derived values
 

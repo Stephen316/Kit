@@ -1,0 +1,4341 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native one-variable feature-family controls created through the Fusion API and exported locally; evidence for Kit feature authoring, not Kit acceptance",
+  "controls": [
+    {
+      "name": "ExtrudeNew",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeNew.f3d",
+      "sha256": "f4fed0821f819cfd78a969a2bb09ba0cfbb2b3cc2e9f1971ea4f059c33b71fc4",
+      "bytes": 76477
+    },
+    {
+      "name": "ExtrudeTall",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "26 mm",
+            "value": 2.6,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 31.200000000000003,
+            "area_cm2": 60.400000000000006,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.6
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeTall.f3d",
+      "sha256": "003256988e94fc0a83b19b0cd0570c6b18749dc3957fcdd36e1bdd6d88fd3201",
+      "bytes": 79335
+    },
+    {
+      "name": "ExtrudeSymmetric",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              -1.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeSymmetric.f3d",
+      "sha256": "385110dcb51ab9a213e13da0899e217aac65fac1c5e654a1a88872d35f163350",
+      "bytes": 76884
+    },
+    {
+      "name": "ExtrudeJoin",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Boss sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Boss extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "30 mm",
+            "value": 3.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.785398163397414,
+            "area_cm2": 55.1415926535898,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              3.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Boss sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeJoin.f3d",
+      "sha256": "eb7a1987b7b2624a1f4d52cb338c55ac972e29be9f430187d73d15619e4e0557",
+      "bytes": 84433
+    },
+    {
+      "name": "ExtrudeCut",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Hole sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Hole extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.429203673205038,
+            "area_cm2": 56.71238898038469,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Hole sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeCut.f3d",
+      "sha256": "ab1b4543612c4e792214ab5cc72512532e03230becf8d8cc0af1b9a8fca310ce",
+      "bytes": 86025
+    },
+    {
+      "name": "ExtrudeCutRadius",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Hole sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Hole extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 20.921239199481867,
+            "area_cm2": 57.71769862953342,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Hole sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeCutRadius.f3d",
+      "sha256": "74f094e40a390ecf1e80f4294b456f8086de866083f004a7a50663d180f4a0ea",
+      "bytes": 88211
+    },
+    {
+      "name": "ExtrudeIntersect",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Core sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Core extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.283185307179318,
+            "area_cm2": 18.84955592153876,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              1.0,
+              0.5,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              2.5,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Core sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeIntersect.f3d",
+      "sha256": "2bf794704ec95a8cfbad0dfde769cb143566eee4353f6e78ff8da15db43f5dd3",
+      "bytes": 76041
+    },
+    {
+      "name": "ExtrudeSecondBody",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 1.5707963267948295,
+            "area_cm2": 7.853981633974483,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              5.5,
+              1.0,
+              0.0
+            ],
+            "max_cm": [
+              6.5,
+              2.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Post sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeSecondBody.f3d",
+      "sha256": "dd8e5096eacc9ec0971d21aa6fc427d6d8e3bf40a328c15c7d42f682ccee436a",
+      "bytes": 79799
+    },
+    {
+      "name": "ExtrudeToObject",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Upper plane",
+            "object_type": "adsk::fusion::ConstructionPlane",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Drop sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Drop extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "50 mm",
+            "value": 5.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "ExtraOffset"
+          },
+          {
+            "name": "d5",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "Side1Offset"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.356194490192244,
+            "area_cm2": 61.424777960769376,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              5.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Drop sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 1,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ExtrudeToObject.f3d",
+      "sha256": "fe9a280adb35488d882ae8993ed6e62a421cf8a96782141dd8fcc742e69e4b93",
+      "bytes": 81487
+    },
+    {
+      "name": "RevolveFull",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Tube revolve",
+            "object_type": "adsk::fusion::RevolveFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "adsk::fusion::RevolveFeature",
+            "role": "AlongAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.274333882309353,
+            "area_cm2": 75.39822368615503,
+            "faces": 4,
+            "edges": 4,
+            "vertices": 4,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Revolve sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 9,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "RevolveFull.f3d",
+      "sha256": "0c829e1c86e22426699bfb67aa27796e83580f701d21b9f755c1d5fb01d1f85a",
+      "bytes": 90329
+    },
+    {
+      "name": "RevolveHalf",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Tube revolve",
+            "object_type": "adsk::fusion::RevolveFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "adsk::fusion::RevolveFeature",
+            "role": "AlongAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.137166941154065,
+            "area_cm2": 43.69911184307752,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Revolve sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 9,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "RevolveHalf.f3d",
+      "sha256": "bd1f16edf3e8b4883acd8541f1b4e83515e036032d7a4f629303217e2b6e9ae8",
+      "bytes": 80434
+    },
+    {
+      "name": "Fillet",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner fillet",
+            "object_type": "adsk::fusion::FilletFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "adsk::fusion::FilletFeature",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d4",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "adsk::fusion::FilletFeature",
+            "role": "Radius"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Fillet.f3d",
+      "sha256": "099c3c38df5313b690dd93943634cbbe555b4616569a85298ec172a752c09940",
+      "bytes": 79106
+    },
+    {
+      "name": "FilletRadius",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner fillet",
+            "object_type": "adsk::fusion::FilletFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "adsk::fusion::FilletFeature",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d4",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "adsk::fusion::FilletFeature",
+            "role": "Radius"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.892699081698723,
+            "area_cm2": 51.46349540849362,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "FilletRadius.f3d",
+      "sha256": "12720f42c97ba0807efe444c46466d2de16265ec95a81f82db3115d206008583",
+      "bytes": 79435
+    },
+    {
+      "name": "Chamfer",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner chamfer",
+            "object_type": "adsk::fusion::ChamferFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "adsk::fusion::ChamferFeature",
+            "role": "Distance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.91,
+            "area_cm2": 51.558528137423856,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Chamfer.f3d",
+      "sha256": "9585493f2d4b2e229a592490cfc4e61907e969100651d66f180c0a650a6b2729",
+      "bytes": 77401
+    },
+    {
+      "name": "ChamferDistance",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner chamfer",
+            "object_type": "adsk::fusion::ChamferFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "adsk::fusion::ChamferFeature",
+            "role": "Distance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.75,
+            "area_cm2": 51.16421356237309,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ChamferDistance.f3d",
+      "sha256": "67dfbe401af3de7bacfa17b4b1cedf7a1d2dd97c4e35861e90e240bb9a400108",
+      "bytes": 76934
+    },
+    {
+      "name": "Shell",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Open shell",
+            "object_type": "adsk::fusion::ShellFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "2 mm",
+            "value": 0.2,
+            "unit": "mm",
+            "owner": "adsk::fusion::ShellFeature",
+            "role": "innerThickness"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 7.152000000000008,
+            "area_cm2": 74.32,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Shell.f3d",
+      "sha256": "59a1ab57a43a68c3ee1a15645aeb4381576457251cb6eb7e9857bc56b419eaef",
+      "bytes": 94967
+    },
+    {
+      "name": "ShellThickness",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Open shell",
+            "object_type": "adsk::fusion::ShellFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "adsk::fusion::ShellFeature",
+            "role": "innerThickness"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 10.127999999999997,
+            "area_cm2": 71.72,
+            "faces": 11,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "ShellThickness.f3d",
+      "sha256": "fadb48cf4ade0b6fba637f256c68466717b9231c56731cfdecd3bb1d4c78f291",
+      "bytes": 95262
+    },
+    {
+      "name": "Hole",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "object_type": "adsk::fusion::HoleFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::HoleFeature",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "adsk::fusion::HoleFeature",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "adsk::fusion::HoleFeature",
+            "role": "TipAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.457075110218817,
+            "area_cm2": 54.597033203917334,
+            "faces": 8,
+            "edges": 15,
+            "vertices": 11,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Hole.f3d",
+      "sha256": "8101062e740a0de40413eb7f7362b9564c5821870beafe501b560b363f1e15d6",
+      "bytes": 84964
+    },
+    {
+      "name": "HoleDiameter",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top hole",
+            "object_type": "adsk::fusion::HoleFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::HoleFeature",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "adsk::fusion::HoleFeature",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "adsk::fusion::HoleFeature",
+            "role": "TipAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.70026772741779,
+            "area_cm2": 53.93207007524197,
+            "faces": 8,
+            "edges": 15,
+            "vertices": 11,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              2
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "HoleDiameter.f3d",
+      "sha256": "d3b7b31e588f8052993c72ea38fbcb684432fb996e87b2247154ad6d8ab8901a",
+      "bytes": 84090
+    },
+    {
+      "name": "RectPattern",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket grid",
+            "object_type": "adsk::fusion::RectangularPatternFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "3",
+            "value": 3.0,
+            "unit": "",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "countU"
+          },
+          {
+            "name": "d6",
+            "expression": "2",
+            "value": 2.0,
+            "unit": "",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "CountV"
+          },
+          {
+            "name": "d7",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "uSpaceDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "14 mm",
+            "value": 1.4000000000000001,
+            "unit": "mm",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "vSpaceDistance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 20.60707993412288,
+            "area_cm2": 71.22654703996953,
+            "faces": 12,
+            "edges": 24,
+            "vertices": 20,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Pocket sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "RectPattern.f3d",
+      "sha256": "e561ac0cf3d8e1e7259404ba991380e6156fa9d66c36c2221165665d4ec4298a",
+      "bytes": 102982
+    },
+    {
+      "name": "RectPatternCount",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket grid",
+            "object_type": "adsk::fusion::RectangularPatternFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "2",
+            "value": 2.0,
+            "unit": "",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "countU"
+          },
+          {
+            "name": "d6",
+            "expression": "2",
+            "value": 2.0,
+            "unit": "",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "CountV"
+          },
+          {
+            "name": "d7",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "uSpaceDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "14 mm",
+            "value": 1.4000000000000001,
+            "unit": "mm",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "vSpaceDistance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 21.73805328941525,
+            "area_cm2": 64.81769802664635,
+            "faces": 10,
+            "edges": 20,
+            "vertices": 16,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Pocket sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "RectPatternCount.f3d",
+      "sha256": "b229492061bdad60ccc08a96ce274ec8aaeb5953353ad487c0fe227e614ff611",
+      "bytes": 96377
+    },
+    {
+      "name": "CircPattern",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body ring",
+            "object_type": "adsk::fusion::CircularPatternFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "4",
+            "value": 4.0,
+            "unit": "",
+            "owner": "adsk::fusion::CircularPatternFeature",
+            "role": "countU"
+          },
+          {
+            "name": "d4",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "adsk::fusion::CircularPatternFeature",
+            "role": "TotalAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.9999999999999996,
+              1.8369701987210297e-16,
+              0.0
+            ],
+            "max_cm": [
+              4.440892098500626e-16,
+              4.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body3",
+            "solid": true,
+            "volume_cm3": 23.999999999999996,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -4.0,
+              -2.9999999999999996,
+              0.0
+            ],
+            "max_cm": [
+              -4.440892098500626e-16,
+              4.440892098500626e-16,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body4",
+            "solid": true,
+            "volume_cm3": 24.000000000000004,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -7.347880794884119e-16,
+              -4.000000000000001,
+              0.0
+            ],
+            "max_cm": [
+              2.999999999999999,
+              -8.881784197001252e-16,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "CircPattern.f3d",
+      "sha256": "7a7b9c307d3c8393445b4dfddea26dbd8905889e66f3ee1dec2aef104212c3f0",
+      "bytes": 89768
+    },
+    {
+      "name": "CircPatternCount",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body ring",
+            "object_type": "adsk::fusion::CircularPatternFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "3",
+            "value": 3.0,
+            "unit": "",
+            "owner": "adsk::fusion::CircularPatternFeature",
+            "role": "countU"
+          },
+          {
+            "name": "d4",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "adsk::fusion::CircularPatternFeature",
+            "role": "TotalAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 23.999999999999993,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -4.598076211353315,
+              -1.4999999999999996,
+              0.0
+            ],
+            "max_cm": [
+              0.0,
+              3.464101615137755,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body3",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0000000000000018,
+              -4.964101615137755,
+              0.0
+            ],
+            "max_cm": [
+              2.598076211353315,
+              0.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "CircPatternCount.f3d",
+      "sha256": "81bcfb5489dc1cead01a2beacb498014a22834a215d3c306550d8b8f55b170cb",
+      "bytes": 77646
+    },
+    {
+      "name": "FeatureCircPattern",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket arc",
+            "object_type": "adsk::fusion::CircularPatternFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "2",
+            "value": 2.0,
+            "unit": "",
+            "owner": "adsk::fusion::CircularPatternFeature",
+            "role": "countU"
+          },
+          {
+            "name": "d6",
+            "expression": "40 deg",
+            "value": 0.6981317007977318,
+            "unit": "deg",
+            "owner": "adsk::fusion::CircularPatternFeature",
+            "role": "TotalAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.03560989955186,
+            "area_cm2": 55.95904201333627,
+            "faces": 9,
+            "edges": 20,
+            "vertices": 14,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Pocket sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "FeatureCircPattern.f3d",
+      "sha256": "5b187d59466e861c5c194dfbc7cb4b45c01978ca740a3f7bf208509b426ffb8d",
+      "bytes": 88998
+    },
+    {
+      "name": "MirrorBody",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body mirror",
+            "object_type": "adsk::fusion::MirrorFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -4.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "MirrorBody.f3d",
+      "sha256": "f74d0456320e24e7210e72448f271cb54e9f1a215a9f53c72806c66bbb3c7225",
+      "bytes": 82794
+    },
+    {
+      "name": "MirrorFeature",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Mid plane",
+            "object_type": "adsk::fusion::ConstructionPlane",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket mirror",
+            "object_type": "adsk::fusion::MirrorFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "ExtraOffset"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.869026644707624,
+            "area_cm2": 58.40884901332318,
+            "faces": 8,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Pocket sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 1,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "MirrorFeature.f3d",
+      "sha256": "c0446e56cdadfe2ab46e87a4799af825b2ad5d7429351352a2ac7c26b51d0373",
+      "bytes": 91371
+    },
+    {
+      "name": "Combine",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body combine",
+            "object_type": "adsk::fusion::CombineFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.712388980384688,
+            "area_cm2": 62.13716694115407,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              4.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Post sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Combine.f3d",
+      "sha256": "3167ea9c712e7c539c003647700a1d4cce03849d0135794d5bb90aa378235ecc",
+      "bytes": 83289
+    },
+    {
+      "name": "Sweep",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Sweep path",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Arc sweep",
+            "object_type": "adsk::fusion::SweepFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "adsk::fusion::SweepFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::SweepFeature",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::SweepFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.701101650408508,
+            "area_cm2": 16.375202928428934,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              -0.5,
+              -0.5,
+              0.0
+            ],
+            "max_cm": [
+              3.0,
+              0.5,
+              3.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              4
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Sweep profile",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Sweep path",
+            "profiles": 0,
+            "curves": 1,
+            "points": 4,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Sweep.f3d",
+      "sha256": "e42d5c99a6bcfd2373ed50c014c42118b33167248768fb17e05ae43ab0a7d430",
+      "bytes": 142865
+    },
+    {
+      "name": "Loft",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Loft base",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Loft plane",
+            "object_type": "adsk::fusion::ConstructionPlane",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Loft top",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Round to square",
+            "object_type": "adsk::fusion::LoftFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "30 mm",
+            "value": 3.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "ExtraOffset"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 5.942225285904006,
+            "area_cm2": 19.470047064194965,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -1.0,
+              -1.0,
+              0.0
+            ],
+            "max_cm": [
+              1.0,
+              1.0,
+              3.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              7,
+              7,
+              7,
+              7
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Loft base",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Loft top",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 1,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Loft.f3d",
+      "sha256": "1d729f705e0b4c517036e38cf2f216bae535db8b22e6ba7ffd0a8c8690adfc5a",
+      "bytes": 172758
+    },
+    {
+      "name": "Draft",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Side draft",
+            "object_type": "adsk::fusion::DraftFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "5 deg",
+            "value": 0.08726646259971647,
+            "unit": "deg",
+            "owner": "adsk::fusion::DraftFeature",
+            "role": "Angle1"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::DraftFeature",
+            "role": "Angle2"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.531328085345095,
+            "area_cm2": 56.084271985988075,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.17497732705184788,
+              -0.174977327051848,
+              0.0
+            ],
+            "max_cm": [
+              4.174977327051848,
+              3.174977327051848,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "Draft.f3d",
+      "sha256": "bc1ab8dce4cb8f6fed8b770c9f979e5f0085c1105d1c19ee4a88f203b084a421",
+      "bytes": 84701
+    },
+    {
+      "name": "SplitBody",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Split plane",
+            "object_type": "adsk::fusion::ConstructionPlane",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body split",
+            "object_type": "adsk::fusion::SplitBodyFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "ExtraOffset"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 12.0,
+            "area_cm2": 32.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 12.0,
+            "area_cm2": 32.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 1,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "SplitBody.f3d",
+      "sha256": "2e26d4ddc705562e3a4e40b428a8bbd57f5e7bc3b47bf640d16a2d3fe2b17545",
+      "bytes": 83617
+    },
+    {
+      "name": "MoveBody",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body move",
+            "object_type": "adsk::fusion::MoveFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "MoveBody.f3d",
+      "sha256": "d1b6cf1ffd4df3ffa237b5058dd79e0c14cb21f983c759509b59a985c212ca41",
+      "bytes": 77794
+    },
+    {
+      "name": "CopyBody",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "CopyPasteBodies1",
+            "object_type": "adsk::fusion::CopyPasteBody",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "CopyBody.f3d",
+      "sha256": "d870a31736e2b66fa26d795ce2529d3105bfc57bef9fb41e43d28f8992cbfbdf",
+      "bytes": 81514
+    },
+    {
+      "name": "OffsetFace",
+      "status": "failed",
+      "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureControls.py\", line 539, in <module>\n    build(design.rootComponent, design)\n    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"re/Fusion/LocalOracle/FeatureAuthoring/CaptureControls.py\", line 456, in c_offset_face\n    inp = feats.createInput(coll(top_face(body)), vi(\"5 mm\"))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 58852, in createInput\n    return _fusion.OffsetFacesFeatures_createInput(self, faces, distance)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: in method 'OffsetFacesFeatures_createInput', argument 2 of type 'std::vector< adsk::core::Ptr< adsk::fusion::BRepFace >,std::allocator< adsk::core::Ptr< adsk::fusion::BRepFace > > > const &'\n"
+    },
+    {
+      "name": "Construction",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Offset plane",
+            "object_type": "adsk::fusion::ConstructionPlane",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Edge axis",
+            "object_type": "adsk::fusion::ConstructionAxis",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner point",
+            "object_type": "adsk::fusion::ConstructionPoint",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "15 mm",
+            "value": 1.5,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "ExtraOffset"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 1,
+        "axes": 1,
+        "points": 1
+      },
+      "file": "Construction.f3d",
+      "sha256": "d0b86d456cd99035bf3ac7eca942b6c40a07d1b60e11437a13fd03e9757c9267",
+      "bytes": 78971
+    },
+    {
+      "name": "OffsetPlane",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Offset plane",
+            "object_type": "adsk::fusion::ConstructionPlane",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "15 mm",
+            "value": 1.5,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.00 mm",
+            "value": 0.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ConstructionPlane",
+            "role": "ExtraOffset"
+          }
+        ],
+        "bodies": [],
+        "sketches": [],
+        "planes": 1,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "OffsetPlane.f3d",
+      "sha256": "963eef7ba605237afdd4ed5586ae5dac8e08e4ae7f333927285344325dca063a",
+      "bytes": 32706
+    },
+    {
+      "name": "SketchEntities",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Entity sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "30.00 mm",
+            "value": 3.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::Sketch",
+            "role": "Linear Dimension-2"
+          },
+          {
+            "name": "d2",
+            "expression": "10.00 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::Sketch",
+            "role": "Radial Dimension-2"
+          }
+        ],
+        "bodies": [],
+        "sketches": [
+          {
+            "name": "Entity sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 10,
+            "constraints": [
+              "adsk::fusion::HorizontalConstraint",
+              "adsk::fusion::TangentConstraint"
+            ],
+            "dimensions": [
+              {
+                "type": "adsk::fusion::SketchLinearDimension",
+                "parameter": "d1",
+                "expression": "30.00 mm"
+              },
+              {
+                "type": "adsk::fusion::SketchRadialDimension",
+                "parameter": "d2",
+                "expression": "10.00 mm"
+              }
+            ]
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "SketchEntities.f3d",
+      "sha256": "e59721eb56e70e19b81ea383efeb0aca4c8bcf0deaf3b0020ecbd34f1a9d2bf4",
+      "bytes": 73432
+    },
+    {
+      "name": "MultiFeature",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner fillet",
+            "object_type": "adsk::fusion::FilletFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Open shell",
+            "object_type": "adsk::fusion::ShellFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Pocket grid",
+            "object_type": "adsk::fusion::RectangularPatternFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Part mirror",
+            "object_type": "adsk::fusion::MirrorFeature",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "adsk::fusion::FilletFeature",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d4",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "adsk::fusion::FilletFeature",
+            "role": "Radius"
+          },
+          {
+            "name": "d5",
+            "expression": "2 mm",
+            "value": 0.2,
+            "unit": "mm",
+            "owner": "adsk::fusion::ShellFeature",
+            "role": "innerThickness"
+          },
+          {
+            "name": "d6",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "adsk::fusion::ExtrudeFeature",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d8",
+            "expression": "2",
+            "value": 2.0,
+            "unit": "",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "countU"
+          },
+          {
+            "name": "d9",
+            "expression": "2",
+            "value": 2.0,
+            "unit": "",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "CountV"
+          },
+          {
+            "name": "d10",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "uSpaceDistance"
+          },
+          {
+            "name": "d11",
+            "expression": "14 mm",
+            "value": 1.4000000000000001,
+            "unit": "mm",
+            "owner": "adsk::fusion::RectangularPatternFeature",
+            "role": "vSpaceDistance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.8910398314119155,
+            "area_cm2": 73.19261056745,
+            "faces": 17,
+            "edges": 38,
+            "vertices": 28,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 6.8910398314119155,
+            "area_cm2": 73.19261056745,
+            "faces": 17,
+            "edges": 38,
+            "vertices": 28,
+            "min_cm": [
+              -4.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "sketches": [
+          {
+            "name": "Base sketch",
+            "profiles": 1,
+            "curves": 4,
+            "points": 5,
+            "constraints": [],
+            "dimensions": []
+          },
+          {
+            "name": "Pocket sketch",
+            "profiles": 1,
+            "curves": 1,
+            "points": 2,
+            "constraints": [],
+            "dimensions": []
+          }
+        ],
+        "planes": 0,
+        "axes": 0,
+        "points": 0
+      },
+      "file": "MultiFeature.f3d",
+      "sha256": "2f8218d636a358c2f64aa3b0ed79081d2750a52123978e2504a14fdefccc0c7d",
+      "bytes": 126739
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

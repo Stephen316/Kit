@@ -49,7 +49,7 @@ The SOLIDWORKS entry uses `solidworks.sldprt` as its primary identifier.
 Its `aliases` field contains `solidworks.sldasm` for assemblies.
 Discovery does not return a separate entry for that alias.
 Fusion research code does not register `fusion.f3d` in the production catalogue.
-See the [Fusion research entry](../Changes/FusionResearchImport.md).
+See the [Fusion research entry](../Changes/Fusion/FusionResearchImport.md).
 
 ## Selection behavior
 

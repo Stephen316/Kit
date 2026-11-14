@@ -1,0 +1,35 @@
+# Fusion rectangular prism history codec
+
+`BrepCodec.Prism` independently writes and reads the qualified solved history of one axis-aligned rectangular solid. It emits 102 complete initial records, including sixteen identity attributes, and a two-state journal containing all 101 entity insertions. This extends the standalone cuboid geometry writer; cylinder history APIs are unchanged.
+
+## API and semantic inputs
+
+`EmitPrismHist(Model, Identity, TagSet, History, Stamp, Frame=None)` returns complete `.smbh` bytes. `Model` is `GeometryCodec.Prism.CuboidBody`, with width, depth, height and base in millimetres. `Identity` supplies the body key, extrusion operation, signed secondary identity and authoring timestamp. `HistoryState` supplies both state IDs, generation, allocation and board number. `GeometryStamp` supplies printable provenance strings.
+
+`PrismTags` contains six `FeatureTag` values in bottom, top, Y-minimum, Y-maximum, X-minimum, X-maximum order. `PrismTags` also contains four source `SketchLink` values in the base boundary order Y-minimum, X-maximum, Y-maximum, X-minimum. Every face belongs to the explicitly supplied extrusion operation. Each bottom edge receives the same complete sketch link on both coedges; a coedge's reversal flag does not determine its source sketch direction.
+
+When `Frame` is omitted, the writer derives corners, outward face rings, edges, planes, vertices and ownership from dimensions alone. It allocates fresh record ordinals. Straight carriers use parameter interval zero to one, with their full displacement as direction. No source archive, native library, research fixture or opaque record payload is an input.
+
+`ReadPrismHist(Payload)` returns a `PrismHistory` containing dimensions, identity, tags, journal state, provenance, header and a typed `PrismFrame`. The frame preserves exact stored centimetre corners, face chain and loop start, face sense, and edge endpoint order and parameter interval. The frame also preserves carrier origin/direction/bounds, vertex owner edge and plane origin/normal/basis. Passing this frame to the writer preserves these semantics while allocating fresh record ordinals. It does not promise source byte order or insertion ordering.
+
+## Qualification and validation
+
+The supported profile has one body, lump and shell, six four-edge face loops, twelve straight edges and eight vertices. The profile also has twelve line carriers and six unbounded plane carriers. The body has a timestamp followed by one generic group. Six faces have one generic group each. Eight source sketch attributes belong to both coedges of four bottom edges. Generic primary byte counts are derived from validated ASCII identifiers. Sketch IDs, direction, split pair and qualified zero role flags use the shared typed model.
+
+The reader validates every field in all 102 records against newly reconstructed semantic records, including remapped references, all nulls, identity fields, flags and attribute ownership. It checks finite geometry, corner incidence, reciprocal coedges, complete record coverage, plane orientation, line endpoint evaluation, exact journal membership, end markers and EOF. The input has a two-megabyte limit. Reader results retain no raw records or original payload bytes.
+
+Supported straight carriers have either two finite bounds matching their edge interval or no carrier bounds. One-sided bounds, reversed edges, reversed plane-V parameterization, bounded planes, transforms and additional attributes are rejected. Multiple generic groups, extra bodies, oblique solids, archived geometry revisions and non-insertion journals are also rejected. This is a qualified ordinary extrusion history codec, not a complete arbitrary BRep or rectangle Design author.
+
+See [prism carrier bounds](../../Gotchas/Conversion/Fusion/FusionPrismCurveBounds.md) for the distinction between finite edges and unbounded carriers.
+
+The native source establishes the complete field grammar and Design joins in [the controlled model](../../../re/Fusion/Reconstruction/CuboidHistory/CuboidHistoryModel.md). Its body secondary identity is the explicit body-progenitor tag; it is not derived from a journal state or maximum face name. See [generic tag semantics](FusionGenericTagSemantics.md) and [sketch attribute semantics](FusionSketchAttributeSemantics.md).
+
+## Verification evidence
+
+Archive compatibility coverage reads the native 40 × 30 × 25 mm control and checks its identities, bounded and unbounded line carriers and vertex ownership. Then the coverage reserializes the typed model of the control with canonical allocation. Independent generation coverage crosses a ZIP boundary and the existing ASM topology reader for a 17 × 23 × 31 mm solid. Malformed archive-member coverage rejects trailing bytes, truncated termination and unsupported attribute families.
+
+Local test execution is prohibited. All 828 remote compatibility cases passed in run `43229332005` on revision `ad3c764fb`, including all five new prism-history cases; native acceptance is a separate boundary. `re/Fusion/LocalOracle/PreparePrismHistory.py` prepares two controlled acceptance artifacts: a complete typed read/canonical emit, and a history authored only from dimensions, explicit identity/state inputs and source-curve directions. Both retain their own source's surrounding Design and snapshot members. The independent history case aligns four bottom edge carriers with the declared counterclockwise source curves. Both artifacts passed native opening, rollback, rebuild, parameter edit, save and reopen in Fusion 2706.1.17. Each opened with two healthy features, a 40 × 30 × 25 mm solid, volume 30 cm³, six faces, twelve edges and eight vertices. Rollback removed the solid; restoration and rebuild recovered it. Editing the native extrusion distance to 37 mm produced 44.4 cm³, and the saved files reopened with the same healthy timeline and geometry. The run closed its documents and left zero open documents. [NativeAcceptance.json](../../../re/Fusion/LocalOracle/PrismHistory/NativeAcceptance.json) records both complete sequences. The canonical archive digest is `80491698af376d758f96b5117f2aacff5caa19ab1aac756d4a65ae485075f006`; the independently authored history archive digest is `8799e3e4e38a924d96997e66c055a2c9d1b746525e9a2ac044965ace2ec17a5d`. This establishes history acceptance within its own source Design, not independent rectangle document authoring.
+
+Static verification passed for all 45 new production and integration modules: Black formatting, repository steering compliance, mypy, Ruff and Pyright. No product execution, local tests or native calls were used for that verification. The native control's four bottom straight carriers have finite bounds; its four top and four vertical carriers are unbounded. The reader preserves both forms.
+
+The [acceptance evidence matrix](../../Reference/Research/FusionAcceptanceEvidence.md) compares this history boundary with complete documents, standalone geometry, corpus entity coverage and F3Z envelopes.

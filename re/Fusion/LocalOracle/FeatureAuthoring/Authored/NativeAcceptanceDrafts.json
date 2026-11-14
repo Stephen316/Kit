@@ -1,0 +1,4832 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "suite": "Drafts",
+  "scope": "Kit-authored part feature documents compared with same-script native API controls: open without recompute, every rollback marker, computeAll, driving parameter edits, export and reopen",
+  "cases": [
+    {
+      "name": "DraftSides",
+      "file": "DraftSides.f3d",
+      "sha256": "1519cd99a20b3c832d2b2779d87443558304a20f815f6b81534986b2ecc11def",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "draft",
+          "angle": "5 deg",
+          "name": "Side draft"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Side draft",
+          "role": "Angle1",
+          "expression": "8 deg"
+        },
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 26.531328085345095,
+          "area_cm2": 56.08427198598807,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 26.531328085345095,
+              "area_cm2": 56.084271985988075,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -0.17497732705184788,
+                -0.174977327051848,
+                0.0
+              ],
+              "max_cm": [
+                4.174977327051848,
+                3.174977327051848,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                1.0323158950101141
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d4",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 26.531328085345095,
+                "area_cm2": 56.084271985988075,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  -0.17497732705184788,
+                  -0.174977327051848,
+                  0.0
+                ],
+                "max_cm": [
+                  4.174977327051848,
+                  3.174977327051848,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0323158950101141
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 36.56015581445557,
+              "area_cm2": 68.30473765688787,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -0.35135208675597873,
+                -0.35135208675597873,
+                0.0
+              ],
+              "max_cm": [
+                4.351352086755979,
+                3.3513520867559787,
+                2.5
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.3271092510849993
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "8 deg",
+              "value": 0.13962634015954636,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d4",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.5313280853451,
+            "area_cm2": 56.084271985988075,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.174977327,
+              -0.174977327,
+              0.0
+            ],
+            "max_cm": [
+              4.174977327,
+              3.174977327,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0323158950101141
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 deg",
+            "value": 0.08726646259971647,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 26.5313280853451,
+              "area_cm2": 56.084271985988075,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -0.174977327,
+                -0.174977327,
+                0.0
+              ],
+              "max_cm": [
+                4.174977327,
+                3.174977327,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                1.0323158950101141
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.531328085345095,
+            "area_cm2": 56.084271985988075,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.17497732705184788,
+              -0.174977327051848,
+              0.0
+            ],
+            "max_cm": [
+              4.174977327051848,
+              3.174977327051848,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0323158950101141
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 deg",
+            "value": 0.08726646259971647,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 36.56015581445557,
+            "area_cm2": 68.30473765688787,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.35135208675597873,
+              -0.35135208675597873,
+              0.0
+            ],
+            "max_cm": [
+              4.351352086755979,
+              3.3513520867559787,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              1.3271092510849993
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 deg",
+            "value": 0.13962634015954636,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 36.56015581445557,
+            "area_cm2": 68.30473765688787,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.35135208675597873,
+              -0.35135208675597873,
+              0.0
+            ],
+            "max_cm": [
+              4.351352086755979,
+              3.3513520867559787,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              1.3271092510849993
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 deg",
+            "value": 0.13962634015954636,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 36.56015581445557,
+            "area_cm2": 68.30473765688787,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.35135208675597873,
+              -0.35135208675597873,
+              0.0
+            ],
+            "max_cm": [
+              4.351352086755979,
+              3.3513520867559787,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              1.3271092510849993
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 deg",
+            "value": 0.13962634015954636,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "4f878605432d41473a12ea119436d629157448e198d7ab5b7b29fdf708cfbfd7",
+      "status": "accepted"
+    },
+    {
+      "name": "DraftInward",
+      "file": "DraftInward.f3d",
+      "sha256": "13718b44df3a6b3c54a8734b3286b2e217c7b6f724965d48eec6075bab5e0be5",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "draft",
+          "angle": "-5 deg",
+          "name": "Side taper"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Side taper",
+          "role": "Angle1",
+          "expression": "-3 deg"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 21.63196292789336,
+          "area_cm2": 48.37457543629705,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side taper",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 21.63196292789335,
+              "area_cm2": 48.37457543629705,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                0.9641392642520942
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "-5 deg",
+              "value": -0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle1"
+            },
+            {
+              "name": "d4",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side taper",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 deg",
+                "value": -0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side taper",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 deg",
+                "value": -0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side taper",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 deg",
+                "value": -0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side taper",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 21.63196292789335,
+                "area_cm2": 48.37457543629705,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  0.9641392642520942
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "-5 deg",
+                "value": -0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle1"
+              },
+              {
+                "name": "d4",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side taper",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side taper",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 22.561878983588233,
+              "area_cm2": 49.775277859059514,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                0.9789693548176178
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "-3 deg",
+              "value": -0.05235987755982989,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle1"
+            },
+            {
+              "name": "d4",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side taper",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 21.631962927893355,
+            "area_cm2": 48.37457543629705,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999999998,
+              1.5,
+              0.9641392642520942
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-5 deg",
+            "value": -0.08726646259971647,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side taper",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 deg",
+              "value": -0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side taper",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 deg",
+              "value": -0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side taper",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 deg",
+              "value": -0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side taper",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 21.631962927893355,
+              "area_cm2": 48.37457543629705,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999999998,
+                1.5,
+                0.9641392642520942
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "-5 deg",
+              "value": -0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side taper",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side taper",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 21.63196292789335,
+            "area_cm2": 48.37457543629705,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              0.9641392642520942
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-5 deg",
+            "value": -0.08726646259971647,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side taper",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.561878983588233,
+            "area_cm2": 49.775277859059514,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              0.9789693548176178
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-3 deg",
+            "value": -0.05235987755982989,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side taper",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.561878983588233,
+            "area_cm2": 49.775277859059514,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              0.9789693548176178
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-3 deg",
+            "value": -0.05235987755982989,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side taper",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.561878983588233,
+            "area_cm2": 49.775277859059514,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              0.9789693548176178
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "-3 deg",
+            "value": -0.05235987755982989,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle1"
+          },
+          {
+            "name": "d5",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side taper",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "cf42a0d43b761fe0dbb2b3bbcd6bca4daa3a508f585c9396f846859a2ac69115",
+      "status": "accepted"
+    },
+    {
+      "name": "DraftCutPart",
+      "file": "DraftCutPart.f3d",
+      "sha256": "1ec693f9516b4a915be520b36042e7a56358594ae063cd17d8fd0a5f877fe088",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "chamfer",
+          "corner_cm": [
+            4.0,
+            3.0
+          ],
+          "amount": "3 mm",
+          "name": "Corner cut"
+        },
+        {
+          "kind": "draft",
+          "angle": "5 deg",
+          "name": "Side draft"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Side draft",
+          "role": "Angle1",
+          "expression": "3 deg"
+        },
+        {
+          "feature": "Corner cut",
+          "expression": "4 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 23.91,
+          "area_cm2": 51.558528137423856,
+          "faces": 7,
+          "edges": 15
+        },
+        {
+          "volume_cm3": 26.40707624324079,
+          "area_cm2": 55.545182616928436,
+          "faces": 7,
+          "edges": 15
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 5,
+          "control_positions": 5,
+          "each": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 26.407076243240788,
+              "area_cm2": 55.54518261692844,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                -0.17497732705184788,
+                -0.174977327051848,
+                0.0
+              ],
+              "max_cm": [
+                4.174977327051848,
+                3.174977327051848,
+                2.0
+              ],
+              "center_cm": [
+                1.9906967573504581,
+                1.4930493813395698,
+                1.032013489539687
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d4",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Corner cut",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner cut",
+                "role": "Distance"
+              },
+              {
+                "name": "d4",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Corner cut",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner cut",
+                "role": "Distance"
+              },
+              {
+                "name": "d4",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Corner cut",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner cut",
+                "role": "Distance"
+              },
+              {
+                "name": "d4",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Corner cut",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.91,
+                "area_cm2": 51.558528137423856,
+                "faces": 7,
+                "edges": 15,
+                "vertices": 10,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  1.9928481806775409,
+                  1.4947302383939778,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner cut",
+                "role": "Distance"
+              },
+              {
+                "name": "d4",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Corner cut",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Side draft",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 26.407076243240788,
+                "area_cm2": 55.54518261692844,
+                "faces": 7,
+                "edges": 15,
+                "vertices": 10,
+                "min_cm": [
+                  -0.17497732705184788,
+                  -0.174977327051848,
+                  0.0
+                ],
+                "max_cm": [
+                  4.174977327051848,
+                  3.174977327051848,
+                  2.0
+                ],
+                "center_cm": [
+                  1.9906967573504581,
+                  1.4930493813395698,
+                  1.032013489539687
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Corner cut",
+                "role": "Distance"
+              },
+              {
+                "name": "d4",
+                "expression": "5 deg",
+                "value": 0.08726646259971647,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle1"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Side draft",
+                "role": "Angle2"
+              }
+            ],
+            "work": [],
+            "marker": 4
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 25.310898176170788,
+              "area_cm2": 53.6977305188584,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                -0.10481555856608242,
+                -0.1048155585660824,
+                0.0
+              ],
+              "max_cm": [
+                4.104815558566083,
+                3.1048155585660826,
+                2.0
+              ],
+              "center_cm": [
+                1.9859718192905682,
+                1.4896424999194111,
+                1.0195557166783813
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d4",
+              "expression": "3 deg",
+              "value": 0.05235987755982989,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner cut",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.407076243240788,
+            "area_cm2": 55.545182616928436,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.174977327,
+              -0.174977327,
+              0.0
+            ],
+            "max_cm": [
+              4.174977327,
+              3.174977327,
+              2.0
+            ],
+            "center_cm": [
+              1.990696757350458,
+              1.49304938133957,
+              1.032013489539687
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Corner cut",
+            "role": "Distance"
+          },
+          {
+            "name": "d5",
+            "expression": "5 deg",
+            "value": 0.08726646259971647,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d5",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d5",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d5",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.91,
+              "area_cm2": 51.558528137423856,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9928481806775409,
+                1.4947302383939773,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d5",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Corner cut",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Side draft",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 26.407076243240788,
+              "area_cm2": 55.545182616928436,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                -0.174977327,
+                -0.174977327,
+                0.0
+              ],
+              "max_cm": [
+                4.174977327,
+                3.174977327,
+                2.0
+              ],
+              "center_cm": [
+                1.990696757350458,
+                1.49304938133957,
+                1.032013489539687
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Corner cut",
+              "role": "Distance"
+            },
+            {
+              "name": "d5",
+              "expression": "5 deg",
+              "value": 0.08726646259971647,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle1"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Side draft",
+              "role": "Angle2"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner cut",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.40707624324079,
+            "area_cm2": 55.545182616928436,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.17497732705184788,
+              -0.174977327051848,
+              0.0
+            ],
+            "max_cm": [
+              4.174977327051848,
+              3.174977327051848,
+              2.0
+            ],
+            "center_cm": [
+              1.990696757350458,
+              1.4930493813395698,
+              1.032013489539687
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Corner cut",
+            "role": "Distance"
+          },
+          {
+            "name": "d5",
+            "expression": "5 deg",
+            "value": 0.08726646259971647,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner cut",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 25.310898176170788,
+            "area_cm2": 53.6977305188584,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.10481555856608242,
+              -0.1048155585660824,
+              0.0
+            ],
+            "max_cm": [
+              4.104815558566083,
+              3.1048155585660826,
+              2.0
+            ],
+            "center_cm": [
+              1.9859718192905687,
+              1.4896424999194113,
+              1.0195557166783813
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Corner cut",
+            "role": "Distance"
+          },
+          {
+            "name": "d5",
+            "expression": "3 deg",
+            "value": 0.05235987755982989,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner cut",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 25.310898176170788,
+            "area_cm2": 53.6977305188584,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.10481555856608242,
+              -0.1048155585660824,
+              0.0
+            ],
+            "max_cm": [
+              4.104815558566083,
+              3.1048155585660826,
+              2.0
+            ],
+            "center_cm": [
+              1.9859718192905687,
+              1.4896424999194113,
+              1.0195557166783813
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Corner cut",
+            "role": "Distance"
+          },
+          {
+            "name": "d5",
+            "expression": "3 deg",
+            "value": 0.05235987755982989,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Corner cut",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Side draft",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 25.310898176170788,
+            "area_cm2": 53.6977305188584,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.10481555856608242,
+              -0.1048155585660824,
+              0.0
+            ],
+            "max_cm": [
+              4.104815558566083,
+              3.1048155585660826,
+              2.0
+            ],
+            "center_cm": [
+              1.9859718192905687,
+              1.4896424999194113,
+              1.0195557166783813
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Corner cut",
+            "role": "Distance"
+          },
+          {
+            "name": "d5",
+            "expression": "3 deg",
+            "value": 0.05235987755982989,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle1"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Side draft",
+            "role": "Angle2"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "saved_sha256": "0fcdbb7ffd2ed1d3aeccfd831202a4ebe251f5dfe90bd7ff99504f1b4114bae2",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

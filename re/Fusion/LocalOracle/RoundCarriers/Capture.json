@@ -1,0 +1,145 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Owned analytic sphere/torus carrier capture; no independent codec acceptance",
+  "cases": [
+    {
+      "label": "Sphere",
+      "input": {
+        "center_cm": [
+          1.1,
+          -0.7,
+          0.5
+        ],
+        "major_or_sphere_radius_cm": 1.7,
+        "minor_radius_cm": null,
+        "axis": null
+      },
+      "faces": 1,
+      "edges": 0,
+      "vertices": 0,
+      "volume_cm3": 20.579526276115537,
+      "area_cm2": 36.316811075498,
+      "center_cm": [
+        1.1,
+        -0.7000000000000001,
+        0.5
+      ],
+      "bounds_cm": [
+        [
+          -0.5999999999999999,
+          -2.4,
+          -1.2
+        ],
+        [
+          2.8,
+          1.0,
+          2.2
+        ]
+      ],
+      "smt": {
+        "file": "Sphere.smt",
+        "sha256": "8e7979948e70ed5073cf7350e70b89f2aab06865a37b8def81689a59524163e2"
+      },
+      "archive": {
+        "file": "Sphere.f3d",
+        "sha256": "80e6d3614554dc350102129aba7393b0f9418610dc9e84e1405e645c5171f22b"
+      }
+    },
+    {
+      "label": "Torus",
+      "input": {
+        "center_cm": [
+          1.1,
+          -0.7,
+          0.5
+        ],
+        "major_or_sphere_radius_cm": 2.3,
+        "minor_radius_cm": 0.7,
+        "axis": [
+          0.0,
+          0.0,
+          1.0
+        ]
+      },
+      "faces": 1,
+      "edges": 0,
+      "vertices": 0,
+      "volume_cm3": 22.246088320055406,
+      "area_cm2": 63.56025234301545,
+      "center_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bounds_cm": [
+        [
+          -3.0,
+          -3.0,
+          -0.7
+        ],
+        [
+          3.0,
+          3.0,
+          0.7
+        ]
+      ],
+      "smt": {
+        "file": "Torus.smt",
+        "sha256": "b2277f6365170ea48be2d4ba67759f4b262e47ea7fe25fbbda9eb1f4966e402a"
+      },
+      "archive": {
+        "file": "Torus.f3d",
+        "sha256": "736fd3dbdbb3a2eaff45a0dac83945e84aa03cc1e64f227cf1025aecb295cb48"
+      }
+    },
+    {
+      "label": "TiltedTorus",
+      "input": {
+        "center_cm": [
+          1.1,
+          -0.7,
+          0.5
+        ],
+        "major_or_sphere_radius_cm": 2.3,
+        "minor_radius_cm": 0.7,
+        "axis": [
+          0.0,
+          0.6,
+          0.8
+        ]
+      },
+      "faces": 1,
+      "edges": 0,
+      "vertices": 0,
+      "volume_cm3": 22.246088320055406,
+      "area_cm2": 63.56025234301545,
+      "center_cm": [
+        1.1,
+        -0.6999999999999998,
+        0.5
+      ],
+      "bounds_cm": [
+        [
+          -1.8999999999999997,
+          -3.24,
+          -1.5799999999999996
+        ],
+        [
+          4.1,
+          1.8399999999999999,
+          2.5799999999999996
+        ]
+      ],
+      "smt": {
+        "file": "TiltedTorus.smt",
+        "sha256": "96e79db598e48c99240065eeb8df834feef970e584cfbcc37b27b92d7a9ea97b"
+      },
+      "archive": {
+        "file": "TiltedTorus.f3d",
+        "sha256": "0437023d7d78965a886958736df3484c76eb457fd165b61586d305fd7c308290"
+      }
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

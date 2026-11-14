@@ -1,0 +1,639 @@
+[
+  {
+    "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "MissingLinkReason",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bHasRefdEntry",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bTransientTransacted",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "children",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "entity",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "expanded",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "flags",
+        "ValueType": {
+          "KindValue": "u32"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "hiddenChildren",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "orderedTransactedChildren",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "parents",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "root",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "155685E8-D562-4A1A-9302-A80F34CEC3C3"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "strEntityId",
+        "ValueType": {
+          "KindValue": "ascii"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "transienttransactedChildren",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "virtualParents",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "EntityEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "0DDFD0D0-9109-4164-B307-068BCF8FE0A5",
+    "BaseGuid": "F4EEA2F1-81A8-4171-A828-D7940E1B525E",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "TangentRelationshipsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "155685E8-D562-4A1A-9302-A80F34CEC3C3",
+    "BaseGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "autoExpandRootNode",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "passiveentries",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+            },
+            {
+              "KindValue": "ref",
+              "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rootEntry",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "stringentries",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+            },
+            {
+              "KindValue": "map",
+              "Arguments": [
+                {
+                  "KindValue": "ascii"
+                },
+                {
+                  "KindValue": "ref",
+                  "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+                }
+              ]
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "PersistBrowserRoot",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "192BB6B4-DA9B-4FD4-98C5-6BC67F4C67C4",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "MotionStudiesBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "1BDA73B0-EEFF-41DF-B575-58B448934FF8",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "WorkGeometryCustomGroupsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "21042350-3D57-4270-B0EC-BB9125633E6B",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "CanvasesBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2688AD35-7069-4806-B8F0-9BA7462D77A3",
+    "BaseGuid": "E483BFF5-54AB-43A2-8032-1E296D254BBF",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "FusionSketchesBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2B7BBC49-FCFC-4958-BAC2-7B09D1C9B98C",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DecalPatchesBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "2C50B57E-96DC-415E-AB7A-46FC2F7F378D",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SketchCustomGroupsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "33F72249-4935-47EB-8282-B2C3D93546CE",
+    "BaseGuid": "A510106D-7CDB-4FC7-9504-6C4137A8A917",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "FusionComponentBrowserRoot",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "3B7744B1-B605-4BAA-B1DF-E7535A6E9DBE",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ChangeThreadTypeBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "42A5CADA-9BA3-46AB-800F-E1D821F1836A",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "NamedViewsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "499FD31C-B865-4140-A9F4-2401BFF642C2",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "NamedLightsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "4C26A3DB-5071-4E35-AACE-547B55BFE707",
+    "BaseGuid": "F4EEA2F1-81A8-4171-A828-D7940E1B525E",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "JointsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "5137338A-EEB8-489D-BF3A-6708BF003909",
+    "BaseGuid": "F4EEA2F1-81A8-4171-A828-D7940E1B525E",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "RigidGroupsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "5BB3CC2D-15CD-406F-BEB4-2506D3250FA1",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ContactSetsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "5DFC9F26-73BD-4B58-9BC7-51207A348BD1",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "EIPContextsBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "BaseGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "AlwaysAddChild",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "ComponentInstance",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ComponentBrowserGroupEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "802C57C2-EA37-4FAC-A94E-422726AA01FC",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "WorkGeometriesBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "80DD69FA-8942-4D8B-9E6C-F7F9D730EA80",
+    "BaseGuid": "FEE3F7C7-CEBE-4ED4-9946-453E6298C64E",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "FusionBodiesBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "82167150-660F-4308-89D7-836E444C404B",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "AnnotationsBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "8F27D836-CBEE-4E17-ABA6-4E2FDBAB3FC4",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SubDSurfaceNodesBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "9200EB53-D06E-4811-953A-9094AD3818E7",
+    "BaseGuid": "F4EEA2F1-81A8-4171-A828-D7940E1B525E",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ConstraintsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "97E7C313-78ED-4711-B12C-50CCF0FF8E1E",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DocumentStructureTypeBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "BaseGuid": "",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "Entity",
+    "ClassSpace": ""
+  },
+  {
+    "ClassGuid": "A510106D-7CDB-4FC7-9504-6C4137A8A917",
+    "BaseGuid": "155685E8-D562-4A1A-9302-A80F34CEC3C3",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "ComponentInstance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "CE2913AA-CFE0-4F04-9102-24424ED3BCFA"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ComponentBrowserRoot",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "ACA1DF11-A07B-4004-A07C-7ACFF54BDA7E",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "RelationshipsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "AD60A48F-855F-44F4-94F3-809F40CD4DAA",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SelectionGroupsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "B3B2A88D-4CDD-4C17-B769-713E339D80A4",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "JointOriginsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "C619506D-F0AF-47DB-8BB8-54E52A2107E3",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SurfaceGroupsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "CA22AE6F-CCEF-42D6-91E1-487F6A4EEC3B",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "ACTInstance",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "96E1B59A-1989-4493-AA92-67E6072135F6"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ComponentInstanceBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+    "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "expanded",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "rParent",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "ManagedEntity",
+    "ClassSpace": "DataModel"
+  },
+  {
+    "ClassGuid": "D6CCC7E7-C73C-4A4A-8681-FF6A397CF8F7",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "UnitsBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "DA174979-046B-4658-833D-5F5B8EAA9665",
+    "BaseGuid": "802C57C2-EA37-4FAC-A94E-422726AA01FC",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "FusionConstructionBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "DBD7EE26-FC31-4777-A1D2-A72EB3C65DB9",
+    "BaseGuid": "CA22AE6F-CCEF-42D6-91E1-487F6A4EEC3B",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "ComponentsFolderEntry",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "01CAE6B2-DF44-4569-A7E8-70486A17F4BD"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "FusionComponentInstanceBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "E165F0A1-0A0B-4E55-BE9F-C53AC3DBA409",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "OriginWorkGeometryBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "E483BFF5-54AB-43A2-8032-1E296D254BBF",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SketchesBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "E650F5D6-7846-49CC-BDE8-C817111BC32F",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "ArrangementsBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "EE6D333C-314E-4825-9FE0-FBEA4018BD0D",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 1,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "DocumentSettingsBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F1D3DB04-2073-40C9-8D26-F02D824D5402",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "PMISettingsBrowserEntry",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F4EEA2F1-81A8-4171-A828-D7940E1B525E",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "SubRelationshipsBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  },
+  {
+    "ClassGuid": "FEE3F7C7-CEBE-4ED4-9946-453E6298C64E",
+    "BaseGuid": "6AE9DE8C-A6F6-40CB-B13D-4091AEA4968D",
+    "SchemaVersion": 0,
+    "Members": [],
+    "IsValue": false,
+    "NameValue": "BodiesBrowserEntry",
+    "ClassSpace": "BrowserAddInIdentifier"
+  }
+]

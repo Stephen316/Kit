@@ -22,7 +22,7 @@ def EmitWireClasses(SinkValue: MetaSink, Items: tuple[MetaClass, ...]) -> None:
             raise ValueError("Invalid Fusion MetaStream class row")
         SinkValue.AddText(Entry.ClassGuid)
         SinkValue.AddText(Entry.BaseGuid)
-        SinkValue.AddWord(Entry.Flags)
+        SinkValue.AddWord(Entry.SchemaVersion)
         SinkValue.AddText(Entry.ClassSpace)
         SinkValue.AddCount(Entry.OwnerIds, Remaining)
         Remaining -= len(Entry.OwnerIds)

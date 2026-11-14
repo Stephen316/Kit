@@ -1,0 +1,401 @@
+{
+ "scope": "Census.py all on the base commit and on this branch, compared file by file",
+ "base_counts": {
+  "read": 169,
+  "pass": 903
+ },
+ "head_counts": {
+  "read": 116,
+  "pass": 956
+ },
+ "regressions": [],
+ "new_differing_members": {},
+ "changed_output_of_passing_files": [],
+ "fixed": [
+  {
+   "file": "re/Fusion/Study/analytic-86a12b291d0a/analytic.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/embosstext-cd769aa41cdf/two_texts.f3d",
+   "former_error": "ValueError: Oversized Fusion ASM record",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/extents-f0f33a9a605f/from_plane.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/extents-f0f33a9a605f/to_plane.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/extents-f0f33a9a605f/to_plane_offset.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holeplacements-04adf73afe93/center_edge.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holeplacements-04adf73afe93/reversed_distance.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holeplacements-04adf73afe93/sketch_point.f3d",
+   "former_error": "ValueError: Fusion geometry bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holeplacements-04adf73afe93/sketch_points.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holes-926347c1eaa8/counterbore.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holes-926347c1eaa8/countersink.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holes-926347c1eaa8/simple.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/holes-926347c1eaa8/to_bottom.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/construction_sharp_end.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/construction_sharp_start.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/loftpoints-f5bbdb97a568/sharp_end.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/loftpoints-f5bbdb97a568/sharp_start.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/arc_along.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/arc_identical.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/extent.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/flipped.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/multiple_bodies.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/spacing.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/start_offset.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/suppressed_instance.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pathpatterns-de9857f6a1bc/symmetric.f3d",
+   "former_error": "ValueError: Unsupported Fusion history stream variant",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/patterns-35e49809a812/symmetric_one.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/patterns-35e49809a812/symmetric_two.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/patterns-35e49809a812/two_extent.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/patterns-35e49809a812/two_spacing.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/circle_full.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/circle_partial_two_sided.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/line_full.f3d",
+   "former_error": "ValueError: Fusion geometry bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/line_offset_negative_partial.f3d",
+   "former_error": "ValueError: Fusion geometry bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/line_partial.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/pipepaths-3d11bd427946/brep_edge_circular.f3d",
+   "former_error": "ValueError: Fusion geometry bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectmodes-a069f8f4b8a2/body_multiple_customaxis.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymholdouts-cf85ce4a0382/extent_both.f3d",
+   "former_error": "ValueError: Oversized Fusion ASM record",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymholdouts-cf85ce4a0382/feature_input.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymholdouts-cf85ce4a0382/multiple_bodies.f3d",
+   "former_error": "ValueError: Oversized Fusion ASM record",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymholdouts-cf85ce4a0382/negative_spacing.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymholdouts-cf85ce4a0382/oblique_axes.f3d",
+   "former_error": "ValueError: Oversized Fusion ASM record",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymmetry-f09c57dcfd51/symmetric_both_even.f3d",
+   "former_error": "ValueError: Oversized Fusion ASM record",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymmetry-f09c57dcfd51/symmetric_both_odd.f3d",
+   "former_error": "ValueError: Oversized Fusion ASM record",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/rectsymmetry-f09c57dcfd51/symmetric_two.f3d",
+   "former_error": "ValueError: Oversized Fusion bulletin board",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/revolveto-b1d196f65c46/negative_plane.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/revolveto-b1d196f65c46/positive_plane.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/revolveto-b1d196f65c46/two_planes.f3d",
+   "former_error": "ValueError: Fusion journal active bodies disagree with its root count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/specialfillets-d50f7a4f04e0/rule_all_both.f3d",
+   "former_error": "ValueError: Fusion round carriers require positive finite radii",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/surfacetools-856ca50cf4c7/unstitch_chain.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/thinextrudes-c1632bcb5efe/closed_two_sides_mixed.f3d",
+   "former_error": "ValueError: Unsupported Fusion nonmanifold edge-use count",
+   "differing_kinds": [
+    "protein"
+   ]
+  },
+  {
+   "file": "re/Fusion/Study/tools-fda3948848f4/Hole.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "differing_kinds": [
+    "protein"
+   ]
+  }
+ ],
+ "in_scope_remaining": [
+  {
+   "file": "re/Fusion/Study/tappedholes-409e96788503/cosmetic_full.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "error": "ValueError: Unsupported Fusion journal attribute family",
+   "where": "ReadAttribNode:49 <- ReadEntityNode:17 <- ReadEntitiesMut:14 <- ReadJournal:23 <- ReadBodyPart:20 <- ReadDocParts:52"
+  },
+  {
+   "file": "re/Fusion/Study/tappedholes-409e96788503/modeled_full.f3d",
+   "former_error": "ValueError: Missing required Fusion topology reference",
+   "error": "ValueError: Unsupported Fusion journal attribute family",
+   "where": "ReadAttribNode:49 <- ReadEntityNode:17 <- ReadEntitiesMut:14 <- ReadJournal:23 <- ReadBodyPart:20 <- ReadDocParts:52"
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "scope": "BRep layout of the Fusion conversion under single-grip, paired and random grip moves of the valence-7 prism and two mixed-valence band cages. A layout change means that face grouping or edge splitting depends on grip positions, so a table keyed by cage topology cannot convert the cage",
+ "python": "3.14.7",
+ "cages": [
+  {
+   "cage": "Valence7",
+   "grips": 44,
+   "variants": 55,
+   "base_faces_edges_vertices": [
+    21,
+    49,
+    30
+   ],
+   "layout_changes": []
+  },
+  {
+   "cage": "Mixed56",
+   "grips": 36,
+   "variants": 47,
+   "base_faces_edges_vertices": [
+    19,
+    44,
+    27
+   ],
+   "layout_changes": [
+    {
+     "variant": "X33",
+     "moved_grips": 1,
+     "faces_edges_vertices": [
+      19,
+      45,
+      28
+     ],
+     "patterns_only_in_base": 4,
+     "patterns_only_in_variant": 5
+    },
+    {
+     "variant": "RandomB",
+     "moved_grips": 36,
+     "faces_edges_vertices": [
+      20,
+      46,
+      28
+     ],
+     "patterns_only_in_base": 13,
+     "patterns_only_in_variant": 16
+    }
+   ]
+  },
+  {
+   "cage": "Mixed78",
+   "grips": 48,
+   "variants": 59,
+   "base_faces_edges_vertices": [
+    25,
+    58,
+    35
+   ],
+   "layout_changes": [
+    {
+     "variant": "RandomA",
+     "moved_grips": 48,
+     "faces_edges_vertices": [
+      25,
+      59,
+      36
+     ],
+     "patterns_only_in_base": 4,
+     "patterns_only_in_variant": 5
+    },
+    {
+     "variant": "RandomB",
+     "moved_grips": 48,
+     "faces_edges_vertices": [
+      26,
+      60,
+      36
+     ],
+     "patterns_only_in_base": 6,
+     "patterns_only_in_variant": 9
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,56 @@
+def FormDefaults() -> dict[str, dict[str, object]]:
+    Frame: dict[str, object] = {"rMesh": None, "tsID": 0}
+    return {
+        "DcTSplineFeature": dict(
+            bIsAGDFormFeature=False,
+            computableActions=[],
+            rTSplineToolBody=None,
+            subDInfoMap=[],
+        ),
+        "DcDMActivationFeature": {"isActivated": False, "rDirectModelingData": None},
+        "DirectModelingData": dict(
+            annotations=[],
+            entities=[],
+            meshBodies=[],
+            rBaseFeature=None,
+            rolledOutMeshBodies=[],
+            rolledOutSketches=[],
+            rolledOutWorkGeometries=[],
+            sketches=[],
+            workGeometries=[],
+        ),
+        "DcTSplineToolBody": {"rTSplineFeature": None},
+        "ETCachedTopology": {"cachedEntityId": 0, "scope": None},
+        "ControlFrameMesh": dict(
+            edges=[], facets=[], grips=[], rSurface=None, vertices=[]
+        ),
+        "ControlFrameFacet": {**Frame, "visualMaterial": None},
+        "ControlFrameEdge": dict(Frame),
+        "ControlFrameVertex": dict(Frame),
+        "ControlFrameGrip": dict(Frame),
+        "TsSurface": dict(
+            bConversionFailed=False,
+            ePartitionMode=0,
+            rSerializer=None,
+            rTSplinePipeSectionData=None,
+        ),
+        "SubDSurfaceBase": {"frame": None, "rVSurface": None, "tess": None},
+        "Mesh": {"activePatchID": 0},
+        "TSplineSerializer": {"partName": "", "rSurface": None},
+        "SubDSurfaceNode": dict(
+            creationIndex=1,
+            faceVisualMaterialByAttrTagID=[],
+            isNodeVisible=True,
+            isSelectable=True,
+            isVisible=False,
+            opacity=1.0,
+            physicalMaterial=None,
+            rDcTSplineFeature=None,
+            rGroupParent=None,
+            rSurface=None,
+            textureMapping=None,
+            userName="",
+            visualMaterial=None,
+        ),
+        "TSplineEntityProgenitor": {"entityType": 0, "tsEntityProgenitors": []},
+    }

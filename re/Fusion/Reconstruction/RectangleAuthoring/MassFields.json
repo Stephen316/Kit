@@ -1,0 +1,897 @@
+{
+  "scope": "Read-only material assignment field comparison with research decoder; no production execution",
+  "cases": [
+    {
+      "source": "re/Fusion/LocalOracle/RectangleAuthoring/Initial/ProductionCuboid.f3d",
+      "sha256": "44a1eebfeef9e36ba891bba70a90f8c0f2ae8026cf82d0dbf07a25bf1b3aeb6a",
+      "materials": [],
+      "records": [
+        {
+          "entityId": 1001,
+          "className": "ProteinAssetManagerMetaType",
+          "primary": true,
+          "frame": {
+            "rootId": "ProteinAssetManager",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2C54F6D6-5C2B-4C4A-89A2-2AB486EF152D",
+              "fields": {
+                "PhysicalMaterialAssetReferences": [],
+                "PhysicalMaterialRefCountVector": [],
+                "VisualMaterialAssetReferences": [],
+                "VisualMaterialRefCountVector": []
+              }
+            },
+            {
+              "identifier": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+              "fields": {
+                "partName": ""
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 1002,
+          "className": "ComponentMetaType",
+          "primary": false,
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+              "fields": {
+                "m_SketchCustomGroups": {
+                  "entityId": 1030
+                },
+                "m_WorkGeometryCustomGroups": {
+                  "entityId": 1029
+                },
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "rAssyConstraintOccs": {
+                  "entityId": 1023
+                },
+                "rAssyConstraints": {
+                  "entityId": 1022
+                },
+                "rBodies": {
+                  "entityId": 1018
+                },
+                "rContactSets": {
+                  "entityId": 1024
+                },
+                "rJointOrigins": {
+                  "entityId": 1021
+                },
+                "rMotionStudies": {
+                  "entityId": 1025
+                },
+                "rParameterTable": {
+                  "entityId": 1026
+                },
+                "rPersistedCustomGraphics": null,
+                "rSelectionGroups": {
+                  "entityId": 1028
+                },
+                "rSketches": {
+                  "entityId": 1019
+                },
+                "rSurfaceGroups": {
+                  "entityId": 1027
+                },
+                "rWorkGeometries": {
+                  "entityId": 1020
+                }
+              }
+            },
+            {
+              "identifier": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+              "fields": {
+                "createdPreACT": false,
+                "creationIndex": 0,
+                "cyclingColor": {
+                  "red": 0.800000011920929,
+                  "green": 0.800000011920929,
+                  "blue": 0.800000011920929,
+                  "alpha": 1.0
+                },
+                "defaultPhysicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": null,
+                      "assetReference": "",
+                      "libraryID": "",
+                      "name": "",
+                      "proteinMaterialID": ""
+                    }
+                  }
+                ],
+                "isVisible": true,
+                "overrides": {
+                  "entityId": 1016
+                },
+                "persistentId": "c59bc7d9-23ad-4b09-a858-95586d133e1a",
+                "rACTComponent": {
+                  "entityId": 100,
+                  "segmentId": 1
+                },
+                "rComponentBaseInstances": {
+                  "entityId": 1017
+                },
+                "rOwningDeriveFeature": null,
+                "revisionGuid": "dc5bbb3f-c16c-4c80-b1ad-08c9ee662832",
+                "userName": "Kit Production Author"
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 1004
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 1140,
+          "className": "BodyMetaType",
+          "primary": true,
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D3937028-C20C-4E65-B010-94AD418A5C20",
+              "fields": {
+                "actIdentifier": "0_1140",
+                "bodyType": 2,
+                "cache": [
+                  {
+                    "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+                    "fields": {
+                      "area": 32.62,
+                      "areaPrec": 0.0,
+                      "cog": {
+                        "x": 0.85,
+                        "y": 1.15,
+                        "z": 1.55
+                      },
+                      "inertiaPrec": 0.0,
+                      "moi": {
+                        "x": 60.20096666666666,
+                        "y": 50.50416666666666,
+                        "z": 33.049926666666664
+                      },
+                      "moiOffDiag": {
+                        "x": -11.848277499999998,
+                        "y": -15.969417499999999,
+                        "z": -21.605682499999997
+                      },
+                      "revisionGuid": "dc5bbb3f-c16c-4c80-b1ad-08c9ee662832",
+                      "volume": 12.120999999999999,
+                      "volumePrec": 0.0
+                    }
+                  }
+                ],
+                "creationIndex": 1,
+                "edgeSelection": true,
+                "faceVisualMaterialByAttrTagID": [],
+                "facetVersion": 0,
+                "isSelectable": true,
+                "isVisible": true,
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "opacity": 1.0,
+                "overriddenBody": null,
+                "overriddenToOverridingId": [],
+                "overridingToOverriddenId": [],
+                "passiveIdGenerator": null,
+                "persistentId": "69772b0b-d3b1-409c-975a-f53c4571f764",
+                "physicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": null,
+                      "assetReference": "",
+                      "libraryID": "",
+                      "name": "",
+                      "proteinMaterialID": ""
+                    }
+                  }
+                ],
+                "rGroupParent": {
+                  "entityId": 1018
+                },
+                "rOwningDeriveFeature": null,
+                "textureMapping": null,
+                "userName": "Authored Cuboid",
+                "visualMaterial": [
+                  {
+                    "identifier": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+                    "fields": {
+                      "CustomizedColor": {
+                        "red": 0.800000011920929,
+                        "green": 0.800000011920929,
+                        "blue": 0.800000011920929,
+                        "alpha": 1.0
+                      },
+                      "ProteinAssetManager": null,
+                      "UseCustomizedColor": true,
+                      "assetReference": "",
+                      "libraryID": "",
+                      "name": "",
+                      "proteinMaterialID": "",
+                      "proteinMaterialRotation": 0.0,
+                      "proteinMaterialScale": 1.0
+                    }
+                  }
+                ],
+                "wireStyle": 1
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 1018
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "re/Fusion/LocalOracle/RectangleAuthoring/mass_probe_ProductionCuboid.f3d",
+      "sha256": "4486d381db49daaebcb31d2e0da4da860ad468203469bbe2fd3e45f27eb51cc8",
+      "materials": [
+        {
+          "name": "FusionAssetName[Active]/ProteinAssets.BlobParts/",
+          "bytes": 0
+        },
+        {
+          "name": "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.f9a6e58c-5035-473d-8b34-47e97ec116e5.protein",
+          "bytes": 16247
+        }
+      ],
+      "records": [
+        {
+          "entityId": 1001,
+          "className": "ProteinAssetManagerMetaType",
+          "primary": true,
+          "frame": {
+            "rootId": "ProteinAssetManager",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2C54F6D6-5C2B-4C4A-89A2-2AB486EF152D",
+              "fields": {
+                "PhysicalMaterialAssetReferences": [
+                  "8144C713-F9C6-BE6C-FE37-51389ABC887D"
+                ],
+                "PhysicalMaterialRefCountVector": [
+                  1
+                ],
+                "VisualMaterialAssetReferences": [
+                  "DE4609A6-032F-E9CC-F7AD-C79AC19F4525"
+                ],
+                "VisualMaterialRefCountVector": [
+                  1
+                ]
+              }
+            },
+            {
+              "identifier": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+              "fields": {
+                "partName": "ProteinAsset.f9a6e58c-5035-473d-8b34-47e97ec116e5.protein"
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 1002,
+          "className": "ComponentMetaType",
+          "primary": false,
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+              "fields": {
+                "m_SketchCustomGroups": {
+                  "entityId": 1030
+                },
+                "m_WorkGeometryCustomGroups": {
+                  "entityId": 1029
+                },
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "rAssyConstraintOccs": {
+                  "entityId": 1023
+                },
+                "rAssyConstraints": {
+                  "entityId": 1022
+                },
+                "rBodies": {
+                  "entityId": 1018
+                },
+                "rContactSets": {
+                  "entityId": 1024
+                },
+                "rJointOrigins": {
+                  "entityId": 1021
+                },
+                "rMotionStudies": {
+                  "entityId": 1025
+                },
+                "rParameterTable": {
+                  "entityId": 1026
+                },
+                "rPersistedCustomGraphics": null,
+                "rSelectionGroups": {
+                  "entityId": 1028
+                },
+                "rSketches": {
+                  "entityId": 1019
+                },
+                "rSurfaceGroups": {
+                  "entityId": 1027
+                },
+                "rWorkGeometries": {
+                  "entityId": 1020
+                }
+              }
+            },
+            {
+              "identifier": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+              "fields": {
+                "createdPreACT": false,
+                "creationIndex": 0,
+                "cyclingColor": {
+                  "red": 0.800000011920929,
+                  "green": 0.800000011920929,
+                  "blue": 0.800000011920929,
+                  "alpha": 1.0
+                },
+                "defaultPhysicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": null,
+                      "assetReference": "",
+                      "libraryID": "",
+                      "name": "",
+                      "proteinMaterialID": ""
+                    }
+                  }
+                ],
+                "isVisible": true,
+                "overrides": {
+                  "entityId": 1016
+                },
+                "persistentId": "c59bc7d9-23ad-4b09-a858-95586d133e1a",
+                "rACTComponent": {
+                  "entityId": 100,
+                  "segmentId": 1
+                },
+                "rComponentBaseInstances": {
+                  "entityId": 1017
+                },
+                "rOwningDeriveFeature": null,
+                "revisionGuid": "7272e4cb-235b-40a9-bdbb-a48ec34842ac",
+                "userName": "Untitled"
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 1004
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 1140,
+          "className": "BodyMetaType",
+          "primary": true,
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D3937028-C20C-4E65-B010-94AD418A5C20",
+              "fields": {
+                "actIdentifier": "0_1140",
+                "bodyType": 2,
+                "cache": [
+                  {
+                    "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+                    "fields": {
+                      "area": 32.62,
+                      "areaPrec": 0.0,
+                      "cog": {
+                        "x": 0.8500000000000001,
+                        "y": 1.15,
+                        "z": 1.55
+                      },
+                      "inertiaPrec": 0.0,
+                      "moi": {
+                        "x": 60.20096666666666,
+                        "y": 50.50416666666666,
+                        "z": 33.04992666666666
+                      },
+                      "moiOffDiag": {
+                        "x": -11.848277499999998,
+                        "y": -15.969417499999997,
+                        "z": -21.605682499999997
+                      },
+                      "revisionGuid": "20849dc1-6efb-46b9-96fd-bfa7b9fa7d07",
+                      "volume": 12.120999999999999,
+                      "volumePrec": 0.0
+                    }
+                  }
+                ],
+                "creationIndex": 1,
+                "edgeSelection": true,
+                "faceVisualMaterialByAttrTagID": [],
+                "facetVersion": 2320500,
+                "isSelectable": true,
+                "isVisible": true,
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "opacity": 1.0,
+                "overriddenBody": null,
+                "overriddenToOverridingId": [],
+                "overridingToOverriddenId": [],
+                "passiveIdGenerator": null,
+                "persistentId": "69772b0b-d3b1-409c-975a-f53c4571f764",
+                "physicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": {
+                        "entityId": 1001
+                      },
+                      "assetReference": "8144C713-F9C6-BE6C-FE37-51389ABC887D",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018"
+                    }
+                  }
+                ],
+                "rGroupParent": {
+                  "entityId": 1018
+                },
+                "rOwningDeriveFeature": null,
+                "textureMapping": {
+                  "entityId": 1157
+                },
+                "userName": "Authored Cuboid",
+                "visualMaterial": [
+                  {
+                    "identifier": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+                    "fields": {
+                      "CustomizedColor": {
+                        "red": 0.800000011920929,
+                        "green": 0.800000011920929,
+                        "blue": 0.800000011920929,
+                        "alpha": 1.0
+                      },
+                      "ProteinAssetManager": {
+                        "entityId": 1001
+                      },
+                      "UseCustomizedColor": true,
+                      "assetReference": "DE4609A6-032F-E9CC-F7AD-C79AC19F4525",
+                      "libraryID": "BA5EE55E-9982-449B-9D66-9F036540E140",
+                      "name": "",
+                      "proteinMaterialID": "Prism-256",
+                      "proteinMaterialRotation": 0.0,
+                      "proteinMaterialScale": 1.0
+                    }
+                  }
+                ],
+                "wireStyle": 1
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 1018
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionRectangle37mm.f3d",
+      "sha256": "195a6cf8d3d0943d1c95ddecff2fea925ef1ff4c7e146528ffea874416626fc0",
+      "materials": [
+        {
+          "name": "FusionAssetName[Active]/ProteinAssets.BlobParts/",
+          "bytes": 0
+        },
+        {
+          "name": "FusionAssetName[Active]/ProteinAssets.BlobParts/ProteinAsset.f1a87b71-2588-45f2-af47-79ff21215d4f.protein",
+          "bytes": 16109
+        }
+      ],
+      "records": [
+        {
+          "entityId": 1001,
+          "className": "ProteinAssetManagerMetaType",
+          "primary": true,
+          "frame": {
+            "rootId": "ProteinAssetManager",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "2C54F6D6-5C2B-4C4A-89A2-2AB486EF152D",
+              "fields": {
+                "PhysicalMaterialAssetReferences": [
+                  "B1A57371-8324-D6AF-D443-AA2AE175E048"
+                ],
+                "PhysicalMaterialRefCountVector": [
+                  1
+                ],
+                "VisualMaterialAssetReferences": [
+                  "BABF373B-F16A-A99B-007F-9A4AB9FBE3DA"
+                ],
+                "VisualMaterialRefCountVector": [
+                  1
+                ]
+              }
+            },
+            {
+              "identifier": "130A0711-4E92-4FCD-AADE-B9C82238BB27",
+              "fields": {
+                "partName": "ProteinAsset.f1a87b71-2588-45f2-af47-79ff21215d4f.protein"
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 1002,
+          "className": "ComponentMetaType",
+          "primary": false,
+          "frame": {
+            "rootId": ""
+          },
+          "groups": [
+            {
+              "identifier": "42054630-20A0-40E1-B969-CFE9E742F5C9",
+              "fields": {
+                "m_SketchCustomGroups": {
+                  "entityId": 1030
+                },
+                "m_WorkGeometryCustomGroups": {
+                  "entityId": 1029
+                },
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "rAssyConstraintOccs": {
+                  "entityId": 1023
+                },
+                "rAssyConstraints": {
+                  "entityId": 1022
+                },
+                "rBodies": {
+                  "entityId": 1018
+                },
+                "rContactSets": {
+                  "entityId": 1024
+                },
+                "rJointOrigins": {
+                  "entityId": 1021
+                },
+                "rMotionStudies": {
+                  "entityId": 1025
+                },
+                "rParameterTable": {
+                  "entityId": 1026
+                },
+                "rPersistedCustomGraphics": null,
+                "rSelectionGroups": {
+                  "entityId": 1028
+                },
+                "rSketches": {
+                  "entityId": 1019
+                },
+                "rSurfaceGroups": {
+                  "entityId": 1027
+                },
+                "rWorkGeometries": {
+                  "entityId": 1020
+                }
+              }
+            },
+            {
+              "identifier": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+              "fields": {
+                "createdPreACT": false,
+                "creationIndex": 0,
+                "cyclingColor": {
+                  "red": 0.800000011920929,
+                  "green": 0.800000011920929,
+                  "blue": 0.800000011920929,
+                  "alpha": 1.0
+                },
+                "defaultPhysicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": null,
+                      "assetReference": "",
+                      "libraryID": "",
+                      "name": "",
+                      "proteinMaterialID": ""
+                    }
+                  }
+                ],
+                "isVisible": true,
+                "overrides": {
+                  "entityId": 1016
+                },
+                "persistentId": "4dbe2836-b60f-48a4-916d-1d53517c6b4d",
+                "rACTComponent": {
+                  "entityId": 100,
+                  "segmentId": 1
+                },
+                "rComponentBaseInstances": {
+                  "entityId": 1017
+                },
+                "rOwningDeriveFeature": null,
+                "revisionGuid": "272997ae-216f-47d2-9b79-0ebbb1819ce5",
+                "userName": "Untitled"
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 1004
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 1189,
+          "className": "BodyMetaType",
+          "primary": true,
+          "frame": {
+            "rootId": "",
+            "hasSubjects": false,
+            "subjects": [],
+            "hasNamedMetadata": false,
+            "namedMetadata": []
+          },
+          "groups": [
+            {
+              "identifier": "D3937028-C20C-4E65-B010-94AD418A5C20",
+              "fields": {
+                "actIdentifier": "0_1189",
+                "bodyType": 2,
+                "cache": [
+                  {
+                    "identifier": "B2D184F7-6B45-4327-9A4D-163646EE3377",
+                    "fields": {
+                      "area": 37.419999999999995,
+                      "areaPrec": 0.0,
+                      "cog": {
+                        "x": 0.85,
+                        "y": 1.15,
+                        "z": 1.85
+                      },
+                      "inertiaPrec": 0.0,
+                      "moi": {
+                        "x": 91.52788666666666,
+                        "y": 79.95428666666666,
+                        "z": 39.44668666666665
+                      },
+                      "moiOffDiag": {
+                        "x": -14.141492499999998,
+                        "y": -22.7493575,
+                        "z": -30.778542499999997
+                      },
+                      "revisionGuid": "b591bf88-5bda-42da-afe3-8084c1f95230",
+                      "volume": 14.466999999999999,
+                      "volumePrec": 0.0
+                    }
+                  }
+                ],
+                "creationIndex": 1,
+                "edgeSelection": true,
+                "faceVisualMaterialByAttrTagID": [],
+                "facetVersion": 2320500,
+                "isSelectable": true,
+                "isVisible": true,
+                "massProperties": [
+                  {
+                    "identifier": "98F3955C-FE39-404A-8724-36D0C15A456C",
+                    "fields": {
+                      "areaOverride": -1.0,
+                      "densityOverride": -1.0,
+                      "massOverride": -1.0,
+                      "volumeOverride": -1.0
+                    }
+                  }
+                ],
+                "opacity": 1.0,
+                "overriddenBody": null,
+                "overriddenToOverridingId": [],
+                "overridingToOverriddenId": [],
+                "passiveIdGenerator": null,
+                "persistentId": "6d141a42-10e8-4b65-b6fb-e937d0620ee4",
+                "physicalMaterial": [
+                  {
+                    "identifier": "A62C82F6-7CF7-4FF3-9C12-D87FF3965C9C",
+                    "fields": {
+                      "ProteinAssetManager": {
+                        "entityId": 1001
+                      },
+                      "assetReference": "B1A57371-8324-D6AF-D443-AA2AE175E048",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018"
+                    }
+                  }
+                ],
+                "rGroupParent": {
+                  "entityId": 1018
+                },
+                "rOwningDeriveFeature": null,
+                "textureMapping": {
+                  "entityId": 1190
+                },
+                "userName": "",
+                "visualMaterial": [
+                  {
+                    "identifier": "EA46307F-1FD6-4B11-9C97-353B74F5E413",
+                    "fields": {
+                      "CustomizedColor": {
+                        "red": 0.0,
+                        "green": 0.0,
+                        "blue": 0.0,
+                        "alpha": 1.0
+                      },
+                      "ProteinAssetManager": {
+                        "entityId": 1001
+                      },
+                      "UseCustomizedColor": false,
+                      "assetReference": "BABF373B-F16A-A99B-007F-9A4AB9FBE3DA",
+                      "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+                      "name": "",
+                      "proteinMaterialID": "PrismMaterial-018_physmat_aspects:Prism-256",
+                      "proteinMaterialRotation": 0.0,
+                      "proteinMaterialScale": 1.0
+                    }
+                  }
+                ],
+                "wireStyle": 1
+              }
+            },
+            {
+              "identifier": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+              "fields": {
+                "rClientObject": null
+              }
+            },
+            {
+              "identifier": "CB844AB6-240D-4fc9-9C9F-3679DC896D6F",
+              "fields": {
+                "rParent": {
+                  "entityId": 1018
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

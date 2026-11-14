@@ -2,6 +2,7 @@ from enum import StrEnum
 from typing import cast as CastValue
 
 from convert.formats.Fusion.MetaCursor import MetaCursor
+from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaCtx import ReadMetaCtx
 
 
 # the same native index grammar serves three typed segment headers
@@ -9,6 +10,8 @@ class SegmentKind(StrEnum):
     KDesign = "FusionDesignSegmentType"
     KBrowser = "FusionBrowserSegmentType"
     KAct = "FusionACTSegmentType"
+    KDrawingDesign = "FusionDrawingDesignSegmentType"
+    KDrawingAct = "FusionDrawingACTSegmentType"
 
 
 # each auxiliary segment declares a fixed index and storage kind in version eight
@@ -16,6 +19,8 @@ KSegmentLayout = {
     SegmentKind.KDesign: (None, (1, 0)),
     SegmentKind.KBrowser: (2, (6, 0)),
     SegmentKind.KAct: (1, (5, 0)),
+    SegmentKind.KDrawingDesign: (0, (1, 0)),
+    SegmentKind.KDrawingAct: (1, (5, 0)),
 }
 
 
@@ -67,7 +72,8 @@ def ReadMetaIndex(
             if IsPrimary:
                 PrimaryIds.add(Identity)
             Entries.append((Offset, Identity, IsPrimary))
-    NextId, _ = Cursor.ReadLong(), Cursor.ReadWord()
+    NextId = Cursor.ReadLong()
+    _ = ReadMetaCtx(Cursor, Cursor.ReadWord())
     if PrimaryIds != Owners.keys() or (Owners and NextId <= max(Owners)):
         raise ValueError("Invalid Fusion primary identity index")
     Properties: set[str] = set()

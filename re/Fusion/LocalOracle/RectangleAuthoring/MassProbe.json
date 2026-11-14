@@ -1,0 +1,189 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native diagnosis of authored-body material and mass properties; assignment uses a native control only for evidence, not production writer input",
+  "cases": [
+    {
+      "source": "RectangleAuthoring/Initial/ProductionCuboid.f3d",
+      "source_sha256": "44a1eebfeef9e36ba891bba70a90f8c0f2ae8026cf82d0dbf07a25bf1b3aeb6a",
+      "opened": {
+        "body_volume_cm3": 12.120999999999999,
+        "volume_cm3": 12.120999999999999,
+        "area_cm2": 32.62,
+        "mass_kg": 0.0,
+        "density_kg_per_cm3": 0.0,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "moments_kg_cm2": [
+          true,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "material_error": "2 : InternalValidationError : !materialId.empty()"
+      },
+      "assigned": {
+        "body_volume_cm3": 12.120999999999999,
+        "volume_cm3": 12.120999999999999,
+        "area_cm2": 32.62,
+        "mass_kg": 0.09514984999999998,
+        "density_kg_per_cm3": 0.00785,
+        "center_cm": [
+          0.8500000000000001,
+          1.15,
+          1.5500000000000003
+        ],
+        "moments_kg_cm2": [
+          true,
+          0.47257758833333324,
+          0.39645770833333327,
+          0.25944192433333324,
+          -0.09300897837499998,
+          -0.16960460762499996,
+          -0.12535992737499996
+        ],
+        "material": {
+          "id": "PrismMaterial-018",
+          "name": "Kit Density Control"
+        }
+      },
+      "rebuilt": {
+        "body_volume_cm3": 12.120999999999999,
+        "volume_cm3": 12.120999999999999,
+        "area_cm2": 32.62,
+        "mass_kg": 0.09514984999999998,
+        "density_kg_per_cm3": 0.00785,
+        "center_cm": [
+          0.8500000000000001,
+          1.15,
+          1.5500000000000003
+        ],
+        "moments_kg_cm2": [
+          true,
+          0.47257758833333324,
+          0.39645770833333327,
+          0.25944192433333324,
+          -0.09300897837499998,
+          -0.16960460762499996,
+          -0.12535992737499996
+        ],
+        "material": {
+          "id": "PrismMaterial-018",
+          "name": "Kit Density Control"
+        }
+      },
+      "saved": "mass_probe_ProductionCuboid.f3d",
+      "saved_sha256": "4486d381db49daaebcb31d2e0da4da860ad468203469bbe2fd3e45f27eb51cc8"
+    },
+    {
+      "source": "Authored/ProductionExtrusion.f3d",
+      "source_sha256": "5645020130771517c674eac3854c2d96c00100e9bb277e353f87f35295a3d995",
+      "opened": {
+        "body_volume_cm3": 8.467573949129104,
+        "volume_cm3": 8.46757394912874,
+        "area_cm2": 23.36559536107409,
+        "mass_kg": 0.0,
+        "density_kg_per_cm3": 0.0,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "moments_kg_cm2": [
+          true,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "material_error": "2 : InternalValidationError : !materialId.empty()"
+      },
+      "assigned": {
+        "body_volume_cm3": 8.467573949129104,
+        "volume_cm3": 8.46757394912874,
+        "area_cm2": 23.36559536107409,
+        "mass_kg": 0.06647045550066061,
+        "density_kg_per_cm3": 0.00785,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.8625
+        ],
+        "moments_kg_cm2": [
+          true,
+          0.0918954047296633,
+          0.0918954047296633,
+          0.0519300433598911,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "material": {
+          "id": "PrismMaterial-018",
+          "name": "Kit Density Control"
+        }
+      },
+      "rebuilt": {
+        "body_volume_cm3": 8.467573949129104,
+        "volume_cm3": 8.467573949129104,
+        "area_cm2": 23.36559536107409,
+        "mass_kg": 0.06647045550066347,
+        "density_kg_per_cm3": 0.00785,
+        "center_cm": [
+          1.3070977148524918e-10,
+          -4.1956689131317238e-16,
+          0.8624999999999999
+        ],
+        "moments_kg_cm2": [
+          true,
+          0.09189539969969349,
+          0.09189540640632518,
+          0.05193004000657754,
+          -5.577760475716786e-17,
+          2.788880237858393e-17,
+          -7.493693310323123e-12
+        ],
+        "material": {
+          "id": "PrismMaterial-018",
+          "name": "Kit Density Control"
+        }
+      },
+      "saved": "mass_probe_ProductionExtrusion.f3d",
+      "saved_sha256": "4efeccb7ebd06a060cde01280619671b3b66dc5a8f5d93ff68dbb92e7e078105"
+    }
+  ],
+  "control": {
+    "body_volume_cm3": 30.0,
+    "volume_cm3": 30.0,
+    "area_cm2": 59.0,
+    "mass_kg": 0.2355,
+    "density_kg_per_cm3": 0.00785,
+    "center_cm": [
+      2.0,
+      1.4999999999999998,
+      1.25
+    ],
+    "moments_kg_cm2": [
+      true,
+      1.197125,
+      1.7466249999999999,
+      1.9625,
+      -0.7064999999999999,
+      -0.44156249999999997,
+      -0.58875
+    ],
+    "material": {
+      "id": "PrismMaterial-018",
+      "name": "Steel"
+    }
+  },
+  "status": "captured",
+  "documents_after": 0
+}

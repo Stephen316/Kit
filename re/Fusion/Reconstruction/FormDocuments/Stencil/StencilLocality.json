@@ -1,0 +1,166 @@
+{
+ "scope": "Shared non-rational stencil coefficients between cage layouts, rounded to 1e-12. Equal values would indicate a local cap rule that transfers between layouts",
+ "python": "3.14.7",
+ "non_rational_counts": {
+  "Box": 134,
+  "Box3": 157,
+  "CreasedBox": 1372,
+  "Valence5": 583,
+  "Valence6": 581,
+  "Valence8": 641
+ },
+ "shared": [
+  {
+   "pair": [
+    "Box",
+    "Box3"
+   ],
+   "shared": 134,
+   "examples": [
+    -0.001128258646,
+    -0.00091305671,
+    -0.000411348551,
+    -0.000282064661
+   ]
+  },
+  {
+   "pair": [
+    "Box",
+    "CreasedBox"
+   ],
+   "shared": 134,
+   "examples": [
+    -0.001128258646,
+    -0.00091305671,
+    -0.000411348551,
+    -0.000282064661
+   ]
+  },
+  {
+   "pair": [
+    "Box",
+    "Valence5"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "Box",
+    "Valence6"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "Box",
+    "Valence8"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "Box3",
+    "CreasedBox"
+   ],
+   "shared": 134,
+   "examples": [
+    -0.001128258646,
+    -0.00091305671,
+    -0.000411348551,
+    -0.000282064661
+   ]
+  },
+  {
+   "pair": [
+    "Box3",
+    "Valence5"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "Box3",
+    "Valence6"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "Box3",
+    "Valence8"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "CreasedBox",
+    "Valence5"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "CreasedBox",
+    "Valence6"
+   ],
+   "shared": 0,
+   "examples": []
+  },
+  {
+   "pair": [
+    "CreasedBox",
+    "Valence8"
+   ],
+   "shared": 1,
+   "examples": [
+    6.781684e-06
+   ]
+  },
+  {
+   "pair": [
+    "Valence5",
+    "Valence6"
+   ],
+   "shared": 347,
+   "examples": [
+    -0.001128813892,
+    -0.001033917451,
+    -0.000913581081,
+    -0.00080385507
+   ]
+  },
+  {
+   "pair": [
+    "Valence5",
+    "Valence8"
+   ],
+   "shared": 347,
+   "examples": [
+    -0.001128813892,
+    -0.001033917451,
+    -0.000913581081,
+    -0.00080385507
+   ]
+  },
+  {
+   "pair": [
+    "Valence6",
+    "Valence8"
+   ],
+   "shared": 347,
+   "examples": [
+    -0.001128813892,
+    -0.001033917451,
+    -0.000913581081,
+    -0.00080385507
+   ]
+  }
+ ]
+}

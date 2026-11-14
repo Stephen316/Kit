@@ -27,3 +27,5 @@ def CheckWireBody(Value: MetaSegment) -> None:
         raise ValueError("Duplicate Fusion MetaStream record offset")
     if len({Entry.PropName for Entry in Value.Properties}) != len(Value.Properties):
         raise ValueError("Duplicate Fusion metadata property")
+    if type(Value.Contexts) is not tuple or Value.Reserved != len(Value.Contexts):
+        raise ValueError("Fusion version context count disagrees")

@@ -10,6 +10,9 @@ from interchange import CadDocument
 
 # this mixin gives stream and filesystem destinations one writing policy
 class JsonWriter:
+    @property
+    def TypedMaterials(self) -> bool:
+        return True
 
     # this writer validates and emits deterministic utf eight json
     def EmitTarget(

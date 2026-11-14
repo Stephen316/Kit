@@ -1,0 +1,4802 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "suite": "Revolves",
+  "scope": "Kit-authored part feature documents compared with same-script native API controls: open without recompute, every rollback marker, computeAll, driving parameter edits, export and reopen",
+  "cases": [
+    {
+      "name": "RevolveFull",
+      "file": "RevolveFull.f3d",
+      "sha256": "f209b8635fb5e11aa5626b37c3e85b341acadb23a64e1f41f60c32d198f78f3f",
+      "steps": [
+        {
+          "kind": "revolve",
+          "inner_cm": 1.0,
+          "outer_cm": 2.0,
+          "lower_cm": 0.0,
+          "upper_cm": 3.0,
+          "angle": "360 deg",
+          "operation": "new",
+          "sketch": "Revolve sketch",
+          "name": "Tube revolve"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Tube revolve",
+          "role": "AlongAngle",
+          "expression": "270 deg"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 28.274333882308138,
+          "area_cm2": 75.39822368615503,
+          "faces": 4,
+          "edges": 4
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 3,
+          "control_positions": 3,
+          "each": [
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 28.274333882309353,
+              "area_cm2": 75.39822368615503,
+              "faces": 4,
+              "edges": 4,
+              "vertices": 4,
+              "min_cm": [
+                -2.0,
+                -2.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                3.0
+              ],
+              "center_cm": [
+                -2.439919252634521e-10,
+                5.026061718855712e-16,
+                1.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Revolve sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Tube revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Tube revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Revolve sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Tube revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Tube revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Revolve sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Tube revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 28.274333882309353,
+                "area_cm2": 75.39822368615503,
+                "faces": 4,
+                "edges": 4,
+                "vertices": 4,
+                "min_cm": [
+                  -2.0,
+                  -2.0,
+                  0.0
+                ],
+                "max_cm": [
+                  2.0,
+                  2.0,
+                  3.0
+                ],
+                "center_cm": [
+                  -2.439919252634521e-10,
+                  5.026061718855712e-16,
+                  1.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Tube revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 21.205750411731117,
+              "area_cm2": 62.54866776461628,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -2.0,
+                -2.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                3.0
+              ],
+              "center_cm": [
+                -0.3300991412273679,
+                0.33009914122816736,
+                1.4999999999999996
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "270 deg",
+              "value": 4.71238898038469,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.27433388230935,
+            "area_cm2": 75.39822368615503,
+            "faces": 4,
+            "edges": 4,
+            "vertices": 4,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              -2.4399167396036623e-10,
+              -2.513030859427856e-16,
+              1.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 28.27433388230935,
+              "area_cm2": 75.39822368615503,
+              "faces": 4,
+              "edges": 4,
+              "vertices": 4,
+              "min_cm": [
+                -2.0,
+                -2.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                3.0
+              ],
+              "center_cm": [
+                -2.4399167396036623e-10,
+                -2.513030859427856e-16,
+                1.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.274333882309353,
+            "area_cm2": 75.39822368615503,
+            "faces": 4,
+            "edges": 4,
+            "vertices": 4,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              -2.439919252634521e-10,
+              5.026061718855712e-16,
+              1.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 21.205750411731117,
+            "area_cm2": 62.54866776461628,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              -0.3300991412273679,
+              0.33009914122816736,
+              1.4999999999999998
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "270 deg",
+            "value": 4.71238898038469,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 21.205750411731117,
+            "area_cm2": 62.54866776461628,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              -0.3300991412273679,
+              0.33009914122816736,
+              1.4999999999999998
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "270 deg",
+            "value": 4.71238898038469,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 21.205750411731117,
+            "area_cm2": 62.54866776461628,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0,
+              -2.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              -0.3300991412273679,
+              0.33009914122816736,
+              1.4999999999999998
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "270 deg",
+            "value": 4.71238898038469,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "saved_sha256": "525b201f42929cd18cff0d0c67cf80e8e8f1e15024029bf33783118a0d1e20fa",
+      "status": "accepted"
+    },
+    {
+      "name": "RevolveHalf",
+      "file": "RevolveHalf.f3d",
+      "sha256": "61208a5696759ec246e5ab79243b0eed19403d8e6a1bdb5fd0b2e8c66c092eaf",
+      "steps": [
+        {
+          "kind": "revolve",
+          "inner_cm": 1.0,
+          "outer_cm": 2.0,
+          "lower_cm": 0.0,
+          "upper_cm": 3.0,
+          "angle": "180 deg",
+          "operation": "new",
+          "sketch": "Revolve sketch",
+          "name": "Tube revolve"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Tube revolve",
+          "role": "AlongAngle",
+          "expression": "120 deg"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 14.137166941154069,
+          "area_cm2": 43.69911184307752,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 3,
+          "control_positions": 3,
+          "each": [
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 14.137166941154065,
+              "area_cm2": 43.69911184307752,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                3.0
+              ],
+              "center_cm": [
+                0.0,
+                0.9902974236829046,
+                1.5000000000000002
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Revolve sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Tube revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Tube revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Revolve sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Tube revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Tube revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Revolve sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Tube revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 14.137166941154065,
+                "area_cm2": 43.69911184307752,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  -2.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  2.0,
+                  2.0,
+                  3.0
+                ],
+                "center_cm": [
+                  0.0,
+                  0.9902974236829046,
+                  1.5000000000000002
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Tube revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 9.424777960769376,
+              "area_cm2": 31.13274122871834,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -0.9999999999999997,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                1.9999999999999998,
+                3.0
+              ],
+              "center_cm": [
+                0.643217044658758,
+                1.1140846016432675,
+                1.5000000000000007
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "120 deg",
+              "value": 2.0943951023931953,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.137166941154069,
+            "area_cm2": 43.69911184307752,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              0.0,
+              0.9902974236829046,
+              1.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Revolve sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Tube revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 14.137166941154069,
+              "area_cm2": 43.69911184307752,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -2.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                2.0,
+                2.0,
+                3.0
+              ],
+              "center_cm": [
+                0.0,
+                0.9902974236829046,
+                1.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Tube revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 14.137166941154065,
+            "area_cm2": 43.69911184307752,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -2.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              2.0,
+              3.0
+            ],
+            "center_cm": [
+              0.0,
+              0.9902974236829046,
+              1.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 9.424777960769376,
+            "area_cm2": 31.13274122871834,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.9999999999999997,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              1.9999999999999998,
+              3.0
+            ],
+            "center_cm": [
+              0.643217044658758,
+              1.1140846016432675,
+              1.5000000000000007
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "120 deg",
+            "value": 2.0943951023931953,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 9.424777960769376,
+            "area_cm2": 31.13274122871834,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.9999999999999997,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              1.9999999999999998,
+              3.0
+            ],
+            "center_cm": [
+              0.643217044658758,
+              1.1140846016432675,
+              1.5000000000000007
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "120 deg",
+            "value": 2.0943951023931953,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Revolve sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Tube revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 9.424777960769376,
+            "area_cm2": 31.13274122871834,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              -0.9999999999999997,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              2.0,
+              1.9999999999999998,
+              3.0
+            ],
+            "center_cm": [
+              0.643217044658758,
+              1.1140846016432675,
+              1.5000000000000007
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "120 deg",
+            "value": 2.0943951023931953,
+            "unit": "deg",
+            "owner": "Tube revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 2
+      },
+      "saved_sha256": "104944c337f7dae4df6052398c39520bf682eff97ce60e203adaa8ae2fec9e27",
+      "status": "accepted"
+    },
+    {
+      "name": "RevolveJoin",
+      "file": "RevolveJoin.f3d",
+      "sha256": "bd1cca89c71ba74cdebc88850788b0669ef878387a9b6db9df3543dff047f07a",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "circle",
+              "center_cm": [
+                0.0,
+                0.0
+              ],
+              "radius_cm": 2.5
+            }
+          ],
+          "amount": "10 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Disc sketch",
+          "name": "Disc extrude"
+        },
+        {
+          "kind": "revolve",
+          "inner_cm": 1.0,
+          "outer_cm": 1.5,
+          "lower_cm": 1.0,
+          "upper_cm": 2.0,
+          "angle": "360 deg",
+          "operation": "join",
+          "sketch": "Ring sketch",
+          "name": "Ring revolve"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Ring revolve",
+          "role": "AlongAngle",
+          "expression": "180 deg"
+        },
+        {
+          "feature": "Disc extrude",
+          "role": "AlongDistance",
+          "expression": "12 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 19.634954084936208,
+          "area_cm2": 54.97787143782138,
+          "faces": 3,
+          "edges": 2
+        },
+        {
+          "volume_cm3": 23.56194490192345,
+          "area_cm2": 70.68583470577035,
+          "faces": 7,
+          "edges": 6
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 5,
+          "control_positions": 5,
+          "each": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.56194490192446,
+              "area_cm2": 70.68583470577036,
+              "faces": 7,
+              "edges": 6,
+              "vertices": 6,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                2.0
+              ],
+              "center_cm": [
+                1.8473701984715117e-10,
+                0.0,
+                0.6666666666666666
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Ring sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Ring revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Ring revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Ring sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Ring revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Ring revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Ring sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Ring revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 19.63495408493705,
+                "area_cm2": 54.97787143782138,
+                "faces": 3,
+                "edges": 2,
+                "vertices": 2,
+                "min_cm": [
+                  -2.5,
+                  -2.5,
+                  0.0
+                ],
+                "max_cm": [
+                  2.5,
+                  2.5,
+                  1.0
+                ],
+                "center_cm": [
+                  2.614202667233859e-10,
+                  0.0,
+                  0.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Ring revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Ring sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Ring revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 19.63495408493705,
+                "area_cm2": 54.97787143782138,
+                "faces": 3,
+                "edges": 2,
+                "vertices": 2,
+                "min_cm": [
+                  -2.5,
+                  -2.5,
+                  0.0
+                ],
+                "max_cm": [
+                  2.5,
+                  2.5,
+                  1.0
+                ],
+                "center_cm": [
+                  2.614202667233859e-10,
+                  0.0,
+                  0.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Ring revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Ring sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Ring revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.56194490192446,
+                "area_cm2": 70.68583470577036,
+                "faces": 7,
+                "edges": 6,
+                "vertices": 6,
+                "min_cm": [
+                  -2.5,
+                  -2.5,
+                  0.0
+                ],
+                "max_cm": [
+                  2.5,
+                  2.5,
+                  2.0
+                ],
+                "center_cm": [
+                  1.8473701984715117e-10,
+                  0.0,
+                  0.6666666666666666
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "360 deg",
+                "value": 6.283185307179586,
+                "unit": "deg",
+                "owner": "Ring revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 4
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 25.13274122871936,
+              "area_cm2": 65.20264939859076,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                2.0
+              ],
+              "center_cm": [
+                2.450813869667862e-10,
+                0.05039906531243145,
+                0.6624999999999973
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "12 mm",
+              "value": 1.2000000000000002,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.56194490192446,
+            "area_cm2": 70.68583470577035,
+            "faces": 7,
+            "edges": 6,
+            "vertices": 6,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              2.0
+            ],
+            "center_cm": [
+              1.8473671828344802e-10,
+              0.0,
+              0.6666666666666665
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "Ring revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 19.63495408493705,
+              "area_cm2": 54.97787143782138,
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                2.614202667233859e-10,
+                0.0,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 19.63495408493705,
+              "area_cm2": 54.97787143782138,
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                2.614202667233859e-10,
+                0.0,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Ring revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.56194490192446,
+              "area_cm2": 70.68583470577035,
+              "faces": 7,
+              "edges": 6,
+              "vertices": 6,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                2.0
+              ],
+              "center_cm": [
+                1.8473671828344802e-10,
+                0.0,
+                0.6666666666666665
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "360 deg",
+              "value": 6.283185307179586,
+              "unit": "deg",
+              "owner": "Ring revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.56194490192446,
+            "area_cm2": 70.68583470577036,
+            "faces": 7,
+            "edges": 6,
+            "vertices": 6,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              2.0
+            ],
+            "center_cm": [
+              1.8473701984715117e-10,
+              0.0,
+              0.6666666666666666
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "360 deg",
+            "value": 6.283185307179586,
+            "unit": "deg",
+            "owner": "Ring revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 25.13274122871936,
+            "area_cm2": 65.20264939859076,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              2.0
+            ],
+            "center_cm": [
+              2.450813869667862e-10,
+              0.05039906531243145,
+              0.6624999999999973
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Ring revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 25.13274122871936,
+            "area_cm2": 65.20264939859076,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              2.0
+            ],
+            "center_cm": [
+              2.450813869667862e-10,
+              0.05039906531243145,
+              0.6624999999999973
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Ring revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Ring revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 25.13274122871936,
+            "area_cm2": 65.20264939859076,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              2.0
+            ],
+            "center_cm": [
+              2.450813869667862e-10,
+              0.05039906531243145,
+              0.6624999999999973
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Ring revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "saved_sha256": "3ae2e61ba883df9377b549fad111bd4d62fdde15ac5b719fbf873664a482c509",
+      "status": "accepted"
+    },
+    {
+      "name": "RevolveCut",
+      "file": "RevolveCut.f3d",
+      "sha256": "12a74518e40fb231e03c6bdcc3a9e8dbf8f4748da45a7beb57e54760b367cf85",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "circle",
+              "center_cm": [
+                0.0,
+                0.0
+              ],
+              "radius_cm": 2.5
+            }
+          ],
+          "amount": "10 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Disc sketch",
+          "name": "Disc extrude"
+        },
+        {
+          "kind": "revolve",
+          "inner_cm": 1.5,
+          "outer_cm": 2.2,
+          "lower_cm": 0.6,
+          "upper_cm": 1.0,
+          "angle": "90 deg",
+          "operation": "cut",
+          "sketch": "Groove sketch",
+          "name": "Groove revolve"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Groove revolve",
+          "role": "AlongAngle",
+          "expression": "120 deg"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 19.634954084936208,
+          "area_cm2": 54.97787143782138,
+          "faces": 3,
+          "edges": 2
+        },
+        {
+          "volume_cm3": 18.82128158765645,
+          "area_cm2": 57.86265000147783,
+          "faces": 8,
+          "edges": 14
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 5,
+          "control_positions": 5,
+          "each": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 18.821281587657293,
+              "area_cm2": 57.86265000147783,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                -0.051523235741624464,
+                -0.0515232360143467,
+                0.4870305458187286
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "90 deg",
+              "value": 1.5707963267948966,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Groove sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Groove revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "90 deg",
+                "value": 1.5707963267948966,
+                "unit": "deg",
+                "owner": "Groove revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Groove sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Groove revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "90 deg",
+                "value": 1.5707963267948966,
+                "unit": "deg",
+                "owner": "Groove revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Groove sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Groove revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 19.63495408493705,
+                "area_cm2": 54.97787143782138,
+                "faces": 3,
+                "edges": 2,
+                "vertices": 2,
+                "min_cm": [
+                  -2.5,
+                  -2.5,
+                  0.0
+                ],
+                "max_cm": [
+                  2.5,
+                  2.5,
+                  1.0
+                ],
+                "center_cm": [
+                  2.614202667233859e-10,
+                  0.0,
+                  0.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "90 deg",
+                "value": 1.5707963267948966,
+                "unit": "deg",
+                "owner": "Groove revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Groove sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Groove revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 19.63495408493705,
+                "area_cm2": 54.97787143782138,
+                "faces": 3,
+                "edges": 2,
+                "vertices": 2,
+                "min_cm": [
+                  -2.5,
+                  -2.5,
+                  0.0
+                ],
+                "max_cm": [
+                  2.5,
+                  2.5,
+                  1.0
+                ],
+                "center_cm": [
+                  2.614202667233859e-10,
+                  0.0,
+                  0.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "90 deg",
+                "value": 1.5707963267948966,
+                "unit": "deg",
+                "owner": "Groove revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          },
+          {
+            "timeline": [
+              {
+                "name": "Disc sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Disc extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Groove sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Groove revolve",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 18.821281587657293,
+                "area_cm2": 57.86265000147783,
+                "faces": 8,
+                "edges": 14,
+                "vertices": 10,
+                "min_cm": [
+                  -2.5,
+                  -2.5,
+                  0.0
+                ],
+                "max_cm": [
+                  2.5,
+                  2.5,
+                  1.0
+                ],
+                "center_cm": [
+                  -0.051523235741624464,
+                  -0.0515232360143467,
+                  0.4870305458187286
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Disc extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Disc extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "90 deg",
+                "value": 1.5707963267948966,
+                "unit": "deg",
+                "owner": "Groove revolve",
+                "role": "AlongAngle"
+              }
+            ],
+            "work": [],
+            "marker": 4
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 18.55005742189737,
+              "area_cm2": 58.6375761893633,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                -0.04527283540583001,
+                -0.07841485160487537,
+                0.4824545557186415
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "120 deg",
+              "value": 2.0943951023931953,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.821281587657293,
+            "area_cm2": 57.86265000147783,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.051523235741624464,
+              -0.05152323601434595,
+              0.4870305458187288
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "90 deg",
+            "value": 1.5707963267948966,
+            "unit": "deg",
+            "owner": "Groove revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "90 deg",
+              "value": 1.5707963267948966,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "90 deg",
+              "value": 1.5707963267948966,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 19.63495408493705,
+              "area_cm2": 54.97787143782138,
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                2.614202667233859e-10,
+                0.0,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "90 deg",
+              "value": 1.5707963267948966,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 19.63495408493705,
+              "area_cm2": 54.97787143782138,
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                2.614202667233859e-10,
+                0.0,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "90 deg",
+              "value": 1.5707963267948966,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        {
+          "timeline": [
+            {
+              "name": "Disc sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Disc extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Groove revolve",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 18.821281587657293,
+              "area_cm2": 57.86265000147783,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                -2.5,
+                -2.5,
+                0.0
+              ],
+              "max_cm": [
+                2.5,
+                2.5,
+                1.0
+              ],
+              "center_cm": [
+                -0.051523235741624464,
+                -0.05152323601434595,
+                0.4870305458187288
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Disc extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Disc extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "90 deg",
+              "value": 1.5707963267948966,
+              "unit": "deg",
+              "owner": "Groove revolve",
+              "role": "AlongAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.821281587657293,
+            "area_cm2": 57.86265000147783,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.051523235741624464,
+              -0.0515232360143467,
+              0.48703054581872857
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "90 deg",
+            "value": 1.5707963267948966,
+            "unit": "deg",
+            "owner": "Groove revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.55005742189737,
+            "area_cm2": 58.6375761893633,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.04527283540583001,
+              -0.07841485160487537,
+              0.4824545557186415
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "120 deg",
+            "value": 2.0943951023931953,
+            "unit": "deg",
+            "owner": "Groove revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.55005742189737,
+            "area_cm2": 58.6375761893633,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.04527283540583001,
+              -0.07841485160487537,
+              0.4824545557186415
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "120 deg",
+            "value": 2.0943951023931953,
+            "unit": "deg",
+            "owner": "Groove revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Disc sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Disc extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Groove revolve",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 18.55005742189737,
+            "area_cm2": 58.6375761893633,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              -2.5,
+              -2.5,
+              0.0
+            ],
+            "max_cm": [
+              2.5,
+              2.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.04527283540583001,
+              -0.07841485160487537,
+              0.4824545557186415
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Disc extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Disc extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "120 deg",
+            "value": 2.0943951023931953,
+            "unit": "deg",
+            "owner": "Groove revolve",
+            "role": "AlongAngle"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "saved_sha256": "fde4539b2d7e4613c628bcef234e1330e9fbdec96a27e283e00a71fbbd1dd9b9",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

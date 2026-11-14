@@ -1,0 +1,297 @@
+{
+  "schema": "FusionEntityGraphNativeComparison/1",
+  "floatComparison": {
+    "relativeTolerance": 1e-14,
+    "absoluteTolerance": 1e-14,
+    "reason": "Native JSON renders fewer decimal digits than the binary double payload"
+  },
+  "referenceNormalization": "Archive segment ids shifted by native Design segment minus archive Design segment; named roots resolved through primary frame rootId",
+  "completeEvidence": "NativeComparison.json.xz",
+  "uncompressedSha256": "607a97347c13bcb8a0cbaaf0135a1a40213f03f59268cfaebd76f9f50accc29b",
+  "compressedSha256": "7345ee0a48a7b3d921dbc4b07ef873a9290edca30ce56ef48a2f867230abb82a",
+  "samples": [
+    {
+      "archive": "circle_sketch.f3d",
+      "nativeGraphSha256": "3dc80d73065e61b56afec15b0f1160bdf08a955fd16bd9916696275e5926cd7f",
+      "fieldComparisonCounts": {
+        "matched": 1280,
+        "different": 1
+      },
+      "nativeEntityUnavailable": 16,
+      "differences": [
+        {
+          "entityId": 3,
+          "primary": false,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+              "member": "userName",
+              "nativeProperty": "userName",
+              "status": "different",
+              "decoded": "(Unsaved)",
+              "native": "Untitled"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "archive": "extrude_07mm.f3d",
+      "nativeGraphSha256": "37107efba7d93814ed8e234d4bbbcd5e78bae1810d4bfa0c46bbe4c9484c28bc",
+      "fieldComparisonCounts": {
+        "matched": 1585,
+        "different": 4,
+        "unavailable": 2
+      },
+      "nativeEntityUnavailable": 17,
+      "differences": [
+        {
+          "entityId": 3,
+          "primary": false,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+              "member": "userName",
+              "nativeProperty": "userName",
+              "status": "different",
+              "decoded": "(Unsaved)",
+              "native": "Untitled"
+            }
+          ]
+        },
+        {
+          "entityId": 242,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+              "member": "skRegionRecipe",
+              "nativeProperty": "skRegionRecipe",
+              "status": "unavailable",
+              "reason": "Native JSON callback omits custom recipe fields"
+            }
+          ]
+        },
+        {
+          "entityId": 258,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+              "member": "profileEdgeTagData",
+              "nativeProperty": "profileEdgeTagData",
+              "status": "unavailable",
+              "reason": "Native JSON callback omits custom recipe fields"
+            }
+          ]
+        },
+        {
+          "entityId": 262,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+              "member": "textureMappingBoundingBox",
+              "nativeProperty": "textureMappingBoundingBox",
+              "status": "different",
+              "decoded": {
+                "max": {
+                  "x": -1.7976931348623157e+308,
+                  "y": -1.7976931348623157e+308,
+                  "z": -1.7976931348623157e+308
+                },
+                "min": {
+                  "x": 1.7976931348623157e+308,
+                  "y": 1.7976931348623157e+308,
+                  "z": 1.7976931348623157e+308
+                }
+              },
+              "native": {
+                "max": {
+                  "x": {
+                    "capturedNonfinite": "-inf"
+                  },
+                  "y": {
+                    "capturedNonfinite": "-inf"
+                  },
+                  "z": {
+                    "capturedNonfinite": "-inf"
+                  }
+                },
+                "min": {
+                  "x": {
+                    "capturedNonfinite": "inf"
+                  },
+                  "y": {
+                    "capturedNonfinite": "inf"
+                  },
+                  "z": {
+                    "capturedNonfinite": "inf"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 263,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+              "member": "textureMappingBoundingBox",
+              "nativeProperty": "textureMappingBoundingBox",
+              "status": "different",
+              "decoded": {
+                "max": {
+                  "x": -1.7976931348623157e+308,
+                  "y": -1.7976931348623157e+308,
+                  "z": -1.7976931348623157e+308
+                },
+                "min": {
+                  "x": 1.7976931348623157e+308,
+                  "y": 1.7976931348623157e+308,
+                  "z": 1.7976931348623157e+308
+                }
+              },
+              "native": {
+                "max": {
+                  "x": {
+                    "capturedNonfinite": "-inf"
+                  },
+                  "y": {
+                    "capturedNonfinite": "-inf"
+                  },
+                  "z": {
+                    "capturedNonfinite": "-inf"
+                  }
+                },
+                "min": {
+                  "x": {
+                    "capturedNonfinite": "inf"
+                  },
+                  "y": {
+                    "capturedNonfinite": "inf"
+                  },
+                  "z": {
+                    "capturedNonfinite": "inf"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "entityId": 264,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "eb7847af-e60d-4ab0-a736-4ac00c1f1d21",
+              "member": "textureMappingBoundingBox",
+              "nativeProperty": "textureMappingBoundingBox",
+              "status": "different",
+              "decoded": {
+                "max": {
+                  "x": -1.7976931348623157e+308,
+                  "y": -1.7976931348623157e+308,
+                  "z": -1.7976931348623157e+308
+                },
+                "min": {
+                  "x": 1.7976931348623157e+308,
+                  "y": 1.7976931348623157e+308,
+                  "z": 1.7976931348623157e+308
+                }
+              },
+              "native": {
+                "max": {
+                  "x": {
+                    "capturedNonfinite": "-inf"
+                  },
+                  "y": {
+                    "capturedNonfinite": "-inf"
+                  },
+                  "z": {
+                    "capturedNonfinite": "-inf"
+                  }
+                },
+                "min": {
+                  "x": {
+                    "capturedNonfinite": "inf"
+                  },
+                  "y": {
+                    "capturedNonfinite": "inf"
+                  },
+                  "z": {
+                    "capturedNonfinite": "inf"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "archive": "extrude_13mm.f3d",
+      "nativeGraphSha256": "742f05f3031c1e3195581f6fc7eb909dd88968190fd65461f0b523b4f3d26576",
+      "fieldComparisonCounts": {
+        "matched": 1588,
+        "different": 1,
+        "unavailable": 2
+      },
+      "nativeEntityUnavailable": 17,
+      "differences": [
+        {
+          "entityId": 3,
+          "primary": false,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "EAF14CD0-75FD-4770-9C01-ABF1A66C2BCA",
+              "member": "userName",
+              "nativeProperty": "userName",
+              "status": "different",
+              "decoded": "(Unsaved)",
+              "native": "Untitled"
+            }
+          ]
+        },
+        {
+          "entityId": 242,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "0D57BD2F-D09B-43FC-AD57-1E89A118C453",
+              "member": "skRegionRecipe",
+              "nativeProperty": "skRegionRecipe",
+              "status": "unavailable",
+              "reason": "Native JSON callback omits custom recipe fields"
+            }
+          ]
+        },
+        {
+          "entityId": 258,
+          "primary": true,
+          "status": "compared",
+          "fields": [
+            {
+              "group": "2DEE34BE-FA70-4D54-979C-164D86FDA786",
+              "member": "profileEdgeTagData",
+              "nativeProperty": "profileEdgeTagData",
+              "status": "unavailable",
+              "reason": "Native JSON callback omits custom recipe fields"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6670 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "suite": "Holes",
+  "scope": "Kit-authored part feature documents compared with same-script native API controls: open without recompute, every rollback marker, computeAll, driving parameter edits, export and reopen",
+  "cases": [
+    {
+      "name": "HoleFlat",
+      "file": "HoleFlat.f3d",
+      "sha256": "9e5795219a56bf0ef2cbb3b02b88984da8f1e569c5ce4d76f4d387cf8d778f73",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "hole",
+          "center_cm": [
+            2.0,
+            1.5
+          ],
+          "diameter": "8 mm",
+          "name": "Top hole",
+          "depth": "10 mm"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Top hole",
+          "role": "HoleDiameter",
+          "expression": "6 mm"
+        },
+        {
+          "feature": "Top hole",
+          "role": "HoleDepth",
+          "expression": "12 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 23.497345175425632,
+          "area_cm2": 54.513274122871834,
+          "faces": 8,
+          "edges": 14
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.49734517542561,
+              "area_cm2": 54.513274122871834,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.000000000000895,
+                1.5,
+                0.9893040081587582
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d4",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.49734517542561,
+                "area_cm2": 54.513274122871834,
+                "faces": 8,
+                "edges": 14,
+                "vertices": 10,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.000000000000895,
+                  1.5,
+                  0.9893040081587582
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.660707993412288,
+              "area_cm2": 54.26194671058465,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.00000000000045,
+                1.5,
+                0.9942640430424621
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "12 mm",
+              "value": 1.2000000000000002,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.49734517542561,
+            "area_cm2": 54.513274122871834,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999991052,
+              1.5,
+              0.9893040081587581
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.49734517542561,
+              "area_cm2": 54.513274122871834,
+              "faces": 8,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999991052,
+                1.5,
+                0.9893040081587581
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.49734517542561,
+            "area_cm2": 54.513274122871834,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.000000000000895,
+              1.5,
+              0.9893040081587581
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.660707993412288,
+            "area_cm2": 54.26194671058465,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.00000000000045,
+              1.5,
+              0.994264043042462
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.660707993412288,
+            "area_cm2": 54.26194671058465,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.00000000000045,
+              1.5,
+              0.994264043042462
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.660707993412288,
+            "area_cm2": 54.26194671058465,
+            "faces": 8,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.00000000000045,
+              1.5,
+              0.994264043042462
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "6f4a0b7efa5f8a2699f852902540c9e23d3c2ecfa4f26619a1a22837dd357ce6",
+      "status": "accepted"
+    },
+    {
+      "name": "HoleThrough",
+      "file": "HoleThrough.f3d",
+      "sha256": "74ebdec0b5be421fb4d20fdcf1b6d67147e0ab54eed4fa6b10f738774689b812",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "hole",
+          "center_cm": [
+            2.0,
+            1.5
+          ],
+          "diameter": "8 mm",
+          "name": "Top hole"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Top hole",
+          "role": "HoleDiameter",
+          "expression": "10 mm"
+        },
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 22.994690350851265,
+          "area_cm2": 56.02123859659494,
+          "faces": 7,
+          "edges": 14
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 22.994690350851222,
+              "area_cm2": 56.02123859659494,
+              "faces": 7,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0000000000018288,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d4",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 22.994690350851222,
+                "area_cm2": 56.02123859659494,
+                "faces": 7,
+                "edges": 14,
+                "vertices": 10,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0000000000018288,
+                  1.5000000000000002,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "8 mm",
+                "value": 0.8,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 28.036504591506294,
+              "area_cm2": 65.2831853071796,
+              "faces": 7,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.0000000000036615,
+                1.5000000000000002,
+                1.2500000000000002
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d4",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.994690350851222,
+            "area_cm2": 56.02123859659494,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999981712,
+              1.5000000000000002,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 22.994690350851222,
+              "area_cm2": 56.02123859659494,
+              "faces": 7,
+              "edges": 14,
+              "vertices": 10,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999981712,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "8 mm",
+              "value": 0.8,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.994690350851222,
+            "area_cm2": 56.02123859659494,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0000000000018288,
+              1.5000000000000002,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "8 mm",
+            "value": 0.8,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.036504591506294,
+            "area_cm2": 65.2831853071796,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0000000000036615,
+              1.5000000000000002,
+              1.2500000000000002
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.036504591506294,
+            "area_cm2": 65.2831853071796,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0000000000036615,
+              1.5000000000000002,
+              1.2500000000000002
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 28.036504591506294,
+            "area_cm2": 65.2831853071796,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0000000000036615,
+              1.5000000000000002,
+              1.2500000000000002
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "b6dafd551edc33aebb00afd835a004eff51f89721e499ef3f49cb6dbb60e3ca1",
+      "status": "accepted"
+    },
+    {
+      "name": "HoleCounterboreFlat",
+      "file": "HoleCounterboreFlat.f3d",
+      "sha256": "10c3a004e208893f9e3137ff45965b55fca29226663c834eaa27e7c1a2b79168",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "hole",
+          "center_cm": [
+            2.0,
+            1.5
+          ],
+          "diameter": "6 mm",
+          "name": "Top hole",
+          "depth": "10 mm",
+          "bore_diameter": "10 mm",
+          "bore_depth": "4 mm"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Top hole",
+          "role": "CBDiameter",
+          "expression": "12 mm"
+        },
+        {
+          "feature": "Top hole",
+          "role": "CBDepth",
+          "expression": "3 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 23.516194731347174,
+          "area_cm2": 54.387610416728236,
+          "faces": 10,
+          "edges": 16
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.516194731347152,
+              "area_cm2": 54.387610416728236,
+              "faces": 10,
+              "edges": 16,
+              "vertices": 12,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999997176,
+                1.4999999999999996,
+                0.9871483793731097
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d7",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d7",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d7",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d7",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.516194731347152,
+                "area_cm2": 54.387610416728236,
+                "faces": 10,
+                "edges": 16,
+                "vertices": 12,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  1.9999999999997176,
+                  1.4999999999999996,
+                  0.9871483793731097
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDepth"
+              },
+              {
+                "name": "d4",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d5",
+                "expression": "180 deg",
+                "value": 3.141592653589793,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d7",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.462787656236124,
+              "area_cm2": 54.450442269800035,
+              "faces": 10,
+              "edges": 16,
+              "vertices": 12,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999998868,
+                1.5000000000000002,
+                0.9847558470522939
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d7",
+              "expression": "12 mm",
+              "value": 1.2000000000000002,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.51619473134715,
+            "area_cm2": 54.387610416728236,
+            "faces": 10,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999990756,
+              1.5000000000000002,
+              0.9871483793731097
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d8",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d8",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d8",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d8",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.51619473134715,
+              "area_cm2": 54.387610416728236,
+              "faces": 10,
+              "edges": 16,
+              "vertices": 12,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999990756,
+                1.5000000000000002,
+                0.9871483793731097
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDepth"
+            },
+            {
+              "name": "d5",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d6",
+              "expression": "180 deg",
+              "value": 3.141592653589793,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d8",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.516194731347152,
+            "area_cm2": 54.387610416728236,
+            "faces": 10,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.999999999999718,
+              1.4999999999999993,
+              0.9871483793731097
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d8",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.462787656236124,
+            "area_cm2": 54.450442269800035,
+            "faces": 10,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999998865,
+              1.5000000000000004,
+              0.9847558470522939
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d8",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.462787656236124,
+            "area_cm2": 54.450442269800035,
+            "faces": 10,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999998865,
+              1.5000000000000004,
+              0.9847558470522939
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d8",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.462787656236124,
+            "area_cm2": 54.450442269800035,
+            "faces": 10,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999998865,
+              1.5000000000000004,
+              0.9847558470522939
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDepth"
+          },
+          {
+            "name": "d5",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d6",
+            "expression": "180 deg",
+            "value": 3.141592653589793,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d8",
+            "expression": "12 mm",
+            "value": 1.2000000000000002,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "6922b0d8098b041ef7642a5874241b95e524e00de9d508b533a5f594f99b1c1d",
+      "status": "accepted"
+    },
+    {
+      "name": "HoleCounterbore",
+      "file": "HoleCounterbore.f3d",
+      "sha256": "3e571ebbd40b536b066fe8755a57431c1b40eca507b02fb568983565b1cb122d",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "hole",
+          "center_cm": [
+            2.0,
+            1.5
+          ],
+          "diameter": "6 mm",
+          "name": "Top hole",
+          "bore_diameter": "10 mm",
+          "bore_depth": "4 mm"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Top hole",
+          "role": "HoleDiameter",
+          "expression": "5 mm"
+        },
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 23.23345139252409,
+          "area_cm2": 55.70707933123596,
+          "faces": 9,
+          "edges": 16
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.23345139252406,
+              "area_cm2": 55.70707933123596,
+              "faces": 9,
+              "edges": 16,
+              "vertices": 12,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.000000000000096,
+                1.4999999999999998,
+                0.9930768123449983
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d4",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d5",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d6",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d6",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d6",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d6",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Top hole",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.23345139252406,
+                "area_cm2": 55.70707933123596,
+                "faces": 9,
+                "edges": 16,
+                "vertices": 12,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.000000000000096,
+                  1.4999999999999998,
+                  0.9930768123449983
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "6 mm",
+                "value": 0.6000000000000001,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "HoleDiameter"
+              },
+              {
+                "name": "d4",
+                "expression": "118.0 deg",
+                "value": 2.059488517353309,
+                "unit": "deg",
+                "owner": "Top hole",
+                "role": "TipAngle"
+              },
+              {
+                "name": "d5",
+                "expression": "4 mm",
+                "value": 0.4,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDepth"
+              },
+              {
+                "name": "d6",
+                "expression": "10 mm",
+                "value": 1.0,
+                "unit": "mm",
+                "owner": "Top hole",
+                "role": "CBDiameter"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 29.27350669885733,
+              "area_cm2": 63.162610266006475,
+              "faces": 9,
+              "edges": 16,
+              "vertices": 12,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.0000000000001927,
+                1.5000000000000002,
+                1.241548657835385
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "5 mm",
+              "value": 0.5,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d4",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d5",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d6",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.233451392524056,
+            "area_cm2": 55.707079331235946,
+            "faces": 9,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9999999999986824,
+              1.5000000000000002,
+              0.9930768123449984
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d7",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d7",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d7",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d7",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Top hole",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.233451392524056,
+              "area_cm2": 55.707079331235946,
+              "faces": 9,
+              "edges": 16,
+              "vertices": 12,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                1.9999999999986824,
+                1.5000000000000002,
+                0.9930768123449984
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "6 mm",
+              "value": 0.6000000000000001,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "HoleDiameter"
+            },
+            {
+              "name": "d5",
+              "expression": "118.0 deg",
+              "value": 2.059488517353309,
+              "unit": "deg",
+              "owner": "Top hole",
+              "role": "TipAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDepth"
+            },
+            {
+              "name": "d7",
+              "expression": "10 mm",
+              "value": 1.0,
+              "unit": "mm",
+              "owner": "Top hole",
+              "role": "CBDiameter"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.23345139252406,
+            "area_cm2": 55.70707933123596,
+            "faces": 9,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.000000000000096,
+              1.4999999999999998,
+              0.9930768123449984
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "6 mm",
+            "value": 0.6000000000000001,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d7",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 29.27350669885733,
+            "area_cm2": 63.162610266006475,
+            "faces": 9,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0000000000001927,
+              1.5000000000000002,
+              1.2415486578353847
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d7",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 29.27350669885733,
+            "area_cm2": 63.162610266006475,
+            "faces": 9,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0000000000001927,
+              1.5000000000000002,
+              1.2415486578353847
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d7",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Top hole",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 29.27350669885733,
+            "area_cm2": 63.162610266006475,
+            "faces": 9,
+            "edges": 16,
+            "vertices": 12,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0000000000001927,
+              1.5000000000000002,
+              1.2415486578353847
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "HoleDiameter"
+          },
+          {
+            "name": "d5",
+            "expression": "118.0 deg",
+            "value": 2.059488517353309,
+            "unit": "deg",
+            "owner": "Top hole",
+            "role": "TipAngle"
+          },
+          {
+            "name": "d6",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDepth"
+          },
+          {
+            "name": "d7",
+            "expression": "10 mm",
+            "value": 1.0,
+            "unit": "mm",
+            "owner": "Top hole",
+            "role": "CBDiameter"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "f0667c094ab0b7fd28eb4f166ad194f23fa886a49da21ea5de36cfec88eaf02b",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

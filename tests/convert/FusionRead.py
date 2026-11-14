@@ -16,7 +16,7 @@ def OpenResearch(
     StrictMode: bool = True,
 ) -> CadDocument:
     Registry = BuildRegistry()
-    Registry.register_reader(FusionReader())
+    Registry.register_reader(FusionReader(), replace=True)
     return Registry.read(
         SourceData,
         format_id=SourceFormat,

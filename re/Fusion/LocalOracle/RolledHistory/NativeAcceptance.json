@@ -1,0 +1,1362 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native source/control comparison for complete reconstructed rolled-back history, preserving other source members",
+  "cases": [
+    {
+      "name": "Control",
+      "source_sha256": "4e5c99de29a515f95cba4a4f4e900c4de0e7b7a652fa1730d2d3dae76a4c8a87",
+      "stages": {
+        "opened": {
+          "marker": 2,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 4,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 4,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 3.1415926535899286,
+              "area_cm2": 12.566370614359172,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ]
+            }
+          ]
+        },
+        "rollback": {
+          "marker": 1,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 4,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 4,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": []
+        },
+        "restored": {
+          "marker": 2,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 4,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 4,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 3.1415926535899286,
+              "area_cm2": 12.566370614359172,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ]
+            }
+          ]
+        },
+        "end": {
+          "marker": 5,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 0,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 3.1415926535899286,
+              "area_cm2": 12.566370614359172,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ]
+            },
+            {
+              "name": "Body2",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 6.283185307179316,
+              "area_cm2": 18.84955592153876,
+              "bounds_cm": [
+                [
+                  3.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  1.0,
+                  2.0
+                ]
+              ]
+            },
+            {
+              "name": "Body3",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 9.424777960768976,
+              "area_cm2": 25.132741228718345,
+              "bounds_cm": [
+                [
+                  7.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  9.0,
+                  1.0,
+                  3.0
+                ]
+              ]
+            }
+          ]
+        },
+        "edited": {
+          "marker": 5,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.3,
+              "expression": "13 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 0,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 4.084070449666906,
+              "area_cm2": 14.451326206513047,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.3
+                ]
+              ]
+            },
+            {
+              "name": "Body2",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 6.283185307179316,
+              "area_cm2": 18.84955592153876,
+              "bounds_cm": [
+                [
+                  3.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  1.0,
+                  2.0
+                ]
+              ]
+            },
+            {
+              "name": "Body3",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 9.424777960768976,
+              "area_cm2": 25.132741228718345,
+              "bounds_cm": [
+                [
+                  7.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  9.0,
+                  1.0,
+                  3.0
+                ]
+              ]
+            }
+          ]
+        },
+        "reopened": {
+          "marker": 5,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.3,
+              "expression": "13 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 0,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 4.084070449666906,
+              "area_cm2": 14.451326206513047,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.3
+                ]
+              ]
+            },
+            {
+              "name": "Body2",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 6.283185307179316,
+              "area_cm2": 18.84955592153876,
+              "bounds_cm": [
+                [
+                  3.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  1.0,
+                  2.0
+                ]
+              ]
+            },
+            {
+              "name": "Body3",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 9.424777960768976,
+              "area_cm2": 25.132741228718345,
+              "bounds_cm": [
+                [
+                  7.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  9.0,
+                  1.0,
+                  3.0
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "saved_sha256": "1a485e2f44de6f6c08934d09007c322f075bbd0376d974aa9b30c3b95c20189a",
+      "status": "accepted"
+    },
+    {
+      "name": "Reemitted",
+      "source_sha256": "3fe405fabad823a99cbf932e65aa63dac5d7567f792eb7041e876961a26f7bc0",
+      "stages": {
+        "opened": {
+          "marker": 2,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 4,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 4,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 3.1415926535899286,
+              "area_cm2": 12.566370614359172,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ]
+            }
+          ]
+        },
+        "rollback": {
+          "marker": 1,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 4,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 4,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": []
+        },
+        "restored": {
+          "marker": 2,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 4,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 4,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 3.1415926535899286,
+              "area_cm2": 12.566370614359172,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ]
+            }
+          ]
+        },
+        "end": {
+          "marker": 5,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.0,
+              "expression": "10 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 0,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 3.1415926535899286,
+              "area_cm2": 12.566370614359172,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              ]
+            },
+            {
+              "name": "Body2",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 6.283185307179316,
+              "area_cm2": 18.84955592153876,
+              "bounds_cm": [
+                [
+                  3.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  1.0,
+                  2.0
+                ]
+              ]
+            },
+            {
+              "name": "Body3",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 9.424777960768976,
+              "area_cm2": 25.132741228718345,
+              "bounds_cm": [
+                [
+                  7.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  9.0,
+                  1.0,
+                  3.0
+                ]
+              ]
+            }
+          ]
+        },
+        "edited": {
+          "marker": 5,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.3,
+              "expression": "13 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 0,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 4.084070449666906,
+              "area_cm2": 14.451326206513047,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.3
+                ]
+              ]
+            },
+            {
+              "name": "Body2",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 6.283185307179316,
+              "area_cm2": 18.84955592153876,
+              "bounds_cm": [
+                [
+                  3.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  1.0,
+                  2.0
+                ]
+              ]
+            },
+            {
+              "name": "Body3",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 9.424777960768976,
+              "area_cm2": 25.132741228718345,
+              "bounds_cm": [
+                [
+                  7.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  9.0,
+                  1.0,
+                  3.0
+                ]
+              ]
+            }
+          ]
+        },
+        "reopened": {
+          "marker": 5,
+          "parameters": [
+            {
+              "name": "d1",
+              "value": 1.3,
+              "expression": "13 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d2",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d3",
+              "value": 2.0,
+              "expression": "20 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d4",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            },
+            {
+              "name": "d5",
+              "value": 3.0,
+              "expression": "30 mm",
+              "unit": "mm"
+            },
+            {
+              "name": "d6",
+              "value": 0.0,
+              "expression": "0.0 deg",
+              "unit": "deg"
+            }
+          ],
+          "timeline": [
+            {
+              "name": "ProfileA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionA",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ProfileGroup",
+              "health": 5,
+              "message": "",
+              "group": true
+            },
+            {
+              "name": "ExtrusionB",
+              "health": 0,
+              "message": "",
+              "group": false
+            },
+            {
+              "name": "ExtrusionC",
+              "health": 0,
+              "message": "",
+              "group": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 4.084070449666906,
+              "area_cm2": 14.451326206513047,
+              "bounds_cm": [
+                [
+                  -1.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  1.0,
+                  1.0,
+                  1.3
+                ]
+              ]
+            },
+            {
+              "name": "Body2",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 6.283185307179316,
+              "area_cm2": 18.84955592153876,
+              "bounds_cm": [
+                [
+                  3.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  5.0,
+                  1.0,
+                  2.0
+                ]
+              ]
+            },
+            {
+              "name": "Body3",
+              "faces": 3,
+              "edges": 2,
+              "vertices": 2,
+              "volume_cm3": 9.424777960768976,
+              "area_cm2": 25.132741228718345,
+              "bounds_cm": [
+                [
+                  7.0,
+                  -1.0,
+                  0.0
+                ],
+                [
+                  9.0,
+                  1.0,
+                  3.0
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      "saved_sha256": "b786514b517c79149521423b90dcf2eeb1371971b04c1c540de9a5119487eb2b",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

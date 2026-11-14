@@ -1,0 +1,51 @@
+{
+ "schema": "FusionComplexBoundsCrash/1",
+ "fusion_version": "2706.1.17",
+ "crashed_run": {
+  "script": "re/Fusion/LocalOracle/AcceptComplexBounds.py",
+  "last_checkpoint_local": "2026-11-12 14:27",
+  "accepted_before_crash": [
+   "ModeledThread",
+   "TappedHole",
+   "AlongVector",
+   "ClosestPoint",
+   "SketchLine",
+   "OffsetPositive",
+   "ReversedNegative"
+  ],
+  "in_progress_case": "TwoTexts",
+  "in_progress_variant": "Control",
+  "input": "re/Fusion/Study/embosstext-cd769aa41cdf/two_texts.f3d",
+  "input_sha256": "dadc36ee79ac5c0df351e60bac2e63d5eb39261d585a2a1febfd5faac1a66103",
+  "first_steps": "importToNewDocument, then observe, which read Parameter.value for every parameter",
+  "observed": "No failed status, traceback or documents_after was written. The Fusion process was gone and the coordinator relaunched it. The runner waited until it was stopped.",
+  "report_discarded": true
+ },
+ "probes": [
+  {
+   "log": "re/Fusion/LocalOracle/ComplexGeometry/Bounds/CrashProbeValue.jsonl",
+   "log_sha256": "0736bc37b2da7da9640a3122fb95ccc2e2f49242160cc8fcff05c1b78438ec58",
+   "script_variant": "ProbeBoundsCrash.py with a parameters step that read Parameter.value",
+   "outcome": "Fresh session. Import and observe succeeded. Parameter.value raised RuntimeError 3 Parameter is not numeric type. Fusion survived and documents_after was 0."
+  },
+  {
+   "log": "re/Fusion/LocalOracle/ComplexGeometry/Bounds/CrashProbe.jsonl",
+   "log_sha256": "e67ec35149f7b03a3305b1f747c3fcd589fa2d55fd6c60baa9416e35a27d51e5",
+   "script_variant": "ProbeBoundsCrash.py as committed",
+   "outcome": "Fresh session. Import, measures, rollback markers 4 to 0, rebuild, export, close, reopen and recompute all completed. documents_after was 0."
+  }
+ ],
+ "text_parameters": [
+  {
+   "name": "d6",
+   "unit": "Text",
+   "expression": "'KIT'"
+  },
+  {
+   "name": "d8",
+   "unit": "Text",
+   "expression": "'UCAD'"
+  }
+ ],
+ "conclusion": "The crash did not reproduce on the unmodified control in a fresh session. The only failing call was Parameter.value on Text parameters, which raises cleanly there. Whether it caused the native stop after 28 earlier document opens is unconfirmed. The acceptance observes parameters by name, expression and unit only."
+}
