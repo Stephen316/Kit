@@ -288,6 +288,36 @@ Do not run local tests, collection or ad hoc verification substitutes.
 Pending CI cannot be relabeled as passed research verification.
 Research inspection and ordinary decoding remain local workloads.
 
+### Batched remote verification
+
+Reviewers start remote CI for a batch of candidates when they decide.
+CI does not run once for each candidate.
+
+Before a candidate joins a batch, stage 11 decodes its own experiment grid, repeat saves and holdout files with the candidate.
+It compares the result with the recorded measurements and records each counterexample.
+This check is research decoding, not a test suite run, and it does not replace remote CI.
+A candidate that passes it finishes with the existing `waiting_ci` outcome.
+A candidate that fails it is rejected with its counterexample.
+
+Later work may use a `waiting_ci` candidate.
+Each job that uses it binds the candidate fingerprint as an input.
+Reports show these candidates as pending CI, never as verified.
+
+Reviewers record each batch as an artifact.
+The artifact names the batch revision, the candidates in the batch, the CI run and the result of each candidate.
+Recording the artifact changes the fingerprint of the `waiting_ci` jobs, so the controller resumes them.
+A passed candidate completes.
+A failed candidate is rejected with the CI failure, and the controller invalidates every job that bound its fingerprint.
+Those jobs requeue without operator action.
+
+Larger batches wait less for CI but need more rework after a failure.
+Start with one batch for each working day or for each 10–20 candidates.
+Use the pilot measurements to change that size.
+
+The A03 controller already supplies the `waiting_ci` state, fingerprint resumption and dependent invalidation.
+No batch artifact, batch command or stage 11 checker exists yet.
+
+
 ### Proposed fast local checks
 
 This proposal is not in effect.

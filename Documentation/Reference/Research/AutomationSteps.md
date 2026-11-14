@@ -171,9 +171,11 @@ They are not implemented by documenting the rows.
 | A10d     | Optional Claude API and Claude Code runners                                          | A08a, A07, A09; applicable authorization             | Unassigned | planned  | Provider validation, serving-model attribution, bounded errors and private-data/policy gates                                                                                  |
 | A14a     | Controller and corpus process gates                                                  | A03 technical substeps                               | jdharcourt | complete | Corpus and twelve controller scenarios passed at `eba0ab48`; extend the gate when interfaces change                                                                           |
 | A14b     | Reader, comparator and writer regression gates                                       | A04a, A05; A06 for paired gates                      | Unassigned | planned  | Pinned-input process checks plus independent semantic evidence reject unsupported/stale results                                                                               |
+| A14c     | Batched remote verification receipts                                                 | A03, A09, A14b                                       | Unassigned | planned  | Stage 11 research check, `waiting_ci` candidates, recorded batch artifacts, resumption and dependent invalidation after a failed batch                                        |
 | A15a     | Two-week deterministic operating pilot, with optional enabled model pools            | A07, A08b, A14; A10c/A10d only when enabled          | Unassigned | planned  | Measure elapsed and active agent time, throughput, recovery, blockers, verified capability gains, and any operator intervention. Track model spend when enabled               |
 
 The model pairs do not become runtime requirements for a models-off pilot.
+Reviewers run remote CI in batches. See [batched remote verification](AutomationPlan.md#batched-remote-verification).
 The local-check proposal is not in force: all test execution remains remote.
 A10 must not silently approve model-run shell commands or transmit private designs.
 
