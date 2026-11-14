@@ -81,10 +81,10 @@ def CheckPairIntake(RequirePairs: bool) -> None:
         "qualified_pairs": 0,
         "blocked_recipes": ["P01", "P02", "P03", "P04", "P05"],
     }
-    CheckPairRules(Report)
+    AssertPairRules(Report)
 
 
-def CheckPairRules(Report: dict[str, object]) -> None:
+def AssertPairRules(Report: dict[str, object]) -> None:
     Captures = JsonCodec.loads(JsonCodec.dumps(Report["captures"]))
     assert len({(Entry["recipe_id"], Entry["application"]) for Entry in Captures}) == 10
     for Capture in Captures:

@@ -50,7 +50,7 @@ def FinishMigration(Client: JobClient, RootPath: FilePath, JobFile: FilePath) ->
     )
 
 
-def CheckEarlyStore(Client: JobClient, Database: FilePath) -> None:
+def AssertEarlyDb(Client: JobClient, Database: FilePath) -> None:
     CountsSql = "DELETE FROM settings WHERE key IN ('job_count','definition_bytes')"
     DowngradeStore(
         Database,
@@ -73,7 +73,7 @@ def CheckEarlyStore(Client: JobClient, Database: FilePath) -> None:
     assert JsonCodec.loads(Client.RunCli("init"))["store_version"] == 4
 
 
-def CheckPoolStore(Client: JobClient, RootPath: FilePath, Database: FilePath) -> None:
+def AssertPoolStore(Client: JobClient, RootPath: FilePath, Database: FilePath) -> None:
     _ = Client.RunCli("resource", "provider:migrated", "--available")
     DowngradeStore(
         Database,
@@ -115,8 +115,8 @@ def CheckStoreMove() -> None:
         JobFile = RootPath / "Job.json"
         Database = RootPath / "State/ledger.sqlite3"
         FinishMigration(Client, RootPath, JobFile)
-        CheckEarlyStore(Client, Database)
+        AssertEarlyDb(Client, Database)
         SubmitMigration(Client, JobFile, "migrated:pending")
-        CheckPoolStore(Client, RootPath, Database)
+        AssertPoolStore(Client, RootPath, Database)
         DowngradeStore(Database, 5)
         _ = Client.RunCli("status", ExitCode=1)

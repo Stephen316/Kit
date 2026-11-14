@@ -50,14 +50,14 @@ def CheckOutcomes() -> None:
         Summary = JsonCodec.loads(JsonCodec.dumps(Events[-1]))["summary"]
         assert Summary["started"] == 6, Events
         assert Summary["finished"] == {"completed": 1, "rejected": 1, "retry": 4}
-        CheckReceipt(Harness)
-        CheckFailedJobs(Harness)
+        AssertReceipt(Harness)
+        AssertFailures(Harness)
         StatePath = RootPath / "SupervisorState"
         assert not any((StatePath / "sessions").iterdir())
         assert not any((StatePath / "claims").iterdir())
 
 
-def CheckReceipt(Harness: SessionHost) -> None:
+def AssertReceipt(Harness: SessionHost) -> None:
     Complete = Harness.ReadJob("outcome:complete")
     assert Complete["state"] == "completed", Complete
     Stored = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult("outcome:complete")))
@@ -71,7 +71,7 @@ def CheckReceipt(Harness: SessionHost) -> None:
     assert Stored["receipt"]["peak_memory_bytes"] > 0
 
 
-def CheckFailedJobs(Harness: SessionHost) -> None:
+def AssertFailures(Harness: SessionHost) -> None:
     assert Harness.ReadJob("outcome:rejected")["state"] == "rejected"
     Invalid = Harness.ReadJob("outcome:invalid")
     assert Invalid["state"] == "failed"
