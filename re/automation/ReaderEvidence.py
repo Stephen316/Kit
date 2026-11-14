@@ -29,6 +29,12 @@ def reader_evidence(document):
                     })
                 if kind == "Parameter":
                     attributes = value.get("attributes", {})
+                    if attributes.get("unresolved_inch_dimension") is True:
+                        unresolved.append({
+                            "path": path + "/value",
+                            "reason": "unresolved_inch_dimension",
+                            "display": attributes.get("source_text"),
+                        })
                     if "unresolved_equation_references" in attributes:
                         references = attributes["unresolved_equation_references"]
                         unresolved.append({
@@ -36,6 +42,17 @@ def reader_evidence(document):
                             "reason": "unresolved_equation_reference",
                             "references": references["$tuple"],
                         })
+                if kind == "CadDocument":
+                    target_key = "solidworks.unresolvedEquationReferences"
+                    metadata = value.get("metadata", {})
+                    targets = metadata.get(target_key, {}) if isinstance(metadata, dict) else {}
+                    if isinstance(targets, dict):
+                        for index, target in enumerate(targets.get("$tuple", ())):
+                            unresolved.append({
+                                "path": f"{path}/metadata/{target_key}/$tuple/{index}",
+                                "reason": "unresolved_equation_target",
+                                "target": target,
+                            })
                 if kind == "Diagnostic":
                     unresolved.append({"path": path, "reason": "reader_diagnostic", "diagnostic": value})
             if "$bytes" in value:

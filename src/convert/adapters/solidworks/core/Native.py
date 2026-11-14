@@ -1,6 +1,6 @@
 from __future__ import annotations as Annotations
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
-from convert.adapters.solidworks.core.InchScalar import IsRoundedInch
+from convert.adapters.solidworks.core.BindInch import BindInch
 from convert.adapters.solidworks.core.LinearDisplay import LinearDisplay
 from dataclasses import dataclass as Dataclass, field as Field, replace as Replace
 import hashlib as Hashlib
@@ -976,13 +976,14 @@ class NativeScalar:
 @Dataclass(frozen=True, slots=True)
 class NativeDimension:
     name: str
-    value_mm: float
+    value_mm: float | None
     kind: str
     source_text: str
     native_value: float | None = None
     native_offset: int | None = None
     native_role: str | None = None
     operands: tuple[NativeOperand, ...] = ()
+    inch_display_value: float | None = None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -2140,15 +2141,22 @@ def BindDimension(
     Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...],
     Display: LinearDisplay | None = None,
 ) -> NativeDimension:
-    if Display is not None and Display.UnitName == "in" and Dimension.kind == "length":
+    if (
+        Display is not None
+        and Display.UnitName == "in"
+        and Dimension.kind not in {"angle", "instance_count"}
+    ):
         return BindInch(Dimension, Scalars, Display.Decimals)
+    Value = Dimension.value_mm
+    if Value is None:
+        return Dimension
     Target = (
-        Dimension.value_mm
+        Value
         if Dimension.kind == "instance_count"
         else (
-            MathValue.radians(Dimension.value_mm)
+            MathValue.radians(Value)
             if Dimension.kind == "angle"
-            else Dimension.value_mm / 1000.0
+            else Value / 1000.0
         )
     )
     ValueMatches = [
@@ -2167,34 +2175,9 @@ def BindDimension(
     )
     return NativeDimension(
         name=Dimension.name,
-        value_mm=Dimension.value_mm,
+        value_mm=Value,
         kind=Dimension.kind,
         source_text=Dimension.source_text,
-        native_value=Scalar.value,
-        native_offset=Scalar.value_offset,
-        native_role=Scalar.role,
-        operands=Scalar.operands,
-    )
-
-
-def BindInch(
-    Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...], Decimals: int | None
-) -> NativeDimension:
-    if not Dimension.name or Decimals is None:
-        return Dimension
-    Named = [Scalar for Scalar in Scalars if Scalar.name == Dimension.name]
-    if len(Named) != 1:
-        return Dimension
-    Scalar = Named[0]
-    if (
-        Scalar.object_id is None
-        or Scalar.role == "display"
-        or not IsRoundedInch(Dimension.source_text, Scalar.value, Decimals)
-    ):
-        return Dimension
-    return Replace(
-        Dimension,
-        value_mm=Scalar.value * KMillimetres,
         native_value=Scalar.value,
         native_offset=Scalar.value_offset,
         native_role=Scalar.role,
@@ -3289,7 +3272,9 @@ def SelectRects(
     Rectangles: list[tuple[float, float, float, float]],
     Dimensions: tuple[NativeDimension, ...],
 ) -> list[tuple[float, float, float, float]]:
-    Values = [Dimension.value_mm for Dimension in Dimensions]
+    Values = [
+        Dimension.value_mm for Dimension in Dimensions if Dimension.value_mm is not None
+    ]
     MatchValues = [
         Rectangle
         for Rectangle in Rectangles
@@ -3777,6 +3762,16 @@ def CircleClosure(
 
 
 # circle dimension matching owns unique radius and diameter normalization
+def CircleDimension(Value: float | None, Radius: float) -> tuple[str, float] | None:
+    if Value is None:
+        return None
+    if MathValue.isclose(Value, Radius, rel_tol=1e-07, abs_tol=1e-07):
+        return ("radius", Value)
+    if MathValue.isclose(Value, Radius * 2.0, rel_tol=1e-07, abs_tol=1e-07):
+        return ("diameter", Value / 2.0)
+    return None
+
+
 def MatchCircleMut(
     Dimensions: tuple[NativeDimension, ...],
     Radius: float,
@@ -3785,12 +3780,9 @@ def MatchCircleMut(
 ) -> tuple[tuple[float, float, float], str | None, str | None]:
     Matches: list[tuple[int, str, float]] = []
     for Index, Dimension in enumerate(Dimensions):
-        if MathValue.isclose(Dimension.value_mm, Radius, rel_tol=1e-07, abs_tol=1e-07):
-            Matches.append((Index, "radius", Dimension.value_mm))
-        elif MathValue.isclose(
-            Dimension.value_mm, Radius * 2.0, rel_tol=1e-07, abs_tol=1e-07
-        ):
-            Matches.append((Index, "diameter", Dimension.value_mm / 2.0))
+        Match = CircleDimension(Dimension.value_mm, Radius)
+        if Match is not None:
+            Matches.append((Index, *Match))
     ParamName = None
     DimensionKind = None
     if len(Matches) == 1 and Matches[0][0] not in Normalized:
@@ -3951,20 +3943,10 @@ def CircleSet(
                 continue
             StartAngle = MarkerStart(CenterMarker, RimMarker)
             for Index, Dimension in enumerate(Dimensions):
-                Semantic = None
-                NormalizedRadius = RadiusValue
-                if MathValue.isclose(
-                    Dimension.value_mm, RadiusValue, rel_tol=1e-07, abs_tol=1e-07
-                ):
-                    Semantic = "radius"
-                    NormalizedRadius = Dimension.value_mm
-                elif MathValue.isclose(
-                    Dimension.value_mm, RadiusValue * 2.0, rel_tol=1e-07, abs_tol=1e-07
-                ):
-                    Semantic = "diameter"
-                    NormalizedRadius = Dimension.value_mm / 2.0
-                if Semantic is None:
+                Match = CircleDimension(Dimension.value_mm, RadiusValue)
+                if Match is None:
                     continue
+                Semantic, NormalizedRadius = Match
                 CenterCoordinates = CenterMarker.coordinates_mm
                 if CenterCoordinates is None:
                     continue
@@ -4242,7 +4224,14 @@ def Native(
         (ItemValue.native_offset is None for ItemValue in ByName.values())
     ):
         return None
-    return (ByName["d1"].value_mm, ByName["d2"].value_mm, ByName["d3"].value_mm)
+    First, Second, Third = (
+        ByName["d1"].value_mm,
+        ByName["d2"].value_mm,
+        ByName["d3"].value_mm,
+    )
+    if First is None or Second is None or Third is None:
+        return None
+    return (First, Second, Third)
 
 
 # this definition exists because focused behavior needs one stable owner

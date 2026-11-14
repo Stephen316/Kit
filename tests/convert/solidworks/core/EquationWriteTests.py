@@ -6,6 +6,7 @@ from pytest import raises as RaisesError
 from convert import convert as ConvertFile
 from convert import open_document as OpenDocument
 from convert import write_document as WriteDocument
+from convert.adapters.solidworks.core.EquationTarget import KUnresolvedEqTargets
 from tests.convert.api.ApiTestPaths import KSamplePath
 
 
@@ -36,3 +37,22 @@ def TestMissingLink(TmpPath: FilePath) -> None:
     with RaisesError(ValueError, match="MissingDimension@Sketch1"):
         _ = ConvertFile(SourcePath, TargetPath, overwrite=True)
     assert TargetPath.read_bytes() == b"existing destination"
+
+
+def TestBadTarget(TmpPath: FilePath) -> None:
+    Original = OpenDocument(KSamplePath)
+    Document = ReplaceData(
+        Original,
+        metadata={
+            **Original.metadata,
+            KUnresolvedEqTargets: (
+                {"lhs": "MissingDimension@Sketch1", "reason": "unresolved_target"},
+            ),
+        },
+    )
+    SourcePath = TmpPath / "Research.json"
+    TargetPath = TmpPath / "Target.json"
+    _ = SourcePath.write_text(Document.to_json(), encoding="utf-8")
+    with RaisesError(ValueError, match="unresolved_target"):
+        _ = ConvertFile(SourcePath, TargetPath)
+    assert not TargetPath.exists()
