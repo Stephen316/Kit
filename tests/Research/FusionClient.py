@@ -30,7 +30,7 @@ def ReadChunk(
     ArgumentList = ["--allow-partial", "--output", str(TargetPath)]
     for AssetPath in AssetChunk:
         ArgumentList += ["--asset", AssetPath]
-    return TargetPath, RunFusionReader(ArgumentList, TimeLimit=1500)
+    return TargetPath, RunFusionReader(ArgumentList, TimeLimit=1200)
 
 
 def FusionAssets() -> list[dict[str, str | int]]:
