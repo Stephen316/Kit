@@ -73,7 +73,11 @@ def CheckPairIntake(RequirePairs: bool) -> None:
         "paired_recipes": 5,
         "capture_receipts": 10,
         "native_files": 74,
-        "native_files_by_reserved_split": {"discovery": 50, "qualification": 10, "holdout": 14},
+        "native_files_by_reserved_split": {
+            "discovery": 50,
+            "qualification": 10,
+            "holdout": 14,
+        },
         "qualified_pairs": 0,
         "blocked_recipes": ["P01", "P02", "P03", "P04", "P05"],
     }
@@ -98,8 +102,13 @@ def CheckPairRules(Report: dict[str, object]) -> None:
             assert "fresh_application_process_unrecorded" in Blockers
         else:
             assert Coverage["missing_readbacks"] == []
-            assert Coverage["clean_load_diagnostic_count"] == len(Capture["native_files"])
-            assert "authoring_harness_not_pinned" in Blockers
+            assert Coverage["clean_load_diagnostic_count"] == len(
+                Capture["native_files"]
+            )
+            assert (
+                Capture["provenance"]["generator_status"] == "retained_audited_source"
+            )
+            assert "authoring_harness_not_pinned" not in Blockers
         assert ("supporting_face_identity_unrecorded" in Blockers) == (
             Capture["recipe_id"] == "P04"
         )

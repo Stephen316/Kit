@@ -4,7 +4,7 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-**Current step: A04c — initial profile semantic qualification (blocked).**
+**Current step: A04c — initial profile semantic qualification (active).**
 A05 — Fusion → neutral reader integration — is active under Stephen316.
 The current request authorizes remaining deterministic work in dependency order on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 A04a–A04b and A03e are verified at code checkpoint `eba0ab488a6a00e2a31fd5ed8ab0bee564b371db`.
@@ -77,7 +77,7 @@ All A01–A16 code, documentation and progress stay on PR #94; no separate step 
 | A02a     | Hashed native inputs and historical evidence index          | complete | 778 native files, 232 JSON evidence files and two historical notes pinned; remote corpus verification passed at `0dd47cda`                                                                                                              |
 | A02b     | Five paired recipes and controlled-variation specifications | complete | Explicit parameters, frames, constraints, edits, analytic expectations, tolerances and reserved family splits; source review and digest checks passed                                                                                   |
 | A02c     | Independently authored and measured native pairs            | complete | Fusion and SOLIDWORKS captures for P01–P05 recorded. The [SOLIDWORKS capture entry](../../Changes/Research/SolidWorksPairedCaptures.md) links the native files, application build, controls, and edit, rebuild, and reopen evidence |
-| A02d     | Independent qualification and holdout ancestry              | blocked  | [Audit verifies 74 native files and ten receipts](../../Changes/Research/PairedCaptureLineageAudit.md). Fusion fresh-process and baseline-B readbacks, complete observation bindings and corpus intake remain open. P05 stays reserved for holdout |
+| A02d     | Independent qualification and holdout ancestry              | blocked  | [Audit verifies 74 native files and ten receipts](../../Changes/Research/PairedCaptureLineageAudit.md). [Corpus intake](../../Changes/Research/PairedCaptureIntake.md) records the split and blockers. [Fusion fresh-process evidence](../../Changes/Research/FusionFreshProcessEvidence.md) still needs a native run, and observation binding gaps remain. P05 stays reserved for holdout |
 
 Historical measurements retain their original values and failures.
 Relative filenames do not establish capture-time hash bindings.
@@ -127,7 +127,7 @@ Current-head PR readiness and deferred merge-group acceptance remain separate fr
 | -------- | ---------------------------------------------------- | --------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | A04a     | Pinned SLDPRT reader and typed neutral serialization | A01, A02a                               | jdharcourt | complete | All 58 pinned parts decoded/reconstructed; strict per-asset success, overwrite and tamper checks passed at `eba0ab48`        |
 | A04b     | Separate field-path evidence and unresolved census   | A04a                                    | jdharcourt | complete | Remote receipts at `eba0ab48` retain native-only content, bytes, codes, diagnostics and unqualified direction/frame mappings |
-| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | blocked  | Independently establish required P01–P05 semantics, direction, frames, termination, constraints and dependency bindings      |
+| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | active   | [Discovery census](../../Changes/Research/SolidWorksDiscoveryCensus.md) decodes 25 committed files. Resolve the remaining measured differences before qualification and frozen-rule holdout |
 
 The [reader guide](SolidworksResearchReader.md) defines the command and its research-only receipt.
 A04a–A04b do not close A04c or qualify native conversion.
@@ -230,7 +230,7 @@ A03 and its heartbeat repair passed remote process verification at the recorded 
 A04 adds a research reader boundary and evidence receipt around the existing codec.
 No comparator, schema extension or application worker is established by that integration.
 Native capture qualification remains blocked separately.
-A04a–A04b passed remote verification; A04c awaits independent evidence.
+A04a–A04b passed remote verification. A04c has independent SOLIDWORKS measurements for bounded discovery comparisons.
 Later deterministic child steps remain available when their prerequisites pass.
 Formatting and source-link review do not replace the remote process checks.
 Remote CI, configured review and merge-group acceptance remain separate publication evidence.

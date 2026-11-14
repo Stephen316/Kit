@@ -192,7 +192,11 @@ def control_binding(git_data, revision, app, observations, tolerances):
     return {"path": path, "sha256": digest}
 
 
-def authoring_provenance(git_data, introduction, app, measurements, specs_digest):
+SOLIDWORKS_HARNESS = CAPTURES + "SolidWorksAuthoring/SolidWorksCapture.cs"
+SOLIDWORKS_HARNESS_SHA = "0e90cdfc47f4295e15907505c9870620bb8fab2f82437d57a7f7521c22adb238"
+
+
+def authoring_provenance(git_data, revision, introduction, app, measurements, specs_digest):
     recipe_id = measurements["recipe_id"]
     if app == "solidworks":
         source_revision = measurements["source_revision"]
@@ -201,7 +205,15 @@ def authoring_provenance(git_data, introduction, app, measurements, specs_digest
                 == source_revision, f"{recipe_id} SOLIDWORKS source is outside introduction ancestry")
         require(sha256(git_data.blob(source_revision, SPECIFICATIONS)) == specs_digest,
                 f"{recipe_id} SOLIDWORKS authoring specification differs from the pinned source")
-        return {"source_revision": source_revision, "generator_status": "uncommitted_capture_harness"}
+        result = {"source_revision": source_revision, "generator_status": "uncommitted_capture_harness"}
+        if SOLIDWORKS_HARNESS in git_data.tree(revision):
+            require(sha256(git_data.blob(revision, SOLIDWORKS_HARNESS)) == SOLIDWORKS_HARNESS_SHA,
+                    "retained SOLIDWORKS capture harness differs from the audited source")
+            result.update(
+                generator_status="retained_audited_source",
+                generator_sha256={SOLIDWORKS_HARNESS: SOLIDWORKS_HARNESS_SHA},
+            )
+        return result
 
     require(sha256(git_data.blob(introduction, SPECIFICATIONS)) == specs_digest,
             f"{recipe_id} Fusion authoring specification differs from the pinned source")
@@ -297,7 +309,7 @@ def inspect_capture(git_data, revision, receipt_path, recipe, app, specs, specs_
     require(all(git_data.tree(revision)[path] == git_data.tree(introduction).get(path)
                 for path in (receipt_path, measurements_path)),
             f"capture evidence has changed since introduction: {receipt_path}")
-    provenance = authoring_provenance(git_data, introduction, app, measurements, specs_digest)
+    provenance = authoring_provenance(git_data, revision, introduction, app, measurements, specs_digest)
     files = verify_native_files(git_data, revision, receipt_path, recipe, app, receipt["native_files"])
     require(all(item["git_blob"] == git_data.tree(introduction).get(item["path"]) for item in files),
             f"native files have changed since capture introduction: {receipt_path}")
@@ -317,7 +329,7 @@ def inspect_capture(git_data, revision, receipt_path, recipe, app, specs, specs_
         blockers.append("explicit_load_diagnostics_missing")
     if app == "fusion":
         blockers.append("sketch_relation_participants_unrecorded")
-    else:
+    elif provenance["generator_status"] != "retained_audited_source":
         blockers.append("authoring_harness_not_pinned")
     blockers.append("complete_dimension_targets_unrecorded")
     if "face-supported-cut-sketch" in recipe["feature_history"]:

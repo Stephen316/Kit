@@ -16,6 +16,6 @@ The intake checks exact Git blob aliases anywhere in the candidate tree and olde
 | `1` | Invalid revision, missing inputs or mismatched evidence |
 | `2` | A family was quarantined, or `--require-pairs` found qualification blockers |
 
-The current [lineage audit](PairedCaptureLineageAudit.md) identifies five recipes, ten receipts and 74 native files. The JSON report records the outstanding application restart, readback, load diagnostic, authoring source, and binding gaps. The historical corpus and its reader inputs retain their own snapshot. This intake checks evidence identity and coverage. Semantic qualification and CAD conversion acceptance use separate checks.
+The current [lineage audit](PairedCaptureLineageAudit.md) identifies five recipes, ten receipts and 74 native files. The intake checks the [retained SOLIDWORKS source](../../Reference/Research/SolidWorksCaptureAuthoring.md) against the audit digest. Its JSON report records the outstanding application restart, readback, load diagnostic and binding gaps. The historical corpus and its reader inputs retain their own snapshot. Semantic qualification and CAD conversion acceptance use separate checks.
 
 The existing [corpus process check](../../../tests/Research/CorpusFlowTests.py) exercises the intake and verifies the holdout reservation and the blocked qualification status in CI.
