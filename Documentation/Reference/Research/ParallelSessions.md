@@ -415,8 +415,8 @@ Install it and check its actual options during integration.
 ### Fixed model pairs
 
 Each runner uses one model at two reasoning efforts.
-The first step answers every question.
-The fallback step runs only after the first step fails with a model failure.
+New questions start at the first step unless the failure log routes their signature to the fallback.
+The fallback also receives questions after a first-step model failure.
 
 | Runner | First step                  | Fallback step              |
 | ------ | --------------------------- | -------------------------- |
@@ -425,8 +425,7 @@ The fallback step runs only after the first step fails with a model failure.
 
 The supervisor uses no other model or effort.
 It has no ranking set, no ranked ladder and no automatic model replacement.
-Failures at the first step are expected to be rare.
-The supervisor records each failure so that the operator can check that expectation.
+The supervisor records each failure by step and signature for the use report.
 
 Store the pairs in a supervisor configuration file, for example `ModelSteps.json`:
 
@@ -508,11 +507,12 @@ Codex reports cached input tokens in its token events.
 | Runner exits without a valid result                         | Finish with `retry` and the bounded error output                              |
 | Operating system ends a session for memory                  | Double the peak memory estimate for that kind, halve the pool limit and retry |
 | Deadline exceeded                                           | Stop the process group and finish with `retry`                                |
-| Three infrastructure failures in one pool within 10 minutes | Pause that pool and report to the operator; other pools continue              |
+| Three infrastructure failures in one pool within 10 minutes | Pause that pool and run bounded health probes after a cooldown. Other pools continue. |
 | Attempt budget exhausted                                    | The controller marks the job `failed` for the current prerequisite generation |
 
 The supervisor never changes a job's timeout, attempt budget or checks to force progress.
 Those changes require a new job definition.
+Resume a paused pool when its health probe passes. When recovery attempts are exhausted, park dependent jobs until the worker state changes and report any external prerequisite requiring operator action.
 
 ## Fairness
 

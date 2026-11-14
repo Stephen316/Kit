@@ -51,7 +51,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A12 | Portable neutral → SOLIDWORKS writer                   | A01, A06, A09                        | Unassigned | planned  | Qualified portable graphs generate native files from understood fields and reject unsupported required semantics                                                                                                                   |
 | A13 | Bidirectional native acceptance                        | A04, A05, A08, A11, A12              | Unassigned | planned  | Both routes match body count, volume, center of mass and feature history, preserve all required constraints/dependencies, and pass independent driving-parameter edits, restoration, rebuild and save/reopen with healthy controls |
 | A14 | Independent remote compatibility and regression gates  | A03; A06 for reader and writer gates | Unassigned | planned  | Exact-revision checks reject stale receipts, shared-reader/writer mistakes and unsupported input through real boundaries                                                                                                           |
-| A15 | Unattended operation, reports and forecast pilot       | A07, A14; A10 when enabled           | Unassigned | planned  | Two-week operating evidence records recovery, no-progress parking, model spend, blockers and verified documents unlocked                                                                                                           |
+| A15 | Unattended operation, reports and forecast pilot       | A07, A08b, A14; A10 when enabled     | Unassigned | planned  | Two-week operating evidence records recovery, no-progress parking, blockers and verified documents unlocked. Record model spend when enabled                                                                                      |
 | A16 | Broader features and additional CAD families           | A13, A15                             | Unassigned | planned  | Each scoped feature/version/route has independent native acceptance; FreeCAD and CATIA use the same contract                                                                                                                       |
 
 A04 and A05 start on the pinned corpus from A02a.
@@ -175,7 +175,7 @@ They are not implemented by documenting the rows.
 | A15a     | Two-week deterministic operating pilot, with optional enabled model pools            | A07, A08b, A14; A10c/A10d only when enabled          | Unassigned | planned  | Measure elapsed and active agent time, throughput, recovery, blockers, verified capability gains, and any operator intervention. Track model spend when enabled               |
 
 The model pairs do not become runtime requirements for a models-off pilot.
-Reviewers run remote CI in batches. See [batched remote verification](AutomationPlan.md#batched-remote-verification).
+The coordinating agent runs remote CI in batches. See [batched remote verification](AutomationPlan.md#batched-remote-verification).
 The local-check proposal is not in force: all test execution remains remote.
 A10 must not silently approve model-run shell commands or transmit private designs.
 

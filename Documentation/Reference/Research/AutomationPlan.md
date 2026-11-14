@@ -51,6 +51,7 @@ Run the research workflow without routine operator action once the authorized wo
 Agents handle investigation, sample requests, worker dispatch and recovery, candidate integration, CI follow-up and evidence recording.
 Application workers handle the full native sample cycle, including application restart and saved-file readback, in an exclusive session.
 When an external prerequisite is missing, record it, park only the jobs that depend on it and continue runnable work.
+Publish updates with fast-forward pushes. Integrate concurrent remote work before retrying a rejected push.
 
 ## Existing assets and revision boundaries
 
@@ -290,10 +291,9 @@ Research inspection and ordinary decoding remain local workloads.
 
 ### Batched remote verification
 
-Reviewers start remote CI for a batch of candidates when they decide.
-CI does not run once for each candidate.
+The agent coordinating verification groups ready candidates and starts remote CI using the configured batch size, cadence and repository gates.
 
-Before a candidate joins a batch, stage 11 decodes its own experiment grid, repeat saves and holdout files with the candidate.
+Before a candidate joins a batch, stage 11 decodes its own experiment grid and repeat saves. Freeze the candidate before running any separately reserved holdout evaluation.
 It compares the result with the recorded measurements and records each counterexample.
 This check is research decoding, not a test suite run, and it does not replace remote CI.
 A candidate that passes it finishes with the existing `waiting_ci` outcome.
@@ -303,14 +303,15 @@ Later work may use a `waiting_ci` candidate.
 Each job that uses it binds the candidate fingerprint as an input.
 Reports show these candidates as pending CI, never as verified.
 
-Reviewers record each batch as an artifact.
+The coordinating agent records each batch as an artifact after CI returns its results.
 The artifact names the batch revision, the candidates in the batch, the CI run and the result of each candidate.
+When a batch failure cannot be attributed to a candidate, the agent isolates the failure within configured retry limits while affected candidates wait for evidence.
 Recording the artifact changes the fingerprint of the `waiting_ci` jobs, so the controller resumes them.
 A passed candidate completes.
 A failed candidate is rejected with the CI failure, and the controller invalidates every job that bound its fingerprint.
 Those jobs requeue without operator action.
 
-Larger batches wait less for CI but need more rework after a failure.
+Larger batches reduce CI launches and can increase the wait to enter a batch and the rework after a failure.
 Start with one batch for each working day or for each 10–20 candidates.
 Use the pilot measurements to change that size.
 
@@ -382,8 +383,9 @@ Those ranges describe development effort.
 After the planned steps are implemented, unattended pipeline time for one simple feature is much shorter.
 Application grids take about 5–30 minutes for each application.
 The field search, candidate generation and the stage 11 check take seconds to minutes.
-A first-step model attempt takes about 2–10 minutes, and a rare fallback attempt about 10–30 minutes.
-So one simple feature takes about 10–45 minutes before its CI batch, or about 30–75 minutes after a fallback.
+A first-step model attempt takes an estimated 2–10 minutes when models are enabled. A fallback attempt adds roughly 10–30 minutes when needed.
+With workers already available and application grids able to overlap, estimate 10–45 minutes of processing before CI for one simple feature, or 30–75 minutes total when a fallback runs.
+Worker queues, batch waits, CI and independent native acceptance add to that elapsed time.
 A new feature family repeats that loop several times.
 Application installations limit throughput, because each runs one grid at a time.
 These values are estimates from the plan's stage design and example limits, not measurements.
@@ -391,6 +393,7 @@ These values are estimates from the plan's stage design and example limits, not 
 For each feature family, format version and conversion direction, the unattended pilot records wall-clock time from job readiness to independently verified acceptance.
 Record active agent time across parallel attempts, evidence and application waits, CI queue and execution time, retries, cached results, optional model cost and independently verified documents unlocked.
 Count every operator intervention and record what required it.
+The offline pilot can proceed independently. Native timing and coverage measurements require the A08c workers, and native qualification follows the A13 gates.
 Use measured throughput, sample counts and the longest dependency chain to update the forecast and priorities.
 
 ## Related information
