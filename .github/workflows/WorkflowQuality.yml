@@ -48,7 +48,7 @@ jobs:
     needs: pr-ci-reuse
     name: Verify CI policy and pytest compatibility
     runs-on: ubuntu-24.04
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -88,6 +88,11 @@ jobs:
 
       - name: Verify pinned SOLIDWORKS research reader through process boundaries
         run: uv run --frozen python -m pytest tests/Research/Reader*Tests.py -q -s
+
+      - name: Verify pinned Fusion research reader through process boundaries
+        run: >-
+          uv run --frozen --no-default-groups --extra dev --python 3.14
+          python -m pytest tests/Research/FusionReader*Tests.py -q -s
 
       - name: Verify durable research controller through process boundaries
         run: >-
