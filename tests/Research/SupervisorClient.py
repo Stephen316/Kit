@@ -93,6 +93,13 @@ class SessionCommand:
             "--config",
             str(ConfigFile),
         ]
+        self.Environment = dict(OsLayer.environ)
+        PythonPath = self.Environment.get("PYTHONPATH")
+        self.Environment["PYTHONPATH"] = (
+            OsLayer.pathsep.join((str(KRepoRoot), PythonPath))
+            if PythonPath
+            else str(KRepoRoot)
+        )
 
     def RunCli(self, *ArgItems: str, ExitCode: int = 0, Timeout: int = 60) -> str:
         ResultInfo = Subprocess.run(
@@ -100,6 +107,7 @@ class SessionCommand:
             capture_output=True,
             text=True,
             check=False,
+            env=self.Environment,
             timeout=Timeout,
         )
         assert ResultInfo.returncode == ExitCode, ResultInfo.stderr
@@ -111,6 +119,7 @@ class SessionCommand:
             stdout=Subprocess.PIPE,
             stderr=Subprocess.PIPE,
             text=True,
+            env=self.Environment,
         )
 
     def RunIdle(self, IdleSeconds: float = 3, MaxSeconds: float = 60) -> list[object]:

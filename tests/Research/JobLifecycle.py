@@ -1,0 +1,50 @@
+import time as TimeClock
+
+from tests.Research.HashText import HashText
+from tests.Research.JobEntry import JobEntry
+from tests.Research.StoreState import StoreState
+
+
+class JobLifecycle:
+    def HashPrereqs(self, Current: StoreState, Entry: JobEntry) -> str:
+        DepResults = {
+            ItemName: (
+                Current.JobMap[ItemName].ResultHash
+                if ItemName in Current.JobMap
+                and Current.JobMap[ItemName].JobState == "completed"
+                else None
+            )
+            for ItemName in Entry.Depends
+        }
+        return HashText(
+            {
+                "spec": Entry.RawSpec,
+                "inputs": {
+                    RoleName: Current.Bindings.get(ItemName)
+                    for RoleName, ItemName in Entry.Inputs.items()
+                },
+                "dependencies": DepResults,
+            }
+        )
+
+    def SettleJobsMut(self, Current: StoreState) -> None:
+        Changed = True
+        while Changed:
+            Changed = False
+            for Entry in Current.JobMap.values():
+                PrintHash = self.HashPrereqs(Current, Entry)
+                if Entry.PrintHash != PrintHash:
+                    Entry.PrintHash = PrintHash
+                    Entry.Generation += 1
+                    Entry.Attempts = 0
+                    Entry.JobState = "queued"
+                    Entry.TokenHash = ""
+                    Entry.ResultHash = ""
+                    Entry.Reason = "prerequisites changed"
+                    Changed = True
+                Expired = min(Entry.LeaseUntil, Entry.Deadline) <= TimeClock.time()
+                if Entry.JobState == "running" and Expired:
+                    Entry.TokenHash = ""
+                    Exhausted = Entry.Attempts >= Entry.MaxAttempts
+                    Entry.JobState = "failed" if Exhausted else "queued"
+                    Entry.Reason = "lease or execution deadline expired"
