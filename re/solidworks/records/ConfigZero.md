@@ -2,8 +2,12 @@
 
 Status: **confirmed**. A constructively emitted `Contents/Config-0` was measured opening in
 SOLIDWORKS 2025 with the correct volume and centre of mass, with the full 19-node feature tree, and
-also with a changed part name whose byte sequence exists in no corpus file. Kit emits it from
-`src/convert/adapters/solidworks/configuration/ConfigZero.py`.
+also with a changed part name whose byte sequence exists in no corpus file. Kit emitted it from
+the removed `src/convert/adapters/solidworks/configuration/ConfigZero.py`.
+
+Removed: the writer this page describes was a recorded payload and is gone from production. Kit
+reads SOLIDWORKS files and writes none. The field layouts below remain research evidence for a
+generative serializer. See `Documentation/Changes/Solidworks/SolidworksRecordedPayloadRemoval.md`.
 
 Current closure: the historical residual accounting in §§5.7 and 7–8 records the path used to
 recover the grammar, but it is superseded by the generated `Program.py` field program. The shipped

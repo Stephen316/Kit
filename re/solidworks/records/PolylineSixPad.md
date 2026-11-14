@@ -4,13 +4,18 @@
 
 The 12,283-byte `Contents/Config-0-ResolvedFeatures` family for one closed,
 simple, six-line sketch on the Front Plane followed by one blind boss extrusion
-is closed. The production program is
+was closed. The removed production program was
 `src/convert/adapters/solidworks/programs/resolved/polyline/sixpoint/Program.py`.
 
-The program contains no recorded byte span. It emits archive definitions,
-class references, object references, nulls, strings, primitive fields, and
-direct counted arrays from typed values. Runtime conversion does not read the
-controlled files or invoke SOLIDWORKS, COM, FreeCAD, or any vendor library.
+Removed: the writer this page describes was a recorded payload and is gone from production. Kit
+reads SOLIDWORKS files and writes none. The field layouts below remain research evidence for a
+generative serializer. See `Documentation/Changes/Solidworks/SolidworksRecordedPayloadRemoval.md`.
+
+The program contained no opaque byte span, but its offsets and values came
+from one saved part. It emitted archive definitions, class references, object
+references, nulls, strings, primitive fields, and direct counted arrays from
+typed values. Runtime conversion did not read the controlled files or invoke
+SOLIDWORKS, COM, FreeCAD, or any vendor library.
 
 ## Controlled inputs
 

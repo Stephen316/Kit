@@ -155,7 +155,7 @@ if zstd is not None:
 cases = (
     (root / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT", ".FCStd"),
     (output / "conversion_0.FCStd", ".CATPart"),
-    (root / "re" / "catia" / "examples" / ".CATPart" / "Banjo.CATPart", ".SLDPRT"),
+    (root / "re" / "catia" / "examples" / ".CATPart" / "Banjo.CATPart", ".FCStd"),
     (
         root
         / "re"
@@ -172,7 +172,7 @@ cases = (
         / "examples"
         / ".CATProduct"
         / "Brake_Pedal_Assembly - Backup 2.CATProduct",
-        ".SLDASM",
+        ".FCStd",
     ),
 )
 for index, (source, suffix) in enumerate(cases):

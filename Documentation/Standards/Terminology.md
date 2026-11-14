@@ -46,6 +46,7 @@ Preserve exact API spelling inside code spans.
 | per-case table       | Table with one captured or fitted entry for each layout, size, or value | Do not use it in production output                            |
 | PR                   | Pull request                                                            | Keep review evidence tied to its head revision                |
 | proven constant      | Value that is the same in unrelated documents, with its reason recorded | Record the documents and the reason                           |
+| recorded payload     | Typed field program with values or offsets from one vendor save         | It is donor data, even with zero opaque bytes                 |
 | replay               | Re-emission of the source document's own data                           | It does not prove translation to another format               |
 | SDK                  | Software development kit                                                | Kit exposes a Python API                                      |
 | source               | Input document or input bytes                                           | Preserve the original during conversion                       |

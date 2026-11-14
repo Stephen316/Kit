@@ -11,29 +11,32 @@ not exercised by any available file; **not found**.
 
 ## The headline
 
-A `.SLDPRT` is a zip-like container of named streams. The container framing and the load-critical
-streams used by Kit's supported feature families are fully constructive: the writer emits typed
-fields and does not copy, embed, patch, or read a vendor stream. Eighteen resolved-feature programs
-currently reconstruct their declared lengths with zero opaque bytes. The format is not fully
-inverted for arbitrary modeling histories; unsupported FCStd documents fail closed. The exact
-repository-wide boundary is measured in `CorpusCoverage.md`.
+A `.SLDPRT` is a zip-like container of named streams. The container framing is constructive.
+Kit's removed writer was not: each supported feature family was one recorded vendor stream,
+re-encoded as typed field operations, re-emitted at its saved length, with selected values
+overridden. Those programs reconstructed their declared lengths with zero opaque bytes, which meant
+every byte had a typed owner, not that Kit computed its value. They held 185,090 recorded field
+operations and are gone from production; Kit now reads SOLIDWORKS files and writes none.
+`tools/Donors/CheckReplays.py` fails CI on any recorded payload in `src`. The format is not
+inverted for arbitrary modeling histories. `CorpusCoverage.md` records the removed writer's last
+audit and the current boundary.
 
-| layer                                                                  | status                                                                                                                                                                   |
-| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| container: header, file id, three signatures, stream directory         | **cracked.** Any of 1000 legal ids is written from declared format constants.                                                                                            |
-| archive framing: class tags, object tags, map counter, string encoding | **cracked.** Confirmed against the real reader at runtime.                                                                                                               |
-| object segmentation and map renumbering                                | **cracked.** Traced streams tile with zero gaps and re-emit byte-identically.                                                                                            |
-| `Definition`, `CMgr`, `Config-0`, `ModelHeader`, assembly core         | **cracked for the supported programs.** Every reference byte has a typed owner; opaque count is zero.                                                                    |
-| supported feature records                                              | **constructive.** Exact boxes, pad, pocket chains, pad→pad, revolution, groove, fillet, chamfer, shell, linear pattern, and circular pattern have typed native programs. |
-| boss versus cut                                                        | **constructive by family.** Each recovered operation has its own typed tree; Kit does not mutate an arbitrary foreign feature record.                                    |
-| arbitrary feature records and sketch profiles                          | **partial.** No donor fallback is allowed; unrecovered histories are rejected.                                                                                           |
-| repository FCStd corpus                                                | **38/163 accepted**, zero errors and zero vendor-only results; see `CorpusCoverage.md`.                                                                                  |
-| repository FCStd assemblies                                            | **0/5 accepted.** The assembly core is typed, but these component histories or assembly semantics remain unsupported.                                                    |
+| layer                                                                  | status                                                                                                                                                                                                       |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| container: header, file id, three signatures, stream directory         | **cracked.** The retained container codec writes any of 1000 legal ids from declared format constants.                                                                                                       |
+| archive framing: class tags, object tags, map counter, string encoding | **cracked.** Confirmed against the real reader at runtime.                                                                                                                                                   |
+| object segmentation and map renumbering                                | **cracked.** Traced streams tile with zero gaps and re-emit byte-identically.                                                                                                                                |
+| `Definition`, `CMgr`, `Config-0`, `ModelHeader`, assembly core         | **decoded for the removed programs.** Every reference byte had a typed owner; opaque count was zero. The programs were recorded payloads.                                                                    |
+| supported feature records                                              | **removed.** Exact boxes, pad, pocket chains, pad→pad, revolution, groove, fillet, chamfer, shell, linear pattern, and circular pattern each re-emitted one typed recording; topology was fixed by the save. |
+| boss versus cut                                                        | **recorded by family, removed.** Each recovered operation had its own recorded typed tree; Kit never mutated an arbitrary foreign feature record.                                                            |
+| arbitrary feature records and sketch profiles                          | **partial.** Field layouts are documented; no generative serializer exists yet.                                                                                                                              |
+| repository FCStd corpus                                                | **0/165 written.** Kit has no SOLIDWORKS writer; the removed recorded writer reached 44/165. See `CorpusCoverage.md`.                                                                                        |
+| repository FCStd assemblies                                            | **0/5 written.** Kit has no SLDASM writer; the removed recorded writer also rejected all five.                                                                                                               |
 
 ## Read in this order
 
-1. **`CorpusCoverage.md`** — the current production boundary, including every recursively audited
-   FCStd and the unsupported feature-family counts.
+1. **`CorpusCoverage.md`** — the current boundary, the removed writer's last recursive FCStd audit,
+   and the unsupported feature-family counts.
 2. **`container/`** — how a file is framed, and the 1000-entry `file_id` -> signature-triplet table.
    Start here: nothing else is reachable until a file opens.
 3. **`archive/`** — `Grammar.md` for the tag grammar and the field anchors, `Windbg.md` for the
@@ -96,7 +99,7 @@ These are the things that must not be lost. Each links to where it is establishe
 - `carchive.class_definitions` **over-approximates** on large streams — 3 static false positives on
   `THREEFEATURE_pad_cut_pad`. (`archive/Segmentation.md`)
 - `ThirdPtyStore/VisualStates` tiles but does **not** re-emit: its archive does not share the combined
-  index space. It is droppable and the writer never emits it. (`archive/Multistream.md`)
+  index space. It is droppable; the removed writer never emitted it. (`archive/Multistream.md`)
 
 ### The three feature-count fields
 
@@ -114,14 +117,14 @@ crashes**: `T3H`, `T4H`, `T4cmgr`, `T4all` all died on open. (`archive/Segmentat
 
 ### Derived values
 
-- **A guessed derived cache is unsafe.** The typed programs retain fields proven stable and update
-  only the depth, angle, profile, direction, and topology copies covered by differential and oracle
-  tests. A history needing an unrecovered derived field is rejected; production never copies a
-  donor cache. (`archive/Grammar.md` §6, `features/Results.md`, `features/Revolve.md` §3.3,
+- **A guessed derived cache is unsafe.** The removed typed programs retained fields proven stable
+  and updated only the depth, angle, profile, direction, and topology copies covered by differential
+  and oracle tests. A generative serializer must compute or prove each derived field; production
+  never copies a donor cache. (`archive/Grammar.md` §6, `features/Results.md`, `features/Revolve.md` §3.3,
   `corpus/CorpusTwo.md` §3)
 - Several historical `moEndSpec_c` samples exposed process-memory noise in tail fields. That finding
-  prohibits inventing values and prohibits copying the sample. Supported typed programs emit the
-  recovered field semantics; other end-spec variants remain unsupported. (`records/Answers.md` Q5)
+  prohibits inventing values and prohibits copying the sample. The removed typed programs emitted
+  the recovered field semantics; a generative serializer must derive end-spec fields the same way. (`records/Answers.md` Q5)
 
 ### Feature semantics
 

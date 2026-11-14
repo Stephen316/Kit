@@ -72,3 +72,6 @@ jobs:
           uv run python -m tools.steering.SteeringCompliance \
             --baseline-file tools/steering/SteeringBaseline.txt \
             "${PythonFiles[@]}"
+
+      - name: Verify no recorded payloads
+        run: uv run python -m tools.Donors.CheckReplays src
