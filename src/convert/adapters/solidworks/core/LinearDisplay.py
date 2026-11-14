@@ -31,7 +31,7 @@ def ParseDisplay(Content: bytes) -> LinearDisplay | None:
     if len(SectionList) != 1:
         return None
     Section = SectionList[0]
-    Values = {}
+    Values: dict[str, str] = {}
     for NameValue in ("Linear", "LinearDecimalDisplay", "LinearDecimalPlaces"):
         Items = Section.findall(f"property[@name='SW_Units{NameValue}']")
         if len(Items) == 1 and len(Items[0]) == 1 and Items[0][0].tag == KIntegerTag:
