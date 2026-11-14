@@ -1,7 +1,7 @@
 import hashlib as Hashing
 import time as TimeClock
 
-from tests.Research.JobEntry import JobEntry
+from tests.Research.MiniAdapter.JobEntry import JobEntry
 
 
 def StartLeaseMut(Entry: JobEntry, Worker: str, Token: str) -> None:

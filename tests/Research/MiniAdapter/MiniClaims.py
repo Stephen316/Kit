@@ -1,11 +1,11 @@
 import secrets as Secrets
 from pathlib import Path as FilePath
 
-from tests.Research.ClaimFile import WriteClaim
-from tests.Research.ClaimPayload import BuildClaim
-from tests.Research.JobReadiness import IsJobReady
-from tests.Research.LeaseStart import StartLeaseMut
-from tests.Research.MiniState import MiniState
+from tests.Research.MiniAdapter.ClaimFile import WriteClaim
+from tests.Research.MiniAdapter.ClaimPayload import BuildClaim
+from tests.Research.MiniAdapter.JobReadiness import IsJobReady
+from tests.Research.MiniAdapter.LeaseStart import StartLeaseMut
+from tests.Research.MiniAdapter.MiniState import MiniState
 
 
 class MiniClaims(MiniState):

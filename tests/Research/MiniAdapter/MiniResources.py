@@ -1,4 +1,4 @@
-from tests.Research.MiniState import MiniState
+from tests.Research.MiniAdapter.MiniState import MiniState
 
 
 class MiniResources(MiniState):

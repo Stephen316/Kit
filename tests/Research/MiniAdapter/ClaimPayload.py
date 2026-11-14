@@ -1,5 +1,5 @@
-from tests.Research.JobEntry import JobEntry
-from tests.Research.StoreState import StoreState
+from tests.Research.MiniAdapter.JobEntry import JobEntry
+from tests.Research.MiniAdapter.StoreState import StoreState
 
 
 def BuildClaim(JobName: str, Entry: JobEntry, Current: StoreState) -> dict[str, object]:

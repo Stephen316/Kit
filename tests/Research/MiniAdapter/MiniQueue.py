@@ -1,8 +1,8 @@
 import json as JsonCodec
 from pathlib import Path as FilePath
 
-from tests.Research.JobEntry import JobEntry
-from tests.Research.MiniState import MiniState
+from tests.Research.MiniAdapter.JobEntry import JobEntry
+from tests.Research.MiniAdapter.MiniState import MiniState
 
 
 class MiniQueue(MiniState):

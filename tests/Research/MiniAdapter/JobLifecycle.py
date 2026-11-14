@@ -1,8 +1,8 @@
 import time as TimeClock
 
-from tests.Research.HashText import HashText
-from tests.Research.JobEntry import JobEntry
-from tests.Research.StoreState import StoreState
+from tests.Research.MiniAdapter.HashText import HashText
+from tests.Research.MiniAdapter.JobEntry import JobEntry
+from tests.Research.MiniAdapter.StoreState import StoreState
 
 
 class JobLifecycle:

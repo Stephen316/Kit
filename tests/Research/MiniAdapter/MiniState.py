@@ -7,9 +7,9 @@ from contextlib import contextmanager as ContextManager
 from dataclasses import asdict as AsDictionary
 from pathlib import Path as FilePath
 
-from tests.Research.JobEntry import JobEntry
-from tests.Research.JobLifecycle import JobLifecycle
-from tests.Research.StoreState import StoreState
+from tests.Research.MiniAdapter.JobEntry import JobEntry
+from tests.Research.MiniAdapter.JobLifecycle import JobLifecycle
+from tests.Research.MiniAdapter.StoreState import StoreState
 
 
 class MiniState(JobLifecycle):

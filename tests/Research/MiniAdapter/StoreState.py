@@ -1,6 +1,6 @@
 from dataclasses import dataclass as DataClass
 
-from tests.Research.JobEntry import JobEntry
+from tests.Research.MiniAdapter.JobEntry import JobEntry
 
 
 @DataClass

@@ -4,7 +4,7 @@ import secrets as Secrets
 from pathlib import Path as FilePath
 from shutil import copyfileobj as CopyFileObject
 
-from tests.Research.MiniState import MiniState
+from tests.Research.MiniAdapter.MiniState import MiniState
 
 
 class MiniObjects(MiniState):

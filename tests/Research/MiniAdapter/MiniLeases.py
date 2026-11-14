@@ -3,9 +3,9 @@ import json as JsonCodec
 import time as TimeClock
 from pathlib import Path as FilePath
 
-from tests.Research.JobEntry import JobEntry
-from tests.Research.MiniObjects import MiniObjects
-from tests.Research.StoreState import StoreState
+from tests.Research.MiniAdapter.JobEntry import JobEntry
+from tests.Research.MiniAdapter.MiniObjects import MiniObjects
+from tests.Research.MiniAdapter.StoreState import StoreState
 
 
 class MiniLeases(MiniObjects):
