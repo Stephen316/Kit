@@ -99,6 +99,11 @@ jobs:
           uv run --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/Controller*Tests.py -q
 
+      - name: Verify research session supervisor through process boundaries
+        run: >-
+          uv run --frozen --no-default-groups --extra dev --python 3.14
+          python -m pytest tests/Research/Supervisor*Tests.py -q
+
   zizmor:
     if: >-
       always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))

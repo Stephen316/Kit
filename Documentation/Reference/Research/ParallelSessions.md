@@ -8,6 +8,7 @@ The supervisor uses the controller only through the [controller interface](#cont
 The [A03 controller](ResearchController.md) is the first adapter for that interface, but another controller can replace it.
 It also describes how Codex and Claude runners execute optional model investigations from the [plan](AutomationPlan.md#optional-model-investigations).
 Each model runner has its own ranked model ladder; see [Starting model rankings](#starting-model-rankings).
+The [supervisor guide](ResearchSupervisor.md) describes the A08a implementation of the supervisor, session directories, pools and adapters.
 No step starts because of this page.
 The [step register](AutomationSteps.md) records authorization, ownership and status.
 Claim a runnable child step there and on PR #94 before implementation.
