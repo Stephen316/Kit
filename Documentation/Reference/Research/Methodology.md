@@ -5,6 +5,8 @@
 This reference describes isolated research into CAD formats.
 It does not authorize vendor automation in production conversion.
 The original research record is [re/Methodology.md](../../../re/Methodology.md).
+The required method for new format research is the [instruction book](../../../re/Playbook/README.md).
+Read the [CAD success criteria](../Operations/CadSuccessCriteria.md) before any research task.
 
 ## Research sequence
 
@@ -77,6 +79,8 @@ It does not establish production readiness.
 
 ## Related information
 
+- [CAD success criteria](../Operations/CadSuccessCriteria.md)
+- [Reverse engineering instruction book](../../../re/Playbook/README.md)
 - [Research tools](Tooling.md)
 - [Oracle evidence](Oracles.md)
 - [Product verification](../Operations/Testing.md)

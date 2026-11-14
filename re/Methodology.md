@@ -7,6 +7,15 @@ local install, and a need for real bidirectional interoperability.
 
 Everything else in `re/` is the SOLIDWORKS worked example. This file is the transferable part.
 
+> **Superseded as the method of record by [`Playbook/README.md`](Playbook/README.md).** Read the
+> playbook and the mandatory [CAD success criteria](../Documentation/Reference/Operations/CadSuccessCriteria.md)
+> first; keep this file as the history. Two statements below are wrong and must not be followed:
+> §7 rule 1 says to copy uninitialised fields from a donor — donor bytes are banned from production
+> output, so emit the loader-neutral value justified by loader evidence instead
+> ([WriterModel.md §4](Playbook/WriterModel.md#4-rules-for-each-field-class)); and §9 says CATIA V5
+> files are CFBF containers — they use the `V5_CFV2` container
+> ([VendorNotes.md](Playbook/VendorNotes.md#catia-v5-catpart-catproduct-catdrawing)).
+
 ---
 
 ## 0. The one-paragraph summary
