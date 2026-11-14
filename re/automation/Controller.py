@@ -6,7 +6,7 @@ import sys
 from pathlib import Path
 
 from Ledger import Ledger
-from Records import canonical, read_record
+from Records import StaleLease, canonical, read_record
 
 
 def main():
@@ -24,11 +24,16 @@ def main():
     batch.add_argument("file", type=Path)
     resource = commands.add_parser("resource")
     resource.add_argument("name")
-    availability = resource.add_mutually_exclusive_group(required=True)
+    availability = resource.add_mutually_exclusive_group()
     availability.add_argument("--available", action="store_true")
     availability.add_argument("--unavailable", action="store_true")
+    resource.add_argument("--capacity", type=int)
+    pool = commands.add_parser("pool")
+    pool.add_argument("name")
+    pool.add_argument("--kind", action="append", required=True)
     claim = commands.add_parser("claim")
     claim.add_argument("--worker", required=True)
+    claim.add_argument("--pool")
     claim.add_argument("--claim-file", type=Path, required=True)
     heartbeat = commands.add_parser("heartbeat")
     heartbeat.add_argument("--lease", type=Path, required=True)
@@ -47,7 +52,7 @@ def main():
     try:
         with Ledger(args.store, args.command == "init", getattr(args, "max_running", 4)) as ledger:
             if args.command == "init":
-                response = {"store_version": 3, "max_running": ledger.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]}
+                response = {"store_version": 4, "max_running": ledger.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]}
             elif args.command == "bind":
                 response = ledger.bind(args.name, args.file)
             elif args.command == "submit":
@@ -58,11 +63,13 @@ def main():
                     raise ValueError("batch record must contain only jobs")
                 response = ledger.submit_many(record["jobs"])
             elif args.command == "resource":
-                response = ledger.resource(args.name, args.available)
+                response = ledger.resource(args.name, True if args.available else False if args.unavailable else None, args.capacity)
+            elif args.command == "pool":
+                response = ledger.pool(args.name, args.kind)
             elif args.command == "claim":
                 if args.claim_file.exists() or args.claim_file.is_symlink():
                     raise ValueError("claim destination already exists")
-                leased = ledger.claim(args.worker)
+                leased = ledger.claim(args.worker, args.pool)
                 if leased["job"] is not None:
                     content = canonical(leased) + "\n"
                     descriptor = os.open(args.claim_file, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
@@ -89,6 +96,9 @@ def main():
                 response = {"sha256": args.sha256, "size_bytes": ledger.objects.verify(args.sha256), "path": str(ledger.objects.path(args.sha256))}
         print(canonical(response))
         return 0
+    except StaleLease as error:
+        print(f"controller stale lease: {error}", file=sys.stderr)
+        return 3
     except ValueError as error:
         print(f"controller error: {error}", file=sys.stderr)
         return 1

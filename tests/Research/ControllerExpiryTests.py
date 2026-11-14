@@ -77,4 +77,4 @@ def CheckAppExpiry() -> None:
             )["attempt"]
             == 2
         )
-        _ = Client.RunCli("heartbeat", "--lease", str(FirstFile), ExitCode=1)
+        _ = Client.RunCli("heartbeat", "--lease", str(FirstFile), ExitCode=3)

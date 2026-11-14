@@ -8,7 +8,7 @@ import time
 from pathlib import Path
 
 from Artifacts import Artifacts
-from Records import bounded, canonical, digest, label, reason_text, specification
+from Records import StaleLease, bounded, canonical, digest, label, reason_text, specification
 
 
 class Ledger:
@@ -25,7 +25,7 @@ class Ledger:
         self.db.row_factory = sqlite3.Row
         try:
             version = self.db.execute("PRAGMA user_version").fetchone()[0]
-            if version not in (0, 1, 2, 3):
+            if version not in (0, 1, 2, 3, 4):
                 raise ValueError("unsupported research store version")
             self.db.execute("PRAGMA foreign_keys=ON")
             self.db.execute("PRAGMA journal_mode=DELETE")
@@ -52,11 +52,24 @@ class Ledger:
                 count, size = self.db.execute("SELECT COUNT(*),COALESCE(SUM(length(CAST(definition AS BLOB))),0) FROM jobs").fetchone()
                 self.db.executemany("INSERT INTO settings VALUES (?,?) ON CONFLICT(key) DO UPDATE SET value=excluded.value", [("job_count", count), ("definition_bytes", size)])
                 self.db.execute("PRAGMA user_version=3")
+            if version in (0, 1, 2, 3):
+                self.upgrade_pools()
             self.db.execute("COMMIT")
             os.chmod(database, 0o600)
         except BaseException:
             self.db.close()
             raise
+
+    def upgrade_pools(self):
+        if "capacity" not in {row["name"] for row in self.db.execute("PRAGMA table_info(resources)")}:
+            self.db.execute("ALTER TABLE resources ADD COLUMN capacity INTEGER NOT NULL DEFAULT 1 CHECK (capacity BETWEEN 1 AND 64)")
+        if "kind" not in {row["name"] for row in self.db.execute("PRAGMA table_info(jobs)")}:
+            self.db.execute("ALTER TABLE jobs ADD COLUMN kind TEXT")
+        self.db.executemany("UPDATE jobs SET kind=? WHERE id=?", [(json.loads(row["definition"])["kind"], row["id"]) for row in self.db.execute("SELECT id,definition FROM jobs").fetchall()])
+        self.db.execute("CREATE TABLE IF NOT EXISTS pool_kinds (kind TEXT PRIMARY KEY, pool TEXT NOT NULL)")
+        self.db.execute("CREATE INDEX IF NOT EXISTS pool_members ON pool_kinds(pool,kind)")
+        self.db.execute("CREATE INDEX IF NOT EXISTS jobs_pool_claim ON jobs(state,kind,created,id)")
+        self.db.execute("PRAGMA user_version=4")
 
     def __enter__(self):
         self.db.execute("BEGIN IMMEDIATE")
@@ -87,7 +100,7 @@ class Ledger:
         previous = self.db.execute("SELECT available FROM resources WHERE name=?", (name,)).fetchone()
         if previous is not None and previous[0] == int(available):
             return
-        self.db.execute("INSERT INTO resources VALUES (?,?) ON CONFLICT(name) DO UPDATE SET available=excluded.available", (name, int(available)))
+        self.db.execute("INSERT INTO resources(name,available) VALUES (?,?) ON CONFLICT(name) DO UPDATE SET available=excluded.available", (name, int(available)))
         if available:
             self.db.execute("UPDATE jobs SET parked=0 WHERE state='waiting_application' AND parked=1 AND id IN (SELECT job_id FROM job_resources WHERE resource=?)", (name,))
         self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM job_resources WHERE resource=?", (name,))
@@ -104,11 +117,40 @@ class Ledger:
         self.refresh()
         return {"name": name, "sha256": sha256}
 
-    def resource(self, name, available):
+    def resource(self, name, available=None, capacity=None):
         name = label(name)
-        self.change_resource(name, available)
+        if available is None and capacity is None:
+            raise ValueError("resource change needs availability or capacity")
+        if capacity is not None:
+            capacity = bounded(capacity, 1, 64)
+            previous = self.db.execute("SELECT capacity FROM resources WHERE name=?", (name,)).fetchone()
+            if previous is None:
+                self.db.execute("INSERT INTO resources(name,available,capacity) VALUES (?,0,?)", (name, capacity))
+            elif previous[0] != capacity:
+                self.db.execute("UPDATE resources SET capacity=? WHERE name=?", (capacity, name))
+            if previous is None or previous[0] != capacity:
+                self.event(None, "resource_capacity", {"name": name, "capacity": capacity})
+        if available is not None:
+            self.change_resource(name, available)
         self.refresh()
-        return {"name": name, "available": bool(available)}
+        row = self.db.execute("SELECT available,capacity FROM resources WHERE name=?", (name,)).fetchone()
+        return {"name": name, "available": bool(row["available"]), "capacity": row["capacity"]}
+
+    def pool(self, name, kinds):
+        name = label(name)
+        if not isinstance(kinds, list) or not 1 <= len(kinds) <= 64:
+            raise ValueError("a pool needs 1–64 job kinds")
+        kinds = sorted({label(kind) for kind in kinds})
+        for kind in kinds:
+            owner = self.db.execute("SELECT pool FROM pool_kinds WHERE kind=?", (kind,)).fetchone()
+            if owner is not None and owner[0] != name:
+                raise ValueError("job kind already belongs to another pool")
+        self.db.execute("DELETE FROM pool_kinds WHERE pool=?", (name,))
+        self.db.executemany("INSERT INTO pool_kinds VALUES (?,?)", [(kind, name) for kind in kinds])
+        if self.db.execute("SELECT COUNT(*) FROM pool_kinds").fetchone()[0] > 1024:
+            raise ValueError("store pool metadata limit exceeded")
+        self.event(None, "pool", {"name": name, "kinds": kinds})
+        return {"pool": name, "kinds": kinds}
 
     def store_spec(self, spec):
         encoded = canonical(spec)
@@ -117,9 +159,9 @@ class Ledger:
             return
         self.objects.put_record(spec)
         self.db.execute(
-            "INSERT INTO jobs(id,definition,definition_hash,state,fingerprint,created) VALUES (?,?,?,'queued','',?) "
-            "ON CONFLICT(id) DO UPDATE SET definition=excluded.definition,definition_hash=excluded.definition_hash",
-            (spec["id"], encoded, digest(spec), time.time()),
+            "INSERT INTO jobs(id,kind,definition,definition_hash,state,fingerprint,created) VALUES (?,?,?,?,'queued','',?) "
+            "ON CONFLICT(id) DO UPDATE SET kind=excluded.kind,definition=excluded.definition,definition_hash=excluded.definition_hash",
+            (spec["id"], spec["kind"], encoded, digest(spec), time.time()),
         )
         old_parents = {row[0] for row in self.db.execute("SELECT dependency FROM dependencies WHERE job_id=?", (spec["id"],))}
         self.db.execute("DELETE FROM dependencies WHERE job_id=?", (spec["id"],))
@@ -281,8 +323,10 @@ class Ledger:
         self.db.execute("UPDATE jobs SET state=?,next_run=?,receipt=?,result=NULL,reason=? WHERE id=?", (state, time.time() + delay, receipt, "lease or execution timeout expired", row["id"]))
         self.event(row["id"], "expired", {"attempt": row["attempts"], "state": state})
 
-    def claim(self, worker):
+    def claim(self, worker, pool=None):
         worker = label(worker)
+        if pool is not None and not self.db.execute("SELECT 1 FROM pool_kinds WHERE pool=? LIMIT 1", (label(pool),)).fetchone():
+            raise ValueError("pool has no registered job kinds")
         self.refresh()
         maximum = self.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]
         running = self.db.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
@@ -291,9 +335,10 @@ class Ledger:
         while True:
             row = self.db.execute(
                 "SELECT j.* FROM jobs j WHERE j.state='queued' AND j.next_run<=? "
-                "AND NOT EXISTS (SELECT 1 FROM job_resources r LEFT JOIN resources a ON a.name=r.resource WHERE r.job_id=j.id AND COALESCE(a.available,0)=0) "
-                "AND NOT EXISTS (SELECT 1 FROM job_resources r JOIN job_resources held ON held.resource=r.resource JOIN jobs owner ON owner.id=held.job_id WHERE r.job_id=j.id AND owner.state='running') "
-                "ORDER BY j.created,j.id LIMIT 1", (time.time(),)
+                "AND (? IS NULL OR j.kind IN (SELECT kind FROM pool_kinds WHERE pool=?)) "
+                "AND NOT EXISTS (SELECT 1 FROM job_resources r LEFT JOIN resources a ON a.name=r.resource WHERE r.job_id=j.id AND (COALESCE(a.available,0)=0 "
+                "OR (SELECT COUNT(*) FROM job_resources held JOIN jobs owner ON owner.id=held.job_id WHERE held.resource=r.resource AND owner.state='running')>=a.capacity)) "
+                "ORDER BY j.created,j.id LIMIT 1", (time.time(), pool, pool)
             ).fetchone()
             if row is None:
                 return {"job": None, "reason": "no runnable jobs"}
@@ -324,11 +369,16 @@ class Ledger:
         if not isinstance(token, str) or len(token) != 64:
             raise ValueError("invalid lease token")
         row = self.db.execute("SELECT * FROM jobs WHERE id=?", (job_id,)).fetchone()
-        if row is None or row["state"] != "running" or min(row["lease_until"], row["deadline"]) <= time.time() or not hmac.compare_digest(row["token_hash"], hashlib.sha256(token.encode()).hexdigest()):
-            raise ValueError("stale or invalid lease")
+        if row is None or row["state"] != "running" or row["token_hash"] is None or not hmac.compare_digest(row["token_hash"], hashlib.sha256(token.encode()).hexdigest()):
+            raise StaleLease("lease was replaced, revoked or finished")
+        if min(row["lease_until"], row["deadline"]) <= time.time():
+            raise StaleLease("lease or execution deadline expired")
+        snapshot = self.snapshot(json.loads(row["definition"]), False)
+        if (digest(snapshot) if snapshot is not None else None) != row["fingerprint"]:
+            raise StaleLease("inputs changed during the attempt")
         self.verify_job(row, verify_artifacts)
         if min(row["lease_until"], row["deadline"]) <= time.time():
-            raise ValueError("stale or invalid lease")
+            raise StaleLease("lease or execution deadline expired")
         return row
 
     def heartbeat(self, job_id, token):
@@ -385,7 +435,7 @@ class Ledger:
             rows = self.db.execute("SELECT * FROM jobs WHERE id>? ORDER BY id LIMIT 101", (after or "",)).fetchall()
         for row in rows[:100]:
             self.verify_job(row)
-        fields = ("id", "state", "generation", "fingerprint", "attempts", "receipt", "result", "reason", "lease_until", "deadline")
+        fields = ("id", "kind", "state", "generation", "fingerprint", "attempts", "receipt", "result", "reason", "lease_until", "deadline")
         return {"jobs": [{key: row[key] for key in fields} for row in rows[:100]], "next_after": rows[99]["id"] if len(rows) > 100 else None, "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches}
 
     def events(self):

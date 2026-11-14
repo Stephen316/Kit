@@ -83,5 +83,5 @@ def CheckJobResume() -> None:
             "completed",
             "--reason",
             "stale result",
-            ExitCode=1,
+            ExitCode=3,
         )

@@ -130,16 +130,51 @@ The `/tmp/KitResearchState` path below is an example and can be removed by opera
    ```
 
    Use `status --job <job-label>` for one job.
+   Each status record includes the job `kind`.
    Status pages contain at most 100 jobs; supply the returned `next_after` label through `--after` to read the next page.
    `artifact <sha256>` verifies an object and reports its path and byte count.
    Replace angle-bracket values with actual labels or hashes.
 
 Commands emit bounded JSON and return `0` on success.
-Invalid records, unavailable stores, corrupted evidence and stale leases return `1`.
+Invalid records, unavailable stores and corrupted evidence return `1`.
+A stale lease from `heartbeat` or `finish` returns `3` with a `controller stale lease` message.
+A lease is stale when it was replaced, revoked or finished, when it expired, or when its inputs changed.
+The [session supervisor](ResearchSupervisor.md) stops a session at once when its renewal returns `3`.
 No runnable job is a successful claim response with `job: null`; it does not consume an attempt or create a claim file.
 Existing claim files are not overwritten.
 Lease secrets are written to the private claim file and omitted from status, events and command arguments.
 Do not publish claim files or reuse one for a different execution.
+
+## Pools and counted resources
+
+Schema version 4 adds pools and counted resources for the [session supervisor](ResearchSupervisor.md).
+
+1. Assign job kinds to a pool:
+
+   ```shell
+   python3 re/automation/Controller.py --store /tmp/KitResearchState pool decode --kind decode.sldprt
+   ```
+
+2. Claim only jobs whose kind belongs to that pool:
+
+   ```shell
+   python3 re/automation/Controller.py --store /tmp/KitResearchState claim --worker operator:research --pool decode --claim-file /tmp/KitResearchClaim.json
+   ```
+
+3. Set a resource capacity, then mark the resource available:
+
+   ```shell
+   python3 re/automation/Controller.py --store /tmp/KitResearchState resource provider:example --capacity 2
+   python3 re/automation/Controller.py --store /tmp/KitResearchState resource provider:example --available
+   ```
+
+A `pool` command replaces the kinds of that pool.
+A kind belongs to at most one pool; a second assignment is rejected.
+A pool holds 1–64 kinds, and the store holds at most 1,024 pool assignments.
+A pool claim for a pool without kinds is rejected rather than reported as an empty queue.
+A claim without `--pool` still selects from every kind, so do not mix plain claims with a running supervisor.
+Capacity is 1–64 and defaults to 1, which keeps the earlier exclusive behavior.
+Setting a capacity on an unknown resource creates it as unavailable.
 
 The procedure is source-reviewed; it was not run locally as a test.
 Actual remote evidence is recorded on the PR and in the step register.
@@ -189,7 +224,8 @@ Expired attempts retain a receipt, consume their attempt budget and enter bounde
 A stale token cannot complete a replacement execution or publish a result as current.
 The controller does not terminate an external process; it refuses that process's late result.
 
-All resource labels are exclusive while a job is running.
+A resource admits as many running jobs as its capacity; the default capacity of 1 is exclusive.
+Lowering a capacity does not stop running jobs; it blocks new claims until the running count falls below it.
 Unknown resources begin unavailable; offline jobs can continue.
 Use `resource <name> --available` or `--unavailable` to record actual worker availability.
 An expired or invalidated resource-owning attempt, or an application-wait outcome, makes its resources unavailable.
@@ -205,11 +241,14 @@ They execute through the real CLI and filesystem/database boundaries.
 No local tests or collection run under repository policy.
 The large-input scenario renews a lease over a 64 MiB input without payload hashing and rejects corrupted evidence at result submission.
 
-The SQLite schema is version 3; versions 1 and 2 migrate transactionally to the queue, reverse indexes and quota counters they require.
+The SQLite schema is version 4; versions 1–3 migrate transactionally.
+Versions 1 and 2 receive the queue, reverse indexes and quota counters they require.
+Version 3 receives the resource `capacity` column, the indexed job `kind` column filled from each stored definition, and the pool table.
 The migration retains jobs, attempts, receipts and artifacts.
 Version 1 migration seeds the queue; version 2 already has it and receives the maintained counters.
 Unknown versions are rejected.
 No distributed worker service, model provider, CAD adapter, neutral schema change or capability promotion is added.
+The A08a supervisor is the first local process that drives these commands.
 Worker-reported completion and a valid receipt do not prove the worker's assertion.
 Domain verification and native acceptance remain separate later steps.
 

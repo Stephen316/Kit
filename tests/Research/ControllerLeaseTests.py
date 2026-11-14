@@ -64,7 +64,7 @@ def CheckLeases() -> None:
             )["attempt"]
             == 2
         )
-        _ = Client.RunCli("heartbeat", "--lease", str(FirstFile), ExitCode=1)
+        _ = Client.RunCli("heartbeat", "--lease", str(FirstFile), ExitCode=3)
         TimeClock.sleep(1.1)
         Finished = JsonCodec.loads(Client.RunCli("status"))["jobs"][0]
         assert Finished["state"] == "failed"

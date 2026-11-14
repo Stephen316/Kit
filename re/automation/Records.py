@@ -4,6 +4,10 @@ import re
 from pathlib import Path
 
 
+class StaleLease(ValueError):
+    pass
+
+
 def canonical(value):
     encoded = json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False, allow_nan=False)
     if len(encoded.encode("utf-8")) > 1024 * 1024:

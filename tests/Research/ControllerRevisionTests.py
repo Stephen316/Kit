@@ -69,7 +69,7 @@ def CheckRuleChange() -> None:
             "completed",
             "--reason",
             "stale worker",
-            ExitCode=1,
+            ExitCode=3,
         )
         assert JsonCodec.loads(Client.RunCli("status"))["jobs"][0]["state"] == "running"
         _ = Client.RunCli(
