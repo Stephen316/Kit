@@ -2,6 +2,12 @@ import math
 import re
 from collections import Counter
 
+P03_BOUNDS_CASES = {
+    "P03-solidworks-baseline-a.SLDPRT",
+    "P03-solidworks-direction-negative.SLDPRT",
+}
+BODY_Z_BOUNDS = "neutral.body.bounding_box_z_mm"
+
 
 def lengths_equal(expected, actual, tolerance):
     return (
@@ -192,8 +198,25 @@ def compare_sketches(measured, native, neutral, tolerance):
     return comparisons
 
 
-def compare(measured, native, neutral, tolerance):
-    return [
+def compare_boss_bounds(measured, neutral, tolerance):
+    depth_m = next(
+        step["operation"]["depth_m"] for step in measured["feature_tree"]
+        if step["name"] == "BlindBoss"
+    )
+    half_depth_mm = depth_m * 500
+    center_z = measured["center_of_mass_mm"][2]
+    expected = [center_z - half_depth_mm, center_z + half_depth_mm]
+    bounds = neutral.get("body_bounding_box_mm")
+    actual = [point[2] for point in bounds] if bounds is not None else None
+    matched = actual is not None and all(
+        lengths_equal(wanted, observed, tolerance)
+        for wanted, observed in zip(expected, actual, strict=True)
+    )
+    return observation(BODY_Z_BOUNDS, expected, actual, matched)
+
+
+def compare(measured, native, neutral, tolerance, capture_name):
+    comparisons = [
         observation("neutral.solid_count", measured["body_count"], neutral.get("solid_count")),
         observation("neutral.source_display_unit", {3: "in", 5: "mm"}[measured["units_code"]], neutral.get("native_display_unit")),
         *compare_dimensions(measured, native, neutral, tolerance),
@@ -201,6 +224,9 @@ def compare(measured, native, neutral, tolerance):
         *compare_operations(measured, native, neutral, tolerance),
         *compare_sketches(measured, native, neutral, tolerance),
     ]
+    if capture_name in P03_BOUNDS_CASES:
+        comparisons.append(compare_boss_bounds(measured, neutral, tolerance))
+    return comparisons
 
 
 def require_boss_directions(findings):
@@ -213,10 +239,15 @@ def require_boss_directions(findings):
         "neutral.operation.BlindBoss.direction_multiplier",
     }
     for entry in cases:
+        path = entry["asset"]["path"]
+        required = (
+            expected_fields | {BODY_Z_BOUNDS}
+            if path.rsplit("/", 1)[-1] in P03_BOUNDS_CASES else expected_fields
+        )
         matched = {row["field"] for row in entry["comparisons"] if row["status"] == "matched"}
-        if missing := expected_fields - matched:
-            raise ValueError(f"Blind boss direction mismatch in {entry['asset']['path']}: {', '.join(sorted(missing))}")
-    print(f"Verified P03 boss directions in {len(cases)} captures")
+        if missing := required - matched:
+            raise ValueError(f"Blind boss direction mismatch in {path}: {', '.join(sorted(missing))}")
+    print(f"Verified P03 boss directions in {len(cases)} captures and both XY baseline/reverse Z bounds")
 
 
 def require_rectangle_edges(findings):

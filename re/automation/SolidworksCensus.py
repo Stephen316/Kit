@@ -44,7 +44,7 @@ def run_case(root, manifest, directory, case, revision, tolerance):
                 for sketch in measured["sketches"]
             ],
         },
-        "comparisons": compare(measured, native, neutral, tolerance),
+        "comparisons": compare(measured, native, neutral, tolerance, Path(asset["path"]).name),
     }
 
 

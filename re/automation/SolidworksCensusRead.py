@@ -139,6 +139,7 @@ def neutral_data(document, receipt):
     }
     plane_by_id = {item.id: item for item in document.support_planes}
     selection_by_id = {item.id: item for item in document.selections}
+    bounds = document.bodies[0].topology.bounding_box if len(document.bodies) == 1 else None
     return {
         "status": "decoded",
         "sdk_revision": receipt["sdk_revision"],
@@ -148,6 +149,9 @@ def neutral_data(document, receipt):
         "canonical_unit": str(document.units),
         "native_display_unit": document.metadata.get("source_display_units"),
         "solid_count": sum(item.topology.solid_count for item in document.bodies),
+        "body_bounding_box_mm": None if bounds is None else (
+            vector(bounds.minimum), vector(bounds.maximum)
+        ),
         "features": [neutral_feature(item, feature_names) for item in document.feature_timeline],
         "parameters": [
             {

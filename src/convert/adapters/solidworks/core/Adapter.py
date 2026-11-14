@@ -3748,10 +3748,11 @@ def BoundingBoxA(Model: NativeModel) -> BoundingBox | None:
         Plane = PlaneById.get(Sketch.support_plane_id)
         if Plane is None or Operation.length_mm is None:
             continue
+        Length = Operation.length_mm * (-1 if IsBossReversed(Operation) else 1)
         Direction = (
-            Plane.normal[0] * Operation.length_mm,
-            Plane.normal[1] * Operation.length_mm,
-            Plane.normal[2] * Operation.length_mm,
+            Plane.normal[0] * Length,
+            Plane.normal[1] * Length,
+            Plane.normal[2] * Length,
         )
         for Profile in Sketch.profiles:
             for Local in ProfileExtrema(Profile):
