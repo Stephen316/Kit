@@ -40,6 +40,7 @@ The CLI rejects source/output path identity, including existing hardlink and sym
 Decode output uses a private sibling directory and atomic publication without following archive member paths.
 New reports respect the caller umask, while replacement retains existing permission bits.
 Home-relative paths are expanded before source alias comparisons.
+Canonical identity checks retain the supplied filenames for suffix-based format selection.
 Inputs are limited to 256 MiB, individual stream exports to 16 MiB, and arguments to 4096 printable characters.
 SOLIDWORKS container inspection has a cumulative 128 MiB decoded-stream budget, checked before each inflation.
 `SldprtArchive.FromBytes(..., SizeLimit=...)` and `ScanRecords(..., SizeLimit=...)` accept the explicit decoded-byte budget.

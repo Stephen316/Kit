@@ -16,9 +16,9 @@ def MainEntry() -> int:
             )
         Options = CliOptions()
         _ = BuildParser().parse_args(namespace=Options)
-        Options.Source = Options.Source.expanduser().resolve()
+        Options.Source = Options.Source.expanduser()
         if Options.Destination is not None:
-            Options.Destination = Options.Destination.expanduser().resolve()
+            Options.Destination = Options.Destination.expanduser()
         RunCommand(Options)
         return 0
     except BrokenPipeError:

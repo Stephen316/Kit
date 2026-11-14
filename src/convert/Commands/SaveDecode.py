@@ -5,6 +5,7 @@ from tempfile import TemporaryDirectory
 
 
 def SaveDecode(Destination: FilePath, Content: str, Overwrite: bool) -> None:
+    Destination = Destination.resolve()
     with TemporaryDirectory(dir=Destination.parent, prefix=".kit-") as Directory:
         TempPath = FilePath(Directory) / "Decode.json"
         _ = TempPath.write_text(Content + "\n", encoding="utf-8")
