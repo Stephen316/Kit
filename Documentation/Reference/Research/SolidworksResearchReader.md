@@ -78,6 +78,8 @@ Numeric confidence does not qualify a field.
 
 SOLIDWORKS part equations retain their source text and link quoted references to known global variables or exact, unique `dimension@feature` names. The receipt reports missing or ambiguous right-hand references as `unresolved_equation_reference`.
 
+The public write and conversion APIs reject parts that carry these unresolved equation references, including when exporting to interchange JSON. The research reader's evidence files remain available for inspecting those parts.
+
 Unresolved entries include native-only definitions, retained bytes, `native:` codes and reader diagnostics.
 Extrusion and revolution direction, frame and operation remain explicitly unqualified.
 Every receipt retains the missing independent source-inventory and acceptance requirement.

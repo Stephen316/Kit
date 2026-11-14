@@ -10,6 +10,7 @@ from convert.adapters.base.AdapterProtocols import CadWriterAdapter
 from convert.adapters.base.Materials.CheckMatWrites import CheckMatWrites
 from convert.adapters.base.ContractTypes import KTargetType
 from convert.adapters.staging.PathStaging import WritePathStaged
+from convert.adapters.registry.EquationWrite import CheckEquations
 from convert.adapters.registry.RegistryErrors import CapLossError
 from convert.adapters.registry.RegistryErrors import NotFoundError
 from convert.adapters.registry.RegistrySelect import SelectWriter
@@ -112,6 +113,7 @@ class WriteApi(WriteLookup):
             else self.PickWriter(DocumentData, TargetData)
         )
         CheckMatWrites(DocumentData, AdapterData)
+        CheckEquations(DocumentData)
         SelectedOpts = OptionsData or WriteOptions()
         if FormatId is not None:
             SelectedOpts = ReplaceValue(SelectedOpts, destination_format=FormatId)
