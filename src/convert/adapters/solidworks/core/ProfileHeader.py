@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING as TypeChecking, Sequence
+from typing import TYPE_CHECKING as TypeChecking, Mapping, Sequence
 
 if TypeChecking:
     from convert.adapters.solidworks.core.Native import NativeMarker
@@ -12,11 +12,10 @@ def ProfileHeader(
     Component: set[int],
     Vertices: set[int],
     HeaderLocus: str,
+    MarkerIndexes: Mapping[int, int],
 ) -> int | None:
     OwnedEdges = {Edges[Index].offset for Index in Component}
-    FirstIndex = next(
-        Index for Index, Marker in enumerate(Markers) if Marker.offset in OwnedEdges
-    )
+    FirstIndex = min(MarkerIndexes[Offset] for Offset in OwnedEdges)
     if FirstIndex == 0:
         return None
     Header = Markers[FirstIndex - 1]

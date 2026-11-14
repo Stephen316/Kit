@@ -3475,20 +3475,23 @@ def DecodeProfiles(
 
 # graph traversal owns extraction of one connected edge component
 def TakeGraphMut(
-    Edges: Sequence[NativeMarker], Remaining: set[int]
+    Edges: Sequence[NativeMarker],
+    Remaining: set[int],
+    VertexEdges: Mapping[int, set[int]],
 ) -> tuple[set[int], set[int]]:
-    Component = {Remaining.pop()}
-    Vertices = set(Edges[next(iter(Component))].endpoint_indices or ())
-    Changed = True
-    while Changed:
-        Changed = False
-        for Index in tuple(Remaining):
-            Endpoints = set(Edges[Index].endpoint_indices or ())
-            if Vertices & Endpoints:
-                Remaining.remove(Index)
-                Component.add(Index)
-                Vertices.update(Endpoints)
-                Changed = True
+    Pending = [Remaining.pop()]
+    Component: set[int] = set()
+    Vertices: set[int] = set()
+    while Pending:
+        Index = Pending.pop()
+        Component.add(Index)
+        for Vertex in Edges[Index].endpoint_indices or ():
+            if Vertex in Vertices:
+                continue
+            Vertices.add(Vertex)
+            Neighbors = VertexEdges[Vertex] & Remaining
+            Remaining.difference_update(Neighbors)
+            Pending.extend(Neighbors)
     return (Component, Vertices)
 
 
@@ -3532,6 +3535,7 @@ def RectComponent(
     Markers: Sequence[NativeMarker],
     Component: set[int],
     Vertices: set[int],
+    MarkerIndexes: Mapping[int, int],
 ) -> NativeProfile | None:
     if len(Component) != 4 or len(Vertices) != 4:
         return None
@@ -3560,7 +3564,7 @@ def RectComponent(
         (XsValue[0], YsValue[0], XsValue[1], YsValue[1]),
         LineOffsets,
         HeaderOffset=ProfileHeader(
-            Edges, Markers, Component, Vertices, KCircleLocus.hex()
+            Edges, Markers, Component, Vertices, KCircleLocus.hex(), MarkerIndexes
         ),
     )
 
@@ -3584,12 +3588,17 @@ def StructuralA(
             for Endpoint in Marker.endpoint_indices
         )
     )
+    MarkerIndexes = {Marker.offset: Index for Index, Marker in enumerate(Markers)}
+    VertexEdges: dict[int, set[int]] = {}
+    for Index, Marker in enumerate(Edges):
+        for Vertex in Marker.endpoint_indices or ():
+            VertexEdges.setdefault(Vertex, set()).add(Index)
     Remaining = set(range(len(Edges)))
     Profiles: list[NativeProfile] = []
     UsedValue: set[int] = set()
     while Remaining:
-        Component, Vertices = TakeGraphMut(Edges, Remaining)
-        Profile = RectComponent(Edges, Markers, Component, Vertices)
+        Component, Vertices = TakeGraphMut(Edges, Remaining, VertexEdges)
+        Profile = RectComponent(Edges, Markers, Component, Vertices, MarkerIndexes)
         if Profile is not None:
             Profiles.append(Profile)
             UsedValue.update(Profile.marker_offsets)
@@ -3694,11 +3703,17 @@ def PolyProfiles(
             for EndpointIndex in MarkerData.endpoint_indices
         )
     )
+    VertexEdges: dict[int, set[int]] = {}
+    for EdgeIndex, MarkerData in enumerate(EdgeData):
+        for VertexIndex in MarkerData.endpoint_indices or ():
+            VertexEdges.setdefault(VertexIndex, set()).add(EdgeIndex)
     RemainingIndexes = set(range(len(EdgeData)))
     ProfileData: list[NativeProfile] = []
     UsedOffsets: set[int] = set()
     while RemainingIndexes:
-        ComponentIndexes, VertexIndexes = TakeGraphMut(EdgeData, RemainingIndexes)
+        ComponentIndexes, VertexIndexes = TakeGraphMut(
+            EdgeData, RemainingIndexes, VertexEdges
+        )
         if len(ComponentIndexes) != 6 or len(VertexIndexes) != 6:
             continue
         OrderedData = OrderPolyEdges(EdgeData, ComponentIndexes, VertexIndexes)
