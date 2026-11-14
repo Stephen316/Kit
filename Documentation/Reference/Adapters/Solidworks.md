@@ -5,7 +5,8 @@
 Kit registers one SOLIDWORKS adapter with part and assembly identifiers.
 Its primary `format_id` is `solidworks.sldprt`.
 Its `aliases` field contains `solidworks.sldasm`.
-The adapter reads source records and writes implemented native structures or preservation representations.
+The adapter reads source records.
+It is not registered as a writer, so Kit cannot produce `.SLDPRT` or `.SLDASM` files.
 It does not invoke SOLIDWORKS during production conversion.
 
 | Identifier          | Suffix    |
@@ -66,14 +67,19 @@ Do not infer rebuild order from physical stream order alone.
 Boss and cut behavior can depend on several related records.
 A single flag change is not a general operation converter.
 
-## Writing and acceptance
+## Writing
 
-The adapter includes first-principles native generation and source-document replay or edit paths.
-A source replay uses the input document's own data.
-An unrelated donor fixture is prohibited in production writing.
+Kit does not write SOLIDWORKS files.
+A conversion to a `.SLDPRT` or `.SLDASM` destination raises `AdapterNotFoundError` and creates no file.
 
-Native generation must derive each emitted structure from known format rules.
-Unsupported feature families remain unsupported until their grammar and acceptance evidence are available.
+The earlier writer did not generate its streams from format rules.
+Each supported family re-emitted a recorded payload, which is a typed recording of one saved stream.
+Every generated file also took its `Config-0` stream from one recorded configuration program.
+The [recorded payload removal](../../Changes/Solidworks/SolidworksRecordedPayloadRemoval.md) deleted that writer.
+CI now rejects any recorded field program in `src`.
+
+A future writer must derive each emitted structure from known format rules.
+The container, archive, configuration manager, definition, and resolved-feature codecs remain as its starting point.
 Do not present a carrier or a mode label as a completed translation.
 
 ## Geometry cache boundary

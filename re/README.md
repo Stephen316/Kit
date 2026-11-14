@@ -115,8 +115,10 @@ cheapest end-to-end check that the recorded tables really do come out of the rec
 
 ## Scope honesty
 
-This paragraph once said that SOLIDWORKS stream content came from a donor part. That is no longer
-the state, and donor content is banned from production output in any case. The supported feature
-families now emit their load-critical streams from typed fields, and unsupported histories are
-rejected. `solidworks/README.md` and `solidworks/CorpusCoverage.md` state exactly where the line
-currently falls.
+The SOLIDWORKS work reads SOLIDWORKS streams. Kit does not write SOLIDWORKS files. The removed
+writer re-emitted typed recordings of saved streams with selected fields overridden, and typing
+every byte did not change where the values and offsets came from: one saved part of the right
+feature topology. Those families were recorded payloads, and donor content is banned from
+production output. `tools/Donors/CheckReplays.py` fails CI if `src` contains any recorded field
+operation or re-emission call. A generative serializer is the open work. `solidworks/README.md`
+and `solidworks/CorpusCoverage.md` state exactly where the line falls.

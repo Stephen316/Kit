@@ -1,10 +1,8 @@
-from io import BytesIO
 from pathlib import Path as FilePath
 from interchange import RevolutionFeature
 from convert.adapters.solidworks.core.Adapter import (
     NativePartModel,
     ReadSldprt,
-    WriteSldprt,
 )
 from convert.adapters.solidworks.container.Container import SldprtArchive
 
@@ -48,7 +46,3 @@ def TestAxisOwner() -> None:
         assert Definition.axis_entity_id in {
             ItemValue.id for ItemValue in AxisSketch.entities
         }
-    Output = BytesIO()
-    _ = WriteSldprt(Document, Output)
-    Reopened = ReadSldprt(Output.getvalue(), include_brep=False)
-    assert Reopened.feature_timeline == Document.feature_timeline

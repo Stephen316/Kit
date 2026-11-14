@@ -28,12 +28,6 @@ from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeome
 KSample = FilePath(__file__).parents[4] / "re" / "solidworks" / "examples" / ".SLDPRT" / "example.SLDPRT"
 
 
-
-
-
-
-
-
 # keeps this focused behavior isolated so regressions remain immediately visible
 def TestPCSAO() -> None:
     assert SolidworksNative.dimension_scalar_value_offset is DimensionSVO
@@ -76,8 +70,6 @@ def TestPLHOSD() -> None:
     Occurrences: dict[str, list[str]] = {ItemValue: [] for ItemValue in ValueList}
     for TargetPath in SourceRoot.rglob("*.py"):
         RelativePath = TargetPath.relative_to(SourceRoot)
-        if "programs" in RelativePath.parts or TargetPath.name == "AssemblyCore.py":
-            continue
         TreeInfo = AstInfo.parse(TargetPath.read_text(encoding="utf-8"))
         for NodeInfo in AstInfo.walk(TreeInfo):
             if isinstance(NodeInfo, AstInfo.Constant) and NodeInfo.value in Occurrences:
@@ -85,8 +77,6 @@ def TestPLHOSD() -> None:
     assert Occurrences == {
         ItemValue: ["container/Format.py"] for ItemValue in ValueList
     }
-
-
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible

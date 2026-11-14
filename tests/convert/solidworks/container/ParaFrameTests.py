@@ -1,7 +1,6 @@
-from io import BytesIO
 from pathlib import Path as FilePath
 from pytest import mark as TestMark, raises as RaisesError
-from convert.adapters.solidworks.core.Adapter import ReadSldprt, WriteSldprt
+from convert.adapters.solidworks.core.Adapter import ReadSldprt
 from convert.adapters.solidworks.container.Container import BuildSldprt, SldprtArchive
 from convert.adapters.solidworks.container.Parasolid import DecodePartition
 from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat
@@ -42,9 +41,6 @@ def TestFrameRead(Chained: bool) -> None:
     for ItemValue, Section in zip(Extracted, Sections, strict=True):
         assert ItemValue.provenance is not None
         assert ItemValue.provenance.spans[0].length == len(Section)
-    Output = BytesIO()
-    _ = WriteSldprt(Document, Output)
-    assert Output.getvalue() == Fixture
 
 
 @TestMark.parametrize("Damage", ("checksum", "truncated", "trailing", "size"))
