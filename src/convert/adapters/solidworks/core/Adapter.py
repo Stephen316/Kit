@@ -2048,7 +2048,8 @@ def Configurations(Model: NativeModel, Requested: str | None) -> tuple[Config, .
 # this definition exists because focused behavior needs one stable owner
 def Parameters(Model: NativeModel) -> tuple[Param, ...]:
     Parameters: list[Param] = []
-    DimensionIds: dict[tuple[str, str], str | None] = {}
+    DimensionIds: dict[tuple[str, str], str] = {}
+    AmbiguousDims: set[tuple[str, str]] = set()
     for Feature in Model.features:
         for Dimension, ParamId in ParamEntries(Feature.object_id, Feature.dimensions):
             NativeValue = (
@@ -2100,8 +2101,11 @@ def Parameters(Model: NativeModel) -> tuple[Param, ...]:
                 )
             )
             QualifiedName = (Feature.name, Dimension.name)
-            DimensionIds[QualifiedName] = None if QualifiedName in DimensionIds else ParamId
-    return ApplyNativeMut(Parameters, Model, DimensionIds)
+            if QualifiedName in DimensionIds:
+                AmbiguousDims.add(QualifiedName)
+            else:
+                DimensionIds[QualifiedName] = ParamId
+    return ApplyNativeMut(Parameters, Model, DimensionIds, frozenset(AmbiguousDims))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -2115,7 +2119,8 @@ def DimensionParam(Dimension: NativeDimension) -> ParamValue:
 def ApplyNativeMut(
     Parameters: list[Parameter],
     Model: NativeModel,
-    DimensionIds: Mapping[tuple[str, str], str | None],
+    DimensionIds: Mapping[tuple[str, str], str],
+    AmbiguousDims: frozenset[tuple[str, str]] = frozenset(),
 ) -> tuple[Param, ...]:
     if not Model.equations:
         return tuple(Parameters)
@@ -2127,7 +2132,9 @@ def ApplyNativeMut(
     Values: dict[str, ParamValue] = {}
     ParamIndexes = {Param.id: Index for Index, Param in enumerate(Parameters)}
     for Equation in Model.equations:
-        ExprValue, Evidence = EquationData(Equation, GlobalIds, DimensionIds)
+        ExprValue, Evidence = EquationData(
+            Equation, GlobalIds, DimensionIds, AmbiguousDims
+        )
         ProvenanceValue = Provenance(
             adapter=KFormatId,
             native_id=f"equation:{Equation.native_offset}",
