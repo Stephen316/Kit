@@ -27,6 +27,15 @@ def reader_evidence(document):
                     unresolved.append({
                         "path": path, "reason": "direction_frame_operation_require_independent_evidence",
                     })
+                if kind == "Parameter":
+                    attributes = value.get("attributes", {})
+                    if "unresolved_equation_references" in attributes:
+                        references = attributes["unresolved_equation_references"]
+                        unresolved.append({
+                            "path": path + "/expression",
+                            "reason": "unresolved_equation_reference",
+                            "references": references["$tuple"],
+                        })
                 if kind == "Diagnostic":
                     unresolved.append({"path": path, "reason": "reader_diagnostic", "diagnostic": value})
             if "$bytes" in value:

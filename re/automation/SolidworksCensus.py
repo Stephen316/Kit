@@ -7,8 +7,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from Corpus import git
-from SolidworksCensusCompare import compare
-from SolidworksCensusCompare import require_boss_directions
+from SolidworksCensusCompare import compare, require_boss_directions, require_equation_bindings
 from SolidworksCensusInputs import capture_inputs, digest
 from SolidworksCensusRead import native_read, neutral_read
 
@@ -86,14 +85,26 @@ def run(root, output):
         json.dump(report, target, indent=2, sort_keys=True, allow_nan=False)
         target.write("\n")
     print(json.dumps({"revision": revision, "report": str(output), **report["summary"]}, sort_keys=True))
-    require_boss_directions(findings)
 
 
 def main():
     parser = argparse.ArgumentParser(description="Census the pinned SOLIDWORKS discovery captures")
-    parser.add_argument("--output", required=True, type=Path)
+    outputs = parser.add_mutually_exclusive_group(required=True)
+    outputs.add_argument("--output", type=Path)
+    outputs.add_argument("--check-directions", type=Path)
+    outputs.add_argument("--check-equations", type=Path)
     args = parser.parse_args()
-    run(Path(__file__).resolve().parents[2], args.output.resolve())
+    root = Path(__file__).resolve().parents[2]
+    check_report = args.check_equations or args.check_directions
+    if check_report is not None:
+        report = json.loads(check_report.read_bytes())
+        revision = git(root, "rev-parse", "HEAD").decode().strip()
+        if report["revision"] != revision:
+            raise ValueError("discovery check requires a census from this revision")
+        check = require_equation_bindings if args.check_equations else require_boss_directions
+        check(report["captures"])
+    else:
+        run(root, args.output.resolve())
 
 
 if __name__ == "__main__":

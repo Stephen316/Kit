@@ -87,6 +87,16 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+      - name: Check SOLIDWORKS cut-centering equation bindings
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --check-equations "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
+      - name: Check SOLIDWORKS blind boss direction
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --check-directions "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
       - name: Exercise native file reading and writing
         run: >-
           uv run pytest

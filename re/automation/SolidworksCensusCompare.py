@@ -90,6 +90,30 @@ def compare_equations(measured, native, neutral):
     return comparisons
 
 
+def require_equation_bindings(findings):
+    expected_fields = {
+        "neutral.equation.cut_left_mm@CutSketch.references",
+        "neutral.equation.cut_bottom_mm@CutSketch.references",
+    }
+    failures = []
+    checked = 0
+    for item in findings:
+        if item["recipe_id"] != "P04":
+            continue
+        checked += 1
+        references = {
+            row["field"]: row for row in item["comparisons"] if row["field"] in expected_fields
+        }
+        for name in sorted(expected_fields):
+            if references.get(name, {}).get("status") != "matched":
+                failures.append(f"{item['asset']['path']}: {name}")
+    if checked != 11:
+        raise ValueError(f"P04 equation check requires 11 captures, found {checked}")
+    if failures:
+        raise ValueError("P04 equation binding regression:\n" + "\n".join(failures))
+    print(f"Verified both P04 equation bindings in {checked} captures")
+
+
 def compare_operations(measured, native, neutral, tolerance):
     native_ops = {item["name"]: item for item in native.get("operations", ())}
     neutral_ops = {item["name"]: item for item in neutral.get("features", ())}
@@ -180,14 +204,16 @@ def compare(measured, native, neutral, tolerance):
 
 
 def require_boss_directions(findings):
-    for entry in findings:
-        if entry["recipe_id"] != "P03":
-            continue
-        expected_fields = {
-            "native.operation.BlindBoss.reverse_code",
-            "neutral.operation.BlindBoss.reversed",
-            "neutral.operation.BlindBoss.direction_multiplier",
-        }
+    cases = [entry for entry in findings if entry["recipe_id"] == "P03"]
+    if len(cases) != 8:
+        raise ValueError(f"P03 direction check requires 8 captures, found {len(cases)}")
+    expected_fields = {
+        "native.operation.BlindBoss.reverse_code",
+        "neutral.operation.BlindBoss.reversed",
+        "neutral.operation.BlindBoss.direction_multiplier",
+    }
+    for entry in cases:
         matched = {row["field"] for row in entry["comparisons"] if row["status"] == "matched"}
         if missing := expected_fields - matched:
             raise ValueError(f"Blind boss direction mismatch in {entry['asset']['path']}: {', '.join(sorted(missing))}")
+    print(f"Verified P03 boss directions in {len(cases)} captures")

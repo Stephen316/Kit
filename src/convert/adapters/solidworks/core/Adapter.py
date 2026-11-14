@@ -45,7 +45,6 @@ from interchange import (
     DomeFeature,
     ExtrusionEndCondition,
     ExtrusionFeature,
-    Expression,
     EllipseGeometry as EllipseGeom,
     FeatureKind,
     FeatureStep,
@@ -137,6 +136,7 @@ from convert.adapters.solidworks.container.Format import (
 from convert.adapters.solidworks.core.FeatureKindByNative import KFeatureKindByNative
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from convert.adapters.solidworks.core.BuildRevolve import BuildRevolve as BuildRevolve
+from convert.adapters.solidworks.core.EquationLinks import EquationData
 from convert.adapters.solidworks.core.SketchIdentity import (
     MarkerId as MarkerId,
 )
@@ -2048,7 +2048,7 @@ def Configurations(Model: NativeModel, Requested: str | None) -> tuple[Config, .
 # this definition exists because focused behavior needs one stable owner
 def Parameters(Model: NativeModel) -> tuple[Param, ...]:
     Parameters: list[Param] = []
-    DimensionIds: dict[tuple[str, str], str] = {}
+    DimensionIds: dict[tuple[str, str], str | None] = {}
     for Feature in Model.features:
         for Dimension, ParamId in ParamEntries(Feature.object_id, Feature.dimensions):
             NativeValue = (
@@ -2099,7 +2099,8 @@ def Parameters(Model: NativeModel) -> tuple[Param, ...]:
                     ),
                 )
             )
-            _ = DimensionIds.setdefault((Feature.name, Dimension.name), ParamId)
+            QualifiedName = (Feature.name, Dimension.name)
+            DimensionIds[QualifiedName] = None if QualifiedName in DimensionIds else ParamId
     return ApplyNativeMut(Parameters, Model, DimensionIds)
 
 
@@ -2114,7 +2115,7 @@ def DimensionParam(Dimension: NativeDimension) -> ParamValue:
 def ApplyNativeMut(
     Parameters: list[Parameter],
     Model: NativeModel,
-    DimensionIds: dict[tuple[str, str], str],
+    DimensionIds: Mapping[tuple[str, str], str | None],
 ) -> tuple[Param, ...]:
     if not Model.equations:
         return tuple(Parameters)
@@ -2126,14 +2127,7 @@ def ApplyNativeMut(
     Values: dict[str, ParamValue] = {}
     ParamIndexes = {Param.id: Index for Index, Param in enumerate(Parameters)}
     for Equation in Model.equations:
-        RefIds = tuple(
-            (
-                GlobalIds[RefValue]
-                for RefValue in Equation.references
-                if RefValue in GlobalIds
-            )
-        )
-        ExprValue = Expression(Equation.rhs, RefIds, "solidworks")
+        ExprValue, Evidence = EquationData(Equation, GlobalIds, DimensionIds)
         ProvenanceValue = Provenance(
             adapter=KFormatId,
             native_id=f"equation:{Equation.native_offset}",
@@ -2160,8 +2154,7 @@ def ApplyNativeMut(
                 attributes=FrozenMapping(
                     {
                         **dict(Parameters[Index].attributes),
-                        "equation_source": Equation.source,
-                        "equation_configuration_id": Equation.configuration_id,
+                        **Evidence,
                     }
                 ),
             )
@@ -2178,12 +2171,7 @@ def ApplyNativeMut(
             expression=ExprValue,
             owner_id=FeatureId(16),
             provenance=ProvenanceValue,
-            attributes=FrozenMapping(
-                {
-                    "equation_source": Equation.source,
-                    "equation_configuration_id": Equation.configuration_id,
-                }
-            ),
+            attributes=FrozenMapping(Evidence),
         )
         if ParamItem.id in ParamIndexes:
             Parameters[ParamIndexes[ParamItem.id]] = ParamItem
