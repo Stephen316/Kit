@@ -88,7 +88,7 @@ In a shallow clone, fetch the pinned commit before verification.
 Use the five explicit recipes in [PairSpecs.json](../../../re/automation/PairSpecs.json).
 Author each source independently in SOLIDWORKS and Fusion.
 A converted output is not an independently authored source.
-Null capture slots indicate missing evidence; they are not fixture filenames.
+The recipe capture slots are unchanged from the original specification. The [A02d audit](../../Changes/Research/PairedCaptureLineageAudit.md) lists the later native capture receipts and their verified provenance.
 
 | Profile | Design                                                        | Reserved family split          | Baseline expectation                           |
 | ------- | ------------------------------------------------------------- | ------------------------------ | ---------------------------------------------- |
@@ -138,11 +138,7 @@ Remote process coverage exercises snapshot creation, verification, hash-tamper r
 The existing `Verify CI policy and pytest compatibility` job runs it on PRs and merge groups; its CI allowlist registration is unchanged.
 Merge-group product acceptance remains separate.
 
-The following items still block the complete A02 exit criterion:
-
-- Independently authored native pairs and controlled variants for the five recipes
-- Receipts binding actual measurements, application builds, controls and parameter edits to exact source hashes
-- Verified independent native ancestry for qualification and holdout families
+The [paired capture audit](../../Changes/Research/PairedCaptureLineageAudit.md) verified ten receipts and 74 native files, covering the five recipes in both applications. No capture hash appears at another native path in the audited Git tree or in the pinned historical manifest. The Fusion repeat-save evidence uses a single process and the baseline-B saves lack readbacks. The capture bindings, corpus intake and provisional imported-family ancestry still limit independent qualification.
 
 Historical scratch-file paths do not establish that the files are available.
 See [the evidence-binding gotcha](../../Gotchas/Research/HistoricalMeasurementsWithoutSourceHashes.md).

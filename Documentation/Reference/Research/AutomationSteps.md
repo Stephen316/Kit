@@ -77,7 +77,7 @@ All A01–A16 code, documentation and progress stay on PR #94; no separate step 
 | A02a     | Hashed native inputs and historical evidence index          | complete | 778 native files, 232 JSON evidence files and two historical notes pinned; remote corpus verification passed at `0dd47cda`                                                                                                              |
 | A02b     | Five paired recipes and controlled-variation specifications | complete | Explicit parameters, frames, constraints, edits, analytic expectations, tolerances and reserved family splits; source review and digest checks passed                                                                                   |
 | A02c     | Independently authored and measured native pairs            | complete | Fusion and SOLIDWORKS captures for P01–P05 recorded. The [SOLIDWORKS capture entry](../../Changes/Research/SolidWorksPairedCaptures.md) links the native files, application build, controls, and edit, rebuild, and reopen evidence |
-| A02d     | Independent qualification and holdout ancestry              | blocked  | Imported lineage reservations are provisional; audit authorship and descendants before evaluating generalization                                                                                                                        |
+| A02d     | Independent qualification and holdout ancestry              | blocked  | [Audit verifies 74 native files and ten receipts](../../Changes/Research/PairedCaptureLineageAudit.md). Fusion fresh-process and baseline-B readbacks, complete observation bindings and corpus intake remain open. P05 stays reserved for holdout |
 
 Historical measurements retain their original values and failures.
 Relative filenames do not establish capture-time hash bindings.
@@ -85,7 +85,7 @@ Analytic expectations are labelled separately from observed values.
 Zero native pairs are currently qualified; no conversion capability is claimed.
 A02 evidence does not establish completion of later steps.
 The [remote workflow-quality job](https://github.com/TryUniCAD/Kit/actions/runs/43419522392/job/131865721189) passed pinned-object verification and all three process cases at `0dd47cdab9d51d24b87acae61ffb1f174ba44d81`.
-That observation completes the A02a–A02b artifact criteria. Independent qualification and holdout ancestry remain in A02d.
+That observation completes the A02a–A02b artifact criteria. The A02d audit verified the committed capture bytes and found no exact-byte aliases in the audited tree or the pinned historical corpus.
 
 ## A03 implementation and verification
 
