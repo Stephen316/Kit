@@ -4564,7 +4564,9 @@ VERTICAL_AXIS_SUBELEMENT = KVerticalAxisSubElem
 _SKETCH_PLANE_ID_RELATIVE = KSketchPlaneIdRelative  # lgtm[py/unused-global-variable]
 
 # this binding exists because shared behavior needs one stable value
-_SKETCH_PLANE_REFERENCE_PREFIX = KSketchPlaneRefPrefix  # lgtm[py/unused-global-variable]
+_SKETCH_PLANE_REFERENCE_PREFIX = (
+    KSketchPlaneRefPrefix  # lgtm[py/unused-global-variable]
+)
 
 # this binding exists because shared behavior needs one stable value
 _SKETCH_PLANE_REFERENCE_TAG = KSketchPlaneRefTag  # lgtm[py/unused-global-variable]
@@ -4574,7 +4576,9 @@ _SKETCH_PLANE_SCAN_BYTES = KSketchPlaneScanBytes  # lgtm[py/unused-global-variab
 
 
 # this binding exists because shared behavior needs one stable value
-_SURFACE_EXTRUSION_FEATURE_TYPES = KSurfaceExtrusionFeature  # lgtm[py/unused-global-variable]
+_SURFACE_EXTRUSION_FEATURE_TYPES = (
+    KSurfaceExtrusionFeature  # lgtm[py/unused-global-variable]
+)
 
 
 # this binding exists because shared behavior needs one stable value

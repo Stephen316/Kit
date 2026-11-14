@@ -34,9 +34,7 @@ def EquationLinks(
         DimensionName, Separator, FeatureName = Reference.partition("@")
         QualifiedName = (FeatureName, DimensionName)
         ParameterId = (
-            DimensionIds.get(QualifiedName)
-            if Separator
-            else GlobalIds.get(Reference)
+            DimensionIds.get(QualifiedName) if Separator else GlobalIds.get(Reference)
         )
         if ParameterId is None or (Separator and QualifiedName in AmbiguousDims):
             Unresolved.append(Reference)
