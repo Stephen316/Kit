@@ -96,7 +96,8 @@ async function targets() {
 
 async function dispatch(path, resultPath) {
   const dispatchPath = `${resultPath}.py`;
-  await writeFile(dispatchPath, `import json, runpy, traceback\nfrom pathlib import Path\ndef _kit_dispatch():\n    try:\n        runpy.run_path(${JSON.stringify(path)}, run_name="__kit_fusion_oracle__")\n        result = {"status": "completed"}\n    except Exception:\n        result = {"status": "failed", "traceback": traceback.format_exc()}\n    Path(${JSON.stringify(resultPath)}).write_text(json.dumps(result))\n_kit_dispatch()\n`);
+  const environment = process.env.KIT_DRAWING_OUT ? `import os\nos.environ["KIT_DRAWING_OUT"] = ${JSON.stringify(process.env.KIT_DRAWING_OUT)}\n` : '';
+  await writeFile(dispatchPath, `${environment}import json, runpy, traceback\nfrom pathlib import Path\ndef _kit_dispatch():\n    try:\n        runpy.run_path(${JSON.stringify(path)}, run_name="__kit_fusion_oracle__")\n        result = {"status": "completed"}\n    except Exception:\n        result = {"status": "failed", "traceback": traceback.format_exc()}\n    Path(${JSON.stringify(resultPath)}).write_text(json.dumps(result))\n_kit_dispatch()\n`);
   const target = (await targets()).find(value => value.title === 'Fusion Home Tab (HomeTab)');
   if (!target) throw new Error('Fusion home tab is unavailable');
   await new Promise((done, fail) => {
