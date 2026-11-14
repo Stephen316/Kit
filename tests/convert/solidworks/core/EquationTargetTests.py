@@ -57,8 +57,10 @@ def TestEquationLhs(
 ) -> None:
     Document = ReadSldprt(TargetFixture(ModeValue))
     Targets = Document.metadata[KUnresolvedEqTargets]
-    assert isinstance(Targets, tuple) and len(Targets) == 1
-    Target = CastValue(tuple[Mapping[str, object], ...], Targets)[0]
+    assert isinstance(Targets, tuple)
+    TargetRows = CastValue(tuple[Mapping[str, object], ...], Targets)
+    assert len(TargetRows) == 1
+    Target = TargetRows[0]
     assert Target["lhs"] == ExpectedName
     assert Target["reason"] == ExpectedReason
     assert Target["native_stream"] == KConfigStream
