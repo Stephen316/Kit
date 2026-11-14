@@ -217,3 +217,24 @@ def require_boss_directions(findings):
         if missing := expected_fields - matched:
             raise ValueError(f"Blind boss direction mismatch in {entry['asset']['path']}: {', '.join(sorted(missing))}")
     print(f"Verified P03 boss directions in {len(cases)} captures")
+
+
+def require_rectangle_edges(findings):
+    cases = [entry for entry in findings if entry["recipe_id"] == "P01"]
+    if len(cases) != 6:
+        raise ValueError(f"P01 rectangle topology check requires 6 captures, found {len(cases)}")
+    for entry in cases:
+        path = entry["asset"]["path"]
+        comparisons = [
+            row for row in entry["comparisons"]
+            if row["field"] == "neutral.sketch.RectangleSketch.world_segments_mm"
+        ]
+        if len(comparisons) != 1:
+            raise ValueError(f"P01 has no unique rectangle edge comparison: {path}")
+        comparison = comparisons[0]
+        expected, actual = comparison["expected"], comparison["actual"]
+        if len(expected) != 4 or actual is None or len(actual) != 4:
+            raise ValueError(f"P01 does not project the four measured rectangle edges: {path}")
+        if not path.endswith("-plane-yz.SLDPRT") and comparison["status"] != "matched":
+            raise ValueError(f"P01 rectangle endpoints differ from the measurement: {path}")
+    print(f"Verified four P01 edges in {len(cases)} captures and measured XY endpoints")

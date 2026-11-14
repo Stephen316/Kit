@@ -97,6 +97,11 @@ jobs:
           uv run --frozen python re/automation/SolidworksCensus.py
           --check-directions "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
 
+      - name: Check SOLIDWORKS rectangle edge topology
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --check-rectangle-edges "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
       - name: Exercise native file reading and writing
         run: >-
           uv run pytest

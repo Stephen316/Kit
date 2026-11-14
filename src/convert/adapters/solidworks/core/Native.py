@@ -1040,6 +1040,7 @@ class NativeProfile:
     parameter_name: str | None = None
     dimension_kind: str | None = None
     start_angle_degrees: float | None = None
+    header_offset: int | None = None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -3537,7 +3538,42 @@ def RectComponent(
         "rectangle",
         (XsValue[0], YsValue[0], XsValue[1], YsValue[1]),
         LineOffsets,
+        header_offset=ProfileHeader(Edges, Markers, Component, Vertices),
     )
+
+
+def ProfileHeader(
+    Edges: Sequence[NativeMarker],
+    Markers: Sequence[NativeMarker],
+    Component: set[int],
+    Vertices: set[int],
+) -> int | None:
+    OwnedEdges = {Edges[Index].offset for Index in Component}
+    FirstIndex = next(
+        Index for Index, Marker in enumerate(Markers) if Marker.offset in OwnedEdges
+    )
+    if FirstIndex == 0:
+        return None
+    Header = Markers[FirstIndex - 1]
+    EdgeRun = Markers[FirstIndex : FirstIndex + len(Component)]
+    Endpoints = frozenset(Header.endpoint_indices or ())
+    EdgeEndpoints = {frozenset(Marker.endpoint_indices or ()) for Marker in EdgeRun}
+    if (
+        {Marker.offset for Marker in EdgeRun} == OwnedEdges
+        and Header.prefix == EdgeRun[0].prefix
+        and Header.locus == KCircleLocus.hex()
+        and Header.semantic == "native"
+        and Header.profile_role == 1
+        and Header.native_kind == 0
+        and Header.object_index is None
+        and Header.coordinates_mm is None
+        and Header.length == 92
+        and len(Endpoints) == 2
+        and Endpoints <= Vertices
+        and Endpoints not in EdgeEndpoints
+    ):
+        return Header.offset
+    return None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -3568,6 +3604,8 @@ def StructuralA(
         if Profile is not None:
             Profiles.append(Profile)
             UsedValue.update(Profile.marker_offsets)
+            if Profile.header_offset is not None:
+                UsedValue.add(Profile.header_offset)
     return (tuple(Profiles), UsedValue)
 
 

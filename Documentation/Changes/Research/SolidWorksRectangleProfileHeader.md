@@ -1,0 +1,7 @@
+# SOLIDWORKS rectangle profile header
+
+The [discovery census from PR head `6cec3b3a`](SolidWorksSketchCensusProvenance.md) traced P01's extra neutral line to a marker immediately before the four line records owned by the rectangle profile. All six P01 saves have the marker at offset 6920 and the four authored edges at 7012, 7104, 7196 and 7288 in the resolved-features stream. Each application measurement records four sketch edges.
+
+The reader now recognizes header ownership only after validating the four-edge component and its four vertices. The header has its own native kind and locus, directly precedes the contiguous edge records, and references two of that component's vertices which do not form an authored edge. The contour retains all four edge spans, and the census retains the header as a native marker together with its profile ownership. Only the owned header is excluded from neutral geometry. [SOLIDWORKS sketch entity-list findings](../../../re/solidworks/records/SketchHandles.md)
+
+The remote discovery check requires exactly four measured edges in all six P01 saves and confirms the XY endpoints against the application measurements. The known YZ frame mismatch remains visible in the census. P04 sketch ownership and native constraint bindings are separate unresolved fields. Static formatting, syntax and whitespace checks were used before publication. Runtime verification belongs to the remote census.

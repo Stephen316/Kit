@@ -72,7 +72,10 @@ def native_sketch(item, archive):
             for index, marker in enumerate(item.markers)
         ],
         "profile_records": [
-            {"kind": profile.kind, "coordinates_mm": profile.coordinates, "marker_offsets": profile.marker_offsets}
+            {
+                "kind": profile.kind, "coordinates_mm": profile.coordinates,
+                "marker_offsets": profile.marker_offsets, "header_offset": profile.header_offset,
+            }
             for profile in item.profiles
         ],
         "rule_records": [

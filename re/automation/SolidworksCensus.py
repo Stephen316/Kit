@@ -7,7 +7,9 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from Corpus import git
-from SolidworksCensusCompare import compare, require_boss_directions, require_equation_bindings
+from SolidworksCensusCompare import (
+    compare, require_boss_directions, require_equation_bindings, require_rectangle_edges,
+)
 from SolidworksCensusInputs import capture_inputs, digest
 from SolidworksCensusRead import native_read, neutral_read
 
@@ -93,15 +95,21 @@ def main():
     outputs.add_argument("--output", type=Path)
     outputs.add_argument("--check-directions", type=Path)
     outputs.add_argument("--check-equations", type=Path)
+    outputs.add_argument("--check-rectangle-edges", type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
-    check_report = args.check_equations or args.check_directions
+    check_report = args.check_equations or args.check_directions or args.check_rectangle_edges
     if check_report is not None:
         report = json.loads(check_report.read_bytes())
         revision = git(root, "rev-parse", "HEAD").decode().strip()
         if report["revision"] != revision:
             raise ValueError("discovery check requires a census from this revision")
-        check = require_equation_bindings if args.check_equations else require_boss_directions
+        checks = (
+            (args.check_equations, require_equation_bindings),
+            (args.check_directions, require_boss_directions),
+            (args.check_rectangle_edges, require_rectangle_edges),
+        )
+        check = next(check for option, check in checks if option is not None)
         check(report["captures"])
     else:
         run(root, args.output.resolve())
