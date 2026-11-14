@@ -1,4 +1,4 @@
-from json import loads as LoadJson
+from json import dumps as DumpJson, loads as LoadJson
 from pathlib import Path as FilePath
 from subprocess import run as RunProcess
 from sys import executable as KPythonPath
@@ -77,3 +77,26 @@ def CheckFusReceipt(TmpPath: FilePath) -> None:
     )
     assert Rejected.returncode == 3, Rejected.stderr
     assert (TmpPath / "Rejected" / "summary.json").is_file()
+
+
+def CheckBatchPins(TmpPath: FilePath) -> None:
+    Manifest = LoadJson((KResearchRoot / "re/automation/Corpus.json").read_text())
+    for Entry in Manifest["assets"]:
+        if Entry["path"] == KArchiveAsset:
+            Entry["sha256"] = "0" * 64
+    ManifestPath = TmpPath / "Manifest.json"
+    _ = ManifestPath.write_text(DumpJson(Manifest))
+    TargetPath = TmpPath / "Rejected"
+    Result = ResearchCli(
+        "fusion",
+        "--asset",
+        KControlAsset,
+        "--asset",
+        KArchiveAsset,
+        "--manifest",
+        str(ManifestPath),
+        "--output",
+        str(TargetPath),
+    )
+    assert Result.returncode == 1 and not TargetPath.exists()
+    assert not list(TmpPath.glob(".fusion-reader-*"))

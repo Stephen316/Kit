@@ -148,7 +148,6 @@ def decode(root, manifest_path, asset_paths, allow_partial, output):
     manifest, manifest_bytes = load_manifest(manifest_path)
     revision = manifest["source_revision"]
     entries = read_tree(root, revision)
-    pinned = [pinned_content(root, manifest, entries, asset_path) for asset_path in asset_paths]
     source_files = source_digests(root)
     identity = {
         "corpus_revision": revision, "manifest_sha256": hashlib.sha256(manifest_bytes).hexdigest(),
@@ -163,8 +162,10 @@ def decode(root, manifest_path, asset_paths, allow_partial, output):
         sys.path.insert(0, str(root / "src"))
         results = []
         written = 0
-        for asset, content in pinned:
+        for asset_path in asset_paths:
+            asset, content = pinned_content(root, manifest, entries, asset_path)
             entry, size = decode_asset(asset, content, identity, allow_partial, staging)
+            del content
             written += size
             if written > RUN_LIMIT:
                 raise ValueError("run output exceeds 4 GiB; select fewer assets")
