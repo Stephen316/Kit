@@ -117,7 +117,11 @@ def compare_operations(measured, native, neutral, tolerance):
             ))
             comparisons.append(observation(f"neutral.operation.{name}.depth_mm", length, observed_length, lengths_equal(length, observed_length, tolerance)))
         if name == "BlindBoss":
-            comparisons.append(observation(f"neutral.operation.{name}.reversed", op["reverse_direction"], projected.get("reversed")))
+            comparisons.extend((
+                observation(f"neutral.operation.{name}.reversed", op["reverse_direction"], projected.get("reversed")),
+                observation(f"neutral.operation.{name}.direction_multiplier",
+                            -1 if op["reverse_direction"] else 1, projected.get("direction_multiplier")),
+            ))
     return comparisons
 
 
@@ -173,3 +177,17 @@ def compare(measured, native, neutral, tolerance):
         *compare_operations(measured, native, neutral, tolerance),
         *compare_sketches(measured, native, neutral, tolerance),
     ]
+
+
+def require_boss_directions(findings):
+    for entry in findings:
+        if entry["recipe_id"] != "P03":
+            continue
+        expected_fields = {
+            "native.operation.BlindBoss.reverse_code",
+            "neutral.operation.BlindBoss.reversed",
+            "neutral.operation.BlindBoss.direction_multiplier",
+        }
+        matched = {row["field"] for row in entry["comparisons"] if row["status"] == "matched"}
+        if missing := expected_fields - matched:
+            raise ValueError(f"Blind boss direction mismatch in {entry['asset']['path']}: {', '.join(sorted(missing))}")

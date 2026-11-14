@@ -8,6 +8,7 @@ from tempfile import TemporaryDirectory
 
 from Corpus import git
 from SolidworksCensusCompare import compare
+from SolidworksCensusCompare import require_boss_directions
 from SolidworksCensusInputs import capture_inputs, digest
 from SolidworksCensusRead import native_read, neutral_read
 
@@ -85,6 +86,7 @@ def run(root, output):
         json.dump(report, target, indent=2, sort_keys=True, allow_nan=False)
         target.write("\n")
     print(json.dumps({"revision": revision, "report": str(output), **report["summary"]}, sort_keys=True))
+    require_boss_directions(findings)
 
 
 def main():

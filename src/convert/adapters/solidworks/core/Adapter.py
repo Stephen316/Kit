@@ -3335,6 +3335,14 @@ def FinalBodyId(
     return Timeline[-1].id if Timeline else ""
 
 
+def IsBossReversed(Operation: NativeOperation) -> bool:
+    return (
+        Operation.kind == "join"
+        and Operation.termination_code == 0
+        and Operation.direction_code == 1
+    )
+
+
 # this definition exists because focused behavior needs one stable owner
 def OperationAttrs(Operation: NativeOperation) -> dict[str, object]:
     Result: dict[str, object] = {
@@ -3356,7 +3364,10 @@ def OperationAttrs(Operation: NativeOperation) -> dict[str, object]:
             {
                 "length_mm": Operation.length_mm,
                 "direction_multiplier": (
-                    -1 if Operation.kind in {"cut", "revolve_cut", "hole"} else 1
+                    -1
+                    if Operation.kind in {"cut", "revolve_cut", "hole"}
+                    or IsBossReversed(Operation)
+                    else 1
                 ),
                 "end_condition": (
                     "blind"
@@ -3452,7 +3463,7 @@ def BuildExtrude(Operation: NativeOperation | None) -> ExtrusionFeature | None:
             if Operation.termination_code == 0
             else f"native:{Operation.termination_code}"
         ),
-        reversed=Operation.kind == "cut",
+        reversed=Operation.kind == "cut" or IsBossReversed(Operation),
         second_length=(
             ParamValue(Operation.second_length_mm, ValueKind.LENGTH, "mm")
             if Operation.second_length_mm is not None
