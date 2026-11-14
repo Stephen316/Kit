@@ -47,7 +47,6 @@ from convert.adapters.catia.Format import (
 from convert.adapters.freecad.Brep import brep_model_brep as BrepModelBrep
 from convert.adapters.solidworks import (
     read_sldprt as ReadSldprt,
-    write_sldprt as WriteSldprt,
 )
 from convert.engine.EngineResult import ConversionResult
 from convert.geometry.Parasolid import encode_brep_model as EncodeBrepModel
@@ -1989,31 +1988,6 @@ def TestForeign() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestCatpartB(TmpPath: Path) -> None:
-    SourcePath = KCatparts / "Banjo.CATPart"
-    Source = OpenDoc(SourcePath)
-    Carrier = TmpPath / "Banjo.SLDPRT"
-    Output = TmpPath / "Banjo.CATPart"
-    _ = WriteSldprt(Source, Carrier, allow_non_native=True)
-    Restored = ReadSldprt(Carrier)
-    Result = WriteCatia(Restored, Output)
-    assert Result.metadata["mode"] == "exact_native_roundtrip"
-    assert Output.read_bytes() == SourcePath.read_bytes()
-
-
-# this definition exists because focused behavior needs one stable owner
-def TestEngineAlias(TmpPath: Path) -> None:
-    if not KSldasm.is_file():
-        Pytest.skip("bundled SOLIDWORKS assembly example is unavailable")
-    Output = TmpPath / "Piston.SLDASM"
-    Result = Convert(KSldasm, Output)
-    assert Result.source_format == "solidworks.sldasm"
-    assert Result.destination_format == "solidworks.sldasm"
-    assert Result.output.adapter == "solidworks.sldasm"
-    assert Result.requirements == ()
-
-
-# this definition exists because focused behavior needs one stable owner
 def TestCfvTwoOuter() -> None:
     DataValue = bytearray((KCatparts / "Banjo.CATPart").read_bytes())
     DataValue[15] ^= 1
@@ -2310,9 +2284,6 @@ globals()["write_catia"] = WriteCatia
 
 # this binding exists because shared behavior needs one stable value
 globals()["write_document"] = WriteDoc
-
-# this binding exists because shared behavior needs one stable value
-globals()["write_sldprt"] = WriteSldprt
 
 # this binding exists because shared behavior needs one stable value
 globals()["zipfile"] = Zipfile

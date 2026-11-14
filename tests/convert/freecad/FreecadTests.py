@@ -3294,7 +3294,7 @@ def TestOpaqueOnly() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-@Pytest.mark.parametrize("CarrierSuffix", (".SLDPRT", ".CATPart"))
+@Pytest.mark.parametrize("CarrierSuffix", (".CATPart",))
 def TestUnknownData(CarrierSuffix: str, TmpPath: Path) -> None:
     SourceData = NativeArchive(
         (

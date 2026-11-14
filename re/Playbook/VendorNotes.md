@@ -9,10 +9,12 @@ not backed by Kit findings are starting hypotheses: confirm them on your samples
 ## SOLIDWORKS (`.SLDPRT`, `.SLDASM`, `.SLDDRW`)
 
 **State:** the most advanced study. Container framing, archive grammar, object segmentation and map
-renumbering are cracked. The load-critical streams for Kit's supported feature families are emitted
-from typed fields with zero opaque bytes. Arbitrary feature histories are not yet inverted; unsupported
-inputs are rejected. The current boundary is in `re/solidworks/README.md` and
-`re/solidworks/CorpusCoverage.md`.
+renumbering are cracked. Kit reads SOLIDWORKS and writes none. The removed writer re-emitted a typed
+recording of one saved stream per supported feature family, at its saved length, with selected
+fields overridden. Zero opaque bytes there meant every byte had a typed owner, not that Kit computed
+it. `tools/Donors/CheckReplays.py` now fails CI on any recorded payload in `src`. A generative
+serializer is the open work, and arbitrary feature histories are not yet inverted. The current
+boundary is in `re/solidworks/README.md` and `re/solidworks/CorpusCoverage.md`.
 
 **Read first:** `re/solidworks/README.md` (in its stated order), `re/solidworks/records/Definition.md`
 (the end-to-end method for one stream), `re/solidworks/measurements/Measure.md` (load-critical

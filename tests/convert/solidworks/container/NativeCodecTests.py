@@ -1,8 +1,7 @@
-from io import BytesIO
 from pathlib import Path as FilePath
 from struct import pack as PackBytes, pack_into as PackInto, unpack_from as UnpackFrom
 from pytest import mark as TestMark, raises as RaisesError
-from convert.adapters.solidworks.core.Adapter import ReadSldprt, WriteSldprt
+from convert.adapters.solidworks.core.Adapter import ReadSldprt
 from convert.adapters.solidworks.container.Container import BuildSldprt, SldprtArchive
 from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat
 from tests.convert.solidworks.container.CodecFixture import CodecFixture
@@ -27,10 +26,6 @@ def TestVersionRead(Version: int) -> None:
     assert Document.sketches == Original.sketches
     assert Document.parameters == Original.parameters
     assert Document.brep_payloads == Original.brep_payloads
-    Output = BytesIO()
-    _ = WriteSldprt(Document, Output)
-    assert Output.getvalue() == Fixture
-    assert ReadSldprt(Output.getvalue()).feature_timeline == Original.feature_timeline
 
 
 @TestMark.parametrize("Version", (3, 4))
@@ -63,9 +58,6 @@ def TestNestedFrame() -> None:
     Document = ReadSldprt(Fixture)
     assert Document.feature_timeline == ReadSldprt(KSample).feature_timeline
     assert SldprtArchive.from_bytes(Fixture).streams == Streams
-    Output = BytesIO()
-    _ = WriteSldprt(Document, Output)
-    assert Output.getvalue() == Fixture
 
 
 @TestMark.parametrize("Damage", ("checksum", "size", "trailing", "truncated"))

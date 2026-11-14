@@ -16,6 +16,9 @@ KLegacyFormats = frozenset(
 )
 
 
+KReadOnlyFormats = frozenset({"solidworks.sldprt"})
+
+
 # deterministic introspection prevents import order from changing the public format catalog
 def CheckDiscovery() -> None:
     PackageNames = ListFormatPacks()
@@ -34,7 +37,8 @@ def CheckDiscovery() -> None:
     assert ReaderIds == tuple(sorted(set(ReaderIds)))
     assert WriterIds == tuple(sorted(set(WriterIds)))
     assert FirstIds == SecondIds == tuple(sorted(set(ReaderIds) | set(WriterIds)))
-    assert KLegacyFormats <= set(ReaderIds) & set(WriterIds)
+    assert KLegacyFormats - KReadOnlyFormats <= set(ReaderIds) & set(WriterIds)
+    assert KReadOnlyFormats <= set(ReaderIds) - set(WriterIds)
     assert "fusion.f3d" in ReaderIds
     for FormatId in ("f3d", "fusion.f3d"):
         assert FirstRegistry.reader(FormatId).info.format_id == "fusion.f3d"

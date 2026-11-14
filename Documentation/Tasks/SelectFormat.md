@@ -48,6 +48,7 @@ Each catalogue entry has one primary `format_id` and can have additional `aliase
 The SOLIDWORKS entry uses `solidworks.sldprt` as its primary identifier.
 Its `aliases` field contains `solidworks.sldasm` for assemblies.
 Discovery does not return a separate entry for that alias.
+The SOLIDWORKS entry is registered as a reader only, so `.SLDPRT` and `.SLDASM` are not valid destinations.
 Fusion research code does not register `fusion.f3d` in the production catalogue.
 See the [Fusion research entry](../Changes/Fusion/FusionResearchImport.md).
 

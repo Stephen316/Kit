@@ -65,7 +65,7 @@ collect_imported_tests = false
 [tool.black]
 line-length = 88
 target-version = ["py311"]
-force-exclude = "(examples|modules|re|src/convert/adapters/solidworks/programs)/"
+force-exclude = "(examples|modules|re)/"
 
 [dependency-groups]
 dev = [

@@ -49,7 +49,6 @@ def CheckApiBridge(TmpPath: FilePath) -> None:
 @Pytest.mark.parametrize(
     ("SourcePath", "FileName"),
     (
-        (KSamplePath, "exact.SLDPRT"),
         (KFcstdPath, "exact.FCStd"),
         (KCatPartPath, "exact.CATPart"),
     ),
@@ -129,25 +128,6 @@ def CheckCarryMode(TmpPath: FilePath) -> None:
         ResultData.output.carrier_capabilities
         == ResultData.output.transferred_capabilities
     )
-
-
-# native replay reporting must attribute every preserved capability to the target format
-def CheckNativeMode(TmpPath: FilePath) -> None:
-    TargetPath = TmpPath / "example.SLDPRT"
-    ResultData = ConvertLegacy(KSamplePath, TargetPath)
-    assert TargetPath.read_bytes() == KSamplePath.read_bytes()
-    assert ResultData.roundtrip_safe is True
-    assert ResultData.dropped == frozenset()
-    assert ResultData.requirements == ()
-    assert ResultData.application_usable is True
-    assert ResultData.vendor_loadable is True
-    assert ResultData.output.metadata["mode"] == "exact"
-    assert ResultData.output.metadata["compatibility"] == "native-exact"
-    assert (
-        ResultData.output.native_capabilities
-        == ResultData.output.transferred_capabilities
-    )
-    assert ResultData.output.carrier_capabilities == frozenset()
 
 
 # tessellation selection stays public because callers may avoid large display payloads

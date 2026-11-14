@@ -15,6 +15,7 @@ from convert.adapters.base.ContractTypes import (
     KTargetType as TargetData,
 )
 from convert.adapters.base.TransferContract import CarrierReason
+from convert.adapters import AdapterNotFoundError
 from convert.adapters.solidworks import SldprtFormatError
 from convert.api.ApiContext import KAdapterRegistry as Registry
 from convert.api.ApiConvert import ConvertFile as Convert
@@ -149,6 +150,18 @@ KPartSuffixes = (".SLDPRT", ".FCStd", ".CATPart")
 # this binding exists because shared behavior needs one stable value
 KAssemblySuffixes = (".SLDASM", ".FCStd", ".CATProduct")
 
+KReadOnlySuffixes = frozenset({".SLDPRT", ".SLDASM"})
+
+KPartTargets = tuple(
+    SuffixName for SuffixName in KPartSuffixes if SuffixName not in KReadOnlySuffixes
+)
+
+KAssemblyTargets = tuple(
+    SuffixName
+    for SuffixName in KAssemblySuffixes
+    if SuffixName not in KReadOnlySuffixes
+)
+
 # this binding exists because shared behavior needs one stable value
 KSupportedSuffixes = frozenset(KFormatBySuffix)
 
@@ -245,7 +258,7 @@ KMatrixSources = KPartSources + KAssemblySources
 KMatrixCases = tuple(
     (NameValue, SourceSuffix, Source, IsAssembly, DestinationSuffix)
     for NameValue, SourceSuffix, Source, IsAssembly in KMatrixSources
-    for DestinationSuffix in (KAssemblySuffixes if IsAssembly else KPartSuffixes)
+    for DestinationSuffix in (KAssemblyTargets if IsAssembly else KPartTargets)
 )
 
 # this binding exists because shared behavior needs one stable value
@@ -530,9 +543,11 @@ def TestSFMRADK() -> None:
         }
         for AdapterSet in (Registry.readers(), Registry.writers())
     )
-    assert {SuffixName.casefold() for SuffixName in KFormatBySuffix} == (
-        ReaderSuffixes & WriterSuffixes
-    )
+    ReadOnly = {SuffixName.casefold() for SuffixName in KReadOnlySuffixes}
+    Formats = {SuffixName.casefold() for SuffixName in KFormatBySuffix}
+    assert Formats <= ReaderSuffixes
+    assert Formats - ReadOnly == ReaderSuffixes & WriterSuffixes
+    assert not ReadOnly & WriterSuffixes
     assert set(KPartSuffixes) | set(KAssemblySuffixes) == set(KFormatBySuffix)
     assert set(KPartSuffixes) & set(KAssemblySuffixes) == {".FCStd"}
     Counts = Counter(Suffix(PathValueA) for PathValueA in KCorpusFiles)
@@ -592,6 +607,24 @@ def TestEVFSRBD(
     assert DocumentS(Restored) == OriginalSignature
     AssertTarget(Restored, DestinationSuffix, Destination, IsAssembly)
     AssertTVR(Result, DestinationSuffix, IsAssembly)
+    if SourceSuffix not in KReadOnlySuffixes:
+        AssertReverse(
+            (NameValue, SourceSuffix, DestinationSuffix),
+            Destination,
+            OriginalSignature,
+            IsAssembly,
+            TmpPath,
+        )
+
+
+def AssertReverse(
+    CaseNames: tuple[str, str, str],
+    Destination: PathValue,
+    OriginalSignature: DocumentSig,
+    IsAssembly: bool,
+    TmpPath: PathValue,
+) -> None:
+    NameValue, SourceSuffix, DestinationSuffix = CaseNames
     ReverseDirectory = TmpPath / f"{NameValue}_reverse"
     ReverseDirectory.mkdir()
     Reverse = ReverseDirectory / f"{NameValue}_reversed{SourceSuffix}"
@@ -604,6 +637,28 @@ def TestEVFSRBD(
     assert DocumentS(ReversedDocument) == OriginalSignature
     AssertTarget(ReversedDocument, SourceSuffix, Reverse, IsAssembly)
     AssertTVR(ReverseResult, SourceSuffix, IsAssembly)
+
+
+@Pytest.mark.parametrize(
+    ("NameValue", "SourceSuffix", "Source", "IsAssembly"),
+    KMatrixSources,
+    ids=[CaseValue[0] for CaseValue in KMatrixSources],
+)
+def TestNoSwWriter(
+    NameValue: str,
+    SourceSuffix: str,
+    Source: PathValue,
+    IsAssembly: bool,
+    TmpPath: PathValue,
+) -> None:
+    if not Source.is_file():
+        Pytest.skip(f"bundled example source is unavailable: {Source.name}")
+    TargetSuffix = ".SLDASM" if IsAssembly else ".SLDPRT"
+    Destination = TmpPath / f"{NameValue}_blocked{TargetSuffix}"
+    with Pytest.raises(AdapterNotFoundError, match="no writer supports"):
+        _ = Convert(Source, Destination)
+    assert SourceSuffix in KFormatBySuffix
+    assert tuple(TmpPath.iterdir()) == ()
 
 
 # this test verifies missing assembly references fail with the unresolved filename

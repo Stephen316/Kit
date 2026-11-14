@@ -1,7 +1,6 @@
 from convert.adapters.solidworks.core.Adapter import (
     SldprtAdapter as SldprtAdapter,
     read_sldprt as ReadSldprt,
-    write_sldprt as WriteSldprt,
 )
 from convert.adapters.solidworks.assembly.Assembly import (
     NativeAssembly as NativeAsm,
@@ -133,6 +132,3 @@ neutral_meshes = NeutralMeshes
 
 # this binding exists because shared behavior needs one stable value
 read_sldprt = ReadSldprt
-
-# this binding exists because shared behavior needs one stable value
-write_sldprt = WriteSldprt
