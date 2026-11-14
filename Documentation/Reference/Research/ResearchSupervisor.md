@@ -16,6 +16,7 @@ Production conversion must not import this research code.
 
 You need Python 3.11 or later on Linux or macOS.
 The supervisor uses `fcntl`, process groups and `os.wait4`, so Windows is not supported.
+A08e plans Windows support for a single Windows host that runs both CAD applications.
 Initialize an [A03 controller store](ResearchController.md#commands), or supply another adapter.
 Choose a private state directory on a local disk.
 

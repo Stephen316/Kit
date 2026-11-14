@@ -258,6 +258,56 @@ The reserve is 2 CPUs and 4 GiB.
 Efficiency cores execute a session more slowly than performance cores.
 Use calibration results, not the CPU count alone, to set deadlines.
 
+## Application workers that stay busy
+
+A scripted application grid takes seconds, so an idle CAD installation wastes the scarcest resource.
+The application pool keeps each installation busy while runnable application jobs exist.
+
+### Single Windows host
+
+Run the controller, the supervisor, SOLIDWORKS and Fusion on one Windows machine.
+Then the application pool needs no network job transport.
+The supervisor does not support Windows yet; A08e adds that support.
+Until A08e passes, Fusion can run queued capture scripts through the `KitCaptureRunner` add-in.
+
+### Continuous claims
+
+- Give the application pool one session for each verified installation.
+- Mark each installation as one counted resource with a capacity of 1.
+- Start the next claim as soon as a session finishes, with no idle poll between jobs.
+- Never run two jobs in the same installation at the same time.
+
+### Work ahead of decoding
+
+- A07 submits grid jobs for every runnable gap, not only for the gap under investigation.
+- Keep at least 10 queued application jobs for each installation.
+- A decode or model job that needs a grid depends on that grid job, so it starts when the grid completes.
+- When no requested grid is queued, run the standard grid of the highest-priority open feature family.
+- Standard grids have the lowest priority.
+- A requested grid takes the next free claim, but it never interrupts a running job.
+
+### Reset only when necessary
+
+After each job, close only the documents that the job owns.
+Restart the application only in these conditions:
+
+| Condition                                  | Action                                                                       |
+| ------------------------------------------ | ---------------------------------------------------------------------------- |
+| Repeat-save evidence is queued             | Collect the repeat saves of many recipes and do them across one restart      |
+| 50 jobs since the last restart             | Restart between jobs; the operator can change the count                      |
+| Process memory is more than its limit      | Restart between jobs                                                         |
+| The application crashes or stops answering | Stop it, restart it, retry that job once, then park the job                  |
+| The healthy control fails                  | Discard the batch, restart, measure the control again, then repeat the batch |
+
+Measure the healthy control before and after each batch of up to 20 jobs.
+A failed control invalidates every result of that batch.
+
+### Utilization
+
+`supervisor status` reports, for each installation, the busy time divided by the elapsed time.
+While the application queue is not empty, the target is 90% or more.
+A lower value identifies a slow restart, a slow claim or an empty queue.
+
 ## Codex runner
 
 ### Invocation
@@ -583,6 +633,8 @@ A claim of the wrong job kind would consume an attempt in the wrong pool.
 | ----------- | ------------------------------------------------------------------------------- | ------------------------------------------- |
 | A08a        | Supervisor, session directories, pools, controller interface and A03 adapter    | A03                                         |
 | A08b        | Capacity limits, adaptive start and calibration                                 | A08a                                        |
+| A08c        | Application workers that stay busy, with scheduled resets and healthy controls  | A02b, A08a                                  |
+| A08e        | Windows host support for the supervisor and application workers                 | A08a                                        |
 | A10a        | Codex runner, sandbox options and private data boundary                         | A08a, A07, A09                              |
 | A10b        | Step validation, selector, failure log and start-step routes                    | A10a                                        |
 | A10c        | Use report for each model step and route key                                    | A10b, A09                                   |
