@@ -73,6 +73,7 @@ Do not publish an unmeasured hypothesis as product support.
 ## Sources
 
 - [Research index](../../../re/README.md)
+- [Toolchain chapter of the instruction book](../../../re/Playbook/Toolchain.md)
 - [Ghidra setup](../../../re/tooling/ghidra/Setup.md)
 - [Runtime trace tool](../../../re/tooling/windbg/Multitrace.py)
 - [Serialization harness](../../../re/tooling/harness/Serialize.py)
