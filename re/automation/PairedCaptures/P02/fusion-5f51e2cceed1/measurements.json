@@ -1,0 +1,1122 @@
+{
+  "application": "Autodesk Fusion",
+  "authoring_origin": "Fusion API script authored from the P02 recipe; no Kit reader, writer or source archive used",
+  "authoring_recipe_sha256": "79875dd7f03a7d193133bed304f21c0ac10b76198147125cf572950bef889d52",
+  "configuration": "none",
+  "errors": [],
+  "exact_application_build": "2706.1.17",
+  "generator_sha256": "51c66a7761808e85c683025a5965c5b59df6b9c7450ac541d8fde210a50c2434",
+  "limits": [
+    "Repeat saves are separated by a document close and archive reopen in one Fusion process, not an application restart",
+    "Analytic comparisons are labelled separately and never replace measured observations"
+  ],
+  "observations": {
+    "baseline": {
+      "bodies": [],
+      "body_count": 0,
+      "center_of_mass_mm": null,
+      "design_type": "parametric",
+      "document_units": 0,
+      "feature_tree": [
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 0,
+          "name": "CircleSketch",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "Sketch"
+        }
+      ],
+      "label": "baseline after build",
+      "mass_properties": "not_applicable_no_body",
+      "parameters": [
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "10 mm",
+          "kind": "ModelParameter",
+          "name": "diameter_mm",
+          "role": "Diameter Dimension-2",
+          "unit": "mm",
+          "value_internal": 1.0
+        }
+      ],
+      "sketches": [
+        {
+          "constraints": [
+            {
+              "type": "CoincidentConstraint"
+            }
+          ],
+          "curves": [
+            {
+              "center_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "construction": false,
+              "fixed": false,
+              "index": 0,
+              "radius_mm": 5.0,
+              "reference": false,
+              "type": "SketchCircle"
+            }
+          ],
+          "dimensions": [
+            {
+              "driving": true,
+              "expression": "10 mm",
+              "parameter": "diameter_mm",
+              "type": "SketchDiameterDimension"
+            }
+          ],
+          "fully_constrained": true,
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "name": "CircleSketch",
+          "origin_world_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "point_count": 2,
+          "profile_areas_mm2": [
+            78.53981634
+          ],
+          "support": "ConstructionPlane",
+          "support_name": "XY",
+          "x_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "volume_mm3": null
+    },
+    "baseline_comparison": {
+      "classification": "analytic_expectation_for_comparison_only",
+      "expected": {
+        "area_mm2": 78.53981633974483
+      },
+      "matches": true
+    },
+    "edits": [
+      {
+        "edit": {
+          "expected_area_mm2_formula": "64*pi",
+          "parameter": "diameter_mm",
+          "value": 16
+        },
+        "edited": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "edit diameter_mm = 16",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "16 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "mm",
+              "value_internal": 1.6
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 8.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "16 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                201.06192983
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XY",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        },
+        "edited_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "area_mm2": 201.06192982974676
+          },
+          "matches": true
+        },
+        "export": "P02-fusion-edit-diameter_mm-16.f3d",
+        "reopened": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "fresh reopen of P02-fusion-edit-diameter_mm-16.f3d",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "16 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "mm",
+              "value_internal": 1.6
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 8.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "16 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                201.06192983
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XY",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        },
+        "reopened_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "area_mm2": 201.06192982974676
+          },
+          "matches": true
+        },
+        "restored": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "restore diameter_mm",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "10 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "mm",
+              "value_internal": 1.0
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 5.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "10 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                78.53981634
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XY",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        },
+        "restored_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "area_mm2": 78.53981633974483
+          },
+          "matches": true
+        }
+      }
+    ],
+    "fresh_reopen": {
+      "bodies": [],
+      "body_count": 0,
+      "center_of_mass_mm": null,
+      "design_type": "parametric",
+      "document_units": 0,
+      "feature_tree": [
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 0,
+          "name": "CircleSketch",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "Sketch"
+        }
+      ],
+      "label": "fresh reopen of baseline-a",
+      "mass_properties": "not_applicable_no_body",
+      "parameters": [
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "10 mm",
+          "kind": "ModelParameter",
+          "name": "diameter_mm",
+          "role": "Diameter Dimension-2",
+          "unit": "mm",
+          "value_internal": 1.0
+        }
+      ],
+      "sketches": [
+        {
+          "constraints": [
+            {
+              "type": "CoincidentConstraint"
+            }
+          ],
+          "curves": [
+            {
+              "center_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "construction": false,
+              "fixed": false,
+              "index": 0,
+              "radius_mm": 5.0,
+              "reference": false,
+              "type": "SketchCircle"
+            }
+          ],
+          "dimensions": [
+            {
+              "driving": true,
+              "expression": "10 mm",
+              "parameter": "diameter_mm",
+              "type": "SketchDiameterDimension"
+            }
+          ],
+          "fully_constrained": true,
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "name": "CircleSketch",
+          "origin_world_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "point_count": 2,
+          "profile_areas_mm2": [
+            78.53981634
+          ],
+          "support": "ConstructionPlane",
+          "support_name": "XY",
+          "x_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "volume_mm3": null
+    },
+    "healthy_control_after": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              40.0,
+              30.0,
+              25.0
+            ]
+          ],
+          "edges": 12,
+          "faces": 6,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 8,
+          "volume_mm3": 30000.0
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        20.0,
+        15.0,
+        12.5
+      ],
+      "expected_volume_mm3": 30000.0,
+      "file": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "healthy": true,
+      "label": "after",
+      "mass_properties": "measured",
+      "sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "volume_mm3": 30000.0
+    },
+    "healthy_control_before": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              40.0,
+              30.0,
+              25.0
+            ]
+          ],
+          "edges": 12,
+          "faces": 6,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 8,
+          "volume_mm3": 30000.0
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        20.0,
+        15.0,
+        12.5
+      ],
+      "expected_volume_mm3": 30000.0,
+      "file": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "healthy": true,
+      "label": "before",
+      "mass_properties": "measured",
+      "sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "volume_mm3": 30000.0
+    },
+    "unchanged_rebuild": {
+      "bodies": [],
+      "body_count": 0,
+      "center_of_mass_mm": null,
+      "design_type": "parametric",
+      "document_units": 0,
+      "feature_tree": [
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 0,
+          "name": "CircleSketch",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "Sketch"
+        }
+      ],
+      "label": "unchanged rebuild after reopen",
+      "mass_properties": "not_applicable_no_body",
+      "parameters": [
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "10 mm",
+          "kind": "ModelParameter",
+          "name": "diameter_mm",
+          "role": "Diameter Dimension-2",
+          "unit": "mm",
+          "value_internal": 1.0
+        }
+      ],
+      "sketches": [
+        {
+          "constraints": [
+            {
+              "type": "CoincidentConstraint"
+            }
+          ],
+          "curves": [
+            {
+              "center_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "construction": false,
+              "fixed": false,
+              "index": 0,
+              "radius_mm": 5.0,
+              "reference": false,
+              "type": "SketchCircle"
+            }
+          ],
+          "dimensions": [
+            {
+              "driving": true,
+              "expression": "10 mm",
+              "parameter": "diameter_mm",
+              "type": "SketchDiameterDimension"
+            }
+          ],
+          "fully_constrained": true,
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "name": "CircleSketch",
+          "origin_world_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "point_count": 2,
+          "profile_areas_mm2": [
+            78.53981634
+          ],
+          "support": "ConstructionPlane",
+          "support_name": "XY",
+          "x_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_direction": [
+            0.0,
+            1.0,
+            0.0
+          ]
+        }
+      ],
+      "volume_mm3": null
+    },
+    "variants": [
+      {
+        "before_save": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 3,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "display units inches",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "10 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "in",
+              "value_internal": 1.0
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 5.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "10 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                78.53981634
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XY",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        },
+        "comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "area_mm2": 78.53981633974483
+          },
+          "matches": true
+        },
+        "export": "P02-fusion-units-inch.f3d",
+        "label": "display units inches",
+        "reopened": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 3,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "fresh reopen of P02-fusion-units-inch.f3d",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "10 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "in",
+              "value_internal": 1.0
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 5.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "10 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                78.53981634
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XY",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        }
+      },
+      {
+        "before_save": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "baseline reauthored on YZ",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "10 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "mm",
+              "value_internal": 1.0
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 5.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "10 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                78.53981634
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "YZ",
+              "x_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        },
+        "comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "area_mm2": 78.53981633974483
+          },
+          "matches": true
+        },
+        "export": "P02-fusion-plane-yz.f3d",
+        "label": "baseline reauthored on YZ",
+        "reopened": {
+          "bodies": [],
+          "body_count": 0,
+          "center_of_mass_mm": null,
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "CircleSketch",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            }
+          ],
+          "label": "fresh reopen of P02-fusion-plane-yz.f3d",
+          "mass_properties": "not_applicable_no_body",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "10 mm",
+              "kind": "ModelParameter",
+              "name": "diameter_mm",
+              "role": "Diameter Dimension-2",
+              "unit": "mm",
+              "value_internal": 1.0
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "center_world_mm": [
+                    0.0,
+                    0.0,
+                    0.0
+                  ],
+                  "construction": false,
+                  "fixed": false,
+                  "index": 0,
+                  "radius_mm": 5.0,
+                  "reference": false,
+                  "type": "SketchCircle"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "10 mm",
+                  "parameter": "diameter_mm",
+                  "type": "SketchDiameterDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "CircleSketch",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 2,
+              "profile_areas_mm2": [
+                78.53981634
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "YZ",
+              "x_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ],
+              "y_direction": [
+                0.0,
+                1.0,
+                0.0
+              ]
+            }
+          ],
+          "volume_mm3": null
+        }
+      }
+    ]
+  },
+  "recipe_id": "P02",
+  "saves": [
+    {
+      "file": "P02-fusion-baseline-a.f3d",
+      "sha256": "3c8246a867484be5cb294ca047b7b5e1c6ada0fa40d1c914c940e8da359d544a",
+      "size_bytes": 85393
+    },
+    {
+      "file": "P02-fusion-baseline-b.f3d",
+      "sha256": "0fa8bb3fee8fb9b64d7def636cb94c5f2b6596ddda3637bbc3a425e5df5e0b78",
+      "size_bytes": 34083
+    },
+    {
+      "file": "P02-fusion-edit-diameter_mm-16.f3d",
+      "sha256": "2639603dff6a307ead54894c900b8a1069231887e3fa9cc5ad7308123db04183",
+      "size_bytes": 34048
+    },
+    {
+      "file": "P02-fusion-units-inch.f3d",
+      "sha256": "044d4f6200f2e43899f6e248c2c9a8768b648895ba3e6d29ddeaaac857e81e7e",
+      "size_bytes": 34100
+    },
+    {
+      "file": "P02-fusion-plane-yz.f3d",
+      "sha256": "b5c4ecd5c5392788992a18f109fdfcc18e4ffa616356b5d801bd32113d68f66e",
+      "size_bytes": 85697
+    }
+  ],
+  "shared_capture_sha256": "deb2437a77658f976a03e27596bc56b39bc52c4cee6afde628e6601b84b817b1",
+  "specifications_sha256": "3c93e024f9fbdda50e610bda3b363bf30e8e7cdc914ef0728087befe129951bf",
+  "world_basis": "Fusion world XYZ; baseline support XY with basis {'plane': 'xYConstructionPlane', 'u': (1, 0, 0), 'v': (0, 1, 0), 'n': (0, 0, 1)}"
+}

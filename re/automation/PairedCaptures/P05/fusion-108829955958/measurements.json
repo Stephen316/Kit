@@ -1,0 +1,4757 @@
+{
+  "application": "Autodesk Fusion",
+  "authoring_origin": "Fusion API script authored from the P05 recipe; no Kit reader, writer or source archive used",
+  "authoring_recipe_sha256": "317dd3978e63360b7513190afc1a24798eb2225954e90b69e11548af722b1435",
+  "configuration": "none",
+  "errors": [],
+  "exact_application_build": "2706.1.17",
+  "generator_sha256": "9d9f268c2330cce65a99e8b9593c62ddb549f7bf7b4b2614d71c0cb343c28a48",
+  "limits": [
+    "Repeat saves are separated by a document close and archive reopen in one Fusion process, not an application restart",
+    "Analytic comparisons are labelled separately and never replace measured observations"
+  ],
+  "observations": {
+    "baseline": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              -6.0,
+              -6.0,
+              0.0
+            ],
+            [
+              6.0,
+              6.0,
+              12.0
+            ]
+          ],
+          "edges": 4,
+          "faces": 4,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 4,
+          "volume_mm3": 1206.371578978
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        1e-09,
+        0.0,
+        6.0
+      ],
+      "design_type": "parametric",
+      "document_units": 0,
+      "feature_tree": [
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 0,
+          "name": "AnnulusProfile",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "Sketch"
+        },
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 1,
+          "name": "Revolution",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "RevolveFeature"
+        }
+      ],
+      "label": "baseline after build",
+      "mass_properties": "measured",
+      "parameters": [
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "2 mm",
+          "kind": "ModelParameter",
+          "name": "inner_radius_mm",
+          "role": "Linear Dimension-2",
+          "unit": "mm",
+          "value_internal": 0.2
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "6 mm",
+          "kind": "ModelParameter",
+          "name": "outer_radius_mm",
+          "role": "Linear Dimension-3",
+          "unit": "mm",
+          "value_internal": 0.6000000000000001
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "12 mm",
+          "kind": "ModelParameter",
+          "name": "height_mm",
+          "role": "Linear Dimension-4",
+          "unit": "mm",
+          "value_internal": 1.2000000000000002
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "360 deg",
+          "kind": "ModelParameter",
+          "name": "angle_deg",
+          "role": "AlongAngle",
+          "unit": "deg",
+          "value_internal": 6.283185307179586
+        }
+      ],
+      "sketches": [
+        {
+          "constraints": [
+            {
+              "type": "HorizontalConstraint"
+            },
+            {
+              "type": "VerticalConstraint"
+            },
+            {
+              "type": "HorizontalConstraint"
+            },
+            {
+              "type": "VerticalConstraint"
+            },
+            {
+              "type": "CoincidentConstraint"
+            }
+          ],
+          "curves": [
+            {
+              "construction": false,
+              "end_world_mm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 0,
+              "reference": false,
+              "start_world_mm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                6.0,
+                0.0,
+                12.0
+              ],
+              "fixed": false,
+              "index": 1,
+              "reference": false,
+              "start_world_mm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                2.0,
+                0.0,
+                12.0
+              ],
+              "fixed": false,
+              "index": 2,
+              "reference": false,
+              "start_world_mm": [
+                6.0,
+                0.0,
+                12.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 3,
+              "reference": false,
+              "start_world_mm": [
+                2.0,
+                0.0,
+                12.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                22.5,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 4,
+              "reference": true,
+              "start_world_mm": [
+                1.75,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            }
+          ],
+          "dimensions": [
+            {
+              "driving": true,
+              "expression": "2 mm",
+              "parameter": "inner_radius_mm",
+              "type": "SketchLinearDimension"
+            },
+            {
+              "driving": true,
+              "expression": "6 mm",
+              "parameter": "outer_radius_mm",
+              "type": "SketchLinearDimension"
+            },
+            {
+              "driving": true,
+              "expression": "12 mm",
+              "parameter": "height_mm",
+              "type": "SketchLinearDimension"
+            }
+          ],
+          "fully_constrained": true,
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "name": "AnnulusProfile",
+          "origin_world_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "point_count": 7,
+          "profile_areas_mm2": [
+            48.0
+          ],
+          "support": "ConstructionPlane",
+          "support_name": "XZ",
+          "x_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_direction": [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        }
+      ],
+      "volume_mm3": 1206.371578978
+    },
+    "baseline_comparison": {
+      "classification": "analytic_expectation_for_comparison_only",
+      "expected": {
+        "center_of_mass_mm": [
+          -1.6892077940917294e-16,
+          0.0,
+          6.0
+        ],
+        "volume_mm3": 1206.3715789784806
+      },
+      "expected_center_world_mm": [
+        -1.6892077940917294e-16,
+        0.0,
+        6.0
+      ],
+      "matches": true
+    },
+    "edits": [
+      {
+        "edit": {
+          "parameter": "inner_radius_mm",
+          "value": 3
+        },
+        "edited": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1017.876019763
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            -0.0,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "edit inner_radius_mm = 3",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "3 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.30000000000000004
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    3.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    3.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "3 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                36.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1017.876019763
+        },
+        "edited_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.8191468551757088e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1017.8760197630929
+          },
+          "expected_center_world_mm": [
+            -1.8191468551757088e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        },
+        "export": "P05-fusion-edit-inner_radius_mm-3.f3d",
+        "reopened": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1017.876019763
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            -0.0,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "fresh reopen of P05-fusion-edit-inner_radius_mm-3.f3d",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "3 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.30000000000000004
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    3.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    3.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    3.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "3 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                36.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1017.876019763
+        },
+        "reopened_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.8191468551757088e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1017.8760197630929
+          },
+          "expected_center_world_mm": [
+            -1.8191468551757088e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        },
+        "restored": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1206.371578978
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "restore inner_radius_mm",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1206.371578978
+        },
+        "restored_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1206.3715789784806
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        }
+      },
+      {
+        "edit": {
+          "parameter": "outer_radius_mm",
+          "value": 7
+        },
+        "edited": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -7.0,
+                  -7.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  7.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1696.460032939
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            0.0,
+            -0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "edit outer_radius_mm = 7",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "7 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.7000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    7.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    7.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "7 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                60.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1696.460032939
+        },
+        "edited_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.9346482428059126e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1696.4600329384884
+          },
+          "expected_center_world_mm": [
+            -1.9346482428059126e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        },
+        "export": "P05-fusion-edit-outer_radius_mm-7.f3d",
+        "reopened": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -7.0,
+                  -7.0,
+                  0.0
+                ],
+                [
+                  7.0,
+                  7.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1696.460032939
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            0.0,
+            -0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "fresh reopen of P05-fusion-edit-outer_radius_mm-7.f3d",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "7 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.7000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    7.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    7.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    7.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "7 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                60.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1696.460032939
+        },
+        "reopened_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.9346482428059126e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1696.4600329384884
+          },
+          "expected_center_world_mm": [
+            -1.9346482428059126e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        },
+        "restored": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1206.371578978
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            -0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "restore outer_radius_mm",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1206.371578978
+        },
+        "restored_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1206.3715789784806
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        }
+      },
+      {
+        "edit": {
+          "parameter": "height_mm",
+          "value": 14
+        },
+        "edited": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  14.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1407.433508808
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            -0.0,
+            7.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "edit height_mm = 14",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "14 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.4000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    14.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    14.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    14.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    14.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "14 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                56.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1407.433508808
+        },
+        "edited_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              7.0
+            ],
+            "volume_mm3": 1407.4335088082273
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            7.0
+          ],
+          "matches": true
+        },
+        "export": "P05-fusion-edit-height_mm-14.f3d",
+        "reopened": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  14.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1407.433508808
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            -0.0,
+            7.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "fresh reopen of P05-fusion-edit-height_mm-14.f3d",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "14 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.4000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    14.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    14.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    14.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    14.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "14 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                56.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1407.433508808
+        },
+        "reopened_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              7.0
+            ],
+            "volume_mm3": 1407.4335088082273
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            7.0
+          ],
+          "matches": true
+        },
+        "restored": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1206.371578978
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "restore height_mm",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1206.371578978
+        },
+        "restored_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1206.3715789784806
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        }
+      },
+      {
+        "edit": {
+          "parameter": "angle_deg",
+          "qualification": "separately scoped partial-angle variant",
+          "value": 90
+        },
+        "edited": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 12,
+              "faces": 6,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 8,
+              "volume_mm3": 301.592894745
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            2.75868568,
+            2.75868568,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "edit angle_deg = 90",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "90 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 1.5707963267948966
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 301.592894745
+        },
+        "edited_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              2.758685680259519,
+              2.7586856802595188,
+              6.0
+            ],
+            "volume_mm3": 301.59289474462014
+          },
+          "expected_center_world_mm": [
+            2.758685680259519,
+            2.7586856802595188,
+            6.0
+          ],
+          "matches": true
+        },
+        "export": "P05-fusion-edit-angle_deg-90.f3d",
+        "reopened": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 12,
+              "faces": 6,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 8,
+              "volume_mm3": 301.592894745
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            2.75868568,
+            2.75868568,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "fresh reopen of P05-fusion-edit-angle_deg-90.f3d",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "90 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 1.5707963267948966
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 301.592894745
+        },
+        "reopened_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              2.758685680259519,
+              2.7586856802595188,
+              6.0
+            ],
+            "volume_mm3": 301.59289474462014
+          },
+          "expected_center_world_mm": [
+            2.758685680259519,
+            2.7586856802595188,
+            6.0
+          ],
+          "matches": true
+        },
+        "restored": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1206.371578978
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 0,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "restore angle_deg",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "mm",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "mm",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "mm",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1206.371578978
+        },
+        "restored_comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1206.3715789784806
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        }
+      }
+    ],
+    "fresh_reopen": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              -6.0,
+              -6.0,
+              0.0
+            ],
+            [
+              6.0,
+              6.0,
+              12.0
+            ]
+          ],
+          "edges": 4,
+          "faces": 4,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 4,
+          "volume_mm3": 1206.371578978
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        1e-09,
+        0.0,
+        6.0
+      ],
+      "design_type": "parametric",
+      "document_units": 0,
+      "feature_tree": [
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 0,
+          "name": "AnnulusProfile",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "Sketch"
+        },
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 1,
+          "name": "Revolution",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "RevolveFeature"
+        }
+      ],
+      "label": "fresh reopen of baseline-a",
+      "mass_properties": "measured",
+      "parameters": [
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "2 mm",
+          "kind": "ModelParameter",
+          "name": "inner_radius_mm",
+          "role": "Linear Dimension-2",
+          "unit": "mm",
+          "value_internal": 0.2
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "6 mm",
+          "kind": "ModelParameter",
+          "name": "outer_radius_mm",
+          "role": "Linear Dimension-3",
+          "unit": "mm",
+          "value_internal": 0.6000000000000001
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "12 mm",
+          "kind": "ModelParameter",
+          "name": "height_mm",
+          "role": "Linear Dimension-4",
+          "unit": "mm",
+          "value_internal": 1.2000000000000002
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "360 deg",
+          "kind": "ModelParameter",
+          "name": "angle_deg",
+          "role": "AlongAngle",
+          "unit": "deg",
+          "value_internal": 6.283185307179586
+        }
+      ],
+      "sketches": [
+        {
+          "constraints": [
+            {
+              "type": "HorizontalConstraint"
+            },
+            {
+              "type": "VerticalConstraint"
+            },
+            {
+              "type": "HorizontalConstraint"
+            },
+            {
+              "type": "VerticalConstraint"
+            },
+            {
+              "type": "CoincidentConstraint"
+            }
+          ],
+          "curves": [
+            {
+              "construction": false,
+              "end_world_mm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 0,
+              "reference": false,
+              "start_world_mm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                6.0,
+                0.0,
+                12.0
+              ],
+              "fixed": false,
+              "index": 1,
+              "reference": false,
+              "start_world_mm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                2.0,
+                0.0,
+                12.0
+              ],
+              "fixed": false,
+              "index": 2,
+              "reference": false,
+              "start_world_mm": [
+                6.0,
+                0.0,
+                12.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 3,
+              "reference": false,
+              "start_world_mm": [
+                2.0,
+                0.0,
+                12.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                22.5,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 4,
+              "reference": true,
+              "start_world_mm": [
+                1.75,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            }
+          ],
+          "dimensions": [
+            {
+              "driving": true,
+              "expression": "2 mm",
+              "parameter": "inner_radius_mm",
+              "type": "SketchLinearDimension"
+            },
+            {
+              "driving": true,
+              "expression": "6 mm",
+              "parameter": "outer_radius_mm",
+              "type": "SketchLinearDimension"
+            },
+            {
+              "driving": true,
+              "expression": "12 mm",
+              "parameter": "height_mm",
+              "type": "SketchLinearDimension"
+            }
+          ],
+          "fully_constrained": true,
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "name": "AnnulusProfile",
+          "origin_world_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "point_count": 7,
+          "profile_areas_mm2": [
+            48.0
+          ],
+          "support": "ConstructionPlane",
+          "support_name": "XZ",
+          "x_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_direction": [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        }
+      ],
+      "volume_mm3": 1206.371578978
+    },
+    "healthy_control_after": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              40.0,
+              30.0,
+              25.0
+            ]
+          ],
+          "edges": 12,
+          "faces": 6,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 8,
+          "volume_mm3": 30000.0
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        20.0,
+        15.0,
+        12.5
+      ],
+      "expected_volume_mm3": 30000.0,
+      "file": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "healthy": true,
+      "label": "after",
+      "mass_properties": "measured",
+      "sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "volume_mm3": 30000.0
+    },
+    "healthy_control_before": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              0.0,
+              0.0,
+              0.0
+            ],
+            [
+              40.0,
+              30.0,
+              25.0
+            ]
+          ],
+          "edges": 12,
+          "faces": 6,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 8,
+          "volume_mm3": 30000.0
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        20.0,
+        15.0,
+        12.5
+      ],
+      "expected_volume_mm3": 30000.0,
+      "file": "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+      "healthy": true,
+      "label": "before",
+      "mass_properties": "measured",
+      "sha256": "09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c",
+      "volume_mm3": 30000.0
+    },
+    "unchanged_rebuild": {
+      "bodies": [
+        {
+          "bounding_box_mm": [
+            [
+              -6.0,
+              -6.0,
+              0.0
+            ],
+            [
+              6.0,
+              6.0,
+              12.0
+            ]
+          ],
+          "edges": 4,
+          "faces": 4,
+          "name": "Body1",
+          "solid": true,
+          "vertices": 4,
+          "volume_mm3": 1206.371578978
+        }
+      ],
+      "body_count": 1,
+      "center_of_mass_mm": [
+        1e-09,
+        0.0,
+        6.0
+      ],
+      "design_type": "parametric",
+      "document_units": 0,
+      "feature_tree": [
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 0,
+          "name": "AnnulusProfile",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "Sketch"
+        },
+        {
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "index": 1,
+          "name": "Revolution",
+          "rolled_back": false,
+          "suppressed": false,
+          "type": "RevolveFeature"
+        }
+      ],
+      "label": "unchanged rebuild after reopen",
+      "mass_properties": "measured",
+      "parameters": [
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "2 mm",
+          "kind": "ModelParameter",
+          "name": "inner_radius_mm",
+          "role": "Linear Dimension-2",
+          "unit": "mm",
+          "value_internal": 0.2
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "6 mm",
+          "kind": "ModelParameter",
+          "name": "outer_radius_mm",
+          "role": "Linear Dimension-3",
+          "unit": "mm",
+          "value_internal": 0.6000000000000001
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "12 mm",
+          "kind": "ModelParameter",
+          "name": "height_mm",
+          "role": "Linear Dimension-4",
+          "unit": "mm",
+          "value_internal": 1.2000000000000002
+        },
+        {
+          "dependencies": [],
+          "dependents": [],
+          "expression": "360 deg",
+          "kind": "ModelParameter",
+          "name": "angle_deg",
+          "role": "AlongAngle",
+          "unit": "deg",
+          "value_internal": 6.283185307179586
+        }
+      ],
+      "sketches": [
+        {
+          "constraints": [
+            {
+              "type": "HorizontalConstraint"
+            },
+            {
+              "type": "VerticalConstraint"
+            },
+            {
+              "type": "HorizontalConstraint"
+            },
+            {
+              "type": "VerticalConstraint"
+            },
+            {
+              "type": "CoincidentConstraint"
+            }
+          ],
+          "curves": [
+            {
+              "construction": false,
+              "end_world_mm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 0,
+              "reference": false,
+              "start_world_mm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                6.0,
+                0.0,
+                12.0
+              ],
+              "fixed": false,
+              "index": 1,
+              "reference": false,
+              "start_world_mm": [
+                6.0,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                2.0,
+                0.0,
+                12.0
+              ],
+              "fixed": false,
+              "index": 2,
+              "reference": false,
+              "start_world_mm": [
+                6.0,
+                0.0,
+                12.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                2.0,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 3,
+              "reference": false,
+              "start_world_mm": [
+                2.0,
+                0.0,
+                12.0
+              ],
+              "type": "SketchLine"
+            },
+            {
+              "construction": false,
+              "end_world_mm": [
+                22.5,
+                0.0,
+                0.0
+              ],
+              "fixed": false,
+              "index": 4,
+              "reference": true,
+              "start_world_mm": [
+                1.75,
+                0.0,
+                0.0
+              ],
+              "type": "SketchLine"
+            }
+          ],
+          "dimensions": [
+            {
+              "driving": true,
+              "expression": "2 mm",
+              "parameter": "inner_radius_mm",
+              "type": "SketchLinearDimension"
+            },
+            {
+              "driving": true,
+              "expression": "6 mm",
+              "parameter": "outer_radius_mm",
+              "type": "SketchLinearDimension"
+            },
+            {
+              "driving": true,
+              "expression": "12 mm",
+              "parameter": "height_mm",
+              "type": "SketchLinearDimension"
+            }
+          ],
+          "fully_constrained": true,
+          "health": {
+            "message": "",
+            "state": "healthy"
+          },
+          "name": "AnnulusProfile",
+          "origin_world_mm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "point_count": 7,
+          "profile_areas_mm2": [
+            48.0
+          ],
+          "support": "ConstructionPlane",
+          "support_name": "XZ",
+          "x_direction": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "y_direction": [
+            0.0,
+            0.0,
+            -1.0
+          ]
+        }
+      ],
+      "volume_mm3": 1206.371578978
+    },
+    "variants": [
+      {
+        "before_save": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1206.371578978
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 3,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "display units inches",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "in",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "in",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "in",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1206.371578978
+        },
+        "comparison": {
+          "classification": "analytic_expectation_for_comparison_only",
+          "expected": {
+            "center_of_mass_mm": [
+              -1.6892077940917294e-16,
+              0.0,
+              6.0
+            ],
+            "volume_mm3": 1206.3715789784806
+          },
+          "expected_center_world_mm": [
+            -1.6892077940917294e-16,
+            0.0,
+            6.0
+          ],
+          "matches": true
+        },
+        "export": "P05-fusion-units-inch.f3d",
+        "label": "display units inches",
+        "reopened": {
+          "bodies": [
+            {
+              "bounding_box_mm": [
+                [
+                  -6.0,
+                  -6.0,
+                  0.0
+                ],
+                [
+                  6.0,
+                  6.0,
+                  12.0
+                ]
+              ],
+              "edges": 4,
+              "faces": 4,
+              "name": "Body1",
+              "solid": true,
+              "vertices": 4,
+              "volume_mm3": 1206.371578978
+            }
+          ],
+          "body_count": 1,
+          "center_of_mass_mm": [
+            1e-09,
+            0.0,
+            6.0
+          ],
+          "design_type": "parametric",
+          "document_units": 3,
+          "feature_tree": [
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 0,
+              "name": "AnnulusProfile",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "Sketch"
+            },
+            {
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "index": 1,
+              "name": "Revolution",
+              "rolled_back": false,
+              "suppressed": false,
+              "type": "RevolveFeature"
+            }
+          ],
+          "label": "fresh reopen of P05-fusion-units-inch.f3d",
+          "mass_properties": "measured",
+          "parameters": [
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "2 mm",
+              "kind": "ModelParameter",
+              "name": "inner_radius_mm",
+              "role": "Linear Dimension-2",
+              "unit": "in",
+              "value_internal": 0.2
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "6 mm",
+              "kind": "ModelParameter",
+              "name": "outer_radius_mm",
+              "role": "Linear Dimension-3",
+              "unit": "in",
+              "value_internal": 0.6000000000000001
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "12 mm",
+              "kind": "ModelParameter",
+              "name": "height_mm",
+              "role": "Linear Dimension-4",
+              "unit": "in",
+              "value_internal": 1.2000000000000002
+            },
+            {
+              "dependencies": [],
+              "dependents": [],
+              "expression": "360 deg",
+              "kind": "ModelParameter",
+              "name": "angle_deg",
+              "role": "AlongAngle",
+              "unit": "deg",
+              "value_internal": 6.283185307179586
+            }
+          ],
+          "sketches": [
+            {
+              "constraints": [
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "HorizontalConstraint"
+                },
+                {
+                  "type": "VerticalConstraint"
+                },
+                {
+                  "type": "CoincidentConstraint"
+                }
+              ],
+              "curves": [
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 0,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 1,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "fixed": false,
+                  "index": 2,
+                  "reference": false,
+                  "start_world_mm": [
+                    6.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    2.0,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 3,
+                  "reference": false,
+                  "start_world_mm": [
+                    2.0,
+                    0.0,
+                    12.0
+                  ],
+                  "type": "SketchLine"
+                },
+                {
+                  "construction": false,
+                  "end_world_mm": [
+                    22.5,
+                    0.0,
+                    0.0
+                  ],
+                  "fixed": false,
+                  "index": 4,
+                  "reference": true,
+                  "start_world_mm": [
+                    1.75,
+                    0.0,
+                    0.0
+                  ],
+                  "type": "SketchLine"
+                }
+              ],
+              "dimensions": [
+                {
+                  "driving": true,
+                  "expression": "2 mm",
+                  "parameter": "inner_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "6 mm",
+                  "parameter": "outer_radius_mm",
+                  "type": "SketchLinearDimension"
+                },
+                {
+                  "driving": true,
+                  "expression": "12 mm",
+                  "parameter": "height_mm",
+                  "type": "SketchLinearDimension"
+                }
+              ],
+              "fully_constrained": true,
+              "health": {
+                "message": "",
+                "state": "healthy"
+              },
+              "name": "AnnulusProfile",
+              "origin_world_mm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "point_count": 7,
+              "profile_areas_mm2": [
+                48.0
+              ],
+              "support": "ConstructionPlane",
+              "support_name": "XZ",
+              "x_direction": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "y_direction": [
+                0.0,
+                0.0,
+                -1.0
+              ]
+            }
+          ],
+          "volume_mm3": 1206.371578978
+        }
+      }
+    ]
+  },
+  "recipe_id": "P05",
+  "saves": [
+    {
+      "file": "P05-fusion-baseline-a.f3d",
+      "sha256": "1a567bec30c936921586d4d318b56f307b19be58cc783d7794f36239ca72a664",
+      "size_bytes": 183178
+    },
+    {
+      "file": "P05-fusion-baseline-b.f3d",
+      "sha256": "307e7fbeb0715632424080bcb6423fa60d474817086140250933d64a4d7e0a44",
+      "size_bytes": 183098
+    },
+    {
+      "file": "P05-fusion-edit-inner_radius_mm-3.f3d",
+      "sha256": "bb18ae9f190a528fb8a86490655c86b46a1235c67646c49781ca48c095521f18",
+      "size_bytes": 196833
+    },
+    {
+      "file": "P05-fusion-edit-outer_radius_mm-7.f3d",
+      "sha256": "2938531aa74bc667e7d04d9822a3bde2f1e87c235c0a07cc526de5ad50cc3c0c",
+      "size_bytes": 174927
+    },
+    {
+      "file": "P05-fusion-edit-height_mm-14.f3d",
+      "sha256": "7abc6aca9d00efc5c4f89be066a6929b1fda8ad80c2c60f6c951dc6bd1cb8cb3",
+      "size_bytes": 188660
+    },
+    {
+      "file": "P05-fusion-edit-angle_deg-90.f3d",
+      "sha256": "57cbef3b95fd648c0e196cd0ba4fd71dcfa08c441a4d4c90d42bad8e74bd94db",
+      "size_bytes": 198958
+    },
+    {
+      "file": "P05-fusion-units-inch.f3d",
+      "sha256": "2416b5957f858dc5ccb05e52d1c0f69c49eb1dc282f7577d868f81bd833bc7b4",
+      "size_bytes": 183613
+    }
+  ],
+  "shared_capture_sha256": "deb2437a77658f976a03e27596bc56b39bc52c4cee6afde628e6601b84b817b1",
+  "specifications_sha256": "3c93e024f9fbdda50e610bda3b363bf30e8e7cdc914ef0728087befe129951bf",
+  "world_basis": "Fusion world XYZ; baseline support XZ with basis {'plane': 'xZConstructionPlane', 'u': (1, 0, 0), 'v': (0, 0, 1), 'n': (0, -1, 0)}"
+}
