@@ -73,7 +73,6 @@ jobs:
           tests/Policy/ReviewerAggregationTests.py tests/steering/AgentSkillsMigrationTests.py
           tests/convert/api/ApiMetadataTests.py tests/Policy/DiffBreakdownTests.py
           tests/Policy/ShardPlanTests.py
-          tests/convert/Commands/CliRuntimeTests.py
 
       - name: Census the SOLIDWORKS discovery captures
         run: >-
@@ -137,11 +136,6 @@ jobs:
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/Supervisor*Tests.py -q
-
-      - name: Verify installed CLI compatibility with deterministic research commands
-        run: >-
-          uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest tests/Research/Cli -q
 
   zizmor:
     if: >-

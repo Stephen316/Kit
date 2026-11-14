@@ -10,10 +10,10 @@ The [step register](AutomationSteps.md) owns implementation and qualification st
 
 ## Procedure
 
-Run the installed CLI from the selected checkout:
+Run the reader from the selected checkout:
 
 ```sh
-kit research --root . fusion --asset re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d --output /tmp/KitFusionResearch
+uv run --frozen --no-default-groups --extra dev --python 3.14 python re/automation/FusionReader.py --root . --asset re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d --output /tmp/KitFusionResearch
 ```
 
 Repeat `--asset` for up to 1000 distinct committed inputs.
@@ -46,6 +46,6 @@ Structural decoding and partial fallback do not qualify editable cross-format co
 Fetch missing pinned commits, restore the intended manifest, or choose another output path.
 Inspect per-asset reasons and implement missing codec knowledge instead of relaxing checks.
 
-- [Research CLI](../../Tasks/ResearchCommandLine.md)
+- [Separate installed CLI proposal](https://github.com/TryUniCAD/Kit/pull/119)
 - [Reader source](../../../re/automation/FusionReader.py)
 - [SOLIDWORKS reader](SolidworksResearchReader.md)

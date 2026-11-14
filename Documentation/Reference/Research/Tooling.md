@@ -6,15 +6,6 @@ The research tools support decompilation, runtime tracing, and controlled vendor
 They belong to research or validation workflows.
 They are not production conversion dependencies.
 
-## Decode files without a research runtime
-
-Use [the Kit CLI](../../Tasks/CommandLine.md) to inspect neutral documents, container members, and supported Fusion native records.
-`kit decode SOURCE --layer container` inventories Fusion and SOLIDWORKS files.
-The command uses production codecs and does not run vendor applications.
-Use the tools below for new format discovery, decompilation, tracing, and controlled measurements.
-
-Use [the deterministic research CLI](../../Tasks/ResearchCommandLine.md) for pinned receipts and controller/supervisor interfaces.
-
 ## Tool map
 
 | Location              | Purpose                                | Required context                       |
@@ -87,5 +78,5 @@ Do not publish an unmeasured hypothesis as product support.
 - [Ghidra setup](../../../re/tooling/ghidra/Setup.md)
 - [Runtime trace tool](../../../re/tooling/windbg/Multitrace.py)
 - [Serialization harness](../../../re/tooling/harness/Serialize.py)
-  The [pinned SOLIDWORKS reader](SolidworksResearchReader.md) emits neutral JSON and a separate unresolved-evidence receipt.
-  The [pinned Fusion reader](FusionResearchReader.md) emits the same evidence for batches of F3D and F3Z files.
+The [pinned SOLIDWORKS reader](SolidworksResearchReader.md) emits neutral JSON and a separate unresolved-evidence receipt.
+The [pinned Fusion reader](FusionResearchReader.md) emits the same evidence for batches of F3D and F3Z files.

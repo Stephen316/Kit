@@ -39,9 +39,6 @@ dev = [
     "typing-extensions>=4.12",
 ]
 
-[project.scripts]
-kit = "convert.Commands.MainEntry:MainEntry"
-
 [project.entry-points."kit"]
 convert = "convert:convert"
 

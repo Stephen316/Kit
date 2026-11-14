@@ -17,8 +17,7 @@ Select an unused output path.
 
 The distribution is `unicad-kit`.
 The installed packages are `convert` and `interchange`.
-For file conversion without Python, use the [command-line interface](Tasks/CommandLine.md).
-The installed executable is `kit`; `python -m convert` provides the same commands.
+The package metadata does not declare a `kit convert` console command.
 
 ## Install a published release
 

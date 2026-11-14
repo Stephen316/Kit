@@ -102,10 +102,8 @@ class SldprtArchive(PairProtocol):
         cls: type[SldprtArchive],
         BlobValue: bytes | bytearray,
         SourcePath: str | FilePath = "<memory>",
-        *,
-        SizeLimit: int = KMaxUncompressedStream,
     ) -> SldprtArchive:
-        return ParseArchive(cls, BlobValue, SourcePath, SizeLimit)
+        return ParseArchive(cls, BlobValue, SourcePath)
 
     # this definition exists because focused behavior needs one stable owner
     @property
@@ -171,7 +169,6 @@ def ParseArchive(
     ClassType: type[SldprtArchive],
     BlobValue: bytes | bytearray,
     SourcePath: str | FilePath = "<memory>",
-    SizeLimit: int = KMaxUncompressedStream,
 ) -> SldprtArchive:
     Source = FilePath(SourcePath)
     DataValue = bytes(BlobValue)
@@ -180,7 +177,7 @@ def ParseArchive(
     FileId, FormatVersion = Struct.unpack_from(">II", DataValue, 0)
     if FormatVersion not in ContainerVersions:
         raise SldprtFormat(f"unsupported SLDPRT container version {FormatVersion}")
-    Records = ScanRecords(DataValue, SizeLimit)
+    Records = ScanRecords(DataValue)
     return ClassType(Source, FileId, FormatVersion, Records)
 
 
@@ -354,11 +351,7 @@ def FinishArcMut(
 
 
 # this definition exists because focused behavior needs one stable owner
-def ScanRecords(
-    BlobValue: bytes, SizeLimit: int = KMaxUncompressedStream
-) -> tuple[StreamRecord, ...]:
-    if not 0 < SizeLimit <= KMaxUncompressedStream:
-        raise ValueError("Invalid SOLIDWORKS decoded size limit")
+def ScanRecords(BlobValue: bytes) -> tuple[StreamRecord, ...]:
     Candidates: list[StreamRecord] = []
     Cursor = 0
     DecodedSize = 0
@@ -371,7 +364,9 @@ def ScanRecords(
         if SignatureEnd > len(BlobValue):
             continue
         Signature = BlobValue[Offset:SignatureEnd]
-        Record = DecodeScanned(BlobValue, Offset, Signature, SizeLimit - DecodedSize)
+        Record = DecodeScanned(
+            BlobValue, Offset, Signature, KMaxUncompressedStream - DecodedSize
+        )
         if Record is None:
             continue
         Cursor = Record.payload_offset + Record.compressed_size

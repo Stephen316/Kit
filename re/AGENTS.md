@@ -17,6 +17,7 @@ Optional external model execution, model-run shell exceptions and proposed local
 After implementation is authorized, claim a stable step ID and check existing ownership before editing shared files.
 By explicit user instruction, keep all code, documentation and progress for A01–A16 on PR #94.
 Do not open separate implementation PRs for this programme.
+The user's later instruction places the installed CLI and its PR #94 compatibility checks in separate PR #119; research-tool implementations remain here.
 Use isolated task worktrees, fetch and verify the current PR head, preserve concurrent contributions and push normally to its existing `docs/automation-plan` branch in `Stephen316/Kit`.
 
 Post progress comments on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
