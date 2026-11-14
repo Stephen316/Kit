@@ -2313,9 +2313,9 @@ def ProfileSketch(
     ProfileOffsets = {
         Offset for Profile in Sketch.profiles for Offset in Profile.marker_offsets
     } | {
-        Profile.header_offset
+        Profile.HeaderOffset
         for Profile in Sketch.profiles
-        if Profile.header_offset is not None
+        if Profile.HeaderOffset is not None
     }
     for ProfileIndex, Profile in enumerate(Sketch.profiles):
         if Profile.kind == "rectangle":

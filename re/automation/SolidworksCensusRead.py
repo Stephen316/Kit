@@ -74,7 +74,7 @@ def native_sketch(item, archive):
         "profile_records": [
             {
                 "kind": profile.kind, "coordinates_mm": profile.coordinates,
-                "marker_offsets": profile.marker_offsets, "header_offset": profile.header_offset,
+                "marker_offsets": profile.marker_offsets, "header_offset": profile.HeaderOffset,
             }
             for profile in item.profiles
         ],
