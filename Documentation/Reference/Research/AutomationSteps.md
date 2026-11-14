@@ -137,7 +137,8 @@ Its blocked status does not prevent A05 integration or A08a implementation.
 The updated workflow-quality job passed all three reader scenarios in 60.15 seconds with 58 decoded and zero rejected.
 The earlier sequential process harness took 172.97 seconds on `7f8a7425`; these are CI observations, not a universal speed guarantee.
 A05 is claimed separately below.
-A08a remains the next unclaimed runnable deterministic step.
+A08a is active on task branch `feat/a08a-session-supervisor`; see the [supervisor guide](ResearchSupervisor.md).
+Its process gates have no remote CI result yet.
 
 ## A05 integration and semantic qualification
 
@@ -161,7 +162,7 @@ They are not implemented by documenting the rows.
 
 | Child ID | Deliverable                                                                          | Depends on                                           | Owner      | Status   | Exit criterion                                                                                                                        |
 | -------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| A08a     | Supervisor, private session directories, pools, controller interface and A03 adapter | A03 technical substeps                               | Unassigned | planned  | Schema-3-to-4 migration, counted resources, pool-filtered claims, stale outcomes, restart fencing and alternate-adapter process gates |
+| A08a     | Supervisor, private session directories, pools, controller interface and A03 adapter | A03 technical substeps                               | Stephen316 | active   | Schema-3-to-4 migration, counted resources, pool-filtered claims, stale outcomes, restart fencing and alternate-adapter process gates |
 | A08b     | Headroom, adaptive limits, calibration and grouped small-file sessions               | A08a                                                 | Unassigned | planned  | CPU/memory reserves, bounded logs/process trees, per-file leases, crash isolation and remote capacity scenarios                       |
 | A08c     | Isolated application authoring, trace and acceptance workers                         | A02b, A08a                                           | Unassigned | planned  | Recipe-bound saved samples, versioned receipts, healthy controls and explicit unavailable-worker waits                                |
 | A10a     | Optional Codex runner and private data boundary                                      | A08a, A07, A09; explicit model-command authorization | Unassigned | planned  | Candidate validation, isolated reads, bounded packets/patch paths and verified runner contracts                                       |
