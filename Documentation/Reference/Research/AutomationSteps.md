@@ -127,7 +127,7 @@ Current-head PR readiness and deferred merge-group acceptance remain separate fr
 | -------- | ---------------------------------------------------- | --------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | A04a     | Pinned SLDPRT reader and typed neutral serialization | A01, A02a                               | jdharcourt | complete | All 58 pinned parts decoded/reconstructed; strict per-asset success, overwrite and tamper checks passed at `eba0ab48`        |
 | A04b     | Separate field-path evidence and unresolved census   | A04a                                    | jdharcourt | complete | Remote receipts at `eba0ab48` retain native-only content, bytes, codes, diagnostics and unqualified direction/frame mappings |
-| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | active   | [Discovery census](../../Changes/Research/SolidWorksDiscoveryCensus.md) decodes 25 committed files. Resolve the remaining measured differences before qualification and frozen-rule holdout |
+| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | active   | [Discovery census](../../Changes/Research/SolidWorksDiscoveryCensus.md) decodes 25 committed files. CI verifies P01 rectangle edges, P03 boss reversal and P04 equation references. YZ support, P04 sketch and face ownership, through-all termination and full constraint bindings remain open |
 
 The [reader guide](SolidworksResearchReader.md) defines the command and its research-only receipt.
 A04a–A04b do not close A04c or qualify native conversion.
@@ -231,6 +231,8 @@ A04 adds a research reader boundary and evidence receipt around the existing cod
 No comparator, schema extension or application worker is established by that integration.
 Native capture qualification remains blocked separately.
 A04a–A04b passed remote verification. A04c has independent SOLIDWORKS measurements for bounded discovery comparisons.
+At PR head `59dd2c7a`, the remote discovery checks passed for the six P01 edge counts and five XY endpoint comparisons, all eight P03 boss direction cases and both P04 equation bindings in eleven captures. P01 and P03 YZ variants still fall back to the Front plane. [Discovery checks](https://github.com/TryUniCAD/Kit/actions/runs/43643100231/job/132594787367)
+The [P04 configuration-stream investigation](../../../re/solidworks/records/P04SketchResidence.md) locates both sketches' marker groups. The resolved feature owners still need a direct native reference.
 Later deterministic child steps remain available when their prerequisites pass.
 Formatting and source-link review do not replace the remote process checks.
 Remote CI, configured review and merge-group acceptance remain separate publication evidence.
