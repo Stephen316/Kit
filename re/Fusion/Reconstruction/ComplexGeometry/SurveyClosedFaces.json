@@ -1,0 +1,194 @@
+{
+ "script": "re/Fusion/Reconstruction/ComplexGeometry/SurveyClosedFaces.py",
+ "scope": "byte-exact .smb members of VerifyBounds.json",
+ "members": 507,
+ "singularFaces": 4,
+ "loopShapes": [
+  {
+   "key": "uses=3 seams=1 closed=1 curveless=0",
+   "count": 4
+  }
+ ],
+ "curvelessUsesByCarrier": [
+  {
+   "key": "ConeNode",
+   "count": 14
+  }
+ ],
+ "seamOffsets": [
+  {
+   "key": "spline:loft_spl_sur forward=[1.0, 0.0] reversed=[0.0, 0.0]",
+   "count": 16
+  },
+  {
+   "key": "spline:cl_loft_spl_sur forward=[1.0, 0.0] reversed=[0.0, 0.0]",
+   "count": 5
+  },
+  {
+   "key": "spline:loft_spl_sur forward=[0.0, 0.0] reversed=[1.0, 0.0]",
+   "count": 4
+  },
+  {
+   "key": "spline:sweep_sur forward=[0.0, 0.0] reversed=[-6.283185307179586, 0.0]",
+   "count": 4
+  },
+  {
+   "key": "spline:loft_spl_sur forward=[0.0, 0.0] reversed=[0.0, 1.0]",
+   "count": 2
+  }
+ ],
+ "faces": [
+  {
+   "path": "re/Fusion/Study/loftpointholdouts-35b5ac0d2f42/tangent_start_weight2.f3d",
+   "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.077fa8eb-edaf-42b2-9eda-12fb6c24871b.smb",
+   "face": 15,
+   "carrier": "spline:loft_spl_sur",
+   "uSingular": 0,
+   "vSingular": 1,
+   "uClosure": 2,
+   "vClosure": 0,
+   "loops": [
+    [
+     {
+      "edge": 36,
+      "reversed": false,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     },
+     {
+      "edge": 30,
+      "reversed": true,
+      "hasCurve": true,
+      "closed": true,
+      "seam": false,
+      "hasPcurve": true
+     },
+     {
+      "edge": 36,
+      "reversed": true,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     }
+    ]
+   ]
+  },
+  {
+   "path": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/tangent_start_weight1.f3d",
+   "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.9b05fd42-bef6-4239-b3e5-079942b16f8c.smb",
+   "face": 15,
+   "carrier": "spline:loft_spl_sur",
+   "uSingular": 0,
+   "vSingular": 1,
+   "uClosure": 2,
+   "vClosure": 0,
+   "loops": [
+    [
+     {
+      "edge": 36,
+      "reversed": false,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     },
+     {
+      "edge": 30,
+      "reversed": true,
+      "hasCurve": true,
+      "closed": true,
+      "seam": false,
+      "hasPcurve": true
+     },
+     {
+      "edge": 36,
+      "reversed": true,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     }
+    ]
+   ]
+  },
+  {
+   "path": "re/Fusion/Study/loftpoints-f5bbdb97a568/tangent_end_weight1.f3d",
+   "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.2db7b6a7-7683-4809-94cf-7431c9b46c05.smb",
+   "face": 14,
+   "carrier": "spline:loft_spl_sur",
+   "uSingular": 0,
+   "vSingular": 2,
+   "uClosure": 2,
+   "vClosure": 0,
+   "loops": [
+    [
+     {
+      "edge": 28,
+      "reversed": false,
+      "hasCurve": true,
+      "closed": true,
+      "seam": false,
+      "hasPcurve": true
+     },
+     {
+      "edge": 44,
+      "reversed": false,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     },
+     {
+      "edge": 44,
+      "reversed": true,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     }
+    ]
+   ]
+  },
+  {
+   "path": "re/Fusion/Study/loftpoints-f5bbdb97a568/tangent_end_weight2.f3d",
+   "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.8c7b62ca-9c6b-4852-8db3-7f7f1ec6d10c.smb",
+   "face": 14,
+   "carrier": "spline:loft_spl_sur",
+   "uSingular": 0,
+   "vSingular": 2,
+   "uClosure": 2,
+   "vClosure": 0,
+   "loops": [
+    [
+     {
+      "edge": 28,
+      "reversed": false,
+      "hasCurve": true,
+      "closed": true,
+      "seam": false,
+      "hasPcurve": true
+     },
+     {
+      "edge": 44,
+      "reversed": false,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     },
+     {
+      "edge": 44,
+      "reversed": true,
+      "hasCurve": true,
+      "closed": false,
+      "seam": true,
+      "hasPcurve": true
+     }
+    ]
+   ]
+  }
+ ]
+}

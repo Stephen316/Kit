@@ -1,0 +1,7 @@
+# Native archives contain more than solved history
+
+Supporting a native document's `.smbh` member does not establish support for its complete `.f3d` archive. The controlled ordinary rectangle also contains a separate `.smb` snapshot, a `.protein` material package, two configuration members and nested OGS world and mesh data.
+
+The source is `re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d`, SHA-256 `09980af5a2c9e03e0fc9246ed0b20e796c8f5574c8838d255c85bdd08ea1aa9c`. Its two configuration members have extensions `.dsgcfg` and `.dsgcfgrule`; graphics members are under `OGS.BlobFolder/OGS/DefaultScene/`. Qualified material parts have a [complete typed package model](../../../Changes/Fusion/Materials/FusionMaterialPackages.md). The circular and ordinary rectangular snapshots and empty configuration pairs now have [typed semantic models](../../../Changes/Fusion/FusionNativeSnapshots.md). Nested graphics still exceed the qualified container profile, so the strict reader continues to reject these complete archives until every remaining member is decoded.
+
+Use the minimal qualified envelope for independent authoring. For complete native-source conversion, add and validate every needed auxiliary codec before broadening the accepted member inventory. Do not copy opaque parts, silently discard them, or infer that cache omission is safe for all documents from one accepted omission experiment.

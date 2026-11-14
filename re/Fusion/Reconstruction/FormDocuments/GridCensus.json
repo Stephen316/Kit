@@ -1,0 +1,5816 @@
+{
+ "scope": "Kit grid conversion against every converted Form body in local Fusion archives",
+ "python": "3.14.7",
+ "form_archives": 68,
+ "summary": {
+  "equal": 28,
+  "refused": 35,
+  "different": 4,
+  "no_body": 1
+ },
+ "jump_margins": {
+  "scope": "Equal archives whose converted body Fusion wrote",
+  "equal_archives": 26,
+  "largest_skipped": 3.219646771412954e-15,
+  "smallest_recorded": 0.13,
+  "recorded": 122,
+  "skipped": 118
+ },
+ "rows": [
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneFirst.f3d",
+   "sha256": "0933e4de12d010d80b359fc6b78a9528be24abdac3098ee95fa4562e7b197b72",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneReopened.f3d",
+   "sha256": "e199835505e2c41273f430698bc1c7075d84178885833a381708698bf79f4e45",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneSecond.f3d",
+   "sha256": "73112eb2fd4b93571e49f8516a7d84cabf4dde502b11f9656922994dff184873",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedBox.f3d",
+   "sha256": "1225f091003ae595234b0293f343fb37dcc19d92a4b056f5784614e169ce617c",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedPlane.f3d",
+   "sha256": "37a9ac17cea5ea06a237bf772d2c1ca44606024005292a89f7d0b1cb18f2797a",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedPlaneCreased.f3d",
+   "sha256": "aceefcca42793c8d3a11372185d042e8b5ac52508eed0d9d348915985459168c",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      3,
+      3
+     ]
+    },
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedSymmetricBox.f3d",
+   "sha256": "a8f3a107240fa70d94752df7d0c34fb81554174f7d3677aa7af6a0724cef8bdd",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxControl.f3d",
+   "sha256": "7201e611c9e68d49397f6d877e95f1aba94b8e058e29d1fa516e9a179b6a9755",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxReemitted.f3d",
+   "sha256": "1300089847bd5349a748ef1404984a37defc11643362f8f9ad1c22c93848e5c0",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneControl.f3d",
+   "sha256": "7d09d4698b57fefff528de75bb35757c615312f1eb6bdd7f1570751ab1ea219a",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.26,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneCreasedControl.f3d",
+   "sha256": "5bb5a4256990d72cd8e60756729a37f90415162a738b99cee9a2d467c3e3bf2a",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      3,
+      3
+     ]
+    },
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneCreasedReemitted.f3d",
+   "sha256": "d9a5c0cf71f7aff32816eb8938b350cf51a85f2ab22d536daaf12ebf29fea4ea",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      3,
+      3
+     ]
+    },
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneReemitted.f3d",
+   "sha256": "27c02700f259809d6527c254aea1f92df33c12368bc7cf19912566cf0189ccc7",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.26,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/SymmetricBoxControl.f3d",
+   "sha256": "d32e8683c61cddbdca2f1e430b229a38e0174c31af5012091bb7fdc07640634e",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/SymmetricBoxReemitted.f3d",
+   "sha256": "08716afd00949a709d2cae53b850ccd475aa68a849b0af264996091e20972e6b",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxControl.f3d",
+   "sha256": "f00c910b84dbeea55860decb88137eeead62242eef07f069e783fdd1a3ce7268",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxSurfShifted.f3d",
+   "sha256": "e83bf3dc5ac4753916051c25eaf9018e9ae274675e6fc1220bf10f01783fe35c",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneControl.f3d",
+   "sha256": "4f9c973384fcab6a0eef8b092f786d804714e569493cee143b237dbf94ee69d6",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 9
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfShifted.f3d",
+   "sha256": "81c4ac56521bc0c6ffef7bbca49999767fd3374b70c302775250c05396000997",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.050000000000000155
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.050000000000000155
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 9
+   },
+   "status": "different",
+   "reason": "converted poles differ"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Flag/FlagControl.f3d",
+   "sha256": "0d7cfac49402e899ebfa9502fcd9218fefc6e031eafe42ebf85367604fb1ae1e",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 9
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Flag/StaleCage.f3d",
+   "sha256": "7e2bde6deeca463ffabdfc147d7240d11de54e56a636e6f076964df991d1ea38",
+   "body_writer": "Fusion",
+   "status": "different",
+   "reason": "surface discontinuities differ"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Flag/StaleCageFlag.f3d",
+   "sha256": "051f2f3fee65a4b95e9c1d92a1154319d48c8378579ec59c0233d5c7189cb9f1",
+   "body_writer": "Fusion",
+   "status": "different",
+   "reason": "surface discontinuities differ"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Affine.f3d",
+   "sha256": "5b8c589113f512a14cb468e57278ccdb882382acb05f1beadb59ed31648992ff",
+   "body_writer": "Kit",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.0
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.0
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 3.9968028886505635e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 9
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane1x1.f3d",
+   "sha256": "7485f0f76c1b1802fd3d539ac7d826c38d13ee407ca2616ad066ea748e8fd908",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.0
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.0
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": null,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 0
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane2x5.f3d",
+   "sha256": "0d0d28c44c9cb2919f7642a8eb3402c95adcf86bdea2e3d7ea45803091c9a6bc",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 8.881784197001252e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 8.881784197001252e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 3.219646771412954e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 15
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane3x2.f3d",
+   "sha256": "59c1f79b6bbe739774fbbb2b1eea2f5ef9719588171951941ae4b6a21bed6ba3",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.7763568394002505e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 9
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane4x4.f3d",
+   "sha256": "a19a4d0601ada4760877c39ae3976dd681ba5b7ed9b9b53b005ca16c349dcc42",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 8.881784197001252e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 8.881784197001252e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.7763568394002505e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 18
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/KitAffine.f3d",
+   "sha256": "21725a170ccd9130b8b277d338697601d5c64ff6eb34c5d1677c3aafc5922f37",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.9984014443252818e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/KitWarped.f3d",
+   "sha256": "8108d5d3e25c2634118903add0426262d8a8356a38d9fe029e37e5d94fe9fb1a",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": null,
+    "smallest_recorded": 0.1847082086720226,
+    "recorded": 9,
+    "skipped": 0
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/OracleAffine.f3d",
+   "sha256": "de324bc8b8ec6cdef3d6576a206725a5b26d6d88f65698c676ab86664d66c661",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.9984014443252818e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/OracleWarped.f3d",
+   "sha256": "fde472acc0afc13891030a4d1268f1737976d036700b861ca3ad16e97a93ff8d",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": null,
+    "smallest_recorded": 0.1847082086720226,
+    "recorded": 9,
+    "skipped": 0
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Warped.f3d",
+   "sha256": "6ff2e2681bdc0a22bf7ac1e9cf263bc17572d9414097c2dbeabca66e669c4e52",
+   "body_writer": "Kit",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.0
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 0.0
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": null,
+    "smallest_recorded": 0.10925092432188749,
+    "recorded": 9,
+    "skipped": 0
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxBothMoved.f3d",
+   "sha256": "7347769830a33410b7c43213be7cc4b5710d5938cdbf97f8558f1f32f980c52c",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxNoBrep.f3d",
+   "sha256": "0ee790e8bb471a58f441ab003f9a529184883bcc6e2e55a82fa934c469ae3674",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": []
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneBothMoved.f3d",
+   "sha256": "faa40f9dc136e457edc2c35394608d8f284024dae89583694b93bc04fa7ad2ba",
+   "body_writer": "Fusion",
+   "status": "different",
+   "reason": "boundary curve differs"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneNoBrep.f3d",
+   "sha256": "d0efe591d92e52b5b386403e24b3f3f152973bc0119a3d561fe370d75125b39e",
+   "body_writer": "Fusion",
+   "members": [],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "no_body"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/Box.f3d",
+   "sha256": "24f533c68c2efb8e718789b79a4c3494d504f8f224a040b527db806e9b4d7a45",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+   "sha256": "90abb8dce3e0cb95b397260eb21cd9b6641171bdd53a105658145197aef645da",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/Plane.f3d",
+   "sha256": "a81662369ddd6407b98975c335d6510b2eb9c7445214617e1df2e248c0d19612",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": null,
+    "recorded": 0,
+    "skipped": 9
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+   "sha256": "b15fbcda87ec38983c6aaea21b81beaaf2536c764b5b81262c8174687099e8ed",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.19999999999999996,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBox.f3d",
+   "sha256": "d6af6d6a493d7ca8436c660bf1ba4be32d9d5d9f5c873f8582ba4002a43e4d21",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+   "sha256": "fb66fb0d81c7d602f008d8286a8bf01cc507c6b96a705e04a48d473c2be20486",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageAuthored.f3d",
+   "sha256": "741f856b8ffea6c39703413a5d8e0cdc1258b5b97408bef510ef420314bba4d3",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageNativePrimitive.f3d",
+   "sha256": "713b92c9599e2d2014da52e2494a28fe96efabd7367bbafcd2f41f163a9b7202",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxControl.f3d",
+   "sha256": "0d97f36de6a9b5478e67b59f3949064dece148109d8ada6dd111e8451b2e73a1",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialControl.f3d",
+   "sha256": "220bf1bf2cf47e0c4545811737eb5bb374cb3c264b65973b6c1df26828a7d1e1",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialReemitted.f3d",
+   "sha256": "f19d8d72b59552ef3b49a4443cabc7ce19812cafa4eb4ba9c588919617d1f742",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedControl.f3d",
+   "sha256": "6f644a8c2af88f6e21baca6e8c62b7e381bcadba4cf87957e87648873445e815",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 225,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    },
+    {
+     "poles": 364,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       2
+      ],
+      [
+       1.125,
+       2
+      ],
+      [
+       1.25,
+       2
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    },
+    {
+     "poles": 364,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       2
+      ],
+      [
+       1.125,
+       2
+      ],
+      [
+       1.25,
+       2
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       1
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedReemitted.f3d",
+   "sha256": "1f989fa783f6fae63a16c3c16172c5e5b9e9691cfcddc15342c10a4df9afd183",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 225,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    },
+    {
+     "poles": 364,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       1
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       2
+      ],
+      [
+       1.125,
+       2
+      ],
+      [
+       1.25,
+       2
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    },
+    {
+     "poles": 364,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.125,
+       2
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       0.75,
+       2
+      ],
+      [
+       0.875,
+       2
+      ],
+      [
+       1.0,
+       2
+      ],
+      [
+       1.125,
+       2
+      ],
+      [
+       1.25,
+       2
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       1
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       1.875,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedControl.f3d",
+   "sha256": "7d6d301d0e3b0b1d21611e3d4213acf8a83fb52c2688191b48d02ca95bc5283c",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedReemitted.f3d",
+   "sha256": "cc0efc9660ee2ca930dcb2be6e6d347c612e759faccc79aa01310995456b308a",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxReemitted.f3d",
+   "sha256": "347820f173a3f97bc200f6295439227af5209aeb5c576079dfff576eeb99e696",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedControl.f3d",
+   "sha256": "e3cdcf87445dd2bce8a742c1397692a29d887f348580b5e348a76cdae18ae923",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs four spokes per vertex",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedReemitted.f3d",
+   "sha256": "94eb7df9ead0bf43dda9f10fc4adcb921d2f293c5557d905271f37f6a78535a2",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs four spokes per vertex",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneControl.f3d",
+   "sha256": "8f102bcf26b59e4f49ab027bcf11021bdc7c535b1688125ebadab842862ebfc9",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialControl.f3d",
+   "sha256": "71d819200030dd4135ab93bf36033884eba88b2ec92174342ef0d74f2648992e",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialReemitted.f3d",
+   "sha256": "a2b7b1e2be961ee5ef2f7bb33f5f7719dc622ed6120c8aacdc65f62bc635f4de",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedControl.f3d",
+   "sha256": "b2a7661e07216078072f69c17c13c5e09c0995cf2e582208a4bffb77b09d9031",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      3,
+      3
+     ]
+    },
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedReemitted.f3d",
+   "sha256": "1e8035ae9abee9a7ce2ffe1498f1abbb09bbe5c764ae1a28883aa55187f389b2",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion does not convert interior creases",
+   "native_surfaces": [
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      3,
+      3
+     ]
+    },
+    {
+     "poles": 24,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       2.0,
+       1
+      ],
+      [
+       3.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedControl.f3d",
+   "sha256": "b5205f108e64e9e69a5729265b0ed1b375961f3adf9f6f7b7e81ac822ac042bd",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.22000000000000042,
+    "recorded": 7,
+    "skipped": 2
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedReemitted.f3d",
+   "sha256": "c71ede66097f76c81ed201af52b2c050feb3b6ca4a4e140caad6b0e0916ab9a8",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 4.440892098500626e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.22000000000000042,
+    "recorded": 7,
+    "skipped": 2
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneReemitted.f3d",
+   "sha256": "c49e50eb5739e0744cef976d3395ef4f90ca328e3811ad66a74511db858fc69b",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedControl.f3d",
+   "sha256": "5048fbd4615f9d447f6ca598641b985ee1ee38fc03226bbeb18806c3bed649c4",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedReemitted.f3d",
+   "sha256": "e22f558b0e49fac0f43e8d28e43703491a0aa5a54cdbaf1fdc1100f9029043ab",
+   "body_writer": "Fusion",
+   "members": [
+    {
+     "member": "smbh",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    },
+    {
+     "member": "smb",
+     "surfaces": 1,
+     "curves": 4,
+     "points": 4,
+     "max_abs_cm": 2.220446049250313e-16
+    }
+   ],
+   "jump_margins": {
+    "largest_skipped": 1.3322676295501878e-15,
+    "smallest_recorded": 0.13,
+    "recorded": 6,
+    "skipped": 3
+   },
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxControl.f3d",
+   "sha256": "d286157665e8edca1c03800dcbc60d1b9c3799640e11b488347a4e7bd1fe78c8",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedControl.f3d",
+   "sha256": "ce06c8742d65b594df9a55e419110ca0f98ced1f6036d03d4a91217e933c68af",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedReemitted.f3d",
+   "sha256": "0c06ca647f2e70a7f554ddcfbc1396582694117b1b58fedc262a21a9b2bacc8a",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxReemitted.f3d",
+   "sha256": "31e89e33cf37d345ee0861b18ec41aa32c8e257758b5fff47eb0aa9ec45f0cf7",
+   "body_writer": "Fusion",
+   "status": "refused",
+   "reason": "Fusion grid conversion needs boundary compound grips",
+   "native_surfaces": [
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4
+     ]
+    },
+    {
+     "poles": 169,
+     "knots_u": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "knots_v": [
+      [
+       0.0,
+       3
+      ],
+      [
+       0.25,
+       2
+      ],
+      [
+       0.5,
+       2
+      ],
+      [
+       1.0,
+       1
+      ],
+      [
+       1.5,
+       2
+      ],
+      [
+       1.75,
+       2
+      ],
+      [
+       2.0,
+       3
+      ]
+     ],
+     "region_cells": null
+    }
+   ]
+  }
+ ]
+}

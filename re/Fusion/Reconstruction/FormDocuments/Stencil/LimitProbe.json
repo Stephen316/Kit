@@ -1,0 +1,156 @@
+{
+ "scope": "Large single-grip moves of the creased plane and creased box cages: Fusion conversion outcome, body counts and stencil prediction",
+ "python": "3.14.7",
+ "cages": [
+  {
+   "cage": "CreasedPlaneLimits",
+   "grips": 34,
+   "variants": [
+    {
+     "variant": "Base",
+     "moves_cm": {},
+     "status": "completed",
+     "bodies": [
+      {
+       "faces": 2,
+       "edges": 7,
+       "vertices": 6,
+       "area_cm2": 3.8314105666532576,
+       "solid": false
+      }
+     ],
+     "form_health": [
+      0
+     ],
+     "layout_equal_base": true,
+     "stencil_gap_cm": 5.551115123125783e-17,
+     "stencil_jumps_equal": true
+    },
+    {
+     "variant": "X3Large",
+     "moves_cm": {
+      "3": [
+       1.0,
+       0.0,
+       0.0
+      ]
+     },
+     "status": "error",
+     "bodies": null,
+     "form_health": null,
+     "messages": [
+      "RuntimeError: 3 : Conversion error for: Body1 / ASM_TSP_IG_SURFACE_IRREGULAR - Edges or faces may be crossing. Review in box mode."
+     ]
+    },
+    {
+     "variant": "X8Large",
+     "moves_cm": {
+      "8": [
+       1.0,
+       0.0,
+       0.0
+      ]
+     },
+     "status": "error",
+     "bodies": null,
+     "form_health": null,
+     "messages": [
+      "RuntimeError: 3 : Conversion error for: Body1 / ASM_TSP_IG_SURFACE_IRREGULAR - Edges or faces may be crossing. Review in box mode."
+     ]
+    },
+    {
+     "variant": "X10Large",
+     "moves_cm": {
+      "10": [
+       1.0,
+       0.0,
+       0.0
+      ]
+     },
+     "status": "error",
+     "bodies": null,
+     "form_health": null,
+     "messages": [
+      "RuntimeError: 3 : Conversion error for: Body1 / ASM_TSP_IG_SURFACE_IRREGULAR - Edges or faces may be crossing. Review in box mode."
+     ]
+    },
+    {
+     "variant": "X31Large",
+     "moves_cm": {
+      "31": [
+       1.0,
+       0.0,
+       0.0
+      ]
+     },
+     "status": "completed",
+     "bodies": [
+      {
+       "faces": 2,
+       "edges": 8,
+       "vertices": 7,
+       "area_cm2": 3.8314127597424674,
+       "solid": false
+      }
+     ],
+     "form_health": [
+      0
+     ],
+     "layout_equal_base": false,
+     "curves_points": [
+      48,
+      34,
+      7
+     ],
+     "base_curves_points": [
+      48,
+      34,
+      6
+     ]
+    }
+   ]
+  },
+  {
+   "cage": "CreasedBoxLimits",
+   "grips": 26,
+   "variants": [
+    {
+     "variant": "Base",
+     "moves_cm": {},
+     "status": "completed",
+     "bodies": [
+      {
+       "faces": 6,
+       "edges": 13,
+       "vertices": 9,
+       "area_cm2": 23.55271091736829,
+       "solid": true
+      }
+     ],
+     "form_health": [
+      0
+     ],
+     "layout_equal_base": true,
+     "stencil_gap_cm": 1.199040866595169e-14,
+     "stencil_jumps_equal": true
+    },
+    {
+     "variant": "X7Large",
+     "moves_cm": {
+      "7": [
+       2.5,
+       0.0,
+       0.0
+      ]
+     },
+     "status": "error",
+     "bodies": null,
+     "form_health": null,
+     "messages": [
+      "RuntimeError: 3 : Conversion error for: Body1 / ASM_TSP_IG_CURVE_IRREGULAR - Edges or faces may be crossing. Review in box mode."
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -31,6 +31,9 @@ const KQualityJobs = /^Analyze \(.+\)$/;
 const KQualitySources =
   /\.(?:cjs|cs|cts|go|java|js|jsx|kt|kts|mjs|mts|py|pyi|rb|ts|tsx)$/i;
 const StaticChecks = {
+  "FusionCompatibility.yml": {
+    required: ["Fusion archive compatibility"],
+  },
   "PythonQuality.yml": {
     required: ["Ruff", "Black", "Pyright", "Mypy"],
     preflight: "PR CI reuse (Python quality gate)",

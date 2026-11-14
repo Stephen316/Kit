@@ -1,0 +1,33 @@
+{
+  "scope": "Metadata header interpretation from saved controls; no library loaded or native code invoked. The earlier static library inspection was removed.",
+  "saved_version": {
+    "major_bits": 14,
+    "minor_bits": 12,
+    "build_input_bits": 32,
+    "unused_bits": [
+      32,
+      37
+    ],
+    "formula": "(major << 50) | (minor << 38) | build",
+    "controlled_version": [
+      2706,
+      1,
+      17
+    ],
+    "packed_hex": "0x2a48004000000011",
+    "legacy_two_u32_view": [
+      17,
+      709361728
+    ]
+  },
+  "header_roles": {
+    "namespace_uuid": "Wide UUID read as the segment current version UUID",
+    "magic": "Literal 1234",
+    "header_words": "One little-endian u64 saved software version; the controlled value decodes to the running Fusion build",
+    "storage_space": "Add-in identifier string",
+    "storage_word_first": "Segment type enum",
+    "storage_word_second": "Count of inherited segment version UUIDs, followed by that many UTF-16 UUID strings; zero in every qualified control"
+  },
+  "provenance": "The magic value and the packed software version are confirmed by saved controls from a known Fusion build. The other field roles, the bit widths and the unused bits came from removed static inspection of installed Fusion libraries. They are not confirmed by a black-box experiment.",
+  "qualification": "Current production framing admits only the observed zero-ancestry profile; this evidence does not qualify older metadata versions or nonempty ancestry runtime acceptance"
+}

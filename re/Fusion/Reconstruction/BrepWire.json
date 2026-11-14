@@ -1,0 +1,279 @@
+{
+  "scope": "Native extrude_07mm observations only; not an exhaustive ASM schema",
+  "source": "re/Fusion/LocalOracle/Features/extrude_07mm.f3d",
+  "upstream_specification": {
+    "project": "cadmpeg",
+    "commit": "de2726870ff728352163f601ab4e60bbd54fbade",
+    "url": "https://github.com/cadmpeg/cadmpeg/blob/de2726870ff728352163f601ab4e60bbd54fbade/docs/formats/asm.md",
+    "license": "CC-BY-4.0"
+  },
+  "tag_names": {
+    "2": "unsigned_byte",
+    "3": "short",
+    "4": "integer",
+    "5": "float",
+    "6": "double",
+    "7": "short_string",
+    "8": "medium_string",
+    "9": "long_string",
+    "10": "true",
+    "11": "false",
+    "12": "reference",
+    "13": "identifier",
+    "14": "subidentifier",
+    "15": "subtype_open",
+    "16": "subtype_close",
+    "17": "record_end",
+    "18": "string",
+    "19": "position",
+    "20": "vector3",
+    "21": "enum",
+    "22": "vector2",
+    "23": "int64"
+  },
+  "classes": {
+    "asmheader": {
+      "observed_count": 2,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "kernel_version"
+      ],
+      "tag_signatures": {
+        "12,4,7": 2
+      }
+    },
+    "body": {
+      "observed_count": 4,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "first_lump",
+        "first_wire",
+        "transform"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,12,12": 4
+      }
+    },
+    "lump": {
+      "observed_count": 4,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "next_lump",
+        "first_shell",
+        "owner_body"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,12,12": 4
+      }
+    },
+    "shell": {
+      "observed_count": 4,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "next_shell",
+        "first_subshell",
+        "first_face",
+        "wire",
+        "owner_lump"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,12,12,12,12": 4
+      }
+    },
+    "face": {
+      "observed_count": 8,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "next_face",
+        "first_loop",
+        "owner_shell",
+        "reserved_face_reference",
+        "surface",
+        "sense",
+        "sidedness",
+        "conditional_containment"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,12,12,12,12,11,11": 5,
+        "12,4,12,12,12,12,12,12,11,10,11": 1,
+        "12,4,12,12,12,12,12,12,10,11": 2
+      }
+    },
+    "ATTRIB_CUSTOM-attrib": {
+      "observed_count": 20,
+      "field_names": [],
+      "tag_signatures": {
+        "12,4,12,12,12,7,4,4,4,7,4,4,7,4,4,4,4": 10,
+        "12,4,12,12,12,7,4,4,4,7": 8,
+        "12,4,12,12,12,7,4,6": 1,
+        "12,4,12,12,12,7,4,4,4,7,4,4,7,4,4,4": 1
+      }
+    },
+    "loop": {
+      "observed_count": 10,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "next_loop",
+        "first_coedge",
+        "owner_face"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,12,12": 10
+      }
+    },
+    "cone-surface": {
+      "observed_count": 2,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "origin_cm",
+        "axis",
+        "major_axis_cm",
+        "ellipse_ratio",
+        "ellipse_start",
+        "ellipse_end",
+        "sine_angle",
+        "cosine_angle",
+        "u_scale_cm",
+        "sense",
+        "u_start",
+        "u_end",
+        "v_start",
+        "v_end"
+      ],
+      "tag_signatures": {
+        "12,4,12,19,20,20,6,11,11,6,6,6,11,11,11,11,11": 2
+      }
+    },
+    "plane-surface": {
+      "observed_count": 6,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "origin_cm",
+        "normal",
+        "reference_axis",
+        "v_sense",
+        "u_start",
+        "u_end",
+        "v_start",
+        "v_end"
+      ],
+      "tag_signatures": {
+        "12,4,12,19,20,20,11,11,11,11,11": 6
+      }
+    },
+    "coedge": {
+      "observed_count": 10,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "next_coedge",
+        "previous_coedge",
+        "partner_coedge",
+        "edge",
+        "sense",
+        "owner_loop",
+        "reserved_integer",
+        "pcurve"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,12,12,12,10,12,4,12": 4,
+        "12,4,12,12,12,12,12,11,12,4,12": 6
+      }
+    },
+    "edge": {
+      "observed_count": 6,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "start_vertex",
+        "start_parameter",
+        "end_vertex",
+        "end_parameter",
+        "owner_coedge",
+        "curve",
+        "sense",
+        "convexity"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,6,12,6,12,12,11,7": 6
+      }
+    },
+    "vertex": {
+      "observed_count": 6,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "owner_edge",
+        "edge_index",
+        "point"
+      ],
+      "tag_signatures": {
+        "12,4,12,12,4,12": 6
+      }
+    },
+    "ellipse-curve": {
+      "observed_count": 6,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "center_cm",
+        "normal",
+        "major_axis_cm",
+        "ellipse_ratio",
+        "parameter_start",
+        "parameter_end"
+      ],
+      "tag_signatures": {
+        "12,4,12,19,20,20,6,11,11": 6
+      }
+    },
+    "point": {
+      "observed_count": 6,
+      "field_names": [
+        "attribute",
+        "history_or_identity",
+        "reserved_reference",
+        "position_cm"
+      ],
+      "tag_signatures": {
+        "12,4,12,19": 6
+      }
+    }
+  },
+  "identity_namespaces": [
+    "physical stream-record ordinal",
+    "active topology record reference",
+    "history node reference",
+    "history record revision",
+    "ASM body key",
+    "Design persistent ID string",
+    "Design indexed record reference",
+    "Design sketch curve primary/secondary identity"
+  ],
+  "unresolved": [
+    "Reserved nullable entity reference non-null behavior",
+    "Vertex edge_index=2 meaning",
+    "Generic tag selectors and labels under arbitrary operations",
+    "History stream_size and entry_count across multiple operations",
+    "ASM4 framing and rare tags not observed in this single control"
+  ]
+}

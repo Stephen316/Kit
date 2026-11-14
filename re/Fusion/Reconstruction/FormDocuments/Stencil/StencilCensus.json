@@ -1,0 +1,2222 @@
+{
+ "scope": "Kit cage conversion (general rules, no stencil tables) of the cage of every local Form archive against its stored converted body; probe outputs in ignored folders excluded",
+ "python": "3.14.7",
+ "converter": "src ConvertForm (general cage rules) against the body read from the archive, in element order",
+ "slack_cm": 1e-12,
+ "totals": {
+  "different": 7,
+  "equal": 259,
+  "no body": 2,
+  "refused": 11,
+  "refused: Fusion Form capped layout needs one shared knot interval": 1,
+  "refused: Fusion Form face lines tie where Fusion follows the grip geometry": 4,
+  "refused: Fusion grid conversion needs a whole-number knot interval": 1,
+  "refused: Fusion grid conversion needs one knot interval for every edge": 5
+ },
+ "archives": [
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneFirst.f3d",
+   "sha256": "0933e4de12d010d80b359fc6b78a9528be24abdac3098ee95fa4562e7b197b72",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneReopened.f3d",
+   "sha256": "e199835505e2c41273f430698bc1c7075d84178885833a381708698bf79f4e45",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/ActSlack/Saves/PlaneSecond.f3d",
+   "sha256": "73112eb2fd4b93571e49f8516a7d84cabf4dde502b11f9656922994dff184873",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedBox.f3d",
+   "sha256": "1225f091003ae595234b0293f343fb37dcc19d92a4b056f5784614e169ce617c",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedPlane.f3d",
+   "sha256": "37a9ac17cea5ea06a237bf772d2c1ca44606024005292a89f7d0b1cb18f2797a",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedPlaneCreased.f3d",
+   "sha256": "aceefcca42793c8d3a11372185d042e8b5ac52508eed0d9d348915985459168c",
+   "gap_cm": 5.551115123125783e-17,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/ReemittedSymmetricBox.f3d",
+   "sha256": "a8f3a107240fa70d94752df7d0c34fb81554174f7d3677aa7af6a0724cef8bdd",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxControl.f3d",
+   "sha256": "7201e611c9e68d49397f6d877e95f1aba94b8e058e29d1fa516e9a179b6a9755",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxReemitted.f3d",
+   "sha256": "1300089847bd5349a748ef1404984a37defc11643362f8f9ad1c22c93848e5c0",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneControl.f3d",
+   "sha256": "7d09d4698b57fefff528de75bb35757c615312f1eb6bdd7f1570751ab1ea219a",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneCreasedControl.f3d",
+   "sha256": "5bb5a4256990d72cd8e60756729a37f90415162a738b99cee9a2d467c3e3bf2a",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneCreasedReemitted.f3d",
+   "sha256": "d9a5c0cf71f7aff32816eb8938b350cf51a85f2ab22d536daaf12ebf29fea4ea",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneReemitted.f3d",
+   "sha256": "27c02700f259809d6527c254aea1f92df33c12368bc7cf19912566cf0189ccc7",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/SymmetricBoxControl.f3d",
+   "sha256": "d32e8683c61cddbdca2f1e430b229a38e0174c31af5012091bb7fdc07640634e",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/SymmetricBoxReemitted.f3d",
+   "sha256": "08716afd00949a709d2cae53b850ccd475aa68a849b0af264996091e20972e6b",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxControl.f3d",
+   "sha256": "f00c910b84dbeea55860decb88137eeead62242eef07f069e783fdd1a3ce7268",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/BoxSurfShifted.f3d",
+   "sha256": "e83bf3dc5ac4753916051c25eaf9018e9ae274675e6fc1220bf10f01783fe35c",
+   "gap_cm": 0.05000000000006377,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneControl.f3d",
+   "sha256": "4f9c973384fcab6a0eef8b092f786d804714e569493cee143b237dbf94ee69d6",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfShifted.f3d",
+   "sha256": "81c4ac56521bc0c6ffef7bbca49999767fd3374b70c302775250c05396000997",
+   "gap_cm": 0.050000000000000155,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Box3Fresh.f3d",
+   "sha256": "2becaa335f67f4aab328fd99b18ddc662f4670ad6ead5dbaba99a66dfd15aa71",
+   "gap_cm": 1.290079154614432e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/BoxFresh.f3d",
+   "sha256": "bb4bd0f9a2c3c32e50ca07792e97345d52c24b5ea6ab259046047710c97c6134",
+   "gap_cm": 1.0436096431476471e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedBoxBent.f3d",
+   "sha256": "9475c200b95b7ea9a4621fda696ddfd502e11534adc9cf25511350934a051779",
+   "gap_cm": 1.0125233984581428e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedBoxFresh.f3d",
+   "sha256": "f64935fe40262dd2ca1873bc0acf9c53b84abceb9f5ec6c8020a38e0009fb9e3",
+   "gap_cm": 1.0436096431476471e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedBoxSheared.f3d",
+   "sha256": "3e93c0b02d15461c1d715b709bc3e953cee80cde566f28c8a067d2f83423aff1",
+   "gap_cm": 1.0036416142611415e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedPlaneBent.f3d",
+   "sha256": "032170ed3ddc5c2822450f879d26625423063d1bf4499096686891593f1aed28",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedPlaneFresh.f3d",
+   "sha256": "e1932c1286d8d96b23571181083575cb4a4dffd9082ab7689e9d07be96c1a721",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedPlaneSagged.f3d",
+   "sha256": "a76597ce2d739c9af666a15632701ab2850848fbd2de1510d9e7fb9a43c5b668",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/CreasedPlaneTwisted.f3d",
+   "sha256": "a394ff9be79fe989db7d03d5b6a439c357619bcc35d6e785a82ac23825e13222",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleBox3Fresh.f3d",
+   "sha256": "1b483cab6d536d8d47c7586c086987f2c116bc57e9c436cf7097e16d8d6414f8",
+   "gap_cm": 6.88338275267597e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleBoxFresh.f3d",
+   "sha256": "b6b5c781476bb5c0b920c637075ea243e8dd2429bd9d1d9df950e25e2fef41b3",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedBoxBent.f3d",
+   "sha256": "6ec759d1dd0ebd065bb3806718c35a912cd56e505b7c5cd7fc64bd9ce5aaf7f4",
+   "gap_cm": 9.992007221626409e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedBoxFresh.f3d",
+   "sha256": "ef168239b5c62d21ca044b3987f4a9a1e272fa1346a8aefd7c5939b110df881b",
+   "gap_cm": 1.021405182655144e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedBoxSheared.f3d",
+   "sha256": "c822080d64c18791c726c47759f91f0e0ce9e3955c593e7f3d2b7bdde1df80a0",
+   "gap_cm": 9.992007221626409e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedPlaneBent.f3d",
+   "sha256": "11f9983cda1acc325f9661e94ba063260fbaa76e9fa1340463b9afd1cb21f09a",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedPlaneFresh.f3d",
+   "sha256": "609d0c1068911678ab57ca62326113eaf8cbf22392ae614e578c582d3d972376",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedPlaneSagged.f3d",
+   "sha256": "e10069d45b170b97521c6513f079d3d5f27f00ae4553025ad8386eb312b5cec1",
+   "gap_cm": 5.551115123125783e-17,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleCreasedPlaneTwisted.f3d",
+   "sha256": "c48623bfe26c83623d592b6ff05fa2142849d5180a9c1a7dd3ab5c9f6ba0786e",
+   "gap_cm": 1.1102230246251565e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleSymmetricBoxEdited.f3d",
+   "sha256": "3aaf283f933bbeafc48baea53774d7ea6c9c76cc2a58bcad9b9b215aefe9fe04",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleValence5Fresh.f3d",
+   "sha256": "c91aab7a9e640fb77a7346c8fb0862cbbca9dd0c6f1ac31e36d962c76e2a8847",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleValence6Fresh.f3d",
+   "sha256": "3f0f972c0bec6f17e543cb4772cff0ace43bf5ab4499a3fae86461602366b793",
+   "gap_cm": 2.6423307986078726e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleValence8Fresh.f3d",
+   "sha256": "1b9cf32a9d884e720b9551be61c39fe8a53bdc9381e8e6fb4ae318997e950610",
+   "gap_cm": 1.687538997430238e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Loaded/OracleWarpedPlane2x5.f3d",
+   "sha256": "ce4b1923ed6bc2bb41f3bfb22d483389635fc511a6ccd5735e45923b8c231896",
+   "gap_cm": 1.3322676295501878e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitBox3Fresh.f3d",
+   "sha256": "9e6cc6d289ed91911694bda960687c5676c57ae5aa46da6543301b2d67e1bcdc",
+   "gap_cm": 6.88338275267597e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitBoxFresh.f3d",
+   "sha256": "ae2404401ad04c64d62b55abe1ab039ff6f1518379e62588a0126a6c151ccd61",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedBoxBent.f3d",
+   "sha256": "26b24aff3d6b61791564ab3379b3be5110288df0850cc7a2a78485a9d88059d6",
+   "gap_cm": 1.0036416142611415e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedBoxFresh.f3d",
+   "sha256": "b6721d53f4672f6e0096bc0fe82661134e81f7b62215e72b76e28db127ccc77b",
+   "gap_cm": 1.0169642905566434e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedBoxSheared.f3d",
+   "sha256": "6b98aa4c15417018e0a2937320f6a2738a2d64c82e596177c867bebc54f82a65",
+   "gap_cm": 9.992007221626409e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedPlaneBent.f3d",
+   "sha256": "49375aa082ea155065de3d878c2f1aa279f675d02293b824bd1160c024fdaade",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedPlaneFresh.f3d",
+   "sha256": "fdefa12304b0ca3d2b5e0e4d3aaa1aa30d6cbe8488cefd305a1600523ff71f00",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedPlaneSagged.f3d",
+   "sha256": "94b3244f24714f9315db9afc5546eac2807e303faf6e2ecb575478d6b5dbcaaa",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitCreasedPlaneTwisted.f3d",
+   "sha256": "dd3f9b3153dae2bf59f29ea69332054ebade6e21c55daa8cc30c4b329d22fa67",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitSymmetricBoxEdited.f3d",
+   "sha256": "54d82b3c479ead338084daeefeabbcf1f2232bd3822f6661026a3e44e71823d1",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitValence5Fresh.f3d",
+   "sha256": "5cd561918a01c52bc8f8b31e73ba789ab784fb9a50f4de5922bdd39f3291e4d3",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitValence6Fresh.f3d",
+   "sha256": "7cf58e01b64424a3c7d650b5b43167b19551c15deba99ecaa0cf881aa19c54ae",
+   "gap_cm": 2.6423307986078726e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitValence8Fresh.f3d",
+   "sha256": "b342901cba2800cc173711ff64e536f13d22bc43297ee8f59638d1aaee301efe",
+   "gap_cm": 1.687538997430238e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/KitWarpedPlane2x5.f3d",
+   "sha256": "a039a1e66efd8c3123157161593bdf41e999442cb1b79b231ad2128d21aee756",
+   "gap_cm": 2.220446049250313e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleBox3Fresh.f3d",
+   "sha256": "4cf1370f89e204746ab30aa41805ee992fff0f1967ae1a1455aec377649ddf47",
+   "gap_cm": 6.88338275267597e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleBoxFresh.f3d",
+   "sha256": "77c725edb7cf75744abeb1a0847e263fa1e60528a2802d3ddd5dc5e0330ce098",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedBoxBent.f3d",
+   "sha256": "2a0a8f61890263b7aba596e0c7fbb60122e82f91aa1ea124e5f60cb5c71d9552",
+   "gap_cm": 1.0036416142611415e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedBoxFresh.f3d",
+   "sha256": "5389b2a2e79783b2e720dfddb2ad864a83dbb86ce58ca1082aba1cd4aa9d1ffa",
+   "gap_cm": 1.0169642905566434e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedBoxSheared.f3d",
+   "sha256": "c86c720fea70bbdb3db5fb721b6a572c5ef897b2d40a80132c16aafefef4a18d",
+   "gap_cm": 9.992007221626409e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedPlaneBent.f3d",
+   "sha256": "31cdca34b5544a878db9a13fff50e2c147977eec359f14fe8e90418a2b889809",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedPlaneFresh.f3d",
+   "sha256": "2f1a9da9dafcf7a361b9503593b39a578f71d8acafe6d63540d6a9d6edf442f8",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedPlaneSagged.f3d",
+   "sha256": "b54648800887981dd7e248885b2a02339175b309a94beab2478acbeda545f8bb",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleCreasedPlaneTwisted.f3d",
+   "sha256": "868397bbe3cc410e08557b92dec8767bfe90e85df953e48f25169f9954254fac",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleSymmetricBoxEdited.f3d",
+   "sha256": "2dd65fea035fc8eaf0afc09d3b3766dfae86dd23a8eae5817e43aa3ab1705ed1",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleValence5Fresh.f3d",
+   "sha256": "06ac1de79e4226886655fb2b459866fb520adaa5816c91f96873af7b567a1f99",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleValence6Fresh.f3d",
+   "sha256": "0a80728f380b5a8a4ba4f17911f94b7850c964e43f40061798ba3f8d527544d7",
+   "gap_cm": 2.6423307986078726e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleValence8Fresh.f3d",
+   "sha256": "59b44153e8cb7843d87b1ea8c84bd23edf7a7e5b1ad6bcfea10ea2cb258859b6",
+   "gap_cm": 1.687538997430238e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Saved/OracleWarpedPlane2x5.f3d",
+   "sha256": "76c04f877b0b3240d2629fc8a5234f8652446d7e299a1e3dbdebdcc5761a7e60",
+   "gap_cm": 2.220446049250313e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/SymmetricBoxEdited.f3d",
+   "sha256": "dc21205c663ec961e134106737ccdc9258073f9554cf8c7d941d906a92cf8d80",
+   "gap_cm": 1.0480505352461478e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Valence5Fresh.f3d",
+   "sha256": "d612a933755da95759db1264a170bf1077c6b46b07af2c500299544c2d6fd98c",
+   "gap_cm": 4.551914400963142e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Valence6Fresh.f3d",
+   "sha256": "7a5a810d48ddb3770eb2f94ecf1c9c0ce50f2d5431b031fab3cb7cdd4162f38d",
+   "gap_cm": 2.6645352591003757e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/Valence8Fresh.f3d",
+   "sha256": "8f1f56f1a9b9059dd77279b25daad0085a8f80c942944e23c6a79d5bd8104ed7",
+   "gap_cm": 2.5091040356528538e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/CageDocuments/WarpedPlane2x5.f3d",
+   "sha256": "69d1afe955270f90daebf971291e5b22cec242e57e459883ad1c760493d1650a",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Flag/FlagControl.f3d",
+   "sha256": "0d7cfac49402e899ebfa9502fcd9218fefc6e031eafe42ebf85367604fb1ae1e",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Flag/StaleCage.f3d",
+   "sha256": "7e2bde6deeca463ffabdfc147d7240d11de54e56a636e6f076964df991d1ea38",
+   "gap_cm": 0.22270152616342287,
+   "layout_equal": true,
+   "jumps_equal": false,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Flag/StaleCageFlag.f3d",
+   "sha256": "051f2f3fee65a4b95e9c1d92a1154319d48c8378579ec59c0233d5c7189cb9f1",
+   "gap_cm": 0.22270152616342287,
+   "layout_equal": true,
+   "jumps_equal": false,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Box3Weighted.f3d",
+   "sha256": "c23cf1ce4a5ab74df7b4d0fb6c221ce8f9b1b6399d379f234d1654b5c940bcf7",
+   "gap_cm": 1.2878587085651816e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/BoxWeightedFresh.f3d",
+   "sha256": "45db575ce9bbe7dff7cbd4f9198e34a866e4acb88ebbd09b23612c868394a672",
+   "gap_cm": 5.1736392947532295e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Loaded/OracleBox3Weighted.f3d",
+   "sha256": "ea28ef6c711c7be8d541f4296fe5e8f22977df93f8f12f759e78af8a23a6fb82",
+   "gap_cm": 6.750155989720952e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Loaded/OracleBoxWeightedFresh.f3d",
+   "sha256": "94e45a30107e4ec3218992e645f0d40282a996467daa857feb489c027ee57332",
+   "gap_cm": 5.084821452783217e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Loaded/OracleValence5Weighted.f3d",
+   "sha256": "9ba56d56ed04f3685031cab4c1b42af6e881f4c23dd998e9f054e23af137402b",
+   "gap_cm": 5.46229728115577e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Loaded/OracleValence7Fresh.f3d",
+   "sha256": "a717f775df17eaff3e7124213939220d8db69718c676ab556eb149ec7a1245f4",
+   "gap_cm": 1.9562129693895258e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Loaded/OracleValence7Weighted.f3d",
+   "sha256": "c4a11b98effcc8ae46dcc5a7f2da09a0a46b8b97530b4c013d54ffc30981c404",
+   "gap_cm": 2.475797344914099e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/KitBox3Weighted.f3d",
+   "sha256": "7fc2cb1af155e7c062205796c9c67e45469379ff94681f439ed99a189cdcda13",
+   "gap_cm": 6.750155989720952e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/KitBoxWeightedFresh.f3d",
+   "sha256": "f038944ef85af4db77270e839c5099fa2857bcf3b9ff3568989bc8d3b4410bb0",
+   "gap_cm": 5.084821452783217e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/KitValence5Weighted.f3d",
+   "sha256": "90256fc427d3f5858b01d1bd97e4b5f0938080d1a9088847f0ef84a5606d05d2",
+   "gap_cm": 5.46229728115577e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/KitValence7Fresh.f3d",
+   "sha256": "c6e4484e46612e29c72cd5069c12c4259b57b755a9a8d24810258f83485803d6",
+   "gap_cm": 1.9562129693895258e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/KitValence7Weighted.f3d",
+   "sha256": "2ac3e715465779b7edcea344e6b7a3696931a56e4b41e50f400b19de2faaaf26",
+   "gap_cm": 2.475797344914099e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/OracleBox3Weighted.f3d",
+   "sha256": "818bde973daf22cc1e1318d1e9700257c949fdb4140b239795da7ce2b71058a5",
+   "gap_cm": 6.750155989720952e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/OracleBoxWeightedFresh.f3d",
+   "sha256": "c36dbd1e783dd640223f614c4e2ecd5ba4595b46c156b09bdeba9b4d0ecb39ba",
+   "gap_cm": 5.084821452783217e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/OracleValence5Weighted.f3d",
+   "sha256": "f64c8a060ec303794b14866959c08e2e7f387cd5067ba52ad236e79a4d772013",
+   "gap_cm": 5.46229728115577e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/OracleValence7Fresh.f3d",
+   "sha256": "fb895ef89d8e46038d7a6420d7b1797bb6512a88fe6efb06e55e3f52122be11d",
+   "gap_cm": 1.9562129693895258e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Saved/OracleValence7Weighted.f3d",
+   "sha256": "8e2efa734fddba3ee114ab3e40234120db45f6aa00628751abc2077f2498073c",
+   "gap_cm": 2.475797344914099e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Valence5Weighted.f3d",
+   "sha256": "edef167642e28c757b38d683c571a4bc07df03897deb279df7f67a1278be334b",
+   "gap_cm": 5.3734794391857577e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Valence7Fresh.f3d",
+   "sha256": "403ab886b26005d5e87a8c39c408c86da064a2b2e2a058201b7dc80d29b61f93",
+   "gap_cm": 1.9406698470447736e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/FourthDocuments/Valence7Weighted.f3d",
+   "sha256": "4079890317f200c63a9a647d0aee452ea825bb3a8bb518ede147ba11626f5700",
+   "gap_cm": 2.462474668618597e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Box.f3d",
+   "sha256": "d1acf972a883c19a3c2bed7a589c144a0c40cdd2c6a7512627c640f5510f174d",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Box111.f3d",
+   "sha256": "cdb9abf1e2043d5a41f0a62ae27824f8480dd9d738671ad95da7e9727f8602f6",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Box122.f3d",
+   "sha256": "48ec11abfa61f171453b5c4b24581d5566ce0b773eecb18e5b880622e7b72784",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Box234.f3d",
+   "sha256": "f7837f68baf9de527a63bd271cd50049bea94891c1e8b02e7cb1b20395899b47",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Box3.f3d",
+   "sha256": "5342fdb2e04b5cb7d0b6ff29d0b919658c5cb724102b48a2aa3daf73217b7e37",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/CreasedBox.f3d",
+   "sha256": "057d4c12e195989c7772c4aea15691690cb26bd001f613396295c2b284f7d28f",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/CreasedPlane.f3d",
+   "sha256": "cd8d4356653646710b2a7f9fdd6a83d2e2ee6555568305283773732707d49568",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldBand67.f3d",
+   "sha256": "7098d52ba6b148a6b1e85555f909931127a8c690771e345967debf9e37221abd",
+   "refusal": "Fusion Form face lines tie where Fusion follows the grip geometry",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldBox113.f3d",
+   "sha256": "912bb492e83a1a18571324a6800806ae48792f1f5916942dd48ebba093571c61",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldCreaseBands.f3d",
+   "sha256": "48667875a40e9991e0f970e47f9d1f04f705f51a10d74f05bde97b88d61e8aed",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldCreaseCross.f3d",
+   "sha256": "d16c32dbebb8aae34a5d51b020dced50e8f43426616491822bceb49a1aa3b32f",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldCreaseLoop.f3d",
+   "sha256": "1d708588e02eba5ce7df37013f1860b8cfc8c6579d45bc4d6bbb45e00f389812",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldCreaseRing.f3d",
+   "sha256": "6fc6dff905b1681c58983ac06c3ca46f96f413b6361e8806258a1884a73b0a49",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldCreaseSlices.f3d",
+   "sha256": "96545cbff0a290d8007eebe516192dadf02bd1156efca5dc3c5b370e0ca3d4fe",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldPrism3.f3d",
+   "sha256": "7b6395e2c6328f80f6650da658429bc51d52dcca48476769abc7de32c8f71f34",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldPrism5.f3d",
+   "sha256": "53fa8a55338743f7dcdc80dcde5e6263089c500dc58b3dde10f81de2dbf8b6d8",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldTorus75.f3d",
+   "sha256": "234fc485c55e08c3049762851fb3715a7fe3b74b441b55b2b5284804482152d3",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldWeighted6.f3d",
+   "sha256": "2cdcf3855c44261267039b7b58989bf5b2d697058c1fcbe7de040a7624e447e8",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldWeightedSharp.f3d",
+   "sha256": "a3450404bddc08cad6f4b36abb523fe3935b76d3a4c55a0d44a10526dc3340cf",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/HeldWeightedTorus.f3d",
+   "sha256": "f4658eb9c5e954990fd6c605cbec2398adce66104c93200c154d48552a7d6e4e",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/LPrism.f3d",
+   "sha256": "a194b292a73633e0e6c277805cf3f103715488a636f4845a6c1dffc0e607a61f",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Mixed56.f3d",
+   "sha256": "55186cc81d6d7b6969a04327122e2f0c303c6529ce4da67b8c7f5d0f42a5f59f",
+   "refusal": "Fusion Form face lines tie where Fusion follows the grip geometry",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Mixed78.f3d",
+   "sha256": "4217a11b597e74ed1632d321dd477a064492571c001ae0c535e3517c81d9d558",
+   "refusal": "Fusion Form face lines tie where Fusion follows the grip geometry",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/SharpBox.f3d",
+   "sha256": "07f2c39790702547e2feca104c1995cba8874ce248f3fe7e96a184c9eeeee3c3",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Step.f3d",
+   "sha256": "1b9e82a6ae0f562b238793d0b9b5b61d0bbba0e33d39403e918ada6d813bcbae",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/TPrism.f3d",
+   "sha256": "238ec1e284a8da4967cb75a990b1bdb32a85b621eceb7ec63f157a5ca6d5a1f8",
+   "refusal": "Fusion Form face lines tie where Fusion follows the grip geometry",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Torus86.f3d",
+   "sha256": "8d609ddd97797f00288802babd5e86e5d9167032302649f83da1b901144de84a",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Valence3Prism.f3d",
+   "sha256": "576e33b5cd47960cc9f5c945175ef9669f198bf05799b83a150ed01f3c6bb95d",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Valence5.f3d",
+   "sha256": "13c8b803219ad8b22d8fd920432959b9ea5ca9d514de8ef0b7bf84f323eb3691",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Valence5Tall.f3d",
+   "sha256": "583bbaad4188c0cd7a5c1db23b8cfaf80d5fd8fb16d5b61d15c1473883d617a0",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Valence6.f3d",
+   "sha256": "6f65db83a2ed9b21f271842021d87c65a79f3d1314abb4a31545330fdef2b3bc",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Valence7.f3d",
+   "sha256": "5f0bf4828af748cb2f7c4e0f05dfa8ce8b4db426a849f88325ab314923b0414d",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/General/Accept/Valence8.f3d",
+   "sha256": "223fcada51c301ecbd92c4e425fbce9a015018cf73342587dd8ac062f71722b2",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Affine.f3d",
+   "sha256": "5b8c589113f512a14cb468e57278ccdb882382acb05f1beadb59ed31648992ff",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane1x1.f3d",
+   "sha256": "7485f0f76c1b1802fd3d539ac7d826c38d13ee407ca2616ad066ea748e8fd908",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane2x5.f3d",
+   "sha256": "0d0d28c44c9cb2919f7642a8eb3402c95adcf86bdea2e3d7ea45803091c9a6bc",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane3x2.f3d",
+   "sha256": "59c1f79b6bbe739774fbbb2b1eea2f5ef9719588171951941ae4b6a21bed6ba3",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane4x4.f3d",
+   "sha256": "a19a4d0601ada4760877c39ae3976dd681ba5b7ed9b9b53b005ca16c349dcc42",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/KitAffine.f3d",
+   "sha256": "21725a170ccd9130b8b277d338697601d5c64ff6eb34c5d1677c3aafc5922f37",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/KitWarped.f3d",
+   "sha256": "8108d5d3e25c2634118903add0426262d8a8356a38d9fe029e37e5d94fe9fb1a",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/OracleAffine.f3d",
+   "sha256": "de324bc8b8ec6cdef3d6576a206725a5b26d6d88f65698c676ab86664d66c661",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Saved/OracleWarped.f3d",
+   "sha256": "fde472acc0afc13891030a4d1268f1737976d036700b861ca3ad16e97a93ff8d",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Grid/Warped.f3d",
+   "sha256": "6ff2e2681bdc0a22bf7ac1e9cf263bc17572d9414097c2dbeabca66e669c4e52",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Loaded/OraclePlane2x5Interval3.f3d",
+   "sha256": "74e9a482385e93eca999de828ffa5ce733f2ef5f03fa4c24afec16fe31a2e999",
+   "gap_cm": 1.5543122344752192e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Loaded/OraclePlane4x4Interval2.f3d",
+   "sha256": "48192acef8fc3d132529aa3d1e808a7f1f82059ccc62b99240b9bd29a94a95e4",
+   "gap_cm": 1.7763568394002505e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Plane2x5Interval3.f3d",
+   "sha256": "47c2f795136880bbf7114781d09b94c9ae3b11293f74ac0ea23d35ddc142eff2",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Plane4x4Interval2.f3d",
+   "sha256": "1b8de27e01ab873058f0801d867f372491c6bc992e654d68971c83fb4760882e",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/KitPlane2x5Interval3.f3d",
+   "sha256": "53e525b7fbf2d265349d88b4d6d4cc1de552839dffa56ef244fb33d5e2f23ca6",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/KitPlane4x4Interval2.f3d",
+   "sha256": "a4923fc7ffa2a934ca51bc042235f57e434d65df569901fa20f30e60e1be3563",
+   "gap_cm": 1.7763568394002505e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/OraclePlane2x5Interval3.f3d",
+   "sha256": "da9a7fd3edbf9e77e9510b9ced2f716f8c6893260b84a844ce7898436b82aa02",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/IntervalDocuments/Saved/OraclePlane4x4Interval2.f3d",
+   "sha256": "3537ab0afeb775a9606eaf1c4de328d56e04f6ae20b9966d1196ad7dac43389b",
+   "gap_cm": 1.7763568394002505e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Base.f3d",
+   "sha256": "0f765320ca7e08a91002d6162dd0cf43fea1dcf97a045f9c2d0075973b863779",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Single.f3d",
+   "sha256": "07e17a88513b7ebe8ee3098ae439e5b2eb9abff022f71dc47fea86ed4c29e73d",
+   "refusal": "Fusion Form capped layout needs one shared knot interval",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Uniform2.f3d",
+   "sha256": "ea2495bf176e9845309a4af79ddffc3365e70b6ea7f6c67f445e2b74cf8da2eb",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Base.f3d",
+   "sha256": "4c07ad7e88b9637349bf3c0b53b67ba2010b6bd78997d2a4045d7d7f63cd834a",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Column0.f3d",
+   "sha256": "cc07b6bf343c19df6a28781d5c9812d295156021d1688f8cd4a03954c431e660",
+   "refusal": "Fusion grid conversion needs one knot interval for every edge",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Column1.f3d",
+   "sha256": "6040e8e1fb227daadeff59ae5d9403a4204513de22225fbf52429a3b7fb5f12a",
+   "refusal": "Fusion grid conversion needs one knot interval for every edge",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/ColumnRow.f3d",
+   "sha256": "084c0d2c9e3fb7317503d17f438489a7183a61ec84d2310d9a24a0b8af38d5d0",
+   "refusal": "Fusion grid conversion needs one knot interval for every edge",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Half.f3d",
+   "sha256": "af33aeaabc6dc1694e8e93378571b54d7c7342f4e5e95bb81cb3e6ceb30277e0",
+   "refusal": "Fusion grid conversion needs a whole-number knot interval",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Row2.f3d",
+   "sha256": "e928bbff42178f2ebb1f996d8c6f8b805f1766a0bd82eca8fe56fcf33d495999",
+   "refusal": "Fusion grid conversion needs one knot interval for every edge",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Single.f3d",
+   "sha256": "0cc77886bc661c9c37000614dc7ab5d64813f55b39556fcecba7d555372db0cc",
+   "refusal": "Fusion grid conversion needs one knot interval for every edge",
+   "status": "refused"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Intervals/Plane4x4/Uniform2.f3d",
+   "sha256": "ce665798c22a3c12e4295ff334ceaa46b45e3087be32d737614757cc87f67a21",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/BoxFresh.f3d",
+   "sha256": "9ef751da34cc0ce5afb29e3b10f33dd27a19dc877427235d36c5550a9ed87d91",
+   "gap_cm": 1.0436096431476471e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/CreasedPlaneFresh.f3d",
+   "sha256": "fbb183f6850aadae85a8d9de59634ede21def081d54079ea3b5b16650b44a202",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Loaded/OracleBoxFresh.f3d",
+   "sha256": "2d7f96a6c6298c99bded101efe35309d07ac25e6a22e004e0c29af9ab8299912",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Loaded/OracleCreasedPlaneFresh.f3d",
+   "sha256": "948eb31c1b808e5b1f23cd475dc71fa6d472d675afc744366b534181ad41a346",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Loaded/OracleValence5Fresh.f3d",
+   "sha256": "a829462e1526471bb1d433ecb4d900fc3969e743164e17fb488cf969c0990069",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Loaded/OracleWarpedPlane2x5.f3d",
+   "sha256": "dad86aee65886a49e12f45f4137e0dca90f8083e95505dd3e133fed6b644e437",
+   "gap_cm": 1.3322676295501878e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/KitBoxFresh.f3d",
+   "sha256": "55c25f1df4590fc7ace109cb1f4a7665a6b1b2a5da0af544b80bbffd02d24eb3",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/KitCreasedPlaneFresh.f3d",
+   "sha256": "3f62f59bb6a06024d55ecd079fe097330ee7b93f153b8419a151d677fd0b2fd5",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/KitValence5Fresh.f3d",
+   "sha256": "341fa74aa1792332fe4ce0d67162fba191283e2ae81ea80a624f5907827ba3ca",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/KitWarpedPlane2x5.f3d",
+   "sha256": "feeec64097f48ca1db405c795398f0c26390faa119f71189444e013e7451cdc6",
+   "gap_cm": 2.220446049250313e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/OracleBoxFresh.f3d",
+   "sha256": "89906d3a0270f7a0fc3a476513d49f2b20902336480fb192f925febdd0309b8d",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/OracleCreasedPlaneFresh.f3d",
+   "sha256": "a7010a0e3a40e2f6ce35e1179ce7c4fbccb210c9046431992acdbb160bc951ce",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/OracleValence5Fresh.f3d",
+   "sha256": "4c6e769ad5e444ba510cc88c2510748f92a3db6bcc766adcfcfd117c2f004330",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Saved/OracleWarpedPlane2x5.f3d",
+   "sha256": "d50a9c4e083d18372ca60fdf926b69fdced3952a3d9d77e57f522caad706932d",
+   "gap_cm": 2.220446049250313e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/Valence5Fresh.f3d",
+   "sha256": "b5cf7165f05f91e9724cc6f5cc1eb4212174ba39be9983e5efdf1d75881ab59d",
+   "gap_cm": 4.551914400963142e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/MergeDocuments/WarpedPlane2x5.f3d",
+   "sha256": "65a4cd1f692fb3eebfb65e0c3075794e210f11e1721d92222f56e5488c5f0a65",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Box.f3d",
+   "sha256": "2e1b717fc10e76e2820a6129b0fc456ba442fe83ac1e93486179d17d1aaa9008",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/CreasedBox.f3d",
+   "sha256": "26f68a993fea3416e9470ecee7c6ed83aa40ac2637c0ffc52e523178d2221993",
+   "gap_cm": 9.903189379656396e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/CreasedPlane.f3d",
+   "sha256": "c41e4a585b9a1f6fc40bcedbbf1cc556cd6395fd5b5824dfcd00a1bb23e985fc",
+   "gap_cm": 5.551115123125783e-17,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Plane1x1.f3d",
+   "sha256": "f38bd7db6bcfe7a35951bf07dd7cf3d6be4d261608476c8e3436d84cdb20a369",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Plane2x5.f3d",
+   "sha256": "f8423bf2718b353bf8ffcd91daf48abce392d4ce0ece23adc9113bc9eb084325",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Plane3x2.f3d",
+   "sha256": "50378890ae654584cafefffbeb67dad7776f66cc9eadd64f6d299c5d89d8e406",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Plane4x4.f3d",
+   "sha256": "79e7a81eaf57fb853d5837d38f89d9ded8e2dfbfe408acd358232a4c3d60ae27",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitBox.f3d",
+   "sha256": "4fc1246fc0867b6279197a2675d8a8ee995bf57f4ffec74c9134ed97ce1d0877",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitCreasedBox.f3d",
+   "sha256": "0b877a2a21f37d6dff417700ca230afdb132cd1bb629c7879609939a1ccc43d4",
+   "gap_cm": 9.903189379656396e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitCreasedPlane.f3d",
+   "sha256": "8ca06b203580a5d01a84318fc433d8b145379e928a22289267560613a8991c4a",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitPlane1x1.f3d",
+   "sha256": "a74bacc8b1f4c73d3aa23ab1a33deee80e644324192f2e49effc3a7a6e1928c9",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitPlane2x5.f3d",
+   "sha256": "b3f712f52d85011c301115eadbe482a0084b271ac3e2c13208edd4fb53ca9d4b",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitPlane3x2.f3d",
+   "sha256": "15fe27149c0e2d810b32b7caa3699b4a72f15d98f19f80933ffa181bcc550089",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitPlane4x4.f3d",
+   "sha256": "1851a9eeaebb92b81d51b826eac4dd83028bc5e510486211c9a2539fbe6dd6d9",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitSymmetricBox.f3d",
+   "sha256": "77468aed5ca194b6583b102cbefe9255a669fe2a8af3f4795644821244f9d29f",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/KitWarpedPlane4x4.f3d",
+   "sha256": "1b60b5e02f38d37eea98f4b3af220a29d273a3cb0104de975ef03fbc5a795780",
+   "gap_cm": 1.5543122344752192e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OracleBox.f3d",
+   "sha256": "4c6152769240f928d3207781f3c026c1c257f2719f1322050e6a4ccd45b4dff5",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OracleCreasedBox.f3d",
+   "sha256": "4467fbac693f5e37f38171f4a2a2aecf19b635d7fa5f65decf45bdb7bcfd7a51",
+   "gap_cm": 9.903189379656396e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OracleCreasedPlane.f3d",
+   "sha256": "1f27827605014dcb2cd1abb680a2fa89b923dd6119a9af853f11d1fa8ce9bdbe",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OraclePlane1x1.f3d",
+   "sha256": "e2f78de59a2d52debbd60427de6d1ace36e0a78ab5d511cf907a01206b19c6f4",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OraclePlane2x5.f3d",
+   "sha256": "67b981484114ba19f8405720f984682de81130a8581201de964263c0a999fcf1",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OraclePlane3x2.f3d",
+   "sha256": "9ad20a3de160cee7ebd3519e43d25b289f4cf0272a39602ecca1c34891aa77a6",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OraclePlane4x4.f3d",
+   "sha256": "5402a98b3fb5fe847058ba7651c0c01c679f96918a449a77bab298de46a00488",
+   "gap_cm": 8.881784197001252e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OracleSymmetricBox.f3d",
+   "sha256": "2a1a4d8c164879b7da9c14fe34851d6881e9a1c465715a3d5336c2b18481d0b6",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Saved/OracleWarpedPlane4x4.f3d",
+   "sha256": "ea04915f4989660c87517187ba8903eeadcf306b01c412819aff7fbd588bbb77",
+   "gap_cm": 1.5543122344752192e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/SymmetricBox.f3d",
+   "sha256": "b68bf8d529fe39b87d47c739da92b36c938724d0876e62eaea90ce351b6ffcea",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitBase.f3d",
+   "sha256": "a52baaa31e9cfaa2acfd242b090b4b910cdaf40d56fbd8898f788f4bbc984aa4",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitSolid.f3d",
+   "sha256": "f6755e35a3859acaf404c20240be24ed497d0492afc515abc9116b54d7711b2c",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitSolidCache.f3d",
+   "sha256": "4f58e002a12f252277a2f88a59590005f30eb9264304b026c1be899dd485cbbb",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitSolidCacheIds.f3d",
+   "sha256": "36186206b9be5e5c5a29800a01891d053479a60ceb240eb5bcc6964faf97d6c7",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitSolidIds.f3d",
+   "sha256": "95cb5d5d33c09a62dd54063660cc56c6448936eeb829525b2eb896519b38b1da",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitSolidTop.f3d",
+   "sha256": "78b59f505dca2c01006cbe13acd8df81d2092446e740a48f9ca14b9e86571f2a",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/KitSolidTopZero.f3d",
+   "sha256": "af9ab94b0a0a515a7d594959441458299112f603ce623831eb4c1090d058d807",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/NativeBlankCache.f3d",
+   "sha256": "cd7fcfd573adf76e3c850c9150f5c105b55505cde604ab0b6fed41bc93e91e3e",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/NativeBlankIds.f3d",
+   "sha256": "1ecd929f179abf7efa5c5a24cb66030afb9537f19141e8510968d8bc661547f3",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/NativeBlankTop.f3d",
+   "sha256": "39a47e73af4ece4a69145783b3828d888c51014b1172bcd7c3f5b42911129389",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/Variants/NativeSheet.f3d",
+   "sha256": "9b763c427d6252ef148b703c82561b44aa03e08537438d630bdc1010acca27b3",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Sourceless/WarpedPlane4x4.f3d",
+   "sha256": "b9ee060379894ff3a224228bc54cef12ab4c8c221becaa9c1ed12633ab2312d5",
+   "gap_cm": 0.0,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxBothMoved.f3d",
+   "sha256": "7347769830a33410b7c43213be7cc4b5710d5938cdbf97f8558f1f32f980c52c",
+   "gap_cm": 0.0940392662954187,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/BoxNoBrep.f3d",
+   "sha256": "0ee790e8bb471a58f441ab003f9a529184883bcc6e2e55a82fa934c469ae3674",
+   "status": "no body"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneBothMoved.f3d",
+   "sha256": "faa40f9dc136e457edc2c35394608d8f284024dae89583694b93bc04fa7ad2ba",
+   "gap_cm": 0.25,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/Stale/PlaneNoBrep.f3d",
+   "sha256": "d0efe591d92e52b5b386403e24b3f3f152973bc0119a3d561fe370d75125b39e",
+   "status": "no body"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Carriers/Box3.f3d",
+   "sha256": "721e773a4899fe2aa7c15041b3802dbdb6b0cfd9e259c433e7da4dc9a76e384d",
+   "gap_cm": 6.750155989720952e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Carriers/Valence5.f3d",
+   "sha256": "b0c67c92208fe1e7d6e8e06850b34c9cb03ffacc0707368faa019c80973b69a8",
+   "gap_cm": 4.8405723873656825e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Carriers/Valence6.f3d",
+   "sha256": "903a826c80b4a9010d2cb1c746ce6c75e7e3a10b58fa508c2377d15717ccdcfb",
+   "gap_cm": 2.4868995751603507e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Carriers/Valence7.f3d",
+   "sha256": "fa622da23e212739cef5e19ee22a6993657455c35e7ae6aeb8652a26a85d346a",
+   "gap_cm": 2.0317081350640365e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Carriers/Valence8.f3d",
+   "sha256": "ba7aeb33582364cc992407b1a00aaa1d95eb0614be7fed79025b4a456c5113c9",
+   "gap_cm": 1.5987211554602254e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/Box3FreshKit.f3d",
+   "sha256": "24dde6c0a14432aa57f2b95395bb5e85e98734532e65e31fd79745467b7539b2",
+   "gap_cm": 1.290079154614432e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/BoxFreshKit.f3d",
+   "sha256": "12c013c81ea610a02d030a3cfab183b00428b8ca623022c8dd86965ab930db40",
+   "gap_cm": 1.0436096431476471e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/CreasedBoxFreshKit.f3d",
+   "sha256": "80f23576db3486e257eb515485b1c9c4490f4e46efb2fcf6d34c2bb2b24600e9",
+   "gap_cm": 1.0436096431476471e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/CreasedPlaneFreshKit.f3d",
+   "sha256": "d34ac23c7b3bf95aff818c366712b6b55822011d643c959ecb16d2e6d067e354",
+   "gap_cm": 0.0,
+   "layout_equal": false,
+   "jumps_equal": true,
+   "status": "different"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/SymmetricBoxEditedKit.f3d",
+   "sha256": "e6bb6febe1839b8afc0d8a509c6f62e6f273e250f2004553a1718040b545bf93",
+   "gap_cm": 1.0480505352461478e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/Valence5FreshKit.f3d",
+   "sha256": "8db759399b23dd877289a05057fa389190cb6b79206cf8e1af819f716ddc20e3",
+   "gap_cm": 4.551914400963142e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/Valence6FreshKit.f3d",
+   "sha256": "fd133ab7a3f288e5b28395b5a9d5a3d7b89dca6ef90005fdda8a05848c2a6973",
+   "gap_cm": 2.6645352591003757e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Cases/Valence8FreshKit.f3d",
+   "sha256": "f963b46a5c85ea589627feb12fcd2e53b8843618b14cdc14124bd685eb911567",
+   "gap_cm": 2.5091040356528538e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitBox3Fresh.f3d",
+   "sha256": "eed6d1d64da67d2e67b79cd1f0f75a67a391b78b6cc4b8d92e39ce1a36065f15",
+   "gap_cm": 6.88338275267597e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitBoxFresh.f3d",
+   "sha256": "f3143a27213c9c75225421afdbed44a549649e6ee557801bc078bc0a77858d94",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitCreasedBoxFresh.f3d",
+   "sha256": "5ee59516d098803fbc1ab08633f7db3b6cc6502d2c7fa08154de2c4cc5966d2e",
+   "gap_cm": 1.0169642905566434e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitCreasedPlaneFresh.f3d",
+   "sha256": "3eef78aef55f20498795a4071ed604525a107f47731e71e10086545ad12e7b4e",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitSymmetricBoxEdited.f3d",
+   "sha256": "33deabf41debd4dad7171644fe79545030f7434db974653a054d5037a2e73ad5",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitValence5Fresh.f3d",
+   "sha256": "f156cf2a124d9b5ba5897fb4a882596882b3029f98fdbf5beefc709454ab33c0",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitValence6Fresh.f3d",
+   "sha256": "e62f9c7afe6c4458b4500fee4e01340819713adbe0b3b44fcd79b3d3dc6f61ec",
+   "gap_cm": 2.6423307986078726e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/KitValence8Fresh.f3d",
+   "sha256": "86e71791103faeeaec1e8e4c278a317f5da71a1d965be99e76ac9a1c7edbee08",
+   "gap_cm": 1.687538997430238e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleBox3Fresh.f3d",
+   "sha256": "c1e7d0a1902bb86062bdc77251ce03ce595bccea72dae4d1605fff0f52b19b3a",
+   "gap_cm": 6.88338275267597e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleBoxFresh.f3d",
+   "sha256": "53b8c1d69b7ab8cc8072f0a7ed1d553ac725a16b20bd29cdb3fe5c48042940f6",
+   "gap_cm": 1.0258460747536446e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleCreasedBoxFresh.f3d",
+   "sha256": "8680aad7b3c3ad76d08b589aaa2771a606c3b8fed44abd85d4f244d97bc2d52f",
+   "gap_cm": 1.0169642905566434e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleCreasedPlaneFresh.f3d",
+   "sha256": "2126cbc9efeb4b7029a02681964a017891fb6e3c1d211d260c50b74537052059",
+   "gap_cm": 2.6645352591003757e-15,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleSymmetricBoxEdited.f3d",
+   "sha256": "272a027ee04cec944e4acc4f1c492c08ab4dd2c67dfa84d6fc5de6c294b94003",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleValence5Fresh.f3d",
+   "sha256": "d5f098f8bf409c1c1811dc0aa615719bb0124d3308f30b9c8bb0e0a1312708d8",
+   "gap_cm": 4.596323321948148e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleValence6Fresh.f3d",
+   "sha256": "8b65e5d1c0c50c60b3dc1c4e0dbc77ca7e0a496df14a66e88061f75958911fc6",
+   "gap_cm": 2.6423307986078726e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/FormDocuments/StencilAccept/Saved/OracleValence8Fresh.f3d",
+   "sha256": "8fc2d75740b333e2ec5b6577e0226dd9fbb5b7714c4efe7c454e7cba304009ba",
+   "gap_cm": 1.687538997430238e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/Box.f3d",
+   "sha256": "24f533c68c2efb8e718789b79a4c3494d504f8f224a040b527db806e9b4d7a45",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",
+   "sha256": "90abb8dce3e0cb95b397260eb21cd9b6641171bdd53a105658145197aef645da",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/Plane.f3d",
+   "sha256": "a81662369ddd6407b98975c335d6510b2eb9c7445214617e1df2e248c0d19612",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/PlaneEdited.f3d",
+   "sha256": "b15fbcda87ec38983c6aaea21b81beaaf2536c764b5b81262c8174687099e8ed",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBox.f3d",
+   "sha256": "d6af6d6a493d7ca8436c660bf1ba4be32d9d5d9f5c873f8582ba4002a43e4d21",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSpline/SymmetricBoxEdited.f3d",
+   "sha256": "fb66fb0d81c7d602f008d8286a8bf01cc507c6b96a705e04a48d473c2be20486",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageAuthored.f3d",
+   "sha256": "741f856b8ffea6c39703413a5d8e0cdc1258b5b97408bef510ef420314bba4d3",
+   "gap_cm": 7.327471962526033e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_AuthoredClosedCageNativePrimitive.f3d",
+   "sha256": "713b92c9599e2d2014da52e2494a28fe96efabd7367bbafcd2f41f163a9b7202",
+   "gap_cm": 7.327471962526033e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxControl.f3d",
+   "sha256": "0d97f36de6a9b5478e67b59f3949064dece148109d8ada6dd111e8451b2e73a1",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialControl.f3d",
+   "sha256": "220bf1bf2cf47e0c4545811737eb5bb374cb3c264b65973b6c1df26828a7d1e1",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreaseInitialReemitted.f3d",
+   "sha256": "f19d8d72b59552ef3b49a4443cabc7ce19812cafa4eb4ba9c588919617d1f742",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedControl.f3d",
+   "sha256": "6f644a8c2af88f6e21baca6e8c62b7e381bcadba4cf87957e87648873445e815",
+   "gap_cm": 9.903189379656396e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxCreasedReemitted.f3d",
+   "sha256": "1f989fa783f6fae63a16c3c16172c5e5b9e9691cfcddc15342c10a4df9afd183",
+   "gap_cm": 9.903189379656396e-14,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedControl.f3d",
+   "sha256": "7d6d301d0e3b0b1d21611e3d4213acf8a83fb52c2688191b48d02ca95bc5283c",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxEditedReemitted.f3d",
+   "sha256": "cc0efc9660ee2ca930dcb2be6e6d347c612e759faccc79aa01310995456b308a",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxReemitted.f3d",
+   "sha256": "347820f173a3f97bc200f6295439227af5209aeb5c576079dfff576eeb99e696",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedControl.f3d",
+   "sha256": "e3cdcf87445dd2bce8a742c1397692a29d887f348580b5e348a76cdae18ae923",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_BoxUncreasedReemitted.f3d",
+   "sha256": "94eb7df9ead0bf43dda9f10fc4adcb921d2f293c5557d905271f37f6a78535a2",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneControl.f3d",
+   "sha256": "8f102bcf26b59e4f49ab027bcf11021bdc7c535b1688125ebadab842862ebfc9",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialControl.f3d",
+   "sha256": "71d819200030dd4135ab93bf36033884eba88b2ec92174342ef0d74f2648992e",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreaseInitialReemitted.f3d",
+   "sha256": "a2b7b1e2be961ee5ef2f7bb33f5f7719dc622ed6120c8aacdc65f62bc635f4de",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedControl.f3d",
+   "sha256": "b2a7661e07216078072f69c17c13c5e09c0995cf2e582208a4bffb77b09d9031",
+   "gap_cm": 5.551115123125783e-17,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneCreasedReemitted.f3d",
+   "sha256": "1e8035ae9abee9a7ce2ffe1498f1abbb09bbe5c764ae1a28883aa55187f389b2",
+   "gap_cm": 5.551115123125783e-17,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedControl.f3d",
+   "sha256": "b5205f108e64e9e69a5729265b0ed1b375961f3adf9f6f7b7e81ac822ac042bd",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneEditedReemitted.f3d",
+   "sha256": "c71ede66097f76c81ed201af52b2c050feb3b6ca4a4e140caad6b0e0916ab9a8",
+   "gap_cm": 4.440892098500626e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneReemitted.f3d",
+   "sha256": "c49e50eb5739e0744cef976d3395ef4f90ca328e3811ad66a74511db858fc69b",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedControl.f3d",
+   "sha256": "5048fbd4615f9d447f6ca598641b985ee1ee38fc03226bbeb18806c3bed649c4",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_PlaneUncreasedReemitted.f3d",
+   "sha256": "e22f558b0e49fac0f43e8d28e43703491a0aa5a54cdbaf1fdc1100f9029043ab",
+   "gap_cm": 2.220446049250313e-16,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxControl.f3d",
+   "sha256": "d286157665e8edca1c03800dcbc60d1b9c3799640e11b488347a4e7bd1fe78c8",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedControl.f3d",
+   "sha256": "ce06c8742d65b594df9a55e419110ca0f98ced1f6036d03d4a91217e933c68af",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxEditedReemitted.f3d",
+   "sha256": "0c06ca647f2e70a7f554ddcfbc1396582694117b1b58fedc262a21a9b2bacc8a",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  },
+  {
+   "file": "re/Fusion/LocalOracle/TSplineCodec/vendor_SymmetricBoxReemitted.f3d",
+   "sha256": "31e89e33cf37d345ee0861b18ec41aa32c8e257758b5fff47eb0aa9ec45f0cf7",
+   "gap_cm": 1.0302869668521453e-13,
+   "layout_equal": true,
+   "jumps_equal": true,
+   "status": "equal"
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+  "scope": "Copy and paste body classes that the shipped native catalog lacks, derived black box from Fusion 2706.1.17 saves of the CapturePastes.py controls",
+  "derivation": [
+    "Class identity, schema version and class space come from the class table of each saved Design segment.",
+    "DcPasteBodies, BodyUuidProgenitor, DcBaseFeature and DcDirectModelingData names, base identities and member names come from the public text command Document.DumpAcitveDocSchema on the reopened control.",
+    "DcReparentBodiesFeature has no instance, so the schema dump omits it. Its identity and version come from the class table, where it is the base of DcPasteBodies. Its base is DcAssemblyFeature, which joins the class table only with a paste. Its member names are the PEntity.Properties keys of a DcPasteBodies instance that lie between the DcPasteBodies members and the DcFeature members.",
+    "Members go on the wire in byte order of their names, as for every catalogued class. With these members every record of the four controls decodes with no bytes left over.",
+    "bodyRefs holds a ModelDataRef and rBaseFeature holds the DcBaseFeature of the same paste in every control.",
+    "The other members are empty in every control. Their element types are unobserved, so they stay unsupported and Kit writes them empty."
+  ],
+  "names": {
+    "2FCB0587-233E-449B-9724-9AAE5AA23647": "DcDMActivationFeature",
+    "493A89BA-E146-498D-9033-2783FE727AF4": "DcDirectModelingData",
+    "5988EB6C-011B-4012-B500-089A713F57BF": "BodyUuidProgenitor",
+    "BA3059E4-4B23-4D02-9D18-E7BB95C991F3": "DcPasteBodies",
+    "D7015B81-AB4D-4C89-BED7-AA4411E1964A": "DcBaseFeature",
+    "F02B9CA0-B47C-41EA-9B6C-3D0A4D4AA5AB": "DcReparentBodiesFeature"
+  },
+  "derived": [
+    {
+      "ClassGuid": "BA3059E4-4B23-4D02-9D18-E7BB95C991F3",
+      "BaseGuid": "F02B9CA0-B47C-41EA-9B6C-3D0A4D4AA5AB",
+      "SchemaVersion": 1,
+      "Members": [
+        {"FieldName": "bodyRefs", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "ref", "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"}]}, "IsSaved": true},
+        {"FieldName": "rBaseFeature", "ValueType": {"KindValue": "ref", "ClassGuid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A"}, "IsSaved": true},
+        {"FieldName": "rSinkSurfGroups", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "rSourceSurfGroups", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true}
+      ],
+      "IsValue": false
+    },
+    {
+      "ClassGuid": "F02B9CA0-B47C-41EA-9B6C-3D0A4D4AA5AB",
+      "BaseGuid": "BADF6309-013D-48F0-9AB0-0C05FB086CF4",
+      "SchemaVersion": 7,
+      "Members": [
+        {"FieldName": "Source2CurrentDMThreadMap", "ValueType": {"KindValue": "map", "Arguments": [{"KindValue": "unsupported"}, {"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "dcReparentRecords", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "deleteBodies", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "reparentDecals", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "reparentedAnnotations", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "reparentedAnnotationsStatus", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "reparentedJointOrigins", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "restructuredGeometricRelationships", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "restructuredJoints", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true},
+        {"FieldName": "restructuredMotionLinks", "ValueType": {"KindValue": "sequence", "Arguments": [{"KindValue": "unsupported"}]}, "IsSaved": true}
+      ],
+      "IsValue": false
+    }
+  ]
+}

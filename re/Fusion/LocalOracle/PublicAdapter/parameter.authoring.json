@@ -1,0 +1,136 @@
+{
+  "$type": "CadDocument",
+  "assembly": null,
+  "bodies": {
+    "$tuple": []
+  },
+  "brep": null,
+  "brep_payloads": {
+    "$tuple": []
+  },
+  "capabilities": {
+    "$frozenset": []
+  },
+  "configurations": {
+    "$tuple": [
+      {
+        "$type": "Configuration",
+        "active": true,
+        "attributes": {},
+        "id": "default",
+        "name": "Public parameter",
+        "overrides": {
+          "$tuple": []
+        },
+        "parent_id": null,
+        "suppressed_feature_ids": {
+          "$tuple": []
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "$tuple": []
+  },
+  "feature_timeline": {
+    "$tuple": []
+  },
+  "materials": {
+    "$tuple": []
+  },
+  "meshes": {
+    "$tuple": []
+  },
+  "metadata": {
+    "fusion.authoring": {
+      "spec": {
+        "fields": {
+          "BodyName": "Public Solid",
+          "ConstrainRectangle": false,
+          "DepthMm": 23.0,
+          "DepthParamName": "rectangleDepth",
+          "ExtrusionName": "Public Extrusion",
+          "LengthMm": 17.0,
+          "Material": {
+            "fields": {
+              "Color": {
+                "fields": {
+                  "AlphaValue": 1.0,
+                  "BlueValue": 0.6,
+                  "GreenValue": 0.4,
+                  "RedValue": 0.2
+                },
+                "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue"
+              },
+              "Density": 2870.0,
+              "NameValue": "Public Material"
+            },
+            "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec"
+          },
+          "ParamComment": "",
+          "ParamName": "publicHeight",
+          "ProfileKind": "parameter",
+          "RadiusMm": 12.0,
+          "SketchName": "Public Profile",
+          "TaperDegrees": 0.0,
+          "Title": "Public parameter",
+          "WidthMm": 19.0,
+          "WidthParamName": "rectangleWidth"
+        },
+        "record": "convert.formats.Fusion.DocumentCodec.Model.DocumentSpec.DocumentSpec"
+      },
+      "version": 1
+    }
+  },
+  "parameters": {
+    "$tuple": [
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": null,
+        "id": "length",
+        "name": "publicHeight",
+        "owner_id": "",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 17.0
+        }
+      }
+    ]
+  },
+  "schema_version": "1.0",
+  "selections": {
+    "$tuple": []
+  },
+  "sketches": {
+    "$tuple": []
+  },
+  "source": {
+    "$type": "CadSource",
+    "application_version": "",
+    "attributes": {},
+    "container_version": "",
+    "format_id": "fusion.f3d",
+    "path": "",
+    "sha256": ""
+  },
+  "support_planes": {
+    "$tuple": []
+  },
+  "units": {
+    "$enum": "UnitSystem",
+    "value": "mm"
+  }
+}

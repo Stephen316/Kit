@@ -1,0 +1,6379 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "suite": "Sweeps",
+  "scope": "Kit-authored part feature documents compared with same-script native API controls: open without recompute, every rollback marker, computeAll, driving parameter edits, export and reopen",
+  "cases": [
+    {
+      "name": "SweepBend",
+      "file": "SweepBend.f3d",
+      "sha256": "a4c9c5149e959d929146249c1ceba05f25d853217d71900039aebdd3a9e14730",
+      "steps": [
+        {
+          "kind": "sweep",
+          "profile_cm": [
+            -0.5,
+            0.5,
+            0.0,
+            1.0
+          ],
+          "path": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.0
+              ]
+            },
+            {
+              "kind": "arc",
+              "center_cm": [
+                -3.0,
+                2.0
+              ],
+              "start_cm": [
+                0.0,
+                2.0
+              ],
+              "sweep_rad": 1.5707963267948966
+            }
+          ],
+          "profile": "Sweep profile",
+          "path_name": "Sweep path",
+          "name": "Bend sweep"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Bend sweep",
+          "role": "AlongDistance",
+          "expression": "0.5"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 6.71238898038469,
+          "area_cm2": 28.84955592153876,
+          "faces": 8,
+          "edges": 18
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 6.71238898038469,
+              "area_cm2": 28.84955592153876,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                0.5,
+                5.5,
+                1.0
+              ],
+              "center_cm": [
+                -0.7529113140774957,
+                3.0552626425602925,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 6.71238898038469,
+                "area_cm2": 28.84955592153876,
+                "faces": 8,
+                "edges": 18,
+                "vertices": 12,
+                "min_cm": [
+                  -3.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  0.5,
+                  5.5,
+                  1.0
+                ],
+                "center_cm": [
+                  -0.7529113140774957,
+                  3.0552626425602925,
+                  0.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 3.356194490192345,
+              "area_cm2": 15.424777960769381,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -0.7511323661467029,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                0.5,
+                3.528883565284767,
+                1.0
+              ],
+              "center_cm": [
+                -0.030024064177756587,
+                1.6759566806457673,
+                0.5000000000000001
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "0.5",
+              "value": 0.5,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.71238898038469,
+            "area_cm2": 28.84955592153876,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.752911314077496,
+              3.055262642560292,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 6.71238898038469,
+              "area_cm2": 28.84955592153876,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                0.5,
+                5.5,
+                1.0
+              ],
+              "center_cm": [
+                -0.752911314077496,
+                3.055262642560292,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.71238898038469,
+            "area_cm2": 28.84955592153876,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.5,
+              1.0
+            ],
+            "center_cm": [
+              -0.7529113140774958,
+              3.055262642560292,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.356194490192345,
+            "area_cm2": 15.424777960769381,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -0.7511323661467029,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              3.528883565284767,
+              1.0
+            ],
+            "center_cm": [
+              -0.030024064177756587,
+              1.6759566806457673,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.356194490192345,
+            "area_cm2": 15.424777960769381,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -0.7511323661467029,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              3.528883565284767,
+              1.0
+            ],
+            "center_cm": [
+              -0.030024064177756587,
+              1.6759566806457673,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.356194490192345,
+            "area_cm2": 15.424777960769381,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -0.7511323661467029,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              3.528883565284767,
+              1.0
+            ],
+            "center_cm": [
+              -0.030024064177756587,
+              1.6759566806457673,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "f268e34e9689fb19679305f52965ebb32cfeb2d1c67f0e6bb64360693b3dd1ef",
+      "status": "accepted"
+    },
+    {
+      "name": "SweepHook",
+      "file": "SweepHook.f3d",
+      "sha256": "8cf843922e89bd929ac61211c36c6ffc16f4445af03267b9a7cabf464c2b664e",
+      "steps": [
+        {
+          "kind": "sweep",
+          "profile_cm": [
+            -0.5,
+            0.5,
+            0.0,
+            1.0
+          ],
+          "path": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.0
+              ]
+            },
+            {
+              "kind": "arc",
+              "center_cm": [
+                -3.0,
+                2.0
+              ],
+              "start_cm": [
+                0.0,
+                2.0
+              ],
+              "sweep_rad": 1.5707963267948966
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                -3.0,
+                5.0
+              ],
+              "end_cm": [
+                -5.0,
+                5.0
+              ]
+            }
+          ],
+          "profile": "Sweep profile",
+          "path_name": "Sweep path",
+          "name": "Bend sweep"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Bend sweep",
+          "role": "AlongDistance",
+          "expression": "0.75"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 8.71238898038469,
+          "area_cm2": 36.84955592153876,
+          "faces": 10,
+          "edges": 24
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 8.71238898038469,
+              "area_cm2": 36.84955592153876,
+              "faces": 10,
+              "edges": 24,
+              "vertices": 16,
+              "min_cm": [
+                -5.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                0.5,
+                5.5,
+                1.0
+              ],
+              "center_cm": [
+                -1.4983070243087737,
+                3.5016929756912263,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Sweep profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Sweep path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bend sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 8.71238898038469,
+                "area_cm2": 36.84955592153876,
+                "faces": 10,
+                "edges": 24,
+                "vertices": 16,
+                "min_cm": [
+                  -5.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  0.5,
+                  5.5,
+                  1.0
+                ],
+                "center_cm": [
+                  -1.4983070243087737,
+                  3.5016929756912263,
+                  0.5
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bend sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bend sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 6.534291735288518,
+              "area_cm2": 28.137166941154074,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -2.8516727896581093,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                0.5,
+                5.4938342999915575,
+                1.0
+              ],
+              "center_cm": [
+                -0.6941139936534649,
+                3.0015486606474324,
+                0.5000000000000001
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "0.75",
+              "value": 0.75,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 8.71238898038469,
+            "area_cm2": 36.849555921538766,
+            "faces": 10,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              -5.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.5,
+              1.0
+            ],
+            "center_cm": [
+              -1.4983070243087733,
+              3.5016929756912263,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Sweep profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Sweep path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bend sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 8.71238898038469,
+              "area_cm2": 36.849555921538766,
+              "faces": 10,
+              "edges": 24,
+              "vertices": 16,
+              "min_cm": [
+                -5.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                0.5,
+                5.5,
+                1.0
+              ],
+              "center_cm": [
+                -1.4983070243087733,
+                3.5016929756912263,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bend sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bend sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 8.71238898038469,
+            "area_cm2": 36.84955592153876,
+            "faces": 10,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              -5.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.5,
+              1.0
+            ],
+            "center_cm": [
+              -1.4983070243087737,
+              3.5016929756912263,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.534291735288518,
+            "area_cm2": 28.137166941154074,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -2.8516727896581093,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.4938342999915575,
+              1.0
+            ],
+            "center_cm": [
+              -0.6941139936534649,
+              3.0015486606474324,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.75",
+            "value": 0.75,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.534291735288518,
+            "area_cm2": 28.137166941154074,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -2.8516727896581093,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.4938342999915575,
+              1.0
+            ],
+            "center_cm": [
+              -0.6941139936534649,
+              3.0015486606474324,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.75",
+            "value": 0.75,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Sweep profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Sweep path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bend sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 6.534291735288518,
+            "area_cm2": 28.137166941154074,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -2.8516727896581093,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              0.5,
+              5.4938342999915575,
+              1.0
+            ],
+            "center_cm": [
+              -0.6941139936534649,
+              3.0015486606474324,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.75",
+            "value": 0.75,
+            "unit": "",
+            "owner": "Bend sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bend sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "9865c7035ea0623851e3917e8c3da7b67bd5728a554f97057d763b0708dd7ab9",
+      "status": "accepted"
+    },
+    {
+      "name": "SweepSCurve",
+      "file": "SweepSCurve.f3d",
+      "sha256": "f42b96c0597d5f107f96cb84757b2835539b1f9c25a745b3cabebc8ff67b4f45",
+      "steps": [
+        {
+          "kind": "sweep",
+          "profile_cm": [
+            -0.3,
+            0.5,
+            0.2,
+            0.8
+          ],
+          "path": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                1.0
+              ]
+            },
+            {
+              "kind": "arc",
+              "center_cm": [
+                2.0,
+                1.0
+              ],
+              "start_cm": [
+                0.0,
+                1.0000000000000002
+              ],
+              "sweep_rad": -1.5707963267948966
+            },
+            {
+              "kind": "arc",
+              "center_cm": [
+                2.0,
+                5.0
+              ],
+              "start_cm": [
+                2.0,
+                3.0
+              ],
+              "sweep_rad": 1.5707963267948966
+            }
+          ],
+          "profile": "Bar profile",
+          "path_name": "Bar path",
+          "name": "Bar sweep"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Bar sweep",
+          "role": "AlongDistance",
+          "expression": "0.5"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 3.4959289474462025,
+          "area_cm2": 21.35291886010284,
+          "faces": 10,
+          "edges": 24
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Bar profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 3.4959289474462047,
+              "area_cm2": 21.35291886010284,
+              "faces": 10,
+              "edges": 24,
+              "vertices": 16,
+              "min_cm": [
+                -0.3,
+                0.0,
+                0.19999999999999996
+              ],
+              "max_cm": [
+                4.5,
+                5.0,
+                0.8
+              ],
+              "center_cm": [
+                1.848967182131745,
+                2.633171290225395,
+                0.4999999999999997
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bar sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Bar profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bar path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bar sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bar sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Bar profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bar path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Bar sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bar sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Bar profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bar path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bar sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bar sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Bar profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bar path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Bar sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 3.4959289474462047,
+                "area_cm2": 21.35291886010284,
+                "faces": 10,
+                "edges": 24,
+                "vertices": 16,
+                "min_cm": [
+                  -0.3,
+                  0.0,
+                  0.19999999999999996
+                ],
+                "max_cm": [
+                  4.5,
+                  5.0,
+                  0.8
+                ],
+                "center_cm": [
+                  1.848967182131745,
+                  2.633171290225395,
+                  0.4999999999999997
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Bar sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d5",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d6",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Bar sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Bar profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 1.6845662500369458,
+              "area_cm2": 10.786636458548852,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -0.3,
+                0.0,
+                0.19999999999999996
+              ],
+              "max_cm": [
+                1.6288940611182157,
+                3.228498569934483,
+                0.8
+              ],
+              "center_cm": [
+                0.447234947109602,
+                1.6431120640242485,
+                0.5000000000000001
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "0.5",
+              "value": 0.5,
+              "unit": "",
+              "owner": "Bar sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d5",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Bar profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.4959289474462003,
+            "area_cm2": 21.35291886010284,
+            "faces": 10,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              -0.3,
+              0.0,
+              0.2
+            ],
+            "max_cm": [
+              4.5,
+              5.0,
+              0.8
+            ],
+            "center_cm": [
+              1.8489671821317462,
+              2.633171290225396,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Bar sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Bar profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bar path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bar sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bar sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Bar profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Bar sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bar sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Bar profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bar sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Bar profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Bar sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 3.4959289474462003,
+              "area_cm2": 21.35291886010284,
+              "faces": 10,
+              "edges": 24,
+              "vertices": 16,
+              "min_cm": [
+                -0.3,
+                0.0,
+                0.2
+              ],
+              "max_cm": [
+                4.5,
+                5.0,
+                0.8
+              ],
+              "center_cm": [
+                1.8489671821317462,
+                2.633171290225396,
+                0.5000000000000001
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Bar sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d6",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Bar sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Bar profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 3.495928947446203,
+            "area_cm2": 21.352918860102836,
+            "faces": 10,
+            "edges": 24,
+            "vertices": 16,
+            "min_cm": [
+              -0.3,
+              0.0,
+              0.19999999999999996
+            ],
+            "max_cm": [
+              4.5,
+              5.0,
+              0.8
+            ],
+            "center_cm": [
+              1.848967182131746,
+              2.6331712902253974,
+              0.49999999999999994
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Bar sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Bar profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 1.6845662500369452,
+            "area_cm2": 10.786636458548848,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -0.3,
+              0.0,
+              0.19999999999999996
+            ],
+            "max_cm": [
+              1.6288940611182152,
+              3.228498569934483,
+              0.8
+            ],
+            "center_cm": [
+              0.44723494710960165,
+              1.6431120640242474,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Bar sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Bar profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 1.6845662500369452,
+            "area_cm2": 10.786636458548848,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -0.3,
+              0.0,
+              0.19999999999999996
+            ],
+            "max_cm": [
+              1.6288940611182152,
+              3.228498569934483,
+              0.8
+            ],
+            "center_cm": [
+              0.44723494710960165,
+              1.6431120640242474,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Bar sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Bar profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Bar sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 1.6845662500369452,
+            "area_cm2": 10.786636458548848,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -0.3,
+              0.0,
+              0.19999999999999996
+            ],
+            "max_cm": [
+              1.6288940611182152,
+              3.228498569934483,
+              0.8
+            ],
+            "center_cm": [
+              0.44723494710960165,
+              1.6431120640242474,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Bar sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d6",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d7",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Bar sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "a8fc302ef1f2e80bf18a61d0c036a0c849cc85cccaee9401e234052854eda674",
+      "status": "accepted"
+    },
+    {
+      "name": "SweepSecondBody",
+      "file": "SweepSecondBody.f3d",
+      "sha256": "a48ad63ac747fb983b9776412dd267e8dd657263951dcd93b46b2d5123fb9a0b",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "sweep",
+          "profile_cm": [
+            -1.5,
+            -0.5,
+            0.0,
+            1.0
+          ],
+          "path": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                0.0,
+                2.0
+              ]
+            },
+            {
+              "kind": "arc",
+              "center_cm": [
+                -3.0,
+                2.0
+              ],
+              "start_cm": [
+                0.0,
+                2.0
+              ],
+              "sweep_rad": 1.5707963267948966
+            }
+          ],
+          "profile": "Rail profile",
+          "path_name": "Rail path",
+          "name": "Rail sweep"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Rail sweep",
+          "role": "AlongDistance",
+          "expression": "0.5"
+        },
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 5.141592653589793,
+          "area_cm2": 22.566370614359172,
+          "faces": 8,
+          "edges": 18
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 6,
+          "control_positions": 6,
+          "each": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Body2",
+              "solid": true,
+              "volume_cm3": 5.141592653589793,
+              "area_cm2": 22.56637061435917,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                -0.5,
+                4.5,
+                1.0
+              ],
+              "center_cm": [
+                -1.427854192671282,
+                2.405192218383691,
+                0.5000000000000002
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 5
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Rail sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d7",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d8",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Rail sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d7",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d8",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Rail sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d7",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d8",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail path",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Rail sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Rail sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d7",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d8",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Rail sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d7",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d8",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 4
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail profile",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail path",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Rail sweep",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              },
+              {
+                "name": "Body2",
+                "solid": true,
+                "volume_cm3": 5.141592653589793,
+                "area_cm2": 22.56637061435917,
+                "faces": 8,
+                "edges": 18,
+                "vertices": 12,
+                "min_cm": [
+                  -3.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  -0.5,
+                  4.5,
+                  1.0
+                ],
+                "center_cm": [
+                  -1.427854192671282,
+                  2.405192218383691,
+                  0.5000000000000002
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Rail sweep",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d7",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TwistAngle"
+              },
+              {
+                "name": "d8",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Rail sweep",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 5
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 30.0,
+              "area_cm2": 59.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.0,
+                1.4999999999999998,
+                1.25
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Body2",
+              "solid": true,
+              "volume_cm3": 2.9041296601282296,
+              "area_cm2": 13.61651864051292,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -1.650679419688022,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                -0.5,
+                3.092059689489119,
+                1.0
+              ],
+              "center_cm": [
+                -1.0084575519342163,
+                1.4525667510232576,
+                0.5000000000000001
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "0.5",
+              "value": 0.5,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d7",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 5
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 5.141592653589794,
+            "area_cm2": 22.566370614359172,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              -0.5,
+              4.5,
+              1.0
+            ],
+            "center_cm": [
+              -1.4278541926712818,
+              2.40519221838369,
+              0.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Rail sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d9",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 5
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d9",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d9",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d9",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d9",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d9",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail profile",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail path",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Rail sweep",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "name": "Body2",
+              "solid": true,
+              "volume_cm3": 5.141592653589794,
+              "area_cm2": 22.566370614359172,
+              "faces": 8,
+              "edges": 18,
+              "vertices": 12,
+              "min_cm": [
+                -3.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                -0.5,
+                4.5,
+                1.0
+              ],
+              "center_cm": [
+                -1.4278541926712818,
+                2.40519221838369,
+                0.5
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Rail sweep",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d8",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TwistAngle"
+            },
+            {
+              "name": "d9",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Rail sweep",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 5
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5000000000000002,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 5.141592653589793,
+            "area_cm2": 22.56637061435917,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -3.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              -0.5,
+              4.5,
+              1.0
+            ],
+            "center_cm": [
+              -1.427854192671282,
+              2.405192218383691,
+              0.5000000000000002
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Rail sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d9",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 5
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 2.9041296601282296,
+            "area_cm2": 13.61651864051292,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -1.650679419688022,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              -0.5,
+              3.092059689489119,
+              1.0
+            ],
+            "center_cm": [
+              -1.0084575519342163,
+              1.4525667510232576,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Rail sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d9",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 5
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 2.9041296601282296,
+            "area_cm2": 13.61651864051292,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -1.650679419688022,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              -0.5,
+              3.092059689489119,
+              1.0
+            ],
+            "center_cm": [
+              -1.0084575519342163,
+              1.4525667510232576,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Rail sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d9",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 5
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail profile",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail path",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Rail sweep",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 2.9041296601282296,
+            "area_cm2": 13.61651864051292,
+            "faces": 8,
+            "edges": 18,
+            "vertices": 12,
+            "min_cm": [
+              -1.650679419688022,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              -0.5,
+              3.092059689489119,
+              1.0
+            ],
+            "center_cm": [
+              -1.0084575519342163,
+              1.4525667510232576,
+              0.5000000000000001
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "0.5",
+            "value": 0.5,
+            "unit": "",
+            "owner": "Rail sweep",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d8",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TwistAngle"
+          },
+          {
+            "name": "d9",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Rail sweep",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 5
+      },
+      "saved_sha256": "71bb69beaca518620f9b64da645efa0743b976af574b67c97b49fda49786820e",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

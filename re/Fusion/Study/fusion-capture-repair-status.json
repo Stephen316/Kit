@@ -5,7 +5,7 @@
   "repair": "Release Trim feature/input/cell wrappers while rolled before the feature with the document open; collect capture/finalizer frames before close(False). Uncertain cleanup retains native handles and halts.",
   "initial_native_validation": {
     "report": "fusion-trim-native-lifecycle-validation.json",
-    "sha256": "1864f6e7a91c9157bdc76f7bba3ca37ee6f852aa11bd97a57ac023e4fe31366d",
+    "sha256": "3ae639c2640faa62905c2066eacb1a1efc001d35e84483f8e29cc367ecc799cc",
     "completed_batches": 2,
     "healthy_exports": 3,
     "successful_owned_closes": 3,
@@ -18,7 +18,7 @@
       {
         "case": "sketch_line_offset_positive",
         "archive": "surfacetrimtools-650ca09579b1/sketch_line_offset_positive.f3d",
-        "archive_sha256": "33dd68a8450ea918eb1b7df071128a369beae72bf659891a5e7e999845a9f45a",
+        "archive_sha256": "b1d2118bd41f7c5e3057f8d4b65aedca28b509ab846f05ef6de73faad0ef8440",
         "health_state": 0,
         "trim_wrappers_released_before_timeline_restore": true,
         "owned_document_close_returned": true
@@ -26,14 +26,14 @@
       {
         "case": "sketch_line_reversed_negative",
         "archive": "surfacetrimtools-650ca09579b1/sketch_line_reversed_negative.f3d",
-        "archive_sha256": "bc70972980d63d3b9511d4f4a8db22b31a94f43e337f1e9538494d6e8da2731b",
+        "archive_sha256": "7e61821875c40ecd556e79ea7b34bfb6a433161147a44b12c41850350868e586",
         "health_state": 0,
         "trim_wrappers_released_before_timeline_restore": true,
         "owned_document_close_returned": true
       }
     ],
     "evidence_sha256": {
-      "ground_truth.json": "bcc4bdfa5967ec51008e5ae89c29069b6dab4854a1eaa68f639e5205bd5203e8",
+      "ground_truth.json": "2db3374241d13fff41118cccfeee84f4196da21100c2c6ceb19a8819da96d878",
       "journal.jsonl": "77760bb2e359cbc4dd782ee84e542a06a882a38a608c9cd09a01303eba5d2d4d",
       "complete.txt": "925b8de1eb26ca3efd0e0615fa62ddee072035148fa274c965f59c5bc26299b4",
       "executed-generator-source.txt": "b0e7530fda80da9b961ff55271d5ec9487a665838ef5feb6dca4f4cfc283f2b3",
@@ -75,7 +75,7 @@
     "directory": "rulefilletsurfaces-7b26b40f98f7",
     "status": "Complete",
     "executed_generator_sha256": "848bc2487eab060005b1b0c7fe349fa854c30e6da03dad2051f6cc20999eb984",
-    "ground_truth_sha256": "3a4c0ffeda19e6189aaf2538aa1c0517d3bfc56a95a4f501ad31d03e80307376",
+    "ground_truth_sha256": "757467eb8f14afd26c806101270006ce56341875f79725df8fd8a7fe262f8a4f",
     "journal_sha256": "cf53b92605c055042665b9b723cde0083e10e4cdd735b66f9f57e8ec3e9616f0",
     "complete_marker_sha256": "f8c8c6d012d1c79f4842f086df4fc918f59c28a628be559c07c25395ed22cf9a",
     "healthy_source_exports": 2,
@@ -91,14 +91,14 @@
   "rule_owned_recovery": {
     "directory": "recoverrulesurfacewitness-f013800ce846",
     "status": "RecoveredClosed",
-    "report_sha256": "72169cd461be1f84af9163e2433caceb9581815a8de63787a58342a9cbf8fe45",
+    "report_sha256": "25860da2131a9eda6db0ebc8c6c80f4bf7b0ad4667d2ffe84ddd8b1d4762fe3d",
     "owned_close_returned": true,
     "both_alias_quarantines_released_while_document_open": true,
     "unrelated_documents_touched": false
   },
   "rule_witness_native_validation": {
     "report": "rule-surface-witness-native-validation.json",
-    "sha256": "af15200c2f3a17b5292eecf3079772b6c7b4e30a7bd70656126c1628aef07211",
+    "sha256": "983fbdfba944de6329bfad7724e7cfbbb89b939e9051cde09ca71540157838cf",
     "healthy_owned_captures": 2,
     "witnesses": 16,
     "actual_exports": 4,

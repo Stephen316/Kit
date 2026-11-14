@@ -5,8 +5,15 @@ workspace described below retains its original structure. The imported
 [Fusion study](Fusion/README.md) contains the experimental Fusion decoder, saved
 captures and validation evidence, with its source history preserved.
 
-`Methodology.md` is the reusable playbook — read it first if your target is AutoCAD, CATIA, NX or
-Creo. The existing SOLIDWORKS directories provide the worked example that the playbook was
+**Start with [`Playbook/README.md`](Playbook/README.md)**, the reverse-engineering instruction book.
+Any agent tasked with reverse engineering a format must read it in full first, together with the
+[CAD success criteria](../Documentation/Reference/Operations/CadSuccessCriteria.md), which are
+mandatory. The book covers file anatomy, loader-DLL analysis with REA, generative corpora authored
+through vendor APIs, corpus correlation, writer models, the open-source toolchain, and per-vendor
+notes.
+
+`Methodology.md` is the short history of how SOLIDWORKS was cracked; where it and the playbook
+differ, the playbook wins. The existing SOLIDWORKS directories provide the worked example both were
 distilled from. `Fusion/` preserves a separate native-file study and its original commit history.
 The [automation plan](../Documentation/Reference/Research/AutomationPlan.md) defines the neutral-first research pipeline.
 The [implementation steps](../Documentation/Reference/Research/AutomationSteps.md) track ownership, dependencies and evidence.
@@ -34,6 +41,7 @@ static container census and the traced object segmentations) and `re/solidworks/
 
 | directory     | what is in it                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Playbook/`   | The reverse-engineering instruction book: file anatomy, loader analysis with REA, generative corpora, corpus correlation, writer models, toolchain, techniques, shape catalogue, evidence rules, orchestration, vendor notes and checklists. Read `Playbook/README.md` first.                                                                                                                                                                                                                            |
 | `Fusion/`     | Imported experimental Fusion native-file decoder, capture tools, saved examples and audit reports; original source history and evidence bytes preserved. `examples/` holds the sample `.f3d` and `.f3z` files.                                                                                                                                                                                                                                                                                           |
 | `catia/`      | `examples/` holds the CATIA V5 `.CATPart` and `.CATProduct` samples. The two directories stay siblings so product reads find their parts.                                                                                                                                                                                                                                                                                                                                                                |
 | `binaries/`   | the four SOLIDWORKS DLLs every finding was derived from, plus `Manifest.json` (SHA-256 and version of each) and `Fetch.ps1` (re-copies them from a local install). Tracked. Read `binaries/README.md` first.                                                                                                                                                                                                                                                                                             |
@@ -45,6 +53,7 @@ static container census and the traced object segmentations) and `re/solidworks/
 
 | you want to know                                                    | start at                                                           |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| how to reverse engineer any CAD format, step by step                | `Playbook/README.md`, then the chapter for your phase              |
 | how a `.SLDPRT` file is framed, and how to write a valid header     | `solidworks/container/README.md`                                   |
 | how objects are tagged inside a stream, and why byte edits renumber | `solidworks/archive/Grammar.md` §2, then `archive/Segmentation.md` |
 | what class owns a given byte                                        | `solidworks/records/Serialize.md`, then `data/SerializeMap.json`   |
@@ -106,7 +115,8 @@ cheapest end-to-end check that the recorded tables really do come out of the rec
 
 ## Scope honesty
 
-The SOLIDWORKS work reads and _patches_ SOLIDWORKS streams. It does not serialise one from nothing. The
-container framing is fully inverted (any of 1000 file ids can be written with no donor); stream
-content still comes from a donor part of the right feature topology. `solidworks/README.md` states
-exactly where that line falls.
+This paragraph once said that SOLIDWORKS stream content came from a donor part. That is no longer
+the state, and donor content is banned from production output in any case. The supported feature
+families now emit their load-critical streams from typed fields, and unsupported histories are
+rejected. `solidworks/README.md` and `solidworks/CorpusCoverage.md` state exactly where the line
+currently falls.

@@ -12,10 +12,12 @@ def ReadWireClasses(Cursor: MetaCursor) -> tuple[MetaClass, ...]:
     Remaining = KMaxMetaIds
     for _ in range(Cursor.ReadCount(KMaxMetaClasses)):
         ClassGuid, BaseGuid = Cursor.ReadText(), Cursor.ReadText()
-        Flags, ClassSpace = Cursor.ReadWord(), Cursor.ReadText()
+        SchemaVersion, ClassSpace = Cursor.ReadWord(), Cursor.ReadText()
         Count = Cursor.ReadCount(Remaining)
         OwnerIds = tuple(Cursor.ReadLong() for _ in range(Count))
-        RowsValue.append(MetaClass(ClassGuid, BaseGuid, Flags, ClassSpace, OwnerIds))
+        RowsValue.append(
+            MetaClass(ClassGuid, BaseGuid, SchemaVersion, ClassSpace, OwnerIds)
+        )
         Remaining -= Count
     return tuple(RowsValue)
 

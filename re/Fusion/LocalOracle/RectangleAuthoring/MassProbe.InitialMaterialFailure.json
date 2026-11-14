@@ -1,0 +1,33 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native diagnosis of authored-body material and mass properties; assignment uses a native control only for evidence, not production writer input",
+  "cases": [],
+  "control": {
+    "body_volume_cm3": 30.0,
+    "volume_cm3": 30.0,
+    "area_cm2": 59.0,
+    "mass_kg": 0.2355,
+    "density_kg_per_cm3": 0.00785,
+    "center_cm": [
+      2.0,
+      1.4999999999999998,
+      1.25
+    ],
+    "moments_kg_cm2": [
+      true,
+      1.197125,
+      1.7466249999999999,
+      1.9625,
+      -0.7064999999999999,
+      -0.44156249999999997,
+      -0.58875
+    ],
+    "material": {
+      "id": "PrismMaterial-018",
+      "name": "Steel"
+    }
+  },
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/ProbeAuthoredMass.py\", line 38, in <module>\n    case = {\"source\": relative, \"source_sha256\": hashlib.sha256(source.read_bytes()).hexdigest(), \"opened\": observe(body)}\n                                                                                                            ~~~~~~~^^^^^^\n  File \"re/Fusion/LocalOracle/ProbeAuthoredMass.py\", line 20, in observe\n    material = body.material\n               ^^^^^^^^^^^^^\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/fusion.py\", line 18413, in _get_material\n    return _fusion.BRepBody__get_material(self)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^\nRuntimeError: 2 : InternalValidationError : !materialId.empty()\n",
+  "documents_after": 0
+}

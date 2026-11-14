@@ -1,0 +1,83 @@
+{
+  "fusion_version": "2706.1.17",
+  "source_sha256": "732b38670d1dfde4993590721b7891b1edeffe2019cb6416ca269207d612c36b",
+  "scope": "Complete native sketch/extrusion record serialization plus parameter/binding rewrite, followed by native feature rebuild; no independent full-document or BRep generation",
+  "opened": {
+    "parameters": [
+      {
+        "name": "depthLength",
+        "value": 1.9000000000000001,
+        "expression": "19 mm"
+      },
+      {
+        "name": "d2",
+        "value": 1.9000000000000001,
+        "expression": "depthLength"
+      },
+      {
+        "name": "d3",
+        "value": 0.0,
+        "expression": "0.0 deg"
+      }
+    ],
+    "timeline": [
+      {
+        "name": "Radius10mm",
+        "type": "adsk::fusion::Sketch"
+      },
+      {
+        "name": "Kit ControlledExtrusion",
+        "type": "adsk::fusion::ExtrudeFeature"
+      }
+    ],
+    "bodies": [
+      {
+        "volume_cm3": 2.1991148575129498,
+        "height_cm": 0.7000000000000001,
+        "faces": 3,
+        "edges": 2,
+        "vertices": 2
+      }
+    ]
+  },
+  "rebuilt": {
+    "parameters": [
+      {
+        "name": "depthLength",
+        "value": 1.9000000000000001,
+        "expression": "19 mm"
+      },
+      {
+        "name": "d2",
+        "value": 1.9000000000000001,
+        "expression": "depthLength"
+      },
+      {
+        "name": "d3",
+        "value": 0.0,
+        "expression": "0.0 deg"
+      }
+    ],
+    "timeline": [
+      {
+        "name": "Radius10mm",
+        "type": "adsk::fusion::Sketch"
+      },
+      {
+        "name": "Kit ControlledExtrusion",
+        "type": "adsk::fusion::ExtrudeFeature"
+      }
+    ],
+    "bodies": [
+      {
+        "volume_cm3": 5.969026041820864,
+        "height_cm": 1.9000000000000001,
+        "faces": 3,
+        "edges": 2,
+        "vertices": 2
+      }
+    ]
+  },
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/AcceptFeatureGraph.py\", line 47, in <module>\n    require_geometry(design, 1.9)\n    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^\n  File \"re/Fusion/LocalOracle/AcceptFeatureGraph.py\", line 32, in require_geometry\n    raise RuntimeError(\"Rewritten feature names differ\")\nRuntimeError: Rewritten feature names differ\n"
+}

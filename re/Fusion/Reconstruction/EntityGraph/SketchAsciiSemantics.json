@@ -1,0 +1,304 @@
+{
+  "schema": "FusionSketchAsciiSemantics/1",
+  "method": "Read-only raw corpus token inspection; no native calls, product execution or tests. Field names follow the saved Design sketch tag record. The earlier static library inspection was removed.",
+  "asciiFields": [
+    {
+      "position": 1,
+      "name": "primaryId"
+    },
+    {
+      "position": 2,
+      "name": "secondaryId"
+    },
+    {
+      "position": 3,
+      "name": "direction"
+    },
+    {
+      "position": 4,
+      "name": "topologyRoleFlags"
+    },
+    {
+      "position": 5,
+      "name": "splitSequenceId"
+    },
+    {
+      "position": 6,
+      "name": "splitTotalNumber"
+    }
+  ],
+  "binaryStreamerOrder": [
+    "version",
+    "primaryId",
+    "secondaryId",
+    "direction",
+    "splitSequenceId",
+    "splitTotalNumber",
+    "topologyRoleFlags"
+  ],
+  "qualifiedDomain": {
+    "primaryId": "uint64 storage; source-key allocation semantics separately qualified",
+    "secondaryId": "uint64 storage; existing authored ordinary sketch profile zero",
+    "direction": [
+      0,
+      1,
+      4294967295
+    ],
+    "topologyRoleFlags": "uint64 mask; existing ordinary authored profile zero; complete named bit dictionary unresolved",
+    "split": "1 <= splitSequenceId <= splitTotalNumber <= UINT32_MAX"
+  },
+  "semanticEvidence": [
+    "SketchSplitSemantics.json"
+  ],
+  "caveats": [
+    "Split sequence and total are ordinal/count, not two unrelated enums",
+    "ASCII version3 and the fixed binary Design record use different member orders",
+    "The corpus holds only version3 ASCII attributes; older kernel forms are not observed",
+    "Mapping the fourth ASCII field to topologyRoleFlags came from removed static evidence; the corpus shows it as zero in every attribute; not confirmed by a black-box experiment",
+    "Storage widths follow the saved Design sketch tag record; the ASCII text alone does not fix them",
+    "topologyRoleFlags is a behavior-based name; complete bit meanings remain unresolved"
+  ],
+  "corpus": {
+    "scope": "Every sketch attribute including archived revisions in each distinct ASM blob; repeated member digests counted once",
+    "sourceInventorySha256": "a72b79bd16cb9b5a9f46d7be0fda01296c69838fbe7164b32cee1b7cc04da67e",
+    "distinctBlobs": 1083,
+    "versionCounts": {
+      "3": 20636
+    },
+    "asciiAttributes": 20636,
+    "maximumPrimaryId": 558,
+    "secondaryIdCounts": {
+      "0": 20286,
+      "329": 192,
+      "352": 148,
+      "141": 2,
+      "132": 2,
+      "127": 2,
+      "131": 2,
+      "129": 2
+    },
+    "directionCounts": {
+      "0": 15573,
+      "1": 4964,
+      "4294967295": 99
+    },
+    "roleFlagsCounts": {
+      "0": 20636
+    },
+    "splitPairs": [
+      {
+        "sequence": 1,
+        "total": 1,
+        "count": 20180
+      },
+      {
+        "sequence": 1,
+        "total": 2,
+        "count": 179
+      },
+      {
+        "sequence": 1,
+        "total": 3,
+        "count": 2
+      },
+      {
+        "sequence": 1,
+        "total": 4,
+        "count": 6
+      },
+      {
+        "sequence": 2,
+        "total": 2,
+        "count": 191
+      },
+      {
+        "sequence": 2,
+        "total": 3,
+        "count": 38
+      },
+      {
+        "sequence": 2,
+        "total": 4,
+        "count": 16
+      },
+      {
+        "sequence": 3,
+        "total": 3,
+        "count": 2
+      },
+      {
+        "sequence": 3,
+        "total": 4,
+        "count": 6
+      },
+      {
+        "sequence": 4,
+        "total": 4,
+        "count": 16
+      }
+    ],
+    "nontrivialExamples": [
+      {
+        "path": "re/Fusion/Study/embosstext-cd769aa41cdf/mixed_text_profile.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.efe69ddc-7eda-4f3f-80a3-927212cb4a79.smb",
+        "sha256": "150c64c82ed6c1ce3858893b20d1394c431805b5afc829abd1e37055e4532165",
+        "physicalRecordIndex": 132,
+        "byteOffset": 12443,
+        "text": "353 329 1 0 1 1"
+      },
+      {
+        "path": "re/Fusion/Study/linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1a1f2285-7ed9-4451-a032-755091e1e413.smb",
+        "sha256": "8b9e73e94806b889deb3bf766ae91c7dbf1082cb3194638b7375aa21650a45ee",
+        "physicalRecordIndex": 36,
+        "byteOffset": 3433,
+        "text": "113 0 0 0 2 2"
+      },
+      {
+        "path": "re/Fusion/Study/linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1a1f2285-7ed9-4451-a032-755091e1e413.smb",
+        "sha256": "8b9e73e94806b889deb3bf766ae91c7dbf1082cb3194638b7375aa21650a45ee",
+        "physicalRecordIndex": 41,
+        "byteOffset": 3961,
+        "text": "114 0 0 0 1 2"
+      },
+      {
+        "path": "re/Fusion/Study/linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1a1f2285-7ed9-4451-a032-755091e1e413.smb",
+        "sha256": "8b9e73e94806b889deb3bf766ae91c7dbf1082cb3194638b7375aa21650a45ee",
+        "physicalRecordIndex": 77,
+        "byteOffset": 7658,
+        "text": "114 0 1 0 1 2"
+      },
+      {
+        "path": "re/Fusion/Study/linetrimholdouts-456e1d19906d/reverse_rectangle_creation.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.1a1f2285-7ed9-4451-a032-755091e1e413.smb",
+        "sha256": "8b9e73e94806b889deb3bf766ae91c7dbf1082cb3194638b7375aa21650a45ee",
+        "physicalRecordIndex": 91,
+        "byteOffset": 9115,
+        "text": "113 0 1 0 2 2"
+      },
+      {
+        "path": "re/Fusion/Study/mixedprofiletrims-a125a4c1749e/circle_line_segment.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.f3cbe61a-0029-42b5-95e0-0de82674735c.smbh",
+        "sha256": "cccb4edf27f1036e52dd0706979dba40e19dc7d396134385c04db65939b4e3f1",
+        "physicalRecordIndex": 21,
+        "byteOffset": 2414,
+        "text": "105 0 0 0 2 3"
+      },
+      {
+        "path": "re/Fusion/Study/mixedprofiletrims-a125a4c1749e/circle_line_segment.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.140fcfef-a050-4000-92a1-9f36d47c90f8.smb",
+        "sha256": "e4a660d957117ad0bc3d6244dcd8cab189dca2d099f4bcb314c46dc1cc3bfbd7",
+        "physicalRecordIndex": 69,
+        "byteOffset": 6987,
+        "text": "105 0 1 0 2 3"
+      },
+      {
+        "path": "re/Fusion/Study/patchcontinuity-b9b0be85a281/brep_curvature.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.4530a523-0a85-4518-af28-62157a3e6e56.smbh",
+        "sha256": "05303896854a5924c735745c9439d9f72e15f88128422b49074e6b91582433c5",
+        "physicalRecordIndex": 39,
+        "byteOffset": 18588,
+        "text": "104 0 4294967295 0 1 1"
+      },
+      {
+        "path": "re/Fusion/Study/sketchtools-85066e723410/sketchtools.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.0719ef21-8ea4-442b-8d42-f62958d0df3f.smb",
+        "sha256": "b5df3ab825a3097aeea4c921f5a670063e032ae0eca3e4b26a7e6d46c46237d3",
+        "physicalRecordIndex": 193,
+        "byteOffset": 17582,
+        "text": "142 141 0 0 1 1"
+      },
+      {
+        "path": "re/Fusion/Study/splines-9a18bae21127/splines.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+        "sha256": "b03c64905f0419137307e0e1cf74b2d84f9fa107c7e4f59f3ff1b5947c04a298",
+        "physicalRecordIndex": 13,
+        "byteOffset": 1224,
+        "text": "111 0 1 0 3 3"
+      },
+      {
+        "path": "re/Fusion/Study/splines-9a18bae21127/splines.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6b3a0333-d53f-4a1e-a46d-fff522ed1067.smb",
+        "sha256": "b03c64905f0419137307e0e1cf74b2d84f9fa107c7e4f59f3ff1b5947c04a298",
+        "physicalRecordIndex": 19,
+        "byteOffset": 2855,
+        "text": "111 0 1 0 1 3"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 41,
+        "byteOffset": 4072,
+        "text": "102 0 0 0 2 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 48,
+        "byteOffset": 4742,
+        "text": "102 0 0 0 4 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 77,
+        "byteOffset": 7820,
+        "text": "102 0 1 0 2 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 84,
+        "byteOffset": 8466,
+        "text": "102 0 0 0 1 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 94,
+        "byteOffset": 9550,
+        "text": "102 0 1 0 4 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 138,
+        "byteOffset": 14004,
+        "text": "102 0 1 0 1 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 184,
+        "byteOffset": 18993,
+        "text": "102 0 0 0 3 4"
+      },
+      {
+        "path": "re/Fusion/Study/trimselectorholdouts-ac245ecd1e2f/repeated_circle.f3d",
+        "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.97243d17-7c94-4e97-9b06-f7239f6f6e6b.smb",
+        "sha256": "843cdb702f0022e999df535f7b58f90ac53005485a67aeb4a3ca31f787d56c40",
+        "physicalRecordIndex": 186,
+        "byteOffset": 19183,
+        "text": "102 0 1 0 3 4"
+      }
+    ],
+    "outsideSemanticDomain": []
+  },
+  "directionReversal": {
+    "proposedMapping": {
+      "0": 1,
+      "1": 0,
+      "4294967295": 4294967295
+    },
+    "evidenceClass": "Proposal only; it came from removed static evidence and is not confirmed by a black-box experiment"
+  }
+}

@@ -12,12 +12,12 @@ def ReadMemberOrder(
     Cursor = MetaCursor(BodyValue)
     if Cursor.TakeBytes(11) != bytes(11):
         raise ValueError("Unknown Fusion parameter collection header")
-    StoredCount = Cursor.ReadWord()
+    HighWaterMark = Cursor.ReadWord()
     RegistryId = ReadNativeRef(Cursor)
     if Cursor.TakeBytes(1) != b"\0":
         raise ValueError("Unknown Fusion parameter collection layout")
     Count = Cursor.ReadCount(100000)
-    if len(BodyValue) != 42 + 11 * Count or (VerifyOrder and StoredCount != Count):
+    if len(BodyValue) != 42 + 11 * Count or (VerifyOrder and HighWaterMark != Count):
         raise ValueError("Invalid Fusion parameter collection extent")
     Members = tuple(ReadNativeRef(Cursor) for _ in range(Count))
     if len(set(Members)) != Count or ReadNativeRef(Cursor) != ComponentId:

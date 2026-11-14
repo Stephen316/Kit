@@ -1,0 +1,119 @@
+{
+ "scope": "Kit stencil conversion of the cages that Fusion saved after the acceptance vertex edit, against the bodies Fusion converted and saved, and a second swap of each saved Kit document",
+ "python": "3.14.7",
+ "acceptance_sha256": "f7455953a99fb482fa03054aa73e165a40cbf0d683c87a8139f6dae84e25a95d",
+ "cases": [
+  {
+   "case": "BoxFresh",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 5.329070518200751e-15
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 5.329070518200751e-15
+   },
+   "second_swap_roundtrip": true
+  },
+  {
+   "case": "SymmetricBoxEdited",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 5.773159728050814e-15
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 5.773159728050814e-15
+   },
+   "second_swap_roundtrip": true
+  },
+  {
+   "case": "CreasedPlaneFresh",
+   "oracle": {
+    "layout_equal": false,
+    "jumps_equal": true,
+    "gap_cm": 8.881784197001252e-16
+   },
+   "kit": {
+    "layout_equal": false,
+    "jumps_equal": true,
+    "gap_cm": 8.881784197001252e-16
+   },
+   "second_swap_roundtrip": "refused: Fusion Form conversion may split or reclassify a crease edge"
+  },
+  {
+   "case": "CreasedBoxFresh",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 1.2434497875801753e-14
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 1.2434497875801753e-14
+   },
+   "second_swap_roundtrip": true
+  },
+  {
+   "case": "Valence5Fresh",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 2.220446049250313e-15
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 2.220446049250313e-15
+   },
+   "second_swap_roundtrip": true
+  },
+  {
+   "case": "Valence6Fresh",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 2.220446049250313e-15
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 2.220446049250313e-15
+   },
+   "second_swap_roundtrip": true
+  },
+  {
+   "case": "Box3Fresh",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 1.199040866595169e-13
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 1.199040866595169e-13
+   },
+   "second_swap_roundtrip": true
+  },
+  {
+   "case": "Valence8Fresh",
+   "oracle": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 2.0872192862952943e-14
+   },
+   "kit": {
+    "layout_equal": true,
+    "jumps_equal": true,
+    "gap_cm": 2.0872192862952943e-14
+   },
+   "second_swap_roundtrip": true
+  }
+ ]
+}

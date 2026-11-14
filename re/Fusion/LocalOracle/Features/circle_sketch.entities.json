@@ -1,0 +1,6814 @@
+[
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 238,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignConfiguration::DConfigRulesData",
+      "segment": 32
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 237,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DConfigReplacementRefs",
+      "segment": 32,
+      "rParent": {
+        "segId": 32,
+        "entityId": 236,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 236,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignConfigurationTableContainer",
+      "segment": 32,
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 237,
+          "rootId": ""
+        }
+      ],
+      "rParent": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 234,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::EntityTracking::EntityRecipe",
+      "segment": 32,
+      "entityId": 42
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 233,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::EntityTracking::EntityProgenitor",
+      "segment": 32,
+      "rEntityRecipe": {
+        "segId": 32,
+        "entityId": 234,
+        "rootId": ""
+      },
+      "rParent": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 232,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::EntityTracking::ETCachedPlane",
+      "segment": 32,
+      "rCachedGeometry": {
+        "pointOnPlane": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "sketchTransf": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "progenitor": {
+        "segId": 32,
+        "entityId": 233,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 231,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::CircArc3D",
+      "segment": 32,
+      "EntityGenesis": 2,
+      "crv_primary_id": 102,
+      "crv_secondary_id": 0,
+      "arcCurve": {
+        "center": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        },
+        "refVec": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        },
+        "radius": 1,
+        "startAngle": 0,
+        "endAngle": 6.283185307179586
+      },
+      "rCenterPoint": {
+        "segId": 32,
+        "entityId": 229,
+        "rootId": ""
+      },
+      "rEndPoint": {},
+      "rStartPoint": {},
+      "isCachedProjected": false,
+      "isConstraintOnPlane": false,
+      "isFixed": false,
+      "isFullyConstrained": false,
+      "isProjected": false,
+      "isReference": false,
+      "isoCurve": false,
+      "eLineStyle": 0,
+      "isUseEnvironmentColors": true,
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 203,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 230,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::CurveUses",
+      "segment": 32,
+      "geometries": [
+        {
+          "segId": 32,
+          "entityId": 231,
+          "rootId": ""
+        }
+      ],
+      "rClientObject": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 229,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 229,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::Point3D",
+      "segment": 32,
+      "EntityGenesis": 2,
+      "pt_tag": 101,
+      "rCurveUses": {
+        "segId": 32,
+        "entityId": 230,
+        "rootId": ""
+      },
+      "isCachedProjected": false,
+      "isCoincident": false,
+      "isConstraintOnPlane": false,
+      "isFixed": false,
+      "isFullyConstrained": false,
+      "isOrigin": false,
+      "isProjected": false,
+      "lowerSelectionPriority": false,
+      "point": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "specialType": 0,
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 230,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 203,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 222,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::EntityTracking::ETCachedMatrix3d",
+      "segment": 32,
+      "rCachedGeometry": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "sketchTransf": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "progenitor": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 218,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcStatus",
+      "segment": 32,
+      "statusCodes": [],
+      "statusType": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 217,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DynamicUpdateData",
+      "segment": 32,
+      "bodies": [],
+      "isBodyOK": true,
+      "isPredecessorOK": true,
+      "predecessors": [
+        [
+          {
+            "segId": 32,
+            "entityId": 212,
+            "rootId": ""
+          },
+          1794477990948332
+        ]
+      ],
+      "rOwnerNode": {
+        "segId": 32,
+        "entityId": 216,
+        "rootId": ""
+      },
+      "timeStamp": 1794477990948345,
+      "xRefPredecessorsHash": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 216,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::ET::DRMatrix",
+      "segment": 32,
+      "LinearOffsetOnPeriodicFace": false,
+      "alignUpDirection": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "arcLengthForPeriodicFace": {},
+      "axisFlipped": 0,
+      "bUseUDirection": true,
+      "definerCreator": {},
+      "extraOffset": {},
+      "globalParamU": {},
+      "globalParamV": {},
+      "globalReorientParam": {},
+      "globalReorientParam1": {},
+      "isInferredXAxis": false,
+      "isInferredZAxis": false,
+      "isZFlip": false,
+      "matrix3d": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "oldRotation": 0,
+      "pickpoint": {
+        "x": 0,
+        "y": 0
+      },
+      "rEdgeReferences": [],
+      "rOrigin": {},
+      "rPlaneReferences": [],
+      "rXAxis": {},
+      "rZAxis": {},
+      "refType": 2,
+      "resizeType": 0,
+      "values": [],
+      "dataRefs": [
+        {
+          "segId": 32,
+          "entityId": 212,
+          "rootId": ""
+        }
+      ],
+      "rOwnerOccurrence": {},
+      "rTargetOccurrence": {},
+      "caches": [
+        {
+          "segId": 32,
+          "entityId": 222,
+          "rootId": ""
+        }
+      ],
+      "refBodies": [],
+      "trackingType": 4,
+      "updateFlag": 0,
+      "xRefAssetHash": 0,
+      "birthday": 260,
+      "computeTime": 5.416e-06,
+      "firstBirthday": 260,
+      "status": {
+        "segId": 32,
+        "entityId": 218,
+        "rootId": ""
+      },
+      "isActive": true,
+      "isEdited": false,
+      "isEliminated": false,
+      "rDynamicUpdateData": {
+        "segId": 32,
+        "entityId": 217,
+        "rootId": ""
+      },
+      "rGroupRepresentative": {},
+      "rParentFeature": {
+        "segId": 32,
+        "entityId": 208,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 27,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 215,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::EntityTracking::EntityRecipe",
+      "segment": 32,
+      "entityId": 42
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 214,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcStatus",
+      "segment": 32,
+      "statusCodes": [],
+      "statusType": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 213,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DynamicUpdateData",
+      "segment": 32,
+      "bodies": [],
+      "isBodyOK": true,
+      "isPredecessorOK": true,
+      "predecessors": [
+        [
+          {
+            "segId": 32,
+            "entityId": 212,
+            "rootId": ""
+          },
+          1794477990948332
+        ]
+      ],
+      "rOwnerNode": {
+        "segId": 32,
+        "entityId": 212,
+        "rootId": ""
+      },
+      "timeStamp": 1794477990948332,
+      "xRefPredecessorsHash": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 212,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::ET::EntityDataRef",
+      "segment": 32,
+      "rRecipe": {
+        "segId": 32,
+        "entityId": 215,
+        "rootId": ""
+      },
+      "rScope": [
+        {
+          "assetId": "1b93b4dd-3ffe-45e6-83b7-1f2fa4445f45",
+          "scopeEntityIdentifier": "77dc8960-634d-4445-a9d9-c411a1579607",
+          "scopeIdType": 2,
+          "segmentId": 0
+        }
+      ],
+      "caches": [
+        {
+          "segId": 32,
+          "entityId": 232,
+          "rootId": ""
+        }
+      ],
+      "refBodies": [],
+      "trackingType": 33,
+      "updateFlag": 4,
+      "xRefAssetHash": 0,
+      "birthday": 260,
+      "computeTime": 6.4170000000000006e-06,
+      "firstBirthday": 260,
+      "status": {
+        "segId": 32,
+        "entityId": 214,
+        "rootId": ""
+      },
+      "isActive": true,
+      "isEdited": false,
+      "isEliminated": false,
+      "rDynamicUpdateData": {
+        "segId": 32,
+        "entityId": 213,
+        "rootId": ""
+      },
+      "rGroupRepresentative": {},
+      "rParentFeature": {
+        "segId": 32,
+        "entityId": 208,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 27,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 211,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::ET::ProgenitorTable",
+      "segment": 32,
+      "ProgenitorTagVec": [],
+      "tagId": 1,
+      "rParent": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 210,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcStatus",
+      "segment": 32,
+      "statusCodes": [],
+      "statusType": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 209,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DynamicUpdateData",
+      "segment": 32,
+      "bodies": [],
+      "isBodyOK": true,
+      "isPredecessorOK": true,
+      "predecessors": [
+        [
+          {
+            "segId": 32,
+            "entityId": 33,
+            "rootId": ""
+          },
+          1794477990590945
+        ],
+        [
+          {
+            "segId": 32,
+            "entityId": 208,
+            "rootId": ""
+          },
+          1794477990969120
+        ],
+        [
+          {
+            "segId": 32,
+            "entityId": 216,
+            "rootId": ""
+          },
+          1794477990948345
+        ]
+      ],
+      "rOwnerNode": {
+        "segId": 32,
+        "entityId": 208,
+        "rootId": ""
+      },
+      "timeStamp": 1794477990969120,
+      "xRefPredecessorsHash": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 208,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcSketch",
+      "segment": 32,
+      "bIsAGDDcSketchFeature": false,
+      "dcParameters": [],
+      "isVisibleBeforeRollback": true,
+      "meshSections": [],
+      "rSketch": {
+        "segId": 32,
+        "entityId": 203,
+        "rootId": ""
+      },
+      "rSketchPlaneMatrix": {
+        "segId": 32,
+        "entityId": 216,
+        "rootId": ""
+      },
+      "sketchIsoCurves": [],
+      "sketchProjects": [],
+      "sketchSurfaces": [],
+      "associationId": "00000000-0000-0000-0000-000000000000",
+      "bDisabled": false,
+      "bLockedForTimelineReorder": false,
+      "bLockedForTimelineRoll": false,
+      "childNodes": [
+        {
+          "segId": 32,
+          "entityId": 212,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 216,
+          "rootId": ""
+        }
+      ],
+      "endModelHS": -1,
+      "featureBaseName": "Sketch",
+      "featureIndex": 1,
+      "featureUserName": "",
+      "groupMembers": [],
+      "isImplicitlySuppressed": false,
+      "isSuppressed": false,
+      "isZombieFeature": false,
+      "rProgenitorTable": {
+        "segId": 32,
+        "entityId": 211,
+        "rootId": ""
+      },
+      "rReferencedContext": {},
+      "startModelHS": -1,
+      "birthday": 260,
+      "computeTime": 0.017969875,
+      "firstBirthday": 260,
+      "status": {
+        "segId": 32,
+        "entityId": 210,
+        "rootId": ""
+      },
+      "isActive": true,
+      "isEdited": false,
+      "isEliminated": false,
+      "rDynamicUpdateData": {
+        "segId": 32,
+        "entityId": 209,
+        "rootId": ""
+      },
+      "rGroupRepresentative": {},
+      "rParentFeature": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 27,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 207,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::CurveUses",
+      "segment": 32,
+      "geometries": [],
+      "rClientObject": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 206,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 206,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::Point3D",
+      "segment": 32,
+      "EntityGenesis": 2,
+      "pt_tag": 100,
+      "rCurveUses": {
+        "segId": 32,
+        "entityId": 207,
+        "rootId": ""
+      },
+      "isCachedProjected": false,
+      "isCoincident": false,
+      "isConstraintOnPlane": false,
+      "isFixed": true,
+      "isFullyConstrained": true,
+      "isOrigin": true,
+      "isProjected": false,
+      "lowerSelectionPriority": false,
+      "point": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "specialType": 0,
+      "DAGNodeParents": [],
+      "isVisible": false,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 207,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 203,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 205,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::CoordinateSystem",
+      "segment": 32,
+      "transform": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "rClientObject": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "SketchesRoot"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 203,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "SKs::Geometry::MSketch",
+      "segment": 32,
+      "EntityGenesis": 2,
+      "actIdentifier": "0_203",
+      "bodyId": 0,
+      "canModify": true,
+      "constraints": [],
+      "showConstructionGeometries": true,
+      "dimensions": [],
+      "firstDimensionScaled": false,
+      "flag": 0,
+      "fullyConstrainedVersion": 7,
+      "isHideProfile": false,
+      "occurrenceTransform": [
+        [
+          1,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ]
+      ],
+      "offsets": [],
+      "rPlacementFaceBody": {},
+      "showProjectedGeometries": true,
+      "rDcNode": {
+        "segId": 32,
+        "entityId": 208,
+        "rootId": ""
+      },
+      "rOwningDeriveFeature": {},
+      "isShowAllDimension": false,
+      "isShowConstraint": true,
+      "isShowDimensionWhenEditing": true,
+      "rUCS": {
+        "segId": 32,
+        "entityId": 205,
+        "rootId": ""
+      },
+      "creationIndex": 1,
+      "isHideSketchPoints": false,
+      "isVisible": true,
+      "rSketchGroupParent": {
+        "segId": 32,
+        "entityId": 9,
+        "rootId": ""
+      },
+      "userName": "Radius10mm",
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 206,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 229,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 231,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 9,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 202,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Parameters::Parameter",
+      "segment": 32,
+      "UserDefaultUnit": false,
+      "actIdentifier": "",
+      "birthday": 6,
+      "booleanValue": false,
+      "comment": "extrusion depth control",
+      "creationIndex": 1,
+      "dcParameter": {},
+      "expression": "7 mm",
+      "expressionType": 0,
+      "group": {},
+      "isDirty": false,
+      "isDriven": false,
+      "isExternal": false,
+      "isFavourite": false,
+      "isOrphan": false,
+      "isUserDefined": true,
+      "name": "User Parameter",
+      "textValue": "",
+      "unit": "mm",
+      "userName": "depthLength",
+      "value": 0.7000000000000001,
+      "rClientObject": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 16,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "DesignConfigurationRuleSerializerTrigger"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 194,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::Arrangements",
+      "segment": 32,
+      "isVisible": true,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "WorkingModelPlaceholderRoot"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 192,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::ImageSerializer",
+      "segment": 32,
+      "partName": ""
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 191,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::ImageSerializer",
+      "segment": 32,
+      "partName": ""
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 190,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::ImageSerializer",
+      "segment": 32,
+      "partName": ""
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 189,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::ImageSerializer",
+      "segment": 32,
+      "partName": ""
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 188,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::RenderSetup::RenderSetting",
+      "segment": 32,
+      "activeEnvironmentName": "Sharp Highlights",
+      "activeEnvironmentURN": "",
+      "aspectRatioHeight": 0,
+      "aspectRatioWidth": 0,
+      "bkgColor": {
+        "r": 0.6980392336845398,
+        "g": 0.6980392336845398,
+        "b": 0.6980392336845398,
+        "a": 1
+      },
+      "bkgType": 0,
+      "brightness": 1000,
+      "cameraProjection": 2,
+      "centerOfFocus": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "depthFieldEnabled": false,
+      "environmentCenterAngle": -2.3561945,
+      "exposure": 9.5,
+      "focalDistance": 1,
+      "groundReflectionEnabled": false,
+      "groundShadowEnabled": true,
+      "imageAssetURN": "",
+      "imageDisplayName": "",
+      "lensRadius": 0,
+      "activeEnvironment": "Studio1",
+      "perspWithOrthoFaces": false,
+      "perspectiveAngle": 0.3947911262512207,
+      "rGlossySerializer": {
+        "segId": 32,
+        "entityId": 191,
+        "rootId": ""
+      },
+      "rIrradianceSerializer": {
+        "segId": 32,
+        "entityId": 192,
+        "rootId": ""
+      },
+      "rSerializer": {
+        "segId": 32,
+        "entityId": 189,
+        "rootId": ""
+      },
+      "rThumbnailSerializer": {
+        "segId": 32,
+        "entityId": 190,
+        "rootId": ""
+      },
+      "renderGroundFlatten": false,
+      "renderGroundOffset": 0,
+      "renderGroundProjectionPosition": {
+        "x": 0,
+        "y": 0,
+        "z": 150
+      },
+      "renderGroundRoughness": 0.100000001,
+      "rotation": 0,
+      "children": [],
+      "rParent": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 187,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::CommonData::NamedLights",
+      "segment": 32,
+      "highWaterMark": 0,
+      "isSuppressed": false,
+      "isVisible": true,
+      "children": [],
+      "rParent": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 186,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::NameView::NamedView",
+      "segment": 32,
+      "isEnableModify": false,
+      "name": "HOME",
+      "rCamera": {
+        "segId": 32,
+        "entityId": 185,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 178,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 185,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Scene::Camera",
+      "segment": 32,
+      "autoFocus": true,
+      "clipFar": 2,
+      "clipNear": 0,
+      "depthFieldEnabled": false,
+      "exposure": 12,
+      "extentsHeight": 17.744145180927614,
+      "extentsWidth": 15.366880495122542,
+      "focalDistance": 1,
+      "lensRadius": 0,
+      "mirrorX": false,
+      "mirrorY": false,
+      "perspectiveAngle": 0.39479111969976155,
+      "position": {
+        "x": 25.6114674918709,
+        "y": -25.6114674918709,
+        "z": 25.6114674918709
+      },
+      "projection": 1,
+      "target": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "up": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 184,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::NameView::NamedView",
+      "segment": 32,
+      "isEnableModify": false,
+      "name": "RIGHT",
+      "rCamera": {
+        "segId": 32,
+        "entityId": 183,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 178,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 183,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Scene::Camera",
+      "segment": 32,
+      "autoFocus": true,
+      "clipFar": 2,
+      "clipNear": 0,
+      "depthFieldEnabled": false,
+      "exposure": 12,
+      "extentsHeight": 0.4,
+      "extentsWidth": 0.4,
+      "focalDistance": 1,
+      "lensRadius": 0,
+      "mirrorX": false,
+      "mirrorY": false,
+      "perspectiveAngle": 0.39479111969976155,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "projection": 1,
+      "target": {
+        "x": -1,
+        "y": 0,
+        "z": 0
+      },
+      "up": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 182,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::NameView::NamedView",
+      "segment": 32,
+      "isEnableModify": false,
+      "name": "FRONT",
+      "rCamera": {
+        "segId": 32,
+        "entityId": 181,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 178,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 181,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Scene::Camera",
+      "segment": 32,
+      "autoFocus": true,
+      "clipFar": 2,
+      "clipNear": 0,
+      "depthFieldEnabled": false,
+      "exposure": 12,
+      "extentsHeight": 0.4,
+      "extentsWidth": 0.4,
+      "focalDistance": 1,
+      "lensRadius": 0,
+      "mirrorX": false,
+      "mirrorY": false,
+      "perspectiveAngle": 0.39479111969976155,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "projection": 1,
+      "target": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "up": {
+        "x": 0,
+        "y": 0,
+        "z": 1
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 180,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::NameView::NamedView",
+      "segment": 32,
+      "isEnableModify": false,
+      "name": "TOP",
+      "rCamera": {
+        "segId": 32,
+        "entityId": 179,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 178,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 179,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Scene::Camera",
+      "segment": 32,
+      "autoFocus": true,
+      "clipFar": 2,
+      "clipNear": 0,
+      "depthFieldEnabled": false,
+      "exposure": 12,
+      "extentsHeight": 0.4,
+      "extentsWidth": 0.4,
+      "focalDistance": 1,
+      "lensRadius": 0,
+      "mirrorX": false,
+      "mirrorY": false,
+      "perspectiveAngle": 0.39479111969976155,
+      "position": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "projection": 1,
+      "target": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "up": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 178,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::NameView::NamedViews",
+      "segment": 32,
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 180,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 182,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 184,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 186,
+          "rootId": ""
+        }
+      ],
+      "rParent": {}
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 177,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::HistoryFreeUpdateManager",
+      "segment": 32,
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "NamedTrackedEntitySet"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 175,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::CommonData::PMISettings",
+      "segment": 32,
+      "annotationSize": 0.5,
+      "autoAnnotationSize": 0,
+      "defaultLeadingZero": true,
+      "defaultPrecision": 3,
+      "defaultTolerance": 0.01,
+      "defaultTrailingZero": false,
+      "drawingStandard": 0,
+      "generalNoteCustomSize": 50,
+      "generalNoteSizeOption": 1,
+      "inferDrawingStandard": true,
+      "useAutoAnnotationSize": true
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 174,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 33,
+      "name": {
+        "defaultValue": "Pieces",
+        "isGlobalized": true,
+        "id": "UnitTypePieces",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pieces",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 173,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 31,
+      "name": {
+        "defaultValue": "Percentage",
+        "isGlobalized": true,
+        "id": "UnitTypePercentage",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "percent",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 172,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 8,
+      "name": {
+        "defaultValue": "Currency",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrency",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "dollar",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 171,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 7,
+      "name": {
+        "defaultValue": "Angle",
+        "isGlobalized": true,
+        "id": "UnitTypeAngle",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "degree",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 170,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 6,
+      "name": {
+        "defaultValue": "Luminosity",
+        "isGlobalized": true,
+        "id": "UnitTypeLuminosity",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "candela",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 169,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 5,
+      "name": {
+        "defaultValue": "Substance",
+        "isGlobalized": true,
+        "id": "UnitTypeSubstance",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "Mole",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 168,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 4,
+      "name": {
+        "defaultValue": "Current",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrent",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ampere",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 167,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 16,
+      "name": {
+        "defaultValue": "Energy",
+        "isGlobalized": true,
+        "id": "UnitTypeEnergy",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "joule",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 166,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 15,
+      "name": {
+        "defaultValue": "Power",
+        "isGlobalized": true,
+        "id": "UnitTypePower",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "watt",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 165,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 14,
+      "name": {
+        "defaultValue": "Force",
+        "isGlobalized": true,
+        "id": "UnitTypeForce",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "newton",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 164,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 13,
+      "name": {
+        "defaultValue": "Pressure",
+        "isGlobalized": true,
+        "id": "UnitTypePressure",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pascal",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 163,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 12,
+      "name": {
+        "defaultValue": "Volume",
+        "isGlobalized": true,
+        "id": "UnitTypeVolume",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "liter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 162,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 10,
+      "name": {
+        "defaultValue": "Speed",
+        "isGlobalized": true,
+        "id": "UnitTypeSpeed",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "MetersPerSecond",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 161,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 3,
+      "name": {
+        "defaultValue": "Temperature",
+        "isGlobalized": true,
+        "id": "UnitTypeTemperature",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "celsius",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 160,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 2,
+      "name": {
+        "defaultValue": "Time",
+        "isGlobalized": true,
+        "id": "UnitTypeTime",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "second",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 159,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 1,
+      "name": {
+        "defaultValue": "Mass",
+        "isGlobalized": true,
+        "id": "UnitTypeMass",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "kilogram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 158,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 0,
+      "name": {
+        "defaultValue": "Length",
+        "isGlobalized": true,
+        "id": "UnitTypeLength",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "meter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 157,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingMass",
+      "name": {
+        "defaultValue": "Modeling Mass",
+        "isGlobalized": true,
+        "id": "modelingMassName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "gram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 156,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingLength",
+      "name": {
+        "defaultValue": "Modeling Length",
+        "isGlobalized": true,
+        "id": "modelingLengthName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "millimeter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 155,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 155,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystem",
+      "segment": 32,
+      "id": "Custom",
+      "name": {
+        "defaultValue": "Custom units",
+        "isGlobalized": true,
+        "id": "CustomUnitSystemName",
+        "moduleName": "NaFusion",
+        "value": ""
+      },
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 156,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 157,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 158,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 159,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 160,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 161,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 162,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 163,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 164,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 165,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 166,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 167,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 168,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 169,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 170,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 171,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 172,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 173,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 174,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "UnitSystems"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 154,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 33,
+      "name": {
+        "defaultValue": "Pieces",
+        "isGlobalized": true,
+        "id": "UnitTypePieces",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pieces",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 153,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 31,
+      "name": {
+        "defaultValue": "Percentage",
+        "isGlobalized": true,
+        "id": "UnitTypePercentage",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "percent",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 152,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 8,
+      "name": {
+        "defaultValue": "Currency",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrency",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "dollar",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 151,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 7,
+      "name": {
+        "defaultValue": "Angle",
+        "isGlobalized": true,
+        "id": "UnitTypeAngle",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "degree",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 150,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 6,
+      "name": {
+        "defaultValue": "Luminosity",
+        "isGlobalized": true,
+        "id": "UnitTypeLuminosity",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "candela",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 149,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 5,
+      "name": {
+        "defaultValue": "Substance",
+        "isGlobalized": true,
+        "id": "UnitTypeSubstance",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "Mole",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 148,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 4,
+      "name": {
+        "defaultValue": "Current",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrent",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ampere",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 147,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 14,
+      "name": {
+        "defaultValue": "Force",
+        "isGlobalized": true,
+        "id": "UnitTypeForce",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "lbforce",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 146,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 13,
+      "name": {
+        "defaultValue": "Pressure",
+        "isGlobalized": true,
+        "id": "UnitTypePressure",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "PoundsPerSquareInch",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 145,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 10,
+      "name": {
+        "defaultValue": "Speed",
+        "isGlobalized": true,
+        "id": "UnitTypeSpeed",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "FeetPerSecond",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 144,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 3,
+      "name": {
+        "defaultValue": "Temperature",
+        "isGlobalized": true,
+        "id": "UnitTypeTemperature",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "farenheit",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 143,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 2,
+      "name": {
+        "defaultValue": "Time",
+        "isGlobalized": true,
+        "id": "UnitTypeTime",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "second",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 142,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 1,
+      "name": {
+        "defaultValue": "Mass",
+        "isGlobalized": true,
+        "id": "UnitTypeMass",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "lbmass",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 141,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 0,
+      "name": {
+        "defaultValue": "Length",
+        "isGlobalized": true,
+        "id": "UnitTypeLength",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "foot",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 140,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingMass",
+      "name": {
+        "defaultValue": "Modeling Mass",
+        "isGlobalized": true,
+        "id": "modelingMassName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "lbmass",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 139,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingLength",
+      "name": {
+        "defaultValue": "Modeling Length",
+        "isGlobalized": true,
+        "id": "modelingLengthName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "foot",
+      "rParent": {
+        "segId": 32,
+        "entityId": 138,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 138,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystem",
+      "segment": 32,
+      "id": "Imperial",
+      "name": {
+        "defaultValue": "Imperial (foot, lbmass, second, Fahrenheit) units",
+        "isGlobalized": true,
+        "id": "ImperialUnitSystemName",
+        "moduleName": "NaFusion",
+        "value": ""
+      },
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 139,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 140,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 141,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 142,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 143,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 144,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 145,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 146,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 147,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 148,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 149,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 150,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 151,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 152,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 153,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 154,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "UnitSystems"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 137,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 33,
+      "name": {
+        "defaultValue": "Pieces",
+        "isGlobalized": true,
+        "id": "UnitTypePieces",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pieces",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 136,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 31,
+      "name": {
+        "defaultValue": "Percentage",
+        "isGlobalized": true,
+        "id": "UnitTypePercentage",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "percent",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 135,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 8,
+      "name": {
+        "defaultValue": "Currency",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrency",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "dollar",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 134,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 7,
+      "name": {
+        "defaultValue": "Angle",
+        "isGlobalized": true,
+        "id": "UnitTypeAngle",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "degree",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 133,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 6,
+      "name": {
+        "defaultValue": "Luminosity",
+        "isGlobalized": true,
+        "id": "UnitTypeLuminosity",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "candela",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 132,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 5,
+      "name": {
+        "defaultValue": "Substance",
+        "isGlobalized": true,
+        "id": "UnitTypeSubstance",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "Mole",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 131,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 4,
+      "name": {
+        "defaultValue": "Current",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrent",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ampere",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 130,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 14,
+      "name": {
+        "defaultValue": "Force",
+        "isGlobalized": true,
+        "id": "UnitTypeForce",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "lbforce",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 129,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 13,
+      "name": {
+        "defaultValue": "Pressure",
+        "isGlobalized": true,
+        "id": "UnitTypePressure",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "PoundsPerSquareInch",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 128,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 10,
+      "name": {
+        "defaultValue": "Speed",
+        "isGlobalized": true,
+        "id": "UnitTypeSpeed",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "FeetPerSecond",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 127,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 3,
+      "name": {
+        "defaultValue": "Temperature",
+        "isGlobalized": true,
+        "id": "UnitTypeTemperature",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "farenheit",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 126,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 2,
+      "name": {
+        "defaultValue": "Time",
+        "isGlobalized": true,
+        "id": "UnitTypeTime",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "second",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 125,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 1,
+      "name": {
+        "defaultValue": "Mass",
+        "isGlobalized": true,
+        "id": "UnitTypeMass",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "lbmass",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 124,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 0,
+      "name": {
+        "defaultValue": "Length",
+        "isGlobalized": true,
+        "id": "UnitTypeLength",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "foot",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 123,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingMass",
+      "name": {
+        "defaultValue": "Modeling Mass",
+        "isGlobalized": true,
+        "id": "modelingMassName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ouncemass",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 122,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingLength",
+      "name": {
+        "defaultValue": "Modeling Length",
+        "isGlobalized": true,
+        "id": "modelingLengthName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "inch",
+      "rParent": {
+        "segId": 32,
+        "entityId": 121,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 121,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystem",
+      "segment": 32,
+      "id": "InchImperial",
+      "name": {
+        "defaultValue": "inch modeling length with imperial (foot, lbmass, second, Fahrenheit) units",
+        "isGlobalized": true,
+        "id": "InchImperialUnitSystemName",
+        "moduleName": "NaFusion",
+        "value": ""
+      },
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 122,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 123,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 124,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 125,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 126,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 127,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 128,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 129,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 130,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 131,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 132,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 133,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 134,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 135,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 136,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 137,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "UnitSystems"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 120,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 33,
+      "name": {
+        "defaultValue": "Pieces",
+        "isGlobalized": true,
+        "id": "UnitTypePieces",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pieces",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 119,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 31,
+      "name": {
+        "defaultValue": "Percentage",
+        "isGlobalized": true,
+        "id": "UnitTypePercentage",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "percent",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 118,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 8,
+      "name": {
+        "defaultValue": "Currency",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrency",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "dollar",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 117,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 7,
+      "name": {
+        "defaultValue": "Angle",
+        "isGlobalized": true,
+        "id": "UnitTypeAngle",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "degree",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 116,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 6,
+      "name": {
+        "defaultValue": "Luminosity",
+        "isGlobalized": true,
+        "id": "UnitTypeLuminosity",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "candela",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 115,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 5,
+      "name": {
+        "defaultValue": "Substance",
+        "isGlobalized": true,
+        "id": "UnitTypeSubstance",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "Mole",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 114,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 4,
+      "name": {
+        "defaultValue": "Current",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrent",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ampere",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 113,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 16,
+      "name": {
+        "defaultValue": "Energy",
+        "isGlobalized": true,
+        "id": "UnitTypeEnergy",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "joule",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 112,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 15,
+      "name": {
+        "defaultValue": "Power",
+        "isGlobalized": true,
+        "id": "UnitTypePower",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "watt",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 111,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 14,
+      "name": {
+        "defaultValue": "Force",
+        "isGlobalized": true,
+        "id": "UnitTypeForce",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "newton",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 110,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 13,
+      "name": {
+        "defaultValue": "Pressure",
+        "isGlobalized": true,
+        "id": "UnitTypePressure",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pascal",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 109,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 12,
+      "name": {
+        "defaultValue": "Volume",
+        "isGlobalized": true,
+        "id": "UnitTypeVolume",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "liter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 108,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 10,
+      "name": {
+        "defaultValue": "Speed",
+        "isGlobalized": true,
+        "id": "UnitTypeSpeed",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "MetersPerSecond",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 107,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 3,
+      "name": {
+        "defaultValue": "Temperature",
+        "isGlobalized": true,
+        "id": "UnitTypeTemperature",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "celsius",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 106,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 2,
+      "name": {
+        "defaultValue": "Time",
+        "isGlobalized": true,
+        "id": "UnitTypeTime",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "second",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 105,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 1,
+      "name": {
+        "defaultValue": "Mass",
+        "isGlobalized": true,
+        "id": "UnitTypeMass",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "kilogram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 104,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 0,
+      "name": {
+        "defaultValue": "Length",
+        "isGlobalized": true,
+        "id": "UnitTypeLength",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "meter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 103,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingMass",
+      "name": {
+        "defaultValue": "Modeling Mass",
+        "isGlobalized": true,
+        "id": "modelingMassName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "kilogram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 102,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingLength",
+      "name": {
+        "defaultValue": "Modeling Length",
+        "isGlobalized": true,
+        "id": "modelingLengthName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "meter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 101,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 101,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystem",
+      "segment": 32,
+      "id": "MMKS",
+      "name": {
+        "defaultValue": "standard MKS (m, kg, second, Celsius) units",
+        "isGlobalized": true,
+        "id": "MMKSUnitSystemName",
+        "moduleName": "NaFusion",
+        "value": ""
+      },
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 102,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 103,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 104,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 105,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 106,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 107,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 108,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 109,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 110,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 111,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 112,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 113,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 114,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 115,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 116,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 117,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 118,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 119,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 120,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "UnitSystems"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 100,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 33,
+      "name": {
+        "defaultValue": "Pieces",
+        "isGlobalized": true,
+        "id": "UnitTypePieces",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pieces",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 99,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 31,
+      "name": {
+        "defaultValue": "Percentage",
+        "isGlobalized": true,
+        "id": "UnitTypePercentage",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "percent",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 98,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 8,
+      "name": {
+        "defaultValue": "Currency",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrency",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "dollar",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 96,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 6,
+      "name": {
+        "defaultValue": "Luminosity",
+        "isGlobalized": true,
+        "id": "UnitTypeLuminosity",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "candela",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 95,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 5,
+      "name": {
+        "defaultValue": "Substance",
+        "isGlobalized": true,
+        "id": "UnitTypeSubstance",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "Mole",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 94,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 4,
+      "name": {
+        "defaultValue": "Current",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrent",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ampere",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 93,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 16,
+      "name": {
+        "defaultValue": "Energy",
+        "isGlobalized": true,
+        "id": "UnitTypeEnergy",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "joule",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 92,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 15,
+      "name": {
+        "defaultValue": "Power",
+        "isGlobalized": true,
+        "id": "UnitTypePower",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "watt",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 91,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 14,
+      "name": {
+        "defaultValue": "Force",
+        "isGlobalized": true,
+        "id": "UnitTypeForce",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "newton",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 90,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 13,
+      "name": {
+        "defaultValue": "Pressure",
+        "isGlobalized": true,
+        "id": "UnitTypePressure",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pascal",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 89,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 12,
+      "name": {
+        "defaultValue": "Volume",
+        "isGlobalized": true,
+        "id": "UnitTypeVolume",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "liter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 88,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 10,
+      "name": {
+        "defaultValue": "Speed",
+        "isGlobalized": true,
+        "id": "UnitTypeSpeed",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "MetersPerSecond",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 87,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 3,
+      "name": {
+        "defaultValue": "Temperature",
+        "isGlobalized": true,
+        "id": "UnitTypeTemperature",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "celsius",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 86,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 2,
+      "name": {
+        "defaultValue": "Time",
+        "isGlobalized": true,
+        "id": "UnitTypeTime",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "second",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 85,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 1,
+      "name": {
+        "defaultValue": "Mass",
+        "isGlobalized": true,
+        "id": "UnitTypeMass",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "kilogram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 84,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 0,
+      "name": {
+        "defaultValue": "Length",
+        "isGlobalized": true,
+        "id": "UnitTypeLength",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "meter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 83,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingMass",
+      "name": {
+        "defaultValue": "Modeling Mass",
+        "isGlobalized": true,
+        "id": "modelingMassName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "gram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 82,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingLength",
+      "name": {
+        "defaultValue": "Modeling Length",
+        "isGlobalized": true,
+        "id": "modelingLengthName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "millimeter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 81,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystem",
+      "segment": 32,
+      "id": "MmMKS",
+      "name": {
+        "defaultValue": "mm modeling length with MKS (m, kg, second, Celsius) units",
+        "isGlobalized": true,
+        "id": "MmMKSUnitSystemName",
+        "moduleName": "NaFusion",
+        "value": ""
+      },
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 82,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 83,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 84,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 85,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 86,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 87,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 88,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 89,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 90,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 91,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 92,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 93,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 94,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 95,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 96,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 97,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 98,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 99,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 100,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "UnitSystems"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 80,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 33,
+      "name": {
+        "defaultValue": "Pieces",
+        "isGlobalized": true,
+        "id": "UnitTypePieces",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pieces",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 79,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 31,
+      "name": {
+        "defaultValue": "Percentage",
+        "isGlobalized": true,
+        "id": "UnitTypePercentage",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "percent",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 78,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 8,
+      "name": {
+        "defaultValue": "Currency",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrency",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "dollar",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 77,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 7,
+      "name": {
+        "defaultValue": "Angle",
+        "isGlobalized": true,
+        "id": "UnitTypeAngle",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "degree",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 76,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 6,
+      "name": {
+        "defaultValue": "Luminosity",
+        "isGlobalized": true,
+        "id": "UnitTypeLuminosity",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "candela",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 75,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 5,
+      "name": {
+        "defaultValue": "Substance",
+        "isGlobalized": true,
+        "id": "UnitTypeSubstance",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "Mole",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 74,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 4,
+      "name": {
+        "defaultValue": "Current",
+        "isGlobalized": true,
+        "id": "UnitTypeCurrent",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "ampere",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 73,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 16,
+      "name": {
+        "defaultValue": "Energy",
+        "isGlobalized": true,
+        "id": "UnitTypeEnergy",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "joule",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 72,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 15,
+      "name": {
+        "defaultValue": "Power",
+        "isGlobalized": true,
+        "id": "UnitTypePower",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "watt",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 71,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 14,
+      "name": {
+        "defaultValue": "Force",
+        "isGlobalized": true,
+        "id": "UnitTypeForce",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "newton",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 70,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 13,
+      "name": {
+        "defaultValue": "Pressure",
+        "isGlobalized": true,
+        "id": "UnitTypePressure",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "pascal",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 69,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 12,
+      "name": {
+        "defaultValue": "Volume",
+        "isGlobalized": true,
+        "id": "UnitTypeVolume",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "liter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 68,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 10,
+      "name": {
+        "defaultValue": "Speed",
+        "isGlobalized": true,
+        "id": "UnitTypeSpeed",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "MetersPerSecond",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 67,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 3,
+      "name": {
+        "defaultValue": "Temperature",
+        "isGlobalized": true,
+        "id": "UnitTypeTemperature",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "celsius",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 66,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 2,
+      "name": {
+        "defaultValue": "Time",
+        "isGlobalized": true,
+        "id": "UnitTypeTime",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "second",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 65,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 1,
+      "name": {
+        "defaultValue": "Mass",
+        "isGlobalized": true,
+        "id": "UnitTypeMass",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "kilogram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 64,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 0,
+      "name": {
+        "defaultValue": "Length",
+        "isGlobalized": true,
+        "id": "UnitTypeLength",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "meter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 63,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingMass",
+      "name": {
+        "defaultValue": "Modeling Mass",
+        "isGlobalized": true,
+        "id": "modelingMassName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "gram",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 62,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceById",
+      "segment": 32,
+      "id": "ModelingLength",
+      "name": {
+        "defaultValue": "Modeling Length",
+        "isGlobalized": true,
+        "id": "modelingLengthName",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "centimeter",
+      "rParent": {
+        "segId": 32,
+        "entityId": 61,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 61,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystem",
+      "segment": 32,
+      "id": "CmMKS",
+      "name": {
+        "defaultValue": "cm modeling length with MKS (m, kg, second, Celsius) units",
+        "isGlobalized": true,
+        "id": "CmMKSUnitSystemName",
+        "moduleName": "NaFusion",
+        "value": ""
+      },
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 62,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 63,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 64,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 65,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 66,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 67,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 68,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 69,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 70,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 71,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 72,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 73,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 74,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 75,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 76,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 77,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 78,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 79,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 80,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "UnitSystems"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "UnitSystems"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "VisualAnalyses"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "ComponentInstancesRoot"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "rootInstance"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 56,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::EIPContext",
+      "segment": 32,
+      "bActive": true,
+      "bLocalContext": true,
+      "bVisible": false,
+      "creationIndex": 0,
+      "rBodies": {},
+      "rDerivedContextFeature": {},
+      "rSketches": {},
+      "rWorkGeometries": {},
+      "userName": "",
+      "rClientObject": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 54,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 55,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcOccurrence",
+      "segment": 32,
+      "contextPositionMap": [],
+      "dcAssyConstraintOccurrences": [],
+      "path": {
+        "componentInstances": [],
+        "creationState": 3,
+        "passiveOccurrencePath": {
+          "instanceIds": []
+        },
+        "sourceACTComponent": {
+          "segId": 33,
+          "entityId": 2,
+          "rootId": ""
+        },
+        "rSourceComponent": {
+          "segId": 32,
+          "entityId": 3,
+          "rootId": ""
+        }
+      },
+      "stateIdx": -1,
+      "states": []
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 54,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::EIPContexts",
+      "segment": 32,
+      "bVisible": true,
+      "creationIndex": 0,
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 56,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 53,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::LatticeRigDeformers",
+      "segment": 32,
+      "isSelectable": true,
+      "isVisible": true,
+      "latticeRigCreationIndex": 0,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 52,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::CanvasGroups",
+      "segment": 32,
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 51,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "NaMesh::MREP::MeshBodies",
+      "segment": 32,
+      "creationIndex": 0,
+      "isSelectable": true,
+      "isVisible": true,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 50,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::PMIAnnotations",
+      "segment": 32,
+      "highWaterMarks": [],
+      "m_bVisible": true,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 49,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DecalPatches",
+      "segment": 32,
+      "isVisible": true,
+      "opacity": 1,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 48,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcGroupFeatures",
+      "segment": 32,
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 46,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "NaTSpline::SubDSurfaceNodes",
+      "segment": 32,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 45,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::Relationships",
+      "segment": 32,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 44,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkPlane",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "eCreationType": 0,
+      "llParam": {
+        "x": 0.25,
+        "y": 0.25
+      },
+      "plane": {
+        "pointOnPlane": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "normal": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "urParam": {
+        "x": 2,
+        "y": 2
+      },
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "YZ",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 43,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkPlane",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "eCreationType": 0,
+      "llParam": {
+        "x": 0.25,
+        "y": 0.25
+      },
+      "plane": {
+        "pointOnPlane": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "normal": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      },
+      "urParam": {
+        "x": 2,
+        "y": 2
+      },
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "XZ",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 42,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkPlane",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "eCreationType": 0,
+      "llParam": {
+        "x": 0.25,
+        "y": 0.25
+      },
+      "plane": {
+        "pointOnPlane": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "normal": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "urParam": {
+        "x": 2,
+        "y": 2
+      },
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "XY",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 41,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkAxis",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "line": {
+        "startPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "endPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "lowerParam": 0.175,
+      "upperParam": 2.25,
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "Z",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1.29999995,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 40,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkAxis",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "line": {
+        "startPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "endPoint": {
+          "x": 0,
+          "y": 1,
+          "z": 0
+        }
+      },
+      "lowerParam": 0.175,
+      "upperParam": 2.25,
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "Y",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1.29999995,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 39,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkAxis",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "line": {
+        "startPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "endPoint": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        }
+      },
+      "lowerParam": 0.175,
+      "upperParam": 2.25,
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "X",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1.29999995,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 38,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkPoint",
+      "segment": 32,
+      "EntityGenesis": 0,
+      "point": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "actIdentifier": "",
+      "groupParent": {},
+      "id": -1,
+      "isOrigin": true,
+      "originName": "O",
+      "rDcNode": {},
+      "rOwningDeriveFeature": {},
+      "isSelectable": true,
+      "userName": "",
+      "DAGNodeParents": [],
+      "isVisible": true,
+      "lineColor": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "a": 1
+      },
+      "lineThickness": 1,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 37,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::OriginWorkGeometry",
+      "segment": 32,
+      "isVisible": false,
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 38,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 39,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 40,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 41,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 42,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 43,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 44,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 36,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::Features",
+      "segment": 32,
+      "curFeatureId": 1,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 35,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcCreationOrderFeatures",
+      "segment": 32,
+      "rFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      },
+      "representationFeatures": [
+        {
+          "segId": 32,
+          "entityId": 208,
+          "rootId": ""
+        }
+      ]
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 34,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DynamicUpdateData",
+      "segment": 32,
+      "bodies": [],
+      "isBodyOK": false,
+      "isPredecessorOK": false,
+      "predecessors": [],
+      "rOwnerNode": {
+        "segId": 32,
+        "entityId": 33,
+        "rootId": ""
+      },
+      "timeStamp": 1794477990590945,
+      "xRefPredecessorsHash": 0
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 33,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcComponent",
+      "segment": 32,
+      "bodiesVisibilityBeforeRollback": true,
+      "rFusionComponent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      },
+      "isActive": true,
+      "isEdited": false,
+      "isEliminated": false,
+      "rDynamicUpdateData": {
+        "segId": 32,
+        "entityId": 34,
+        "rootId": ""
+      },
+      "rGroupRepresentative": {},
+      "rParentFeature": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": 27,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 32,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcXRefManager",
+      "segment": 32,
+      "new2XRefMap": [],
+      "rOwnerFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 31,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcFeatureIdManager",
+      "segment": 32,
+      "enetityIdMap": [],
+      "featureIdMap": [
+        [
+          300,
+          208
+        ]
+      ],
+      "obsoleteFeatureIds": [],
+      "rOwnerFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 30,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcAssociationManager",
+      "segment": 32,
+      "associationHolderMap": [],
+      "featureAssociationMap": [],
+      "rOwnerFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 29,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcDependencyManager",
+      "segment": 32,
+      "mapsAreCurrent": true,
+      "predecessorMap": [
+        [
+          {
+            "segId": 32,
+            "entityId": 208,
+            "rootId": ""
+          },
+          [
+            [
+              {
+                "segId": 32,
+                "entityId": 33,
+                "rootId": ""
+              },
+              4096
+            ],
+            [
+              {
+                "segId": 32,
+                "entityId": 216,
+                "rootId": ""
+              },
+              1
+            ]
+          ]
+        ],
+        [
+          {
+            "segId": 32,
+            "entityId": 216,
+            "rootId": ""
+          },
+          [
+            [
+              {
+                "segId": 32,
+                "entityId": 212,
+                "rootId": ""
+              },
+              1
+            ]
+          ]
+        ]
+      ],
+      "rOwnerFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      },
+      "successorMap": [
+        [
+          {
+            "segId": 32,
+            "entityId": 33,
+            "rootId": ""
+          },
+          [
+            [
+              {
+                "segId": 32,
+                "entityId": 208,
+                "rootId": ""
+              },
+              4096
+            ]
+          ]
+        ],
+        [
+          {
+            "segId": 32,
+            "entityId": 212,
+            "rootId": ""
+          },
+          [
+            [
+              {
+                "segId": 32,
+                "entityId": 216,
+                "rootId": ""
+              },
+              1
+            ]
+          ]
+        ],
+        [
+          {
+            "segId": 32,
+            "entityId": 216,
+            "rootId": ""
+          },
+          [
+            [
+              {
+                "segId": 32,
+                "entityId": 208,
+                "rootId": ""
+              },
+              1
+            ]
+          ]
+        ]
+      ]
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 28,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcComputeManager",
+      "segment": 32,
+      "rOwnerFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      },
+      "sortIsCurrent": true,
+      "sortedNodesAll": [
+        {
+          "segId": 32,
+          "entityId": 33,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 212,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 216,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 208,
+          "rootId": ""
+        }
+      ]
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 27,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcNodes",
+      "segment": 32,
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 33,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 208,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 212,
+          "rootId": ""
+        },
+        {
+          "segId": 32,
+          "entityId": 216,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 26,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::DesignCapture::DcDesignFragment",
+      "segment": 32,
+      "dcBodies": [],
+      "featureIndexMap": [
+        [
+          "DcSketchMetaType",
+          1
+        ]
+      ],
+      "nextParamId": 0,
+      "occurrences": [
+        {
+          "segId": 32,
+          "entityId": 55,
+          "rootId": ""
+        }
+      ],
+      "rAssociationManager": {
+        "segId": 32,
+        "entityId": 30,
+        "rootId": ""
+      },
+      "rComputeManager": {
+        "segId": 32,
+        "entityId": 28,
+        "rootId": ""
+      },
+      "rCreationOrderFeatures": {
+        "segId": 32,
+        "entityId": 35,
+        "rootId": ""
+      },
+      "rDependencyManager": {
+        "segId": 32,
+        "entityId": 29,
+        "rootId": ""
+      },
+      "rFeatureIdManager": {
+        "segId": 32,
+        "entityId": 31,
+        "rootId": ""
+      },
+      "rNodes": {
+        "segId": 32,
+        "entityId": 27,
+        "rootId": ""
+      },
+      "rXRefIdManager": {
+        "segId": 32,
+        "entityId": 32,
+        "rootId": ""
+      },
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 25,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Entity",
+      "segment": 32,
+      "addressOfTopEntities": [
+        52722328384
+      ],
+      "nextId": 1,
+      "rBodies": {},
+      "rBody": {},
+      "scanOrderIndex": [
+        0
+      ]
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 24,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::BREP::BRepSerializer",
+      "segment": 32,
+      "rTopEntityPIDGenerator": {
+        "segId": 32,
+        "entityId": 25,
+        "rootId": ""
+      },
+      "mapBodyId": [],
+      "rBodies": {
+        "segId": 32,
+        "entityId": 22,
+        "rootId": ""
+      },
+      "rBody": {},
+      "partName": "BREP.eddf95cb-83d1-4f09-8724-141ed92e5612.smb"
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 22,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::BREP::Bodies",
+      "segment": 32,
+      "isAlterateBodies": false,
+      "creationIndex": 0,
+      "groupChildren": [],
+      "isVisible": true,
+      "rPassiveIdGenerator": {},
+      "rBRepSerializer": {
+        "segId": 32,
+        "entityId": 24,
+        "rootId": ""
+      },
+      "isSelectable": true,
+      "rSurfaceGroups": {},
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 21,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::SketchCustomGroups",
+      "segment": 32,
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 20,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkGeometryCustomGroups",
+      "segment": 32,
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 19,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::CommonData::SelectionGroups",
+      "segment": 32,
+      "waterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 18,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::BREP::SurfaceGroups",
+      "segment": 32,
+      "rUnstitchedGroup": {},
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 17,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Parameters::ParameterSearchByNameHelper",
+      "segment": 32,
+      "parameterMap": [
+        [
+          "depthLength",
+          {
+            "segId": 32,
+            "entityId": 202,
+            "rootId": ""
+          }
+        ]
+      ]
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 16,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Parameters::ParameterTable",
+      "segment": 32,
+      "bIsStateChangedByUser": false,
+      "expandedNodeSet": [],
+      "groupOrder": [],
+      "highWaterMark": 1,
+      "rParameterSearchByNameHelper": {
+        "segId": 32,
+        "entityId": 17,
+        "rootId": ""
+      },
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 202,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 15,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::MotionStudies",
+      "segment": 32,
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 14,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::ContactSets",
+      "segment": 32,
+      "highWaterMark": 0,
+      "mode": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 13,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::AssyConstraintOccurrences",
+      "segment": 32,
+      "highWaterMark": 0,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 12,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::AssyConstraints",
+      "segment": 32,
+      "constraintsHighWaterMark": 0,
+      "highWaterMark": 0,
+      "isVisible": true,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 11,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::JointOrigins",
+      "segment": 32,
+      "highWaterMark": 0,
+      "visible": true,
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 10,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::WorkGeometries",
+      "segment": 32,
+      "groupChildren": [],
+      "highWaterMarkAxes": 0,
+      "highWaterMarkPlanes": 0,
+      "highWaterMarkPoints": 0,
+      "highWaterMarkUCS": 0,
+      "isVisible": true,
+      "isSelectable": true,
+      "rWorkGeometryCustomGroups": {
+        "segId": 32,
+        "entityId": 20,
+        "rootId": ""
+      },
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 9,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Geometry::Sketches",
+      "segment": 32,
+      "crv_tag_id_idx": 103,
+      "groupChildren": [
+        {
+          "segId": 32,
+          "entityId": 203,
+          "rootId": ""
+        }
+      ],
+      "highWaterMark": 1,
+      "isVisible": true,
+      "isSelectable": true,
+      "rSketchCustomGroups": {
+        "segId": 32,
+        "entityId": 21,
+        "rootId": ""
+      },
+      "rClientObject": {},
+      "children": [
+        {
+          "segId": 32,
+          "entityId": 203,
+          "rootId": ""
+        }
+      ],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 8,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::BREP::BRepHistorySerializer",
+      "segment": 32,
+      "mapBodyId": [],
+      "rBodies": {
+        "segId": 32,
+        "entityId": 7,
+        "rootId": ""
+      },
+      "rBody": {},
+      "partName": ""
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 7,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::BREP::Bodies",
+      "segment": 32,
+      "isAlterateBodies": false,
+      "creationIndex": 0,
+      "groupChildren": [],
+      "isVisible": true,
+      "rPassiveIdGenerator": {},
+      "rBRepSerializer": {
+        "segId": 32,
+        "entityId": 8,
+        "rootId": ""
+      },
+      "isSelectable": true,
+      "rSurfaceGroups": {
+        "segId": 32,
+        "entityId": 18,
+        "rootId": ""
+      },
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 6,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::ComponentInstances",
+      "segment": 32,
+      "rACTInstances": {
+        "segId": 33,
+        "entityId": 4,
+        "rootId": ""
+      },
+      "rClientObject": {},
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 5,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Comp::Overrides",
+      "segment": 32,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "ComponentsRoot"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "DesignConfigurationTableSerializerTrigger"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 3,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::FusionComponent",
+      "segment": 32,
+      "isAsBuiltPositions": true,
+      "opacity": 1,
+      "rCanvases": {
+        "segId": 32,
+        "entityId": 47,
+        "rootId": ""
+      },
+      "rDecalPatches": {
+        "segId": 32,
+        "entityId": 49,
+        "rootId": ""
+      },
+      "m_rDeformers": {
+        "segId": 32,
+        "entityId": 53,
+        "rootId": ""
+      },
+      "rFeatures": {
+        "segId": 32,
+        "entityId": 36,
+        "rootId": ""
+      },
+      "rHFUM": {
+        "segId": 32,
+        "entityId": 177,
+        "rootId": ""
+      },
+      "rOriginWorkGeometry": {
+        "segId": 32,
+        "entityId": 37,
+        "rootId": ""
+      },
+      "rRelationships": {
+        "segId": 32,
+        "entityId": 45,
+        "rootId": ""
+      },
+      "rVSubDSurfaces": {
+        "segId": 32,
+        "entityId": 46,
+        "rootId": ""
+      },
+      "mappedProperties": [
+        [
+          "",
+          [
+            [
+              "Part Number",
+              "2026-11-12-02-06-30-590"
+            ]
+          ]
+        ]
+      ],
+      "operationSeedId": 301,
+      "rAnnotations": {
+        "segId": 32,
+        "entityId": 50,
+        "rootId": ""
+      },
+      "rCacheBodies": {
+        "segId": 32,
+        "entityId": 22,
+        "rootId": ""
+      },
+      "rCanvasGroups": {
+        "segId": 32,
+        "entityId": 52,
+        "rootId": ""
+      },
+      "rClientContainers": [
+        [
+          "arrangementsContainer",
+          {
+            "segId": 32,
+            "entityId": 194,
+            "rootId": ""
+          }
+        ]
+      ],
+      "rDesignFragment": {
+        "segId": 32,
+        "entityId": 26,
+        "rootId": ""
+      },
+      "rEIPContexts": {
+        "segId": 32,
+        "entityId": 54,
+        "rootId": ""
+      },
+      "rFeatRuleData": {},
+      "rGroupFeatures": {
+        "segId": 32,
+        "entityId": 48,
+        "rootId": ""
+      },
+      "rLibaryItems": {},
+      "rMeshBodies": {
+        "segId": 32,
+        "entityId": 51,
+        "rootId": ""
+      },
+      "rSheetmetalData": {},
+      "rXRefManager": {},
+      "subType": 0,
+      "m_SketchCustomGroups": {
+        "segId": 32,
+        "entityId": 21,
+        "rootId": ""
+      },
+      "m_WorkGeometryCustomGroups": {
+        "segId": 32,
+        "entityId": 20,
+        "rootId": ""
+      },
+      "massProperties": {
+        "areaOverride": -1,
+        "densityOverride": -1,
+        "massOverride": -1,
+        "volumeOverride": -1
+      },
+      "rAssyConstraintOccs": {
+        "segId": 32,
+        "entityId": 13,
+        "rootId": ""
+      },
+      "rAssyConstraints": {
+        "segId": 32,
+        "entityId": 12,
+        "rootId": ""
+      },
+      "rBodies": {
+        "segId": 32,
+        "entityId": 7,
+        "rootId": ""
+      },
+      "rContactSets": {
+        "segId": 32,
+        "entityId": 14,
+        "rootId": ""
+      },
+      "rJointOrigins": {
+        "segId": 32,
+        "entityId": 11,
+        "rootId": ""
+      },
+      "rMotionStudies": {
+        "segId": 32,
+        "entityId": 15,
+        "rootId": ""
+      },
+      "rParameterTable": {
+        "segId": 32,
+        "entityId": 16,
+        "rootId": ""
+      },
+      "rPersistedCustomGraphics": {},
+      "rSelectionGroups": {
+        "segId": 32,
+        "entityId": 19,
+        "rootId": ""
+      },
+      "rSketches": {
+        "segId": 32,
+        "entityId": 9,
+        "rootId": ""
+      },
+      "rSurfaceGroups": {
+        "segId": 32,
+        "entityId": 18,
+        "rootId": ""
+      },
+      "rWorkGeometries": {
+        "segId": 32,
+        "entityId": 10,
+        "rootId": ""
+      },
+      "createdPreACT": false,
+      "creationIndex": 0,
+      "cyclingColor": {
+        "r": 0.9097999930381775,
+        "g": 0.925499975681305,
+        "b": 0.9843000173568726,
+        "a": 1
+      },
+      "defaultPhysicalMaterial": {
+        "rProteinAssetManager": {
+          "segId": 32,
+          "entityId": -1,
+          "rootId": "ProteinAssetManager"
+        },
+        "assetReference": "81735EE3-61A7-CE56-79E0-15DC813559DD",
+        "libraryID": "C1EEA57C-3F56-45FC-B8CB-A9EC46A9994C",
+        "name": "",
+        "proteinMaterialID": "PrismMaterial-018"
+      },
+      "isVisible": true,
+      "rOverrides": {
+        "segId": 32,
+        "entityId": 5,
+        "rootId": ""
+      },
+      "persistentId": "77dc8960-634d-4445-a9d9-c411a1579607",
+      "rACTComponent": {
+        "segId": 33,
+        "entityId": 2,
+        "rootId": ""
+      },
+      "rComponentBaseInstances": {
+        "segId": 32,
+        "entityId": 6,
+        "rootId": ""
+      },
+      "rOwningDeriveFeature": {},
+      "revisionGuid": "24d32f5b-99c5-42df-a7ac-4b7f4a7ddd99",
+      "userName": "Untitled",
+      "rClientObject": {},
+      "rParent": {
+        "segId": 32,
+        "entityId": -1,
+        "rootId": "rootInstance"
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "ComponentPostOffice"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 2,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::CommonData::ThreadSettings",
+      "segment": 32,
+      "bModeledThread": false
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "OGSSerializer"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "ProteinAssetManager"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 47,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Na::Canvases",
+      "segment": 32,
+      "rCanvasGroups": {
+        "segId": 32,
+        "entityId": 52,
+        "rootId": ""
+      },
+      "creationIndex": 0,
+      "groupChildren": [],
+      "isVisible": true,
+      "isSelectable": true,
+      "opacity": 1,
+      "children": [],
+      "rParent": {
+        "segId": 32,
+        "entityId": 3,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": 97,
+      "rootId": ""
+    },
+    "properties": {
+      "interfaceId": "Ns::Units::UnitSystemChoiceByUnit",
+      "segment": 32,
+      "eSimpleUnitType": 7,
+      "name": {
+        "defaultValue": "Angle",
+        "isGlobalized": true,
+        "id": "UnitTypeAngle",
+        "moduleName": "NsCommonData",
+        "value": ""
+      },
+      "unitString": "degree",
+      "rParent": {
+        "segId": 32,
+        "entityId": 81,
+        "rootId": ""
+      }
+    }
+  },
+  {
+    "identity": {
+      "segId": 32,
+      "entityId": -1,
+      "rootId": "AssetSettings"
+    },
+    "skipped": "Named root entity; numeric property query unavailable"
+  }
+]

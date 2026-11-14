@@ -1,0 +1,66 @@
+{
+  "operation": "controlled_parameter_allocation_capture",
+  "samples": [
+    {
+      "file": "empty.f3d",
+      "sha256": "3cd4ac5186a51c8e6239ee04dd585639927b23f5314c867ef875a21746141298",
+      "parameters": [],
+      "timeline_count": 0
+    },
+    {
+      "file": "two_parameters.f3d",
+      "sha256": "41f8e24875f47dc84b8652788fd5a356e46f77a46c9713dbb463869ed34e97a3",
+      "parameters": [
+        {
+          "name": "alphaLength",
+          "expression": "7.3 mm",
+          "value": 0.73,
+          "unit": "mm"
+        },
+        {
+          "name": "betaLength",
+          "expression": "19 mm",
+          "value": 1.9000000000000001,
+          "unit": "mm"
+        }
+      ],
+      "timeline_count": 0
+    },
+    {
+      "file": "deleted_first.f3d",
+      "sha256": "055bb9a68fe33c017387d34525d97e18832be12d9d97b9595ce0b200b0125b91",
+      "parameters": [
+        {
+          "name": "betaLength",
+          "expression": "19 mm",
+          "value": 1.9000000000000001,
+          "unit": "mm"
+        }
+      ],
+      "timeline_count": 0
+    },
+    {
+      "file": "added_third.f3d",
+      "sha256": "57c812a29d9823de60aec2cda8f94d363bebc37f588b37297cbe5f2e1e774391",
+      "parameters": [
+        {
+          "name": "betaLength",
+          "expression": "19 mm",
+          "value": 1.9000000000000001,
+          "unit": "mm"
+        },
+        {
+          "name": "gammaLength",
+          "expression": "23 mm",
+          "value": 2.3000000000000003,
+          "unit": "mm"
+        }
+      ],
+      "timeline_count": 0
+    }
+  ],
+  "fusion_version": "2706.1.17",
+  "schema_command_result": "Current active document's all meta type schemas were successfully dumped out to file re/Fusion/LocalOracle/Allocation/ParameterSchema.xml",
+  "schema_exists": true,
+  "status": "captured"
+}

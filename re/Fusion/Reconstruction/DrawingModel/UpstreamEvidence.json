@@ -1,0 +1,152 @@
+{
+  "repository": "https://github.com/LibreDWG/libredwg",
+  "commit": "1f30f47d25cbfa4d22a600d9fdfe1fdd4e19aa0a",
+  "sourceFiles": [
+    {
+      "path": "src/common.c",
+      "url": "https://github.com/LibreDWG/libredwg/blob/1f30f47d25cbfa4d22a600d9fdfe1fdd4e19aa0a/src/common.c",
+      "sha256": "083a24c297eedd1dfdabcf0ce76a63e2acff0dd664f497d775fd6ea696c3e6c3",
+      "matches": [
+        {
+          "line": 82,
+          "text": "  { R_2013b, \"r2013b\", \"AC1027\", \"AutoCAD 2013 beta\", 0x1e, 0x7d },"
+        },
+        {
+          "line": 83,
+          "text": "  { R_2013, \"r2013\", \"AC1027\", \"AutoCAD Release 2013\", 0x1f, 0x7d },"
+        }
+      ]
+    },
+    {
+      "path": "README",
+      "url": "https://github.com/LibreDWG/libredwg/blob/1f30f47d25cbfa4d22a600d9fdfe1fdd4e19aa0a/README",
+      "sha256": "e98369952f4a7b8ddbe29e3e4531034eadbdd521eb93cd1641f0adb8586c6948",
+      "matches": [
+        {
+          "line": 5,
+          "text": "under the terms of the GNU General Public License version 3 (or at you option"
+        },
+        {
+          "line": 136,
+          "text": "    Write support only works for earlier versions until r2004."
+        },
+        {
+          "line": 159,
+          "text": "    Activates support for unstable classes. For testing only."
+        },
+        {
+          "line": 243,
+          "text": "You should have received a copy of the GNU General Public License"
+        }
+      ]
+    },
+    {
+      "path": "src/decode.c",
+      "url": "https://github.com/LibreDWG/libredwg/blob/1f30f47d25cbfa4d22a600d9fdfe1fdd4e19aa0a/src/decode.c",
+      "sha256": "8696de0a9060901342c7f6f8ce2092f18cd5a0bdbbe16e088a4c8ee0492d55e3",
+      "matches": [
+        {
+          "line": 81,
+          "text": "static int decode_R2004 (Bit_Chain *restrict dat, Dwg_Data *restrict dwg);"
+        },
+        {
+          "line": 224,
+          "text": "    return decode_R2004 (dat, dwg);"
+        },
+        {
+          "line": 230,
+          "text": "  SINCE (R_2010b)"
+        },
+        {
+          "line": 233,
+          "text": "    return decode_R2004 (dat, dwg);"
+        },
+        {
+          "line": 1680,
+          "text": "      if (dwg->header.version >= R_2007 && dwg->header.version <= R_2010)"
+        },
+        {
+          "line": 2318,
+          "text": "      if ((dat->from_version >= R_2010 && dwg->header.maint_version > 3)"
+        },
+        {
+          "line": 3530,
+          "text": "decode_R2004_header (Bit_Chain *restrict file_dat, Dwg_Data *restrict dwg)"
+        },
+        {
+          "line": 3692,
+          "text": "decode_R2004 (Bit_Chain *restrict dat, Dwg_Data *restrict dwg)"
+        },
+        {
+          "line": 3718,
+          "text": "  error |= decode_R2004_header (dat, dwg);"
+        },
+        {
+          "line": 4508,
+          "text": "    SINCE (R_2010b)"
+        },
+        {
+          "line": 4603,
+          "text": "    SINCE (R_2010b)"
+        },
+        {
+          "line": 4615,
+          "text": "    SINCE (R_2010b)"
+        },
+        {
+          "line": 5546,
+          "text": "  SINCE (R_2010b)"
+        },
+        {
+          "line": 5579,
+          "text": "  SINCE (R_2010b)"
+        },
+        {
+          "line": 5588,
+          "text": "            dat->from_version >= R_2010 ? \"BOT\" : \"BS\");"
+        },
+        {
+          "line": 5667,
+          "text": "      if (dat->from_version >= R_2010 && error < DWG_ERR_CRITICAL)"
+        },
+        {
+          "line": 5672,
+          "text": "      if (dat->from_version >= R_2010 && error < DWG_ERR_CRITICAL)"
+        },
+        {
+          "line": 5713,
+          "text": "      if (dat->from_version >= R_2010 && error < DWG_ERR_CRITICAL)"
+        },
+        {
+          "line": 5718,
+          "text": "      if (dat->from_version >= R_2010)"
+        }
+      ]
+    },
+    {
+      "path": "src/dwg.spec",
+      "url": "https://github.com/LibreDWG/libredwg/blob/1f30f47d25cbfa4d22a600d9fdfe1fdd4e19aa0a/src/dwg.spec",
+      "sha256": "2bdff2f7d94702e247c453253f9aeea761f1243df8228ac085f283a894a60a57",
+      "matches": []
+    },
+    {
+      "path": "COPYING",
+      "url": "https://github.com/LibreDWG/libredwg/blob/1f30f47d25cbfa4d22a600d9fdfe1fdd4e19aa0a/COPYING",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "matches": [
+        {
+          "line": 1,
+          "text": "                    GNU GENERAL PUBLIC LICENSE"
+        },
+        {
+          "line": 2,
+          "text": "                       Version 3, 29 June 2007"
+        }
+      ]
+    }
+  ],
+  "execution": "Source inspection only; no library build or invocation",
+  "autodeskArchiveDocs": "https://help.autodesk.com/cloudhelp/ENU/Fusion-Drawing/files/DWG-EXPORT-F2D.htm",
+  "cadmpegCommit": "de2726870ff728352163f601ab4e60bbd54fbade",
+  "cadmpegSource": "https://github.com/cadmpeg/cadmpeg/blob/de2726870ff728352163f601ab4e60bbd54fbade/docs/formats/f3d.md"
+}

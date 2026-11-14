@@ -1,0 +1,5201 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Complete typed mesh-conversion and planar geometry archives; source/control native lifecycle comparison",
+  "cases": [
+    {
+      "label": "BaseClosed",
+      "variants": [
+        {
+          "variant": "Control",
+          "source_sha256": "6a0447aa65c79e5d0661d770e5545ebab3e1149d853261c5665c17c9e7657e06",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "8df58054babbd810ab3a10f622681e19b8e61f4e07eb3806afbdb77e69f2cccd",
+          "status": "accepted"
+        },
+        {
+          "variant": "Reemitted",
+          "source_sha256": "c8b1670f2b027b0a55c41659b2527cd7c11270f0584ad671076ba188fde44cd7",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "bb779de97fffdc1ee4f57d024e335ec49b009ff0eec7d711675b22ff36c44c4d",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "label": "BaseOpen",
+      "variants": [
+        {
+          "variant": "Control",
+          "source_sha256": "ddb933bc2332281547ce878bf626376b992610b36e29188c68d4d896bbc8bdf0",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "fd2d08f674e2c61c1780ebfd9317373ca8967e8f11f89886b15c620838e8cc5a",
+          "status": "accepted"
+        },
+        {
+          "variant": "Reemitted",
+          "source_sha256": "929c606144e321e4e62bf6a36387dc79d40d582413d0d7ef117465a872a2c3c4",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import base_feature_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Feature2",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_base_feature_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "b839dc60304e227fb36c3966dbc437b3b8eb507ffea79c90e31fba344324db9d",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "label": "TwoBodies",
+      "variants": [
+        {
+          "variant": "Control",
+          "source_sha256": "f59d79e81057a96b5a9a593cf463ae8db2a43f02674a85e1becd48602e2cde73",
+          "stages": {
+            "opened": {
+              "marker": 4,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000003,
+                  "center_cm": [
+                    6.5,
+                    0.749999999999999,
+                    0.9999999999999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      6.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_3": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "65034abfbd601280fdec9c4f8c0fbfdcbc30d6eaf50b7591ed0e436e390432ca"
+                }
+              ]
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 4,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000003,
+                  "center_cm": [
+                    6.5,
+                    0.749999999999999,
+                    0.9999999999999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      6.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 4,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000003,
+                  "center_cm": [
+                    6.5,
+                    0.749999999999999,
+                    0.9999999999999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      6.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "6cd1b25ed4c6e29283a08a1dae1f78ab163bc4e36daf1f21c35b5dca3673a553",
+          "status": "accepted"
+        },
+        {
+          "variant": "Reemitted",
+          "source_sha256": "f2c6a76e2462c3107f521a453129e650695b749683fd4c6a7792bd636af73cea",
+          "stages": {
+            "opened": {
+              "marker": 4,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000003,
+                  "center_cm": [
+                    6.5,
+                    0.749999999999999,
+                    0.9999999999999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      6.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_3": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "65034abfbd601280fdec9c4f8c0fbfdcbc30d6eaf50b7591ed0e436e390432ca"
+                }
+              ]
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 4,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000003,
+                  "center_cm": [
+                    6.5,
+                    0.749999999999999,
+                    0.9999999999999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      6.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 4,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature2",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert Operation two_mesh_parametric",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                },
+                {
+                  "name": "OwnedTetraSecond_two_mesh_parametric",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000003,
+                  "center_cm": [
+                    6.5,
+                    0.749999999999999,
+                    0.9999999999999998
+                  ],
+                  "bounds_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      6.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      6.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      8.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "b626951afdda67320d85e1ad8d58d01eaec7f6292a320febc0af0e47424c6b6b",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "label": "FacetedClosed",
+      "variants": [
+        {
+          "variant": "Control",
+          "source_sha256": "d8a5be48df8421ff8c674a3a41c8490ff16ef969b9b89854a8656d9de69cc99e",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "034e3c06eda9d2d0c4821d1b0628bef8ada44a1ce79cc03105f94cc89a0d78bd",
+          "status": "accepted"
+        },
+        {
+          "variant": "Reemitted",
+          "source_sha256": "5d682d74a8a8ea11574287888050690052d5382be5f487ffb299fe3e20ef70f3",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "vertices": 4,
+                  "triangles": 4,
+                  "closed": true,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000178813937,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "c751b0385a8e8956e3bc159e56fee1b4abe0f666989d6d0055afb729c8bf74b2"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_closed",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_closed",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_closed",
+                  "solid": true,
+                  "faces": 4,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 20.810249675906654,
+                  "volume_cm3": 4.000000000000004,
+                  "center_cm": [
+                    0.5,
+                    0.7499999999999991,
+                    1.0000000000000007
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "a472cc9ba354f2c71490193404da97a1923bcd78dfe812c7741ed5a4180e1aba",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "label": "FacetedOpen",
+      "variants": [
+        {
+          "variant": "Control",
+          "source_sha256": "b645d6e125bab477c1ffd0f3f33051fb4dfdbb4e511c1165d227357323a97e7d",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "a8faf5cb6803ed9d725d0882ca7af21273190f444d7f4fe068e81b6d1708eede",
+          "status": "accepted"
+        },
+        {
+          "variant": "Reemitted",
+          "source_sha256": "1903de7e0676faddf5014f7115fa578a14270c3d8f5eaf57eec7c464fad7dffb",
+          "stages": {
+            "opened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_2": {
+              "marker": 2,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "vertices": 4,
+                  "triangles": 3,
+                  "closed": false,
+                  "area_cm2": 13.0,
+                  "volume_cm3": 0.0,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "face_groups": 1,
+                  "geometry_sha256": "21291e6979979453fc9ad14f757ac4ab74da6a91c726f4a62acb7b6d3e21b97b"
+                }
+              ]
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 3,
+              "parameters": [],
+              "timeline": [
+                {
+                  "name": "Owned tetra import faceted_open",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Base Mesh Feature1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "Owned Mesh Convert faceted_open",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "OwnedTetraSource_faceted_open",
+                  "solid": false,
+                  "faces": 3,
+                  "edges": 6,
+                  "vertices": 4,
+                  "area_cm2": 13.0,
+                  "volume_cm3": null,
+                  "center_cm": null,
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      3.0,
+                      4.0
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      0.0,
+                      0.0
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      4.0
+                    ],
+                    [
+                      0.0,
+                      3.0,
+                      0.0
+                    ],
+                    [
+                      2.0,
+                      0.0,
+                      0.0
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "edit_scope": "No driving parameter edit is invented for these native mesh conversion controls; complete feature rollback and rebuild are compared",
+          "saved_sha256": "6a563092f3e90601c1d6a91d6f1a3821f5d02e037f663ee2891c0972146ec1da",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    },
+    {
+      "label": "TriangularPipe",
+      "variants": [
+        {
+          "variant": "Control",
+          "source_sha256": "0f949c51ebeeefabcc5a8572a0fc8951b48ed327cf66119943c50fe6ddb2b152",
+          "stages": {
+            "opened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 12.886458008312447,
+                  "volume_cm3": 1.2470765814495923,
+                  "center_cm": [
+                    3.0,
+                    -4.451302514776766e-17,
+                    -0.10000000000000003
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      0.30000000000000004
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 12.886458008312447,
+                  "volume_cm3": 1.2470765814495923,
+                  "center_cm": [
+                    3.0,
+                    -4.451302514776766e-17,
+                    -0.10000000000000003
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      0.30000000000000004
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "edited": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "8 mm",
+                  "value": 0.8,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 17.366696097223944,
+                  "volume_cm3": 2.2170250336881643,
+                  "center_cm": [
+                    3.0,
+                    1.0015430658247724e-16,
+                    -0.13333333333333336
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      0.4
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      -0.4
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "8 mm",
+                  "value": 0.8,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 17.366696097223944,
+                  "volume_cm3": 2.2170250336881643,
+                  "center_cm": [
+                    3.0,
+                    1.0015430658247724e-16,
+                    -0.13333333333333336
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      0.4
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      -0.4
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "saved_sha256": "154a0c87308f14e65b76a424fbb2454cc86ac42bf27bb79aa9ba18b873c02582",
+          "status": "accepted"
+        },
+        {
+          "variant": "Reemitted",
+          "source_sha256": "d5502eeac71bf49a305330dd0253c8ea75e8079022ce4ca324c0126ba5f922e8",
+          "stages": {
+            "opened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 12.886458008312447,
+                  "volume_cm3": 1.2470765814495923,
+                  "center_cm": [
+                    3.0,
+                    -4.451302514776766e-17,
+                    -0.10000000000000003
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      0.30000000000000004
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "rollback_1": {
+              "marker": 1,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rollback_0": {
+              "marker": 0,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [],
+              "meshes": []
+            },
+            "rebuilt": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "6 mm",
+                  "value": 0.6000000000000001,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 12.886458008312447,
+                  "volume_cm3": 1.2470765814495923,
+                  "center_cm": [
+                    3.0,
+                    -4.451302514776766e-17,
+                    -0.10000000000000003
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      0.30000000000000004
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      0.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      -0.3464101615137755,
+                      -0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.30000000000000004
+                    ],
+                    [
+                      6.0,
+                      0.3464101615137755,
+                      -0.30000000000000004
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "edited": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "8 mm",
+                  "value": 0.8,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 17.366696097223944,
+                  "volume_cm3": 2.2170250336881643,
+                  "center_cm": [
+                    3.0,
+                    1.0015430658247724e-16,
+                    -0.13333333333333336
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      0.4
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      -0.4
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            },
+            "reopened": {
+              "marker": 2,
+              "parameters": [
+                {
+                  "name": "d1",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d2",
+                  "expression": "1",
+                  "value": 1.0,
+                  "unit": ""
+                },
+                {
+                  "name": "d3",
+                  "expression": "8 mm",
+                  "value": 0.8,
+                  "unit": "mm"
+                },
+                {
+                  "name": "d4",
+                  "expression": "0.00 mm",
+                  "value": 0.0,
+                  "unit": "mm"
+                }
+              ],
+              "timeline": [
+                {
+                  "name": "Sketch1",
+                  "health": 0,
+                  "message": ""
+                },
+                {
+                  "name": "ProbePipe",
+                  "health": 0,
+                  "message": ""
+                }
+              ],
+              "bodies": [
+                {
+                  "name": "Body1",
+                  "solid": true,
+                  "faces": 5,
+                  "edges": 9,
+                  "vertices": 6,
+                  "area_cm2": 17.366696097223944,
+                  "volume_cm3": 2.2170250336881643,
+                  "center_cm": [
+                    3.0,
+                    1.0015430658247724e-16,
+                    -0.13333333333333336
+                  ],
+                  "bounds_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      0.4
+                    ]
+                  ],
+                  "points_cm": [
+                    [
+                      0.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      0.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      0.0,
+                      0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      -0.46188021535170065,
+                      -0.4
+                    ],
+                    [
+                      6.0,
+                      0.0,
+                      0.4
+                    ],
+                    [
+                      6.0,
+                      0.46188021535170065,
+                      -0.4
+                    ]
+                  ],
+                  "surface_types": [
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane",
+                    "adsk::core::Plane"
+                  ]
+                }
+              ],
+              "meshes": []
+            }
+          },
+          "saved_sha256": "2217dd120284311cb548a5ae093d1895dd6724288227891086bee5c35b6f8f78",
+          "status": "accepted"
+        }
+      ],
+      "status": "accepted"
+    }
+  ],
+  "observations_sha256": "6737ddda8ca5acf69b26ce057df8b0a0e5d0cb202ac8fdb842595b7c4f36ce21",
+  "status": "accepted",
+  "documents_after": 0
+}

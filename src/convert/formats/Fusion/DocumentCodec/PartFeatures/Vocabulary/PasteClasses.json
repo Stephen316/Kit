@@ -1,0 +1,444 @@
+[
+  {
+    "ClassGuid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+    "BaseGuid": "2EDC2536-D95B-4469-8ACA-DC07124D9C43",
+    "SchemaVersion": 0,
+    "Members": [
+      {
+        "FieldName": "isActivated",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rDirectModelingData",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "493A89BA-E146-498D-9033-2783FE727AF4"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rLastFeatureBeforeActivate",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "A2052F46-21B4-4AAA-9AF1-C371F0AB6CAB"
+        },
+        "IsSaved": false
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcDMActivationFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "493A89BA-E146-498D-9033-2783FE727AF4",
+    "BaseGuid": "D0D7E795-ECF7-48A8-A7A3-F983C5A29F8B",
+    "SchemaVersion": 3,
+    "Members": [
+      {
+        "FieldName": "annotations",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "0266B343-BA66-42A0-AF36-0DE504AF78D9"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "entities",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "meshBodies",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "A8D4060F-FDFA-4149-B877-5D651339221E"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rBaseFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "2FCB0587-233E-449B-9724-9AAE5AA23647"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rolledOutMeshBodies",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "A8D4060F-FDFA-4149-B877-5D651339221E"
+            },
+            {
+              "KindValue": "bool"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rolledOutSketches",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "44A64366-4BD3-4B24-881A-F94C206E8F2D"
+            },
+            {
+              "KindValue": "bool"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rolledOutWorkGeometries",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40"
+            },
+            {
+              "KindValue": "bool"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "sketches",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "44A64366-4BD3-4B24-881A-F94C206E8F2D"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "workGeometries",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "1E5F6CE7-7544-4DE1-8C7B-6BACF6DC8E40"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcDirectModelingData",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "5988EB6C-011B-4012-B500-089A713F57BF",
+    "BaseGuid": "5C069ACB-169F-4555-9792-815B4671DDA0",
+    "SchemaVersion": 2,
+    "Members": [
+      {
+        "FieldName": "alterBodyUuid",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "bodyUuid",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "outBodyUuid",
+        "ValueType": {
+          "KindValue": "utf16"
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "BodyUuidProgenitor",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "BA3059E4-4B23-4D02-9D18-E7BB95C991F3",
+    "BaseGuid": "F02B9CA0-B47C-41EA-9B6C-3D0A4D4AA5AB",
+    "SchemaVersion": 1,
+    "Members": [
+      {
+        "FieldName": "bodyRefs",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rBaseFeature",
+        "ValueType": {
+          "KindValue": "ref",
+          "ClassGuid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSinkSurfGroups",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "rSourceSurfGroups",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcPasteBodies",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "D7015B81-AB4D-4C89-BED7-AA4411E1964A",
+    "BaseGuid": "2FCB0587-233E-449B-9724-9AAE5AA23647",
+    "SchemaVersion": 4,
+    "Members": [
+      {
+        "FieldName": "AssoctedPIDMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "utf16"
+            },
+            {
+              "KindValue": "utf16"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isAssociatedMaterial",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isAssociative",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "isDeleteDMFeatures",
+        "ValueType": {
+          "KindValue": "bool"
+        },
+        "IsSaved": false
+      },
+      {
+        "FieldName": "sourceBodies",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "ref",
+              "ClassGuid": "D3937028-C20C-4E65-B010-94AD418A5C20"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcBaseFeature",
+    "ClassSpace": "Fusion"
+  },
+  {
+    "ClassGuid": "F02B9CA0-B47C-41EA-9B6C-3D0A4D4AA5AB",
+    "BaseGuid": "BADF6309-013D-48F0-9AB0-0C05FB086CF4",
+    "SchemaVersion": 7,
+    "Members": [
+      {
+        "FieldName": "Source2CurrentDMThreadMap",
+        "ValueType": {
+          "KindValue": "map",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            },
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "dcReparentRecords",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "deleteBodies",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "reparentDecals",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "reparentedAnnotations",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "reparentedAnnotationsStatus",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "reparentedJointOrigins",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "restructuredGeometricRelationships",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "restructuredJoints",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      },
+      {
+        "FieldName": "restructuredMotionLinks",
+        "ValueType": {
+          "KindValue": "sequence",
+          "Arguments": [
+            {
+              "KindValue": "unsupported"
+            }
+          ]
+        },
+        "IsSaved": true
+      }
+    ],
+    "IsValue": false,
+    "NameValue": "DcReparentBodiesFeature",
+    "ClassSpace": "Fusion"
+  }
+]

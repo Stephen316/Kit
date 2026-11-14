@@ -1,5 +1,6 @@
 from dataclasses import dataclass as MakeDataClass
 
+from convert.formats.Fusion.SegmentCodec.Metadata.MetaContext import MetaContext
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaHeader import MetaHeader
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import (
     MetaClass,
@@ -19,3 +20,4 @@ class MetaSegment:
     NextId: int
     Reserved: int
     Properties: tuple[MetaProperty, ...]
+    Contexts: tuple[MetaContext, ...] = ()

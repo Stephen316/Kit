@@ -5,6 +5,8 @@
 This reference describes isolated research into CAD formats.
 It does not authorize vendor automation in production conversion.
 The original research record is [re/Methodology.md](../../../re/Methodology.md).
+The required method for new format research is the [instruction book](../../../re/Playbook/README.md).
+Read the [CAD success criteria](../Operations/CadSuccessCriteria.md) before any research task.
 
 ## Research sequence
 
@@ -54,6 +56,7 @@ It does not prove every branch or target-application acceptance.
 
 Record the status next to the field or feature family.
 Do not replace an unknown field with recorded donor bytes in production output.
+The [Fusion donor data ban](FusionDonorBan.md) gives the replacement procedure and a review checklist.
 
 ## Caches and derived values
 
@@ -76,6 +79,8 @@ It does not establish production readiness.
 
 ## Related information
 
+- [CAD success criteria](../Operations/CadSuccessCriteria.md)
+- [Reverse engineering instruction book](../../../re/Playbook/README.md)
 - [Neutral-first automation plan](AutomationPlan.md)
 - [Implementation steps and progress comments](AutomationSteps.md)
 - [Research tools](Tooling.md)

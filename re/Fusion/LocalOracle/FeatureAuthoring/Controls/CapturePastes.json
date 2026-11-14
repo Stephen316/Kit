@@ -1,0 +1,561 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native copy and paste body controls created through the Fusion API and exported locally; evidence for Kit feature authoring, not Kit acceptance",
+  "controls": [
+    {
+      "name": "PastePlain",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body paste",
+            "object_type": "adsk::fusion::CopyPasteBody",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "file": "PastePlain.f3d",
+      "sha256": "8bca63f6c0186a937d58af0dbf3091059dca40ab9e5a2b76cd47139bdacf5201",
+      "bytes": 81543,
+      "dump": {
+        "entities": 303,
+        "properties": 287,
+        "schema_reply": "Current active document's all meta type schemas were successfully dumped out to file <tmp>/kit-paste-dumps/PastePlain.schema.xml"
+      }
+    },
+    {
+      "name": "PasteFillet",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Corner round",
+            "object_type": "adsk::fusion::FilletFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Body paste",
+            "object_type": "adsk::fusion::CopyPasteBody",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "1",
+            "unit": ""
+          },
+          {
+            "name": "d4",
+            "expression": "3 mm",
+            "unit": "mm"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9968838110342533,
+              1.497689865276919,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              1.9968838110342533,
+              1.497689865276919,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "file": "PasteFillet.f3d",
+      "sha256": "4faec07d2c2f90910c58f05da7a4991a4e6db52aa516090dc2c5f5105ddb47ea",
+      "bytes": 84870,
+      "dump": {
+        "entities": 325,
+        "properties": 309,
+        "schema_reply": "Current active document's all meta type schemas were successfully dumped out to file <tmp>/kit-paste-dumps/PasteFillet.schema.xml"
+      }
+    },
+    {
+      "name": "PasteTwice",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "First paste",
+            "object_type": "adsk::fusion::CopyPasteBody",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Second paste",
+            "object_type": "adsk::fusion::CopyPasteBody",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body3",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      "file": "PasteTwice.f3d",
+      "sha256": "4d3eda53bcd26c43cbf1128b32a6070925fe2bc8da1d605d89b09554d2aeffd3",
+      "bytes": 84990,
+      "dump": {
+        "entities": 333,
+        "properties": 317,
+        "schema_reply": "Current active document's all meta type schemas were successfully dumped out to file <tmp>/kit-paste-dumps/PasteTwice.schema.xml"
+      }
+    },
+    {
+      "name": "PasteSecond",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post sketch",
+            "object_type": "adsk::fusion::Sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post extrude",
+            "object_type": "adsk::fusion::ExtrudeFeature",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Post paste",
+            "object_type": "adsk::fusion::CopyPasteBody",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "unit": "deg"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "unit": "mm"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "unit": "deg"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              2.0,
+              1.5,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "name": "Body2",
+            "solid": true,
+            "volume_cm3": 1.5707963267948295,
+            "area_cm2": 7.853981633974483,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              5.5,
+              1.0,
+              0.0
+            ],
+            "max_cm": [
+              6.5,
+              2.0,
+              2.0
+            ],
+            "center_cm": [
+              5.99999999989543,
+              1.4999999999999993,
+              0.9999999999999996
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "name": "Body3",
+            "solid": true,
+            "volume_cm3": 1.5707963267948295,
+            "area_cm2": 7.853981633974483,
+            "faces": 3,
+            "edges": 2,
+            "vertices": 2,
+            "min_cm": [
+              5.5,
+              1.0,
+              0.0
+            ],
+            "max_cm": [
+              6.5,
+              2.0,
+              2.0
+            ],
+            "center_cm": [
+              5.99999999989543,
+              1.4999999999999993,
+              0.9999999999999996
+            ],
+            "surface_types": [
+              0,
+              0,
+              1
+            ]
+          }
+        ]
+      },
+      "file": "PasteSecond.f3d",
+      "sha256": "09cbfd15e823ac026c70dd2ccc6b1c7af343d572026bf339996ea5d75372e099",
+      "bytes": 82788,
+      "dump": {
+        "entities": 356,
+        "properties": 340,
+        "schema_reply": "Current active document's all meta type schemas were successfully dumped out to file <tmp>/kit-paste-dumps/PasteSecond.schema.xml"
+      }
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

@@ -1,0 +1,86 @@
+name: Fusion compatibility
+
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: FusionCompatibility-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  archive-compatibility:
+    name: Fusion archive compatibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Verify packaged native schema provenance
+        run: uv run --no-sync --python 3.14 python re/Fusion/Reconstruction/EntityGraph/PromoteCatalog.py --check
+
+      - name: Exercise native document, entity, material, and geometry archives
+        run: >-
+          uv run --no-sync --python 3.14 pytest
+          -p no:cacheprovider
+          --numprocesses logical --dist load --maxschedchunk 1
+          tests/convert/formats/FusionCodec/Parameters/FusionParamArchiveTests.py
+          tests/convert/formats/FusionCodec/Parameters/FusionAllocTests.py
+          tests/convert/formats/FusionCodec/Parameters/FusionFeatureTests.py
+          tests/convert/formats/FusionCodec/Features/FeatureRejectTests.py
+          tests/convert/formats/FusionCodec/Geometry/GeometryArchiveTests.py
+          tests/convert/formats/FusionCodec/Geometry/Prism
+          tests/convert/formats/FusionCodec/Geometry/Frustum
+          tests/convert/formats/FusionCodec/Brep/HistoryArchiveTests.py
+          tests/convert/formats/FusionCodec/Brep/HistoryStateTests.py
+          tests/convert/formats/FusionCodec/Brep/SnapshotArchiveTests.py
+          tests/convert/formats/FusionCodec/Brep/SourceLinkTests.py
+          tests/convert/formats/FusionCodec/Brep/BrepReadArchiveTests.py
+          tests/convert/formats/FusionCodec/Brep/BrepReadRejectTests.py
+          tests/convert/formats/FusionCodec/Brep/TagArchiveTests.py
+          tests/convert/formats/FusionCodec/Brep/SketchArchiveTests.py
+          tests/convert/formats/FusionCodec/Brep/Prism
+          tests/convert/formats/FusionCodec/Brep/Journal
+          tests/convert/formats/FusionCodec/Brep/Planar
+          tests/convert/formats/FusionCodec/Brep/GeometryState
+          tests/convert/formats/FusionCodec/Brep/Frustum
+          tests/convert/formats/FusionCodec/Brep/Round
+          tests/convert/formats/FusionCodec/Brep/Complex
+          tests/convert/formats/FusionCodec/Brep/Spline
+          tests/convert/formats/FusionCodec/Materials/MaterialReadTests.py
+          tests/convert/formats/FusionCodec/Materials/MaterialWriteTests.py
+          tests/convert/formats/FusionCodec/Materials/MaterialStoreTests.py
+          tests/convert/formats/FusionCodec/Materials/MaterialPadTests.py
+          tests/convert/formats/FusionCodec/Materials/MaterialLinkTests.py
+          tests/convert/formats/FusionCodec/Materials/Package
+          tests/convert/formats/FusionCodec/Mesh
+          tests/convert/formats/FusionCodec/Entities
+          tests/convert/formats/FusionCodec/Containers
+          tests/convert/formats/FusionCodec/Documents
+          tests/convert/formats/FusionCodec/Corpus
+          tests/convert/formats/FusionCodec/Bundles
+          tests/convert/formats/FusionCodec/Drawings
+          tests/convert/formats/FusionCodec/Links
+          tests/convert/formats/FusionCodec/TSpline
+          tests/convert/formats/FusionCodec/SavedCorpus
+          tests/convert/api/Fusion
+          tests/convert/api/ApiCatalogTests.py
+          tests/convert/api/ApiFusionTests.py

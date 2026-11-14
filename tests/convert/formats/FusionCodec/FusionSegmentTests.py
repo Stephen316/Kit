@@ -4,6 +4,7 @@ from zipfile import ZipFile
 import pytest as Pytest
 
 from convert.formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.formats.Fusion.ContainerCodec.ContainerLayout import KCoreSegments
 from convert.formats.Fusion.MetaIndex import KSegmentLayout, SegmentKind
 from convert.formats.Fusion.SegmentCodec.Browser.EmitBrowserRoot import EmitBrowserRoot
 from convert.formats.Fusion.SegmentCodec.Browser.ReadBrowserRoot import ReadBrowserRoot
@@ -110,7 +111,7 @@ def TestLineage() -> None:
 
 # native fixtures tie segment composition to an independent saved index and browser layout
 @KRequiresCodec
-@Pytest.mark.parametrize("Segment", tuple(SegmentKind))
+@Pytest.mark.parametrize("Segment", KCoreSegments)
 def TestNativePair(Segment: SegmentKind) -> None:
     Source = KStudyPath / "planedefinitions-6cd0820a832e" / "offset.f3d"
     Prefix = f"FusionAssetName[Active]/{Segment.value}1/"

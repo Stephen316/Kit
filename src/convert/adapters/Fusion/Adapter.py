@@ -3,6 +3,7 @@ from convert.adapters.base.ContractTypes import KSourceType
 from convert.adapters.base.ProbeResult import ProbeResult
 from convert.adapters.base.ReadOptions import ReadOptions
 from convert.adapters.Fusion.AdapterInfo import KReaderInfo
+from convert.adapters.Fusion.Bridge.ReadStrict import ReadStrict
 from convert.adapters.Fusion.ArchiveProbe import ProbeFusion
 from convert.adapters.Fusion.ReaderOptions import GetFusionOpts
 from convert.adapters.Fusion.StreamRead import ReadSourceMut
@@ -34,6 +35,8 @@ class FusionReader:
         self, SourceData: KSourceType, Options: ReadOptions | None = None
     ) -> CadDocument:
         Settings = Options if Options is not None else ReadOptions()
+        if Settings.strict:
+            return ReadStrict(SourceData, Settings)
         HistoryId, Inflate = GetFusionOpts(Settings)
         Document = ReadFusionDoc(
             ReadSourceMut(SourceData),

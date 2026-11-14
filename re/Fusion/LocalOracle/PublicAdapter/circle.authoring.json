@@ -1,0 +1,252 @@
+{
+  "$type": "CadDocument",
+  "assembly": null,
+  "bodies": {
+    "$tuple": []
+  },
+  "brep": null,
+  "brep_payloads": {
+    "$tuple": []
+  },
+  "capabilities": {
+    "$frozenset": []
+  },
+  "configurations": {
+    "$tuple": [
+      {
+        "$type": "Configuration",
+        "active": true,
+        "attributes": {},
+        "id": "default",
+        "name": "Public circle",
+        "overrides": {
+          "$tuple": []
+        },
+        "parent_id": null,
+        "suppressed_feature_ids": {
+          "$tuple": []
+        }
+      }
+    ]
+  },
+  "diagnostics": {
+    "$tuple": []
+  },
+  "feature_timeline": {
+    "$tuple": [
+      {
+        "$type": "FeatureStep",
+        "attributes": {},
+        "configuration_states": {
+          "$tuple": []
+        },
+        "definition": null,
+        "id": "sketch",
+        "input_feature_ids": {
+          "$tuple": []
+        },
+        "kind": {
+          "$enum": "FeatureKind",
+          "value": "reference"
+        },
+        "name": "Public Profile",
+        "operation": null,
+        "order": 0,
+        "parameter_ids": {
+          "$tuple": []
+        },
+        "provenance": null,
+        "selection_ids": {
+          "$tuple": []
+        },
+        "sketch_id": "sketch",
+        "suppressed": false
+      }
+    ]
+  },
+  "materials": {
+    "$tuple": []
+  },
+  "meshes": {
+    "$tuple": []
+  },
+  "metadata": {
+    "fusion.authoring": {
+      "spec": {
+        "fields": {
+          "BodyName": "Public Solid",
+          "ConstrainRectangle": false,
+          "DepthMm": 23.0,
+          "DepthParamName": "rectangleDepth",
+          "ExtrusionName": "Public Extrusion",
+          "LengthMm": 17.0,
+          "Material": {
+            "fields": {
+              "Color": {
+                "fields": {
+                  "AlphaValue": 1.0,
+                  "BlueValue": 0.6,
+                  "GreenValue": 0.4,
+                  "RedValue": 0.2
+                },
+                "record": "convert.formats.Fusion.MaterialCodec.Models.ColorValue.ColorValue"
+              },
+              "Density": 2870.0,
+              "NameValue": "Public Material"
+            },
+            "record": "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec"
+          },
+          "ParamComment": "",
+          "ParamName": "publicHeight",
+          "ProfileKind": "circle",
+          "RadiusMm": 12.0,
+          "SketchName": "Public Profile",
+          "TaperDegrees": 0.0,
+          "Title": "Public circle",
+          "WidthMm": 19.0,
+          "WidthParamName": "rectangleWidth"
+        },
+        "record": "convert.formats.Fusion.DocumentCodec.Model.DocumentSpec.DocumentSpec"
+      },
+      "version": 1
+    }
+  },
+  "parameters": {
+    "$tuple": [
+      {
+        "$type": "Parameter",
+        "attributes": {
+          "comment": ""
+        },
+        "expression": null,
+        "id": "length",
+        "name": "publicHeight",
+        "owner_id": "",
+        "provenance": null,
+        "role": {
+          "$enum": "ParameterRole",
+          "value": "driving"
+        },
+        "value": {
+          "$type": "ParameterValue",
+          "kind": {
+            "$enum": "ValueKind",
+            "value": "length"
+          },
+          "unit": "mm",
+          "value": 17.0
+        }
+      }
+    ]
+  },
+  "schema_version": "1.0",
+  "selections": {
+    "$tuple": []
+  },
+  "sketches": {
+    "$tuple": [
+      {
+        "$type": "Sketch",
+        "attributes": {},
+        "closed_profile_entity_ids": {
+          "$tuple": [
+            {
+              "$tuple": [
+                "circle"
+              ]
+            }
+          ]
+        },
+        "constraints": {
+          "$tuple": []
+        },
+        "entities": {
+          "$tuple": [
+            {
+              "$type": "SketchEntity",
+              "attributes": {},
+              "construction": false,
+              "fixed": false,
+              "geometry": {
+                "$type": "CircleGeometry",
+                "center": {
+                  "$type": "Vector2",
+                  "x": 0.0,
+                  "y": 0.0
+                },
+                "radius": 12.0
+              },
+              "id": "circle",
+              "kind": {
+                "$enum": "GeometryKind",
+                "value": "circle"
+              },
+              "provenance": null
+            }
+          ]
+        },
+        "id": "sketch",
+        "name": "Public Profile",
+        "parameter_ids": {
+          "$tuple": []
+        },
+        "provenance": null,
+        "support_plane_id": "plane",
+        "suppressed": false
+      }
+    ]
+  },
+  "source": {
+    "$type": "CadSource",
+    "application_version": "",
+    "attributes": {},
+    "container_version": "",
+    "format_id": "fusion.f3d",
+    "path": "",
+    "sha256": ""
+  },
+  "support_planes": {
+    "$tuple": [
+      {
+        "$type": "SupportPlane",
+        "attributes": {},
+        "id": "plane",
+        "name": "XY",
+        "offset_parameter_id": null,
+        "provenance": null,
+        "support_selection_id": null,
+        "transform": {
+          "$type": "Transform",
+          "origin": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "x_axis": {
+            "$type": "Vector3",
+            "x": 1.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "y_axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 1.0,
+            "z": 0.0
+          },
+          "z_axis": {
+            "$type": "Vector3",
+            "x": 0.0,
+            "y": 0.0,
+            "z": 1.0
+          }
+        }
+      }
+    ]
+  },
+  "units": {
+    "$enum": "UnitSystem",
+    "value": "mm"
+  }
+}

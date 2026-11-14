@@ -1,0 +1,76 @@
+{
+  "schema": "FusionCorpusSchemaProfileSummary/1",
+  "scope": "Schema-only production descriptors selected by each archive metadata; no decoded record values or entity identities",
+  "fixture": "CorpusProfiles.json.xz",
+  "uncompressedSha256": "393ee5a6e6cfee54dcf225015fa66739fd872eb0427faf7370cbccbb29f765f6",
+  "compressedSha256": "0f4ee6128343eed930e4bb9521180dde53c4ed88e48ccf59c92500381a20df4d",
+  "archiveCount": 712,
+  "classVersionPairs": 412,
+  "uniqueClasses": 412,
+  "inventorySha256": "76431db539e32797f90de6f26d6235ef6de01124e677d0f7cbe6606ed6fbb274",
+  "reflectionSha256": "54d93410a407ff808e5824c5ad797bf63fa89b3686e15be848960ca49ba4a161",
+  "sketchSplitEvidence": [
+    {
+      "path": "SketchSplitSemantics.json",
+      "sha256": "31677043cb50871daf5927dd3ae57c1c2272bf29fb32d3d8a83e085cb00d98fd"
+    },
+    {
+      "path": "SketchSplitSamples.json",
+      "sha256": "3386d71cf4febce2b1d0f950cde5693053aa7948676ca3a4794c805c8fdea22b"
+    }
+  ],
+  "unsupportedCppTypes": [
+    "ENTITY*",
+    "Ns::ASMInterface::SafeEntityPtr",
+    "Ns::Comp::GeometricRelationshipConflict",
+    "Ns::Comp::JointConflict",
+    "Ns::Geometry::PMIType",
+    "Ns::MetaType const*",
+    "autodesk::platform::assets::IAssetInstance*",
+    "long long",
+    "std::__1::unordered_map<Ns::PassiveRef<Na::DesignCapture::DcFeature>, int, boost::hash<Ns::PassiveRef<Na::DesignCapture::DcFeature>>, std::__1::equal_to<Ns::PassiveRef<Na::DesignCapture::DcFeature>>, std::__1::allocator<std::__1::pair<Ns::PassiveRef<Na::DesignCapture::DcFeature> const, int>>>",
+    "std::__1::unordered_set<Ns::PassiveRef<Na::Relationship>, std::__1::hash<Ns::PassiveRef<Na::Relationship>>, std::__1::equal_to<Ns::PassiveRef<Na::Relationship>>, std::__1::allocator<Ns::PassiveRef<Na::Relationship>>>",
+    "std::__1::unordered_set<unsigned long long, std::__1::hash<unsigned long long>, std::__1::equal_to<unsigned long long>, std::__1::allocator<unsigned long long>>"
+  ],
+  "unsupportedPersistedFields": [
+    {
+      "class": "GeometricRelationshipOccurrenceStateValueMetaType",
+      "classGuid": "07AA378F-CDB4-4030-914F-11E6F335DC65",
+      "version": 1,
+      "field": "pGeomRelConflict",
+      "outerKind": "optional"
+    },
+    {
+      "class": "PMIAnnotationsMetaType",
+      "classGuid": "AD3F9695-7FDF-4708-AE05-B21309CDE969",
+      "version": 1,
+      "field": "highWaterMarks",
+      "outerKind": "map"
+    },
+    {
+      "class": "JointOccurrenceStateValueMetaType",
+      "classGuid": "E9577D96-F5AA-4B6A-B7DE-AB4B6FA509D1",
+      "version": 2,
+      "field": "conflict",
+      "outerKind": "optional"
+    }
+  ],
+  "unresolvedReferenceTypes": [],
+  "archiveFailures": [],
+  "newQualifications": [
+    "Nonidentity matrix bool+16f64; the static evidence that first supported it was removed",
+    "Line segment, ellipse, NURB and geometry arrays use the callback order that frames every corpus record",
+    "ASM recipes restrict the versioned union to observed version3",
+    "Named progenitor auxiliary value is exactly four bytes, read as tag:uint32",
+    "Profile tag sets are read as start/end adjacent primary tag identities; this naming is not confirmed by a black-box experiment",
+    "Sketch split uint32 fields are one-based ordinal and total count; every corpus split pair satisfies 1 <= ordinal <= total",
+    "Sketch direction admits 0, 1 and UINT32_MAX, all observed in the corpus"
+  ],
+  "retainedGuards": [
+    "Sketch tags retain version3/secondary0/topologyRoleFlags0 restrictions pending additional semantics",
+    "Sketch split pairs reject zero ordinal/count or ordinal greater than total, without a corpus-derived maximum",
+    "Reference target class constraints remain enabled",
+    "Unknown nested types reject nonempty values"
+  ],
+  "runtimeVerification": "Not run locally; all production decode/reencode verification belongs to remote compatibility CI"
+}

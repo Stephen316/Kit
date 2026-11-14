@@ -1,0 +1,278 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "scope": "Native boundary boolean, round extent, edge feature, offset face and feature pattern controls created through the Fusion API and exported locally; evidence for Kit feature authoring, not Kit acceptance",
+  "controls": [
+    {
+      "name": "OffsetTop",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Top offset",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "5 mm",
+            "value": 0.5,
+            "unit": "mm",
+            "role": "distance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.5
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "OffsetTop.f3d",
+      "sha256": "603f9811110c1c59ef242ae177932852b54ca96935348cc7bf5db5f1180c760a",
+      "bytes": 81908
+    },
+    {
+      "name": "OffsetSide",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Side offset",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "role": "distance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 26.400000000000002,
+            "area_cm2": 56.00000000000001,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.4,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "profiles": [
+          1
+        ]
+      },
+      "file": "OffsetSide.f3d",
+      "sha256": "ebfc28e236d32c55df647fba1a03773a36bcee24a6eeda8ddcff909c7adca1c7",
+      "bytes": 79588
+    },
+    {
+      "name": "OffsetBore",
+      "status": "captured",
+      "observed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Hole extrude sketch",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Hole extrude",
+            "health": 0,
+            "message": ""
+          },
+          {
+            "name": "Bore offset",
+            "health": 0,
+            "message": ""
+          }
+        ],
+        "parameters": [
+          {
+            "name": "d1",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d2",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d3",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d4",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d5",
+            "expression": "1 mm",
+            "value": 0.1,
+            "unit": "mm",
+            "role": "distance"
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 22.994690350851222,
+            "area_cm2": 56.02123859659494,
+            "faces": 7,
+            "edges": 14,
+            "vertices": 10,
+            "min_cm": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              4.0,
+              3.0,
+              2.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "profiles": [
+          1,
+          1
+        ]
+      },
+      "file": "OffsetBore.f3d",
+      "sha256": "d99695c1a10a37c60bbd87c959f5700f95669f3819d2223458815e967f9e85c7",
+      "bytes": 86391
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

@@ -1,0 +1,750 @@
+{
+  "method": "Greedy coverage of corpus Design class declarations missing from the initial initialized runtime schema; largest uncovered gain, then smallest archive",
+  "limitations": "Declaration coverage does not imply runtime initialization, acceptance or complete wire schema",
+  "universe_count": 403,
+  "initially_initialized_count": 174,
+  "selected_count": 64,
+  "selected": [
+    {
+      "path": "re/Fusion/Study/jointmodes-20d3aef2a07d/pin_slot.f3d",
+      "sha256": "5839271bf11e4fcbe9f1151875d09cb5fa38a1d34869166b7412945eca0cf878",
+      "size": 82659,
+      "new_declarations": [
+        "02e8aa49-08b8-439c-a8c7-221be20143d8",
+        "0f38e3c4-2e39-470b-a4fd-d3187224fb9f",
+        "0f97b226-5384-46fd-8a4d-fe418e735f8e",
+        "162d3da8-6a30-4bfe-bc78-698fa32d28dc",
+        "1dd16f52-2005-43de-937e-070c5cab03e3",
+        "21e03ec1-0e53-406d-a852-6d088d4d1e95",
+        "27b2054b-ca98-495f-b764-2293678e83f2",
+        "2d6e13a1-bbef-4fb3-9277-00d99f634136",
+        "2d8d253b-4d92-4aff-aba8-b4162bd0c4f5",
+        "2e3ac990-483d-4a55-8662-c064b976a957",
+        "3b6814f4-d87b-46bd-ad9d-0be07880f7bb",
+        "43ed63cb-3f62-4d22-b8d9-58068abfc06e",
+        "455a5d29-4748-424c-896e-65f49bee1f85",
+        "4645034d-c073-40b3-902c-a59066c21085",
+        "54f9ace8-b5b8-4a6e-b582-64f629511de4",
+        "65768890-8978-4981-9bcb-2e005e8e67cf",
+        "69ee2fa7-bcc7-449e-9ca9-976cefdfed44",
+        "6d029c3e-bad8-4daf-a7a3-7cec6d1f9a52",
+        "731f329b-5800-4c8a-8509-9c3f056f64af",
+        "735fd678-4add-4f4b-a8b1-88caa010394e",
+        "76e0bca2-2b9b-46d4-8a3b-c618c262eb8f",
+        "78b9defc-da1c-4ed0-a395-40890bdae590",
+        "7ace3a9e-a339-4754-b283-3ad3bddd5314",
+        "7f5a0426-1d2a-4dc4-9f06-58631f69d2f5",
+        "855f0a64-6286-4ffc-b918-bc394f600107",
+        "86773490-37a9-48f9-bcf1-70d521a03f1d",
+        "8c188f11-5d1b-4e1c-8e87-af7214ca3c83",
+        "8dfdd543-f823-43aa-bdaf-c638e023f0a0",
+        "96cbea21-17e0-4bcb-ba77-04ea87b47934",
+        "98542eb9-a4f2-4137-a808-dbb5b3cd6159",
+        "994c518a-a831-400a-b7c7-16dac55f4f1c",
+        "9dd3d1f9-3dab-4230-937f-240074b40ce7",
+        "abbb9453-b093-4877-9077-69c4f286f76f",
+        "b96995c7-216b-4189-a583-c4d39d0da2c8",
+        "badf6309-013d-48f0-9ab0-0c05fb086cf4",
+        "c2c193f2-e833-4842-8c93-a5b903f3a345",
+        "c3244640-3dd5-42bd-9f7e-139c09cf1ea3",
+        "ca12ec7a-fb0a-4045-a429-072d0874b557",
+        "dca267ed-d615-4934-b64f-ad805e8003e2",
+        "e554cffe-a849-4b9d-8323-b6fe2180d7c9",
+        "e7a40f47-69e6-4b3c-8a72-ed2f15ca4969a",
+        "ece74e76-963c-4bf4-a70d-01f62ab233a8",
+        "ff415d89-a1db-44ac-b824-e9a772b86ed4"
+      ],
+      "class_count": 214
+    },
+    {
+      "path": "re/Fusion/Study/pathpatterncomposites-b6b4cf615504/spline_along.f3d",
+      "sha256": "b15edb1bb1bc771854cc269d1dbbfb00f13c22b1115bbf97e08e4a53857f4a2f",
+      "size": 88598,
+      "new_declarations": [
+        "2243f105-e1ca-40f2-a3d7-24507e61ac5e",
+        "2319971d-8e07-441a-8f16-11c8f6f862d4",
+        "3ef91258-fe47-45a5-957d-1295c3679496",
+        "4224e565-f64f-4532-93f4-abe3ab9ca574",
+        "4f7231df-25a3-48ab-9327-8d79b19e4b4d",
+        "518ad6d6-763a-472c-9f19-9cff03e8dc45",
+        "7acc2a03-0261-4879-a14a-a93d661a5bdc",
+        "8db90dae-3ff5-4e01-bacc-00aaa3ebb3ef",
+        "9716f783-676d-42e0-93f9-ebf273e7c035",
+        "a085449a-5144-4b2b-b455-7f7035a40559",
+        "ad719c1a-11af-4537-bb41-030a9091d36b",
+        "b0b3d9e5-1c25-47bc-abcd-e723f193df1b",
+        "b28c1cce-7fbd-43d2-8313-02bec60f73fd",
+        "be1fb171-d98a-4a4d-99c2-3738627cf79c",
+        "ca4d1989-5940-421e-9472-6ec13c9655a9",
+        "cb818863-9c9d-432e-858a-4b4b3963f7e0",
+        "d82e012f-6ddd-4aed-bde1-c0f7f9100b9b",
+        "d95dbac0-238b-4429-a0ad-4ae5bee79adf",
+        "e2cefd18-d755-4e09-8e7f-953a2f6d43f8",
+        "ee518f9e-9cc3-4424-9cab-2b92426e5312",
+        "f81c561a-b091-40f8-a875-ba72fd2fbfe8"
+      ],
+      "class_count": 193
+    },
+    {
+      "path": "re/Fusion/Study/meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+      "sha256": "ddf4dcac983c748405f084dd19cab7b03b90371b84c0bede77b434a03dcabbfd",
+      "size": 57342,
+      "new_declarations": [
+        "1aa9cc7b-5c34-45da-ae14-0444e7f966f2",
+        "22975a91-16ad-4cc9-a5e4-b4f8b4c27881",
+        "2fcb0587-233e-449b-9724-9aae5aa23647",
+        "3ce194e6-a591-44ab-9af1-c695b3dcf486",
+        "443807ad-8025-41a3-8a50-5157579c3d78",
+        "493a89ba-e146-498d-9033-2783fe727af4",
+        "6fc173dc-c7e3-402c-a8c0-891a26dadf8d",
+        "90b8d2c6-05bb-4d0f-89ef-83aac46ca1ff",
+        "95644cd5-1338-40f2-8016-1fb68db06296",
+        "99f6967e-ed35-4222-b906-5ccf0ac70b53",
+        "a1baa3f6-4b67-4a0d-bacc-75f38a2230f3",
+        "a8338a26-5436-433c-8bac-c3cf024ad595",
+        "b19508e6-f52d-412b-babb-a618abfffe79",
+        "d7015b81-ab4d-4c89-bed7-aa4411e1964a",
+        "d869265f-f339-4751-a066-91d30f81ff08",
+        "e3eb3760-4362-48d6-abf3-698b0c12c5a9",
+        "e5b3f49a-d8d0-4eef-bc2b-fcddaef9745e",
+        "ea90da22-556c-4c61-89bb-20c2681b7a9d",
+        "f85f2e62-7627-4922-a16d-53e1275d2aac"
+      ],
+      "class_count": 160
+    },
+    {
+      "path": "re/Fusion/Study/embosstext-cd769aa41cdf/text_deboss.f3d",
+      "sha256": "aec87d4aa59dc4e77e774c95e98b74d83651395697d57c921257d07219ca89c8",
+      "size": 97028,
+      "new_declarations": [
+        "00d157c2-2332-4bd5-bb53-048c4081d1c3",
+        "16defc4d-1816-4fb0-8e39-9bda23954248",
+        "4b31da1b-fcd6-4527-bc3e-be1fbaf867fe",
+        "559fc9ce-ef4a-47d6-b91d-7780e11e2c77",
+        "5662f619-2281-4ad9-93dc-1fcfda1062e7",
+        "60403d47-0c49-49b0-bde8-1679608164a2",
+        "8b369926-123f-4f9d-878e-6d4c076128d3",
+        "92f9a5f4-09aa-4b1b-9ee6-df574d1d183c",
+        "9b5b035f-5b40-4b8b-946c-34a536cc1ca0",
+        "c3a9ecce-7d25-4432-a645-3a0d9687f22a",
+        "e0618268-3a06-450e-9e94-7cf4c2e66802",
+        "e5460b7b-000b-4a70-ab52-4c2fcc470eb2",
+        "e7a6b3f8-3c46-4fa7-a54e-beb0c93d2dea"
+      ],
+      "class_count": 187
+    },
+    {
+      "path": "re/Fusion/Study/sketchtools-85066e723410/sketchtools.f3d",
+      "sha256": "c224ab8c79f70f2b33e6c1988f7592a50b2213f515d2f9ecd7fa208a4b17046e",
+      "size": 173779,
+      "new_declarations": [
+        "02d7cf7c-b3b5-594b-9837-df7e0340878a",
+        "04e598ff-2979-5e41-8bc0-5c435c810909",
+        "0c3f3829-f0db-4379-9479-cfef71087971",
+        "33c30948-5a39-5e71-a836-a6928ca6b4de",
+        "8269e861-0bb7-47e0-9911-5ae3ec475058",
+        "8c780195-72c0-4a56-a911-e43ab14357f2",
+        "afc07c10-99ac-5304-ae1b-dbee335b0e43",
+        "d2c6c8c8-34bc-523b-8455-df66128fa4e5",
+        "d3bd153b-eb8a-405e-9d29-69ee0c3d227c",
+        "f09aef85-2a09-5df1-bb5b-79a2e48d6cff"
+      ],
+      "class_count": 157
+    },
+    {
+      "path": "re/Fusion/Study/rulefilletsurfaces-7b26b40f98f7/offsets_one_three_witnesses.f3d",
+      "sha256": "e2aebce531cea29fae0e1a95aaf28ea98da69e28fff7ee393e24e025661d6255",
+      "size": 209821,
+      "new_declarations": [
+        "1589bc73-d484-4a6e-8e69-2a1531e845f5",
+        "4a557ce2-375c-4f69-aa76-2403109f1493",
+        "50aee8b4-9456-4dd7-847d-6f6c909bbb9d",
+        "5e1ec0d0-0361-40e8-8883-063ddfec3226",
+        "84845197-e802-48ea-ab39-fc7b0e6f4102",
+        "a07d5f17-68cb-464d-9935-bf68e98a865f",
+        "afba8f70-e8a6-42c7-af3d-691b5dbbbaf0",
+        "dfe2f969-631c-4978-9345-b58392ad6b9a"
+      ],
+      "class_count": 186
+    },
+    {
+      "path": "re/Fusion/Study/dimensions-f83a2edd2f72/dimensions.f3d",
+      "sha256": "26bd97755ee574099c63dcd4551f6a165db7313a37003ab673f6bc5cccb3dcb4",
+      "size": 214901,
+      "new_declarations": [
+        "24db790e-3dcd-4336-afa3-6f119ef2239b",
+        "58751243-fea8-41e6-bbc9-37960eb8164b",
+        "73762c3b-82dc-4632-93b0-b8fe1cc5282f",
+        "9f412b74-4fc8-400b-b922-29e7db86dd33",
+        "a9e23439-6f4f-4ed3-a610-319f0afabeed",
+        "ad96048d-3f96-4c03-a8aa-d7639f672447",
+        "f279874a-17ab-43da-bf8e-80259802d06e",
+        "ff23079a-d99c-47ab-940e-2f4e18f022ab"
+      ],
+      "class_count": 162
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/ruled_direction.f3d",
+      "sha256": "d4cef7122b2814e2b03c71ef397eed1f5ff63378811a5fe2d7f55f6bc794c387",
+      "size": 57500,
+      "new_declarations": [
+        "a274c21a-7c8a-4f96-8b10-7e3a760c8029",
+        "bb4edd5d-0be0-4e13-b667-365b7c99c972",
+        "bf77ae1a-e8f6-43ab-a325-a2c984af1c6b",
+        "d1ce84cc-84e0-4ba0-95d8-4dae97e6ebea",
+        "e17b013d-e8f7-45b2-9dfa-d31cd2ecfb2d",
+        "f2a7590d-6654-4674-b393-a2aef4fec48a"
+      ],
+      "class_count": 182
+    },
+    {
+      "path": "re/Fusion/Study/mirrorassemblydatum-700af16e9fc6/nested_occurrence_rotated_parent_xz.f3d",
+      "sha256": "363706dd7e634577ead81908ea327570920be027d82399eb0a6c8d02c73d383a",
+      "size": 64166,
+      "new_declarations": [
+        "046d6232-edab-414d-9cb0-a2e3f115ae1c",
+        "5988eb6c-011b-4012-b500-089a713f57bf",
+        "66e375ea-40f1-4115-8d83-0f23dd30593e",
+        "71bbedd5-81f8-4585-816b-05908c207204",
+        "9e2d2819-c150-4a61-8b38-38445e107d10",
+        "b1e5b971-c007-48c9-8ff5-f4ccd91f87a4"
+      ],
+      "class_count": 189
+    },
+    {
+      "path": "re/Fusion/Study/loftpointholdouts-bb91509a13e4/vertex_construction_sharp_end.f3d",
+      "sha256": "24ee7310ebf5e8dbb4725cf43966f0b8b078afbbfa661f0ef2eed18061259215",
+      "size": 107430,
+      "new_declarations": [
+        "2f3200ba-fdfb-48c6-97d4-71a4a0d86190",
+        "5f40832c-61aa-4a05-95b1-efa0ba483138",
+        "b0387387-0faa-4928-b189-feb34071d524",
+        "b6678572-c095-4dd1-9348-614677dd0b4a",
+        "c6acc94d-2248-421c-bfc3-885a5026559f"
+      ],
+      "class_count": 184
+    },
+    {
+      "path": "re/Fusion/Study/sketchsurfaceconstraints-5a2cd669cd19/coincident_to_plane.f3d",
+      "sha256": "57fb1d2a6d82ff780d3cf25c213efd85cd96078ac25eda3a2df81fa15fcf7bab",
+      "size": 33896,
+      "new_declarations": [
+        "312a88a1-fafe-40e8-9778-962fc7dc0acc",
+        "6f542de3-39a5-47d6-a55b-4ad354b879f1",
+        "ca72dd8e-2861-4ddd-9721-03039b5fb113",
+        "ee7ae727-682a-41a9-8780-c407b6d722dc"
+      ],
+      "class_count": 139
+    },
+    {
+      "path": "re/Fusion/Study/mirrorassemblydatum-65c867cc41d9/plane_xz_negative_offset.f3d",
+      "sha256": "78401cfaa71b4061c02bc262b06d05d3b2252e81071fd39619aa6720adaa4e25",
+      "size": 34134,
+      "new_declarations": [
+        "a7b2c3d4-9e8f-4a5b-8c1d-6e7f0a1b2c3d",
+        "c3f8a1d2-5e7b-4a9c-8d6f-2b1c4e5a9f7d",
+        "c444e6ad-33dc-4877-b037-a3a5518856b1",
+        "e8f5a2b1-4c3d-4e7f-9a8b-1d2e3f4a5b6c"
+      ],
+      "class_count": 139
+    },
+    {
+      "path": "re/Fusion/Study/sweeps-5f87eff25e24/arc_parallel.f3d",
+      "sha256": "ca7c5ad8ae8fac4e8be8fd252d60adb28cde18ee96a9ef29eb60401f079e464e",
+      "size": 72674,
+      "new_declarations": [
+        "3a811fa5-5af2-4a00-8758-104c9d09c5c4",
+        "b0b3fa59-c374-444f-b424-24aa5de41645",
+        "b3e4ab56-412b-45ea-85e5-79be88865b41",
+        "fcbb1707-4450-46b3-9e65-0f61682ea8ca"
+      ],
+      "class_count": 177
+    },
+    {
+      "path": "re/Fusion/Study/boundaryfills-a0953038318b/plane_first.f3d",
+      "sha256": "869e46f2d23f4a582537824cb277c0eabfa6c0c755188119c9695d3d6aee3276",
+      "size": 79045,
+      "new_declarations": [
+        "233d4e1b-1c2f-4622-96a0-0027622078cb",
+        "49004167-470d-4892-b50e-5c589b1486d2",
+        "5ac5b5cd-44c7-45b7-9cdc-f79b215a825d",
+        "772de81c-5009-4bb7-9d8c-54dbaf536216"
+      ],
+      "class_count": 179
+    },
+    {
+      "path": "re/Fusion/Study/specialfillets-d50f7a4f04e0/full_explicit.f3d",
+      "sha256": "3b6f907ec713f04afa321eb72dc312d9af55707960a4868a8fb81fa8d94c8302",
+      "size": 70686,
+      "new_declarations": [
+        "128cc0a6-678f-4785-88c1-58d60802efce",
+        "4c687846-ac85-4c6f-ba18-0cf629fea74c",
+        "a9d2884d-e7d1-4e8f-8961-b7d90bac64f1"
+      ],
+      "class_count": 178
+    },
+    {
+      "path": "re/Fusion/Study/partinglinedrafts-c4d07c76fcd5/fixed_three.f3d",
+      "sha256": "87b499b3d9ce3d1fcb87fadd9f22eb76dd3c6365fb2214fc80d12b1c070d0729",
+      "size": 71985,
+      "new_declarations": [
+        "7c5886ae-a774-4848-a89c-c3a578a9763a",
+        "a561ca2a-e017-48d0-951f-de677ba2cfe8",
+        "f4163a07-9e71-4c46-bd92-ace5b5b40bed"
+      ],
+      "class_count": 185
+    },
+    {
+      "path": "re/Fusion/Study/revolveaxes-36bd04ac77e1/custom_two_points.f3d",
+      "sha256": "db516e24d877f32d8a96c84f14d1d971d7f009758474bf9bde4de850c7f1789d",
+      "size": 73875,
+      "new_declarations": [
+        "63d2920d-7ec2-49c4-9f08-315197f9e657",
+        "803dec43-aea6-42cc-b8d0-f593b5124bdd",
+        "e3849a15-2fc6-42a0-af3a-2f1d7273b406"
+      ],
+      "class_count": 179
+    },
+    {
+      "path": "re/Fusion/Study/holeplacements-04adf73afe93/sketch_point.f3d",
+      "sha256": "b761d8a477fbcce38d0245398c8e647c8cf1691d24d9a7052007e304860b530f",
+      "size": 78429,
+      "new_declarations": [
+        "1c037a07-4a15-43f6-abfc-bbf61b9038d4",
+        "3cdccc70-f7ad-47c4-9112-38a52dd802d8",
+        "f1451ec8-11a4-4952-84ed-5ab7c13e2e83"
+      ],
+      "class_count": 186
+    },
+    {
+      "path": "re/Fusion/Study/pathpatterninputs-7edfa558db34/root_occurrence.f3d",
+      "sha256": "7d48d3f9a81deffe3cf60086de6a3249d835872834958199bb1b64d93f4d66be",
+      "size": 92277,
+      "new_declarations": [
+        "414a485f-2f33-4b4f-9641-b6d824e214af",
+        "8dc49a8a-45fb-4595-9f20-e482d17f16ec",
+        "ebcde6cc-ca52-44ad-a6b0-76265794e4bd"
+      ],
+      "class_count": 193
+    },
+    {
+      "path": "re/Fusion/Study/advanced-627f7fe095f4/advanced.f3d",
+      "sha256": "456ceccee3b551311d208298bdbe6974eaa4f22cde3512fbbf55e5f803f7a480",
+      "size": 213182,
+      "new_declarations": [
+        "664ad49f-207f-4cd5-8555-dd269e9f09ea",
+        "6eeafde5-59c4-424d-8ebe-77cdbc562017",
+        "e2670b5a-c8de-4aba-94aa-11da5127a65e"
+      ],
+      "class_count": 155
+    },
+    {
+      "path": "re/Fusion/Study/meshremoves-8b2188cd274d/one_remove_one.f3d",
+      "sha256": "757a1d4065fae22280748abb46c85ac3423758b863e9c64d90202e911f9cba13",
+      "size": 37040,
+      "new_declarations": [
+        "57a2e341-a23a-469d-b41d-59b57a9ad8b8",
+        "63a5a106-d239-4d6b-a96b-319ca9b9ba6a"
+      ],
+      "class_count": 148
+    },
+    {
+      "path": "re/Fusion/Study/meshcombinefacegroups-33142f03b86e/adjacent_pair_reversed.f3d",
+      "sha256": "9a1c4fd65e2b90e16ff6698cbe9f7afa12c5d30006f842e4c70e0277ee4d2cd8",
+      "size": 55496,
+      "new_declarations": [
+        "8136d47e-3955-4682-8bd7-b353b7b45624",
+        "ca2ae956-fd81-4ebd-a601-f93a0f335722"
+      ],
+      "class_count": 153
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/trim_positive.f3d",
+      "sha256": "ca3131f840d94b41e41bc208e8b1f00d0cf149a8f0ee046fb54143004f0cfd86",
+      "size": 55786,
+      "new_declarations": [
+        "da2bf3fe-24a1-45f4-9ded-53af92fab1e7",
+        "ff1741ae-e78b-4a5f-8418-751899e12f66"
+      ],
+      "class_count": 174
+    },
+    {
+      "path": "re/Fusion/Study/meshconverts-4b42d39fb1d5/faceted_open.f3d",
+      "sha256": "b645d6e125bab477c1ffd0f3f33051fb4dfdbb4e511c1165d227357323a97e7d",
+      "size": 56975,
+      "new_declarations": [
+        "62b85dc3-27b5-47ba-9f13-b2527b72ee49",
+        "d6fb6f05-98cd-4bff-bf90-594f77725dc1"
+      ],
+      "class_count": 155
+    },
+    {
+      "path": "re/Fusion/Study/pipemodes-87cfa7d8d82b/square.f3d",
+      "sha256": "76590704a94ffa35bd654e03aee9221083f6ffc636534e0172bee127416eda85",
+      "size": 59069,
+      "new_declarations": [
+        "73615646-8752-4ee6-ad02-0b90804b7cd7",
+        "9414c87f-8ea3-465d-9f78-ff2ff5e9881f"
+      ],
+      "class_count": 171
+    },
+    {
+      "path": "re/Fusion/Study/movemodes-34cba3ced135/free.f3d",
+      "sha256": "c5c7a86e3488631aa659a7e402484648818c375fd510998f1dc151a8c3767f1d",
+      "size": 59512,
+      "new_declarations": [
+        "64e40c8e-e564-469c-8690-5c4e77c1b02c",
+        "84e6245f-1cdc-4fb8-8048-163a85fad3f0"
+      ],
+      "class_count": 175
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/stitch_tight.f3d",
+      "sha256": "9c65e9c2968f8e8b3a7f6646436ed33e76e1543476fd94c8b476504792395df5",
+      "size": 61140,
+      "new_declarations": [
+        "16722593-7399-4963-9eb3-656fe1949577",
+        "1b3b4c67-f231-4a9c-9b10-9f6017617a54"
+      ],
+      "class_count": 178
+    },
+    {
+      "path": "re/Fusion/Study/circularmodes-45f859c1f1b6/body_suppressed.f3d",
+      "sha256": "dc827b20fd2147acbc3607b7b12cabff8c763ec9b32e6a359533712c49e1afc6",
+      "size": 63325,
+      "new_declarations": [
+        "11f1a5ce-2b57-4476-8480-6994621493c9",
+        "7493a99d-edfc-4932-8b75-4120a8fa7875"
+      ],
+      "class_count": 185
+    },
+    {
+      "path": "re/Fusion/Study/rectmodes-a069f8f4b8a2/body_negative.f3d",
+      "sha256": "49f5aaa83a8a1a256074c2e5d20a591904dc8826a7c91a39db8176e63f7777e4",
+      "size": 67428,
+      "new_declarations": [
+        "ae12ad3f-bb81-4b59-9d34-a599e58e4bf6",
+        "ea0e146e-3126-42f0-9280-0de74ab17d78"
+      ],
+      "class_count": 185
+    },
+    {
+      "path": "re/Fusion/Study/edgemodes-87edbf67527b/chamfer_two_flipped.f3d",
+      "sha256": "490d320f4f0840a422feb60a2cb0229cb25f85352593ee0b00a0589535637c77",
+      "size": 67732,
+      "new_declarations": [
+        "0d383db2-a6e5-48c7-82d5-ed3dd0c275c5",
+        "f757d611-217b-4b72-9c41-b617bdce43da"
+      ],
+      "class_count": 178
+    },
+    {
+      "path": "re/Fusion/Study/sketches-0ccea2ac0f9c/radius.f3d",
+      "sha256": "b4cd3fac6847f549c51c4a6ced747c016e3dc107ee9cc4456a61364e43be3ac8",
+      "size": 74741,
+      "new_declarations": [
+        "4b19eb1d-4f03-47ad-b9bf-20369fab8411",
+        "8edac24d-35d4-4591-b8e7-b3ea081c9df0"
+      ],
+      "class_count": 148
+    },
+    {
+      "path": "re/Fusion/Study/silhouettesplits-f21b83e21695/shelled_hollow_axis_x.f3d",
+      "sha256": "5a03d107325718dda9c03b884832db472a5af8b3f66b1cf746d1e22ffba1de89",
+      "size": 172838,
+      "new_declarations": [
+        "d1c361b7-fa73-4d59-9406-066780667135",
+        "e8063467-bc05-4688-8196-aecb90f0efee"
+      ],
+      "class_count": 182
+    },
+    {
+      "path": "re/Fusion/Study/sketchpatterngaps-330282788fce/rectangular_point.f3d",
+      "sha256": "8551fe2b718bc801188292819a6da8510b0073ab3cf29fcd501bc739bed62f08",
+      "size": 40108,
+      "new_declarations": [
+        "40800fb9-c2be-494e-a047-7d76e82b9f6c"
+      ],
+      "class_count": 140
+    },
+    {
+      "path": "re/Fusion/Study/namedvertexprobe-8d81619f74e6/scale_rational_vertex2.f3d",
+      "sha256": "0e190763e2f2d78e4453f8409d08c2afbb1648905620cb2d81503f470fc8c1ff",
+      "size": 48083,
+      "new_declarations": [
+        "d45fd6c4-161b-4240-bfac-83a7c2c97a0c"
+      ],
+      "class_count": 152
+    },
+    {
+      "path": "re/Fusion/Study/meshsmooths-56f38f13430a/smooth_point_two_five.f3d",
+      "sha256": "381e342e1b30480690d841d10fdac49693a0140aeaa201af0b0acc67b288bfa6",
+      "size": 48171,
+      "new_declarations": [
+        "f84cd988-9696-458d-8af3-795d12e6b9ef"
+      ],
+      "class_count": 152
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/reverse_normal.f3d",
+      "sha256": "d3f14d733b0d308780f71e8df45fcb23b22b0ef66ebba06c1d18279f3b859e69",
+      "size": 49289,
+      "new_declarations": [
+        "693d6578-4bce-44f8-b15a-2ce5162a23ee"
+      ],
+      "class_count": 171
+    },
+    {
+      "path": "re/Fusion/Study/meshreducedeviations-05a5d48e46d0/adaptive_deviation_point_zero_five.f3d",
+      "sha256": "71b0d45def0498af22e2d0907aec9046801c14dd48939b6dc9585559c0cbdfc9",
+      "size": 53179,
+      "new_declarations": [
+        "be693d4c-741e-4794-a93e-5bfed71e9e13"
+      ],
+      "class_count": 153
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/untrim_all.f3d",
+      "sha256": "4fb209ac268b43eaa657f40432e6c21dba65365059b857d92f194fcfb9e4c29a",
+      "size": 53625,
+      "new_declarations": [
+        "4082e43b-d693-40d7-b44b-26800c9148db"
+      ],
+      "class_count": 174
+    },
+    {
+      "path": "re/Fusion/Study/meshreversenormals-2bc2dd3780cc/closed_once.f3d",
+      "sha256": "3cec2f18c389b4d719c84e54d84df377bcd98c081fbc114385f3f4f3173fc93a",
+      "size": 54001,
+      "new_declarations": [
+        "4ab7a6bd-c40c-4c44-b7ca-0d415b6e4412"
+      ],
+      "class_count": 149
+    },
+    {
+      "path": "re/Fusion/Study/meshrepairs-2387e4f9c2d2/open_close_holes.f3d",
+      "sha256": "765c5d2f79d6ee5c25eaa4435969eca7034b747e4145cf857209b301fabffa1f",
+      "size": 55664,
+      "new_declarations": [
+        "68691143-5ee3-428e-9cd3-f728e4718559"
+      ],
+      "class_count": 153
+    },
+    {
+      "path": "re/Fusion/Study/surfacebounds-ac801bb00fae/extend_two_edges.f3d",
+      "sha256": "fd0308c8696e4f83cb60dc92d0cee17a448089187b296cd95f6a9b4d5a050d84",
+      "size": 56097,
+      "new_declarations": [
+        "d2bcae08-cf42-4316-865f-8ed1dfd548e4"
+      ],
+      "class_count": 176
+    },
+    {
+      "path": "re/Fusion/Study/meshseparates-41126250c03f/connected_shell_control.f3d",
+      "sha256": "6deb8f679f359909cb90405fa11b52c2970bdb089eb6b00f4c44f0751c59485d",
+      "size": 59175,
+      "new_declarations": [
+        "6b6fde2e-d9b9-4866-9d07-3123c919b0d2"
+      ],
+      "class_count": 149
+    },
+    {
+      "path": "re/Fusion/Study/patchcontinuity-b9b0be85a281/brep_free.f3d",
+      "sha256": "96a9d009201a36ffed05b20934e594dc1181739fb3182cfa6b5f766a6dd190e4",
+      "size": 61932,
+      "new_declarations": [
+        "7a1dda31-f6c4-42f6-8282-8654b2085f40"
+      ],
+      "class_count": 174
+    },
+    {
+      "path": "re/Fusion/Study/projectionfamilies-d987c50c2d73/surface_closest_line.f3d",
+      "sha256": "1da1466c9dda93bad60632f2b5fe23c2538e588825734894d8be10eb8333b349",
+      "size": 63580,
+      "new_declarations": [
+        "a9db7e42-e095-4a66-be81-7f36da04028e"
+      ],
+      "class_count": 182
+    },
+    {
+      "path": "re/Fusion/Study/removecontrasts-9c5f83456a0e/root_body.f3d",
+      "sha256": "8a0b3ba20c6c97b84c08937a9e688153e7745b3477b007ee49dbe96c88a50d98",
+      "size": 64522,
+      "new_declarations": [
+        "4a782808-fbdd-4351-a10a-f7ae5693d330"
+      ],
+      "class_count": 174
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/delete_opening.f3d",
+      "sha256": "05da11986def4cf40c002079f2f27ae3e02a9f0a821ce44bb1dc5cac70c7ee0e",
+      "size": 65667,
+      "new_declarations": [
+        "2c122d9f-4f8a-6383-d14c-e00ce77b2226"
+      ],
+      "class_count": 175
+    },
+    {
+      "path": "re/Fusion/Study/surfacetools-856ca50cf4c7/unstitch_face.f3d",
+      "sha256": "6f21d95b96a1a47c65fe33062a9892189ed5f3605b09091b25a32c033f8bb3f4",
+      "size": 66321,
+      "new_declarations": [
+        "8da2f4a9-c420-419b-ad5d-9cc901df0b78"
+      ],
+      "class_count": 175
+    },
+    {
+      "path": "re/Fusion/Study/replacefacetargets-670e35eedbc8/sheet_face_tangent.f3d",
+      "sha256": "a87a88ebf56417731941401ff87c771d56aabe9780ad2e35ece80c3eee7dbf78",
+      "size": 66969,
+      "new_declarations": [
+        "8bd31492-18f4-45c9-8512-d720ccfc2450"
+      ],
+      "class_count": 179
+    },
+    {
+      "path": "re/Fusion/Study/rigidgroups-0784a68632cd/root_active.f3d",
+      "sha256": "acdafcd39d58f897c7bb860091e34c3990ac575c1c293a183e9caed0fa74b5a8",
+      "size": 66977,
+      "new_declarations": [
+        "aa8b3d40-b67d-4af1-b3cf-e1e00279b5f0"
+      ],
+      "class_count": 194
+    },
+    {
+      "path": "re/Fusion/Study/faceedits-3f120cbee8d9/offset_negative.f3d",
+      "sha256": "eeb7aafa6b91e03904c308ad043dff0eedc82df606a9a4695bea7889afa2089e",
+      "size": 67606,
+      "new_declarations": [
+        "d087efe5-2d28-42e6-bb45-61739e7d0204"
+      ],
+      "class_count": 174
+    },
+    {
+      "path": "re/Fusion/Study/sketchtextpaths-63fe53b89eed/line_along_below.f3d",
+      "sha256": "ec39598210981e2986f0c7d216123a122f3122ed69ce2aadce6ad6a4715bc0fc",
+      "size": 68746,
+      "new_declarations": [
+        "9d30fcdc-ea07-4141-93e2-918b1a59e962"
+      ],
+      "class_count": 145
+    },
+    {
+      "path": "re/Fusion/Study/splits-efce4ef164c9/offset_plane.f3d",
+      "sha256": "bd64b71e1bf0b08777edf49807ca2bb716bcf3fa66fd1ba5625e29e7e02520cf",
+      "size": 68801,
+      "new_declarations": [
+        "65ca3206-e33a-471e-8e40-2c72b57c6181"
+      ],
+      "class_count": 180
+    },
+    {
+      "path": "re/Fusion/Study/faceedits-3f120cbee8d9/delete_hole_face.f3d",
+      "sha256": "041b03653f9330ae39aa5ab36d89e753759b4ed6e45476f00f298db0a5ef0064",
+      "size": 70350,
+      "new_declarations": [
+        "29ef07d3-7baf-4fa1-a28a-43a36279ea6d"
+      ],
+      "class_count": 177
+    },
+    {
+      "path": "re/Fusion/Study/removecontrasts-9c5f83456a0e/root_occurrence.f3d",
+      "sha256": "acfcc772e1f5e50e9d7e9d24a56eb3a9448965f5f0a8bffd20da17f8a93b972c",
+      "size": 70588,
+      "new_declarations": [
+        "d3dc9613-9714-4dbe-99c4-0a76db3327f1"
+      ],
+      "class_count": 176
+    },
+    {
+      "path": "re/Fusion/Study/meshremeshes-f07f97514069/adaptive_edge_one_point_five.f3d",
+      "sha256": "2082352b214680608520c0434974e20ffacc0bfc3935e7a1fb361124b4229bf6",
+      "size": 71543,
+      "new_declarations": [
+        "828dda62-2750-447d-8728-06c9b7c2b117"
+      ],
+      "class_count": 152
+    },
+    {
+      "path": "re/Fusion/Study/combinemodes-dcb4956eca6b/join_consume.f3d",
+      "sha256": "72867e54825a800bf592838a29d4f0fbad74bcb7f5f525b582757e9c70e8c3ff",
+      "size": 73430,
+      "new_declarations": [
+        "2a94257f-2020-4b19-9a68-103a2672f1b7"
+      ],
+      "class_count": 177
+    },
+    {
+      "path": "re/Fusion/Study/bodymodes-d696a14d5f0b/mirror_xy_combine.f3d",
+      "sha256": "eee36d35b55c85be6011d4ee0c1d5268c927a779bbe67a23d8cd0e09c458b8ba",
+      "size": 74167,
+      "new_declarations": [
+        "d1728651-3640-4ccf-8083-af7703013978"
+      ],
+      "class_count": 181
+    },
+    {
+      "path": "re/Fusion/Study/meshcombines-541ebb6cc93f/intersect.f3d",
+      "sha256": "efdf998990fd3cc2d73f7aa7340b5eff353fd3c4b496c140213bd68349830f57",
+      "size": 75201,
+      "new_declarations": [
+        "ee0e56e8-5894-4d65-baf4-9daaf811307f"
+      ],
+      "class_count": 149
+    },
+    {
+      "path": "re/Fusion/Study/assembly-acc48a9dc05d/assembly.f3d",
+      "sha256": "6ffe10b64fcc97308f2d7084e18548d24bcde4f66b0b7e3261ba7f7743e4d057",
+      "size": 84102,
+      "new_declarations": [
+        "d57b1a22-9d5a-4d7d-a909-e08c579612ca"
+      ],
+      "class_count": 181
+    },
+    {
+      "path": "re/Fusion/Study/meshshells-f5a2d6730f62/closed_thickness_point_one.f3d",
+      "sha256": "2e5a016479dbf07c3cffdf907b1b023b1854f8236a4a90cb7d4811ce297dbf1f",
+      "size": 85600,
+      "new_declarations": [
+        "1514cdb8-bb81-4895-a953-7b12f4504f99"
+      ],
+      "class_count": 152
+    },
+    {
+      "path": "re/Fusion/Study/thickenmodes-17612e4ff890/cut.f3d",
+      "sha256": "7e4771cdcb08060988231905d9bb33f5f3c87b14aaf1ca2ea49a94e224673b60",
+      "size": 86953,
+      "new_declarations": [
+        "bce0ad0e-377b-4a37-9f4f-112d0dafeaa1"
+      ],
+      "class_count": 178
+    },
+    {
+      "path": "re/Fusion/Study/tappedholes-409e96788503/modeled_full.f3d",
+      "sha256": "65bb1d47005da234d5902a5b4b6ab23d26e32534e55418de2415783ea3529944",
+      "size": 102915,
+      "new_declarations": [
+        "584d9526-ef22-4f6f-9fe1-5fcf1f3ce575"
+      ],
+      "class_count": 181
+    },
+    {
+      "path": "re/Fusion/Study/timeline-5867579925b5/rolled_back.f3d",
+      "sha256": "4e5c99de29a515f95cba4a4f4e900c4de0e7b7a652fa1730d2d3dae76a4c8a87",
+      "size": 138637,
+      "new_declarations": [
+        "a917fe80-93d6-45ad-b741-93bb1aca5e61"
+      ],
+      "class_count": 171
+    },
+    {
+      "path": "re/Fusion/Study/splines-9a18bae21127/splines.f3d",
+      "sha256": "41132e6e45ed0fa6becadfc062d8b0ea6199f9166032a6b41da0864dc1d59554",
+      "size": 176095,
+      "new_declarations": [
+        "111a78c2-801b-4d1d-b92d-05e2b34d991f"
+      ],
+      "class_count": 152
+    }
+  ]
+}

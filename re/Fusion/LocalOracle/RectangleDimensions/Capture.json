@@ -1,0 +1,350 @@
+{
+  "fusion_version": "2706.1.17",
+  "scope": "Native controlled differential capture of horizontal and vertical sketch dimensions; not Kit writer acceptance",
+  "captures": [
+    {
+      "name": "Baseline",
+      "file": "Baseline.f3d",
+      "sha256": "a27741a82f16c9ae5839588a33a7eafccd1b42be248874f4721b209b123b2f87",
+      "bytes": 88795,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [],
+      "dimensions": [],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1
+    },
+    {
+      "name": "WidthDimension",
+      "file": "WidthDimension.f3d",
+      "sha256": "1aaa7bb5862654a833f2932b3f936cdc2d42715c181cd8888b102bafb5e1220b",
+      "bytes": 89821,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        },
+        {
+          "name": "d3",
+          "expression": "controlledWidth",
+          "value": 1.7000000000000002
+        }
+      ],
+      "constraints": [],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d3",
+          "value": 1.7000000000000002,
+          "expression": "controlledWidth"
+        }
+      ],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1
+    },
+    {
+      "name": "WidthDepthDimensions",
+      "file": "WidthDepthDimensions.f3d",
+      "sha256": "376cdae975d87e683f140a273020e0e4ec58beb003bf320c4bb334efb8dc9be7",
+      "bytes": 90643,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "17 mm",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "23 mm",
+          "value": 2.3000000000000003
+        },
+        {
+          "name": "d3",
+          "expression": "controlledWidth",
+          "value": 1.7000000000000002
+        },
+        {
+          "name": "d4",
+          "expression": "controlledDepth",
+          "value": 2.3000000000000003
+        }
+      ],
+      "constraints": [],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d3",
+          "value": 1.7000000000000002,
+          "expression": "controlledWidth"
+        },
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d4",
+          "value": 2.3000000000000003,
+          "expression": "controlledDepth"
+        }
+      ],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            0.0,
+            0.0
+          ],
+          "end_cm": [
+            1.7,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.7,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            0.0,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1
+    },
+    {
+      "name": "EditedDimensions",
+      "file": "EditedDimensions.f3d",
+      "sha256": "2d35e30d9e7bdb315116d175890cc0eb60510112d55cf8acc27796375b32b367",
+      "bytes": 90405,
+      "parameters": [
+        {
+          "name": "controlledWidth",
+          "expression": "19 mm",
+          "value": 1.9000000000000001
+        },
+        {
+          "name": "controlledDepth",
+          "expression": "29 mm",
+          "value": 2.9000000000000004
+        },
+        {
+          "name": "d3",
+          "expression": "controlledWidth",
+          "value": 1.9000000000000001
+        },
+        {
+          "name": "d4",
+          "expression": "controlledDepth",
+          "value": 2.9000000000000004
+        }
+      ],
+      "constraints": [],
+      "dimensions": [
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d3",
+          "value": 1.9000000000000001,
+          "expression": "controlledWidth"
+        },
+        {
+          "type": "adsk::fusion::SketchLinearDimension",
+          "parameter": "d4",
+          "value": 2.9000000000000004,
+          "expression": "controlledDepth"
+        }
+      ],
+      "lines": [
+        {
+          "start_cm": [
+            0.0,
+            -0.6000000000000005,
+            0.0
+          ],
+          "end_cm": [
+            1.9000000000000001,
+            -0.6000000000000005,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.9000000000000001,
+            -0.6000000000000005,
+            0.0
+          ],
+          "end_cm": [
+            1.9000000000000001,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            1.9000000000000001,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            2.3,
+            0.0
+          ]
+        },
+        {
+          "start_cm": [
+            0.0,
+            2.3,
+            0.0
+          ],
+          "end_cm": [
+            0.0,
+            -0.6000000000000005,
+            0.0
+          ]
+        }
+      ],
+      "profiles": 1
+    }
+  ],
+  "status": "captured",
+  "documents_after": 0
+}

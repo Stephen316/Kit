@@ -1,0 +1,56 @@
+{
+  "operation": "load_representative_corpus_for_schema_initialization",
+  "imports": [
+    {
+      "path": "re/Fusion/Study/jointmodes-20d3aef2a07d/pin_slot.f3d",
+      "sha256": "5839271bf11e4fcbe9f1151875d09cb5fa38a1d34869166b7412945eca0cf878",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/pathpatterncomposites-b6b4cf615504/spline_along.f3d",
+      "sha256": "b15edb1bb1bc771854cc269d1dbbfb00f13c22b1115bbf97e08e4a53857f4a2f",
+      "status": "opened"
+    },
+    {
+      "path": "re/Fusion/Study/meshplanecuts-18f2683c83f5/trim_minimal_fill.f3d",
+      "sha256": "ddf4dcac983c748405f084dd19cab7b03b90371b84c0bede77b434a03dcabbfd",
+      "status": "opened"
+    }
+  ],
+  "snapshots": [],
+  "status": "native_process_aborted_during_next_import",
+  "inferred_pending_input": {
+    "path": "re/Fusion/Study/embosstext-cd769aa41cdf/text_deboss.f3d",
+    "sha256": "aec87d4aa59dc4e77e774c95e98b74d83651395697d57c921257d07219ca89c8",
+    "size": 97028,
+    "new_declarations": [
+      "00d157c2-2332-4bd5-bb53-048c4081d1c3",
+      "16defc4d-1816-4fb0-8e39-9bda23954248",
+      "4b31da1b-fcd6-4527-bc3e-be1fbaf867fe",
+      "559fc9ce-ef4a-47d6-b91d-7780e11e2c77",
+      "5662f619-2281-4ad9-93dc-1fcfda1062e7",
+      "60403d47-0c49-49b0-bde8-1679608164a2",
+      "8b369926-123f-4f9d-878e-6d4c076128d3",
+      "92f9a5f4-09aa-4b1b-9ee6-df574d1d183c",
+      "9b5b035f-5b40-4b8b-946c-34a536cc1ca0",
+      "c3a9ecce-7d25-4432-a645-3a0d9687f22a",
+      "e0618268-3a06-450e-9e94-7cf4c2e66802",
+      "e5460b7b-000b-4a70-ab52-4c2fcc470eb2",
+      "e7a6b3f8-3c46-4fa7-a54e-beb0c93d2dea"
+    ],
+    "class_count": 187
+  },
+  "sample_sha256": "297bd6d5275145c0fa74624339018a0096e761896c2bba01d93e4d2cddda5d62",
+  "native_stack": [
+    "ImportManagerUIImp::importToNewDocument_raw",
+    "OpenDocumentUtil::processDocumentPostOpen",
+    "DocumentSession::activateDocument",
+    "AssetGraphicsView::createViewNode",
+    "Ns::Scene::NodeData::RealizeWorldBoxCB",
+    "__cxa_pure_virtual",
+    "abort",
+    "libcer crash handler"
+  ],
+  "interpretation": "Import failed during document activation and scene bounding-box realization. Pending filename inferred from ordered checkpoint; underlying invalid object cause not established. Three prior imports completed, but no schema snapshot was captured before this crash.",
+  "recovery": "Terminated only the task-era Fusion process, its node child and its matching crash-service/dialog processes; relaunched the same installed bundle. No crash report was sent."
+}

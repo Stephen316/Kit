@@ -1,0 +1,1040 @@
+{
+  "scope": "Production frustum history reader/writer artifact preparation for native acceptance; only the solved history part is reconstructed, surrounding Design/other members remain from the same source; no native calls or local tests",
+  "cases": [
+    {
+      "name": "SourceFrame7deg",
+      "mode": "source",
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/taper.f3d",
+      "source_sha256": "d5e776fa897782747e699b1ed366f9bf51bf6652c19a21001676651c2cd4118f",
+      "output": "re/Fusion/LocalOracle/TaperedHistory/SourceFrame7deg.f3d",
+      "output_sha256": "de84079a9a03e226c51900bf3486edcbd425c20bf6b1a3084449a79862f2df69",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.299112e4-f409-4233-89b9-e59b88e80317.smbh",
+      "source_history_sha256": "4922e923b5fc1515732922c843edb42eec2b92ba5243413027334880ce2475e1",
+      "history_sha256": "22a786151a12dd29cb90b3df09b063513edbfdc52abc2b6f609f38fc8cc2ae3b",
+      "history_bytes": 5300,
+      "model_mm": {
+        "BottomRadius": 10.0,
+        "TopRadius": 12.087337535349379,
+        "Height": 17.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "identity": {
+        "BodyKey": 0,
+        "OperationId": 301,
+        "SecondaryId": 4,
+        "AuthoredMicros": 1792516360435897.0
+      },
+      "history": {
+        "CurrentId": 4,
+        "InitialId": 2,
+        "Generation": 4,
+        "Allocation": 1,
+        "BoardNumber": 2
+      },
+      "parameter_names": {
+        "distance": "d1",
+        "taper": "d2"
+      },
+      "taper_degrees": 7.0,
+      "source_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.12186934340514748,
+          "CosineAngle": 0.992546151641322,
+          "ScaleCm": 1.0,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.2087337535349378,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.2087337535349378,
+            -1.4802719222879273e-16,
+            1.7000000000000002
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "emitted_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.12186934340514748,
+          "CosineAngle": 0.992546151641322,
+          "ScaleCm": 1.0,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.2087337535349378,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.2087337535349378,
+            -1.4802719222879273e-16,
+            1.7000000000000002
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "expected": {
+        "volume_cm3": 6.533057919954321,
+        "area_cm2": 19.616365018567926,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.9033932075833692
+        ],
+        "min_cm": [
+          -1.2087337535349378,
+          -1.2087337535349378,
+          0.0
+        ],
+        "max_cm": [
+          1.2087337535349378,
+          1.2087337535349378,
+          1.7
+        ]
+      }
+    },
+    {
+      "name": "FreshFrame7deg",
+      "mode": "fresh",
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/taper.f3d",
+      "source_sha256": "d5e776fa897782747e699b1ed366f9bf51bf6652c19a21001676651c2cd4118f",
+      "output": "re/Fusion/LocalOracle/TaperedHistory/FreshFrame7deg.f3d",
+      "output_sha256": "c04effe929934c3bb41353f2ae96c6b7e7f1fe01a2bb5ed28ea093e2cbd83499",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.299112e4-f409-4233-89b9-e59b88e80317.smbh",
+      "source_history_sha256": "4922e923b5fc1515732922c843edb42eec2b92ba5243413027334880ce2475e1",
+      "history_sha256": "ca36c13a42868006c13db3101692692421671aca4d29fd7b82b4df8aa21c2cf8",
+      "history_bytes": 5300,
+      "model_mm": {
+        "BottomRadius": 10.0,
+        "TopRadius": 12.087337535349379,
+        "Height": 17.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "identity": {
+        "BodyKey": 0,
+        "OperationId": 301,
+        "SecondaryId": 4,
+        "AuthoredMicros": 1792516360435897.0
+      },
+      "history": {
+        "CurrentId": 4,
+        "InitialId": 2,
+        "Generation": 4,
+        "Allocation": 1,
+        "BoardNumber": 2
+      },
+      "parameter_names": {
+        "distance": "d1",
+        "taper": "d2"
+      },
+      "taper_degrees": 7.0,
+      "source_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.12186934340514748,
+          "CosineAngle": 0.992546151641322,
+          "ScaleCm": 1.0,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.2087337535349378,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.2087337535349378,
+            -1.4802719222879273e-16,
+            1.7000000000000002
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "emitted_frame": null,
+      "expected": {
+        "volume_cm3": 6.533057919954321,
+        "area_cm2": 19.616365018567926,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.9033932075833692
+        ],
+        "min_cm": [
+          -1.2087337535349378,
+          -1.2087337535349378,
+          0.0
+        ],
+        "max_cm": [
+          1.2087337535349378,
+          1.2087337535349378,
+          1.7
+        ]
+      }
+    },
+    {
+      "name": "ScaledFrame7deg",
+      "mode": "scale",
+      "source": "re/Fusion/Study/extents-f0f33a9a605f/taper.f3d",
+      "source_sha256": "d5e776fa897782747e699b1ed366f9bf51bf6652c19a21001676651c2cd4118f",
+      "output": "re/Fusion/LocalOracle/TaperedHistory/ScaledFrame7deg.f3d",
+      "output_sha256": "ae816c5e7d3bfc9e0e6546d5f5a5f853d33dd4785e54b3aaabf3bd141cf590dc",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.299112e4-f409-4233-89b9-e59b88e80317.smbh",
+      "source_history_sha256": "4922e923b5fc1515732922c843edb42eec2b92ba5243413027334880ce2475e1",
+      "history_sha256": "db82e8c6ecf7c80b43032eb774008d7e1e5c45e1550143dcbd5301b3d4f7ee25",
+      "history_bytes": 5300,
+      "model_mm": {
+        "BottomRadius": 10.0,
+        "TopRadius": 12.087337535349379,
+        "Height": 17.0,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "identity": {
+        "BodyKey": 0,
+        "OperationId": 301,
+        "SecondaryId": 4,
+        "AuthoredMicros": 1792516360435897.0
+      },
+      "history": {
+        "CurrentId": 4,
+        "InitialId": 2,
+        "Generation": 4,
+        "Allocation": 1,
+        "BoardNumber": 2
+      },
+      "parameter_names": {
+        "distance": "d1",
+        "taper": "d2"
+      },
+      "taper_degrees": 7.0,
+      "source_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.12186934340514748,
+          "CosineAngle": 0.992546151641322,
+          "ScaleCm": 1.0,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.2087337535349378,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.2087337535349378,
+            -1.4802719222879273e-16,
+            1.7000000000000002
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "emitted_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.12186934340514748,
+          "CosineAngle": 0.992546151641322,
+          "ScaleCm": 3.125,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.2087337535349378,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.2087337535349378,
+            -1.4802719222879273e-16,
+            1.7000000000000002
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            1.7000000000000002
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "expected": {
+        "volume_cm3": 6.533057919954321,
+        "area_cm2": 19.616365018567926,
+        "center_cm": [
+          0.0,
+          0.0,
+          0.9033932075833692
+        ],
+        "min_cm": [
+          -1.2087337535349378,
+          -1.2087337535349378,
+          0.0
+        ],
+        "max_cm": [
+          1.2087337535349378,
+          1.2087337535349378,
+          1.7
+        ]
+      }
+    },
+    {
+      "name": "HoldoutFrame5deg",
+      "mode": "source",
+      "source": "re/Fusion/Study/holdouts-f8c508a73323/drafted_extrusion.f3d",
+      "source_sha256": "8745a3c1396959165517d872f70078377411273cd7f5bcb1870554fc613785fa",
+      "output": "re/Fusion/LocalOracle/TaperedHistory/HoldoutFrame5deg.f3d",
+      "output_sha256": "171946a5d1d1f9e467bcf0206a2a389607be988cab890a24246580f64c065464",
+      "member": "FusionAssetName[Active]/Breps.BlobParts/BREP.6236ea7c-7fd2-493a-949c-d7f625a02e16.smbh",
+      "source_history_sha256": "4b7acd0a6b02159256b4cfb32fe694610a85d006194ccb78e20fec0e92cc2dbb",
+      "history_sha256": "e86d148e5665744162e466cf2d187737c7d328d46f0ad361fca7eb49a3dff1b4",
+      "history_bytes": 5300,
+      "model_mm": {
+        "BottomRadius": 10.0,
+        "TopRadius": 11.859134099925885,
+        "Height": 21.25,
+        "BasePoint": [
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "identity": {
+        "BodyKey": 0,
+        "OperationId": 301,
+        "SecondaryId": 4,
+        "AuthoredMicros": 1792511220350195.0
+      },
+      "history": {
+        "CurrentId": 4,
+        "InitialId": 2,
+        "Generation": 4,
+        "Allocation": 1,
+        "BoardNumber": 2
+      },
+      "parameter_names": {
+        "distance": "d1",
+        "taper": "d2"
+      },
+      "taper_degrees": 5.0,
+      "source_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.08715574274765815,
+          "CosineAngle": 0.9961946980917455,
+          "ScaleCm": 1.0,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            2.125
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.1859134099925885,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.1859134099925885,
+            -1.4523250616133464e-16,
+            2.125
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            2.125
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "emitted_frame": {
+        "Surface": {
+          "OriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Axis": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "SineAngle": 0.08715574274765815,
+          "CosineAngle": 0.9961946980917455,
+          "ScaleCm": 1.0,
+          "ReverseSense": false
+        },
+        "Upper": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            2.125
+          ],
+          "Normal": [
+            -0.0,
+            -0.0,
+            -1.0
+          ],
+          "MajorVectorCm": [
+            1.1859134099925885,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.1859134099925885,
+            -1.4523250616133464e-16,
+            2.125
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            2.125
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 2
+        },
+        "Lower": {
+          "CenterCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "Normal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "MajorVectorCm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "Ratio": 1.0,
+          "PointCm": [
+            -1.0,
+            -1.2246467991473532e-16,
+            0.0
+          ],
+          "PlaneOriginCm": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "PlaneNormal": [
+            0.0,
+            0.0,
+            1.0
+          ],
+          "PlaneBasis": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "PlaneReverseV": false,
+          "EdgeStart": -3.141592653589793,
+          "EdgeEnd": 3.141592653589793,
+          "EdgeReverse": false,
+          "SideReverse": false,
+          "CapReverse": true,
+          "VertexIndex": 0
+        }
+      },
+      "expected": {
+        "volume_cm3": 7.993935455743432,
+        "area_cm2": 22.208546817287722,
+        "center_cm": [
+          0.0,
+          0.0,
+          1.1225993159788203
+        ],
+        "min_cm": [
+          -1.1859134099925885,
+          -1.1859134099925885,
+          0.0
+        ],
+        "max_cm": [
+          1.1859134099925885,
+          1.1859134099925885,
+          2.125
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "scope": "Complete independent F3D authoring from DocumentSpec dimensions and fresh material; no source archive, body, field snapshot or captured material payload is read",
+  "cases": [
+    {
+      "name": "Expanding7deg",
+      "path": "re/Fusion/LocalOracle/TaperedAuthoring/Expanding7deg.f3d",
+      "sha256": "d7a548387c6cc6583204937b9010ba5c7c5c4c5e239c15750cb62dcec4a1bbbe",
+      "bytes": 97486,
+      "specification": {
+        "Title": "Kit independent Expanding7deg",
+        "ParamName": "frustumHeight",
+        "LengthMm": 17.0,
+        "ProfileKind": "frustum",
+        "RadiusMm": 10.0,
+        "ParamComment": "Independent tapered extrusion driving height",
+        "SketchName": "Independent base circle",
+        "ExtrusionName": "Independent tapered extrusion",
+        "BodyName": "Independent frustum",
+        "WidthMm": 40.0,
+        "DepthMm": 30.0,
+        "Material": {
+          "NameValue": "Independent frustum material",
+          "Density": 2870.0,
+          "Color": {
+            "RedValue": 0.2,
+            "GreenValue": 0.4,
+            "BlueValue": 0.6,
+            "AlphaValue": 1.0
+          }
+        },
+        "TaperDegrees": 7.0
+      },
+      "parameters": {
+        "height": "frustumHeight",
+        "alongDistance": "d2",
+        "taperAngle": "d3"
+      },
+      "expected": {
+        "bottomRadiusMm": 10.0,
+        "topRadiusMm": 12.087337535349379,
+        "heightMm": 17.0,
+        "taperRadians": 0.12217304763960307,
+        "volumeCm3": 6.533057919954321,
+        "surfaceAreaCm2": 19.616365018567926,
+        "centerCm": [
+          0.0,
+          0.0,
+          0.9033932075833692
+        ],
+        "originInertiaCm5": [
+          8.911810275748904,
+          8.911810275748904,
+          4.043132460380115
+        ],
+        "massKg": 0.018749876230268903,
+        "boundsCm": [
+          [
+            -1.2087337535349378,
+            -1.2087337535349378,
+            0.0
+          ],
+          [
+            1.2087337535349378,
+            1.2087337535349378,
+            1.7
+          ]
+        ],
+        "topology": {
+          "solids": 1,
+          "faces": 3,
+          "edges": 2,
+          "vertices": 2
+        },
+        "timelineFeatures": 2,
+        "sketchProfiles": 1
+      }
+    },
+    {
+      "name": "Contracting5deg",
+      "path": "re/Fusion/LocalOracle/TaperedAuthoring/Contracting5deg.f3d",
+      "sha256": "7384dcc335a2263affe322338afa585e67be9604c228cc4e756255d47551ab03",
+      "bytes": 97496,
+      "specification": {
+        "Title": "Kit independent Contracting5deg",
+        "ParamName": "frustumHeight",
+        "LengthMm": 23.0,
+        "ProfileKind": "frustum",
+        "RadiusMm": 14.0,
+        "ParamComment": "Independent tapered extrusion driving height",
+        "SketchName": "Independent base circle",
+        "ExtrusionName": "Independent tapered extrusion",
+        "BodyName": "Independent frustum",
+        "WidthMm": 40.0,
+        "DepthMm": 30.0,
+        "Material": {
+          "NameValue": "Independent frustum material",
+          "Density": 2870.0,
+          "Color": {
+            "RedValue": 0.2,
+            "GreenValue": 0.4,
+            "BlueValue": 0.6,
+            "AlphaValue": 1.0
+          }
+        },
+        "TaperDegrees": -5.0
+      },
+      "parameters": {
+        "height": "frustumHeight",
+        "alongDistance": "d2",
+        "taperAngle": "d3"
+      },
+      "expected": {
+        "bottomRadiusMm": 14.0,
+        "topRadiusMm": 11.987760738903749,
+        "heightMm": 23.0,
+        "taperRadians": -0.08726646259971647,
+        "volumeCm3": 12.224257804390591,
+        "surfaceAreaCm2": 29.521800386073426,
+        "centerCm": [
+          0.0,
+          0.0,
+          1.090755194736429
+        ],
+        "originInertiaCm5": [
+          25.109706482788617,
+          25.109706482788617,
+          10.422762900703871
+        ],
+        "massKg": 0.035083619898600996,
+        "boundsCm": [
+          [
+            -1.4,
+            -1.4,
+            0.0
+          ],
+          [
+            1.4,
+            1.4,
+            2.3
+          ]
+        ],
+        "topology": {
+          "solids": 1,
+          "faces": 3,
+          "edges": 2,
+          "vertices": 2
+        },
+        "timelineFeatures": 2,
+        "sketchProfiles": 1
+      }
+    },
+    {
+      "name": "ZeroAngleLimit",
+      "path": "re/Fusion/LocalOracle/TaperedAuthoring/ZeroAngleLimit.f3d",
+      "sha256": "a533f88786f9a88fa561b30cdba654d1c7d520fdad1ffee8ee1e3ef2e8f472b1",
+      "bytes": 97486,
+      "specification": {
+        "Title": "Kit independent ZeroAngleLimit",
+        "ParamName": "frustumHeight",
+        "LengthMm": 11.0,
+        "ProfileKind": "frustum",
+        "RadiusMm": 9.0,
+        "ParamComment": "Independent tapered extrusion driving height",
+        "SketchName": "Independent base circle",
+        "ExtrusionName": "Independent tapered extrusion",
+        "BodyName": "Independent frustum",
+        "WidthMm": 40.0,
+        "DepthMm": 30.0,
+        "Material": {
+          "NameValue": "Independent frustum material",
+          "Density": 2870.0,
+          "Color": {
+            "RedValue": 0.2,
+            "GreenValue": 0.4,
+            "BlueValue": 0.6,
+            "AlphaValue": 1.0
+          }
+        },
+        "TaperDegrees": 0.0
+      },
+      "parameters": {
+        "height": "frustumHeight",
+        "alongDistance": "d2",
+        "taperAngle": "d3"
+      },
+      "expected": {
+        "bottomRadiusMm": 9.0,
+        "topRadiusMm": 9.0,
+        "heightMm": 11.0,
+        "taperRadians": 0.0,
+        "volumeCm3": 2.799159054348506,
+        "surfaceAreaCm2": 11.309733552923257,
+        "centerCm": [
+          0.0,
+          0.0,
+          0.55
+        ],
+        "originInertiaCm5": [
+          1.6958238604261369,
+          1.6958238604261369,
+          1.133659417011145
+        ],
+        "massKg": 0.008033586485980213,
+        "boundsCm": [
+          [
+            -0.9,
+            -0.9,
+            0.0
+          ],
+          [
+            0.9,
+            0.9,
+            1.1
+          ]
+        ],
+        "topology": {
+          "solids": 1,
+          "faces": 3,
+          "edges": 2,
+          "vertices": 2
+        },
+        "timelineFeatures": 2,
+        "sketchProfiles": 1
+      }
+    }
+  ],
+  "nativeAcceptance": "pending; artifacts generated only, no local tests or native calls"
+}

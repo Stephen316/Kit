@@ -1,0 +1,715 @@
+[
+ {
+  "ClassGuid": "35899357-B223-4909-AB50-841E9C212694",
+  "BaseGuid": "23FD63FB-4EBE-4c85-A42B-5D9809AA3499",
+  "SchemaVersion": 5,
+  "Members": [
+   {
+    "FieldName": "FusionDocDesignIdANdMassUnitsPrecisionsInfo",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      },
+      {
+       "KindValue": "map",
+       "Arguments": [
+        {
+         "KindValue": "utf16"
+        },
+        {
+         "KindValue": "set",
+         "Arguments": [
+          {
+           "KindValue": "utf16"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "FusionDocAssetSettings",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "3B30D852-778A-4752-9EBD-A154875C911C",
+  "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+  "SchemaVersion": 0,
+  "Members": [
+   {
+    "FieldName": "persistedFileName",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "ExtFileSerializer",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "3EAD2723-67C3-4C8E-9B9E-1208F04C4C44",
+  "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+  "SchemaVersion": 12,
+  "Members": [
+   {
+    "FieldName": "animationMarker",
+    "ValueType": {
+     "KindValue": "pair",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      },
+      {
+       "KindValue": "f64"
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "bodyVisMap",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "sequence",
+       "Arguments": [
+        {
+         "KindValue": "u64"
+        }
+       ]
+      },
+      {
+       "KindValue": "bool"
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "designAssetGuid",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "designId",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "index",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "isComponentFilterUpdated",
+    "ValueType": {
+     "KindValue": "bool"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "modelDocLinkName",
+    "ValueType": {
+     "KindValue": "ascii"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "newComponentFilter",
+    "ValueType": {
+     "KindValue": "object",
+     "ClassGuid": "62B5B83C-EDDB-483D-BCBD-1DB17B8386F0"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "partsListColumns",
+    "ValueType": {
+     "KindValue": "sequence",
+     "Arguments": [
+      {
+       "KindValue": "pair",
+       "Arguments": [
+        {
+         "KindValue": "utf16"
+        },
+        {
+         "KindValue": "bool"
+        }
+       ]
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "partsLists",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "partslistType",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "referenceDesignatorsList",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sheetIds",
+    "ValueType": {
+     "KindValue": "set",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "silkscreenBodiesVisMap",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      },
+      {
+       "KindValue": "bool"
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "silkscreensList",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      },
+      {
+       "KindValue": "ref",
+       "ClassGuid": ""
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sourceComponentOccPathStr",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sourceId",
+    "ValueType": {
+     "KindValue": "ascii"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sourceType",
+    "ValueType": {
+     "KindValue": "u32"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "FusionDocModelSource",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "62B5B83C-EDDB-483D-BCBD-1DB17B8386F0",
+  "BaseGuid": "",
+  "SchemaVersion": 2,
+  "Members": [
+   {
+    "FieldName": "compFilterStr",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "comps",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "object",
+       "ClassGuid": "4C835764-5BAB-4421-B5D2-06015BEF6EB2"
+      },
+      {
+       "KindValue": "unsupported"
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "isExtra",
+    "ValueType": {
+     "KindValue": "bool"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": true,
+  "NameValue": "FusionDocComponentFilterValue",
+  "ClassSpace": ""
+ },
+ {
+  "ClassGuid": "632EEBFC-0412-4AA4-9CF1-69C94F55C038",
+  "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+  "SchemaVersion": 4,
+  "Members": [
+   {
+    "FieldName": "componentOccPath",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "displayName",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "isDisassociated",
+    "ValueType": {
+     "KindValue": "bool"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "isOutOfDate",
+    "ValueType": {
+     "KindValue": "bool"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "largeThumbnail",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "rSketches",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": false
+   },
+   {
+    "FieldName": "sheetId",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sheetOrder",
+    "ValueType": {
+     "KindValue": "u64"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "thumbnail",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "titleBlockDesignId",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "titleBlockOccPath",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "titleBlockPropertyOverriden",
+    "ValueType": {
+     "KindValue": "bool"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "FusionDocSheet",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "658C29F4-1479-4B3E-AC06-7028B0BD003E",
+  "BaseGuid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+  "SchemaVersion": 3,
+  "Members": [
+   {
+    "FieldName": "DesignDocumentIdAndHashCode",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      },
+      {
+       "KindValue": "u64"
+      }
+     ]
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "designNextId",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "lastUsedModelSource",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "modelSourceNextId",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "orphanModelSources",
+    "ValueType": {
+     "KindValue": "set",
+     "Arguments": [
+      {
+       "KindValue": "ref",
+       "ClassGuid": ""
+      }
+     ]
+    },
+    "IsSaved": false
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "FusionDocModelSources",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "77102857-FEA3-4B85-8608-3AEF9C8ABF37",
+  "BaseGuid": "63D6AD42-466A-40B7-9CCD-EB21BC500EF6",
+  "SchemaVersion": 0,
+  "Members": [
+   {
+    "FieldName": "m_rCache",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": "FA85BB02-9D57-4E5E-A3A1-3D150C7ED082"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "m_rOccurrenceRecipe",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": "7CAA6A9D-984D-487B-8C3D-D45A2448431F"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "m_rTrackedElement",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": "9899B041-996B-477C-A815-EFAE79D94CBF"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "TrackedEntity",
+  "ClassSpace": "EntityTracking"
+ },
+ {
+  "ClassGuid": "7CAA6A9D-984D-487B-8C3D-D45A2448431F",
+  "BaseGuid": "9899B041-996B-477C-A815-EFAE79D94CBF",
+  "SchemaVersion": 2,
+  "Members": [
+   {
+    "FieldName": "m_scope",
+    "ValueType": {
+     "KindValue": "object",
+     "ClassGuid": "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "TrackedOccurrence",
+  "ClassSpace": "EntityTracking"
+ },
+ {
+  "ClassGuid": "8F05428E-590E-4DE6-9CEF-B34EDA0D27B9",
+  "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+  "SchemaVersion": 12,
+  "Members": [
+   {
+    "FieldName": "ecadSilkscreenCurveIds",
+    "ValueType": {
+     "KindValue": "set",
+     "Arguments": [
+      {
+       "KindValue": "unsupported"
+      }
+     ]
+    },
+    "IsSaved": false
+   },
+   {
+    "FieldName": "iGenericModelVersion",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "rECADModelSources",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "rModelSources",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "rSheets",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "rTrackedEntitys",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": ""
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sketchAssociativityMap",
+    "ValueType": {
+     "KindValue": "map",
+     "Arguments": [
+      {
+       "KindValue": "sequence",
+       "Arguments": [
+        {
+         "KindValue": "unsupported"
+        }
+       ]
+      },
+      {
+       "KindValue": "pair",
+       "Arguments": [
+        {
+         "KindValue": "map",
+         "Arguments": [
+          {
+           "KindValue": "unsupported"
+          },
+          {
+           "KindValue": "unsupported"
+          }
+         ]
+        },
+        {
+         "KindValue": "map",
+         "Arguments": [
+          {
+           "KindValue": "unsupported"
+          },
+          {
+           "KindValue": "unsupported"
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "IsSaved": false
+   },
+   {
+    "FieldName": "updateOperationIds",
+    "ValueType": {
+     "KindValue": "bool"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "FusionDocExternalFileRefs",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "981E7978-171B-445C-9533-8401DB6665FE",
+  "BaseGuid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+  "SchemaVersion": 0,
+  "Members": [],
+  "IsValue": false,
+  "NameValue": "FusionDocTrackedEntities",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "9899B041-996B-477C-A815-EFAE79D94CBF",
+  "BaseGuid": "98542EB9-A4F2-4137-A808-DBB5B3CD6159",
+  "SchemaVersion": 0,
+  "Members": [
+   {
+    "FieldName": "m_rRecipe",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": "70F5E801-1E8E-436E-8A09-36487F8A2859"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "m_rTargetOccurrence",
+    "ValueType": {
+     "KindValue": "ref",
+     "ClassGuid": "9899B041-996B-477C-A815-EFAE79D94CBF"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "TrackedElement",
+  "ClassSpace": "EntityTracking"
+ },
+ {
+  "ClassGuid": "D67E6C0E-1316-4EF5-8967-9ACE29B9DF61",
+  "BaseGuid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+  "SchemaVersion": 2,
+  "Members": [
+   {
+    "FieldName": "activeSheetId",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "sketchIds",
+    "ValueType": {
+     "KindValue": "set",
+     "Arguments": [
+      {
+       "KindValue": "utf16"
+      }
+     ]
+    },
+    "IsSaved": false
+   },
+   {
+    "FieldName": "sketchIndex",
+    "ValueType": {
+     "KindValue": "u32"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "FusionDocSheets",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "DFDD9951-64B7-4760-AA32-0543FD74B80F",
+  "BaseGuid": "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081",
+  "SchemaVersion": 0,
+  "Members": [],
+  "IsValue": false,
+  "NameValue": "FusionDocPartsLists",
+  "ClassSpace": "FusionDoc"
+ },
+ {
+  "ClassGuid": "E4761EB7-1694-472F-BAC0-24B430387180",
+  "BaseGuid": "9899B041-996B-477C-A815-EFAE79D94CBF",
+  "SchemaVersion": 1,
+  "Members": [
+   {
+    "FieldName": "bodyPersistentId",
+    "ValueType": {
+     "KindValue": "utf16"
+    },
+    "IsSaved": true
+   },
+   {
+    "FieldName": "version",
+    "ValueType": {
+     "KindValue": "i32"
+    },
+    "IsSaved": true
+   }
+  ],
+  "IsValue": false,
+  "NameValue": "TrackedBrep",
+  "ClassSpace": "EntityTracking"
+ }
+]

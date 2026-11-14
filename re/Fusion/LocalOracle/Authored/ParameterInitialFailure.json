@@ -1,0 +1,8 @@
+{
+  "fusion_version": "2706.1.17",
+  "source_sha256": "91fda6a666e843a525a2fb7b6cee3aedf34cd0dff92040a091dc41d4f6391487",
+  "scope": "Independently authored complete F3D parameter document, no source archive or template; native read/edit/save/reopen and subsequent native feature creation",
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/AcceptAuthoredParameter.py\", line 27, in <module>\n    doc = app.importManager.importToNewDocument(app.importManager.createFusionArchiveImportOptions(str(source)))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/core.py\", line 16045, in importToNewDocument\n    return _core.ImportManager_importToNewDocument(self, importOptions)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 2 : InternalValidationError : isSuccessfullyOpened && status.isOk()\n",
+  "documents_after": 0
+}

@@ -1,0 +1,314 @@
+{
+ "scope": "Converted Form body of every probe variant against its base after masking surface poles, jump lists, boundary curve poles and lists, vertex points and cage grips",
+ "python": "3.14.7",
+ "cages": [
+  {
+   "cage": "Box",
+   "entities": 118,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 7,
+    "ShellNode": 1,
+    "FaceNode": 6,
+    "LoopNode": 6,
+    "SplineNode": 6,
+    "CoedgeNode": 24,
+    "EdgeNode": 12,
+    "PcurveNode": 24,
+    "VertexNode": 8,
+    "IntcurveNode": 12,
+    "PointNode": 8
+   },
+   "variants_compared": 36,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 190,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 209,
+    "PcurveNode.Curve.Body[1]": 587,
+    "TagAttrib.Groups[0].PrimaryId": 164,
+    "TimeAttrib.UnixMicros": 36
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 1.8675358015811813e-15,
+    "pcurve_pole_offset_max": 8.881784197001252e-16
+   }
+  },
+  {
+   "cage": "CreasedPlane",
+   "entities": 62,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 9,
+    "ShellNode": 1,
+    "FaceNode": 2,
+    "LoopNode": 2,
+    "SplineNode": 2,
+    "CoedgeNode": 8,
+    "EdgeNode": 7,
+    "PcurveNode": 8,
+    "VertexNode": 6,
+    "IntcurveNode": 7,
+    "PointNode": 6
+   },
+   "variants_compared": 44,
+   "masked_differences": {
+    "EdgeNode.Convexity": 2,
+    "PcurveNode.Curve.Body[0].Poles[0][0]": 8,
+    "PcurveNode.Curve.Body[0].Poles[0][1]": 1,
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 41,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 10,
+    "PcurveNode.Curve.Body[1]": 110,
+    "TagAttrib.Groups[0].PrimaryId": 321,
+    "TimeAttrib.UnixMicros": 44
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 1.374973122564836e-15,
+    "pcurve_pole_offset_max": 2.220446049250313e-16
+   }
+  },
+  {
+   "cage": "CreasedBox",
+   "entities": 123,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 7,
+    "ShellNode": 1,
+    "FaceNode": 6,
+    "LoopNode": 6,
+    "SplineNode": 6,
+    "CoedgeNode": 26,
+    "EdgeNode": 13,
+    "PcurveNode": 24,
+    "VertexNode": 9,
+    "IntcurveNode": 12,
+    "PointNode": 9
+   },
+   "variants_compared": 36,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 232,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 209,
+    "PcurveNode.Curve.Body[1]": 556,
+    "TagAttrib.Groups[0].PrimaryId": 182,
+    "TimeAttrib.UnixMicros": 36
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 1.912051653451008e-15,
+    "pcurve_pole_offset_max": 9.291044082915186e-16
+   }
+  },
+  {
+   "cage": "Box3",
+   "entities": 118,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 7,
+    "ShellNode": 1,
+    "FaceNode": 6,
+    "LoopNode": 6,
+    "SplineNode": 6,
+    "CoedgeNode": 24,
+    "EdgeNode": 12,
+    "PcurveNode": 24,
+    "VertexNode": 8,
+    "IntcurveNode": 12,
+    "PointNode": 8
+   },
+   "variants_compared": 66,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 222,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 217,
+    "PcurveNode.Curve.Body[1]": 497,
+    "TagAttrib.Groups[0].PrimaryId": 358,
+    "TimeAttrib.UnixMicros": 66
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 1.8948646103102978e-15,
+    "pcurve_pole_offset_max": 1.7763568394002505e-15
+   }
+  },
+  {
+   "cage": "SymmetricBox",
+   "entities": 118,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 7,
+    "ShellNode": 1,
+    "FaceNode": 6,
+    "LoopNode": 6,
+    "SplineNode": 6,
+    "CoedgeNode": 24,
+    "EdgeNode": 12,
+    "PcurveNode": 24,
+    "VertexNode": 8,
+    "IntcurveNode": 12,
+    "PointNode": 8
+   },
+   "variants_compared": 2,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 21,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 16,
+    "PcurveNode.Curve.Body[1]": 48,
+    "TagAttrib.Groups[0].PrimaryId": 9,
+    "TimeAttrib.UnixMicros": 2
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 1.8789974106324894e-15,
+    "pcurve_pole_offset_max": 6.661338147750939e-16
+   }
+  },
+  {
+   "cage": "Valence5",
+   "entities": 320,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 16,
+    "ShellNode": 1,
+    "FaceNode": 15,
+    "LoopNode": 15,
+    "SplineNode": 15,
+    "CoedgeNode": 70,
+    "EdgeNode": 35,
+    "PcurveNode": 70,
+    "VertexNode": 22,
+    "IntcurveNode": 35,
+    "PointNode": 22
+   },
+   "variants_compared": 42,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[0][0]": 110,
+    "PcurveNode.Curve.Body[0].Poles[0][1]": 118,
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 488,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 423,
+    "PcurveNode.Curve.Body[1]": 1523,
+    "TagAttrib.Groups[0].PrimaryId": 585,
+    "TimeAttrib.UnixMicros": 42
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 7.25028184159964e-16,
+    "pcurve_pole_offset_max": 1.5543122344752192e-15
+   }
+  },
+  {
+   "cage": "Valence6",
+   "entities": 382,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 19,
+    "ShellNode": 1,
+    "FaceNode": 18,
+    "LoopNode": 18,
+    "SplineNode": 18,
+    "CoedgeNode": 84,
+    "EdgeNode": 42,
+    "PcurveNode": 84,
+    "VertexNode": 26,
+    "IntcurveNode": 42,
+    "PointNode": 26
+   },
+   "variants_compared": 48,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[0][0]": 126,
+    "PcurveNode.Curve.Body[0].Poles[0][1]": 178,
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 545,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 532,
+    "PcurveNode.Curve.Body[1]": 2014,
+    "TagAttrib.Groups[0].PrimaryId": 810,
+    "TimeAttrib.UnixMicros": 48
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 7.50865467718265e-16,
+    "pcurve_pole_offset_max": 1.5543122344752192e-15
+   }
+  },
+  {
+   "cage": "Valence8",
+   "entities": 506,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 25,
+    "ShellNode": 1,
+    "FaceNode": 24,
+    "LoopNode": 24,
+    "SplineNode": 24,
+    "CoedgeNode": 112,
+    "EdgeNode": 56,
+    "PcurveNode": 112,
+    "VertexNode": 34,
+    "IntcurveNode": 56,
+    "PointNode": 34
+   },
+   "variants_compared": 60,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[0][0]": 187,
+    "PcurveNode.Curve.Body[0].Poles[0][1]": 224,
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 808,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 831,
+    "PcurveNode.Curve.Body[1]": 2810,
+    "TagAttrib.Groups[0].PrimaryId": 1371,
+    "TimeAttrib.UnixMicros": 60
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 7.18210860196663e-16,
+    "pcurve_pole_offset_max": 1.1102230246251565e-15
+   }
+  },
+  {
+   "cage": "Valence5Warped",
+   "entities": 320,
+   "entity_types": {
+    "AsmRoot": 1,
+    "BodyNode": 1,
+    "TimeAttrib": 1,
+    "LumpNode": 1,
+    "TagAttrib": 16,
+    "ShellNode": 1,
+    "FaceNode": 15,
+    "LoopNode": 15,
+    "SplineNode": 15,
+    "CoedgeNode": 70,
+    "EdgeNode": 35,
+    "PcurveNode": 70,
+    "VertexNode": 22,
+    "IntcurveNode": 35,
+    "PointNode": 22
+   },
+   "variants_compared": 2,
+   "masked_differences": {
+    "PcurveNode.Curve.Body[0].Poles[0][0]": 12,
+    "PcurveNode.Curve.Body[0].Poles[0][1]": 14,
+    "PcurveNode.Curve.Body[0].Poles[1][0]": 54,
+    "PcurveNode.Curve.Body[0].Poles[1][1]": 59,
+    "PcurveNode.Curve.Body[1]": 140,
+    "TagAttrib.Groups[0].PrimaryId": 28,
+    "TimeAttrib.UnixMicros": 2
+   },
+   "pcurve_noise": {
+    "pcurve_fit_max": 7.596604830154046e-16,
+    "pcurve_pole_offset_max": 6.661338147750939e-16
+   }
+  }
+ ]
+}

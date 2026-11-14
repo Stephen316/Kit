@@ -1,0 +1,407 @@
+{
+  "scope": "Source-free edge-origin experiments; no source TSM reads",
+  "purpose": "Separate TSM edge-origin, face-root and vertex-root effects on the native solved surface",
+  "geometry_mm": {
+    "Width": 17,
+    "Depth": 23,
+    "Height": 31
+  },
+  "baseline": "re/Fusion/LocalOracle/TSplineCodec/AuthoredClosedCage.tsm",
+  "cases": [
+    {
+      "name": "EdgeOnly",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/EdgeVariants/EdgeOnly.tsm",
+      "output_sha256": "e44b804da67457ccaed43cc322b5ce17f3a8626c2e0cf2a510140a4499f6b657",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        3,
+        2,
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "face_origins": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ],
+      "edge_origins": [
+        0,
+        1,
+        12,
+        8,
+        4,
+        5,
+        18,
+        22,
+        9,
+        21,
+        13,
+        17
+      ]
+    },
+    {
+      "name": "BaseEdgeAscending",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/EdgeVariants/BaseEdgeAscending.tsm",
+      "output_sha256": "6bcd57acd13ca2fdd8015c811f0d9c3a151c48ff6b7c66bb0cb58b6f1122fa12",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        3,
+        2,
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "face_origins": [
+        0,
+        4,
+        8,
+        12,
+        16,
+        20
+      ],
+      "edge_origins": [
+        0,
+        16,
+        12,
+        8,
+        4,
+        5,
+        6,
+        22,
+        9,
+        21,
+        13,
+        17
+      ]
+    },
+    {
+      "name": "AllSemanticEdges",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/EdgeVariants/AllSemanticEdges.tsm",
+      "output_sha256": "00562b43db28340883a39d33ab55974218b1587673998eb69f22e0dace398c28",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        17,
+        20,
+        21,
+        10,
+        11,
+        13,
+        19
+      ],
+      "face_origins": [
+        3,
+        4,
+        9,
+        12,
+        18,
+        23
+      ],
+      "edge_origins": [
+        0,
+        1,
+        20,
+        4,
+        5,
+        12,
+        9,
+        10,
+        17,
+        13,
+        18,
+        21
+      ]
+    },
+    {
+      "name": "FaceRootsEdges",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/EdgeVariants/FaceRootsEdges.tsm",
+      "output_sha256": "2c8a31475a7a475ee0e4a1adb99cb14cca3207c10456c7062bb57428284fecdf",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        3,
+        2,
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "face_origins": [
+        3,
+        4,
+        8,
+        15,
+        18,
+        21
+      ],
+      "edge_origins": [
+        0,
+        1,
+        12,
+        8,
+        4,
+        5,
+        18,
+        22,
+        9,
+        21,
+        13,
+        17
+      ]
+    },
+    {
+      "name": "FaceRootsAscending",
+      "output_file": "re/Fusion/LocalOracle/TSplineCodec/EdgeVariants/FaceRootsAscending.tsm",
+      "output_sha256": "a5d0f934b947bbe3984a3bdf36db9f88ff1d4bd11e9c970993ad3a49c6652449",
+      "control_points_cm": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          1.7,
+          0,
+          0
+        ],
+        [
+          1.7,
+          2.3,
+          0
+        ],
+        [
+          0,
+          2.3,
+          0
+        ],
+        [
+          0,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          0,
+          3.1
+        ],
+        [
+          1.7,
+          2.3,
+          3.1
+        ],
+        [
+          0,
+          2.3,
+          3.1
+        ]
+      ],
+      "vertex_origins": [
+        0,
+        3,
+        2,
+        1,
+        4,
+        5,
+        6,
+        7
+      ],
+      "face_origins": [
+        3,
+        4,
+        8,
+        15,
+        18,
+        21
+      ],
+      "edge_origins": [
+        0,
+        16,
+        12,
+        8,
+        4,
+        5,
+        6,
+        22,
+        9,
+        21,
+        13,
+        17
+      ]
+    }
+  ]
+}

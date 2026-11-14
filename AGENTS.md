@@ -1,5 +1,24 @@
 # Agent guidance
 
+## CAD success criteria and reverse engineering
+
+Agents MUST read the [CAD success criteria](Documentation/Reference/Operations/CadSuccessCriteria.md)
+before any CAD parsing, writing, conversion, verification, or reverse-engineering task, and before
+claiming that any CAD output works. Abide by every criterion at once: no donor data, no CAD runtime,
+lossless, fully parametric, vendor loadable, application usable, measured acceptance against
+controls, honest attestation, complete implementation, generalization to held-out inputs, and
+traceable knowledge. A result that misses one criterion is unfinished work, not an outcome. The
+criteria page collects the authoritative standards and never relaxes them.
+
+Any agent tasked with reverse engineering a file format, decoding or writing a native CAD stream, or
+analyzing a CAD application's binaries MUST read the
+[reverse-engineering instruction book](re/Playbook/README.md) in full before starting, then the
+chapter for its phase, and follow it. The book requires mapping the file's structure and its
+parametric and derived data, reverse engineering the vendor loader modules for their data model and
+key boundaries with the REA MCP server or the `npx rea-agents` CLI, generating a ground-truth corpus
+of extreme models through the vendor API, correlating that corpus to locate every field, and only
+then building the writer. Put both documents in every sub-agent brief for CAD work.
+
 ## Documentation and gotchas
 
 Every new feature, API, adapter, command, configuration option, workflow, tool,
@@ -93,9 +112,20 @@ rules. Git isolation and preservation of user-owned work still apply.
 The research exemption does not waive product acceptance. Code or artifacts
 shipped in production, and outputs claimed to be production-ready, must satisfy
 no-CAD-runtime, no-donor-block, lossless-conversion, parametric feature/history,
-vendor-loadability, and target-application acceptance requirements. Research
+vendor-loadability, and target-application acceptance requirements listed in the
+[CAD success criteria](Documentation/Reference/Operations/CadSuccessCriteria.md). Research
 experiments may remain unrestricted in `re/`; their location does not qualify
 them for shipping or establish acceptance evidence.
+
+Donor data is banned. Writers MUST make every emitted byte from
+reverse-engineered format knowledge. Do not ship donor files, donor blocks,
+templates, captured rows, or values captured from or fitted to one document,
+in `src/`, in package data, or in writer output. A "generic" template and a
+fallback to donor data are also banned. `re/` may keep vendor-saved controls
+and captured tables for research, but production code MUST NOT load them.
+Read the [no donor blocks standard](.agents/skills/standard-pr-practice/references/Standards/Portable/NoDonorBlocks.md)
+and the [Fusion donor data ban](Documentation/Reference/Research/FusionDonorBan.md)
+before writer work.
 
 An administrator's explicit merge request remains valid through repairs and
 authorizes a supported admin override when independently enforced protections

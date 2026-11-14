@@ -1,0 +1,8 @@
+{
+  "fusion_version": "2706.1.17",
+  "source_sha256": "e543149d548412263728f3c33cabf115badbbc459d43e5a124a8df8f62d2e407",
+  "scope": "Independent generated binary ASM cylinder import through the public SMT import API, geometry inspection, native save and reopen; no parametric feature history is generated",
+  "status": "failed",
+  "traceback": "Traceback (most recent call last):\n  File \"re/Fusion/LocalOracle/AcceptBinarySmt.py\", line 39, in <module>\n    doc = app.importManager.importToNewDocument(app.importManager.createSMTImportOptions(str(source)))\n  File \"~/Library/Application Support/Autodesk/webdeploy/production/b43a07003c01dd54425db484d23b1c5e6248a21d/Autodesk Fusion.app/Contents/Api/Python/packages/adsk/core.py\", line 16045, in importToNewDocument\n    return _core.ImportManager_importToNewDocument(self, importOptions)\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: 2 : InternalValidationError : isSuccessfullyOpened && status.isOk()\n",
+  "documents_after": 1
+}

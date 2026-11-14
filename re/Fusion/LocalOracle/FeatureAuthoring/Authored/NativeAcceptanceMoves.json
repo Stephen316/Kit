@@ -1,0 +1,2951 @@
+{
+  "fusion_version": "2706.1.17",
+  "documents_before": 0,
+  "suite": "Moves",
+  "scope": "Kit-authored part feature documents compared with same-script native API controls: open without recompute, every rollback marker, computeAll, driving parameter edits, export and reopen",
+  "cases": [
+    {
+      "name": "MoveBody",
+      "file": "MoveBody.f3d",
+      "sha256": "e4a55bf4643c07f5878fd043f013533a2c8b42997de6eb64289571022a876b63",
+      "steps": [
+        {
+          "kind": "move",
+          "offset_cm": [
+            1.0,
+            0.0,
+            0.0
+          ],
+          "turn_degrees": 0.0,
+          "name": "Body move"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "height",
+          "expression": "25 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 4,
+          "control_positions": 4,
+          "each": [
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base Sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base Extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body move",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                3.0,
+                1.5,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base Extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base Extrude",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base Sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base Extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Body move",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base Extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base Extrude",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base Sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base Extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Body move",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base Extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base Extrude",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base Sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base Extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Body move",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base Extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base Extrude",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base Sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base Extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Body move",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  1.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  5.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  3.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base Extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base Extrude",
+                "role": "TaperAngle"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base Sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base Extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body move",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 30.0,
+              "area_cm2": 59.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                3.0,
+                2.5
+              ],
+              "center_cm": [
+                2.9999999999999996,
+                1.4999999999999998,
+                1.25
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base Extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base Extrude",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body move",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              3.0000000000000004,
+              1.5000000000000002,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "height",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base Extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base Extrude",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base Sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base Extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Body move",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "height",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base Extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base Extrude",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base Sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base Extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Body move",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "height",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base Extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base Extrude",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base Sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base Extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body move",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "height",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base Extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base Extrude",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base Sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base Extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body move",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                1.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                5.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                3.0000000000000004,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "height",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base Extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base Extrude",
+              "role": "TaperAngle"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body move",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 24.0,
+            "area_cm2": 52.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.0
+            ],
+            "center_cm": [
+              3.0000000000000004,
+              1.5000000000000002,
+              1.0
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "height",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base Extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base Extrude",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body move",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              3.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base Extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base Extrude",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body move",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              3.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base Extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base Extrude",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base Sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base Extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body move",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 30.0,
+            "area_cm2": 59.0,
+            "faces": 6,
+            "edges": 12,
+            "vertices": 8,
+            "min_cm": [
+              1.0,
+              0.0,
+              0.0
+            ],
+            "max_cm": [
+              5.0,
+              3.0,
+              2.5
+            ],
+            "center_cm": [
+              3.0,
+              1.5,
+              1.25
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base Extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base Extrude",
+            "role": "TaperAngle"
+          }
+        ],
+        "work": [],
+        "marker": 3
+      },
+      "saved_sha256": "fd21d460bd546ab4191a748e1c2c13cfee12ba838160388da6d0cf408c9052d7",
+      "status": "accepted"
+    },
+    {
+      "name": "MoveTurnPart",
+      "file": "MoveTurnPart.f3d",
+      "sha256": "4a9c03ba5a7b4a07fd54a57cab67e653a2a986d183df7a8de7dfa1d69be9d6d4",
+      "steps": [
+        {
+          "kind": "extrude",
+          "profile": [
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                0.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                0.0
+              ],
+              "end_cm": [
+                4.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                4.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                3.0
+              ]
+            },
+            {
+              "kind": "line",
+              "start_cm": [
+                0.0,
+                3.0
+              ],
+              "end_cm": [
+                0.0,
+                0.0
+              ]
+            }
+          ],
+          "amount": "20 mm",
+          "against": "0 mm",
+          "operation": "new",
+          "extent": "one",
+          "sketch": "Base sketch",
+          "name": "Base extrude"
+        },
+        {
+          "kind": "move",
+          "offset_cm": [
+            0.5,
+            0.5,
+            0.2
+          ],
+          "turn_degrees": 30.0,
+          "name": "Body turn"
+        },
+        {
+          "kind": "fillet",
+          "corner_cm": [
+            2.464101615137754,
+            5.098076211353316
+          ],
+          "amount": "3 mm",
+          "name": "Turned round"
+        }
+      ],
+      "edits": [
+        {
+          "feature": "Base extrude",
+          "role": "AlongDistance",
+          "expression": "25 mm"
+        },
+        {
+          "feature": "Turned round",
+          "expression": "4 mm"
+        }
+      ],
+      "kit_states": [
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 24.0,
+          "area_cm2": 52.0,
+          "faces": 6,
+          "edges": 12
+        },
+        {
+          "volume_cm3": 23.96137166941154,
+          "area_cm2": 51.703849465488474,
+          "faces": 7,
+          "edges": 15
+        }
+      ],
+      "checks": {
+        "opened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "markers": {
+          "positions": 5,
+          "control_positions": 5,
+          "each": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        "recomputed": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "edited": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened": {
+          "healthy": true,
+          "matches_control": true
+        },
+        "reopened_parameters_preserved": true,
+        "reopen_recomputed": {
+          "healthy": true,
+          "matches_control": true
+        }
+      },
+      "stage": "done",
+      "control": {
+        "built": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.961371669411545,
+              "area_cm2": 51.70384946548849,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                -0.9999999999999998,
+                0.5,
+                0.2
+              ],
+              "max_cm": [
+                3.9641016151377544,
+                4.988268590217984,
+                2.2
+              ],
+              "center_cm": [
+                1.4805071761230886,
+                2.795479375837432,
+                1.2
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d4",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        },
+        "markers": [
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Body turn",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Turned round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Turned round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Turned round",
+                "role": "Radius"
+              }
+            ],
+            "work": [],
+            "marker": 0
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Body turn",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Turned round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Turned round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Turned round",
+                "role": "Radius"
+              }
+            ],
+            "work": [],
+            "marker": 1
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Body turn",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              },
+              {
+                "name": "Turned round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "max_cm": [
+                  4.0,
+                  3.0,
+                  2.0
+                ],
+                "center_cm": [
+                  2.0,
+                  1.5,
+                  1.0
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Turned round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Turned round",
+                "role": "Radius"
+              }
+            ],
+            "work": [],
+            "marker": 2
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Body turn",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Turned round",
+                "health": 0,
+                "message": "",
+                "rolled_back": true
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 24.0,
+                "area_cm2": 52.0,
+                "faces": 6,
+                "edges": 12,
+                "vertices": 8,
+                "min_cm": [
+                  -0.9999999999999998,
+                  0.5,
+                  0.2
+                ],
+                "max_cm": [
+                  3.9641016151377544,
+                  5.098076211353316,
+                  2.2
+                ],
+                "center_cm": [
+                  1.4820508075688779,
+                  2.799038105676658,
+                  1.2
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Turned round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Turned round",
+                "role": "Radius"
+              }
+            ],
+            "work": [],
+            "marker": 3
+          },
+          {
+            "timeline": [
+              {
+                "name": "Base sketch",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Base extrude",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Body turn",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              },
+              {
+                "name": "Turned round",
+                "health": 0,
+                "message": "",
+                "rolled_back": false
+              }
+            ],
+            "bodies": [
+              {
+                "name": "Body1",
+                "solid": true,
+                "volume_cm3": 23.961371669411545,
+                "area_cm2": 51.70384946548849,
+                "faces": 7,
+                "edges": 15,
+                "vertices": 10,
+                "min_cm": [
+                  -0.9999999999999998,
+                  0.5,
+                  0.2
+                ],
+                "max_cm": [
+                  3.9641016151377544,
+                  4.988268590217984,
+                  2.2
+                ],
+                "center_cm": [
+                  1.4805071761230886,
+                  2.795479375837432,
+                  1.2
+                ],
+                "surface_types": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  0,
+                  1
+                ]
+              }
+            ],
+            "parameters": [
+              {
+                "name": "d1",
+                "expression": "20 mm",
+                "value": 2.0,
+                "unit": "mm",
+                "owner": "Base extrude",
+                "role": "AlongDistance"
+              },
+              {
+                "name": "d2",
+                "expression": "0.0 deg",
+                "value": 0.0,
+                "unit": "deg",
+                "owner": "Base extrude",
+                "role": "TaperAngle"
+              },
+              {
+                "name": "d3",
+                "expression": "1",
+                "value": 1.0,
+                "unit": "",
+                "owner": "Turned round",
+                "role": "TangencyWeight"
+              },
+              {
+                "name": "d4",
+                "expression": "3 mm",
+                "value": 0.30000000000000004,
+                "unit": "mm",
+                "owner": "Turned round",
+                "role": "Radius"
+              }
+            ],
+            "work": [],
+            "marker": 4
+          }
+        ],
+        "edited": {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 29.914159265358983,
+              "area_cm2": 58.50212373908209,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                -0.9999999999999998,
+                0.5,
+                0.2
+              ],
+              "max_cm": [
+                3.9641016151377544,
+                4.951666049839541,
+                2.7
+              ],
+              "center_cm": [
+                1.4793265897941232,
+                2.792791090250868,
+                1.45
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "d1",
+              "expression": "25 mm",
+              "value": 2.5,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d2",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d3",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d4",
+              "expression": "4 mm",
+              "value": 0.4,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      },
+      "opened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body turn",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Turned round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.96137166941154,
+            "area_cm2": 51.703849465488474,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -1.0,
+              0.5,
+              0.2
+            ],
+            "max_cm": [
+              3.9641016150000006,
+              4.9882685902179835,
+              2.2
+            ],
+            "center_cm": [
+              1.4805071761230881,
+              2.7954793758374317,
+              1.2
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Turned round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Turned round",
+            "role": "Radius"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "markers": [
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 0
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 1
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.0,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                0.0,
+                0.0,
+                0.0
+              ],
+              "max_cm": [
+                4.0,
+                3.0,
+                2.0
+              ],
+              "center_cm": [
+                2.0,
+                1.5000000000000002,
+                1.0
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 2
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": true
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 24.000000000000004,
+              "area_cm2": 52.0,
+              "faces": 6,
+              "edges": 12,
+              "vertices": 8,
+              "min_cm": [
+                -1.0,
+                0.5,
+                0.2
+              ],
+              "max_cm": [
+                3.9641016150000006,
+                5.098076211,
+                2.2
+              ],
+              "center_cm": [
+                1.4820508075688776,
+                2.7990381056766576,
+                1.2
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 3
+        },
+        {
+          "timeline": [
+            {
+              "name": "Base sketch",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Base extrude",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Body turn",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            },
+            {
+              "name": "Turned round",
+              "health": 0,
+              "message": "",
+              "rolled_back": false
+            }
+          ],
+          "bodies": [
+            {
+              "name": "Body1",
+              "solid": true,
+              "volume_cm3": 23.96137166941154,
+              "area_cm2": 51.703849465488474,
+              "faces": 7,
+              "edges": 15,
+              "vertices": 10,
+              "min_cm": [
+                -1.0,
+                0.5,
+                0.2
+              ],
+              "max_cm": [
+                3.9641016150000006,
+                4.9882685902179835,
+                2.2
+              ],
+              "center_cm": [
+                1.4805071761230881,
+                2.7954793758374317,
+                1.2
+              ],
+              "surface_types": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          "parameters": [
+            {
+              "name": "height",
+              "expression": "20.0 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": null,
+              "role": null
+            },
+            {
+              "name": "d2",
+              "expression": "20 mm",
+              "value": 2.0,
+              "unit": "mm",
+              "owner": "Base extrude",
+              "role": "AlongDistance"
+            },
+            {
+              "name": "d3",
+              "expression": "0.0 deg",
+              "value": 0.0,
+              "unit": "deg",
+              "owner": "Base extrude",
+              "role": "TaperAngle"
+            },
+            {
+              "name": "d4",
+              "expression": "1",
+              "value": 1.0,
+              "unit": "",
+              "owner": "Turned round",
+              "role": "TangencyWeight"
+            },
+            {
+              "name": "d5",
+              "expression": "3 mm",
+              "value": 0.30000000000000004,
+              "unit": "mm",
+              "owner": "Turned round",
+              "role": "Radius"
+            }
+          ],
+          "work": [],
+          "marker": 4
+        }
+      ],
+      "computed": true,
+      "recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body turn",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Turned round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 23.961371669411545,
+            "area_cm2": 51.70384946548849,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.9999999999999998,
+              0.5,
+              0.2
+            ],
+            "max_cm": [
+              3.9641016151377544,
+              4.988268590217984,
+              2.2
+            ],
+            "center_cm": [
+              1.4805071761230886,
+              2.7954793758374317,
+              1.2
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "20 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Turned round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "3 mm",
+            "value": 0.30000000000000004,
+            "unit": "mm",
+            "owner": "Turned round",
+            "role": "Radius"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "edited": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body turn",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Turned round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 29.914159265358983,
+            "area_cm2": 58.50212373908209,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.9999999999999998,
+              0.5,
+              0.2
+            ],
+            "max_cm": [
+              3.9641016151377544,
+              4.951666049839541,
+              2.7
+            ],
+            "center_cm": [
+              1.4793265897941232,
+              2.792791090250868,
+              1.45
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Turned round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Turned round",
+            "role": "Radius"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopened": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body turn",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Turned round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 29.914159265358983,
+            "area_cm2": 58.50212373908209,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.9999999999999998,
+              0.5,
+              0.2
+            ],
+            "max_cm": [
+              3.9641016151377544,
+              4.951666049839541,
+              2.7
+            ],
+            "center_cm": [
+              1.4793265897941232,
+              2.792791090250868,
+              1.45
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Turned round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Turned round",
+            "role": "Radius"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "reopen_computed": true,
+      "reopen_recomputed": {
+        "timeline": [
+          {
+            "name": "Base sketch",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Base extrude",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Body turn",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          },
+          {
+            "name": "Turned round",
+            "health": 0,
+            "message": "",
+            "rolled_back": false
+          }
+        ],
+        "bodies": [
+          {
+            "name": "Body1",
+            "solid": true,
+            "volume_cm3": 29.914159265358983,
+            "area_cm2": 58.50212373908209,
+            "faces": 7,
+            "edges": 15,
+            "vertices": 10,
+            "min_cm": [
+              -0.9999999999999998,
+              0.5,
+              0.2
+            ],
+            "max_cm": [
+              3.9641016151377544,
+              4.951666049839541,
+              2.7
+            ],
+            "center_cm": [
+              1.4793265897941232,
+              2.792791090250868,
+              1.45
+            ],
+            "surface_types": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "height",
+            "expression": "20.0 mm",
+            "value": 2.0,
+            "unit": "mm",
+            "owner": null,
+            "role": null
+          },
+          {
+            "name": "d2",
+            "expression": "25 mm",
+            "value": 2.5,
+            "unit": "mm",
+            "owner": "Base extrude",
+            "role": "AlongDistance"
+          },
+          {
+            "name": "d3",
+            "expression": "0.0 deg",
+            "value": 0.0,
+            "unit": "deg",
+            "owner": "Base extrude",
+            "role": "TaperAngle"
+          },
+          {
+            "name": "d4",
+            "expression": "1",
+            "value": 1.0,
+            "unit": "",
+            "owner": "Turned round",
+            "role": "TangencyWeight"
+          },
+          {
+            "name": "d5",
+            "expression": "4 mm",
+            "value": 0.4,
+            "unit": "mm",
+            "owner": "Turned round",
+            "role": "Radius"
+          }
+        ],
+        "work": [],
+        "marker": 4
+      },
+      "saved_sha256": "459bf8b7d22f8f90a9916ad64680f857140243647f9886a2bc7807f91a270ffb",
+      "status": "accepted"
+    }
+  ],
+  "status": "accepted",
+  "documents_after": 0
+}

@@ -147,7 +147,7 @@ SOURCE_EVIDENCE = 'trimmed-extrusion-source-decoding.json'
 MATH_EVIDENCE = 'trimmed-extrusion-geometry-decoding.json'
 FROZEN_PRODUCTION = {'decode_trimmed_extrusion_reconstruction.py': 'd4287d0058f68969170b4c69ecccd6dba0ab2406e99684d5cb0b2263e94b4603', 'decode_trimmed_extrusion_sources.py': 'c213185146f985522ce7ebf40003bfb930b30423d07e125f1e89be282e688cdb', 'decode_extrusion_source_operands.py': 'b3a58131c722402fcddf5a8e9dafb35ab78323e51c99adb08dea2378d16576ff', 'decode_trimmed_extrusion_geometry.py': '4aefa41536c987b49ac0639312aecec0211898e94a8a64e0614f2391a5f485ad'}
 FROZEN_MAIN_SHA256 = 'e2442a2d2a034b9f3eadb1c7ca7537a8224763378c54934e6cd2b846fdc0a1ba'
-FROZEN_EVIDENCE = {'trimmed-extrusion-reconstruction-decoding.json': 'fe9aa7bfa9fad06022750996e5cc091005431b08f1770116a785fd636887f00a', 'trimmed-extrusion-source-decoding.json': '263869caf06625be476682847081789e692681f8e6ab997b4c83fb654e335af3', 'trimmed-extrusion-geometry-decoding.json': '6a4961943ef4343c74c99ba84ba5b0792fc7bf3f4fe4b2fc8e3b04b0b4f68809'}
+FROZEN_EVIDENCE = {'trimmed-extrusion-reconstruction-decoding.json': '9886bc2b020bc5aff022fab0cd06d60b766718fae8845db0df662f2f4521fe20', 'trimmed-extrusion-source-decoding.json': 'de9c2103cd6f3b4e489a83f1cc49382be35e88de33ea3b26002f7080900109c9', 'trimmed-extrusion-geometry-decoding.json': '6a4961943ef4343c74c99ba84ba5b0792fc7bf3f4fe4b2fc8e3b04b0b4f68809'}
 
 
 def read_cache(path, side):

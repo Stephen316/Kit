@@ -1,0 +1,96 @@
+{
+ "scope": "Every entity record (live and archived) in every .smbh and .smb under re/ whose curve, coedge or lump reference is -1",
+ "unread": {
+  "ValueError: Unsupported Fusion journal qualified field": 25,
+  "ValueError: Unsupported Fusion journal attribute family": 18,
+  "ValueError: Unsupported Fusion journal entity kind: no_merge_attribute-st-attrib": 10,
+  "ValueError: Unsupported Fusion journal entity kind: int64_attrib-name_attrib-gen-attrib": 9,
+  "ValueError: Fusion round carriers require positive finite radii": 1
+ },
+ "shapes": [
+  {
+   "count": 17,
+   "example": "re/Fusion/Study/analytic-86a12b291d0a/analytic.f3d smb slot 70",
+   "coedge_partner_is_self": false,
+   "coedge_pcurve": null,
+   "convexity": "unknown",
+   "face_surface": "cone-surface",
+   "kind": "smb",
+   "params": [
+    1.0,
+    0.0
+   ],
+   "same_vertex": true,
+   "sense": 11,
+   "shape": "edge without curve",
+   "vertex_edge_is_self": true
+  },
+  {
+   "count": 17,
+   "example": "re/Fusion/Study/constructionmodes-521ce7cdfdbe/axis_perpendicular_at_point.f3d smb slot 3",
+   "curve": "straight-curve",
+   "kind": "smb",
+   "referenced_by": [
+    "vertex"
+   ],
+   "shape": "edge without coedge"
+  },
+  {
+   "count": 16,
+   "example": "re/Fusion/Study/analytic-86a12b291d0a/analytic.f3d smbh slot 34",
+   "coedge_partner_is_self": false,
+   "coedge_pcurve": null,
+   "convexity": "unknown",
+   "face_surface": "cone-surface",
+   "kind": "smbh",
+   "params": [
+    1.0,
+    0.0
+   ],
+   "same_vertex": true,
+   "sense": 11,
+   "shape": "edge without curve",
+   "vertex_edge_is_self": true
+  },
+  {
+   "count": 4,
+   "example": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/line_full.f3d smbh slot 2",
+   "curve": "straight-curve",
+   "kind": "smbh",
+   "referenced_by": [
+    "vertex"
+   ],
+   "shape": "edge without coedge"
+  },
+  {
+   "count": 2,
+   "example": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/circle_full.f3d smbh slot 2",
+   "curve": "ellipse-curve",
+   "kind": "smbh",
+   "referenced_by": [
+    "ATTRIB_CUSTOM-attrib",
+    "vertex"
+   ],
+   "shape": "edge without coedge"
+  },
+  {
+   "count": 2,
+   "example": "re/Fusion/Study/pipeedgecontrasts-5bd287323ae7/circle_full.f3d smb slot 2",
+   "curve": "ellipse-curve",
+   "kind": "smb",
+   "referenced_by": [
+    "ATTRIB_CUSTOM-attrib",
+    "vertex"
+   ],
+   "shape": "edge without coedge"
+  },
+  {
+   "count": 1,
+   "example": "re/Fusion/Study/surfacetools-856ca50cf4c7/unstitch_chain.f3d smbh slot 1",
+   "kind": "smbh",
+   "shape": "body without lump",
+   "transform": -1,
+   "wire": -1
+  }
+ ]
+}
