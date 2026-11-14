@@ -28,6 +28,11 @@ def native_read(content, path):
             {
                 "name": f"{dim.name}@{item.name}", "value_mm": dim.value_mm,
                 "role": dim.native_role, "kind": dim.kind,
+                **(
+                    {"display_inches": dim.inch_display_value}
+                    if dim.inch_display_value is not None
+                    else {}
+                ),
             }
             for item in model.features for dim in item.dimensions
         ],

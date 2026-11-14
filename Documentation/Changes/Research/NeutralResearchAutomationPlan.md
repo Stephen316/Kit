@@ -4,7 +4,8 @@
 
 The maintained [plan](../../Reference/Research/AutomationPlan.md) aligns SOLIDWORKS and Fusion research around the existing neutral document contract.
 It defines paired semantic comparison, deterministic investigation, optional model escalation and independent native writers.
-Model escalation starts at the least costly tier, logs every failed attempt and moves a repeatedly failing signature to a stronger tier.
+Model escalation uses `claude-opus-5-5` or `gpt-6.1-sol` at `medium`, then `xhigh` after a logged model failure, and then parks the question.
+Reviewers run remote CI in batches. Candidates that pass a research check against their captures wait as pending CI until their batch result is recorded.
 Cross-format native acceptance governs the initial bidirectional conversion milestone.
 Same-format checks remain supporting evidence.
 The field search encodes known experiment values as byte patterns before a numpy scan of unexplained spans.

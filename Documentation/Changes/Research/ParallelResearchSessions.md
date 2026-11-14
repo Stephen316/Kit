@@ -9,13 +9,11 @@ Pool capacity uses CPU, memory, controller, provider and resource limits, an ada
 Up to 20 small decode jobs can share one session, with a separate lease and result for each job.
 A Codex runner executes optional model investigations through `codex exec` with a sandbox, an output schema and an event stream.
 A Claude runner uses the Messages API without tools for hypotheses and Claude Code in a disposable worktree for candidate patches.
-The tier selector, failure log and tier routes implement the plan's model escalation rule.
-The supervisor ranks model candidates by measured tokens per passed answer and removes candidates that another candidate dominates.
-Separate starting ladders for Codex and Claude come from published model descriptions and prices.
-Only starting-ladder candidates answer the full ranking set; other candidates pass a 5-question screen first.
-The Astra and Fable models are ruled out of both ladders by operator decision.
-Repeat disagreement, pass-rate drift and token spread re-rank an inconsistent candidate automatically for each task type.
-Repeat checks drop from 1 in 10 to 1 in 50 questions once a candidate is consistent.
+Each runner uses one fixed model at two efforts: `claude-opus-5-5` and `gpt-6.1-sol`, at `medium` first and `xhigh` only after a model failure.
+A question that fails both steps is parked.
+After two first-step failures with the same signature, later questions with that route key start at `xhigh`.
+The design has no ranking set, ranked ladder or automatic model replacement.
+A use report records attempts, passes and tokens for each step without changing the models.
 The Codex and Claude error tables separate model failures from infrastructure failures.
 A stable packet prefix lets both providers reuse cached input.
 
@@ -23,6 +21,7 @@ A stable packet prefix lets both providers reuse cached input.
 
 This is a design only; no code, command or controller schema change is added.
 The proposed child steps A08a, A08b, A10a, A10b, A10c, A10d and A15a require an explicit request and a claim.
+The fixed model pairs replace the earlier ranked ladders by operator decision.
 Model-run commands inside the Codex sandbox need explicit approval as an exception to the current plan rule.
 The private data boundary for the Codex runner needs verification before external transmission.
 

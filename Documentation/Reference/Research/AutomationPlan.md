@@ -51,6 +51,7 @@ Run the research workflow without routine operator action once the authorized wo
 Agents handle investigation, sample requests, worker dispatch and recovery, candidate integration, CI follow-up and evidence recording.
 Application workers handle the full native sample cycle, including application restart and saved-file readback, in an exclusive session.
 When an external prerequisite is missing, record it, park only the jobs that depend on it and continue runnable work.
+Publish updates with fast-forward pushes. Integrate concurrent remote work before retrying a rejected push.
 
 ## Existing assets and revision boundaries
 
@@ -192,9 +193,10 @@ Keep per-version and per-feature-variant evidence visible.
 
 Models are disabled by default and no API credential is required for offline operation.
 Configure a provider or local runner explicitly when model investigations are enabled.
-Use the least costly configured runner suitable for the question before escalating within budget.
+Use the first step of the configured runner before escalating to its fallback within budget.
 Verify actual provider APIs, supported model settings and prices during integration.
-No specific frontier model, beta feature or price is a requirement of this design.
+Models stay optional.
+The fixed model pairs below apply only when model investigations are enabled.
 
 Send a bounded packet containing the question, relevant records, graph links, sample differences and prior failed hypotheses.
 Include relevant serializer findings and machine-checkable success criteria.
@@ -212,8 +214,15 @@ Resume only when an applicable tool, rule or new sample changes its prerequisite
 
 ### Model escalation and failure log
 
-Configure model runners as ordered tiers, from the least costly to the most capable.
-Each question starts at the lowest tier unless the failure log routes it higher.
+Each model runner uses one fixed model at two reasoning efforts.
+
+| Runner | First step                  | Fallback step              |
+| ------ | --------------------------- | -------------------------- |
+| Claude | `claude-opus-5-5`, `medium` | `claude-opus-5-5`, `xhigh` |
+| Codex  | `gpt-6.1-sol`, `medium`     | `gpt-6.1-sol`, `xhigh`     |
+
+Do not use another model or effort without a plan change.
+Each question starts at the first step unless the failure log routes it to the fallback.
 An attempt fails when its output is malformed, exceeds a limit or does not pass the question's machine-checkable success criteria.
 
 Record every failed attempt in an append-only failure log before any retry.
@@ -221,20 +230,20 @@ Store the log in the durable evidence store with the job's attempts.
 Each entry records:
 
 - The question, its evidence fingerprint, job and attempt
-- The tier, runner, model and model version
+- The step, runner, model, effort and model version
 - The rejected output or proposal
 - The check that failed and its exact failure output
 - A failure signature: question kind, CAD format, feature family and failed check
 
-After a failure, send the same question to the next tier.
+After a first-step failure, send the same question to the fallback step.
 Include the logged failure in that packet as a prior failed hypothesis.
-The stronger model's answer must pass the same checks; its confidence is not evidence either.
+The fallback answer must pass the same checks.
+Its confidence is not evidence either.
 
-When the log holds two or more failures with the same signature at one tier, start later questions with that signature one tier higher.
-Repeat this for each tier, so a signature that keeps failing moves steadily to stronger models.
+When the log holds two first-step failures with the same signature, start later questions with that signature at the fallback step.
 Record each routing change in the log with the entries that caused it.
-Lower a raised starting tier only when a new tool, rule, runner or model version changes that signature's prerequisites.
-When the highest tier fails, or the budget runs out, park the question as above.
+Return a signature to the first step only when a new tool, rule, runner or model version changes its prerequisites.
+When the fallback step fails, or the budget runs out, park the question as above.
 
 The [parallel sessions design](ParallelSessions.md) owns the supervisor and optional runner details.
 Its child deliverables are identified in the step register.
@@ -242,10 +251,9 @@ A08a adds counted resources, pool-filtered claims and a distinct stale-lease out
 A03 remains the initial adapter, with other controllers required to preserve the same transactional guarantees.
 A08b adds resource headroom, adaptive capacity, calibration and small-file grouping with separate leases and crash fallback.
 
-Optional model work includes separate Codex and Claude runners, measured token-efficiency ladders and consistency-based routing.
-Use stable packet prefixes, candidate screening and reduced repeat checks only as that design specifies.
-Starting model rankings and prices are provisional until checked against the installed runner and provider during integration.
-Operator exclusions remain exclusions, including during re-ranking.
+Optional model work includes separate Codex and Claude runners with the fixed model pairs above.
+Use stable packet prefixes as that design specifies.
+Check model availability, supported efforts and prices against the installed runner and provider during integration.
 Infrastructure errors do not count as failed semantic hypotheses.
 Keep models disabled until the relevant authorization, private-data isolation and policy requirements are satisfied.
 The proposed sandboxed model-command exception is not approved by this documentation alignment.
@@ -281,6 +289,36 @@ Do not run local tests, collection or ad hoc verification substitutes.
 Pending CI cannot be relabeled as passed research verification.
 Research inspection and ordinary decoding remain local workloads.
 
+### Batched remote verification
+
+The agent coordinating verification groups ready candidates and starts remote CI using the configured batch size, cadence and repository gates.
+
+Before a candidate joins a batch, stage 11 decodes its own experiment grid and repeat saves. Freeze the candidate before running any separately reserved holdout evaluation.
+It compares the result with the recorded measurements and records each counterexample.
+This check is research decoding, not a test suite run, and it does not replace remote CI.
+A candidate that passes it finishes with the existing `waiting_ci` outcome.
+A candidate that fails it is rejected with its counterexample.
+
+Later work may use a `waiting_ci` candidate.
+Each job that uses it binds the candidate fingerprint as an input.
+Reports show these candidates as pending CI, never as verified.
+
+The coordinating agent records each batch as an artifact after CI returns its results.
+The artifact names the batch revision, the candidates in the batch, the CI run and the result of each candidate.
+When a batch failure cannot be attributed to a candidate, the agent isolates the failure within configured retry limits while affected candidates wait for evidence.
+Recording the artifact changes the fingerprint of the `waiting_ci` jobs, so the controller resumes them.
+A passed candidate completes.
+A failed candidate is rejected with the CI failure, and the controller invalidates every job that bound its fingerprint.
+Those jobs requeue without operator action.
+
+Larger batches reduce CI launches and can increase the wait to enter a batch and the rework after a failure.
+Start with one batch for each working day or for each 10–20 candidates.
+Use the pilot measurements to change that size.
+
+The A03 controller already supplies the `waiting_ci` state, fingerprint resumption and dependent invalidation.
+No batch artifact, batch command or stage 11 checker exists yet.
+
+
 ### Proposed fast local checks
 
 This proposal is not in effect.
@@ -310,7 +348,7 @@ Approval requires a change to the repository rules before the first local run.
 | Unproved normalization                 | Request a distinguishing repeat save                         | Preserve the original span and park unresolved noise            |
 | Segmentation or references             | Compare spans and retrieve matching traces                   | Bound retries and scope findings to the exact build             |
 | Formula or semantic contradiction      | Retain the counterexample and refine the experiment          | Never promote a fit that fails independent evidence             |
-| Model error or budget exhaustion       | Log the failure, escalate one tier, then park                | No credential or budget is required for remaining offline work  |
+| Model error or budget exhaustion       | Log the failure, run the fallback step, then park            | No credential or budget is required for remaining offline work  |
 | Writer, load or edit failure           | Localize the failed native structure in the isolated harness | Diagnostic substitutions never become production output         |
 | Regression                             | Quarantine the candidate and retain the last verified rule   | Revert only task-owned commits when authorized                  |
 | Unsupported input                      | Reject the conversion with a specific reason                 | Preserve inputs and add a deduplicated backlog item             |
@@ -341,9 +379,21 @@ Broad assembly or major-version semantics may require one to three months or lon
 Missing distinguishing evidence has no defensible completion date.
 These are research estimates, not decoder runtime benchmarks or delivery promises.
 
+Those ranges describe development effort.
+After the planned steps are implemented, unattended pipeline time for one simple feature is much shorter.
+Application grids take about 5–30 minutes for each application.
+The field search, candidate generation and the stage 11 check take seconds to minutes.
+A first-step model attempt takes an estimated 2–10 minutes when models are enabled. A fallback attempt adds roughly 10–30 minutes when needed.
+With workers already available and application grids able to overlap, estimate 10–45 minutes of processing before CI for one simple feature, or 30–75 minutes total when a fallback runs.
+Worker queues, batch waits, CI and independent native acceptance add to that elapsed time.
+A new feature family repeats that loop several times.
+Application installations limit throughput, because each runs one grid at a time.
+These values are estimates from the plan's stage design and example limits, not measurements.
+
 For each feature family, format version and conversion direction, the unattended pilot records wall-clock time from job readiness to independently verified acceptance.
 Record active agent time across parallel attempts, evidence and application waits, CI queue and execution time, retries, cached results, optional model cost and independently verified documents unlocked.
 Count every operator intervention and record what required it.
+The offline pilot can proceed independently. Native timing and coverage measurements require the A08c workers, and native qualification follows the A13 gates.
 Use measured throughput, sample counts and the longest dependency chain to update the forecast and priorities.
 
 ## Related information

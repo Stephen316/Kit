@@ -137,7 +137,12 @@ from convert.adapters.solidworks.core.FeatureKindByNative import KFeatureKindByN
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from convert.adapters.solidworks.core.BuildRevolve import BuildRevolve as BuildRevolve
 from convert.adapters.solidworks.core.EquationLinks import EquationData
-from convert.adapters.solidworks.core.LinearDisplay import (
+from convert.adapters.solidworks.core.EquationTarget import (
+    KUnresolvedEqTargets,
+    ResolveTarget,
+)
+from convert.adapters.solidworks.core.BindInch import KUnresolvedInchDimension
+from convert.adapters.solidworks.core.ParseDisplay import (
     KInformationStream,
     ParseDisplay,
 )
@@ -310,7 +315,8 @@ def ReadNativePart(
 ) -> CadDoc:
     Model = NativePartModel(Archive, Settings.configuration)
     ConfigValues = Configurations(Model, Settings.configuration)
-    ParamValues = Parameters(Model)
+    UnresolvedTargets: list[Mapping[str, object]] = []
+    ParamValues = Parameters(Model, UnresolvedTargets)
     ParamIds = {Param.id for Param in ParamValues}
     PlaneValues = Planes(Model, ParamIds)
     SketchValues = Sketches(Model, ParamIds)
@@ -393,6 +399,11 @@ def ReadNativePart(
                 "native_name_record_count": len(Model.names),
                 "native_scalar_count": len(Model.scalars),
                 "stream_names": tuple((Record.name for Record in Archive.records)),
+                **(
+                    {KUnresolvedEqTargets: tuple(UnresolvedTargets)}
+                    if UnresolvedTargets
+                    else {}
+                ),
                 **(
                     {
                         "source_display_units": Model.linear_display.UnitName,
@@ -2059,7 +2070,9 @@ def Configurations(Model: NativeModel, Requested: str | None) -> tuple[Config, .
 
 
 # this definition exists because focused behavior needs one stable owner
-def Parameters(Model: NativeModel) -> tuple[Param, ...]:
+def Parameters(
+    Model: NativeModel, UnresolvedTargets: list[Mapping[str, object]] | None = None
+) -> tuple[Param, ...]:
     Parameters: list[Param] = []
     DimensionIds: dict[tuple[str, str], str] = {}
     AmbiguousDims: set[tuple[str, str]] = set()
@@ -2068,7 +2081,11 @@ def Parameters(Model: NativeModel) -> tuple[Param, ...]:
             NativeValue = (
                 Dimension.native_value
                 if Dimension.native_value is not None
-                else Dimension.value_mm / 1000.0
+                else (
+                    Dimension.value_mm / 1000.0
+                    if Dimension.value_mm is not None
+                    else None
+                )
             )
             Parameters.append(
                 Param(
@@ -2097,7 +2114,16 @@ def Parameters(Model: NativeModel) -> tuple[Param, ...]:
                             "source_text": Dimension.source_text,
                             "dimension_kind": Dimension.kind,
                             "native_value": NativeValue,
-                            "native_unit": "rad" if Dimension.kind == "angle" else "m",
+                            "native_unit": (
+                                None
+                                if Dimension.value_mm is None
+                                else "rad" if Dimension.kind == "angle" else "m"
+                            ),
+                            **(
+                                {KUnresolvedInchDimension: True}
+                                if Dimension.value_mm is None
+                                else {}
+                            ),
                             "native_role": Dimension.native_role or "unresolved",
                             "native_operands": tuple(
                                 (
@@ -2118,11 +2144,17 @@ def Parameters(Model: NativeModel) -> tuple[Param, ...]:
                 AmbiguousDims.add(QualifiedName)
             else:
                 DimensionIds[QualifiedName] = ParamId
-    return ApplyNativeMut(Parameters, Model, DimensionIds, frozenset(AmbiguousDims))
+    return ApplyNativeMut(
+        Parameters, Model, DimensionIds, frozenset(AmbiguousDims), UnresolvedTargets
+    )
 
 
 # this definition exists because focused behavior needs one stable owner
 def DimensionParam(Dimension: NativeDimension) -> ParamValue:
+    if Dimension.value_mm is None:
+        if Dimension.inch_display_value is not None:
+            return ParamValue(Dimension.inch_display_value, ValueKind.LENGTH, "in")
+        return ParamValue(Dimension.source_text, ValueKind.STRING)
     if Dimension.kind == "angle":
         return ParamValue(Dimension.value_mm, ValueKind.ANGLE, "deg")
     return ParamValue(Dimension.value_mm, ValueKind.LENGTH, "mm")
@@ -2134,6 +2166,7 @@ def ApplyNativeMut(
     Model: NativeModel,
     DimensionIds: Mapping[tuple[str, str], str],
     AmbiguousDims: frozenset[tuple[str, str]] | None = None,
+    UnresolvedTargets: list[Mapping[str, object]] | None = None,
 ) -> tuple[Param, ...]:
     if not Model.equations:
         return tuple(Parameters)
@@ -2164,11 +2197,13 @@ def ApplyNativeMut(
             ),
         )
         if "@" in Equation.lhs:
-            DimensionName, FeatureName = Equation.lhs.split("@", 1)
-            ParamId = DimensionIds.get((FeatureName, DimensionName))
-            if ParamId is None or ParamId not in ParamIndexes:
+            Index, TargetEvidence = ResolveTarget(
+                Equation, DimensionIds, AmbiguousKeys, ParamIndexes
+            )
+            if Index is None:
+                if UnresolvedTargets is not None and TargetEvidence is not None:
+                    UnresolvedTargets.append(TargetEvidence)
                 continue
-            Index = ParamIndexes[ParamId]
             Parameters[Index] = Replace(
                 Parameters[Index],
                 role=ParamRole.DERIVED,
@@ -2954,7 +2989,12 @@ def RulePartsMut(
     ItemValue = ContextMut.ParamUsage[NativeName] if NativeName else 0
     Dimensions = ContextMut.DimensionsByName.get(NativeName, [])
     Dimension = Dimensions[min(ItemValue, len(Dimensions) - 1)] if Dimensions else None
-    if not References and RuleValue.parameter is not None and Dimension is not None:
+    if (
+        not References
+        and RuleValue.parameter is not None
+        and Dimension is not None
+        and Dimension.value_mm is not None
+    ):
         KeyValue = round(Dimension.value_mm, 9)
         Available = ContextMut.Candidates.get(KeyValue, [])
         if Available:
@@ -3435,6 +3475,11 @@ def NativeFallback(
                         {
                             "name": Dimension.name,
                             "value_mm": Dimension.value_mm,
+                            **(
+                                {"display_inches": Dimension.inch_display_value}
+                                if Dimension.inch_display_value is not None
+                                else {}
+                            ),
                             "kind": Dimension.kind,
                             "source_text": Dimension.source_text,
                             "native_value": Dimension.native_value,

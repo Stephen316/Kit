@@ -1,15 +1,16 @@
 from math import isfinite as IsFinite
-from re import fullmatch as FullMatch
+from math import nextafter as NextAfter
 
 from interchange.features.DistanceParam import KLengthFactors
 
 
-def IsRoundedInch(TextValue: str, NativeValue: float, Decimals: int) -> bool:
-    LengthMm = NativeValue * KLengthFactors["m"]
-    if not IsFinite(LengthMm) or LengthMm <= 0.0:
+def IsRoundedInch(Displayed: float, NativeValue: float, Decimals: int) -> bool:
+    if not IsFinite(NativeValue * KLengthFactors["m"]):
         return False
-    TextValue = TextValue.strip()
-    if FullMatch(r"[0-9]+(?:\.[0-9]+)?", TextValue) is None:
-        return False
-    Rounded = round(LengthMm / KLengthFactors["in"], Decimals)
-    return Rounded == float(TextValue)
+    NativeInches = NativeValue / (KLengthFactors["in"] / KLengthFactors["m"])
+    HalfStep = 0.5 * 10**-Decimals
+    return (
+        NextAfter(Displayed - HalfStep, -float("inf"))
+        <= NativeInches
+        <= NextAfter(Displayed + HalfStep, float("inf"))
+    )
