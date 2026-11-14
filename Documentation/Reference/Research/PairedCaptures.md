@@ -7,6 +7,8 @@ Each recipe is authored independently in SOLIDWORKS and in Fusion.
 Each capture records the native files, the application build and the measured observations.
 These captures give later steps an answer key that does not come from a Kit reader.
 Use the [step register](AutomationSteps.md) for current status.
+The UI steps below specify the authoring operations for the harnesses and workers. Use the [SOLIDWORKS COM harness](SolidWorksCaptureAuthoring.md) or [Fusion capture queue](#fusion-captures) for scripted runs. Use the [Fusion fresh-process procedure](../../Changes/Research/FusionFreshProcessEvidence.md) for separate restart evidence.
+The A08c workers own dispatch and native application recovery. A08e supplies the Windows supervisor support needed to run both applications on one host.
 
 A capture is research evidence only.
 It does not qualify a reader, a writer or a conversion by itself.
