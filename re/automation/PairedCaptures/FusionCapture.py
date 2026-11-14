@@ -1,6 +1,7 @@
 import hashlib
 import json
 import math
+import re
 import traceback
 import uuid
 from pathlib import Path
@@ -416,6 +417,13 @@ def compare(recipe_id, basis, values, reading):
     return result
 
 
+def edited_expression(original, value, unit):
+    numbers = re.findall(r"[0-9]+(?:\.[0-9]+)?", original)
+    if len(numbers) != 1:
+        return "{} {}".format(value, unit)
+    return re.sub(r"[0-9]+(?:\.[0-9]+)?", str(value), original, count=1)
+
+
 def edit_unit(parameter):
     return "deg" if parameter == "angle_deg" else "mm"
 
@@ -429,7 +437,7 @@ def edit_cycle(app, document, recipe, basis, output, saves, owned):
         if parameter is None:
             raise RuntimeError("Driving parameter is missing: " + name)
         original = parameter.expression
-        parameter.expression = "{} {}".format(edit["value"], edit_unit(name))
+        parameter.expression = edited_expression(original, edit["value"], edit_unit(name))
         design.computeAll()
         edited = measure(document, "edit " + name + " = " + str(edit["value"]))
         values = dict(recipe["driving_parameters"], **{name: edit["value"]})
