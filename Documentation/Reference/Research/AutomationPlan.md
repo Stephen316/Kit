@@ -378,6 +378,16 @@ Broad assembly or major-version semantics may require one to three months or lon
 Missing distinguishing evidence has no defensible completion date.
 These are research estimates, not decoder runtime benchmarks or delivery promises.
 
+Those ranges describe development effort.
+After the planned steps are implemented, unattended pipeline time for one simple feature is much shorter.
+Application grids take about 5–30 minutes for each application.
+The field search, candidate generation and the stage 11 check take seconds to minutes.
+A first-step model attempt takes about 2–10 minutes, and a rare fallback attempt about 10–30 minutes.
+So one simple feature takes about 10–45 minutes before its CI batch, or about 30–75 minutes after a fallback.
+A new feature family repeats that loop several times.
+Application installations limit throughput, because each runs one grid at a time.
+These values are estimates from the plan's stage design and example limits, not measurements.
+
 For each feature family, format version and conversion direction, the unattended pilot records wall-clock time from job readiness to independently verified acceptance.
 Record active agent time across parallel attempts, evidence and application waits, CI queue and execution time, retries, cached results, optional model cost and independently verified documents unlocked.
 Count every operator intervention and record what required it.
