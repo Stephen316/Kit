@@ -97,6 +97,16 @@ No successful receipt is written for a rejected attempt.
 
 ## Verification boundaries
 
+### Discovery census
+
+On a completed **Workflow quality** run, download the `SolidworksDiscoveryCensus-<attempt>` artifact. It contains `SolidworksDiscoveryCensus.json` for all 25 native parts in the P01, P03 and P04 discovery families. The census uses the tested revision's Git objects and verifies each capture against the original exact receipt hash. Its alternate reader manifest binds the path, blob, byte count, SHA-256 and prefix. The historical 58-part reader check continues to use the pinned corpus manifest.
+
+The `boundary` field records whether the low-level native model and the process-based research reader each decoded a part. A native decode followed by a reader rejection localizes the failure to the later reader boundary. On successful reads, the report gives separate native and neutral comparisons to the measured file, including dimensions, equation text and bindings, operation codes, world-space sketch segments and observed support. Inspect the underlying records when a diagnostic comparison differs. Names and counts in the report serve this fixture census and do not establish semantic identity across formats.
+
+Mass and centroid values are copied from the independent measurement evidence for context. The census does not calculate them or run either CAD application. Semantic mismatches and decoder rejections appear in the report as research findings. Unverifiable inputs and invalid reader receipts fail the census. Use [the change entry](../../Changes/Research/SolidWorksDiscoveryCensus.md) for scope and evidence.
+
+### Historical corpus
+
 Remote process coverage exercises actual pinned files, typed reconstruction, tamper rejection and overwrite refusal.
 The corpus scenario requires every one of the 58 pinned parts to decode and reconstruct successfully.
 Any individual rejection fails that gate rather than passing through an aggregate success threshold.

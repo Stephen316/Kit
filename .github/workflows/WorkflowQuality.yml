@@ -74,6 +74,19 @@ jobs:
           tests/convert/api/ApiMetadataTests.py tests/Policy/DiffBreakdownTests.py
           tests/Policy/ShardPlanTests.py
 
+      - name: Census the SOLIDWORKS discovery captures
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --output "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
+      - name: Publish SOLIDWORKS discovery census
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: SolidworksDiscoveryCensus-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/SolidworksDiscoveryCensus.json
+          if-no-files-found: error
+          retention-days: 14
+
       - name: Exercise native file reading and writing
         run: >-
           uv run pytest
