@@ -47,6 +47,11 @@ Production readers and writers never require a CAD application, oracle service o
 Application workers belong exclusively to isolated authoring and acceptance workflows.
 Missing workers block dependent jobs while independent offline work continues.
 
+Run the research workflow without routine operator action once the authorized workers and resources are available.
+Agents handle investigation, sample requests, worker dispatch and recovery, candidate integration, CI follow-up and evidence recording.
+Application workers handle the full native sample cycle, including application restart and saved-file readback, in an exclusive session.
+When an external prerequisite is missing, record it, park only the jobs that depend on it and continue runnable work.
+
 ## Existing assets and revision boundaries
 
 Reuse [the neutral model](../Model/Document.md), [JSON serialization](../Data/Serialization.md) and existing format codecs.
@@ -336,8 +341,10 @@ Broad assembly or major-version semantics may require one to three months or lon
 Missing distinguishing evidence has no defensible completion date.
 These are research estimates, not decoder runtime benchmarks or delivery promises.
 
-The pilot records active investigation, CI queue time, evidence waits, model cost and independently verified documents unlocked.
-Use those observations to update the forecast and priorities.
+For each feature family, format version and conversion direction, the unattended pilot records wall-clock time from job readiness to independently verified acceptance.
+Record active agent time across parallel attempts, evidence and application waits, CI queue and execution time, retries, cached results, optional model cost and independently verified documents unlocked.
+Count every operator intervention and record what required it.
+Use measured throughput, sample counts and the longest dependency chain to update the forecast and priorities.
 
 ## Related information
 
