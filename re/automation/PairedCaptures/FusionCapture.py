@@ -106,9 +106,13 @@ def sketch_evidence(sketch):
     areas = []
     for index in range(sketch.profiles.count):
         areas.append(round(sketch.profiles.item(index).areaProperties(ACCURACY).area * 100.0, 9))
-    plane = sketch.referencePlane
+    try:
+        plane = sketch.referencePlane
+        support, support_name = plane.objectType.split("::")[-1], getattr(plane, "name", None)
+    except RuntimeError as error:
+        support, support_name = "BRepFace", "not read without a timeline rollback: " + str(error)
     return {
-        "name": sketch.name, "support": plane.objectType.split("::")[-1], "support_name": getattr(plane, "name", None),
+        "name": sketch.name, "support": support, "support_name": support_name,
         "origin_world_mm": point_mm(sketch.origin), "x_direction": sketch.xDirection.asArray(), "y_direction": sketch.yDirection.asArray(),
         "curves": curve_evidence(sketch), "point_count": sketch.sketchPoints.count,
         "constraints": constraints, "dimensions": dimensions, "profile_areas_mm2": sorted(areas),
