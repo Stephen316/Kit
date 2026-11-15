@@ -49,6 +49,30 @@ and [the implementation step register](Documentation/Reference/Research/Automati
 All code, documentation and progress for this automation programme's A01–A16 steps belong on PR #94 by explicit user instruction; do not open separate implementation PRs for these steps.
 Claim authorized steps and post evidence-backed progress comments on that PR as those instructions require.
 
+### PR #94 phase claims and prerequisites
+
+> [!IMPORTANT]
+> Start a phase or child step only after it has one confirmed owner and every
+> prerequisite for that scope is recorded as `complete` with its required
+> verification evidence. Independent, non-overlapping steps may run in parallel.
+
+- Check the latest [step register](Documentation/Reference/Research/AutomationSteps.md)
+  and [PR #94 comments](https://github.com/TryUniCAD/Kit/pull/94) before claiming.
+  Request the exact step in a top-level comment with the step ID, agent or session
+  ID, branch, current PR revision, and prerequisite evidence. Wait for a grant
+  before editing or delegating that step.
+- Use one coordinator to process claim requests in sequence. The coordinator
+  checks prerequisites and outstanding claims before granting the next claim.
+  It confirms the owner and scope in a PR comment, or replies with the blocker
+  or existing owner. Check for overlapping parent and child scopes. Reassign
+  work only after an explicit handoff or confirmation that the previous owner
+  has stopped.
+- When work finishes, post the exact revision and acceptance evidence in the
+  PR. Update the step register to `complete` only when the exit criterion is
+  verified. If a prerequisite's evidence becomes stale, pause dependent work
+  and post the blocker. Until an automated dispatcher is available, the lead
+  agent coordinates claims through PR comments.
+
 For every PR, post a readable top-level progress comment when a change or stage starts,
 makes meaningful progress, completes, becomes blocked, or is handed off.
 Name the current stage, status, owner, exact revision, changes, verification, remaining work and next action.
