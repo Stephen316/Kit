@@ -4,7 +4,7 @@ import math
 import struct
 
 from decode_brep_recipes import RECIPE_GUID, decode_recipe
-from decode_selection import native_proxy_references
+from decode_selection import native_origin_entities, native_proxy_references
 from decode_sketch import ascii_string, attributes, numbers, reference, same
 
 
@@ -12,13 +12,17 @@ CONTROLLER_GUID = "F1451EC8-11A4-4952-84ED-5AB7C13E2E83"
 ENTRY_GUID = "CA72DD8E-2861-4DDD-9721-03039B5FB113"
 CURVE_SOURCE_GUID = "E2CEFD18-D755-4E09-8E7F-953A2F6D43F8"
 POINT_SOURCE_GUID = "D95DBAC0-238B-4429-A0AD-4AE5BEE79ADF"
+ORIGIN_SOURCE_GUID = "90055C05-546C-4EE7-B3C9-3DD922AD0C9C"
 NAME_GUIDS = ("CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C", "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE")
 
 
-def decode_sketch_projections(data, records, features, *, controller_family_decoder=None):
+def decode_sketch_projections(data, records, features, *, controller_family_decoder=None,
+                              allow_origin_points=False):
     sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
     by_feature = {f["object_id"]: f for f in sketches.values()}
     decoded, unresolved = [], []
+    origins = (native_origin_entities(data, [r for r in records if r.is_primary])
+               if allow_origin_points else {})
 
     def primary(identity, guid=None):
         candidates = [r for r in records if r.is_primary and r.object_id == identity
@@ -29,6 +33,14 @@ def decode_sketch_projections(data, records, features, *, controller_family_deco
         return record, data[record.body:record.end]
 
     def source_leaf(record, payload):
+        if (allow_origin_points and record.class_guid == ORIGIN_SOURCE_GUID
+                and len(payload) == 10 and payload[:2] == bytes(2)):
+            (origin_id,) = struct.unpack_from("<Q", payload, 2)
+            primary(origin_id, "0E18EEF2-0D6F-480C-997E-5EBC7369AE5F")
+            origin = origins.get(origin_id)
+            if origin is None or origin["kind"] != "ConstructionPoint":
+                raise ValueError("Projection component origin point unresolved")
+            return {**origin, "source_leaf_object_id": record.object_id}
         if record.class_guid == CURVE_SOURCE_GUID and len(payload) == 26 and payload[:10] == b"\0"*10:
             sketch_id, tag = struct.unpack_from("<QQ", payload, 10)
             allowed = ("Line", "Circle")
@@ -149,7 +161,12 @@ def decode_sketch_projections(data, records, features, *, controller_family_deco
                 proxy_leaf, proxy_leaf_payload = primary(reference(descriptor_payload, 2))
                 source = source_leaf(proxy_leaf, proxy_leaf_payload)
                 named_source = source_leaf(named_leaf, named_payload)
-                if any(source[key] != named_source[key] for key in ("sketch_object_id", "entity_tag", "entity_kind")):
+                if source["kind"] != named_source["kind"]:
+                    raise ValueError("Projection source leaf kinds disagree")
+                compared = (("object_id", "origin_container_object_id")
+                            if source["kind"] == "ConstructionPoint"
+                            else ("sketch_object_id", "entity_tag", "entity_kind"))
+                if any(source[key] != named_source[key] for key in compared):
                     raise ValueError("Projection input proxy and output naming source disagree")
                 source["output_naming_source_leaf_object_id"] = named_leaf.object_id
             elif (descriptor.class_guid == "5662F619-2281-4AD9-93DC-1FCFDA1062E7"
@@ -168,6 +185,8 @@ def decode_sketch_projections(data, records, features, *, controller_family_deco
             else:
                 raise ValueError("Unsupported projection source descriptor variant")
             output = cached_output(output_record, output_payload, target_sketch["sketch_object_id"])
+            if source["kind"] == "ConstructionPoint" and output["kind"] != "Point":
+                raise ValueError("Projection component origin output is not a point")
             decoded.append({"controller_object_id": controller.object_id, "entry_object_id": entry_id,
                             "target_feature_object_id": owner, "target_sketch_object_id": target_sketch["sketch_object_id"],
                             "target_sketch_name": target_sketch["name"], "method": "Project" if chunk[5] else "Include",

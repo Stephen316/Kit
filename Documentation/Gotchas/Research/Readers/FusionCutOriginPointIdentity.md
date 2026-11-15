@@ -1,0 +1,3 @@
+# Fusion P04 coincident projected points
+
+Three saved `CutSketch` points have the same coordinates at the projected component origin in the eleven P04 discovery archives. The center-dimension endpoints identify only one of them. Follow both the projection's source descriptor and its output-naming leaf to the typed origin point, then check the output entry against the saved ordered dimension operands. In the YZ archive, the local signs and axes differ from the baseline. Compare the absolute axis distance to the parameter scalar and retain the signed geometry alongside it. [P04 center-dimension evidence](../../../Changes/Research/Readers/FusionCutCenterEvidence.md)
