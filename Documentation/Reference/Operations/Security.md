@@ -59,8 +59,15 @@ Do not suppress a finding merely to make a status green.
 
 ## Development dependencies
 
+The development lock requires asteval 1.0.9 or later for the native memory sandbox escape.
+See the [asteval memory repair](../../Changes/Dependencies/AstevalNativeMemory.md) for the override and verification limits.
+
 The development lock requires asteval 1.0.9 or later to contain BaseException subclasses in the expression interpreter.
 See the [asteval exception repair](../../Changes/Dependencies/AstevalBaseExceptions.md) for the override and verification limits.
+
+The development lock still contains ecdsa 0.19.2 through Checkov.
+No patched ecdsa release exists for the Minerva advisory.
+See the [ecdsa remediation blocker](../../Changes/Dependencies/EcdsaRemediationBlocker.md) for the required scanner backend migration.
 
 ## Report a problem
 
