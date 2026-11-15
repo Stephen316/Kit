@@ -1,4 +1,4 @@
-from typing import NotRequired, TypedDict
+from typing import TypedDict
 
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
 from convert.adapters.solidworks.container.Archive import (
@@ -32,12 +32,12 @@ KCutSelectors = {
 
 # both surface families preserve the same header and branch only on their saved class
 class CutResultId(KSurfaceId):
-    extra_fields: NotRequired[tuple[int, int]]
+    extra_fields: tuple[int, int]
 
 
 # these identities retain the original serialization order for the later chooser aliases
 class CutResultFace(FaceHeader):
-    entities: list[CutResultId]
+    entities: list[KSurfaceId | CutResultId]
     end: int
 
 
@@ -64,7 +64,7 @@ def ReadResultSurf(
     BossValue: BossHead,
     CutValue: OpNode,
     AllowCut: bool,
-) -> CutResultId:
+) -> KSurfaceId | CutResultId:
     TagValue = ReadTag(Cursor.BlobValue, Cursor.Offset)
     RequireArch(
         TagValue.kind in (KClassRefKind, KDefinitionKind), True, "typed result surface"
@@ -78,9 +78,9 @@ def ReadResultSurf(
         True,
         "witnessed result surface subtype",
     )
-    Entity: CutResultId = {
-        **ReadSurfaceId(Cursor, ClassName, TagValue.kind, IsCap=ClassName == KCapClass)
-    }
+    Entity = ReadSurfaceId(
+        Cursor, ClassName, TagValue.kind, IsCap=ClassName == KCapClass
+    )
     RequireArch(
         Entity["file_ref_object"],
         BossValue["file_ref_object"],
@@ -94,15 +94,11 @@ def ReadResultSurf(
         )
         First, Second = Cursor.ReadInts("<2i")
         RequireArch((First, Second), Selectors, "witnessed result surface selectors")
-        Entity["extra_fields"] = (First, Second)
-        Entity["end"] = Cursor.Offset
-    else:
-        Source = BossValue["choosers"]["caps"][1]["primary"]
-        RequireArch(
-            SurfaceOwner(Entity),
-            SurfaceOwner(Source),
-            "surface belongs to reached boss",
-        )
+        return {**Entity, "extra_fields": (First, Second), "end": Cursor.Offset}
+    Source = BossValue["choosers"]["caps"][1]["primary"]
+    RequireArch(
+        SurfaceOwner(Entity), SurfaceOwner(Source), "surface belongs to reached boss"
+    )
     return Entity
 
 

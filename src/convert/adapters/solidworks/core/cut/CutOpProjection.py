@@ -34,7 +34,7 @@ def BuildCutOp(Operation: NativeOperation, Proof: CutProof) -> NativeOperation:
     BodyValue = Saved["solid_body"]
     BossId = Proof.Links.BossValue["native_feature_id"]
     ProfileId = Proof.Links.CutProfile.FeatureId
-    Spans = (
+    Spans: tuple[tuple[int, int, str], ...] = (
         (Saved["profile_ref_offset"], 2, "operation-profile-reference"),
         (BodyValue["offset"], BodyValue["end"] - BodyValue["offset"], "cut-target-body"),
         (EndValue["offset"], EndValue["depth_selector_offset"] - EndValue["offset"], "extrusion-end-spec"),

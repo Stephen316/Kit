@@ -742,23 +742,36 @@ def CheckSwCutOp(Variant: str) -> None:
     Spans = {Value.record_kind: Value for Value in CutStep.provenance.spans}
     (BodySpan,) = Target.provenance.spans
     assert BodySpan == Spans["cut-target-body"] and BodySpan.length > 100
+    AssertSwCutDepth(NativePath, Document, CutStep, Definition, Variant)
+
+
+# the blind parameter and through all absence must match saved raw bytes
+def AssertSwCutDepth(
+    NativePath: FilePath,
+    Document: CadDocument,
+    CutStep: FeatureStep,
+    Definition: ExtrudeFeature,
+    Variant: str,
+) -> None:
+    assert CutStep.provenance is not None
+    Spans = {Value.record_kind: Value for Value in CutStep.provenance.spans}
     Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
-    if Through:
+    if Variant == "termination-through-all":
         assert Definition.length is None and not CutStep.parameter_ids
         Unset = Spans["extrusion-depth-absent"]
         assert UnpackFrom("<H", Archive.require(Unset.stream), Unset.offset) == (0,)
-    else:
-        DepthValue = 5 if Variant == "edit-cut_depth_mm-5" else 4
-        assert Definition.length is not None
-        assert (Definition.length.value, Definition.length.unit) == (DepthValue, "mm")
-        (ParamValue,) = tuple(
-            Value for Value in Document.parameters if Value.id in CutStep.parameter_ids
-        )
-        assert ParamValue.name == "cut_depth_mm"
-        Scalar = Spans["extrusion-depth-scalar"]
-        assert UnpackFrom("<d", Archive.require(Scalar.stream), Scalar.offset) == (
-            DepthValue / 1000,
-        )
+        return
+    DepthValue = 5 if Variant == "edit-cut_depth_mm-5" else 4
+    assert Definition.length is not None
+    assert (Definition.length.value, Definition.length.unit) == (DepthValue, "mm")
+    (ParamValue,) = tuple(
+        Value for Value in Document.parameters if Value.id in CutStep.parameter_ids
+    )
+    assert ParamValue.name == "cut_depth_mm"
+    Scalar = Spans["extrusion-depth-scalar"]
+    assert UnpackFrom("<d", Archive.require(Scalar.stream), Scalar.offset) == (
+        DepthValue / 1000,
+    )
 
 
 # saved edge allocations vary across edits so each archive supplies its own expected source start
