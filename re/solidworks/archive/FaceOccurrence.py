@@ -74,7 +74,7 @@ class FaceCursor(ArchiveCursor):
 
 # report calls retain their historical keyword arguments
 def read_surface_id(cursor, kind, cap=False, pointer_kind=KClassRefKind):
-    return ReadSurfaceId(cursor, kind, pointer_kind, Cap=cap)
+    return ReadSurfaceId(cursor, kind, pointer_kind, IsCap=cap)
 
 
 # the bounded local face branch preserves its primary cap and ordered sketch edge identities

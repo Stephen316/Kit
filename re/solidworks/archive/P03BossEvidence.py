@@ -2,7 +2,7 @@
 
 from math import dist, isclose
 
-from convert.adapters.solidworks.resolved.BossEntry import ReadRectangleBoss
+from convert.adapters.solidworks.resolved.BossEntry import ReadRectBoss
 from DepthDisplay import display_report
 from SketchRoot import Require
 
@@ -25,7 +25,7 @@ CONTROLS = {
 def read_rectangle_boss(cursor, rectangle):
     file_reference = rectangle["trim"]["trim_surface"]["file_reference"]
     (transfer,) = (index for index, name in cursor.objects.items() if name == "moAtom_c")
-    boss = ReadRectangleBoss(cursor, rectangle["profile_object"], file_reference["object_index"], transfer)
+    boss = ReadRectBoss(cursor, rectangle["profile_object"], file_reference["object_index"], transfer)
     del boss["profile_ref_offset"]
     return {
         **boss,

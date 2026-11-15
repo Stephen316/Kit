@@ -29,7 +29,7 @@ class OpNode(ChooserOwner):
     profile_ref_offset: int
 
 
-# the outer operation owns its transfer atom, body choosers and signed end specification
+# the outer operation owns its transfer atom body choosers and signed end specification
 class BossHead(OpNode):
     transfer_object: int
     choosers: BossChoices
@@ -56,7 +56,7 @@ def ReadOpNode(
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer((ClassName,), KDefinitionKind, CompactOnly=True)
     _ = Cursor.TakePointer(("moNodeName_c",), KClassRefKind, CompactOnly=True)
-    Name, FeatureId = ReadNamedNode(Cursor, Flags)
+    NameValue, FeatureId = ReadNamedNode(Cursor, Flags)
     RequireArch(Cursor.ReadInts("<H"), (1,), "one resolved operation profile")
     ProfileRef = Cursor.Offset
     _, _, Profile = Cursor.TakePointer(
@@ -67,7 +67,7 @@ def ReadOpNode(
     return {
         "offset": Offset,
         "object_index": Index,
-        "name": Name,
+        "name": NameValue,
         "native_feature_id": FeatureId,
         "profile_object": Profile,
         "file_ref_object": FileObject,
@@ -82,9 +82,9 @@ def ReadBodyReturn(Cursor: ArchiveCursor) -> None:
     RequireArch(Cursor.ReadInts("<Hi"), (0, 0), "empty modern body feature tail")
 
 
-# the chooser and transfer fields must precede the same extrusion's blind end
+# the chooser and transfer fields must precede the blind end of the same extrusion
 def ReadBossHead(
-    Cursor: ArchiveCursor, Boss: OpNode, Directions: tuple[int, ...]
+    Cursor: ArchiveCursor, BossValue: OpNode, Directions: tuple[int, ...]
 ) -> BossHead:
     ReadFeatBase(Cursor.ReadValue, Cursor.ReadPoint, Cursor.ReadNull, Cursor.ReadText)
     RequireArch(
@@ -97,7 +97,7 @@ def ReadBossHead(
     RequireArch(
         Cursor.ReadInts("<5i"), (1, 101, 3, 0, 1), "guarded boss atom arrays and mode"
     )
-    Choices = ReadBossChoices(Cursor, Boss)
+    Choices = ReadBossChoices(Cursor, BossValue)
     RequireArch(
         Cursor.ReadInts("<H3i"), (0, 0, 0, 1), "guarded boss partition selection"
     )
@@ -108,28 +108,28 @@ def ReadBossHead(
     ReadAtomMaps(Cursor)
     AtomEnd = Cursor.Offset
     ReadBodyReturn(Cursor)
-    Spec = ReadBlindEnd(Cursor, Directions)
+    SpecValue = ReadBlindEnd(Cursor, Directions)
     return {
-        **Boss,
+        **BossValue,
         "transfer_object": Transfer,
         "choosers": Choices,
         "partition_object": Marker,
         "partition_state": State,
         "atom_end": AtomEnd,
-        "end_specification": Spec,
+        "end_specification": SpecValue,
     }
 
 
 # the single boss cannot qualify until every operation field and the list footer close
-def ReadRectangleBoss(
+def ReadRectBoss(
     Cursor: ArchiveCursor, ProfileObject: int, FileObject: int, TransferObject: int
 ) -> RectangleBoss:
-    Node = ReadOpNode(
+    NodeValue = ReadOpNode(
         Cursor, "moExtrusion_c", (0x40000140, 0xC0000140), ProfileObject, FileObject
     )
-    Head = ReadBossHead(Cursor, Node, (0, 1))
+    HeadValue = ReadBossHead(Cursor, NodeValue, (0, 1))
     RequireArch(
-        Head["transfer_object"], TransferObject, "boss uses the configuration atom"
+        HeadValue["transfer_object"], TransferObject, "boss uses the configuration atom"
     )
     Close = ReadBossClose(Cursor)
     RequireArch(
@@ -138,7 +138,7 @@ def ReadRectangleBoss(
     RequireArch(Cursor.ReadInts("<i"), (0,), "resolved boss list footer")
     RequireArch(Cursor.Offset, len(Cursor.BlobValue), "complete boss resolved stream")
     return {
-        **Head,
+        **HeadValue,
         **Close,
         "stream_end": Cursor.Offset,
         "next_map_index": Cursor.NextIndex,

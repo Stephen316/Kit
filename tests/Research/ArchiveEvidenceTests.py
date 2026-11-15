@@ -157,7 +157,7 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
     assert int.from_bytes(Stored, "little", signed=True) == DatumId
 
 
-# native depth and signed direction must survive display-unit changes and the public projection
+# native depth and signed direction must survive display unit changes and the public projection
 @Pytest.mark.parametrize(
     "Variant",
     (
@@ -178,10 +178,12 @@ def CheckSwBoss(Variant: str) -> None:
         / f"P03-solidworks-{Variant}.SLDPRT"
     )
     Document = OpenDocument(NativePath)
-    (Boss,) = tuple(
-        Item for Item in Document.feature_timeline if Item.name == "BlindBoss"
+    (BossStep,) = tuple(
+        ItemValue
+        for ItemValue in Document.feature_timeline
+        if ItemValue.name == "BlindBoss"
     )
-    Definition = Boss.definition
+    Definition = BossStep.definition
     assert isinstance(Definition, ExtrudeFeature)
     Depth = 12 if Variant == "edit-depth_mm-12" else 10
     assert Definition.length is not None
@@ -189,11 +191,15 @@ def CheckSwBoss(Variant: str) -> None:
     assert Definition.end_condition == ExtrudeEnd.BLIND
     assert Definition.reversed == (Variant == "direction-negative")
     (SketchValue,) = tuple(
-        Item for Item in Document.sketches if Item.id == Boss.sketch_id
+        ItemValue
+        for ItemValue in Document.sketches
+        if ItemValue.id == BossStep.sketch_id
     )
     assert SketchValue.name == "RectangleSketch"
-    assert Boss.provenance is not None
-    Spans = {Span.record_kind: Span for Span in Boss.provenance.spans}
+    assert BossStep.provenance is not None
+    Spans = {
+        SpanValue.record_kind: SpanValue for SpanValue in BossStep.provenance.spans
+    }
     assert Spans["operation-profile-reference"].length == 2
     assert Spans["extrusion-end-spec"].length > 20
     Scalar = Spans["extrusion-depth-scalar"]
@@ -203,7 +209,9 @@ def CheckSwBoss(Variant: str) -> None:
         Depth / 1000,
     )
     (Parameter,) = tuple(
-        Item for Item in Document.parameters if Item.id in Boss.parameter_ids
+        ItemValue
+        for ItemValue in Document.parameters
+        if ItemValue.id in BossStep.parameter_ids
     )
     assert (Parameter.name, Parameter.value.value, Parameter.value.unit) == (
         "depth_mm",
@@ -211,9 +219,9 @@ def CheckSwBoss(Variant: str) -> None:
         "mm",
     )
     assert Parameter.provenance is not None
-    assert [(Span.offset, Span.length) for Span in Parameter.provenance.spans] == [
-        (Scalar.offset, 8)
-    ]
+    assert [
+        (SpanValue.offset, SpanValue.length) for SpanValue in Parameter.provenance.spans
+    ] == [(Scalar.offset, 8)]
 
 
 # the feature selected profile must carry the exact proxy and authored perimeter across the registry

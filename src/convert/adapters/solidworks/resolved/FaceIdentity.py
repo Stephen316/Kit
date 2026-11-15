@@ -6,8 +6,8 @@ from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 
 # saved face identities carry their occurrence and the owning feature and document
-SurfaceId = TypedDict(
-    "SurfaceId",
+KSurfaceId = TypedDict(
+    "KSurfaceId",
     {
         "offset": int,
         "end": int,
@@ -26,19 +26,19 @@ SurfaceId = TypedDict(
 def ReadSurfaceId(
     Cursor: ArchiveCursor,
     ClassName: str,
-    Kind: str = KClassRefKind,
+    KindValue: str = KClassRefKind,
     *,
-    Cap: bool = False,
-) -> SurfaceId:
+    IsCap: bool = False,
+) -> KSurfaceId:
     Offset = Cursor.Offset
-    _, _, Index = Cursor.TakePointer((ClassName,), Kind, CompactOnly=True)
+    _, _, Index = Cursor.TakePointer((ClassName,), KindValue, CompactOnly=True)
     Cursor.ReadNull()
     _, _, FeatureRef = Cursor.TakePointer(("moFR_c",), KClassRefKind, CompactOnly=True)
     _, _, FileRef = Cursor.TakePointer(
         ("moExtObject_c",), KObjectRefKind, CompactOnly=True
     )
     FeatureId, TimeWord, Occurrence = Cursor.ReadInts("<iIi")
-    if Cap:
+    if IsCap:
         RequireArch(Occurrence in (0, 1), True, "recognized end face occurrence")
         RequireArch(Cursor.ReadInts("<i"), (0,), "supported extra end face selector")
     return {
@@ -64,11 +64,11 @@ class FaceHeader(TypedDict):
 
 # chooser and component face records share the observed entity envelope
 def ReadFaceHead(
-    Cursor: ArchiveCursor, Kind: str, ExpectedFlags: int
+    Cursor: ArchiveCursor, KindValue: str, ExpectedFlags: int
 ) -> tuple[FaceHeader, int]:
     Offset = Cursor.Offset
-    _, _, Index = Cursor.TakePointer(("moFaceRef_c",), Kind, CompactOnly=True)
-    Body = Cursor.Offset
+    _, _, Index = Cursor.TakePointer(("moFaceRef_c",), KindValue, CompactOnly=True)
+    BodyStart = Cursor.Offset
     First, Second, Count = Cursor.ReadInts("<3I")
     RequireArch(
         (First, Second, Count), (1, 0, 6), "witnessed face kind and entity count"
@@ -79,7 +79,7 @@ def ReadFaceHead(
     Cursor.ReadNull()
     return {
         "offset": Offset,
-        "body": Body,
+        "body": BodyStart,
         "object_index": Index,
         "classifier": Classifier,
     }, Count - 2

@@ -25,7 +25,7 @@ class FeatureHandle(TypedDict):
     object_index: int
 
 
-# the feature parameter carries its own native dimension ID and SI value
+# the feature parameter carries its own native dimension identity and metric value
 class DepthParam(TypedDict):
     offset: int
     object_index: int
@@ -49,9 +49,11 @@ class DepthDisplay(TypedDict):
 
 
 # the handle may proceed only along its empty component and transform route
-def ReadFeatHandle(Cursor: ArchiveCursor, Kind: str) -> FeatureHandle:
+def ReadFeatHandle(Cursor: ArchiveCursor, KindValue: str) -> FeatureHandle:
     Offset = Cursor.Offset
-    _, _, Index = Cursor.TakePointer(("moFeatureDimHandle_c",), Kind, CompactOnly=True)
+    _, _, Index = Cursor.TakePointer(
+        ("moFeatureDimHandle_c",), KindValue, CompactOnly=True
+    )
     Cursor.ReadNull()
     RequireArch(
         Cursor.ReadInts("<20i"), KEmptyDimPart, "empty feature dimension component"
@@ -61,17 +63,17 @@ def ReadFeatHandle(Cursor: ArchiveCursor, Kind: str) -> FeatureHandle:
 
 
 # the typed distance dimension is independent of the two presentation copies
-def ReadParallelDepth(Cursor: ArchiveCursor, Kind: str) -> DepthParam:
+def ReadParDepthMut(Cursor: ArchiveCursor, KindValue: str) -> DepthParam:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(
-        ("ParallelPlaneDistanceDim_c",), Kind, CompactOnly=True
+        ("ParallelPlaneDistanceDim_c",), KindValue, CompactOnly=True
     )
     Local = SketchArchive(Cursor)
     DimId, Parameter, _ = ReadDimFields(Local, "moLengthParameter_c")
     ParameterValue = Local.Scalars.get(Parameter)
     if ParameterValue is None:
         raise ArchiveError("unbound boss depth parameter")
-    Name, Depth = ParameterValue
+    NameValue, Depth = ParameterValue
     Cursor.Offset, Cursor.NextIndex = Local.Offset, Local.NextIndex
     _ = Cursor.ReadPoint(9)
     RequireArch(Cursor.ReadInts("<H"), (1,), "present parallel dimension vectors")
@@ -85,7 +87,7 @@ def ReadParallelDepth(Cursor: ArchiveCursor, Kind: str) -> DepthParam:
         "object_index": Index,
         "native_dimension_id": DimId,
         "parameter_object": Parameter,
-        "parameter_name": Name,
+        "parameter_name": NameValue,
         "metres": Depth,
         "value_offset": Local.ScalarOffsets[Parameter],
         "end": Cursor.Offset,
@@ -102,14 +104,16 @@ def ReadDepthClose(Cursor: ArchiveCursor) -> int:
 
 
 # a depth is exposed only when the saved model length and both copies agree
-def ReadBossDepth(Cursor: ArchiveCursor, Kind: str = KDefinitionKind) -> DepthDisplay:
+def ReadBossDepth(
+    Cursor: ArchiveCursor, KindValue: str = KDefinitionKind
+) -> DepthDisplay:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(
         ("moDisplayDistanceDim_c",), KClassRefKind, CompactOnly=True
     )
     ReadDisplayOpen(Cursor)
-    Handle = ReadFeatHandle(Cursor, Kind)
-    Depth = ReadParallelDepth(Cursor, Kind)
+    Handle = ReadFeatHandle(Cursor, KindValue)
+    Depth = ReadParDepthMut(Cursor, KindValue)
     Copies = ReadCache(Cursor)
     RequireArch(Copies, (Depth["metres"],) * 2, "depth copies agree with parameter")
     Favorite = ReadDepthClose(Cursor)

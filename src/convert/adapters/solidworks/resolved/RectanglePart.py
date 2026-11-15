@@ -11,7 +11,7 @@ from convert.adapters.solidworks.container.PlaneBasis import (
 )
 from convert.adapters.solidworks.resolved.BossEntry import (
     RectangleBoss,
-    ReadRectangleBoss,
+    ReadRectBoss,
 )
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
 from convert.adapters.solidworks.resolved.ContourTrim import ReadRectEnd, ReadRectTrim
@@ -70,7 +70,7 @@ def TryRectBoss(
     Cursor: ArchiveCursor, ProfileObject: int, FileObject: int, TransferObject: int
 ) -> RectangleBoss | None:
     try:
-        return ReadRectangleBoss(Cursor, ProfileObject, FileObject, TransferObject)
+        return ReadRectBoss(Cursor, ProfileObject, FileObject, TransferObject)
     except ArchiveError:
         return None
 
@@ -96,14 +96,14 @@ def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> Rectang
     _ = ReadChainState(Cursor, HasAtom, EdgeIds)
     Reference = ReadProfileRef(Cursor, Generation)
     Datum, Directions = ResolveDatum(Reference, System.Planes)
-    Trim = ReadRectTrim(
+    TrimValue = ReadRectTrim(
         Cursor,
         {"profile_object": Profile.ObjectIndex, "native_feature_id": Profile.FeatureId},
         EdgeIds,
         int(HasAtom),
     )
     _ = ReadRectEnd(Cursor, HasAtom)
-    Boss = None
+    BossValue = None
     if HasAtom:
         TryAtoms = tuple(
             Index
@@ -111,6 +111,8 @@ def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> Rectang
             if ClassName == "moAtom_c"
         )
         if len(TryAtoms) == 1:
-            FileObject = Trim["trim_surface"]["file_reference"]["object_index"]
-            Boss = TryRectBoss(Cursor, Profile.ObjectIndex, FileObject, TryAtoms[0])
-    return RectanglePart(Profile, Datum, Reference, Directions, Origin, Boss)
+            FileObject = TrimValue["trim_surface"]["file_reference"]["object_index"]
+            BossValue = TryRectBoss(
+                Cursor, Profile.ObjectIndex, FileObject, TryAtoms[0]
+            )
+    return RectanglePart(Profile, Datum, Reference, Directions, Origin, BossValue)

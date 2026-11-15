@@ -12,15 +12,17 @@ from convert.adapters.solidworks.resolved.FaceIdentity import (
     ReadFaceHead,
     ReadFaceReturn,
     ReadSurfaceId,
-    SurfaceId,
+    KSurfaceId,
 )
 
 # both primary and replayed choices carry the saved cap and rectangle edges
 KCapClass = "moEndFaceSurfIdRep_c"
+
+# saved side boundaries have their own typed surface identity
 KEdgeClass = "moFromSktEntSurfIdRep_c"
 
 
-# the chooser checks the actual feature, native slot and reached file
+# the chooser checks the actual feature native slot and reached file
 class ChooserOwner(TypedDict):
     object_index: int
     native_feature_id: int
@@ -30,8 +32,8 @@ class ChooserOwner(TypedDict):
 # the materialized cap keeps its complete typed surface identities
 class SavedCap(FaceHeader):
     end: int
-    primary: SurfaceId
-    edges: list[SurfaceId]
+    primary: KSurfaceId
+    edges: list[KSurfaceId]
 
 
 # the repeated chooser uses the very same allocated objects
@@ -47,7 +49,7 @@ class ChooserCentre(TypedDict):
     centre_and_scale: tuple[float, ...]
 
 
-# provenance retains the reached cap IDs and both appearances of their centre
+# provenance retains the reached cap identities and both appearances of their centre
 class BossChoices(TypedDict):
     primary_object: int
     repeated_object: int
@@ -60,12 +62,12 @@ class BossChoices(TypedDict):
 
 # each cap occurrence must refer to the file and feature reached in this archive
 def ReadCap(
-    Cursor: ArchiveCursor, Kind: str, Occurrence: int, Owner: ChooserOwner
+    Cursor: ArchiveCursor, KindValue: str, Occurrence: int, Owner: ChooserOwner
 ) -> SavedCap:
-    Face, Count = ReadFaceHead(Cursor, Kind, 768)
-    RequireArch(Face["classifier"], 0, "guarded chooser face classifier")
-    Primary = ReadSurfaceId(Cursor, KCapClass, Kind, Cap=True)
-    Edges = [ReadSurfaceId(Cursor, KEdgeClass, Kind)]
+    FaceValue, Count = ReadFaceHead(Cursor, KindValue, 768)
+    RequireArch(FaceValue["classifier"], 0, "guarded chooser face classifier")
+    Primary = ReadSurfaceId(Cursor, KCapClass, KindValue, IsCap=True)
+    Edges = [ReadSurfaceId(Cursor, KEdgeClass, KindValue)]
     Edges.extend(ReadSurfaceId(Cursor, KEdgeClass) for _ in range(Count - 1))
     RequireArch(Primary["occurrence"], Occurrence, "saved chooser cap occurrence")
     for Entity in (Primary, *Edges):
@@ -79,37 +81,42 @@ def ReadCap(
             "same saved boss face source",
         )
     ReadFaceReturn(Cursor)
-    return {**Face, "end": Cursor.Offset, "primary": Primary, "edges": Edges}
+    return {**FaceValue, "end": Cursor.Offset, "primary": Primary, "edges": Edges}
 
 
 # the replayed chooser resolves the original cap and all four boundary allocations
 def ReadCapAlias(Cursor: ArchiveCursor, Target: SavedCap) -> CapAlias:
-    Face, Count = ReadFaceHead(Cursor, KClassRefKind, 768)
-    RequireArch(Face["classifier"], 0, "guarded chooser face classifier")
-    _, _, Cap = Cursor.TakePointer((KCapClass,), KObjectRefKind, CompactOnly=True)
+    FaceValue, Count = ReadFaceHead(Cursor, KClassRefKind, 768)
+    RequireArch(FaceValue["classifier"], 0, "guarded chooser face classifier")
+    _, _, CapValue = Cursor.TakePointer((KCapClass,), KObjectRefKind, CompactOnly=True)
     Edges = [
         Cursor.TakePointer((KEdgeClass,), KObjectRefKind, CompactOnly=True)[2]
         for _ in range(Count)
     ]
-    RequireArch(Cap, Target["primary"]["object_index"], "same chooser cap object")
+    RequireArch(CapValue, Target["primary"]["object_index"], "same chooser cap object")
     RequireArch(
         Edges,
-        [Edge["object_index"] for Edge in Target["edges"]],
+        [EdgeValue["object_index"] for EdgeValue in Target["edges"]],
         "same chooser edge objects",
     )
     ReadFaceReturn(Cursor)
-    return {**Face, "end": Cursor.Offset, "cap_object": Cap, "edge_objects": Edges}
+    return {
+        **FaceValue,
+        "end": Cursor.Offset,
+        "cap_object": CapValue,
+        "edge_objects": Edges,
+    }
 
 
 # the chooser centre and counted arrays close the record at the exact map counter
 def ReadChoiceTail(
-    Cursor: ArchiveCursor, Kind: str, BodyIds: tuple[int, ...] = (0,)
+    Cursor: ArchiveCursor, KindValue: str, BodyIds: tuple[int, ...] = (0,)
 ) -> ChooserCentre:
     RequireArch(
         Cursor.ReadInts("<2H"), (0, 1), "empty secondary chooser and one centre"
     )
     _, _, CentreObject = Cursor.TakePointer(
-        ("moBBoxCenterData_c",), Kind, CompactOnly=True
+        ("moBBoxCenterData_c",), KindValue, CompactOnly=True
     )
     RequireArch(Cursor.ReadInts("<i"), (1,), "witnessed bounding centre type")
     Centre = Cursor.ReadPoint(4)
@@ -124,7 +131,7 @@ def ReadChoiceTail(
 
 
 # each inline chooser must be owned by the extrusion that opened its record
-def CheckChooserOwner(
+def CheckChoiceOwn(
     Cursor: ArchiveCursor, Owner: ChooserOwner, ClassName: str = "moExtrusion_c"
 ) -> None:
     _, _, Index = Cursor.TakePointer((ClassName,), KObjectRefKind, CompactOnly=True)
@@ -138,29 +145,29 @@ def ReadBossChoices(Cursor: ArchiveCursor, Owner: ChooserOwner) -> BossChoices:
         ("moPerBodyChooserData_c",), KDefinitionKind, CompactOnly=True
     )
     RequireArch(Cursor.ReadInts("<H"), (2,), "two primary chooser caps")
-    Caps = [
+    FaceCaps = [
         ReadCap(Cursor, KDefinitionKind, 0, Owner),
         ReadCap(Cursor, KClassRefKind, 1, Owner),
     ]
     Bounds = ReadChoiceTail(Cursor, KDefinitionKind)
-    CheckChooserOwner(Cursor, Owner)
+    CheckChoiceOwn(Cursor, Owner)
     RequireArch(Cursor.ReadInts("<3H"), (1, 1, 0), "witnessed empty second chooser")
-    CheckChooserOwner(Cursor, Owner)
+    CheckChoiceOwn(Cursor, Owner)
     RequireArch(Cursor.ReadInts("<i2H"), (1, 1, 1), "one repeated body chooser item")
     _, _, Second = Cursor.TakePointer(
         ("moPerBodyChooserData_c",), KClassRefKind, CompactOnly=True
     )
     RequireArch(Cursor.ReadInts("<H"), (2,), "two repeated chooser caps")
-    Aliases = [ReadCapAlias(Cursor, Cap) for Cap in Caps]
+    Aliases = [ReadCapAlias(Cursor, CapValue) for CapValue in FaceCaps]
     Repeated = ReadChoiceTail(Cursor, KClassRefKind)
     RequireArch(
         Repeated["centre_and_scale"], Bounds["centre_and_scale"], "same chooser centre"
     )
-    CheckChooserOwner(Cursor, Owner)
+    CheckChoiceOwn(Cursor, Owner)
     return {
         "primary_object": First,
         "repeated_object": Second,
-        "caps": Caps,
+        "caps": FaceCaps,
         "cap_aliases": Aliases,
         "centre": Bounds,
         "repeated_centre_object": Repeated["centre_object"],
