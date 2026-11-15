@@ -6,7 +6,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-from Records import label
+from Records import label, read_record
+from OutputManifest import InvalidOutput
 
 OPERATIONS = ("LockPath", "DefinePool", "DefineResource", "SubmitJobs", "BindInput", "ClaimJob", "RenewLease", "FinishJob", "FetchInput", "ReadStatus")
 
@@ -34,6 +35,8 @@ def without_token(record):
 
 
 class A03Adapter:
+    OutputArtifactsVersion = 1
+
     def __init__(self, options):
         if set(options) != {"store"} or not isinstance(options["store"], str):
             raise ValueError("the a03 adapter takes only a store path")
@@ -44,6 +47,8 @@ class A03Adapter:
         result = subprocess.run(self.command + [str(item) for item in items], capture_output=True, text=True, timeout=120, check=False)
         if stale and result.returncode == 3:
             return None
+        if items[0] == "finish" and result.returncode == 4:
+            raise InvalidOutput(result.stderr.strip()[-2048:])
         if result.returncode != 0:
             raise ValueError(f"a03 {items[0]} failed: {result.stderr.strip()[-2048:]}")
         return json.loads(result.stdout)
@@ -74,7 +79,10 @@ class A03Adapter:
         return {"stale": True} if response is None else {"stale": False, "lease_until": response["lease_until"], "deadline": response["deadline"]}
 
     def FinishJob(self, path, outcome, result, reason):
-        return {"stale": self.Invoke("finish", "--lease", path, "--result", result, "--outcome", outcome, "--reason", reason, stale=True) is None}
+        payload = read_record(result)
+        declared = payload.get("result")
+        output_args = ["--output-root", Path(result).parent / "work"] if isinstance(declared, dict) and "artifacts" in declared else []
+        return {"stale": self.Invoke("finish", "--lease", path, "--result", result, "--outcome", outcome, "--reason", reason, *output_args, stale=True) is None}
 
     def FetchInput(self, sha256, destination):
         response = self.Invoke("artifact", sha256)

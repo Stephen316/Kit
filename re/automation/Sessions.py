@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 from LogCapture import LogCapture
+from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, finish_process, process_start, signal_group, start_process, stderr_tail
 from Records import canonical
 from Runners import result_error, safe_name
@@ -176,13 +177,19 @@ class Session:
             try:
                 result = read_bounded(self.directory / "result.json")
                 error = result_error(result, self.supervisor.registry.runners[self.spec["kind"]]["schema"])
+                if error is None and "artifacts" in result and getattr(self.supervisor.adapter, "OutputArtifactsVersion", None) != 1:
+                    error = "controller adapter does not support version 1 output artifacts"
             except (OSError, ValueError, UnicodeDecodeError) as problem:
                 result, error = None, f"{type(problem).__name__}: {problem}"[:2048]
             if error is None:
                 outcome, reason = result["outcome"], result["reason"]
             else:
                 outcome, reason, result = "retry", f"invalid result: {error}"[:2048], None
-        return self.supervisor.settle(self, outcome, reason, {"session_version": 1, "receipt": receipt, "result": result, "error": error, "stderr_tail": tail})
+        try:
+            return self.supervisor.settle(self, outcome, reason, {"session_version": 1, "receipt": receipt, "result": result, "error": error, "stderr_tail": tail})
+        except InvalidOutput as problem:
+            error = f"invalid output artifacts: {problem}"[:2048]
+            return self.supervisor.settle(self, "retry", error, {"session_version": 1, "receipt": receipt, "result": None, "error": error, "stderr_tail": tail})
 
     def remove(self):
         if sys.platform == "win32" and self.process is not None:

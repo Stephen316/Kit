@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 
 from Ledger import Ledger
+from OutputManifest import InvalidOutput
 from Records import StaleLease, canonical, read_record
 
 
@@ -42,6 +43,7 @@ def main():
     finish.add_argument("--result", type=Path, required=True)
     finish.add_argument("--outcome", choices=("completed", "retry", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"), required=True)
     finish.add_argument("--reason", required=True)
+    finish.add_argument("--output-root", type=Path)
     status = commands.add_parser("status")
     status.add_argument("--job")
     status.add_argument("--after")
@@ -87,7 +89,7 @@ def main():
                 if args.command == "heartbeat":
                     response = ledger.heartbeat(job_id, token)
                 else:
-                    response = ledger.finish(job_id, token, args.outcome, args.result, args.reason)
+                    response = ledger.finish(job_id, token, args.outcome, args.result, args.reason, args.output_root)
             elif args.command == "status":
                 response = ledger.status(args.job, args.after)
             elif args.command == "events":
@@ -99,6 +101,9 @@ def main():
     except StaleLease as error:
         print(f"controller stale lease: {error}", file=sys.stderr)
         return 3
+    except InvalidOutput as error:
+        print(f"controller invalid output: {error}"[:4096], file=sys.stderr)
+        return 4
     except ValueError as error:
         print(f"controller error: {error}", file=sys.stderr)
         return 1

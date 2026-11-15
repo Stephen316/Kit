@@ -2,6 +2,7 @@ import re
 from pathlib import Path
 
 from Records import bounded, label, read_record
+from OutputManifest import output_manifest
 
 SCHEMA_KEYS = {"$schema", "title", "description", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "maxLength", "minimum", "maximum", "minItems", "maxItems"}
 TYPES = {"object", "array", "string", "integer", "number", "boolean", "null"}
@@ -102,12 +103,19 @@ def conformance(value, schema, path="$"):
 
 
 def result_error(value, schema):
-    if not isinstance(value, dict) or set(value) != {"outcome", "reason", "records"}:
-        return "result must contain exactly outcome, reason and records"
+    if not isinstance(value, dict) or not {"outcome", "reason", "records"} <= value.keys() or value.keys() - {"outcome", "reason", "records", "artifacts"}:
+        return "result must contain outcome, reason, records and optional artifacts"
     if value["outcome"] not in OUTCOMES:
         return "result outcome is not a runner outcome"
     if not isinstance(value["reason"], str) or not 1 <= len(value["reason"]) <= 2048:
         return "result reason must contain 1–2048 characters"
+    if "artifacts" in value:
+        if value["outcome"] != "completed":
+            return "only a completed result may declare output artifacts"
+        try:
+            output_manifest(value["artifacts"])
+        except ValueError as error:
+            return str(error)
     return conformance(value["records"], schema, "$.records")
 
 

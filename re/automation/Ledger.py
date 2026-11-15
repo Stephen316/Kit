@@ -8,6 +8,8 @@ import time
 from pathlib import Path
 
 from Artifacts import Artifacts
+from OutputIntake import OutputIntake
+from OutputManifest import InvalidOutput, output_manifest
 from Records import StaleLease, bounded, canonical, digest, label, read_record, reason_text, specification
 
 
@@ -73,7 +75,8 @@ class Ledger:
 
     def __enter__(self):
         self.db.execute("BEGIN IMMEDIATE")
-        self.checked = set()
+        self.checked = {}
+        self.checked_results = set()
         self.bytes_hashed = 0
         self.reconciled = 0
         self.cycle_searches = 0
@@ -90,8 +93,22 @@ class Ledger:
 
     def verify_object(self, sha256):
         if sha256 not in self.checked:
-            self.bytes_hashed += self.objects.verify(sha256)
-            self.checked.add(sha256)
+            self.checked[sha256] = self.objects.verify(sha256)
+            self.bytes_hashed += self.checked[sha256]
+        return self.checked[sha256]
+
+    def verify_result(self, sha256):
+        self.verify_object(sha256)
+        if sha256 in self.checked_results:
+            return
+        result = read_record(self.objects.path(sha256))
+        if "output_artifacts_version" in result:
+            if result["output_artifacts_version"] != 1:
+                raise ValueError("unsupported accepted output artifact version")
+            for item in output_manifest(result.get("output_artifacts"), paths=False).values():
+                if self.verify_object(item["sha256"]) != item["size_bytes"]:
+                    raise ValueError("accepted output size mismatch")
+        self.checked_results.add(sha256)
 
     def enqueue_children(self, job_id):
         self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM dependencies WHERE dependency=?", (job_id,))
@@ -216,7 +233,7 @@ class Ledger:
                 return None
             if verify_artifacts:
                 self.verify_object(row["receipt"])
-                self.verify_object(row["result"])
+                self.verify_result(row["result"])
             dependencies[name] = {"receipt": row["receipt"], "result": row["result"]}
         return {"definition_hash": digest(spec), "inputs": inputs, "dependencies": dependencies}
 
@@ -285,7 +302,7 @@ class Ledger:
             row = self.db.execute("SELECT * FROM jobs WHERE id=?", (name,)).fetchone()
         if row["state"] == "completed":
             self.verify_object(row["receipt"])
-            self.verify_object(row["result"])
+            self.verify_result(row["result"])
         elif row["state"] != "running" and not row["parked"] and row["state"] not in ("failed", "rejected"):
             state = "waiting_evidence" if snapshot is None else "waiting_application" if unavailable else "queued"
             self.db.execute("UPDATE jobs SET state=? WHERE id=?", (state, name))
@@ -311,7 +328,7 @@ class Ledger:
             self.verify_object(row["fingerprint"])
         if verify_artifacts and row["state"] == "completed":
             self.verify_object(row["receipt"])
-            self.verify_object(row["result"])
+            self.verify_result(row["result"])
 
     def expire(self, row, spec):
         receipt = self.revoke(row, "expired")
@@ -388,7 +405,7 @@ class Ledger:
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
         return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches, "artifact_bytes_hashed": self.bytes_hashed}
 
-    def finish(self, job_id, token, outcome, result_path, reason):
+    def finish(self, job_id, token, outcome, result_path, reason, output_root=None):
         row = self.leased(job_id, token)
         spec = json.loads(row["definition"])
         allowed = {"completed", "retry", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
@@ -396,6 +413,27 @@ class Ledger:
             raise ValueError("unsupported outcome")
         reason = reason_text(reason)
         result = read_record(result_path)
+        if output_root is None and ("output_artifacts_version" in result or "output_artifacts" in result or isinstance(result.get("result"), dict) and "artifacts" in result["result"]):
+            raise InvalidOutput("declared or accepted output metadata requires explicit output intake")
+        if output_root is not None:
+            output_root = Path(os.path.abspath(output_root))
+            if output_root != Path(os.path.abspath(result_path)).parent / "work":
+                raise InvalidOutput("output root must be the finish record's private work directory")
+            declared = result.get("result")
+            if outcome != "completed" or not isinstance(declared, dict) or declared.get("outcome") != "completed" or "artifacts" not in declared:
+                raise InvalidOutput("output intake requires a completed runner result with artifacts")
+            if "output_artifacts_version" in result or "output_artifacts" in result:
+                raise InvalidOutput("runner cannot supply accepted output metadata")
+            try:
+                output_manifest(declared["artifacts"])
+            except ValueError as error:
+                raise InvalidOutput(str(error)) from error
+            with OutputIntake(self.objects, output_root, declared["artifacts"]) as intake:
+                self.leased(job_id, token, verify_artifacts=False)
+                manifest = intake.publish()
+            declared["artifacts"] = manifest
+            result["output_artifacts_version"] = 1
+            result["output_artifacts"] = manifest
         if min(row["lease_until"], row["deadline"]) <= time.time():
             raise StaleLease("lease or execution deadline expired")
         result_hash = self.objects.put_record(result)
@@ -415,6 +453,7 @@ class Ledger:
                 self.change_resource(resource, False)
                 self.event(None, "resource_recovery_required", {"name": resource})
         delay = min(300, spec["retry_base_seconds"] * 2 ** (row["attempts"] - 1)) if outcome == "retry" else 0
+        self.leased(job_id, token, verify_artifacts=False)
         self.db.execute("UPDATE attempts SET ended=?,outcome=?,receipt=? WHERE id=?", (time.time(), outcome, receipt, row["active_attempt"]))
         self.revoke(row, outcome)
         self.db.execute(
