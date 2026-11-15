@@ -115,12 +115,12 @@ def CheckIntent(TmpPath: FilePath) -> None:
             Arguments[:-2] + ["--job", PhaseName],
         )
         assert JsonCodec.loads(AckText)["restart_retained"] is True
-        CheckRetained(Dispatch, Arguments, JobInfo, OldOwner)
+        ExerciseRetained(Dispatch, Arguments, JobInfo, OldOwner)
     _ = InvokeRestart(Arguments + ["--check"], "prior Fusion process is no longer live")
 
 
 # passive verification must leave each retained byte stable and refuse a changed fence or intent
-def CheckRetained(
+def ExerciseRetained(
     Dispatch: DispatchHost,
     Arguments: list[str],
     JobInfo: dict[str, object],
@@ -144,11 +144,11 @@ def CheckRetained(
     assert Verified == {**Created, "status": "intent_verified"}
     assert Verified["native_lifecycle_performed"] is False
     assert IntentPath.read_bytes() == IntentBody
-    CheckTamper(Dispatch, Arguments, IntentPath, IntentBody)
+    ExerciseTamper(Dispatch, Arguments, IntentPath, IntentBody)
 
 
 # altered evidence must be refused even if the handoff still names a live process
-def CheckTamper(
+def ExerciseTamper(
     Dispatch: DispatchHost,
     Arguments: list[str],
     IntentPath: FilePath,
