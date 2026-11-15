@@ -743,6 +743,7 @@ def CheckSwCutOp(Variant: str) -> None:
     (BodySpan,) = Target.provenance.spans
     assert BodySpan == Spans["cut-target-body"] and BodySpan.length > 100
     AssertSwCutDepth(NativePath, Document, CutStep, Definition, Variant)
+    AssertSwCutFace(Variant, Document)
 
 
 # the blind parameter and through all absence must match saved raw bytes
@@ -772,6 +773,72 @@ def AssertSwCutDepth(
     assert UnpackFrom("<d", Archive.require(Scalar.stream), Scalar.offset) == (
         DepthValue / 1000,
     )
+
+
+# the public cut frame must retain the historical face and rotated archived axes
+def AssertSwCutFace(Variant: str, Document: CadDocument) -> None:
+    (SketchValue,) = tuple(
+        Value for Value in Document.sketches if Value.id == "sldprt:sketch:35"
+    )
+    assert SketchValue.attributes["support_plane_source"] == "typed-archive-face"
+    PlaneId = SketchValue.support_plane_id
+    (Frame,) = tuple(Value for Value in Document.support_planes if Value.id == PlaneId)
+    DepthValue = 12 if Variant == "edit-depth_mm-12" else 10
+    IsRotated = Variant == "plane-yz"
+    assert Frame.transform.origin == SpaceVector(
+        *((DepthValue, 0, 0) if IsRotated else (0, 0, DepthValue))
+    )
+    assert Frame.transform.x_axis == SpaceVector(
+        *((0, 0, -1) if IsRotated else (1, 0, 0))
+    )
+    assert Frame.transform.z_axis == SpaceVector(
+        *((1, 0, 0) if IsRotated else (0, 0, 1))
+    )
+    (FacePick,) = tuple(
+        Value for Value in Document.selections if Value.id == Frame.support_selection_id
+    )
+    (FacePath,) = FacePick.path
+    assert (FacePath.entity_id, FacePath.subelement) == (
+        "sldprt:feature:34",
+        "end-face:1",
+    )
+    assert FacePick.query["native_ordered_edge_occurrences"] == (
+        (4, 3, 2, 1) if IsRotated else (4, 1, 2, 3)
+    )
+    assert FacePick.provenance is not None
+    assert all(
+        Value.stream == "Contents/Config-0-ResolvedFeatures"
+        for Value in FacePick.provenance.spans
+    )
+    AssertSwCutLoop(SketchValue)
+
+
+# the typed local perimeter retains native line records in their directed closure
+def AssertSwCutLoop(SketchValue: Sketch) -> None:
+    Lines = SketchValue.entities
+    assert tuple(Value.attributes.get("native_segment_id") for Value in Lines) == (
+        1,
+        4,
+        3,
+        2,
+    )
+    assert SketchValue.closed_profile_entity_ids == (
+        tuple(Value.id for Value in Lines),
+    )
+    Shapes: list[LineGeometry] = []
+    for LineValue in Lines:
+        assert LineValue.provenance is not None and isinstance(
+            LineValue.geometry, LineGeometry
+        )
+        Shapes.append(LineValue.geometry)
+        (SpanValue,) = LineValue.provenance.spans
+        assert (SpanValue.stream, SpanValue.record_kind) == (
+            "Contents/Config-0",
+            "config-sketch-line",
+        )
+    assert [Value.end for Value in Shapes] == [
+        Value.start for Value in Shapes[1:] + Shapes[:1]
+    ]
 
 
 # saved edge allocations vary across edits so each archive supplies its own expected source start

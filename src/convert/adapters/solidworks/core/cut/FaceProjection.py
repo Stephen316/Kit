@@ -12,7 +12,7 @@ from convert.adapters.solidworks.core.cut.FaceSelection import (
     CutFaceSource,
     MakeCutFacePick,
 )
-from convert.adapters.solidworks.resolved.SupportPlane import (
+from convert.adapters.solidworks.resolved.support.SupportPlane import (
     SupportPlane as SavedSupport,
 )
 from interchange.core.Common import FreezeMapping

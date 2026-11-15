@@ -6,7 +6,7 @@ from convert.adapters.solidworks.container.PlaneBasis import (
     IsOrthonormal,
     MatrixAxes,
 )
-from convert.adapters.solidworks.resolved.FaceFrame import FaceFrame
+from convert.adapters.solidworks.resolved.support.FaceFrame import FaceFrame
 from convert.geometry.Revolve.SweepVector import CrossVector, DotVector
 from interchange.geometry.models.Transform import Transform
 from interchange.geometry.models.VectorSpace import SpaceVector

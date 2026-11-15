@@ -3,7 +3,7 @@ from dataclasses import replace as Replace
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.core.RectSource import RectSource
 from convert.adapters.solidworks.resolved.FaceIdentity import SurfaceKey
-from convert.adapters.solidworks.resolved.SupportPlane import SupportPlane
+from convert.adapters.solidworks.resolved.support.SupportPlane import SupportPlane
 from convert.adapters.solidworks.sketch.MemberSpans import MemberSpan
 from interchange.core.Common import FreezeMapping
 from interchange.features.FeatureStep import FeatureStep

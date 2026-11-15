@@ -166,7 +166,8 @@ from convert.adapters.solidworks.core.Native import (
     decode_native_model as DecodeNativeModel,
     operation_axis_subelement as OperationAxisSubElem,
 )
-from convert.adapters.solidworks.core.cut.CutEqProjection import ReadCutEqs
+from convert.adapters.solidworks.core.cut.CutDocument import ProjectCutDoc
+from convert.adapters.solidworks.core.cut.CutEqProjection import ReadCutArchive
 from convert.adapters.solidworks.core.OrdinaryRead import (
     KArchiveSupport,
     ReadRectSupport,
@@ -423,6 +424,7 @@ def ReadNativePart(
         ),
         units=UnitSystem.MILLIMETER,
     )
+    DocValue = ProjectCutDoc(DocValue, Model.cut_source)
     DocValue.assert_valid()
     ValidateSource(Label, False)
     return RetainSource(DocValue, DataValue)
@@ -2046,7 +2048,7 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
         return Model
     Generation = ContainerMo(Archive.streams)
     Ordinary = ReadRectSupport(Model, ConfigData, Resolved, Generation)
-    return ReadCutEqs(Ordinary, ConfigData, Resolved, Generation, ConfigStream, SelectedStream)
+    return ReadCutArchive(Ordinary, ConfigData, Resolved, Generation, ConfigStream, SelectedStream)
 
 
 # this definition exists because focused behavior needs one stable owner

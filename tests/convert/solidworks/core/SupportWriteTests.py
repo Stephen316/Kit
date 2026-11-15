@@ -7,17 +7,14 @@ from convert import convert as ConvertFile
 from convert import open_document as OpenDocument
 from convert import write_document as WriteDocument
 from convert.adapters.registry.ResearchWrite import KResearchReadStatus
-from convert.adapters.solidworks.core.Native import (
-    KStreamOrderSupportSource,
-    KUnresolvedSupportSource,
-)
+from convert.adapters.solidworks.core.cut.FaceProjection import KFaceSupportSource
 from convert.adapters.solidworks.core.OrdinaryRead import KArchiveSupport
 from tests.convert.api.ApiTestPaths import KRootPath, KSamplePath
 from tests.convert.solidworks.core.NestedDocument import NestedDocument
 from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
-# typed placement and unframed support both retain the current qualification boundary
+# typed placement preserves the current qualification boundary
 @TestMark.parametrize(
     ("NativePath", "SupportSources"),
     (
@@ -31,7 +28,7 @@ from tests.convert.solidworks.core.RejectWrites import RejectWrites
         ),
         (
             "P04/solidworks-c1986308375a/P04-solidworks-plane-yz.SLDPRT",
-            (KStreamOrderSupportSource, KUnresolvedSupportSource),
+            (KFaceSupportSource,),
         ),
     ),
 )

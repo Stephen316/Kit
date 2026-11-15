@@ -92,7 +92,7 @@ def AttachCutEqs(
 
 
 # other schema families keep their existing equation reader when this archive shape fails
-def ReadCutEqs(
+def ReadCutArchive(
     Model: NativeModel, ConfigBlob: bytes, Resolved: bytes,
     Generation: int | None, StreamName: str, ResolvedStream: str,
 ) -> NativeModel:
