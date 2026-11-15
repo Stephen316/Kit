@@ -15,6 +15,7 @@ from ApplicationProtocol import (
     write_new,
 )
 from FusionExitEvidence import seal_and_watch
+from FusionExitRecords import exit_evidence
 from MacApplicationPeer import process_peer
 from MacProcessExit import PeerUnavailable
 
@@ -111,6 +112,16 @@ def check_receipt(root, result, armed, case):
     }
     assert saved["cause"] == "unverified"
     assert saved["peer"] == status["readiness"]["peer"]
+    accepted, observed = exit_evidence(root, identifier, result["receipt_sha256"])
+    assert accepted == status["readiness"] and observed == saved
+    try:
+        exit_evidence(root, identifier, "0" * 64)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError(
+            "replacement intake accepted the wrong exit receipt digest"
+        )
 
 
 def run_pair(root, target, case):

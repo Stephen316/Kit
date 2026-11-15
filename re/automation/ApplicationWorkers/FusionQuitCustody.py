@@ -17,7 +17,16 @@ from StoreRead import read_store
 
 class FusionQuitCustody:
     def __init__(
-        self, root, installation, installation_bytes, store, queue, lifecycle, readiness
+        self,
+        root,
+        installation,
+        installation_bytes,
+        store,
+        queue,
+        lifecycle,
+        readiness,
+        *,
+        handoff_id=None,
     ):
         self.root = root
         self.installation = installation
@@ -26,15 +35,18 @@ class FusionQuitCustody:
         self.installation_bytes = installation_bytes
         self.queue_bytes = file_bytes(queue)
         self.lifecycle_bytes = file_bytes(lifecycle)
-        self.fence_bytes = file_bytes(root / "fence.json")
-        fence = json.loads(self.fence_bytes)
+        retained = file_bytes(root / "fence.json") if handoff_id is None else None
+        if handoff_id is None:
+            handoff_id = json.loads(retained)["job_id"]
         require(
-            re.fullmatch("[0-9a-f]{32}", fence["job_id"]),
+            re.fullmatch("[0-9a-f]{32}", handoff_id),
             "invalid retained Fusion restart ID",
         )
-        self.intent_path = root / f"restart-intent-{fence['job_id']}.json"
+        self.handoff_id = handoff_id
+        self.intent_path = root / f"restart-intent-{handoff_id}.json"
         self.intent_bytes = file_bytes(self.intent_path)
         self.intent = json.loads(self.intent_bytes)
+        self.fence_bytes = encoded(self.intent["restart_handoff"])
         self.store = directory(store)
         self.database = self.store / "ledger.sqlite3"
         self.queue = validate_queue(json.loads(self.queue_bytes))
@@ -47,25 +59,30 @@ class FusionQuitCustody:
             and sha256(self.queue_bytes) == self.intent["queue_receipt_sha256"]
             and sha256(self.lifecycle_bytes) == readiness["lifecycle_sha256"]
             and self.fence_sha256 == self.intent["fence_sha256"]
-            and self.fence_bytes == encoded(self.intent["restart_handoff"])
+            and self.intent["restart_handoff"]["job_id"] == handoff_id
+            and (retained is None or retained == self.fence_bytes)
             and sha256(os.fsencode(self.store)) == self.intent["store_path_sha256"],
             "Fusion exit observer inputs differ from the accepted restart intent",
         )
 
-    def verify_files(self):
+    def verify_files(self, retained):
         require(
             file_bytes(self.installation) == self.installation_bytes
             and file_bytes(self.queue_path) == self.queue_bytes
             and file_bytes(self.lifecycle) == self.lifecycle_bytes
-            and file_bytes(self.intent_path) == self.intent_bytes
-            and file_bytes(self.root / "fence.json") == self.fence_bytes
-            and not os.path.lexists(self.root / ACKNOWLEDGEMENT)
-            and not any(directory(self.root / "jobs").iterdir()),
-            "Fusion exit watch lost the original acknowledged restart fence",
+            and file_bytes(self.intent_path) == self.intent_bytes,
+            "Fusion restart custody differs from the accepted owner inputs",
         )
+        if retained:
+            require(
+                file_bytes(self.root / "fence.json") == self.fence_bytes
+                and not os.path.lexists(self.root / ACKNOWLEDGEMENT)
+                and not any(directory(self.root / "jobs").iterdir()),
+                "Fusion restart custody lost the original acknowledged fence",
+            )
 
-    def verify(self):
-        self.verify_files()
+    def verify(self, *, retained=True):
+        self.verify_files(retained)
         database = self.database.lstat()
         require(
             stat.S_ISREG(database.st_mode) and database.st_nlink == 1,
@@ -85,7 +102,10 @@ class FusionQuitCustody:
             }
             require(
                 all(row[key] == value for key, value in expected.items())
-                and phase_row(owner, self.queue, "b")["state"] != "completed",
+                and (
+                    not retained
+                    or phase_row(owner, self.queue, "b")["state"] != "completed"
+                ),
                 "Fusion exit watch lost the accepted Phase A attempt",
             )
-        self.verify_files()
+        self.verify_files(retained)

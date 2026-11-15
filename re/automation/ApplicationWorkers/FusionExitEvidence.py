@@ -13,11 +13,9 @@ from ApplicationProtocol import (
 from MacProcessExit import observe_exit, watch_peer
 
 
-def seal_and_watch(root, readiness, executable, fence_sha256, seconds, verify, notify):
+def verify_readiness(readiness):
     require(
-        type(seconds) is int
-        and 1 <= seconds <= 300
-        and readiness["status"] == "restart_readiness_observed"
+        readiness["status"] == "restart_readiness_observed"
         and readiness["documents"] == 0
         and readiness["grant"]["status"] == "granted"
         and readiness["consumption"]["status"] == "consumed"
@@ -36,6 +34,14 @@ def seal_and_watch(root, readiness, executable, fence_sha256, seconds, verify, n
         and readiness["grant"]["expires_at"] == readiness["expires_at"],
         "Fusion exit watch requires a fresh, consumed readiness grant",
     )
+
+
+def seal_and_watch(root, readiness, executable, fence_sha256, seconds, verify, notify):
+    require(
+        type(seconds) is int and 1 <= seconds <= 300,
+        "invalid Fusion exit observation deadline",
+    )
+    verify_readiness(readiness)
     peer = readiness["peer"]
     watcher = identity(os.getpid())
     require(watcher is not None, "Fusion exit watcher process identity is unavailable")

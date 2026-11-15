@@ -20,6 +20,7 @@ CANCEL_REASON = "requesting worker stopped before application completion"
 FUSION_PROVIDER = "autodesk.fusion.addin"
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 RESTART_GRANT = "re/automation/ApplicationWorkers/FusionRestartGrant.py"
+MAC_REPLACEMENT_LAUNCH = "re/automation/ApplicationWorkers/MacReplacementLaunch.swift"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
 SCOPE_TOOL = "re/automation/PairedCaptures/ScopeControl/FusionScopeControl.py"
@@ -275,7 +276,7 @@ def validate_configuration(value):
 def committed_bytes(config, relative):
     require(
         relative
-        in {PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, BOOTSTRAP, RESTART_GRANT, *INPUTS, *SCOPE_INPUTS},
+        in {PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, BOOTSTRAP, RESTART_GRANT, MAC_REPLACEMENT_LAUNCH, *INPUTS, *SCOPE_INPUTS},
         "unapproved application source path",
     )
     root = Path(config["source_root"])
