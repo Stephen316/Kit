@@ -1,6 +1,6 @@
 # Hosted discovery archive evidence gate
 
-The existing Workflow Quality job now runs the saved-archive evidence commands in an isolated, locked Python 3.14 environment. The gate checks the full JSON report bytes against the independently verified report digests. Each command also verifies the pinned Git artifacts and checks its decoded fields against the source application's recorded observations.
+The existing Workflow Quality job now runs the saved-archive evidence commands in an isolated, locked Python 3.14 environment. The gate compares the full JSON reports after normalizing line endings to LF. Each command also verifies the pinned Git artifacts and checks its decoded fields against the source application's recorded observations.
 
 | Source | Coverage |
 | --- | --- |
@@ -12,4 +12,4 @@ The existing Workflow Quality job now runs the saved-archive evidence commands i
 
 The eight cases run before the existing native adapter compatibility tests on the same hosted job. A failed replay logs its command diagnostics. A changed result digest fails the case and reports the actual digest for investigation. Repeat the measurement comparison after an intentional change to the evidence before updating its digest. [Gate cases](../../../tests/Research/ArchiveEvidenceTests.py), [workflow](../../../.github/workflows/WorkflowQuality.yml)
 
-The gate covers the pinned discovery captures. Fresh application acceptance and editable conversion retain their own verification requirements. The report digests were reproduced with the locked local Python 3.14 evidence commands. The first hosted run with this gate is pending.
+The gate covers the pinned discovery captures. Fresh application acceptance and editable conversion retain their own verification requirements. The first hosted run passed the three SOLIDWORKS cases and reproduced the five Fusion reports with LF output. A hosted rerun of the normalized digest check is pending. [Line-ending evidence](../../Gotchas/Research/Readers/ArchiveEvidenceLineEndings.md)

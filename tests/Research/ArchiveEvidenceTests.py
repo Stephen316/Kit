@@ -31,31 +31,31 @@ import pytest as Pytest
         Pytest.param(
             "re/automation/FusionRectangleSketchEvidence.py",
             (),
-            "4781ee20a7a0d6d08ff9df4ee79bbcce19f6e527b3e9d9529796600e72abf1fa",
+            "aa4ec3c20c2a977d123853c17e7b48acb26743ef10252a1a34af0d43d16b8d13",
             id="fusion-p01-rectangle-operands",
         ),
         Pytest.param(
             "re/automation/FusionBossProfileEvidence.py",
             (),
-            "8ed24ba6fa59486de3d34e8629221b43fc43e5f99f9b9530737eecf2d6c0fe14",
+            "567c2c0993e27d197d394bd504545a4efadce6b6d1dd221cf2b35b828ce58e77",
             id="fusion-p03-boss-profile",
         ),
         Pytest.param(
             "re/automation/FusionCutProfileEvidence.py",
             (),
-            "52ff1ebd2b746ae50277fd9b49d18676fba0529d9c7289c4c8618a093392ac6a",
+            "4ac34b4dbb4b92473aab572336e0ef6402634b0c534f9c6a502b81cc9575b75c",
             id="fusion-p04-cut-profile",
         ),
         Pytest.param(
             "re/automation/FusionCutProjectionEvidence.py",
             (),
-            "953d58343825f8e657b7fa4cafcf2513f99a96d6f1a948688904609536638cb8",
+            "d8082c5685313c1634ebdbb6c5b52bbec51f6216e056f6175c473d811e4a86f4",
             id="fusion-p04-projected-edges",
         ),
         Pytest.param(
             "re/automation/FusionCutCenterEvidence.py",
             (),
-            "21fdc6b688c7cddbb69546066903a8014d80c579e62a35c4dc522651425c4d51",
+            "4710c3797a353177650acff289019173ad1d3a450d8eff49c54872aa6e5c6256",
             id="fusion-p04-cut-center",
         ),
     ),
@@ -72,5 +72,5 @@ def CheckDiscoveryArchiveReport(
         check=False,
     )
     assert ResultInfo.returncode == 0, ResultInfo.stderr.decode(errors="replace")
-    ActualDigest = Hashlib.sha256(ResultInfo.stdout).hexdigest()
+    ActualDigest = Hashlib.sha256(ResultInfo.stdout.replace(b"\r\n", b"\n")).hexdigest()
     assert ActualDigest == ReportDigest, (ScriptPath, Options, ActualDigest)
