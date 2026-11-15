@@ -303,23 +303,25 @@ public sealed class SolidWorksScopeControl
         Check(!File.Exists(path) && app.GetDocumentCount() == 0, "The scope authoring workspace is not empty");
         var doc = (IModelDoc2)app.INewDocument2(template, 0, 0, 0);
         Check(doc != null, "Could not create licensed scope part");
+        Dictionary<string, object> before;
+        object saved;
         try
         {
             Boss(doc, "A");
             Boss(doc, "B");
             Check(doc.ForceRebuild3(false), "Could not rebuild the two uncut solids");
             var bodies = Bodies(doc);
-            var before = MeasureBodies(doc, bodies);
+            before = MeasureBodies(doc, bodies);
             Cut(doc, bodies, control);
-            var saved = Observe(doc, before);
+            saved = Observe(doc, before);
             var status = 0;
             var warnings = 0;
             Check(doc.Extension.SaveAs3(path, 0, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, null,
                 ref status, ref warnings) && status == 0 && warnings == 0, "Could not save scoped through-all control");
-            return Row("mode", mode, "archive", Row("file", file, "sha256", Hash(path), "size_bytes", new FileInfo(path).Length),
-                "before_cut", Row("bodies", before), "before_save", saved);
         }
         finally { app.CloseDoc(doc.GetTitle()); }
+        return Row("mode", mode, "archive", Row("file", file, "sha256", Hash(path), "size_bytes", new FileInfo(path).Length),
+            "before_cut", Row("bodies", before), "before_save", saved);
     }
 
     void Reopen(string directory, Dictionary<string, object> control)
