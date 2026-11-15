@@ -122,6 +122,25 @@ jobs:
         run: >-
           uv run --isolated --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/Archives -q
+          --report-log="${RUNNER_TEMP}/PairedArchiveChecks.jsonl"
+          --report-log-exclude-logs-on-passed-tests
+
+      - name: Bind the paired archive gate receipt
+        if: github.event_name == 'pull_request'
+        run: >-
+          uv run --isolated --frozen --no-default-groups --extra dev --python 3.14
+          python -B re/automation/CiPairedArchiveGate.py
+          --report-log "${RUNNER_TEMP}/PairedArchiveChecks.jsonl"
+          --output "${RUNNER_TEMP}/PairedArchiveGate.json"
+
+      - name: Publish paired archive gate receipt
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: PairedArchiveGate-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/PairedArchiveGate.json
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Exercise native file reading and writing
         run: >-

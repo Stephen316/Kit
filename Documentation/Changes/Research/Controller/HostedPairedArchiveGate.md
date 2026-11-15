@@ -1,0 +1,9 @@
+# Observe the hosted paired archive gate
+
+The Linux policy job in `Workflow quality` publishes `PairedArchiveGate-RUN_ATTEMPT` after its existing archive test step passes on a pull request. The receipt records the passing P01/P03 public reader history check and P04 paired cut history check, the GitHub workflow run and attempt, and the exact tested synthetic merge and its head and base commits. It includes the tested merge tree and head tree so a consumer can compare inputs when the base contributes changes.
+
+The corpus section binds the original paired capture commit, specification digest and six capture receipt digests to the native save pins. Its `saves` map matches the shape of the [stage 11 result](PairedDiscoveryReplay.md), with six P01, eight P03 and eleven P04 variant pairs and distinct repeat-save pins for both applications. The receipt covers discovery data. The job uploads the compact JSON and retains the raw pytest report on the runner.
+
+Use the authenticated Actions artifact belonging to the exact workflow run and attempt. Check that its GitHub job completed successfully and verify its checkout and save pins against the intended [parked attempt](PendingCiRoster.md) before using the receipt alongside locally leased stage 11 evidence. A [terminal aggregate failure](TerminalCiBatchObservation.md) remains unattributed, even when the archive step previously passed. The receipt provides public archive gate evidence and leaves licensed readback, per-member certification and controller release to their respective evidence sources.
+
+The producer runs directly after the existing hosted archive tests and requires a complete passed setup, call and teardown for both selected tests. Reading the six pinned Git receipts establishes the expected save roster SHA-256 `f4ff4fca58aa3c32bb57d890a1c74b8d69714887d8acea5e24f46b69b5c523f1`. Hosted verification of the new publication step is pending.
