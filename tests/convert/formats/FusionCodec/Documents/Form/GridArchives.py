@@ -87,6 +87,11 @@ KGridRefusals: tuple[tuple[str, str, str], ...] = (
     ),
 )
 
+KPlanarArea = (
+    "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane3x2.f3d",
+    "59c1f79b6bbe739774fbbb2b1eea2f5ef9719588171951941ae4b6a21bed6ba3",
+)
+
 KShiftedCache = (
     "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfShifted.f3d",
     "81c4ac56521bc0c6ffef7bbca49999767fd3374b70c302775250c05396000997",

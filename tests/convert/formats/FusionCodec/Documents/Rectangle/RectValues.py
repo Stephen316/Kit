@@ -14,3 +14,8 @@ def ReadPoint(Value: KEntityValue) -> tuple[float, ...]:
     return tuple(
         float(Coord) for Coord in Coordinates if isinstance(Coord, (int, float))
     )
+
+
+def ReadScalar(Value: KEntityValue) -> float:
+    assert isinstance(Value, (int, float))
+    return float(Value)

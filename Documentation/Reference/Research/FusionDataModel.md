@@ -123,12 +123,12 @@ Kit keeps them within per-stream limits, as [Trailing stream bytes](#trailing-st
 Four identity domains occur in one document.
 They use similar integers for unrelated objects.
 
-| Domain                  | Scope                                   | Example failure when it is confused                      |
-| ----------------------- | --------------------------------------- | -------------------------------------------------------- |
-| Design entity IDs       | Records in the Design segment           | A feature points to an unrelated kernel body             |
-| ASM entity pointers     | Records inside one SMB or SMBH stream   | A face points to a record in a different state           |
-| Delta-state identifiers | States of the kernel history stream     | Rollback restores the wrong state                        |
-| Persistent entity tags  | Named topology across states            | A feature selects a different face after a rebuild       |
+| Domain                  | Scope                                 | Example failure when it is confused                |
+| ----------------------- | ------------------------------------- | -------------------------------------------------- |
+| Design entity IDs       | Records in the Design segment         | A feature points to an unrelated kernel body       |
+| ASM entity pointers     | Records inside one SMB or SMBH stream | A face points to a record in a different state     |
+| Delta-state identifiers | States of the kernel history stream   | Rollback restores the wrong state                  |
+| Persistent entity tags  | Named topology across states          | A feature selects a different face after a rebuild |
 
 The journal header starts with four counters.
 Kit reads them as the current state, the maximum allocated state, a retained-state limit, and the next entity tag.
@@ -224,14 +224,14 @@ Uploads under the Personal-use licence stayed read-only, so an edited drawing co
 
 ### Method that resolved the format
 
-| Step                    | Evidence produced                                                                |
-| ----------------------- | -------------------------------------------------------------------------------- |
-| Corpus inventory        | 712 tracked archives, 21,269 members, and every declared class GUID              |
-| Runtime reflection      | Registered class, member, type, and version names from a running Fusion          |
-| Controlled variants     | One-variable native files, such as the T-spline root and edge variants           |
-| Byte-exact re-emission  | Typed decode and encode that reproduce native members without source bytes      |
-| Independent authoring   | New files from dimensions, cages, or analytic bodies, with no source template    |
-| Native acceptance       | Fusion 2706.1.17 load, rollback, rebuild, edit, save, and reopen measurements    |
+| Step                   | Evidence produced                                                             |
+| ---------------------- | ----------------------------------------------------------------------------- |
+| Corpus inventory       | 712 tracked archives, 21,269 members, and every declared class GUID           |
+| Runtime reflection     | Registered class, member, type, and version names from a running Fusion       |
+| Controlled variants    | One-variable native files, such as the T-spline root and edge variants        |
+| Byte-exact re-emission | Typed decode and encode that reproduce native members without source bytes    |
+| Independent authoring  | New files from dimensions, cages, or analytic bodies, with no source template |
+| Native acceptance      | Fusion 2706.1.17 load, rollback, rebuild, edit, save, and reopen measurements |
 
 A field is qualified only when all applicable steps agree.
 An unexplained field is a rejection boundary, not a retained opaque value.
@@ -314,25 +314,25 @@ Every persistent reference must retain its domain and owning scope.
 The recommended logical identity is `(document, asset, segment, domain, value)`.
 Kernel references additionally require the geometry blob and history state.
 
-| Domain                   | Value representation                | Scope                               | Required join                                                 |
-| ------------------------ | ----------------------------------- | ----------------------------------- | ------------------------------------------------------------- |
-| Asset identity           | GUID text                           | Document manifests                  | Root declaration to asset declaration                         |
-| Snapshot token           | GUID text                           | Asset and ACT routing               | Exact declared token, without assuming content authentication |
-| Type identity            | Class GUID plus version information | Segment registry                    | Registry row to class schema                                  |
-| Wire class code          | Decimal integer text                | One segment                         | Registry position starting at 256                             |
-| Design object identity   | Unsigned 64-bit integer             | One segment                         | Primary record and indexed inherited records                  |
-| Parameter creation index | Unsigned 32-bit integer             | Parameter collection                | Persistent allocation index; deletion leaves gaps             |
-| Runtime parameter ID     | Unsigned 64-bit integer             | Design-capture parameter            | `DcParameter.rparamId`; distinct from the parameter entity ID |
-| Observer-vector index    | Signed 32-bit integer               | Referenced subject entity           | Position of this observer in the subject's observer vector    |
-| ASM entity pointer       | Signed 64-bit integer               | Blob and history state              | Entity table, with negative sentinels handled by schema       |
-| Stored BODY handle       | Typed attribute value               | Referenced geometry history         | Design body map to matching kernel BODY identifier            |
-| Persistent name key      | Schema-specific typed value         | Naming registry and feature lineage | Verified registry, creator, and selection route               |
-| Delta-state identity     | Native signed 32-bit integer        | Kernel history stream               | State-tree links and feature-to-history transitions           |
-| Current/max state IDs    | Independent signed 32-bit integers  | Kernel history stream               | Selected state versus allocation watermark                    |
+| Domain                   | Value representation                | Scope                               | Required join                                                                     |
+| ------------------------ | ----------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------- |
+| Asset identity           | GUID text                           | Document manifests                  | Root declaration to asset declaration                                             |
+| Snapshot token           | GUID text                           | Asset and ACT routing               | Exact declared token, without assuming content authentication                     |
+| Type identity            | Class GUID plus version information | Segment registry                    | Registry row to class schema                                                      |
+| Wire class code          | Decimal integer text                | One segment                         | Registry position starting at 256                                                 |
+| Design object identity   | Unsigned 64-bit integer             | One segment                         | Primary record and indexed inherited records                                      |
+| Parameter creation index | Unsigned 32-bit integer             | Parameter collection                | Persistent allocation index; deletion leaves gaps                                 |
+| Runtime parameter ID     | Unsigned 64-bit integer             | Design-capture parameter            | `DcParameter.rparamId`; distinct from the parameter entity ID                     |
+| Observer-vector index    | Signed 32-bit integer               | Referenced subject entity           | Position of this observer in the subject's observer vector                        |
+| ASM entity pointer       | Signed 64-bit integer               | Blob and history state              | Entity table, with negative sentinels handled by schema                           |
+| Stored BODY handle       | Typed attribute value               | Referenced geometry history         | Design body map to matching kernel BODY identifier                                |
+| Persistent name key      | Schema-specific typed value         | Naming registry and feature lineage | Verified registry, creator, and selection route                                   |
+| Delta-state identity     | Native signed 32-bit integer        | Kernel history stream               | State-tree links and feature-to-history transitions                               |
+| Current/max state IDs    | Independent signed 32-bit integers  | Kernel history stream               | Selected state versus allocation watermark                                        |
 | Next entity tag          | Signed 32-bit integer               | Kernel history stream               | Separate from record indexes; the name is not confirmed by a black-box experiment |
-| Inline subtype reference | Schema-specific slot                | Local subtype table                 | Local subtype resolution, never global entity indexing        |
-| Link GUID                | GUID text                           | Root manifest link table            | Asset link row, version contexts and bundle `neutronRole`     |
-| Version-context token    | Unsigned 64-bit integer             | One segment's version contexts      | Cross-document reference to its context row                   |
+| Inline subtype reference | Schema-specific slot                | Local subtype table                 | Local subtype resolution, never global entity indexing                            |
+| Link GUID                | GUID text                           | Root manifest link table            | Asset link row, version contexts and bundle `neutronRole`                         |
+| Version-context token    | Unsigned 64-bit integer             | One segment's version contexts      | Cross-document reference to its context row                                       |
 
 ## Primitive wire types
 
@@ -1145,7 +1145,7 @@ The [matrix row gotcha](../../Gotchas/Conversion/Fusion/Records/FusionMatrixVers
 | Body entity ids      | Saved cylinder and frustum histories can store ids on faces 4, 5 and 6 and on vertices 20 and 21.               | [Entity ids](../../Gotchas/Conversion/Fusion/Records/FusionRotationalEntityIds.md)    |
 | Scene display items  | Body LODs hold display items of types 0, 6 and 7, with geometry in the `Fusion_mesh_NNN` stream family.         | [Display items](../../Gotchas/Conversion/Fusion/Records/SceneDisplayItems.md)         |
 | Billboard version    | Older scene globals declare `BillBoardAttribute` version 1, which has no `FlipVisibility`.                      | [Billboard version](../../Gotchas/Conversion/Fusion/Records/SceneBillboardVersion.md) |
-| Instance version     | Older scene globals omit `GraphicsBlobFeatures`. `F360InstanceNode` version 0 has no instance id.                | [Instance version](../../Gotchas/Conversion/Fusion/Graphics/SceneInstanceVersion.md)  |
+| Instance version     | Older scene globals omit `GraphicsBlobFeatures`. `F360InstanceNode` version 0 has no instance id.               | [Instance version](../../Gotchas/Conversion/Fusion/Graphics/SceneInstanceVersion.md)  |
 | Override attributes  | Assembly scenes hold override attributes with node paths, targets and nested override sets.                     | [Overrides](../../Gotchas/Conversion/Fusion/Graphics/SceneOverrides.md)               |
 | Mesh stream slack    | A mesh stream can end with unreferenced bytes from an earlier save. Kit keeps them as scene slack.              | [Stale tails](../../Gotchas/Conversion/Fusion/Records/SceneStaleTails.md)             |
 | Typed view selection | A typed view that rejects the stored tokens leaves the exact journal or geometry model in place.                | [Typed view](../../Gotchas/Conversion/Fusion/Records/FusionTypedViewFallback.md)      |
@@ -1280,34 +1280,42 @@ The [field model](../../../re/Fusion/Reconstruction/TSpline/FieldModel.md) descr
 
 ### Declaration profile
 
-| Record             | Qualified value                                    |
-| ------------------ | -------------------------------------------------- |
-| `#TS0200`          | Format-family signature                            |
-| `degree`           | 3                                                  |
-| `cap-type`         | `G1CAPS`                                           |
-| `star-smoothness`  | 0                                                  |
-| `units`            | Scale 1 and the literal `meters`                   |
-| `end-conditions`   | `SUBD_CREASES`                                     |
-| `star-knot-rule`   | `NURCCS`                                           |
-| `tol`, `geom-tol`  | Positive finite binary64 values                    |
-| `ver`              | Edit counter, not a schema number                  |
-| `behavior-version` | 14.2.0                                             |
-| `compat-version`   | 13.3.0                                             |
+| Record             | Qualified value                   |
+| ------------------ | --------------------------------- |
+| `#TS0200`          | Format-family signature           |
+| `degree`           | 3                                 |
+| `cap-type`         | `G0CAPS`, `G1CAPS`, or `G2CAPS`   |
+| `star-smoothness`  | 0, 1, or 2                        |
+| `units`            | Scale 1 and the literal `meters`  |
+| `end-conditions`   | `SUBD_CREASES`                    |
+| `star-knot-rule`   | `NURCCS`                          |
+| `tol`, `geom-tol`  | Positive finite binary64 values   |
+| `ver`              | Edit counter, not a schema number |
+| `behavior-version` | 14.2.0                            |
+| `compat-version`   | 13.3.0                            |
 
 The stored grip coordinates are Fusion centimetres, although the text declares `meters`.
 A reader must keep the declaration and the coordinates as separate values.
 
+The qualified cap and star declarations do not select different cap solvers in Fusion 2706.1.17.
+The [declaration acceptance report](../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json) compares ten complete document lifecycles.
+Kit preserves each declaration but derives its cap solve from the cage topology and grips.
+New cages keep the `G1CAPS` and zero-star defaults. Other values remain rejection boundaries.
+Fusion canonicalizes G0 and G2 declarations to G1 during its native lifecycle, but preserves the star value.
+The [canonicalization gotcha](../../Gotchas/Conversion/Fusion/TSpline/FormBodies/FusionCanonicalizesCapTypes.md) distinguishes that vendor behavior from Kit emission.
+See the [declaration change](../../Changes/Fusion/TSpline/FusionCapDeclarationProfiles.md).
+
 ### Topology and control points
 
-| Record | Fields in wire order                                              | Meaning                                         |
-| ------ | ----------------------------------------------------------------- | ----------------------------------------------- |
-| `f`    | Origin link, hidden-face bit                                      | Face origin used by the blending functions      |
-| `e`    | Origin link, knot interval                                        | Edge origin and binary64 knot interval          |
-| `v`    | Orientation link, direction                                       | Vertex frame, such as `NORTH`                   |
-| `l`    | Previous, next, opposite, vertex, face, edge, valence offset       | One 28-byte native half-edge link               |
-| `ec`   | Edge index, end condition                                         | Binary64 end condition, not a crease flag       |
-| `0g`   | x, y, z, weight                                                   | Weighted control point in centimetres           |
-| `0m`   | Odd-grip map or compound spoke layout                             | Grip ownership around a vertex                  |
+| Record | Fields in wire order                                         | Meaning                                    |
+| ------ | ------------------------------------------------------------ | ------------------------------------------ |
+| `f`    | Origin link, hidden-face bit                                 | Face origin used by the blending functions |
+| `e`    | Origin link, knot interval                                   | Edge origin and binary64 knot interval     |
+| `v`    | Orientation link, direction                                  | Vertex frame, such as `NORTH`              |
+| `l`    | Previous, next, opposite, vertex, face, edge, valence offset | One 28-byte native half-edge link          |
+| `ec`   | Edge index, end condition                                    | Binary64 end condition, not a crease flag  |
+| `0g`   | x, y, z, weight                                              | Weighted control point in centimetres      |
+| `0m`   | Odd-grip map or compound spoke layout                        | Grip ownership around a vertex             |
 
 Table indexes are implicit positions in each record family.
 Face `-1` marks a boundary half-edge.
@@ -1338,11 +1346,11 @@ The controlled imports below show that changing them changes the converted body.
 
 Controlled imports used a 17 × 23 × 31 mm box cage with the control points, creases, and face incidence of the Fusion box primitive.
 
-| Cage roots                         | Default area (cm²)  | Very-high-accuracy center | Equal to primitive |
-| ---------------------------------- | ------------------- | ------------------------- | ------------------ |
-| First incident links               | 12.710561939032758  | Differs                   | No                 |
-| Native face origins                | 12.7105676688771    | Differs by about 3e-6 cm  | No                 |
-| Native face and edge origins       | 12.7105676688771    | Differs by about 3e-6 cm  | No                 |
+| Cage roots                          | Default area (cm²) | Very-high-accuracy center | Equal to primitive |
+| ----------------------------------- | ------------------ | ------------------------- | ------------------ |
+| First incident links                | 12.710561939032758 | Differs                   | No                 |
+| Native face origins                 | 12.7105676688771   | Differs by about 3e-6 cm  | No                 |
+| Native face and edge origins        | 12.7105676688771   | Differs by about 3e-6 cm  | No                 |
 | Native face, edge, and vertex roots | 12.710567668877099 | Equal                     | Yes                |
 
 Face origins control the default-accuracy area and volume.
@@ -1356,12 +1364,12 @@ A larger native box has ten of 48 edges in the other direction, so that order is
 
 [Native acceptance](../../../re/Fusion/LocalOracle/TSplineCodec/NativeAcceptance.json), SHA-256 `c6f6973215fbb0f46cc454f2fc998132d988e2f76fc03ec002981e4c8551964d`, accepted 13 cases in Fusion 2706.1.17.
 
-| Case group             | Native result                                                                       |
-| ---------------------- | ----------------------------------------------------------------------------------- |
+| Case group             | Native result                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------- |
 | Twelve native controls | Byte-identical re-emission and equal observations through import, edit, save, and reopen |
-| Authored closed cage   | Equal to the native box primitive at every stage within 1e-8                        |
-| Authored initial body  | Area 12.710567668877099 cm²                                                          |
-| Authored edited body   | Area 12.43421957296201 cm² and volume 3.8361736781260087 cm³                         |
+| Authored closed cage   | Equal to the native box primitive at every stage within 1e-8                             |
+| Authored initial body  | Area 12.710567668877099 cm²                                                              |
+| Authored edited body   | Area 12.43421957296201 cm² and volume 3.8361736781260087 cm³                             |
 
 Rational evaluation, arbitrary T-junctions, radial symmetry, and deleted slots remain rejection boundaries.
 [Form documents](#form-documents) describes the F3D graph that joins a cage to its converted body.
@@ -1416,6 +1424,25 @@ The cache group, `FusionComponent.rCacheBodies`, owns the surface node and the `
 | Surface node           | `TsSurface.rVSurface` names the node, and the node names the surface               |
 | Converted body         | The node vector names each `Body`, and each `Body` names the node back             |
 | Embedded program       | Every T-spline program in the `.smb` and `.smbh` members equals a TSM member       |
+
+### Form mass cache
+
+The `Body.cache` inherited sequence requires one `MassPropertyCacheValue` group.
+An empty sequence fails the schema, and a zero group gives an incorrect zero center before recompute.
+The [cache gotcha](../../Gotchas/Conversion/Fusion/TSpline/FormBodies/FormMassCacheMustBeDerived.md) preserves that failed measurement.
+
+The group carries area, area precision, center of gravity, inertia precision, three principal inertia fields, three off-diagonal fields, a revision id, volume, and volume precision.
+`FormCache` evaluates each bicubic surface and its derivatives over its knot spans.
+Sixteen-point Gaussian quadrature and the divergence theorem produce area, volume, first moments, and second moments.
+Origin-based second moments produce the inertia and off-diagonal fields, while the first moments separately produce the center of mass.
+Open sheets have zero volumetric properties because they have no enclosed volume.
+Nonperiodic faces must use complete parameter-space boundaries; `CheckTrimming` rejects other faces.
+Periodic surfaces retain their full domains.
+The cache's revision id is the new document revision, not a neutral zero identifier or a saved vendor value.
+The [mass-cache change](../../Changes/Fusion/TSpline/FusionFormMassCache.md) gives the measured initial and edited properties. The [field evidence](../../../re/Fusion/Reconstruction/FormDocuments/General/CapMassCacheModel.json) labels every cache value, its derivation, and its confidence status.
+Native API inertia is mass-weighted by each body's material density. Comparisons across different materials divide the six returned moments by density before checking the volumetric tensor.
+Mass integration hoists expanded knot vectors, computes nonzero basis-span indices once, and evaluates only local spline poles per sample; full-surface validation occurs once before emission.
+The [area precision gotcha](../../Gotchas/Conversion/Fusion/TSpline/FormBodies/NativeAreaCacheHasPrecision.md) separates native area estimation from the exact planar cache and `1e-8` geometric and remaining mass tolerances.
 
 ### Converted BRep grammar
 
@@ -1560,21 +1587,21 @@ The writer admits positive stored radii only.
 The reader also admits a negative torus minor radius whose magnitude is smaller than the major radius.
 [Journal structure](#journal-structure) records that saved form.
 
-| Carrier | Stored fields in native order                                        | Rejected values                                  |
-| ------- | -------------------------------------------------------------------- | ------------------------------------------------ |
-| Sphere  | Center, signed radius, reference direction, pole direction, V reversal, four optional bounds | Radius that is not positive, nonfinite values |
+| Carrier | Stored fields in native order                                                                          | Rejected values                               |
+| ------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
+| Sphere  | Center, signed radius, reference direction, pole direction, V reversal, four optional bounds           | Radius that is not positive, nonfinite values |
 | Torus   | Center, axis, major radius, signed minor radius, reference direction, V reversal, four optional bounds | Horn or spindle torus, non-unit or skew frame |
 
 [Native acceptance](../../../re/Fusion/LocalOracle/RoundBodies/NativeAcceptance.json), SHA-256 `7ce52b6fd762408fd9aa0fe98380ad9cd4e223588c26882ef1e285c0c6025b9f`, has status `accepted` in Fusion 2706.1.17.
 
-| Case                         | Native measurement                                                    |
-| ---------------------------- | --------------------------------------------------------------------- |
-| Authored sphere, r 19 mm     | Volume 28.73091201462985 cm³ and area 45.36459791783661 cm²            |
-| Authored torus, 31/9 mm      | Volume 49.56515330227076 cm³ and area 110.14478511615724 cm²           |
-| Four native carriers         | Byte-exact `.smb` regeneration and equal bodies                        |
-| Partial closed pipe history  | `d3` to 8 mm, volume 3.46423114478236 → 6.158633146279758 cm³          |
-| Composite circular pipe      | `d3` to 6 mm, volume 1.166559470517908 → 2.6247588086652924 cm³        |
-| Rule-all-rounds fillets      | `d7` to 0.8 mm, volume 37.96633332328521 → 37.97836761590841 cm³       |
+| Case                        | Native measurement                                               |
+| --------------------------- | ---------------------------------------------------------------- |
+| Authored sphere, r 19 mm    | Volume 28.73091201462985 cm³ and area 45.36459791783661 cm²      |
+| Authored torus, 31/9 mm     | Volume 49.56515330227076 cm³ and area 110.14478511615724 cm²     |
+| Four native carriers        | Byte-exact `.smb` regeneration and equal bodies                  |
+| Partial closed pipe history | `d3` to 8 mm, volume 3.46423114478236 → 6.158633146279758 cm³    |
+| Composite circular pipe     | `d3` to 6 mm, volume 1.166559470517908 → 2.6247588086652924 cm³  |
+| Rule-all-rounds fillets     | `d7` to 0.8 mm, volume 37.96633332328521 → 37.97836761590841 cm³ |
 
 The authored volumes and areas equal the analytic sphere and torus formulas.
 Each trimmed history kept every active and archived record and every state through rollback, rebuild, edit, save, and reopen.
@@ -1770,28 +1797,28 @@ Every authored surface is a plane, a cylinder, a cone or a torus.
 Rejected profiles, missed bodies, collapsed sides and over-thick shells raise `ValueError` before any record is written.
 The [part feature change entry](../../Changes/Fusion/Features/FusionPartFeatures.md) gives the API and the limits.
 
-| Family              | Design feature            | Operations          | Journal state | Driving parameters                                               |
-| ------------------- | ------------------------- | ------------------- | ------------- | ---------------------------------------------------------------- |
-| Sketch extrusion    | `DcExtrudeFeature`        | 3 with its sketch   | One           | `AlongDistance`, `AgainstDistance`, `TaperAngle`                 |
-| Hole                | `DcHoleFeature`           | 1                   | One           | `HoleDiameter`, `HoleDepth`, `TipAngle`, `CBDiameter`, `CBDepth`, `CSDiameter`, `CSAngle` |
-| Revolve             | `DcRevolveFeature`        | 2 with its sketch   | One           | `AlongAngle`                                                     |
-| Rectangular pattern | `DcRectangularPattern`    | `CountU` × `CountV` | One           | `countU`, `CountV`, `uSpaceDistance`, `vSpaceDistance`           |
-| Circular pattern    | `DcCircularPattern`       | `Count`             | One           | `countU`, `TotalAngle`                                           |
-| Offset plane        | `DcWorkPlane`             | 1                   | None          | `AlongDistance`, `ExtraOffset`                                   |
-| Construction axis   | `DcWorkAxis`              | 1                   | None          | None                                                             |
-| Construction point  | `DcWorkPoint`             | 1                   | None          | None                                                             |
-| Mirror              | `DcMirrorPattern`         | 2                   | One           | `countU`, `mirrorStitchTolerance`                                |
-| Fillet              | `DcFilletEdgeFeature`     | 1                   | One           | `TangencyWeight`, `Radius`                                       |
-| Chamfer             | `DcChamferFeature`        | 1                   | One           | `Distance`, `Distance 1`, `Distance 2`, `Rotate Angle`           |
-| Shell               | `DcShellFeature`          | 2                   | One           | `innerThickness`                                                 |
-| Move                | `DcMoveFeature`           | 1                   | One           | None                                                             |
-| Offset face         | `DcOffsetFacesFeature`    | 2                   | One           | `distance`                                                       |
-| Draft               | `DcDraftFeature`          | 2                   | One           | `Angle1`                                                         |
-| Combine             | `DcCombineFeature`        | 1                   | One           | None                                                             |
-| Split               | `DcSplitBodyFeature`      | 1                   | One           | None                                                             |
-| Body pattern        | `DcRectangularPattern` or `DcCircularPattern` | `CountU` × `CountV` or `Count` | One | `countU`, `CountV`, `uSpaceDistance`, `TotalAngle` |
-| Loft                | `DcLoftFeature`           | 4 with its sketches and plane | One | `AlongDistance` of the loft plane                                |
-| Sweep               | `DcSweepFeature`          | 3 with its sketches | One           | `AlongDistance`, `TwistAngle`, `TaperAngle`                      |
+| Family              | Design feature                                | Operations                     | Journal state | Driving parameters                                                                        |
+| ------------------- | --------------------------------------------- | ------------------------------ | ------------- | ----------------------------------------------------------------------------------------- |
+| Sketch extrusion    | `DcExtrudeFeature`                            | 3 with its sketch              | One           | `AlongDistance`, `AgainstDistance`, `TaperAngle`                                          |
+| Hole                | `DcHoleFeature`                               | 1                              | One           | `HoleDiameter`, `HoleDepth`, `TipAngle`, `CBDiameter`, `CBDepth`, `CSDiameter`, `CSAngle` |
+| Revolve             | `DcRevolveFeature`                            | 2 with its sketch              | One           | `AlongAngle`                                                                              |
+| Rectangular pattern | `DcRectangularPattern`                        | `CountU` × `CountV`            | One           | `countU`, `CountV`, `uSpaceDistance`, `vSpaceDistance`                                    |
+| Circular pattern    | `DcCircularPattern`                           | `Count`                        | One           | `countU`, `TotalAngle`                                                                    |
+| Offset plane        | `DcWorkPlane`                                 | 1                              | None          | `AlongDistance`, `ExtraOffset`                                                            |
+| Construction axis   | `DcWorkAxis`                                  | 1                              | None          | None                                                                                      |
+| Construction point  | `DcWorkPoint`                                 | 1                              | None          | None                                                                                      |
+| Mirror              | `DcMirrorPattern`                             | 2                              | One           | `countU`, `mirrorStitchTolerance`                                                         |
+| Fillet              | `DcFilletEdgeFeature`                         | 1                              | One           | `TangencyWeight`, `Radius`                                                                |
+| Chamfer             | `DcChamferFeature`                            | 1                              | One           | `Distance`, `Distance 1`, `Distance 2`, `Rotate Angle`                                    |
+| Shell               | `DcShellFeature`                              | 2                              | One           | `innerThickness`                                                                          |
+| Move                | `DcMoveFeature`                               | 1                              | One           | None                                                                                      |
+| Offset face         | `DcOffsetFacesFeature`                        | 2                              | One           | `distance`                                                                                |
+| Draft               | `DcDraftFeature`                              | 2                              | One           | `Angle1`                                                                                  |
+| Combine             | `DcCombineFeature`                            | 1                              | One           | None                                                                                      |
+| Split               | `DcSplitBodyFeature`                          | 1                              | One           | None                                                                                      |
+| Body pattern        | `DcRectangularPattern` or `DcCircularPattern` | `CountU` × `CountV` or `Count` | One           | `countU`, `CountV`, `uSpaceDistance`, `TotalAngle`                                        |
+| Loft                | `DcLoftFeature`                               | 4 with its sketches and plane  | One           | `AlongDistance` of the loft plane                                                         |
+| Sweep               | `DcSweepFeature`                              | 3 with its sketches            | One           | `AlongDistance`, `TwistAngle`, `TaperAngle`                                               |
 
 ### Extrusions, holes and revolves
 
@@ -1857,11 +1884,11 @@ The progenitor table `tagId` is the edge count plus one.
 Kit lists the picked edge first, then the edges ahead of it and then the edges behind it.
 Picked edges that meet at a sharp convex corner form one chain, as a loop selection does.
 
-| Edge                         | Recipe tags                                  | Recipe faces and vertices                 |
-| ---------------------------- | -------------------------------------------- | ----------------------------------------- |
-| Line or arc in a chain       | Side face, cap, previous and next neighbour  | Side face and cap, one vertex at each end |
-| Full circle with its own tag | Rim edge, side face, cap                     | Side face and cap, one seam vertex        |
-| Full circle without a tag    | Side face, cap                               | Side face and cap, no vertex              |
+| Edge                         | Recipe tags                                 | Recipe faces and vertices                 |
+| ---------------------------- | ------------------------------------------- | ----------------------------------------- |
+| Line or arc in a chain       | Side face, cap, previous and next neighbour | Side face and cap, one vertex at each end |
+| Full circle with its own tag | Rim edge, side face, cap                    | Side face and cap, one seam vertex        |
+| Full circle without a tag    | Side face, cap                              | Side face and cap, no vertex              |
 
 The base of a joined boss is a circle without its own tag, because the boolean makes it.
 For arcs in a chain the native recipes list the cap before the side face, and their tangent vertices carry UV orders.
@@ -2001,21 +2028,21 @@ Every other mode code a writer sets is the same in every native control of its f
 The table counts the native controls in `re/Fusion/LocalOracle/FeatureAuthoring/Controls` that hold each record.
 Every Fusion save of the accepted documents kept the same codes.
 
-| Records                                          | Mode codes                                                                                   | Native controls |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------- | --------------- |
-| `DcHoleFeature`                                  | `bInside1` and `bInside2` true, `extendFaceOption` 1                                         | 10              |
-| `DcFilletEdgeFeature`, `DcFilletEdgeData`        | `isRollingBallCorners`, `isTangentPropagation`, `bConstantRadius` and `bIsComputeChain` true | 8               |
-| `DcChamferFeature`, `DcChamferData`              | `cornerType` 1, `selIndex` 1, `isTangentPropagation` and `bIsComputeChain` true              | 6               |
-| `DcDraftFeature`                                 | `draftType`, `m_directionType` and `m_fixedPlaneDraftAngleMode` 1, `MovingPartingLineDraftAngleType` 3, `m_bTangentPropagation` true | 1, and 7 in the reader corpus |
-| `DcRevolveFeature`                               | `extendFaceOption` 2, `isSolidOperation` true                                                | 3               |
-| `DcMoveMatrix`                                   | `moveMethodType` 5, `point2PositionCSType` 1                                                 | 1               |
-| `DcPatternBaseData`, `DcRectangularPatternData`  | `computeOption` 2, `countUMax` and `countVMax` −1                                            | 12 and 4        |
-| `DcLoftFeature`, `DcLoftSectionData`             | `booleanOperation` 4, both tangency flips, `bChainOption`, `bMergeCurves` and `isSolidOperation` true, both rail take-off indexes −1, `sectionType` 2 | 3 |
-| `DcSweepFeature`, `DcSweepToolBody`              | `sweepType` 2, `isAlongDirectionSameAsProfileNormal` 3, `chainPropagation`, `isSolidOperation`, `isXScale`, `isYScale` and `isAlongDistanceParameterValid` true | 3 |
-| `DcWorkPlane`, `DcWorkPoint`, `DcWorkGeometry`   | `chainPropagation`, `isVisibleBeforeRollback` and, on a plane, `isProportionalParam` true     | 11 planes, 2 points |
-| `DcIntParameter`                                 | `isRoundToNearestInt` true                                                                   | 12              |
-| `DRPoint`, `DRVector`                            | One `TangentPointDataValue` with all three parameters −1                                     | 21              |
-| `OccurrenceDataRef`                              | Identity `cachedTransform`, one `OccurrenceACTRefValue` whose path has `creationState` 3     | 7               |
+| Records                                         | Mode codes                                                                                                                                                      | Native controls               |
+| ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| `DcHoleFeature`                                 | `bInside1` and `bInside2` true, `extendFaceOption` 1                                                                                                            | 10                            |
+| `DcFilletEdgeFeature`, `DcFilletEdgeData`       | `isRollingBallCorners`, `isTangentPropagation`, `bConstantRadius` and `bIsComputeChain` true                                                                    | 8                             |
+| `DcChamferFeature`, `DcChamferData`             | `cornerType` 1, `selIndex` 1, `isTangentPropagation` and `bIsComputeChain` true                                                                                 | 6                             |
+| `DcDraftFeature`                                | `draftType`, `m_directionType` and `m_fixedPlaneDraftAngleMode` 1, `MovingPartingLineDraftAngleType` 3, `m_bTangentPropagation` true                            | 1, and 7 in the reader corpus |
+| `DcRevolveFeature`                              | `extendFaceOption` 2, `isSolidOperation` true                                                                                                                   | 3                             |
+| `DcMoveMatrix`                                  | `moveMethodType` 5, `point2PositionCSType` 1                                                                                                                    | 1                             |
+| `DcPatternBaseData`, `DcRectangularPatternData` | `computeOption` 2, `countUMax` and `countVMax` −1                                                                                                               | 12 and 4                      |
+| `DcLoftFeature`, `DcLoftSectionData`            | `booleanOperation` 4, both tangency flips, `bChainOption`, `bMergeCurves` and `isSolidOperation` true, both rail take-off indexes −1, `sectionType` 2           | 3                             |
+| `DcSweepFeature`, `DcSweepToolBody`             | `sweepType` 2, `isAlongDirectionSameAsProfileNormal` 3, `chainPropagation`, `isSolidOperation`, `isXScale`, `isYScale` and `isAlongDistanceParameterValid` true | 3                             |
+| `DcWorkPlane`, `DcWorkPoint`, `DcWorkGeometry`  | `chainPropagation`, `isVisibleBeforeRollback` and, on a plane, `isProportionalParam` true                                                                       | 11 planes, 2 points           |
+| `DcIntParameter`                                | `isRoundToNearestInt` true                                                                                                                                      | 12                            |
+| `DRPoint`, `DRVector`                           | One `TangentPointDataValue` with all three parameters −1                                                                                                        | 21                            |
+| `OccurrenceDataRef`                             | Identity `cachedTransform`, one `OccurrenceACTRefValue` whose path has `creationState` 3                                                                        | 7                             |
 
 ### Timeline, journal and identity rules
 
@@ -2059,26 +2086,26 @@ Native acceptance opens each Kit document without a recompute and compares it wi
 It walks every rollback marker, runs `computeAll`, applies the driving parameter edits, exports, reopens and recomputes again.
 Each suite started and ended with no open document.
 
-| Suite        | Families                                                               | Accepted cases |
-| ------------ | ---------------------------------------------------------------------- | -------------- |
-| Corners      | Fillet, chamfer, shell                                                 | 5 of 5         |
-| Extrusions   | New, join, cut and intersect with every extent                         | 15 of 15       |
-| Holes        | Simple and counterbore, blind and through                              | 4 of 4         |
-| Patterns     | Offset plane, rectangular and circular patterns, mirror, hole grid     | 5 of 5         |
-| Multi        | `MultiPocketPart`, `MultiDiscPart`                                     | 2 of 2         |
-| Edges        | Two-distance and distance-angle chamfers, multi-edge corners           | 5 of 5         |
-| Construction | Offset plane, edge axis, vertex point                                  | 2 of 2         |
-| Revolves     | Full and partial revolves, revolve join and cut                        | 4 of 4         |
-| Countersinks | Through and blind countersink holes                                    | 2 of 2         |
-| Shells       | Shells with open side faces                                            | 2 of 2         |
-| Moves        | Translation, turn about Z                                              | 2 of 2         |
-| Offsets      | Top and side face offsets                                              | 4 of 4         |
-| Drafts       | Outward and inward side drafts                                         | 3 of 3         |
-| Bodies       | Second bodies, combines, splits, body patterns                         | 11 of 11       |
-| Lofts        | Rectangle and circle lofts, loft as a second body                      | 3 of 3         |
-| Sweeps       | Rectangle sweeps along bent and S-shaped paths, sweep as a second body | 4 of 4         |
-| Pastes       | Pastes of plain, rounded, pocketed and second bodies, paste then cut   | 6 of 6         |
-| Rounds       | Fillets and chamfers on horizontal lines, circles, tangent chains and loops | 30 of 30  |
+| Suite        | Families                                                                    | Accepted cases |
+| ------------ | --------------------------------------------------------------------------- | -------------- |
+| Corners      | Fillet, chamfer, shell                                                      | 5 of 5         |
+| Extrusions   | New, join, cut and intersect with every extent                              | 15 of 15       |
+| Holes        | Simple and counterbore, blind and through                                   | 4 of 4         |
+| Patterns     | Offset plane, rectangular and circular patterns, mirror, hole grid          | 5 of 5         |
+| Multi        | `MultiPocketPart`, `MultiDiscPart`                                          | 2 of 2         |
+| Edges        | Two-distance and distance-angle chamfers, multi-edge corners                | 5 of 5         |
+| Construction | Offset plane, edge axis, vertex point                                       | 2 of 2         |
+| Revolves     | Full and partial revolves, revolve join and cut                             | 4 of 4         |
+| Countersinks | Through and blind countersink holes                                         | 2 of 2         |
+| Shells       | Shells with open side faces                                                 | 2 of 2         |
+| Moves        | Translation, turn about Z                                                   | 2 of 2         |
+| Offsets      | Top and side face offsets                                                   | 4 of 4         |
+| Drafts       | Outward and inward side drafts                                              | 3 of 3         |
+| Bodies       | Second bodies, combines, splits, body patterns                              | 11 of 11       |
+| Lofts        | Rectangle and circle lofts, loft as a second body                           | 3 of 3         |
+| Sweeps       | Rectangle sweeps along bent and S-shaped paths, sweep as a second body      | 4 of 4         |
+| Pastes       | Pastes of plain, rounded, pocketed and second bodies, paste then cut        | 6 of 6         |
+| Rounds       | Fillets and chamfers on horizontal lines, circles, tangent chains and loops | 30 of 30       |
 
 `MultiPocketPart` combines a slot cut, a hole, a hole pattern, a fillet, a plane and a mirror.
 `MultiDiscPart` combines a disc, a pocket, a circular pattern and a counterbore.
@@ -2452,16 +2479,16 @@ Each `ACDBVIEWREP` body lists the edges its view shows.
 The Wheel saves hold 369 view bodies with 2,691 rows, and every row has the same form.
 The A3 control and BoxA, two unrelated designs, use it too.
 
-| Field                    | Value                                                                  |
-| ------------------------ | ---------------------------------------------------------------------- |
-| `EdgeId`                 | B-rep edge id or silhouette id, unsigned 32-bit                        |
-| `EdgeLongA`, `EdgeLongB` | 1 and 1                                                                |
-| `EdgeFlagA`              | 1 for a visible edge, 0 for a hidden one                               |
-| `EdgeLongC`, `EdgeFlagB` | 0                                                                      |
-| `HasCurve`               | 1                                                                      |
-| Cached line (kind 23)    | Start point and end minus start, in model millimetres                  |
+| Field                    | Value                                                                                |
+| ------------------------ | ------------------------------------------------------------------------------------ |
+| `EdgeId`                 | B-rep edge id or silhouette id, unsigned 32-bit                                      |
+| `EdgeLongA`, `EdgeLongB` | 1 and 1                                                                              |
+| `EdgeFlagA`              | 1 for a visible edge, 0 for a hidden one                                             |
+| `EdgeLongC`, `EdgeFlagB` | 0                                                                                    |
+| `HasCurve`               | 1                                                                                    |
+| Cached line (kind 23)    | Start point and end minus start, in model millimetres                                |
 | Cached circle (kind 11)  | Centre, normal, the DWG arbitrary axis of the normal, radius, 0 to 2π, `CurveReal` 0 |
-| `EdgeEntity`             | Soft pointer (code 4) to the drawn entity                              |
+| `EdgeEntity`             | Soft pointer (code 4) to the drawn entity                                            |
 
 Rows are sorted by `EdgeId` read as a signed 32-bit number in all 369 bodies.
 No id repeats in a body.
@@ -2499,23 +2526,23 @@ Every view Fusion computed in visible style stores no hidden rows.
 Kit's drawing author holds no data captured from one save.
 Each value below is a rule or a constant seen in every save Kit has.
 
-| Value                              | Source                                                                        |
-| ---------------------------------- | ----------------------------------------------------------------------------- |
-| Border, header, tables, title block | Paper rule, ISO 5457, ISO 7200, ISO 3098 and ISO 128; see the change log     |
-| View state body mark `21 84 DE 7B 09` | Once after each body's bounds in all 9 view state captures of 4 saves, 3 designs, 1 or 2 bodies |
-| View body key bits `0x8000000001` | All 70 body and holder keys of 5 saves, 3 designs; the key flag is the body's index |
-| Base view shape (11, 2, 3104)      | All 4 base views of the modern saves; an older save has flags 0               |
-| Base view style fields             | `ViewLongB` is 2 for visible edges and 1 with hidden edges; flag bits 0x1 shaded, 0x400 interference edges, 0x800 thread edges; API views add 0x2000 |
-| Orthographic base view layout      | Left, right, top, bottom, front and back base views share one record layout; two isometric base views use a longer one Kit does not decode |
-| Projected view shape (15, 6, 40032) | All 4 projected views, to the right and above the base; Fusion opened left, below and back views with it |
-| Projected view style               | 4 plus the base view's style: 6 for visible edges, 5 with hidden edges, as Fusion's update wrote in E1 |
-| View edges                         | Computed from the view source solid and the view direction; equal to Fusion's own in 24 of 24 grafted views and both BoxA views |
-| Projected view frames              | The control's right and above views equal Kit's on every value a layout changes; after an update, Fusion drew left, below and back views at Kit's places and sizes |
-| View rep viewport                  | The view's frame viewport in all 63 view reps of 5 saves                      |
-| Design segment ids 0 to 38         | The empty drawing design; the same 34 records in the three modern saves read  |
-| Hole data                          | Styled JSON with sorted keys and tab indents, built from the body id          |
-| ASME paper                         | Inch sizes written in millimetres; no Fusion save holds an ASME border, and an ISO drawing refuses ASME sizes |
-| Short linear dimensions            | Arrows inside from 2 arrows and 2 text gaps, text inside from its width and 2 gaps; matches 68 saved dimensions |
+| Value                                 | Source                                                                                                                                                             |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Border, header, tables, title block   | Paper rule, ISO 5457, ISO 7200, ISO 3098 and ISO 128; see the change log                                                                                           |
+| View state body mark `21 84 DE 7B 09` | Once after each body's bounds in all 9 view state captures of 4 saves, 3 designs, 1 or 2 bodies                                                                    |
+| View body key bits `0x8000000001`     | All 70 body and holder keys of 5 saves, 3 designs; the key flag is the body's index                                                                                |
+| Base view shape (11, 2, 3104)         | All 4 base views of the modern saves; an older save has flags 0                                                                                                    |
+| Base view style fields                | `ViewLongB` is 2 for visible edges and 1 with hidden edges; flag bits 0x1 shaded, 0x400 interference edges, 0x800 thread edges; API views add 0x2000               |
+| Orthographic base view layout         | Left, right, top, bottom, front and back base views share one record layout; two isometric base views use a longer one Kit does not decode                         |
+| Projected view shape (15, 6, 40032)   | All 4 projected views, to the right and above the base; Fusion opened left, below and back views with it                                                           |
+| Projected view style                  | 4 plus the base view's style: 6 for visible edges, 5 with hidden edges, as Fusion's update wrote in E1                                                             |
+| View edges                            | Computed from the view source solid and the view direction; equal to Fusion's own in 24 of 24 grafted views and both BoxA views                                    |
+| Projected view frames                 | The control's right and above views equal Kit's on every value a layout changes; after an update, Fusion drew left, below and back views at Kit's places and sizes |
+| View rep viewport                     | The view's frame viewport in all 63 view reps of 5 saves                                                                                                           |
+| Design segment ids 0 to 38            | The empty drawing design; the same 34 records in the three modern saves read                                                                                       |
+| Hole data                             | Styled JSON with sorted keys and tab indents, built from the body id                                                                                               |
+| ASME paper                            | Inch sizes written in millimetres; no Fusion save holds an ASME border, and an ISO drawing refuses ASME sizes                                                      |
+| Short linear dimensions               | Arrows inside from 2 arrows and 2 text gaps, text inside from its width and 2 gaps; matches 68 saved dimensions                                                    |
 
 Fusion numbers drawing segment records in creation order, so its saves have gaps from deleted objects.
 The A1 control uses 39 and 40 for the model source and its parts lists, and 43 for the sheet.
@@ -2628,14 +2655,14 @@ It partly resolves the sketch mesh-section items DR-264, DR-288, and DR-289.
 
 Kit evidence contradicts these cadmpeg statements.
 
-| Topic                     | cadmpeg statement                              | Kit evidence                                                   |
-| ------------------------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| TSM `ec` record           | Crease marker with flags                       | Edge index and end condition; native creases leave it unchanged |
-| TSM namespaces 100, 50000 | Editor selections                              | Crease and smart-grip state that native creases change         |
-| TSM `ver`                 | Identifies the generating implementation       | Edit counter that changes during ordinary edits                |
+| Topic                     | cadmpeg statement                              | Kit evidence                                                       |
+| ------------------------- | ---------------------------------------------- | ------------------------------------------------------------------ |
+| TSM `ec` record           | Crease marker with flags                       | Edge index and end condition; native creases leave it unchanged    |
+| TSM namespaces 100, 50000 | Editor selections                              | Crease and smart-grip state that native creases change             |
+| TSM `ver`                 | Identifies the generating implementation       | Edit counter that changes during ordinary edits                    |
 | History preamble          | Two copies of a stream size                    | Current state and maximum allocated state, from a rollback control |
-| Class `6CCF41D5`          | Presentation frame                             | `DynamicUpdateData` in the runtime reflection capture          |
-| Version context           | Token, asset GUID and optional revision fields | Second field equals a root manifest link GUID in every control |
+| Class `6CCF41D5`          | Presentation frame                             | `DynamicUpdateData` in the runtime reflection capture              |
+| Version context           | Token, asset GUID and optional revision fields | Second field equals a root manifest link GUID in every control     |
 
 Kit also reads the TSM `l` record as previous link then next link.
 Kit uses explicit stream markers instead of the header history bit and calls the MetaStream UUID the segment `currentVersion`.

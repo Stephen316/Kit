@@ -10,7 +10,7 @@ from tests.convert.formats.FusionCodec.TSpline.ReadTsmFile import ReadTsmFile
 
 
 @MarkTests.parametrize(
-    "Fault", ("mate", "flags", "owner", "number", "arity", "unknown")
+    "Fault", ("mate", "flags", "owner", "number", "arity", "unknown", "cap", "star")
 )
 def TestTsmReject(Fault: str, TmpPath: FilePath) -> None:
     CaseValue = next(
