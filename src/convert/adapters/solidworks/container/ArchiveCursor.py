@@ -72,6 +72,9 @@ class FieldCursor:
 
 # nested records must retain archive identity as well as the inherited field position
 class ArchiveCursor(FieldCursor):
+    NextIndex: int
+    Classes: dict[int, str]
+    Objects: dict[int, str]
 
     # a cursor starts from the allocations proven by its enclosing stream
     def __init__(

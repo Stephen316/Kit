@@ -1,19 +1,8 @@
 """Read the shared modern resolved list through its principal planes and origin."""
 
-from struct import unpack_from
-
+from convert.adapters.solidworks.resolved.NamedNode import ReadNamedFeat
 from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode as read_named_concept
-
-
-# ordinary features can proceed to their own fields after an empty resolved list
-def read_named_feature(cursor, expected_flags=(0x40000000,)):
-    from SketchRoot import Require
-    from SupportPlane import read_feature_base
-
-    name, node_id = read_named_concept(cursor, expected_flags)
-    Require(cursor.read("<Hi"), (0, 0), "empty resolved node list and tail")
-    read_feature_base(cursor)
-    return name, node_id
+from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
 
 
 # folder subclasses share a named feature base and keep their own guarded suffixes
@@ -27,7 +16,7 @@ def read_folder(cursor, type_name, suffix_format, suffix, null_children=0):
     offset = cursor.position
     object_index = cursor.pointer(KDefinitionKind, type_name)
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = read_named_feature(cursor)
+    name, feature_id = ReadNamedFeat(cursor)
     Require(cursor.read(suffix_format), suffix, f"guarded {type_name} suffix")
     for _ in range(null_children):
         cursor.null()
@@ -48,7 +37,7 @@ def read_notes_base(cursor):
     from SketchRoot import Require
 
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, native_id = read_named_feature(cursor)
+    name, native_id = ReadNamedFeat(cursor)
     Require(cursor.read("<2i"), (1, 0), "guarded notes folder base")
     return {"name": name, "native_feature_id": native_id}
 
@@ -129,7 +118,7 @@ def read_principal_plane(cursor, pointer_kind):
     offset = cursor.position
     plane = cursor.pointer(pointer_kind, "moRefPlane_c")
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = read_named_feature(cursor, expected_flags=(0xC0000000,))
+    name, feature_id = ReadNamedFeat(cursor, (0xC0000000,))
     Require(cursor.read("<i"), (0,), "guarded principal model feature")
     read_plane_atom(cursor)
     read_ref_geometry(cursor, expected_mode=5)
@@ -149,7 +138,7 @@ def read_principal_plane(cursor, pointer_kind):
 def read_profile_body_prefix(cursor, expected_flags):
     from SketchRoot import Require
 
-    name, feature_id = read_named_feature(cursor, expected_flags)
+    name, feature_id = ReadNamedFeat(cursor, expected_flags)
     cursor.read("<i")  # moModelFeature_c
     Require(cursor.read("<i"), (0,), "guarded scalar before the early profile pointer")
     early_pointer = cursor.position
@@ -238,15 +227,13 @@ def read_resolved_prelude(blob, config_map, expected_count):
     from FaceOccurrence import FaceCursor
     from SketchRoot import Require
 
-    base, count = unpack_from("<iH", blob)
-    Require(base, config_map.NextIndex, "derived configuration map counter")
-    Require(count, expected_count, "witnessed short resolved list")
+    entry = OpenResolved(blob, config_map, expected_count)
     cursor = FaceCursor(
-        blob,
-        6,
-        config_map.NextIndex,
-        config_map.Classes.copy(),
-        config_map.Objects.copy(),
+        entry.BlobValue,
+        entry.Offset,
+        entry.NextIndex,
+        entry.Classes,
+        entry.Objects,
     )
     folders = [
         read_folder(cursor, "moCommentsFolder_c", "<2i", (0, 0)),
@@ -309,8 +296,8 @@ def read_resolved_prelude(blob, config_map, expected_count):
     )
     origin["support"]["plane_object"] = front["object_index"]
     return cursor, {
-        "list_count": count,
-        "prior_map_index": base,
+        "list_count": expected_count,
+        "prior_map_index": config_map.NextIndex,
         "folders": folders,
         "environment_alias": {"offset": alias_start, "object_index": environment},
         "principal_planes": planes,
