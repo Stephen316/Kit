@@ -77,6 +77,8 @@ def policy_job(api, run_id, attempt, run, pull):
         "archive workflow job listing is incomplete",
     )
     jobs = [job for job in listing["jobs"] if job["name"] == JOB_NAME]
+    if not jobs and run["status"] != "completed":
+        return None
     require(len(jobs) == 1, "expected a unique hosted archive policy job")
     job = jobs[0]
     require(
@@ -85,11 +87,15 @@ def policy_job(api, run_id, attempt, run, pull):
         and job["run_attempt"] == attempt
         and job["head_sha"] == pull["head_sha"]
         and job["workflow_name"] == WORKFLOW_NAME
-        and job["status"] == "completed"
-        and job["conclusion"] == "success"
         and job["check_run_url"]
         == f"https://{HOST}/repos/{pull['repository']}/check-runs/{job['id']}",
-        "archive policy job lacks an exact successful run attempt",
+        "archive policy job lacks an exact run attempt",
+    )
+    if job["status"] != "completed" and run["status"] != "completed":
+        return None
+    require(
+        job["status"] == "completed" and job["conclusion"] in ("success", "failure"),
+        "archive policy job lacks a supported terminal conclusion",
     )
     check = api.record(f"check-runs/{job['id']}")
     require(
@@ -115,7 +121,18 @@ def policy_job(api, run_id, attempt, run, pull):
         )
         observed.append(step["number"])
     require(observed == sorted(set(observed)), "archive gate step order differs")
-    return job["id"]
+    if job["conclusion"] == "failure":
+        failed = [
+            step["number"]
+            for step in job["steps"]
+            if step["status"] == "completed" and step["conclusion"] == "failure"
+        ]
+        require(
+            failed
+            and all(positive(number) and number > observed[-1] for number in failed),
+            "policy failure was not isolated to subsequent steps",
+        )
+    return job["id"], job["conclusion"]
 
 
 def audited_checkout(api, pull, audited_revision):
@@ -283,14 +300,15 @@ def observe(api, args, *, validated_roster=None):
         api, pull, run["workflow_id"], args.workflow_run, EVENT
     ):
         return {**result, "status": "superseded"}
-    if run["status"] != "completed":
-        return {**result, "status": "pending"}
     workflow = api.record(f"actions/workflows/{run['workflow_id']}")
     require(
         workflow["id"] == run["workflow_id"] and workflow["path"] == WORKFLOW,
         "archive workflow ID does not match its trusted path",
     )
-    job = policy_job(api, args.workflow_run, args.workflow_attempt, run, pull)
+    policy = policy_job(api, args.workflow_run, args.workflow_attempt, run, pull)
+    if policy is None:
+        return {**result, "status": "pending"}
+    job, conclusion = policy
     checkout = audited_checkout(api, pull, args.audited_revision)
     if aggregate["status"] == "aggregate_success_attested":
         require(
@@ -324,10 +342,14 @@ def observe(api, args, *, validated_roster=None):
     collector = verify_receipt(
         api, receipt, origin, args.audited_revision, args.saves_sha256
     )
+    fresh_run = workflow_run(api, args.workflow_run, pull)
     aggregate_run = run_identity(api, args.aggregate_run, pull)
     if (
         pull_identity(api, args.pull) != pull
-        or workflow_run(api, args.workflow_run, pull) != run
+        or any(
+            fresh_run[key] != run[key]
+            for key in ("workflow_id", "check_suite_id", "run_attempt")
+        )
         or not latest_run(api, pull, run["workflow_id"], args.workflow_run, EVENT)
         or aggregate_run["run_attempt"] != args.aggregate_attempt
         or aggregate_run["status"] != "completed"
@@ -337,10 +359,15 @@ def observe(api, args, *, validated_roster=None):
         return {**result, "status": "superseded"}
     return {
         **result,
-        "status": "archive_gate_verified",
+        "status": (
+            "archive_gate_verified"
+            if conclusion == "success"
+            else "archive_steps_verified_job_failed"
+        ),
         "archive_gate": {
             "workflow_id": run["workflow_id"],
             "job_id": job,
+            "job_conclusion": conclusion,
             "artifact_id": artifact,
             "artifact_digest": checksum,
             "collector_blob": collector,

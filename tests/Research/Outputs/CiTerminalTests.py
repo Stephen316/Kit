@@ -61,11 +61,15 @@ def CheckCiObserve(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
     (
         ("success", "archive_gate_verified"),
         ("aggregate_failed", "archive_gate_verified"),
+        ("job_failed_later", "archive_steps_verified_job_failed"),
+        ("quality_other_live", "archive_gate_verified"),
         ("quality_rerun", "superseded"),
         ("wrong_audit", "refused"),
         ("wrong_source", "refused"),
         ("wrong_node", "refused"),
         ("wrong_step", "refused"),
+        ("job_failed_before", "refused"),
+        ("job_cancelled", "refused"),
         ("corrupt_zip", "refused"),
     ),
 )
@@ -93,10 +97,12 @@ def CheckArchiveObs(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
         return
     Evidence = Report["archive_gate"]
     assert Evidence["job_id"] == 5 and Evidence["artifact_id"] == 6
+    JobConclusion = "failure" if CaseName == "job_failed_later" else "success"
+    assert Evidence["job_conclusion"] == JobConclusion
     assert Evidence["artifact_digest"].startswith("sha256:")
     assert len(Evidence["receipt_sha256"]) == 64
     assert Evidence["receipt"]["origin"]["tested_sha"] == "3" * 40
-    if CaseName == "aggregate_failed":
+    if CaseName in ("aggregate_failed", "job_failed_later", "quality_other_live"):
         assert Report["aggregate"]["status"] == "aggregate_failure_unattributed"
         assert "tested_merge_sha" not in Report["aggregate"]
     else:

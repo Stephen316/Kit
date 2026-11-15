@@ -14,7 +14,11 @@ from Records import digest
 
 class ArchiveFixture(ReplyFixture):
     def __init__(self, case):
-        super().__init__("failed" if case == "aggregate_failed" else "success")
+        super().__init__(
+            "failed"
+            if case in ("aggregate_failed", "job_failed_later", "quality_other_live")
+            else "success"
+        )
         self.archive_case = case
         self.quality_runs = 0
         self.audit = git(ROOT, "rev-parse", "HEAD").decode("ascii").strip()
@@ -85,6 +89,7 @@ class ArchiveFixture(ReplyFixture):
         return git(ROOT, "rev-parse", f"{self.audit}:{path}").decode("ascii").strip()
 
     def quality(self):
+        active = self.archive_case == "quality_other_live"
         return {
             "id": 4,
             "event": "pull_request",
@@ -96,17 +101,22 @@ class ArchiveFixture(ReplyFixture):
             "head_repository": {"id": 20},
             "pull_requests": [],
             "run_attempt": 1,
-            "status": "completed",
-            "conclusion": "success",
+            "status": "in_progress" if active else "completed",
+            "conclusion": None if active else self.completed()["conclusion"],
         }
 
     def completed(self):
+        conclusion = "success"
+        if self.archive_case in ("job_failed_later", "job_failed_before"):
+            conclusion = "failure"
+        if self.archive_case == "job_cancelled":
+            conclusion = "cancelled"
         return {
             "id": 5,
             "name": JOB_NAME,
             "head_sha": HEAD,
             "status": "completed",
-            "conclusion": "success",
+            "conclusion": conclusion,
         }
 
     def record(self, path):
@@ -131,10 +141,24 @@ class ArchiveFixture(ReplyFixture):
                     "status": "completed",
                     "conclusion": "success",
                 }
-                for number, name in enumerate(GATE_STEPS, 1)
+                for number, name in enumerate(GATE_STEPS, 2)
             ]
             if self.archive_case == "wrong_step":
                 steps[0]["conclusion"] = "skipped"
+            if self.archive_case in ("job_failed_later", "job_failed_before"):
+                number = (
+                    len(GATE_STEPS) + 2
+                    if self.archive_case == "job_failed_later"
+                    else 1
+                )
+                steps.append(
+                    {
+                        "name": "Independent policy check",
+                        "number": number,
+                        "status": "completed",
+                        "conclusion": "failure",
+                    }
+                )
             return {
                 "total_count": 1,
                 "jobs": [
