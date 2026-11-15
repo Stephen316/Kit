@@ -177,9 +177,8 @@ def solidworks_boss(document, sketch, frame, raw, tolerances):
         and definition.reversed == (operation["end_specification"]["direction"] == 1),
         "public SOLIDWORKS depth or direction differs from its saved typed record",
     )
-    direction = (
-        xyz(frame.z_axis) if definition.direction is None else xyz(definition.direction)
-    )
+    require(definition.direction is not None, "public SOLIDWORKS boss lost its verified direction")
+    direction = xyz(definition.direction)
     same(
         direction,
         xyz(frame.z_axis),
