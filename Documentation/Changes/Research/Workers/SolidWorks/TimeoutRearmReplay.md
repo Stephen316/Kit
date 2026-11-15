@@ -16,6 +16,7 @@ A rearm that still awaits a terminal record or dispatch lock polls within the ex
 An unresolved intent remains available for a later supervisor restart.
 
 The Windows process fixture interrupts the original supervisor after `FinishJob`, keeps the verified listener running and requires a replacement supervisor to issue the same job's next ordinary attempt.
+The exact published `5770f1b3` Windows job passed 50 cases, including both timeout rearm variants. [Windows research job](https://github.com/TryUniCAD/Kit/actions/runs/43706418832/job/132788439885)
 
 ## Licensed restart witness
 
