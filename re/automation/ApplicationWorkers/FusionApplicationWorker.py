@@ -7,7 +7,10 @@ import signal
 import sys
 import time
 
-from ApplicationProtocol import QueueClient, WaitingApplication, configuration, file_bytes, load_pinned, pin, record, require, sha256, write_new, write_record
+from ApplicationProtocol import (
+    ApplicationTimeout, QueueClient, WaitingApplication, configuration,
+    file_bytes, load_pinned, pin, record, request_link, require, sha256, write_new, write_record,
+)
 from FusionRestart import wait_for_restart
 
 
@@ -123,6 +126,18 @@ def dispatch(session, config):
         records.update({"plan_sha256": plan_hash, "host": response["host"], "fusion_version": response["proof"]["fusion_version"],
                         "restart_handoff": response["proof"].get("restart_handoff")})
         return {"outcome": "completed", "reason": response["reason"], "records": records, "artifacts": artifacts}
+    except ApplicationTimeout as error:
+        request = error.request
+        link = request_link(request)
+        records["queue_timeout"] = {
+            "version": 1,
+            "queue_job_id": link["queue_job_id"],
+            "request_sha256": link["request_sha256"],
+            "source_revision": request["source_revision"],
+            "operation": request["operation"],
+            "plan_sha256": request["body"]["plan_sha256"],
+        }
+        return {"outcome": "waiting_application", "reason": str(error)[:2048], "records": records}
     except (WaitingApplication, FileNotFoundError, BlockingIOError) as error:
         return {"outcome": "waiting_application", "reason": str(error)[:2048], "records": records}
     finally:

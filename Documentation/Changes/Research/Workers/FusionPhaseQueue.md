@@ -22,3 +22,5 @@ If the exact fence stays in place until the deadline, a different fence is prese
 The hosted process case checks exact pairing, repeat submission, preserved resource availability and rejection of an altered control pin with an absent endpoint. Hosted case execution is pending. The licensed two-process Fusion run still requires a provisioned macOS host.
 
 The restart wait has hosted process cases for a replacement host, deadline, foreign fence, still-running original process and malformed accepted handoff. The fixture uses shared queue ownership and invokes no CAD APIs.
+
+When a dispatched probe or capture request times out, its parked controller result retains the queue job ID, request SHA-256, operation, source revision and plan SHA-256. The request hash binds the exact private spool record. The worker keeps the existing cancellation and quarantine rules, and the controller continues to park the resource. Recovery still depends on the installation owner.
