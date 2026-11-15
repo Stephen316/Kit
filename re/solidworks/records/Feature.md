@@ -195,7 +195,7 @@ then reads its own fields. The modern read order:
 | 19  | —                | 1 + string | `AR_get_uchar`, then a `CStringT` if non-zero | ver < `0xa69` only        | partial    |
 | 20  | `0x200`          | 4          | `AR_get_ulong`                                | ver > `0xa68` = 2664      | partial    |
 | 21  | `0x2f8`, `0x2f9` | 1, 1       | `AR_get_uchar` ×2                             | ver > `0xaca` = 2762      | partial    |
-| 22  | —                | 4          | `AR_get_long`                                 | ver < `0xc50` only        | partial    |
+| 22  | `0x318`          | 4          | `AR_get_long`                                 | ver >= `0xc50` in build `34.4.1.1011` | confirmed for P04 |
 | 23  | —                | 4          | `AR_get_long`                                 | ver > `0xc55` = 3157      | partial    |
 | 24  | `0x304`          | 4          | `AR_get_long`                                 | ver > `0xf61` = 3937      | partial    |
 | 25  | —                | 4, 4       | `AR_get_long` ×2                              | ver > `0x11cc` = 4556     | partial    |

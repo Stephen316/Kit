@@ -163,10 +163,8 @@ def read_plane_data(cursor):
     }
 
 
-# the nested local component must point to the archived part before its entity reference
-def read_component_face(cursor):
-    offset = cursor.position
-    component = cursor.pointer(KDefinitionKind, "moCompFace_c")
+# both local support components must establish the same containing part ownership
+def read_local_component(cursor):
     unit = cursor.pointer(KClassRefKind, "moUnitComponent_c")
     part = cursor.pointer(KObjectRefKind, "moPart_c")
     Require(cursor.read("<B"), (0,), "absent external unit component")
@@ -177,6 +175,14 @@ def read_component_face(cursor):
         (0,) * 6,
         "absent component extras",
     )
+    return unit, part
+
+
+# the nested local component must point to the archived part before its entity reference
+def read_component_face(cursor):
+    offset = cursor.position
+    component = cursor.pointer(KDefinitionKind, "moCompFace_c")
+    unit, part = read_local_component(cursor)
     Require(cursor.read("<B"), (0,), "absent face alias")
     occurrence = read_face_occurrence(cursor)
     cursor.null()  # modern optional moExtObject_c
@@ -210,24 +216,17 @@ def close_plane_data(cursor, plane):
     )
 
 
-# callers supply the verified enclosing archive window so product scanning is unnecessary
-def read_owned_face(blob, start, end, next_index, classes, objects):
-    Require(0 <= start < end <= len(blob), True, "bounded face plane window")
-    Require(
-        classes.keys().isdisjoint(objects),
-        True,
-        "distinct archive class and object indices",
-    )
-    cursor = FaceCursor(blob[:end], start, next_index, dict(classes), dict(objects))
+# the nested callback must finish at the verified enclosing support return
+def read_face_data(cursor):
     index = cursor.pointer(KDefinitionKind, "moFaceRefPlnData_c")
     plane = read_plane_data(cursor)
     component = read_component_face(cursor)
     close_plane_data(cursor, plane)
     Require(cursor.read("<i"), (0,), "face-based component plane axis code")
-    Require(cursor.position, end, "exact enclosing support return")
+    Require(cursor.position, len(cursor.blob), "exact enclosing support return")
     return {
         "plane_data_object": index,
-        "support_end": end,
+        "support_end": cursor.position,
         "next_map_index": cursor.next_index,
         "plane": plane,
         "component": component,

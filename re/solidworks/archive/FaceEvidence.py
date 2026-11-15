@@ -17,18 +17,27 @@ from SketchEvidence import (
 # earlier archive entries are replay inputs because this reader starts in the support body
 CLASSES = {
     43: "moUnitComponent_c",
+    320: "moRefPlane_c",
+    338: "moCompRefPlane_c",
+    344: "moSketchChain_c",
     350: "moFR_c",
     372: "moFaceRef_c",
     374: "moEndFaceSurfIdRep_c",
     377: "moFromSktEntSurfIdRep_c",
 }
-OBJECTS = {2: "moPart_c", 353: "moExtObject_c"}
+
+# these three existing objects establish the sketch owner and filed reference context
+OBJECTS = {2: "moPart_c", 74: "sgSketch", 353: "moExtObject_c"}
 
 # these stream digests bind the replay anchors to the licensed support observations
 WINDOWS = {
     "P04-solidworks-baseline-a.SLDPRT": {
         "sha256": "996ed9d0337cdf8c65927645a2541a93d12c9354300975bbda731bde6829ea31",
         "map_witness_sha256": "b42c9fa8fbc0cc5e2799e3d49a9f1717ae213ca8c12939ab4a5ecf7c4bfd40d9",
+        "sketch_reference": 9600,
+        "body_return": 10906,
+        "support_start": 11531,
+        "native_atom": (11777, 11801, 11889),
         "plane_data_start": 11927,
         "support_end": 12588,
         "face_span": (12200, 12366),
@@ -39,6 +48,9 @@ WINDOWS = {
     "P04-solidworks-plane-yz.SLDPRT": {
         "sha256": "51c8c1f73939541a2e33fa084524591c2f34dc6e4f13028f411cdd35114cc53c",
         "map_witness_sha256": "7a6c1606db89f17e6bd626df49419cc791ff66971ca9699f3e150d30002f3124",
+        "sketch_reference": 9670,
+        "body_return": 10970,
+        "support_start": 11595,
         "plane_data_start": 11991,
         "support_end": 12724,
         "face_span": (12336, 12502),
@@ -83,8 +95,10 @@ def check_witness(result, witness):
 def read_capture(root, asset, reading, witness):
     from convert.adapters.solidworks.container.Archive import ContainerMo
     from convert.adapters.solidworks.container.Container import SldprtArchive
-    from FaceOccurrence import read_owned_face
+    from FaceOccurrence import FaceCursor
+    from ProfileSupport import read_profile_support
     from SketchRoot import KGeneration, Require
+    from SupportPlane import read_reference_plane
 
     name = asset["file"]
     native = ReadPinned(root, name)
@@ -103,20 +117,48 @@ def read_capture(root, asset, reading, witness):
     Require(ContainerMo(container.streams), KGeneration, "model generation")
     resolved = container.require("Contents/Config-0-ResolvedFeatures")
     Require(sha256(resolved).hexdigest(), witness["sha256"], "pinned resolved stream")
-    result = read_owned_face(
-        resolved,
-        witness["plane_data_start"],
-        witness["support_end"],
-        459,
-        CLASSES,
-        OBJECTS,
+    start, end = witness["sketch_reference"], witness["support_end"]
+    Require(0 <= start < end <= len(resolved), True, "bounded profile support")
+    cursor = FaceCursor(resolved[:end], start, 418, dict(CLASSES), dict(OBJECTS))
+    profile = read_profile_support(cursor)
+    Require(profile["sketch_object"], 74, "licensed cut sketch object")
+    Require(
+        profile["kernel_packet"]["end"],
+        witness["body_return"],
+        "licensed refill boundary",
     )
+    Require(profile["next_map_index"], 456, "licensed support entry counter")
+    Require(
+        profile["support_offset"], witness["support_start"], "licensed support token"
+    )
+    prefix = read_reference_plane(cursor, context=0)
+    Require(
+        prefix["plane_data_start"],
+        witness["plane_data_start"],
+        "licensed plane data start",
+    )
+    Require(prefix["ref_plane_object"], 458, "reference plane allocation")
+    if "native_atom" in witness:
+        first, last = prefix["atom_span"]
+        observed = first, prefix["atom_arrays_offset"], last
+        Require(observed, witness["native_atom"], "licensed reference atom boundaries")
+    result = prefix.pop("face")
     check_witness(result, witness)
+    primary = result["component"]["occurrence"]["primary"]
+    for edge in profile["edge_references"]:
+        for key in ("file_ref_object", "feature_id", "time_word", "occurrence"):
+            Require(
+                edge["primary"][key],
+                primary[key],
+                f"same profile edge and supporting cap {key}",
+            )
     return {
         "file": name,
         "native_sha256": digest,
         "resolved_sha256": witness["sha256"],
         "map_witness_sha256": witness["map_witness_sha256"],
+        "profile": profile,
+        "support_prefix": prefix,
         "support": result,
     }
 
@@ -138,6 +180,7 @@ def main():
         "capture_receipt_sha256": KReceiptDigest,
         "measurements_sha256": receipt["measurement_receipt_sha256"],
         "application_build": KApplicationBuild,
+        "support_context_witness_sha256": "00d522c9f5f0cb6e3409139b2ed61286d99ead92f844b6e37a361447f89b7b6e",
         "captures": captures,
     }
     output = json.dumps(evidence, sort_keys=True, indent=2, allow_nan=False)
