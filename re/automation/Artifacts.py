@@ -8,13 +8,15 @@ from Records import canonical
 
 
 class Artifacts:
-    def __init__(self, root):
+    def __init__(self, root, *, create=True):
         self.root = Path(root).resolve()
-        self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
+        if create:
+            self.root.mkdir(parents=True, exist_ok=True, mode=0o700)
         if (self.root / "objects").is_symlink():
             raise ValueError("artifact directory cannot be a symbolic link")
         self.objects = self.root / "objects"
-        self.objects.mkdir(exist_ok=True, mode=0o700)
+        if create:
+            self.objects.mkdir(exist_ok=True, mode=0o700)
 
     def path(self, sha256):
         if not isinstance(sha256, str) or not re.fullmatch("[0-9a-f]{64}", sha256):

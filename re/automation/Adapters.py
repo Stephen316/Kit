@@ -3,14 +3,17 @@ import importlib.util
 import json
 import os
 import secrets
+import sqlite3
 import subprocess
 import sys
 from pathlib import Path
 
+from Artifacts import Artifacts
 from GroupClaims import read_group
 from Records import canonical, label, read_record
 from OutputManifest import InvalidOutput
 from RecoveryFence import StaleOwner
+from StoreRead import read_store
 
 OPERATIONS = ("LockPath", "DefinePool", "DefineResource", "SubmitJobs", "BindInput", "ClaimJob", "RenewLease", "FinishJob", "FetchInput", "ReadStatus")
 
@@ -42,12 +45,13 @@ class A03Adapter:
     GroupClaimsVersion = 1
     RecoveryFenceVersion = 1
 
-    def __init__(self, options):
+    def __init__(self, options, *, local_staging=False):
         if set(options) != {"store"} or not isinstance(options["store"], str):
             raise ValueError("the a03 adapter takes only a store path")
         self.store = Path(options["store"]).resolve()
         self.command = [sys.executable, str(Path(__file__).with_name("Controller.py")), "--store", str(self.store)]
         self.owner = None
+        self.local_staging = local_staging
 
     def Invoke(self, *items, stale=False):
         ownership = ["--owner", self.owner] if self.owner is not None else []
@@ -129,8 +133,23 @@ class A03Adapter:
         return {"stale": self.Invoke("finish", "--lease", path, "--result", result, "--outcome", outcome, "--reason", reason, *output_args, stale=True) is None}
 
     def FetchInput(self, sha256, destination):
-        response = self.Invoke("artifact", sha256)
-        return copy_verified(response["path"], destination, sha256)
+        if self.local_staging and self.owner is not None:
+            source = self.owned_artifact(sha256)
+        else:
+            source = self.Invoke("artifact", sha256)["path"]
+        return copy_verified(source, destination, sha256)
+
+    def owned_artifact(self, sha256):
+        database = self.store / "ledger.sqlite3"
+        if database.is_symlink() or not database.is_file():
+            raise ValueError("artifact lookup requires an initialized store database")
+        try:
+            with read_store(database, self.owner, (4,)):
+                artifacts = Artifacts(self.store, create=False)
+                artifacts.verify(sha256)
+                return artifacts.path(sha256)
+        except sqlite3.Error as error:
+            raise ValueError(f"a03 artifact lookup failed: {error}") from error
 
     def ReadStatus(self, job=None, after=None):
         items = ["status"]
@@ -145,7 +164,10 @@ def load_adapter(config, root):
     if not isinstance(config, dict):
         raise ValueError("controller configuration must be an object")
     if config.get("adapter") == "a03":
-        return A03Adapter({key: value for key, value in config.items() if key != "adapter"})
+        return A03Adapter(
+            {key: value for key, value in config.items() if key != "adapter"},
+            local_staging=sys.platform == "win32",
+        )
     if set(config) != {"module", "class", "options"} or not isinstance(config["options"], dict):
         raise ValueError("controller needs adapter a03, or a module, class and options")
     path = Path(config["module"])

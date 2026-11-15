@@ -1,9 +1,7 @@
-import sqlite3
-from contextlib import closing
 from pathlib import Path
 
 from Records import bounded
-from RecoveryFence import check_owner
+from StoreRead import read_store
 
 MAX_EVENT_ID = (1 << 63) - 1
 PAGE_SIZE = 100
@@ -16,16 +14,7 @@ def event_window(root, owner, after, through):
     database = Path(root).resolve() / "ledger.sqlite3"
     if database.is_symlink() or not database.is_file():
         raise ValueError("event history requires an initialized store database")
-    with closing(
-        sqlite3.connect(
-            database.as_uri() + "?mode=ro", uri=True, timeout=30, isolation_level=None
-        )
-    ) as db:
-        db.row_factory = sqlite3.Row
-        db.execute("BEGIN")
-        if db.execute("PRAGMA user_version").fetchone()[0] not in (1, 2, 3, 4):
-            raise ValueError("unsupported research store version")
-        check_owner(db, owner)
+    with read_store(database, owner, (1, 2, 3, 4)) as db:
         latest = db.execute("SELECT COALESCE(MAX(id), 0) FROM events").fetchone()[0]
         through = latest if through is None else through
         if not after <= through <= latest:

@@ -126,6 +126,8 @@ On POSIX, an isolated bootstrap waits for the supervisor to write and sync proce
 The parent releases it through a private pipe; parent death before release exits the bootstrap without running the worker.
 See [the launch-gate contract](../../Changes/Research/Supervisor/PosixWorkerLaunchGate.md) for identity, timeout and verification limits.
 
+The built-in Windows A03 adapter stages inputs through a read-only store lookup bound to the current supervisor owner. The existing content checks apply before and during the private copy. [Windows artifact staging](../../Changes/Research/Supervisor/WindowsArtifactStaging.md)
+
 | Path           | Writer     | Content                                                                |
 | -------------- | ---------- | ---------------------------------------------------------------------- |
 | `job.json`     | Supervisor | Job definition, attempt, generation, fingerprint, inputs and `stop_at` |
