@@ -168,12 +168,25 @@ BindFunctionMut(
     globals(),
 )
 
+# the public cad document validation error name must remain available so existing integrations keep resolving the canonical implementation
 CadDocumentValidationError = DocumentError
+
+# the public filter document name must remain available so existing integrations keep resolving the canonical implementation
 filter_document = FilterDocument
+
+# the public infer capabilities name must remain available so existing integrations keep resolving the canonical implementation
 infer_capabilities = InferCaps
+
+# the public retained capabilities name must remain available so existing integrations keep resolving the canonical implementation
 retained_capabilities = GetRetainedCaps
+
+# the public semantic metadata name must remain available so existing integrations keep resolving the canonical implementation
 semantic_metadata = GetSemanticMeta
+
+# the public source payload indexes name must remain available so existing integrations keep resolving the canonical implementation
 source_payload_indexes = GetPayloadIds
+
+# the public with wrapper metadata name must remain available so existing integrations keep resolving the canonical implementation
 with_wrapper_metadata = AddWrapperMeta
 
 

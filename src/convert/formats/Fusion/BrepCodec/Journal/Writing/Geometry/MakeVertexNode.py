@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import IntWord, 
 from convert.formats.Fusion.BrepCodec.Journal.Writing.MakePrefix import MakePrefix
 
 
+# the vertex node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeVertexNode(Value: VertexNode) -> AsmRecord:
     return AsmRecord(
         "vertex",

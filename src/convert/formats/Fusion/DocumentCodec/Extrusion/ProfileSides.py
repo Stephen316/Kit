@@ -6,6 +6,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleRoles import (
 )
 
 
+# the profile sides contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def ProfileSides(Author: AuthorState) -> tuple[ProfileSide, ...]:
     Policy = Author.Policy
     if Author.SpecValue.ProfileKind != "cuboid":

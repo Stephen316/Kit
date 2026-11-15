@@ -8,6 +8,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the prism vertices contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismVertices(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

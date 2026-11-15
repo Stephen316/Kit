@@ -21,9 +21,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import Sh
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeUse import KShapeEdge
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import WallFace
 
+# the tangent limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTangentLimit = 1e-9
 
 
+# chain link needs an explicit state contract so edge and face relationships survive parametric feature construction
 @MakeDataClass(frozen=True, slots=True)
 class ChainLink:
     UseIndex: int
@@ -32,6 +34,7 @@ class ChainLink:
     Finish: KSpaceVector
 
 
+# round plan needs an explicit state contract so edge and face relationships survive parametric feature construction
 @MakeDataClass(frozen=True, slots=True)
 class RoundPlan:
     CapIndex: int
@@ -43,6 +46,7 @@ class RoundPlan:
     Mitres: tuple[bool, ...]
 
 
+# link at must resolve unambiguously so edge and face relationships survive parametric feature construction
 def LinkAt(
     Shape: ShapeBody, Users: dict[KShapeEdge, list[KUsePlace]], SeedValue: ChainSeed
 ) -> ChainLink | None:
@@ -56,6 +60,7 @@ def LinkAt(
     return ChainLink(SeedValue.UseIndex, WallIndex, Start, Finish)
 
 
+# the tangent decision must stay consistent so edge and face relationships survive parametric feature construction
 def IsTangent(Shape: ShapeBody, Before: ChainLink, After: ChainLink) -> bool:
     First, Second = Shape.Faces[Before.WallIndex], Shape.Faces[After.WallIndex]
     if not isinstance(First, WallFace) or not isinstance(Second, WallFace):
@@ -66,6 +71,7 @@ def IsTangent(Shape: ShapeBody, Before: ChainLink, After: ChainLink) -> bool:
     return VectorLength(GapVector) < KTangentLimit
 
 
+# the step link contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def StepLink(
     Shape: ShapeBody,
     Users: dict[KShapeEdge, list[KUsePlace]],
@@ -79,6 +85,7 @@ def StepLink(
     )
 
 
+# the walk links contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def WalkLinks(
     Shape: ShapeBody,
     Users: dict[KShapeEdge, list[KUsePlace]],
@@ -100,6 +107,7 @@ def WalkLinks(
     return Found
 
 
+# the plan round contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def PlanRound(
     Shape: ShapeBody, Users: dict[KShapeEdge, list[KUsePlace]], SeedValue: ChainSeed
 ) -> RoundPlan:

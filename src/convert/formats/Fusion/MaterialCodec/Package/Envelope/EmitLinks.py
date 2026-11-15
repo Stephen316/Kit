@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.EmitPackageXml import (
 from convert.formats.Fusion.MaterialCodec.Package.Xml.MakeGroup import MakeGroup
 
 
+# the links operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EmitLinks(Names: tuple[str, ...]) -> bytes:
     RootValue, Group = MakeGroup("default")
     for NameValue in Names:

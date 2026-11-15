@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Prism.Models.PrismTags import PrismTags
 from convert.formats.Fusion.DocumentCodec.Model.AuthorPolicy import AuthorPolicy
 
 
+# the cuboid tags contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def CuboidTags(Policy: AuthorPolicy) -> PrismTags:
     FirstTag = Policy.CurveProgenitorTag
     Operations = (Policy.FirstOperationId + 1,)

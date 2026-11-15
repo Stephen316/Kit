@@ -17,6 +17,7 @@ from tests.convert.formats.FusionCodec.Brep.Complex.WiderNurbs import (
     PeriodLine,
 )
 
+# the wider faults cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWiderFaults = (
     "closure",
     "singular",
@@ -34,12 +35,14 @@ KWiderFaults = (
 )
 
 
+# shared swap face setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapFace(Model: NurbsBody, FaceIndex: int, FaceSpec: NurbsFace) -> NurbsBody:
     Faces = list(Model.Faces)
     Faces[FaceIndex] = FaceSpec
     return ReplaceValue(Model, Faces=tuple(Faces))
 
 
+# shared swap use setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapUse(Model: NurbsBody, FaceIndex: int, UseSpec: NurbsUse) -> NurbsBody:
     FaceSpec = Model.Faces[FaceIndex]
     return SwapFace(
@@ -47,6 +50,7 @@ def SwapUse(Model: NurbsBody, FaceIndex: int, UseSpec: NurbsUse) -> NurbsBody:
     )
 
 
+# shared splice side setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SpliceSide(Model: NurbsBody) -> NurbsBody:
     Surface = Model.Faces[0].Surface
     if not isinstance(Surface, BsSurface):
@@ -61,6 +65,7 @@ def SpliceSide(Model: NurbsBody) -> NurbsBody:
     )
 
 
+# shared move carrier setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MoveCarrier(
     Model: NurbsBody, FaceIndex: int, Carrier: PlaneCarrier | CylinderCarrier
 ) -> NurbsBody:
@@ -69,6 +74,7 @@ def MoveCarrier(
     )
 
 
+# shared hole fault setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HoleFault(Fault: str) -> NurbsBody:
     Holed = HoledPatch()
     FaceSpec = Holed.Faces[0]
@@ -85,6 +91,7 @@ def HoleFault(Fault: str) -> NurbsBody:
     return ReplaceValue(Holed, Edges=tuple(Edges))
 
 
+# shared tube fault setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TubeFault(Fault: str) -> NurbsBody:
     Capped = CappedTube()
     if Fault == "closure":
@@ -104,6 +111,7 @@ def TubeFault(Fault: str) -> NurbsBody:
     )
 
 
+# shared seam fault setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SeamFault(Fault: str) -> NurbsBody:
     Capped = CappedTube()
     FaceSpec = Capped.Faces[0]
@@ -120,6 +128,7 @@ def SeamFault(Fault: str) -> NurbsBody:
     )
 
 
+# shared broken wider setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BrokenWider(Fault: str) -> NurbsBody:
     if Fault in ("sense", "seam"):
         return SeamFault(Fault)

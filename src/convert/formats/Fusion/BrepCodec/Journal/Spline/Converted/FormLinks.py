@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
 )
 
 
+# form links needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormLinks:
     UseStarts: tuple[int, ...]
@@ -19,7 +20,10 @@ class FormLinks:
     PcurveFaces: tuple[int, ...]
 
 
+# the creation uses contract needs a shared interpretation so surface geometry retains the control cage shape
 def CreationUses(Model: FormBody, Starts: tuple[int, ...]) -> list[tuple[int, FormUse]]:
+
+    # ordering by faces face index surface region must stay deterministic so spline conversion resolves equivalent inputs consistently
     Created = sorted(
         range(len(Model.Faces)),
         key=lambda FaceIndex: Model.Faces[FaceIndex].Surface.Region,
@@ -31,6 +35,7 @@ def CreationUses(Model: FormBody, Starts: tuple[int, ...]) -> list[tuple[int, Fo
     ]
 
 
+# the use owners contract needs a shared interpretation so surface geometry retains the control cage shape
 def UseOwners(
     Model: FormBody, Starts: tuple[int, ...]
 ) -> tuple[tuple[int, ...], tuple[tuple[int, int], ...]]:
@@ -53,6 +58,7 @@ def UseOwners(
     )
 
 
+# the use partners contract needs a shared interpretation so surface geometry retains the control cage shape
 def UsePartners(Model: FormBody) -> tuple[int, ...]:
     FlatUses = tuple(
         UseValue for FaceValue in Model.Faces for UseValue in FaceValue.Uses
@@ -69,6 +75,7 @@ def UsePartners(Model: FormBody) -> tuple[int, ...]:
     )
 
 
+# the form links operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeFormLinks(Model: FormBody) -> FormLinks:
     Starts = (0, *Accumulate(len(FaceValue.Uses) for FaceValue in Model.Faces))
     EdgeOwners, VertexOwners = UseOwners(Model, Starts)

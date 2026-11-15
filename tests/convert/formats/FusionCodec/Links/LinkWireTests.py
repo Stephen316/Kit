@@ -34,12 +34,16 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadRootMeta import (
     KRootKeys,
 )
 
+# the version urn cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KVersionUrn = "urn:adsk.wipprod:fs.file:vf.SyntheticLineageKey000?version=3"
 
+# the lineage urn cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLineageUrn = "urn:adsk.wipprod:dm.lineage:SyntheticLineageKey000"
 
+# the type guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTypeGuid = "D956D02C-2806-4E57-8B2E-EFA323A5C2B8"
 
+# the synthetic link cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSyntheticLink = ManifestLink(
     "7a123456-1111-4222-8333-abcdef123456",
     "/synthetic/source/Root.f3d",
@@ -53,6 +57,7 @@ KSyntheticLink = ManifestLink(
     ),
 )
 
+# synthetic root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KSyntheticRoot = RootManifest(
     "Linked Root",
     "",
@@ -68,6 +73,7 @@ KSyntheticRoot = RootManifest(
     ("Linked Root", KLineageUrn),
 )
 
+# the synthetic context cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSyntheticContext = MetaContext(
     (1 << 63) + 17,
     KSyntheticLink.LinkId,
@@ -77,6 +83,7 @@ KSyntheticContext = MetaContext(
     1,
 )
 
+# the synthetic redirects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSyntheticRedirects = DocRedirects(
     (
         RedirectDesign(
@@ -94,12 +101,14 @@ KSyntheticRedirects = DocRedirects(
 )
 
 
+# shared emit contexts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EmitContexts(Items: tuple[MetaContext, ...]) -> bytes:
     SinkValue = MetaSink()
     EmitMetaCtx(SinkValue, Items)
     return bytes(SinkValue.Buffer)
 
 
+# the root links contract needs boundary coverage so stored document relationships remain consistent
 def TestRootLinks() -> None:
     Payload = EmitRootWire(KSyntheticRoot)
     assert ReadRootWire(Payload) == KSyntheticRoot
@@ -107,6 +116,7 @@ def TestRootLinks() -> None:
     assert ReadRootWire(EmitRootWire(Plain)) == Plain
 
 
+# the bad links contract needs boundary coverage so stored document relationships remain consistent
 @TestMark.parametrize(
     "Value",
     (
@@ -127,6 +137,7 @@ def TestBadLinks(Value: RootManifest) -> None:
         _ = EmitRootWire(Value)
 
 
+# the link words contract needs boundary coverage so stored document relationships remain consistent
 def TestLinkWords() -> None:
     Payload = EmitRootWire(KSyntheticRoot)
     Words = PackValue("<4I", 2, 4, 1, 0)
@@ -135,11 +146,13 @@ def TestLinkWords() -> None:
         _ = ReadRootWire(Payload.replace(Words, PackValue("<4I", 2, 4, 1, 1)))
 
 
+# the contexts contract needs boundary coverage so stored document relationships remain consistent
 def TestContexts() -> None:
     Payload = EmitContexts((KSyntheticContext,))
     assert ReadMetaCtx(MetaCursor(Payload), 1) == (KSyntheticContext,)
 
 
+# the bad context contract needs boundary coverage so stored document relationships remain consistent
 @TestMark.parametrize(
     "Value",
     (
@@ -153,6 +166,7 @@ def TestBadContext(Value: MetaContext) -> None:
         _ = EmitContexts((Value,))
 
 
+# the cross reference contract needs boundary coverage so stored document relationships remain consistent
 def TestCrossRef() -> None:
     Value = CrossRef(2, (1 << 64) - 3, KTypeGuid)
     Payload = EmitCrossRef(Value)
@@ -163,6 +177,7 @@ def TestCrossRef() -> None:
         _ = ReadRefMut(MetaCursor(Payload[:-1] + b"\1"))
 
 
+# the inline reference contract needs boundary coverage so stored document relationships remain consistent
 def TestInlineRef() -> None:
     Payload = (
         b"\1"
@@ -176,6 +191,7 @@ def TestInlineRef() -> None:
         _ = ReadRefMut(MetaCursor(Payload))
 
 
+# the doc props contract needs boundary coverage so stored document relationships remain consistent
 def TestDocProps() -> None:
     assert EmitDocProps(None) == bytes(4)
     assert ReadDocProps(bytes(4)) is None
@@ -191,6 +207,7 @@ def TestDocProps() -> None:
         _ = ReadDocProps(Payload.replace(b'"version"', b'"Version"'))
 
 
+# the redirects contract needs boundary coverage so stored document relationships remain consistent
 def TestRedirects() -> None:
     Payload = EmitRedirects(KSyntheticRedirects)
     assert ReadRedirects(Payload) == KSyntheticRedirects

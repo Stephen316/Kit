@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Members.JsonFields import (
 )
 
 
+# the freeze json contract needs a shared interpretation so drawing members retain their sheet and model associations
 def FreezeJson(Value: KJsonValue) -> KFrozenJson:
     if isinstance(Value, dict):
         return JsonFields(
@@ -18,6 +19,7 @@ def FreezeJson(Value: KJsonValue) -> KFrozenJson:
     return Value
 
 
+# thaw json needs an explicit validity boundary so drawing members retain their sheet and model associations
 def ThawJson(Value: KFrozenJson) -> KJsonValue:
     if isinstance(Value, JsonFields):
         Result: dict[str, KJsonValue] = {}

@@ -2,6 +2,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.ReadZeroRun import ReadZero
 from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.TakeByte import TakeByte
 
 
+# the extended operation needs a distinct decoding boundary so compressed page boundaries cannot overrun their declared payload
 def ReadExtended(Packed: bytes, Position: int) -> tuple[int, int]:
     Value = TakeByte(Packed, Position)
     if Value != 0:

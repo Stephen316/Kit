@@ -3,6 +3,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 from convert.formats.Fusion.BrepCodec.Journal.Materialize import Materialize
 
 
+# shared live carriers setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LiveCarriers(Model: JournalModel) -> tuple[ConeNode, ...]:
     Results: list[ConeNode] = []
     for State in Materialize(Model):

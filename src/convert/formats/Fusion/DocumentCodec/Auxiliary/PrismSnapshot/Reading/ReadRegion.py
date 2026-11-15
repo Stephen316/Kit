@@ -16,6 +16,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the region operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadRegion(
     Table: AsmTable, Mapping: dict[int, int], Start: int, AttrStart: int
 ) -> RegionFrame:

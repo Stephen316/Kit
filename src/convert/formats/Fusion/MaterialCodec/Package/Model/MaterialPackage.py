@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.ResourceInfo import Reso
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# material package needs an explicit state contract so typed appearance properties retain their native identifiers
 @MakeDataClass(frozen=True, slots=True)
 class MaterialPackage:
     RootCore: PackageCore

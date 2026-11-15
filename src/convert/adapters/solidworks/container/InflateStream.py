@@ -1,6 +1,7 @@
 from zlib import decompressobj as DecompressObj, error as InflateError
 
 
+# the inflate stream contract needs a shared interpretation so stream contents retain their geometry and feature relationships
 def InflateStream(Payload: bytes, ExpectedSize: int) -> bytes | None:
     Inflator = DecompressObj(wbits=-15)
     try:

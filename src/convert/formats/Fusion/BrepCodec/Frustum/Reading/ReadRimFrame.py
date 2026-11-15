@@ -9,6 +9,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the rim frame operation needs a distinct decoding boundary so circular boundaries retain consistent cone and rim geometry
 def ReadRimFrame(Table: AsmTable, Mapping: dict[int, int], IsUpper: bool) -> RimFrame:
     Offset = 0 if IsUpper else 1
     Curve = RequireAsm(Table, Mapping[22 + Offset], "ellipse-curve", 9)

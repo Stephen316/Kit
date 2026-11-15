@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeSysAttrib i
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, KAsmToken
 
 
+# the name node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeNameNode(Value: NameAttrib) -> AsmRecord:
     Fields: list[KAsmToken] = [
         *MakeSysLinks(Value.Links),

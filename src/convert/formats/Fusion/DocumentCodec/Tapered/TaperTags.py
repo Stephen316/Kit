@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 from convert.formats.Fusion.DocumentCodec.Model.AuthorPolicy import AuthorPolicy
 
 
+# the taper tags contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def TaperTags(Policy: AuthorPolicy) -> TopologyTags:
     Operations = (Policy.FirstOperationId + 1,)
     SketchId = Policy.FirstSketchTag + 2

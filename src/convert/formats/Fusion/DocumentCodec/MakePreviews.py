@@ -2,6 +2,7 @@ from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerP
 from convert.formats.Fusion.ContainerCodec.Preview.EmitPreview import EmitPreview
 
 
+# the previews operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakePreviews() -> tuple[ContainerPart, ...]:
     return tuple(
         ContainerPart(

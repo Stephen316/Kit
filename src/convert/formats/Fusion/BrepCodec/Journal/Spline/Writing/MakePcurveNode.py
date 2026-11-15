@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, KAsmToken
 
 
+# the pcurve node operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePcurveNode(Value: PcurveNode) -> AsmRecord:
     Payload: tuple[KAsmToken, ...]
     if Value.Form == 0 and Value.Curve is not None and Value.CurveRef == -1:

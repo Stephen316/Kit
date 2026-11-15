@@ -4,6 +4,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import (
 )
 
 
+# graphics data needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class GraphicsData:
     WorldData: bytes

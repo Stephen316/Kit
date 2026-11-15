@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Values.ValueCalls import KEmitValue
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the groups operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitGroupsMut(
     Values: tuple[EntityGroup[KEntityValue], ...],
     Groups: tuple[ClassSchema, ...],
@@ -29,6 +30,8 @@ def EmitGroupsMut(
         if Value.Opaque is not None:
             Output.AddBytes(Value.Opaque)
             continue
+
+        # ordering by field field name must stay deterministic so entity reconstruction resolves equivalent inputs consistently
         Fields = tuple(sorted(Group.Members, key=lambda Field: Field.FieldName))
         Output.AddBytes(EmitFieldsMut(Value.Fields, Fields, Catalog, Depth + 1, Writer))
     return bytes(Output.Buffer)

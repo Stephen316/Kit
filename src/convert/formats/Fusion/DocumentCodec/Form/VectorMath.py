@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 
 
+# the product operation needs one geometric convention so editable control cages retain their document relationships
 def DotProduct(First: Sequence[float], Second: Sequence[float]) -> float:
     return sum(
         LeftValue * RightValue
@@ -12,6 +13,7 @@ def DotProduct(First: Sequence[float], Second: Sequence[float]) -> float:
     )
 
 
+# the product operation needs one geometric convention so editable control cages retain their document relationships
 def CrossProduct(First: Sequence[float], Second: Sequence[float]) -> KJournalVector:
     return (
         First[1] * Second[2] - First[2] * Second[1],

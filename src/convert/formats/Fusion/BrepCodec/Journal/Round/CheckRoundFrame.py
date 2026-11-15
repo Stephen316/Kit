@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 
 
+# invalid round frame input must fail here so topology changes retain their native revision relationships
 def CheckRoundFrame(
     Center: KJournalVector, AxisVector: KJournalVector, Reference: KJournalVector
 ) -> None:

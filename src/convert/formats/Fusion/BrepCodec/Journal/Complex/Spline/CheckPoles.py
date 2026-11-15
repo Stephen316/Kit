@@ -1,6 +1,7 @@
 from math import isfinite as IsFinite
 
 
+# invalid poles input must fail here so nested spline and surface records retain their relationships
 def CheckPoles(Poles: tuple[tuple[float, ...], ...], Count: int, Width: int) -> None:
     if type(Poles) is not tuple or len(Poles) != Count:
         raise ValueError("Fusion B-spline pole count disagrees with its knots")

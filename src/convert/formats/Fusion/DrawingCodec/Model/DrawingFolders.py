@@ -2,9 +2,11 @@ from convert.formats.Fusion.AssetCodec.Zip.ZipNames import CheckZipPaths, Encode
 from convert.formats.Fusion.DrawingCodec.Manifest.DrawingRoot import DrawingRoot
 from convert.formats.Fusion.DrawingCodec.Manifest.DrawingSlot import DrawingSlot
 
+# active suffix must remain consistent across callers so drawing members retain their sheet and model associations
 KActiveSuffix = "[Active]/"
 
 
+# active prefix needs an explicit validity boundary so drawing members retain their sheet and model associations
 def ActivePrefix(RootValue: DrawingRoot) -> str:
     if len(RootValue.Assets) != 1:
         raise ValueError("Fusion drawings require exactly one root asset row")
@@ -15,6 +17,7 @@ def ActivePrefix(RootValue: DrawingRoot) -> str:
     return Prefix
 
 
+# drawing folders needs an explicit validity boundary so drawing members retain their sheet and model associations
 def DrawingFolders(Slots: tuple[DrawingSlot, ...]) -> tuple[str, ...]:
     Counts: dict[str, int] = {}
     Folders: list[str] = []

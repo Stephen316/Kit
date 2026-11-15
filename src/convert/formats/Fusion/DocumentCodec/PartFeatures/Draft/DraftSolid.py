@@ -21,6 +21,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 
 
+# draft loops needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def DraftLoops(
     LoopValue: KPlaneLoop, SpreadCm: float, Operation: int
 ) -> tuple[KPlaneLoop, KPlaneLoop]:
@@ -47,6 +48,7 @@ def DraftLoops(
     return Bottom, Summit
 
 
+# draft solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def DraftSolid(Solid: PrismSolid, Feature: DraftSpec, Operation: int) -> PrismSolid:
     if len(Solid.Slabs) != 1 or Solid.EdgeTags or Solid.Slabs[0].RoofLoops:
         raise ValueError("Fusion drafts require one prism slab without circles")

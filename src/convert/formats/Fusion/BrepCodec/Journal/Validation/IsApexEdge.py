@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.ReadLiveRef import Read
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the apex edge decision must stay consistent so inconsistent revision links fail before history reconstruction
 def IsApexEdge(
     Records: tuple[AsmRecord, ...],
     Versions: dict[int, int],

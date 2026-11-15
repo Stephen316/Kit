@@ -5,6 +5,7 @@ from convert.formats.Fusion.BundleCodec.Json.ReadJson import ReadJson
 from convert.formats.Fusion.BundleCodec.Model.BundleModel import BundleModel
 
 
+# the model operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadModel(Manifest: bytes, Description: bytes) -> BundleModel:
     RootValue = JsonObject(ReadJson(Manifest), "root")
     Envelope = JsonObject(ReadJson(Description), "name version designDescription")

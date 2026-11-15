@@ -3,6 +3,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.ReadLiveRef import Read
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# invalid live faces input must fail here so topology changes retain their native revision relationships
 def CheckLiveFaces(
     Records: tuple[AsmRecord, ...], Versions: dict[int, int], Aliases: tuple[int, ...]
 ) -> None:

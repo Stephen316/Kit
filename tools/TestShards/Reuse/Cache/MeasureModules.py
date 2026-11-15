@@ -10,6 +10,7 @@ from tools.TestShards.Reuse.Cache.ReusableOutcomes import KReusableOutcomes
 from tools.TestShards.Reuse.Cache.TreeIndex import TreeIndex
 
 
+# the measure modules contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def MeasureModules(
     Graph: DepGraph,
     TreeInfo: TreeIndex,

@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, KAsmToken
 
 
+# the remap entity contract needs a shared interpretation so topology changes retain their native revision relationships
 def RemapEntity(Value: KJournalEntity, Mapping: tuple[int, ...]) -> KJournalEntity:
     Record = MakeEntityNode(Value)
     Fields: list[KAsmToken] = []

@@ -9,6 +9,7 @@ from convert.formats.Fusion.ArchiveRead.IndexedArchive import (
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import KMaxAsmSize as KMaxAsmSize
 from convert.formats.Fusion.Topology.BodyAsmMap import KAsmName
 
+# history prefix must share the history prefix contract so native document reconstruction cannot drift between equivalent names
 KHistoryPrefix = HistoryPrefix
 
 

@@ -4,6 +4,7 @@ import argparse as ArgParse
 from pathlib import Path as FilePath
 
 
+# the plan args operation needs a consistent construction rule so every collected case receives exactly one verified outcome
 def BuildPlanArgs() -> ArgParse.ArgumentParser:
     ParserInfo = ArgParse.ArgumentParser(
         description="Allocate collected pytest node ids to capped runtime shards."

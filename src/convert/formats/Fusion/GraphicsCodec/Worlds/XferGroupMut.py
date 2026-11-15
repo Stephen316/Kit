@@ -16,6 +16,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer group needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferGroupMut(State: SceneCodec, Value: GroupValue | None) -> GroupValue:
     if not State.HasGlobals:
         State.Globals = XferGlobalMut(State, State.Globals)

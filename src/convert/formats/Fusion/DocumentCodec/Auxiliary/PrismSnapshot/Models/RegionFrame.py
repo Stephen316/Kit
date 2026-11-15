@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.RegionE
 )
 
 
+# region frame needs an explicit state contract so supporting records retain their owning document relationships
 @MakeDataClass(frozen=True, slots=True)
 class RegionFrame:
     CornersCm: tuple[tuple[float, float, float], ...]

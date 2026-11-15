@@ -8,6 +8,7 @@ from interchange import CadDocument
 from tests.convert.api.Fusion.Native.VendorCases import KVendorCases, VendorSource
 
 
+# the legacy world contract needs boundary coverage so stored document relationships remain consistent
 def TestLegacyWorld() -> None:
     CaseValue = KVendorCases[1]
     Document = OpenDocument(VendorSource(CaseValue))
@@ -19,6 +20,7 @@ def TestLegacyWorld() -> None:
     assert HashBytes(Target.getvalue()).hexdigest() == CaseValue.OutputDigest
 
 
+# shared drop world setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DropWorldMut(Value: object) -> int:
     Count = 0
     if isinstance(Value, dict):

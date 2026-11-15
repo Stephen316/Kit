@@ -16,6 +16,7 @@ from tests.convert.formats.FusionCodec.Brep.Complex.NurbsSamples import (
     RationalPatch,
 )
 
+# the nurbs faults cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNurbsFaults = (
     "knots",
     "poles",
@@ -29,22 +30,26 @@ KNurbsFaults = (
 )
 
 
+# shared swap surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapSurface(Model: NurbsBody, Surface: BsSurface) -> NurbsBody:
     return ReplaceValue(Model, Faces=(ReplaceValue(Model.Faces[0], Surface=Surface),))
 
 
+# shared first surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FirstSurface(Model: NurbsBody) -> BsSurface:
     Surface = Model.Faces[0].Surface
     assert isinstance(Surface, BsSurface)
     return Surface
 
 
+# shared swap lead use setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapLeadUse(Model: NurbsBody, UseSpec: NurbsUse) -> NurbsBody:
     FaceSpec = Model.Faces[0]
     Edited = NurbsFace(FaceSpec.Surface, (UseSpec, *FaceSpec.Uses[1:]))
     return ReplaceValue(Model, Faces=(Edited, *Model.Faces[1:]))
 
 
+# shared broken nurbs setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BrokenNurbs(Fault: str) -> NurbsBody:
     Sheet = PatchSheet(BicubicPatch())
     Surface = FirstSurface(Sheet)

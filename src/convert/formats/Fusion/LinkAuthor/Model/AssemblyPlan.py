@@ -5,6 +5,7 @@ from convert.formats.Fusion.LinkAuthor.Model.LinkKeys import LinkKeys
 from convert.formats.Fusion.LinkAuthor.Model.PlaceKeys import PlaceKeys
 
 
+# assembly plan needs an explicit state contract so cross document references retain their intended ownership
 @MakeDataClass(frozen=True, slots=True)
 class AssemblyPlan:
     XRefId: int

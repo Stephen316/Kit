@@ -1,6 +1,7 @@
 from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 
+# the sketch fields order must stay explicit so entity identifiers retain their schema and reference meaning
 KSketchFields = (
     FieldSpec("version", WireType("i32", AllowedInts=(3,))),
     FieldSpec("tagId", WireType("u64")),

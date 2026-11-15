@@ -1,6 +1,7 @@
 from convert.formats.Fusion.TSplineCodec.Wire.TextCursor import TextCursor
 
 
+# the cursor operation needs a consistent construction rule so control cage topology retains its native connectivity
 def MakeCursor(Payload: bytes) -> TextCursor:
     if len(Payload) > 67108864:
         raise ValueError("TSM file exceeds the allocation limit")

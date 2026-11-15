@@ -8,10 +8,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Objects.ModularCodes import (
     EncodeUnsigned,
 )
 
+# object marker must remain consistent across callers so section boundaries and object references remain consistent
 KObjectMarker = 0x0DCA
+
+# handle block limit needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KHandleBlockLimit = 2031
 
 
+# the objects operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitObjects(
     DwgObjects: tuple[DwgObject, ...], VersionText: str
 ) -> tuple[bytes, dict[int, int]]:
@@ -25,11 +29,13 @@ def EmitObjects(
     return bytes(Output), Offsets
 
 
+# the frame block contract needs a shared interpretation so section boundaries and object references remain consistent
 def FrameBlock(BlockValue: bytes) -> bytes:
     Opening = PackFields(">H", len(BlockValue) + 2) + BlockValue
     return Opening + PackFields(">H", CrcSixteen(0xC0C1, Opening))
 
 
+# the handles operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitHandles(Offsets: dict[int, int]) -> bytes:
     Output = bytearray()
     BlockValue = bytearray()

@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.States.DeltaState import DeltaStat
 from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
 
 
+# the poly states operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyStates(History: HistoryState, EntityCount: int) -> tuple[DeltaState, ...]:
     Changes = tuple(BulletinChange(-1, Index) for Index in range(1, EntityCount))
     Board = BulletinBoard(0, History.BoardStatus, Changes)

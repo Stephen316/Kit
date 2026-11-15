@@ -1,10 +1,12 @@
 from json import dumps as JsonText
 
+# the json value variants need one shared contract so drawing view authoring cannot omit a supported value shape
 KJsonValue = (
     None | bool | int | float | str | list["KJsonValue"] | dict[str, "KJsonValue"]
 )
 
 
+# the hole data contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def HoleData(BodyId: int) -> str:
     BodyInfo: dict[str, KJsonValue] = {
         "BodyInDirectModeling": False,
@@ -21,6 +23,7 @@ def HoleData(BodyId: int) -> str:
     return StyledJson(Document, 0)
 
 
+# the styled json contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def StyledJson(Value: KJsonValue, Depth: int) -> str:
     Margin = "\t" * Depth
     if isinstance(Value, dict) and Value:
@@ -35,6 +38,7 @@ def StyledJson(Value: KJsonValue, Depth: int) -> str:
     return JsonText(Value)
 
 
+# the nested json contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def NestedJson(Value: KJsonValue, Depth: int) -> str:
     if isinstance(Value, dict | list) and Value:
         return "\n" + "\t" * Depth + StyledJson(Value, Depth)

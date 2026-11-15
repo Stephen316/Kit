@@ -69,11 +69,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Revolve.CheckRevolve impo
     CheckRevolve,
 )
 
+# feature limit needs one explicit bound so parametric feature reconstruction cannot accept inconsistent resource or layout limits
 KFeatureLimit = 16
+
+# corner limit needs one explicit bound so parametric feature reconstruction cannot accept inconsistent resource or layout limits
 KCornerLimit = 8
+
+# the linked specifications order must stay explicit so feature parameters remain connected to the resulting geometry
 KLinkedSpecs = (PatternSpec, CircularSpec, MirrorSpec, PlaneSpec)
 
 
+# the feature amounts contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FeatureAmounts(Feature: KPartFeature) -> tuple[object, ...]:
     if isinstance(Feature, FilletSpec):
         return (*Feature.CornerMm, Feature.RadiusMm)
@@ -84,6 +90,7 @@ def FeatureAmounts(Feature: KPartFeature) -> tuple[object, ...]:
     return ()
 
 
+# invalid name input must fail here so feature parameters remain connected to the resulting geometry
 def CheckName(NameValue: object) -> None:
     if (
         not isinstance(NameValue, str)
@@ -94,6 +101,7 @@ def CheckName(NameValue: object) -> None:
         raise ValueError("Invalid Fusion part feature name")
 
 
+# invalid pair input must fail here so feature parameters remain connected to the resulting geometry
 def CheckPair(Point: object) -> None:
     if not isinstance(Point, tuple):
         raise ValueError("Fusion part corners require two planar coordinates")
@@ -105,6 +113,7 @@ def CheckPair(Point: object) -> None:
             raise ValueError("Fusion part feature values must be finite numbers")
 
 
+# invalid corners input must fail here so feature parameters remain connected to the resulting geometry
 def CheckCorners(Feature: FilletSpec | ChamferSpec) -> None:
     Extras = CastValue(object, Feature.MoreCornersMm)
     if not isinstance(Extras, tuple):
@@ -119,6 +128,7 @@ def CheckCorners(Feature: FilletSpec | ChamferSpec) -> None:
         raise ValueError("Fusion corner edits require distinct corners")
 
 
+# invalid level input must fail here so feature parameters remain connected to the resulting geometry
 def CheckLevel(Feature: FilletSpec | ChamferSpec) -> None:
     Level = CastValue(object, Feature.LevelMm)
     if Level is None:
@@ -127,6 +137,7 @@ def CheckLevel(Feature: FilletSpec | ChamferSpec) -> None:
         raise ValueError("Fusion edge round levels must be finite numbers")
 
 
+# invalid sides input must fail here so feature parameters remain connected to the resulting geometry
 def CheckSides(Feature: ShellSpec) -> None:
     Extras = CastValue(object, Feature.SidesMm)
     if not isinstance(Extras, tuple):
@@ -140,6 +151,7 @@ def CheckSides(Feature: ShellSpec) -> None:
         raise ValueError("Fusion shell sides must be distinct")
 
 
+# invalid shape input must fail here so feature parameters remain connected to the resulting geometry
 def CheckShape(Feature: KPartFeature) -> None:
     if isinstance(Feature, (FilletSpec, ChamferSpec)):
         CheckCorners(Feature)
@@ -150,6 +162,7 @@ def CheckShape(Feature: KPartFeature) -> None:
         CheckSides(Feature)
 
 
+# invalid bevel input must fail here so feature parameters remain connected to the resulting geometry
 def CheckBevel(Feature: ChamferSpec) -> None:
     Extras = (
         CastValue(object, Feature.SecondMm),
@@ -164,6 +177,7 @@ def CheckBevel(Feature: ChamferSpec) -> None:
         raise ValueError("Fusion chamfers take a second distance or an acute angle")
 
 
+# invalid owned input must fail here so feature parameters remain connected to the resulting geometry
 def CheckOwned(Feature: MoveSpec | OffsetSpec | HoleSpec | DraftSpec) -> None:
     if isinstance(Feature, MoveSpec):
         CheckMove(Feature)
@@ -175,6 +189,7 @@ def CheckOwned(Feature: MoveSpec | OffsetSpec | HoleSpec | DraftSpec) -> None:
         CheckHole(Feature)
 
 
+# the sketch rule decision must stay consistent so feature parameters remain connected to the resulting geometry
 def HasSketchRule(Feature: KPartFeature) -> bool:
     if isinstance(Feature, ExtrudeSpec):
         CheckExtrude(Feature)
@@ -189,6 +204,7 @@ def HasSketchRule(Feature: KPartFeature) -> bool:
     return True
 
 
+# invalid feature input must fail here so feature parameters remain connected to the resulting geometry
 def CheckFeature(Feature: KPartFeature) -> None:
     _ = FamilyOf(Feature)
     if HasSketchRule(Feature):
@@ -216,6 +232,7 @@ def CheckFeature(Feature: KPartFeature) -> None:
     CheckShape(Feature)
 
 
+# the new body decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsNewBody(Feature: KPartFeature) -> bool:
     if isinstance(Feature, (LoftSpec, SweepSpec)):
         return True
@@ -224,6 +241,7 @@ def IsNewBody(Feature: KPartFeature) -> bool:
     return Feature.Operation == "new"
 
 
+# invalid order input must fail here so feature parameters remain connected to the resulting geometry
 def CheckOrder(SpecValue: DocumentSpec) -> None:
     Features = SpecValue.Features
     IsPart = SpecValue.ProfileKind == "part"
@@ -246,6 +264,7 @@ def CheckOrder(SpecValue: DocumentSpec) -> None:
         IsMoved = IsMoved or isinstance(Feature, MoveSpec)
 
 
+# invalid features input must fail here so feature parameters remain connected to the resulting geometry
 def CheckFeatures(SpecValue: DocumentSpec) -> None:
     Features = CastValue(object, SpecValue.Features)
     if not isinstance(Features, tuple):

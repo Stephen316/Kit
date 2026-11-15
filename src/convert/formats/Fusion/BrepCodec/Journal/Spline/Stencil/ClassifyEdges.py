@@ -19,24 +19,56 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import 
     SurfaceFrame,
 )
 
+# tangent turn must remain consistent across callers so control cage contributions retain their intended weights
 KTangentTurn = math.radians(1.0)
+
+# flat turn must remain consistent across callers so control cage contributions retain their intended weights
 KFlatTurn = 1e-12
+
+# crease samples must remain consistent across callers so control cage contributions retain their intended weights
 KCreaseSamples = 8
+
+# peak steps must remain consistent across callers so control cage contributions retain their intended weights
 KPeakSteps = 32
+
+# root steps needs a stable location so spline stencil reconstruction resolves inputs independently of the caller working directory
 KRootSteps = 2100
+
+# golden cut must remain consistent across callers so control cage contributions retain their intended weights
 KGoldenCut = (math.sqrt(5.0) - 1.0) / 2.0
+
+# the crease side shape must stay shared so spline stencil reconstruction uses one contract for compatible values
 KCreaseSide = tuple[NubsSurface, FormUse]
+
+# the crease turn shape must stay shared so spline stencil reconstruction uses one contract for compatible values
 KCreaseTurn = Callable[[float], float]
+
+# the crease span shape must stay shared so spline stencil reconstruction uses one contract for compatible values
 KCreaseSpan = list[tuple[float, float]]
+
+# the crease piece shape must stay shared so spline stencil reconstruction uses one contract for compatible values
 KCreasePiece = tuple[float, float, str]
+
+# crease fault must remain consistent across callers so control cage contributions retain their intended weights
 KCreaseFault = "Fusion Form conversion may split or reclassify a crease edge"
+
+# seam slack must remain consistent across callers so control cage contributions retain their intended weights
 KSeamSlack = 1e-9
+
+# turn rate must remain consistent across callers so control cage contributions retain their intended weights
 KTurnRate = 0.01
+
+# the end halves order must stay explicit so control cage contributions retain their intended weights
 KEndHalves = (8.0, 4.0, 2.0)
+
+# end reach must remain consistent across callers so control cage contributions retain their intended weights
 KEndReach = len(KEndHalves) + 1
+
+# the crease mark variants need one shared contract so spline stencil reconstruction cannot omit a supported value shape
 KCreaseMark = float | None
 
 
+# the value operation needs one geometric convention so control cage contributions retain their intended weights
 def CrossValue(First: list[float], Second: list[float]) -> list[float]:
     return [
         First[1] * Second[2] - First[2] * Second[1],
@@ -45,6 +77,7 @@ def CrossValue(First: list[float], Second: list[float]) -> list[float]:
     ]
 
 
+# the value operation needs one geometric convention so control cage contributions retain their intended weights
 def UnitValue(Vector: list[float]) -> list[float]:
     Length = math.sqrt(sum(Entry * Entry for Entry in Vector))
     if Length == 0.0:
@@ -52,6 +85,7 @@ def UnitValue(Vector: list[float]) -> list[float]:
     return [Entry / Length for Entry in Vector]
 
 
+# side normal needs an explicit validity boundary so control cage contributions retain their intended weights
 def SideNormal(SideValue: KCreaseSide, Param: float) -> list[float]:
     Cache, UseValue = SideValue
     Knots = UseValue.Pcurve.Knots
@@ -62,7 +96,10 @@ def SideNormal(SideValue: KCreaseSide, Param: float) -> list[float]:
     return UnitValue(CrossValue(AlongU, AlongV))
 
 
+# the turn angle contract needs a shared interpretation so control cage contributions retain their intended weights
 def TurnAngle(Curve: BsCurve, Sides: list[KCreaseSide], Param: float) -> float:
+
+    # ordering by side value 1 reversed must stay deterministic so spline stencil reconstruction resolves equivalent inputs consistently
     Former, Latter = sorted(Sides, key=lambda SideValue: SideValue[1].Reversed)
     First, Second = SideNormal(Former, Param), SideNormal(Latter, Param)
     Across = CrossValue(First, Second)
@@ -73,10 +110,12 @@ def TurnAngle(Curve: BsCurve, Sides: list[KCreaseSide], Param: float) -> float:
     return math.copysign(math.atan2(SineValue, Inner), Turning)
 
 
+# the inner knots contract needs a shared interpretation so control cage contributions retain their intended weights
 def InnerKnots(Curve: BsCurve, Lower: float, Upper: float) -> list[float]:
     return [KnotValue for KnotValue in Curve.Knots if Lower < KnotValue < Upper]
 
 
+# the span samples contract needs a shared interpretation so control cage contributions retain their intended weights
 def SpanSamples(Measure: KCreaseTurn, Begin: float, Finish: float) -> KCreaseSpan:
     Params = [
         Begin + (Finish - Begin) * Index / KCreaseSamples
@@ -85,6 +124,7 @@ def SpanSamples(Measure: KCreaseTurn, Begin: float, Finish: float) -> KCreaseSpa
     return [(Param, Measure(Param)) for Param in Params]
 
 
+# the golden peak contract needs a shared interpretation so control cage contributions retain their intended weights
 def GoldenPeak(
     Measure: KCreaseTurn, Facing: float, Lower: float, Upper: float
 ) -> float:
@@ -103,6 +143,7 @@ def GoldenPeak(
     return max(InsideValue, OutsideValue)
 
 
+# the peak turn contract needs a shared interpretation so control cage contributions retain their intended weights
 def PeakTurn(Measure: KCreaseTurn, Samples: KCreaseSpan, Facing: float) -> float:
     Values = [Facing * Angle for _, Angle in Samples]
     Leader = Values.index(max(Values))
@@ -113,14 +154,19 @@ def PeakTurn(Measure: KCreaseTurn, Samples: KCreaseSpan, Facing: float) -> float
     return max(Values[Leader], GoldenPeak(Measure, Facing, Lower, Upper))
 
 
+# the flat decision must stay consistent so control cage contributions retain their intended weights
 def IsFlat(Samples: KCreaseSpan) -> bool:
     return all(abs(Angle) <= KFlatTurn for _, Angle in Samples)
 
 
+# the span facing contract needs a shared interpretation so control cage contributions retain their intended weights
 def SpanFacing(Samples: KCreaseSpan) -> float:
+
+    # ordering by abs entry 1 must stay deterministic so spline stencil reconstruction resolves equivalent inputs consistently
     return math.copysign(1.0, max(Samples, key=lambda Entry: abs(Entry[1]))[1])
 
 
+# piece class needs an explicit validity boundary so control cage contributions retain their intended weights
 def PieceClass(Measure: KCreaseTurn, Spans: list[KCreaseSpan]) -> str:
     Samples = Spans[0][:1] + [Entry for SpanValue in Spans for Entry in SpanValue[1:]]
     Rising, Falling = PeakTurn(Measure, Samples, 1.0), PeakTurn(Measure, Samples, -1.0)
@@ -129,6 +175,7 @@ def PieceClass(Measure: KCreaseTurn, Spans: list[KCreaseSpan]) -> str:
     return "tangent" if max(Rising, Falling) <= KTangentTurn else "unknown"
 
 
+# the mirrored decision must stay consistent so control cage contributions retain their intended weights
 def IsMirrored(Before: KCreaseSpan, After: KCreaseSpan) -> bool:
     Lengths = (Before[-1][0] - Before[0][0], After[-1][0] - After[0][0])
     if len(Before) != len(After) or abs(Lengths[0] - Lengths[1]) > KSeamSlack:
@@ -139,6 +186,7 @@ def IsMirrored(Before: KCreaseSpan, After: KCreaseSpan) -> bool:
     )
 
 
+# the break decision must stay consistent so control cage contributions retain their intended weights
 def IsBreak(Before: KCreaseSpan, After: KCreaseSpan, Labels: list[str]) -> bool:
     if Labels == ["tangent", "tangent"]:
         return False
@@ -147,6 +195,7 @@ def IsBreak(Before: KCreaseSpan, After: KCreaseSpan, Labels: list[str]) -> bool:
     return "tangent" not in Labels or not IsMirrored(Before, After)
 
 
+# the sign root contract needs a shared interpretation so control cage contributions retain their intended weights
 def SignRoot(Measure: KCreaseTurn, Lower: float, Upper: float) -> float:
     Facing = Measure(Lower) > 0.0
     for _ in range(KRootSteps):
@@ -163,6 +212,7 @@ def SignRoot(Measure: KCreaseTurn, Lower: float, Upper: float) -> float:
     return 0.5 * (Lower + Upper)
 
 
+# the root spans contract needs a shared interpretation so control cage contributions retain their intended weights
 def RootSpans(Measure: KCreaseTurn, SpanValue: KCreaseSpan) -> list[KCreaseSpan]:
     Signed = [Entry for Entry in SpanValue if abs(Entry[1]) > KFlatTurn]
     Roots = [
@@ -184,6 +234,7 @@ def RootSpans(Measure: KCreaseTurn, SpanValue: KCreaseSpan) -> list[KCreaseSpan]
     return Parts
 
 
+# the edge spans contract needs a shared interpretation so control cage contributions retain their intended weights
 def EdgeSpans(
     Curve: BsCurve, Sides: list[KCreaseSide], Lower: float, Upper: float
 ) -> list[KCreaseSpan]:
@@ -196,10 +247,12 @@ def EdgeSpans(
     ]
 
 
+# the side samples contract needs a shared interpretation so control cage contributions retain their intended weights
 def SideSamples(Spans: list[KCreaseSpan]) -> KCreaseSpan:
     return Spans[0][:1] + [Entry for SpanValue in Spans for Entry in SpanValue[1:]]
 
 
+# the root turned decision must stay consistent so control cage contributions retain their intended weights
 def IsRootTurned(Measure: KCreaseTurn, Spans: list[KCreaseSpan], Index: int) -> bool:
     Sides = ((Spans[max(Index - 2, 0) : Index], -1), (Spans[Index : Index + 2], 0))
     return all(
@@ -209,6 +262,7 @@ def IsRootTurned(Measure: KCreaseTurn, Spans: list[KCreaseSpan], Index: int) -> 
     )
 
 
+# the joined decision must stay consistent so control cage contributions retain their intended weights
 def IsJoined(
     Measure: KCreaseTurn,
     Spans: list[KCreaseSpan],
@@ -225,6 +279,7 @@ def IsJoined(
     return False
 
 
+# the wide root decision must stay consistent so control cage contributions retain their intended weights
 def IsWideRoot(
     Measure: KCreaseTurn,
     Spans: list[KCreaseSpan],
@@ -237,6 +292,7 @@ def IsWideRoot(
     return not IsRootTurned(Measure, Spans, Index)
 
 
+# the halving decision must stay consistent so control cage contributions retain their intended weights
 def IsHalving(Places: list[float]) -> bool:
     if len(Places) <= KEndReach + 1:
         return False
@@ -247,6 +303,7 @@ def IsHalving(Places: list[float]) -> bool:
     )
 
 
+# the cage knots contract needs a shared interpretation so control cage contributions retain their intended weights
 def CageKnots(Knots: tuple[float, ...], Lower: float, Upper: float) -> list[float]:
     Places = [
         Lower,
@@ -260,12 +317,14 @@ def CageKnots(Knots: tuple[float, ...], Lower: float, Upper: float) -> list[floa
     return Places
 
 
+# the chord length contract needs a shared interpretation so control cage contributions retain their intended weights
 def ChordLength(Curve: BsCurve, Begin: float, Finish: float) -> float:
     Start, _ = CurveFrame(Curve, Begin)
     Close, _ = CurveFrame(Curve, Finish)
     return math.dist(Start, Close)
 
 
+# the steep decision must stay consistent so control cage contributions retain their intended weights
 def IsSteep(Curve: BsCurve, Spans: list[KCreaseSpan]) -> bool:
     Pairs = [Couple for SpanValue in Spans for Couple in zip(SpanValue, SpanValue[1:])]
     ByParam = any(
@@ -282,6 +341,7 @@ def IsSteep(Curve: BsCurve, Spans: list[KCreaseSpan]) -> bool:
     return ByParam
 
 
+# the knot spans contract needs a shared interpretation so control cage contributions retain their intended weights
 def KnotSpans(
     Measure: KCreaseTurn, Places: list[float], Place: int
 ) -> list[KCreaseSpan]:
@@ -296,6 +356,7 @@ def KnotSpans(
     ]
 
 
+# the calm decision must stay consistent so control cage contributions retain their intended weights
 def IsCalm(
     Measure: KCreaseTurn, Spans: list[KCreaseSpan], Begin: float, Finish: float
 ) -> bool:
@@ -308,6 +369,7 @@ def IsCalm(
     return max(Rising, Falling) <= KTangentTurn
 
 
+# the ends operation needs one orchestration boundary so control cage contributions retain their intended weights
 def RunEnds(
     Measure: KCreaseTurn,
     Spans: list[KCreaseSpan],
@@ -325,10 +387,12 @@ def RunEnds(
     return Opening + 1, Closing - 1
 
 
+# the turn excess contract needs a shared interpretation so control cage contributions retain their intended weights
 def TurnExcess(Measure: KCreaseTurn, Param: float) -> float:
     return abs(Measure(Param)) - KTangentTurn
 
 
+# the place operation needs one geometric convention so control cage contributions retain their intended weights
 def CrossPlace(
     Measure: KCreaseTurn, Spans: list[KCreaseSpan], Index: int, Toward: float
 ) -> float:
@@ -343,6 +407,7 @@ def CrossPlace(
     return SignRoot(BindArgs(TurnExcess, Measure), Bounds[0], Bounds[1])
 
 
+# lean sign needs an explicit validity boundary so control cage contributions retain their intended weights
 def LeanSign(
     Measure: KCreaseTurn, Spans: list[KCreaseSpan], Index: int, Reach: float
 ) -> float:
@@ -362,6 +427,7 @@ def LeanSign(
     return math.copysign(1.0, Slant)
 
 
+# the left choice contract needs a shared interpretation so control cage contributions retain their intended weights
 def LeftChoice(
     Leaning: float,
     IsLeftSteep: Callable[[], bool],
@@ -375,6 +441,7 @@ def LeftChoice(
     return Marks[0]
 
 
+# right choice needs an explicit validity boundary so control cage contributions retain their intended weights
 def RightChoice(
     Leaning: float,
     Steeps: tuple[Callable[[], bool], Callable[[], bool]],
@@ -389,6 +456,7 @@ def RightChoice(
     raise ValueError(KCreaseFault)
 
 
+# root split needs an explicit validity boundary so control cage contributions retain their intended weights
 def RootSplit(
     Curve: BsCurve,
     Measure: KCreaseTurn,
@@ -421,6 +489,7 @@ def RootSplit(
     return None
 
 
+# wide pieces needs an explicit validity boundary so control cage contributions retain their intended weights
 def WidePieces(
     Curve: BsCurve,
     Measure: KCreaseTurn,
@@ -443,6 +512,7 @@ def WidePieces(
     ]
 
 
+# the both marked decision must stay consistent so control cage contributions retain their intended weights
 def IsBothMarked(Values: list[float], Lower: float, Upper: float) -> bool:
     Width = Upper - Lower
     Slack = KSeamSlack * max(1.0, abs(Width))
@@ -459,6 +529,7 @@ def IsBothMarked(Values: list[float], Lower: float, Upper: float) -> bool:
     )
 
 
+# the two ended decision must stay consistent so control cage contributions retain their intended weights
 def IsTwoEnded(Knots: tuple[float, ...], Place: float) -> bool:
     Values = sorted(set(Knots))
     return any(
@@ -470,6 +541,7 @@ def IsTwoEnded(Knots: tuple[float, ...], Place: float) -> bool:
     )
 
 
+# invalid cuts input must fail here so control cage contributions retain their intended weights
 def CheckCuts(
     Pieces: list[KCreasePiece], Knots: tuple[float, ...], Skipped: tuple[float, ...]
 ) -> list[KCreasePiece]:
@@ -479,6 +551,7 @@ def CheckCuts(
     return Pieces
 
 
+# the span pieces contract needs a shared interpretation so control cage contributions retain their intended weights
 def SpanPieces(
     Measure: KCreaseTurn,
     Spans: list[KCreaseSpan],
@@ -506,11 +579,13 @@ def SpanPieces(
     return CheckCuts(Found, Knots, Knots)
 
 
+# the edge range contract needs a shared interpretation so control cage contributions retain their intended weights
 def EdgeRange(EdgeValue: FormEdge) -> tuple[float, float]:
     Knots = EdgeValue.Curve.Knots
     return EdgeValue.Bounds or (Knots[0], Knots[-1])
 
 
+# the seam move contract needs a shared interpretation so control cage contributions retain their intended weights
 def SeamMove(Values: list[float], Toward: float, Lower: float, Upper: float) -> float:
     if Toward < 0.0 and all(abs(Value - Lower) <= KSeamSlack for Value in Values):
         return Upper - Lower
@@ -519,6 +594,7 @@ def SeamMove(Values: list[float], Toward: float, Lower: float, Upper: float) -> 
     return 0.0
 
 
+# the inside use contract needs a shared interpretation so control cage contributions retain their intended weights
 def InsideUse(Cache: NubsSurface, UseValue: FormUse) -> FormUse:
     Poles = UseValue.Pcurve.Poles
     Sense = -1.0 if UseValue.Reversed else 1.0
@@ -545,6 +621,7 @@ def InsideUse(Cache: NubsSurface, UseValue: FormUse) -> FormUse:
     return ReplaceValue(UseValue, Pcurve=ReplaceValue(UseValue.Pcurve, Poles=Moved))
 
 
+# the edge sides contract needs a shared interpretation so control cage contributions retain their intended weights
 def EdgeSides(BodyValue: FormBody) -> dict[int, list[KCreaseSide]]:
     Sides: dict[int, list[KCreaseSide]] = {}
     for FaceValue in BodyValue.Faces:
@@ -557,6 +634,7 @@ def EdgeSides(BodyValue: FormBody) -> dict[int, list[KCreaseSide]]:
     return Sides
 
 
+# curve groups needs an explicit validity boundary so control cage contributions retain their intended weights
 def CurveGroups(
     BodyValue: FormBody, Sides: dict[int, list[KCreaseSide]]
 ) -> list[list[int]]:
@@ -567,12 +645,15 @@ def CurveGroups(
         if EdgeValue.Convexity not in ("tangent", "unknown"):
             raise ValueError("Fusion Form crease check needs tangent or unknown edges")
         Groups.setdefault(EdgeValue.Curve, []).append(EdgeIndex)
+
+    # ordering by body value edges place 0 must stay deterministic so spline stencil reconstruction resolves equivalent inputs consistently
     return [
         sorted(Members, key=lambda Place: EdgeRange(BodyValue.Edges[Place])[0])
         for Members in Groups.values()
     ]
 
 
+# the group pieces contract needs a stable decomposition so control cage contributions retain their intended weights
 def GroupPieces(
     BodyValue: FormBody, Sides: dict[int, list[KCreaseSide]], Members: list[int]
 ) -> list[list[KCreasePiece]]:
@@ -605,6 +686,7 @@ def GroupPieces(
     return Found
 
 
+# the lead reversed contract needs a shared interpretation so control cage contributions retain their intended weights
 def LeadReversed(BodyValue: FormBody) -> frozenset[int]:
     Found: dict[int, bool] = {}
     for FaceValue in BodyValue.Faces:
@@ -613,6 +695,7 @@ def LeadReversed(BodyValue: FormBody) -> frozenset[int]:
     return frozenset(Index for Index, Backward in Found.items() if Backward)
 
 
+# the split edge contract needs a stable decomposition so control cage contributions retain their intended weights
 def SplitEdgeMut(
     EdgeValue: FormEdge, Pieces: list[KCreasePiece], Points: list[KJournalVector]
 ) -> list[FormEdge]:
@@ -636,6 +719,7 @@ def SplitEdgeMut(
     ]
 
 
+# the order points contract needs a stable decomposition so control cage contributions retain their intended weights
 def OrderPoints(
     Points: list[KJournalVector], Edges: list[FormEdge]
 ) -> tuple[tuple[KJournalVector, ...], tuple[FormEdge, ...]]:
@@ -659,6 +743,7 @@ def OrderPoints(
     return tuple(Placed), Renamed
 
 
+# the split uses contract needs a stable decomposition so control cage contributions retain their intended weights
 def SplitUses(FaceValue: FormFace, Places: list[list[int]]) -> FormFace:
     UseList = tuple(
         ReplaceValue(UseValue, EdgeIndex=Place)
@@ -672,6 +757,7 @@ def SplitUses(FaceValue: FormFace, Places: list[list[int]]) -> FormFace:
     return ReplaceValue(FaceValue, Uses=UseList)
 
 
+# the classify edges contract needs a shared interpretation so control cage contributions retain their intended weights
 def ClassifyEdges(BodyValue: FormBody) -> FormBody:
     Sides = EdgeSides(BodyValue)
     Found: dict[int, list[KCreasePiece]] = {}

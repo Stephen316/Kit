@@ -5,9 +5,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Objects.NameObject import NameObjec
 from convert.formats.Fusion.DrawingCodec.Dwg.Objects.SplitObject import SplitObject
 from convert.formats.Fusion.DrawingCodec.Dwg.Objects.TypeObject import TypeObject
 
+# object marker must remain consistent across callers so section boundaries and object references remain consistent
 KObjectMarker = 0x0DCA
 
 
+# the objects operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadObjects(
     DataValue: bytes, ClassTable: DwgClassTable, VersionText: str
 ) -> tuple[DwgObject, ...]:

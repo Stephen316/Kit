@@ -11,15 +11,20 @@ from convert.formats.Fusion.LinkAuthor.Model.PlacedPart import PlacedPart
 from convert.formats.Fusion.LinkAuthor.Model.RigidJoint import RigidJoint
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaCtx import CheckCtxUrn
 
+# max targets must remain consistent across callers so cross document references retain their intended ownership
 KMaxTargets = 64
 
+# max name text must remain consistent across callers so cross document references retain their intended ownership
 KMaxNameText = 200
 
+# max path text needs a stable location so document link authoring resolves inputs independently of the caller working directory
 KMaxPathText = 1024
 
+# the bad name text vocabulary must stay centralized so document link authoring agrees on supported native identities
 KBadNameText = frozenset('/\\:*?"<>|')
 
 
+# the plain name decision must stay consistent so cross document references retain their intended ownership
 def IsPlainName(TextValue: object, Limit: int) -> bool:
     return (
         type(TextValue) is str
@@ -30,6 +35,7 @@ def IsPlainName(TextValue: object, Limit: int) -> bool:
     )
 
 
+# invalid target input must fail here so cross document references retain their intended ownership
 def CheckTarget(Value: object) -> LinkTarget:
     if not isinstance(Value, LinkTarget):
         raise ValueError("Fusion assembly target must be a link target")
@@ -43,6 +49,7 @@ def CheckTarget(Value: object) -> LinkTarget:
     return Target
 
 
+# invalid placement input must fail here so cross document references retain their intended ownership
 def CheckPlacement(Value: object, Targets: int) -> PlacedPart:
     if not isinstance(Value, PlacedPart):
         raise ValueError("Fusion assembly placement must be a placed part")
@@ -58,6 +65,7 @@ def CheckPlacement(Value: object, Targets: int) -> PlacedPart:
     return Replace(Placement, Matrix=CheckMatrix(Placement.Matrix))
 
 
+# invalid joint input must fail here so cross document references retain their intended ownership
 def CheckJoint(Value: object, Placements: int) -> RigidJoint | None:
     if Value is None:
         return None
@@ -72,6 +80,7 @@ def CheckJoint(Value: object, Placements: int) -> RigidJoint | None:
     return Joint
 
 
+# invalid asm specification input must fail here so cross document references retain their intended ownership
 def CheckAsmSpec(Value: object) -> AssemblySpec:
     if not isinstance(Value, AssemblySpec):
         raise ValueError("Fusion assembly authoring needs an assembly spec")

@@ -1,6 +1,7 @@
 from convert.adapters import AdapterRegistry
 
 
+# shared assert aliases setup keeps fixtures consistent so format translation failures identify the intended compatibility boundary
 def AssertAliases(Registry: AdapterRegistry) -> None:
     for ReaderData in Registry.readers():
         for FormatId in (ReaderData.info.format_id, *ReaderData.info.aliases):

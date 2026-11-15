@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadLocalRef import (
 )
 
 
+# the subjects operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadSubjectsMut(Cursor: MetaCursor) -> tuple[SubjectEntry, ...]:
     Subjects: list[SubjectEntry] = []
     for _ in range(Cursor.ReadCount(KMaxFeatureRefs)):

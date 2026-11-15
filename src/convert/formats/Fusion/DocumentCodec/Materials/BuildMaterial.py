@@ -17,6 +17,7 @@ from convert.formats.Fusion.MaterialCodec.Package.MakePackage import MakePackage
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the material operation needs a consistent construction rule so appearance references remain connected to their owning entities
 def BuildMaterial(SpecValue: MaterialSpec) -> AuthoredMat:
     CheckMaterial(SpecValue)
     Identity = CreateMatIds()
@@ -32,6 +33,7 @@ def BuildMaterial(SpecValue: MaterialSpec) -> AuthoredMat:
     return AuthoredMat(Identity, Package)
 
 
+# schema closure needs an explicit validity boundary so appearance references remain connected to their owning entities
 def SchemaClosure(
     Names: tuple[str, ...], Schemas: tuple[SchemaNode, ...]
 ) -> tuple[SchemaNode, ...]:

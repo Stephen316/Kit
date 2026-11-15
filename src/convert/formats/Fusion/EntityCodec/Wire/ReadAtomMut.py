@@ -7,6 +7,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadScalar import ReadScalarMut
 
 
+# the atom operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadAtomMut(Cursor: MetaCursor, Shape: WireType) -> bool | int | float:
     if Shape.KindValue in KSharedKinds:
         Value = ReadScalarMut(Cursor, KSharedKinds[Shape.KindValue])

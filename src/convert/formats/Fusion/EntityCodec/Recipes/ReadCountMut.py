@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
+# the count operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadCountMut(Cursor: MetaCursor, Catalog: EntityCatalog) -> int:
     Count = int(ReadAtomMut(Cursor, WireType("i32")))
     if not 0 <= Count <= KMaxCount:

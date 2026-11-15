@@ -3,6 +3,7 @@ from convert.formats.Fusion.EntityCodec.Model.SegmentRef import SegmentRef
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the observer counts contract needs a shared interpretation so archive members retain their native ownership and reference relationships
 def ObserverCounts(Records: tuple[EntityRecord, ...]) -> dict[int, int]:
     Counts: dict[int, int] = {}
     for Record in Records:

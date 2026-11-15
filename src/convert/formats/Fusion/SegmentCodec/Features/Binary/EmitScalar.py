@@ -6,6 +6,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldK
 from convert.formats.Fusion.SegmentCodec.Features.Binary.ScalarKinds import KScalarKinds
 
 
+# the scalar operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitScalar(KindValue: FieldKind, Value: KFieldValue) -> bytes:
     CodeValue = KScalarKinds[KindValue][0]
     Lower, Upper = KScalarKinds[KindValue][2:]

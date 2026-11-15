@@ -19,6 +19,7 @@ from convert.formats.Fusion.DocumentCodec.Form.MassAccum import MassAccumMut
 from convert.formats.Fusion.DocumentCodec.Form.VectorMath import CrossProduct
 
 
+# the surface mass contract needs a shared interpretation so editable control cages retain their document relationships
 def SurfaceMass(Surface: NubsSurface) -> dict[str, float]:
     Total = dict.fromkeys(("area", "volume", *KPowerMap), 0.0)
     KnotsU = tuple(Value.Value for Value in Surface.KnotsU)

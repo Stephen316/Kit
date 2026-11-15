@@ -11,9 +11,11 @@ from convert.formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
 from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
+# the rejection cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRejection = "qualified authored feature profile|exceeds its history allocator"
 
 
+# the history gate contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("RoleName", ("operation", "secondary", "body"))
 def TestHistoryGate(TmpPath: FilePath, RoleName: str) -> None:
     Source = TmpPath / "Source.f3d"
@@ -38,6 +40,7 @@ def TestHistoryGate(TmpPath: FilePath, RoleName: str) -> None:
     assert not Target.exists()
 
 
+# shared alter identity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AlterIdentity(Identity: BodyIdentity, RoleName: str) -> BodyIdentity:
     if RoleName == "operation":
         return ReplaceData(Identity, OperationId=302)

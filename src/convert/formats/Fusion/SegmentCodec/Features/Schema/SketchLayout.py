@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import Clas
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
+# sketch layout must remain consistent across callers so native records retain their segment ownership and schema
 KSketchLayout = ClassLayout(
     ClassStamp(
         "8DA771B7-52ED-42FC-94E2-2353FE141373",

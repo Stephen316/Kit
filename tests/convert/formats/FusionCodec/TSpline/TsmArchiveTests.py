@@ -11,6 +11,7 @@ from tests.convert.formats.FusionCodec.TSpline.ReadTsmFile import ReadTsmFile
 from tests.convert.formats.FusionCodec.TSpline.TsmCase import TsmCase
 
 
+# the tsm archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "CaseValue", ReadTsmCases(), ids=lambda CaseValue: CaseValue["Name"]
 )

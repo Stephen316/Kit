@@ -7,15 +7,29 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import (
 )
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
+# the knot map shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KKnotMap = dict[Fraction, int]
+
+# cell adds must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KCellAdds = KMapping[int, tuple[tuple[bool, Fraction], ...]]
+
+# the face point shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KFacePoint = tuple[Fraction, Fraction]
+
+# the corner steps order must stay explicit so neighboring patches retain consistent subdivision boundaries
 KCornerSteps = ((0, 0), (1, 0), (1, 1), (0, 1))
+
+# end count needs one explicit bound so spline pole reconstruction cannot accept inconsistent resource or layout limits
 KEndCount = 3
+
+# corner sharp must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KCornerSharp = 3
+
+# crease sharp must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KCreaseSharp = 2
 
 
+# region knots needs an explicit state contract so neighboring patches retain consistent subdivision boundaries
 @MakeDataClass(frozen=True, slots=True)
 class RegionKnots:
     KnotsU: KMapping[Fraction, int]
@@ -25,10 +39,12 @@ class RegionKnots:
     RangeV: tuple[Fraction, Fraction]
 
 
+# the sharp count contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SharpCount(Graph: CageGraph, Vertex: int) -> int:
     return sum(1 for LinkIndex in Graph.Fans[Vertex] if Graph.Creased[LinkIndex])
 
 
+# the sector sizes contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SectorSizes(Graph: CageGraph, Vertex: int) -> list[int]:
     FanLinks = Graph.Fans[Vertex]
     Marks = [
@@ -40,6 +56,7 @@ def SectorSizes(Graph: CageGraph, Vertex: int) -> list[int]:
     ] or [len(FanLinks)]
 
 
+# the cap point decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsCapPoint(Graph: CageGraph, Vertex: int) -> bool:
     Count = SharpCount(Graph, Vertex)
     if not Graph.Inside[Vertex] or Count >= KCornerSharp:
@@ -51,16 +68,19 @@ def IsCapPoint(Graph: CageGraph, Vertex: int) -> bool:
     return len(Graph.Fans[Vertex]) != 4 or Count == 1
 
 
+# the corner point decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsCornerPoint(Graph: CageGraph, Vertex: int) -> bool:
     return Graph.Inside[Vertex] and SharpCount(Graph, Vertex) >= KCornerSharp
 
 
+# the fixed point decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsFixedPoint(Graph: CageGraph, Vertex: int) -> bool:
     if not IsCornerPoint(Graph, Vertex):
         return False
     return any(SizeValue != 1 for SizeValue in SectorSizes(Graph, Vertex))
 
 
+# the fixed level contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FixedLevel(Graph: CageGraph, Vertex: int) -> int:
     Heads = (Graph.Heads[LinkIndex] for LinkIndex in Graph.Fans[Vertex])
     if any(
@@ -71,6 +91,7 @@ def FixedLevel(Graph: CageGraph, Vertex: int) -> int:
     return 1
 
 
+# the fixed points contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FixedPoints(Graph: CageGraph) -> dict[int, int]:
     return {
         Vertex: FixedLevel(Graph, Vertex)
@@ -79,10 +100,12 @@ def FixedPoints(Graph: CageGraph) -> dict[int, int]:
     }
 
 
+# the fixed knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FixedKnots(Level: int) -> tuple[tuple[Fraction, int], ...]:
     return tuple((Fraction(1, 2**Power), 1) for Power in range(1, Level + 2))
 
 
+# the cap points contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CapPoints(Graph: CageGraph) -> dict[int, int]:
     Capped = frozenset(
         Vertex for Vertex in range(len(Graph.Fans)) if IsCapPoint(Graph, Vertex)
@@ -97,6 +120,7 @@ def CapPoints(Graph: CageGraph) -> dict[int, int]:
     }
 
 
+# the corner knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CornerKnots(Level: int) -> KKnotMap:
     Spacing = Fraction(1, 2 ** (Level + 1))
     Found: KKnotMap = {Fraction(0): 2, Spacing: 2, 2 * Spacing: 2}
@@ -105,10 +129,12 @@ def CornerKnots(Level: int) -> KKnotMap:
     return Found
 
 
+# the merge contract needs a stable decomposition so neighboring patches retain consistent subdivision boundaries
 def MergeMut(Target: KKnotMap, Value: Fraction, Count: int) -> None:
     Target[Value] = max(Target.get(Value, 0), Count)
 
 
+# the face point contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FacePoint(
     CellValue: PatchCell, Scale: int, PointS: Fraction, PointT: Fraction
 ) -> KFacePoint:
@@ -119,11 +145,13 @@ def FacePoint(
     return (PlaceU, PlaceV)
 
 
+# the corner point contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CornerPoint(CellValue: PatchCell, Scale: int, Corner: int) -> KFacePoint:
     StepPair = KCornerSteps[Corner % 4]
     return FacePoint(CellValue, Scale, Fraction(StepPair[0]), Fraction(StepPair[1]))
 
 
+# the along u decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsAlongU(CellValue: PatchCell, Scale: int, SideIndex: int) -> bool:
     return (
         CornerPoint(CellValue, Scale, SideIndex)[0]
@@ -131,6 +159,7 @@ def IsAlongU(CellValue: PatchCell, Scale: int, SideIndex: int) -> bool:
     )
 
 
+# the cell lines contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellLines(
     Graph: CageGraph, CellValue: PatchCell, Scale: int, Levels: dict[int, int]
 ) -> list[tuple[bool, Fraction, int]]:
@@ -156,6 +185,7 @@ def CellLines(
     return Found
 
 
+# the base knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def BaseKnots(
     Graph: CageGraph, Cells: tuple[PatchCell, ...], Scale: int, Levels: dict[int, int]
 ) -> tuple[KKnotMap, KKnotMap]:

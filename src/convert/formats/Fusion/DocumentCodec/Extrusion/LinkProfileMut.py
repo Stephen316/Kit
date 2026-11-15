@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Extrusion.SideRecipe import SideRecipe
 from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 
 
+# link profile must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkProfileMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Author.Change(

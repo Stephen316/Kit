@@ -12,6 +12,7 @@ from convert.formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage
 from convert.formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage
 
 
+# the missing pack contract needs boundary coverage so stored document relationships remain consistent
 def TestMissingPack(TmpPath: FilePath) -> None:
     Source = EmitDocument(DocumentSpec("Missing material", "height", 17.0))
     Container = ReadContainer(Source)
@@ -26,6 +27,7 @@ def TestMissingPack(TmpPath: FilePath) -> None:
         _ = ReadDocument(Target.read_bytes())
 
 
+# the wrong role contract needs boundary coverage so stored document relationships remain consistent
 def TestWrongRole(TmpPath: FilePath) -> None:
     Source = EmitDocument(DocumentSpec("Wrong material role", "height", 17.0))
     Container = ReadContainer(Source)

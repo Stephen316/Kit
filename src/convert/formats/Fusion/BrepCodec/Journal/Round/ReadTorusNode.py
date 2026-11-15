@@ -18,6 +18,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.CheckRoundNode import CheckR
 from convert.formats.Fusion.BrepCodec.Journal.Round.TorusNode import TorusNode
 
 
+# the torus node operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadTorusNode(Cursor: FieldCursor) -> TorusNode:
     Value = TorusNode(
         ReadPrefixMut(Cursor),

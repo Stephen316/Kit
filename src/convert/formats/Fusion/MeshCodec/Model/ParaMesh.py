@@ -6,6 +6,7 @@ from convert.formats.Fusion.MeshCodec.Model.MeshRegistry import MeshRegistry
 from convert.formats.Fusion.MeshCodec.Model.OctaNormal import OctaNormal
 
 
+# para mesh needs an explicit state contract so vertex and index streams retain their intended connectivity
 @dataclass(frozen=True)
 class ParaMesh:
     Registry: MeshRegistry

@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
 from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
 
 
+# the doc schemas operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadDocSchemas() -> tuple[ClassSchema, ...]:
     FusionPath = Path(__file__).parents[2]
     Paths = (

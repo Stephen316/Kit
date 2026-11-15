@@ -30,6 +30,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.EntityLayout import (
     KEntityLayout,
 )
 
+# feature layouts must remain consistent across callers so native records retain their segment ownership and schema
 KFeatureLayouts = ReadOnlyMap(
     {
         Layout.Stamp.ClassGuid.upper(): Layout

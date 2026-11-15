@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import Clas
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
+# extrude layout must remain consistent across callers so native records retain their segment ownership and schema
 KExtrudeLayout = ClassLayout(
     ClassStamp(
         "DD405BC2-D673-44F0-8833-5CB2A1C186C7",

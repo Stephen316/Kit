@@ -12,6 +12,7 @@ from tools.TestShards.Reuse.Cache.DescribeCache import DescribeCache
 from tools.TestShards.Reuse.Cache.MeasureModules import MeasureModules
 
 
+# the cache operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def WriteCache(Inputs: CacheInputs, RunText: str, OutputPath: FilePath) -> str:
     PythonText = next(iter(Inputs.Graph.Pythons))
     Stamp = {

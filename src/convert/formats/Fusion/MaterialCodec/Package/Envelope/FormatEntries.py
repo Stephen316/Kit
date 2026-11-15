@@ -11,6 +11,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.EmitPackageXml import (
 from convert.formats.Fusion.MaterialCodec.Package.Xml.TextElement import TextElement
 
 
+# the format entries contract needs a shared interpretation so typed appearance properties retain their native identifiers
 def FormatEntries() -> dict[str, bytes]:
     Types = XmlElement("Types", {"xmlns": KTypeNamespace})
     for Extension, ContentType in KContentTypes:

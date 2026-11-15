@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 from tools.TestShards.Reuse.Cache.ReadObject import ReadObject
 
 
+# find missing must resolve unambiguously so dependency changes cannot revive stale passing results
 def FindMissing(LogPaths: Sequence[FilePath]) -> list[str]:
     Missing: list[str] = []
     for LogPath in LogPaths:

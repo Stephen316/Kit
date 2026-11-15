@@ -4,6 +4,7 @@ from convert.formats.Fusion.ContainerCodec.Model.AssetLink import AssetLink
 from convert.formats.Fusion.ContainerCodec.Model.SegmentSlot import SegmentSlot
 
 
+# asset header needs an explicit state contract so archive members retain their native ownership and reference relationships
 @MakeDataClass(frozen=True, slots=True)
 class AssetHeader:
     AssetId: str

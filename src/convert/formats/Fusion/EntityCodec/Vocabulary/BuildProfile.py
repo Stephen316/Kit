@@ -8,6 +8,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.SelectClasses import SelectCl
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# the profile operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def BuildProfile(
     Classes: tuple[MetaClass, ...], Targets: tuple[ExternalTarget, ...] = ()
 ) -> EntityProfile:

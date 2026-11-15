@@ -11,6 +11,7 @@ from convert.formats.Fusion.MaterialCodec.Package.PackageLimits import (
 )
 
 
+# the package root operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadPackageRoot(Archive: IndexedArchive) -> tuple[str, bool]:
     if (
         len(Archive.Entries) > KMaxEntries

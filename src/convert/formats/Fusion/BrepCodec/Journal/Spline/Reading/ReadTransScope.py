@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Reading.ReadSubtrans import
 )
 
 
+# the trans scope operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadTransScope(Cursor: FieldCursor) -> SubtransNode | SubtypeRef:
     Scope = ReadScopeMut(Cursor, "subtrans")
     if isinstance(Scope, SubtypeRef):

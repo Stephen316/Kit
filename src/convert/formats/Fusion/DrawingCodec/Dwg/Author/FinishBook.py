@@ -19,10 +19,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Objects.FixedTypes import KFixedTypes
 
+# fixed numbers must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KFixedNumbers = {NameText: Number for Number, NameText in KFixedTypes.items()}
+
+# first handle must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KFirstHandle = 0x10
 
 
+# type number of needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def TypeNumberOf(ClassTable: DwgClassTable, ClassName: str) -> int:
     Number = KFixedNumbers.get(ClassName)
     if Number is not None:
@@ -33,6 +37,7 @@ def TypeNumberOf(ClassTable: DwgClassTable, ClassName: str) -> int:
     raise ValueError(f"Authored DWG class {ClassName!r} has no type number")
 
 
+# assign handles needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def AssignHandles(Ledger: DraftBook) -> dict[str, int]:
     KeyTexts = [Entry.KeyText for Entry in Ledger.DraftRows]
     if len(set(KeyTexts)) != len(KeyTexts):
@@ -52,6 +57,7 @@ def AssignHandles(Ledger: DraftBook) -> dict[str, int]:
     return Handles
 
 
+# the eed operation needs one orchestration boundary so drawing objects retain valid ownership and reference relationships
 def FinishEed(Block: DraftEed, Handles: Mapping[str, int], Slots: KSlotMap) -> DwgEed:
     AppRef = DwgHandleRef(
         Block.AppLink.RefCode, HandleOf(Handles, Block.AppLink.KeyText)
@@ -59,6 +65,7 @@ def FinishEed(Block: DraftEed, Handles: Mapping[str, int], Slots: KSlotMap) -> D
     return DwgEed(AppRef, ResolveRecord(Block.EedItems, Handles, Slots), b"")
 
 
+# the row operation needs one orchestration boundary so drawing objects retain valid ownership and reference relationships
 def FinishRow(
     Drafted: DraftRow,
     Handles: Mapping[str, int],
@@ -88,10 +95,12 @@ def FinishRow(
     )
 
 
+# the field map contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def FieldMap(Record: DwgRecord) -> dict[str, KDwgValue]:
     return {Entry.FieldName: Entry.FieldValue for Entry in Record.RecordFields}
 
 
+# the book operation needs one orchestration boundary so drawing objects retain valid ownership and reference relationships
 def FinishBook(
     Ledger: DraftBook, ClassTable: DwgClassTable, VersionText: str
 ) -> tuple[tuple[DwgObject, ...], dict[str, int]]:
@@ -103,5 +112,6 @@ def FinishBook(
     return tuple(sorted(Objects, key=HandleKey)), Handles
 
 
+# the handle key contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def HandleKey(Member: DwgObject) -> int:
     return Member.ObjectHandle

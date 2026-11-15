@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
 from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
 
 
+# invalid root order input must fail here so inconsistent revision links fail before history reconstruction
 def CheckRootOrder(
     Entities: tuple[KJournalEntity, ...], Order: tuple[int, ...]
 ) -> None:

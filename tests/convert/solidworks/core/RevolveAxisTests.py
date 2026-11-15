@@ -6,6 +6,7 @@ from convert.adapters.solidworks.core.Adapter import (
 )
 from convert.adapters.solidworks.container.Container import SldprtArchive
 
+# the sample cases must remain explicit so format translation exercises the intended compatibility boundary
 KSample = (
     FilePath(__file__).parents[4]
     / "re"
@@ -16,6 +17,7 @@ KSample = (
 )
 
 
+# the axis owner contract needs boundary coverage so independent codecs retain consistent data contracts
 def TestAxisOwner() -> None:
     Archive = SldprtArchive.open(KSample)
     Model = NativePartModel(Archive, None)

@@ -7,6 +7,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import (
 from convert.formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
 
 
+# the scene parts operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadSceneParts(Values: tuple[ContainerPart, ...]) -> GraphicScene | None:
     Parts = tuple(Entry for Entry in Values if Entry.Name.startswith("OGS.BlobFolder/"))
     if not Parts:

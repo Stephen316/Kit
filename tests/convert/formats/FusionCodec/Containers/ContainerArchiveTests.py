@@ -12,6 +12,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWi
 from tests.convert.formats.FusionCodec.Containers.MakeContainer import MakeContainer
 
 
+# the archive file contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Watermark", (3, 5, 7, 1024))
 def TestArchiveFile(TmpPath: FilePath, Watermark: int) -> None:
     Original = MakeContainer()
@@ -52,6 +53,7 @@ def TestArchiveFile(TmpPath: FilePath, Watermark: int) -> None:
     assert ReadContainer(Target.read_bytes()) == Value
 
 
+# the shared names contract needs boundary coverage so stored document relationships remain consistent
 def TestSharedNames(TmpPath: FilePath) -> None:
     Original = MakeContainer()
     Slots = tuple(

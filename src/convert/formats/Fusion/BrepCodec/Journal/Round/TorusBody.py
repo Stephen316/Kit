@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.CheckRoundSpan import CheckR
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# torus body needs an explicit state contract so topology changes retain their native revision relationships
 @MakeDataClass(frozen=True, slots=True)
 class TorusBody:
     MajorRadiusMm: float
@@ -19,6 +20,7 @@ class TorusBody:
     ReferenceAxis: KJournalVector = (1.0, 0.0, 0.0)
     EntityTag: int = 0
 
+    # invalid torus body state must fail at construction so journal reconstruction never receives an inconsistent contract
     def __post_init__(self) -> None:
         CheckRoundSpan(self.CenterMm, self.MajorRadiusMm)
         CheckRoundSpan(self.CenterMm, self.MinorRadiusMm)

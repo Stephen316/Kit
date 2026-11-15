@@ -28,6 +28,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.RuleWords import (
     Repeat,
 )
 
+# the named rules vocabulary must stay centralized so journal grammar decoding agrees on supported native identities
 KNamedRules: dict[str, KGrammarRule] = {
     "surface": Picks(
         13,

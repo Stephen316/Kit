@@ -31,11 +31,13 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.LocalKinds import (
 )
 
 
+# the cached specification contract needs a shared interpretation so section boundaries and object references remain consistent
 @MakeCache
 def CachedSpec(SpecText: str) -> tuple[SpecOp, ...]:
     return ParseSpec(SpecText)
 
 
+# the walk operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadWalk(
     SpecOps: tuple[SpecOp, ...], Streams: RecordStreams, Scopes: KScopes
 ) -> DwgRecord:
@@ -44,6 +46,7 @@ def ReadWalk(
     return DwgRecord(tuple(Fields))
 
 
+# the steps operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadStepsMut(
     SpecOps: tuple[SpecOp, ...],
     Streams: RecordStreams,
@@ -74,6 +77,7 @@ def ReadStepsMut(
             Fields.append(DwgField(Operation.OpName, Value))
 
 
+# the walk operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutWalkMut(
     SpecOps: tuple[SpecOp, ...], Record: DwgRecord, Sinks: RecordSinks, Scopes: KScopes
 ) -> None:
@@ -86,6 +90,7 @@ def PutWalkMut(
         )
 
 
+# the steps operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutStepsMut(
     SpecOps: tuple[SpecOp, ...],
     Pending: list[DwgField],

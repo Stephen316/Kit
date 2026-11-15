@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbString import EncodeSmbString
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the boundary representation header operation needs a consistent construction rule so topology identity survives native history reconstruction
 def EmitBrepHeader(
     Stamp: GeometryStamp,
     RootCount: int,

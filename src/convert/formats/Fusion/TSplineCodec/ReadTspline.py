@@ -14,6 +14,7 @@ from convert.formats.Fusion.TSplineCodec.Reading.ReadSymmetry import ReadSymmetr
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# the tspline operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadTspline(Payload: bytes) -> TsplineSurface:
     Cursor = MakeCursor(Payload)
     Header = ReadHeader(Cursor)

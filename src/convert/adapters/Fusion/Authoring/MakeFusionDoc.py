@@ -16,6 +16,7 @@ from interchange.records.RecordConfig import Configuration
 from interchange.records.RecordSource import CadSource
 
 
+# the fusion doc operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeFusionDoc(SpecValue: DocumentSpec) -> CadDocument:
     CheckDocSpec(SpecValue)
     Geometry, BodyValue = (

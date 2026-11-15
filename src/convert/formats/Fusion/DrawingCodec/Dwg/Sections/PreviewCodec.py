@@ -13,11 +13,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import RecordParts
 
+# preview start must remain consistent across callers so section boundaries and object references remain consistent
 KPreviewStart = bytes.fromhex("1f256d07d43628289d57ca3f9d44102b")
+
+# preview finish must remain consistent across callers so section boundaries and object references remain consistent
 KPreviewFinish = bytes.fromhex("e0da92f82bc9d7d762a835c062bbefd4")
+
+# the image names order must stay explicit so section boundaries and object references remain consistent
 KImageNames = ("ImageCode", "ImageStart", "ImageData")
 
 
+# the preview operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadPreview(DataValue: bytes) -> DwgRecord:
     if TakeSpan(DataValue, 0, 16, "preview start sentinel") != KPreviewStart:
         raise ValueError("DWG preview start sentinel mismatch")
@@ -47,6 +53,7 @@ def ReadPreview(DataValue: bytes) -> DwgRecord:
     return DwgRecord((DwgField("Images", tuple(Images)),))
 
 
+# the preview operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitPreview(Record: DwgRecord) -> bytes:
     Entries = bytearray()
     Payloads = bytearray()

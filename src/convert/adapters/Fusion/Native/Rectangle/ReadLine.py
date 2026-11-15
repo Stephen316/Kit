@@ -12,6 +12,7 @@ from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.VectorPlane import PlaneVector
 
 
+# the line operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadLine(Graph: NativeGraph, NodeValue: NativeNode) -> LineGeometry:
     Start = ResolveField(Graph, NodeValue, "rStartPoint", "Point3D")
     Finish = ResolveField(Graph, NodeValue, "rEndPoint", "Point3D")

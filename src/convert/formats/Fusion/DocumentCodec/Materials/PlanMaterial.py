@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Vocabulary.FamilyFields impo
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the plan material contract needs a stable decomposition so appearance references remain connected to their owning entities
 def PlanMaterial(
     SpecValue: MaterialSpec, Indexed: dict[str, SchemaNode]
 ) -> MaterialPlan:
@@ -40,6 +41,7 @@ def PlanMaterial(
     return MaterialPlan(Structural, Thermal, FinishName, FinishLocal)
 
 
+# the schema operation needs one orchestration boundary so appearance references remain connected to their owning entities
 def FinishSchema(Finish: FinishSpec, Indexed: dict[str, SchemaNode]) -> tuple[str, str]:
     Given = tuple(
         FieldKey for FieldKey in KFinishFields if getattr(Finish, FieldKey) is not None

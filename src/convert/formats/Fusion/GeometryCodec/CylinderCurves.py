@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the curves operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildCurves(Model: CylinderBody) -> tuple[GeometryRecord, ...]:
     Bound = KeywordToken("I")
     return tuple(

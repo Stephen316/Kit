@@ -5,6 +5,7 @@ from typing import cast as CastValue
 from convert.adapters.Fusion.State.DecodeRecord import DecodeEnum, DecodeRecord
 
 
+# the state operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def DecodeState(Value: object, Depth: int = 0) -> object:
     if Depth > 64:
         raise ValueError("Fusion semantic state exceeds nesting limit")
@@ -35,6 +36,7 @@ def DecodeState(Value: object, Depth: int = 0) -> object:
     raise ValueError("Unknown Fusion semantic-state encoding")
 
 
+# the fields operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def DecodeFields(Value: object, Depth: int) -> dict[str, object]:
     if not isinstance(Value, dict) or not all(
         isinstance(FieldKey, str) for FieldKey in CastValue(dict[object, object], Value)

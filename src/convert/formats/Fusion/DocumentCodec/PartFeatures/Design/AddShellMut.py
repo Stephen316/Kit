@@ -25,9 +25,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartStage import Pa
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.OpenShell import SideIndex
 
+# the shell tags shape must stay shared so design feature construction uses one contract for compatible values
 KShellTags = tuple[int, tuple[tuple[int, int], ...]]
 
 
+# shell tags needs an explicit validity boundary so modeling operations retain their document and timeline ownership
 def ShellTags(Solids: tuple[TagState, ...], Place: int, Stage: PartStage) -> KShellTags:
     Feature = Stage.Feature
     if not isinstance(Feature, ShellSpec):
@@ -42,6 +44,7 @@ def ShellTags(Solids: tuple[TagState, ...], Place: int, Stage: PartStage) -> KSh
     return RoofTag(Solids, Place), tuple(zip(Indices, TagSet))
 
 
+# the sides operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddSidesMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, TagSet: KShellTags
 ) -> list[str]:
@@ -62,6 +65,7 @@ def AddSidesMut(
     return Roles
 
 
+# the shell operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddShellMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, TagSet: KShellTags
 ) -> list[str]:

@@ -12,13 +12,16 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSlab import Pr
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SideProbe import SideProbe
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import SlabRoof
 
+# the regions shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KRegions = tuple[tuple[KPlaneLoop, ...], tuple[KPlaneLoop, ...]]
 
 
+# the cap side decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsCapSide(Regions: KRegions, Point: tuple[float, float]) -> bool:
     return IsInRegion(Regions[0], Point) and not IsInRegion(Regions[1], Point)
 
 
+# the ring pieces contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RingPieces(
     LoopValue: KPlaneLoop,
     Regions: KRegions,
@@ -39,6 +42,7 @@ def RingPieces(
     return Pieces
 
 
+# the cap rings contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CapRings(
     Level: float,
     Upward: bool,

@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityCatalog import EntityCatalo
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the nodes operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitNodesMut(
     Output: FeatureSink,
     Children: tuple[KRecipePayload, ...],

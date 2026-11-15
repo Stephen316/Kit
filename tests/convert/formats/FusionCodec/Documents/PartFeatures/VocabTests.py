@@ -21,6 +21,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.SweepTests import 
     KSweepCases,
 )
 
+# the required cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequired: tuple[tuple[str, str], ...] = (
     ("ASMRecipe", "m_Recipe"),
     ("DRBody", "operIdTypeMap"),
@@ -49,6 +50,8 @@ KRequired: tuple[tuple[str, str], ...] = (
     ("SketchEntityRecipe", "sketchId"),
     ("SketchEntityRecipe", "tag"),
 )
+
+# the drop cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDropCases: tuple[tuple[tuple[KPartFeature, ...], str, str], ...] = (
     (KSweepCases["SweepBend"], "DcSweepFeature", "profileNormal"),
     (KSweepCases["SweepBend"], "DcSweepToolBody", "isAlongDistanceParameterValid"),
@@ -59,6 +62,7 @@ KDropCases: tuple[tuple[tuple[KPartFeature, ...], str, str], ...] = (
 )
 
 
+# the neutral contract needs boundary coverage so stored document relationships remain consistent
 def TestNeutral() -> None:
     for ClassName, Fields in FeatureDefaults().items():
         for FieldName, Value in Fields.items():
@@ -66,11 +70,13 @@ def TestNeutral() -> None:
             assert not Value, ClassName + "." + FieldName
 
 
+# the required contract needs boundary coverage so stored document relationships remain consistent
 @Pytest.mark.parametrize(("ClassName", "FieldName"), KRequired)
 def TestRequired(ClassName: str, FieldName: str) -> None:
     assert FieldName not in FeatureDefaults()[ClassName]
 
 
+# the miss raises contract needs boundary coverage so stored document relationships remain consistent
 @Pytest.mark.parametrize(("Features", "ClassName", "FieldName"), KDropCases)
 def TestMissRaises(
     Features: tuple[KPartFeature, ...],
@@ -80,6 +86,7 @@ def TestMissRaises(
 ) -> None:
     Original = AuthorState.Change
 
+    # shared skip field setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
     def SkipField(Author: AuthorState, RoleName: str, **Fields: object) -> None:
         Remaining = {
             Named: Value for Named, Value in Fields.items() if Named != FieldName

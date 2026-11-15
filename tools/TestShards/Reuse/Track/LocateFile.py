@@ -3,11 +3,13 @@ from __future__ import annotations
 import os as OsLib
 from functools import lru_cache as Memoize
 
+# the skipped parts vocabulary must stay centralized so test reuse agrees on supported native identities
 KSkippedParts = frozenset(
     {".git", ".pytest_cache", ".venv", "__pycache__", "node_modules", "site-packages"}
 )
 
 
+# the locate file contract needs a shared interpretation so dependency changes cannot revive stale passing results
 @Memoize(maxsize=None)
 def LocateFile(RootText: str, FullText: str) -> str | None:
     RealText = OsLib.path.realpath(FullText)

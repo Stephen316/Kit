@@ -5,8 +5,10 @@ from convert.formats.Fusion.ContainerCodec.Model.RedirectDesign import RedirectD
 from convert.formats.Fusion.ContainerCodec.Model.RedirectRef import RedirectRef
 from convert.formats.Fusion.ContainerCodec.Wire.EmitRedirects import EmitRedirects
 
+# the stream keys order must stay explicit so archive members retain their native ownership and reference relationships
 KStreamKeys = ("name", "schema-version", "designs", "references")
 
+# the design keys order must stay explicit so archive members retain their native ownership and reference relationships
 KDesignKeys = (
     "file-version",
     "targetFileName",
@@ -15,9 +17,11 @@ KDesignKeys = (
     "versionUrn",
 )
 
+# the refer keys order must stay explicit so archive members retain their native ownership and reference relationships
 KReferKeys = ("from", "relativePath", "type", "properties")
 
 
+# the design row operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadDesignRow(Entry: KJsonValue) -> RedirectDesign:
     if not isinstance(Entry, dict) or tuple(Entry) != KDesignKeys:
         raise ValueError("Unsupported Fusion redirection design")
@@ -32,6 +36,7 @@ def ReadDesignRow(Entry: KJsonValue) -> RedirectDesign:
     )
 
 
+# the refer row operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadReferRow(Entry: KJsonValue) -> RedirectRef:
     if not isinstance(Entry, dict) or tuple(Entry) != KReferKeys:
         raise ValueError("Unsupported Fusion redirection reference")
@@ -56,6 +61,7 @@ def ReadReferRow(Entry: KJsonValue) -> RedirectRef:
     return RedirectRef(SourceName, TargetName, tuple(Properties))
 
 
+# the redirects operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadRedirects(Payload: bytes) -> DocRedirects:
     TreeValue = ReadJson(Payload)
     if not isinstance(TreeValue, dict) or tuple(TreeValue) != KStreamKeys:

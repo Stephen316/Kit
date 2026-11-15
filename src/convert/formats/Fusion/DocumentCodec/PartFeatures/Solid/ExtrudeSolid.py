@@ -20,6 +20,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import (
 )
 
 
+# the bound label contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def BoundLabel(
     Source: PrismSlab | None,
     Shaper: PrismSlab,
@@ -39,6 +40,7 @@ def BoundLabel(
     return Origin or Tooling or Fallback
 
 
+# the floor bound contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def FloorBound(
     Source: PrismSlab | None,
     Shaper: PrismSlab,
@@ -58,6 +60,7 @@ def FloorBound(
     return Origin or Tooling or Fallback
 
 
+# slice roof needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def SliceRoof(
     Source: PrismSlab | None,
     Shaper: PrismSlab,
@@ -75,6 +78,7 @@ def SliceRoof(
     return RegionOp(Source.Loops, Shaper.RoofLoops, "cut")
 
 
+# taper roof needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def TaperRoof(Loops: KRegion, RoofLoops: KRegion, Combine: str) -> KRegion:
     if not RoofLoops:
         return ()
@@ -85,6 +89,7 @@ def TaperRoof(Loops: KRegion, RoofLoops: KRegion, Combine: str) -> KRegion:
     return RoofLoops
 
 
+# the slice slab contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SliceSlab(
     Solid: PrismSolid, Shaper: PrismSlab, Bounds: tuple[float, float], Combine: str
 ) -> PrismSlab | None:
@@ -111,6 +116,7 @@ def SliceSlab(
     return PrismSlab(Lower, Upper, Loops, Floor, Ceiling, RoofLoops)
 
 
+# stack slabs needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def StackSlabs(Pieces: list[PrismSlab | None]) -> tuple[PrismSlab, ...]:
     Present = [Index for Index, Piece in enumerate(Pieces) if Piece is not None]
     Slabs: list[PrismSlab] = []
@@ -134,6 +140,7 @@ def StackSlabs(Pieces: list[PrismSlab | None]) -> tuple[PrismSlab, ...]:
     return tuple(Slabs)
 
 
+# the extrude solid contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ExtrudeSolid(
     Solid: PrismSolid, Shaper: PrismSlab, Combine: str, BodyLabel: FaceLabel | None
 ) -> PrismSolid:

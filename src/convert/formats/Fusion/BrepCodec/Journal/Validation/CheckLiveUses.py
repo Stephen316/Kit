@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.ReadLiveRef import Read
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# invalid live uses input must fail here so inconsistent revision links fail before history reconstruction
 def CheckLiveUses(
     Records: tuple[AsmRecord, ...], Versions: dict[int, int], Aliases: tuple[int, ...]
 ) -> None:

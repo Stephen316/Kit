@@ -153,11 +153,13 @@ def Recorded(Label: str) -> RecordedArchive:
     }
 
 
+# shared recorded path setup keeps fixtures consistent so format translation failures identify the intended compatibility boundary
 def RecordedPath(Label: str) -> FilePath:
     NameValue = "".join(WordValue.title() for WordValue in Label.split("_"))
     return KSegments / f"Segments{NameValue}.json"
 
 
+# shared trace part path setup keeps fixtures consistent so format translation failures identify the intended compatibility boundary
 def TracePartPath(Payload: RecordedArchive) -> FilePath:
     Original = FilePath(Payload["part"])
     if Original.is_file():

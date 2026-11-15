@@ -9,6 +9,7 @@ from convert.adapters.solidworks.container.Format import (
 )
 from tests.convert.solidworks.container.FrameFixture import FrameFixture
 
+# the sample cases must remain explicit so format translation exercises the intended compatibility boundary
 KSample = (
     FilePath(__file__).parents[4]
     / "re"
@@ -19,6 +20,7 @@ KSample = (
 )
 
 
+# the frame read contract needs boundary coverage so independent codecs retain consistent data contracts
 @TestMark.parametrize("Chained", (True, False))
 def TestFrameRead(Chained: bool) -> None:
     Original = ReadSldprt(KSample)
@@ -43,6 +45,7 @@ def TestFrameRead(Chained: bool) -> None:
         assert ItemValue.provenance.spans[0].length == len(Section)
 
 
+# the frame damage contract needs boundary coverage so independent codecs retain consistent data contracts
 @TestMark.parametrize("Damage", ("checksum", "truncated", "trailing", "size"))
 def TestFrameDamage(Damage: str) -> None:
     Streams = SldprtArchive.open(KSample).streams

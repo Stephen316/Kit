@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakePoints import (
 )
 
 
+# the nubs surf operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeNubsSurf(Value: NubsSurface) -> tuple[KAsmToken, ...]:
     KnotsU = MakeKnots(Value.KnotsU)
     KnotsV = MakeKnots(Value.KnotsV)

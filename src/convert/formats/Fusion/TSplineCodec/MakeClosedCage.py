@@ -9,6 +9,7 @@ from convert.formats.Fusion.TSplineCodec.Authoring.MakeTopology import MakeTopol
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# the closed cage operation needs a consistent construction rule so control cage topology retains its native connectivity
 def MakeClosedCage(
     Vertices: tuple[ControlGrip, ...],
     Faces: tuple[tuple[int, ...], ...],

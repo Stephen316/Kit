@@ -14,6 +14,7 @@ from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerP
 from convert.formats.Fusion.ContainerCodec.Preview.CheckPreview import CheckPreview
 
 
+# invalid parts input must fail here so archive members retain their native ownership and reference relationships
 def CheckParts(Values: tuple[ContainerPart, ...], *, IsPreview: bool = False) -> None:
     if type(Values) is not tuple or len(Values) > KMaxZipEntries:
         raise ValueError("Invalid Fusion container parts")

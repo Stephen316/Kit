@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
 )
 
 
+# map point must resolve unambiguously so topology changes retain their native revision relationships
 def MapPoint(Value: TransformNode, Point: KJournalVector) -> KJournalVector:
     Coordinates = tuple(
         Value.ScaleFactor

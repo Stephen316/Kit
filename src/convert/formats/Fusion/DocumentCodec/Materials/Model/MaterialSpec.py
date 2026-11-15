@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import (
 from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 
 
+# material specification needs an explicit state contract so appearance references remain connected to their owning entities
 @MakeDataClass(frozen=True, slots=True)
 class MaterialSpec:
     NameValue: str = "Kit Generic Material"

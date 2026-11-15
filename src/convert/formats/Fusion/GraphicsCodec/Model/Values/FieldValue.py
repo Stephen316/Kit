@@ -7,6 +7,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.OverrideSet import Overri
 from convert.formats.Fusion.GraphicsCodec.Model.Values.KSetValue import KSetValue
 
 
+# field value needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class FieldValue(Generic[KSetValue]):
     FieldName: str

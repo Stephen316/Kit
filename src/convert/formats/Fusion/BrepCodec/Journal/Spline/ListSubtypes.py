@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntit
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
 
 
+# the list subtypes contract needs a shared interpretation so topology changes retain their native revision relationships
 def ListSubtypes(Value: KJournalEntity) -> tuple[tuple[str, int | None], ...]:
     return tuple(
         (

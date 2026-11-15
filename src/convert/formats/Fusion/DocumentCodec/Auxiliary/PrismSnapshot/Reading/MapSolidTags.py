@@ -3,6 +3,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr, Requir
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# map solid tags must resolve unambiguously so supporting records retain their owning document relationships
 def MapSolidTags(Table: AsmTable, Mapping: dict[int, int]) -> dict[int, int]:
     TagValues = {
         88 + Index: ReadAsmPtr(RequireAsm(Table, Mapping[4 + Index], "face", 10), 0)

@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.PersistFields import (
 from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadField import ReadFieldMut
 
 
+# the group operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadGroupMut(Cursor: MetaCursor, Layout: ClassLayout) -> FeatureGroup:
     Fields = tuple(
         FeatureField(Field.NameText, ReadFieldMut(Cursor, Field.WireKind))

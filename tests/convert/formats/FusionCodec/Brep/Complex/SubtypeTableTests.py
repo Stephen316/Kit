@@ -25,6 +25,7 @@ from tests.convert.formats.FusionCodec.Brep.Complex.NurbsSamples import (
 )
 
 
+# the table order contract needs boundary coverage so stored document relationships remain consistent
 def TestTableOrder() -> None:
     Journal = CreateNurbsBody(NurbsModels()[0][1], KNurbsHistory, KNurbsStamp)
     Tables = tuple(
@@ -40,6 +41,7 @@ def TestTableOrder() -> None:
     assert RelinkSubtypes(Journal.Entities, Whole) is Journal.Entities
 
 
+# the table inline contract needs boundary coverage so stored document relationships remain consistent
 def TestTableInline() -> None:
     Journal = CreateNurbsBody(NurbsModels()[0][1], KNurbsHistory, KNurbsStamp)
     Surface = next(
@@ -61,6 +63,7 @@ def TestTableInline() -> None:
     CheckSubtypes(Linked)
 
 
+# the table family contract needs boundary coverage so stored document relationships remain consistent
 def TestTableFamily() -> None:
     Journal = CreateNurbsBody(NurbsModels()[0][1], KNurbsHistory, KNurbsStamp)
     Geometry = ReadGeometry(EmitStateSmb(Journal))

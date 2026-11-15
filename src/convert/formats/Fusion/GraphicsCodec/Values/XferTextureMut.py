@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer texture contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferTextureMut(
     State: SceneCodec, Value: TextureValue | None
 ) -> TextureValue | None:

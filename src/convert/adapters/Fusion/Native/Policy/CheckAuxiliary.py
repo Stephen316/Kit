@@ -11,6 +11,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentMod
 from convert.formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRef
 
 
+# invalid auxiliary input must fail here so public document claims remain grounded in native records
 def CheckAuxiliary(
     Graph: NativeGraph, Model: DocumentModel, History: PrismHistory
 ) -> None:
@@ -54,6 +55,7 @@ def CheckAuxiliary(
     CheckSceneRefs(Graph, Model.Graphics)
 
 
+# invalid scene references input must fail here so public document claims remain grounded in native records
 def CheckSceneRefs(Graph: NativeGraph, Value: object) -> None:
     if isinstance(Value, EntityRef):
         if (Value.SegmentId, Value.ObjectId) not in Graph.Nodes:

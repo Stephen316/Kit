@@ -13,6 +13,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import (
 )
 
 
+# the model head operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadModelHead(
     Cursor: MetaCursor, HasHistory: bool
 ) -> tuple[BrepHeader, GeometryStamp]:

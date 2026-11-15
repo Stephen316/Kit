@@ -7,6 +7,7 @@ from tools.Donors.IsIntValue import IsIntValue
 from tools.Donors.ReplayRules import KKindPattern
 
 
+# the field op decision must stay consistent so captured document data cannot become production writer input
 def IsFieldOp(AstNode: AstLib.AST) -> bool:
     if not isinstance(AstNode, AstLib.Tuple) or len(AstNode.elts) < 4:
         return False

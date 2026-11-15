@@ -1,6 +1,7 @@
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the knots operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeKnots(
     Knots: tuple[float, ...], Multiplicity: tuple[int, ...]
 ) -> tuple[KAsmToken, ...]:
@@ -11,6 +12,7 @@ def MakeKnots(
     )
 
 
+# the poles operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakePoles(
     Poles: tuple[tuple[float, ...], ...], Weights: tuple[float, ...]
 ) -> tuple[KAsmToken, ...]:

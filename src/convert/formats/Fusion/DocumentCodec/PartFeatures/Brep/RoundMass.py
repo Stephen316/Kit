@@ -22,6 +22,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Brep.SpaceMath import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ArcSpan import ArcSpan
 
+# the mass keys order must stay explicit so edge and face relationships survive parametric feature construction
 KMassKeys: tuple[str, ...] = (
     "volume",
     "x",
@@ -34,6 +35,8 @@ KMassKeys: tuple[str, ...] = (
     "xz",
     "yz",
 )
+
+# the mass pairs vocabulary must stay centralized so feature geometry agrees on supported native identities
 KMassPairs = {
     "x": (0,),
     "y": (1,),
@@ -46,9 +49,12 @@ KMassPairs = {
     "yz": (1, 2),
     "volume": (),
 }
+
+# the affine shape must stay shared so feature geometry uses one contract for compatible values
 KAffine = tuple[float, float, float]
 
 
+# the poly operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def TimesPoly(First: KPolynomial, Second: KPolynomial) -> KPolynomial:
     Result: KPolynomial = {}
     for (FirstX, FirstY), OneValue in First.items():
@@ -58,10 +64,12 @@ def TimesPoly(First: KPolynomial, Second: KPolynomial) -> KPolynomial:
     return Result
 
 
+# the poly operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def AffinePoly(Value: KAffine) -> KPolynomial:
     return {(0, 0): Value[0], (1, 0): Value[1], (0, 1): Value[2]}
 
 
+# the slice mass contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SliceMass(
     AxisSet: tuple[KAffine, KAffine, KAffine],
     Scale: KAffine,
@@ -78,6 +86,7 @@ def SliceMass(
     return Result
 
 
+# the line axes contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def LineAxes(
     Frame: CornerFrame, Sense: float, Along: float, Heading: KSpaceVector
 ) -> tuple[KAffine, KAffine, KAffine]:
@@ -91,12 +100,14 @@ def LineAxes(
     )
 
 
+# the mitre slope contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def MitreSlope(Frame: CornerFrame, Heading: KSpaceVector, Round: EdgeRound) -> float:
     if not Frame.Mitre:
         return 0.0
     return DotProduct(SubVector(Frame.CapPoint, Frame.Point), Heading) / Round.CapCm
 
 
+# the mitre mass contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def MitreMass(
     Frames: tuple[CornerFrame, CornerFrame], Sense: float, Round: EdgeRound
 ) -> dict[str, float]:
@@ -123,6 +134,7 @@ def MitreMass(
     return Total
 
 
+# the line mass contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def LineMass(
     Frames: tuple[CornerFrame, CornerFrame], Sense: float, Round: EdgeRound
 ) -> dict[str, float]:
@@ -141,6 +153,7 @@ def LineMass(
     return Total
 
 
+# the sweep area contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SweepArea(Round: EdgeRound, Scale: KAffine) -> float:
     Weights = AffinePoly(Scale)
     Blend = PieceWeight(BlendPiece(Round), Weights)
@@ -149,6 +162,7 @@ def SweepArea(Round: EdgeRound, Scale: KAffine) -> float:
     return Blend - CapLeg - WallLeg
 
 
+# the ring axes contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def RingAxes(
     SpanValue: ArcSpan, Frame: CornerFrame, Sense: float, Angle: float
 ) -> tuple[tuple[KAffine, KAffine, KAffine], KAffine]:
@@ -165,6 +179,7 @@ def RingAxes(
     return AxisSet, (Radius, 0.0 - Spread, 0.0)
 
 
+# the ring mass contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def RingMass(
     SpanValue: ArcSpan,
     Frame: CornerFrame,

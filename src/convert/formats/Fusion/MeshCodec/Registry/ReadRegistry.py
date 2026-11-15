@@ -7,6 +7,7 @@ from convert.formats.Fusion.MeshCodec.Wire.ProtoText import ProtoText
 from convert.formats.Fusion.MeshCodec.Wire.SelectFields import SelectFields
 
 
+# the registry operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadRegistry(Payload: bytes, Order: tuple[str, ...]) -> MeshRegistry:
     Normal, Faces, Edges, Property, Count, MeshId, Vertices, Corners = SelectFields(
         Payload, (4, 5, 7, 8, 9, 12, 21, 22)

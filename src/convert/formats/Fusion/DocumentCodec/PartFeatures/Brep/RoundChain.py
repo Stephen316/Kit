@@ -17,9 +17,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     IsFullCircle,
 )
 
+# the use place shape must stay shared so feature geometry uses one contract for compatible values
 KUsePlace = tuple[int, int, int]
 
 
+# chain seed needs an explicit state contract so edge and face relationships survive parametric feature construction
 @MakeDataClass(frozen=True, slots=True)
 class ChainSeed:
     CapIndex: int
@@ -27,6 +29,7 @@ class ChainSeed:
     UseIndex: int
 
 
+# the shape users contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ShapeUsers(Shape: ShapeBody) -> dict[KShapeEdge, list[KUsePlace]]:
     Users: dict[KShapeEdge, list[KUsePlace]] = {}
     for FaceIndex, FaceValue in enumerate(Shape.Faces):
@@ -37,6 +40,7 @@ def ShapeUsers(Shape: ShapeBody) -> dict[KShapeEdge, list[KUsePlace]]:
     return Users
 
 
+# the on line decision must stay consistent so edge and face relationships survive parametric feature construction
 def IsOnLine(SpanValue: LineSpan, PointCm: tuple[float, float]) -> bool:
     DeltaX = SpanValue.FinishCm[0] - SpanValue.StartCm[0]
     DeltaY = SpanValue.FinishCm[1] - SpanValue.StartCm[1]
@@ -50,6 +54,7 @@ def IsOnLine(SpanValue: LineSpan, PointCm: tuple[float, float]) -> bool:
     return abs(Across) < KSpaceTolerance and -KSpaceTolerance < Along < Length + 1e-7
 
 
+# the on level decision must stay consistent so edge and face relationships survive parametric feature construction
 def IsOnLevel(EdgeValue: KShapeEdge, PointCm: KSpaceVector) -> bool:
     if not isinstance(EdgeValue, LevelEdge):
         return False
@@ -76,6 +81,7 @@ def IsOnLevel(EdgeValue: KShapeEdge, PointCm: KSpaceVector) -> bool:
     )
 
 
+# find seed must resolve unambiguously so edge and face relationships survive parametric feature construction
 def FindSeed(Shape: ShapeBody, PointCm: KSpaceVector) -> ChainSeed:
     for FaceIndex, FaceValue in enumerate(Shape.Faces):
         if not isinstance(FaceValue, CapFace):
@@ -87,5 +93,6 @@ def FindSeed(Shape: ShapeBody, PointCm: KSpaceVector) -> ChainSeed:
     raise ValueError("Fusion edge rounds need a point on a horizontal body edge")
 
 
+# the seed uses contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SeedUses(Shape: ShapeBody, SeedValue: ChainSeed) -> tuple[ShapeUse, ...]:
     return Shape.Faces[SeedValue.CapIndex].Loops[SeedValue.LoopIndex]

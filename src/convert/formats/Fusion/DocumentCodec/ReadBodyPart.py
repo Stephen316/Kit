@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.PickBodyView import PickBodyVi
 from convert.formats.Fusion.DocumentCodec.Reading.ReadTypedBody import ReadTypedBody
 
 
+# the body part operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadBodyPart(Value: ContainerPart) -> DocumentBody:
     if not Value.Name.startswith("Breps.BlobParts/BREP.") or not Value.Name.endswith(
         ".smbh"

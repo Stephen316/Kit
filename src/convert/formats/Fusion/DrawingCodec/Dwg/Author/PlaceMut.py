@@ -10,22 +10,28 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.ReadDefaults import
     SheetDefaults,
 )
 
+# the draft fields shape must stay shared so native drawing authoring uses one contract for compatible values
 KDraftFields = Mapping[str, KDraftValue]
+
+# the no defaults order must stay explicit so drawing objects retain valid ownership and reference relationships
 KNoDefaults = (DraftRecord(()), DraftRecord(()))
 
 
+# the merge fields contract needs a stable decomposition so drawing objects retain valid ownership and reference relationships
 def MergeFields(Defaults: DraftRecord, Values: KDraftFields) -> DraftRecord:
     Merged = dict(Defaults.DraftFields)
     Merged.update(Values)
     return DraftRecord(tuple(Merged.items()))
 
 
+# the spare names contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def SpareNames(Defaults: DraftRecord, Values: KDraftFields) -> frozenset[str]:
     return frozenset(
         Called for Called, _ in Defaults.DraftFields if Called not in Values
     )
 
 
+# the place contract needs a consistent construction rule so drawing objects retain valid ownership and reference relationships
 def PlaceMut(
     Ledger: DraftBook,
     KeyText: str,
@@ -48,6 +54,7 @@ def PlaceMut(
     return KeyText
 
 
+# append needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def AppendMut(Ledger: DraftBook, SlotName: str, *SlotValues: KDraftValue) -> None:
     if SlotName not in Ledger.SlotItems:
         raise ValueError(f"Authored DWG slot {SlotName!r} is not declared")

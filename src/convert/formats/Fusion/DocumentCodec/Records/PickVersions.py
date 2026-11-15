@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.OpaqueSchema import OpaqueSch
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# pick versions must resolve unambiguously so model state retains its native feature and ownership relationships
 def PickVersions(
     Schemas: tuple[ClassSchema, ...], Classes: tuple[MetaClass, ...]
 ) -> tuple[ClassSchema, ...]:
@@ -15,6 +16,8 @@ def PickVersions(
     for Identity, Versions in Grouped.items():
         Entry = Declared.get(Identity)
         if Entry is None:
+
+            # ordering by schema schema version must stay deterministic so document reconstruction resolves equivalent inputs consistently
             Result.append(max(Versions, key=lambda Schema: Schema.SchemaVersion))
             continue
         Exact = tuple(
@@ -32,6 +35,7 @@ def PickVersions(
     return DropOrphans(tuple(Result), frozenset(Declared))
 
 
+# the drop orphans contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DropOrphans(
     Schemas: tuple[ClassSchema, ...], Declared: frozenset[str]
 ) -> tuple[ClassSchema, ...]:

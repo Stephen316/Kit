@@ -2,6 +2,7 @@ from convert.formats.Fusion.MeshCodec.Wire.EmitVarint import EmitVarint
 from convert.formats.Fusion.MeshCodec.Wire.ProtoField import ProtoField
 
 
+# the proto operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitProto(Fields: tuple[ProtoField, ...]) -> bytes:
     Output = bytearray()
     for Field in Fields:

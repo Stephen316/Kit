@@ -2,6 +2,7 @@ from math import isfinite
 from convert.formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
 
 
+# invalid header input must fail here so control cage topology retains its native connectivity
 def CheckHeader(Header: SurfaceHeader) -> None:
     Profile = (
         Header.Degree,

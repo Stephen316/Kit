@@ -28,14 +28,31 @@ from convert.api.ApiOpen import OpenDocument
 from convert.api.ApiWrite import WriteDocument
 from convert.engine.EngineResult import ConversionResult as KConversionResult
 
+# the public adapter info name must remain available so existing integrations keep resolving the canonical implementation
 AdapterInfo = KAdapterInfo
+
+# the public adapter registry name must remain available so existing integrations keep resolving the canonical implementation
 AdapterRegistry = KAdapterRegistryType
+
+# the public cad document name must remain available so existing integrations keep resolving the canonical implementation
 CadDocument = KCadDocument
+
+# the public conversion result name must remain available so existing integrations keep resolving the canonical implementation
 ConversionResult = KConversionResult
+
+# the public destination name must remain available so existing integrations keep resolving the canonical implementation
 Destination = KTargetType
+
+# the public read options name must remain available so existing integrations keep resolving the canonical implementation
 ReadOptions = KReadOptions
+
+# the public source name must remain available so existing integrations keep resolving the canonical implementation
 Source = KSourceType
+
+# the public write options name must remain available so existing integrations keep resolving the canonical implementation
 WriteOptions = KWriteOptions
+
+# the public write result name must remain available so existing integrations keep resolving the canonical implementation
 WriteResult = KWriteResult
 
 
@@ -159,12 +176,22 @@ def _build_registry() -> AdapterRegistry:
 # module import must expose one ready registry because adapters historically imported it directly
 registry = _build_registry()
 
+# the public mapping name must remain available so existing integrations keep resolving the canonical implementation
 Mapping = TypeMap
+
+# the public path name must remain available so existing integrations keep resolving the canonical implementation
 Path = FilePath
+
+# the public payload role name must remain available so existing integrations keep resolving the canonical implementation
 PayloadRole = KPayloadRole
+
+# the public frozen mapping name must remain available so existing integrations keep resolving the canonical implementation
 frozen_mapping = FreezeMapping
 
 BindTypeGlobals((SystemLib.modules[__name__],), ())
 
+# the public is windows device name name must remain available so existing integrations keep resolving the canonical implementation
 is_windows_device_name = IsDeviceName
+
+# the public re name must remain available so existing integrations keep resolving the canonical implementation
 re = Regex

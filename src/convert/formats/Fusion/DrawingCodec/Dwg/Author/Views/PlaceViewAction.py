@@ -29,9 +29,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewRepData import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewState import ViewState
 
+# round trip must remain consistent across callers so projected geometry retains its paper and model relationships
 KRoundTrip = "ACAD_XREC_ROUNDTRIP"
 
 
+# the parameters operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceParamsMut(
     Ledger: DraftBook, KeySet: ViewKeys, IsProjected: bool
 ) -> tuple[str, ...]:
@@ -70,6 +72,7 @@ def PlaceParamsMut(
     return tuple(Params)
 
 
+# the state operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceStateMut(
     Ledger: DraftBook, KeySet: ViewKeys, Planned: ViewPlan, Source: ViewSource
 ) -> None:
@@ -95,9 +98,11 @@ def PlaceStateMut(
     )
 
 
+# the family shape must stay shared so drawing view authoring uses one contract for compatible values
 KFamily = tuple[tuple[ViewKeys, ViewPlan], ...]
 
 
+# the view act operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceViewActMut(
     Ledger: DraftBook,
     KeySet: ViewKeys,

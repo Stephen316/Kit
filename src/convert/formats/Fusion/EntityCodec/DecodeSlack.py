@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# the slack operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def DecodeSlack(
     Records: tuple[BulkRecord, ...],
     Classes: tuple[MetaClass, ...],

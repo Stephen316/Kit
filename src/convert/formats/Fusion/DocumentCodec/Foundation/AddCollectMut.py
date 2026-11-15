@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Defaults.MakeNumeric import MakeNumeric
 
 
+# the collect operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddCollectMut(Author: AuthorState) -> None:
     Names = {
         "overrides": "Overrides",

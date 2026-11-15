@@ -4,6 +4,7 @@ from convert.formats.Fusion.BundleCodec.Json.JsonLimits import CheckJsonTree
 from convert.formats.Fusion.BundleCodec.Json.JsonTypes import KJsonValue
 
 
+# the json operation needs a consistent construction rule so linked archive members retain their document relationships
 def EmitJson(Value: KJsonValue) -> bytes:
     CheckJsonTree(Value)
     Result = DumpJson(

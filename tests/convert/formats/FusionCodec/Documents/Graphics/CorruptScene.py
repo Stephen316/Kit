@@ -3,6 +3,7 @@ from struct import pack as PackValue
 from zipfile import ZipFile
 
 
+# shared corrupt scene setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CorruptScene(Source: FilePath, Target: FilePath, Variant: str) -> None:
     Prefix = "FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/"
     Changed = False

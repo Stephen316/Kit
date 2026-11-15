@@ -39,17 +39,21 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     Scaled,
 )
 
+# item must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KItem = TypeVar("KItem")
 
 
+# the keyed by id contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def KeyedById(Items: Iterable[KItem]) -> dict[str, KItem]:
     return {str(getattr(Entry, "id")): Entry for Entry in Items}
 
 
+# the of operation needs one geometric convention so projected boundaries retain their intended visibility and geometry
 def PointOf(Value: SpaceVector) -> KPointTriple:
     return (Value.x, Value.y, Value.z)
 
 
+# shell faces needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def ShellFaces(Model: BrepModel) -> tuple[BrepFace, ...]:
     if len(Model.bodies) != 1:
         raise ValueError("Authored DWG view solid must hold exactly one body")
@@ -70,6 +74,7 @@ def ShellFaces(Model: BrepModel) -> tuple[BrepFace, ...]:
     )
 
 
+# the face edges contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def FaceEdges(Model: BrepModel, FaceItem: BrepFace) -> tuple[str, ...]:
     Loops = KeyedById(Model.loops)
     Coedges = KeyedById(Model.coedges)
@@ -80,6 +85,7 @@ def FaceEdges(Model: BrepModel, FaceItem: BrepFace) -> tuple[str, ...]:
     )
 
 
+# the walk ids contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def WalkIds(Model: BrepModel, Faces: tuple[BrepFace, ...]) -> dict[str, int]:
     Found: dict[str, int] = {}
     for FaceItem in Faces:
@@ -88,6 +94,7 @@ def WalkIds(Model: BrepModel, Faces: tuple[BrepFace, ...]) -> dict[str, int]:
     return Found
 
 
+# circle path needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def CirclePath(
     Curve: CircleCurve, EdgeItem: BrepEdge, Start: KPointTriple, Finish: KPointTriple
 ) -> RoundPath:
@@ -120,6 +127,7 @@ def CirclePath(
     )
 
 
+# edge path needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def EdgePath(
     Curve: BrepCurve, EdgeItem: BrepEdge, Vertices: dict[str, BrepVertex]
 ) -> KEdgePath:
@@ -139,6 +147,7 @@ def EdgePath(
     return LinePath(Start, Finish)
 
 
+# the edge owners contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def EdgeOwners(Model: BrepModel, Faces: tuple[BrepFace, ...]) -> dict[str, list[int]]:
     Owners: dict[str, list[int]] = {}
     for FaceIndex, FaceItem in enumerate(Faces):
@@ -147,6 +156,7 @@ def EdgeOwners(Model: BrepModel, Faces: tuple[BrepFace, ...]) -> dict[str, list[
     return Owners
 
 
+# invalid bounds input must fail here so projected boundaries retain their intended visibility and geometry
 def CheckBounds(Model: BrepModel, Lower: KPointTriple, Upper: KPointTriple) -> None:
     for Vertex in Model.vertices:
         if any(
@@ -156,6 +166,7 @@ def CheckBounds(Model: BrepModel, Lower: KPointTriple, Upper: KPointTriple) -> N
             raise ValueError("Authored DWG view solid lies outside its view bounds")
 
 
+# the edge paths contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def EdgePaths(Model: BrepModel, Walked: dict[str, int]) -> dict[str, KEdgePath]:
     Edges = KeyedById(Model.edges)
     Curves = KeyedById(Model.curves)
@@ -167,6 +178,7 @@ def EdgePaths(Model: BrepModel, Walked: dict[str, int]) -> dict[str, KEdgePath]:
     }
 
 
+# the solid operation needs a distinct decoding boundary so projected boundaries retain their intended visibility and geometry
 def ReadSolid(Model: BrepModel, Lower: KPointTriple, Upper: KPointTriple) -> SolidShape:
     CheckBounds(Model, Lower, Upper)
     Faces = ShellFaces(Model)

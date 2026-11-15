@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.ParseSpec import ParseSpec
 from convert.formats.Fusion.DrawingCodec.Dwg.Records.SpecOp import SpecOp
 
 
+# lookup specification must resolve unambiguously so section boundaries and object references remain consistent
 @MakeCache
 def LookupSpec(SpecKey: str) -> tuple[SpecOp, ...]:
     SpecText = KRecordSpecs.get(SpecKey)

@@ -29,6 +29,7 @@ from interchange.records.RecordConfig import Configuration
 from interchange.records.RecordSource import CadSource
 
 
+# project prism needs an explicit validity boundary so public document claims remain grounded in native records
 def ProjectPrism(
     Model: DocumentModel, Source: CadSource, Graph: NativeGraph
 ) -> CadDocument:

@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut impor
 )
 
 
+# the fdm attribute operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadFdmAttrib(Cursor: FieldCursor, Links: AttribLinks) -> FeatureAttrib:
     NeedFieldMut(Cursor, (4, 2))
     NeedFieldMut(Cursor, (4, 2))

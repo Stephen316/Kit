@@ -6,6 +6,7 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityCatalog import EntityCatalo
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# invalid reference input must fail here so entity identifiers retain their schema and reference meaning
 def CheckReference(
     Value: KEntityValue, TargetGuid: str, Catalog: EntityCatalog
 ) -> None:

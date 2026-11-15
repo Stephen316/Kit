@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import (
 )
 
 
+# native material needs an explicit validity boundary so public document claims remain grounded in native records
 def NativeMaterial(ModelValue: DocumentModel) -> MaterialSpec:
     Bodies = ReadMatRefs(ModelValue, "physicalMaterial")
     if any(Package is None for Package, _ in Bodies):

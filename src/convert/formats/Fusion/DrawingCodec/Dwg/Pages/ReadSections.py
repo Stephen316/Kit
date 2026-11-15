@@ -14,6 +14,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadSectionMap import (
 )
 
 
+# the sections operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSections(
     Content: bytes, CryptHeader: DwgCryptHeader, MapPages: tuple[DwgMapPage, ...]
 ) -> tuple[tuple[int, ...], tuple[DwgSection, ...]]:

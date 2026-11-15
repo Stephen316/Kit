@@ -7,6 +7,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 
 
+# select extrusion must resolve unambiguously so public document claims remain grounded in native records
 def SelectExtrusion(Graph: NativeGraph) -> ExtrudeContext:
     Component = Graph.OneClass("FusionComponent")
     Fragment = ResolveField(Graph, Component, "rDesignFragment", "DcDesignFragment")

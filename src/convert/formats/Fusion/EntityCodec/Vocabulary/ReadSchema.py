@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.ReadWireType import ReadWireT
 from convert.formats.Fusion.EntityCodec.Vocabulary.SchemaJson import SchemaJson
 
 
+# the schema operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadSchema(Value: SchemaJson) -> ClassSchema:
     return ClassSchema(
         Value["ClassGuid"],

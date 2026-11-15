@@ -14,6 +14,7 @@ from tests.convert.api.Fusion.Native.ChangeNative import ChangeNative, KNativeCh
 from tests.convert.api.Fusion.Native.VendorCases import KVendorCases, VendorSource
 
 
+# the vendor links contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("RoleName", (*KNativeChanges, "body", "operation", "secondary"))
 def TestVendorLinks(TmpPath: FilePath, RoleName: str) -> None:
     Source = VendorSource(KVendorCases[0])
@@ -34,6 +35,7 @@ def TestVendorLinks(TmpPath: FilePath, RoleName: str) -> None:
     assert tuple(TmpPath.iterdir()) == (Target,)
 
 
+# the vendor gate contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "FieldName", ("parameter", "material", "body", "history", "metadata")
 )

@@ -21,9 +21,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.RegionMath import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanCross import SpanCross
 
+# the hole limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KHoleLimit = 1e-9
 
 
+# hole top needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def HoleTop(Solid: PrismSolid, Feature: HoleSpec) -> float:
     Widest = (
         max(Feature.DiameterMm, Feature.BoreDiameterMm, Feature.SinkDiameterMm) / 2.0
@@ -41,6 +43,7 @@ def HoleTop(Solid: PrismSolid, Feature: HoleSpec) -> float:
     return Ceiling.UpperCm
 
 
+# the circle slab contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CircleSlab(
     Feature: HoleSpec,
     Bounds: tuple[float, float],
@@ -52,10 +55,12 @@ def CircleSlab(
     return PrismSlab(Bounds[0], Bounds[1], (LoopValue,), Labels[1], Labels[1])
 
 
+# the hole labels contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def HoleLabels(Operation: int, Names: tuple[str, str]) -> tuple[FaceLabel, FaceLabel]:
     return FaceLabel(Names[0], (Operation,)), FaceLabel(Names[1], (Operation,))
 
 
+# the sink depth contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SinkDepth(Feature: HoleSpec) -> float:
     if not Feature.SinkDiameterMm:
         return 0.0
@@ -63,6 +68,7 @@ def SinkDepth(Feature: HoleSpec) -> float:
     return Spread / Tangent(Radians(Feature.SinkAngleDegrees) / 2.0) / 10.0
 
 
+# the sink slab contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SinkSlab(
     Feature: HoleSpec, Bounds: tuple[float, float], Operation: int
 ) -> PrismSlab:
@@ -72,6 +78,7 @@ def SinkSlab(
     return ReplaceValue(Narrow, RoofLoops=Widened.Loops)
 
 
+# hole shapers needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def HoleShapers(
     Solid: PrismSolid, Feature: HoleSpec, Operation: int
 ) -> tuple[PrismSlab, ...]:
@@ -97,6 +104,7 @@ def HoleShapers(
     return tuple(Shapers)
 
 
+# the hole solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def HoleSolid(Solid: PrismSolid, Feature: HoleSpec, Operation: int) -> PrismSolid:
     Result = Solid
     for Shaper in HoleShapers(Solid, Feature, Operation):

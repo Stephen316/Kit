@@ -9,6 +9,7 @@ from tools.TestShards.PairExtremes import PairExtremes
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the allocate contract needs a shared interpretation so every collected case receives exactly one verified outcome
 def AllocateTests(
     TestIds: Sequence[str], Durations: Mapping[str, float], MaxTests: int
 ) -> list[ShardPlan]:

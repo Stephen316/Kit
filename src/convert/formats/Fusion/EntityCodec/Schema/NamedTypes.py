@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitText
 
 
+# named types needs an explicit validity boundary so entity identifiers retain their schema and reference meaning
 def NamedTypes(Entries: tuple[NamedType, ...]) -> dict[str, WireType]:
     if len(Entries) > KMaxCount or len({Entry.TypeName for Entry in Entries}) != len(
         Entries

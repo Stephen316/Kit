@@ -5,6 +5,7 @@ from collections.abc import Mapping
 from pathlib import Path as FilePath
 
 
+# the carried operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def WriteCarried(
     CarriedPath: FilePath | None, Entries: Mapping[str, Mapping[str, object]]
 ) -> None:

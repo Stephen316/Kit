@@ -18,6 +18,7 @@ from tests.convert.formats.FusionCodec.Documents.NamedGroups import NamedGroups
 from tests.convert.formats.FusionCodec.Documents.RenameFeature import RenameFeature
 
 
+# the doc profiles contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("ProfileKind", ("parameter", "circle", "extrusion"))
 def TestDocProfiles(
     TmpPath: FilePath, ProfileKind: Literal["parameter", "circle", "extrusion"]
@@ -65,6 +66,7 @@ def TestDocProfiles(
     assert Reopened.Bodies == Model.Bodies
 
 
+# the parsed edit contract needs boundary coverage so stored document relationships remain consistent
 def TestParsedEdit(TmpPath: FilePath) -> None:
     Source = TmpPath / "Source.f3d"
     _ = Source.write_bytes(
@@ -81,6 +83,7 @@ def TestParsedEdit(TmpPath: FilePath) -> None:
     assert NamedGroups(Reopened, "Parameter") == NamedGroups(Model, "Parameter")
 
 
+# the unknown part contract needs boundary coverage so stored document relationships remain consistent
 def TestUnknownPart(TmpPath: FilePath) -> None:
     Source = EmitDocument(
         DocumentSpec("Unsupported part", "heightValue", 12.0, "parameter")
@@ -95,6 +98,7 @@ def TestUnknownPart(TmpPath: FilePath) -> None:
         _ = ReadDocument(Target.read_bytes())
 
 
+# the header guard contract needs boundary coverage so stored document relationships remain consistent
 def TestHeaderGuard(TmpPath: FilePath) -> None:
     Source = TmpPath / "Source.f3d"
     _ = Source.write_bytes(

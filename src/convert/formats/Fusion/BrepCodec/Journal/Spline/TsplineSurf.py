@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import Subtran
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
 
 
+# tspline surf needs an explicit state contract so topology changes retain their native revision relationships
 @MakeDataClass(frozen=True, slots=True)
 class TsplineSurf:
     Revision: int

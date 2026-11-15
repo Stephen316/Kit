@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 
+# the guard files vocabulary must stay centralized so test reuse agrees on supported native identities
 KGuardFiles = frozenset(
     {
         ".github/workflows/MergeQueue.yml",
@@ -12,9 +13,12 @@ KGuardFiles = frozenset(
         "uv.lock",
     }
 )
+
+# guard prefix must remain consistent across callers so dependency changes cannot revive stale passing results
 KGuardPrefix = "tools/TestShards/"
 
 
+# the compute guard contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def ComputeGuard(Blobs: Mapping[str, str], PythonText: str) -> dict[str, object]:
     Guarded = {
         PathText: BlobId

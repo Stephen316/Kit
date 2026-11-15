@@ -22,10 +22,14 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleKnots import (
 )
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
+# the side use shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KSideUse = tuple[int, PatchCell, int, bool]
+
+# the spoke hit shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KSpokeHit = tuple[int, int, bool, Fraction]
 
 
+# the cell owners contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellOwners(Shape: CappedShape) -> dict[int, tuple[int, PatchCell]]:
     return {
         CellValue.Face: (Region, CellValue)
@@ -34,6 +38,7 @@ def CellOwners(Shape: CappedShape) -> dict[int, tuple[int, PatchCell]]:
     }
 
 
+# the side uses contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SideUses(
     Graph: CageGraph, Owners: dict[int, tuple[int, PatchCell]], LinkIndex: int
 ) -> tuple[KSideUse, KSideUse]:
@@ -47,6 +52,7 @@ def SideUses(
     return Found[0], Found[1]
 
 
+# the cell cross contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellCross(
     Graph: CageGraph, FaceIndex: int, SideIndex: int, Levels: dict[int, int]
 ) -> list[Fraction]:
@@ -63,6 +69,7 @@ def CellCross(
     return sorted(Found)
 
 
+# the spoke adds contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SpokeAdds(
     Graph: CageGraph,
     Levels: dict[int, int],
@@ -90,6 +97,7 @@ def SpokeAdds(
     return Found
 
 
+# the spoke hits contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SpokeHits(
     Graph: CageGraph, Shape: CappedShape, Scale: int, Levels: dict[int, int]
 ) -> list[KSpokeHit]:
@@ -109,6 +117,7 @@ def SpokeHits(
     return Found
 
 
+# the spoke knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SpokeKnots(
     BaseMaps: list[tuple[KKnotMap, KKnotMap]], HitList: list[KSpokeHit]
 ) -> list[tuple[KKnotMap, KKnotMap]]:
@@ -118,6 +127,7 @@ def SpokeKnots(
     return Result
 
 
+# the cell adds contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellAdds(HitList: list[KSpokeHit], Region: int) -> KCellAdds:
     Found: dict[int, list[tuple[bool, Fraction]]] = {}
     for Owner, FaceIndex, AlongU, Value in HitList:
@@ -126,6 +136,7 @@ def CellAdds(HitList: list[KSpokeHit], Region: int) -> KCellAdds:
     return {FaceIndex: tuple(Entries) for FaceIndex, Entries in Found.items()}
 
 
+# the cell range contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellRange(
     Cells: tuple[PatchCell, ...], Scale: int, AxisIndex: int
 ) -> tuple[Fraction, Fraction]:
@@ -137,6 +148,7 @@ def CellRange(
     return (min(Values), max(Values))
 
 
+# the plan knots contract needs a stable decomposition so neighboring patches retain consistent subdivision boundaries
 def PlanKnots(
     Graph: CageGraph, Shape: CappedShape, Scale: int, Levels: dict[int, int]
 ) -> tuple[RegionKnots, ...]:
@@ -155,6 +167,7 @@ def PlanKnots(
     )
 
 
+# the inner knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def InnerKnots(
     Knots: KMapping[Fraction, int], Bounds: tuple[Fraction, Fraction]
 ) -> list[tuple[Fraction, int]]:
@@ -165,6 +178,7 @@ def InnerKnots(
     )
 
 
+# the knot vector contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def KnotVector(
     Knots: KMapping[Fraction, int], Bounds: tuple[Fraction, Fraction]
 ) -> tuple[SplineKnot, ...]:
@@ -178,6 +192,7 @@ def KnotVector(
     )
 
 
+# the full knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FullKnots(
     Knots: KMapping[Fraction, int], Bounds: tuple[Fraction, Fraction]
 ) -> tuple[Fraction, ...]:

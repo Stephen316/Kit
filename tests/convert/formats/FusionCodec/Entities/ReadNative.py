@@ -8,11 +8,13 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 from tests.convert.formats.FusionCodec.Entities.NativeGraph import NativeGraph
 
+# feature root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KFeatureRoot = (
     FilePath(__file__).resolve().parents[5] / "re/Fusion/LocalOracle/Features"
 )
 
 
+# shared read native setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadNative(FileName: str) -> NativeGraph:
     with ZipFile(KFeatureRoot / FileName) as Archive:
         BulkData = Archive.read(KDesignPrefix + "BulkStream.dat")

@@ -27,7 +27,10 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 from tests.convert.formats.FusionCodec.Brep.Complex.NurbsSamples import BicubicPatch
 
+# half root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KHalfRoot = SquareRoot(0.5)
+
+# the circle square cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCircleSquare = (
     (1.0, 0.0),
     (1.0, 1.0),
@@ -39,14 +42,32 @@ KCircleSquare = (
     (1.0, -1.0),
     (1.0, 0.0),
 )
+
+# the circle weights cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCircleWeights = (1.0, KHalfRoot, 1.0, KHalfRoot, 1.0, KHalfRoot, 1.0, KHalfRoot, 1.0)
+
+# the circle knots cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCircleKnots = (0.0, 0.25, 0.5, 0.75, 1.0)
+
+# the circle counts cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCircleCounts = (2, 2, 2, 2, 2)
+
+# the hole box cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHoleBox = (0.3, 0.6, 0.35, 0.65)
+
+# the tube profile cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTubeProfile = ((1.0, 0.0), (1.4, 0.6), (0.8, 1.4), (1.0, 2.0))
+
+# the dome profile cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDomeProfile = ((1.0, 1.5), (1.0, 2.1), (0.55, 2.5), (0.0, 2.5))
+
+# the torus major cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTorusMajor = 2.0
+
+# the torus minor cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTorusMinor = 0.5
+
+# the apex rows cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KApexRows = (
     ((0.0, 0.0, 0.0), (1.0, 0.0, 0.4), (2.0, 0.0, 0.3), (3.0, 0.0, 0.0)),
     ((0.3, 0.8, 0.5), (1.1, 0.9, 1.0), (1.9, 0.9, 0.9), (2.7, 0.8, 0.4)),
@@ -55,20 +76,24 @@ KApexRows = (
 )
 
 
+# shared space point setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SpacePoint(Values: tuple[float, ...]) -> KJournalVector:
     return (Values[0], Values[1], Values[2])
 
 
+# shared period line setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PeriodLine(
     StartPoint: tuple[float, float], EndPoint: tuple[float, float]
 ) -> BsCurve:
     return BsCurve(False, 1, 2, (0.0, 1.0), (1, 1), 2, (StartPoint, EndPoint), ())
 
 
+# shared unit line setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def UnitLine(StartPoint: tuple[float, float], EndPoint: tuple[float, float]) -> BsCurve:
     return LinePcurve(StartPoint, EndPoint, 0.0, 1.0)
 
 
+# shared circle curve setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CircleCurve(Radius: float, Height: float) -> BsCurve:
     return BsCurve(
         True,
@@ -84,6 +109,7 @@ def CircleCurve(Radius: float, Height: float) -> BsCurve:
     )
 
 
+# shared profile curve setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ProfileCurve(Profile: tuple[tuple[float, float], ...]) -> BsCurve:
     return BsCurve(
         False,
@@ -97,6 +123,7 @@ def ProfileCurve(Profile: tuple[tuple[float, float], ...]) -> BsCurve:
     )
 
 
+# shared cubic revolved setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CubicRevolved(
     Profile: tuple[tuple[float, float], ...], VSingular: int
 ) -> BsSurface:
@@ -122,6 +149,7 @@ def CubicRevolved(
     )
 
 
+# shared torus surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TorusSurface() -> BsSurface:
     Profile = tuple(
         (KTorusMajor + KTorusMinor * Corner[0], KTorusMinor * Corner[1])
@@ -153,6 +181,7 @@ def TorusSurface() -> BsSurface:
     )
 
 
+# shared iso curve setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsoCurve(Surface: BsSurface, AlongU: bool, FixedValue: float) -> BsCurve:
     UCount = PoleCount(Surface.UDegree, Surface.UMultiplicity)
     Weighted = Homogeneous(Surface.Poles, Surface.Weights)
@@ -198,6 +227,7 @@ def IsoCurve(Surface: BsSurface, AlongU: bool, FixedValue: float) -> BsCurve:
     )
 
 
+# shared holed patch setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HoledPatch() -> NurbsBody:
     Surface = BicubicPatch()
     Sheet = PatchSheet(Surface)
@@ -233,6 +263,7 @@ def HoledPatch() -> NurbsBody:
     )
 
 
+# shared apex surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ApexSurface() -> BsSurface:
     return BsSurface(
         False,
@@ -252,6 +283,7 @@ def ApexSurface() -> BsSurface:
     )
 
 
+# shared collapsed patch setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CollapsedPatch() -> NurbsBody:
     Surface = ApexSurface()
     return NurbsBody(
@@ -274,6 +306,7 @@ def CollapsedPatch() -> NurbsBody:
     )
 
 
+# shared seam uses setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SeamUses(
     LowerEdge: int, SeamEdge: int, UpperEdge: int | None
 ) -> tuple[NurbsUse, ...]:
@@ -291,6 +324,7 @@ def SeamUses(
     )
 
 
+# shared capped tube setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CappedTube() -> NurbsBody:
     Bottom, Upper = KTubeProfile[0], KTubeProfile[-1]
     return NurbsBody(
@@ -314,6 +348,7 @@ def CappedTube() -> NurbsBody:
     )
 
 
+# shared domed cylinder setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DomedCylinder() -> NurbsBody:
     RimPoint, ApexPoint = KDomeProfile[0], KDomeProfile[-1]
     return NurbsBody(
@@ -344,6 +379,7 @@ def DomedCylinder() -> NurbsBody:
     )
 
 
+# shared nurbs torus setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NurbsTorus() -> NurbsBody:
     Outer = KTorusMajor + KTorusMinor
     MinorCircle = BsCurve(
@@ -376,6 +412,7 @@ def NurbsTorus() -> NurbsBody:
     )
 
 
+# shared wider models setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def WiderModels() -> tuple[tuple[str, NurbsBody], ...]:
     return (
         ("HoledPatch", HoledPatch()),

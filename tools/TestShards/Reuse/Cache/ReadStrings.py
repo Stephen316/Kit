@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import cast as CastValue
 
 
+# the strings operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def ReadStrings(Value: object, Label: str) -> list[str]:
     if not isinstance(Value, list):
         raise ValueError(f"{Label} is not a list")

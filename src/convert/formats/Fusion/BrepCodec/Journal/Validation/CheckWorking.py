@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 
 
+# invalid working input must fail here so inconsistent revision links fail before history reconstruction
 def CheckWorking(Model: JournalModel) -> None:
     Working = Model.States[Model.Stream.WorkingNode]
     if (

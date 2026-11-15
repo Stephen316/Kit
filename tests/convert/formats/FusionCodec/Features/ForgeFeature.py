@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Features.ShiftVersion import ShiftVersion
 from tests.convert.formats.FusionCodec.Features.TailRecords import TailRecords
 
 
+# shared forge feature setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ForgeFeature(
     Source: FilePath, ClassGuid: str, *, ShiftSchema: bool = False
 ) -> bytes:

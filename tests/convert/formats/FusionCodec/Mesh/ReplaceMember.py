@@ -6,6 +6,7 @@ from tests.convert.formats.FusionCodec.Mesh.MeshCase import MeshCase
 from tests.convert.formats.FusionCodec.Mesh.ReadMeshFile import KRootPath
 
 
+# shared replace member setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReplaceMember(CaseValue: MeshCase, Payload: bytes) -> bytes:
     Source = (KRootPath / CaseValue["Archive"]).read_bytes()
     Output = ByteBuffer()

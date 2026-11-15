@@ -4,11 +4,13 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgAppInfo import DwgAppInfo
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSummary import DwgSummary
 
 
+# the wide operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitWide(TextValue: str) -> bytes:
     Encoded = (TextValue + "\x00").encode("utf-16-le")
     return PackFields("<H", len(Encoded) // 2) + Encoded
 
 
+# the summary operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitSummary(Summary: DwgSummary) -> bytes:
     TextValues = (
         Summary.Title,
@@ -36,6 +38,7 @@ def EmitSummary(Summary: DwgSummary) -> bytes:
     return Output + PackFields("<2I", *Summary.ReservedWords)
 
 
+# the app info operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitAppInfo(AppInfo: DwgAppInfo) -> bytes:
     Output = PackFields("<I", AppInfo.LeadWord) + EmitWide(AppInfo.InfoName)
     Output += PackFields("<I", len(AppInfo.AppEntries))

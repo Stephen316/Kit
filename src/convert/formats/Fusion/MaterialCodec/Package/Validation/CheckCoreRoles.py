@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckCore import CheckCore
 
 
+# invalid core roles input must fail here so typed appearance properties retain their native identifiers
 def CheckCoreRoles(Value: MaterialPackage) -> None:
     for CoreValue in (
         Value.RootCore,

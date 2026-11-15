@@ -3,6 +3,7 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityCatalog import EntityCatalo
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.EntityCodec.Wire.CheckFlag import CheckFlag
 
+# the type arguments vocabulary must stay centralized so entity reconstruction agrees on supported native identities
 KTypeArguments = {
     "sequence": 1,
     "set": 1,
@@ -12,6 +13,8 @@ KTypeArguments = {
     "pair": 2,
     "ge-array": 1,
 }
+
+# the leaf kinds vocabulary must stay centralized so entity reconstruction agrees on supported native identities
 KLeafKinds = frozenset(
     (
         "bool",
@@ -35,6 +38,7 @@ KLeafKinds = frozenset(
 )
 
 
+# invalid wire type input must fail here so entity identifiers retain their schema and reference meaning
 def CheckWireType(Shape: WireType, Catalog: EntityCatalog, Depth: int = 0) -> None:
     if Depth >= KMaxDepth or Shape.KindValue not in KLeafKinds | KTypeArguments.keys():
         raise ValueError("Unsupported or excessively deep Fusion entity wire type")

@@ -20,6 +20,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# occur reference needs an explicit state contract so cross document references retain their intended ownership
 @MakeDataClass(frozen=True, slots=True)
 class OccurRef:
     Identities: tuple[int, int, int]
@@ -33,6 +34,7 @@ class OccurRef:
     RootScope: ValueObject[KEntityValue]
 
 
+# the reference records contract needs a shared interpretation so cross document references retain their intended ownership
 def RefRecords(Value: OccurRef) -> tuple[EntityRecord, ...]:
     DataId, RecipeId, XAssetId = Value.Identities
     return (

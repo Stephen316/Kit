@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 
+# the report flow contract needs boundary coverage so the real command boundary enforces repository contracts
 @Pytest.mark.parametrize(
     "CaseMode,CheckName",
     (
@@ -14,6 +15,7 @@ import pytest as Pytest
         ("unlisted-job", "Unlisted job"),
         ("unlisted-run", "Unlisted workflow"),
         ("check", "Ruff"),
+        ("check", "Verify rationale comments on changed sources"),
         ("check", "Analyze (javascript-typescript)"),
         ("check", "Build and verify release artifacts"),
         ("check", "Label first-time contributors"),
@@ -49,6 +51,7 @@ def CheckReportFlow(CaseMode: str, CheckName: str) -> None:
         assert f"CI failed: {CheckName}" in ResultInfo.stderr
 
 
+# the queue reuse contract needs boundary coverage so the real command boundary enforces repository contracts
 @Pytest.mark.parametrize(
     "CaseMode,Reused,Reason",
     (

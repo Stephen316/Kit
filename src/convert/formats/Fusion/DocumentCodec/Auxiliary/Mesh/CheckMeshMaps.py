@@ -6,6 +6,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
 
 
+# invalid mesh maps input must fail here so supporting records retain their owning document relationships
 def CheckMeshMaps(Records: tuple[EntityRecord, ...]) -> None:
     KeyNames = {
         KGeometryGuid: ("textureIdToUuidMap",),

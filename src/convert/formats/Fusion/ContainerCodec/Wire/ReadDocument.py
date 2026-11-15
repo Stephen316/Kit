@@ -2,6 +2,7 @@ from convert.formats.Fusion.ContainerCodec.Model.DocumentHeader import DocumentH
 from convert.formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWire
 
 
+# the document operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadDocument(Payload: bytes) -> DocumentHeader:
     Value = ReadRootWire(Payload)
     return DocumentHeader(

@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Models.BrepHeader import BrepHeader
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# journal model needs an explicit state contract so topology changes retain their native revision relationships
 @MakeDataClass(frozen=True, slots=True)
 class JournalModel:
     Header: BrepHeader

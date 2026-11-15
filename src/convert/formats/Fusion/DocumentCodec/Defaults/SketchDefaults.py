@@ -1,3 +1,4 @@
+# the sketch defaults contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def SketchDefaults() -> dict[str, dict[str, object]]:
     return {
         "MSketch": dict(

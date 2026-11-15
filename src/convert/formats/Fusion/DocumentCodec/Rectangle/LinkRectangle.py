@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.LinkSketchMut import LinkSketch
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# link rectangle must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkRectangle(Author: AuthorState) -> None:
     Reference = Author.Reference
     Width, Depth = Author.SpecValue.WidthMm / 10.0, Author.SpecValue.DepthMm / 10.0

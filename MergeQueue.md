@@ -75,8 +75,10 @@ checks current CI health for every included PR and validates the artifact's
 origin and SHA-256 digest. Reuse requires identical candidate and PR-head trees,
 identical base commits, and ancestry from that base to the PR head. With that
 ancestry, merging the base into the PR head adds no files or content. Only
-whole-tree checks are reusable. Header, path-diff, and rationale-diff checks
-always execute freshly on the queue candidate. Supplementary merge-ref reports
+whole-tree checks are reusable. Path-diff and rationale checks always execute freshly on the queue candidate.
+The rationale gate scans every tracked owned Python source without a baseline.
+Missing comments on unchanged declarations and compatibility aliases also fail.
+The subsequent range check rejects newly added explanatory comments. Supplementary merge-ref reports
 are included only after their parents match the recorded head and base.
 
 Normal PR aggregation runs on `pull_request_target` using the trusted default

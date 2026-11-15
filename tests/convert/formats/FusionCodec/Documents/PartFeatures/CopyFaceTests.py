@@ -29,9 +29,11 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
     PartRecords,
 )
 
+# the face mark shape must stay shared so native document reconstruction uses one contract for compatible values
 KFaceMark = tuple[tuple[tuple[str, tuple[int, ...]], ...], bool]
 
 
+# shared face marks setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FaceMarks(History: JournalModel) -> dict[int, KFaceMark]:
     Marks: dict[int, KFaceMark] = {}
     for Entity in History.Entities[: History.ActiveCount]:
@@ -57,12 +59,14 @@ def FaceMarks(History: JournalModel) -> dict[int, KFaceMark]:
     return Marks
 
 
+# shared disc history setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DiscHistory(Model: DocumentModel) -> JournalModel:
     History = Model.Bodies[0].History
     assert isinstance(History, JournalModel)
     return History
 
 
+# shared topology caches setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TopologyCaches(Model: DocumentModel) -> dict[int, dict[str, KEntityValue]]:
     Identity = ClassGuids()["ETCachedTopology"]
     return {
@@ -78,6 +82,7 @@ def TopologyCaches(Model: DocumentModel) -> dict[int, dict[str, KEntityValue]]:
     }
 
 
+# the copy floors contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion control requires ZIP Zstandard"
 )
@@ -92,6 +97,7 @@ def TestCopyFloors() -> None:
     assert Counter(FaceMarks(Authored).values()) == Expected
 
 
+# the copy base contract needs boundary coverage so stored document relationships remain consistent
 def TestCopyBase() -> None:
     Features = KFamilyCases["MultiDiscPart"][0]
     Model = ReadDocument(EmitDocument(FamilySpec(Features)))

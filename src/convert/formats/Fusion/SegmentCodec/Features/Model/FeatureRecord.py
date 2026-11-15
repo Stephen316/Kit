@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Model.FeatureFrame import Feat
 from convert.formats.Fusion.SegmentCodec.Features.Model.FeatureGroup import FeatureGroup
 
 
+# feature record needs an explicit state contract so native records retain their segment ownership and schema
 @MakeDataClass(frozen=True, slots=True)
 class FeatureRecord:
     Lineage: tuple[ClassStamp, ...]

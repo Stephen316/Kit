@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Defaults.MakeNumeric import MakeNumeri
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the taper parameter contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def TaperParameter(Author: AuthorState) -> dict[str, object]:
     Degrees = Author.SpecValue.TaperDegrees
     Parameter = MakeNumeric("d3", 0.0, "", Author.Policy.ParamBirthday)

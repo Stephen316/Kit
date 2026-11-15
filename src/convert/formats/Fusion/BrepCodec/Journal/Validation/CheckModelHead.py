@@ -6,6 +6,7 @@ from math import isfinite as IsFinite
 from convert.formats.Fusion.BrepCodec.Models.BrepHeader import BrepHeader
 
 
+# invalid model head input must fail here so inconsistent revision links fail before history reconstruction
 def CheckModelHead(Header: BrepHeader, HasHistory: bool) -> None:
     if type(Header.RootCount) is not int or not 2 <= Header.RootCount <= KJournalRoots:
         raise ValueError("Fusion geometry body-root count exceeds its quota")

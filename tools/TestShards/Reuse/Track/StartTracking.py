@@ -16,6 +16,7 @@ from tools.TestShards.Reuse.Track.ForwardCall import ForwardCall
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the tracking operation needs one orchestration boundary so dependency changes cannot revive stale passing results
 def StartTracking(EarlyConfig: Pytest.Config) -> None:
     KnownArgs = getattr(EarlyConfig, "known_args_namespace", None)
     if not isinstance(getattr(KnownArgs, "TestDeps", None), str) or KActiveTrackers:

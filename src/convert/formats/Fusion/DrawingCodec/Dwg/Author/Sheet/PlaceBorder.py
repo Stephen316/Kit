@@ -25,16 +25,32 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.SlotFields import (
     InsertSlot,
 )
 
+# by layer must remain consistent across callers so paper layouts retain consistent object ownership
 KByLayer = 256
+
+# layer weight must remain consistent across callers so paper layouts retain consistent object ownership
 KLayerWeight = 29
+
+# middle align must remain consistent across callers so paper layouts retain consistent object ownership
 KMiddleAlign = 4
+
+# middle flags must remain consistent across callers so paper layouts retain consistent object ownership
 KMiddleFlags = 0xBD
+
+# millimetre units must remain consistent across callers so paper layouts retain consistent object ownership
 KMillimetreUnits = 4
+
+# border layer must remain consistent across callers so paper layouts retain consistent object ownership
 KBorderLayer = "LAYER:BORDER"
+
+# trim layer must remain consistent across callers so paper layouts retain consistent object ownership
 KTrimLayer = "LAYER:Defpoints"
+
+# zone style must remain consistent across callers so paper layouts retain consistent object ownership
 KZoneStyle = "STYLE:FusionTitle"
 
 
+# the entity common contract needs a shared interpretation so paper layouts retain consistent object ownership
 def EntityCommon(BlockKey: str, Layer: str) -> KDraftFields:
     return {
         "EntityMode": 0,
@@ -47,6 +63,7 @@ def EntityCommon(BlockKey: str, Layer: str) -> KDraftFields:
     }
 
 
+# the segment operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceSegmentMut(
     Ledger: DraftBook, BlockKey: str, KeyText: str, Layer: str, Segment: KSegment
 ) -> None:
@@ -59,6 +76,7 @@ def PlaceSegmentMut(
     )
 
 
+# the label operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceLabelMut(
     Ledger: DraftBook, BlockKey: str, KeyText: str, Label: ZoneLabel
 ) -> None:
@@ -82,6 +100,7 @@ def PlaceLabelMut(
     )
 
 
+# the sheet block contract needs a shared interpretation so paper layouts retain consistent object ownership
 def SheetBlockMut(Ledger: DraftBook, BlockName: str) -> str:
     BlockKey = "BLOCK_HEADER:" + BlockName
     FolderKey = BlockKey + "/Xdic"
@@ -115,6 +134,7 @@ def SheetBlockMut(Ledger: DraftBook, BlockName: str) -> str:
     return BlockKey
 
 
+# the border operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceBorderMut(Ledger: DraftBook, Border: BorderPlan) -> str:
     BlockKey = SheetBlockMut(Ledger, Border.BlockName)
     Lines = (

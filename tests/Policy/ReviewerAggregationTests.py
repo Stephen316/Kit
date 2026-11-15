@@ -6,12 +6,16 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
+# root path needs a stable location so repository automation resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[2]
+
+# the reviewers cases must remain explicit so repository automation exercises the intended compatibility boundary
 KReviewers = JsonCodec.loads(
     (KRootPath / ".agents/skills/standard-pr-practice/ReviewBot.json").read_text()
 )["Reviewers"]
 
 
+# the review skip contract needs boundary coverage so the real command boundary enforces repository contracts
 @Pytest.mark.parametrize(
     "Verdict",
     (
@@ -47,6 +51,7 @@ def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
             assert ReportName not in ResultInfo.stdout
 
 
+# the pending gate contract needs boundary coverage so the real command boundary enforces repository contracts
 @Pytest.mark.parametrize(
     "CaseMode,Verdict,PendingCheck",
     (

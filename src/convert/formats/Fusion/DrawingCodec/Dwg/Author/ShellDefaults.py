@@ -3,9 +3,13 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgCryptHeader import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
 
+# author version must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KAuthorVersion = "AC1032"
+
+# max page size needs one explicit bound so native drawing authoring cannot accept inconsistent resource or layout limits
 KMaxPageSize = 0x7400
 
+# file header must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KFileHeader = DwgFileHeader(
     KAuthorVersion,
     bytes(5),
@@ -26,6 +30,7 @@ KFileHeader = DwgFileHeader(
     (1027, 335, 285, 285) + (0,) * 15,
 )
 
+# crypt header must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KCryptHeader = DwgCryptHeader(
     "AcFssFcAJMB",
     (0, 108, 4),
@@ -48,6 +53,7 @@ KCryptHeader = DwgCryptHeader(
     True,
 )
 
+# the section rows order must stay explicit so drawing objects retain valid ownership and reference relationships
 KSectionRows = (
     ("AcDb:AppInfo", 10, 768, 1),
     ("AcDb:SummaryInfo", 9, 128, 1),
@@ -61,8 +67,11 @@ KSectionRows = (
     ("AcDb:Header", 1, KMaxPageSize, 2),
 )
 
+# product text must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KProductText = (
     '<ProductInformation name ="Kit" build_version="1" registry_version="26.0"'
     ' install_id_string="Kit" registry_localeID="1033"/>'
 )
+
+# product key must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KProductKey = bytes.fromhex("a93caf13fcf26d4294b93544a31b842f")

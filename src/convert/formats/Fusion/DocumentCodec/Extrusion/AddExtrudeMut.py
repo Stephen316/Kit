@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Extrusion.ProfileSides import ProfileSides
 
 
+# the extrude operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddExtrudeMut(Author: AuthorState) -> None:
     Author.Allocate("dc_extrude", "DcExtrudeFeature", ParentRole="nodes", NamedPairs=[])
     Author.Allocate("profile_model", "ModelDataRef", ParentRole="nodes")

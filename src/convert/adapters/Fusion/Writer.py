@@ -10,23 +10,30 @@ from interchange.document.models.DocumentCaps import InferCaps
 from interchange.document.models.DocumentModel import CadDocument
 
 
+# the fusion writer contract needs a dedicated boundary so public document claims remain grounded in native records
 class FusionWriter:
+
+    # the typed materials contract needs a shared interpretation so public document claims remain grounded in native records
     @property
     def TypedMaterials(self) -> bool:
         return True
 
+    # the info contract needs a shared interpretation so public document claims remain grounded in native records
     @property
     def Info(self) -> AdapterInfo:
         return KWriterInfo
 
     info = Info
 
+    # the supports contract needs a shared interpretation so public document claims remain grounded in native records
     def Supports(self, Document: CadDocument, Target: KTargetType) -> bool:
         return set(Document.metadata) in ({"fusion.authoring"}, {"fusion.native_state"})
 
+    # the supports contract needs a shared interpretation so public document claims remain grounded in native records
     def supports(self, document: CadDocument, destination: KTargetType) -> bool:
         return self.Supports(document, destination)
 
+    # the write contract needs a consistent construction rule so public document claims remain grounded in native records
     def Write(
         self,
         Document: CadDocument,
@@ -52,6 +59,8 @@ class FusionWriter:
         CapsValue = InferCaps(Document) | Document.capabilities
         if CapsValue - KWriterInfo.capabilities:
             raise ValueError("Unsupported Fusion document capabilities")
+
+        # ordering by value value must stay deterministic so native adapter translation resolves equivalent inputs consistently
         Transfers = tuple(
             CapTransfer(Value, TransferMode.KNative)
             for Value in sorted(CapsValue, key=lambda Value: Value.value)
@@ -66,6 +75,7 @@ class FusionWriter:
             vendor_loadable=True,
         )
 
+    # the write contract needs a shared interpretation so public document claims remain grounded in native records
     def write(
         self,
         document: CadDocument,

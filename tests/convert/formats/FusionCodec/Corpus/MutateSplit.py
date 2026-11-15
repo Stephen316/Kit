@@ -8,9 +8,11 @@ from convert.formats.Fusion.DesignZip import KDesignPrefix
 from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
 from tests.convert.formats.FusionCodec.Corpus.ReadCorpusFile import ReadCorpusFile
 
+# root path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[5]
 
 
+# shared mutate split setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MutateSplit(FileName: str, Sequence: int, TotalCount: int) -> bytes:
     Source = ReadCorpusFile(FileName)
     Target = next(

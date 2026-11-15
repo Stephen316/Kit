@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Wire.EmitBrepHeader import EmitBrepHeader
 from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 
 
+# the journal operation needs a consistent construction rule so topology changes retain their native revision relationships
 def EmitJournal(Model: JournalModel) -> bytes:
     CheckJournal(Model)
     _ = WalkStates(Model)

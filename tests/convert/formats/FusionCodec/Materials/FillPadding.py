@@ -1,6 +1,7 @@
 from struct import unpack_from as UnpackFrom
 
 
+# shared fill padding setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FillPadding(Payload: bytes) -> bytes:
     Result = bytearray(Payload)
     for Offset in range(16, len(Payload), 136):

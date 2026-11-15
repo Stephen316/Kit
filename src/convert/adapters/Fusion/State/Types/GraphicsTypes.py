@@ -37,6 +37,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.VertexData import VertexD
 from convert.formats.Fusion.GraphicsCodec.Model.Values.VertexField import VertexField
 from convert.formats.Fusion.GraphicsCodec.Model.Values.VertexFormat import VertexFormat
 
+# the graphics types order must stay explicit so public document claims remain grounded in native records
 KGraphicsTypes: tuple[type[object], ...] = (
     BodyChild,
     BrepWorld,

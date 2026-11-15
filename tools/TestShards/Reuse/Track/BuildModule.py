@@ -10,7 +10,10 @@ from tools.TestShards.Reuse.Track.TrackErrors import KTrackErrors
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the module operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def BuildModule(State: TrackState, Original: ForwardCall) -> ForwardCall:
+
+    # the track module contract needs a shared interpretation so dependency changes cannot revive stale passing results
     def TrackModule(*ArgList: object, **KeyArgs: object) -> ModuleType:
         Result = Original(*ArgList, **KeyArgs)
         if not State.Active:

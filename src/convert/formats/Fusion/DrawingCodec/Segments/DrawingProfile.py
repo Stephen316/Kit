@@ -13,9 +13,11 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.PickSchema import PickSchema
 from convert.formats.Fusion.EntityCodec.Vocabulary.SelectClasses import SelectClasses
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 
+# the pinned classes order must stay explicit so drawing members retain their sheet and model associations
 KPinnedClasses = (("4C835764-5BAB-4421-B5D2-06015BEF6EB2", 5),)
 
 
+# drawing profile needs an explicit validity boundary so drawing members retain their sheet and model associations
 def DrawingProfile(Metadata: tuple[MetaSegment, ...], SegmentId: int) -> EntityProfile:
     Selected = tuple(
         Segment for Segment in Metadata if Segment.Header.SegmentId == SegmentId

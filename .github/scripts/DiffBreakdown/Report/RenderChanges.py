@@ -4,13 +4,17 @@ from Report.MarkdownText import CommitLink, EscapeText
 from Report.RenderPush import RenderPush
 from Report.ShareCounts import CountLines, ExcludedShare
 
+# rules note must remain consistent across callers so reviewers can distinguish semantic changes from generated noise
 KRulesNote = (
     "Classification rules changed since the previous report; composition deltas "
     "include reclassification."
 )
+
+# base note must remain consistent across callers so reviewers can distinguish semantic changes from generated noise
 KBaseNote = "The merge base changed; snapshot deltas also reflect the updated base."
 
 
+# the render changes contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderChanges(
     Snapshot: dict[str, object], Previous: dict[str, object]
 ) -> list[str]:

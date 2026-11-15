@@ -6,6 +6,7 @@ from convert.formats.Fusion.BundleCodec.Json.ReadRefs import ReadRefs
 from convert.formats.Fusion.BundleCodec.Model.BundleObject import BundleObject
 
 
+# the object operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadObject(Value: KJsonValue) -> BundleObject:
     KeyNames = (
         "id version about lineage from relativePath downloadAs "

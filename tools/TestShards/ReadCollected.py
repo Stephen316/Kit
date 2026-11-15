@@ -2,9 +2,11 @@ from __future__ import annotations
 
 import re as Regex
 
+# count pattern needs one explicit bound so test planning cannot accept inconsistent resource or layout limits
 KCountPattern = Regex.compile(r"^(\d+)(?:/\d+)? tests? collected\b")
 
 
+# the collected operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def ReadCollected(OutputText: str) -> tuple[str, ...]:
     LineList = OutputText.splitlines()
     if "" not in LineList:

@@ -13,6 +13,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeValue import RecipeValue
 
+# the entity value variants need one shared contract so entity reconstruction cannot omit a supported value shape
 KEntityValue: TypeAlias = (  # lgtm[py/unused-global-variable]
     None
     | bool

@@ -3,6 +3,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.PutCodeMut import PutUnicodeMu
 from convert.formats.Fusion.DrawingCodec.Dwg.Bits.PutRawMut import PutRawShortMut
 
 
+# the texts operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutTextsMut(Writer: BitWriter, TextItems: tuple[str, ...], HasTexts: bool) -> None:
     if not HasTexts:
         if TextItems:

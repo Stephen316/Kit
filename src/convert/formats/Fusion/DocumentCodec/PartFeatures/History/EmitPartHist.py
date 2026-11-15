@@ -30,6 +30,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import Sh
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# part journal needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def PartJournal(
     Stages: tuple[tuple[ShapeBody, ...], ...],
     StateIds: tuple[int, ...],
@@ -67,6 +68,7 @@ def PartJournal(
     return Model
 
 
+# the part history operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def EmitPartHist(
     Stages: tuple[tuple[ShapeBody, ...], ...],
     StateIds: tuple[int, ...],

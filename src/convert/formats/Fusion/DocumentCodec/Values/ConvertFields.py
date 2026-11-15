@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 
 
+# convert fields needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def ConvertFields(
     Value: object,
     Members: tuple[FieldSpec[WireType], ...],

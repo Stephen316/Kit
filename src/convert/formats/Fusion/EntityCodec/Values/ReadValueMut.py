@@ -16,6 +16,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.FeatureLimits import KMaxFeatureText
 
 
+# the value operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadValueMut(
     Cursor: MetaCursor, Shape: WireType, Catalog: EntityCatalog, Depth: int = 0
 ) -> KEntityValue:

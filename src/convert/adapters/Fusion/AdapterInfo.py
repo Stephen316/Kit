@@ -1,6 +1,7 @@
 from convert.adapters.base.AdapterInfo import AdapterInfo
 from interchange.enums.EnumDocument import Capability
 
+# reader info must remain consistent across callers so public document claims remain grounded in native records
 KReaderInfo = AdapterInfo(
     format_id="fusion.f3d",
     name="Autodesk Fusion",

@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Geometry.ReadEdgeNode impo
 )
 
 
+# the tedge node operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadTedgeNode(Cursor: FieldCursor) -> TedgeNode:
     BaseNode = ReadEdgeNode(Cursor)
     Tolerance = ReadDoubleMut(Cursor)

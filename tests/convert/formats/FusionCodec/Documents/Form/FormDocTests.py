@@ -24,6 +24,7 @@ from tests.convert.formats.FusionCodec.Documents.Graphics.FindValues import (
 )
 
 
+# the form docs contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
@@ -47,6 +48,7 @@ def TestFormDocs(TmpPath: FilePath, CaseValue: tuple[str, str]) -> None:
                 assert After.read(NameValue) == Before.read(NameValue)
 
 
+# the form worlds contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )

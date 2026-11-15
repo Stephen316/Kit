@@ -17,6 +17,7 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
 )
 
 
+# shared read plane doc setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadPlaneDoc() -> DocumentModel:
     CaseValue = next(
         Value for Value in KFormArchives if Value[0].endswith("vendor_PlaneControl.f3d")
@@ -24,6 +25,7 @@ def ReadPlaneDoc() -> DocumentModel:
     return ReadDocument(ReadFormFile(*CaseValue))
 
 
+# the form joins contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )

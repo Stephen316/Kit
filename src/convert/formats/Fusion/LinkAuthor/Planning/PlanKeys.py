@@ -12,10 +12,12 @@ from convert.formats.Fusion.LinkAuthor.Model.RootFacts import RootFacts
 from convert.formats.Fusion.LinkAuthor.Model.TargetFacts import TargetFacts
 
 
+# the ids operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def TakeIdsMut(Source: Iterator[int], Total: int) -> tuple[int, ...]:
     return tuple(SliceItems(Source, Total))
 
 
+# the links operation needs a consistent construction rule so cross document references retain their intended ownership
 def MakeLinks(Total: int) -> tuple[LinkKeys, ...]:
     Tokens: list[int] = []
     while len(Tokens) < Total * 2:
@@ -30,6 +32,7 @@ def MakeLinks(Total: int) -> tuple[LinkKeys, ...]:
     )
 
 
+# the plan place contract needs a stable decomposition so cross document references retain their intended ownership
 def PlanPlaceMut(
     Sources: tuple[Iterator[int], Iterator[int], Iterator[int]],
     Facts: TargetFacts,
@@ -64,6 +67,7 @@ def PlanPlaceMut(
     )
 
 
+# the plan pin contract needs a stable decomposition so cross document references retain their intended ownership
 def PlanPinMut(Design: Iterator[int], FeatureId: int, FeatureIndex: int) -> ActionKeys:
     Override, Feature, DataId, RecipeId, XAssetId, FeatureData, Status, Table = (
         TakeIdsMut(Design, 8)
@@ -79,6 +83,7 @@ def PlanPinMut(Design: Iterator[int], FeatureId: int, FeatureIndex: int) -> Acti
     )
 
 
+# the plan joint contract needs a stable decomposition so cross document references retain their intended ownership
 def PlanJointMut(Design: Iterator[int], FeatureId: int) -> ActionKeys:
     JointId, Feature = TakeIdsMut(Design, 2)
     References = TakeIdsMut(Design, 9)
@@ -94,6 +99,7 @@ def PlanJointMut(Design: Iterator[int], FeatureId: int) -> ActionKeys:
     )
 
 
+# the plan keys contract needs a stable decomposition so cross document references retain their intended ownership
 def PlanKeys(
     RootInfo: RootFacts,
     Request: AssemblySpec,

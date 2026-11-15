@@ -1,3 +1,4 @@
+# the form archives cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFormArchives: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/LocalOracle/TSpline/Box.f3d",

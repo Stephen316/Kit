@@ -30,6 +30,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
 
+# srf srf blend needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class SrfSrfBlend(TypedBase):
     Revision: int
@@ -49,6 +50,7 @@ class SrfSrfBlend(TypedBase):
     VarBlendSpline: BsCurve | None
 
 
+# gtwo blend needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class GtwoBlend(TypedBase):
     Revision: int
@@ -62,6 +64,7 @@ class GtwoBlend(TypedBase):
     Frame: BlendFrame
 
 
+# the radii from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def RadiiFrom(Value: KGrammarValue) -> tuple[int, KRadius, KRadius | None]:
     Choice = NeedChoice(Value)
     FormValue = NeedWhole(Choice.ChoiceKey)
@@ -71,6 +74,7 @@ def RadiiFrom(Value: KGrammarValue) -> tuple[int, KRadius, KRadius | None]:
     return FormValue, RadiusFrom(First), RadiusFrom(Second)
 
 
+# radii tree needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def RadiiTree(Record: SrfSrfBlend) -> ChoiceValue:
     if (Record.RadiusForm == 1) != (Record.SecondRadius is not None):
         raise ValueError("Fusion blend radius form disagrees with its radii")
@@ -80,6 +84,7 @@ def RadiiTree(Record: SrfSrfBlend) -> ChoiceValue:
     return ChoiceValue(Record.RadiusForm, (First, RadiusTree(Record.SecondRadius)))
 
 
+# roll from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def RollFrom(Value: KGrammarValue) -> SrfSrfBlend:
     Parts = NeedItems(Value, 24)
     if Parts[7] is not None or Parts[23] is not None:
@@ -104,6 +109,7 @@ def RollFrom(Value: KGrammarValue) -> SrfSrfBlend:
     )
 
 
+# the roll tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def RollTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, SrfSrfBlend)
     return (
@@ -125,6 +131,7 @@ def RollTree(Value: KGrammarValue) -> KGrammarValue:
     )
 
 
+# gtwo from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def GtwoFrom(Value: KGrammarValue) -> GtwoBlend:
     Parts = NeedItems(Value, 19)
     if Parts[8] is not None:
@@ -142,6 +149,7 @@ def GtwoFrom(Value: KGrammarValue) -> GtwoBlend:
     )
 
 
+# the gtwo tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def GtwoTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, GtwoBlend)
     return (

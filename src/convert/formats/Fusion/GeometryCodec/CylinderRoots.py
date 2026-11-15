@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the roots operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildRoots() -> tuple[GeometryRecord, ...]:
     return (
         GeometryRecord("asmheader", (EntityRef(-1), -1, CountedText("232.5.0.65535"))),

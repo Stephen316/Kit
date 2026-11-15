@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BundleCodec.Model.BundleGraph import BundleGraph
 
 
+# invalid graph input must fail here so linked archive members retain their document relationships
 def CheckGraph(Value: BundleGraph) -> None:
     Neighbors = {
         Entry.ObjectId: {

@@ -10,9 +10,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# quarter turn must remain consistent across callers so body topology remains consistent with its modeling operation
 KQuarterTurn = KHalfTurn / 2.0
 
 
+# the span extent contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SpanExtent(Value: KPlaneSpan) -> list[tuple[float, float]]:
     Points = [SpanStart(Value), SpanFinish(Value)]
     if not isinstance(Value, ArcSpan):

@@ -8,6 +8,7 @@ from convert.formats.Fusion.ContainerCodec.ContainerLayout import (
 from convert.formats.Fusion.ContainerCodec.Preview.PackPngChunk import PackPngChunk
 
 
+# the preview operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitPreview(Width: int, Height: int, Pixels: bytes) -> bytes:
     if (
         type(Width) is not int

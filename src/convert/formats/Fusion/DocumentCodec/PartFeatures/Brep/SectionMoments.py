@@ -4,13 +4,23 @@ from typing import TypeAlias
 
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Brep.EdgeRound import EdgeRound
 
+# the plane point shape must stay shared so feature geometry uses one contract for compatible values
 KPlanePoint: TypeAlias = tuple[float, float]
+
+# the polynomial shape must stay shared so feature geometry uses one contract for compatible values
 KPolynomial: TypeAlias = dict[tuple[int, int], float]
+
+# gauss count needs one explicit bound so feature geometry cannot accept inconsistent resource or layout limits
 KGaussCount = 32
+
+# moment degree must remain consistent across callers so edge and face relationships survive parametric feature construction
 KMomentDegree = 3
+
+# newton limit needs one explicit bound so feature geometry cannot accept inconsistent resource or layout limits
 KNewtonLimit = 100
 
 
+# the legendre root contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def LegendreRoot(Count: int, Index: int) -> tuple[float, float]:
     Value = Cosine(KHalfTurn * (Index + 0.75) / (Count + 0.5))
     Slope = 1.0
@@ -29,9 +39,11 @@ def LegendreRoot(Count: int, Index: int) -> tuple[float, float]:
     return Value, 2.0 / ((1.0 - Value * Value) * Slope * Slope)
 
 
+# gauss nodes must remain consistent across callers so edge and face relationships survive parametric feature construction
 KGaussNodes = tuple(LegendreRoot(KGaussCount, Index) for Index in range(KGaussCount))
 
 
+# the gauss span contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def GaussSpan(Lower: float, Upper: float) -> list[tuple[float, float]]:
     HalfWidth, Midpoint = (Upper - Lower) / 2.0, (Upper + Lower) / 2.0
     return [
@@ -40,6 +52,7 @@ def GaussSpan(Lower: float, Upper: float) -> list[tuple[float, float]]:
     ]
 
 
+# section piece needs an explicit state contract so edge and face relationships survive parametric feature construction
 @MakeDataClass(frozen=True, slots=True)
 class SectionPiece:
     Center: KPlanePoint | None
@@ -48,6 +61,7 @@ class SectionPiece:
     Ends: tuple[KPlanePoint, KPlanePoint]
 
 
+# the piece point contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def PiecePoint(Piece: SectionPiece, Value: float) -> tuple[KPlanePoint, KPlanePoint]:
     if Piece.Center is None:
         Start, Finish = Piece.Ends
@@ -63,16 +77,19 @@ def PiecePoint(Piece: SectionPiece, Value: float) -> tuple[KPlanePoint, KPlanePo
     return Point, (0.0 - Scale * SineOf(Angle), Scale * Cosine(Angle))
 
 
+# the line piece contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def LinePiece(Start: KPlanePoint, Finish: KPlanePoint) -> SectionPiece:
     return SectionPiece(None, (0.0, 1.0), 0.0, (Start, Finish))
 
 
+# the arc piece contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ArcPiece(
     Center: KPlanePoint, Radius: float, Bounds: tuple[float, float]
 ) -> SectionPiece:
     return SectionPiece(Center, Bounds, Radius, ((0.0, 0.0), (0.0, 0.0)))
 
 
+# the piece operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def BlendPiece(Round: EdgeRound) -> SectionPiece:
     CapCm, WallCm = Round.CapCm, Round.WallCm
     if not Round.Rounded:
@@ -80,6 +97,7 @@ def BlendPiece(Round: EdgeRound) -> SectionPiece:
     return ArcPiece((CapCm, CapCm), CapCm, (0.0 - KHalfTurn / 2.0, 0.0 - KHalfTurn))
 
 
+# the section loop contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SectionLoop(Round: EdgeRound) -> tuple[SectionPiece, ...]:
     return (
         LinePiece((0.0, 0.0), (Round.CapCm, 0.0)),
@@ -88,6 +106,7 @@ def SectionLoop(Round: EdgeRound) -> tuple[SectionPiece, ...]:
     )
 
 
+# the section moments contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SectionMoments(Round: EdgeRound) -> KPolynomial:
     Moments: KPolynomial = {}
     for First in range(KMomentDegree + 1):
@@ -102,6 +121,7 @@ def SectionMoments(Round: EdgeRound) -> KPolynomial:
     return Moments
 
 
+# the piece weight contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def PieceWeight(Piece: SectionPiece, Scale: KPolynomial) -> float:
     Total = 0.0
     for Value, Weight in GaussSpan(0.0, 1.0):

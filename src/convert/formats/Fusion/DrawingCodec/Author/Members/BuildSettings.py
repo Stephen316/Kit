@@ -24,6 +24,7 @@ from convert.formats.Fusion.DrawingCodec.Members.WriteJson import WriteJson
 from convert.formats.Fusion.DrawingCodec.Model.DrawingNames import KSettingsFolder
 
 
+# the settings operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildSettings(AutoDimension: bool) -> tuple[JsonPart, ...]:
     Parts = {PartValue.Name: PartValue for PartValue in KAutomationParts}
     for PartValue in (DimensionPart(AutoDimension), PartsListPart()):
@@ -33,6 +34,7 @@ def BuildSettings(AutoDimension: bool) -> tuple[JsonPart, ...]:
     )
 
 
+# the dimension part contract needs a shared interpretation so sheet objects retain their intended document relationships
 def DimensionPart(AutoDimension: bool) -> JsonPart:
     Groups: list[KFrozenJson] = []
     for GroupName, HasStrategy in KDimensionGroups:
@@ -50,6 +52,7 @@ def DimensionPart(AutoDimension: bool) -> JsonPart:
     )
 
 
+# the parts list part contract needs a shared interpretation so sheet objects retain their intended document relationships
 def PartsListPart() -> JsonPart:
     ColumnRows = tuple(
         JsonFields(

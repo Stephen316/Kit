@@ -2,6 +2,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# frustum links needs an explicit validity boundary so circular boundaries retain consistent cone and rim geometry
 def FrustumLinks(
     Wanted: AsmRecord, Stored: AsmRecord, RecordCount: int
 ) -> tuple[tuple[int, int], ...]:

@@ -11,6 +11,7 @@ from tests.convert.formats.FusionCodec.Materials.Package.NativePackage import (
 )
 
 
+# the reject pack contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "ModeName", ("extra", "version", "schema", "doctype", "resource")
 )

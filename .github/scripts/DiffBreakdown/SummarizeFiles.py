@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+# the total keys order must stay explicit so published evidence stays bound to the reviewed revision
 KTotalKeys = (
     "Additions",
     "Deletions",
@@ -10,9 +11,12 @@ KTotalKeys = (
     "Unclassified",
     "Lines",
 )
+
+# the bucket keys order must stay explicit so published evidence stays bound to the reviewed revision
 KBucketKeys = ("Additions", "Deletions", "Files", "Binary")
 
 
+# summarize files needs one geometric convention so published evidence stays bound to the reviewed revision
 def SummarizeFiles(FileList: list[dict[str, object]]) -> dict[str, object]:
     Buckets: dict[str, dict[str, object]] = {}
     Totals = dict.fromkeys(KTotalKeys, 0)

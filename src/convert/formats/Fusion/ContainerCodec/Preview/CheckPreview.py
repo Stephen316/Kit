@@ -3,6 +3,7 @@ from struct import unpack_from as UnpackFrom
 from zlib import crc32 as CrcValue
 
 
+# invalid preview input must fail here so archive members retain their native ownership and reference relationships
 def CheckPreview(Payload: bytes) -> None:
     CheckPngBounds(Payload)
     Offset = 8

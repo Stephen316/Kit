@@ -3,6 +3,7 @@ from __future__ import annotations
 from fnmatch import fnmatchcase as MatchName
 
 
+# the parts match decision must stay consistent so review categories remain consistent across push snapshots
 def IsPartsMatch(
     PatternParts: tuple[str, ...], PathParts: tuple[str, ...], NeedsChild: bool
 ) -> bool:
@@ -20,6 +21,7 @@ def IsPartsMatch(
     )
 
 
+# the glob match decision must stay consistent so review categories remain consistent across push snapshots
 def IsGlobMatch(PatternText: str, RepoPath: str) -> bool:
     NeedsChild = PatternText.endswith("/")
     IsAnchored = PatternText.startswith("/") or "/" in PatternText.rstrip("/")

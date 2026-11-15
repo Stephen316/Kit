@@ -1,3 +1,4 @@
+# the slack cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSlackCases: tuple[tuple[str, str, int], ...] = (
     (
         "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/PlaneControl.f3d",

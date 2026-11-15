@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.CountedText import CountedText
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# feature identity must survive serialization so native history references resolve to the intended modeling operation
 def MakeTagPayload(Value: FeatureTag) -> tuple[KGeometryValue, ...]:
     return (
         *MakeTagPrefix(),

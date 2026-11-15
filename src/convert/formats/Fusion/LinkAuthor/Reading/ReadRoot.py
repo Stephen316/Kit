@@ -31,6 +31,7 @@ from convert.formats.Fusion.LinkAuthor.Records.LinkGuids import (
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# the link free decision must stay consistent so cross document references retain their intended ownership
 def IsLinkFree(Model: DocumentModel) -> bool:
     return not (
         Model.Document.Links
@@ -39,6 +40,7 @@ def IsLinkFree(Model: DocumentModel) -> bool:
     )
 
 
+# the root operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadRoot(Model: DocumentModel) -> RootFacts:
     Design = SegmentOf(Model, SegmentKind.KDesign)
     Tracking = SegmentOf(Model, SegmentKind.KAct)

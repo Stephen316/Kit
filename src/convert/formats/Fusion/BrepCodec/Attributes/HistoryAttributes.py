@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the history tags operation needs a consistent construction rule so native topology can resolve its owning modeling operation
 def MakeHistoryTags(
     Identity: BodyIdentity, TagSet: TopologyTags
 ) -> tuple[GeometryRecord, ...]:

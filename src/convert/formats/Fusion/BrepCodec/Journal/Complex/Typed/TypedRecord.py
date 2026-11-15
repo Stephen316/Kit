@@ -49,6 +49,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.VertexRecords import
     VblSurf,
 )
 
+# the typed record shape must stay shared so typed journal reconstruction uses one contract for compatible values
 KTypedRecord: TypeAlias = Union[
     CurveContext,
     ExpParCur,
@@ -79,6 +80,7 @@ KTypedRecord: TypeAlias = Union[
     LoftSplSur,
 ]
 
+# the record types order must stay explicit so native geometry variants retain distinct field contracts
 KRecordTypes = (
     CurveContext,
     ExpParCur,
@@ -110,15 +112,20 @@ KRecordTypes = (
 )
 
 
+# the record builder contract needs a dedicated boundary so native geometry variants retain distinct field contracts
 class RecordBuilder(Protocol):
+
+    # record builder needs an explicit validity boundary so native geometry variants retain distinct field contracts
     def __call__(self, *Parts: KGrammarValue) -> KTypedRecord:
         raise TypeError("a concrete typed subtype record constructor is required")
 
 
+# the record parts contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def RecordParts(Value: KTypedRecord) -> tuple[KGrammarValue, ...]:
     return tuple(getattr(Value, Field.name) for Field in RecordFields(Value))
 
 
+# rebuild record needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def RebuildRecord(
     Value: KTypedRecord, Parts: tuple[KGrammarValue, ...]
 ) -> KTypedRecord:

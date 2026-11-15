@@ -20,6 +20,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.WalkSpec import (
 )
 
 
+# the header vars operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitHeaderVars(
     HeaderVars: DwgRecord, Frame: DwgRecord, FileHeader: DwgFileHeader
 ) -> bytes:

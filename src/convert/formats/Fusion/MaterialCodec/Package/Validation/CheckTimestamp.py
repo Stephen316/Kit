@@ -1,6 +1,7 @@
 from datetime import datetime as DateTime
 
 
+# invalid timestamp input must fail here so typed appearance properties retain their native identifiers
 def CheckTimestamp(Value: str) -> None:
     try:
         Parsed = DateTime.fromisoformat(Value.replace("Z", "+00:00"))

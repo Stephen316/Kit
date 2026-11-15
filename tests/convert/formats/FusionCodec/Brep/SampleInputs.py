@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the boundary representation sample boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(frozen=True, slots=True)
 class BrepSample:
     Model: CylinderBody
@@ -18,6 +19,7 @@ class BrepSample:
     Stamp: GeometryStamp
 
 
+# shared make sample setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeSample() -> BrepSample:
     TagSet = TopologyTags(
         FeatureTag("3", (1701,)),

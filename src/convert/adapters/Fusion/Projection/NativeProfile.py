@@ -13,6 +13,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentMod
 from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 
+# native profile needs an explicit validity boundary so public document claims remain grounded in native records
 def NativeProfile(Index: NativeIndex, ModelValue: DocumentModel) -> DocumentSpec:
     Params = [Index.Fields[Identity] for Identity in Index.Names.get("Parameter", ())]
     Users = [Value for Value in Params if Value.get("isUserDefined") is True]
@@ -59,6 +60,7 @@ def NativeProfile(Index: NativeIndex, ModelValue: DocumentModel) -> DocumentSpec
     return Result
 
 
+# sketch profile needs an explicit validity boundary so public document claims remain grounded in native records
 def SketchProfile(Index: NativeIndex, SpecValue: DocumentSpec) -> DocumentSpec:
     NameValue = NativeText(Index.FindOne("MSketch")["userName"])
     if Index.Names.get("CircArc3D"):

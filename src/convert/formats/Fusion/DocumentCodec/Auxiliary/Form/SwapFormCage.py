@@ -21,6 +21,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSnap import DocumentSnap
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# the change body contract needs a shared interpretation so supporting records retain their owning document relationships
 def ChangeBody(BodyValue: DocumentBody, Context: StencilSwap) -> DocumentBody:
     History = BodyValue.History
     if not isinstance(History, JournalModel) or not IsFormBody(History.Entities):
@@ -29,6 +30,7 @@ def ChangeBody(BodyValue: DocumentBody, Context: StencilSwap) -> DocumentBody:
     return ReplaceValue(BodyValue, History=ReplaceValue(History, Entities=Entities))
 
 
+# the change snapshot contract needs a shared interpretation so supporting records retain their owning document relationships
 def ChangeSnap(SnapValue: DocumentSnap, Context: StencilSwap) -> DocumentSnap:
     State = SnapValue.Snapshot
     if not isinstance(State, GeometryState) or not IsFormBody(State.Entities):
@@ -37,15 +39,18 @@ def ChangeSnap(SnapValue: DocumentSnap, Context: StencilSwap) -> DocumentSnap:
     return ReplaceValue(SnapValue, Snapshot=ReplaceValue(State, Entities=Entities))
 
 
+# the edge classes contract needs a shared interpretation so supporting records retain their owning document relationships
 def EdgeClasses(Surface: TsplineSurface) -> list[str]:
     return [EdgeValue.Convexity for EdgeValue in CageBody(Surface).Edges]
 
 
+# invalid classes input must fail here so supporting records retain their owning document relationships
 def CheckClasses(Prior: TsplineSurface, Surface: TsplineSurface) -> None:
     if EdgeClasses(Prior) != EdgeClasses(Surface):
         raise ValueError("Fusion Form cage swap would change a crease edge class")
 
 
+# the layout part contract needs a shared interpretation so supporting records retain their owning document relationships
 def LayoutPart(Surface: TsplineSurface) -> tuple[object, ...]:
     Header = Surface.Header
     return (
@@ -63,6 +68,7 @@ def LayoutPart(Surface: TsplineSurface) -> tuple[object, ...]:
     )
 
 
+# swap form cage needs an explicit validity boundary so supporting records retain their owning document relationships
 def SwapFormCage(Model: DocumentModel, Surface: TsplineSurface) -> DocumentModel:
     if len(Model.Forms) != 1:
         raise ValueError("Fusion Form cage swap needs exactly one Form")

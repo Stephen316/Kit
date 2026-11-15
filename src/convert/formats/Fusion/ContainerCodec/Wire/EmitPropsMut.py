@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.ManifestLayout import KPhysica
 from convert.formats.Fusion.SegmentCodec.Manifest.ManifestSink import ManifestSink
 
 
+# the props operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitPropsMut(SinkValue: ManifestSink, Properties: tuple[tuple[str, str], ...]) -> None:
     SinkValue.AddCount(Properties, KMaxProperties)
     Names: set[str] = set()

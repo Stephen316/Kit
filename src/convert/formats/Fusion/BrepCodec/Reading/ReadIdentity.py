@@ -8,6 +8,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the identity operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadIdentity(Table: AsmTable, Mapping: dict[int, int]) -> BodyIdentity:
     BodyRoot = RequireAsm(Table, Mapping[1], "body", 6)
     Timestamp = RequireAsm(Table, Mapping[26], "ATTRIB_CUSTOM-attrib", 8)

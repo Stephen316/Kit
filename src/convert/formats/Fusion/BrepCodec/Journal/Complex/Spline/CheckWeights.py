@@ -1,6 +1,7 @@
 from math import isfinite as IsFinite
 
 
+# invalid weights input must fail here so nested spline and surface records retain their relationships
 def CheckWeights(Rational: bool, Weights: tuple[float, ...], Count: int) -> None:
     if type(Weights) is not tuple:
         raise ValueError("Invalid Fusion B-spline rational form")

@@ -29,6 +29,7 @@ from convert.formats.Fusion.DrawingCodec.Members.WriteJson import WriteJson
 from convert.formats.Fusion.DrawingCodec.Segments.EmitSegments import EmitSegments
 
 
+# the drawing operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitDrawing(
     Value: FusionDrawing, CompressZstd: Callable[[bytes], bytes] | None = None
 ) -> bytes:
@@ -51,6 +52,7 @@ def EmitDrawing(
     return EmitPackage(DrawingPackage(tuple(Entries)), CompressZstd)
 
 
+# drawing payloads needs an explicit validity boundary so drawing members retain their sheet and model associations
 def DrawingPayloads(Value: FusionDrawing) -> dict[str, bytes]:
     Prefix = ActivePrefix(Value.Root)
     Active: dict[str, bytes] = {KAssetManifest: EmitAsset(Value.Asset)}

@@ -41,6 +41,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Vocabulary.FeatureDefault
 from convert.formats.Fusion.SegmentCodec.Features.Binary.CheckUuid import CheckUuid
 
 
+# the design operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def BuildDesign(SpecValue: DocumentSpec, AssetId: str) -> DesignResult:
     CheckDocSpec(SpecValue)
     CheckUuid(AssetId)

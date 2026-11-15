@@ -21,12 +21,20 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Edges.SplitPieces import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import ViewFrame
 
+# point gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KPointGap = 1e-9
+
+# whole gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KWholeGap = 1e-9
+
+# sign bit must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSignBit = 1 << 31
+
+# word span must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KWordSpan = 1 << 32
 
 
+# edge row needs an explicit state contract so projected boundaries retain their intended visibility and geometry
 @MakeDataClass(frozen=True, slots=True)
 class EdgeRow:
     EdgeId: int
@@ -35,10 +43,12 @@ class EdgeRow:
     Piece: KEdgePath
 
 
+# the row order contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def RowOrder(Entry: EdgeRow) -> int:
     return Entry.EdgeId - KWordSpan if Entry.EdgeId >= KSignBit else Entry.EdgeId
 
 
+# piece row needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def PieceRow(EdgeId: int, Curve: KEdgePath, KeptPieces: EdgePiece) -> EdgeRow:
     if isinstance(Curve, RoundPath) and not IsWhole(Curve):
         raise ValueError(
@@ -49,6 +59,7 @@ def PieceRow(EdgeId: int, Curve: KEdgePath, KeptPieces: EdgePiece) -> EdgeRow:
     return EdgeRow(EdgeId, KeptPieces.State == KShown, Curve, Piece)
 
 
+# view edges needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def ViewEdges(
     Shape: SolidShape, Frame: ViewFrame, ShowHidden: bool
 ) -> tuple[EdgeRow, ...]:

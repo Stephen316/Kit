@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import Fa
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import LineSpan
 
 
+# the face key contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FaceKey(FaceValue: KShapeFace) -> tuple[object, ...]:
     if isinstance(FaceValue, FreeFace):
         return ("free", FaceValue.Label, FaceValue.Surface)
@@ -22,6 +23,7 @@ def FaceKey(FaceValue: KShapeFace) -> tuple[object, ...]:
     )
 
 
+# the face label of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FaceLabelOf(FaceValue: KShapeFace) -> FaceLabel:
     if isinstance(FaceValue, WallFace):
         return FaceValue.Span.Label

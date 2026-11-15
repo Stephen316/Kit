@@ -6,7 +6,10 @@ from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.ContainerCodec.Graph.MakeAuxGroups import MakeAuxGroups
 
 
+# the segment catalog contract needs a dedicated boundary so archive members retain their native ownership and reference relationships
 class SegmentCatalog:
+
+    # segment catalog needs explicit initial state so archive members retain their native ownership and reference relationships
     def __init__(
         self,
         Segment: SegmentKind,
@@ -15,6 +18,8 @@ class SegmentCatalog:
     ) -> None:
         super().__init__()
         self.Segment = Segment
+
+        # ordering by entry value class guid upper must stay deterministic so container reconstruction resolves equivalent inputs consistently
         self.Schemas = tuple(
             sorted(Schemas, key=lambda Entry: Entry.Value.ClassGuid.upper())
         )
@@ -36,6 +41,7 @@ class SegmentCatalog:
             External.RootGuid, tuple(Combined.values()), External.ExternalTargets
         )
 
+    # the groups operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
     def MakeGroups(
         self, ClassName: str, Fields: dict[str, KEntityValue]
     ) -> tuple[EntityGroup[KEntityValue], ...]:

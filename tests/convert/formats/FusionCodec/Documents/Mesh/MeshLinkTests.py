@@ -9,6 +9,7 @@ from tests.convert.formats.FusionCodec.Mesh.ReadMeshCases import ReadMeshCases
 from tests.convert.formats.FusionCodec.Mesh.ReadMeshFile import KRootPath
 
 
+# the mesh links contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "Variant, Message",
     (

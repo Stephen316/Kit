@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import Clas
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
+# node layout must remain consistent across callers so native records retain their segment ownership and schema
 KNodeLayout = ClassLayout(
     ClassStamp(
         "A0A15D26-1F3B-4120-A3F1-9CDDA189AB74",

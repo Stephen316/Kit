@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadTextMut import 
 )
 
 
+# the name body operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadNameBody(Cursor: FieldCursor, HasNumber: bool) -> NameAttrib:
     Links = ReadSysLinks(Cursor)
     Actions = (
@@ -24,9 +25,11 @@ def ReadNameBody(Cursor: FieldCursor, HasNumber: bool) -> NameAttrib:
     return NameAttrib(Links, Actions, NameText, NumberValue)
 
 
+# the name node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadNameNode(Cursor: FieldCursor) -> NameAttrib:
     return ReadNameBody(Cursor, False)
 
 
+# the long name operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadLongName(Cursor: FieldCursor) -> NameAttrib:
     return ReadNameBody(Cursor, True)

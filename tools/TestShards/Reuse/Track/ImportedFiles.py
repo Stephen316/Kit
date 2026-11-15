@@ -8,6 +8,7 @@ from functools import lru_cache as Memoize
 from tools.TestShards.Reuse.Track.LocateFile import LocateFile
 
 
+# the imported files contract needs a shared interpretation so dependency changes cannot revive stale passing results
 @Memoize(maxsize=None)
 def ImportedFiles(
     RootText: str, NameText: str, Package: str, Members: tuple[str, ...], Level: int

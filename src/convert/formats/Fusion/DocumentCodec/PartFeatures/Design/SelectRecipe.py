@@ -13,6 +13,7 @@ from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeValue import RecipeV
 from convert.formats.Fusion.EntityCodec.Recipes.Model.VertexRecipe import VertexRecipe
 
 
+# the recipe tags contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RecipeTags(Labels: list[FaceLabel]) -> tuple[tuple[RecipeTag, ...], ...]:
     return tuple(
         tuple(
@@ -28,14 +29,17 @@ def RecipeTags(Labels: list[FaceLabel]) -> tuple[tuple[RecipeTag, ...], ...]:
     )
 
 
+# pick face must resolve unambiguously so modeling operations retain their document and timeline ownership
 def PickFace(Index: int) -> FaceRecipe:
     return FaceRecipe(Index, -1)
 
 
+# pick vertex must resolve unambiguously so modeling operations retain their document and timeline ownership
 def PickVertex(Indices: tuple[int, ...]) -> VertexRecipe[EdgeRecipe]:
     return VertexRecipe(-1, tuple(PickFace(Index) for Index in Indices), (), ())
 
 
+# the corner recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def CornerRecipe(Solid: PrismSolid, CornerCm: tuple[float, float]) -> RecipeValue:
     LoopValue = next(
         LoopValue

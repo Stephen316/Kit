@@ -19,15 +19,18 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PatternSpec import 
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PlaneSpec import PlaneSpec
 
+# copy limit needs one explicit bound so pattern feature construction cannot accept inconsistent resource or layout limits
 KCopyLimit = 64
 
 
+# invalid count input must fail here so repeated instances retain their intended placement and ownership
 def CheckCount(Value: object, Lowest: int) -> int:
     if type(Value) is not int or not Lowest <= Value <= KCopyLimit:
         raise ValueError("Fusion pattern counts must be qualified integers")
     return Value
 
 
+# invalid amount input must fail here so repeated instances retain their intended placement and ownership
 def CheckAmount(Value: object, IsSigned: bool) -> float:
     if type(Value) not in (int, float) or not IsFinite(CastValue(float, Value)):
         raise ValueError("Fusion pattern sizes must be finite numbers")
@@ -37,12 +40,14 @@ def CheckAmount(Value: object, IsSigned: bool) -> float:
     return Amount
 
 
+# invalid index input must fail here so repeated instances retain their intended placement and ownership
 def CheckIndex(Features: tuple[KPartFeature, ...], Value: object, Index: int) -> object:
     if type(Value) is not int or not 0 <= Value < Index:
         raise ValueError("Fusion pattern references must name an earlier feature")
     return Features[Value]
 
 
+# invalid shape input must fail here so repeated instances retain their intended placement and ownership
 def CheckShape(Feature: PatternSpec | CircularSpec | PlaneSpec) -> None:
     if isinstance(Feature, PlaneSpec):
         _ = CheckAmount(Feature.OffsetMm, True)
@@ -61,6 +66,7 @@ def CheckShape(Feature: PatternSpec | CircularSpec | PlaneSpec) -> None:
     _ = CheckAmount(Feature.SpacingVMm, False)
 
 
+# invalid copy input must fail here so repeated instances retain their intended placement and ownership
 def CheckCopy(Features: tuple[KPartFeature, ...], Index: int) -> None:
     Feature = Features[Index]
     if isinstance(Feature, (PatternSpec, CircularSpec, PlaneSpec)):

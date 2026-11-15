@@ -1,3 +1,4 @@
+# the edited worlds cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KEditedWorlds: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/LocalOracle/TSpline/BoxEdited.f3d",

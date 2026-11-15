@@ -6,6 +6,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Parameters.NumberBinding import NumberBinding
 
 
+# the number binding operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadNumBinding(Payload: bytes) -> NumberBinding:
     Cursor = MetaCursor(Payload)
     if Cursor.TakeBytes(9) != bytes(4) + b"\1\1\0\0\0":

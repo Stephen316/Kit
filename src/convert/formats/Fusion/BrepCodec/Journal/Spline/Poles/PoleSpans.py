@@ -13,10 +13,19 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
     MixRows,
 )
 
+# the frame shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KFrame = tuple[Fraction, Fraction, Fraction, Fraction, Fraction, Fraction]
+
+# the place shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KPlace = tuple[Fraction, Fraction]
+
+# the args shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KArgs = tuple[Fraction, Fraction, Fraction]
+
+# net table must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KNetTable = KMapping[KFaceKey, KNetRows | None]
+
+# the unit frame order must stay explicit so neighboring patches retain consistent subdivision boundaries
 KUnitFrame: KFrame = (
     Fraction(1),
     Fraction(0),
@@ -27,6 +36,7 @@ KUnitFrame: KFrame = (
 )
 
 
+# the blossom basis contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 @CacheResult
 def BlossomBasis(Arguments: KArgs) -> tuple[float, ...]:
     Knots = tuple(Fraction(Value) for Value in range(-3, 5))
@@ -48,6 +58,7 @@ def BlossomBasis(Arguments: KArgs) -> tuple[float, ...]:
     return tuple(float(Value) for Value in Basis[3])
 
 
+# the net blossom contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def NetBlossom(NetRows: KNetRows, ArgsS: KArgs, ArgsT: KArgs) -> KPoleRow:
     WeightS = BlossomBasis(tuple(sorted(ArgsS)))
     WeightT = BlossomBasis(tuple(sorted(ArgsT)))
@@ -58,6 +69,7 @@ def NetBlossom(NetRows: KNetRows, ArgsS: KArgs, ArgsT: KArgs) -> KPoleRow:
     )
 
 
+# the apply frame contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def ApplyFrame(Frame: KFrame, Place: KPlace) -> KPlace:
     return (
         Frame[0] * Place[0] + Frame[1] * Place[1] + Frame[4],
@@ -65,6 +77,7 @@ def ApplyFrame(Frame: KFrame, Place: KPlace) -> KPlace:
     )
 
 
+# the child frame contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def ChildFrame(Frame: KFrame, Corner: int) -> KFrame:
     Origin = KCornerSteps[Corner]
     AxisU = [
@@ -87,6 +100,7 @@ def ChildFrame(Frame: KFrame, Corner: int) -> KFrame:
     )
 
 
+# the in quarter decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsInQuarter(
     Frame: KFrame, LowPlace: KPlace, HighPlace: KPlace, Corner: int
 ) -> bool:
@@ -104,6 +118,7 @@ def IsInQuarter(
     return True
 
 
+# the descend contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def Descend(
     NetTable: KNetTable,
     FaceKey: KFaceKey,
@@ -130,6 +145,7 @@ def Descend(
     return None
 
 
+# the cell place contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellPlace(
     CellValue: PatchCell, Scale: int, PlaceU: Fraction, PlaceV: Fraction
 ) -> KPlace:
@@ -141,6 +157,7 @@ def CellPlace(
     )
 
 
+# the span box contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SpanBox(
     CellValue: PatchCell, Scale: int, SpanU: KPlace, SpanV: KPlace
 ) -> tuple[KPlace, KPlace] | None:
@@ -159,9 +176,12 @@ def SpanBox(
     return (LowPlace, HighPlace)
 
 
+# the local args contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def LocalArgs(
     CellValue: PatchCell, Scale: int, Frame: KFrame, ArgsU: KArgs, ArgsV: KArgs
 ) -> tuple[KArgs, KArgs]:
+
+    # the local of contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
     def LocalOf(PlaceU: Fraction, PlaceV: Fraction) -> KPlace:
         return ApplyFrame(Frame, CellPlace(CellValue, Scale, PlaceU, PlaceV))
 
@@ -179,6 +199,7 @@ def LocalArgs(
     )
 
 
+# the span row contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SpanRow(
     NetTable: KNetTable,
     Cells: tuple[PatchCell, ...],
@@ -200,6 +221,7 @@ def SpanRow(
     return None
 
 
+# the pole row contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def PoleRow(
     NetTable: KNetTable,
     Cells: tuple[PatchCell, ...],

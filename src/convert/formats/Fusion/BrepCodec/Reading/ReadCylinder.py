@@ -7,6 +7,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the cylinder operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadCylinder(
     Table: AsmTable, Mapping: dict[int, int], HasHistory: bool
 ) -> CylinderBody:

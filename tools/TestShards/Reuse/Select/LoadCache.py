@@ -8,6 +8,7 @@ from tools.TestShards.Reuse.Cache.ReadObject import ReadObject
 from tools.TestShards.Reuse.Select.CacheData import CacheData
 
 
+# the cache operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def LoadCache(CachePath: FilePath) -> CacheData:
     Decoded: object = JsonLib.loads(CachePath.read_text(encoding="utf-8"))
     Fields = ReadObject(Decoded, CachePath.name)

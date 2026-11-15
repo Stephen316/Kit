@@ -3,6 +3,7 @@ from struct import iter_unpack as IterUnpack
 from convert.formats.Fusion.MeshCodec.Model.MeshPoint import MeshPoint
 
 
+# the points operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadPoints(Payload: bytes) -> tuple[MeshPoint, ...]:
     if not Payload or len(Payload) % 12:
         raise ValueError("Invalid Fusion mesh position allocation")

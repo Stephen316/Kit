@@ -8,11 +8,13 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadRawShortMut import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef
 
 
+# the raw dbl operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadRawDblMut(Cursor: BitCursor) -> float:
     Packed = Cursor.TakeBits(64).to_bytes(8, "big")
     return float(UnpackFields("<d", Packed)[0])
 
 
+# the bit dbl operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadBitDblMut(Cursor: BitCursor) -> float:
     CodeBits = Cursor.TakeBits(2)
     if CodeBits == 0:
@@ -22,6 +24,7 @@ def ReadBitDblMut(Cursor: BitCursor) -> float:
     return 1.0 if CodeBits == 1 else 0.0
 
 
+# the def dbl operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadDefDblMut(Cursor: BitCursor, Default: float) -> float:
     CodeBits = Cursor.TakeBits(2)
     if CodeBits == 0:
@@ -38,6 +41,7 @@ def ReadDefDblMut(Cursor: BitCursor, Default: float) -> float:
     return float(UnpackFields("<d", bytes(Packed))[0])
 
 
+# the bit ll operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadBitLLMut(Cursor: BitCursor) -> int:
     ByteCount = Cursor.TakeBits(3)
     Value = 0
@@ -46,12 +50,14 @@ def ReadBitLLMut(Cursor: BitCursor) -> int:
     return Value
 
 
+# the handle operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadHandleMut(Cursor: BitCursor) -> DwgHandleRef:
     RefCode = Cursor.TakeBits(4)
     ByteCount = Cursor.TakeBits(4)
     return DwgHandleRef(RefCode, Cursor.TakeBits(8 * ByteCount))
 
 
+# the obj type operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadObjTypeMut(Cursor: BitCursor) -> int:
     CodeBits = Cursor.TakeBits(2)
     if CodeBits == 0:

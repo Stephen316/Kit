@@ -7,6 +7,7 @@ from convert.formats.Fusion.MaterialCodec.Wire.EncodeBoolean import EncodeBoolea
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# the links operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeLinks(Links: AssetLinks | None, ConnectMode: KConnectMode) -> bytes:
     if ConnectMode == "none":
         if Links is not None:

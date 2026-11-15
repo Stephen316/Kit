@@ -7,6 +7,7 @@ from convert.formats.Fusion.MaterialCodec.Values.EncodeScalar import EncodeScala
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# the value operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeValue(Value: KMaterialValue, Field: PropertySpec) -> bytes:
     if Field.ValueKind == "TextureURI":
         if (

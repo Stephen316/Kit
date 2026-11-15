@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer cache needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferCacheMut(State: SceneCodec, Value: CacheData | None) -> CacheData:
     ModeValue = State.Integer(Value.ModeValue if Value else None, "<i")
     if ModeValue not in range(7):

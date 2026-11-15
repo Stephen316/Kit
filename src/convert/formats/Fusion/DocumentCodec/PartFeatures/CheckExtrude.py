@@ -12,13 +12,16 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import (
     LineCurve,
 )
 
+# curve limit needs one explicit bound so parametric feature reconstruction cannot accept inconsistent resource or layout limits
 KCurveLimit = 64
 
 
+# the number decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsNumber(Value: object) -> bool:
     return type(Value) in (int, float) and IsFinite(CastValue(float, Value))
 
 
+# curve numbers needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CurveNumbers(Curve: object) -> tuple[object, ...]:
     if isinstance(Curve, LineCurve):
         return (*Curve.StartMm, *Curve.FinishMm)
@@ -29,6 +32,7 @@ def CurveNumbers(Curve: object) -> tuple[object, ...]:
     raise ValueError("Unsupported Fusion sketch profile curve")
 
 
+# invalid curve input must fail here so feature parameters remain connected to the resulting geometry
 def CheckCurve(Curve: object) -> None:
     Numbers = CurveNumbers(Curve)
     if not all(IsNumber(Value) for Value in Numbers):
@@ -41,6 +45,7 @@ def CheckCurve(Curve: object) -> None:
         raise ValueError("Fusion sketch arcs must sweep less than a full turn")
 
 
+# invalid extrude input must fail here so feature parameters remain connected to the resulting geometry
 def CheckExtrude(Feature: ExtrudeSpec) -> None:
     Profile = CastValue(object, Feature.Profile)
     if not isinstance(Profile, tuple):

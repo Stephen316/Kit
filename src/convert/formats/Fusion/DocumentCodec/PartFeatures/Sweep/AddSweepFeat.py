@@ -46,7 +46,10 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Sweep.SweepTags import (
     SweepTags,
 )
 
+# profile plane must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KProfilePlane = "xz_plane"
+
+# the sweep modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KSweepModes: dict[str, object] = dict(
     chainPropagation=True,
     isAlongDirectionSameAsProfileNormal=3,
@@ -55,7 +58,11 @@ KSweepModes: dict[str, object] = dict(
     isYScale=True,
     sweepType=2,
 )
+
+# the tool modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KToolModes: dict[str, object] = dict(isAlongDistanceParameterValid=True)
+
+# the sweep parameters order must stay explicit so feature parameters remain connected to the resulting geometry
 KSweepParams = (
     ("along", "AlongDistance", 1.0, "", "rAlongDistance"),
     ("against", "AgainstDistance", 0.0, "", "rAgainstDistance"),
@@ -66,6 +73,7 @@ KSweepParams = (
 )
 
 
+# sweep plans needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def SweepPlans(Stage: PartStage) -> tuple[SweepSpec, SketchPlan, SketchPlan]:
     Feature, Profile, PathPlan = Stage.Feature, Stage.Sketch, Stage.Upper
     if not isinstance(Feature, SweepSpec) or Profile is None or PathPlan is None:
@@ -73,6 +81,7 @@ def SweepPlans(Stage: PartStage) -> tuple[SweepSpec, SketchPlan, SketchPlan]:
     return Feature, Profile, PathPlan
 
 
+# the sweep parameters operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSweepParams(Author: AuthorState, Prefix: str) -> list[str]:
     Owner = Prefix + "feature"
     for StemName, NameValue, Amount, UnitName, FieldName in KSweepParams:
@@ -84,6 +93,7 @@ def AddSweepParams(Author: AuthorState, Prefix: str) -> list[str]:
     return [Prefix + RowValue[0] for RowValue in KSweepParams]
 
 
+# the sweep table operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSweepTable(
     Author: AuthorState, Stage: PartStage, Prefix: str, Drawn: KPathSketch
 ) -> None:
@@ -110,6 +120,7 @@ def AddSweepTable(
     Author.Change(Prefix + "progenitors", ProgenitorTagVec=Pairs, tagId=len(Pairs) + 3)
 
 
+# the sweep feat operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSweepFeat(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     Feature, Profile, PathPlan = SweepPlans(Stage)
     Reference, MainRole = Author.Reference, Prefix + "feature"

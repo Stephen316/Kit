@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.TakeByte import TakeByte
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgPackPlan import DwgPackPlan
 
 
+# the pack plan operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadPackPlan(Packed: bytes) -> DwgPackPlan:
     Opcode = TakeByte(Packed, 0)
     Position = 1

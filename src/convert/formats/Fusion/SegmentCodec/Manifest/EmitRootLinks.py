@@ -9,6 +9,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.ManifestLink import ManifestLi
 from convert.formats.Fusion.SegmentCodec.Manifest.ManifestSink import ManifestSink
 
 
+# the link props operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitLinkProps(
     SinkValue: ManifestSink, Properties: tuple[tuple[str, str], ...]
 ) -> None:
@@ -29,6 +30,7 @@ def EmitLinkProps(
         SinkValue.AddText(Entry[1], WideText=True)
 
 
+# the root links operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitRootLinks(SinkValue: ManifestSink, Links: tuple[ManifestLink, ...]) -> None:
     if type(Links) is not tuple or len(Links) > KMaxLinks:
         raise ValueError("Invalid Fusion root manifest link table")

@@ -11,6 +11,7 @@ from convert.adapters.Fusion.Native.Graph.KnownHistory import KKnownHistory
 from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
+# invalid operations input must fail here so public document claims remain grounded in native records
 def CheckOperations(
     Graph: NativeGraph,
     Context: ExtrudeContext,

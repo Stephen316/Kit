@@ -70,10 +70,14 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilTable import
 )
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# the grid rows shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KGridRows = dict[KPolePlace, KIndexedRow]
+
+# the curve shape shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KCurveShape = tuple[tuple[float, ...], tuple[int, ...], int]
 
 
+# the face plans contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FacePlans(
     Graph: CageGraph, Shape: CappedShape, Scale: int, Levels: KMapping[int, int]
 ) -> tuple[FacePlan, ...]:
@@ -90,6 +94,7 @@ def FacePlans(
     )
 
 
+# plain rows needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def PlainRows(
     NetTable: KNetTable,
     PlanValue: FacePlan,
@@ -117,6 +122,7 @@ def PlainRows(
     return Found
 
 
+# the cap rows contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CapRows(
     Frames: tuple[CapFrame, ...],
     Answers: dict[int, KMapping[KCapKey, KPoleRow]],
@@ -128,10 +134,12 @@ def CapRows(
     return Found
 
 
+# the cap spots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CapSpots(Frames: tuple[CapFrame, ...]) -> frozenset[KPolePlace]:
     return frozenset(Place for Frame in Frames for Place in Frame.Places)
 
 
+# the index grids contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def IndexGrids(
     Plans: tuple[FacePlan, ...], Grids: list[dict[KPolePlace, KPoleRow]]
 ) -> tuple[list[KPoleRow], list[KGridRows], list[StencilFace]]:
@@ -163,6 +171,7 @@ def IndexGrids(
     return RowList, Indexed, Faces
 
 
+# the placed rows contract needs a consistent construction rule so neighboring patches retain consistent subdivision boundaries
 def PlacedRows(
     RowList: list[KPoleRow], Entries: list[KIndexedRow]
 ) -> tuple[list[KPoleRow], tuple[int, ...]]:
@@ -176,6 +185,7 @@ def PlacedRows(
     return Grown, tuple(Indices)
 
 
+# the vertex place contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def VertexPlace(
     Graph: CageGraph, Plans: tuple[FacePlan, ...], Scale: int, Vertex: int
 ) -> tuple[int, KFacePoint] | None:
@@ -187,6 +197,7 @@ def VertexPlace(
     return None
 
 
+# the line entries contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def LineEntries(
     Shape: CappedShape, Plans: tuple[FacePlan, ...], Indexed: list[KGridRows]
 ) -> tuple[list[KIndexedRow], list[KCurveShape]]:
@@ -201,6 +212,7 @@ def LineEntries(
     return Entries, Curves
 
 
+# the entries operation needs one geometric convention so neighboring patches retain consistent subdivision boundaries
 def PointEntries(
     Graph: CageGraph,
     Shape: CappedShape,
@@ -220,6 +232,7 @@ def PointEntries(
     return Entries
 
 
+# the solve grids contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SolveGrids(
     Surface: TsplineSurface, Graph: CageGraph, Shape: CappedShape, CapSolver: KCapHook
 ) -> tuple[tuple[FacePlan, ...], list[dict[KPolePlace, KPoleRow]]]:
@@ -247,6 +260,7 @@ def SolveGrids(
     return Plans, Grids
 
 
+# the table operation needs a consistent construction rule so neighboring patches retain consistent subdivision boundaries
 def BuildTable(
     Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps
 ) -> StencilTable:

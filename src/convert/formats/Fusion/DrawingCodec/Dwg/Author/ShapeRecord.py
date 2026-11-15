@@ -13,9 +13,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.SpecScope import (
     IsBranchTrue,
 )
 
+# the no spares vocabulary must stay centralized so native drawing authoring agrees on supported native identities
 KNoSpares: frozenset[str] = frozenset()
 
 
+# shape ops needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def ShapeOpsMut(
     SpecOps: tuple[SpecOp, ...],
     Values: Mapping[str, KDwgValue],
@@ -35,6 +37,7 @@ def ShapeOpsMut(
         Written.append(DwgField(Operation.OpName, Values[Operation.OpName]))
 
 
+# shape record needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def ShapeRecord(
     SpecKey: str,
     Values: Mapping[str, KDwgValue],

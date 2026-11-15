@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import Fa
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PlaneSpan import KPlaneLoop
 
 
+# prism slab needs an explicit state contract so body topology remains consistent with its modeling operation
 @MakeDataClass(frozen=True, slots=True)
 class PrismSlab:
     LowerCm: float

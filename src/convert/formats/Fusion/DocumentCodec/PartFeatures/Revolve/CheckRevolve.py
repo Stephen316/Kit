@@ -5,9 +5,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.RevolveSpec import 
     RevolveSpec,
 )
 
+# angle limit needs one explicit bound so parametric feature reconstruction cannot accept inconsistent resource or layout limits
 KAngleLimit = 360.0
 
 
+# invalid revolve input must fail here so feature parameters remain connected to the resulting geometry
 def CheckRevolve(Feature: RevolveSpec) -> None:
     Amounts = (
         Feature.InnerMm,

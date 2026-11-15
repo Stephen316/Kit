@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
 from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 
+# the bad taper contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "Degrees", (float("nan"), float("inf"), -90.0, 90.0, -45.0, 1e-20, True)
 )
@@ -28,6 +29,7 @@ def TestBadTaper(TmpPath: FilePath, Degrees: float) -> None:
     assert not Target.exists()
 
 
+# the taper kind contract needs boundary coverage so stored document relationships remain consistent
 def TestTaperKind(TmpPath: FilePath) -> None:
     Target = TmpPath / "WrongProfile.f3d"
     with RaisesError(ValueError, match="requires the frustum"):

@@ -1,5 +1,6 @@
 from convert.formats.Fusion.DrawingCodec.Author.Model.ClassRow import ClassRow
 
+# the design classes order must stay explicit so sheet objects retain their intended document relationships
 KDesignClasses = (
     ClassRow(
         "8F05428E-590E-4DE6-9CEF-B34EDA0D27B9",
@@ -343,4 +344,5 @@ KDesignClasses = (
     ClassRow("62B5B83C-EDDB-483D-BCBD-1DB17B8386F0", "", 2, ""),
 )
 
+# design order must remain consistent across callers so sheet objects retain their intended document relationships
 KDesignOrder = tuple(RowValue.ClassGuid for RowValue in KDesignClasses)

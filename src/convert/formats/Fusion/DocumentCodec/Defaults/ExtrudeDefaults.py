@@ -1,3 +1,4 @@
+# the extrude defaults contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def ExtrudeDefaults() -> dict[str, dict[str, object]]:
     return {
         "DcExtrudeFeature": dict(

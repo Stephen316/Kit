@@ -50,15 +50,24 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
     PartRecords,
 )
 
+# the lower cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLower = RectCurves((0.0, 0.0), (40.0, 30.0))
+
+# the upper cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KUpper = RectCurves((10.0, 10.0), (30.0, 20.0))
+
+# the loft rects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLoftRects = LoftSpec(KLower, KUpper, 30.0, FeatureName="Block loft")
+
+# the loft circles cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLoftCircles = LoftSpec(
     (CircleCurve((0.0, 0.0), 10.0),),
     (CircleCurve((0.0, 0.0), 5.0),),
     30.0,
     FeatureName="Cone loft",
 )
+
+# the wedge cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWedge = LoftSpec(
     RectCurves((50.0, 0.0), (90.0, 30.0)),
     RectCurves((55.0, 20.0), (75.0, 25.0)),
@@ -68,6 +77,8 @@ KWedge = LoftSpec(
     "Wedge top",
     "Wedge loft",
 )
+
+# the loft cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLoftCases: dict[str, tuple[KPartFeature, ...]] = {
     "LoftRects": (KLoftRects,),
     "LoftCircles": (KLoftCircles,),
@@ -75,6 +86,7 @@ KLoftCases: dict[str, tuple[KPartFeature, ...]] = {
 }
 
 
+# the loft solid contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", ("LoftRects", "LoftCircles"))
 def TestLoftSolid(NameValue: str) -> None:
     _, Stages = SolvePart(FamilySpec(KLoftCases[NameValue]))
@@ -88,6 +100,7 @@ def TestLoftSolid(NameValue: str) -> None:
     assert Measured.AreaCm == ApproxValue(Observed["area_cm2"], rel=1e-7)
 
 
+# the loft wedge contract needs boundary coverage so stored document relationships remain consistent
 def TestLoftWedge() -> None:
     _, Stages = SolvePart(FamilySpec(KLoftCases["LoftWedgeBody"]))
     Final = Stages[-1]
@@ -100,6 +113,7 @@ def TestLoftWedge() -> None:
     assert (Wedge.FaceCount, Wedge.EdgeCount) == (6, 12)
 
 
+# the loft stages contract needs boundary coverage so stored document relationships remain consistent
 def TestLoftStages() -> None:
     _, Stages = SolvePart(FamilySpec(KLoftCases["LoftRects"]))
     (Stage,) = Stages
@@ -116,6 +130,7 @@ def TestLoftStages() -> None:
     assert [Stage.StateId for Stage in Stages] == [4, 5]
 
 
+# the loft archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KLoftCases))
 def TestLoftArchive(NameValue: str) -> None:
     Features = KLoftCases[NameValue]
@@ -145,6 +160,7 @@ def TestLoftArchive(NameValue: str) -> None:
     assert IsIdentityRef(History)
 
 
+# the loft records contract needs boundary coverage so stored document relationships remain consistent
 def TestLoftRecords() -> None:
     Model = ReadDocument(EmitDocument(FamilySpec(KLoftCases["LoftRects"])))
     Tables = [
@@ -166,22 +182,30 @@ def TestLoftRecords() -> None:
     assert Planes[-1] == "Loft plane"
 
 
+# shared shift curves setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ShiftCurves(Curves: tuple[KProfileCurve, ...]) -> tuple[KProfileCurve, ...]:
     return Curves[1:] + Curves[:1]
 
 
+# the slot cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSlot = (
     LineCurve((10.0, 0.0), (30.0, 0.0)),
     ArcCurve((30.0, 10.0), 10.0, -90.0, 180.0),
     LineCurve((30.0, 20.0), (10.0, 20.0)),
     ArcCurve((10.0, 10.0), 10.0, 90.0, 180.0),
 )
+
+# the triangle cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTriangle = (
     LineCurve((10.0, 10.0), (30.0, 10.0)),
     LineCurve((30.0, 10.0), (20.0, 20.0)),
     LineCurve((20.0, 20.0), (10.0, 10.0)),
 )
+
+# the disc cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDisc = (CircleCurve((0.0, 0.0), 10.0),)
+
+# the loft rejects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLoftRejects: tuple[tuple[KPartFeature, ...], ...] = (
     (LoftSpec(KLower, ShiftCurves(KUpper), 30.0),),
     (LoftSpec(KLower, KTriangle, 30.0),),
@@ -200,12 +224,14 @@ KLoftRejects: tuple[tuple[KPartFeature, ...], ...] = (
 )
 
 
+# the loft reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Features", KLoftRejects)
 def TestLoftReject(Features: tuple[KPartFeature, ...]) -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(FamilySpec(Features))
 
 
+# the loft cuboid contract needs boundary coverage so stored document relationships remain consistent
 def TestLoftCuboid() -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(

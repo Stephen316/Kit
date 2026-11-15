@@ -4,6 +4,7 @@ from convert.formats.Fusion.BundleCodec.Validation.CheckModel import CheckModel
 from convert.formats.Fusion.DrawingCodec.Model.FusionDrawing import FusionDrawing
 
 
+# drawing object needs an explicit validity boundary so drawing members retain their sheet and model associations
 def DrawingObject(Description: BundleModel) -> BundleObject:
     CheckModel(Description)
     Owners = {Entry.ObjectId: Entry for Entry in Description.Graph.Objects}
@@ -13,6 +14,7 @@ def DrawingObject(Description: BundleModel) -> BundleObject:
     return RootValue
 
 
+# invalid bundle input must fail here so drawing members retain their sheet and model associations
 def CheckBundle(Description: BundleModel, Drawing: FusionDrawing) -> None:
     RootValue = DrawingObject(Description)
     Bundled = {

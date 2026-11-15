@@ -7,6 +7,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the region roots contract needs a shared interpretation so supporting records retain their owning document relationships
 def RegionRoots(
     Region: RegionFrame, Start: int, BodyRoot: int
 ) -> tuple[GeometryRecord, ...]:

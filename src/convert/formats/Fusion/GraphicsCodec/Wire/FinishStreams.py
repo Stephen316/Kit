@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.MeshState import MeshState
 
 
+# the streams operation needs one orchestration boundary so display geometry retains its entity and scene relationships
 def FinishStreams(
     State: MeshState,
 ) -> tuple[tuple[GraphicsStream, ...], dict[int, bytes]]:

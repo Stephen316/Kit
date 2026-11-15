@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 
 
+# the span points contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SpanPoints(Value: KPlaneSpan, Density: int = 64) -> list[tuple[float, float]]:
     if isinstance(Value, LineSpan):
         return [Value.StartCm]
@@ -24,10 +25,12 @@ def SpanPoints(Value: KPlaneSpan, Density: int = 64) -> list[tuple[float, float]
     ]
 
 
+# the loop polygon contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LoopPolygon(LoopValue: KPlaneLoop, Density: int = 64) -> list[tuple[float, float]]:
     return [Point for Value in LoopValue for Point in SpanPoints(Value, Density)]
 
 
+# the span area contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SpanArea(Value: KPlaneSpan) -> float:
     if isinstance(Value, LineSpan):
         StartX, StartY = Value.StartCm
@@ -36,6 +39,7 @@ def SpanArea(Value: KPlaneSpan) -> float:
     return ArcArea(Value)
 
 
+# the arc area contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ArcArea(Value: ArcSpan) -> float:
     CenterX, CenterY = Value.CenterCm
     Radius = Value.RadiusCm
@@ -48,10 +52,12 @@ def ArcArea(Value: ArcSpan) -> float:
     ) / 2.0
 
 
+# the loop area contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LoopArea(LoopValue: KPlaneLoop) -> float:
     return sum(SpanArea(Value) for Value in LoopValue)
 
 
+# the wind number contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def WindNumber(Polygon: list[tuple[float, float]], Point: tuple[float, float]) -> int:
     Winding = 0
     PointX, PointY = Point
@@ -67,6 +73,7 @@ def WindNumber(Polygon: list[tuple[float, float]], Point: tuple[float, float]) -
     return Winding
 
 
+# the chord side contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ChordSide(
     Start: tuple[float, float], Finish: tuple[float, float], Point: tuple[float, float]
 ) -> float:
@@ -75,6 +82,7 @@ def ChordSide(
     )
 
 
+# the segment wind contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SegmentWind(Value: KPlaneSpan, Point: tuple[float, float]) -> int:
     if not isinstance(Value, ArcSpan):
         return 0
@@ -91,6 +99,7 @@ def SegmentWind(Value: KPlaneSpan, Point: tuple[float, float]) -> int:
     return 0
 
 
+# the loop wind contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LoopWind(LoopValue: KPlaneLoop, Point: tuple[float, float]) -> int:
     Corners = [SpanStart(Value) for Value in LoopValue]
     return WindNumber(Corners, Point) + sum(
@@ -98,10 +107,12 @@ def LoopWind(LoopValue: KPlaneLoop, Point: tuple[float, float]) -> int:
     )
 
 
+# the in region decision must stay consistent so body topology remains consistent with its modeling operation
 def IsInRegion(Loops: tuple[KPlaneLoop, ...], Point: tuple[float, float]) -> bool:
     return sum(LoopWind(LoopValue, Point) for LoopValue in Loops) > 0
 
 
+# the loop closed decision must stay consistent so body topology remains consistent with its modeling operation
 def IsLoopClosed(LoopValue: KPlaneLoop) -> bool:
     return all(
         abs(

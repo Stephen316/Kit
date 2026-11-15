@@ -16,6 +16,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# invalid prism frame input must fail here so profile topology remains connected to its extrusion history
 def CheckPrismFrame(Model: CuboidBody, Frame: PrismFrame) -> None:
     Values = (
         Frame.CornersCm,

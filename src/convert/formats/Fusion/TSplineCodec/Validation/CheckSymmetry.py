@@ -3,6 +3,7 @@ from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSymMap import CheckSymMap
 
 
+# invalid symmetry input must fail here so control cage topology retains its native connectivity
 def CheckSymmetry(Surface: TsplineSurface) -> None:
     Symmetry = Surface.Symmetry
     if Symmetry is None:

@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.EntityCodec.Wire.EmitAtom import EmitAtom
 
 
+# the matrix operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitMatrix(Value: KEntityValue, Shape: WireType) -> bytes:
     if not isinstance(Value, MatrixValue):
         raise ValueError("Fusion entity matrix requires a typed matrix value")

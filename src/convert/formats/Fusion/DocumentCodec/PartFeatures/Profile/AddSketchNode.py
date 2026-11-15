@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchFrame impor
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the plane cache operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPlaneCache(
     Author: AuthorState, Prefix: str, PlaneRole: str, LiftCm: float = 0.0
 ) -> None:
@@ -39,6 +40,7 @@ def AddPlaneCache(
     )
 
 
+# the sketch node operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSketchNode(
     Author: AuthorState,
     Prefix: str,

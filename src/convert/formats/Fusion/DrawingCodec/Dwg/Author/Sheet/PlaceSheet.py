@@ -38,6 +38,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.SheetDraft import (
 )
 
 
+# the layout eed contract needs a shared interpretation so paper layouts retain consistent object ownership
 def LayoutEed() -> tuple[DraftEed, ...]:
     return (
         DraftEed(
@@ -47,6 +48,7 @@ def LayoutEed() -> tuple[DraftEed, ...]:
     )
 
 
+# the paper operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlacePaperMut(Ledger: DraftBook) -> None:
     _ = PlaceMut(
         Ledger,
@@ -71,6 +73,7 @@ def PlacePaperMut(Ledger: DraftBook) -> None:
     _ = PlaceMut(Ledger, KPaperSpace + "/ENDBLK", "ENDBLK", Modes, {})
 
 
+# the layout operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceLayoutMut(Ledger: DraftBook, LayoutName: str, Paper: PaperSize) -> None:
     _ = PlaceMut(
         Ledger,
@@ -99,6 +102,7 @@ def PlaceLayoutMut(Ledger: DraftBook, LayoutName: str, Paper: PaperSize) -> None
     _ = EnrolMut(Ledger, KLayoutFolder, LayoutName, KLayoutKey)
 
 
+# the sheet operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceSheetMut(Ledger: DraftBook, Draft: SheetDraft) -> None:
     Paper = SheetSize(Draft.SheetSize)
     PlacePaperMut(Ledger)

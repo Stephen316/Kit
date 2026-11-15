@@ -3,6 +3,7 @@ from convert.formats.Fusion.TSplineCodec.Writing.WritePairs import WritePairs
 from convert.formats.Fusion.TSplineCodec.Writing.WritePoint import WritePoint
 
 
+# the symmetry operation needs a consistent construction rule so control cage topology retains its native connectivity
 def WriteSymmetry(Symmetry: PlaneSymmetry | None) -> tuple[str, ...]:
     if Symmetry is None:
         return ()

@@ -1,3 +1,4 @@
+# the mechanic fields vocabulary must stay centralized so document material reconstruction agrees on supported native identities
 KMechanicFields: dict[str, tuple[str, ...]] = {
     "YoungModulus": ("structural_Young_modulus",),
     "PoissonRatio": ("structural_Poisson_ratio",),
@@ -16,6 +17,8 @@ KMechanicFields: dict[str, tuple[str, ...]] = {
     "TensionAlong": ("structural_wood_tension_parallel",),
     "TensionAcross": ("structural_wood_tension_perpendicular",),
 }
+
+# the thermal fields vocabulary must stay centralized so document material reconstruction agrees on supported native identities
 KThermalFields: dict[str, tuple[str, ...]] = {
     "Density": ("thermal_Density",),
     "Conductivity": ("thermal_Thermal_conductivity",),
@@ -31,6 +34,8 @@ KThermalFields: dict[str, tuple[str, ...]] = {
     "VaporPressure": ("thermal_Vapor_pressure",),
     "Vaporization": ("thermal_Specific_heat_of_vaporization",),
 }
+
+# the finish fields vocabulary must stay centralized so document material reconstruction agrees on supported native identities
 KFinishFields: dict[str, tuple[str, ...]] = {
     "Roughness": ("surface_roughness",),
     "Anisotropy": ("surface_anisotropy",),
@@ -46,12 +51,20 @@ KFinishFields: dict[str, tuple[str, ...]] = {
     "LayerFraction": ("layered_fraction",),
     "LayerRoughness": ("layered_roughness",),
 }
+
+# the color fields order must stay explicit so appearance references remain connected to their owning entities
 KColorFields: tuple[str, ...] = (
     "metal_f0",
     "opaque_albedo",
     "transparent_color",
     "layered_diffuse",
 )
+
+# the interior models vocabulary must stay centralized so document material reconstruction agrees on supported native identities
 KInteriorModels = {"Opaque": 0, "Metal": 1, "Layered": 2, "Transparent": 3}
+
+# the finish order order must stay explicit so appearance references remain connected to their owning entities
 KFinishOrder = ("Opaque", "Layered", "Transparent")
+
+# the directions order must stay explicit so appearance references remain connected to their owning entities
 KDirections = ("1", "2", "12", "23", "X", "Y", "Z")

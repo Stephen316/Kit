@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 from convert.formats.Fusion.DocumentCodec.Model.AuthorPolicy import AuthorPolicy
 
 
+# the block solid contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def BlockSolid(
     WidthCm: float, DepthCm: float, HeightCm: float, Policy: AuthorPolicy
 ) -> PrismSolid:

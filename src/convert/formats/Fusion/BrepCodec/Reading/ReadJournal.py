@@ -9,6 +9,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmInt, ReadAs
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the journal operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadJournal(Records: tuple[AsmRecord, ...], EntityCount: int) -> HistoryState:
     if len(Records) != 3 or tuple(Entry.Name for Entry in Records) != (
         "history_stream",

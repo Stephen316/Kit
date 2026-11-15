@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadSubjects import (
 )
 
 
+# the frame operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadFrameMut(Cursor: MetaCursor, IsPrimary: bool) -> FeatureFrame:
     RootId = Cursor.ReadText(Maximum=KMaxFeatureText)
     if not IsPrimary:

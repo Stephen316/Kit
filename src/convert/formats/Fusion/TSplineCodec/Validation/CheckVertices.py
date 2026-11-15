@@ -2,9 +2,11 @@ from collections import Counter
 from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckIndices
 
+# valence limit needs one explicit bound so editable spline reconstruction cannot accept inconsistent resource or layout limits
 KValenceLimit = 8
 
 
+# invalid vertices input must fail here so control cage topology retains its native connectivity
 def CheckVertices(Topology: CageTopology) -> None:
     Counts = Counter(LinkValue.VertexIndex for LinkValue in Topology.Links)
     for Index, Vertex in enumerate(Topology.Vertices):

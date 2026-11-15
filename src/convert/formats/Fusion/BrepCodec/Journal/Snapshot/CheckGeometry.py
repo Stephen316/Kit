@@ -27,6 +27,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.CheckModelHead import (
 )
 
 
+# invalid geometry input must fail here so topology changes retain their native revision relationships
 def CheckGeometry(Model: GeometryState) -> None:
     CheckModelHead(Model.Header, False)
     if (

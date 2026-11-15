@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
 
+# vbl boundary needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class VblBoundary(TypedBase):
     IsCross: bool
@@ -33,6 +34,7 @@ class VblBoundary(TypedBase):
     FitTolerance: float
 
 
+# vbl surf needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class VblSurf(TypedBase):
     Revision: int
@@ -41,6 +43,7 @@ class VblSurf(TypedBase):
     FitTolerance: float
 
 
+# the boundary from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def BoundaryFrom(Value: KGrammarValue) -> VblBoundary:
     Parts = NeedItems(NeedKeyed(Value, "pcurve"), 9)
     return VblBoundary(
@@ -56,6 +59,7 @@ def BoundaryFrom(Value: KGrammarValue) -> VblBoundary:
     )
 
 
+# the boundary tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def BoundaryTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, VblBoundary)
     Parts = (
@@ -72,6 +76,7 @@ def BoundaryTree(Value: KGrammarValue) -> KGrammarValue:
     return ChoiceValue("pcurve", Parts)
 
 
+# the vertex from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def VertexFrom(Value: KGrammarValue) -> VblSurf:
     Revision, Boundaries, TrailInt, Tolerance = NeedItems(Value, 4)
     return VblSurf(
@@ -82,6 +87,7 @@ def VertexFrom(Value: KGrammarValue) -> VblSurf:
     )
 
 
+# the vertex tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def VertexTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, VblSurf)
     Boundaries = tuple(BoundaryTree(Element) for Element in Record.Boundaries)

@@ -6,6 +6,7 @@ from convert.formats.Fusion.ArchiveRead.IndexedArchive import (
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
 from convert.formats.Fusion.RecordSpan import RecordSpan
 
+# design prefix must share the design prefix contract so native document reconstruction cannot drift between equivalent names
 KDesignPrefix = DesignPrefix
 
 

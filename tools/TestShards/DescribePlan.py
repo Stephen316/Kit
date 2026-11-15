@@ -5,6 +5,7 @@ from collections.abc import Sequence
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the describe plan contract needs a shared interpretation so every collected case receives exactly one verified outcome
 def DescribePlan(Plans: Sequence[ShardPlan], MaxTests: int, HistoryCount: int) -> str:
     TestCount = sum(len(ShardInfo.TestIds) for ShardInfo in Plans)
     LineList = [

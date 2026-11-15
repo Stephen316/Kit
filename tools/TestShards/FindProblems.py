@@ -7,9 +7,11 @@ from tools.TestShards.ReportTally import ReportTally
 from tools.TestShards.ReusePlan import ReusePlan
 from tools.TestShards.ShardPlan import ShardPlan
 
+# listed limit needs one explicit bound so test planning cannot accept inconsistent resource or layout limits
 KListedLimit = 50
 
 
+# find problems must resolve unambiguously so every collected case receives exactly one verified outcome
 def FindProblems(
     Plans: Sequence[ShardPlan], Tally: ReportTally, LogCount: int, Reused: ReusePlan
 ) -> list[str]:

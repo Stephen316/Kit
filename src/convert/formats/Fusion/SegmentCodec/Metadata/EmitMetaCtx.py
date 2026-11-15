@@ -9,6 +9,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaCtx import (
 )
 
 
+# the meta ctx operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitMetaCtx(SinkValue: MetaSink, Items: tuple[MetaContext, ...]) -> None:
     if type(Items) is not tuple or len(Items) > KMaxContexts:
         raise ValueError("Invalid Fusion version context sequence")

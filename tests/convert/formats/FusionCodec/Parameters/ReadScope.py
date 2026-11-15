@@ -7,6 +7,7 @@ from convert.formats.Fusion.Topology.BodyScope import FindBodyScope
 from convert.formats.Fusion.ZipHistory import ReadBulkHistory
 
 
+# shared read scope setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadScope(BulkData: bytes, Spans: tuple[RecordSpan, ...]) -> ParamScope:
     Histories, _, _ = ReadBulkHistory(BulkData, Spans)
     (History,) = Histories

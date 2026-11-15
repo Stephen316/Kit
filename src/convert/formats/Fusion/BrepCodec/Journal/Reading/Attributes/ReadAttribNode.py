@@ -37,6 +37,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut impor
 )
 
 
+# the attribute node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadAttribNode(Cursor: FieldCursor) -> KJournalEntity:
     Attribute = ReadRefMut(Cursor)
     NeedFieldMut(Cursor, (4, -1))

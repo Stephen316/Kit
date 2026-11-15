@@ -3,9 +3,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import (
     StraightLink,
 )
 
+# the ray map shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KRayMap = dict[int, int]
 
 
+# the track origins contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def TrackOrigins(Graph: CageGraph) -> frozenset[int]:
     Found: set[int] = set()
     for VertexIndex, FanLinks in enumerate(Graph.Fans):
@@ -14,6 +16,7 @@ def TrackOrigins(Graph: CageGraph) -> frozenset[int]:
     return frozenset(Found)
 
 
+# dart origins needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def DartOrigins(Graph: CageGraph) -> frozenset[int]:
     Found: set[int] = set()
     for LinkIndex, IsEdgeSharp in enumerate(Graph.Sharp):
@@ -25,10 +28,12 @@ def DartOrigins(Graph: CageGraph) -> frozenset[int]:
     return frozenset(Found)
 
 
+# link ends must resolve unambiguously so cap boundaries remain connected to the surrounding surface
 def LinkEnds(Graph: CageGraph, LinkIndex: int) -> tuple[int, int]:
     return Graph.Links[LinkIndex].VertexIndex, Graph.Heads[LinkIndex]
 
 
+# the meet links contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def MeetLinks(Graph: CageGraph, RayLinks: KRayMap) -> frozenset[int]:
     Moving = set(RayLinks.values())
     return frozenset(
@@ -38,6 +43,7 @@ def MeetLinks(Graph: CageGraph, RayLinks: KRayMap) -> frozenset[int]:
     )
 
 
+# the arrive rays contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def ArriveRays(Graph: CageGraph, RayLinks: KRayMap) -> dict[int, list[int]]:
     Arrivals: dict[int, list[int]] = {}
     for Origin, LinkIndex in RayLinks.items():
@@ -45,11 +51,13 @@ def ArriveRays(Graph: CageGraph, RayLinks: KRayMap) -> dict[int, list[int]]:
     return Arrivals
 
 
+# the head on decision must stay consistent so cap boundaries remain connected to the surrounding surface
 def IsHeadOn(Graph: CageGraph, RayLinks: KRayMap, Arrived: list[int]) -> bool:
     Onward = {StraightLink(Graph, RayLinks[Origin]) for Origin in Arrived}
     return any(Graph.Links[RayLinks[Origin]].Opposite in Onward for Origin in Arrived)
 
 
+# next rays needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def NextRays(Graph: CageGraph, RayLinks: KRayMap, Stops: frozenset[int]) -> KRayMap:
     Onward: KRayMap = {}
     for Vertex, Arrived in ArriveRays(Graph, RayLinks).items():
@@ -66,6 +74,7 @@ def NextRays(Graph: CageGraph, RayLinks: KRayMap, Stops: frozenset[int]) -> KRay
     return Onward
 
 
+# the step rays contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def StepRaysMut(
     Graph: CageGraph, RayLinks: KRayMap, Drawn: list[bool], Stops: set[int]
 ) -> KRayMap:
@@ -82,6 +91,7 @@ def StepRaysMut(
     return Onward
 
 
+# the draw lines contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def DrawLines(Graph: CageGraph) -> tuple[bool, ...]:
     Drawn = list(Graph.Sharp)
     Stops = {

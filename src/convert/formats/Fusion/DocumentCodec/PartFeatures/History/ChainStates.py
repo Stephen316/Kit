@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.States.BulletinChange import (
 from convert.formats.Fusion.BrepCodec.Journal.States.DeltaState import DeltaState
 
 
+# the chain states contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def ChainStates(
     StateIds: tuple[int, ...], InitialId: int, Changes: list[list[tuple[int, int]]]
 ) -> tuple[DeltaState, ...]:

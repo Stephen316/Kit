@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.VectorMath import (
 )
 
 
+# invalid planar ring input must fail here so topology changes retain their native revision relationships
 def CheckPlanarRing(
     FaceValue: FaceBoundary,
     Points: tuple[KJournalVector, ...],

@@ -1,3 +1,4 @@
+# the cage documents cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCageDocuments: tuple[tuple[str, str, str, str, str, str, str], ...] = (
     (
         "BoxFresh",

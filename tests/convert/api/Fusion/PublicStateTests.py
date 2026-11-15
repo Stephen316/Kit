@@ -9,6 +9,7 @@ from interchange.serialization import from_data as FromData, to_data as ToData
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# the state reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Attack", ("version", "record", "extra"))
 def TestStateReject(TmpPath: FilePath, Attack: str) -> None:
     Source = TmpPath / "Source.f3d"
@@ -29,6 +30,7 @@ def TestStateReject(TmpPath: FilePath, Attack: str) -> None:
     assert not Target.exists()
 
 
+# the old neutral contract needs boundary coverage so stored document relationships remain consistent
 def TestOldNeutral(TmpPath: FilePath) -> None:
     Document = AdapterCase("parameter")
     WireValue = ToData(Document)

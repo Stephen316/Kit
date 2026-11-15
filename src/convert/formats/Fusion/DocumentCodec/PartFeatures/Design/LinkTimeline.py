@@ -21,6 +21,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.SweepSpec import (
 from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
 
 
+# the twin owners contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def TwinOwners(Stage: PartStage, Prefix: str) -> list[tuple[str, tuple[int, ...]]]:
     Values = Stage.Operations
     if isinstance(Stage.Feature, SweepSpec):
@@ -37,6 +38,7 @@ def TwinOwners(Stage: PartStage, Prefix: str) -> list[tuple[str, tuple[int, ...]
     ]
 
 
+# the timeline owners contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def TimelineOwners(
     Author: AuthorState, Stages: tuple[PartStage, ...]
 ) -> list[tuple[str, tuple[int, ...]]]:
@@ -69,10 +71,12 @@ def TimelineOwners(
     return Owners
 
 
+# the shown owner decision must stay consistent so modeling operations retain their document and timeline ownership
 def IsShownOwner(RoleName: str) -> bool:
     return "_occ_" not in RoleName and not RoleName.endswith("_base")
 
 
+# link sketches must resolve unambiguously so modeling operations retain their document and timeline ownership
 def LinkSketches(Author: AuthorState, Stages: tuple[PartStage, ...]) -> None:
     Reference = Author.Reference
     Roles = [] if Author.SpecValue.ProfileKind == "part" else ["rectangle_sketch"]
@@ -100,6 +104,7 @@ def LinkSketches(Author: AuthorState, Stages: tuple[PartStage, ...]) -> None:
     )
 
 
+# link timeline must resolve unambiguously so modeling operations retain their document and timeline ownership
 def LinkTimeline(Author: AuthorState, Stages: tuple[PartStage, ...]) -> None:
     Reference = Author.Reference
     Owners = TimelineOwners(Author, Stages)

@@ -19,11 +19,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# ray angle must remain consistent across callers so body topology remains consistent with its modeling operation
 KRayAngle = 0.3713906763541037
+
+# the touch limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTouchLimit = 1e-7
+
+# sample count needs one explicit bound so solid feature construction cannot accept inconsistent resource or layout limits
 KSampleCount = 32
 
 
+# the on arc decision must stay consistent so body topology remains consistent with its modeling operation
 def IsOnArc(Value: ArcSpan, Angle: float) -> bool:
     if abs(abs(Value.SweepAngle) - KFullTurn) < 1e-12:
         return True
@@ -31,6 +37,7 @@ def IsOnArc(Value: ArcSpan, Angle: float) -> bool:
     return Offset % KFullTurn <= abs(Value.SweepAngle)
 
 
+# the span distance contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SpanDistance(Value: KPlaneSpan, Point: tuple[float, float]) -> float:
     if isinstance(Value, ArcSpan):
         DeltaX, DeltaY = Point[0] - Value.CenterCm[0], Point[1] - Value.CenterCm[1]
@@ -51,6 +58,7 @@ def SpanDistance(Value: KPlaneSpan, Point: tuple[float, float]) -> float:
     )
 
 
+# the ray crossings contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def RayCrossings(Value: KPlaneSpan, Point: tuple[float, float]) -> int:
     RayCos, RaySin = Cosine(KRayAngle), SineOf(KRayAngle)
     if isinstance(Value, LineSpan):
@@ -75,6 +83,7 @@ def RayCrossings(Value: KPlaneSpan, Point: tuple[float, float]) -> int:
     return Count
 
 
+# the region side contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def RegionSide(Loops: tuple[KPlaneLoop, ...], Point: tuple[float, float]) -> int:
     Spans = [Value for LoopValue in Loops for Value in LoopValue]
     if any(SpanDistance(Value, Point) < KTouchLimit for Value in Spans):
@@ -82,6 +91,7 @@ def RegionSide(Loops: tuple[KPlaneLoop, ...], Point: tuple[float, float]) -> int
     return 1 if sum(RayCrossings(Value, Point) for Value in Spans) % 2 else -1
 
 
+# the loop samples contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LoopSamples(LoopValue: KPlaneLoop) -> list[tuple[float, float]]:
     Points: list[tuple[float, float]] = []
     for Value in LoopValue:
@@ -101,6 +111,7 @@ def LoopSamples(LoopValue: KPlaneLoop) -> list[tuple[float, float]]:
     return Points
 
 
+# loop place needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def LoopPlace(LoopValue: KPlaneLoop, Loops: tuple[KPlaneLoop, ...]) -> int:
     Sides = {RegionSide(Loops, Point) for Point in LoopSamples(LoopValue)}
     if len(Sides) != 1 or 0 in Sides:

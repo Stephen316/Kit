@@ -17,15 +17,11 @@ from tools.steering.SteeringCompliance import (
     Finding,
     FormatFinding,
     GetNewFindings,
-    LoadBaseline,
     ReadSource,
 )
 
-# vendored and generated trees stay out of scope because steering governs owned sources only
+# external source trees stay excluded because their research and vendor conventions are maintained outside owned production code
 KSkipParts = frozenset({"examples", "modules", "parashell", "re"})
-
-# baseline location stays fixed so every mode shares one accepted debt record
-KBaselineRel = FilePath("tools/steering/SteeringBaseline.txt")
 
 
 # path selection keeps every mode focused on owned python sources worth reviewing
@@ -35,7 +31,7 @@ def SelectPaths(PathNames: Iterable[str]) -> list[FilePath]:
         CandidatePath = FilePath(PathName)
         if CandidatePath.suffix != ".py":
             continue
-        if any(PartText.casefold() in KSkipParts for PartText in CandidatePath.parts):
+        if CandidatePath.parts[0].casefold() in KSkipParts:
             continue
         SelectedPaths.append(CandidatePath)
     return sorted(set(SelectedPaths))
@@ -82,13 +78,9 @@ def CollectDiff(
     return FindingList
 
 
-# whole tree runs stay aligned with steering because both share one accepted baseline
+# whole tree enforcement must reject existing debt so missing comments cannot become permanent
 def CollectFull(RootPath: FilePath, RepoPaths: Iterable[FilePath]) -> list[Finding]:
-    FindingList = CollectAll(RootPath, RepoPaths)
-    BaselinePath = RootPath / KBaselineRel
-    if BaselinePath.exists():
-        return GetNewFindings(FindingList, LoadBaseline(BaselinePath))
-    return FindingList
+    return CollectAll(RootPath, RepoPaths)
 
 
 # raw collection stays separate because diff comparisons never consult accepted debt

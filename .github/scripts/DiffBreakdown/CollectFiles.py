@@ -5,6 +5,7 @@ from ParseDiff import ParseNumstat, ParseStatuses
 from RequireSha import RequireSha
 from Rules.RuleSet import RuleSet
 
+# the diff options order must stay explicit so published evidence stays bound to the reviewed revision
 KDiffOptions = (
     "diff",
     "--no-ext-diff",
@@ -12,9 +13,12 @@ KDiffOptions = (
     "--ignore-submodules=none",
     "--find-renames=50%",
 )
+
+# the space options order must stay explicit so published evidence stays bound to the reviewed revision
 KSpaceOptions = ("--ignore-all-space", "--ignore-blank-lines")
 
 
+# the collect files contract needs a shared interpretation so published evidence stays bound to the reviewed revision
 def CollectFiles(
     Runner: GitRunner, BaseSha: str, HeadSha: str, Rules: RuleSet
 ) -> list[dict[str, object]]:
@@ -49,4 +53,6 @@ def CollectFiles(
                 "Risks": sorted({*Details["Risks"], *OldRisks}),
             }
         )
+
+    # ordering by str entry path must stay deterministic so diff reporting resolves equivalent inputs consistently
     return sorted(FileList, key=lambda Entry: str(Entry["Path"]))

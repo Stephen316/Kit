@@ -23,9 +23,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.SpecScope import (
     LookupValue,
 )
 
+# max repeat must remain consistent across callers so section boundaries and object references remain consistent
 KMaxRepeat = 1 << 20
 
 
+# the record operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadRecordMut(
     SpecOps: tuple[SpecOp, ...], Streams: RecordStreams, Scopes: KScopes
 ) -> DwgRecord:
@@ -34,6 +36,7 @@ def ReadRecordMut(
     return DwgRecord(tuple(Fields))
 
 
+# the ops operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadOpsMut(
     SpecOps: tuple[SpecOp, ...],
     Streams: RecordStreams,
@@ -65,6 +68,7 @@ def ReadOpsMut(
             Fields.append(DwgField(Operation.OpName, Value))
 
 
+# the paired operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadPairedMut(
     Operation: SpecOp, Streams: RecordStreams, Scopes: KScopes
 ) -> tuple[DwgRecord, ...]:
@@ -75,6 +79,7 @@ def ReadPairedMut(
     )
 
 
+# the value operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadValueMut(
     Operation: SpecOp, Streams: RecordStreams, Scopes: KScopes
 ) -> KDwgValue:
@@ -99,11 +104,13 @@ def ReadValueMut(
     return ReadBulkMut(Operation, Streams, Scopes)
 
 
+# the pair operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadPairMut(Streams: RecordStreams, BaseName: str, Scopes: KScopes) -> KDwgValue:
     Defaults = AsPoint(LookupValue(BaseName, Scopes), 2)
     return tuple(ReadDefDblMut(Streams.DataCursor, Default) for Default in Defaults)
 
 
+# the bulk operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadBulkMut(
     Operation: SpecOp, Streams: RecordStreams, Scopes: KScopes
 ) -> KDwgValue:

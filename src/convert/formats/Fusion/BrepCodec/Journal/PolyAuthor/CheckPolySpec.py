@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.Polyhedron import Polyh
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# invalid poly specification input must fail here so topology changes retain their native revision relationships
 def CheckPolySpec(Model: Polyhedron) -> None:
     if type(Model.PointsMm) is not tuple or not 4 <= len(Model.PointsMm) <= 128:
         raise ValueError("Fusion polyhedron requires four to 128 immutable points")

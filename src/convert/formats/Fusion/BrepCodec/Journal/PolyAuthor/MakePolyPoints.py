@@ -4,10 +4,12 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexN
 from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
 
 
+# the poly points operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyPoints(Layout: PolyLayout) -> tuple[PointNode, ...]:
     return tuple(PointNode(EntityPrefix(-1, -1), Point) for Point in Layout.PointsCm)
 
 
+# the poly vertices operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyVerts(Layout: PolyLayout) -> tuple[VertexNode, ...]:
     Results: list[VertexNode] = []
     for Index in range(len(Layout.PointsCm)):

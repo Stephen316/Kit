@@ -1,6 +1,7 @@
 from convert.formats.Fusion.TSplineCodec.Model.CageLink import CageLink
 
 
+# the links operation needs a consistent construction rule so control cage topology retains its native connectivity
 def MakeLinks(
     Faces: tuple[tuple[int, ...], ...], VertexCount: int
 ) -> tuple[CageLink, ...]:

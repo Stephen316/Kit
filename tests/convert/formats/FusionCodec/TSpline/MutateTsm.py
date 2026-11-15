@@ -1,3 +1,4 @@
+# shared mutate tsm setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MutateTsm(Payload: bytes, Fault: str) -> bytes:
     Records = Payload.decode("ascii").splitlines()
     KindValue = {

@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DesignResult import DesignResult
 from convert.formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage
 
 
+# the mat part operation needs a consistent construction rule so appearance references remain connected to their owning entities
 def BuildMatPart(Design: DesignResult) -> tuple[ContainerPart, ...]:
     if Design.Materials is None:
         return ()

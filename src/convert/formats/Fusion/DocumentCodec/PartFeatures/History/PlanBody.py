@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import Sh
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeUse import KShapeEdge
 
 
+# the vertex key contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def VertexKey(Point: tuple[float, float, float]) -> tuple[float, float, float]:
     return (
         round(Point[0], 9) + 0.0,
@@ -13,6 +14,7 @@ def VertexKey(Point: tuple[float, float, float]) -> tuple[float, float, float]:
     )
 
 
+# the plan body contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def PlanBody(
     BodyValue: ShapeBody,
     Ordinal: int,

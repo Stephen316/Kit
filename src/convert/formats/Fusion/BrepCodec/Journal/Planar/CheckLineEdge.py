@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireL
 from convert.formats.Fusion.BrepCodec.Journal.Planar.StableRef import StableRef
 
 
+# invalid line edge input must fail here so topology changes retain their native revision relationships
 def CheckLineEdge(Table: LiveTable, EdgeRef: int) -> None:
     EdgeValue = RequireLive(Table, EdgeRef, EdgeNode)
     Curve = RequireLive(Table, EdgeValue.CurveRef, StraightNode)

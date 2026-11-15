@@ -18,6 +18,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import (
     KLinkedUrl,
 )
 
+# the fixtures cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFixtures = (
     FilePath(__file__).resolve().parents[5]
     / "re"
@@ -27,12 +28,15 @@ KFixtures = (
     / "Fixtures"
 )
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the reencoded cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KReencoded = (".protein", ".smb", ".smbh")
 
+# the link counts cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLinkCounts = (
     ("P_A1_saved", 0, ()),
     ("P_B1_saved", 0, ()),
@@ -50,8 +54,10 @@ KLinkCounts = (
     ("S1_saved", 1, ("KitLinkPartB",)),
 )
 
+# the controls cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KControls = tuple(Entry[0] for Entry in KLinkCounts)
 
+# the native matrix cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNativeMatrix = (
     Cosine(KHalfTurn / 6),
     -0.5,
@@ -71,6 +77,7 @@ KNativeMatrix = (
     1.0,
 )
 
+# the moved matrix cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMovedMatrix = (
     Cosine(KHalfTurn / 4),
     -Cosine(KHalfTurn / 4),
@@ -91,11 +98,13 @@ KMovedMatrix = (
 )
 
 
+# shared read members setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMembers(DataValue: bytes) -> dict[str, bytes]:
     with ZipFile(BytesIO(DataValue)) as Archive:
         return {Entry: Archive.read(Entry) for Entry in Archive.namelist()}
 
 
+# shared collect setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CollectMut(Value: object, Found: list[CrossRef]) -> list[CrossRef]:
     if isinstance(Value, CrossRef):
         Found.append(Value)
@@ -108,6 +117,7 @@ def CollectMut(Value: object, Found: list[CrossRef]) -> list[CrossRef]:
     return Found
 
 
+# shared is same matrix setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsSameMatrix(Value: MatrixValue, Target: tuple[float, ...]) -> bool:
     return Value.Entries is not None and all(
         IsClose(LeftValue, RightValue, abs_tol=1e-9)
@@ -115,6 +125,7 @@ def IsSameMatrix(Value: MatrixValue, Target: tuple[float, ...]) -> bool:
     )
 
 
+# shared move matrix setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MoveMatrix(Value: object) -> object:
     if isinstance(Value, MatrixValue):
         return (
@@ -136,6 +147,7 @@ def MoveMatrix(Value: object) -> object:
     return Value
 
 
+# shared count matrix setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CountMatrix(Value: object, Target: tuple[float, ...]) -> int:
     if isinstance(Value, MatrixValue):
         return int(IsSameMatrix(Value, Target))
@@ -151,10 +163,12 @@ def CountMatrix(Value: object, Target: tuple[float, ...]) -> int:
     return 0
 
 
+# shared load fixture setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadFixture(StemName: str) -> bytes:
     return (KFixtures / f"{StemName}.f3d").read_bytes()
 
 
+# the link replay contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("StemName", KControls)
 def TestLinkReplay(StemName: str) -> None:
@@ -172,6 +186,7 @@ def TestLinkReplay(StemName: str) -> None:
     assert not Changed
 
 
+# the link tables contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("StemName,LinkCount,Targets", KLinkCounts)
 def TestLinkTables(StemName: str, LinkCount: int, Targets: tuple[str, ...]) -> None:
@@ -197,6 +212,7 @@ def TestLinkTables(StemName: str, LinkCount: int, Targets: tuple[str, ...]) -> N
         assert all(Entry.Token in Tokens for Entry in Crossing)
 
 
+# the link update contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestLinkUpdate() -> None:
     Stale = ReadDocument(LoadFixture("R6_out_of_date"))
@@ -212,6 +228,7 @@ def TestLinkUpdate() -> None:
     assert LinkUrls["KitLinkSub"].endswith("?version=1")
 
 
+# the link tokens contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestLinkTokens() -> None:
     Model = ReadDocument(LoadFixture("R3_nested"))
@@ -231,6 +248,7 @@ def TestLinkTokens() -> None:
     )
 
 
+# the placement contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestPlacement() -> None:
     Model = ReadDocument(LoadFixture("R1_part_a"))

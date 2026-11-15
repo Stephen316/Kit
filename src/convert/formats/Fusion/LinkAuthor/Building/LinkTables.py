@@ -13,11 +13,14 @@ from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import (
 from convert.formats.Fusion.SegmentCodec.Manifest.ManifestLink import ManifestLink
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaContext import MetaContext
 
+# version mark must remain consistent across callers so cross document references retain their intended ownership
 KVersionMark = "?version="
 
+# change key must remain consistent across callers so cross document references retain their intended ownership
 KChangeKey = "physicalChangeGuid"
 
 
+# urn version needs an explicit validity boundary so cross document references retain their intended ownership
 def UrnVersion(VersionUrn: str) -> int:
     Prefix, Marker, Suffix = VersionUrn.rpartition(KVersionMark)
     if not Prefix or not Marker or not Suffix.isdigit() or not Suffix.isascii():
@@ -25,15 +28,18 @@ def UrnVersion(VersionUrn: str) -> int:
     return int(Suffix)
 
 
+# the change guid contract needs a shared interpretation so cross document references retain their intended ownership
 def ChangeGuid(Target: LinkTarget) -> str:
     return dict(Target.Target.Asset.Properties).get(KChangeKey, KUnchangedGuid)
 
 
+# the x reference name contract needs a shared interpretation so cross document references retain their intended ownership
 def XRefName(Target: LinkTarget, KeySet: LinkKeys) -> str:
     Version = UrnVersion(Target.VersionUrn)
     return f"_XRef_/_{Target.DisplayName}.{KeySet.CacheGuid}_LV{Version}.f3d"
 
 
+# the manifest links contract needs a shared interpretation so cross document references retain their intended ownership
 def ManifestLinks(
     Request: AssemblySpec, Scheme: AssemblyPlan
 ) -> tuple[ManifestLink, ...]:
@@ -55,6 +61,7 @@ def ManifestLinks(
     )
 
 
+# the asset links contract needs a shared interpretation so cross document references retain their intended ownership
 def AssetLinks(Request: AssemblySpec, Scheme: AssemblyPlan) -> tuple[AssetLink, ...]:
     return tuple(
         AssetLink(
@@ -68,6 +75,7 @@ def AssetLinks(Request: AssemblySpec, Scheme: AssemblyPlan) -> tuple[AssetLink, 
     )
 
 
+# link contexts must resolve unambiguously so cross document references retain their intended ownership
 def LinkContexts(
     Request: AssemblySpec,
     Scheme: AssemblyPlan,
@@ -88,4 +96,6 @@ def LinkContexts(
             Request.Targets, Scheme.Links, Facts, strict=True
         )
     )
+
+    # ordering by context token must stay deterministic so document link authoring resolves equivalent inputs consistently
     return tuple(sorted(Contexts, key=lambda Context: Context.Token))

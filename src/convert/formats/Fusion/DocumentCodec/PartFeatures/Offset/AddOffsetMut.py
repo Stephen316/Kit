@@ -30,6 +30,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Offset.OffsetLoop import 
 from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeValue import RecipeValue
 
 
+# offset feature needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def OffsetFeature(Stage: PartStage) -> OffsetSpec:
     Feature = Stage.Feature
     if not isinstance(Feature, OffsetSpec):
@@ -37,6 +38,7 @@ def OffsetFeature(Stage: PartStage) -> OffsetSpec:
     return Feature
 
 
+# the offset pick contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def OffsetPick(
     Solids: tuple[TagState, ...], Place: int, Stage: PartStage
 ) -> tuple[RecipeValue, int]:
@@ -50,6 +52,7 @@ def OffsetPick(
     return SideRecipe(Stage.Before, Index), TagValue
 
 
+# the offset operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddOffsetMut(
     Author: AuthorState,
     Stage: PartStage,

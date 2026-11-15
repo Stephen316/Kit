@@ -11,6 +11,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadDataPage import ReadDataP
 from convert.formats.Fusion.DrawingCodec.Dwg.Pages.UnpackPage import UnpackPage
 
 
+# assemble section needs an explicit validity boundary so section boundaries and object references remain consistent
 def AssembleSection(
     Content: bytes, SectionInfo: DwgSectionInfo, Lookup: Mapping[int, DwgMapPage]
 ) -> DwgSection:

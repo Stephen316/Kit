@@ -25,9 +25,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.History.TagLedger import 
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import ShapeBody
 
+# kernel version must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KKernelVersion = "232.5.0.65535"
 
 
+# the draft nodes contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def DraftNodes(Plans: list[BodyPlan], FindIndex: DraftLookup) -> list[KDraftNode]:
     Nodes: list[KDraftNode] = [(("root",), AsmRoot(-1, -1, KKernelVersion))]
     Frames = [DraftFrame(PlanValue, FindIndex) for PlanValue in Plans]
@@ -40,9 +42,12 @@ def DraftNodes(Plans: list[BodyPlan], FindIndex: DraftLookup) -> list[KDraftNode
     return Nodes
 
 
+# draft state needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def DraftState(
     Bodies: tuple[ShapeBody, ...], Ledger: TagLedger, UnixMicros: float
 ) -> KDraftState:
+
+    # ordering by body value ordinal must stay deterministic so parametric feature reconstruction resolves equivalent inputs consistently
     Ordered = tuple(sorted(Bodies, key=lambda BodyValue: BodyValue.Ordinal))
     Plans = [
         PlanBody(BodyValue, BodyValue.Ordinal, FaceTags, BodyTag, UnixMicros)

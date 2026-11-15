@@ -2,12 +2,14 @@ from __future__ import annotations
 
 from Report.MarkdownText import EscapeText
 
+# share note must remain consistent across callers so reviewers can distinguish semantic changes from generated noise
 KShareNote = (
     "The bar follows the table order. Shares use additions + deletions and reconcile "
     "to 100% when text changes exist. Binary files have no fabricated line counts."
 )
 
 
+# the render focus contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderFocus(Snapshot: dict[str, object], Threshold: int) -> list[str]:
     Totals = Snapshot["Totals"]
     RowList = [

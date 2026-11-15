@@ -1,6 +1,7 @@
 from struct import pack as PackValue
 
 
+# the corners operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitCorners(Corners: tuple[int, ...], Terminal: int) -> bytes:
     if type(Terminal) is not int or not -(1 << 31) <= Terminal < 1 << 31:
         raise ValueError("Fusion mesh terminal corner word exceeds int32")

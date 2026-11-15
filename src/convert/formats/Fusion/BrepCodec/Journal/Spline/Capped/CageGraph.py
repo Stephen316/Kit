@@ -5,6 +5,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# cage graph needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class CageGraph:
     Links: tuple[CageLink, ...]
@@ -18,6 +19,7 @@ class CageGraph:
     Regular: tuple[bool, ...]
 
 
+# vertex fan needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def VertexFan(Topology: CageTopology, VertexIndex: int) -> tuple[int, ...]:
     Links = Topology.Links
     FirstLink = Topology.Vertices[VertexIndex].OriginLink
@@ -31,6 +33,7 @@ def VertexFan(Topology: CageTopology, VertexIndex: int) -> tuple[int, ...]:
     return tuple(FanLinks)
 
 
+# face loop needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def FaceLoop(Topology: CageTopology, FaceIndex: int) -> tuple[int, ...]:
     FaceValue = Topology.Faces[FaceIndex]
     if FaceValue.IsHidden:
@@ -43,6 +46,7 @@ def FaceLoop(Topology: CageTopology, FaceIndex: int) -> tuple[int, ...]:
     return tuple(LoopLinks[:4])
 
 
+# the graph operation needs a distinct decoding boundary so cap boundaries remain connected to the surrounding surface
 def ReadGraph(Surface: TsplineSurface) -> CageGraph:
     Topology = Surface.Topology
     Links = Topology.Links
@@ -75,6 +79,7 @@ def ReadGraph(Surface: TsplineSurface) -> CageGraph:
     )
 
 
+# the straight link contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def StraightLink(Graph: CageGraph, LinkIndex: int) -> int | None:
     HeadVertex = Graph.Heads[LinkIndex]
     if not Graph.Regular[HeadVertex]:

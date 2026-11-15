@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# bs surface needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class BsSurface:
     Rational: bool

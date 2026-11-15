@@ -6,12 +6,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import (
 )
 
 
+# draft eed needs an explicit state contract so drawing objects retain valid ownership and reference relationships
 @MakeDataClass(frozen=True, slots=True)
 class DraftEed:
     AppLink: DraftLink
     EedItems: DraftRecord
 
 
+# draft row needs an explicit state contract so drawing objects retain valid ownership and reference relationships
 @MakeDataClass(frozen=True, slots=True)
 class DraftRow:
     KeyText: str

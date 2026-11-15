@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
 from convert.formats.Fusion.BrepCodec.Frustum.ReadFrustumHist import ReadFrustumHist
 
 
+# shared frustum archive setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FrustumArchive(Target: FilePath, Payload: bytes) -> FrustumHistory:
     with ZipFile(Target, "w") as Archive:
         Archive.writestr("Solved.smbh", Payload)

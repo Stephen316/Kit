@@ -14,9 +14,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import (
     FocusRole,
 )
 
+# the move modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KMoveModes: dict[str, object] = dict(moveMethodType=5, point2PositionCSType=1)
 
 
+# the move entries contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MoveEntries(Feature: MoveSpec) -> list[float]:
     CosValue, SinValue, ShiftX, ShiftY, _ = MoveFrame(Feature)
     LiftCm = Feature.OffsetMm[2] / 10.0
@@ -29,6 +31,7 @@ def MoveEntries(Feature: MoveSpec) -> list[float]:
     return [float(Value) + 0.0 for RowValue in MatrixRows for Value in RowValue]
 
 
+# the move operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddMoveMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature = Stage.Feature
     if not isinstance(Feature, MoveSpec):

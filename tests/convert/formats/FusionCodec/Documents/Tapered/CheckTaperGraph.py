@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentMod
 from tests.convert.formats.FusionCodec.Documents.NamedGroups import NamedGroups
 
 
+# the taper graph contract needs boundary coverage so stored document relationships remain consistent
 def CheckTaperGraph(Model: DocumentModel, Degrees: float) -> None:
     assert len(Model.Bodies) == 1
     History = Model.Bodies[0].History

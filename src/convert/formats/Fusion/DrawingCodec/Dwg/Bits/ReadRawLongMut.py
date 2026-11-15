@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadRawShortMut import (
 )
 
 
+# the raw long operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadRawLongMut(Cursor: BitCursor) -> int:
     LowShort = ReadRawShortMut(Cursor)
     HighShort = ReadRawShortMut(Cursor)

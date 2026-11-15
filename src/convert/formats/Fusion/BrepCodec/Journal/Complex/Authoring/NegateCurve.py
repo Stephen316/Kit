@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.CheckBsCurve import
 )
 
 
+# the negate curve contract needs a shared interpretation so nested spline and surface records retain their relationships
 def NegateCurve(Curve: BsCurve) -> BsCurve:
     CheckBsCurve(Curve, Curve.Dimension)
     return BsCurve(

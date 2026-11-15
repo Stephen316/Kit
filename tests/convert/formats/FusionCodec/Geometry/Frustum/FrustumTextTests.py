@@ -8,6 +8,7 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the frustum text contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("TopRadius", (8.0, 10.0, 14.0))
 def TestFrustumText(TmpPath: FilePath, TopRadius: float) -> None:
     Model = FrustumBody(10.0, TopRadius, 17.0, (20.0, -30.0, 5.0))

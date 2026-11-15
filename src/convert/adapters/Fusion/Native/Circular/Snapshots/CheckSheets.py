@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNod
 from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
 
 
+# invalid sheets input must fail here so public geometry remains consistent with native circular topology
 def CheckSheets(
     State: GeometryState, Faces: tuple[FaceNode, ...], Shape: CircleShape
 ) -> None:

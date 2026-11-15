@@ -11,6 +11,7 @@ from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 from convert.formats.Fusion.EntityCodec.Schema.WireType import KWireKind, WireType
 
 
+# the wire type operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadWireType(Value: object) -> WireType:
     Fields = ReadObject(Value)
     return WireType(
@@ -26,6 +27,7 @@ def ReadWireType(Value: object) -> WireType:
     )
 
 
+# the field specification operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadFieldSpec(Value: object) -> FieldSpec[WireType]:
     Fields = ReadObject(Value)
     return FieldSpec(

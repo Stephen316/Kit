@@ -3,9 +3,11 @@ from __future__ import annotations
 from collections.abc import Sequence
 from pathlib import Path as FilePath
 
+# the skip folders vocabulary must stay centralized so payload policy agrees on supported native identities
 KSkipFolders = frozenset({"__pycache__", ".venv", "build", "dist"})
 
 
+# list sources needs an explicit validity boundary so captured document data cannot become production writer input
 def ListSources(PathValues: Sequence[str]) -> list[FilePath]:
     SourceSet: set[FilePath] = set()
     for PathValue in PathValues:

@@ -3,6 +3,7 @@ from convert.adapters.solidworks.container.InflateStream import InflateStream
 from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat
 
 
+# the payload operation needs a distinct decoding boundary so stream contents retain their geometry and feature relationships
 def DecodePayload(
     Payload: bytes,
     NameValue: str,

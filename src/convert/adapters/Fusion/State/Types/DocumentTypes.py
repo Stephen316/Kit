@@ -35,6 +35,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec
 
+# the document types order must stay explicit so public document claims remain grounded in native records
 KDocumentTypes: tuple[type[object], ...] = (
     PrismSnapshot,
     RegionEdge,

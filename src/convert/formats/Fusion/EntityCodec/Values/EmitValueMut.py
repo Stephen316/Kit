@@ -17,6 +17,7 @@ from convert.formats.Fusion.EntityCodec.Wire.EmitReference import EmitReference
 from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitText
 
 
+# the value operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitValueMut(
     Value: KEntityValue, Shape: WireType, Catalog: EntityCatalog, Depth: int = 0
 ) -> bytes:

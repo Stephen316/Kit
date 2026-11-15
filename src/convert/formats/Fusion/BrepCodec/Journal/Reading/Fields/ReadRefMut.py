@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import 
 )
 
 
+# the reference operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadRefMut(Cursor: FieldCursor) -> int:
     Value = ReadLongMut(Cursor, 12)
     if Value < -1:

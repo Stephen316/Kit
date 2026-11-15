@@ -4,6 +4,7 @@ from typing import cast as CastValue
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.MoveSpec import MoveSpec
 
 
+# invalid move input must fail here so feature parameters remain connected to the resulting geometry
 def CheckMove(Feature: MoveSpec) -> None:
     Offset = CastValue(object, Feature.OffsetMm)
     if not isinstance(Offset, tuple):

@@ -16,18 +16,40 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.HeaderDefaults impo
 
 from convert.formats.Fusion.DrawingCodec.Dwg.Objects.StyleSpecs import KStyleSpecs
 
+# field pattern must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KFieldPattern = r"\b(TU|BD|BS|B|RC|CMC|H)\s+(\w+)"
+
+# the colour parts order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KColourParts = ("Index", "Rgb", "Flags")
+
+# the letter sizes order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KLetterSizes = (1.8, 2.5, 3.5, 5.0, 7.0, 10.0, 14.0, 20.0)
+
+# millimetre inch must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KMillimetreInch = 25.4
+
+# extension tenths must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KExtensionTenths = 6
+
+# label tenths must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KLabelTenths = 4
+
+# row tenths must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KRowTenths = 30
+
+# tolerance step must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KToleranceStep = 0.1
+
+# zero trim must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KZeroTrim = 12
+
+# angle trim must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KAngleTrim = 3
+
+# decimal point must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KDecimalPoint = ord(".")
 
+# the dim format vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KDimFormatVars: KVarGroup = {
     "DimADec": 2,
     "DimDec": 2,
@@ -57,6 +79,7 @@ KDimFormatVars: KVarGroup = {
 }
 
 
+# smaller letter needs an explicit validity boundary so native drawing objects use a consistent symbol vocabulary
 def SmallerLetter(TextHeight: float) -> float:
     Smaller = [Lettering for Lettering in KLetterSizes if Lettering < TextHeight]
     if not Smaller:
@@ -64,6 +87,7 @@ def SmallerLetter(TextHeight: float) -> float:
     return Smaller[-1]
 
 
+# the colour vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def ColourVars(Prefix: str) -> KVarGroup:
     return {
         Prefix + "Index": 0,
@@ -72,6 +96,7 @@ def ColourVars(Prefix: str) -> KVarGroup:
     }
 
 
+# the dim size vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DimSizeVars(TextHeight: float) -> KVarGroup:
     return {
         "DimPost": "",
@@ -92,6 +117,7 @@ def DimSizeVars(TextHeight: float) -> KVarGroup:
     }
 
 
+# the dim flag vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DimFlagVars(TextHeight: float) -> KVarGroup:
     return {
         "DimTol": 0,
@@ -115,6 +141,7 @@ def DimFlagVars(TextHeight: float) -> KVarGroup:
     }
 
 
+# the dim alt vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DimAltVars() -> KVarGroup:
     return {
         "DimAltRnd": 0.0,
@@ -130,6 +157,7 @@ def DimAltVars() -> KVarGroup:
     }
 
 
+# the dim link vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DimLinkVars(StyleKey: str) -> KVarGroup:
     Blanks = (
         "DimLdrBlkHandle",
@@ -148,6 +176,7 @@ def DimLinkVars(StyleKey: str) -> KVarGroup:
     }
 
 
+# the dimension vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DimensionVars(TextHeight: float, StyleKey: str) -> KVarGroup:
     return {
         **DimSizeVars(TextHeight),
@@ -158,6 +187,7 @@ def DimensionVars(TextHeight: float, StyleKey: str) -> KVarGroup:
     }
 
 
+# the style names contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def StyleNames() -> tuple[str, ...]:
     Names: list[str] = []
     for SpecKind, FieldName in FindAll(KFieldPattern, KStyleSpecs["DIMSTYLE"]):
@@ -168,6 +198,7 @@ def StyleNames() -> tuple[str, ...]:
     return tuple(Names[Names.index("DimPost") : Names.index("DimMzSuffix") + 1])
 
 
+# the style vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def StyleVars() -> KVarGroup:
     Values = list(DimensionVars(KTextHeight, "").values())
     Named: KVarGroup = dict(zip(StyleNames(), Values))

@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue impor
 from convert.formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
 
 
+# spline node needs an explicit state contract so topology changes retain their native revision relationships
 @MakeDataClass(frozen=True, slots=True)
 class SplineNode:
     Prefix: EntityPrefix

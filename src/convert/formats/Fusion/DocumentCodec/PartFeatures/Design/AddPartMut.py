@@ -106,6 +106,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.FamilyRules import 
 from convert.formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart
 
 
+# the stage operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddStageMut(
     Author: AuthorState,
     Stage: PartStage,
@@ -141,6 +142,7 @@ def AddStageMut(
     return Children
 
 
+# the sketched operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddSketchedMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, Stages: tuple[PartStage, ...]
 ) -> None:
@@ -156,6 +158,7 @@ def AddSketchedMut(
     Builder(Author, Stage, Prefix)
 
 
+# the part operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddPartMut(Author: AuthorState) -> None:
     BaseValue, Stages = SolvePart(Author.SpecValue)
     States = (

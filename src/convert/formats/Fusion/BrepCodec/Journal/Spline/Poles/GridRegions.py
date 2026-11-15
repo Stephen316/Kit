@@ -30,9 +30,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleLines import KKno
 from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import KPoleRow
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# the axis map shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KAxisMap = tuple[tuple[int, int, Fraction], tuple[int, int, Fraction]]
 
 
+# center pole needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def CenterPole(Knots: KKnotList, Value: int) -> int:
     for Index in range(len(Knots) - 4):
         if Knots[Index + 1] == Knots[Index + 2] == Knots[Index + 3] == Value:
@@ -43,6 +45,7 @@ def CenterPole(Knots: KKnotList, Value: int) -> int:
     raise ValueError("Fusion Form grid poles found no pole at a crease vertex")
 
 
+# the crease grid contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CreaseGrid(
     Surface: TsplineSurface, Graph: CageGraph, Places: tuple[KGridPlace, ...]
 ) -> tuple[KKnotList, KKnotList, KPoleGrid]:
@@ -76,6 +79,7 @@ def CreaseGrid(
     )
 
 
+# primary grip needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def PrimaryGrip(Surface: TsplineSurface, Vertex: int) -> int:
     Mapping = Surface.Mapping
     if Mapping is None:
@@ -86,6 +90,7 @@ def PrimaryGrip(Surface: TsplineSurface, Vertex: int) -> int:
     raise ValueError("Fusion Form grid poles found a vertex without a primary grip")
 
 
+# the cell axes contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellAxes(
     Graph: CageGraph, Places: tuple[KGridPlace, ...], CellValue: PatchCell, Scale: int
 ) -> KAxisMap:
@@ -106,6 +111,7 @@ def CellAxes(
     return (Found[0], Found[1])
 
 
+# the region range contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RegionRange(
     Graph: CageGraph,
     Places: tuple[KGridPlace, ...],
@@ -120,6 +126,7 @@ def RegionRange(
     return (min(Values), max(Values))
 
 
+# sub range needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def SubRange(Knots: KKnotList, Bounds: tuple[int, int]) -> tuple[int, int]:
     Lower, Upper = Fraction(Bounds[0]), Fraction(Bounds[1])
     if Knots.count(Lower) < KEndCount or Knots.count(Upper) < KEndCount:
@@ -127,6 +134,7 @@ def SubRange(Knots: KKnotList, Bounds: tuple[int, int]) -> tuple[int, int]:
     return (Knots.index(Lower) + Knots.count(Lower) - 4, Knots.index(Upper) - 1)
 
 
+# the face knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FaceKnots(
     Knots: KKnotList,
     SpanPair: tuple[int, int],
@@ -141,6 +149,7 @@ def FaceKnots(
     return Values if AxisInfo[1] > 0 else tuple(reversed(Values))
 
 
+# the region grid contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RegionGrid(
     GridRows: KPoleGrid,
     Spans: tuple[tuple[int, int], tuple[int, int]],
@@ -160,6 +169,7 @@ def RegionGrid(
     return Found
 
 
+# the grid plan contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def GridPlan(
     Region: int, Cells: tuple[PatchCell, ...], FullU: KKnotList, FullV: KKnotList
 ) -> FacePlan:
@@ -180,6 +190,7 @@ def GridPlan(
     )
 
 
+# the grid grids contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def GridGrids(
     Surface: TsplineSurface, Graph: CageGraph, Shape: CappedShape, Scale: int
 ) -> tuple[tuple[FacePlan, ...], list[dict[KPolePlace, KPoleRow]]]:

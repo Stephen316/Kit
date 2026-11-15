@@ -1,9 +1,11 @@
+# the point operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakePoint(
     CoordX: float = 0.0, CoordY: float = 0.0, CoordZ: float = 0.0
 ) -> dict[str, object]:
     return {"x": CoordX, "y": CoordY, "z": CoordZ}
 
 
+# the color operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakeColor(
     RedValue: float = 0.0,
     GreenValue: float = 0.0,

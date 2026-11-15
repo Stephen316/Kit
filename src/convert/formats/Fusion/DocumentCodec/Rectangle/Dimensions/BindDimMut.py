@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.Model.DimensionAx
 )
 
 
+# the bind dim contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def BindDimMut(
     Author: AuthorState, AxisValue: DimensionAxis, CreationIndex: int, RuntimeId: int
 ) -> None:

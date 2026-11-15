@@ -6,6 +6,7 @@ from convert.formats.Fusion.EntityCodec.Recipes.Model.FaceRecipe import FaceReci
 from convert.formats.Fusion.EntityCodec.Recipes.Model.VertexRecipe import VertexRecipe
 
 
+# edge recipe needs an explicit state contract so entity identifiers retain their schema and reference meaning
 @MakeDataClass(frozen=True, slots=True)
 class EdgeRecipe:
     PrimaryTagIndex: int

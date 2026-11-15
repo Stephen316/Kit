@@ -10,6 +10,7 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# frustum history needs an explicit state contract so circular boundaries retain consistent cone and rim geometry
 @MakeDataClass(frozen=True, slots=True)
 class FrustumHistory:
     Model: FrustumBody

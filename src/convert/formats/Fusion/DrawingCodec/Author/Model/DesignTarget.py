@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# design target needs an explicit state contract so sheet objects retain their intended document relationships
 @MakeDataClass(frozen=True, slots=True)
 class DesignTarget:
     DisplayName: str

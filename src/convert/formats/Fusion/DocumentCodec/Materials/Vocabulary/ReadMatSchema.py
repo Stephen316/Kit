@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Vocabulary.SchemaData import
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the schema node operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadSchemaNode(Value: SchemaData) -> SchemaNode:
     return SchemaNode(
         Value["TagName"],
@@ -16,6 +17,7 @@ def ReadSchemaNode(Value: SchemaData) -> SchemaNode:
     )
 
 
+# the mat schema operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadMatSchema() -> tuple[SchemaNode, ...]:
     Resource = FilePath(__file__).with_name("MaterialSchemas.json")
     Values = CastValue(dict[str, SchemaData], ReadJson(Resource.read_bytes()))

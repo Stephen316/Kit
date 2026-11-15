@@ -17,6 +17,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import Sh
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ArcSpan import ArcSpan
 
 
+# link mass must resolve unambiguously so edge and face relationships survive parametric feature construction
 def LinkMass(
     Shape: ShapeBody,
     PlanValue: RoundPlan,
@@ -35,6 +36,7 @@ def LinkMass(
     return LineMass((Frames[Index], Closing), PlanValue.Sense, Round)
 
 
+# the plan mass contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def PlanMass(
     Shape: ShapeBody, PlanValue: RoundPlan, Frames: list[CornerFrame], Round: EdgeRound
 ) -> dict[str, float]:

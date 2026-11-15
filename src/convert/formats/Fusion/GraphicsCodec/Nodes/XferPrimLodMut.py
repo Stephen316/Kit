@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer prim lod needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferPrimLodMut(State: SceneCodec, Value: PrimitiveLod | None) -> PrimitiveLod:
     NodeData = XferPayloadMut(State, Value.NodeData if Value else None)
     LodMask = State.Integer(Value.LodMask if Value else None)

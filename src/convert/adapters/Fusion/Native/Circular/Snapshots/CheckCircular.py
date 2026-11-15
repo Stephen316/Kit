@@ -27,6 +27,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentMod
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# invalid circular input must fail here so public geometry remains consistent with native circular topology
 def CheckCircular(
     Model: DocumentModel,
     Shape: CircleShape,
@@ -44,6 +45,7 @@ def CheckCircular(
             raise ValueError("Unsupported native circular snapshot profile")
 
 
+# invalid round state input must fail here so public geometry remains consistent with native circular topology
 def CheckRoundState(
     State: GeometryState,
     Shape: CircleShape,

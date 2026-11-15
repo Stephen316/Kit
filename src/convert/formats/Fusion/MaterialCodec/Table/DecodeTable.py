@@ -3,6 +3,7 @@ from convert.formats.Fusion.MaterialCodec.Table.AssetEntry import AssetEntry
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the table operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeTable(Payload: bytes) -> tuple[AssetEntry, ...]:
     Reader = MaterialReader(Payload)
     Entries: list[AssetEntry] = []

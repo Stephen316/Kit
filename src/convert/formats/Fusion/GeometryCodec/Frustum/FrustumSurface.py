@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the frustum surface contract needs a shared interpretation so geometric values retain their native record boundaries
 def FrustumSurface(Model: FrustumBody) -> GeometryRecord:
     RadiusDelta = Model.TopRadius - Model.BottomRadius
     SlantLength = Hypot(Model.Height, RadiusDelta)

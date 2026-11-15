@@ -4,14 +4,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.CheckExtrude import IsNum
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.HoleSpec import HoleSpec
 
 
+# the bored decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsBored(Feature: HoleSpec) -> bool:
     return Feature.BoreDiameterMm > 0 or Feature.BoreDepthMm > 0
 
 
+# the sunk decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsSunk(Feature: HoleSpec) -> bool:
     return Feature.SinkDiameterMm > 0
 
 
+# invalid sink input must fail here so feature parameters remain connected to the resulting geometry
 def CheckSink(Feature: HoleSpec) -> None:
     Numbers = (Feature.SinkDiameterMm, Feature.SinkAngleDegrees)
     if not all(IsNumber(Value) for Value in Numbers):
@@ -28,6 +31,7 @@ def CheckSink(Feature: HoleSpec) -> None:
         raise ValueError("Fusion countersink angles lie between 0 and 180 degrees")
 
 
+# invalid hole input must fail here so feature parameters remain connected to the resulting geometry
 def CheckHole(Feature: HoleSpec) -> None:
     Center = CastValue(object, Feature.CenterMm)
     if not isinstance(Center, tuple) or len(Feature.CenterMm) != 2:

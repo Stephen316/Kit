@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer child contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferChildMut(State: SceneCodec, Value: BodyChild | None) -> BodyChild:
     Matrix = State.OptionalMat(Value.Matrix if Value else None)
     State.EmptyLinks(3)

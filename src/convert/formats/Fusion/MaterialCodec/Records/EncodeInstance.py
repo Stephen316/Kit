@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Records.EncodeFields import EncodeFiel
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# the instance operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeInstance(Asset: MaterialAsset, Fields: tuple[PropertySpec, ...]) -> bytes:
     Header = b"".join(
         EncodeText(Value)

@@ -1,3 +1,4 @@
+# the stencil cages cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStencilCages: tuple[tuple[str, str, int], ...] = (
     (
         "re/Fusion/LocalOracle/FormDocuments/Stencil/Box3.tsm",
@@ -26,11 +27,13 @@ KStencilCages: tuple[tuple[str, str, int], ...] = (
     ),
 )
 
+# the stencil unknown cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStencilUnknown: tuple[str, str] = (
     "re/Fusion/LocalOracle/TSpline/Plane.f3d",
     "a81662369ddd6407b98975c335d6510b2eb9c7445214617e1df2e248c0d19612",
 )
 
+# the stencil stale cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStencilStale: tuple[str, str] = (
     "re/Fusion/LocalOracle/FormDocuments/Cache/BoxSurfShifted.f3d",
     "e83bf3dc5ac4753916051c25eaf9018e9ae274675e6fc1220bf10f01783fe35c",

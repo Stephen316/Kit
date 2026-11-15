@@ -43,12 +43,16 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
     ReadFormFile,
 )
 
+# the general slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGeneralSlack = 1e-12
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
 
 
+# shared value spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ValueSpread(LeftValues: tuple[float, ...], RightValues: tuple[float, ...]) -> float:
     assert len(LeftValues) == len(RightValues)
     return max(
@@ -60,6 +64,7 @@ def ValueSpread(LeftValues: tuple[float, ...], RightValues: tuple[float, ...]) -
     )
 
 
+# shared point spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PointSpread(
     LeftPoints: tuple[tuple[float, ...], ...],
     RightPoints: tuple[tuple[float, ...], ...],
@@ -74,6 +79,7 @@ def PointSpread(
     )
 
 
+# shared curve spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CurveSpread(LeftCurve: BsCurve, RightCurve: BsCurve) -> float:
     assert ReplaceValue(LeftCurve, Poles=(), Weights=()) == ReplaceValue(
         RightCurve, Poles=(), Weights=()
@@ -84,6 +90,7 @@ def CurveSpread(LeftCurve: BsCurve, RightCurve: BsCurve) -> float:
     )
 
 
+# shared shift curve setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ShiftCurve(Curve: BsCurve, ShiftU: float, ShiftV: float) -> BsCurve:
     return ReplaceValue(
         Curve,
@@ -94,6 +101,7 @@ def ShiftCurve(Curve: BsCurve, ShiftU: float, ShiftV: float) -> BsCurve:
     )
 
 
+# shared seam spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SeamSpread(LeftCurve: BsCurve, RightCurve: BsCurve, Cache: NubsSurface) -> float:
     SpanU = Cache.KnotsU[-1].Value - Cache.KnotsU[0].Value
     SpanV = Cache.KnotsV[-1].Value - Cache.KnotsV[0].Value
@@ -106,10 +114,12 @@ def SeamSpread(LeftCurve: BsCurve, RightCurve: BsCurve, Cache: NubsSurface) -> f
     )
 
 
+# shared window box setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def WindowBox(Entry: FormWindow) -> tuple[float, ...]:
     return (Entry.ULow, Entry.UHigh, Entry.VLow, Entry.VHigh)
 
 
+# shared bound spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BoundSpread(LeftEdge: FormEdge, RightEdge: FormEdge) -> float:
     if LeftEdge.Bounds is None or RightEdge.Bounds is None:
         assert LeftEdge.Bounds == RightEdge.Bounds
@@ -117,6 +127,7 @@ def BoundSpread(LeftEdge: FormEdge, RightEdge: FormEdge) -> float:
     return ValueSpread(LeftEdge.Bounds, RightEdge.Bounds)
 
 
+# shared edge spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeSpread(LeftEdge: FormEdge, RightEdge: FormEdge) -> float:
     Plain = ReplaceValue(
         LeftEdge, Curve=RightEdge.Curve, Label="", Windows=(), Bounds=RightEdge.Bounds
@@ -136,6 +147,7 @@ def EdgeSpread(LeftEdge: FormEdge, RightEdge: FormEdge) -> float:
     )
 
 
+# shared face spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FaceSpread(LeftFace: FormFace, RightFace: FormFace) -> float:
     LeftCache, RightCache = LeftFace.Surface.Cache, RightFace.Surface.Cache
     assert ReplaceValue(LeftCache, Points=(), Weights=()) == ReplaceValue(
@@ -160,6 +172,7 @@ def FaceSpread(LeftFace: FormFace, RightFace: FormFace) -> float:
     return max(Spreads)
 
 
+# shared body spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BodySpread(Built: FormBody, Native: FormBody) -> float:
     assert Built.Regions == Native.Regions
     Spreads = [PointSpread(Built.PointsCm, Native.PointsCm)]
@@ -174,6 +187,7 @@ def BodySpread(Built: FormBody, Native: FormBody) -> float:
     return max(Spreads)
 
 
+# the general case contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KGeneralCases + KCapCases, ids=lambda CaseValue: CaseValue[0]
@@ -184,6 +198,7 @@ def TestGeneralCase(CaseValue: tuple[str, ...]) -> None:
     assert BodySpread(ConvertForm(Surface), Native) <= KGeneralSlack
 
 
+# the cap decl flow contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KCapCases, ids=lambda CaseValue: CaseValue[0])
 def TestCapDeclFlow(CaseValue: tuple[str, ...]) -> None:
@@ -199,6 +214,7 @@ def TestCapDeclFlow(CaseValue: tuple[str, ...]) -> None:
     )
 
 
+# the cube mass contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestCubeMass() -> None:
     Parts = BoxParts((1, 1, 1))
@@ -225,6 +241,7 @@ def TestCubeMass() -> None:
     )
 
 
+# the shift mass contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestShiftMass() -> None:
     BaseCase, ShiftedCase = (
@@ -285,6 +302,7 @@ def TestShiftMass() -> None:
     )
 
 
+# the planar area contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestPlanarArea() -> None:
     Native = ReadDocument(ReadFormFile(*KPlanarArea))

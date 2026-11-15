@@ -55,13 +55,28 @@ BindCompatMut(
     {__name__: globals()},
 )
 
+# the public arc ellipse geometry name must remain available so existing integrations keep resolving the canonical implementation
 ArcEllipseGeometry = ArcEllipseGeom
+
+# the public arc hyperbola geometry name must remain available so existing integrations keep resolving the canonical implementation
 ArcHyperbolaGeometry = ArcHyperGeom
+
+# the public arc parabola geometry name must remain available so existing integrations keep resolving the canonical implementation
 ArcParabolaGeometry = ArcParabGeom
+
+# the public constraint reference name must remain available so existing integrations keep resolving the canonical implementation
 ConstraintReference = ConstraintRef
+
+# the public hyperbola geometry name must remain available so existing integrations keep resolving the canonical implementation
 HyperbolaGeometry = HyperbolaGeom
+
+# the public parabola geometry name must remain available so existing integrations keep resolving the canonical implementation
 ParabolaGeometry = ParabolaGeom
+
+# the public selection path element name must remain available so existing integrations keep resolving the canonical implementation
 SelectionPathElement = SelectPathElem
+
+# the public sketch constraint name must remain available so existing integrations keep resolving the canonical implementation
 SketchConstraint = SketchRelation
 
 # geometry consumers need one intentional historical public contract

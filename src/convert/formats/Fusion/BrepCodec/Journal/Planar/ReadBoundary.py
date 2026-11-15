@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireL
 from convert.formats.Fusion.BrepCodec.Journal.Planar.StableRef import StableRef
 
 
+# the boundary operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadBoundary(
     Table: LiveTable, FirstRef: int, LoopRef: int
 ) -> tuple[BoundaryUse, ...]:

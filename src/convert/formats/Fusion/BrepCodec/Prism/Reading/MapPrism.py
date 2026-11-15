@@ -13,6 +13,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr, Requir
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# map prism must resolve unambiguously so profile topology remains connected to its extrusion history
 def MapPrism(Table: AsmTable, Graph: PrismGraph, Roles: PrismRoles) -> dict[int, int]:
     Mapping = {
         0: 0,

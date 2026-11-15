@@ -18,22 +18,30 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import Lin
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PlaneSpan import KPlaneSpan
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import SpanHeading
 
+# the sides shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KSides = dict[KPoint, tuple[list[KRange], list[KRange]]]
+
+# the level map shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KLevelMap = dict[float, tuple[KPoint, ...]]
+
+# the track shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KTrack = tuple[LineSpan, KPoint, tuple[float, float]]
 
 
+# the track parameter contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TrackParam(Track: KTrack, Point: KPoint) -> float:
     _, Origin, Heading = Track
     return (Point[0] - Origin[0]) * Heading[0] + (Point[1] - Origin[1]) * Heading[1]
 
 
+# track range needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def TrackRange(Track: KTrack, SpanValue: KPlaneSpan) -> KRange:
     if not isinstance(SpanValue, LineSpan):
         raise ValueError("Fusion part merged walls must be straight")
     return TrackParam(Track, SpanValue.StartCm), TrackParam(Track, SpanValue.FinishCm)
 
 
+# the track span contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TrackSpan(
     Track: KTrack, Members: list[WallPiece], Bounds: KRange, Exact: dict[float, KPoint]
 ) -> KPlaneSpan:
@@ -48,6 +56,7 @@ def TrackSpan(
     return LineSpan(Start, Finish, Track[0].Label)
 
 
+# the track points contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TrackPoints(
     Track: KTrack, Members: list[WallPiece], Points: KLevelMap, Table: KPointTable
 ) -> dict[float, KPoint]:
@@ -65,12 +74,14 @@ def TrackPoints(
     return Exact
 
 
+# the track point contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TrackPoint(SpanValue: KPlaneSpan) -> tuple[KPoint, ...]:
     if not isinstance(SpanValue, LineSpan):
         return ()
     return SpanValue.StartCm, SpanValue.FinishCm
 
 
+# line levels needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def LineLevels(
     Members: list[WallPiece], Points: KLevelMap, Table: KPointTable
 ) -> tuple[list[ShapeUse], list[ShapeUse]]:
@@ -103,6 +114,7 @@ def LineLevels(
     return Bottoms, TopUses
 
 
+# the group levels contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def GroupLevels(
     Members: list[WallPiece], Points: KLevelMap, Table: KPointTable
 ) -> tuple[list[ShapeUse], list[ShapeUse]]:
@@ -115,6 +127,7 @@ def GroupLevels(
     return [Bottom], [ShapeUse(LevelEdge(Leader, Upper), False)]
 
 
+# the group sides contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def GroupSides(Members: list[WallPiece]) -> KSides:
     Starts: dict[KPoint, list[KRange]] = {}
     Finishes: dict[KPoint, list[KRange]] = {}
@@ -129,6 +142,7 @@ def GroupSides(Members: list[WallPiece]) -> KSides:
     return Sides
 
 
+# the side breaks contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SideBreaks(Sides: list[KSides]) -> dict[KPoint, list[float]]:
     Breaks: dict[KPoint, list[float]] = {}
     for SideMap in Sides:
@@ -140,6 +154,7 @@ def SideBreaks(Sides: list[KSides]) -> dict[KPoint, list[float]]:
     return Breaks
 
 
+# the side uses contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SideUses(
     Sides: KSides, Breaks: dict[KPoint, list[float]], Table: KPointTable
 ) -> tuple[list[ShapeUse], list[ShapeUse]]:

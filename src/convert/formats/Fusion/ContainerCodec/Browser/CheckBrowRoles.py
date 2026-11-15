@@ -2,6 +2,7 @@ from convert.formats.Fusion.ContainerCodec.Browser.BrowserTargets import KBrowse
 from convert.formats.Fusion.DocumentCodec.Model.DesignResult import DesignResult
 
 
+# invalid brow roles input must fail here so archive members retain their native ownership and reference relationships
 def CheckBrowRoles(Design: DesignResult) -> None:
     if Design.Streams.SegmentId != 0:
         raise ValueError("Fusion browser requires the active design segment")

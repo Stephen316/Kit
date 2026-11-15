@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.GeometryCodec.HeaderStrings import HeaderStrings
 
 
+# the cylinder smt operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EmitCylinderSmt(Model: CylinderBody, Stamp: GeometryStamp) -> bytes:
     Lines = ["23200 0 2 2", HeaderStrings(Stamp), "1 1e-6 1e-10"]
     for Record in BuildRecords(Model):

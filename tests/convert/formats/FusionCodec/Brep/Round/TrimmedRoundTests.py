@@ -14,6 +14,7 @@ from tests.convert.formats.FusionCodec.Brep.Journal.JournalArchive import Journa
 from tests.convert.formats.FusionCodec.Brep.Round.TrimmedSources import KTrimmedSources
 
 
+# the trim round contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

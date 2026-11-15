@@ -1,3 +1,4 @@
+# the snapshot states cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSnapshotStates: tuple[tuple[str, str, str, int], ...] = (
     (
         "re/Fusion/Study/namedvertexprobe-8d81619f74e6/construction_polynomial_vertex0.f3d",

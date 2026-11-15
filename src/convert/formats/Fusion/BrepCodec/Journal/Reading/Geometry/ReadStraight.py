@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadBoundMut import
 )
 
 
+# the straight operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadStraight(Cursor: FieldCursor) -> StraightNode:
     return StraightNode(
         ReadPrefixMut(Cursor),

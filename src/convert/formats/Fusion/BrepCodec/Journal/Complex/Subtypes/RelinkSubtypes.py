@@ -26,6 +26,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRe
 from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
 
 
+# relink value needs an explicit validity boundary so nested spline and surface records retain their relationships
 def RelinkValueMut(
     Value: KGrammarValue,
     Sources: tuple[KSubtypeEntry, ...],
@@ -69,6 +70,7 @@ def RelinkValueMut(
     return Value
 
 
+# the relink subtypes contract needs a shared interpretation so nested spline and surface records retain their relationships
 def RelinkSubtypes(
     Entities: tuple[KJournalEntity, ...], Chosen: tuple[int, ...]
 ) -> tuple[KJournalEntity, ...]:

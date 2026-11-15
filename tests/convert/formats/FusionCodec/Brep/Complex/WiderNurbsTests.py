@@ -46,12 +46,14 @@ from tests.convert.formats.FusionCodec.Brep.GeometryState.GeometryArchive import
 )
 from tests.convert.formats.FusionCodec.Brep.Journal.JournalArchive import JournalArchive
 
+# wider root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KWiderRoot = (
     FilePath(__file__).resolve().parents[6]
     / "re/Fusion/LocalOracle/ComplexGeometry/SecondPass/Authored"
 )
 
 
+# the wider author contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Label,Model", WiderModels())
 def TestWiderAuthor(TmpPath: FilePath, Label: str, Model: NurbsBody) -> None:
     Journal = CreateNurbsBody(Model, KNurbsHistory, KNurbsStamp)
@@ -102,6 +104,7 @@ def TestWiderAuthor(TmpPath: FilePath, Label: str, Model: NurbsBody) -> None:
     ) == tuple(EdgeRange(EdgeSpec) for EdgeSpec in Model.Edges)
 
 
+# the wider fault contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Fault", KWiderFaults)
 def TestWiderFault(Fault: str) -> None:
     with RaisesError(ValueError):

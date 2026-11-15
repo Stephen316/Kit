@@ -51,12 +51,16 @@ from tests.convert.formats.FusionCodec.Documents.Form.StencilNatives import (
     KStencilNatives,
 )
 
+# the stencil slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStencilSlack = 1e-12
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
 
 
+# shared form lists setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FormLists(Model: DocumentModel) -> list[tuple[KJournalEntity, ...]]:
     Found = [
         BodyValue.History.Entities
@@ -73,6 +77,7 @@ def FormLists(Model: DocumentModel) -> list[tuple[KJournalEntity, ...]]:
     return Found
 
 
+# shared point gap setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PointGap(
     LeftPoints: tuple[tuple[float, ...], ...],
     RightPoints: tuple[tuple[float, ...], ...],
@@ -85,6 +90,7 @@ def PointGap(
     )
 
 
+# shared face count setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FaceCount(Entities: tuple[KJournalEntity, ...], Result: CageResult) -> int:
     Faces = {FaceValue.FaceIndex: FaceValue for FaceValue in Result.Faces}
     Found = ListTsplines(Entities)
@@ -100,6 +106,7 @@ def FaceCount(Entities: tuple[KJournalEntity, ...], Result: CageResult) -> int:
     return len(Found)
 
 
+# shared edge count setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeCount(Entities: tuple[KJournalEntity, ...], Result: CageResult) -> int:
     Count = 0
     for Entity in Entities:
@@ -120,6 +127,7 @@ def EdgeCount(Entities: tuple[KJournalEntity, ...], Result: CageResult) -> int:
     return Count
 
 
+# shared place count setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PlaceCount(Entities: tuple[KJournalEntity, ...], Result: CageResult) -> int:
     Count = 0
     for Entity in Entities:
@@ -132,6 +140,7 @@ def PlaceCount(Entities: tuple[KJournalEntity, ...], Result: CageResult) -> int:
     return Count
 
 
+# shared stencil counts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def StencilCounts(Model: DocumentModel, Result: CageResult) -> list[int]:
     Lists = FormLists(Model)
     assert Lists
@@ -142,6 +151,7 @@ def StencilCounts(Model: DocumentModel, Result: CageResult) -> list[int]:
     ]
 
 
+# the native cage contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KStencilNatives, ids=lambda CaseValue: FilePath(CaseValue[0]).stem
@@ -152,6 +162,7 @@ def TestNativeCage(CaseValue: tuple[str, str, str]) -> None:
     assert min(Counts) > 0
 
 
+# the stencil swap contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KStencilCases, ids=lambda CaseValue: CaseValue[0])
 def TestStencilSwap(CaseValue: tuple[str, str, str, str, str, str]) -> None:
@@ -166,6 +177,7 @@ def TestStencilSwap(CaseValue: tuple[str, str, str, str, str, str]) -> None:
     assert min(StencilCounts(Swapped, ConvertCage(Surface))) > 0
 
 
+# the stencil cage contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "CaseValue", KStencilCages, ids=lambda CaseValue: FilePath(CaseValue[0]).stem
 )
@@ -178,6 +190,7 @@ def TestStencilCage(CaseValue: tuple[str, str, int]) -> None:
     assert max(Valence.values()) == CaseValue[2]
 
 
+# the cage fault contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestCageFault() -> None:
     Model = ReadDocument(ReadFormFile(*KStencilNatives[0][:2]))
@@ -210,6 +223,7 @@ def TestCageFault() -> None:
         _ = SwapFormCage(Model, Elsewhere)
 
 
+# the stale cage contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestStaleCage() -> None:
     Model = ReadDocument(ReadFormFile(*KStencilStale))

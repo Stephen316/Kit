@@ -13,6 +13,7 @@ from tests.convert.api.Fusion.Native.VendorCases import (
 )
 
 
+# the vendor round contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseValue", KVendorCases)
 def TestVendorRound(TmpPath: FilePath, CaseValue: VendorCase) -> None:
     Source = VendorSource(CaseValue)

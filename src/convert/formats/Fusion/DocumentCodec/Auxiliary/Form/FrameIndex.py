@@ -6,6 +6,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
 )
 
 
+# frame index needs an explicit validity boundary so supporting records retain their owning document relationships
 def FrameIndex(Value: KEntityValue, Owners: dict[int, EntityRecord], Frame: int) -> int:
     Target = Owners.get(Value.ObjectId) if isinstance(Value, LocalRef) else None
     if Target is None:

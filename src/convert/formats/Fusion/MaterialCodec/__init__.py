@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertySpec import PropertySpe
 from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import PropertyValue
 from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 
+# the supported export surface must stay explicit so material reconstruction does not expose incidental implementation imports
 __all__ = [
     "AssetLinks",
     "ColorValue",

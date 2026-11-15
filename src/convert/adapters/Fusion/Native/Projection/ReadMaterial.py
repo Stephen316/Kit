@@ -17,6 +17,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 from interchange.materials.MaterialRecord import MaterialRecord
 
 
+# the material operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadMaterial(
     Graph: NativeGraph, Context: ExtrudeContext, Model: DocumentModel
 ) -> MaterialRecord:
@@ -66,6 +67,7 @@ def ReadMaterial(
     )
 
 
+# invalid asset input must fail here so public document claims remain grounded in native records
 def RequireAsset(Package: MaterialPackage, Identity: str) -> MaterialAsset:
     Asset = ResolveMatAsset(Package, Identity)
     if Asset is None:
@@ -73,6 +75,7 @@ def RequireAsset(Package: MaterialPackage, Identity: str) -> MaterialAsset:
     return Asset
 
 
+# the density operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadDensity(Package: MaterialPackage, Material: MaterialAsset) -> float:
     Aspects = tuple(
         Property

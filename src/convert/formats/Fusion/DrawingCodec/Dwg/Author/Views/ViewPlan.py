@@ -11,14 +11,26 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     ViewFrame,
 )
 
+# the point pair shape must stay shared so drawing view authoring uses one contract for compatible values
 KPointPair = tuple[float, float]
+
+# the point triple shape must stay shared so drawing view authoring uses one contract for compatible values
 KPointTriple = tuple[float, float, float]
+
+# border margin must remain consistent across callers so projected geometry retains its paper and model relationships
 KBorderMargin = 3.25
+
+# unit scale must remain consistent across callers so projected geometry retains its paper and model relationships
 KUnitScale = 10.0
+
+# model origin must remain consistent across callers so projected geometry retains its paper and model relationships
 KModelOrigin = -10000.0
+
+# model spacing must remain consistent across callers so projected geometry retains its paper and model relationships
 KModelSpacing = 1000.0
 
 
+# view plan needs an explicit state contract so projected geometry retains its paper and model relationships
 @MakeDataClass(frozen=True, slots=True)
 class ViewPlan:
     Index: int
@@ -34,12 +46,14 @@ class ViewPlan:
     ShowHidden: bool
 
 
+# the spread contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def Spread(Frame: ViewFrame, Extent: KPointTriple) -> KPointPair:
     Across = sum(abs(AxisPart) * Paper for AxisPart, Paper in zip(Frame.Right, Extent))
     Upward = sum(abs(AxisPart) * Paper for AxisPart, Paper in zip(Frame.Up, Extent))
     return (Across, Upward)
 
 
+# the plan view contract needs a stable decomposition so projected geometry retains its paper and model relationships
 def PlanView(
     Index: int,
     Draft: ViewDraft,
@@ -78,6 +92,7 @@ def PlanView(
     )
 
 
+# the plan views contract needs a stable decomposition so projected geometry retains its paper and model relationships
 def PlanViews(
     Drafts: tuple[ViewDraft, ...], Source: ViewSource, Sheet: KPointPair
 ) -> tuple[ViewPlan, ...]:

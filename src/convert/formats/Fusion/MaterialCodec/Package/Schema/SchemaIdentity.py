@@ -3,6 +3,7 @@ from re import fullmatch as FullMatch
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# schema identity needs an explicit validity boundary so typed appearance properties retain their native identifiers
 def SchemaIdentity(Value: SchemaNode) -> str:
     Identities = [
         dict(Child.Attributes).get("val", "")

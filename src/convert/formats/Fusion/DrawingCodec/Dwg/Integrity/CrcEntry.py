@@ -1,3 +1,4 @@
+# the crc entry contract needs a shared interpretation so damaged native sections fail before object reconstruction
 def CrcEntry(Index: int) -> int:
     Value = Index
     for _ in range(8):

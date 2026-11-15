@@ -6,6 +6,7 @@ from convert import open_document as OpenDocument, write_document as WriteDocume
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# the mat json contract needs boundary coverage so stored document relationships remain consistent
 def TestMatJson(TmpPath: FilePath) -> None:
     Document = AdapterCase("cuboid")
     Target = TmpPath / "Neutral.json"
@@ -15,6 +16,7 @@ def TestMatJson(TmpPath: FilePath) -> None:
     assert Restored == Document
 
 
+# the mat gate contract needs boundary coverage so stored document relationships remain consistent
 def TestMatGate(TmpPath: FilePath) -> None:
     Document = AdapterCase("cuboid")
     Target = TmpPath / "Legacy.FCStd"

@@ -6,6 +6,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.PutRecordMut import PutReco
 from convert.formats.Fusion.DrawingCodec.Dwg.Records.RecordSinks import RecordSinks
 
 
+# the object operation needs a consistent construction rule so drawing objects retain valid ownership and reference relationships
 def MakeObject(
     TypeNumber: int,
     ObjectHandle: int,

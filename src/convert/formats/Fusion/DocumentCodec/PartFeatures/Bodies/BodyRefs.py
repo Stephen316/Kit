@@ -25,10 +25,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
 
+# creation state must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KCreationState = 3
+
+# the identity vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KIdentity: dict[str, object] = {"identity": True}
 
 
+# the body reference operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBodyRefMut(
     Author: AuthorState,
     Prefix: str,
@@ -62,12 +66,14 @@ def AddBodyRefMut(
     return [DataRole, BodyRefRole]
 
 
+# the mark operation contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MarkOperation(Author: AuthorState, RoleName: str, Operation: int) -> None:
     Author.FindEntity(RoleName).NamedPairs = MakeAttributes(
         DcFeatureOperationIdFlag=Operation
     )
 
 
+# the face ids of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FaceIdsOf(Solid: PrismSolid) -> dict[int, list[str]]:
     Found: dict[int, set[str]] = {}
     for FaceValue in BuildShape(Solid).Faces:
@@ -77,6 +83,7 @@ def FaceIdsOf(Solid: PrismSolid) -> dict[int, list[str]]:
     return {Operation: sorted(Found[Operation]) for Operation in sorted(Found)}
 
 
+# the body seed operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBodySeedMut(
     Author: AuthorState,
     RoleName: str,
@@ -106,6 +113,7 @@ def AddBodySeedMut(
     return Author.Reference(RoleName)
 
 
+# the act reference value contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def ActRefValue(Author: AuthorState) -> list[dict[str, object]]:
     Fields: dict[str, object] = dict(
         actRefdTable=None,
@@ -118,6 +126,7 @@ def ActRefValue(Author: AuthorState) -> list[dict[str, object]]:
     return [Author.MakeGroup("ACTRefValue", Fields)]
 
 
+# the local act reference contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LocalActRef(Author: AuthorState) -> list[dict[str, object]]:
     PathValue: dict[str, object] = dict(
         componentInstances=[],
@@ -136,6 +145,7 @@ def LocalActRef(Author: AuthorState) -> list[dict[str, object]]:
     return [Author.MakeGroup("OccurrenceACTRefValue", Fields)]
 
 
+# the occur operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddOccurMut(Author: AuthorState, Prefix: str, Operation: int) -> object:
     RoleName = Prefix + "occurrence"
     Fields: dict[str, object] = dict(

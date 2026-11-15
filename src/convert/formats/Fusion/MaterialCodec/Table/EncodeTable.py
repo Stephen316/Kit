@@ -5,6 +5,7 @@ from convert.formats.Fusion.MaterialCodec.Models.MaterialAsset import MaterialAs
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# the table operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeTable(
     Assets: tuple[MaterialAsset, ...],
     Definitions: tuple[int, ...],

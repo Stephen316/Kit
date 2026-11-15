@@ -15,6 +15,7 @@ from interchange.enums.EnumValues import ValueKind
 from interchange.records.RecordParameter import Parameter, ParameterValue
 
 
+# the parameters operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadParameters(
     Graph: NativeGraph, Context: ExtrudeContext, AllowTaper: bool = False
 ) -> tuple[Parameter, ...]:
@@ -58,6 +59,7 @@ def ReadParameters(
     )
 
 
+# invalid binding input must fail here so public document claims remain grounded in native records
 def CheckBinding(
     Graph: NativeGraph, Binding: NativeNode, Context: ExtrudeContext
 ) -> NativeNode:
@@ -77,6 +79,7 @@ def CheckBinding(
     return Parameter
 
 
+# project parameter needs an explicit validity boundary so public document claims remain grounded in native records
 def ProjectParam(
     NodeValue: NativeNode,
     Catalog: dict[str, NativeNode],

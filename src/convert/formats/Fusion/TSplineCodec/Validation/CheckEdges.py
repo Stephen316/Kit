@@ -4,6 +4,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckIndices
 
 
+# invalid edges input must fail here so control cage topology retains its native connectivity
 def CheckEdges(Topology: CageTopology) -> None:
     Counts = Counter(LinkValue.EdgeIndex for LinkValue in Topology.Links)
     for Index, EdgeValue in enumerate(Topology.Edges):

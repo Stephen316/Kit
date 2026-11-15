@@ -5,6 +5,7 @@ from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
 from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 
+# the form part operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadFormPart(Value: ContainerPart) -> DocumentForm:
     _ = FormName(Value.Name)
     if type(Value.Payload) is not bytes or not 0 < len(Value.Payload) <= 16777216:

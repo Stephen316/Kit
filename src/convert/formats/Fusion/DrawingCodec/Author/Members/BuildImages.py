@@ -11,6 +11,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import Shee
 from convert.formats.Fusion.DrawingCodec.Model.DrawingNames import KImageFolders
 
 
+# the images operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildImages(SheetId: str, SizeName: str) -> tuple[ContainerPart, ...]:
     Paper = SheetSize(SizeName)
     Aspect = Paper.PaperWidth / Paper.PaperHeight

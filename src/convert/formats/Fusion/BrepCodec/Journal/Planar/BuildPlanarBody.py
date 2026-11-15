@@ -19,6 +19,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.VectorMath import (
 )
 
 
+# the planar body operation needs a consistent construction rule so topology changes retain their native revision relationships
 def BuildPlanarBody(Table: LiveTable, BodyRef: int) -> PlanarShell:
     Faces = ReadBodyFaces(Table, BodyRef)
     CheckEdgeUses(Table, Faces)

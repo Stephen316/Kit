@@ -18,6 +18,7 @@ from convert.formats.Fusion.DrawingCodec.Package.EmitPackage import EmitPackage
 from convert.formats.Fusion.DrawingCodec.Package.PackageEntry import PackageEntry
 
 
+# the draw bundle operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitDrawBundle(
     Value: DrawingBundle, CompressZstd: Callable[[bytes], bytes] | None = None
 ) -> bytes:

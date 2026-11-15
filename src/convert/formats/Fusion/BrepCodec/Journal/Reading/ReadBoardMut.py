@@ -17,6 +17,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.IsPresentMut import
 )
 
 
+# the board operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadBoardMut(Cursor: FieldCursor) -> BulletinBoard:
     Owner = ReadRefMut(Cursor)
     Status = ReadLongMut(Cursor)

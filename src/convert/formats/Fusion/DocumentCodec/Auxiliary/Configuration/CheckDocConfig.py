@@ -7,10 +7,12 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
 )
 
 
+# invalid doc config input must fail here so supporting records retain their owning document relationships
 def CheckDocConfig(Value: DocumentModel) -> None:
     CheckConfigRefs(Value.Segments, Value.Configurations)
 
 
+# invalid config references input must fail here so supporting records retain their owning document relationships
 def CheckConfigRefs(
     Segments: tuple[ParsedSegment, ...], Configurations: tuple[ConfigPart, ...]
 ) -> None:

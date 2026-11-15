@@ -3,6 +3,7 @@ from math import isfinite as IsFinite
 from convert.formats.Fusion.MeshCodec.Model.ParaMesh import ParaMesh
 
 
+# invalid geometry input must fail here so vertex and index streams retain their intended connectivity
 def CheckGeometry(Value: ParaMesh) -> None:
     Count = len(Value.Positions)
     if not Count or not Value.Corners or len(Value.Corners) % 3:

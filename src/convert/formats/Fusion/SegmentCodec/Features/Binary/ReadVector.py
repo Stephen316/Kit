@@ -5,6 +5,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.Model.VectorValue import VectorValue
 
 
+# the vector operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadVectorMut(Cursor: MetaCursor) -> VectorValue:
     XCoord, YCoord, ZCoord = (
         float(Number) for Number in UnpackValue("<ddd", Cursor.TakeBytes(24))

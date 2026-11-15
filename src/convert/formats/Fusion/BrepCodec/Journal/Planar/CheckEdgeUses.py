@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireL
 from convert.formats.Fusion.BrepCodec.Journal.Planar.StableRef import StableRef
 
 
+# invalid edge uses input must fail here so topology changes retain their native revision relationships
 def CheckEdgeUses(Table: LiveTable, Faces: tuple[FaceBoundary, ...]) -> None:
     Edges: dict[int, list[BoundaryUse]] = {}
     BoundaryUses = tuple(

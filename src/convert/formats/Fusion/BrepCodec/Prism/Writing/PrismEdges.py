@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the prism edges contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismEdges(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     Owners = {
         (Value.EdgeIndex, Value.FaceIndex): KFirstCoedge + Index

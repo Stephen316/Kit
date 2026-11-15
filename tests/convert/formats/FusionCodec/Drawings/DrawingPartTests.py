@@ -24,6 +24,7 @@ from convert.formats.Fusion.DrawingCodec.Members.SheetCodec import EmitSheet, Re
 from convert.formats.Fusion.DrawingCodec.Members.SheetLayout import SheetLayout
 from convert.formats.Fusion.DrawingCodec.Members.WriteJson import WriteJson
 
+# the sheet text cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSheetText = (
     b'{"verticalZones":"4","sheetHeight":"297.000000","sheetSize":"A3",'
     b'"units":"mm","horizontalZones":"8","sheetWidth":"420.000000",'
@@ -31,6 +32,7 @@ KSheetText = (
 )
 
 
+# the sheet layout contract needs boundary coverage so stored document relationships remain consistent
 def TestSheetLayout() -> None:
     Value = ReadSheet(KSheetText)
     assert Value == SheetLayout("Sheet1", "A3", "ISO", "mm", 420.0, 297.0, 8, 4)
@@ -48,6 +50,7 @@ def TestSheetLayout() -> None:
         _ = EmitSheet(SheetLayout("Sheet1", "A3", "ISO", "mm", 420, 297.0, 8, 4))
 
 
+# the json styles contract needs boundary coverage so stored document relationships remain consistent
 def TestJsonStyles() -> None:
     Spaced = b'{"enabled" : true,"rows" : [1,2.5,"x"],"nested" : {"k" : null}}'
     PartValue = ReadJsonPart("AutomationSettings/Dimensions.json", Spaced)
@@ -65,6 +68,7 @@ def TestJsonStyles() -> None:
         _ = WriteJson(Duplicate, JsonStyle.KCompact)
 
 
+# the properties contract needs boundary coverage so stored document relationships remain consistent
 def TestProperties() -> None:
     Empty = JsonFields(())
     assert EmitProperties(Empty) == b"\x02\x00\x00\x00{}"
@@ -75,6 +79,7 @@ def TestProperties() -> None:
         _ = EmitProperties(CastValue(JsonFields, ()))
 
 
+# the redirects contract needs boundary coverage so stored document relationships remain consistent
 def TestRedirects() -> None:
     Value = Redirections(
         1,

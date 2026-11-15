@@ -13,6 +13,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismPoints import BuildPoints
 from convert.formats.Fusion.GeometryCodec.Prism.PrismVertices import BuildVertices
 
 
+# the cuboid records contract needs a shared interpretation so geometric values retain their native record boundaries
 def CuboidRecords(Model: CuboidBody) -> tuple[GeometryRecord, ...]:
     Corners = CuboidCorners(Model)
     UseValues = BuildUses()

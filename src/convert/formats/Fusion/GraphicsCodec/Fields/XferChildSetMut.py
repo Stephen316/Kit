@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer child set contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferChildSetMut(
     State: SceneCodec, Value: AppliedSet[SceneSet] | None
 ) -> AppliedSet[SceneSet]:

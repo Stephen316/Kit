@@ -22,6 +22,7 @@ from interchange.records.RecordConfig import Configuration
 from interchange.records.RecordSource import CadSource
 
 
+# the project disk contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def ProjectDisk(
     Model: DocumentModel, Source: CadSource, Graph: NativeGraph
 ) -> CadDocument:

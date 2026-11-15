@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer indices needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferIndicesMut(State: SceneCodec, Value: IndexData | None) -> IndexData:
     DynamicFlag = State.IsFlag(Value.DynamicFlag if Value else None)
     StreamIndex = State.Integer(Value.StreamIndex if Value else None, "<i")

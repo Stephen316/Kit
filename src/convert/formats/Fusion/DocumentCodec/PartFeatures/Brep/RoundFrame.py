@@ -20,6 +20,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 
 
+# the side normal contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SideNormal(WallValue: WallFace, PointCm: KSpaceVector) -> KSpaceVector:
     SpanValue = WallValue.Span
     if isinstance(SpanValue, LineSpan):
@@ -31,15 +32,18 @@ def SideNormal(WallValue: WallFace, PointCm: KSpaceVector) -> KSpaceVector:
     return Radial if SpanValue.SweepAngle > 0 else ScaleVector(Radial, -1.0)
 
 
+# the cap normal contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def CapNormal(CapValue: CapFace) -> KSpaceVector:
     return (0.0, 0.0, 1.0 if CapValue.Upward else -1.0)
 
 
+# the use ends contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def UseEnds(UseValue: ShapeUse) -> tuple[KSpaceVector, KSpaceVector]:
     Start, Finish = EdgeEnds(UseValue.Edge)
     return (Start, Finish) if UseValue.Forward else (Finish, Start)
 
 
+# wall of needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def WallOf(
     Shape: ShapeBody,
     Users: dict[KShapeEdge, list[tuple[int, int, int]]],
@@ -55,6 +59,7 @@ def WallOf(
     return Places[0]
 
 
+# edge sense needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def EdgeSense(CapValue: CapFace, WallValue: WallFace) -> float:
     AtTop = abs(WallValue.UpperCm - CapValue.LevelCm) < KSpaceTolerance
     Bottom = abs(WallValue.LowerCm - CapValue.LevelCm) < KSpaceTolerance

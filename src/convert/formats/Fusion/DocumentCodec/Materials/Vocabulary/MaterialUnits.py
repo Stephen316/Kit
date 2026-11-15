@@ -1,3 +1,4 @@
+# the material units vocabulary must stay centralized so document material reconstruction agrees on supported native identities
 KMaterialUnits = {
     "CandelasPerSquareMeter": 225281,
     "Centipoise": 188418,
@@ -15,6 +16,8 @@ KMaterialUnits = {
     "Unitless": 4097,
     "WattPerMeterKelvin": 282625,
 }
+
+# the unit scales vocabulary must stay centralized so document material reconstruction agrees on supported native identities
 KUnitScales = {
     "CandelasPerSquareMeter": 0,
     "Centipoise": 3,

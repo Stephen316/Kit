@@ -28,6 +28,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.ReadShapes import (
     ReadTwoBitsMut,
 )
 
+# the read codes vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KReadCodes: dict[str, Callable[[BitCursor], KDwgValue]] = {
     "B": ReadOneBitMut,
     "BB": ReadTwoBitsMut,

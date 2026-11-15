@@ -60,6 +60,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
 )
 
 
+# shared rect curves setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RectCurves(
     Lower: tuple[float, float], Upper: tuple[float, float]
 ) -> tuple[LineCurve, ...]:
@@ -69,6 +70,7 @@ def RectCurves(
     )
 
 
+# the post cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPost = ExtrudeSpec(
     (CircleCurve((40.0, 30.0), 10.0),),
     20.0,
@@ -78,6 +80,8 @@ KPost = ExtrudeSpec(
     "Post sketch",
     "Post extrude",
 )
+
+# the cube cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCube = ExtrudeSpec(
     RectCurves((0.0, 0.0), (10.0, 10.0)),
     10.0,
@@ -87,6 +91,8 @@ KCube = ExtrudeSpec(
     "Cube sketch",
     "Cube extrude",
 )
+
+# the ring cube cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRingCube = ExtrudeSpec(
     RectCurves((20.0, -5.0), (30.0, 5.0)),
     10.0,
@@ -96,6 +102,8 @@ KRingCube = ExtrudeSpec(
     "Cube sketch",
     "Cube extrude",
 )
+
+# the second cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSecond = ExtrudeSpec(
     (CircleCurve((60.0, 15.0), 5.0),),
     20.0,
@@ -105,17 +113,21 @@ KSecond = ExtrudeSpec(
     "Post sketch",
     "Post extrude",
 )
+
+# the ring body cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRingBody = RevolveSpec(
     60.0, 80.0, 0.0, 10.0, 360.0, "new", "Ring sketch", "Ring revolve"
 )
 
 
+# shared combine case setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CombineCase(
     Operation: Literal["join", "cut", "intersect"], IsKept: bool
 ) -> tuple[KPartFeature, ...]:
     return (KBlock, KPost, CombineSpec(1, (2,), Operation, IsKept, "Body combine"))
 
 
+# shared split case setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SplitCase(
     OffsetMm: float, BasePlane: Literal["xy", "yz", "xz"]
 ) -> tuple[KPartFeature, ...]:
@@ -126,6 +138,7 @@ def SplitCase(
     )
 
 
+# the body cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBodyCases: dict[str, tuple[tuple[KPartFeature, ...], str]] = {
     "ExtrudeSecondBody": ((KBlock, KSecond), "ExtrudeSecondBody"),
     "RevolveBody": ((KBlock, KRingBody), "RevolveBody"),
@@ -145,6 +158,8 @@ KBodyCases: dict[str, tuple[tuple[KPartFeature, ...], str]] = {
         "BodyCircPattern",
     ),
 }
+
+# the body names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBodyNames: dict[type[object], str] = {
     ExtrudeSpec: "DcExtrudeFeature",
     RevolveSpec: "DcRevolveFeature",
@@ -156,6 +171,7 @@ KBodyNames: dict[type[object], str] = {
 }
 
 
+# the body solid contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KBodyCases))
 def TestBodySolid(NameValue: str) -> None:
     Features, Control = KBodyCases[NameValue]
@@ -174,6 +190,7 @@ def TestBodySolid(NameValue: str) -> None:
         assert Measured.AreaCm == ApproxValue(Observed["area_cm2"], rel=1e-7)
 
 
+# the body archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KBodyCases))
 def TestBodyArchive(NameValue: str) -> None:
     Features = KBodyCases[NameValue][0]
@@ -203,6 +220,7 @@ def TestBodyArchive(NameValue: str) -> None:
     assert IsIdentityRef(History)
 
 
+# the shown cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KShownCases: tuple[tuple[str, tuple[int, ...], tuple[int, ...]], ...] = (
     ("ExtrudeSecondBody", (1, 2), (1, 2)),
     ("CombineJoin", (1,), (1, 2)),
@@ -214,6 +232,7 @@ KShownCases: tuple[tuple[str, tuple[int, ...], tuple[int, ...]], ...] = (
 )
 
 
+# the body shown contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(("NameValue", "Shown", "Ordinals"), KShownCases)
 def TestBodyShown(
     NameValue: str, Shown: tuple[int, ...], Ordinals: tuple[int, ...]
@@ -223,6 +242,7 @@ def TestBodyShown(
     assert tuple(Solid.Ordinal for Solid in Stages[-1].Bodies) == Ordinals
 
 
+# the body combine contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     ("NameValue", "Operation", "IsKept"),
     (
@@ -238,6 +258,7 @@ def TestBodyCombine(NameValue: str, Operation: int, IsKept: bool) -> None:
     assert (Fields["booleanOperation"], Fields["isKeepTools"]) == (Operation, IsKept)
 
 
+# the body states contract needs boundary coverage so stored document relationships remain consistent
 def TestBodyStates() -> None:
     _, Stages = SolvePart(FamilySpec(KBodyCases["CombineJoin"][0]))
     assert [Stage.StateId for Stage in Stages] == [4, 5, 6]
@@ -256,6 +277,7 @@ def TestBodyStates() -> None:
     ]
 
 
+# the body limit contract needs boundary coverage so stored document relationships remain consistent
 def TestBodyLimit() -> None:
     Features = (KCube, BodyGridSpec(1, 8, 15.0, 2, 20.0))
     _, Stages = SolvePart(FamilySpec(Features))
@@ -264,6 +286,7 @@ def TestBodyLimit() -> None:
     assert len(PartRecords(Model, "Body")) == 16
 
 
+# the body rejects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBodyRejects: tuple[tuple[KPartFeature, ...], ...] = (
     (KBlock, CombineSpec(1, (2,))),
     (KBlock, KPost, CombineSpec(1, (1,))),
@@ -290,12 +313,14 @@ KBodyRejects: tuple[tuple[KPartFeature, ...], ...] = (
 )
 
 
+# the body reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Features", KBodyRejects)
 def TestBodyReject(Features: tuple[KPartFeature, ...]) -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(FamilySpec(Features))
 
 
+# the body cuboid contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "Features",
     (

@@ -14,6 +14,7 @@ from tests.convert.formats.FusionCodec.Brep.BreakTagLength import BreakTagLength
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the tag archive contract needs boundary coverage so stored document relationships remain consistent
 def TestTagArchive(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     Primary = FeatureTag("face-200", (-(1 << 31), (1 << 31) - 1), -1, 1)
@@ -36,6 +37,7 @@ def TestTagArchive(TmpPath: FilePath) -> None:
     )
 
 
+# the tag length contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("OwnerKind", ("body", "face"))
 def TestTagLength(TmpPath: FilePath, OwnerKind: str) -> None:
     Sample = MakeSample()
@@ -55,6 +57,7 @@ def TestTagLength(TmpPath: FilePath, OwnerKind: str) -> None:
             _ = ReadHistory(Archive.read("Solved.smbh"))
 
 
+# the author tags contract needs boundary coverage so stored document relationships remain consistent
 def TestAuthorTags() -> None:
     Source = (
         FilePath(__file__).resolve().parents[5]

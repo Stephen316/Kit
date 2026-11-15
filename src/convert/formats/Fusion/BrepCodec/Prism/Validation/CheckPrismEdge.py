@@ -11,6 +11,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# invalid prism edge input must fail here so profile topology remains connected to its extrusion history
 def CheckPrismEdge(
     Value: PrismEdge, Index: int, Corners: tuple[tuple[float, float, float], ...]
 ) -> None:

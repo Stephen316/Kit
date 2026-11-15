@@ -8,6 +8,7 @@ from tools.TestShards.ParseShard import ParseShard
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the plan operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def ReadPlan(PlanPath: FilePath) -> list[ShardPlan]:
     Decoded: object = JsonLib.loads(PlanPath.read_text(encoding="utf-8"))
     ShardList = (

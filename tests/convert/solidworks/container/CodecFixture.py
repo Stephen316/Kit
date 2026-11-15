@@ -3,6 +3,7 @@ from struct import pack as PackBytes, pack_into as PackInto, unpack_from as Unpa
 from zipfile import ZIP_DEFLATED, ZipFile
 
 
+# shared codec fixture setup keeps fixtures consistent so format translation failures identify the intended compatibility boundary
 def CodecFixture(Streams: dict[str, bytes], Version: int = 4) -> bytes:
     Buffer = BytesIO()
     with ZipFile(Buffer, "w", compression=ZIP_DEFLATED, compresslevel=0) as Archive:

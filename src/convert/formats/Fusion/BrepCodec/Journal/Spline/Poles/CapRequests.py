@@ -28,16 +28,21 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleSpans import (
     PoleRow,
 )
 
+# the sector use shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KSectorUse = tuple[FacePlan, CornerUse, CapFrame]
+
+# the axis shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KAxis = tuple[tuple[Fraction, ...], Fraction, int]
 
 
+# the sector axes contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SectorAxes(Frame: CapFrame, CornerInfo: CornerUse) -> tuple[KAxis, KAxis]:
     AxisU = (Frame.BaseU, CornerInfo.PointU, CornerInfo.SignU)
     AxisV = (Frame.BaseV, CornerInfo.PointV, CornerInfo.SignV)
     return (AxisU, AxisV) if CornerInfo.AlongI else (AxisV, AxisU)
 
 
+# the sector rows contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SectorRows(
     NetTable: KNetTable,
     SectorUse: KSectorUse,
@@ -66,10 +71,12 @@ def SectorRows(
     return Found
 
 
+# the unit mix decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsUnitMix(Weights: KMapping[int, Fraction]) -> bool:
     return len(Weights) == 1 and next(iter(Weights.values())) == 1
 
 
+# the frame operation needs a consistent construction rule so neighboring patches retain consistent subdivision boundaries
 def PlaceFrameMut(Frame: CapFrame, Found: dict[KCapKey, list[KPlaceKey]]) -> None:
     for CapKey in Frame.Keys.values():
         _ = Found.setdefault(CapKey, [])
@@ -82,6 +89,7 @@ def PlaceFrameMut(Frame: CapFrame, Found: dict[KCapKey, list[KPlaceKey]]) -> Non
             Found[Frame.Keys[BasePlace]].append((Frame.Region, RowIndex, Column))
 
 
+# the cap placing contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CapPlacing(
     Frames: list[tuple[CapFrame, ...]],
 ) -> dict[int, dict[KCapKey, list[KPlaceKey]]]:
@@ -92,6 +100,7 @@ def CapPlacing(
     return Found
 
 
+# the one request contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def OneRequest(
     Graph: CageGraph,
     Vertex: int,
@@ -126,6 +135,7 @@ def OneRequest(
     )
 
 
+# the cap requests contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CapRequests(
     Graph: CageGraph,
     Plans: tuple[FacePlan, ...],

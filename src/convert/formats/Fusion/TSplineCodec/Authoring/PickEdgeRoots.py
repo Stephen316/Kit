@@ -4,6 +4,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageOrientation import (
 )
 
 
+# pick edge roots must resolve unambiguously so control cage topology retains its native connectivity
 def PickEdgeRoots(
     Links: tuple[CageLink, ...], Orientation: CageOrientation | None
 ) -> dict[int, int]:

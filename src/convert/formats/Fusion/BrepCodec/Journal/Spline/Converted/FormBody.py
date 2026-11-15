@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurf
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
 
+# form window needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormWindow:
     Face: int
@@ -17,6 +18,7 @@ class FormWindow:
     VHigh: float
 
 
+# form surface needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormSurface:
     Cache: NubsSurface
@@ -24,6 +26,7 @@ class FormSurface:
     Region: int
 
 
+# form edge needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormEdge:
     StartVertex: int
@@ -36,6 +39,7 @@ class FormEdge:
     Bounds: tuple[float, float] | None = None
 
 
+# form use needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormUse:
     EdgeIndex: int
@@ -44,6 +48,7 @@ class FormUse:
     Fit: float = 0.0
 
 
+# form face needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormFace:
     Surface: FormSurface
@@ -53,6 +58,7 @@ class FormFace:
     Contained: bool | None = None
 
 
+# form body needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormBody:
     PointsCm: tuple[KJournalVector, ...]

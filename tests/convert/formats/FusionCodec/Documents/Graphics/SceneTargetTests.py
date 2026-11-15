@@ -17,6 +17,7 @@ from tests.convert.formats.FusionCodec.Documents.Graphics.GraphicsSources import
 )
 
 
+# the scene target contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

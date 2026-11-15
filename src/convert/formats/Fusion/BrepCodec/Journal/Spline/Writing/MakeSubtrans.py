@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.WritePatches import
 from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
 
 
+# the subtrans operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeSubtrans(Value: SubtransNode | SubtypeRef) -> tuple[KAsmToken, ...]:
     if isinstance(Value, SubtypeRef):
         return MakeRefScope(Value, "subtrans")

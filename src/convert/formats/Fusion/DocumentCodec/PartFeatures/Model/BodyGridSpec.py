@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# body grid specification needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class BodyGridSpec:
     SourceBody: int

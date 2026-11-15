@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormLinks import 
 )
 
 
+# node layout needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class NodeLayout:
     FaceBase: int
@@ -25,6 +26,7 @@ class NodeLayout:
     EntityCount: int
 
 
+# the label slots contract needs a shared interpretation so surface geometry retains the control cage shape
 def LabelSlots(Labels: tuple[str, ...], Start: int) -> tuple[int, ...]:
     Slots: list[int] = []
     NextSlot = Start
@@ -34,6 +36,7 @@ def LabelSlots(Labels: tuple[str, ...], Start: int) -> tuple[int, ...]:
     return tuple(Slots)
 
 
+# the node layout operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeNodeLayout(Model: FormBody, Links: FormLinks, IsHistory: bool) -> NodeLayout:
     FaceCount, UseCount = len(Model.Faces), Links.UseStarts[-1]
     CoedgeBase = 4 + 3 * FaceCount

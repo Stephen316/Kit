@@ -3,9 +3,11 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfil
 from convert.formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
 from convert.formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
 
+# the named kinds order must stay explicit so model state retains its native feature and ownership relationships
 KNamedKinds = ("form", "part")
 
 
+# the design profile contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DesignProfile(Author: AuthorState) -> EntityProfile:
     Bindings = (
         ("ComponentBase", "rACTComponent", 100),

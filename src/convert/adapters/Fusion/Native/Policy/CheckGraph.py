@@ -21,6 +21,7 @@ from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
 from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
 
 
+# invalid base input must fail here so public document claims remain grounded in native records
 def CheckBase(Graph: NativeGraph, Context: KSketchContexts) -> None:
     CheckClasses(Graph)
     CheckAssembly(Graph, Context)
@@ -32,6 +33,7 @@ def CheckBase(Graph: NativeGraph, Context: KSketchContexts) -> None:
         raise ValueError("Native component mass-property overrides are not qualified")
 
 
+# invalid graph input must fail here so public document claims remain grounded in native records
 def CheckGraph(Graph: NativeGraph, Context: ExtrudeContext) -> None:
     CheckBase(Graph, Context)
     CheckFeature(Graph, Context.Extrude)
@@ -43,6 +45,7 @@ def CheckGraph(Graph: NativeGraph, Context: ExtrudeContext) -> None:
     RequireFields(Context.DcBody, {"isEliminated": False})
 
 
+# invalid shape input must fail here so public document claims remain grounded in native records
 def CheckShape(
     Context: ExtrudeContext, Shape: RectGeometry, History: PrismHistory
 ) -> None:

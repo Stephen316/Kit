@@ -27,9 +27,11 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSnap import DocumentSnap
 from convert.formats.Fusion.DocumentCodec.PackDocument import PackDocument
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
+# boundary representation folder must remain consistent across callers so editable control cages retain their document relationships
 KBrepFolder = "Breps.BlobParts/"
 
 
+# the form doc operation needs a consistent construction rule so editable control cages retain their document relationships
 def EmitFormDoc(SpecValue: FormSpec) -> bytes:
     CheckFormSpec(SpecValue)
     Parts = MakeFormParts()

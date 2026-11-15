@@ -5,6 +5,7 @@ from convert.formats.Fusion.BundleCodec.Json.JsonLimits import CheckJsonTree
 from convert.formats.Fusion.BundleCodec.Json.JsonTypes import KJsonValue
 
 
+# unique object needs an explicit validity boundary so linked archive members retain their document relationships
 def UniqueObject(Pairs: list[tuple[str, KJsonValue]]) -> dict[str, KJsonValue]:
     Result: dict[str, KJsonValue] = {}
     for FieldName, Value in Pairs:
@@ -14,10 +15,12 @@ def UniqueObject(Pairs: list[tuple[str, KJsonValue]]) -> dict[str, KJsonValue]:
     return Result
 
 
+# reject number needs an explicit validity boundary so linked archive members retain their document relationships
 def RejectNumber(Value: str) -> None:
     raise ValueError(f"Invalid Fusion bundle JSON number: {Value}")
 
 
+# the json operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadJson(DataValue: bytes) -> KJsonValue:
     if len(DataValue) > 4 * 1024 * 1024:
         raise ValueError("Fusion bundle JSON exceeds byte limit")

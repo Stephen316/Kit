@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Manifest.ManifestRules import (
 from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
 
 
+# invalid joins input must fail here so drawing members retain their sheet and model associations
 def CheckJoins(
     RootValue: DrawingRoot, Asset: DrawingAsset, Database: DrawingDatabase | None
 ) -> None:

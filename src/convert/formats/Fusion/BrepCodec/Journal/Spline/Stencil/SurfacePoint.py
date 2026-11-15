@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import 
 )
 
 
+# the surface sample contract needs a shared interpretation so control cage contributions retain their intended weights
 def SurfaceSample(
     Surface: NubsSurface,
     KnotsU: list[float],

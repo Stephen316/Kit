@@ -2,6 +2,7 @@ from dataclasses import dataclass as MakeDataClass
 from pathlib import Path as FilePath
 
 
+# the vendor case boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(frozen=True, slots=True)
 class VendorCase:
     Source: str
@@ -12,6 +13,7 @@ class VendorCase:
     Density: float
 
 
+# the vendor cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KVendorCases = (
     VendorCase(
         "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
@@ -32,5 +34,6 @@ KVendorCases = (
 )
 
 
+# shared vendor source setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def VendorSource(CaseValue: VendorCase) -> FilePath:
     return FilePath(__file__).resolve().parents[5] / CaseValue.Source

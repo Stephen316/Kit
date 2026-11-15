@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumSurface import FrustumS
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the frustum records contract needs a shared interpretation so geometric values retain their native record boundaries
 def FrustumRecords(Model: FrustumBody) -> tuple[GeometryRecord, ...]:
     return (
         *BuildRoots(),

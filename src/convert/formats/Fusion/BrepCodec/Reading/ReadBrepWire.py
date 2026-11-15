@@ -9,6 +9,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import (
 )
 
 
+# the boundary representation wire operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadBrepWire(Payload: bytes, HasHistory: bool) -> BrepWire:
     if type(Payload) is not bytes or not 0 < len(Payload) <= 2 * 1024 * 1024:
         raise ValueError("Invalid or oversized Fusion BRep payload")

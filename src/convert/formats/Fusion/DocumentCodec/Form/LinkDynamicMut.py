@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# link dynamic must resolve unambiguously so editable control cages retain their document relationships
 def LinkDynamicMut(Author: AuthorState, UnixMicros: int) -> None:
     Reference = Author.Reference
     Stamps = {

@@ -1,3 +1,4 @@
+# the design classes vocabulary must stay centralized so native adapter translation agrees on supported native identities
 KDesignClasses = frozenset(
     (
         "ASMTextureMapping",

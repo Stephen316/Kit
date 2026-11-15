@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Reading.ReadPointsMut impor
 )
 
 
+# the nubs surf operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadNubsSurf(Cursor: FieldCursor) -> NubsSurface:
     NameText = ReadNameMut(Cursor)
     if NameText not in ("nubs", "nurbs"):

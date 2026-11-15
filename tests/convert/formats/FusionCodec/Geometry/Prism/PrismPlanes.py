@@ -13,6 +13,7 @@ from tests.convert.formats.FusionCodec.Geometry.Prism.PrismEvidence import Prism
 from tests.convert.formats.FusionCodec.Geometry.Prism.PrismVolume import PrismVertices
 
 
+# the face planes contract needs boundary coverage so stored document relationships remain consistent
 def CheckFacePlanes(Value: PrismEvidence) -> None:
     for FaceId in Value.Prism.Rings:
         Corners = PrismVertices(Value, FaceId)

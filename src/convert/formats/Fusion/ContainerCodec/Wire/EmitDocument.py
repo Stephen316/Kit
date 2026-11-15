@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.EmitRootWire import EmitRootWi
 from convert.formats.Fusion.SegmentCodec.Manifest.ManifestTypes import RootManifest
 
 
+# the document operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitDocument(Value: DocumentHeader) -> bytes:
     if (
         not isinstance(CastValue(object, Value), DocumentHeader)

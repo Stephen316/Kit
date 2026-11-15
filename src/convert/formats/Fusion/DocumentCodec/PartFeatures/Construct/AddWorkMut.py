@@ -27,15 +27,29 @@ from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import (
     ReadSeries,
 )
 
+# axis creation must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KAxisCreation = 4
+
+# axis place must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KAxisPlace = 8
+
+# point place must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KPointPlace = 10
+
+# edge tracking must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KEdgeTracking = 33
+
+# vertex tracking must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KVertexTracking = 513
+
+# axis thickness must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KAxisThickness = 1.2999999523162842
+
+# axis bounds needs one explicit bound so parametric feature reconstruction cannot accept inconsistent resource or layout limits
 KAxisBounds = (-0.1, 1.1)
 
 
+# link work must resolve unambiguously so feature parameters remain connected to the resulting geometry
 def LinkWorkMut(
     Author: AuthorState,
     Prefix: str,
@@ -63,6 +77,7 @@ def LinkWorkMut(
     )
 
 
+# the edge line contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def EdgeLine(Stage: PartStage, CornerCm: tuple[float, float]) -> dict[str, object]:
     Lower = Stage.Before.Slabs[0].LowerCm
     Height = Stage.Before.Slabs[-1].UpperCm - Lower
@@ -72,6 +87,7 @@ def EdgeLine(Stage: PartStage, CornerCm: tuple[float, float]) -> dict[str, objec
     )
 
 
+# the axis operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddAxisMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature = Stage.Feature
     if not isinstance(Feature, AxisSpec):
@@ -111,6 +127,7 @@ def AddAxisMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     return [Prefix + "vector", EdgeRole]
 
 
+# the point operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPointMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature = Stage.Feature
     if not isinstance(Feature, PointSpec):
@@ -149,6 +166,7 @@ def AddPointMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]
     return [Prefix + "place", VertexRole]
 
 
+# the work operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddWorkMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     if isinstance(Stage.Feature, AxisSpec):
         return AddAxisMut(Author, Stage, Prefix)

@@ -22,6 +22,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.PutShapes import (
     PutTwoBitsMut,
 )
 
+# the put codes vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KPutCodes: dict[str, Callable[[BitWriter, KDwgValue], None]] = {
     "B": PutOneBitMut,
     "BB": PutTwoBitsMut,

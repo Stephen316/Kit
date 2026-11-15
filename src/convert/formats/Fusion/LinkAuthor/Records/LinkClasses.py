@@ -1,5 +1,6 @@
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
+# the link classes order must stay explicit so cross document references retain their intended ownership
 KLinkClasses = (
     (
         SegmentKind.KDesign,

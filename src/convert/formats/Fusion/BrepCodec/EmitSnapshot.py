@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the snapshot operation needs a consistent construction rule so topology identity survives native history reconstruction
 def EmitSnapshot(
     Model: CylinderBody,
     TagSet: TopologyTags,

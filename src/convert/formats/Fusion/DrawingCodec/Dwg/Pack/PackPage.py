@@ -3,6 +3,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pack.EncodeLong import EncodeCount
 from convert.formats.Fusion.DrawingCodec.Dwg.Pack.EncodeMatch import EncodeMatch
 
 
+# the match valid decision must stay consistent so section boundaries and object references remain consistent
 def IsMatchValid(DataValue: bytes, Position: int, Length: int, Distance: int) -> bool:
     Source = Position - Distance - 1
     if Source < 0 or Position + Length > len(DataValue):
@@ -13,6 +14,7 @@ def IsMatchValid(DataValue: bytes, Position: int, Length: int, Distance: int) ->
     )
 
 
+# pack page needs an explicit validity boundary so section boundaries and object references remain consistent
 def PackPage(DataValue: bytes, PackPlan: DwgPackPlan) -> bytes:
     Output = bytearray()
     Position = PackPlan.LeadCount

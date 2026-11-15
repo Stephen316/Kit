@@ -1,5 +1,6 @@
 from convert.formats.Fusion.DrawingCodec.Author.Model.ClassRow import ClassRow
 
+# the act classes order must stay explicit so sheet objects retain their intended document relationships
 KActClasses = (
     ClassRow(
         "596618BE-CD74-4BC9-A627-2DA799696C2D",
@@ -53,4 +54,5 @@ KActClasses = (
     ClassRow("3AFBE085-BFA1-4DA6-BE71-45A6C61ECB99", "", 1, ""),
 )
 
+# act order must remain consistent across callers so sheet objects retain their intended document relationships
 KActOrder = tuple(RowValue.ClassGuid for RowValue in KActClasses)

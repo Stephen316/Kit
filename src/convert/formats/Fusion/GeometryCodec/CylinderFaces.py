@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the faces operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildFaces() -> tuple[GeometryRecord, ...]:
     Values = ((5, 7, 17, False), (6, 9, 18, False), (-1, 10, 19, True))
     return tuple(

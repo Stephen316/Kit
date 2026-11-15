@@ -36,16 +36,21 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GraphicsCodec.Model.Nodes.GeoValue import GeoValue
 from convert.formats.Fusion.GraphicsCodec.Model.Values.SimpleMesh import SimpleMesh
 
+# root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRoot = FilePath(__file__).resolve().parents[5]
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the reencoded cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KReencoded = (".protein", ".smb", ".smbh", ".paramesh")
 
+# the active prefix cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KActivePrefix = "FusionAssetName[Active]/"
 
+# the oracle boundary representation cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOracleBrep = (
     "re/Fusion/LocalOracle/Brep/native_cuboid_12_18_24.f3d",
     "re/Fusion/LocalOracle/Brep/vendor_binary_temporary.f3d",
@@ -73,6 +78,7 @@ KOracleBrep = (
     "re/Fusion/LocalOracle/JournalStates/vendor_ProductionJournalDraftProductionPermutedEdited.f3d",
 )
 
+# the oracle shape cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOracleShape = (
     "re/Fusion/LocalOracle/PlanarTopology/TetrahedronPermuted.f3d",
     "re/Fusion/LocalOracle/PlanarTopology/TetrahedronProduction.f3d",
@@ -93,6 +99,7 @@ KOracleShape = (
     "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeFrustumReemitted.f3d",
 )
 
+# the oracle round cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOracleRound = (
     "re/Fusion/LocalOracle/RoundBodies/vendor_AuthoredSphere.f3d",
     "re/Fusion/LocalOracle/RoundBodies/vendor_AuthoredTilted.f3d",
@@ -109,6 +116,7 @@ KOracleRound = (
     "re/Fusion/LocalOracle/RoundCarriers/Torus.f3d",
 )
 
+# the study files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStudyFiles = (
     "re/Fusion/Study/assembly-acc48a9dc05d/assembly.f3d",
     "re/Fusion/Study/constructionmodes-e355ad6031c0/axis_circular_face.f3d",
@@ -133,12 +141,16 @@ KStudyFiles = (
     "re/Fusion/Study/thinextrudes-f758eff14202/open_line_side1.f3d",
 )
 
+# the fixed files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFixedFiles = KOracleBrep + KOracleShape + KOracleRound + KStudyFiles
 
+# the draft guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDraftGuid = "F4163A07-9E71-4C46-BD92-ACE5B5B40BED"
 
+# the draft base cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDraftBase = "666BFBBC-2150-4C5F-AAF7-09AB3C3D9E47"
 
+# the draft members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDraftMembers = (
     ("MovingPartingLineDraftAngleType", "u32", ""),
     ("draftType", "u32", ""),
@@ -155,6 +167,7 @@ KDraftMembers = (
     ("rPartingLineToolDataRef", "ref", "2CA5A1CD-C99B-4C9B-91AF-57989148E841"),
 )
 
+# the draft values cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDraftValues = (
     ("MovingPartingLineDraftAngleType", 3),
     ("draftType", 1),
@@ -164,12 +177,16 @@ KDraftValues = (
     ("m_fixedPlaneDraftAngleMode", 1),
 )
 
+# the holder guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHolderGuid = "D87EC2D8-35C1-4AA2-A308-09AF07C490FF"
 
+# the holder base cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHolderBase = "98542EB9-A4F2-4137-A808-DBB5B3CD6159"
 
+# the matrix guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMatrixGuid = "7B6C3C2D-4096-4E6D-B225-699E8C2D9355"
 
+# the newest pairs cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNewestPairs = (
     (KDraftGuid, (5, 6)),
     (KMatrixGuid, (14, 15, 16)),
@@ -179,6 +196,7 @@ KNewestPairs = (
     ("D572415C-6C2C-460B-8C84-265C52D89EDF", (2, 4)),
 )
 
+# the identity cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KIdentity = (
     1.0,
     0.0,
@@ -198,6 +216,7 @@ KIdentity = (
     1.0,
 )
 
+# the tracked files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTrackedFiles = (
     (
         "re/Fusion/LocalOracle/RotationalDocuments/vendor_NativeCylinderControl.f3d",
@@ -210,15 +229,18 @@ KTrackedFiles = (
 )
 
 
+# shared load fixture setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadFixture(RelativeName: str) -> bytes:
     return (KRoot / RelativeName).read_bytes()
 
 
+# shared read members setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMembers(Payload: bytes) -> dict[str, bytes]:
     with ZipFile(BytesIO(Payload)) as Archive:
         return {Entry: Archive.read(Entry) for Entry in Archive.namelist()}
 
 
+# shared collect mats setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CollectMats(Value: object) -> tuple[MatrixValue, ...]:
     if isinstance(Value, MatrixValue):
         return (Value,)
@@ -237,6 +259,7 @@ def CollectMats(Value: object) -> tuple[MatrixValue, ...]:
     return ()
 
 
+# shared find strips setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FindStrips(RelativeName: str) -> tuple[DocumentModel, tuple[int, ...]]:
     Model = ReadDocument(LoadFixture(RelativeName))
     Scene = Model.Graphics
@@ -251,6 +274,7 @@ def FindStrips(RelativeName: str) -> tuple[DocumentModel, tuple[int, ...]]:
     return Model, Indices
 
 
+# shared patch folder setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PatchFolder(Payload: bytes, Method: int) -> bytes:
     Buffer = bytearray(Payload)
     Cursor = Buffer.find(b"PK\x01\x02")
@@ -263,6 +287,7 @@ def PatchFolder(Payload: bytes, Method: int) -> bytes:
     raise AssertionError("fixture has no directory entry")
 
 
+# the saved trip contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMarks.parametrize("RelativeName", KFixedFiles)
 def TestSavedTrip(RelativeName: str) -> None:
@@ -278,6 +303,7 @@ def TestSavedTrip(RelativeName: str) -> None:
             assert Output[Entry] == Content, Entry
 
 
+# the draft schema contract needs boundary coverage so stored document relationships remain consistent
 def TestDraftSchema() -> None:
     Catalog = DocumentCatalog(ReadDocSchemas())
     Newer = PickSchema(KDraftGuid, 6, Catalog)
@@ -300,6 +326,7 @@ def TestDraftSchema() -> None:
     )
 
 
+# the draft values contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestDraftValues() -> None:
     Model = ReadDocument(
@@ -318,6 +345,7 @@ def TestDraftValues() -> None:
         assert Values[FieldName] == Expected
 
 
+# the newest pick contract needs boundary coverage so stored document relationships remain consistent
 def TestNewestPick() -> None:
     Catalog = DocumentCatalog(ReadDocSchemas())
     for ClassGuid, Expected in KNewestPairs:
@@ -332,6 +360,7 @@ def TestNewestPick() -> None:
         assert PickSchema(ClassGuid.lower(), None, Catalog).SchemaVersion == Newest
 
 
+# the unknown pick contract needs boundary coverage so stored document relationships remain consistent
 def TestUnknownPick() -> None:
     Catalog = DocumentCatalog(ReadDocSchemas())
     with ExpectError(ValueError, match="Unqualified Fusion native class"):
@@ -340,6 +369,7 @@ def TestUnknownPick() -> None:
         _ = PickSchema("00000000-0000-0000-0000-000000000000", None, Catalog)
 
 
+# the holder contract needs boundary coverage so stored document relationships remain consistent
 def TestHolder() -> None:
     Holder = PickSchema(KHolderGuid, 0, DocumentCatalog(ReadDocSchemas()))
     assert Holder.BaseGuid == KHolderBase
@@ -347,6 +377,7 @@ def TestHolder() -> None:
     assert not Holder.IsValue
 
 
+# the author scope contract needs boundary coverage so stored document relationships remain consistent
 def TestAuthorScope() -> None:
     for ProfileKind in ("cuboid", "rectangle", "extrusion"):
         Authored = AuthorSchemas(ProfileKind)
@@ -355,6 +386,7 @@ def TestAuthorScope() -> None:
         assert KDraftGuid not in Identities
 
 
+# the matrix rows contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestMatrixRows() -> None:
     Schema = PickSchema(KMatrixGuid, 16, DocumentCatalog(ReadDocSchemas()))
@@ -376,6 +408,7 @@ def TestMatrixRows() -> None:
     assert all(len(Value.Entries or ()) == 16 for Value in Moved)
 
 
+# the strip mesh contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestStripMesh() -> None:
     Model, Indices = FindStrips(
@@ -385,6 +418,7 @@ def TestStripMesh() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the strip reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestStripReject() -> None:
     Model, Indices = FindStrips(
@@ -406,6 +440,7 @@ def TestStripReject() -> None:
         _ = EmitParsed(Mutated)
 
 
+# the entity ids contract needs boundary coverage so stored document relationships remain consistent
 def TestEntityIds() -> None:
     Default = EntityIds()
     assert Default.FaceIds == (-1, -1, -1)
@@ -418,6 +453,7 @@ def TestEntityIds() -> None:
         _ = EntityIds((-1, -1, -1), (-1, -1, -1))
 
 
+# the id bounds contract needs boundary coverage so stored document relationships remain consistent
 def TestIdBounds() -> None:
     with ExpectError(ValueError, match="entity identity"):
         _ = EntityIds((-2, -1, -1), (-1, -1))
@@ -426,6 +462,7 @@ def TestIdBounds() -> None:
     assert EntityIds(((1 << 31) - 1, -1, -1), (-1, -1)).FaceIds[0] == (1 << 31) - 1
 
 
+# the slot reject contract needs boundary coverage so stored document relationships remain consistent
 def TestSlotReject() -> None:
     Records = (GeometryRecord("face", (-1, -1)),) * 22
     Applied = ApplyIds(Records, EntityIds((7, 8, 9), (10, 11)))
@@ -441,6 +478,7 @@ def TestSlotReject() -> None:
         _ = ApplyIds(Applied, EntityIds((7, 8, 9), (10, 11)))
 
 
+# the tracked ids contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMarks.parametrize("RelativeName,ViewType", KTrackedFiles)
 def TestTrackedIds(RelativeName: str, ViewType: type[object]) -> None:
@@ -452,6 +490,7 @@ def TestTrackedIds(RelativeName: str, ViewType: type[object]) -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the typed fall contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestTypedFall() -> None:
     Payload = LoadFixture("re/Fusion/Study/extents-f0f33a9a605f/offset_negative.f3d")
@@ -466,6 +505,7 @@ def TestTypedFall() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the folder rule contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestFolderRule() -> None:
     Payload = LoadFixture("re/Fusion/LocalOracle/JournalStates/DraftTypedHistory.f3d")
@@ -479,6 +519,7 @@ def TestFolderRule() -> None:
     assert len(ReadContainer(Payload).Streams) == 3
 
 
+# the fold reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestFoldReject() -> None:
     Payload = LoadFixture("re/Fusion/LocalOracle/JournalStates/DraftTypedHistory.f3d")

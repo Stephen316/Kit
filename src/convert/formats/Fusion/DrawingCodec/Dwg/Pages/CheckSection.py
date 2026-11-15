@@ -2,9 +2,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSectionInfo import (
     DwgSectionInfo,
 )
 
+# max page bytes must remain consistent across callers so section boundaries and object references remain consistent
 KMaxPageBytes = 0x400000
 
 
+# invalid section input must fail here so section boundaries and object references remain consistent
 def CheckSection(SectionInfo: DwgSectionInfo) -> None:
     NameText = SectionInfo.SectionName
     if SectionInfo.CompressFlag not in (1, 2):

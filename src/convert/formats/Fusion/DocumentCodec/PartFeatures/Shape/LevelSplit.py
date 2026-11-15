@@ -12,15 +12,22 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the point shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KPoint = tuple[float, float]
+
+# the point table shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KPointTable = dict[KPoint, KPoint]
+
+# the split limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KSplitLimit = 1e-9
 
 
+# the key operation needs one geometric convention so feature parameters remain connected to the resulting geometry
 def PointKey(Point: KPoint) -> KPoint:
     return (round(Point[0], 9) + 0.0, round(Point[1], 9) + 0.0)
 
 
+# the loop points contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LoopPoints(Loops: tuple[KPlaneLoop, ...]) -> tuple[KPoint, ...]:
     return tuple(
         Point
@@ -30,6 +37,7 @@ def LoopPoints(Loops: tuple[KPlaneLoop, ...]) -> tuple[KPoint, ...]:
     )
 
 
+# the table operation needs one geometric convention so feature parameters remain connected to the resulting geometry
 def PointTable(Slabs: tuple[PrismSlab, ...]) -> KPointTable:
     Table: KPointTable = {}
     Loops = [
@@ -44,6 +52,7 @@ def PointTable(Slabs: tuple[PrismSlab, ...]) -> KPointTable:
     return Table
 
 
+# the level points contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LevelPoints(Slabs: tuple[PrismSlab, ...]) -> dict[float, tuple[KPoint, ...]]:
     Points: dict[float, tuple[KPoint, ...]] = {}
     for SlabValue in Slabs:
@@ -53,6 +62,7 @@ def LevelPoints(Slabs: tuple[PrismSlab, ...]) -> dict[float, tuple[KPoint, ...]]
     return Points
 
 
+# the line ratio contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LineRatio(SpanValue: LineSpan, Point: KPoint) -> float | None:
     Start, Finish = SpanValue.StartCm, SpanValue.FinishCm
     DeltaX, DeltaY = Finish[0] - Start[0], Finish[1] - Start[1]
@@ -63,6 +73,7 @@ def LineRatio(SpanValue: LineSpan, Point: KPoint) -> float | None:
     return (OffsetX * DeltaX + OffsetY * DeltaY) / (Length * Length)
 
 
+# the split span contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def SplitSpan(
     SpanValue: KPlaneSpan, Points: tuple[KPoint, ...], Table: KPointTable
 ) -> tuple[KPlaneSpan, ...]:

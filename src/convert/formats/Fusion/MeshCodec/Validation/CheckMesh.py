@@ -5,6 +5,7 @@ from convert.formats.Fusion.MeshCodec.Validation.CheckNormals import CheckNormal
 from convert.formats.Fusion.MeshCodec.Validation.CheckRegistry import CheckRegistry
 
 
+# invalid mesh input must fail here so vertex and index streams retain their intended connectivity
 def CheckMesh(Value: ParaMesh) -> None:
     CheckRegistry(Value.Registry)
     CheckGeometry(Value)

@@ -8,9 +8,11 @@ from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
 from tests.convert.formats.FusionCodec.Corpus.ReadCorpusFile import ReadCorpusFile
 from tests.convert.formats.FusionCodec.Corpus.PickUnused import PickUnused
 
+# root path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[5]
 
 
+# shared mutate catalog setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MutateCatalog(FileName: str, ChangeKind: str) -> bytes:
     Source = ReadCorpusFile(FileName)
     Target = (

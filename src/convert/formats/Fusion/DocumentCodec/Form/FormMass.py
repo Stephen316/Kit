@@ -6,6 +6,7 @@ from convert.formats.Fusion.DocumentCodec.Form.IntegrationRules import KPowerMap
 from convert.formats.Fusion.DocumentCodec.Form.SurfaceMass import SurfaceMass
 
 
+# the form mass contract needs a shared interpretation so editable control cages retain their document relationships
 def FormMass(Model: FormBody, IsClosed: bool) -> dict[str, float]:
     CheckTrimming(Model)
     Total = dict.fromkeys(("area", "volume", *KPowerMap), 0.0)

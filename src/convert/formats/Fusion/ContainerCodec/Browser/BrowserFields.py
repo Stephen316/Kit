@@ -11,6 +11,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the browser fields contract needs a shared interpretation so archive members retain their native ownership and reference relationships
 def BrowserFields(
     Design: DesignResult, Roles: dict[str, int], Entry: BrowserNode
 ) -> dict[str, KEntityValue]:

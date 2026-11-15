@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the prism val operation needs a consistent construction rule so profile topology remains connected to its extrusion history
 def EncodePrismVal(Value: KGeometryValue, NameValue: str, Index: int) -> bytes:
     if isinstance(Value, tuple):
         Position = (NameValue, Index) in (
@@ -17,6 +18,7 @@ def EncodePrismVal(Value: KGeometryValue, NameValue: str, Index: int) -> bytes:
     return EncodeBrepValue(Value, NameValue, Index)
 
 
+# the prism rows operation needs a consistent construction rule so profile topology remains connected to its extrusion history
 def EmitPrismRows(Records: tuple[GeometryRecord, ...]) -> bytes:
     return b"".join(
         EncodeSmbName(Record.NameValue)

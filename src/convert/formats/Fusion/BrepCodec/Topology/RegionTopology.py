@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the region operation needs a consistent construction rule so topology identity survives native history reconstruction
 def BuildRegion(
     BodyRoot: int, Start: int, IsDouble: bool
 ) -> tuple[GeometryRecord, ...]:

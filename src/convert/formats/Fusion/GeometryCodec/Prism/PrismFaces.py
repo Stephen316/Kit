@@ -10,6 +10,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the faces operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildFaces() -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

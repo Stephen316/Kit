@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Values.EncodeLinks import EncodeLinks
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the links operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeLinks(
     ReaderMut: MaterialReader, ConnectMode: KConnectMode
 ) -> AssetLinks | None:

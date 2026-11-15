@@ -1,6 +1,7 @@
 from typing import TypedDict
 
 
+# the tsm case boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class TsmCase(TypedDict):
     Name: str
     Source: str

@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.SymmetryMap import SymmetryMap
 from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckIndices
 
 
+# invalid sym map input must fail here so control cage topology retains its native connectivity
 def CheckSymMap(Mapping: SymmetryMap, Limit: int) -> None:
     for Pairs in (Mapping.Forward, Mapping.Reverse):
         CheckIndices(

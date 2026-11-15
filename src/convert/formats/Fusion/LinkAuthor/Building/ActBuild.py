@@ -19,6 +19,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import MakeGroup
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the act entries contract needs a shared interpretation so cross document references retain their intended ownership
 def ActEntries(
     RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[ValueObject[KEntityValue], ...]:
@@ -36,6 +37,7 @@ def ActEntries(
     )
 
 
+# entry name needs an explicit validity boundary so cross document references retain their intended ownership
 def EntryName(Entry: KEntityValue) -> str:
     if not isinstance(Entry, ValueObject) or len(Entry.Groups) != 1:
         raise ValueError("Fusion ACT table entry is malformed")
@@ -49,6 +51,7 @@ def EntryName(Entry: KEntityValue) -> str:
     return str(Names[0])
 
 
+# the act record set contract needs a shared interpretation so cross document references retain their intended ownership
 def ActRecordSet(
     RootInfo: RootFacts,
     Facts: tuple[TargetFacts, ...],
@@ -67,6 +70,7 @@ def ActRecordSet(
     )
 
 
+# edit act needs an explicit validity boundary so cross document references retain their intended ownership
 def EditAct(
     Records: tuple[EntityRecord, ...], RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[EntityRecord, ...]:

@@ -4,6 +4,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageOrientation import (
 )
 
 
+# pick vert roots must resolve unambiguously so control cage topology retains its native connectivity
 def PickVertRoots(
     Links: tuple[CageLink, ...],
     VertexCount: int,

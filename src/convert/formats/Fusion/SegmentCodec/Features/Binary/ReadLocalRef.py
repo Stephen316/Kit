@@ -2,6 +2,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the local reference operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadLocalRefMut(Cursor: MetaCursor) -> LocalRef | None:
     Marker = Cursor.TakeBytes(1)
     if Marker == b"\0":

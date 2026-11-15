@@ -34,6 +34,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer object needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferObjectMut(
     State: SceneCodec, ClassName: str, Value: KObjectValue | None
 ) -> KObjectValue:

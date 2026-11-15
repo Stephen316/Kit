@@ -15,6 +15,7 @@ from interchange.geometry.models.Sketch import SketchEntity
 from interchange.geometry.models.VectorPlane import PlaneVector
 
 
+# the rectangle operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadRectangle(Graph: NativeGraph, Context: ExtrudeContext) -> RectGeometry:
     if Graph.ByClass("CircArc3D"):
         raise ValueError(

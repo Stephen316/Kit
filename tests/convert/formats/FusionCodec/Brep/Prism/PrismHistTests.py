@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Brep.Prism.PrismArchive import StorePrism
 from tests.convert.formats.FusionCodec.Brep.Prism.PrismSample import MakePrism
 
 
+# the prism history contract needs boundary coverage so stored document relationships remain consistent
 def TestPrismHist(TmpPath: FilePath) -> None:
     Sample = MakePrism()
     Payload = EmitPrismHist(

@@ -20,6 +20,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the base group contract needs a shared interpretation so cross document references retain their intended ownership
 def BaseGroup(
     RootInfo: RootFacts | None, Identities: tuple[int, ...]
 ) -> EntityGroup[KEntityValue]:
@@ -43,18 +44,21 @@ def BaseGroup(
     )
 
 
+# the occur path contract needs a shared interpretation so cross document references retain their intended ownership
 def OccurPath(
     RootInfo: RootFacts, Identities: tuple[int, ...]
 ) -> ValueObject[KEntityValue]:
     return ValueObject((MakeGroup(KOccurPath), BaseGroup(RootInfo, Identities)))
 
 
+# the base path value contract needs a shared interpretation so cross document references retain their intended ownership
 def BasePathValue(
     RootInfo: RootFacts, Identities: tuple[int, ...]
 ) -> ValueObject[KEntityValue]:
     return ValueObject((BaseGroup(RootInfo, Identities),))
 
 
+# the scope value contract needs a shared interpretation so cross document references retain their intended ownership
 def ScopeValue(
     AssetId: str, EntityName: str, ScopeKind: int
 ) -> ValueObject[KEntityValue]:
@@ -71,6 +75,7 @@ def ScopeValue(
     )
 
 
+# the state value contract needs a shared interpretation so cross document references retain their intended ownership
 def StateValue(
     IsGround: bool, Feature: int, Matrix: tuple[float, ...]
 ) -> ValueObject[KEntityValue]:
@@ -87,6 +92,7 @@ def StateValue(
     )
 
 
+# the empty act reference contract needs a shared interpretation so cross document references retain their intended ownership
 def EmptyActRef() -> ValueObject[KEntityValue]:
     return ValueObject(
         (
@@ -103,6 +109,7 @@ def EmptyActRef() -> ValueObject[KEntityValue]:
     )
 
 
+# the occur act reference contract needs a shared interpretation so cross document references retain their intended ownership
 def OccurActRef() -> ValueObject[KEntityValue]:
     return ValueObject(
         (

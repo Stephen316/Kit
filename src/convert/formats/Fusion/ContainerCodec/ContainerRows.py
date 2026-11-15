@@ -22,6 +22,7 @@ from convert.formats.Fusion.ContainerCodec.Wire.EmitDocument import EmitDocument
 from convert.formats.Fusion.ContainerCodec.Wire.EmitRedirects import EmitRedirects
 
 
+# container rows needs an explicit validity boundary so archive members retain their native ownership and reference relationships
 def ContainerRows(Value: FusionContainer) -> tuple[ZipAssetRow, ...]:
     if not isinstance(CastValue(object, Value), FusionContainer):
         raise ValueError("Expected a typed Fusion container")

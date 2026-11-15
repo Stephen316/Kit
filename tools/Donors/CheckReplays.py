@@ -9,6 +9,7 @@ from tools.Donors.ReportCounts import ReportCounts
 from tools.Donors.ScanCounts import ScanCounts
 
 
+# the run operation needs one orchestration boundary so captured document data cannot become production writer input
 def MainRun(ArgValues: Sequence[str] | None = None) -> int:
     NamespaceInfo = ParseArgs(ArgValues)
     PathValues: list[str] = NamespaceInfo.PathValues

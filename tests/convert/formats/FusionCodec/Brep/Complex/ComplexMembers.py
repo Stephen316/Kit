@@ -2,8 +2,10 @@ from hashlib import sha256 as HashBytes
 from pathlib import Path as FilePath
 from zipfile import ZipFile
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[6]
 
+# the complex members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KComplexMembers: tuple[tuple[str, str, str], ...] = (
     (
         "re/Fusion/Study/asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
@@ -572,6 +574,7 @@ KComplexMembers: tuple[tuple[str, str, str], ...] = (
     ),
 )
 
+# complex bounds needs one explicit bound so native document reconstruction cannot accept inconsistent resource or layout limits
 KComplexBounds: tuple[tuple[str, str, str], ...] = (
     (
         "re/Fusion/Study/embosstext-cd769aa41cdf/two_texts.f3d",
@@ -591,6 +594,7 @@ KComplexBounds: tuple[tuple[str, str, str], ...] = (
 )
 
 
+# shared complex member setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ComplexMember(Relative: str, Suffix: str, Digest: str) -> bytes:
     with ZipFile(KRepoRoot / Relative) as Archive:
         Names = tuple(

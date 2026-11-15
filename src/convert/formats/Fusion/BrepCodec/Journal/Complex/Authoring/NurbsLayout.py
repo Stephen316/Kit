@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.NurbsBody import
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import BsSurface
 
 
+# nurbs layout needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class NurbsLayout:
     FaceBase: int
@@ -30,16 +31,19 @@ class NurbsLayout:
     EntityCount: int
 
 
+# the face loops contract needs a shared interpretation so nested spline and surface records retain their relationships
 def FaceLoops(FaceSpec: NurbsFace) -> tuple[tuple[NurbsUse, ...], ...]:
     return (FaceSpec.Uses, *FaceSpec.Holes)
 
 
+# the edge range contract needs a shared interpretation so nested spline and surface records retain their relationships
 def EdgeRange(EdgeSpec: NurbsEdge) -> tuple[float, float]:
     if EdgeSpec.Bounds is None:
         return EdgeSpec.Curve.Knots[0], EdgeSpec.Curve.Knots[-1]
     return EdgeSpec.Bounds
 
 
+# the model uses contract needs a shared interpretation so nested spline and surface records retain their relationships
 def ModelUses(Model: NurbsBody) -> tuple[NurbsUse, ...]:
     return tuple(
         UseSpec
@@ -49,6 +53,7 @@ def ModelUses(Model: NurbsBody) -> tuple[NurbsUse, ...]:
     )
 
 
+# the nurbs layout operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeNurbsLayout(Model: NurbsBody) -> NurbsLayout:
     FaceCount = len(Model.Faces)
     LoopList = tuple(

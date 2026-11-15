@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer lods contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferLodsMut(State: SceneCodec, Value: BrepWorld | None) -> BrepWorld:
     EdgeGroup = XferChildMut(State, Value.EdgeGroup if Value else None)
     EdgeCount = State.CountValue(len(Value.EdgeNodes) if Value else None)

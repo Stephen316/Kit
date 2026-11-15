@@ -3,6 +3,7 @@ from struct import pack as PackValue
 from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedFace import EnhancedFace
 
 
+# pack face needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def PackFace(
     Value: EnhancedFace | None, FloatFormat: str, IndexFormat: str
 ) -> bytes | None:

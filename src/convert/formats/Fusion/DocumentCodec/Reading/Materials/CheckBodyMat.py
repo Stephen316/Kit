@@ -14,6 +14,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# invalid body mat input must fail here so model state retains its native feature and ownership relationships
 def CheckBodyMat(
     Value: KEntityValue, Managers: dict[int, MaterialPackage], RoleName: str
 ) -> None:

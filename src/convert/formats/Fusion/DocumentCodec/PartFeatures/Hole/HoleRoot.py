@@ -11,9 +11,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanExtent import (
     SpanExtent,
 )
 
+# middle label must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KMiddleLabel = FaceLabel("0", ())
 
 
+# the roof spans contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RoofSpans(
     Stages: tuple[PartStage, ...], Stage: PartStage
 ) -> tuple[KPlaneSpan, ...]:
@@ -26,6 +28,7 @@ def RoofSpans(
     return tuple(SpanValue for LoopValue in Ceiling.Loops for SpanValue in LoopValue)
 
 
+# the roof middle contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RoofMiddle(Stages: tuple[PartStage, ...], Stage: PartStage) -> tuple[float, float]:
     Points = [
         Point for Value in RoofSpans(Stages, Stage) for Point in SpanExtent(Value)

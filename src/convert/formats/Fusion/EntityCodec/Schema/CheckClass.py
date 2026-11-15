@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Wire.CheckFlag import CheckFlag
 from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitText
 
 
+# invalid class input must fail here so entity identifiers retain their schema and reference meaning
 def CheckClass(Schema: ClassSchema, Catalog: EntityCatalog) -> None:
     if not Schema.ClassGuid or not EmitText(Schema.ClassGuid):
         raise ValueError("Fusion entity class requires an identifier")

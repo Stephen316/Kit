@@ -10,11 +10,15 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import (
 )
 
 
+# the record maker contract needs a dedicated boundary so public document claims remain grounded in native records
 class RecordMaker(Protocol):
+
+    # record maker needs an explicit validity boundary so public document claims remain grounded in native records
     def __call__(self, **Values: object) -> object:
         raise TypeError("a concrete semantic-state constructor is required")
 
 
+# the record operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def DecodeRecord(NameValue: object, Values: dict[str, object]) -> object:
     if not isinstance(NameValue, str) or NameValue not in KStateNames:
         raise ValueError("Unknown Fusion semantic-state record")
@@ -53,6 +57,7 @@ def DecodeRecord(NameValue: object, Values: dict[str, object]) -> object:
     return CastValue(RecordMaker, ClassType)(**Values)
 
 
+# the enum operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def DecodeEnum(NameValue: object, Value: object) -> object:
     if not isinstance(NameValue, str) or NameValue not in KStateNames:
         raise ValueError("Unknown Fusion semantic-state enum")

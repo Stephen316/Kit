@@ -5,14 +5,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftRow import DraftRow
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import KDraftValue
 
 
+# the empty rows contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def EmptyRows() -> list[DraftRow]:
     return []
 
 
+# the empty slots contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def EmptySlots() -> dict[str, list[KDraftValue]]:
     return {}
 
 
+# draft book needs an explicit state contract so drawing objects retain valid ownership and reference relationships
 @MakeDataClass(slots=True)
 class DraftBook:
     FixedHandles: dict[str, int]

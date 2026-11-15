@@ -1,3 +1,4 @@
+# the history heads order must stay explicit so topology identity survives native history reconstruction
 KHistoryHeads = (
     (1, 26),
     (4, 28),

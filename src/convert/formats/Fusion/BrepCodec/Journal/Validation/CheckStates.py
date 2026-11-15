@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalLimits import (
 )
 
 
+# invalid states input must fail here so inconsistent revision links fail before history reconstruction
 def CheckStates(Model: JournalModel) -> None:
     if len({State.StateId for State in Model.States}) != len(Model.States):
         raise ValueError("Duplicate Fusion delta-state identity")

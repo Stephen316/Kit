@@ -29,9 +29,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeUse import (
     ShapeUse,
 )
 
+# the square limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KSquareLimit = 1e-9
 
 
+# trim edge needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def TrimEdge(
     EdgeValue: KShapeEdge, Point: KSpaceVector, Target: KSpaceVector
 ) -> FreeEdge:
@@ -58,6 +60,7 @@ def TrimEdge(
     return Trimmed
 
 
+# the joint edge contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def JointEdge(
     Users: dict[KShapeEdge, list[KUsePlace]], Faces: set[int], Point: KSpaceVector
 ) -> KShapeEdge:
@@ -69,6 +72,7 @@ def JointEdge(
     raise ValueError("Fusion edge round corners need three meeting faces")
 
 
+# the forward operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def CrossForward(
     Arrive: KSpaceVector, Leave: KSpaceVector, Frame: CornerFrame
 ) -> bool | None:
@@ -79,6 +83,7 @@ def CrossForward(
     return None
 
 
+# insert cross needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def InsertCross(
     FaceValue: KShapeFace, Frame: CornerFrame, Cross: FreeEdge
 ) -> KShapeFace:
@@ -99,6 +104,7 @@ def InsertCross(
     raise ValueError("Fusion edge round end faces must meet the round")
 
 
+# the swap faces contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def SwapFaces(
     Faces: tuple[KShapeFace, ...],
     Swaps: dict[KShapeEdge, KShapeEdge],

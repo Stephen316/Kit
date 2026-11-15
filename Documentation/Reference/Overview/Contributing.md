@@ -69,7 +69,10 @@ Follow [merge queue operations](../../../MergeQueue.md) after an authorized merg
 Use the [writing rules](../../Standards/WritingRules.md).
 Include prerequisites, steps, expected results, and failure recovery in task pages.
 Use exact public API names in examples.
-Do not add explanatory code comments or comment-oriented docstrings.
+Add the mandatory rationale comment above every Python declaration, lambda, and module binding.
+Follow the [rationale standard](../../../.agents/skills/standard-pr-practice/references/Standards/Portable/RationaleComments.md).
+The PR and merge queue check every tracked owned Python source without a rationale baseline.
+Do not add other explanatory comments or comment-oriented docstrings.
 
 Use Python and `uv` for backend dependencies outside exempt workspaces.
 Use React for frontend work.

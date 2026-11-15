@@ -24,15 +24,22 @@ from tests.convert.formats.FusionCodec.Brep.GeometryState.GeometryArchive import
 )
 from tests.convert.formats.FusionCodec.Brep.Journal.JournalArchive import JournalArchive
 
+# study root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KStudyRoot = "re/Fusion/Study/"
+
+# the text case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTextCase = (
     KStudyRoot + "embosstext-cd769aa41cdf/two_texts.f3d",
     "9e5ddf77aed83af8e7f7cbadbd72e9e933823c7622320f28bbe1ab5f19df1b76",
 )
+
+# the largest case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLargestCase = (
     KStudyRoot + "rectsymholdouts-cf85ce4a0382/multiple_bodies.f3d",
     "80682e778a864030b4f03ba40ccaee4087d4a4d9c1376ec470d153b295325a82",
 )
+
+# the helix cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHelixCases: tuple[tuple[str, str], ...] = (
     (
         KStudyRoot + "tappedholes-409e96788503/modeled_full.f3d",
@@ -43,6 +50,8 @@ KHelixCases: tuple[tuple[str, str], ...] = (
         "f7f4ccac9ac6696ed59707ccd97ff2a7b684906317fd61a408eed38445b00e3a",
     ),
 )
+
+# the wire cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWireCases: tuple[tuple[str, str], ...] = (
     (
         KStudyRoot + "splitfacemodes-4fc4adf2a868/along_vector.f3d",
@@ -65,9 +74,12 @@ KWireCases: tuple[tuple[str, str], ...] = (
         "140509ba89f59477a4151badbe5d94351feff0137e68bbe88d9f3978d58a5b45",
     ),
 )
+
+# bound cases needs one explicit bound so native document reconstruction cannot accept inconsistent resource or layout limits
 KBoundCases = (KTextCase, *KHelixCases, *KWireCases, KLargestCase)
 
 
+# the bound bytes contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -79,6 +91,7 @@ def TestBoundBytes(TmpPath: FilePath, Relative: str, Digest: str) -> None:
     assert JournalArchive(TmpPath / "BoundHistory.zip", Payload) == Journal
 
 
+# the bound state contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -91,6 +104,7 @@ def TestBoundState(TmpPath: FilePath, Relative: str, Digest: str) -> None:
     assert len(State.Entities) == Journal.ActiveCount
 
 
+# the large states contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -109,6 +123,7 @@ def TestLargeStates(Relative: str, Digest: str, Tokens: int, Changes: int) -> No
     assert Widest <= KBoardChanges
 
 
+# the record limit contract needs boundary coverage so stored document relationships remain consistent
 def TestRecordLimit() -> None:
     Filled = AsmRecord("delta_state", ((4, 0),) * KRecordTokens)
     assert EmitWireRecord(Filled).endswith(b"\x11")
@@ -117,11 +132,14 @@ def TestRecordLimit() -> None:
         _ = EmitWireRecord(Overfull)
 
 
+# the board limit contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 def TestBoardLimit() -> None:
     Journal = ReadJournal(ComplexMember(KLargestCase[0], "smbh", KLargestCase[1]))
+
+    # ordering by 0 boards couple 1 changes must stay deterministic so native document reconstruction resolves equivalent inputs consistently
     Place, BoardSpot = max(
         (
             (StateIndex, BoardIndex)

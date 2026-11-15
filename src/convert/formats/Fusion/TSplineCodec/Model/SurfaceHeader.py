@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 
+# surface header needs an explicit state contract so control cage topology retains its native connectivity
 @dataclass(frozen=True)
 class SurfaceHeader:
     Degree: int = 3

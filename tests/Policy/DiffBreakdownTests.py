@@ -10,12 +10,19 @@ from pathlib import Path as FilePath
 
 from tests.Policy.RepoFixture import RepoFixture
 
+# root path needs a stable location so repository automation resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[2]
+
+# the engine rel cases must remain explicit so repository automation exercises the intended compatibility boundary
 KEngineRel = FilePath(".github/scripts/DiffBreakdown")
+
+# the config rels cases must remain explicit so repository automation exercises the intended compatibility boundary
 KConfigRels = (
     FilePath(".github/config/DiffBreakdown.json"),
     FilePath(".github/config/DiffRules.txt"),
 )
+
+# the base files cases must remain explicit so repository automation exercises the intended compatibility boundary
 KBaseFiles = {
     "Documentation/Guide.md": "one\ntwo\nthree\n",
     "README.md": "Kit\n",
@@ -26,6 +33,8 @@ KBaseFiles = {
     "Spaced.py": "Alpha = 1\n",
     "Old/Name.txt": "moved\ncontent\nkept\n",
 }
+
+# the head files cases must remain explicit so repository automation exercises the intended compatibility boundary
 KHeadFiles = {
     "Documentation/Guide.md": "one\ntwo\nthree\nfour\nfive\nsix\nseven\n",
     "README.md": "Kit\nconverter\n",
@@ -41,6 +50,8 @@ KHeadFiles = {
     "Spaced.py": "Alpha =  1\n",
     "pyproject.toml": "[project]\n",
 }
+
+# the expected types cases must remain explicit so repository automation exercises the intended compatibility boundary
 KExpectedTypes = {
     "Documentation/Guide.md": "Documentation",
     "README.md": "Documentation",
@@ -60,6 +71,7 @@ KExpectedTypes = {
 }
 
 
+# shared build fixture setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def BuildFixture(RootPath: FilePath) -> tuple[RepoFixture, str, str]:
     _ = ShellUtil.copytree(
         KRootPath / KEngineRel,
@@ -81,6 +93,7 @@ def BuildFixture(RootPath: FilePath) -> tuple[RepoFixture, str, str]:
     return FixtureInfo, BaseRef, FixtureInfo.CommitAll("head")
 
 
+# shared run engine setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def RunEngine(
     RootPath: FilePath,
     BaseRef: str,
@@ -115,6 +128,7 @@ def RunEngine(
     )
 
 
+# the diff preview contract needs boundary coverage so the real command boundary enforces repository contracts
 def TestDiffPreview() -> None:
     with Tempfile.TemporaryDirectory() as TmpPath:
         RootPath = FilePath(TmpPath)
@@ -139,6 +153,7 @@ def TestDiffPreview() -> None:
     assert "<!-- kit-diff-breakdown:v1:" in ReportText
 
 
+# the trust guard contract needs boundary coverage so the real command boundary enforces repository contracts
 def TestTrustGuard() -> None:
     with Tempfile.TemporaryDirectory() as TmpPath:
         RootPath = FilePath(TmpPath)
@@ -148,6 +163,7 @@ def TestTrustGuard() -> None:
     assert "trusted pull_request_target revision" in RunResult.stderr
 
 
+# the repo guard contract needs boundary coverage so the real command boundary enforces repository contracts
 def TestRepoGuard() -> None:
     with Tempfile.TemporaryDirectory() as TmpPath:
         RootPath = FilePath(TmpPath)

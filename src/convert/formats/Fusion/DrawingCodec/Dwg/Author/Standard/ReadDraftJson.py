@@ -14,6 +14,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef
 
 
+# the draft record operation needs a distinct decoding boundary so native drawing objects use a consistent symbol vocabulary
 def ReadDraftRecord(Value: object) -> DraftRecord:
     Pairs: list[tuple[str, KDraftValue]] = []
     for Entry in ReadSeries(Value):
@@ -22,6 +23,7 @@ def ReadDraftRecord(Value: object) -> DraftRecord:
     return DraftRecord(tuple(Pairs))
 
 
+# the tagged operation needs a distinct decoding boundary so native drawing objects use a consistent symbol vocabulary
 def ReadTagged(Fields: dict[str, object]) -> KDraftValue:
     if "Hex" in Fields:
         return bytes.fromhex(ReadString(Fields["Hex"]))
@@ -36,6 +38,7 @@ def ReadTagged(Fields: dict[str, object]) -> KDraftValue:
     raise ValueError(f"Authored DWG standard value has unknown tags {sorted(Fields)}")
 
 
+# the draft json operation needs a distinct decoding boundary so native drawing objects use a consistent symbol vocabulary
 def ReadDraftJson(Value: object) -> KDraftValue:
     if isinstance(Value, bool):
         raise ValueError("Authored DWG standard values never hold booleans")

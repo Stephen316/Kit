@@ -12,9 +12,11 @@ from convert.formats.Fusion.DrawingCodec.Members.Redirections import (
     RedirectValue,
 )
 
+# stream name must remain consistent across callers so drawing members retain their sheet and model associations
 KStreamName = "RedirectionsStream"
 
 
+# the redirects operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitRedirects(Value: Redirections) -> bytes:
     if not isinstance(CastValue(object, Value), Redirections):
         raise ValueError("Expected typed Fusion drawing redirections")
@@ -55,6 +57,7 @@ def EmitRedirects(Value: Redirections) -> bytes:
     )
 
 
+# the redirects operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadRedirects(Payload: bytes) -> Redirections:
     Fields = JsonObject(ReadJson(Payload), "name schema-version designs references")
     if Fields["name"] != KStreamName:
@@ -69,6 +72,7 @@ def ReadRedirects(Payload: bytes) -> Redirections:
     return Result
 
 
+# the design operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadDesign(Value: KJsonValue) -> RedirectDesign:
     Fields = JsonObject(
         Value, "file-version targetFileName displayName lineageUrn versionUrn"
@@ -82,6 +86,7 @@ def ReadDesign(Value: KJsonValue) -> RedirectDesign:
     )
 
 
+# the link operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadLink(Value: KJsonValue) -> RedirectLink:
     Fields = JsonObject(Value, "from relativePath type properties")
     Properties: list[RedirectValue] = []

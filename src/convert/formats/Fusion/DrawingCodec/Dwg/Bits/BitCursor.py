@@ -1,5 +1,7 @@
+# the bit cursor contract needs a dedicated boundary so compact fields retain unambiguous bit positions
 class BitCursor:
 
+    # bit cursor needs explicit initial state so compact fields retain unambiguous bit positions
     def __init__(self, DataValue: bytes, Position: int, Limit: int) -> None:
         super().__init__()
         if not 0 <= Position <= Limit <= len(DataValue) * 8:
@@ -8,6 +10,7 @@ class BitCursor:
         self.Position = Position
         self.Limit = Limit
 
+    # the bits operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
     def TakeBits(self, Count: int) -> int:
         Finish = self.Position + Count
         if Count < 0 or Finish > self.Limit:

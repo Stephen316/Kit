@@ -3,6 +3,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmText, Requi
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the sketch link operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadSketchLink(Table: AsmTable, Identity: int) -> SketchLink:
     Record = RequireAsm(Table, Identity, "ATTRIB_CUSTOM-attrib", 10)
     Tokens = ReadAsmText(Record, 9).split(" ")

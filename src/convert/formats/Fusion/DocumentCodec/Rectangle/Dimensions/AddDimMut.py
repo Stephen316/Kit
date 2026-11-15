@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttri
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakeColor
 
 
+# the dim operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddDimMut(Author: AuthorState, AxisValue: DimensionAxis) -> None:
     RoleName = AxisValue.RoleName
     SketchName = SketchRole(Author)

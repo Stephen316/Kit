@@ -17,11 +17,13 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import (
 )
 
 
+# the slot of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SlotOf(Positions: dict[tuple[KSegmentKey, int], int], KeyValue: KSegmentKey) -> int:
     LastValue = max(Start for ItemValue, Start in Positions if ItemValue == KeyValue)
     return Positions[(KeyValue, LastValue)]
 
 
+# the life slots contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LifeSlots(
     Contents: list[dict[KSegmentKey, tuple[object, ...]]],
     Positions: dict[tuple[KSegmentKey, int], int],
@@ -40,6 +42,7 @@ def LifeSlots(
     return Lives
 
 
+# assemble nodes needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def AssembleNodes(
     Contents: list[dict[KSegmentKey, tuple[object, ...]]],
     Positions: dict[tuple[KSegmentKey, int], int],
@@ -68,6 +71,7 @@ def AssembleNodes(
     return tuple(Nodes)
 
 
+# the state changes contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def StateChanges(
     Contents: list[dict[KSegmentKey, tuple[object, ...]]],
     Positions: dict[tuple[KSegmentKey, int], int],

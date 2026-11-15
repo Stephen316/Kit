@@ -13,11 +13,14 @@ from convert.formats.Fusion.DrawingCodec.Model.PackageSlot import PackageSlot
 from convert.formats.Fusion.DrawingCodec.Package.ReadPackage import ReadPackage
 from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing
 
+# manifest name must remain consistent across callers so drawing members retain their sheet and model associations
 KManifestName = "Manifest.json"
 
+# description name must remain consistent across callers so drawing members retain their sheet and model associations
 KDescriptionName = "DesignDescription.json"
 
 
+# the draw bundle operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadDrawBundle(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> DrawingBundle:

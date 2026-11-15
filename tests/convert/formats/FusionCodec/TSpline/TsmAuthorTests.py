@@ -6,6 +6,7 @@ from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
 from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 
+# the tsm author contract needs boundary coverage so stored document relationships remain consistent
 def TestTsmAuthor(TmpPath: FilePath) -> None:
     Vertices = tuple(
         ControlGrip(*Value)

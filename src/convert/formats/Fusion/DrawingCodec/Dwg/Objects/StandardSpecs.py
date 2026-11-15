@@ -10,6 +10,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Objects.SpecParts import (
     KTextCommon,
 )
 
+# the standard specifications vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KStandardSpecs = {
     "Object": "BL ReactorCount; B NoXdic; B HasDsData; H Owner; Hs Reactors ReactorCount; if NoXdic==0 { H Xdic }",
     "Entity": KEntityCommon,

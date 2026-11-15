@@ -1,6 +1,7 @@
 from struct import unpack_from as UnpackFrom
 
 
+# the store contract needs boundary coverage so stored document relationships remain consistent
 def CheckStore(Payload: bytes) -> None:
     assert UnpackFrom("<IIII", Payload) == (136, 0xFFFFFFFF, 0xFFFFFFFF, 0)
     for Offset in range(16, len(Payload), 136):

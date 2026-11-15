@@ -3,6 +3,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.CheckElement import CheckE
 from convert.formats.Fusion.MaterialCodec.Package.Xml.ReadFields import ReadFields
 from convert.formats.Fusion.MaterialCodec.Package.Xml.ReadGroup import ReadGroup
 
+# the resource types vocabulary must stay centralized so material reconstruction agrees on supported native identities
 KResourceTypes = {
     "created": "time",
     "interop%20content": "bool",
@@ -11,6 +12,7 @@ KResourceTypes = {
 }
 
 
+# the resources operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadResources(Payload: bytes) -> tuple[ResourceInfo, ...]:
     Group = ReadGroup(Payload, "default")
     Result: list[ResourceInfo] = []

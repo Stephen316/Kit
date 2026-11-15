@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Integrity.PageChecksum import (
 )
 
 
+# the system page operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSystemPage(Content: bytes, Offset: int, PageType: int) -> bytes:
     Fields = ReadFields(Content, Offset, "<5I", "system page header")
     TypeWord, Inflated, Deflated, CompressKind, CheckWord = Fields

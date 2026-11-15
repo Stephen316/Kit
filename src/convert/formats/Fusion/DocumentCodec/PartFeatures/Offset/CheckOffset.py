@@ -6,10 +6,12 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.OffsetSpec import (
 )
 
 
+# the finite value decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsFiniteValue(Value: object) -> bool:
     return type(Value) in (int, float) and IsFinite(CastValue(float, Value))
 
 
+# invalid offset input must fail here so feature parameters remain connected to the resulting geometry
 def CheckOffset(Feature: OffsetSpec) -> None:
     if not IsFiniteValue(CastValue(object, Feature.DistanceMm)):
         raise ValueError("Fusion offset distances must be finite numbers")

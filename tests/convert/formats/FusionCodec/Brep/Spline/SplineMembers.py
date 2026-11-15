@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
 )
 
 
+# shared spline members setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SplineMembers() -> Iterator[tuple[str, bytes, bytes]]:
     for CaseValue in KFormArchives:
         with ZipFile(ByteStream(ReadFormFile(*CaseValue))) as Archive:

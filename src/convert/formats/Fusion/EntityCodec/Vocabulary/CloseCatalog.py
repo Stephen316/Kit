@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.SchemaClasses import SchemaCl
 from convert.formats.Fusion.EntityCodec.Vocabulary.ValueClasses import ValueClasses
 
 
+# close catalog needs an explicit validity boundary so entity identifiers retain their schema and reference meaning
 def CloseCatalog(
     Chosen: Mapping[str, ClassSchema],
     Catalog: NativeCatalog,

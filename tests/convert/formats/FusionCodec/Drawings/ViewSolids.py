@@ -23,20 +23,30 @@ from interchange.brep.topology.BrepTopology import (
 )
 from interchange.geometry.models.VectorSpace import SpaceVector
 
+# the point triple shape must stay shared so native document reconstruction uses one contract for compatible values
 KPointTriple = tuple[float, float, float]
+
+# the line specification shape must stay shared so native document reconstruction uses one contract for compatible values
 KLineSpec = tuple[KPointTriple, KPointTriple]
+
+# the ring specification shape must stay shared so native document reconstruction uses one contract for compatible values
 KRingSpec = tuple[KPointTriple, KPointTriple, float]
+
+# the face specification shape must stay shared so native document reconstruction uses one contract for compatible values
 KFaceSpec = tuple[BrepSurface, tuple[tuple[KLineSpec | KRingSpec, ...], ...]]
 
 
+# shared make vector setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeVector(Values: KPointTriple) -> SpaceVector:
     return SpaceVector(x=Values[0], y=Values[1], z=Values[2])
 
 
+# shared across setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def Across(Normal: KPointTriple) -> KPointTriple:
     return (0.0, 1.0, 0.0) if abs(Normal[0]) > 0.5 else (1.0, 0.0, 0.0)
 
 
+# shared flat surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FlatSurface(Origin: KPointTriple, Normal: KPointTriple) -> PlaneSurface:
     return PlaneSurface(
         id=f"plane{Origin}{Normal}",
@@ -46,6 +56,7 @@ def FlatSurface(Origin: KPointTriple, Normal: KPointTriple) -> PlaneSurface:
     )
 
 
+# shared tube surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TubeSurface(
     Origin: KPointTriple, Along: KPointTriple, Radius: float
 ) -> CylinderSurface:
@@ -58,6 +69,7 @@ def TubeSurface(
     )
 
 
+# shared ball surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BallSurface(Center: KPointTriple, Radius: float) -> SphereSurface:
     return SphereSurface(
         id="ball",
@@ -68,7 +80,10 @@ def BallSurface(Center: KPointTriple, Radius: float) -> SphereSurface:
     )
 
 
+# the solid builder boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class SolidBuilder:
+
+    # shared solid builder setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
     def __init__(self) -> None:
         super().__init__()
         self.Vertices: dict[KPointTriple, BrepVertex] = {}
@@ -77,6 +92,7 @@ class SolidBuilder:
         self.Coedges: list[BrepCoedge] = []
 
 
+# shared vertex setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def VertexMut(Builder: SolidBuilder, Point: KPointTriple) -> str:
     if Point not in Builder.Vertices:
         Named = f"v{len(Builder.Vertices)}"
@@ -84,6 +100,7 @@ def VertexMut(Builder: SolidBuilder, Point: KPointTriple) -> str:
     return Builder.Vertices[Point].id
 
 
+# shared line setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LineMut(Builder: SolidBuilder, Start: KPointTriple, Finish: KPointTriple) -> str:
     Keyed = frozenset((Start, Finish))
     if Keyed not in Builder.Edges:
@@ -112,6 +129,7 @@ def LineMut(Builder: SolidBuilder, Start: KPointTriple, Finish: KPointTriple) ->
     return Builder.Edges[Keyed].id
 
 
+# shared ring setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RingMut(
     Builder: SolidBuilder, Center: KPointTriple, Normal: KPointTriple, Radius: float
 ) -> str:
@@ -143,6 +161,7 @@ def RingMut(
     return Builder.Edges[Keyed].id
 
 
+# shared loop setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoopMut(
     Builder: SolidBuilder, Specs: tuple[KLineSpec | KRingSpec, ...], Named: str
 ) -> BrepLoop:
@@ -159,6 +178,7 @@ def LoopMut(
     return BrepLoop(id=Named, coedge_ids=tuple(Coedges))
 
 
+# shared build solid setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BuildSolid(Faces: tuple[KFaceSpec, ...]) -> BrepModel:
     Builder = SolidBuilder()
     Loops: list[BrepLoop] = []
@@ -201,6 +221,7 @@ def BuildSolid(Faces: tuple[KFaceSpec, ...]) -> BrepModel:
     )
 
 
+# shared corner setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def Corner(Lower: KPointTriple, Upper: KPointTriple, Choices: str) -> KPointTriple:
     return (
         Upper[0] if Choices[0] == "1" else Lower[0],
@@ -209,6 +230,7 @@ def Corner(Lower: KPointTriple, Upper: KPointTriple, Choices: str) -> KPointTrip
     )
 
 
+# shared ring of setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RingOf(
     Lower: KPointTriple, Upper: KPointTriple, *Choices: str
 ) -> tuple[KLineSpec, ...]:
@@ -216,6 +238,7 @@ def RingOf(
     return tuple(zip(Points, Points[1:] + Points[:1]))
 
 
+# shared box faces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BoxFaces(Lower: KPointTriple, Upper: KPointTriple) -> list[KFaceSpec]:
     return [
         (
@@ -245,10 +268,12 @@ def BoxFaces(Lower: KPointTriple, Upper: KPointTriple) -> list[KFaceSpec]:
     ]
 
 
+# shared box solid setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BoxSolid(Lower: KPointTriple, Upper: KPointTriple) -> BrepModel:
     return BuildSolid(tuple(BoxFaces(Lower, Upper)))
 
 
+# shared hole solid setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HoleSolid(
     Lower: KPointTriple, Upper: KPointTriple, Middle: tuple[float, float], Radius: float
 ) -> BrepModel:

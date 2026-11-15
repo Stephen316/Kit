@@ -41,14 +41,26 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.TableVocab import (
     LinetypeSpec,
 )
 
+# white index must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KWhiteIndex = 7
+
+# align all must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KAlignAll = ord("A")
+
+# ambient grey must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KAmbientGrey = 0xC2333333
+
+# dim style must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KDimStyle = "DIMSTYLE:Dim-ISO-25"
+
+# text style must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KTextStyle = "STYLE:Standard"
+
+# the side tables order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KSideTables = ("VIEW", "UCS")
 
 
+# the entry common contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def EntryCommon(ControlKey: str) -> KDraftFields:
     return {
         "ReactorCount": 0,
@@ -59,10 +71,12 @@ def EntryCommon(ControlKey: str) -> KDraftFields:
     }
 
 
+# the named entry contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def NamedEntry(EntryName: str) -> KDraftFields:
     return {"EntryName": EntryName, "FlagBit": 1, "XrefDependent": 0}
 
 
+# the control operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceControlMut(Ledger: DraftBook, Table: str, Members: KDraftFields) -> str:
     ControlKey = "Control:" + Table
     _ = PlaceMut(
@@ -75,6 +89,7 @@ def PlaceControlMut(Ledger: DraftBook, Table: str, Members: KDraftFields) -> str
     return ControlKey
 
 
+# the listed members contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def ListedMembers(EntryKeys: tuple[str, ...]) -> KDraftFields:
     return {
         "EntryCount": len(EntryKeys),
@@ -82,6 +97,7 @@ def ListedMembers(EntryKeys: tuple[str, ...]) -> KDraftFields:
     }
 
 
+# the layer operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceLayerMut(Ledger: DraftBook, Layer: LayerSpec) -> str:
     KeyText = "LAYER:" + Layer.EntryName
     _ = PlaceMut(
@@ -105,6 +121,7 @@ def PlaceLayerMut(Ledger: DraftBook, Layer: LayerSpec) -> str:
     return KeyText
 
 
+# the dash record contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DashRecord(Length: float) -> DraftRecord:
     return DraftRecord(
         (
@@ -119,6 +136,7 @@ def DashRecord(Length: float) -> DraftRecord:
     )
 
 
+# the linetype contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def LinetypeMut(Ledger: DraftBook, Linetype: LinetypeSpec) -> str:
     KeyText = "LTYPE:" + Linetype.EntryName
     Dashes = Linetype.Dashes
@@ -141,6 +159,7 @@ def LinetypeMut(Ledger: DraftBook, Linetype: LinetypeSpec) -> str:
     return KeyText
 
 
+# the style operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceStyleMut(Ledger: DraftBook, EntryName: str, LastHeight: float) -> str:
     KeyText = "STYLE:" + EntryName
     Family = DraftRecord((("1000", KFontFamily), ("1071", KSwissPitch)))
@@ -167,6 +186,7 @@ def PlaceStyleMut(Ledger: DraftBook, EntryName: str, LastHeight: float) -> str:
     return KeyText
 
 
+# the dim style contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DimStyleMut(Ledger: DraftBook) -> str:
     Common = EntryCommon("Control:DIMSTYLE")
     _ = PlaceMut(
@@ -184,6 +204,7 @@ def DimStyleMut(Ledger: DraftBook) -> str:
     return KDimStyle
 
 
+# the view fields contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def ViewFields(Paper: PaperSize) -> KDraftFields:
     return {
         "ViewHeight": Paper.PaperHeight,
@@ -210,6 +231,7 @@ def ViewFields(Paper: PaperSize) -> KDraftFields:
     }
 
 
+# the grid fields contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def GridFields() -> KDraftFields:
     return {
         "LowerLeft": (0.0, 0.0),
@@ -238,6 +260,7 @@ def GridFields() -> KDraftFields:
     }
 
 
+# the active operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceActiveMut(Ledger: DraftBook, Paper: PaperSize) -> str:
     KeyText = "VPORT:*Active"
     Links: dict[str, KDraftValue] = {
@@ -258,6 +281,7 @@ def PlaceActiveMut(Ledger: DraftBook, Paper: PaperSize) -> str:
     return KeyText
 
 
+# the tables operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceTablesMut(Ledger: DraftBook, Paper: PaperSize) -> None:
     Linetypes = tuple(LinetypeMut(Ledger, Entry) for Entry in KLinetypeSpecs)
     Layers = tuple(PlaceLayerMut(Ledger, Entry) for Entry in KLayerSpecs)

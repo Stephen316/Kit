@@ -1,5 +1,10 @@
+# the glyph box shape must stay shared so drawing annotation authoring uses one contract for compatible values
 KGlyphBox = tuple[int, int, int, int, int]
+
+# cap height must remain consistent across callers so annotation objects retain their layout ownership
 KCapHeight = 1466
+
+# the figure glyphs vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KFigureGlyphs: dict[str, KGlyphBox] = {
     "0": (1139, 85, -25, 1041, 1472),
     "1": (1139, 223, 0, 763, 1472),
@@ -22,6 +27,8 @@ KFigureGlyphs: dict[str, KGlyphBox] = {
     "Ø": (1593, 83, -59, 1517, 1520),
     "∅": (1593, 83, -59, 1517, 1520),
 }
+
+# the letter glyphs vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KLetterGlyphs: dict[str, KGlyphBox] = {
     "A": (1366, -3, 0, 1369, 1466),
     "B": (1366, 150, 0, 1257, 1466),
@@ -50,6 +57,8 @@ KLetterGlyphs: dict[str, KGlyphBox] = {
     "Y": (1366, 6, 0, 1350, 1466),
     "Z": (1251, 41, 0, 1200, 1466),
 }
+
+# the small glyphs vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KSmallGlyphs: dict[str, KGlyphBox] = {
     "a": (1139, 74, -24, 1052, 1086),
     "b": (1139, 134, -24, 1055, 1466),
@@ -77,6 +86,8 @@ KSmallGlyphs: dict[str, KGlyphBox] = {
     "y": (1024, 33, -431, 1006, 1062),
     "z": (1024, 40, 0, 980, 1062),
 }
+
+# the mark glyphs vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KMarkGlyphs: dict[str, KGlyphBox] = {
     "!": (569, 176, 0, 399, 1466),
     '"': (727, 94, 947, 631, 1466),
@@ -107,9 +118,12 @@ KMarkGlyphs: dict[str, KGlyphBox] = {
     "}": (684, 47, -431, 626, 1491),
     "~": (1196, 87, 557, 1110, 885),
 }
+
+# the arial glyphs vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KArialGlyphs = {**KFigureGlyphs, **KLetterGlyphs, **KSmallGlyphs, **KMarkGlyphs}
 
 
+# glyph boxes needs an explicit validity boundary so annotation objects retain their layout ownership
 def GlyphBoxes(TextValue: str) -> tuple[KGlyphBox, ...]:
     if not TextValue:
         raise ValueError("Authored DWG text extent needs at least one glyph")
@@ -119,6 +133,7 @@ def GlyphBoxes(TextValue: str) -> tuple[KGlyphBox, ...]:
     return tuple(KArialGlyphs[Glyph] for Glyph in TextValue)
 
 
+# the text extent contract needs a shared interpretation so annotation objects retain their layout ownership
 def TextExtent(TextValue: str, TextHeight: float) -> tuple[float, float]:
     Boxes = GlyphBoxes(TextValue)
     Advance = sum(Entry[0] for Entry in Boxes)
@@ -130,6 +145,7 @@ def TextExtent(TextValue: str, TextHeight: float) -> tuple[float, float]:
     return ((Highest - Lowest) * Factor, (Advance - Leading - Trailing) * Factor)
 
 
+# the middle offset contract needs a shared interpretation so annotation objects retain their layout ownership
 def MiddleOffset(TextValue: str, TextHeight: float) -> tuple[float, float]:
     Boxes = GlyphBoxes(TextValue)
     Advance = sum(Entry[0] for Entry in Boxes)

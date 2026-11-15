@@ -3,6 +3,7 @@ from convert.formats.Fusion.EntityCodec.Model.NamedValue import NamedValue
 from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# component group must remain consistent across callers so sheet objects retain their intended document relationships
 KComponentGroup = EntityGroup(
     "42054630-20A0-40E1-B969-CFE9E742F5C9",
     (

@@ -14,13 +14,16 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
     PartRecords,
 )
 
+# the authored cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KAuthored = KOracleRoot / "Authored"
 
 
+# shared read report setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadReport(NameValue: str) -> dict[str, object]:
     return CastValue(dict[str, object], LoadJson((KAuthored / NameValue).read_text()))
 
 
+# the evidence contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KPartCases))
 def TestEvidence(NameValue: str) -> None:
     Manifest = CastValue(dict[str, dict[str, object]], ReadReport("Manifest.json"))

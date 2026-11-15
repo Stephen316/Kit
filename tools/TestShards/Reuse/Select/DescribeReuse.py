@@ -3,6 +3,7 @@ from __future__ import annotations
 from tools.TestShards.Reuse.Select.ReuseChoice import ReuseChoice
 
 
+# the describe reuse contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def DescribeReuse(Choice: ReuseChoice) -> str:
     if not Choice.Outcomes:
         return f"No test results were reused because {Choice.Reason}.\n"

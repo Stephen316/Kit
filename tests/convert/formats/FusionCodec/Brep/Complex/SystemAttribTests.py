@@ -19,6 +19,7 @@ from tests.convert.formats.FusionCodec.Brep.Complex.ComplexMembers import (
     ComplexMember,
 )
 
+# the stitch members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStitchMembers = (
     (
         "re/Fusion/Study/patchcontinuity-b9b0be85a281/brep_curvature.f3d",
@@ -29,12 +30,15 @@ KStitchMembers = (
         "2f998919aea3be8fd9e22d399b0fa8c81dcc264d0c9f82176e6f818384f78e32",
     ),
 )
+
+# the vertedge member cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KVertedgeMember = (
     "re/Fusion/Study/splines-9a18bae21127/splines.f3d",
     "b03c64905f0419137307e0e1cf74b2d84f9fa107c7e4f59f3ff1b5947c04a298",
 )
 
 
+# the stitch hint contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -62,6 +66,7 @@ def TestStitchHint(Relative: str, Digest: str) -> None:
     assert EmitGeometry(Geometry) == Payload
 
 
+# the vertedge contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

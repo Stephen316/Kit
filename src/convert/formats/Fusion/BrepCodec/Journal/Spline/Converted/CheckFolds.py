@@ -13,10 +13,14 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import 
     SurfaceFrame,
 )
 
+# fold cosine must remain consistent across callers so surface geometry retains the control cage shape
 KFoldCosine = 0.5
+
+# fold samples must remain consistent across callers so surface geometry retains the control cage shape
 KFoldSamples = 4
 
 
+# the span parameters contract needs a shared interpretation so surface geometry retains the control cage shape
 def SpanParams(Values: list[float]) -> list[float]:
     return [
         Begin + (Finish - Begin) * (Index + 0.5) / KFoldSamples
@@ -25,6 +29,7 @@ def SpanParams(Values: list[float]) -> list[float]:
     ]
 
 
+# the bent decision must stay consistent so surface geometry retains the control cage shape
 def IsBent(First: list[float], Second: list[float]) -> bool:
     Inner = sum(Former * Latter for Former, Latter in zip(First, Second))
     Lengths = math.sqrt(
@@ -33,6 +38,7 @@ def IsBent(First: list[float], Second: list[float]) -> bool:
     return Lengths == 0.0 or Inner <= KFoldCosine * Lengths
 
 
+# the face normals contract needs a shared interpretation so surface geometry retains the control cage shape
 def FaceNormals(Cache: NubsSurface) -> list[list[list[float]]]:
     ParamsU = SpanParams([KnotValue.Value for KnotValue in Cache.KnotsU])
     ParamsV = SpanParams([KnotValue.Value for KnotValue in Cache.KnotsV])
@@ -42,6 +48,7 @@ def FaceNormals(Cache: NubsSurface) -> list[list[list[float]]]:
     ]
 
 
+# the folded decision must stay consistent so surface geometry retains the control cage shape
 def IsFolded(Normals: list[list[list[float]]]) -> bool:
     Pairs = [
         (RowValue[Index], RowValue[Index + 1])
@@ -56,6 +63,7 @@ def IsFolded(Normals: list[list[list[float]]]) -> bool:
     return any(IsBent(First, Second) for First, Second in Pairs)
 
 
+# the backward decision must stay consistent so surface geometry retains the control cage shape
 def IsBackward(EdgeValue: FormEdge) -> bool:
     Knots = EdgeValue.Curve.Knots
     Lower, Upper = EdgeValue.Bounds or (Knots[0], Knots[-1])
@@ -64,6 +72,7 @@ def IsBackward(EdgeValue: FormEdge) -> bool:
     return any(IsBent(First, Second) for First, Second in zip(Tangents, Tangents[1:]))
 
 
+# invalid folds input must fail here so surface geometry retains the control cage shape
 def CheckFolds(BodyValue: FormBody) -> None:
     for FaceValue in BodyValue.Faces:
         if IsFolded(FaceNormals(FaceValue.Surface.Cache)):

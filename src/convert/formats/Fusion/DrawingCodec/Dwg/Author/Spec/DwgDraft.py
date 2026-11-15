@@ -9,6 +9,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewDraft import ViewDr
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewSource import ViewSource
 
 
+# drawing draft needs an explicit state contract so drawing objects retain valid ownership and reference relationships
 @MakeDataClass(frozen=True, slots=True)
 class DwgDraft:
     Sheet: SheetDraft

@@ -1,3 +1,4 @@
+# the geometry cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGeometryCases = (
     ("re/Fusion/Study/pipemodes-87cfa7d8d82b/triangular.f3d", 72, 1, 5, 0),
     (

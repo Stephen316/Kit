@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 
 
+# the native graph boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(frozen=True, slots=True)
 class NativeGraph:
     BulkData: bytes

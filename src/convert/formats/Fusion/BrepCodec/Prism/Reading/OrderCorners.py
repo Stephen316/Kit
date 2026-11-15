@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BrepCodec.Prism.Validation.PrismNumbers import CheckVector
 
 
+# the order corners contract needs a stable decomposition so profile topology remains connected to its extrusion history
 def OrderCorners(Points: dict[int, tuple[float, float, float]]) -> tuple[int, ...]:
     for Value in Points.values():
         CheckVector(Value)

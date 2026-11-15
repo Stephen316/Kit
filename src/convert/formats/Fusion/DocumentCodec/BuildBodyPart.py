@@ -20,6 +20,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.BuildPrismPart import BuildP
 from convert.formats.Fusion.DocumentCodec.Tapered.BuildTaperPart import BuildTaperPart
 
 
+# the body part operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def BuildBodyPart(
     SpecValue: DocumentSpec, Design: DesignResult
 ) -> tuple[ContainerPart, ...]:

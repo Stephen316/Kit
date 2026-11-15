@@ -28,6 +28,7 @@ from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# entry revs needs an explicit validity boundary so cross document references retain their intended ownership
 def EntryRevs(
     Tracking: ParsedSegment, Table: int, Identifier: str
 ) -> tuple[tuple[str, str], ...]:
@@ -52,6 +53,7 @@ def EntryRevs(
     return TextItems(ReadValue(Tracking.Records, DataRef.ObjectId, "revGuidMap"))
 
 
+# child index needs an explicit validity boundary so cross document references retain their intended ownership
 def ChildIndex(Design: ParsedSegment, Tracking: ParsedSegment) -> dict[int, int]:
     Index: dict[int, int] = {}
     for ObjectId in OwnedIds(Tracking, KActInstance):
@@ -64,6 +66,7 @@ def ChildIndex(Design: ParsedSegment, Tracking: ParsedSegment) -> dict[int, int]
     return Index
 
 
+# the children operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadChildren(
     Design: ParsedSegment, Tracking: ParsedSegment, Instances: int
 ) -> tuple[tuple[int, tuple[float, ...]], ...]:
@@ -87,6 +90,7 @@ def ReadChildren(
     return tuple(Result)
 
 
+# the target operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadTarget(Model: DocumentModel) -> TargetFacts:
     Design = SegmentOf(Model, SegmentKind.KDesign)
     Tracking = SegmentOf(Model, SegmentKind.KAct)

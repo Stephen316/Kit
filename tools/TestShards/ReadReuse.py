@@ -10,6 +10,7 @@ from tools.TestShards.ReusePlan import ReusePlan
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the reuse operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def ReadReuse(PlanPath: FilePath, Plans: Sequence[ShardPlan]) -> ReusePlan:
     Decoded: object = JsonLib.loads(PlanPath.read_text(encoding="utf-8"))
     Fields = ReadObject(Decoded, PlanPath.name)

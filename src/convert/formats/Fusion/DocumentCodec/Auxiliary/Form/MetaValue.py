@@ -2,6 +2,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# meta value needs an explicit validity boundary so supporting records retain their owning document relationships
 def MetaValue(Record: EntityRecord, FieldName: str) -> KEntityValue:
     Matches = [
         Entry.Value

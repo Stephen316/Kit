@@ -5,10 +5,14 @@ from convert.formats.Fusion.DrawingCodec.Author.Defaults.ContainerRecords import
 )
 from convert.formats.Fusion.DrawingCodec.Author.Model.TrackedEdge import TrackedEdge
 
+# source span must remain consistent across callers so sheet objects retain their intended document relationships
 KSourceSpan = 2
+
+# tracked span must remain consistent across callers so sheet objects retain their intended document relationships
 KTrackedSpan = 6
 
 
+# record ids needs an explicit state contract so sheet objects retain their intended document relationships
 @MakeDataClass(frozen=True, slots=True)
 class RecordIds:
     Sources: tuple[int, ...]
@@ -17,10 +21,12 @@ class RecordIds:
     NextFree: int
 
 
+# the first free contract needs a shared interpretation so sheet objects retain their intended document relationships
 def FirstFree() -> int:
     return 1 + max(Record.ObjectId for Record in KContainerRecords)
 
 
+# the plan ids contract needs a stable decomposition so sheet objects retain their intended document relationships
 def PlanIds(
     SourceCount: int, SheetCount: int, Annotations: tuple[TrackedEdge, ...]
 ) -> RecordIds:

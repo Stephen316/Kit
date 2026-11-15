@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the frustum curves contract needs a shared interpretation so geometric values retain their native record boundaries
 def FrustumCurves(Model: FrustumBody) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

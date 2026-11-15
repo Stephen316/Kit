@@ -13,11 +13,13 @@ from tools.TestShards.Reuse.Select.LoadCache import LoadCache
 from tools.TestShards.Reuse.Select.ReuseChoice import ReuseChoice
 from tools.TestShards.Reuse.Select.SelectReuse import SelectReuse
 
+# guard reason must remain consistent across callers so dependency changes cannot revive stale passing results
 KGuardReason = (
     "the Python version, dependencies, pytest configuration, or test tooling changed"
 )
 
 
+# choose reuse must resolve unambiguously so dependency changes cannot revive stale passing results
 def ChooseReuse(
     CachePath: FilePath | None,
     TreePath: FilePath | None,

@@ -32,6 +32,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 )
 
 
+# breadth order needs an explicit validity boundary so surface geometry retains the control cage shape
 def BreadthOrder(Entities: tuple[KJournalEntity, ...]) -> tuple[int, ...]:
     Order = [0, 1]
     Visited = {0, 1}
@@ -49,6 +50,7 @@ def BreadthOrder(Entities: tuple[KJournalEntity, ...]) -> tuple[int, ...]:
     return tuple(Order)
 
 
+# the surface operation needs a consistent construction rule so surface geometry retains the control cage shape
 def PlaceSurface(Entity: KJournalEntity, Surface: KSubtypeValue) -> KJournalEntity:
     if isinstance(Entity, SplineNode):
         return ReplaceValue(Entity, Surface=Surface)
@@ -62,6 +64,7 @@ def PlaceSurface(Entity: KJournalEntity, Surface: KSubtypeValue) -> KJournalEnti
     return ReplaceValue(Entity, Curve=SubtypeNode("exp_par_cur", Changed))
 
 
+# the settle surfaces contract needs a shared interpretation so surface geometry retains the control cage shape
 def SettleSurfaces(
     Entities: tuple[KJournalEntity, ...],
     Carriers: tuple[int, ...],
@@ -94,6 +97,7 @@ def SettleSurfaces(
     return tuple(Results)
 
 
+# the order form nodes contract needs a stable decomposition so surface geometry retains the control cage shape
 def OrderFormNodes(Draft: FormDraft) -> tuple[KJournalEntity, ...]:
     Order = BreadthOrder(Draft.Entities)
     Positions = [0] * len(Order)

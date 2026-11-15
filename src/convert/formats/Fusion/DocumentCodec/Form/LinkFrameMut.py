@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the facet material contract needs a shared interpretation so editable control cages retain their document relationships
 def FacetMaterial(Author: AuthorState) -> list[dict[str, object]]:
     return [
         Author.MakeGroup(
@@ -26,6 +27,7 @@ def FacetMaterial(Author: AuthorState) -> list[dict[str, object]]:
     ]
 
 
+# link frame must resolve unambiguously so editable control cages retain their document relationships
 def LinkFrameMut(Author: AuthorState, SpecValue: FormSpec, Parts: FormParts) -> None:
     Reference = Author.Reference
     Members: dict[str, object] = {}

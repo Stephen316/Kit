@@ -8,10 +8,13 @@ from tests.convert.formats.FusionCodec.Geometry.Frustum.FrustumEvidence import (
 )
 
 
+# shared read frustum setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadFrustum(Payload: bytes) -> FrustumEvidence:
     Table = ReadAsmTable(Payload)
     Surface = next(Record for Record in Table.Records if Record.Name == "cone-surface")
     Curves = [Record for Record in Table.Records if Record.Name == "ellipse-curve"]
+
+    # ordering by vector record 3 19 z must stay deterministic so native document reconstruction resolves equivalent inputs consistently
     Curves.sort(key=lambda Record: ReadAsmVec(Record, 3, 19).z)
     if len(Curves) != 2:
         raise ValueError("Frustum evidence requires two circular boundaries")

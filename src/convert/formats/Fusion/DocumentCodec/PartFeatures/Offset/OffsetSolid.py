@@ -18,15 +18,18 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
     PrismSolid,
 )
 
+# the label pairs shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KLabelPairs = tuple[tuple[FaceLabel, FaceLabel], ...]
 
 
+# mark label needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def MarkLabel(Label: FaceLabel, Operation: int) -> FaceLabel:
     if Label.Merged:
         raise ValueError("Fusion offset faces require single-tag faces")
     return ReplaceValue(Label, OperationIds=Label.OperationIds + (-Operation,))
 
 
+# the mark loop contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MarkLoop(LoopValue: KPlaneLoop, Marks: dict[int, int]) -> KPlaneLoop:
     return tuple(
         (
@@ -38,6 +41,7 @@ def MarkLoop(LoopValue: KPlaneLoop, Marks: dict[int, int]) -> KPlaneLoop:
     )
 
 
+# the loop pairs contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LoopPairs(
     Sources: tuple[KPlaneLoop, ...], Marked: tuple[KPlaneLoop, ...]
 ) -> KLabelPairs:
@@ -48,6 +52,7 @@ def LoopPairs(
     )
 
 
+# raise roof needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def RaiseRoof(
     SlabValue: PrismSlab, DistanceCm: float, Operation: int
 ) -> tuple[PrismSlab, KLabelPairs]:
@@ -64,6 +69,7 @@ def RaiseRoof(
     return PrismSlab(SlabValue.LowerCm, Upper, Loops, Floor, Ceiling), Pairs
 
 
+# shift side needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ShiftSide(
     SlabValue: PrismSlab, Feature: OffsetSpec, Operation: int
 ) -> tuple[PrismSlab, KLabelPairs]:
@@ -84,6 +90,7 @@ def ShiftSide(
     return PrismSlab(Lower, Upper, (CanonLoop(Marked),), Floor, Ceiling), Pairs
 
 
+# label map needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def LabelMap(Pairs: KLabelPairs) -> dict[FaceLabel, FaceLabel]:
     Renamed: dict[FaceLabel, FaceLabel] = {}
     for OldLabel, NewLabel in Pairs:
@@ -96,6 +103,7 @@ def LabelMap(Pairs: KLabelPairs) -> dict[FaceLabel, FaceLabel]:
     }
 
 
+# offset solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def OffsetSolid(Solid: PrismSolid, Feature: OffsetSpec, Operation: int) -> PrismSolid:
     if len(Solid.Slabs) != 1 or Solid.EdgeTags or Solid.Slabs[0].RoofLoops:
         raise ValueError("Fusion offset faces require one prism slab without circles")

@@ -13,6 +13,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.records.RecordSource import CadSource
 
 
+# project native needs an explicit validity boundary so public document claims remain grounded in native records
 def ProjectNative(ModelValue: DocumentModel, Source: CadSource) -> CadDocument:
     if ModelValue.Meshes:
         raise ValueError("Strict Fusion projection does not yet support mesh bodies")

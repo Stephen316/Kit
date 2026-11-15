@@ -80,6 +80,7 @@ BindCompatMut(
 )
 BindBrepMut(BrepModel)
 
+# the public intersection curve name must remain available so existing integrations keep resolving the canonical implementation
 IntersectionCurve = IntersectCurve
 
 # brep consumers need one intentional historical public contract

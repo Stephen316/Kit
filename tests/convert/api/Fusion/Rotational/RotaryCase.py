@@ -2,6 +2,7 @@ from dataclasses import dataclass as MakeDataClass
 from pathlib import Path as FilePath
 
 
+# the rotary case boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(frozen=True, slots=True)
 class RotaryCase:
     RoleName: str
@@ -12,6 +13,7 @@ class RotaryCase:
     OutputDigest: str
 
 
+# the rotary cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRotaryCases = (
     RotaryCase(
         "circle",
@@ -40,6 +42,7 @@ KRotaryCases = (
 )
 
 
+# shared rotary source setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RotarySource(CaseValue: RotaryCase) -> FilePath:
     RootPath = FilePath(__file__).resolve().parents[5]
     return (

@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment
 from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 
+# the native changes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNativeChanges: dict[str, tuple[str, str, KEntityValue]] = {
     "suppression": ("DcExtrudeFeature", "isSuppressed", True),
     "direction": ("DcExtrudeFeature", "isFlipDirection", True),
@@ -18,6 +19,7 @@ KNativeChanges: dict[str, tuple[str, str, KEntityValue]] = {
 }
 
 
+# shared change native setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeNative(Model: DocumentModel, RoleName: str) -> DocumentModel:
     if RoleName in ("body", "operation", "secondary"):
         BodyValue = Model.Bodies[0]
@@ -46,6 +48,7 @@ def ChangeNative(Model: DocumentModel, RoleName: str) -> DocumentModel:
     return ChangeField(Model, NodeValue.ObjectId, FieldName, Value)
 
 
+# shared change field setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeField(
     Model: DocumentModel, ObjectId: int, FieldName: str, Value: KEntityValue
 ) -> DocumentModel:

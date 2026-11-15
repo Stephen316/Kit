@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadSystemPage import (
 )
 
 
+# the names operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadNames(Content: bytes, Inventory: DwgInventory) -> tuple[bytes, ...]:
     MapPage = next(
         MapPage

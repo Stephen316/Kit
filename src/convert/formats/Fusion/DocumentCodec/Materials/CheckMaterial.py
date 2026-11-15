@@ -17,6 +17,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import (
 )
 
 
+# invalid material input must fail here so appearance references remain connected to their owning entities
 def CheckMaterial(SpecValue: MaterialSpec) -> None:
     if not isinstance(CastValue(object, SpecValue), MaterialSpec):
         raise ValueError("A typed authored material specification is required")

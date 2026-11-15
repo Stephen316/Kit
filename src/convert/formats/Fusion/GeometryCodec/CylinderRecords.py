@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderVertices import BuildVertices
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the records operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildRecords(Model: CylinderBody) -> tuple[GeometryRecord, ...]:
     return (
         *BuildRoots(),

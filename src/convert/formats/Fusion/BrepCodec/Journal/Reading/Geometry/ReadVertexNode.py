@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the vertex node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadVertexNode(Cursor: FieldCursor) -> VertexNode:
     Prefix = ReadPrefixMut(Cursor)
     OwnerEdge = ReadRefMut(Cursor)

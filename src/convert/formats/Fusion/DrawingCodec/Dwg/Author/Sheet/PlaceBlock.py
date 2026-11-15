@@ -19,10 +19,12 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.SlotFields import (
 )
 
 
+# the block serial contract needs a shared interpretation so paper layouts retain consistent object ownership
 def BlockSerial(Ledger: DraftBook) -> int:
     return sum(1 for Entry in Ledger.DraftRows if Entry.ClassName == "BLOCK")
 
 
+# the block operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceBlockMut(Ledger: DraftBook, KeyText: str, EntryName: str) -> str:
     BlockName = f"{EntryName}{BlockSerial(Ledger) + 1}"
     _ = PlaceMut(
@@ -47,6 +49,7 @@ def PlaceBlockMut(Ledger: DraftBook, KeyText: str, EntryName: str) -> str:
     return KeyText
 
 
+# the own contract needs a shared interpretation so paper layouts retain consistent object ownership
 def OwnMut(Ledger: DraftBook, BlockKey: str, KeyText: str) -> str:
     AppendMut(Ledger, BlockKey + ".Owned", HardOwner(KeyText))
     return KeyText

@@ -10,13 +10,16 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
 )
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
+# the curve closures order must stay explicit so surface geometry retains the control cage shape
 KCurveClosures = (0, 1, 2)
 
 
+# the finite number decision must stay consistent so surface geometry retains the control cage shape
 def IsFiniteNumber(Value: object) -> bool:
     return type(Value) in (int, float) and IsFinite(CastValue(float, Value))
 
 
+# the number tuple decision must stay consistent so surface geometry retains the control cage shape
 def IsNumberTuple(Value: object, Length: int | None = None) -> bool:
     if type(Value) is not tuple:
         return False
@@ -26,6 +29,7 @@ def IsNumberTuple(Value: object, Length: int | None = None) -> bool:
     return all(IsFiniteNumber(Element) for Element in Items)
 
 
+# the form label decision must stay consistent so surface geometry retains the control cage shape
 def IsFormLabel(Value: object) -> bool:
     if not isinstance(Value, str):
         return False
@@ -34,6 +38,7 @@ def IsFormLabel(Value: object) -> bool:
     return Value.isascii() and Value.isdecimal() and Value[0] != "0"
 
 
+# invalid clamped input must fail here so surface geometry retains the control cage shape
 def CheckClamped(Curve: BsCurve, Dimension: int) -> None:
     if not isinstance(CastValue(object, Curve), BsCurve):
         raise ValueError("Converted Form curve must be a typed B-spline")
@@ -43,6 +48,7 @@ def CheckClamped(Curve: BsCurve, Dimension: int) -> None:
         raise ValueError("Converted Form curve must be clamped with a known closure")
 
 
+# invalid windows input must fail here so surface geometry retains the control cage shape
 def CheckWindows(Windows: object, FaceCount: int) -> None:
     if type(Windows) is not tuple:
         raise ValueError("Converted Form edge windows must be a tuple")
@@ -56,6 +62,7 @@ def CheckWindows(Windows: object, FaceCount: int) -> None:
             raise ValueError("Converted Form edge window bounds must be finite")
 
 
+# invalid regions input must fail here so surface geometry retains the control cage shape
 def CheckRegions(Regions: object, FaceCount: int) -> None:
     if type(Regions) is not tuple or not Regions:
         raise ValueError("Converted Form body needs patch programs")

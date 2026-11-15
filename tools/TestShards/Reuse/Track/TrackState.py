@@ -7,6 +7,7 @@ from tools.TestShards.Reuse.Track.ForwardCall import ForwardCall
 from tools.TestShards.Reuse.Track.ModuleDeps import ModuleDeps
 
 
+# track state needs an explicit state contract so dependency changes cannot revive stale passing results
 @DataClass(slots=True)
 class TrackState:
     RootText: str

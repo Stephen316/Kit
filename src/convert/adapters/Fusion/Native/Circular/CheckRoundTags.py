@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
+# invalid round tags input must fail here so public geometry remains consistent with native circular topology
 def CheckRoundTags(
     Graph: NativeGraph,
     Context: ExtrudeContext,

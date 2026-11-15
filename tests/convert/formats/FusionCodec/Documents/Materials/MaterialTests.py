@@ -17,6 +17,7 @@ from tests.convert.formats.FusionCodec.Documents.Materials.CheckMatLinks import 
 )
 
 
+# the body mat contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("ProfileKind", ("extrusion", "cuboid"))
 @MarkTests.parametrize("Density", (1000.0, 2870.0))
 def TestBodyMat(

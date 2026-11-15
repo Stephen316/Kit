@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer t spline needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferTSplineMut(State: SceneCodec, Value: BrepWorld | None) -> BrepWorld:
     if Value is not None and (Value.EdgeGroup is None or Value.FaceGroup is None):
         raise ValueError("T-spline graphics world needs edge and face groups")

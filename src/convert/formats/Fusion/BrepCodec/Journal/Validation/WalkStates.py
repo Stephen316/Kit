@@ -15,6 +15,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 )
 
 
+# walk states needs an explicit validity boundary so inconsistent revision links fail before history reconstruction
 def WalkStates(Model: JournalModel) -> tuple[LiveState, ...]:
     Aliases = BuildAliases(Model)
     Records = tuple(MakeEntityNode(Value) for Value in Model.Entities)

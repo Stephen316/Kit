@@ -13,6 +13,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the cone links contract needs boundary coverage so stored document relationships remain consistent
 def CheckConeLinks(Table: AsmTable) -> None:
     Counts = Counter(Record.Name for Record in Table.Records)
     assert tuple(

@@ -1,3 +1,4 @@
+# the map atom operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitMapAtom(Value: str | int | bool) -> bytes:
     if isinstance(Value, bool):
         return bytes((195 if Value else 194,))

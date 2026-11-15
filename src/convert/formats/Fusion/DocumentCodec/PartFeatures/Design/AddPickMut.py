@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import (
 )
 
 
+# the pick operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddPickMut(
     Author: AuthorState,
     Prefix: str,
@@ -40,6 +41,7 @@ def AddPickMut(
     )
 
 
+# the boundary representation reference operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddBrepRefMut(
     Author: AuthorState,
     Roles: tuple[str, str],
@@ -63,6 +65,7 @@ def AddBrepRefMut(
     return RoleName
 
 
+# the more pick operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddMorePickMut(
     Author: AuthorState,
     Prefix: str,

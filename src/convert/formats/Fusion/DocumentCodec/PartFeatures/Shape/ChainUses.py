@@ -10,13 +10,16 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the vertex key shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KVertexKey = tuple[float, float, float]
 
 
+# the space key contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SpaceKey(Point: KSpaceVector) -> KVertexKey:
     return (*PointKey((Point[0], Point[1])), Point[2])
 
 
+# the use ends contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def UseEnds(UseValue: ShapeUse) -> tuple[KVertexKey, KVertexKey]:
     EdgeValue = UseValue.Edge
     if isinstance(EdgeValue, LevelEdge):
@@ -33,6 +36,7 @@ def UseEnds(UseValue: ShapeUse) -> tuple[KVertexKey, KVertexKey]:
     return (Former, Latter) if UseValue.Forward else (Latter, Former)
 
 
+# next use needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def NextUse(
     EndPairs: list[tuple[KVertexKey, KVertexKey]],
     IsUsed: list[bool],
@@ -44,6 +48,7 @@ def NextUse(
     raise ValueError("Fusion part face boundary is not a closed loop")
 
 
+# the chain uses contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def ChainUses(UseList: list[ShapeUse]) -> tuple[tuple[ShapeUse, ...], ...]:
     EndPairs = [UseEnds(UseValue) for UseValue in UseList]
     IsUsed = [False] * len(UseList)

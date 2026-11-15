@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.SphereBody import SphereBody
 from convert.formats.Fusion.BrepCodec.Journal.Round.TorusBody import TorusBody
 
 
+# the round nodes operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeRoundNodes(Model: SphereBody | TorusBody) -> tuple[KJournalEntity, ...]:
     Prefix = EntityPrefix(-1, -1)
     return (

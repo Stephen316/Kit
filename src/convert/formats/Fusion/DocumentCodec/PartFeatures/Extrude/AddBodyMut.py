@@ -4,16 +4,19 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import BodyRole
 
 
+# the count labels contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CountLabels(Count: int, First: int = 3) -> tuple[bytes, ...]:
     return tuple(str(Index + First).encode("ascii") for Index in range(Count))
 
 
+# the body tag info contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def BodyTagInfo(
     Author: AuthorState, Count: int, Operation: int, First: int = 3
 ) -> list[dict[str, object]]:
     return TagInfoOf(Author, CountLabels(Count, First), Operation, False)
 
 
+# the tag info of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TagInfoOf(
     Author: AuthorState, Labels: tuple[bytes, ...], Operation: int, Primary: bool
 ) -> list[dict[str, object]]:
@@ -33,6 +36,7 @@ def TagInfoOf(
     ]
 
 
+# the body recs operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBodyRecs(Author: AuthorState, Ordinal: int, Owner: str) -> str:
     Reference = Author.Reference
     BodyUuid = Author.BodyId if Ordinal == 1 else str(MakeUuid())
@@ -64,6 +68,7 @@ def AddBodyRecs(Author: AuthorState, Ordinal: int, Owner: str) -> str:
     return BodyUuid
 
 
+# the body operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBodyMut(
     Author: AuthorState,
     Prefix: str,

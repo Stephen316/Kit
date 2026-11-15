@@ -11,6 +11,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitField import EmitFi
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the group operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitGroup(Group: FeatureGroup, Layout: ClassLayout) -> bytes:
     if (
         not isinstance(CastValue(object, Group), FeatureGroup)

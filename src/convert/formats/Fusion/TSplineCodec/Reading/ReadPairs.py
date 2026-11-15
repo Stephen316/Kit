@@ -3,6 +3,7 @@ from convert.formats.Fusion.TSplineCodec.Wire.TextCursor import TextCursor
 from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 
 
+# the pairs operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadPairs(Cursor: TextCursor, Selector: str) -> tuple[IndexPair, ...]:
     Fields = Cursor.ReadFields("105a")
     if not Fields or Fields[0] != Selector or len(Fields) % 2 != 1:

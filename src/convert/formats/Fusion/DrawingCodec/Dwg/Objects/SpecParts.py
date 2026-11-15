@@ -1,3 +1,4 @@
+# text common must remain consistent across callers so section boundaries and object references remain consistent
 KTextCommon = (
     "RC DataFlags; if DataFlags!&1 { RD Elevation }; 2RD Insertion; "
     "if DataFlags!&2 { 2DD Alignment Insertion }; BE Extrusion; BT Thickness; "
@@ -6,14 +7,22 @@ KTextCommon = (
     "if DataFlags!&32 { BS Generation }; if DataFlags!&64 { BS HorizAlign }; "
     "if DataFlags!&128 { BS VertAlign }; H Style; "
 )
+
+# table common must remain consistent across callers so section boundaries and object references remain consistent
 KTableCommon = "TU EntryName; B FlagBit; B XrefDependent; "
+
+# dim common must remain consistent across callers so section boundaries and object references remain consistent
 KDimCommon = (
     "RC DimVersion; 3BD Extrusion; 2RD TextMidpoint; BD Elevation; RC DimFlags; "
     "TU UserText; BD TextRotation; BD HorizDirection; 3BD InsertScale; "
     "BD InsertRotation; BS Attachment; BS SpacingStyle; BD SpacingFactor; "
     "BD Measurement; B Unknown; B FlipFirst; B FlipSecond; 2RD PointTwelve; "
 )
+
+# control common must remain consistent across callers so section boundaries and object references remain consistent
 KControlCommon = "BL EntryCount; Hs Entries EntryCount"
+
+# entity body must remain consistent across callers so section boundaries and object references remain consistent
 KEntityBody = (
     "BB EntityMode; BL ReactorCount; B NoXdic; B HasDsData; BS ColorIndex; "
     "if ColorIndex&0x8000 { BL ColorRgb }; if ColorIndex&0x2000 { BL Transparency }; "
@@ -26,10 +35,14 @@ KEntityBody = (
     "if HasFullStyle==1 { H FullStyle }; if HasFaceStyle==1 { H FaceStyle }; "
     "if HasEdgeStyle==1 { H EdgeStyle }; "
 )
+
+# entity common must remain consistent across callers so section boundaries and object references remain consistent
 KEntityCommon = (
     "B HasGraphics; if HasGraphics==1 { BLL GraphicSize; Bytes Graphics GraphicSize }; "
     + KEntityBody
 )
+
+# mtext common must remain consistent across callers so section boundaries and object references remain consistent
 KMtextCommon = (
     "3BD Insertion; 3BD Extrusion; 3BD XAxis; BD RectWidth; BD RectHeight; "
     "BD TextHeight; BS Attachment; BS DrawDirection; BD ExtentHeight; "
@@ -43,6 +56,8 @@ KMtextCommon = (
     "B AutoHeight; B FlowReversed; if AutoHeight==0 { if ColumnType==2 { "
     "each Columns ColumnCount { BD ColumnHeight } } } } } }; "
 )
+
+# attribute common must remain consistent across callers so section boundaries and object references remain consistent
 KAttribCommon = (
     "RC AttribVersion; since AC1032 { RC AttribType; if AttribType>=2 { "
     + "nest MultiText { "
@@ -52,6 +67,8 @@ KAttribCommon = (
     + "AnnotativeSize; H AnnotativeApp; BS AnnotativeFlag } } }; TU Tag; "
     + "BS FieldLength; RC AttribFlags; B LockPosition; "
 )
+
+# plot common must remain consistent across callers so section boundaries and object references remain consistent
 KPlotCommon = (
     "TU PageName; TU PrinterName; BS PlotFlags; BD LeftMargin; BD BottomMargin; "
     "BD RightMargin; BD TopMargin; BD PaperWidth; BD PaperHeight; TU PaperSize; "
@@ -59,10 +76,14 @@ KPlotCommon = (
     "2BD WindowMax; BD RealUnits; BD DrawingUnits; TU StyleSheet; BS ScaleType; "
     "BD ScaleFactor; 2BD ImageOrigin; BS ShadeMode; BS ShadeQuality; BS ShadeDpi; "
 )
+
+# map common must remain consistent across callers so section boundaries and object references remain consistent
 KMapCommon = (
     "BD BlendFactor; RC Projection; RC Tiling; RC AutoTransform; "
     "each Transform 16 { BD Element }; RC MapSource; if MapSource==1 { TU FileName }"
 )
+
+# cell style must remain consistent across callers so section boundaries and object references remain consistent
 KCellStyle = (
     "BL CellType; BS DataFlags; if DataFlags==1 { BL OverrideFlags; "
     "BL MergeFlags; CMC Background; BL LayoutFlags; BL FormatOverride; "
@@ -74,6 +95,8 @@ KCellStyle = (
     "BL BorderType; CMC BorderColor; BL LineWeight; H BorderLtype; BL Invisible; "
     "BD LineSpacing } }"
 )
+
+# field value must remain consistent across callers so section boundaries and object references remain consistent
 KFieldValue = (
     "BL ValueFlags; BL DataType; if DataType==1 { BL LongValue }; "
     "if DataType==2 { BD RealValue }; if DataType==4 { BL DataSize; "

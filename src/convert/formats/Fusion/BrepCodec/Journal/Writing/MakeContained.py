@@ -1,6 +1,7 @@
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the contained operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeContained(DoubleSided: bool, Contained: bool | None) -> tuple[KAsmToken, ...]:
     if not DoubleSided:
         if Contained is not None:

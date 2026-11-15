@@ -18,6 +18,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.Prism.PrismPoints import BuildPoints
 
 
+# the solid records contract needs a shared interpretation so supporting records retain their owning document relationships
 def SolidRecords(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     Records = (
         *BuildRoots(),

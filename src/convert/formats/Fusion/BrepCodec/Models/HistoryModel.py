@@ -10,6 +10,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# history model needs an explicit state contract so topology identity survives native history reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class HistoryModel:
     Model: CylinderBody

@@ -3,6 +3,7 @@ from convert.formats.Fusion.GeometryCodec.EntityRef import EntityRef
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the preamble operation needs a consistent construction rule so topology identity survives native history reconstruction
 def MakePreamble(History: HistoryState) -> GeometryRecord:
     return GeometryRecord(
         "history_stream",

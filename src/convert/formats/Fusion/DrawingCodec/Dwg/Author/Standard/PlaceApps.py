@@ -9,11 +9,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.PlaceMut import (
     PlaceMut,
 )
 
+# app prefix must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KAppPrefix = "APPID:"
+
+# app entries must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KAppEntries = "Control:APPID.Entries"
+
+# first app must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KFirstApp = KAppPrefix + "ACAD"
 
 
+# the used apps contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def UsedApps(Ledger: DraftBook) -> tuple[str, ...]:
     Found = [KFirstApp]
     for Entry in Ledger.DraftRows:
@@ -24,6 +30,7 @@ def UsedApps(Ledger: DraftBook) -> tuple[str, ...]:
     return tuple(Found)
 
 
+# the apps operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceAppsMut(Ledger: DraftBook) -> None:
     for KeyText in UsedApps(Ledger):
         _ = PlaceMut(

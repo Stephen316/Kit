@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the snapshot tags operation needs a consistent construction rule so native topology can resolve its owning modeling operation
 def MakeSnapTags(TagSet: TopologyTags) -> tuple[GeometryRecord, ...]:
     EdgeLink = Replace(TagSet.Sketch, Direction=FlipDirection(TagSet.Sketch.Direction))
     return (

@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.NativeCatalog import NativeCa
 from convert.formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
 
 
+# the document catalog contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DocumentCatalog(Schemas: tuple[ClassSchema, ...]) -> NativeCatalog:
     Native = ReadCatalog()
     Classes = dict(Native.Classes)

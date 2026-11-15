@@ -3,6 +3,7 @@ from dataclasses import replace as Replace
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 
 
+# shared shift version setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ShiftVersion(Metadata: MetaSegment, ClassGuid: str) -> MetaSegment:
     Matches = tuple(
         Entry

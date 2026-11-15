@@ -37,11 +37,13 @@ from convert.formats.Fusion.DrawingCodec.Members.SheetLayout import SheetLayout
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# the design url contract needs a shared interpretation so sheet objects retain their intended document relationships
 def DesignUrl(SpecValue: DrawingSpec) -> str:
     Version = SpecValue.Design.DesignVersion
     return KFileUrn + SpecValue.Identity.DesignToken + f"?version={Version}"
 
 
+# the root operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildRoot(SpecValue: DrawingSpec, History: SaveState) -> DrawingRoot:
     Identity = SpecValue.Identity
     return DrawingRoot(
@@ -65,6 +67,7 @@ def BuildRoot(SpecValue: DrawingSpec, History: SaveState) -> DrawingRoot:
     )
 
 
+# the root reference contract needs a shared interpretation so sheet objects retain their intended document relationships
 def RootReference(SpecValue: DrawingSpec, History: SaveState) -> RootLink:
     Design = SpecValue.Design
     Lineage = KLineageUrn + SpecValue.Identity.DesignToken
@@ -93,6 +96,7 @@ def RootReference(SpecValue: DrawingSpec, History: SaveState) -> RootLink:
     )
 
 
+# the asset operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildAsset(SpecValue: DrawingSpec, History: SaveState) -> DrawingAsset:
     Design = SpecValue.Design
     return DrawingAsset(
@@ -117,6 +121,7 @@ def BuildAsset(SpecValue: DrawingSpec, History: SaveState) -> DrawingAsset:
     )
 
 
+# the sheet operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildSheet(SpecValue: DrawingSpec) -> SheetLayout:
     Paper = SheetSize(SpecValue.Sheet.SheetSize)
     return SheetLayout(

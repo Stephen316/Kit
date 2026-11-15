@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.CheckBsSurface impo
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.PoleCount import PoleCount
 
 
+# the full knots contract needs a shared interpretation so nested spline and surface records retain their relationships
 def FullKnots(
     Knots: tuple[float, ...], Multiplicity: tuple[int, ...]
 ) -> tuple[float, ...]:
@@ -20,6 +21,7 @@ def FullKnots(
     return (Expanded[0], *Expanded, Expanded[-1])
 
 
+# de boor point needs an explicit validity boundary so nested spline and surface records retain their relationships
 def DeBoorPoint(
     Degree: int,
     KnotVector: tuple[float, ...],
@@ -45,6 +47,7 @@ def DeBoorPoint(
     return Pyramid[Degree]
 
 
+# the homogeneous contract needs a shared interpretation so nested spline and surface records retain their relationships
 def Homogeneous(
     Poles: tuple[tuple[float, ...], ...], Weights: tuple[float, ...]
 ) -> tuple[tuple[float, ...], ...]:
@@ -56,6 +59,7 @@ def Homogeneous(
     )
 
 
+# the on curve operation needs one geometric convention so nested spline and surface records retain their relationships
 def PointOnCurve(Curve: BsCurve, Parameter: float) -> tuple[float, ...]:
     CheckBsCurve(Curve, Curve.Dimension)
     KnotVector = FullKnots(Curve.Knots, Curve.Multiplicity)
@@ -65,6 +69,7 @@ def PointOnCurve(Curve: BsCurve, Parameter: float) -> tuple[float, ...]:
     return tuple(Number / Point[-1] for Number in Point[:-1])
 
 
+# the on surface operation needs one geometric convention so nested spline and surface records retain their relationships
 def PointOnSurface(
     Surface: BsSurface, UParameter: float, VParameter: float
 ) -> tuple[float, ...]:

@@ -10,14 +10,26 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
 )
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# the face key shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KFaceKey = tuple[int, ...]
+
+# edge key must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KEdgeKey = frozenset[int]
+
+# the half key shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KHalfKey = tuple[int, int]
+
+# dart kind must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KDartKind = 1
+
+# crease kind must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KCreaseKind = 2
+
+# corner kind must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KCornerKind = 3
 
 
+# pole mesh needs an explicit state contract so neighboring patches retain consistent subdivision boundaries
 @MakeDataClass(frozen=True, slots=True)
 class PoleMesh:
     Faces: KMapping[KFaceKey, tuple[int, ...]]
@@ -29,6 +41,7 @@ class PoleMesh:
     Around: KMapping[int, frozenset[int]]
 
 
+# the mesh operation needs a consistent construction rule so neighboring patches retain consistent subdivision boundaries
 def BuildMesh(
     Faces: dict[KFaceKey, tuple[int, ...]],
     Values: dict[int, KPoleRow],
@@ -62,6 +75,7 @@ def BuildMesh(
     )
 
 
+# primary grips needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def PrimaryGrips(Surface: TsplineSurface) -> dict[int, int]:
     if len(Surface.Grips) > len(Surface.Topology.Vertices):
         raise ValueError("Fusion Form pole engine leaves compound grips to grid paths")
@@ -74,6 +88,7 @@ def PrimaryGrips(Surface: TsplineSurface) -> dict[int, int]:
     }
 
 
+# the mesh from cage contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def MeshFromCage(Surface: TsplineSurface, Graph: CageGraph) -> PoleMesh:
     GripOf = PrimaryGrips(Surface)
     Faces: dict[KFaceKey, tuple[int, ...]] = {
@@ -92,6 +107,7 @@ def MeshFromCage(Surface: TsplineSurface, Graph: CageGraph) -> PoleMesh:
     return BuildMesh(Faces, Values, Sharp, frozenset())
 
 
+# the sharp ends contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SharpEnds(MeshValue: PoleMesh, Vertex: int) -> tuple[int, ...]:
     return tuple(
         Other
@@ -100,6 +116,7 @@ def SharpEnds(MeshValue: PoleMesh, Vertex: int) -> tuple[int, ...]:
     )
 
 
+# the vertex kind contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def VertexKind(MeshValue: PoleMesh, Vertex: int) -> int:
     Count = len(SharpEnds(MeshValue, Vertex))
     if Vertex in MeshValue.Corners or Count >= KCornerKind:
@@ -107,12 +124,14 @@ def VertexKind(MeshValue: PoleMesh, Vertex: int) -> int:
     return Count
 
 
+# the face mean contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FaceMean(MeshValue: PoleMesh, FaceKey: KFaceKey) -> KPoleRow:
     LoopValue = MeshValue.Faces[FaceKey]
     Share = 1.0 / len(LoopValue)
     return MixRows((Share, MeshValue.Values[Vertex]) for Vertex in LoopValue)
 
 
+# the edge point contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def EdgePoint(MeshValue: PoleMesh, Start: int, Final: int) -> KPoleRow:
     Middle = MixRows(((0.5, MeshValue.Values[Start]), (0.5, MeshValue.Values[Final])))
     if frozenset((Start, Final)) in MeshValue.Sharp:
@@ -128,6 +147,7 @@ def EdgePoint(MeshValue: PoleMesh, Start: int, Final: int) -> KPoleRow:
     )
 
 
+# the vertex point contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def VertexPoint(MeshValue: PoleMesh, Vertex: int) -> KPoleRow:
     KindValue = VertexKind(MeshValue, Vertex)
     OwnRow = MeshValue.Values[Vertex]

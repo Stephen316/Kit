@@ -9,6 +9,7 @@ from typing import cast as CastValue
 from convert.adapters.Fusion.State.StateTypes import KStateTypes
 
 
+# the state operation needs a consistent construction rule so public document claims remain grounded in native records
 def EncodeState(Value: object, Depth: int = 0) -> object:
     if Depth > 64:
         raise ValueError("Fusion semantic state exceeds nesting limit")

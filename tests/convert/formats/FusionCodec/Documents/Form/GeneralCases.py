@@ -1,3 +1,4 @@
+# the general cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGeneralCases: tuple[tuple[str, str, str, str, str], ...] = (
     (
         "Box",

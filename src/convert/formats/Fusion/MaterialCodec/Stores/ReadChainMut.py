@@ -2,6 +2,7 @@ from convert.formats.Fusion.MaterialCodec.Limits import KEndBlock
 from convert.formats.Fusion.MaterialCodec.Stores.StoreBlock import StoreBlock
 
 
+# the chain operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadChainMut(
     Blocks: tuple[StoreBlock, ...], RootIndex: int, VisitedMut: set[int]
 ) -> bytes:

@@ -18,6 +18,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Objects.EedItems import (
 )
 
 
+# the eed operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def DecodeEed(AppRef: DwgHandleRef, DataValue: bytes) -> DwgEed:
     try:
         EedItems = ReadEedItems(DataValue)
@@ -28,12 +29,14 @@ def DecodeEed(AppRef: DwgHandleRef, DataValue: bytes) -> DwgEed:
     return DwgEed(AppRef, EedItems, b"")
 
 
+# the eed operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeEed(EedBlock: DwgEed) -> bytes:
     if EedBlock.RawData:
         return EedBlock.RawData
     return EncodeEedItems(EedBlock.EedItems)
 
 
+# the eed operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadEedMut(Cursor: BitCursor) -> tuple[DwgEed, ...]:
     EedBlocks: list[DwgEed] = []
     while (EedSize := ReadBitShortMut(Cursor)) != 0:
@@ -43,6 +46,7 @@ def ReadEedMut(Cursor: BitCursor) -> tuple[DwgEed, ...]:
     return tuple(EedBlocks)
 
 
+# the eed operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutEedMut(Writer: BitWriter, EedBlocks: tuple[DwgEed, ...]) -> None:
     for EedBlock in EedBlocks:
         DataValue = EncodeEed(EedBlock)

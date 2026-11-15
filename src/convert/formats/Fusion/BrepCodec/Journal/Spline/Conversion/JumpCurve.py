@@ -12,6 +12,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import 
 )
 
 
+# the order curve contract needs a stable decomposition so surface geometry retains the control cage shape
 def OrderCurve(Curve: BsCurve, Lists: tuple[tuple[float, ...], ...]) -> SubtypeNode:
     if type(Lists) is not tuple or len(Lists) != 3:
         raise ValueError("Fusion exact curve needs three discontinuity lists")
@@ -28,5 +29,6 @@ def OrderCurve(Curve: BsCurve, Lists: tuple[tuple[float, ...], ...]) -> SubtypeN
     return SubtypeNode(Plain.SubtypeName, ReplaceValue(Record, Context=Context))
 
 
+# the jump curve contract needs a shared interpretation so surface geometry retains the control cage shape
 def JumpCurve(Curve: BsCurve, Jumps: tuple[float, ...]) -> SubtypeNode:
     return OrderCurve(Curve, ((), (), tuple(Jumps)))

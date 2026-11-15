@@ -4,6 +4,7 @@ from tools.TestShards.Reuse.Track.ContextMut import ContextMut
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the note import contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def NoteImportMut(
     State: TrackState, Located: tuple[str, ...], Importer: str | None
 ) -> None:

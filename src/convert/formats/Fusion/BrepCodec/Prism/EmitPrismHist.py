@@ -18,6 +18,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the prism history operation needs a consistent construction rule so profile topology remains connected to its extrusion history
 def EmitPrismHist(
     Model: CuboidBody,
     Identity: BodyIdentity,

@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# cone frame needs an explicit state contract so circular boundaries retain consistent cone and rim geometry
 @MakeDataClass(frozen=True, slots=True)
 class ConeFrame:
     OriginCm: tuple[float, float, float]

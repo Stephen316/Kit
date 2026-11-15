@@ -2,6 +2,7 @@ from zlib import decompressobj as DecompressObject, error as ZlibError
 from convert.geometry.ParaFormatError import ParaFormatError
 
 
+# inflate frame needs an explicit validity boundary so native geometry retains a consistent interchange interpretation
 def InflateFrame(DataValue: bytes, RawSize: int) -> bytes:
     Decoder = DecompressObject()
     try:

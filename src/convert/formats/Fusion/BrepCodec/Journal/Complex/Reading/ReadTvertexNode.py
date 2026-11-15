@@ -13,6 +13,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Geometry.ReadVertexNode im
 )
 
 
+# the tvertex node operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadTvertexNode(Cursor: FieldCursor) -> TvertexNode:
     BaseNode = ReadVertexNode(Cursor)
     Sentinel = ReadDoubleMut(Cursor)

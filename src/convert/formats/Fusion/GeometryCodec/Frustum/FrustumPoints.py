@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the frustum points contract needs a shared interpretation so geometric values retain their native record boundaries
 def FrustumPoints(Model: FrustumBody) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

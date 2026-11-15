@@ -29,6 +29,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import (
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartStage import PartStage
 
 
+# the corner cache contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def CornerCache(Stage: PartStage, CornerCm: tuple[float, float]) -> dict[str, object]:
     Lower = Stage.Before.Slabs[0].LowerCm
     Height = Stage.Before.Slabs[-1].UpperCm - Lower
@@ -40,6 +41,7 @@ def CornerCache(Stage: PartStage, CornerCm: tuple[float, float]) -> dict[str, ob
     }
 
 
+# the bevel operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddBevelMut(
     Author: AuthorState, Prefix: str, Feature: ChamferSpec
 ) -> tuple[str, ...]:
@@ -67,6 +69,7 @@ def AddBevelMut(
     return ("other",)
 
 
+# corner picks needs an explicit validity boundary so modeling operations retain their document and timeline ownership
 def CornerPicks(Stage: PartStage) -> list[KLevelPick]:
     Feature = Stage.Feature
     if not isinstance(Feature, (FilletSpec, ChamferSpec)):
@@ -87,6 +90,7 @@ def CornerPicks(Stage: PartStage) -> list[KLevelPick]:
     ]
 
 
+# the picks operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddPicksMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Picks: list[str] = []
     for Index, (Recipe, CacheClass, Cache) in enumerate(CornerPicks(Stage)):
@@ -104,6 +108,7 @@ def AddPicksMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]
     return Picks
 
 
+# the seeds operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddSeedsMut(Author: AuthorState, Prefix: str, Picks: list[str]) -> None:
     Reference = Author.Reference
     Author.Allocate(Prefix + "progenitors", "ProgenitorTable")
@@ -118,6 +123,7 @@ def AddSeedsMut(Author: AuthorState, Prefix: str, Picks: list[str]) -> None:
     Author.Change(Prefix + "progenitors", ProgenitorTagVec=Pairs, tagId=len(Picks) + 1)
 
 
+# the corner operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddCornerMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature = Stage.Feature
     if not isinstance(Feature, (FilletSpec, ChamferSpec)):

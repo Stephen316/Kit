@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.PlanarShell import PlanarSh
 from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireLive
 
 
+# the placed body operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPlacedBody(Table: LiveTable, BodyRef: int) -> PlanarShell:
     Model = BuildPlanarBody(Table, BodyRef)
     BodyValue = RequireLive(Table, BodyRef, BodyNode)

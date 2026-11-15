@@ -10,9 +10,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgCryptHeader import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
 
+# header trail must remain consistent across callers so section boundaries and object references remain consistent
 KHeaderTrail = bytes.fromhex("f8466a0496730ed9162f6768d4f74a4ad0576876")
 
 
+# the file head operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitFileHead(FileHeader: DwgFileHeader) -> bytes:
     Output = FileHeader.VersionText.encode("latin-1") + FileHeader.PaddingBytes
     Output += PackFields(
@@ -41,6 +43,7 @@ def EmitFileHead(FileHeader: DwgFileHeader) -> bytes:
     return Output
 
 
+# the crypt operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitCrypt(CryptHeader: DwgCryptHeader) -> bytes:
     Plain = KFileIdBytes + PackFields(
         "<3I3I2I2Q2I3IIQ3I",

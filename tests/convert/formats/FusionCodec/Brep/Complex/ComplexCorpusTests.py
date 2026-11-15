@@ -38,8 +38,13 @@ from tests.convert.formats.FusionCodec.Brep.GeometryState.GeometryArchive import
 )
 from tests.convert.formats.FusionCodec.Brep.Journal.JournalArchive import JournalArchive
 
+# the history members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHistoryMembers = tuple(Value for Value in KComplexMembers if Value[1] == "smbh")
+
+# bound members needs one explicit bound so native document reconstruction cannot accept inconsistent resource or layout limits
 KBoundMembers = tuple(Value[:3] for Value in KComplexBounds)
+
+# the complex names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KComplexNames = frozenset(
     (
         "spline-surface",
@@ -52,6 +57,7 @@ KComplexNames = frozenset(
 )
 
 
+# the member bytes contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -72,6 +78,7 @@ def TestMemberBytes(TmpPath: FilePath, Relative: str, Suffix: str, Digest: str) 
     CheckSubtypes(Entities)
 
 
+# the member order contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -95,6 +102,7 @@ def TestMemberOrder(Relative: str, Suffix: str, Digest: str) -> None:
     assert Emitted != Payload
 
 
+# the forward references contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -106,6 +114,7 @@ def TestForwardRefs(Relative: str, Suffix: str, Digest: str) -> None:
         _ = EmitJournal(PermuteJournal(Journal, Order))
 
 
+# the member state contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -127,6 +136,7 @@ def TestMemberState(TmpPath: FilePath, Relative: str, Suffix: str, Digest: str) 
     CheckSubtypes(State.Entities)
 
 
+# the member bound contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -136,6 +146,7 @@ def TestMemberBound(Relative: str, Suffix: str, Digest: str) -> None:
     assert EmitJournal(ReadJournal(Payload)) == Payload
 
 
+# the bound nodes contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

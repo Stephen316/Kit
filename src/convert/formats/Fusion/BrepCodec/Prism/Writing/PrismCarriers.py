@@ -4,10 +4,12 @@ from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the curve interval contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def CurveInterval(Value: float | None) -> tuple[KGeometryValue, ...]:
     return (False,) if Value is None else (True, Value)
 
 
+# the prism curves contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismCurves(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(
@@ -23,6 +25,7 @@ def PrismCurves(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     )
 
 
+# the prism planes contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismPlanes(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

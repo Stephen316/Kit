@@ -5,11 +5,13 @@ from pytest import mark as TestMarks, raises as RaisesError
 from tests.convert.formats.FusionCodec.Features.ForgeFeature import ForgeFeature
 from tests.convert.formats.FusionCodec.Parameters.RebuildFeatures import RebuildFeatures
 
+# feature root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KFeatureRoot = (
     FilePath(__file__).resolve().parents[5] / "re/Fusion/LocalOracle/Features"
 )
 
 
+# the schema shift contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     ("FileName", "ClassGuid"),
     (
@@ -25,6 +27,7 @@ def TestSchemaShift(FileName: str, ClassGuid: str) -> None:
         _ = RebuildFeatures(Altered)
 
 
+# the feature tail contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     ("FileName", "ClassGuid"),
     (

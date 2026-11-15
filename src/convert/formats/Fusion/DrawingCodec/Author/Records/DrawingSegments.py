@@ -33,9 +33,11 @@ from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import (
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
+# storage space must remain consistent across callers so sheet objects retain their intended document relationships
 KStorageSpace = "FusionDoc"
 
 
+# the drawing segments contract needs a shared interpretation so sheet objects retain their intended document relationships
 def DrawingSegments(
     SpecValue: DrawingSpec, FileName: str, History: SaveState
 ) -> tuple[ParsedSegment, ...]:
@@ -61,6 +63,7 @@ def DrawingSegments(
     return tuple(Result)
 
 
+# the order rows contract needs a stable decomposition so sheet objects retain their intended document relationships
 def OrderRows(
     ClassRows: tuple[ClassRow, ...], Order: tuple[str, ...]
 ) -> tuple[ClassRow, ...]:
@@ -70,6 +73,7 @@ def OrderRows(
     return tuple(Known[ClassGuid] for ClassGuid in Order)
 
 
+# the assign types contract needs a shared interpretation so sheet objects retain their intended document relationships
 def AssignTypes(
     Records: tuple[EntityRecord, ...], ClassRows: tuple[ClassRow, ...]
 ) -> tuple[EntityRecord, ...]:
@@ -83,6 +87,7 @@ def AssignTypes(
     )
 
 
+# segment meta needs an explicit validity boundary so sheet objects retain their intended document relationships
 def SegmentMeta(
     KindValue: SegmentKind,
     ClassRows: tuple[ClassRow, ...],
@@ -128,6 +133,7 @@ def SegmentMeta(
     return MetaSegment(Header, Classes, Stored, (), (), NextId, 0, Properties)
 
 
+# the act next id contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ActNextId(History: SaveState) -> int:
     if History.ActNextId is not None:
         return History.ActNextId

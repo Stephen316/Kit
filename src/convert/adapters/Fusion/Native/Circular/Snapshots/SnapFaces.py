@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode
 from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
 
 
+# body faces needs an explicit validity boundary so public geometry remains consistent with native circular topology
 def BodyFaces(State: GeometryState, BodyValue: BodyNode) -> tuple[FaceNode, ...]:
     LumpValue = SnapEntity(State, BodyValue.FirstLump, LumpNode)
     Shell = SnapEntity(State, LumpValue.FirstShell, ShellNode)
@@ -32,6 +33,7 @@ def BodyFaces(State: GeometryState, BodyValue: BodyNode) -> tuple[FaceNode, ...]
     return tuple(Faces)
 
 
+# face coedges needs an explicit validity boundary so public geometry remains consistent with native circular topology
 def FaceCoedges(State: GeometryState, FaceValue: FaceNode) -> tuple[CoedgeNode, ...]:
     Coedges: list[CoedgeNode] = []
     SeenLoops: set[int] = set()

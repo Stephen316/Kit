@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Brep.SpaceMath import (
 )
 
 
+# the line edge contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def LineEdge(Start: KSpaceVector, Finish: KSpaceVector) -> FreeEdge:
     Reach = VectorLength(SubVector(Finish, Start))
     Heading = UnitVector(SubVector(Finish, Start))
@@ -22,6 +23,7 @@ def LineEdge(Start: KSpaceVector, Finish: KSpaceVector) -> FreeEdge:
     return FreeEdge(Curve, 0.0, Reach, Start, Finish)
 
 
+# the arc edge contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ArcEdge(
     Center: KSpaceVector,
     Normal: KSpaceVector,
@@ -43,6 +45,7 @@ def ArcEdge(
     return FreeEdge(Curve, 0.0 - HalfSweep, HalfSweep, Start, Finish)
 
 
+# the ellipse edge contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def EllipseEdge(
     Center: KSpaceVector, Start: KSpaceVector, Finish: KSpaceVector
 ) -> FreeEdge:

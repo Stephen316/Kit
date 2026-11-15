@@ -52,10 +52,14 @@ from convert.formats.Fusion.EntityCodec.Recipes.Model.EdgeRecipe import EdgeReci
 from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeValue import RecipeValue
 from convert.formats.Fusion.EntityCodec.Recipes.Model.VertexRecipe import VertexRecipe
 
+# the level pick shape must stay shared so design feature construction uses one contract for compatible values
 KLevelPick = tuple[RecipeValue, str, dict[str, object]]
+
+# full angle must remain consistent across callers so modeling operations retain their document and timeline ownership
 KFullAngle = 6.283185307179586
 
 
+# the neighbour label contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def NeighbourLabel(
     Shape: ShapeBody,
     Users: dict[KShapeEdge, list[KUsePlace]],
@@ -68,6 +72,7 @@ def NeighbourLabel(
     return FaceLabelOf(Shape.Faces[Others[0]])
 
 
+# the rim recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RimRecipe(
     RimLabel: FaceLabel, WallValue: FaceLabel, CapValue: FaceLabel
 ) -> RecipeValue:
@@ -78,11 +83,13 @@ def RimRecipe(
     return RecipeValue(3, RecipeTags([RimLabel, WallValue, CapValue]), (), Payload)
 
 
+# the bare recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def BareRecipe(WallValue: FaceLabel, CapValue: FaceLabel) -> RecipeValue:
     Payload = EdgeRecipe(-1, -1, (PickFace(0), PickFace(1)), (), -1)
     return RecipeValue(3, RecipeTags([WallValue, CapValue]), (), Payload)
 
 
+# the side recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def SideRecipe(Labels: list[FaceLabel]) -> RecipeValue:
     Payload = EdgeRecipe(
         -1,
@@ -94,6 +101,7 @@ def SideRecipe(Labels: list[FaceLabel]) -> RecipeValue:
     return RecipeValue(3, RecipeTags(Labels), (), Payload)
 
 
+# the arc cache contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def ArcCache(
     SpanValue: ArcSpan, Start: KSpaceVector, Sense: float
 ) -> dict[str, object]:
@@ -113,6 +121,7 @@ def ArcCache(
     )
 
 
+# link cache must resolve unambiguously so modeling operations retain their document and timeline ownership
 def LinkCache(
     UseValue: ShapeUse, EdgeEnds: tuple[KSpaceVector, KSpaceVector], WithCap: bool
 ) -> tuple[str, dict[str, object]]:
@@ -128,6 +137,7 @@ def LinkCache(
     return "ETCachedLineSeg3d", {"rCachedGeometry": Geometry}
 
 
+# link pick must resolve unambiguously so modeling operations retain their document and timeline ownership
 def LinkPick(
     Shape: ShapeBody,
     Users: dict[KShapeEdge, list[KUsePlace]],
@@ -155,6 +165,7 @@ def LinkPick(
     return SideRecipe([WallValue, CapValue, Opening, Closing]), CacheClass, Cache
 
 
+# the level picks contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def LevelPicks(
     Solid: PrismSolid, Points: tuple[tuple[float, float], ...], LevelCm: float
 ) -> list[KLevelPick]:
@@ -168,4 +179,6 @@ def LevelPicks(
             WithCap = IsWithCap(Shape, PlanValue, LinkValue, Solid.Blends)
             Picked = LinkPick(Shape, Users, PlanValue, (Index, WithCap))
             Numbered.append((Number, Picked))
+
+    # ordering by entry 0 must stay deterministic so design feature construction resolves equivalent inputs consistently
     return [Entry[1] for Entry in sorted(Numbered, key=lambda Entry: Entry[0])]

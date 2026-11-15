@@ -35,11 +35,14 @@ from convert.formats.Fusion.DrawingCodec.Package.PackageLimits import (
     KUtfFlag,
 )
 
+# design object must remain consistent across callers so sheet objects retain their intended document relationships
 KDesignObject = 2
 
+# drawing object must remain consistent across callers so sheet objects retain their intended document relationships
 KDrawingObject = 1
 
 
+# the bundle operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildBundle(
     SpecValue: DrawingSpec, Drawing: FusionDrawing, DesignData: bytes
 ) -> DrawingBundle:
@@ -78,6 +81,7 @@ def BuildBundle(
     )
 
 
+# the design entry contract needs a shared interpretation so sheet objects retain their intended document relationships
 def DesignEntry(SpecValue: DrawingSpec, DesignPath: str) -> BundleObject:
     Design = SpecValue.Design
     return BundleObject(
@@ -97,6 +101,7 @@ def DesignEntry(SpecValue: DrawingSpec, DesignPath: str) -> BundleObject:
     )
 
 
+# the drawing entry contract needs a shared interpretation so sheet objects retain their intended document relationships
 def DrawingEntry(SpecValue: DrawingSpec, DrawingPath: str) -> BundleObject:
     Token = SpecValue.Identity.DrawingToken
     Relation = BundleLink(
@@ -123,6 +128,7 @@ def DrawingEntry(SpecValue: DrawingSpec, DrawingPath: str) -> BundleObject:
     )
 
 
+# the stamp text contract needs a shared interpretation so sheet objects retain their intended document relationships
 def StampText(StampWords: tuple[int, int]) -> str:
     TimeWord, DateWord = StampWords
     DateText = (

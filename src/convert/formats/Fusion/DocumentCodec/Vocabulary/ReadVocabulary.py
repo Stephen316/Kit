@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadWireType import ReadFie
 from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
 
 
+# the vocabulary operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadVocabulary(Source: Path) -> tuple[NativeSchema, ...]:
     Values = ReadSeries(CastValue(object, LoadJson(Source.read_text(encoding="utf-8"))))
     Result: list[NativeSchema] = []

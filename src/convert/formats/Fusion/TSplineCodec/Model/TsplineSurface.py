@@ -7,6 +7,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
 from convert.formats.Fusion.TSplineCodec.Model.PlaneSymmetry import PlaneSymmetry
 
 
+# tspline surface needs an explicit state contract so control cage topology retains its native connectivity
 @dataclass(frozen=True)
 class TsplineSurface:
     Header: SurfaceHeader

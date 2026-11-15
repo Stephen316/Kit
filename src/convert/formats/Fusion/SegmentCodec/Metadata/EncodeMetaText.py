@@ -1,6 +1,7 @@
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaLimits import KMaxMetaText
 
 
+# the meta text operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EncodeMetaText(Content: str, WideText: bool) -> tuple[bytes, int]:
     if (
         type(Content) is not str

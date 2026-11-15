@@ -16,6 +16,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassTable import DwgClass
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
 
 
+# the classes operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadClasses(DataValue: bytes, FileHeader: DwgFileHeader) -> DwgClassTable:
     HasHighWord = (
         FileHeader.VersionText == "AC1032" or FileHeader.MaintenanceVersion > 3

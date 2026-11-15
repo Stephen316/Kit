@@ -21,6 +21,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import Schema
 from convert.formats.Fusion.MaterialCodec.Package.SchemaModels import SchemaModels
 
 
+# the index schemas contract needs a shared interpretation so appearance references remain connected to their owning entities
 def IndexSchemas(Nodes: tuple[SchemaNode, ...]) -> dict[str, SchemaNode]:
     return {
         dict(Child.Attributes)["val"]: Declared
@@ -30,6 +31,7 @@ def IndexSchemas(Nodes: tuple[SchemaNode, ...]) -> dict[str, SchemaNode]:
     }
 
 
+# the material assets contract needs a shared interpretation so appearance references remain connected to their owning entities
 def MaterialAssets(
     SpecValue: MaterialSpec, Identity: MaterialIds, Nodes: tuple[SchemaNode, ...]
 ) -> tuple[MaterialAsset, ...]:
@@ -99,6 +101,7 @@ def MaterialAssets(
     )
 
 
+# the family operation needs a consistent construction rule so appearance references remain connected to their owning entities
 def MakeFamily(
     SchemaName: str,
     InstanceId: str,

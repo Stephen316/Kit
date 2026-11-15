@@ -35,6 +35,7 @@ from convert.formats.Fusion.DocumentCodec.Records.EmitDesign import EmitDesign
 from convert.formats.Fusion.SegmentCodec.Features.Binary.CheckUuid import CheckUuid
 
 
+# the form design operation needs a consistent construction rule so editable control cages retain their document relationships
 def BuildFormDesign(
     SpecValue: FormSpec, AssetId: str, Parts: FormParts, UnixMicros: int
 ) -> DesignResult:

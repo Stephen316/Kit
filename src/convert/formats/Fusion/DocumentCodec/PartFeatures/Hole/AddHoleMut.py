@@ -30,15 +30,29 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Hole.CheckHole import (
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.HoleSpec import HoleSpec
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartStage import PartStage
 
+# through note must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KThroughNote = "SavedHoleDepthInNonDistanceExtentsCase"
+
+# center point must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KCenterPoint = 6
+
+# face point must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KFacePoint = 17
+
+# the center tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KCenterTolerance = 1e-9
+
+# the hole modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KHoleModes: dict[str, object] = dict(bInside1=True, bInside2=True, extendFaceOption=1)
+
+# the hole parameter shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KHoleParam: TypeAlias = tuple[dict[str, float], int]
+
+# the hole place shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KHolePlace: TypeAlias = tuple[tuple[int, int, int], tuple[float, float]]
 
 
+# the hole spot contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def HoleSpot(Stage: PartStage, Feature: HoleSpec) -> dict[str, float]:
     Ceiling = Stage.Before.Slabs[-1].UpperCm
     return {
@@ -48,6 +62,7 @@ def HoleSpot(Stage: PartStage, Feature: HoleSpec) -> dict[str, float]:
     }
 
 
+# the sizes operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSizesMut(Author: AuthorState, Prefix: str, Feature: HoleSpec) -> list[str]:
     Owner = Prefix + "feature"
     Roles: list[str] = []
@@ -75,6 +90,7 @@ def AddSizesMut(Author: AuthorState, Prefix: str, Feature: HoleSpec) -> list[str
     return Roles + AddSinkMut(Author, Prefix, Feature)
 
 
+# the sink operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSinkMut(Author: AuthorState, Prefix: str, Feature: HoleSpec) -> list[str]:
     if not IsSunk(Feature):
         return []
@@ -94,6 +110,7 @@ def AddSinkMut(Author: AuthorState, Prefix: str, Feature: HoleSpec) -> list[str]
     return [Prefix + "sink_width", Prefix + "sink_angle"]
 
 
+# the hole parameter contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def HoleParam(SpotValue: dict[str, float], Middle: tuple[float, float]) -> KHoleParam:
     Plane = {
         "x": SpotValue["x"] - Middle[0],
@@ -104,6 +121,7 @@ def HoleParam(SpotValue: dict[str, float], Middle: tuple[float, float]) -> KHole
     return Plane, KFacePoint
 
 
+# the hole place operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddHolePlaceMut(
     Author: AuthorState, Prefix: str, Stage: PartStage, Place: KHolePlace
 ) -> list[str]:
@@ -135,6 +153,7 @@ def AddHolePlaceMut(
     ]
 
 
+# the hole operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddHoleMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, Place: KHolePlace
 ) -> list[str]:
@@ -164,6 +183,7 @@ def AddHoleMut(
     return Children + Extent + [Prefix + "tool"]
 
 
+# link hole must resolve unambiguously so feature parameters remain connected to the resulting geometry
 def LinkHoleMut(
     Author: AuthorState, Prefix: str, Feature: HoleSpec, Extent: list[str]
 ) -> None:

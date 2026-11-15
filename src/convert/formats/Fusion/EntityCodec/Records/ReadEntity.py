@@ -12,6 +12,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 
 
+# the slack operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadSlack(
     Record: BulkRecord, Scope: RecordScope, Catalog: EntityCatalog
 ) -> tuple[EntityRecord, bytes]:
@@ -26,6 +27,7 @@ def ReadSlack(
     return Value, Record.Payload[Cursor.Offset :]
 
 
+# the entity operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadEntity(
     Record: BulkRecord, Scope: RecordScope, Catalog: EntityCatalog
 ) -> EntityRecord:

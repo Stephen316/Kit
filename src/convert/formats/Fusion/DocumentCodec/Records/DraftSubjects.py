@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Model.SubjectValue import SubjectValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the draft subjects contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DraftSubjects(
     Author: AuthorState, Entity: DraftEntity
 ) -> tuple[SubjectValue, ...] | None:

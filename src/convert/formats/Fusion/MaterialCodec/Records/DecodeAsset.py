@@ -5,6 +5,7 @@ from convert.formats.Fusion.MaterialCodec.Table.AssetEntry import AssetEntry
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the asset operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeAsset(
     Entry: AssetEntry, Definition: bytes, Instance: bytes, Schemas: KSchemaTable
 ) -> MaterialAsset:

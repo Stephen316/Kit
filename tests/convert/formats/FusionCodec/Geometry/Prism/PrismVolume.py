@@ -3,6 +3,7 @@ from interchange.geometry.models.VectorSpace import SpaceVector
 from tests.convert.formats.FusionCodec.Geometry.Prism.PrismEvidence import PrismEvidence
 
 
+# shared prism vertices setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PrismVertices(Value: PrismEvidence, FaceId: int) -> tuple[SpaceVector, ...]:
     return tuple(
         Value.Points[Value.Edges[UseValue.EdgeId].Vertices[int(UseValue.Reverse)]]
@@ -10,6 +11,7 @@ def PrismVertices(Value: PrismEvidence, FaceId: int) -> tuple[SpaceVector, ...]:
     )
 
 
+# shared prism volume setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PrismVolume(Value: PrismEvidence) -> float:
     Anchor = next(iter(Value.Points.values()))
     Result = 0.0

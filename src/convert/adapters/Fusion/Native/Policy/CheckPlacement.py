@@ -15,6 +15,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 
 
+# invalid placement input must fail here so public document claims remain grounded in native records
 def CheckPlacement(Graph: NativeGraph, Context: KSketchContexts) -> None:
     Instance = Graph.OneClass("ComponentInstance")
     if Graph.Resolve(Instance.Fields["rTargetComponent"]) != Context.Component:

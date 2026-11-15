@@ -38,14 +38,19 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     Scaled,
 )
 
+# link gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KLinkGap = 1e-6
+
+# the frame shape must stay shared so drawing edge authoring uses one contract for compatible values
 KFrame = tuple[KPointTriple, KPointTriple, KPointTriple, KPointTriple]
 
 
+# the of operation needs one geometric convention so projected boundaries retain their intended visibility and geometry
 def PointOf(Value: SpaceVector) -> KPointTriple:
     return (Value.x, Value.y, Value.z)
 
 
+# the frame operation needs a consistent construction rule so projected boundaries retain their intended visibility and geometry
 def MakeFrame(
     Origin: SpaceVector, Normal: SpaceVector, Reference: SpaceVector
 ) -> KFrame:
@@ -55,11 +60,13 @@ def MakeFrame(
     return (PointOf(Origin), Along, XAxis, Cross(Along, XAxis))
 
 
+# the flat point contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def FlatPoint(Frame: KFrame, Point: KPointTriple) -> KPointPair:
     Offset = Minus(Point, Frame[0])
     return (DotProduct(Offset, Frame[2]), DotProduct(Offset, Frame[3]))
 
 
+# flat bound needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def FlatBound(Frame: KFrame, Curve: KEdgePath) -> FlatLine | FlatArc:
     Checked = (
         (Curve.Start, Curve.Finish) if isinstance(Curve, LinePath) else (Curve.Center,)
@@ -84,6 +91,7 @@ def FlatBound(Frame: KFrame, Curve: KEdgePath) -> FlatLine | FlatArc:
     return FlatArc(Center, Curve.Radius, Opening, Curve.Sweep)
 
 
+# ring of needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def RingOf(Frame: KFrame, Curve: RoundPath) -> tuple[RingBound, float]:
     Offset = Minus(Curve.Center, Frame[0])
     Height = DotProduct(Offset, Frame[1])
@@ -102,6 +110,7 @@ def RingOf(Frame: KFrame, Curve: RoundPath) -> tuple[RingBound, float]:
     return RingBound(Height, Opening, Curve.Sweep), Curve.Radius
 
 
+# seam of needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def SeamOf(Frame: KFrame, Curve: LinePath) -> SeamBound:
     Heights: list[float] = []
     Angles: list[float] = []
@@ -117,6 +126,7 @@ def SeamOf(Frame: KFrame, Curve: LinePath) -> SeamBound:
     return SeamBound(Angles[0], min(Heights), max(Heights))
 
 
+# pick slope must resolve unambiguously so projected boundaries retain their intended visibility and geometry
 def PickSlope(
     Choices: tuple[float, ...], Radius: float, Rings: list[tuple[RingBound, float]]
 ) -> float:
@@ -133,6 +143,7 @@ def PickSlope(
     return Fitting[0]
 
 
+# the round operation needs a consistent construction rule so projected boundaries retain their intended visibility and geometry
 def MakeRound(
     FaceIndex: int,
     Surface: CylinderSurface | ConeSurface,
@@ -155,6 +166,7 @@ def MakeRound(
     )
 
 
+# the face operation needs a consistent construction rule so projected boundaries retain their intended visibility and geometry
 def MakeFace(
     FaceIndex: int, Surface: BrepSurface, Bounds: tuple[KEdgePath, ...]
 ) -> FlatFace | RoundFace:

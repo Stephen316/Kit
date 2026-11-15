@@ -1,3 +1,4 @@
+# the required references vocabulary must stay centralized so journal validation agrees on supported native identities
 KRequiredRefs: dict[str, tuple[int, ...]] = {
     "body": (3,),
     "lump": (4, 5),

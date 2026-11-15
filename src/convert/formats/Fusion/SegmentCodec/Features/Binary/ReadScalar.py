@@ -6,6 +6,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldK
 from convert.formats.Fusion.SegmentCodec.Features.Binary.ScalarKinds import KScalarKinds
 
 
+# the scalar operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadScalarMut(Cursor: MetaCursor, KindValue: FieldKind) -> bool | int | float:
     CodeValue, Width, Lower, Upper = KScalarKinds[KindValue]
     RawValue = UnpackValue("<" + CodeValue, Cursor.TakeBytes(Width))[0]

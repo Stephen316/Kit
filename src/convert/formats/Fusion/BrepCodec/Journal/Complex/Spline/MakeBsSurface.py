@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the bs surface operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeBsSurface(Value: BsSurface) -> tuple[KAsmToken, ...]:
     CheckBsSurface(Value)
     return (

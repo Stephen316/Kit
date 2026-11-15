@@ -21,6 +21,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 from convert.formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart
 
 
+# the tracked shape contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TrackedShape(Solid: PrismSolid, Roles: dict[str, int]) -> ShapeBody:
     Tracks = tuple(
         (Label, Roles["f" + str(Index + 1) + "_source_ref"])
@@ -29,6 +30,7 @@ def TrackedShape(Solid: PrismSolid, Roles: dict[str, int]) -> ShapeBody:
     return ReplaceValue(BuildShape(Solid), Tracks=Tracks)
 
 
+# the part body operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def BuildPartBody(
     SpecValue: DocumentSpec, Design: DesignResult
 ) -> tuple[ContainerPart, ...]:

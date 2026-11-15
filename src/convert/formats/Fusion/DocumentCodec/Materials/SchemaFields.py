@@ -1,6 +1,7 @@
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# schema fields needs an explicit validity boundary so appearance references remain connected to their owning entities
 def SchemaFields(
     NameValue: str,
     Schemas: dict[str, SchemaNode],

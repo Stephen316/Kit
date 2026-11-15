@@ -2,6 +2,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
 
+# the knots operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeKnots(Knots: tuple[SplineKnot, ...]) -> tuple[KAsmToken, ...]:
     return (4, len(Knots)), *(
         Field

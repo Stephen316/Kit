@@ -51,6 +51,7 @@ from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# knot scale needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def KnotScale(Surface: TsplineSurface) -> int:
     Intervals = {EdgeValue.KnotInterval for EdgeValue in Surface.Topology.Edges}
     if len(Intervals) != 1:
@@ -61,6 +62,7 @@ def KnotScale(Surface: TsplineSurface) -> int:
     return int(Interval)
 
 
+# the frames operation needs a distinct decoding boundary so cap boundaries remain connected to the surrounding surface
 def ReadFrames(Graph: CageGraph) -> tuple[GridFrame, ...]:
     Drawn = DrawLines(Graph)
     return tuple(
@@ -69,6 +71,7 @@ def ReadFrames(Graph: CageGraph) -> tuple[GridFrame, ...]:
     )
 
 
+# the edge labels contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def EdgeLabels(
     Plans: tuple[EdgePlan, ...], Scale: int, FaceCount: int
 ) -> tuple[str, ...]:
@@ -81,6 +84,7 @@ def EdgeLabels(
     return tuple(Labels)
 
 
+# the layout edge contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def LayoutEdge(
     Graph: CageGraph,
     PlanValue: EdgePlan,
@@ -101,6 +105,7 @@ def LayoutEdge(
     )
 
 
+# the layout edges contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def LayoutEdges(
     Graph: CageGraph,
     Plans: tuple[EdgePlan, ...],
@@ -116,6 +121,7 @@ def LayoutEdges(
     )
 
 
+# the plan curve contract needs a stable decomposition so cap boundaries remain connected to the surrounding surface
 def PlanCurve(PlanValue: EdgePlan, Scale: int) -> CappedCurve:
     Lower, Upper = PlanRange(PlanValue, Scale)
     Maker = PlanValue.Maker
@@ -124,6 +130,7 @@ def PlanCurve(PlanValue: EdgePlan, Scale: int) -> CappedCurve:
     )
 
 
+# the wide trace contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def WideTrace(
     WidePlans: tuple[EdgePlan, ...], UseValue: SideUse, Scale: int
 ) -> BsCurve:
@@ -131,6 +138,7 @@ def WideTrace(
     return UseTrace(WidePlans[CurveIndex], Outer, Scale)
 
 
+# the loop uses contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def LoopUses(
     LoopValue: tuple[SideUse, ...],
     Plans: tuple[EdgePlan, ...],
@@ -153,6 +161,7 @@ def LoopUses(
     )
 
 
+# the layout faces contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def LayoutFaces(
     Graph: CageGraph,
     Loops: tuple[tuple[SideUse, ...], ...],
@@ -173,6 +182,7 @@ def LayoutFaces(
     )
 
 
+# the crease ends contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def CreaseEnds(Surface: TsplineSurface, Graph: CageGraph) -> frozenset[int]:
     Mapping = Surface.Mapping
     Owners: frozenset[int] = (
@@ -188,16 +198,19 @@ def CreaseEnds(Surface: TsplineSurface, Graph: CageGraph) -> frozenset[int]:
     )
 
 
+# the dart point decision must stay consistent so cap boundaries remain connected to the surrounding surface
 def IsDartPoint(Graph: CageGraph, Vertex: int) -> bool:
     return Graph.Regular[Vertex] and SharpCount(Graph, Vertex) == 1
 
 
+# the hub point decision must stay consistent so cap boundaries remain connected to the surrounding surface
 def IsHubPoint(Graph: CageGraph, Vertex: int) -> bool:
     if IsDartPoint(Graph, Vertex):
         return False
     return IsCapPoint(Graph, Vertex) or IsCornerPoint(Graph, Vertex)
 
 
+# the dart covered decision must stay consistent so cap boundaries remain connected to the surrounding surface
 def IsDartCovered(Graph: CageGraph, Vertex: int) -> bool:
     for LinkIndex in Graph.Fans[Vertex]:
         HeadVertex = Graph.Heads[LinkIndex]
@@ -211,6 +224,7 @@ def IsDartCovered(Graph: CageGraph, Vertex: int) -> bool:
     return False
 
 
+# invalid darts input must fail here so cap boundaries remain connected to the surrounding surface
 def CheckDarts(Surface: TsplineSurface, Graph: CageGraph) -> None:
     if len(Surface.Grips) > len(Surface.Topology.Vertices):
         return
@@ -221,6 +235,7 @@ def CheckDarts(Surface: TsplineSurface, Graph: CageGraph) -> None:
             )
 
 
+# the frame periods contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def FramePeriods(Frame: GridFrame, Scale: int) -> tuple[int, int]:
     GridValue = Frame.Grid
     return (
@@ -229,6 +244,7 @@ def FramePeriods(Frame: GridFrame, Scale: int) -> tuple[int, int]:
     )
 
 
+# the capped layout contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def CappedLayout(Surface: TsplineSurface) -> CappedShape:
     CheckSurface(Surface)
     Scale = KnotScale(Surface)

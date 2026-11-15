@@ -15,6 +15,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartCases import (
     PartSpec,
 )
 
+# the kinds cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KKinds = {
     "Fillet": (FeatureKind.KFillet,),
     "Chamfer": (FeatureKind.KChamfer,),
@@ -29,6 +30,7 @@ KKinds = {
 }
 
 
+# the part adapter contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KPartCases))
 def TestPartAdapter(NameValue: str) -> None:
     SpecValue = PartSpec(NameValue)
@@ -43,6 +45,7 @@ def TestPartAdapter(NameValue: str) -> None:
     _ = ReadDocument(EncodeDocument(Document))
 
 
+# the part counts contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", ("Fillet", "Chamfer", "Shell"))
 def TestPartCounts(NameValue: str) -> None:
     Counts = MakeFusionDoc(PartSpec(NameValue)).bodies[0].topology

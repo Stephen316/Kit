@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the bs curve operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeBsCurve(Value: BsCurve, Dimension: int) -> tuple[KAsmToken, ...]:
     CheckBsCurve(Value, Dimension)
     return (
@@ -26,5 +27,6 @@ def MakeBsCurve(Value: BsCurve, Dimension: int) -> tuple[KAsmToken, ...]:
     )
 
 
+# the bs option operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeBsOption(Value: BsCurve | None) -> tuple[KAsmToken, ...]:
     return (NameWord("nullbs"),) if Value is None else MakeBsCurve(Value, 2)

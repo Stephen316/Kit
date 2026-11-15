@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Validation.CheckConeFrame import (
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# invalid plane input must fail here so public geometry remains consistent with native circular topology
 def CheckPlane(Plane: PlaneNode, Center: tuple[float, float, float]) -> None:
     SameNumbers(Plane.OriginCm, Center)
     SameNumbers(Plane.Normal, (0.0, 0.0, 1.0))
@@ -21,6 +22,7 @@ def CheckPlane(Plane: PlaneNode, Center: tuple[float, float, float]) -> None:
         )
 
 
+# invalid cone input must fail here so public geometry remains consistent with native circular topology
 def CheckCone(Surface: ConeNode, Model: FrustumBody) -> None:
     if any(
         Value is not None

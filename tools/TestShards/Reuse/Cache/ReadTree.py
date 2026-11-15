@@ -6,6 +6,7 @@ from tools.TestShards.Reuse.Cache.DigestFolders import DigestFolders
 from tools.TestShards.Reuse.Cache.TreeIndex import TreeIndex
 
 
+# the tree operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def ReadTree(TreeBytes: bytes) -> TreeIndex:
     Blobs: dict[str, str] = {}
     for EntryBytes in TreeBytes.split(b"\0"):

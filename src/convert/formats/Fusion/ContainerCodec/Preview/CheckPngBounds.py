@@ -6,6 +6,7 @@ from convert.formats.Fusion.ContainerCodec.ContainerLayout import (
 )
 
 
+# invalid png bounds input must fail here so archive members retain their native ownership and reference relationships
 def CheckPngBounds(Payload: bytes) -> None:
     if (
         type(Payload) is not bytes

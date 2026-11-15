@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Validation.FrustumNumbers import (
 )
 
 
+# invalid rim fields input must fail here so circular boundaries retain consistent cone and rim geometry
 def CheckRimFields(Frame: RimFrame) -> None:
     for Vector in (
         Frame.CenterCm,

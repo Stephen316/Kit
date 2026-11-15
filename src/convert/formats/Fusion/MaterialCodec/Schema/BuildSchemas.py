@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Schema.SchemaTable import KSchemaTable
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# the schemas operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def BuildSchemas(Schemas: tuple[MaterialSchema, ...]) -> KSchemaTable:
     if not 1 <= len(Schemas) <= KMaxCount:
         raise ValueError("Fusion material schemas exceed the count limit")

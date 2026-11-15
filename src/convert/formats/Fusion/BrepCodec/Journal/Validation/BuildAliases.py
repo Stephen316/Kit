@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# the aliases operation needs a consistent construction rule so inconsistent revision links fail before history reconstruction
 def BuildAliases(Model: JournalModel) -> tuple[int, ...]:
     Aliases = list(range(len(Model.Entities)))
     Archived: set[int] = set()

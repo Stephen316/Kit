@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.RegionE
 )
 
 
+# invalid region edge input must fail here so supporting records retain their owning document relationships
 def CheckRegionEdge(
     Value: RegionEdge,
     StartPoint: tuple[float, float, float],

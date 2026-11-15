@@ -53,13 +53,16 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
     PrismSolid,
 )
 
+# the combine codes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KCombineCodes = {"join": 0, "cut": 1, "intersect": 2}
 
 
+# the stage body contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def StageBody(Stage: PartStage, Ordinal: int) -> PrismSolid:
     return next(Solid for Solid in Stage.Bodies if Solid.Ordinal == Ordinal)
 
 
+# the tool operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddToolMut(
     Author: AuthorState, Prefix: str, Index: int, Context: tuple[PrismSolid, int, int]
 ) -> list[str]:
@@ -75,6 +78,7 @@ def AddToolMut(
     return Roles
 
 
+# the combine operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddCombineMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, BodyTags: dict[int, int]
 ) -> list[str]:
@@ -106,6 +110,7 @@ def AddCombineMut(
     return Children
 
 
+# the split operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSplitMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature = Stage.Feature
     if not isinstance(Feature, SplitSpec):
@@ -162,6 +167,7 @@ def AddSplitMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]
     return Children
 
 
+# the source operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSourceMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, BodyTags: dict[int, int]
 ) -> list[str]:
@@ -186,6 +192,7 @@ def AddSourceMut(
     return Children
 
 
+# the copies operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddCopiesMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     MainRole = Prefix + "feature"
     Copies = Stage.Bodies[1 - len(Stage.Operations) :]
@@ -205,6 +212,7 @@ def AddCopiesMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     )
 
 
+# the body copy operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBodyCopyMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, BodyTags: dict[int, int]
 ) -> list[str]:
@@ -229,6 +237,7 @@ def AddBodyCopyMut(
     return Children
 
 
+# the body stage operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBodyStage(
     Author: AuthorState, Stage: PartStage, Prefix: str, BodyTags: dict[int, int]
 ) -> list[str]:

@@ -7,6 +7,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 
 
+# invalid feature input must fail here so public document claims remain grounded in native records
 def CheckFeature(Graph: NativeGraph, NodeValue: NativeNode) -> None:
     RequireFields(
         NodeValue,

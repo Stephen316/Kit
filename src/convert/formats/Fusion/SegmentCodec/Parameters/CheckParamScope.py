@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Chronology.PackHistRefs import (
 from convert.formats.Fusion.SegmentCodec.Parameters.ParamScope import ParamScope
 
 
+# invalid parameter scope input must fail here so native records retain their segment ownership and schema
 def CheckParamScope(Value: ParamScope) -> None:
     Owners = (Value.CollectionId, Value.RegistryId, Value.ComponentId)
     if (

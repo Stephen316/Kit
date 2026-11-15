@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the torus node operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeTorusNode(Value: TorusNode) -> AsmRecord:
     CheckRoundNode(Value)
     return AsmRecord(

@@ -24,6 +24,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadJournal import ReadJournal
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the prism history operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismHist(Payload: bytes) -> PrismHistory:
     WireValue = ReadPrismWire(Payload)
     Graph = ReadPrismGraph(WireValue.Table)

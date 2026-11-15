@@ -12,6 +12,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveMeta import
 )
 
 
+# the asset operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitAsset(Value: DrawingAsset) -> bytes:
     if not isinstance(CastValue(object, Value), DrawingAsset) or Value.Version not in (
         KModernVersion,
@@ -45,6 +46,7 @@ def EmitAsset(Value: DrawingAsset) -> bytes:
     return bytes(SinkValue.Buffer)
 
 
+# the links operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitLinksMut(SinkValue: ManifestSink, Value: DrawingAsset) -> None:
     SinkValue.AddCount(Value.Links, KMaxManifestRows)
     for LinkValue in Value.Links:

@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
 from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
 from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 
+# the supported export surface must stay explicit so boundary representation history does not expose incidental implementation imports
 __all__ = [
     "BodyIdentity",
     "EmitHistory",

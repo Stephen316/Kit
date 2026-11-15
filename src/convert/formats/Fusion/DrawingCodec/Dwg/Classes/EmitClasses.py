@@ -16,9 +16,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassRow import DwgClassRo
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassTable import DwgClassTable
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
 
+# class trail must remain consistent across callers so section boundaries and object references remain consistent
 KClassTrail = bytes(8)
 
 
+# the class row operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutClassRowMut(Writer: BitWriter, Texts: list[str], ClassRow: DwgClassRow) -> None:
     PutBitShortMut(Writer, ClassRow.ClassNumber)
     PutBitShortMut(Writer, ClassRow.ProxyFlags)
@@ -35,6 +37,7 @@ def PutClassRowMut(Writer: BitWriter, Texts: list[str], ClassRow: DwgClassRow) -
         PutBitLongMut(Writer, Value)
 
 
+# the classes operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitClasses(ClassTable: DwgClassTable, FileHeader: DwgFileHeader) -> bytes:
     HasHighWord = (
         FileHeader.VersionText == "AC1032" or FileHeader.MaintenanceVersion > 3

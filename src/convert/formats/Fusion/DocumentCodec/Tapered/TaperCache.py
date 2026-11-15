@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Tapered.TaperModel import TaperModel
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the taper cache contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def TaperCache(Author: AuthorState) -> list[dict[str, object]]:
     Model = TaperModel(Author.SpecValue)
     Lower, Upper, Height = (

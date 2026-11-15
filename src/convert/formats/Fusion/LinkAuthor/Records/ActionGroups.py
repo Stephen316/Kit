@@ -24,9 +24,11 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 )
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# birthday must remain consistent across callers so cross document references retain their intended ownership
 KBirthday = 260
 
 
+# the node group contract needs a shared interpretation so cross document references retain their intended ownership
 def NodeGroup(DataId: int, Parent: int | None) -> EntityGroup[KEntityValue]:
     return MakeGroup(
         KDcNode,
@@ -39,6 +41,7 @@ def NodeGroup(DataId: int, Parent: int | None) -> EntityGroup[KEntityValue]:
     )
 
 
+# the feature groups contract needs a shared interpretation so cross document references retain their intended ownership
 def FeatureGroups(
     BaseName: str, KeySet: ActionKeys, Context: int | None, Children: tuple[int, ...]
 ) -> tuple[EntityGroup[KEntityValue], ...]:
@@ -74,6 +77,7 @@ def FeatureGroups(
     )
 
 
+# the update record contract needs a shared interpretation so cross document references retain their intended ownership
 def UpdateRecord(ObjectId: int, Owner: int) -> EntityRecord:
     return MakeRecord(
         ObjectId,
@@ -90,6 +94,7 @@ def UpdateRecord(ObjectId: int, Owner: int) -> EntityRecord:
     )
 
 
+# the action records contract needs a shared interpretation so cross document references retain their intended ownership
 def ActionRecords(KeySet: ActionKeys, NodesId: int) -> tuple[EntityRecord, ...]:
     return (
         ParentRecord(KeySet.Feature, NodesId),

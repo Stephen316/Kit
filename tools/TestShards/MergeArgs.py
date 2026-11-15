@@ -4,6 +4,7 @@ import argparse as ArgParse
 from pathlib import Path as FilePath
 
 
+# the merge args operation needs a consistent construction rule so every collected case receives exactly one verified outcome
 def BuildMergeArgs() -> ArgParse.ArgumentParser:
     ParserInfo = ArgParse.ArgumentParser(
         description="Verify shard report logs against the plan and record durations."

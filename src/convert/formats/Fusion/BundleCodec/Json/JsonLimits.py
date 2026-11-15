@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BundleCodec.Json.JsonTypes import KJsonValue
 
 
+# invalid json tree input must fail here so linked archive members retain their document relationships
 def CheckJsonTree(Value: KJsonValue) -> None:
     Pending = [(Value, 0)]
     Count = 0

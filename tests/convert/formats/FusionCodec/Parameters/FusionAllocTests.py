@@ -7,11 +7,13 @@ from convert.adapters.Fusion.Adapter import FusionReader
 from convert.formats.Fusion.ZipParameters import ReadZipParams
 from tests.convert.formats.FusionCodec.Parameters.RebuildParams import RebuildParams
 
+# oracle root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KOracleRoot = (
     FilePath(__file__).resolve().parents[5] / "re/Fusion/LocalOracle/Allocation"
 )
 
 
+# the allocations contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     ("FileName", "Indexes"),
     (

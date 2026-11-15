@@ -11,30 +11,35 @@ from convert.formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# series items needs an explicit validity boundary so public document claims remain grounded in native records
 def SeriesItems(Value: KEntityValue) -> tuple[KEntityValue, ...]:
     if not isinstance(Value, ValueSeries):
         raise ValueError("Native Fusion semantic field requires a sequence")
     return Value.Items
 
 
+# mapping items must resolve unambiguously so public document claims remain grounded in native records
 def MappingItems(Value: KEntityValue) -> tuple[ValuePair[KEntityValue], ...]:
     if not isinstance(Value, ValueMap):
         raise ValueError("Native Fusion semantic field requires a map")
     return Value.Entries
 
 
+# number value needs an explicit validity boundary so public document claims remain grounded in native records
 def NumberValue(Value: KEntityValue) -> float:
     if type(Value) not in (int, float) or not IsFinite(CastValue(float | int, Value)):
         raise ValueError("Native Fusion semantic field requires a finite number")
     return float(CastValue(float | int, Value))
 
 
+# text value needs an explicit validity boundary so public document claims remain grounded in native records
 def TextValue(Value: KEntityValue) -> str:
     if not isinstance(Value, str):
         raise ValueError("Native Fusion semantic field requires text")
     return Value
 
 
+# object fields needs an explicit validity boundary so public document claims remain grounded in native records
 def ObjectFields(Value: KEntityValue) -> dict[str, KEntityValue]:
     if isinstance(Value, OptionalValue):
         Value = Value.Value
@@ -49,11 +54,13 @@ def ObjectFields(Value: KEntityValue) -> dict[str, KEntityValue]:
     raise ValueError("Native Fusion semantic field requires a value object")
 
 
+# the coords operation needs one geometric convention so public document claims remain grounded in native records
 def PointCoords(Value: KEntityValue) -> tuple[float, float, float]:
     Fields = ObjectFields(Value)
     return NumberValue(Fields["x"]), NumberValue(Fields["y"]), NumberValue(Fields["z"])
 
 
+# invalid identity input must fail here so public document claims remain grounded in native records
 def CheckIdentity(Value: KEntityValue) -> None:
     if not isinstance(Value, MatrixValue) or Value.Entries not in (
         None,

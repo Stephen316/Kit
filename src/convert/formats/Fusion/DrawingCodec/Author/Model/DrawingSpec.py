@@ -9,6 +9,7 @@ from convert.formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec
 from convert.formats.Fusion.DrawingCodec.Author.Model.TrackedEdge import TrackedEdge
 
 
+# drawing specification needs an explicit state contract so sheet objects retain their intended document relationships
 @MakeDataClass(frozen=True, slots=True)
 class DrawingSpec:
     DrawingName: str

@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the surface operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildSurface(Model: CylinderBody) -> GeometryRecord:
     Bound = KeywordToken("I")
     return MakeRecord(

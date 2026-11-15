@@ -7,6 +7,7 @@ from convert.formats.Fusion.ContainerCodec.Model.SegmentStreams import SegmentSt
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 
+# invalid streams input must fail here so archive members retain their native ownership and reference relationships
 def CheckStreams(Value: SegmentStreams, SlotValue: SegmentSlot) -> None:
     if (
         not isinstance(CastValue(object, Value), SegmentStreams)
@@ -21,6 +22,8 @@ def CheckStreams(Value: SegmentStreams, SlotValue: SegmentSlot) -> None:
     Metadata = ReadMetaWire(Value.Metadata, Segment=SlotValue.Segment)
     if Metadata.Header.SegmentId != SlotValue.SegmentId:
         raise ValueError("Fusion manifest and segment identity disagree")
+
+    # ordering by entry object id must stay deterministic so container reconstruction resolves equivalent inputs consistently
     Primary = sorted(Metadata.Primary, key=lambda Entry: Entry.ObjectId)
     if any(
         Earlier.Offset >= Later.Offset for Earlier, Later in zip(Primary, Primary[1:])

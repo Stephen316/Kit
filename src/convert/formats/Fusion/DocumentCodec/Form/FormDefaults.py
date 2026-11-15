@@ -1,3 +1,4 @@
+# the form defaults contract needs a shared interpretation so editable control cages retain their document relationships
 def FormDefaults() -> dict[str, dict[str, object]]:
     Frame: dict[str, object] = {"rMesh": None, "tsID": 0}
     return {

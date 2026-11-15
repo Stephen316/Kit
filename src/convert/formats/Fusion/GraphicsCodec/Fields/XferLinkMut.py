@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer link needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferLinkMut(
     State: SceneCodec, WireKind: str, Current: object
 ) -> TextureValue | ObjectRef | None:

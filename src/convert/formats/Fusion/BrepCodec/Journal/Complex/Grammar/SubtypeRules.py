@@ -24,6 +24,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.RuleWords import (
     Repeat,
 )
 
+# the helix frame order must stay explicit so nested geometry retains unambiguous record boundaries
 KHelixFrame = (
     KPointLeaf,
     KVectorLeaf,
@@ -37,6 +38,7 @@ KHelixFrame = (
     KOptionCall,
 )
 
+# the blend frame order must stay explicit so nested geometry retains unambiguous record boundaries
 KBlendFrame = (
     KBoundPair,
     KBoundPair,
@@ -50,6 +52,7 @@ KBlendFrame = (
     KIntLeaf,
 )
 
+# the subtype rules vocabulary must stay centralized so journal grammar decoding agrees on supported native identities
 KSubtypeRules: dict[str, KGrammarRule] = {
     "exact_spl_sur": Chain(KIntLeaf, KTailCall, KBoundPair, KBoundPair, KEnumLeaf),
     "exact_int_cur": Chain(KContextCall, KBoundPair, KEnumLeaf, KEnumLeaf),

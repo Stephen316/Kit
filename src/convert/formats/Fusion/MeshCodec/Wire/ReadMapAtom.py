@@ -1,6 +1,7 @@
 from convert.formats.Fusion.MeshCodec.Wire.ByteCursor import ByteCursor
 
 
+# the map atom operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadMapAtom(Cursor: ByteCursor) -> str | int | bool:
     CodeValue = Cursor.Integer(1)
     if CodeValue < 128:

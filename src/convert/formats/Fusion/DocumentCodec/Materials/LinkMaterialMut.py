@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.VisualValue import VisualVal
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# link material must resolve unambiguously so appearance references remain connected to their owning entities
 def LinkMaterialMut(Author: AuthorState) -> None:
     Author.Materials = BuildMaterial(Author.SpecValue.Material)
     Identity = Author.Materials.Identity

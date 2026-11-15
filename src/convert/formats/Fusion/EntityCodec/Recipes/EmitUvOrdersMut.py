@@ -6,6 +6,7 @@ from convert.formats.Fusion.EntityCodec.Wire.EmitAtom import EmitAtom
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the uv orders operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitUvOrdersMut(
     Output: FeatureSink, Entries: tuple[UvOrderEntry, ...], Catalog: EntityCatalog
 ) -> None:

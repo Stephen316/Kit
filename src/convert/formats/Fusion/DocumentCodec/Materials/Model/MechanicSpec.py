@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.DirectionValue import 
 )
 
 
+# mechanic specification needs an explicit state contract so appearance references remain connected to their owning entities
 @MakeDataClass(frozen=True, slots=True)
 class MechanicSpec:
     YoungModulus: float | None = None

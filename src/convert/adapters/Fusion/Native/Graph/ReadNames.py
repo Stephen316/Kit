@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
 )
 
 
+# the names operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadNames() -> tuple[NativeSchema, ...]:
     RootPath = Path(__file__).parents[4] / "formats" / "Fusion"
     Paths = (

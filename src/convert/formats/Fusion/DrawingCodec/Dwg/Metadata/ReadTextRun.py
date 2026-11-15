@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Metadata.ReadWideText import ReadWideText
 
 
+# the text run operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadTextRun(
     DataValue: bytes, Offset: int, Count: int
 ) -> tuple[tuple[str, ...], int]:

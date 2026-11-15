@@ -9,11 +9,13 @@ from convert.formats.Fusion.DocumentCodec.Materials.VisualValue import VisualVal
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the closed form decision must stay consistent so editable control cages retain their document relationships
 def IsClosedForm(Model: FormBody) -> bool:
     UseCount = sum(len(FaceValue.Uses) for FaceValue in Model.Faces)
     return UseCount == 2 * len(Model.Edges)
 
 
+# link form body must resolve unambiguously so editable control cages retain their document relationships
 def LinkFormBodyMut(Author: AuthorState, SpecValue: FormSpec, Parts: FormParts) -> None:
     Reference = Author.Reference
     Author.Change(
@@ -51,6 +53,7 @@ def LinkFormBodyMut(Author: AuthorState, SpecValue: FormSpec, Parts: FormParts) 
     )
 
 
+# link node mat must resolve unambiguously so editable control cages retain their document relationships
 def LinkNodeMatMut(Author: AuthorState) -> None:
     Author.Change(
         "form_node",

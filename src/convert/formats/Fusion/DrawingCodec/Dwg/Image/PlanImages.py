@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Image.PageKinds import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgPageImage import DwgPageImage
 
+# the page order order must stay explicit so section boundaries and object references remain consistent
 KPageOrder = (
     "AcDb:SummaryInfo",
     "AcDb:Preview",
@@ -24,9 +25,12 @@ KPageOrder = (
     "AcDb:AuxHeader",
     "AcDb:Header",
 )
+
+# map gap must remain consistent across callers so section boundaries and object references remain consistent
 KMapGap = 3
 
 
+# the plan images contract needs a stable decomposition so section boundaries and object references remain consistent
 def PlanImages(
     DwgModel: DwgFile, Contents: dict[str, bytes]
 ) -> tuple[DwgPageImage, ...]:
@@ -53,6 +57,7 @@ def PlanImages(
     return tuple(PageImages)
 
 
+# the replan file contract needs a shared interpretation so section boundaries and object references remain consistent
 def ReplanFile(DwgModel: DwgFile, Contents: dict[str, bytes]) -> DwgFile:
     MapWords = DwgModel.MapWords[:3] + (len(DwgModel.SectionInfos),)
     return ReplaceFields(

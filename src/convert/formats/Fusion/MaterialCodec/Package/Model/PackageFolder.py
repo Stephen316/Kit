@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.PackageCore import Packa
 from convert.formats.Fusion.MaterialCodec.Package.Model.ResourceInfo import ResourceInfo
 
 
+# package folder needs an explicit state contract so typed appearance properties retain their native identifiers
 @MakeDataClass(frozen=True, slots=True)
 class PackageFolder:
     Core: PackageCore

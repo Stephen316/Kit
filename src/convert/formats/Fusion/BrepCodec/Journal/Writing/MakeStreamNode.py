@@ -3,6 +3,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import IntWord, 
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the stream node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeStreamNode(Value: StreamState) -> AsmRecord:
     Numbers = (
         Value.CurrentStateId,

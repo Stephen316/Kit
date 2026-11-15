@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgAppEntry import DwgAppEntr
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgAppInfo import DwgAppInfo
 
 
+# the app info operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadAppInfo(DataValue: bytes) -> DwgAppInfo:
     LeadWord = ReadFields(DataValue, 0, "<I", "app info lead word")[0]
     InfoName, Offset = ReadWideText(DataValue, 4)

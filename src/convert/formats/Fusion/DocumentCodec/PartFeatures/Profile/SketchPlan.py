@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import (
 )
 
 
+# sketch edge needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class SketchEdge:
     Curve: KProfileCurve
@@ -19,6 +20,7 @@ class SketchEdge:
     CenterIndex: int | None
 
 
+# sketch plan needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class SketchPlan:
     OriginTag: int
@@ -30,6 +32,7 @@ class SketchPlan:
     LiftCm: float = 0.0
 
 
+# normal curve needs one geometric convention so feature parameters remain connected to the resulting geometry
 def NormalCurve(Curve: KProfileCurve) -> KProfileCurve:
     if isinstance(Curve, ArcCurve) and Curve.SweepDegrees < 0:
         return ArcCurve(
@@ -41,6 +44,7 @@ def NormalCurve(Curve: KProfileCurve) -> KProfileCurve:
     return Curve
 
 
+# the curve ends contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CurveEnds(Curve: KProfileCurve) -> tuple[tuple[float, float], ...]:
     if isinstance(Curve, LineCurve):
         return (Curve.StartMm, Curve.FinishMm)
@@ -55,6 +59,7 @@ def CurveEnds(Curve: KProfileCurve) -> tuple[tuple[float, float], ...]:
     )
 
 
+# the slot operation needs one geometric convention so feature parameters remain connected to the resulting geometry
 def PointSlotMut(Points: list[tuple[float, float]], Point: tuple[float, float]) -> int:
     for Index, Known in enumerate(Points):
         if abs(Known[0] - Point[0]) < 1e-6 and abs(Known[1] - Point[1]) < 1e-6:
@@ -63,6 +68,7 @@ def PointSlotMut(Points: list[tuple[float, float]], Point: tuple[float, float]) 
     return len(Points) - 1
 
 
+# the plan sketch contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def PlanSketch(Profile: tuple[KProfileCurve, ...], FirstTag: int) -> SketchPlan:
     Curves = [NormalCurve(Curve) for Curve in Profile]
     Points: list[tuple[float, float]] = []

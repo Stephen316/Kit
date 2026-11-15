@@ -13,6 +13,7 @@ from tools.TestShards.TallyReports import TallyReports
 from tools.TestShards.WriteDurations import WriteDurations
 
 
+# the run operation needs one orchestration boundary so every collected case receives exactly one verified outcome
 def MainRun(ArgList: list[str] | None = None) -> int:
     ArgsInfo = BuildMergeArgs().parse_args(ArgList)
     ReportsPath: FilePath = ArgsInfo.ReportsPath

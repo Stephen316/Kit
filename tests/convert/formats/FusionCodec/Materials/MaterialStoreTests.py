@@ -8,6 +8,7 @@ from tests.convert.formats.FusionCodec.Materials.CorruptStore import CorruptStor
 from tests.convert.formats.FusionCodec.Materials.ReadNative import ReadNative
 
 
+# the broken store contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Failure", ("cycle", "length", "flags", "root", "outside", "partial", "unattached")
 )

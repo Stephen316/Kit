@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# visual value needs an explicit validity boundary so appearance references remain connected to their owning entities
 def VisualValue(Author: AuthorState) -> list[dict[str, object]]:
     if Author.Materials is None:
         raise ValueError("Body appearance identity is absent")

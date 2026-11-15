@@ -18,26 +18,32 @@ from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from convert.formats.Fusion.GraphicsCodec.Model.Values.GraphicAttr import GraphicAttr
 from convert.formats.Fusion.GraphicsCodec.Model.Values.SceneSet import SceneSet
 
+# root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRoot = FilePath(__file__).resolve().parents[5]
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the bundle cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBundle = "re/Fusion/examples/.f3z/example1.f3z"
 
 
+# shared member data setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MemberData(Position: int) -> bytes:
     Bundle = ReadBundle((KRoot / KBundle).read_bytes())
     return Bundle.Documents[Position].DataValue
 
 
+# shared attribute name setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AttrName(Value: object) -> str | None:
     if not isinstance(Value, GraphicAttr):
         return None
     return CastValue(GraphicAttr[SceneSet], Value).ClassName
 
 
+# shared class names setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ClassNames(Value: object) -> set[str]:
     Pending: list[object] = [Value]
     Results: set[str] = set()
@@ -55,6 +61,7 @@ def ClassNames(Value: object) -> set[str]:
     return Results
 
 
+# the cache member contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize(
     "Position, Expected",
@@ -81,6 +88,7 @@ def TestCacheMember(Position: int, Expected: tuple[str, ...]) -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the old instance contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestOldInstance() -> None:
     Model = ReadDocument(MemberData(0))
@@ -90,6 +98,7 @@ def TestOldInstance() -> None:
     assert "GraphicsBlobFeatures" not in Versions
 
 
+# the mesh slack contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("Position", (6, 8))
 def TestMeshSlack(Position: int) -> None:
@@ -99,6 +108,7 @@ def TestMeshSlack(Position: int) -> None:
     assert Slack and all(Entry.Payload for Entry in Slack)
 
 
+# the older urn contract needs boundary coverage so stored document relationships remain consistent
 def TestOlderUrn() -> None:
     StemValue = "urn:adsk.wipprod:fs.file:vf.Example"
     assert IsOlderUrn(StemValue + "?version=12", StemValue + "?version=11")

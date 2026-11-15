@@ -14,9 +14,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the ring shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KRing = tuple[ShapeUse, ...]
 
 
+# ring loop needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def RingLoop(RingValue: KRing) -> KPlaneLoop:
     Spans: list[KPlaneSpan] = []
     for UseValue in RingValue:
@@ -27,6 +29,7 @@ def RingLoop(RingValue: KRing) -> KPlaneLoop:
     return tuple(Spans)
 
 
+# the group rings contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def GroupRings(Rings: tuple[KRing, ...], Upward: bool) -> list[tuple[KRing, ...]]:
     Loops = [RingLoop(RingValue) for RingValue in Rings]
     Outer = [
@@ -46,6 +49,8 @@ def GroupRings(Rings: tuple[KRing, ...], Upward: bool) -> list[tuple[KRing, ...]
         ]
         if not Hosts:
             raise ValueError("Fusion part cap boundary has no enclosing outer loop")
+
+        # ordering by loop area loops host index must stay deterministic so parametric feature reconstruction resolves equivalent inputs consistently
         Smallest = min(Hosts, key=lambda HostIndex: abs(LoopArea(Loops[HostIndex])))
         Groups[Smallest].append(Rings[Index])
     return [tuple(Members) for Members in Groups.values()]

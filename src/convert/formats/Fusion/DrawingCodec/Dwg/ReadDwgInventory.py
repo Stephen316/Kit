@@ -13,9 +13,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadPageMap import ReadPageMa
 from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadSections import ReadSections
 from convert.formats.Fusion.DrawingCodec.Dwg.RequireSection import RequireSection
 
+# max drawing bytes must remain consistent across callers so section boundaries and object references remain consistent
 KMaxDwgBytes = 256 * 1024 * 1024
 
 
+# the inventory operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadInventory(Content: bytes) -> DwgInventory:
     if len(Content) > KMaxDwgBytes:
         raise ValueError("DWG exceeds the 256 MiB inventory limit")
@@ -40,4 +42,5 @@ def ReadInventory(Content: bytes) -> DwgInventory:
     )
 
 
+# read drawing inventory must share the read inventory contract so native drawing reconstruction cannot drift between equivalent names
 ReadDwgInventory = ReadInventory

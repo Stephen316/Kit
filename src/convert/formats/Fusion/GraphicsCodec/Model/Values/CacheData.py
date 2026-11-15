@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# cache data needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class CacheData:
     ModeValue: int

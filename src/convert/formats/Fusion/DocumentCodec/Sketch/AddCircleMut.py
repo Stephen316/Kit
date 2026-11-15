@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.AddSketchMut import AddSketchMu
 from convert.formats.Fusion.DocumentCodec.Sketch.AddSketchDcMut import AddSketchDcMut
 
 
+# the circle operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddCircleMut(Author: AuthorState) -> None:
     Generation = Author.Policy.SketchGeneration
     FirstTag = Author.Policy.FirstSketchTag

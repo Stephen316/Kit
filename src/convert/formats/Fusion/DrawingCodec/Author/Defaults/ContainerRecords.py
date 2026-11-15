@@ -11,6 +11,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# the container records order must stay explicit so sheet objects retain their intended document relationships
 KContainerRecords = (
     MakeRecord(
         1,

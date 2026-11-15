@@ -18,6 +18,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.FormLayout import (
 )
 
 
+# invalid doc forms input must fail here so supporting records retain their owning document relationships
 def CheckDocForms(Value: DocumentModel, CheckBodies: bool = True) -> None:
     Owners = {
         Record.ObjectId: Record

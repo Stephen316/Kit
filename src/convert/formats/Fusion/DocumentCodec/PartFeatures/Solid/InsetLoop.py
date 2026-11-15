@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 
 
+# inset span needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def InsetSpan(
     Value: KPlaneSpan,
     Start: tuple[float, float],
@@ -34,6 +35,7 @@ def InsetSpan(
     return ArcSpan(Circle[0], Circle[1], Begin + Delta, -Delta, Label)
 
 
+# the inset loop contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def InsetLoop(LoopValue: KPlaneLoop, AmountCm: float, Operation: int) -> KPlaneLoop:
     Joints = [
         OffsetJoint(Value, LoopValue[(Index + 1) % len(LoopValue)], AmountCm)

@@ -84,7 +84,9 @@ read its complete standards index and every applicable rule before coding.
   Implementation requests and PR creation alone do not authorize merging.
 - Use Python for backend work, React for frontend work, and `uv` for Python
   dependencies outside `Parashell/` and `modules/`.
-- Do not add code comments or comment-oriented docstrings. Preserve required
+- Add the mandatory rationale comment above every Python declaration, lambda,
+  and module binding. Follow the skill's rationale standard. Other explanatory
+  comments and comment-oriented docstrings remain prohibited. Preserve required
   standalone licenses and third-party attribution. Use `license: MIT` in skill
   frontmatter and pin Actions and runner versions.
 - Keep chat lowercase, extremely concise, without emojis or terminal full

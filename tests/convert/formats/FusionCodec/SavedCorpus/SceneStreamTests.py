@@ -28,16 +28,21 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedFace import (
     EnhancedFace,
 )
 
+# root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRoot = FilePath(__file__).resolve().parents[5]
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the reencoded cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KReencoded = (".protein", ".smb", ".smbh")
 
+# scene path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KScenePath = "FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/"
 
+# the documents cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDocuments = (
     "re/Fusion/Study/timeline-5867579925b5/grouped.f3d",
     "re/Fusion/Study/timeline-5867579925b5/reordered_b.f3d",
@@ -50,23 +55,28 @@ KDocuments = (
     "re/Fusion/LocalOracle/RolledHistory/RolledHistoryReemitted.f3d",
 )
 
+# the bundles cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBundles = (
     "re/Fusion/examples/.f3z/example1.f3z",
     "re/Fusion/LocalOracle/Bundles/kit_production_example1.f3z",
 )
 
+# the scene members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSceneMembers = (3, 5, 8)
 
 
+# shared read members setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMembers(DataValue: bytes) -> dict[str, bytes]:
     with ZipFile(BytesIO(DataValue)) as Archive:
         return {Entry: Archive.read(Entry) for Entry in Archive.namelist()}
 
 
+# shared load bytes setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadBytes(PathName: str) -> bytes:
     return (KRoot / PathName).read_bytes()
 
 
+# shared bundle scene setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BundleScene(Position: int) -> bytes:
     Bundle = ReadBundle(LoadBytes(KBundles[0]))
     Documents = sorted(
@@ -77,6 +87,7 @@ def BundleScene(Position: int) -> bytes:
     return Documents[Position][1]
 
 
+# shared swap items setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapItems(
     Value: object, ItemKind: type[object], Change: Callable[[object], object]
 ) -> object:
@@ -101,6 +112,7 @@ def SwapItems(
     return Value
 
 
+# shared count items setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CountItems(Value: object, ItemKind: type[object]) -> int:
     if isinstance(Value, ItemKind):
         return 1
@@ -117,16 +129,19 @@ def CountItems(Value: object, ItemKind: type[object]) -> int:
     return 0
 
 
+# shared drop normal setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DropNormal(Value: object) -> object:
     Current = CastValue(EnhancedEdge, Value)
     return Replace(Current, Normals=Current.Normals[:-1])
 
 
+# shared dangle edge setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DangleEdge(Value: object) -> object:
     Current = CastValue(EnhancedFace, Value)
     return Replace(Current, EdgeIds=(65536,))
 
 
+# the scene replay contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("PathName", KDocuments)
 def TestSceneReplay(PathName: str) -> None:
@@ -147,6 +162,7 @@ def TestSceneReplay(PathName: str) -> None:
     assert CountItems(Model, EnhancedFace) > 0
 
 
+# the scene parts contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("Position", KSceneMembers)
 def TestSceneParts(Position: int) -> None:
@@ -162,6 +178,7 @@ def TestSceneParts(Position: int) -> None:
     assert ReadSceneParts(Emitted) == Scene
 
 
+# the windows ids contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestWindowsIds() -> None:
     Container = ReadContainer(LoadBytes("re/Fusion/examples/.f3d/example2.f3d"))
@@ -176,6 +193,7 @@ def TestWindowsIds() -> None:
     assert ReadSceneParts(Emitted) == Scene
 
 
+# the bundles contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("PathName", KBundles)
 def TestBundles(PathName: str) -> None:
@@ -183,6 +201,7 @@ def TestBundles(PathName: str) -> None:
     assert ReadBundle(EmitBundle(Bundle)) == Bundle
 
 
+# the edge reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestEdgeReject() -> None:
     Model = ReadDocument(LoadBytes(KDocuments[0]))
@@ -191,6 +210,7 @@ def TestEdgeReject() -> None:
         _ = EmitParsed(CastValue(DocumentModel, Broken))
 
 
+# the face reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestFaceReject() -> None:
     Model = ReadDocument(LoadBytes(KDocuments[0]))

@@ -1,9 +1,11 @@
 from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
+# cached entity must remain consistent across callers so editable control cages retain their document relationships
 KCachedEntity = 0
 
 
+# link tool must resolve unambiguously so editable control cages retain their document relationships
 def LinkToolMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Author.Change(
@@ -43,6 +45,7 @@ def LinkToolMut(Author: AuthorState) -> None:
     )
 
 
+# link graph must resolve unambiguously so editable control cages retain their document relationships
 def LinkGraphMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     FeatureRef, DataRef, ToolRef = (
@@ -77,6 +80,7 @@ def LinkGraphMut(Author: AuthorState) -> None:
     )
 
 
+# link form must resolve unambiguously so editable control cages retain their document relationships
 def LinkFormMut(Author: AuthorState, SpecValue: FormSpec) -> None:
     Reference = Author.Reference
     Operation = Author.Policy.FirstOperationId

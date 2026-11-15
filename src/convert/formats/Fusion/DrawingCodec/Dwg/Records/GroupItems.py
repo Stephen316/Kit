@@ -17,6 +17,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import (
     AsText,
 )
 
+# the group ranges order must stay explicit so section boundaries and object references remain consistent
 KGroupRanges = (
     (0, 9, "Text"),
     (10, 18, "Point"),
@@ -43,6 +44,7 @@ KGroupRanges = (
 )
 
 
+# the group layout contract needs a stable decomposition so section boundaries and object references remain consistent
 def GroupLayout(GroupCode: int) -> str:
     for LowCode, HighCode, Layout in KGroupRanges:
         if LowCode <= GroupCode <= HighCode:
@@ -50,6 +52,7 @@ def GroupLayout(GroupCode: int) -> str:
     raise ValueError(f"DWG xrecord group code {GroupCode} is unsupported")
 
 
+# the group value operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadGroupValue(
     DataValue: bytes, Position: int, Layout: str
 ) -> tuple[KDwgValue, int]:
@@ -71,6 +74,7 @@ def ReadGroupValue(
     return (float(Value) if Layout == "<d" else int(Value)), Position + len(Packed)
 
 
+# the group items operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadGroupItems(DataValue: bytes) -> DwgRecord:
     Fields: list[DwgField] = []
     Position = 0
@@ -84,6 +88,7 @@ def ReadGroupItems(DataValue: bytes) -> DwgRecord:
     return DwgRecord(tuple(Fields))
 
 
+# the group operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeGroup(GroupCode: int, Value: KDwgValue) -> bytes:
     Layout = GroupLayout(GroupCode)
     if Layout == "Text":
@@ -101,6 +106,7 @@ def EncodeGroup(GroupCode: int, Value: KDwgValue) -> bytes:
     return PackFields(Layout, AsInt(Value))
 
 
+# the groups operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeGroups(GroupItems: DwgRecord) -> bytes:
     Encoded = bytearray()
     for Entry in GroupItems.RecordFields:

@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.Graph.DimGraphMap
 )
 
 
+# link dim graph must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkDimGraphMut(Author: AuthorState) -> None:
     Edges = DimGraphEdges(Author)
     Nodes = [
@@ -48,6 +49,8 @@ def LinkDimGraphMut(Author: AuthorState) -> None:
             DynamicRole = RoleName.replace("_binding", "_dynamic")
         Predecessors = [Source for Source, Target, _ in Edges if Target == RoleName]
         if Predecessors:
+
+            # ordering by author roles value must stay deterministic so document reconstruction resolves equivalent inputs consistently
             Author.Change(
                 DynamicRole,
                 predecessors=[

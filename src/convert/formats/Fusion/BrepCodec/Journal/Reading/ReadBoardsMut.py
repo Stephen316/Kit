@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.IsPresentMut import
 )
 
 
+# the boards operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadBoardsMut(Cursor: FieldCursor) -> tuple[BulletinBoard, ...]:
     Boards: list[BulletinBoard] = []
     while IsPresentMut(Cursor):

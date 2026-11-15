@@ -4,6 +4,7 @@ from math import copysign as CopySign, sqrt as SquareRoot
 from convert.formats.Fusion.MeshCodec.Model.ParaMesh import ParaMesh
 
 
+# corner normal needs an explicit validity boundary so vertex and index streams retain their intended connectivity
 def CornerNormal(Value: ParaMesh, Ordinal: int) -> tuple[float, float, float]:
     if type(Ordinal) is not int or not 0 <= Ordinal < len(Value.Corners):
         raise ValueError("Fusion mesh corner ordinal exceeds topology")

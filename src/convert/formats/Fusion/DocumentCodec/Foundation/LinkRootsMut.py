@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# link roots must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkRootsMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Author.Change(

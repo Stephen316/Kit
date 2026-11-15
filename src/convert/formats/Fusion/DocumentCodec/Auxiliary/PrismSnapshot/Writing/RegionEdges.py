@@ -7,6 +7,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the region edges contract needs a shared interpretation so supporting records retain their owning document relationships
 def RegionEdges(Region: RegionFrame, Start: int) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(
@@ -26,6 +27,7 @@ def RegionEdges(Region: RegionFrame, Start: int) -> tuple[GeometryRecord, ...]:
     )
 
 
+# the region vertices contract needs a shared interpretation so supporting records retain their owning document relationships
 def RegionVertices(Region: RegionFrame, Start: int) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

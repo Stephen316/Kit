@@ -7,6 +7,7 @@ from convert.formats.Fusion.DrawingCodec.Package.ReadCentral import ReadCentral
 from convert.formats.Fusion.DrawingCodec.Package.ReadLocal import ReadLocal
 
 
+# the package operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadPackage(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> DrawingPackage:

@@ -4,6 +4,7 @@ from typing import cast as CastValue
 from interchange.core.ModelBase import ModelBase, ModelDataMut
 
 
+# material record needs an explicit state contract so independent adapters agree on document semantics
 @ModelDataMut
 class MaterialRecord(ModelBase):
     EntityId: str
@@ -11,6 +12,7 @@ class MaterialRecord(ModelBase):
     Density: float
     ColorValue: tuple[float, float, float, float]
 
+    # invalid material record state must fail at construction so interchange modeling never receives an inconsistent contract
     def __post_init__(self) -> None:
         if not self.EntityId or not self.EntityName:
             raise ValueError("material identity and name must be nonempty")
@@ -30,10 +32,12 @@ class MaterialRecord(ModelBase):
                 "material color must contain four finite channels between zero and one"
             )
 
+    # the id contract needs a shared interpretation so independent adapters agree on document semantics
     @property
     def id(self) -> str:
         return self.EntityId
 
+    # the name contract needs a shared interpretation so independent adapters agree on document semantics
     @property
     def name(self) -> str:
         return self.EntityName

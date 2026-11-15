@@ -12,6 +12,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.CheckFieldEnd impor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# history streams need stable state links so journal reconstruction can preserve native revision ownership
 def ReadStreamNode(Record: AsmRecord) -> StreamState:
     if Record.Name != "history_stream":
         raise ValueError("Missing Fusion history-stream record")

@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckTimestamp impo
 )
 
 
+# invalid resources input must fail here so typed appearance properties retain their native identifiers
 def CheckResources(
     Values: tuple[ResourceInfo, ...], Names: tuple[str, ...], ContentType: str
 ) -> None:

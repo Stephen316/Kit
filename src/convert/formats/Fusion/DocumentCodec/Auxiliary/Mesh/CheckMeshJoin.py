@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
 from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 
 
+# invalid mesh join input must fail here so supporting records retain their owning document relationships
 def CheckMeshJoin(
     Geometry: EntityRecord,
     Owners: dict[int, EntityRecord],

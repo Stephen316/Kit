@@ -6,6 +6,7 @@ from typing import cast as CastValue
 from tools.TestShards.Reuse.Track.LocateFile import LocateFile
 
 
+# the audit path contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def AuditPath(RootText: str, PathValue: object) -> str | None:
     RawValue: object = PathValue
     if isinstance(PathValue, OsLib.PathLike):

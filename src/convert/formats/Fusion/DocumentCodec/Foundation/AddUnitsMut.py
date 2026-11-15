@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the units operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddUnitsMut(Author: AuthorState) -> None:
     Choices: list[tuple[str | int, str]] = [
         ("ModelingLength", "millimeter"),

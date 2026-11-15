@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Model.NamedMetadata import NamedMetadata
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# shared edit named setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EditNamed(Records: tuple[EntityRecord, ...]) -> tuple[EntityRecord, ...]:
     Target = next(Record for Record in Records if Record.IsPrimary)
     Metadata = (

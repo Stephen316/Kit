@@ -15,6 +15,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 from convert.formats.Fusion.MaterialCodec.Package.PackageLimits import KFolderSets
 
 
+# the package entries contract needs a shared interpretation so typed appearance properties retain their native identifiers
 def PackageEntries(Value: MaterialPackage) -> dict[str, bytes]:
     Prefix = Value.AssetCore.Identifier + "/"
     Folders = KFolderSets[0] if Value.Resources is None else KFolderSets[1]

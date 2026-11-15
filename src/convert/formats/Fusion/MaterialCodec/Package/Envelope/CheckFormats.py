@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.ParsePackageXml import (
 )
 
 
+# invalid formats input must fail here so typed appearance properties retain their native identifiers
 def CheckFormats(Types: bytes, Format: bytes) -> None:
     RootValue = ParsePackageXml(Types)
     CheckElement(RootValue, "{" + KTypeNamespace + "}Types", {})

@@ -3,6 +3,7 @@ from uuid import uuid4 as MakeUuid
 from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialIds import MaterialIds
 
 
+# the create mat ids contract needs a shared interpretation so appearance references remain connected to their owning entities
 def CreateMatIds() -> MaterialIds:
     return MaterialIds(
         PackageId=str(MakeUuid()),

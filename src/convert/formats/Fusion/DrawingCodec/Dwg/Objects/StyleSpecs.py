@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Objects.SpecParts import (
     KTableCommon,
 )
 
+# the style specifications vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KStyleSpecs = {
     "DIMSTYLE": KTableCommon
     + (

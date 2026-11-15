@@ -24,17 +24,28 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     Scaled,
 )
 
+# reach must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KReach = 1e-6
+
+# edge gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KEdgeGap = 1e-6
+
+# flat gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KFlatGap = 1e-12
+
+# ray angle must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KRayAngle = 0.5772156649015329
+
+# the ray step order must stay explicit so projected boundaries retain their intended visibility and geometry
 KRayStep = (Cosine(KRayAngle), SineOf(KRayAngle))
 
 
+# the on sweep decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsOnSweep(Angle: float, Opening: float, Sweep: float) -> bool:
     return Sweep >= KFullTurn - KFlatGap or (Angle - Opening) % KFullTurn <= Sweep
 
 
+# the border gap contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def BorderGap(Bound: FlatLine | FlatArc, Point: KPointPair) -> float:
     if isinstance(Bound, FlatLine):
         StepX = Bound.Finish[0] - Bound.Start[0]
@@ -60,6 +71,7 @@ def BorderGap(Bound: FlatLine | FlatArc, Point: KPointPair) -> float:
     )
 
 
+# the count operation needs one geometric convention so projected boundaries retain their intended visibility and geometry
 def CrossCount(Bound: FlatLine | FlatArc, Point: KPointPair) -> int:
     StepX, StepY = KRayStep
     if isinstance(Bound, FlatLine):
@@ -90,6 +102,7 @@ def CrossCount(Bound: FlatLine | FlatArc, Point: KPointPair) -> int:
     )
 
 
+# the flat cover decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsFlatCover(Shape: FlatFace, Point: KPointTriple, Sight: KPointTriple) -> bool:
     Facing = DotProduct(Sight, Shape.Normal)
     if abs(Facing) < KFlatGap:
@@ -104,6 +117,7 @@ def IsFlatCover(Shape: FlatFace, Point: KPointTriple, Sight: KPointTriple) -> bo
     return sum(CrossCount(Bound, OnPlane) for Bound in Shape.Bounds) % 2 == 1
 
 
+# the round reaches contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def RoundReaches(
     Shape: RoundFace, Point: KPointTriple, Sight: KPointTriple
 ) -> list[float]:
@@ -124,6 +138,7 @@ def RoundReaches(
     return [(-Linear - Rooted) / (2 * Square), (-Linear + Rooted) / (2 * Square)]
 
 
+# the inside round decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsInsideRound(Shape: RoundFace, Point: KPointTriple) -> bool:
     Offset = Minus(Point, Shape.Origin)
     Height = DotProduct(Offset, Shape.Along)
@@ -146,6 +161,7 @@ def IsInsideRound(Shape: RoundFace, Point: KPointTriple) -> bool:
     return Above % 2 == 1
 
 
+# the hidden decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsHidden(Shape: SolidShape, Point: KPointTriple, Sight: KPointTriple) -> bool:
     if any(IsFlatCover(Planar, Point, Sight) for Planar in Shape.Flats):
         return True

@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakeColor
 
 
+# link comp must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkCompMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     BodyFields: dict[str, object] = dict(

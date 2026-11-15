@@ -9,6 +9,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism edge operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismEdge(Table: AsmTable, Identity: int, Roles: PrismRoles) -> PrismEdge:
     Record = RequireAsm(Table, Identity, "edge", 11)
     Coedge = RequireAsm(Table, ReadAsmPtr(Record, 7), "coedge", 11)

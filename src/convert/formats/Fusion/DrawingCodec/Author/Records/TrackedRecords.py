@@ -16,13 +16,17 @@ from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# element guid must remain consistent across callers so sheet objects retain their intended document relationships
 KElementGuid = "9899B041-996B-477C-A815-EFAE79D94CBF"
 
+# recipe base must remain consistent across callers so sheet objects retain their intended document relationships
 KRecipeBase = "70F5E801-1E8E-436E-8A09-36487F8A2859"
 
+# scope guid must remain consistent across callers so sheet objects retain their intended document relationships
 KScopeGuid = "E75C74EA-DD4C-47E1-8EFB-4AA4F8A7D51A"
 
 
+# the tracked records contract needs a shared interpretation so sheet objects retain their intended document relationships
 def TrackedRecords(
     FirstId: int, EdgeValue: TrackedEdge, Design: DesignTarget
 ) -> tuple[EntityRecord, ...]:
@@ -62,6 +66,7 @@ def TrackedRecords(
     )
 
 
+# the element group contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ElementGroup(RecipeId: int, Target: LocalRef | None) -> EntityGroup[KEntityValue]:
     return EntityGroup(
         KElementGuid,
@@ -72,6 +77,7 @@ def ElementGroup(RecipeId: int, Target: LocalRef | None) -> EntityGroup[KEntityV
     )
 
 
+# the scope value contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ScopeValue(AssetId: str, Ident: str, ScopeKind: int) -> ValueObject[KEntityValue]:
     Fields = (
         NamedValue("assetId", AssetId),
@@ -82,6 +88,7 @@ def ScopeValue(AssetId: str, Ident: str, ScopeKind: int) -> ValueObject[KEntityV
     return ValueObject((EntityGroup(KScopeGuid, Fields),))
 
 
+# the occur record contract needs a shared interpretation so sheet objects retain their intended document relationships
 def OccurRecord(ObjectId: int) -> EntityRecord:
     Fields = (NamedValue("m_scope", ScopeValue(KZeroGuid, "", 1)),)
     return MakeRecord(
@@ -93,6 +100,7 @@ def OccurRecord(ObjectId: int) -> EntityRecord:
     )
 
 
+# the scope record contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ScopeRecord(ObjectId: int, Design: DesignTarget) -> EntityRecord:
     Fields: tuple[NamedValue[KEntityValue], ...] = (
         NamedValue("instanceIdentifiers", ValueSeries(())),
@@ -109,6 +117,7 @@ def ScopeRecord(ObjectId: int, Design: DesignTarget) -> EntityRecord:
     )
 
 
+# the path record contract needs a shared interpretation so sheet objects retain their intended document relationships
 def PathRecord(ObjectId: int) -> EntityRecord:
     Fields = (
         NamedValue("isRelativePath", False),

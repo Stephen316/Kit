@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from typing import cast as CastValue
 
 
+# the history operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def LoadHistory(HistoryPath: FilePath | None) -> dict[str, float]:
     if HistoryPath is None or not HistoryPath.is_file():
         return {}

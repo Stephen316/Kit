@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Values.ValueCalls import KReadValue
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
+# the groups operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadGroupsMut(
     Cursor: MetaCursor,
     Groups: tuple[ClassSchema, ...],
@@ -14,6 +15,8 @@ def ReadGroupsMut(
     Depth: int,
     Reader: KReadValue,
 ) -> tuple[EntityGroup[KEntityValue], ...]:
+
+    # ordering by field field name must stay deterministic so entity reconstruction resolves equivalent inputs consistently
     return tuple(
         (
             EntityGroup(

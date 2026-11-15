@@ -10,6 +10,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# prism snapshot needs an explicit state contract so supporting records retain their owning document relationships
 @MakeDataClass(frozen=True, slots=True)
 class PrismSnapshot:
     Model: CuboidBody

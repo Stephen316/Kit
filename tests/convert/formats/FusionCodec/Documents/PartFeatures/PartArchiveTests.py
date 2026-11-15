@@ -23,6 +23,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
 )
 
 
+# the part archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KPartCases))
 def TestPartArchive(TmpPath: FilePath, NameValue: str) -> None:
     SpecValue = PartSpec(NameValue)

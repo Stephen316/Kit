@@ -18,6 +18,7 @@ from tests.convert.api.Fusion.Rotational.RotaryCase import (
 )
 
 
+# the rotary links contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseValue", KRotaryCases)
 def TestRotaryLinks(TmpPath: FilePath, CaseValue: RotaryCase) -> None:
     Source = RotarySource(CaseValue)
@@ -38,6 +39,7 @@ def TestRotaryLinks(TmpPath: FilePath, CaseValue: RotaryCase) -> None:
     assert tuple(TmpPath.iterdir()) == (Target,)
 
 
+# the rotary tags contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseValue", (KRotaryCases[0], KRotaryCases[2]))
 def TestRotaryTags(CaseValue: RotaryCase) -> None:
     Source = RotarySource(CaseValue)
@@ -47,6 +49,7 @@ def TestRotaryTags(CaseValue: RotaryCase) -> None:
         _ = OpenDocument(ByteStream(Archive), source_format="f3d")
 
 
+# the rotary edit contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseValue", KRotaryCases)
 def TestRotaryEdit(CaseValue: RotaryCase) -> None:
     Document = OpenDocument(RotarySource(CaseValue))

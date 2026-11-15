@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# package core needs an explicit state contract so typed appearance properties retain their native identifiers
 @MakeDataClass(frozen=True, slots=True)
 class PackageCore:
     Identifier: str

@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import LogicWord
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the intcurve operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeIntcurve(Value: IntcurveNode) -> AsmRecord:
     return AsmRecord(
         "intcurve-curve",

@@ -2,6 +2,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
 
 
+# the reference scope operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeRefScope(Value: SubtypeRef, Family: str) -> tuple[KAsmToken, ...]:
     if (
         Value.Family != Family

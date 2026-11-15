@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadBitShortMut import (
 )
 
 
+# the unicode operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadUnicodeMut(Cursor: BitCursor) -> str:
     Count = ReadBitShortMut(Cursor)
     if Count * 16 > Cursor.Limit - Cursor.Position:

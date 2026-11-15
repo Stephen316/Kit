@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the region use operation needs a consistent construction rule so topology identity survives native history reconstruction
 def MakeRegionUse(Start: int) -> GeometryRecord:
     return MakeRecord(
         "coedge",

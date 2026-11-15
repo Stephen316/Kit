@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeSubtrans import
 )
 
 
+# the tspl surf operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeTsplSurf(Value: TsplineSurf) -> tuple[KAsmToken, ...]:
     return (
         (15, None),

@@ -1,6 +1,7 @@
 from convert.formats.Fusion.GraphicsCodec.Model.Values.VertexFormat import VertexFormat
 
 
+# vertex stride needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def VertexStride(Value: VertexFormat) -> int:
     Fields = tuple(
         (

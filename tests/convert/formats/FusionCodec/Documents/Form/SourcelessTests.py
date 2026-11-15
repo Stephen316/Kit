@@ -48,11 +48,18 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
     ReadFormFile,
 )
 
+# the pole slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPoleSlack = 1e-15
+
+# the label set cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLabelSet = {"1", "2", "3", "4", "5"}
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
+
+# the plane primitives cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPlanePrimitives: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane1x1.f3d",
@@ -75,6 +82,8 @@ KPlanePrimitives: tuple[tuple[str, str], ...] = (
         "a81662369ddd6407b98975c335d6510b2eb9c7445214617e1df2e248c0d19612",
     ),
 )
+
+# the closed controls cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KClosedControls: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/LocalOracle/TSpline/Box.f3d",
@@ -93,8 +102,14 @@ KClosedControls: tuple[tuple[str, str], ...] = (
         "b2a7661e07216078072f69c17c13c5e09c0995cf2e582208a4bffb77b09d9031",
     ),
 )
+
+# the native bodies cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNativeBodies = KPlanePrimitives + KClosedControls
+
+# the emit cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KEmitCases = (KPlanePrimitives[2], KPlanePrimitives[4], *KClosedControls)
+
+# the refusals cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRefusals: tuple[tuple[str, str], ...] = (
     ("label", "face label must be a positive integer"),
     ("range", "pcurve range differs from its edge curve"),
@@ -106,10 +121,12 @@ KRefusals: tuple[tuple[str, str], ...] = (
 )
 
 
+# shared case name setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CaseName(CaseValue: tuple[str, ...]) -> str:
     return FilePath(CaseValue[0]).stem
 
 
+# shared point spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PointSpread(
     LeftPoints: tuple[tuple[float, ...], ...],
     RightPoints: tuple[tuple[float, ...], ...],
@@ -125,11 +142,13 @@ def PointSpread(
     )
 
 
+# shared curve spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CurveSpread(LeftCurve: BsCurve, RightCurve: BsCurve) -> float:
     assert ReplaceValue(LeftCurve, Poles=()) == ReplaceValue(RightCurve, Poles=())
     return PointSpread(LeftCurve.Poles, RightCurve.Poles)
 
 
+# shared window spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def WindowSpread(
     LeftWindows: tuple[FormWindow, ...], RightWindows: tuple[FormWindow, ...]
 ) -> float:
@@ -148,6 +167,7 @@ def WindowSpread(
     )
 
 
+# shared body spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BodySpread(Built: FormBody, Native: FormBody) -> float:
     assert Built.Regions == Native.Regions
     Spreads = [PointSpread(Built.PointsCm, Native.PointsCm)]
@@ -178,22 +198,26 @@ def BodySpread(Built: FormBody, Native: FormBody) -> float:
     return max(Spreads)
 
 
+# shared is closed body setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsClosedBody(Model: FormBody) -> bool:
     UseCount = sum(len(FaceValue.Uses) for FaceValue in Model.Faces)
     return UseCount == 2 * len(Model.Edges)
 
 
+# shared assert solidity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AssertSolidity(Document: DocumentModel, Model: FormBody) -> None:
     assert BodyType(Document) == (2 if IsClosedBody(Model) else 4)
     Entity, NextId, Order = CachedEntity(Document)
     assert Order == (Entity,) and NextId == Entity + 1
 
 
+# shared body labels setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BodyLabels(Model: FormBody) -> set[str]:
     Labels = {FaceValue.Label for FaceValue in Model.Faces}
     return Labels | {EdgeValue.Label for EdgeValue in Model.Edges}
 
 
+# shared derived windows setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DerivedWindows(Model: FormBody) -> KTagWindows:
     return {
         LabelValue.Label: (LabelValue.EntityType, LabelValue.Windows)
@@ -201,6 +225,7 @@ def DerivedWindows(Model: FormBody) -> KTagWindows:
     }
 
 
+# shared snapshot entities setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SnapEntities(Model: DocumentModel) -> tuple[object, ...]:
     assert len(Model.Snapshots) == 1
     Snapshot = Model.Snapshots[0].Snapshot
@@ -208,12 +233,14 @@ def SnapEntities(Model: DocumentModel) -> tuple[object, ...]:
     return Snapshot.Entities
 
 
+# shared read marks setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMarks(Model: DocumentModel) -> FormMarks:
     History = Model.Bodies[0].History
     assert isinstance(History, JournalModel)
     return FormMarks(History.Stamp, HistoryMicros(Model))
 
 
+# shared emit read setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EmitRead(Surface: TsplineSurface, Model: FormBody) -> DocumentModel:
     SpecValue = FormSpec("Kit Form", Surface, Model, "Body1", "Form1")
     Emitted = ReadDocument(EmitFormDoc(SpecValue))
@@ -228,6 +255,7 @@ def EmitRead(Surface: TsplineSurface, Model: FormBody) -> DocumentModel:
     return Emitted
 
 
+# shared break edge setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BreakEdge(Model: FormBody, Fault: str) -> FormBody:
     EdgeValue = Model.Edges[0]
     if Fault == "window":
@@ -240,6 +268,7 @@ def BreakEdge(Model: FormBody, Fault: str) -> FormBody:
     return ReplaceValue(Model, Edges=(EdgeValue, *Model.Edges[1:]))
 
 
+# shared break face setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BreakFace(Model: FormBody, Fault: str) -> FormBody:
     FaceValue = Model.Faces[0]
     if Fault == "label":
@@ -252,6 +281,7 @@ def BreakFace(Model: FormBody, Fault: str) -> FormBody:
     return ReplaceValue(Model, Faces=(FaceValue, *Model.Faces[1:]))
 
 
+# shared break specification setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BreakSpec(SpecValue: FormSpec, Fault: str) -> FormSpec:
     if Fault == "spec":
         Untyped = (SpecValue.Title, SpecValue.Surface, SpecValue.Body)
@@ -263,6 +293,7 @@ def BreakSpec(SpecValue: FormSpec, Fault: str) -> FormSpec:
     return ReplaceValue(SpecValue, Body=BreakEdge(SpecValue.Body, Fault))
 
 
+# the rebuild boundary representation contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KNativeBodies, ids=CaseName)
 def TestRebuildBrep(CaseValue: tuple[str, str]) -> None:
@@ -276,6 +307,7 @@ def TestRebuildBrep(CaseValue: tuple[str, str]) -> None:
     AssertSolidity(Model, Native)
 
 
+# the grid body contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KPlanePrimitives, ids=CaseName)
 def TestGridBody(CaseValue: tuple[str, str]) -> None:
@@ -288,6 +320,7 @@ def TestGridBody(CaseValue: tuple[str, str]) -> None:
     assert [EdgeValue.Label for EdgeValue in Built.Edges] == ["2", "3", "4", "5"]
 
 
+# the emit native contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KEmitCases, ids=CaseName)
 def TestEmitNative(CaseValue: tuple[str, str]) -> None:
@@ -298,6 +331,7 @@ def TestEmitNative(CaseValue: tuple[str, str]) -> None:
     assert SnapEntities(Emitted) == SnapEntities(Model)
 
 
+# the emit grid contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KGridCages, ids=CaseName)
 def TestEmitGrid(CaseValue: tuple[str, str, str]) -> None:
@@ -307,6 +341,7 @@ def TestEmitGrid(CaseValue: tuple[str, str, str]) -> None:
     assert BodyLabels(ReadConverted(Emitted)) == KLabelSet
 
 
+# the form refuse contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "Fault,Message", KRefusals, ids=[Refusal[0] for Refusal in KRefusals]
 )

@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.ReadFields import ReadFields
 
 
+# the modular operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadModular(DataValue: bytes, Offset: int) -> tuple[int, int]:
     Value = 0
     Shift = 0
@@ -14,6 +15,7 @@ def ReadModular(DataValue: bytes, Offset: int) -> tuple[int, int]:
             return Value, Position
 
 
+# the modular operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeModular(Value: int) -> bytes:
     Output = bytearray()
     while Value >> 15:
@@ -22,6 +24,7 @@ def EncodeModular(Value: int) -> bytes:
     return bytes(Output) + Value.to_bytes(2, "little")
 
 
+# the unsigned operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeUnsigned(Value: int) -> bytes:
     Output = bytearray()
     while Value >> 7:
@@ -30,6 +33,7 @@ def EncodeUnsigned(Value: int) -> bytes:
     return bytes(Output) + bytes((Value,))
 
 
+# the signed operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeSigned(Value: int) -> bytes:
     Magnitude = abs(Value)
     Output = bytearray()

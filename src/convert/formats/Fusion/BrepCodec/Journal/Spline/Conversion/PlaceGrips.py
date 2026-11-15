@@ -5,10 +5,12 @@ from convert.formats.Fusion.TSplineCodec.Model.CompoundGrip import CompoundGrip
 from convert.formats.Fusion.TSplineCodec.Model.GripMapping import GripMapping
 
 
+# the pole index contract needs a shared interpretation so surface geometry retains the control cage shape
 def PoleIndex(Value: int, Limit: int) -> int:
     return 0 if Value == 0 else Limit + 2 if Value == Limit else Value + 1
 
 
+# spoke poles needs an explicit validity boundary so surface geometry retains the control cage shape
 def SpokePoles(
     Compound: CompoundGrip, Center: tuple[int, int]
 ) -> tuple[tuple[int, int], ...]:
@@ -28,6 +30,7 @@ def SpokePoles(
     return tuple(Targets)
 
 
+# the grips operation needs a consistent construction rule so surface geometry retains the control cage shape
 def PlaceGrips(
     Mapping: GripMapping, Places: tuple[tuple[int, int], ...], GripCount: int
 ) -> tuple[int, int, tuple[int, ...]]:

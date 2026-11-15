@@ -9087,9 +9087,16 @@ KLegacyExportIndia: dict[str, object] = {
 # this binding provides a statically inspectable decoder at the public geometry boundary
 decode_brep_model = DecodeBrepMut
 
+# the public decode partition stream name must remain available so existing integrations keep resolving the canonical implementation
 decode_partition_stream = DecodePartMut
+
+# the public encode blank partition stream name must remain available so existing integrations keep resolving the canonical implementation
 encode_blank_partition_stream = EncodeBlankApi
+
+# the public encode boundary representation model name must remain available so existing integrations keep resolving the canonical implementation
 encode_brep_model = EncodeBrepMut
+
+# the public encode partition stream name must remain available so existing integrations keep resolving the canonical implementation
 encode_partition_stream = EncodePartMut
 
 # this tuple groups compatibility mappings for deterministic installation

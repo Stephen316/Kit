@@ -45,10 +45,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.PlaceViews import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassTable import DwgClassTable
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgDayTime import DwgDayTime
 
+# julian shift must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KJulianShift = 1721425
+
+# day milli seconds must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KDayMilliSeconds = 86400000
 
 
+# the day time contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def DayTime(Moment: DateTime) -> DwgDayTime:
     MilliSeconds = (
         (Moment.hour * 60 + Moment.minute) * 60 + Moment.second
@@ -58,6 +62,7 @@ def DayTime(Moment: DateTime) -> DwgDayTime:
     )
 
 
+# guid text needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def GuidText(Value: str) -> str:
     try:
         return "{" + str(UUID(Value)).upper() + "}"
@@ -65,6 +70,7 @@ def GuidText(Value: str) -> str:
         raise ValueError(f"Authored DWG GUID {Value!r} is malformed") from Failure
 
 
+# the book operation needs one orchestration boundary so drawing objects retain valid ownership and reference relationships
 def StartBook(Draft: DwgDraft) -> DraftBook:
     Fixed = dict(KFixedHandles)
     if Draft.LayoutHandle in Fixed.values() or Draft.LayoutHandle <= 0:
@@ -77,6 +83,7 @@ def StartBook(Draft: DwgDraft) -> DraftBook:
     return Ledger
 
 
+# the author drawing contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def AuthorDwg(Draft: DwgDraft) -> bytes:
     Ledger = StartBook(Draft)
     PlaceSheetMut(Ledger, Draft.Sheet)

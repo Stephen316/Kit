@@ -2,6 +2,7 @@ from dataclasses import dataclass as MakeDataClass
 from math import isfinite as IsFinite
 
 
+# cuboid body needs an explicit state contract so geometric values retain their native record boundaries
 @MakeDataClass(frozen=True, slots=True)
 class CuboidBody:
     Width: float
@@ -9,6 +10,7 @@ class CuboidBody:
     Height: float
     BasePoint: tuple[float, float, float]
 
+    # invalid cuboid body state must fail at construction so geometry serialization never receives an inconsistent contract
     def __post_init__(self) -> None:
         if len(self.BasePoint) != 3:
             raise ValueError("Cuboid base must have three millimetre coordinates")

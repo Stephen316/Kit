@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Stores.EncodeStore import EncodeStore
 from convert.formats.Fusion.MaterialCodec.Table.EncodeTable import EncodeTable
 
 
+# the materials operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeMaterials(
     Assets: tuple[MaterialAsset, ...], Schemas: tuple[MaterialSchema, ...]
 ) -> MaterialData:

@@ -16,10 +16,12 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.WideText import (
 )
 
 
+# the keep bytes contract needs a shared interpretation so section boundaries and object references remain consistent
 def KeepBytes(DataValue: bytes) -> KDwgValue:
     return DataValue
 
 
+# the counted reads vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KCountedReads: dict[str, Callable[[bytes], KDwgValue]] = {
     "Bytes": KeepBytes,
     "Groups": ReadGroupItems,
@@ -27,6 +29,7 @@ KCountedReads: dict[str, Callable[[bytes], KDwgValue]] = {
 }
 
 
+# the counted operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeCounted(KindText: str, Value: KDwgValue, ByteCount: int) -> bytes:
     if KindText == "Groups":
         DataValue = EncodeGroups(AsRecord(Value))

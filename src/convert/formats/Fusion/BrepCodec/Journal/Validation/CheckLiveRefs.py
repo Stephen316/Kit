@@ -19,6 +19,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 from convert.formats.Fusion.BrepCodec.Journal.Round.CheckLiveFaces import CheckLiveFaces
 
 
+# invalid live references input must fail here so inconsistent revision links fail before history reconstruction
 def CheckLiveRefs(
     Records: tuple[AsmRecord, ...],
     Versions: dict[int, int],

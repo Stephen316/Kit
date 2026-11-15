@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.FrameIndex import Frame
 from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.FormLayout import KSurfaceGuid
 
 
+# invalid form frame input must fail here so supporting records retain their owning document relationships
 def CheckFormFrame(
     Record: EntityRecord,
     Owners: dict[int, EntityRecord],

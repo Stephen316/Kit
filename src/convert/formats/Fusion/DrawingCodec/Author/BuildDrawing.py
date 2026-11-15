@@ -40,6 +40,7 @@ from convert.formats.Fusion.DrawingCodec.Model.DrawingNames import (
 from convert.formats.Fusion.DrawingCodec.Model.FusionDrawing import FusionDrawing
 
 
+# the drawing operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildDrawing(SpecValue: DrawingSpec, Database: DrawingDatabase) -> FusionDrawing:
     CheckSpec(SpecValue, Database)
     History = SaveState() if SpecValue.History is None else SpecValue.History

@@ -33,6 +33,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.EncodeSections import (
 )
 
 
+# the contents operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeContents(DwgModel: DwgFile) -> dict[str, bytes]:
     VersionText = DwgModel.FileHeader.VersionText
     ObjectData, Offsets = EmitObjects(DwgModel.DwgObjects, VersionText)
@@ -52,6 +53,7 @@ def EncodeContents(DwgModel: DwgFile) -> dict[str, bytes]:
     return Contents
 
 
+# the derive file head contract needs a shared interpretation so section boundaries and object references remain consistent
 def DeriveFileHead(DwgModel: DwgFile, Offsets: dict[int, int]) -> DwgFileHeader:
     FirstPages: dict[str, int] = {}
     for PageImage in DwgModel.PageImages:
@@ -60,6 +62,7 @@ def DeriveFileHead(DwgModel: DwgFile, Offsets: dict[int, int]) -> DwgFileHeader:
                 PageImage.SectionName, Offsets[PageImage.PageNumber]
             )
 
+    # the address of contract needs a consistent construction rule so section boundaries and object references remain consistent
     def AddressOf(SectionName: str) -> int:
         return FirstPages[SectionName] + 0x20 if SectionName in FirstPages else 0
 
@@ -72,6 +75,7 @@ def DeriveFileHead(DwgModel: DwgFile, Offsets: dict[int, int]) -> DwgFileHeader:
     )
 
 
+# the derive crypt contract needs a shared interpretation so section boundaries and object references remain consistent
 def DeriveCrypt(
     DwgModel: DwgFile, Offsets: dict[int, int], Sizes: dict[int, int], FileEnd: int
 ) -> DwgCryptHeader:
@@ -95,6 +99,7 @@ def DeriveCrypt(
     )
 
 
+# the drawing file operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitDwgFile(DwgModel: DwgFile) -> bytes:
     Contents = EncodeContents(DwgModel)
     Packed = PackData(DwgModel, Contents)

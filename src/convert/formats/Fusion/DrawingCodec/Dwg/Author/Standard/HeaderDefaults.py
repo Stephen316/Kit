@@ -2,12 +2,22 @@ from math import pi as KHalfTurn
 
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import KDraftValue
 
+# the var group shape must stay shared so drawing standard authoring uses one contract for compatible values
 KVarGroup = dict[str, KDraftValue]
+
+# by layer color must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KByLayerColor = 0xC0000000
+
+# by block color must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KByBlockColor = 0xC1000000
+
+# index color must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KIndexColor = 0xC3000000
+
+# default weight must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KDefaultWeight = 0xFFFE
 
+# the legacy head vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KLegacyHead: KVarGroup = {
     "RequiredVersions": 0,
     "UnknownRealA": 412148564080.0,
@@ -23,6 +33,7 @@ KLegacyHead: KVarGroup = {
     "UnknownLongB": 0,
 }
 
+# the switch vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KSwitchVars: KVarGroup = {
     "DimAso": 1,
     "DimSho": 1,
@@ -47,6 +58,7 @@ KSwitchVars: KVarGroup = {
     "PEllipse": 0,
 }
 
+# count vars needs one explicit bound so drawing standard authoring cannot accept inconsistent resource or layout limits
 KCountVars: KVarGroup = {
     "ProxyGraphics": 1,
     "TreeDepth": 3020,
@@ -61,6 +73,7 @@ KCountVars: KVarGroup = {
     "UnknownLongE": 0x4D353930,
 }
 
+# the surface vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KSurfaceVars: KVarGroup = {
     "UserIOne": 0,
     "UserITwo": 0,
@@ -83,6 +96,7 @@ KSurfaceVars: KVarGroup = {
     "TextQlty": 50,
 }
 
+# the real vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KRealVars: KVarGroup = {
     "TraceWid": 1.0,
     "SketchInc": 1.0,
@@ -105,6 +119,7 @@ KRealVars: KVarGroup = {
     "CeltScale": 1.0,
 }
 
+# the stamp vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KStampVars: KVarGroup = {
     "TdCreateDay": 0,
     "TdCreateMsec": 0,
@@ -122,6 +137,7 @@ KStampVars: KVarGroup = {
     "CeColorFlags": 0,
 }
 
+# the modern vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KModernVars: KVarGroup = {
     "CameraDisplay": 0,
     "UnknownLongI": 0,
@@ -153,6 +169,7 @@ KModernVars: KVarGroup = {
     "UnknownBitB": 1,
 }
 
+# the interfere vars vocabulary must stay centralized so drawing standard authoring agrees on supported native identities
 KInterfereVars: KVarGroup = {
     "InterfereColorIndex": 0,
     "InterfereColorRgb": KIndexColor | 1,

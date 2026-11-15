@@ -26,6 +26,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.CheckModelHead import (
 )
 
 
+# invalid journal input must fail here so inconsistent revision links fail before history reconstruction
 def CheckJournal(Model: JournalModel) -> None:
     CheckModelHead(Model.Header, True)
     if type(Model.Entities) is not tuple or type(Model.States) is not tuple:

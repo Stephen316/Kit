@@ -19,16 +19,20 @@ from tests.convert.formats.FusionCodec.Brep.Complex.ComplexMembers import (
     ComplexMember,
 )
 
+# the form member cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFormMember = (
     "re/Fusion/Study/sweepnurbspaths-7ded30a4b9ae/polynomial_cubic.f3d",
     "c014a71a3bdaef07af2597234d1a15bc077ff57781bd9a48486f02769ec679e7",
 )
+
+# the tolerant member cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTolerantMember = (
     "re/Fusion/Study/solidsweeps-7d2677669e3d/solid_twist.f3d",
     "ae2a84121182b35d76cffa413c2eb74390a36af5969556522fb2b2a7b7fdcbd1",
 )
 
 
+# shared swap entity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapEntity(
     Geometry: GeometryState, Index: int, Value: KJournalEntity
 ) -> GeometryState:
@@ -37,6 +41,7 @@ def SwapEntity(
     return ReplaceValue(Geometry, Entities=tuple(Entities))
 
 
+# shared form index setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FormIndex(Geometry: GeometryState) -> int:
     for Value in Geometry.Entities:
         if isinstance(Value, CoedgeNode) and Value.Pcurve >= 0:
@@ -46,6 +51,7 @@ def FormIndex(Geometry: GeometryState) -> int:
     raise ValueError("Fixture has no referenced pcurve form")
 
 
+# the form sign contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -62,6 +68,7 @@ def TestFormSign() -> None:
     assert EmitGeometry(Geometry) == Payload
 
 
+# the tvertex gap contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

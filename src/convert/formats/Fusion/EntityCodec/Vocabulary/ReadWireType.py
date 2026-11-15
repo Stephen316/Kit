@@ -3,6 +3,7 @@ from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.EntityCodec.Vocabulary.WireJson import WireJson
 
 
+# the wire type operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadWireType(Value: WireJson) -> WireType:
     return WireType(
         Value["KindValue"],

@@ -8,6 +8,7 @@ from tools.TestShards.ReusePlan import ReusePlan
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the durations operation needs a consistent construction rule so every collected case receives exactly one verified outcome
 def WriteDurations(
     OutputPath: FilePath,
     Plans: Sequence[ShardPlan],

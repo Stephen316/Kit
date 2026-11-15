@@ -8,6 +8,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# the act records order must stay explicit so sheet objects retain their intended document relationships
 KActRecords = (
     MakeRecord(
         0,

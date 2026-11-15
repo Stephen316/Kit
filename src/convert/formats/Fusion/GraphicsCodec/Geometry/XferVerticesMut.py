@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer vertices needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferVerticesMut(State: SceneCodec, Value: VertexData | None) -> VertexData:
     DynamicFlag = State.IsFlag(Value.DynamicFlag if Value else None)
     FormatRef = State.LinkedObject("VertexFormat", Value.FormatRef if Value else None)

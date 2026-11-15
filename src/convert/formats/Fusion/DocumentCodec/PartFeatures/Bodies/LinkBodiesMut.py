@@ -6,6 +6,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.PartCache import P
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartStage import PartStage
 
 
+# link bodies must resolve unambiguously so feature parameters remain connected to the resulting geometry
 def LinkBodiesMut(
     Author: AuthorState, Final: PartStage, BodyTags: dict[int, int]
 ) -> None:

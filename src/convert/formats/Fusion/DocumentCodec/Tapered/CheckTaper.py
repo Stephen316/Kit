@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 from convert.formats.Fusion.DocumentCodec.Tapered.TaperModel import TaperModel
 
 
+# invalid taper input must fail here so model state retains its native feature and ownership relationships
 def CheckTaper(SpecValue: DocumentSpec) -> None:
     AngleValue = SpecValue.TaperDegrees
     if (

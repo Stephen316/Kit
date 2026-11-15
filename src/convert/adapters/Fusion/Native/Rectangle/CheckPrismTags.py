@@ -12,6 +12,7 @@ from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHist
 from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
+# invalid prism tags input must fail here so public document claims remain grounded in native records
 def CheckPrismTags(
     Graph: NativeGraph,
     Context: ExtrudeContext,
@@ -50,6 +51,7 @@ def CheckPrismTags(
         raise ValueError("Native history sketch tags disagree with profile edges")
 
 
+# side tags needs an explicit validity boundary so public document claims remain grounded in native records
 def SideTags(Shape: RectGeometry) -> tuple[int, ...]:
     Result: dict[int, int] = {}
     for LineNode, Geometry in zip(Shape.LineNodes, Shape.Lines, strict=True):

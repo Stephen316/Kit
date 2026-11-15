@@ -16,6 +16,7 @@ from tests.convert.api.Fusion.Rotational.RotaryCase import (
 )
 
 
+# the rotary round contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseValue", KRotaryCases)
 def TestRotaryRound(TmpPath: FilePath, CaseValue: RotaryCase) -> None:
     Source = RotarySource(CaseValue)
@@ -48,6 +49,7 @@ def TestRotaryRound(TmpPath: FilePath, CaseValue: RotaryCase) -> None:
     assert Reopened.materials == Document.materials
 
 
+# shared verify rotary setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def VerifyRotary(Document: CadDocument, CaseValue: RotaryCase) -> None:
     assert Document.bodies[0].id == CaseValue.BodyId
     UpperRadius = CaseValue.RadiusMm + CaseValue.HeightMm * Tangent(

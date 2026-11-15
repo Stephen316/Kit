@@ -13,6 +13,7 @@ from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
 from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 
+# the subtrans operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadSubtrans(Cursor: FieldCursor) -> SubtransNode:
     Program = ReadWideText(Cursor).encode("ascii")
     NeedFieldMut(Cursor, (10, None))

@@ -4,6 +4,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import IsAsmFlag, Require
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism plane operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismPlane(Table: AsmTable, Identity: int) -> PrismPlane:
     Record = RequireAsm(Table, Identity, "plane-surface", 11)
     return PrismPlane(

@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 from convert.formats.Fusion.DocumentCodec.PackDocument import PackDocument
 
 
+# the document operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def EmitDocument(SpecValue: DocumentSpec) -> bytes:
     Design = BuildDesign(SpecValue, str(MakeUuid()))
     return PackDocument(

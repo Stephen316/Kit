@@ -9,6 +9,7 @@ from tools.TestShards.Reuse.Select.MatchEntry import MatchEntry
 from tools.TestShards.Reuse.Select.ReuseChoice import ReuseChoice
 
 
+# select reuse must resolve unambiguously so dependency changes cannot revive stale passing results
 def SelectReuse(
     TestIds: Sequence[str], Cache: CacheData, TreeInfo: TreeIndex, Oldest: DateTime
 ) -> ReuseChoice:

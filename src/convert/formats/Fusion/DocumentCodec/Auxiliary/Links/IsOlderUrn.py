@@ -1,8 +1,10 @@
 from re import fullmatch as FullMatch
 
+# version urn must remain consistent across callers so supporting records retain their owning document relationships
 KVersionUrn = r"(urn:[^?]+)\?version=([1-9][0-9]{0,8})"
 
 
+# the older urn decision must stay consistent so supporting records retain their owning document relationships
 def IsOlderUrn(LinkUrn: str, ContextUrn: str) -> bool:
     LinkMatch = FullMatch(KVersionUrn, LinkUrn)
     ContextMatch = FullMatch(KVersionUrn, ContextUrn)

@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchPlan import
 from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
 
 
+# the frame operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddFrameMut(
     Author: AuthorState, Prefix: str, PlaneRole: str, LiftCm: float = 0.0
 ) -> None:
@@ -24,6 +25,7 @@ def AddFrameMut(
     )
 
 
+# the sketch root operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSketchRoot(
     Author: AuthorState,
     Prefix: str,
@@ -70,6 +72,7 @@ def AddSketchRoot(
     )
 
 
+# the sketch recs operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSketchRecs(
     Author: AuthorState,
     Prefix: str,

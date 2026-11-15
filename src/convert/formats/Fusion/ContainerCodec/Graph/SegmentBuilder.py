@@ -11,7 +11,10 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfil
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# the segment builder contract needs a dedicated boundary so archive members retain their native ownership and reference relationships
 class SegmentBuilder(SegmentCatalog):
+
+    # segment builder needs explicit initial state so archive members retain their native ownership and reference relationships
     def __init__(
         self,
         Segment: SegmentKind,
@@ -21,11 +24,13 @@ class SegmentBuilder(SegmentCatalog):
         super().__init__(Segment, Schemas, External)
         self.Records: list[EntityRecord] = []
 
+    # the value operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
     def MakeValue(
         self, ClassName: str, Fields: dict[str, KEntityValue]
     ) -> ValueObject[KEntityValue]:
         return ValueObject(self.MakeGroups(ClassName, Fields))
 
+    # the entity operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
     def AddEntity(
         self,
         Identity: int,
@@ -60,6 +65,7 @@ class SegmentBuilder(SegmentCatalog):
                 )
             )
 
+    # finish needs one orchestration boundary so archive members retain their native ownership and reference relationships
     def Finish(self) -> AuxiliaryGraph:
         return EmitAuxiliary(
             self.Segment, self.Schemas, tuple(self.Records), self.Profile

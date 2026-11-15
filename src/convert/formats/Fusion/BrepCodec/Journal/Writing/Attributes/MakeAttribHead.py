@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Attributes.AttribLinks import Attr
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the attribute head operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeAttribHead(
     Links: AttribLinks, Family: str, Attribute: int = -1
 ) -> tuple[KAsmToken, ...]:

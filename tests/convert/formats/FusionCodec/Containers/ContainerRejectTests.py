@@ -14,6 +14,7 @@ from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
 from tests.convert.formats.FusionCodec.Containers.MakeContainer import MakeContainer
 
 
+# the reject file contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Mutation",
     (
@@ -39,6 +40,7 @@ def TestRejectFile(TmpPath: FilePath, Mutation: str) -> None:
         _ = ReadContainer(Target.read_bytes())
 
 
+# the reject parts contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "PartName",
     (

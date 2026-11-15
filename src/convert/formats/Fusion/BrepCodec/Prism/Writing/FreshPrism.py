@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 from convert.formats.Fusion.GeometryCodec.Prism.PrismPlanes import KFaceFrames
 
 
+# the fresh prism contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def FreshPrism(Model: CuboidBody) -> PrismFrame:
     Corners = tuple(
         (Point[0] / 10, Point[1] / 10, Point[2] / 10) for Point in CuboidCorners(Model)

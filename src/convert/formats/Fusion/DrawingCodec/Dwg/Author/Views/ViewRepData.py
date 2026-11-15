@@ -23,21 +23,40 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewSource import ViewS
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewKeys import ViewKeys
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewPlan import ViewPlan
 
+# the point triple shape must stay shared so drawing view authoring uses one contract for compatible values
 KPointTriple = tuple[float, float, float]
+
+# body bits must remain consistent across callers so projected geometry retains its paper and model relationships
 KBodyBits = 0x8000000001
+
+# matrix head must remain consistent across callers so projected geometry retains its paper and model relationships
 KMatrixHead = 0x40
+
+# the matrix names order must stay explicit so projected geometry retains its paper and model relationships
 KMatrixNames = ("XX", "XY", "XZ", "X", "YX", "YY", "YZ", "Y", "ZX", "ZY", "ZZ", "Z")
+
+# the base shape order must stay explicit so projected geometry retains its paper and model relationships
 KBaseShape = (11, 3104)
+
+# the child shape order must stay explicit so projected geometry retains its paper and model relationships
 KChildShape = (15, 40032)
+
+# visible style must remain consistent across callers so projected geometry retains its paper and model relationships
 KVisibleStyle = 2
+
+# hidden style must remain consistent across callers so projected geometry retains its paper and model relationships
 KHiddenStyle = 1
+
+# inherit style must remain consistent across callers so projected geometry retains its paper and model relationships
 KInheritStyle = 4
 
 
+# the body key contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def BodyKey() -> tuple[tuple[str, KDraftValue], ...]:
     return (("KeyLong", 0), ("KeyBits", KBodyBits), ("KeyFlag", 0))
 
 
+# the matrix items contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def MatrixItems() -> tuple[tuple[str, KDraftValue], ...]:
     Values = (1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0)
     return tuple(
@@ -46,6 +65,7 @@ def MatrixItems() -> tuple[tuple[str, KDraftValue], ...]:
     )
 
 
+# guid items needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def GuidItems(GuidText: str) -> tuple[tuple[str, KDraftValue], ...]:
     try:
         Parsed = UUID(GuidText)
@@ -63,6 +83,7 @@ def GuidItems(GuidText: str) -> tuple[tuple[str, KDraftValue], ...]:
     )
 
 
+# body path needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def BodyPath(Source: ViewSource) -> tuple[DraftRecord, ...]:
     Chain = (*Source.OccurrencePath, Source.BodyId, Source.BodyId)
     if any(LinkId <= 0 for LinkId in Chain):
@@ -70,6 +91,7 @@ def BodyPath(Source: ViewSource) -> tuple[DraftRecord, ...]:
     return tuple(DraftRecord((("PathId", LinkId),)) for LinkId in Chain)
 
 
+# the view body contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def ViewBody(Source: ViewSource, Edges: tuple[DraftRecord, ...]) -> DraftRecord:
     Leading = (*GuidItems(Source.GeometryGuid), ("MatrixHead", KMatrixHead))
     BodyChain = BodyPath(Source)
@@ -87,6 +109,7 @@ def ViewBody(Source: ViewSource, Edges: tuple[DraftRecord, ...]) -> DraftRecord:
     return DraftRecord((*BodyKey(), *Leading, *MatrixItems(), *Longs, *Closing))
 
 
+# the body key row contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def BodyKeyRow(Source: ViewSource) -> DraftRecord:
     BodyChain = BodyPath(Source)
     return DraftRecord(
@@ -100,6 +123,7 @@ def BodyKeyRow(Source: ViewSource) -> DraftRecord:
     )
 
 
+# the trail fields contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def TrailFields(
     KeySet: ViewKeys, Planned: ViewPlan, Source: ViewSource
 ) -> dict[str, KDraftValue]:
@@ -133,11 +157,13 @@ def TrailFields(
     }
 
 
+# the view style contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def ViewStyle(Planned: ViewPlan, IsBase: bool) -> int:
     Style = KHiddenStyle if Planned.ShowHidden else KVisibleStyle
     return Style if IsBase else KInheritStyle + Style
 
 
+# the view fields contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def ViewFields(
     KeySet: ViewKeys,
     Planned: ViewPlan,
@@ -162,6 +188,7 @@ def ViewFields(
     }
 
 
+# sight needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def Sight(Planned: ViewPlan) -> KPointTriple:
     Delta = [
         Target - EyeAxis
@@ -173,10 +200,12 @@ def Sight(Planned: ViewPlan) -> KPointTriple:
     return (Delta[0] / Length, Delta[1] / Length, Delta[2] / Length)
 
 
+# the eed operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def MakeEed(AppName: str, *GroupItems: tuple[str, KDraftValue]) -> DraftEed:
     return DraftEed(HardPointer("APPID:" + AppName), DraftRecord(GroupItems))
 
 
+# the layout eed contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def LayoutEed(Family: tuple[tuple[ViewKeys, ViewPlan], ...]) -> DraftEed:
     Items: list[tuple[str, KDraftValue]] = [("1070", 1), ("1071", 0)]
     Items.append(("1071", len(Family)))
@@ -186,6 +215,7 @@ def LayoutEed(Family: tuple[tuple[ViewKeys, ViewPlan], ...]) -> DraftEed:
     return MakeEed("AUTO_VIEW_XDATA", *Items)
 
 
+# the nest eed contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def NestEed(Planned: ViewPlan, Parent: ViewPlan | None) -> DraftEed:
     Across, Upward = Planned.Center
     if Parent is not None:
@@ -199,6 +229,7 @@ def NestEed(Planned: ViewPlan, Parent: ViewPlan | None) -> DraftEed:
     )
 
 
+# the view rep eed contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def ViewRepEed(
     Planned: ViewPlan,
     Parent: ViewPlan | None,
@@ -214,6 +245,7 @@ def ViewRepEed(
     return (LayoutEed(Family), *Marks, Scale, NestEed(Planned, None))
 
 
+# the view rep operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceViewRepMut(
     Ledger: DraftBook,
     KeySet: ViewKeys,

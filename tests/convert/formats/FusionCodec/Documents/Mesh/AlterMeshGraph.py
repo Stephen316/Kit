@@ -13,6 +13,7 @@ from tests.convert.formats.FusionCodec.Documents.Mesh.AlterMeshField import (
 )
 
 
+# shared alter mesh graph setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AlterMeshGraph(Segment: ParsedSegment, Variant: str) -> ParsedSegment:
     Owners = tuple(
         Record for Record in Segment.Records if Record.IsPrimary and Record.Groups

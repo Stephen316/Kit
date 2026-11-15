@@ -8,6 +8,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the cone frame operation needs a distinct decoding boundary so circular boundaries retain consistent cone and rim geometry
 def ReadConeFrame(Table: AsmTable, Mapping: dict[int, int]) -> ConeFrame:
     Surface = RequireAsm(Table, Mapping[17], "cone-surface", 17)
     return ConeFrame(

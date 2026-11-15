@@ -25,6 +25,7 @@ from convert.adapters.freecad.EditScale.ScaleBinding import KScaleBinding
 from convert.adapters.freecad.EditScale.ScaleEmit import HasScaleMut
 
 
+# the doc xml operation needs a consistent construction rule so document state retains its native archive representation
 def BuildDocXmlMut(
     Manifest: Mapping[str, object],
     ManifestData: str,
@@ -50,6 +51,7 @@ def BuildDocXmlMut(
     )
 
 
+# the zip entry contract needs a shared interpretation so document state retains its native archive representation
 def ZipEntry(NameValue: str, DataValue: bytes) -> tuple[Zipfile.ZipInfo, bytes]:
     InfoValue = Zipfile.ZipInfo(NameValue, (1980, 1, 1, 0, 0, 0))
     setattr(InfoValue, "compress_type", Zipfile.ZIP_DEFLATED)
@@ -58,6 +60,7 @@ def ZipEntry(NameValue: str, DataValue: bytes) -> tuple[Zipfile.ZipInfo, bytes]:
     return (InfoValue, DataValue)
 
 
+# the fcstd operation needs a consistent construction rule so document state retains its native archive representation
 def BuildFcstdMut(
     Manifest: Mapping[str, object],
     OuterLinks: Mapping[str, Mapping[str, object]] | None = None,
@@ -111,6 +114,7 @@ def BuildFcstdMut(
     return Output.getvalue()
 
 
+# the fcstd api operation needs a consistent construction rule so document state retains its native archive representation
 def BuildFcstdApi(
     Manifest: Mapping[str, object],
     OuterLinks: Mapping[str, Mapping[str, object]] | None = None,
@@ -151,4 +155,5 @@ def BuildFcstdApi(
     )
 
 
+# the public build fcstd archive name must remain available so existing integrations keep resolving the canonical implementation
 build_fcstd_archive = BuildFcstdApi

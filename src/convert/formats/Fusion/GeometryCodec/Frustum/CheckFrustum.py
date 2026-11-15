@@ -3,6 +3,7 @@ from math import hypot as Hypot, isfinite as IsFinite
 from convert.formats.Fusion.GeometryCodec.Frustum.CheckRimFit import CheckRimFit
 
 
+# invalid frustum input must fail here so geometric values retain their native record boundaries
 def CheckFrustum(
     BottomRadius: float,
     TopRadius: float,

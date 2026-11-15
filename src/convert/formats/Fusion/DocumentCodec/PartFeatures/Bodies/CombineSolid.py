@@ -14,9 +14,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import IsSealed
 
+# the stay place order must stay explicit so feature parameters remain connected to the resulting geometry
 KStayPlace = ((0.0, 0.0), 0.0, False)
 
 
+# combine solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CombineSolid(
     Target: PrismSolid,
     Tools: tuple[PrismSolid, ...],

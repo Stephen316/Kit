@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Attributes.VertedgeAttrib import (
     KVertedgeCap,
 )
 
+# the attribute names order must stay explicit so inconsistent revision links fail before history reconstruction
 KAttribNames = (
     "ATTRIB_CUSTOM-attrib",
     "stitch_hint-sys-attrib",
@@ -11,8 +12,10 @@ KAttribNames = (
     "int64_attrib-name_attrib-gen-attrib",
 )
 
+# the coedge uses order must stay explicit so inconsistent revision links fail before history reconstruction
 KCoedgeUses = ("coedge", "tcoedge-coedge")
 
+# the coedge rules vocabulary must stay centralized so journal validation agrees on supported native identities
 KCoedgeRules: dict[int, tuple[str, ...]] = {
     0: KAttribNames,
     2: (),
@@ -24,6 +27,7 @@ KCoedgeRules: dict[int, tuple[str, ...]] = {
     10: ("pcurve",),
 }
 
+# the edge rules vocabulary must stay centralized so journal validation agrees on supported native identities
 KEdgeRules: dict[int, tuple[str, ...]] = {
     0: KAttribNames,
     2: (),
@@ -33,6 +37,7 @@ KEdgeRules: dict[int, tuple[str, ...]] = {
     8: ("ellipse-curve", "straight-curve", "intcurve-curve"),
 }
 
+# the vertex rules vocabulary must stay centralized so journal validation agrees on supported native identities
 KVertexRules: dict[int, tuple[str, ...]] = {
     0: KAttribNames,
     2: (),
@@ -40,6 +45,7 @@ KVertexRules: dict[int, tuple[str, ...]] = {
     5: ("point",),
 }
 
+# the vertedge rules vocabulary must stay centralized so journal validation agrees on supported native identities
 KVertedgeRules: dict[int, tuple[str, ...]] = {
     0: (),
     2: KAttribNames,
@@ -48,6 +54,7 @@ KVertedgeRules: dict[int, tuple[str, ...]] = {
     **{6 + 2 * SlotIndex: ("edge", "tedge-edge") for SlotIndex in range(KVertedgeCap)},
 }
 
+# the entity reference rules vocabulary must stay centralized so journal validation agrees on supported native identities
 KEntityRefRules: dict[str, dict[int, tuple[str, ...]]] = {
     "transform": {0: KAttribNames},
     "asmheader": {0: KAttribNames},

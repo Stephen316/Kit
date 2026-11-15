@@ -12,6 +12,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# bind records needs an explicit validity boundary so entity identifiers retain their schema and reference meaning
 def BindRecords(
     Records: tuple[BulkRecord, ...], Classes: tuple[MetaClass, ...]
 ) -> RecordScope:

@@ -13,6 +13,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.records.RecordSource import CadSource
 
 
+# the strict operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadStrict(SourceData: KSourceType, Settings: ReadOptions) -> CadDocument:
     if (
         Settings.configuration is not None

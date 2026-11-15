@@ -13,6 +13,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Reading.MapSol
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the solid operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadSolid(Table: AsmTable) -> tuple[PrismFrame, PrismTags, dict[int, int]]:
     Graph = ReadPrismGraph(Table)
     Roles = ReadPrismRoles(Graph)

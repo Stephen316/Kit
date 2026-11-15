@@ -2,6 +2,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 from convert.formats.Fusion.EntityCodec.Model.SegmentRef import SegmentRef
 
 
+# the subjects contract needs boundary coverage so stored document relationships remain consistent
 def CheckSubjects(Records: tuple[EntityRecord, ...], Roles: dict[str, int]) -> None:
     RootEntry = next(Entry for Entry in Records if Entry.ObjectId == 201)
     Subjects = {

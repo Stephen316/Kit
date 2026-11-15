@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import LogicWord
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the spline node operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeSplineNode(Value: SplineNode) -> AsmRecord:
     return AsmRecord(
         "spline-surface",

@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Extrusion.BodyCache import BodyCache
 from convert.formats.Fusion.DocumentCodec.Extrusion.LinkBodyTags import LinkBodyTags
 
 
+# link body must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkBodyMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Author.Change(

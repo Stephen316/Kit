@@ -16,7 +16,10 @@ from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 from convert.formats.Fusion.SegmentCodec.Metadata.WriteMetaWire import WriteMetaWire
 
 
+# the design operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def EmitDesign(Author: AuthorState) -> DesignResult:
+
+    # ordering by schema value class guid upper must stay deterministic so document reconstruction resolves equivalent inputs consistently
     Schemas = tuple(
         sorted(Author.Schemas, key=lambda Schema: Schema.Value.ClassGuid.upper())
     )

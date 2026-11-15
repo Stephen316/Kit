@@ -29,6 +29,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import KFirstFace
 from convert.formats.Fusion.GeometryCodec.Prism.PrismPoints import BuildPoints
 
 
+# the prism records contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismRecords(
     Identity: BodyIdentity, TagSet: PrismTags, Frame: PrismFrame
 ) -> tuple[GeometryRecord, ...]:

@@ -14,6 +14,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.ByteCodec import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import NamedValue
 
+# ac ds head specification must remain consistent across callers so section boundaries and object references remain consistent
 KAcDsHeadSpec = "; ".join(
     (
         "Bytes Signature 4; RS HeaderSize; RS HeaderFlags; RL UnknownA",
@@ -23,6 +24,8 @@ KAcDsHeadSpec = "; ".join(
         "RL UnknownD; Bytes Reserved 60",
     )
 )
+
+# segment specification must remain consistent across callers so section boundaries and object references remain consistent
 KSegmentSpec = "; ".join(
     (
         "RS Signature; Bytes SegmentName 6; RL SegmentIndex; RL UnknownA",
@@ -30,12 +33,21 @@ KSegmentSpec = "; ".join(
         "RL UnknownE; Bytes Marker 8",
     )
 )
+
+# ac ds head size needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KAcDsHeadSize = 0x80
+
+# block size needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KBlockSize = 0x80
+
+# segment head size needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KSegmentHeadSize = 0x30
+
+# segment mark must remain consistent across callers so section boundaries and object references remain consistent
 KSegmentMark = b"\xac\xd5"
 
 
+# the segment operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSegment(DataValue: bytes, Offset: int, VersionText: str) -> DwgRecord:
     HeadValue = TakeSpan(DataValue, Offset, KSegmentHeadSize, "AcDs segment header")
     HeadRecord = ReadByteSpec(KSegmentSpec, HeadValue, VersionText)
@@ -54,6 +66,7 @@ def ReadSegment(DataValue: bytes, Offset: int, VersionText: str) -> DwgRecord:
     )
 
 
+# the ac ds operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadAcDs(DataValue: bytes, VersionText: str) -> DwgRecord:
     HeadValue = TakeSpan(DataValue, 0, KAcDsHeadSize, "AcDs file header")
     HeadRecord = ReadByteSpec(KAcDsHeadSpec, HeadValue, VersionText)
@@ -73,6 +86,7 @@ def ReadAcDs(DataValue: bytes, VersionText: str) -> DwgRecord:
     return DwgRecord((*HeadRecord.RecordFields, DwgField("Segments", tuple(Segments))))
 
 
+# the segment operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitSegment(Segment: DwgRecord, VersionText: str) -> tuple[int, bytes]:
     Fields = Segment.RecordFields
     if Fields[0].FieldName != "SegmentOffset" or Fields[-1].FieldName != "SegmentBody":
@@ -84,6 +98,7 @@ def EmitSegment(Segment: DwgRecord, VersionText: str) -> tuple[int, bytes]:
     return AsInt(Fields[0].FieldValue), HeadBytes + BodyValue
 
 
+# the ac ds operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitAcDs(Record: DwgRecord, VersionText: str) -> bytes:
     Fields = Record.RecordFields
     if not Fields or Fields[-1].FieldName != "Segments":

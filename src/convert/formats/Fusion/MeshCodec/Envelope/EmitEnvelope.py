@@ -2,6 +2,7 @@ from convert.formats.Fusion.MeshCodec.Envelope.EmitChunk import EmitChunk
 from convert.formats.Fusion.MeshCodec.Wire.EmitMap import EmitMap
 
 
+# the envelope operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitEnvelope(
     Registry: bytes, Names: tuple[str, ...], Streams: tuple[bytes, ...]
 ) -> bytes:

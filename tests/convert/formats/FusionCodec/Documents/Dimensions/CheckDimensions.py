@@ -9,6 +9,7 @@ from tests.convert.formats.FusionCodec.Documents.Dimensions.DimensionFields impo
 )
 
 
+# the dimensions contract needs boundary coverage so stored document relationships remain consistent
 def CheckDimensions(Model: DocumentModel) -> None:
     Records = DimensionRows(Model, "FusionSketchLinearDim")
     Parameters = {

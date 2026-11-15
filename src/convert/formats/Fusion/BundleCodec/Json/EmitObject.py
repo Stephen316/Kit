@@ -4,6 +4,7 @@ from convert.formats.Fusion.BundleCodec.Json.JsonTypes import KJsonValue
 from convert.formats.Fusion.BundleCodec.Model.BundleObject import BundleObject
 
 
+# the object operation needs a consistent construction rule so linked archive members retain their document relationships
 def EmitObject(Value: BundleObject) -> KJsonValue:
     Fields: dict[str, KJsonValue] = {
         "id": Value.ObjectId,

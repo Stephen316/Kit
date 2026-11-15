@@ -13,6 +13,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Writing.SnapRe
 from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 
 
+# the prism snapshot operation needs a consistent construction rule so supporting records retain their owning document relationships
 def EmitPrismSnap(Value: PrismSnapshot) -> bytes:
     CheckSnapshot(Value)
     Records = SnapRecords(Value)

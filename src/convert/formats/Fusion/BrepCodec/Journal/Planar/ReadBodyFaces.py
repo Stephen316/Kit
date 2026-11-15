@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireL
 from convert.formats.Fusion.BrepCodec.Journal.Planar.StableRef import StableRef
 
 
+# the body faces operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadBodyFaces(Table: LiveTable, BodyRef: int) -> tuple[FaceBoundary, ...]:
     BodyValue = RequireLive(Table, BodyRef, BodyNode)
     LumpValue = RequireLive(Table, BodyValue.FirstLump, LumpNode)

@@ -1,3 +1,4 @@
+# the crypt mask operation needs a consistent construction rule so section boundaries and object references remain consistent
 def MakeCryptMask(Count: int) -> bytes:
     SeedValue = 1
     MaskBytes = bytearray()

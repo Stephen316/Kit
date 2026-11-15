@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the tag groups operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeTagGroups(Groups: tuple[FeatureTag, ...]) -> tuple[KAsmToken, ...]:
     Fields: list[KAsmToken] = [
         (4, 3),

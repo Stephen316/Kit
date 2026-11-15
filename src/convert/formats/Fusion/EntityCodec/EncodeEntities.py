@@ -9,6 +9,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkBounds import KMaxBulkBytes
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# the entities operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EncodeEntities(
     Records: tuple[EntityRecord, ...],
     Classes: tuple[MetaClass, ...],

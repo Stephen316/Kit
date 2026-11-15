@@ -168,49 +168,137 @@ from interchange.geometry.models.Vectors import (
 
 # direct aliases make the runtime public contract visible to static analyzers
 AdapterCapabilities = AdapterCaps
+
+# the public arc ellipse geometry name must remain available so existing integrations keep resolving the canonical implementation
 ArcEllipseGeometry = ArcEllipseGeom
+
+# the public arc hyperbola geometry name must remain available so existing integrations keep resolving the canonical implementation
 ArcHyperbolaGeometry = ArcHyperGeom
+
+# the public arc parabola geometry name must remain available so existing integrations keep resolving the canonical implementation
 ArcParabolaGeometry = ArcParabGeom
+
+# the public body name must remain available so existing integrations keep resolving the canonical implementation
 Body = DesignBody
+
+# the public circular pattern feature name must remain available so existing integrations keep resolving the canonical implementation
 CircularPatternFeature = CirclePattern
+
+# the public component definition name must remain available so existing integrations keep resolving the canonical implementation
 ComponentDefinition = ComponentDef
+
+# the public component document name must remain available so existing integrations keep resolving the canonical implementation
 ComponentDocument = ComponentDoc
+
+# the public component instance name must remain available so existing integrations keep resolving the canonical implementation
 ComponentInstance = ComponentInst
+
+# the public constraint reference name must remain available so existing integrations keep resolving the canonical implementation
 ConstraintReference = ConstraintRef
+
+# the public cad document validation error name must remain available so existing integrations keep resolving the canonical implementation
 CadDocumentValidationError = DocumentError
+
+# the public extrusion end condition name must remain available so existing integrations keep resolving the canonical implementation
 ExtrusionEndCondition = ExtrudeEnd
+
+# the public extrusion feature name must remain available so existing integrations keep resolving the canonical implementation
 ExtrusionFeature = ExtrudeFeature
+
+# the public feature definition name must remain available so existing integrations keep resolving the canonical implementation
 FeatureDefinition = FeatureDef
+
+# the public feature configuration state name must remain available so existing integrations keep resolving the canonical implementation
 FeatureConfigurationState = FeatureCfgState
+
+# the public hyperbola geometry name must remain available so existing integrations keep resolving the canonical implementation
 HyperbolaGeometry = HyperbolaGeom
+
+# the public linear pattern feature name must remain available so existing integrations keep resolving the canonical implementation
 LinearPatternFeature = LinearPattern
+
+# the public matrix4 name must remain available so existing integrations keep resolving the canonical implementation
 Matrix4 = TransformMatrix
+
+# the public mesh name must remain available so existing integrations keep resolving the canonical implementation
 Mesh = SurfaceMesh
+
+# the public native feature definition name must remain available so existing integrations keep resolving the canonical implementation
 NativeFeatureDefinition = NativeFeature
+
+# the public parabola geometry name must remain available so existing integrations keep resolving the canonical implementation
 ParabolaGeometry = ParabolaGeom
+
+# the public reference plane feature name must remain available so existing integrations keep resolving the canonical implementation
 ReferencePlaneFeature = RefPlaneFeature
+
+# the public revolution feature name must remain available so existing integrations keep resolving the canonical implementation
 RevolutionFeature = RevolveFeature
+
+# the public selection path element name must remain available so existing integrations keep resolving the canonical implementation
 SelectionPathElement = SelectPathElem
+
+# the public sketch constraint name must remain available so existing integrations keep resolving the canonical implementation
 SketchConstraint = SketchRelation
+
+# the public topology summary name must remain available so existing integrations keep resolving the canonical implementation
 TopologySummary = TopologyCounts
+
+# the public vector2 name must remain available so existing integrations keep resolving the canonical implementation
 Vector2 = LegacyVectorTwo
+
+# the public vector3 name must remain available so existing integrations keep resolving the canonical implementation
 Vector3 = LegacyVectorThree
+
+# the public filter document name must remain available so existing integrations keep resolving the canonical implementation
 filter_document = FilterDocument
+
+# the public frozen mapping name must remain available so existing integrations keep resolving the canonical implementation
 frozen_mapping = FrozenMapping
+
+# the public infer capabilities name must remain available so existing integrations keep resolving the canonical implementation
 infer_capabilities = InferCaps
+
+# the public retained capabilities name must remain available so existing integrations keep resolving the canonical implementation
 retained_capabilities = GetRetainedCaps
+
+# the public register migration name must remain available so existing integrations keep resolving the canonical implementation
 register_migration = RegMigration
+
+# the public register types name must remain available so existing integrations keep resolving the canonical implementation
 register_types = RegisterTypes
+
+# the public semantic metadata name must remain available so existing integrations keep resolving the canonical implementation
 semantic_metadata = GetSemanticMeta
+
+# the public source payload indexes name must remain available so existing integrations keep resolving the canonical implementation
 source_payload_indexes = GetPayloadIds
+
+# the public with wrapper metadata name must remain available so existing integrations keep resolving the canonical implementation
 with_wrapper_metadata = AddWrapperMeta
+
+# the public assembly name must remain available so existing integrations keep resolving the canonical implementation
 assembly = AssemblyModule
+
+# the public boundary representation name must remain available so existing integrations keep resolving the canonical implementation
 brep = BrepModule
+
+# the public document name must remain available so existing integrations keep resolving the canonical implementation
 document = DocumentModule
+
+# the public geometry name must remain available so existing integrations keep resolving the canonical implementation
 geometry = GeometryModule
+
+# the public history name must remain available so existing integrations keep resolving the canonical implementation
 history = HistoryModule
+
+# the public mesh name must remain available so existing integrations keep resolving the canonical implementation
 mesh = MeshModule
+
+# the public serialization name must remain available so existing integrations keep resolving the canonical implementation
 serialization = SerialModule
+
+# the public types name must remain available so existing integrations keep resolving the canonical implementation
 types = TypesModule
 
 # package consumers need one intentional stable list of supported public symbols

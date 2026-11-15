@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadFieldMut import
 )
 
 
+# the long operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadLongMut(Cursor: FieldCursor, TagValue: int = 4) -> int:
     Actual, Value = ReadFieldMut(Cursor)
     if Actual != TagValue or type(Value) is not int:

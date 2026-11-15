@@ -22,6 +22,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeUse import Sha
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ArcSpan import ArcSpan
 
 
+# corner frame needs an explicit state contract so edge and face relationships survive parametric feature construction
 @MakeDataClass(frozen=True, slots=True)
 class CornerFrame:
     Point: KSpaceVector
@@ -34,6 +35,7 @@ class CornerFrame:
     Mitre: bool = False
 
 
+# the frame at contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def FrameAt(
     Point: KSpaceVector,
     AxisSet: tuple[KSpaceVector, KSpaceVector],
@@ -48,6 +50,7 @@ def FrameAt(
     return CornerFrame(Point, CapPoint, WallPoint, Middle, Heading, SideAxis, CapAxis)
 
 
+# the mitre frame contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def MitreFrame(
     Point: KSpaceVector,
     Sides: tuple[KSpaceVector, KSpaceVector],
@@ -66,6 +69,7 @@ def MitreFrame(
     )
 
 
+# the edge operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def CrossEdge(Frame: CornerFrame, Rounded: bool) -> FreeEdge:
     if not Rounded:
         return LineEdge(Frame.CapPoint, Frame.WallPoint)
@@ -79,10 +83,12 @@ def CrossEdge(Frame: CornerFrame, Rounded: bool) -> FreeEdge:
     return ArcEdge(Frame.Middle, Normal, Frame.CapPoint, Sweep, Frame.WallPoint)
 
 
+# the arc sense contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ArcSense(SpanValue: ArcSpan, UseValue: ShapeUse) -> float:
     return 1.0 if (SpanValue.SweepAngle > 0) == UseValue.Forward else -1.0
 
 
+# link edges must resolve unambiguously so edge and face relationships survive parametric feature construction
 def LinkEdges(
     UseValue: ShapeUse, Opening: CornerFrame, Closing: CornerFrame
 ) -> tuple[FreeEdge, FreeEdge]:
@@ -107,6 +113,7 @@ def LinkEdges(
     return Edges[0], Edges[1]
 
 
+# the chamfer normal contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ChamferNormal(Frame: CornerFrame, Round: EdgeRound) -> KSpaceVector:
     return UnitVector(
         AddVector(

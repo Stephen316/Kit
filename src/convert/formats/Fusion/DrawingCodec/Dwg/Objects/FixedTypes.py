@@ -1,3 +1,4 @@
+# the fixed types vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KFixedTypes = {
     0x01: "TEXT",
     0x02: "ATTRIB",
@@ -68,4 +69,6 @@ KFixedTypes = {
     0x50: "ACDBPLACEHOLDER",
     0x52: "LAYOUT",
 }
+
+# the entity types vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KEntityTypes = frozenset({*range(0x01, 0x2A), 0x2C, 0x2D, 0x2E, 0x2F, 0x4A, 0x4D, 0x4E})

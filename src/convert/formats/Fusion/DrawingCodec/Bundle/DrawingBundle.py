@@ -6,6 +6,7 @@ from convert.formats.Fusion.DrawingCodec.Model.FusionDrawing import FusionDrawin
 from convert.formats.Fusion.DrawingCodec.Model.PackageSlot import PackageSlot
 
 
+# drawing bundle needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class DrawingBundle:
     Description: BundleModel

@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the dim graph edges contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DimGraphEdges(Author: AuthorState) -> tuple[tuple[str, str, int], ...]:
     Edges = (
         ("dc_component", "dc_sketch", 4096),

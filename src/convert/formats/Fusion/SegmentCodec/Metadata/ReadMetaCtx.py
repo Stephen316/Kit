@@ -3,11 +3,14 @@ from uuid import UUID as ParseUuid
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaContext import MetaContext
 
+# max contexts must remain consistent across callers so native records retain their segment ownership and schema
 KMaxContexts = 4096
 
+# max urn text must remain consistent across callers so native records retain their segment ownership and schema
 KMaxUrnText = 512
 
 
+# invalid ctx guid input must fail here so native records retain their segment ownership and schema
 def CheckCtxGuid(TextValue: object) -> str:
     if type(TextValue) is not str or len(TextValue) != 36:
         raise ValueError("Invalid Fusion version context GUID")
@@ -20,6 +23,7 @@ def CheckCtxGuid(TextValue: object) -> str:
     return TextValue
 
 
+# invalid ctx urn input must fail here so native records retain their segment ownership and schema
 def CheckCtxUrn(TextValue: object) -> str:
     if (
         type(TextValue) is not str
@@ -32,6 +36,7 @@ def CheckCtxUrn(TextValue: object) -> str:
     return TextValue
 
 
+# the meta ctx operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadMetaCtx(Cursor: MetaCursor, Count: int) -> tuple[MetaContext, ...]:
     if Count > KMaxContexts:
         raise ValueError("Fusion version context count exceeds limit")

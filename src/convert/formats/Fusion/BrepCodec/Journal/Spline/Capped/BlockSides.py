@@ -8,14 +8,26 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import (
     CageGraph,
 )
 
+# the point shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KPoint = tuple[int, int]
+
+# the side key shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KSideKey = tuple[int, int, int]
+
+# the side entry shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KSideEntry = tuple[int, int, int]
+
+# the step shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KStep = tuple[KPoint, KPoint, KPoint]
+
+# the corner steps order must stay explicit so cap boundaries remain connected to the surrounding surface
 KCornerSteps = ((0, 0), (1, 0), (1, 1), (0, 1))
+
+# split seam must remain consistent across callers so cap boundaries remain connected to the surrounding surface
 KSplitSeam = "Fusion Form capped layout has no seam rule for a split closed seam"
 
 
+# grid frame needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class GridFrame:
     Region: int
@@ -25,6 +37,7 @@ class GridFrame:
     Seams: tuple[bool, bool]
 
 
+# side use needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class SideUse:
     Region: int
@@ -38,6 +51,7 @@ class SideUse:
     Closure: int
 
 
+# the reduce point contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def ReducePoint(GridValue: BlockGrid, Point: KPoint) -> KPoint:
     return (
         Point[0] % GridValue.Width if GridValue.WrapsU else Point[0],
@@ -45,6 +59,7 @@ def ReducePoint(GridValue: BlockGrid, Point: KPoint) -> KPoint:
     )
 
 
+# the cell sides contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def CellSides(Graph: CageGraph, GridValue: BlockGrid) -> dict[KSideKey, KSideEntry]:
     Found: dict[KSideKey, KSideEntry] = {}
     for FaceIndex, Place in zip(GridValue.Faces, GridValue.Places):
@@ -54,6 +69,7 @@ def CellSides(Graph: CageGraph, GridValue: BlockGrid) -> dict[KSideKey, KSideEnt
     return Found
 
 
+# the seam pairs contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def SeamPairs(GridValue: BlockGrid, AxisIndex: int) -> list[tuple[KSideKey, KSideKey]]:
     Width, Height = GridValue.Width, GridValue.Height
     if AxisIndex == 0:
@@ -61,6 +77,7 @@ def SeamPairs(GridValue: BlockGrid, AxisIndex: int) -> list[tuple[KSideKey, KSid
     return [((Index, Height - 1, 2), (Index, 0, 0)) for Index in range(Width)]
 
 
+# the seam axis decision must stay consistent so cap boundaries remain connected to the surrounding surface
 def IsSeamAxis(
     Graph: CageGraph,
     Sides: KMapping[KSideKey, KSideEntry],
@@ -76,6 +93,7 @@ def IsSeamAxis(
     )
 
 
+# the frame operation needs a distinct decoding boundary so cap boundaries remain connected to the surrounding surface
 def ReadFrame(Graph: CageGraph, GridValue: BlockGrid, Region: int) -> GridFrame:
     Sides = CellSides(Graph, GridValue)
     Corners: dict[KPoint, int] = {}
@@ -90,6 +108,7 @@ def ReadFrame(Graph: CageGraph, GridValue: BlockGrid, Region: int) -> GridFrame:
     return GridFrame(Region, GridValue, Sides, Corners, Seams)
 
 
+# the frame corners contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def FrameCorners(Frame: GridFrame) -> frozenset[int]:
     Width, Height = Frame.Grid.Width, Frame.Grid.Height
     return frozenset(
@@ -98,6 +117,7 @@ def FrameCorners(Frame: GridFrame) -> frozenset[int]:
     )
 
 
+# the side steps contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def SideSteps(GridValue: BlockGrid, BlockSide: int) -> list[KStep]:
     Width, Height = GridValue.Width, GridValue.Height
     if BlockSide == 0:
@@ -117,10 +137,12 @@ def SideSteps(GridValue: BlockGrid, BlockSide: int) -> list[KStep]:
     ]
 
 
+# the seam side decision must stay consistent so cap boundaries remain connected to the surrounding surface
 def IsSeamSide(Frame: GridFrame, BlockSide: int) -> bool:
     return Frame.Seams[1 - BlockSide % 2]
 
 
+# the seam shift contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def SeamShift(Frame: GridFrame, BlockSide: int, Closure: int) -> int:
     if not IsSeamSide(Frame, BlockSide):
         return 0
@@ -129,6 +151,7 @@ def SeamShift(Frame: GridFrame, BlockSide: int, Closure: int) -> int:
     return -1 if BlockSide in (1, 2) else 0
 
 
+# the window cell contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def WindowCell(
     Frame: GridFrame, CellPoint: KPoint, BlockSide: int, Shift: int
 ) -> tuple[int, int]:
@@ -145,6 +168,7 @@ def WindowCell(
     return SideEntry[1], SideEntry[2]
 
 
+# the use closure contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def UseClosure(GridValue: BlockGrid, BlockSide: int, Steps: list[KStep]) -> int:
     Along = BlockSide % 2
     IsWrapped = GridValue.WrapsV if Along else GridValue.WrapsU
@@ -152,6 +176,7 @@ def UseClosure(GridValue: BlockGrid, BlockSide: int, Steps: list[KStep]) -> int:
     return 2 if IsWrapped and len(Steps) == Period else 0
 
 
+# the side closure contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def SideClosure(Frame: GridFrame, BlockSide: int, Steps: list[KStep]) -> int:
     if UseClosure(Frame.Grid, BlockSide, Steps) == 2:
         return 2
@@ -160,6 +185,7 @@ def SideClosure(Frame: GridFrame, BlockSide: int, Steps: list[KStep]) -> int:
     return 1 if First == Final else 0
 
 
+# the use operation needs a consistent construction rule so cap boundaries remain connected to the surrounding surface
 def MakeUse(
     Frame: GridFrame, BlockSide: int, Steps: list[KStep], Shift: int
 ) -> SideUse:
@@ -180,6 +206,7 @@ def MakeUse(
     )
 
 
+# side uses needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def SideUses(Frame: GridFrame, BlockSide: int, Breaks: frozenset[int]) -> list[SideUse]:
     Steps = SideSteps(Frame.Grid, BlockSide)
     Groups: list[list[KStep]] = []
@@ -194,6 +221,7 @@ def SideUses(Frame: GridFrame, BlockSide: int, Breaks: frozenset[int]) -> list[S
     return [MakeUse(Frame, BlockSide, Group, Shift) for Group in Groups]
 
 
+# the region loop contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def RegionLoop(Frame: GridFrame, Breaks: frozenset[int]) -> tuple[SideUse, ...]:
     return tuple(
         UseValue

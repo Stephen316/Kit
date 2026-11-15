@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNod
 from convert.formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
 
 
+# invalid rim input must fail here so public geometry remains consistent with native circular topology
 def CheckRim(
     State: GeometryState,
     EdgeValue: EdgeNode,

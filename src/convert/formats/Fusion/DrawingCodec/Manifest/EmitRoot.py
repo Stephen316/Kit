@@ -13,6 +13,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveMeta import
 )
 
 
+# the root operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitRoot(Value: DrawingRoot) -> bytes:
     if not isinstance(CastValue(object, Value), DrawingRoot):
         raise ValueError("Expected a typed Fusion drawing root manifest")
@@ -42,6 +43,7 @@ def EmitRoot(Value: DrawingRoot) -> bytes:
     return bytes(SinkValue.Buffer)
 
 
+# the versions operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitVersionsMut(SinkValue: ManifestSink, Value: DrawingRoot) -> None:
     SinkValue.AddCount(Value.Modules, KMaxManifestRows)
     for NameValue, Number in Value.Modules:
@@ -52,6 +54,7 @@ def EmitVersionsMut(SinkValue: ManifestSink, Value: DrawingRoot) -> None:
         SinkValue.AddGuid(Identity)
 
 
+# the root tail operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitRootTailMut(SinkValue: ManifestSink, Value: DrawingRoot) -> None:
     SinkValue.AddGuid(Value.ActiveAsset)
     SinkValue.AddCount(Value.Assets, KMaxManifestRows)
@@ -64,6 +67,7 @@ def EmitRootTailMut(SinkValue: ManifestSink, Value: DrawingRoot) -> None:
         SinkValue.AddText(Value.SaveLabel, WideText=True)
 
 
+# the root link operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitRootLinkMut(
     SinkValue: ManifestSink, LinkValue: RootLink, IsModern: bool
 ) -> None:

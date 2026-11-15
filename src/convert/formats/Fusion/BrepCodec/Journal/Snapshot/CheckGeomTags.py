@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# invalid geometry tags input must fail here so topology changes retain their native revision relationships
 def CheckGeomTags(Model: GeometryState) -> None:
     for Value in Model.Entities:
         Record = MakeEntityNode(Value)

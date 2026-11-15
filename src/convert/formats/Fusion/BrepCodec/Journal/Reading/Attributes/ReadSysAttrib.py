@@ -24,12 +24,14 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the sys links operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadSysLinks(Cursor: FieldCursor) -> AttribLinks:
     NeedFieldMut(Cursor, (12, -1))
     NeedFieldMut(Cursor, (4, -1))
     return AttribLinks(ReadRefMut(Cursor), ReadRefMut(Cursor), ReadRefMut(Cursor))
 
 
+# the stitch node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadStitchNode(Cursor: FieldCursor) -> StitchAttrib:
     Links = ReadSysLinks(Cursor)
     return StitchAttrib(
@@ -37,6 +39,7 @@ def ReadStitchNode(Cursor: FieldCursor) -> StitchAttrib:
     )
 
 
+# the vertedge operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadVertedge(Cursor: FieldCursor) -> VertedgeAttrib:
     Links = ReadSysLinks(Cursor)
     Count = ReadCountMut(Cursor, KVertedgeCap)

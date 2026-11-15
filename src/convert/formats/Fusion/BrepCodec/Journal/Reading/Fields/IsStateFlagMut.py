@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import 
 )
 
 
+# the state flag decision must stay consistent so revision ownership survives native history reconstruction
 def IsStateFlagMut(Cursor: FieldCursor) -> bool:
     Value = ReadLongMut(Cursor)
     if Value not in (0, 1):

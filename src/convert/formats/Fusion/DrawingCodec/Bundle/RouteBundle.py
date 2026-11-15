@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import (
 )
 
 
+# the route bundle contract needs a shared interpretation so drawing members retain their sheet and model associations
 def RouteBundle(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> FusionBundle | DrawingBundle:

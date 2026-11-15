@@ -6,6 +6,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import (
 )
 
 
+# invalid doc links input must fail here so supporting records retain their owning document relationships
 def CheckDocLinks(Value: DocumentModel) -> None:
     Targets: dict[str, tuple[str | None, str | None]] = {}
     for Entry in Value.Document.Links:

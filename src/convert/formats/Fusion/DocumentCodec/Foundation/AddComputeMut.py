@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the compute operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddComputeMut(Author: AuthorState) -> None:
     Author.Allocate("fragment", "DcDesignFragment", ParentRole="component")
     Author.Allocate("nodes", "DcNodes", ParentRole="fragment")

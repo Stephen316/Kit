@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the coedge node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadCoedgeNode(Cursor: FieldCursor) -> CoedgeNode:
     Prefix = ReadPrefixMut(Cursor)
     NextCoedge = ReadRefMut(Cursor)

@@ -11,6 +11,7 @@ from convert.formats.Fusion.DrawingCodec.Package.PackageLimits import (
 )
 
 
+# the central operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadCentral(DataValue: bytes) -> tuple[tuple[CentralRow, ...], int]:
     if type(DataValue) is not bytes or not 22 <= len(DataValue) <= KPackageLimit:
         raise ValueError("Fusion drawing package size is outside the supported range")
@@ -38,6 +39,7 @@ def ReadCentral(DataValue: bytes) -> tuple[tuple[CentralRow, ...], int]:
     return tuple(RowValues), Start
 
 
+# the central row operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadCentralRow(
     DataValue: bytes, Offset: int, Footer: int
 ) -> tuple[CentralRow, int]:

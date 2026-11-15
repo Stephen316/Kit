@@ -19,6 +19,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.ReadWireRows import (
 )
 
 
+# the legacy operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadLegacy(MetaData: bytes, BulkData: bytes) -> LegacySegment:
     if type(MetaData) is not bytes or not 0 < len(MetaData) <= KMaxMetaSize:
         raise ValueError("Invalid legacy Fusion drawing MetaStream")
@@ -47,6 +48,7 @@ def ReadLegacy(MetaData: bytes, BulkData: bytes) -> LegacySegment:
     return Result
 
 
+# the split records contract needs a stable decomposition so drawing members retain their sheet and model associations
 def SplitRecords(
     BulkData: bytes, Primary: tuple[MetaOffset, ...], Others: tuple[MetaOffset, ...]
 ) -> tuple[BulkRecord, ...]:

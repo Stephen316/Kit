@@ -19,6 +19,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.PutRecordMut import PutReco
 from convert.formats.Fusion.DrawingCodec.Dwg.Records.RecordSinks import RecordSinks
 
 
+# the frame object contract needs a shared interpretation so section boundaries and object references remain consistent
 def FrameObjectMut(Writer: BitWriter, HandleRefs: tuple[DwgHandleRef, ...]) -> bytes:
     DataBits = Writer.BitCount
     for Reference in HandleRefs:
@@ -31,6 +32,7 @@ def FrameObjectMut(Writer: BitWriter, HandleRefs: tuple[DwgHandleRef, ...]) -> b
     return Opening + BodyValue + PackFields("<H", CrcValue)
 
 
+# the object operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitObject(DwgItem: DwgObject, VersionText: str) -> bytes:
     Sinks = RecordSinks(VersionText)
     Writer = Sinks.DataWriter

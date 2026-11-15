@@ -87,6 +87,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Geometry.ReadTransform imp
     ReadTransform,
 )
 
+# the entity readers vocabulary must stay centralized so journal decoding agrees on supported native identities
 KEntityReaders: dict[str, Callable[[FieldCursor], KJournalEntity]] = {
     "spline-surface": ReadSplineNode,
     "intcurve-curve": ReadIntcurve,

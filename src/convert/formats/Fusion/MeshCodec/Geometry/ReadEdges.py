@@ -2,6 +2,7 @@ from convert.formats.Fusion.MeshCodec.Model.FeatureEdge import FeatureEdge
 from convert.formats.Fusion.MeshCodec.Streams.ReadTerminal import ReadTerminal
 
 
+# the edges operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadEdges(Payload: bytes) -> tuple[FeatureEdge, ...]:
     Values = ReadTerminal(Payload)
     if len(Values) % 2:

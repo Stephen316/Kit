@@ -11,6 +11,7 @@ from tests.convert.formats.FusionCodec.Brep.Frustum.FrustumArchive import Frustu
 from tests.convert.formats.FusionCodec.Brep.Frustum.NativeHistory import NativeHistory
 
 
+# the native cone contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tools.TestShards.Reuse.Cache.ReadObject import ReadObject
 
 
+# the carried operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def LoadCarried(CarriedPath: FilePath | None) -> dict[str, dict[str, object]]:
     if CarriedPath is None or not CarriedPath.is_file():
         return {}

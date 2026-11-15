@@ -13,6 +13,7 @@ from convert.formats.Fusion.DrawingCodec.Members.Redirections import Redirection
 from convert.formats.Fusion.DrawingCodec.Members.SheetLayout import SheetLayout
 
 
+# fusion drawing needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class FusionDrawing:
     Root: DrawingRoot

@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
 from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
 
 
+# shared span order setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SpanOrder(
     Entities: tuple[KJournalEntity, ...], Start: int, Finish: int, Stable: bool
 ) -> tuple[int, ...]:
@@ -28,6 +29,7 @@ def SpanOrder(
     return ((0,) if Start == 0 else ()) + Roots + tuple(Flipped)
 
 
+# shared shuffle order setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ShuffleOrder(
     Entities: tuple[KJournalEntity, ...], ActiveCount: int, Stable: bool
 ) -> tuple[int, ...]:

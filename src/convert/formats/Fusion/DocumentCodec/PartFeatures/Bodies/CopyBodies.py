@@ -22,9 +22,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import IsSealed
 
+# the body copy specification variants need one shared contract so parametric feature reconstruction cannot omit a supported value shape
 KBodyCopySpec = BodyGridSpec | BodyRingSpec
 
 
+# the copy layout contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CopyLayout(Feature: KBodyCopySpec) -> PatternSpec | CircularSpec:
     if isinstance(Feature, BodyRingSpec):
         return CircularSpec(0, Feature.Count, Feature.TotalDegrees)
@@ -33,6 +35,7 @@ def CopyLayout(Feature: KBodyCopySpec) -> PatternSpec | CircularSpec:
     )
 
 
+# copy bodies needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CopyBodies(
     Source: PrismSolid, Feature: KBodyCopySpec, Operation: int, Ordinal: int
 ) -> tuple[PrismSolid, ...]:

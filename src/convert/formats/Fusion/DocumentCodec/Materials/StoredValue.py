@@ -9,9 +9,11 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import KScalarVal
 from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
+# the input value variants need one shared contract so document material reconstruction cannot omit a supported value shape
 KInputValue = float | bool | int | ColorValue
 
 
+# stored value needs an explicit validity boundary so appearance references remain connected to their owning entities
 def StoredValue(Declared: SchemaNode, Value: KInputValue) -> KScalarValue:
     Attributes = dict(Declared.Attributes)
     Magnitude = (

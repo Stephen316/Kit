@@ -9,6 +9,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 
 
+# invalid extrusion input must fail here so public document claims remain grounded in native records
 def CheckExtrusion(Graph: NativeGraph, Context: ExtrudeContext) -> None:
     Feature = Context.Extrude
     RequireFields(

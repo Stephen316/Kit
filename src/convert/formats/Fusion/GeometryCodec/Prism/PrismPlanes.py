@@ -3,6 +3,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import KFaceCorners
 
+# the face frames order must stay explicit so geometric values retain their native record boundaries
 KFaceFrames = (
     ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0)),
     ((0.0, 0.0, 1.0), (1.0, 0.0, 0.0)),
@@ -13,6 +14,7 @@ KFaceFrames = (
 )
 
 
+# the planes operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildPlanes(
     Corners: tuple[tuple[float, float, float], ...],
 ) -> tuple[GeometryRecord, ...]:

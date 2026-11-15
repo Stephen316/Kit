@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakePrefix import MakePref
 from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeBound import MakeBound
 
 
+# the plane node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakePlaneNode(Value: PlaneNode) -> AsmRecord:
     return AsmRecord(
         "plane-surface",

@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Pack.EncodeLong import EncodeLong
 
 
+# the match operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeMatch(Length: int, Distance: int, Trailing: int) -> bytes:
     if 3 <= Length <= 14 and 0 <= Distance <= 0x3FF:
         LeadByte = (Length + 1) << 4 | (Distance & 3) << 2 | Trailing

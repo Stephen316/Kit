@@ -5,6 +5,7 @@ from Report.MarkdownText import CommitLink, EscapeText
 from Report.ShareCounts import CountLines, ExcludedShare, ShareCounts
 
 
+# the category row contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def CategoryRow(NameText: str, Values: dict[str, object], Share: int) -> str:
     return (
         f"| {EscapeText(NameText)} | +{Values['Additions']:,} | −{Values['Deletions']:,} "
@@ -13,6 +14,7 @@ def CategoryRow(NameText: str, Values: dict[str, object], Share: int) -> str:
     )
 
 
+# the render summary contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderSummary(Snapshot: dict[str, object], IsUpdate: bool) -> list[str]:
     Totals = Snapshot["Totals"]
     Categories = Snapshot["Categories"]

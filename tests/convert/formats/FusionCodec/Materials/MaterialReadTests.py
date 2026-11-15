@@ -3,6 +3,7 @@ from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 from tests.convert.formats.FusionCodec.Materials.ReadNative import ReadNative
 
 
+# the native props contract needs boundary coverage so stored document relationships remain consistent
 def TestNativeProps() -> None:
     Native = ReadNative()
     Assets = DecodeMaterials(Native.Streams, Native.Schemas)

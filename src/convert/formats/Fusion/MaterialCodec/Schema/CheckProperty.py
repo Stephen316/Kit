@@ -2,6 +2,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertySpec import PropertySpe
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# invalid property input must fail here so typed appearance properties retain their native identifiers
 def CheckProperty(Field: PropertySpec) -> None:
     if not Field.FieldName or not EncodeText(Field.FieldName):
         raise ValueError("Fusion material property requires an identifier")

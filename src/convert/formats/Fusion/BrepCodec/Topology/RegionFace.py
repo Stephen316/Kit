@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the region face operation needs a consistent construction rule so topology identity survives native history reconstruction
 def MakeRegionFace(Start: int, IsDouble: bool) -> GeometryRecord:
     Fields: tuple[KGeometryValue, ...] = (
         EntityRef(-1),

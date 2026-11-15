@@ -18,6 +18,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckFolder import 
 from convert.formats.Fusion.MaterialCodec.Package.Xml.ReadGroup import ReadGroup
 
 
+# the folder operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadFolder(
     Archive: IndexedArchive, PathValue: str, FolderName: str, Depth: int
 ) -> PackageFolder:

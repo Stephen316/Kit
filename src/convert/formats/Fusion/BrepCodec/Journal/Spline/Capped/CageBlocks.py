@@ -3,6 +3,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import (
 )
 
 
+# the group blocks contract needs a stable decomposition so cap boundaries remain connected to the surrounding surface
 def GroupBlocks(
     Graph: CageGraph, Drawn: tuple[bool, ...]
 ) -> tuple[tuple[int, ...], ...]:

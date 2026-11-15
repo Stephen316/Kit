@@ -21,6 +21,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 
 
+# the corner index contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def CornerIndex(LoopValue: KPlaneLoop, CornerCm: tuple[float, float]) -> int | None:
     for Index, Value in enumerate(LoopValue):
         Finish = Value.FinishCm if isinstance(Value, LineSpan) else None
@@ -32,6 +33,7 @@ def CornerIndex(LoopValue: KPlaneLoop, CornerCm: tuple[float, float]) -> int | N
     return None
 
 
+# corner reach needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def CornerReach(
     AmountCm: float, Rounded: bool, Bevel: tuple[float, float], TurnAngle: float
 ) -> tuple[float, float]:
@@ -49,6 +51,7 @@ def CornerReach(
     return AmountCm, AmountCm * SineOf(AngleRad) / SineOf(Opening + AngleRad)
 
 
+# corner edit needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def CornerEdit(
     LoopValue: KPlaneLoop,
     Index: int,

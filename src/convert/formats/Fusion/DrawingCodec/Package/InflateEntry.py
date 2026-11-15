@@ -5,6 +5,7 @@ from zlib import error as InflateError
 from convert.formats.Fusion.DrawingCodec.Package.CentralRow import CentralRow
 
 
+# inflate entry needs an explicit validity boundary so drawing members retain their sheet and model associations
 def InflateEntry(
     Packed: bytes,
     RowValue: CentralRow,

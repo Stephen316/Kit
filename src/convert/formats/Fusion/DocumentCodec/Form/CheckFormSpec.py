@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.CheckMaterial import CheckMa
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# invalid form specification input must fail here so editable control cages retain their document relationships
 def CheckFormSpec(SpecValue: FormSpec) -> None:
     if not isinstance(CastValue(object, SpecValue), FormSpec):
         raise ValueError("A typed Fusion Form document specification is required")

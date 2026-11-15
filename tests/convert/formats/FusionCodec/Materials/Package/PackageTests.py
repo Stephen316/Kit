@@ -11,6 +11,7 @@ from tests.convert.formats.FusionCodec.Materials.Package.NativePackage import (
 )
 
 
+# the native pack contract needs boundary coverage so stored document relationships remain consistent
 def TestNativePack(TmpPath: FilePath) -> None:
     Model = ReadPackage(NativePackage())
     assert len(Model.Assets) == 6
@@ -31,6 +32,7 @@ def TestNativePack(TmpPath: FilePath) -> None:
     assert ReadPackage(Target.read_bytes()) == Model
 
 
+# the package edit contract needs boundary coverage so stored document relationships remain consistent
 def TestPackageEdit(TmpPath: FilePath) -> None:
     Original = ReadPackage(NativePackage())
     Changed = ReplaceValue(Original, Assets=ChangeAssets(Original.Assets))

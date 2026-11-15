@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.BuildAliases import (
 from convert.formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
 
 
+# the live table operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeLiveTable(Model: JournalModel, StateId: int | None) -> LiveTable:
     States = Materialize(Model)
     State = next(

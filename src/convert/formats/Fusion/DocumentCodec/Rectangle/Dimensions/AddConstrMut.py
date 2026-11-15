@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
 
 
+# the constr operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddConstrMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     SketchName = SketchRole(Author)

@@ -21,21 +21,29 @@ from tests.convert.formats.FusionCodec.Drawings.DrawingSource import (
     FrameReplay,
 )
 
+# the controls cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KControls = ("A0Views", "A1Dimension", "A2AutoDim")
 
+# the tracked entity cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTrackedEntity = "77102857"
 
+# the sheet class cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSheetClass = "632EEBFC-0412-4AA4-9CF1-69C94F55C038"
 
+# the source class cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSourceClass = "3EAD2723-67C3-4C8E-9B9E-1208F04C4C44"
 
+# the boundary representation class cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBrepClass = "E4761EB7-1694-472F-BAC0-24B430387180"
 
+# the file class cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFileClass = "3B30D852-778A-4752-9EBD-A154875C911C"
 
+# the member layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMemberLayout = EntryLayout(0, 0x0800, 0x6A9E, 0x5B6C, 46, 20, 0x81A40000)
 
 
+# shared tracked count setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TrackedCount(Drawing: FusionDrawing) -> int:
     Design = Drawing.Segments[0]
     assert isinstance(Design, ParsedSegment)
@@ -46,6 +54,7 @@ def TrackedCount(Drawing: FusionDrawing) -> int:
     )
 
 
+# shared class fields setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ClassFields(Drawing: FusionDrawing, ClassGuid: str) -> list[dict[str, object]]:
     Design = Drawing.Segments[0]
     assert isinstance(Design, ParsedSegment)
@@ -57,6 +66,7 @@ def ClassFields(Drawing: FusionDrawing, ClassGuid: str) -> list[dict[str, object
     ]
 
 
+# shared typed facts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TypedFacts(Drawing: FusionDrawing, Tracked: int) -> None:
     (Sheet,) = ClassFields(Drawing, KSheetClass)
     assert (Sheet["sheetId"], Sheet["sheetOrder"]) == ("2E50", 2)
@@ -71,6 +81,7 @@ def TypedFacts(Drawing: FusionDrawing, Tracked: int) -> None:
     assert len({Entry["bodyPersistentId"] for Entry in Breps}) == 1
 
 
+# the controls contract needs boundary coverage so stored document relationships remain consistent
 def TestControls() -> None:
     Replay = FrameReplay()
     Drawings: dict[str, FusionDrawing] = {}
@@ -93,6 +104,7 @@ def TestControls() -> None:
     assert First.CurrentVersion != Second.CurrentVersion
 
 
+# the bad members contract needs boundary coverage so stored document relationships remain consistent
 def TestBadMembers() -> None:
     Replay = FrameReplay()
     DataValue = DrawingSources()["A0Views"]
@@ -117,6 +129,7 @@ def TestBadMembers() -> None:
         _ = EmitDrawing(ReplaceValue(Drawing, Database=Unnamed), Replay.Compress)
 
 
+# the drawing join contract needs boundary coverage so stored document relationships remain consistent
 def TestDwgJoin() -> None:
     Replay = FrameReplay()
     DataValue = DrawingSources()["A1Dimension"]

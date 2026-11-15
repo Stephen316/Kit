@@ -9,15 +9,19 @@ from pytest import mark as TestMarks
 from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
+# root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRoot = FilePath(__file__).resolve().parents[5]
 
+# the folder cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFolder = KRoot / "re" / "Fusion" / "LocalOracle" / "ReaderCoverage"
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
 
+# shared load cases setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadCases(FileName: str) -> list[dict[str, object]]:
     Report = CastValue(
         dict[str, object], LoadJson((KFolder / FileName).read_text("utf-8"))
@@ -25,6 +29,7 @@ def LoadCases(FileName: str) -> list[dict[str, object]]:
     return CastValue(list[dict[str, object]], Report["cases"])
 
 
+# shared load report setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadReport() -> dict[str, object]:
     return CastValue(
         dict[str, object],
@@ -32,12 +37,14 @@ def LoadReport() -> dict[str, object]:
     )
 
 
+# shared read text setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadText(Entry: dict[str, object], FieldName: str) -> str:
     Value = Entry[FieldName]
     assert isinstance(Value, str)
     return Value
 
 
+# the prepared contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestPrepared() -> None:
     Cases = LoadCases("Preparation.json")
@@ -52,6 +59,7 @@ def TestPrepared() -> None:
         assert ReadDocument(Output) == Model
 
 
+# the native run contract needs boundary coverage so stored document relationships remain consistent
 def TestNativeRun() -> None:
     Report = LoadReport()
     assert Report["status"] == "accepted"
@@ -77,6 +85,7 @@ def TestNativeRun() -> None:
         assert all(Variant["status"] == "accepted" for Variant in Variants)
 
 
+# the saved reads contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestSavedReads() -> None:
     for Entry in CastValue(list[dict[str, object]], LoadReport()["cases"]):

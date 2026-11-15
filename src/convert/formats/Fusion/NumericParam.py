@@ -23,6 +23,7 @@ def ReadParamBind(Cursor: MetaCursor) -> int | None:
     return BindingId
 
 
+# the role operation needs a distinct decoding boundary so stored document relationships remain consistent
 def ReadRoleMut(Cursor: MetaCursor, BindingId: int | None) -> tuple[str, bytes]:
     Metadata = Cursor.TakeBytes(10)
     if Metadata[:4] != bytes(4):

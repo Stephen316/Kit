@@ -11,6 +11,7 @@ from convert.formats.Fusion.DrawingCodec.Package.PackageLimits import (
 )
 
 
+# pack payload needs an explicit validity boundary so drawing members retain their sheet and model associations
 def PackPayload(
     Payload: bytes, Method: int, CompressZstd: Callable[[bytes], bytes] | None
 ) -> bytes:

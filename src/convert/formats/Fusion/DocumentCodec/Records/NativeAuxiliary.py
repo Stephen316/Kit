@@ -1,5 +1,6 @@
 from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
 
+# the auxiliary schemas order must stay explicit so model state retains its native feature and ownership relationships
 KAuxiliarySchemas = (
     ClassSchema(
         "75CB256B-FDDE-44D6-AE08-4DB583875AB7",

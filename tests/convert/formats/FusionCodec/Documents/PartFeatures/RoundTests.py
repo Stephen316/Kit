@@ -52,6 +52,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
     PartRecords,
 )
 
+# the disc cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDisc = ExtrudeSpec(
     (CircleCurve((0.0, 0.0), 10.0),),
     20.0,
@@ -61,10 +62,16 @@ KDisc = ExtrudeSpec(
     "Disc sketch",
     "Disc extrude",
 )
+
+# the corners cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCorners = FilletSpec(
     (40.0, 30.0), 5.0, "Corner rounds", ((0.0, 0.0), (40.0, 0.0), (0.0, 30.0))
 )
+
+# the top round cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTopRound = FilletSpec((20.0, 0.0), 3.0, "Top round", LevelMm=20.0)
+
+# the round cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRoundCases: dict[str, tuple[KPartFeature, ...]] = {
     "FilletTop": (KBlock, KTopRound),
     "ChamferTop": (KBlock, ChamferSpec((20.0, 0.0), 3.0, "Top bevel", LevelMm=20.0)),
@@ -75,9 +82,12 @@ KRoundCases: dict[str, tuple[KPartFeature, ...]] = {
     ),
     "FilletRim": (KDisc, FilletSpec((10.0, 0.0), 3.0, "Rim round", LevelMm=20.0)),
 }
+
+# the round tori cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRoundTori = {"FilletTop": 0, "ChamferTop": 0, "FilletChain": 4, "FilletRim": 1}
 
 
+# the round native contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KRoundCases))
 def TestRoundNative(NameValue: str) -> None:
     _, Stages = SolvePart(FamilySpec(KRoundCases[NameValue]))
@@ -91,6 +101,7 @@ def TestRoundNative(NameValue: str) -> None:
     assert Measured.AreaCm == ApproxValue(Native["area_cm2"], rel=1e-9)
 
 
+# the round file contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KRoundCases))
 def TestRoundFile(NameValue: str) -> None:
     Features = KRoundCases[NameValue]
@@ -106,6 +117,7 @@ def TestRoundFile(NameValue: str) -> None:
     assert len(TorusList) == KRoundTori[NameValue]
 
 
+# the round legs contract needs boundary coverage so stored document relationships remain consistent
 def TestRoundLegs() -> None:
     EvenVolume = MeasurePart(
         SolvePart(FamilySpec(KRoundCases["ChamferTop"]))[1][-1].After
@@ -116,6 +128,7 @@ def TestRoundLegs() -> None:
     assert Measured.VolumeCm == ApproxValue(24.0 - 0.3 * 0.2 / 2.0 * 4.0, rel=1e-12)
 
 
+# shared shape points setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ShapePoints(Features: tuple[KPartFeature, ...]) -> set[tuple[float, ...]]:
     Shape = BuildShape(SolvePart(FamilySpec(Features))[1][-1].After)
     return {
@@ -127,9 +140,11 @@ def ShapePoints(Features: tuple[KPartFeature, ...]) -> set[tuple[float, ...]]:
     }
 
 
+# the arc point cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KArcPoint = (35.0 + 5.0 * 0.5**0.5, 5.0 - 5.0 * 0.5**0.5)
 
 
+# the round sides contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     ("Features", "Corners"),
     (
@@ -157,13 +172,16 @@ def TestRoundSides(
     assert set(Corners) <= ShapePoints(Features)
 
 
+# the loop points cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLoopPoints = ((40.0, 15.0), (20.0, 30.0), (0.0, 15.0))
 
 
+# shared loop volume setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoopVolume(Section: float, Moment: float) -> float:
     return 24.0 - (14.0 * Section - 8.0 * Moment)
 
 
+# the round loops contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     ("Feature", "Volume"),
     (
@@ -194,6 +212,7 @@ def TestRoundLoops(Feature: KPartFeature, Volume: float) -> None:
     assert len(PartRecords(Model, KFamilyNames[type(Feature)])) == 1
 
 
+# the trapezoid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTrapezoid = ExtrudeSpec(
     (
         LineCurve((0.0, 0.0), (40.0, 0.0)),
@@ -204,6 +223,8 @@ KTrapezoid = ExtrudeSpec(
     20.0,
     "new",
 )
+
+# the round rejects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRoundRejects: tuple[tuple[KPartFeature, ...], ...] = (
     (KBlock, FilletSpec((20.0, 15.0), 3.0, LevelMm=20.0)),
     (KBlock, FilletSpec((20.0, 0.0), 3.0, LevelMm=10.0)),
@@ -217,6 +238,7 @@ KRoundRejects: tuple[tuple[KPartFeature, ...], ...] = (
 )
 
 
+# the round reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Features", KRoundRejects)
 def TestRoundReject(Features: tuple[KPartFeature, ...]) -> None:
     with RaisesError(ValueError):

@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint, MakeColor
 
 
+# the base defaults contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def BaseDefaults() -> dict[str, dict[str, object]]:
     return {
         "ManagedEntity": {"rParent": None},

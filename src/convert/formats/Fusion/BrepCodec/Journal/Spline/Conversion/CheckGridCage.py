@@ -1,10 +1,14 @@
 from convert.formats.Fusion.TSplineCodec.Model.GripMapping import GripMapping
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# weight slack must remain consistent across callers so surface geometry retains the control cage shape
 KWeightSlack = 2.0**-51
+
+# span limit needs one explicit bound so spline conversion cannot accept inconsistent resource or layout limits
 KSpanLimit = 4096.0
 
 
+# invalid grid cage input must fail here so surface geometry retains the control cage shape
 def CheckGridCage(Surface: TsplineSurface) -> GripMapping:
     Header, Topology = Surface.Header, Surface.Topology
     if (Header.Degree, Header.UnitScale, Header.EndConditions) != (

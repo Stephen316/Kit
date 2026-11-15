@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# root link needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class RootLink:
     Role: str

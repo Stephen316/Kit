@@ -19,6 +19,7 @@ from tests.convert.formats.FusionCodec.Documents.Reading.NativeDocSource import 
 )
 
 
+# the config graph contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

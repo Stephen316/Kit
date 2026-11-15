@@ -7,6 +7,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.FeatureLimits import KMaxFeatureText
 
 
+# the named operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadNamedMut(
     Cursor: MetaCursor, Catalog: EntityCatalog
 ) -> tuple[NamedMetadata, ...]:

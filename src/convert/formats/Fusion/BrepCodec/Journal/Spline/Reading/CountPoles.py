@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
 
+# count poles needs an explicit validity boundary so topology changes retain their native revision relationships
 def CountPoles(Knots: tuple[SplineKnot, ...], Degree: int) -> int:
     if not 1 <= Degree <= 15 or not 2 <= len(Knots) <= 1024:
         raise ValueError("Unsupported Fusion spline degree or knot count")

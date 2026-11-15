@@ -4,6 +4,7 @@ from convert.adapters.base.ContractTypes import IsBinaryTarget, KTargetType
 from convert.adapters.base.WriteOptions import WriteOptions
 
 
+# the payload operation needs a consistent construction rule so public document claims remain grounded in native records
 def WritePayloadMut(
     Target: KTargetType, Payload: bytes, Settings: WriteOptions
 ) -> Path | None:

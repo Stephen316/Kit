@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the node operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddNodeMut(
     Author: AuthorState,
     RoleName: str,
@@ -25,6 +26,7 @@ def AddNodeMut(
     )
 
 
+# the part scope contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def PartScope(Author: AuthorState) -> list[dict[str, object]]:
     return [
         Author.MakeGroup(

@@ -1,14 +1,19 @@
 import math
 from sys import float_info as FloatInfo
 
+# rank slack must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KRankSlack = 1e-9
+
+# machine precision must govern numerical thresholds so spline fitting respects floating point error
 KUnitRound = FloatInfo.epsilon
 
 
+# the column norm contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def ColumnNorm(Column: list[float], Start: int) -> float:
     return math.fsum(Value * Value for Value in Column[Start:])
 
 
+# reflect needs one geometric convention so extraordinary vertices remain compatible with surrounding patches
 def ReflectMut(Vector: list[float], Column: list[float], Start: int) -> None:
     Denom = math.fsum(Value * Value for Value in Vector)
     if Denom == 0.0:
@@ -23,6 +28,7 @@ def ReflectMut(Vector: list[float], Column: list[float], Start: int) -> None:
         Column[Start + Offset] -= Factor * Value
 
 
+# the back solve contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def BackSolve(Columns: list[list[float]], Target: list[float]) -> list[float]:
     Count = len(Columns)
     Found = [0.0] * Count
@@ -35,7 +41,10 @@ def BackSolve(Columns: list[list[float]], Target: list[float]) -> list[float]:
     return Found
 
 
+# the pivot contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def PivotMut(Columns: list[list[float]], Order: list[int], Start: int) -> None:
+
+    # ordering by column norm columns index start must stay deterministic so spline cap reconstruction resolves equivalent inputs consistently
     Pivot = max(
         range(Start, len(Columns)), key=lambda Index: ColumnNorm(Columns[Index], Start)
     )
@@ -43,6 +52,7 @@ def PivotMut(Columns: list[list[float]], Order: list[int], Start: int) -> None:
     Order[Start], Order[Pivot] = Order[Pivot], Order[Start]
 
 
+# reduce needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def ReduceMut(
     Columns: list[list[float]], Targets: list[list[float]], Start: int, Leading: float
 ) -> float:
@@ -67,12 +77,14 @@ def ReduceMut(
     return Leading
 
 
+# the round floor contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def RoundFloor(Columns: list[list[float]], Found: list[list[float]]) -> float:
     Diagonal = [abs(Column[Index]) for Index, Column in enumerate(Columns)]
     Largest = max((abs(Value) for RowValue in Found for Value in RowValue), default=0.0)
     return KUnitRound * len(Columns[0]) * max(Diagonal) / min(Diagonal) * Largest
 
 
+# the solve least contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def SolveLeast(
     Matrix: list[list[float]], Sides: list[list[float]]
 ) -> list[list[float]]:

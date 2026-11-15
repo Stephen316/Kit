@@ -1,6 +1,7 @@
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the cuboid corners contract needs a shared interpretation so geometric values retain their native record boundaries
 def CuboidCorners(Model: CuboidBody) -> tuple[tuple[float, float, float], ...]:
     CoordX, CoordY, CoordZ = Model.BasePoint
     return tuple(

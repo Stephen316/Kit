@@ -1,6 +1,7 @@
 from math import isfinite as IsFinite
 
 
+# invalid knots input must fail here so nested spline and surface records retain their relationships
 def CheckKnots(
     Degree: int, Closure: int, Knots: tuple[float, ...], Multiplicity: tuple[int, ...]
 ) -> None:

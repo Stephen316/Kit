@@ -802,10 +802,6 @@ def CheckReasons(
     SourceLines = SourceText.splitlines()
     FindingList: list[Finding] = []
     for LineNum, ColNum, KindText in FindReasonSites(SyntaxTree, ParentMap):
-        if KindText == "alias binding":
-            continue
-        if LineNum < 2 or not SourceLines[LineNum - 2].lstrip().startswith("#"):
-            continue
         FindingInfo = CheckReason(SourcePath, SourceLines, LineNum, ColNum, KindText)
         if FindingInfo is not None:
             FindingList.append(FindingInfo)
@@ -835,6 +831,7 @@ def GetReasonLines(
     }
 
 
+# required rationale must remain distinct from unrelated commentary so source policy allows only intentional explanations
 def CheckComments(
     SourcePath: FilePath,
     SourceText: str,
@@ -1207,6 +1204,7 @@ def ReadSource(SourcePath: FilePath) -> str:
         return SourceFile.read()
 
 
+# all source policies need one entry point so file and revision checks enforce identical rules
 def CheckSource(SourcePath: FilePath, SourceText: str) -> list[Finding]:
     if HasSkippedPart(SourcePath, SourcePath.parent):
         return []

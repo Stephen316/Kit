@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
 
 
+# the sketch operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddSketchMut(Author: AuthorState) -> None:
     RoleName = SketchRole(Author)
     Generation = Author.Policy.SketchGeneration

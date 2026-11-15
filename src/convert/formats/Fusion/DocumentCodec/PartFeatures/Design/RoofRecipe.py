@@ -20,7 +20,10 @@ from convert.formats.Fusion.EntityCodec.Recipes.Model.UvOrder import UvOrder
 from convert.formats.Fusion.EntityCodec.Recipes.Model.UvOrderEntry import UvOrderEntry
 from convert.formats.Fusion.EntityCodec.Recipes.Model.VertexRecipe import VertexRecipe
 
+# the rim orders order must stay explicit so modeling operations retain their document and timeline ownership
 KRimOrders = (UvOrderEntry(0, UvOrder(2, 2, 2, 2, 1, 0, 1)),)
+
+# the side plans order must stay explicit so modeling operations retain their document and timeline ownership
 KSidePlans = (
     ((0, 1), (0, 2, 1), (3, 0, 1)),
     ((0, 3), (3, 0, 1), (3, 4, 0)),
@@ -29,6 +32,7 @@ KSidePlans = (
 )
 
 
+# the side recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def SideRecipe(Solid: PrismSolid, Index: int) -> RecipeValue:
     SlabValue = Solid.Slabs[-1]
     LoopValue = SlabValue.Loops[0]
@@ -52,6 +56,7 @@ def SideRecipe(Solid: PrismSolid, Index: int) -> RecipeValue:
     return RecipeValue(3, RecipeTags(Labels), (), BoundFaceRecipe(0, -1, Edges))
 
 
+# the roof plans contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RoofPlans(Solid: PrismSolid) -> list[tuple[tuple[FaceLabel, ...], ...]]:
     Ceiling = Solid.Slabs[-1]
     LoopValue = next(Value for Value in Ceiling.Loops if LoopArea(Value) > 0)
@@ -71,6 +76,7 @@ def RoofPlans(Solid: PrismSolid) -> list[tuple[tuple[FaceLabel, ...], ...]]:
     return Plans
 
 
+# rim recipe needs an explicit validity boundary so modeling operations retain their document and timeline ownership
 def RimRecipe(Solid: PrismSolid, WallLabel: FaceLabel) -> RecipeValue:
     Ceiling = Solid.Slabs[-1]
     RimLabels = [
@@ -89,6 +95,7 @@ def RimRecipe(Solid: PrismSolid, WallLabel: FaceLabel) -> RecipeValue:
     )
 
 
+# the roof recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RoofRecipe(Solid: PrismSolid) -> RecipeValue:
     Ceiling = Solid.Slabs[-1]
     LoopValue = next(Value for Value in Ceiling.Loops if LoopArea(Value) > 0)
@@ -117,6 +124,7 @@ def RoofRecipe(Solid: PrismSolid) -> RecipeValue:
     return RecipeValue(3, RecipeTags(Labels), (), BoundFaceRecipe(0, -1, Edges))
 
 
+# the roof face recipe contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RoofFaceRecipe(Solid: PrismSolid) -> RecipeValue:
     Labels = [Solid.Slabs[-1].RoofLabel]
     return RecipeValue(3, RecipeTags(Labels), (), PickFace(0))

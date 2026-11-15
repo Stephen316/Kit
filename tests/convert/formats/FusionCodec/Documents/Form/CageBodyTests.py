@@ -42,20 +42,28 @@ from tests.convert.formats.FusionCodec.Documents.Form.StencilNatives import (
     KStencilNatives,
 )
 
+# the cage slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCageSlack = 1e-12
+
+# the uniform save cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KUniformSave = (
     "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Uniform2.f3d",
     "ea2495bf176e9845309a4af79ddffc3365e70b6ea7f6c67f445e2b74cf8da2eb",
 )
+
+# the single save cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSingleSave = (
     "re/Fusion/LocalOracle/FormDocuments/Intervals/Box/Single.f3d",
     "07e17a88513b7ebe8ee3098ae439e5b2eb9abff022f71dc47fea86ed4c29e73d",
 )
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
 
 
+# shared cage layout setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CageLayout(Surface: TsplineSurface) -> tuple[object, ...]:
     Header = Surface.Header
     return (
@@ -75,6 +83,7 @@ def CageLayout(Surface: TsplineSurface) -> tuple[object, ...]:
     )
 
 
+# shared point spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PointSpread(
     LeftPoints: tuple[tuple[float, ...], ...],
     RightPoints: tuple[tuple[float, ...], ...],
@@ -90,11 +99,13 @@ def PointSpread(
     )
 
 
+# shared trace spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TraceSpread(LeftCurve: BsCurve, RightCurve: BsCurve) -> float:
     assert ReplaceValue(LeftCurve, Poles=()) == ReplaceValue(RightCurve, Poles=())
     return PointSpread(LeftCurve.Poles, RightCurve.Poles)
 
 
+# shared edge spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeSpread(LeftEdge: FormEdge, RightEdge: FormEdge) -> float:
     Plain = ReplaceValue(LeftEdge, Curve=RightEdge.Curve, Label="", Windows=())
     assert Plain == ReplaceValue(RightEdge, Label="", Windows=())
@@ -114,6 +125,7 @@ def EdgeSpread(LeftEdge: FormEdge, RightEdge: FormEdge) -> float:
     return max(Windows, TraceSpread(LeftEdge.Curve, RightEdge.Curve))
 
 
+# shared face spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FaceSpread(LeftFace: FormFace, RightFace: FormFace) -> float:
     LeftCache, RightCache = LeftFace.Surface.Cache, RightFace.Surface.Cache
     assert ReplaceValue(LeftCache, Points=()) == ReplaceValue(RightCache, Points=())
@@ -133,6 +145,7 @@ def FaceSpread(LeftFace: FormFace, RightFace: FormFace) -> float:
     return max(Spreads)
 
 
+# shared shape spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ShapeSpread(Built: FormBody, Native: FormBody) -> float:
     assert Built.Regions == Native.Regions
     Spreads = [PointSpread(Built.PointsCm, Native.PointsCm)]
@@ -147,6 +160,7 @@ def ShapeSpread(Built: FormBody, Native: FormBody) -> float:
     return max(Spreads)
 
 
+# the cage body contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KStencilNatives, ids=lambda CaseValue: FilePath(CaseValue[0]).stem
@@ -159,6 +173,7 @@ def TestCageBody(CaseValue: tuple[str, str, str]) -> None:
     assert ConvertForm(Surface) == Built
 
 
+# the cage doc contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("CaseValue", KCageDocuments, ids=lambda CaseValue: CaseValue[0])
 def TestCageDoc(CaseValue: tuple[str, str, str, str, str, str, str]) -> None:
@@ -176,6 +191,7 @@ def TestCageDoc(CaseValue: tuple[str, str, str, str, str, str, str]) -> None:
     assert ReadConverted(Emitted) == Built
 
 
+# the form choice contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestFormChoice() -> None:
     Plane = ReadDocument(ReadFormFile(*KStencilUnknown)).Forms[0].Surface
@@ -194,6 +210,7 @@ def TestFormChoice() -> None:
     assert any(FaceValue.Surface.Cache.Weights for FaceValue in Rational.Faces)
 
 
+# the uniform span contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestUniformSpan() -> None:
     Model = ReadDocument(ReadFormFile(*KUniformSave))
@@ -202,6 +219,7 @@ def TestUniformSpan() -> None:
     assert ShapeSpread(ConvertForm(Surface), ReadConverted(Model)) <= KCageSlack
 
 
+# the edge knots contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestEdgeKnots() -> None:
     Surface = ReadDocument(ReadFormFile(*KSingleSave)).Forms[0].Surface

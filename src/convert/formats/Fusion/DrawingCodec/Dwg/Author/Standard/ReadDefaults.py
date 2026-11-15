@@ -8,9 +8,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.ReadDraftJson impor
     ReadDraftRecord,
 )
 
+# the class defaults shape must stay shared so drawing standard authoring uses one contract for compatible values
 KClassDefaults = dict[str, tuple[DraftRecord, DraftRecord]]
 
 
+# the defaults operation needs a distinct decoding boundary so native drawing objects use a consistent symbol vocabulary
 def ReadDefaults(Source: Path) -> KClassDefaults:
     Classes = ReadObject(LoadJson(Source.read_text(encoding="utf-8")))
     Result: KClassDefaults = {}
@@ -23,6 +25,7 @@ def ReadDefaults(Source: Path) -> KClassDefaults:
     return Result
 
 
+# the sheet defaults contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 @CacheValue
 def SheetDefaults() -> KClassDefaults:
     return ReadDefaults(Path(__file__).with_name("SheetDefaults.json"))

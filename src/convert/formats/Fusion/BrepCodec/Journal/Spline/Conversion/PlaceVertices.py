@@ -1,8 +1,10 @@
 from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 
+# the spoke steps order must stay explicit so surface geometry retains the control cage shape
 KSpokeSteps = ((0, 1), (-1, 0), (0, -1), (1, 0))
 
 
+# the vertices operation needs a consistent construction rule so surface geometry retains the control cage shape
 def PlaceVertices(
     Topology: CageTopology, Spokes: tuple[int, ...]
 ) -> tuple[tuple[int, int], ...]:

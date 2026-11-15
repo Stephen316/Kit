@@ -2,6 +2,7 @@ from typing import Literal
 from uuid import UUID as UuidValue
 
 
+# config name needs an explicit validity boundary so supporting records retain their owning document relationships
 def ConfigName(NameValue: str) -> Literal["table", "rule"]:
     Prefix = "DesignConfigurationTable.BlobParts/"
     for Label, Extension, KindValue in (

@@ -3,6 +3,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRe
 from convert.formats.Fusion.GraphicsCodec.Model.Values.SceneSet import SceneSet
 
 
+# node value needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class NodeValue:
     NodeType: int

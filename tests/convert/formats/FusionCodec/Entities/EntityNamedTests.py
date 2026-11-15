@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Entities.ReadProfile import ReadProfile
 from tests.convert.formats.FusionCodec.Entities.ReadRecords import ReadRecords
 
 
+# the named references contract needs boundary coverage so stored document relationships remain consistent
 def TestNamedRefs() -> None:
     Native = ReadNative("extrude_07mm.f3d")
     Profile = NamedProfile(ReadProfile(Native.Targets))
@@ -22,6 +23,7 @@ def TestNamedRefs() -> None:
     assert DecodeEntities(Reopened, Native.Metadata.Classes, Profile) == Changed
 
 
+# the target class contract needs boundary coverage so stored document relationships remain consistent
 def TestTargetClass() -> None:
     Native = ReadNative("extrude_07mm.f3d")
     Profile = ReadProfile(Native.Targets)

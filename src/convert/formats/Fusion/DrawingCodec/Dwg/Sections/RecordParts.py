@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import (
 )
 
 
+# record parts needs an explicit validity boundary so section boundaries and object references remain consistent
 def RecordParts(
     Record: DwgRecord, FieldNames: tuple[str, ...]
 ) -> tuple[KDwgValue, ...]:
@@ -15,6 +16,7 @@ def RecordParts(
     return tuple(Entry.FieldValue for Entry in Record.RecordFields)
 
 
+# named value needs an explicit validity boundary so section boundaries and object references remain consistent
 def NamedValue(Record: DwgRecord, FieldName: str) -> KDwgValue:
     for Entry in Record.RecordFields:
         if Entry.FieldName == FieldName:

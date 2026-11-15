@@ -61,6 +61,7 @@ class CadDocument(
     brep: BrepModel | None = None
     materials: tuple[MaterialRecord, ...] = ()
 
+    # the assembly contract needs a shared interpretation so independent adapters agree on document semantics
     @property
     def Assembly(self) -> AssemblyData | None:
         return self.assembly

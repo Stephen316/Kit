@@ -10,6 +10,8 @@ from interchange import CadDocument
 
 # this mixin gives stream and filesystem destinations one writing policy
 class JsonWriter:
+
+    # the typed materials contract needs a shared interpretation so independent codecs retain consistent data contracts
     @property
     def TypedMaterials(self) -> bool:
         return True

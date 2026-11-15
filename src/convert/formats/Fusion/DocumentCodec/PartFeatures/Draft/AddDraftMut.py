@@ -36,7 +36,10 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeValue import RecipeValue
 
+# the draft tags shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KDraftTags = tuple[tuple[int, ...], int]
+
+# the draft modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KDraftModes: dict[str, object] = dict(
     MovingPartingLineDraftAngleType=3,
     draftType=1,
@@ -46,11 +49,13 @@ KDraftModes: dict[str, object] = dict(
 )
 
 
+# the draft tags contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def DraftTags(Solids: tuple[TagState, ...], Place: int, Stage: PartStage) -> KDraftTags:
     LoopValue = Stage.Before.Slabs[0].Loops[0]
     return SideTags(Solids, Place, LoopValue), CapTagSet(Solids, Place, False)[0]
 
 
+# the floor centre contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FloorCentre(Solid: PrismSolid) -> dict[str, float]:
     Polygon = LoopPolygon(Solid.Slabs[0].Loops[0])
     Twice = sum(
@@ -69,6 +74,7 @@ def FloorCentre(Solid: PrismSolid) -> dict[str, float]:
     return {"x": Centres[0], "y": Centres[1]}
 
 
+# the draft references operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddDraftRefsMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, TagSet: KDraftTags
 ) -> list[str]:
@@ -106,6 +112,7 @@ def AddDraftRefsMut(
     return [Prefix + "target", *Roles, Prefix + "plane", Prefix + "floor"]
 
 
+# the draft operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddDraftMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, TagSet: KDraftTags
 ) -> list[str]:

@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 
+# shared read auxiliary setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadAuxiliary(
     Streams: SegmentStreams, Profile: EntityProfile, Segment: SegmentKind
 ) -> tuple[EntityRecord, ...]:

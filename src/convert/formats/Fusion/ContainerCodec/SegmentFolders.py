@@ -6,6 +6,7 @@ from convert.formats.Fusion.ContainerCodec.Model.AssetHeader import AssetHeader
 from convert.formats.Fusion.ContainerCodec.Model.SegmentSlot import SegmentSlot
 
 
+# segment folders needs an explicit validity boundary so archive members retain their native ownership and reference relationships
 def SegmentFolders(Value: AssetHeader) -> tuple[str, ...]:
     if (
         not isinstance(CastValue(object, Value), AssetHeader)

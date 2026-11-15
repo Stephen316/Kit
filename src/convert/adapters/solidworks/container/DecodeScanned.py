@@ -9,6 +9,7 @@ from convert.adapters.solidworks.container.StreamLimits import (
 )
 
 
+# the scanned operation needs a distinct decoding boundary so stream contents retain their geometry and feature relationships
 def DecodeScanned(
     BlobValue: bytes,
     Offset: int,

@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# thermal specification needs an explicit state contract so appearance references remain connected to their owning entities
 @MakeDataClass(frozen=True, slots=True)
 class ThermalSpec:
     Density: float | None = None

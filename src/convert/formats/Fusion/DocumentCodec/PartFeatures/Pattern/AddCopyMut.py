@@ -37,11 +37,18 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import (
     FocusRole,
 )
 
+# no limit needs one explicit bound so pattern feature construction cannot accept inconsistent resource or layout limits
 KNoLimit = -1
+
+# the grid axes order must stay explicit so repeated instances retain their intended placement and ownership
 KGridAxes = ("x_axis", "y_axis")
+
+# the pattern modes vocabulary must stay centralized so pattern feature construction agrees on supported native identities
 KPatternModes: dict[str, object] = dict(
     computeOption=2, computeType=1, countUMax=KNoLimit
 )
+
+# the copy classes vocabulary must stay centralized so pattern feature construction agrees on supported native identities
 KCopyClasses: dict[type[object], tuple[str, str]] = {
     PatternSpec: ("DcRectangularPattern", "DcRectangularPatternData"),
     CircularSpec: ("DcCircularPattern", "DcCircularPatternData"),
@@ -49,6 +56,7 @@ KCopyClasses: dict[type[object], tuple[str, str]] = {
 }
 
 
+# the occur tags contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def OccurTags(Feature: KCopySpec) -> list[int]:
     if isinstance(Feature, PatternSpec):
         return [
@@ -60,6 +68,7 @@ def OccurTags(Feature: KCopySpec) -> list[int]:
     return list(range(1, Count + 1))
 
 
+# the count operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddCountMut(Author: AuthorState, Prefix: str, NameValue: str, Count: int) -> str:
     RoleName = Prefix + NameValue.lower()
     Owner = Prefix + "feature"
@@ -68,6 +77,7 @@ def AddCountMut(Author: AuthorState, Prefix: str, NameValue: str, Count: int) ->
     return RoleName
 
 
+# link base must resolve unambiguously so repeated instances retain their intended placement and ownership
 def LinkBaseMut(Author: AuthorState, Prefix: str, Stage: PartStage) -> None:
     Reference = Author.Reference
     Feature = Stage.Feature
@@ -108,6 +118,7 @@ def LinkBaseMut(Author: AuthorState, Prefix: str, Stage: PartStage) -> None:
     )
 
 
+# the grid operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddGridMut(Author: AuthorState, Prefix: str, Feature: PatternSpec) -> list[str]:
     Reference = Author.Reference
     Owner = Prefix + "feature"
@@ -131,6 +142,7 @@ def AddGridMut(Author: AuthorState, Prefix: str, Feature: PatternSpec) -> list[s
     return Roles
 
 
+# the turn operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddTurnMut(Author: AuthorState, Prefix: str, Feature: CircularSpec) -> list[str]:
     Reference = Author.Reference
     RoleName = Prefix + "angle"
@@ -145,6 +157,7 @@ def AddTurnMut(Author: AuthorState, Prefix: str, Feature: CircularSpec) -> list[
     return Roles
 
 
+# the flip operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddFlipMut(Author: AuthorState, Prefix: str, Feature: MirrorSpec) -> list[str]:
     Reference = Author.Reference
     PlaneRole = "f" + str(Feature.PlaneIndex + 1) + "_plane"
@@ -170,6 +183,7 @@ def AddFlipMut(Author: AuthorState, Prefix: str, Feature: MirrorSpec) -> list[st
     return [Prefix + "mirror_plane", RefRole, Tolerance]
 
 
+# the copy operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddCopyMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, TagSet: tuple[int, int, int]
 ) -> list[str]:

@@ -17,10 +17,12 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.LinkReactors import (
 )
 
 
+# the owned entry contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def OwnedEntry(KeyText: str) -> DraftRecord:
     return DraftRecord((("IsOwned", 1), ("Dependency", HardOwner(KeyText))))
 
 
+# the action operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceActionMut(
     Ledger: DraftBook,
     ActionKey: str,
@@ -50,6 +52,7 @@ def PlaceActionMut(
     return ActionKey
 
 
+# the depend operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceDependMut(
     Ledger: DraftBook,
     KeyText: str,
@@ -73,6 +76,7 @@ def PlaceDependMut(
     )
 
 
+# the parameter operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceParamMut(
     Ledger: DraftBook, KeyText: str, ClassName: str, ActionKey: str, Dependency: str
 ) -> str:

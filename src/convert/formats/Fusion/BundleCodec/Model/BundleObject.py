@@ -5,6 +5,7 @@ from convert.formats.Fusion.BundleCodec.Model.BundleRefs import BundleRefs
 from convert.formats.Fusion.BundleCodec.Model.BundleText import BundleText
 
 
+# bundle object needs an explicit state contract so linked archive members retain their document relationships
 @MakeDataClass(frozen=True, slots=True)
 class BundleObject:
     ObjectId: int

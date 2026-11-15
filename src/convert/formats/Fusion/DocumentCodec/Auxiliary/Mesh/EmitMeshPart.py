@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentMesh import DocumentMesh
 from convert.formats.Fusion.MeshCodec.EmitParaMesh import EmitParaMesh
 
 
+# the mesh part operation needs a consistent construction rule so supporting records retain their owning document relationships
 def EmitMeshPart(Value: DocumentMesh) -> ContainerPart:
     _ = MeshName(Value.Name)
     return ContainerPart(Value.Name, EmitParaMesh(Value.Mesh))

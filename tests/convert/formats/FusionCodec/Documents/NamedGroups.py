@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# shared named groups setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NamedGroups(
     Value: DocumentModel, ClassName: str
 ) -> tuple[dict[str, KEntityValue], ...]:

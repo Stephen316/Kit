@@ -9,6 +9,7 @@ from tools.TestShards.Reuse.Track.ActiveTrackers import KActiveTrackers
 from tools.TestShards.Reuse.Track.LocateFile import LocateFile
 
 
+# the protocol operation needs one orchestration boundary so dependency changes cannot revive stale passing results
 def RunProtocol(ItemInfo: Pytest.Item) -> Generator[None, object, object]:
     State = KActiveTrackers.get("State")
     if State is None:

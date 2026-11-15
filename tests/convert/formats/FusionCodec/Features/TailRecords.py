@@ -2,6 +2,7 @@ from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 
 
+# shared tail records setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TailRecords(
     BulkData: bytes, Spans: tuple[RecordSpan, ...], ClassGuid: str | None
 ) -> list[BulkRecord]:

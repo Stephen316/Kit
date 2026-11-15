@@ -3,6 +3,7 @@ from convert.formats.Fusion.MeshCodec.Envelope.ReadNames import ReadNames
 from convert.formats.Fusion.MeshCodec.Wire.ByteCursor import ByteCursor
 
 
+# the envelope operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadEnvelope(Payload: bytes) -> tuple[bytes, tuple[str, ...], tuple[bytes, ...]]:
     if len(Payload) > 64 * 1024 * 1024:
         raise ValueError("Fusion mesh container exceeds input limit")

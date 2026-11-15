@@ -6,6 +6,7 @@ from tools.TestShards.Reuse.Cache.TreeIndex import TreeIndex
 from tools.TestShards.Reuse.Track.ModuleDeps import ModuleDeps
 
 
+# the entry operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def BuildEntry(
     Closure: ModuleDeps,
     TreeInfo: TreeIndex,

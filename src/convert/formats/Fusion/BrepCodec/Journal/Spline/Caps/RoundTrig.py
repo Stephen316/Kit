@@ -2,13 +2,17 @@ from decimal import Context, Decimal, localcontext
 from functools import cache as CacheValue
 from math import isfinite as IsFinite
 
+# precision must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KPrecision = 90
 
+# angle limit needs one explicit bound so spline cap reconstruction cannot accept inconsistent resource or layout limits
 KAngleLimit = 1.0e6
 
+# context must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KContext = Context(prec=KPrecision)
 
 
+# the arc inverse contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def ArcInverse(Divisor: int) -> Decimal:
     Power = Decimal(1) / Divisor
     Total = Power
@@ -23,12 +27,14 @@ def ArcInverse(Divisor: int) -> Decimal:
     return Total
 
 
+# the full period contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 @CacheValue
 def FullPeriod() -> Decimal:
     with localcontext(KContext):
         return 2 * (16 * ArcInverse(5) - 4 * ArcInverse(239))
 
 
+# round trig needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 @CacheValue
 def RoundTrig(Angle: float) -> tuple[float, float]:
     if not IsFinite(Angle) or abs(Angle) > KAngleLimit:
@@ -51,9 +57,11 @@ def RoundTrig(Angle: float) -> tuple[float, float]:
         return float(CosTotal), float(SinTotal)
 
 
+# the round cosine contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def RoundCosine(Angle: float) -> float:
     return RoundTrig(Angle)[0]
 
 
+# the round sine contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def RoundSine(Angle: float) -> float:
     return RoundTrig(Angle)[1]

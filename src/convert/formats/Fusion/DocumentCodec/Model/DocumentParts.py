@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSnap import DocumentSnap
 from convert.formats.Fusion.DocumentCodec.Model.MaterialPart import MaterialPart
 
 
+# document parts needs an explicit state contract so model state retains its native feature and ownership relationships
 @MakeDataClass(frozen=True, slots=True)
 class DocumentParts:
     Bodies: tuple[DocumentBody, ...]

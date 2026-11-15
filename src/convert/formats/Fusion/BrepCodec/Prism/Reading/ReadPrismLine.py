@@ -8,6 +8,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism line operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismLine(Table: AsmTable, Identity: int) -> PrismLine:
     Record = RequireAsm(Table, Identity, "straight-curve")
     if len(Record.Tokens) not in (7, 9):

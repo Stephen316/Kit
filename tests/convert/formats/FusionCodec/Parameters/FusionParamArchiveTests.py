@@ -10,12 +10,20 @@ from convert.formats.Fusion.SourceProof.InspectSource import ReadSourceProof
 from convert.formats.Fusion.ZipParameters import ReadZipParams
 from tests.convert.formats.FusionCodec.Parameters.RebuildParams import RebuildParams
 
+# study root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KStudyRoot = FilePath(__file__).resolve().parents[5] / "re" / "Fusion" / "Study"
+
+# the user group cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KUserGroup = "userparameters-e9c6959ff5fd/"
+
+# the text group cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTextGroup = "parametertexts-d16f951482fc/"
+
+# the options cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOptions = ReadOptions(strict=False)
 
 
+# the parameter zip contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "RelativePath",
     (
@@ -49,10 +57,12 @@ def TestParamZip(RelativePath: str) -> None:
     assert ReadZipParams(Rebuilt) == ReadZipParams(Source.read_bytes())
 
 
+# shared change comment setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeComment(Value: NativeParam) -> NativeParam:
     return Replace(Value, Comment="Longer native comment\nsecond\tcolumn\r\nend")
 
 
+# the comment edit contract needs boundary coverage so stored document relationships remain consistent
 def TestCommentEdit() -> None:
     Source = KStudyRoot / KUserGroup / "length_mm.f3d"
     Rebuilt = RebuildParams(Source, ChangeComment)
@@ -70,10 +80,12 @@ def TestCommentEdit() -> None:
     assert Parameter.attributes["fusion.collection_id"] == 16
 
 
+# shared change owner setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeOwner(Value: NativeParam) -> NativeParam:
     return Replace(Value, CollectionId=(1 << 63) + 31)
 
 
+# the owner proof contract needs boundary coverage so stored document relationships remain consistent
 def TestOwnerProof() -> None:
     Source = KStudyRoot / KUserGroup / "length_mm.f3d"
     Rebuilt = RebuildParams(Source, ChangeOwner)

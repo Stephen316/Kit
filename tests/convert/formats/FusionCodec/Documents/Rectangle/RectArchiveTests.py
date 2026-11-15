@@ -16,6 +16,7 @@ from tests.convert.formats.FusionCodec.Documents.Rectangle.CheckRectGraph import
 from tests.convert.formats.FusionCodec.Documents.Rectangle.RectFields import RectFields
 
 
+# the rect archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("ProfileKind", ("rectangle", "cuboid"))
 def TestRectArchive(
     TmpPath: FilePath, ProfileKind: Literal["rectangle", "cuboid"]

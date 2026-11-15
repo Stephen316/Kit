@@ -1,8 +1,10 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgPackPlan import DwgPackPlan
 
+# far limit needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KFarLimit = 0x7FFE
 
 
+# find match must resolve unambiguously so section boundaries and object references remain consistent
 def FindMatch(
     DataValue: bytes, Position: int, Recent: dict[bytes, int]
 ) -> tuple[int, int]:
@@ -19,6 +21,7 @@ def FindMatch(
     return Length, Distance
 
 
+# the plan page contract needs a stable decomposition so section boundaries and object references remain consistent
 def PlanPage(DataValue: bytes) -> DwgPackPlan:
     LeadCount = min(4, len(DataValue))
     Recent: dict[bytes, int] = {}

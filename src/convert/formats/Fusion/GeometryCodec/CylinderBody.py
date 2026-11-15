@@ -2,12 +2,14 @@ from dataclasses import dataclass as MakeDataClass
 from math import isfinite as IsFinite
 
 
+# cylinder body needs an explicit state contract so geometric values retain their native record boundaries
 @MakeDataClass(frozen=True, slots=True)
 class CylinderBody:
     Radius: float
     Height: float
     BasePoint: tuple[float, float, float]
 
+    # invalid cylinder body state must fail at construction so geometry serialization never receives an inconsistent contract
     def __post_init__(self) -> None:
         if len(self.BasePoint) != 3:
             raise ValueError("Cylinder base must have three millimetre coordinates")

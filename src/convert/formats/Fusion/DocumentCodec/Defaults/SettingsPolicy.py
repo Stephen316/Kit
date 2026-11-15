@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the settings policy contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def SettingsPolicy() -> dict[str, object]:
     Values: dict[str, object] = dict(
         ViewPortsDim=[],

@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import Reso
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the vertedge decision must stay consistent so inconsistent revision links fail before history reconstruction
 def HasVertedge(
     Records: tuple[AsmRecord, ...],
     Versions: dict[int, int],

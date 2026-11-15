@@ -24,6 +24,7 @@ from tests.convert.formats.FusionCodec.Documents.Rectangle.CheckRectGraph import
 )
 
 
+# the dim archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("ProfileKind", ("rectangle", "cuboid"))
 @MarkTests.parametrize("Constrained", (False, True))
 def TestDimArchive(

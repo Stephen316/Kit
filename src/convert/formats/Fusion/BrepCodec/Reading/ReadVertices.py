@@ -3,6 +3,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmInt, Requir
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the vertices operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadVertices(
     Table: AsmTable, Mapping: dict[int, int], HasHistory: bool
 ) -> VertexIndices:

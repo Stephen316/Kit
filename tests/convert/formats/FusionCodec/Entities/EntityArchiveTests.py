@@ -7,6 +7,7 @@ from tests.convert.formats.FusionCodec.Entities.ReadNative import ReadNative
 from tests.convert.formats.FusionCodec.Entities.ReadProfile import ReadProfile
 
 
+# the native graph contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "FileName,ExpectedCount",
     (("circle_sketch.f3d", 246), ("extrude_07mm.f3d", 289), ("extrude_13mm.f3d", 289)),

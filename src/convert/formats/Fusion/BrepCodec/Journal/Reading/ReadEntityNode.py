@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.CheckFieldEnd impor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the entity node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadEntityNode(Record: AsmRecord) -> KJournalEntity:
     Reader = KEntityReaders.get(Record.Name)
     if Reader is None:

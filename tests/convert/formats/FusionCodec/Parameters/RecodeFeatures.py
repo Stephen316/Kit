@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Features.ReadFeature import ReadFeature
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 from tests.convert.formats.FusionCodec.Parameters.ReadLineage import ReadLineage
 
+# the feature guids cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFeatureGuids = frozenset(
     (
         "8DA771B7-52ED-42FC-94E2-2353FE141373",
@@ -13,6 +14,7 @@ KFeatureGuids = frozenset(
 )
 
 
+# shared recode features setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RecodeFeatures(
     BulkData: bytes, Spans: tuple[RecordSpan, ...], Classes: tuple[MetaClass, ...]
 ) -> list[BulkRecord]:

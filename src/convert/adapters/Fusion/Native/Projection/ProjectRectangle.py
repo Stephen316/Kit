@@ -14,6 +14,7 @@ from interchange.geometry.models.VectorSpace import SpaceVector
 from interchange.records.RecordTopology import TopologyCounts
 
 
+# the project sketch contract needs a shared interpretation so public document claims remain grounded in native records
 def ProjectSketch(Context: ExtrudeContext, Shape: RectGeometry) -> Sketch:
     return Sketch(
         Context.Sketch.Identity,
@@ -26,6 +27,7 @@ def ProjectSketch(Context: ExtrudeContext, Shape: RectGeometry) -> Sketch:
     )
 
 
+# the project features contract needs a shared interpretation so public document claims remain grounded in native records
 def ProjectFeatures(
     Graph: NativeGraph, Context: ExtrudeContext
 ) -> tuple[FeatureStep, ...]:
@@ -61,6 +63,7 @@ def ProjectFeatures(
     return Sketch, Extrude
 
 
+# the project body contract needs a shared interpretation so public document claims remain grounded in native records
 def ProjectBody(
     Context: ExtrudeContext, Shape: RectGeometry, MaterialId: str
 ) -> tuple[BrepModel, DesignBody]:

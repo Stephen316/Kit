@@ -7,12 +7,14 @@ from GitRunner import GitRunner
 from Rules.RuleSet import RuleSet
 from SummarizeFiles import SummarizeFiles
 
+# push gap must remain consistent across callers so published evidence stays bound to the reviewed revision
 KPushGap = (
     "The previous head could not be fetched, so the actual push diff is unavailable. "
     "Full PR composition and historical snapshot deltas are still shown."
 )
 
 
+# the analyze pull contract needs a shared interpretation so published evidence stays bound to the reviewed revision
 def AnalyzePull(
     Runner: GitRunner,
     Rules: RuleSet,

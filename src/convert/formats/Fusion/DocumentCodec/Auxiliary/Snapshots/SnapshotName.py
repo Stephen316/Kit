@@ -1,6 +1,7 @@
 from uuid import UUID as UuidValue
 
 
+# snapshot name needs an explicit validity boundary so supporting records retain their owning document relationships
 def SnapshotName(NameValue: str) -> None:
     Prefix = "Breps.BlobParts/BREP."
     if not NameValue.startswith(Prefix) or not NameValue.endswith(".smb"):

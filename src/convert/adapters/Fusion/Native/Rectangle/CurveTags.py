@@ -4,6 +4,7 @@ from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# curve tag needs an explicit validity boundary so public document claims remain grounded in native records
 def CurveTag(NodeValue: NativeNode) -> int:
     Metadata = {
         ItemValue.FieldName: ItemValue.Value
@@ -14,6 +15,7 @@ def CurveTag(NodeValue: NativeNode) -> int:
     return IntegerValue(Metadata["crv_primary_id"])
 
 
+# sketch tag needs an explicit validity boundary so public document claims remain grounded in native records
 def SketchTag(Value: KEntityValue, Direction: int) -> int:
     Fields = ObjectFields(Value)
     Expected = {

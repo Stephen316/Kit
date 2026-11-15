@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentMod
 from tests.convert.formats.FusionCodec.Documents.Rectangle.RectFields import RectFields
 
 
+# the prism graph contract needs boundary coverage so stored document relationships remain consistent
 def CheckPrismGraph(Model: DocumentModel) -> None:
     assert len(Model.Bodies) == 1
     BodyValue = Model.Bodies[0].History

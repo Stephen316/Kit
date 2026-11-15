@@ -14,6 +14,7 @@ from interchange.geometry.models.Transform import Transform
 from interchange.records.RecordTopology import TopologyCounts
 
 
+# the geometry operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeGeometry(SpecValue: DocumentSpec) -> tuple[BrepModel, DesignBody]:
     if HasRectangle(SpecValue):
         Geometry, Volume, AreaValue, Bounds = BuildPrism(

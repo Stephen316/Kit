@@ -53,11 +53,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineS
 from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# blank prefix must remain consistent across callers so surface geometry retains the control cage shape
 KBlankPrefix = EntityPrefix(-1, -1)
+
+# surface slot must remain consistent across callers so surface geometry retains the control cage shape
 KSurfaceSlot = SubtypeRef("surface", 0)
+
+# open bounds needs one explicit bound so spline conversion cannot accept inconsistent resource or layout limits
 KOpenBounds = (None, None, None, None)
 
 
+# form draft needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormDraft:
     Entities: tuple[KJournalEntity, ...]
@@ -65,12 +71,14 @@ class FormDraft:
     Surfaces: tuple[TsplineSurf, ...]
 
 
+# the edge bounds contract needs a shared interpretation so surface geometry retains the control cage shape
 def EdgeBounds(Value: FormEdge) -> tuple[float, float]:
     if Value.Bounds is not None:
         return Value.Bounds
     return (Value.Curve.Knots[0], Value.Curve.Knots[-1])
 
 
+# the shell nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeShellNodes(Layout: NodeLayout, IsHistory: bool) -> tuple[KJournalEntity, ...]:
     return (
         AsmRoot(-1, -1, "232.5.0.65535"),
@@ -80,6 +88,7 @@ def MakeShellNodes(Layout: NodeLayout, IsHistory: bool) -> tuple[KJournalEntity,
     )
 
 
+# the face nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeFaceNodes(
     Model: FormBody, Links: FormLinks, Layout: NodeLayout
 ) -> tuple[KJournalEntity, ...]:
@@ -113,6 +122,7 @@ def MakeFaceNodes(
     return (*Faces, *Loops, *Surfaces)
 
 
+# the use nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeUseNodes(
     Model: FormBody, Links: FormLinks, Layout: NodeLayout
 ) -> tuple[CoedgeNode, ...]:
@@ -137,6 +147,7 @@ def MakeUseNodes(
     return tuple(Results)
 
 
+# the edge nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeEdgeNodes(
     Model: FormBody, Links: FormLinks, Layout: NodeLayout
 ) -> tuple[KJournalEntity, ...]:
@@ -170,6 +181,7 @@ def MakeEdgeNodes(
     return (*Edges, *Vertices, *Points)
 
 
+# the curve nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeCurveNodes(Model: FormBody, Links: FormLinks) -> tuple[KJournalEntity, ...]:
     FlatUses = tuple(
         UseValue for FaceValue in Model.Faces for UseValue in FaceValue.Uses
@@ -214,6 +226,7 @@ def MakeCurveNodes(Model: FormBody, Links: FormLinks) -> tuple[KJournalEntity, .
     return (*Pcurves, *Curves)
 
 
+# the tag nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeTagNodes(
     Model: FormBody, Layout: NodeLayout, Marks: FormMarks
 ) -> tuple[KJournalEntity, ...]:
@@ -246,6 +259,7 @@ def MakeTagNodes(
     return tuple(Results)
 
 
+# the carriers operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeCarriers(
     Model: FormBody, Links: FormLinks, Layout: NodeLayout
 ) -> tuple[int, ...]:
@@ -257,6 +271,7 @@ def MakeCarriers(
     return tuple(Carriers)
 
 
+# the form nodes operation needs a consistent construction rule so surface geometry retains the control cage shape
 def MakeFormNodes(
     Surface: TsplineSurface, Model: FormBody, Marks: FormMarks, IsHistory: bool
 ) -> FormDraft:

@@ -18,6 +18,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.CheckRoundNode import CheckR
 from convert.formats.Fusion.BrepCodec.Journal.Round.SphereNode import SphereNode
 
 
+# the sphere node operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadSphereNode(Cursor: FieldCursor) -> SphereNode:
     Value = SphereNode(
         ReadPrefixMut(Cursor),

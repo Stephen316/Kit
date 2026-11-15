@@ -1,3 +1,4 @@
+# the mc parts operation needs a distinct decoding boundary so object references resolve within the declared object stream
 def ReadMcParts(BlockBody: bytes, Offset: int) -> tuple[int, int, int, int]:
     Value = 0
     Shift = 0

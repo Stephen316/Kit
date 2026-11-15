@@ -46,6 +46,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
     TransformNode,
 )
 
+# the journal entity variants need one shared contract so journal reconstruction cannot omit a supported value shape
 KJournalEntity: TypeAlias = (  # lgtm[py/unused-global-variable]
     AsmRoot
     | BodyNode

@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadVertices import ReadVertices
 from convert.formats.Fusion.BrepCodec.Topology.SnapshotRecords import BuildSnapshot
 
 
+# the snapshot operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadSnapshot(Payload: bytes) -> SnapshotModel:
     WireValue = ReadBrepWire(Payload, False)
     Mapping = MapTopology(ProfileRecords(False), WireValue.Table)

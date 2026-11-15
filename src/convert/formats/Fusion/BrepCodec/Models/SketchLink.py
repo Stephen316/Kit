@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# sketch link needs an explicit state contract so topology identity survives native history reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class SketchLink:
     PrimaryId: int
@@ -12,6 +13,7 @@ class SketchLink:
     SplitTotalNumber: int
     TopologyRoleFlags: int = 0
 
+    # invalid sketch link state must fail at construction so boundary representation history never receives an inconsistent contract
     def __post_init__(self) -> None:
         for Value in (self.PrimaryId, self.SecondaryId):
             CheckInteger(Value, "sketch curve identity", Lower=0, Upper=(1 << 64) - 1)

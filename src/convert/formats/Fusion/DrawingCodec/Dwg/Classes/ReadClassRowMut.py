@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadUnicodeMut import ReadUnic
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassRow import DwgClassRow
 
 
+# the class row operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadClassRowMut(MainCursor: BitCursor, TextCursor: BitCursor) -> DwgClassRow:
     ClassNumber = ReadBitShortMut(MainCursor)
     ProxyFlags = ReadBitShortMut(MainCursor)

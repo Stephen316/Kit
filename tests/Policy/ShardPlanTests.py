@@ -7,8 +7,10 @@ import sys as System
 import tempfile as Tempfile
 from pathlib import Path as FilePath
 
+# root path needs a stable location so repository automation resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[2]
 
+# the sample suite cases must remain explicit so repository automation exercises the intended compatibility boundary
 KSampleSuite = """
 import pytest
 
@@ -31,6 +33,7 @@ class TestGroup:
 """
 
 
+# the reuse suite cases must remain explicit so repository automation exercises the intended compatibility boundary
 KReuseSuite = """
 === SampleHelper.py
 def double(value):
@@ -61,6 +64,7 @@ def test_skipped():
     pytest.skip("skipped results are reusable")
 """
 
+# the git config cases must remain explicit so repository automation exercises the intended compatibility boundary
 KGitConfig = [
     "-c",
     "user.name=ShardPlanTests",
@@ -69,6 +73,7 @@ KGitConfig = [
 ]
 
 
+# shared run command setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def RunCommand(
     ArgList: list[str], WorkPath: FilePath
 ) -> Subprocess.CompletedProcess[str]:
@@ -82,6 +87,7 @@ def RunCommand(
     )
 
 
+# shared plan sample setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def PlanSample(SuitePath: FilePath) -> tuple[FilePath, list[str]]:
     _ = (SuitePath / "pytest.ini").write_text("[pytest]\n", encoding="utf-8")
     _ = (SuitePath / "test_sample.py").write_text(KSampleSuite, encoding="utf-8")
@@ -98,6 +104,7 @@ def PlanSample(SuitePath: FilePath) -> tuple[FilePath, list[str]]:
     return PlanPath, Collected.stdout.split("\n\n")[0].split("\n")
 
 
+# shared read workers setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def ReadWorkers(ReportPath: FilePath) -> set[str]:
     WorkerIds: set[str] = set()
     for LineText in ReportPath.read_text(encoding="utf-8").splitlines():
@@ -107,6 +114,7 @@ def ReadWorkers(ReportPath: FilePath) -> set[str]:
     return WorkerIds
 
 
+# shared run shards setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def RunShards(PlanPath: FilePath, SuitePath: FilePath) -> list[str]:
     PlanData = JsonLib.loads(PlanPath.read_text(encoding="utf-8"))
     ShardIds: list[str] = []
@@ -127,6 +135,7 @@ def RunShards(PlanPath: FilePath, SuitePath: FilePath) -> list[str]:
     return ShardIds
 
 
+# shared verify loss setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def VerifyLoss(MergeArgs: list[str], SuitePath: FilePath) -> None:
     ShellUtil.rmtree(SuitePath / "Reports" / "2")
     Missing = RunCommand(MergeArgs, KRootPath)
@@ -140,6 +149,7 @@ def VerifyLoss(MergeArgs: list[str], SuitePath: FilePath) -> None:
     assert sum(LineText.endswith(" never ran") for LineText in ErrorLines) == 3
 
 
+# the shard flow contract needs boundary coverage so the real command boundary enforces repository contracts
 def TestShardFlow() -> None:
     with Tempfile.TemporaryDirectory() as TempPath:
         SuitePath = FilePath(TempPath)
@@ -159,6 +169,7 @@ def TestShardFlow() -> None:
         VerifyLoss(MergeArgs, SuitePath)
 
 
+# the shard cap contract needs boundary coverage so the real command boundary enforces repository contracts
 def TestShardCap() -> None:
     with Tempfile.TemporaryDirectory() as TempPath:
         WorkPath = FilePath(TempPath)
@@ -191,6 +202,7 @@ def TestShardCap() -> None:
             assert Weights[1] == min(Weights)
 
 
+# shared run git setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def RunGit(ArgList: list[str], WorkPath: FilePath) -> bytes:
     GitArgs = ["git", *KGitConfig, "-c", "commit.gpgsign=false", *ArgList]
     ResultInfo = Subprocess.run(
@@ -200,6 +212,7 @@ def RunGit(ArgList: list[str], WorkPath: FilePath) -> bytes:
     return ResultInfo.stdout
 
 
+# shared write suite setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def WriteSuite(SuitePath: FilePath, SuiteText: str) -> None:
     for Section in SuiteText.split("=== ")[1:]:
         NameText, _, BodyText = Section.partition("\n")
@@ -208,6 +221,7 @@ def WriteSuite(SuitePath: FilePath, SuiteText: str) -> None:
         _ = TargetPath.write_text(BodyText, encoding="utf-8")
 
 
+# shared commit suite setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def CommitSuite(SuitePath: FilePath, StepPath: FilePath) -> None:
     _ = RunGit(["add", "-A"], SuitePath)
     _ = RunGit(["commit", "-q", "--allow-empty", "-m", StepPath.name], SuitePath)
@@ -220,6 +234,7 @@ def CommitSuite(SuitePath: FilePath, StepPath: FilePath) -> None:
     _ = (StepPath / "Collected.txt").write_text(Collected.stdout, encoding="utf-8")
 
 
+# shared plan step setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def PlanStep(StepPath: FilePath, CachePath: FilePath | None) -> dict[str, object]:
     PlanPath = StepPath / "Plan" / "ShardPlan.json"
     PlanArgs = ["-m", "tools.TestShards.PlanShards", "--max-tests", "100"]
@@ -234,6 +249,7 @@ def PlanStep(StepPath: FilePath, CachePath: FilePath | None) -> dict[str, object
     return PlanData
 
 
+# shared run tracked setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def RunTracked(StepPath: FilePath, SuitePath: FilePath, TestIds: list[str]) -> None:
     ArgsPath = StepPath / "ShardTests.txt"
     _ = ArgsPath.write_text("\n".join(TestIds) + "\n", encoding="utf-8")
@@ -261,6 +277,7 @@ def RunTracked(StepPath: FilePath, SuitePath: FilePath, TestIds: list[str]) -> N
     ]
 
 
+# shared verify step setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def VerifyStep(StepPath: FilePath, CachePath: FilePath) -> str:
     PlanPath = str(StepPath / "Plan" / "ShardPlan.json")
     ReportsPath = str(StepPath / "Reports")
@@ -278,6 +295,7 @@ def VerifyStep(StepPath: FilePath, CachePath: FilePath) -> str:
     return Merged.stdout
 
 
+# shared run step setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def RunStep(
     SuitePath: FilePath, StepPath: FilePath, CachePath: FilePath | None
 ) -> tuple[dict[str, object], str]:
@@ -290,12 +308,14 @@ def RunStep(
     return PlanData, VerifyStep(StepPath, StepPath / "TestCache.json")
 
 
+# shared read cache setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def ReadCache(CachePath: FilePath) -> dict[str, dict[str, dict[str, str]]]:
     CacheText = CachePath.read_text(encoding="utf-8")
     Modules: dict[str, dict[str, dict[str, str]]] = JsonLib.loads(CacheText)["Modules"]
     return Modules
 
 
+# the shard reuse contract needs boundary coverage so the real command boundary enforces repository contracts
 def TestShardReuse() -> None:
     with Tempfile.TemporaryDirectory() as TempPath:
         WorkPath = FilePath(TempPath)
@@ -316,6 +336,7 @@ def TestShardReuse() -> None:
         ConfirmReuse(WorkPath)
 
 
+# shared start suite setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def StartSuite(WorkPath: FilePath) -> FilePath:
     SuitePath = WorkPath / "Suite"
     SuitePath.mkdir()
@@ -326,12 +347,14 @@ def StartSuite(WorkPath: FilePath) -> FilePath:
     return SuitePath
 
 
+# shared change suite setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def ChangeSuite(SuitePath: FilePath) -> None:
     HelperText = "def double(value):\n    return value + value\n"
     _ = (SuitePath / "SampleHelper.py").write_text(HelperText, encoding="utf-8")
     _ = (SuitePath / "cases" / "two.txt").write_text("2\n", encoding="utf-8")
 
 
+# shared confirm reuse setup keeps fixtures consistent so repository automation failures identify the intended compatibility boundary
 def ConfirmReuse(WorkPath: FilePath) -> None:
     SuitePath = WorkPath / "Suite"
     FirstCache = WorkPath / "First" / "TestCache.json"

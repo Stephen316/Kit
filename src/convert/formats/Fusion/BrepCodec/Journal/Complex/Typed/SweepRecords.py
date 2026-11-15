@@ -28,6 +28,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
 
+# sweep profile needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class SweepProfile(TypedBase):
     Curve: ChoiceValue
@@ -37,6 +38,7 @@ class SweepProfile(TypedBase):
     FrameMatrix: tuple[KTriple, KTriple, KTriple]
 
 
+# sweep sur needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class SweepSur(TypedBase):
     Revision: int
@@ -47,6 +49,7 @@ class SweepSur(TypedBase):
     Common: SplineCommon
 
 
+# the planar from contract needs a stable decomposition so native geometry variants retain distinct field contracts
 def PlanarFrom(Value: KGrammarValue) -> tuple[KTriple, KTriple] | None:
     if Value is None:
         return None
@@ -54,6 +57,7 @@ def PlanarFrom(Value: KGrammarValue) -> tuple[KTriple, KTriple] | None:
     return NeedTriple(Origin), NeedTriple(Normal)
 
 
+# the sweep from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SweepFrom(Value: KGrammarValue) -> SweepSur:
     Parts = NeedItems(Value, 12)
     Matrix = (NeedTriple(Parts[7]), NeedTriple(Parts[8]), NeedTriple(Parts[9]))
@@ -74,6 +78,7 @@ def SweepFrom(Value: KGrammarValue) -> SweepSur:
     )
 
 
+# the sweep tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SweepTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, SweepSur)
     Profile = NeedRecord(Record.Profile, SweepProfile)

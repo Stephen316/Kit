@@ -15,6 +15,7 @@ from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerP
 from convert.formats.Fusion.DocumentCodec.Model.DocumentBody import DocumentBody
 
 
+# the body part operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def EmitBodyPart(Value: DocumentBody) -> ContainerPart:
     History = Value.History
     if isinstance(History, JournalModel):

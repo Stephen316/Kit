@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Schema.SchemaTable import KSchemaTable
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# invalid assets input must fail here so typed appearance properties retain their native identifiers
 def CheckAssets(Assets: tuple[MaterialAsset, ...], Schemas: KSchemaTable) -> None:
     if not 1 <= len(Assets) <= KMaxCount:
         raise ValueError("Fusion material assets exceed the count limit")

@@ -5,9 +5,11 @@ from convert.formats.Fusion.ContainerCodec.Model.DocProps import DocProps
 from convert.formats.Fusion.ContainerCodec.Model.DocStruct import DocStruct
 from convert.formats.Fusion.ContainerCodec.Wire.EmitDocProps import EmitDocProps
 
+# the struct keys order must stay explicit so archive members retain their native ownership and reference relationships
 KStructKeys = ("version", "type", "subtype", "attributes")
 
 
+# the doc props operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadDocProps(Payload: bytes) -> DocProps | None:
     if len(Payload) < 4 or UnpackFrom("<I", Payload)[0] != len(Payload) - 4:
         raise ValueError("Invalid Fusion document properties length")

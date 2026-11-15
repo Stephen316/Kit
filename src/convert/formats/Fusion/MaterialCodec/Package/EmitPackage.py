@@ -24,6 +24,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckPackage import
 )
 
 
+# the package operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EmitPackage(Value: MaterialPackage) -> bytes:
     CheckPackage(Value)
     Streams = EncodeMaterials(Value.Assets, SchemaModels(Value.Schemas))

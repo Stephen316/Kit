@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadTextMut import 
 from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
 
 
+# the source link operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadSourceLink(Cursor: FieldCursor) -> SketchLink:
     for Expected in ((4, 1), (4, 1), (4, 3)):
         NeedFieldMut(Cursor, Expected)

@@ -6,6 +6,7 @@ from tools.TestShards.Reuse.Track.FindOpener import FindOpener
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the note list contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def NoteListMut(State: TrackState, ArgList: tuple[object, ...]) -> None:
     PathValue = ArgList[0] if ArgList and ArgList[0] is not None else "."
     RelText = AuditPath(State.RootText, PathValue)

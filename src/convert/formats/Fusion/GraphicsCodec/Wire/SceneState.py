@@ -9,7 +9,10 @@ from convert.formats.Fusion.GraphicsCodec.Wire.SceneWire import SceneWire
 from convert.formats.Fusion.GraphicsCodec.Wire.MeshStreams import MeshStreams
 
 
+# the scene state contract needs a dedicated boundary so display geometry retains its entity and scene relationships
 class SceneState(SceneWire):
+
+    # scene state needs explicit initial state so display geometry retains its entity and scene relationships
     def __init__(
         self,
         Payload: bytes | None,
@@ -37,12 +40,14 @@ class SceneState(SceneWire):
         if Scene and len(self.InputObjects) != len(Scene.Objects):
             raise ValueError("Duplicate graphics object definitions")
 
+    # invalid result input must fail here so display geometry retains its entity and scene relationships
     def CheckResult(self, Value: object, Result: object) -> None:
         if not self.IsReading and Value != Result:
             raise ValueError(
                 "Graphics model contains unsupported or inconsistent fields"
             )
 
+    # class version needs an explicit validity boundary so display geometry retains its entity and scene relationships
     def ClassVersion(self, ClassName: str) -> int:
         if self.Globals is None:
             raise ValueError("Graphics class precedes its serializer version")

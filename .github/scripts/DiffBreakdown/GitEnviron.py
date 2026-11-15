@@ -3,9 +3,11 @@ from __future__ import annotations
 import base64 as BaseCodec
 import os as OsLib
 
+# header key must remain consistent across callers so published evidence stays bound to the reviewed revision
 KHeaderKey = "http.https://github.com/.extraheader"
 
 
+# the git env operation needs a consistent construction rule so published evidence stays bound to the reviewed revision
 def BuildGitEnv() -> dict[str, str]:
     EnvValues = {
         **OsLib.environ,

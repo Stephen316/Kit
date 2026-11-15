@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.WritePatches import
 )
 
 
+# the patches operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPatches(ProgramText: str) -> tuple[tuple[PatchCell, ...], ...]:
     Lines = ProgramText.split("\n")
     if not 3 <= len(Lines) <= 4098 or Lines[-1]:

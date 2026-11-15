@@ -1,6 +1,7 @@
 from convert.formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
 
 
+# the creases operation needs a consistent construction rule so control cage topology retains its native connectivity
 def WriteCreases(Creases: CreaseData | None) -> tuple[str, ...]:
     if Creases is None:
         return ()

@@ -8,6 +8,7 @@ from tests.convert.formats.FusionCodec.Brep.Prism.PrismArchive import StorePrism
 from tests.convert.formats.FusionCodec.Brep.Prism.PrismSample import MakePrism
 
 
+# the prism reject contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Damage", ("trailing", "attribute", "truncated"))
 def TestPrismReject(TmpPath: FilePath, Damage: str) -> None:
     Sample = MakePrism()

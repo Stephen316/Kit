@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer node needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferNodeMut(State: SceneCodec, Value: NodeValue | None, IsQuick: bool) -> NodeValue:
     NodeType = State.Integer(Value.NodeType if Value else None)
     RenderRef = None if IsQuick else State.TextValue(Value.RenderRef if Value else None)

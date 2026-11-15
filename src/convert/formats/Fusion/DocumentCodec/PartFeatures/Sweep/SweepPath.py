@@ -19,17 +19,24 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the turn limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTurnLimit = 1e-9
+
+# path label needs a stable location so parametric feature reconstruction resolves inputs independently of the caller working directory
 KPathLabel = FaceLabel("0", ())
+
+# the start heading order must stay explicit so feature parameters remain connected to the resulting geometry
 KStartHeading = (0.0, 1.0)
 
 
+# the aligned decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsAligned(First: tuple[float, float], Second: tuple[float, float]) -> bool:
     Cross = First[0] * Second[1] - First[1] * Second[0]
     Along = First[0] * Second[0] + First[1] * Second[1]
     return abs(Cross) < KTurnLimit and Along > 0
 
 
+# the same carrier decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsSameCarrier(First: KPlaneSpan, Second: KPlaneSpan) -> bool:
     if isinstance(First, LineSpan) and isinstance(Second, LineSpan):
         return True
@@ -39,6 +46,7 @@ def IsSameCarrier(First: KPlaneSpan, Second: KPlaneSpan) -> bool:
     return False
 
 
+# invalid joint input must fail here so feature parameters remain connected to the resulting geometry
 def CheckJoint(Before: KPlaneSpan, After: KPlaneSpan) -> None:
     if not IsAligned(SpanHeading(Before, True), SpanHeading(After, False)):
         raise ValueError("Fusion sweep paths must turn smoothly at every joint")
@@ -46,6 +54,7 @@ def CheckJoint(Before: KPlaneSpan, After: KPlaneSpan) -> None:
         raise ValueError("Fusion sweep path curves must not continue one another")
 
 
+# path spans needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def PathSpans(Feature: SweepSpec) -> KPlaneLoop:
     Chain: list[KPlaneSpan] = []
     Point = (0.0, 0.0)

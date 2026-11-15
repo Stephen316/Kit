@@ -34,9 +34,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSectionInfo import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import AsText
 from convert.formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import NamedValue
 
+# the class lead order must stay explicit so drawing objects retain valid ownership and reference relationships
 KClassLead = (0, 0, 1)
 
 
+# replace vars needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def ReplaceVars(Record: DwgRecord, Values: dict[str, KDwgValue]) -> DwgRecord:
     Names = {Entry.FieldName for Entry in Record.RecordFields}
     Missing = set(Values) - Names
@@ -50,6 +52,7 @@ def ReplaceVars(Record: DwgRecord, Values: dict[str, KDwgValue]) -> DwgRecord:
     )
 
 
+# the count classes contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def CountClasses(
     ClassRows: tuple[DwgClassRow, ...], Objects: tuple[DwgObject, ...]
 ) -> DwgClassTable:
@@ -63,6 +66,7 @@ def CountClasses(
     )
 
 
+# the section infos contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def SectionInfos() -> tuple[DwgSectionInfo, ...]:
     Leading = DwgSectionInfo("", 0, 0, 0, KMaxPageSize, 1, 2, 0, ())
     return (Leading,) + tuple(
@@ -71,6 +75,7 @@ def SectionInfos() -> tuple[DwgSectionInfo, ...]:
     )
 
 
+# the author shell contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def AuthorShell(
     Objects: tuple[DwgObject, ...],
     HeaderVars: DwgRecord,

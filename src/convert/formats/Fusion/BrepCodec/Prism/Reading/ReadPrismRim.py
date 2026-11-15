@@ -7,6 +7,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmRim import AsmUse
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism rim operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismRim(Table: AsmTable, FaceId: int, LoopId: int) -> tuple[AsmUse, ...]:
     LoopValue = RequireAsm(Table, LoopId, "loop", 6)
     if ReadAsmPtr(LoopValue, 3) != -1 or ReadAsmPtr(LoopValue, 5) != FaceId:

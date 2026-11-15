@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the frustum rows operation needs a consistent construction rule so circular boundaries retain consistent cone and rim geometry
 def EmitFrustumRows(Records: tuple[GeometryRecord, ...]) -> bytes:
     return b"".join(
         EncodeSmbName(Record.NameValue)

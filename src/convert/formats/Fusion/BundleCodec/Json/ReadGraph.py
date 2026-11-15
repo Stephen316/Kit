@@ -5,6 +5,7 @@ from convert.formats.Fusion.BundleCodec.Json.ReadObject import ReadObject
 from convert.formats.Fusion.BundleCodec.Model.BundleGraph import BundleGraph
 
 
+# the graph operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadGraph(Value: KJsonValue) -> BundleGraph:
     Fields = JsonObject(
         Value, "creationDate creatingService rootIds designObjectRefs designObjects"

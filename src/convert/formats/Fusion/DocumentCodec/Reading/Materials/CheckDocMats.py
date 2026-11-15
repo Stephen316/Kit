@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.CheckBodyMat import 
 )
 
 
+# invalid doc mats input must fail here so model state retains its native feature and ownership relationships
 def CheckDocMats(Value: DocumentModel) -> None:
     Managers = BindMaterials(Value)
     Roles = {

@@ -8,15 +8,20 @@ from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import (
     ReadSeries,
 )
 
+# count class needs one explicit bound so design feature construction cannot accept inconsistent resource or layout limits
 KCountClass = "DcIntParameter"
+
+# count modes needs one explicit bound so design feature construction cannot accept inconsistent resource or layout limits
 KCountModes: dict[str, object] = dict(isRoundToNearestInt=True)
 
 
+# the expr text contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def ExprText(Amount: float) -> str:
     TextValue = repr(float(Amount))
     return TextValue[:-2] if TextValue.endswith(".0") else TextValue
 
 
+# the parameter operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def AddParamMut(
     Author: AuthorState,
     RoleName: str,

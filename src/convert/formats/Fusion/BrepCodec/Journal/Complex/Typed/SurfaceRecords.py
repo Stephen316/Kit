@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
 
+# spline common needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class SplineCommon(TypedBase):
     ApproxSurface: BsSurface
@@ -28,6 +29,7 @@ class SplineCommon(TypedBase):
     SecondBreaks: KBreaks
 
 
+# exact spl sur needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class ExactSplSur(TypedBase):
     Revision: int
@@ -37,6 +39,7 @@ class ExactSplSur(TypedBase):
     RangeForm: int
 
 
+# common from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def CommonFrom(Value: KGrammarValue) -> SplineCommon:
     Parts = NeedItems(NeedKeyed(Value, 0), 9)
     if Parts[8] is not None:
@@ -49,6 +52,7 @@ def CommonFrom(Value: KGrammarValue) -> SplineCommon:
     )
 
 
+# the common tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def CommonTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, SplineCommon)
     Parts = (
@@ -61,6 +65,7 @@ def CommonTree(Value: KGrammarValue) -> KGrammarValue:
     return ChoiceValue(0, Parts)
 
 
+# the exact sheet from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def ExactSheetFrom(Value: KGrammarValue) -> ExactSplSur:
     Revision, Common, FirstRange, SecondRange, RangeForm = NeedItems(Value, 5)
     return ExactSplSur(
@@ -72,6 +77,7 @@ def ExactSheetFrom(Value: KGrammarValue) -> ExactSplSur:
     )
 
 
+# the exact sheet tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def ExactSheetTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, ExactSplSur)
     return (

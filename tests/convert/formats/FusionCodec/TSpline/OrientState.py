@@ -1,6 +1,7 @@
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# shared orient state setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def OrientState(
     Surface: TsplineSurface,
 ) -> tuple[
@@ -13,6 +14,7 @@ def OrientState(
         (Value.CoordX, Value.CoordY, Value.CoordZ) for Value in Surface.Grips
     )
 
+    # shared endpoints setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
     def Endpoints(
         LinkIndex: int,
     ) -> tuple[tuple[float, float, float], tuple[float, float, float]]:

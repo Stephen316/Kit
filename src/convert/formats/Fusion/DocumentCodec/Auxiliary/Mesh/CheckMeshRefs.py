@@ -16,6 +16,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
 from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 
 
+# invalid mesh references input must fail here so supporting records retain their owning document relationships
 def CheckMeshRefs(
     Records: tuple[EntityRecord, ...], Meshes: tuple[DocumentMesh, ...]
 ) -> None:

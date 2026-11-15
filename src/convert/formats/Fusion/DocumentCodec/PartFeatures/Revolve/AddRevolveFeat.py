@@ -56,11 +56,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Revolve.RevolveSolid impo
 )
 from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleTag import RectangleTag
 
+# axis role must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KAxisRole = "z_axis"
+
+# axis tracking must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KAxisTracking = 33
+
+# the revolve modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KRevolveModes: dict[str, object] = dict(extendFaceOption=2, isSolidOperation=True)
 
 
+# the sketch tags contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SketchTags(Sketched: SketchPlan) -> list[dict[str, object]]:
     Corners = [Sketched.PointsCm[Segment.StartIndex or 0] for Segment in Sketched.Edges]
     Signed = sum(
@@ -71,6 +77,7 @@ def SketchTags(Sketched: SketchPlan) -> list[dict[str, object]]:
     return [RectangleTag(Segment.CurveTag, Direction) for Segment in Sketched.Edges]
 
 
+# the axis reference operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddAxisRefMut(Author: AuthorState, Prefix: str) -> list[str]:
     Reference = Author.Reference
     AddPlaceMut(Author, Prefix, ("axis", "ModelDataRef"), {})
@@ -89,6 +96,7 @@ def AddAxisRefMut(Author: AuthorState, Prefix: str) -> list[str]:
     return [Prefix + "axis", RefRole]
 
 
+# the revolve seeds operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddRevolveSeeds(
     Author: AuthorState, Stage: PartStage, Prefix: str, Sketched: SketchPlan
 ) -> None:
@@ -106,6 +114,7 @@ def AddRevolveSeeds(
     Author.Change(Prefix + "progenitors", ProgenitorTagVec=Pairs, tagId=len(Pairs) + 3)
 
 
+# the turn parameter operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddTurnParam(Author: AuthorState, Prefix: str, Feature: RevolveSpec) -> str:
     Expression = ExprText(Feature.AngleDegrees) + " deg"
     Amount = Radians(Feature.AngleDegrees)
@@ -116,6 +125,7 @@ def AddTurnParam(Author: AuthorState, Prefix: str, Feature: RevolveSpec) -> str:
     return Prefix + "angle"
 
 
+# the revolve feat operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddRevolveFeat(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     Feature, Sketched = Stage.Feature, Stage.Sketch
     if not isinstance(Feature, RevolveSpec) or Sketched is None:

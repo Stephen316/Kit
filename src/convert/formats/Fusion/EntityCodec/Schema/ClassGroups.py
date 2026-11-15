@@ -2,9 +2,11 @@ from convert.formats.Fusion.EntityCodec.Limits import KMaxDepth
 from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
 from convert.formats.Fusion.EntityCodec.Schema.EntityCatalog import EntityCatalog
 
+# the no stops vocabulary must stay centralized so entity reconstruction agrees on supported native identities
 KNoStops: frozenset[str] = frozenset()
 
 
+# class groups needs an explicit validity boundary so entity identifiers retain their schema and reference meaning
 def ClassGroups(
     Catalog: EntityCatalog, ClassGuid: str, Stops: frozenset[str] = KNoStops
 ) -> tuple[ClassSchema, ...]:

@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Wire.EmitAtom import EmitAtom
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the recipe operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitRecipeMut(Value: KEntityValue, Catalog: EntityCatalog, Depth: int) -> bytes:
     if (
         not isinstance(Value, RecipeValue)

@@ -3,6 +3,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.NativeRoot import KNativeRoot
 from convert.formats.Fusion.EntityCodec.Vocabulary.ValueClasses import ValueClasses
 
 
+# the schema classes contract needs a shared interpretation so entity identifiers retain their schema and reference meaning
 def SchemaClasses(Schema: ClassSchema) -> tuple[str, ...]:
     Bases = (
         (Schema.BaseGuid,)

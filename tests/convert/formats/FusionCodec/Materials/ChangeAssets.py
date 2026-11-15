@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import PropertyVa
 from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 
 
+# shared change assets setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeAssets(Assets: tuple[MaterialAsset, ...]) -> tuple[MaterialAsset, ...]:
     Result: list[MaterialAsset] = []
     for Asset in Assets:

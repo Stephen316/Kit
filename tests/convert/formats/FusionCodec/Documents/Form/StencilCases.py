@@ -1,3 +1,4 @@
+# the stencil cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStencilCases: tuple[tuple[str, str, str, str, str, str], ...] = (
     (
         "BoxFresh",

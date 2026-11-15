@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the body node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadBodyNode(Cursor: FieldCursor) -> BodyNode:
     Prefix = ReadPrefixMut(Cursor)
     FirstLump = ReadRefMut(Cursor)

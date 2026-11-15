@@ -7,6 +7,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# named metadata needs an explicit state contract so entity identifiers retain their schema and reference meaning
 @MakeDataClass(frozen=True, slots=True)
 class NamedMetadata:
     FieldName: str

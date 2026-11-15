@@ -10,20 +10,44 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.DimensionDraft import (
     DimensionDraft,
 )
 
+# the point pair shape must stay shared so drawing annotation authoring uses one contract for compatible values
 KPointPair = tuple[float, float]
+
+# the segment shape must stay shared so drawing annotation authoring uses one contract for compatible values
 KSegment = tuple[KPointPair, KPointPair]
+
+# the arrow shape must stay shared so drawing annotation authoring uses one contract for compatible values
 KArrow = tuple[KPointPair, KPointPair, KPointPair]
+
+# the layout shape must stay shared so drawing annotation authoring uses one contract for compatible values
 KLayout = tuple[KPointPair, tuple[KSegment, ...], tuple[KArrow, ...]]
+
+# arrow size needs one explicit bound so drawing annotation authoring cannot accept inconsistent resource or layout limits
 KArrowSize = 3.5
+
+# arrow ratio must remain consistent across callers so annotation objects retain their layout ownership
 KArrowRatio = 6.0
+
+# ext offset must remain consistent across callers so annotation objects retain their layout ownership
 KExtOffset = 2.1
+
+# ext extend must remain consistent across callers so annotation objects retain their layout ownership
 KExtExtend = 2.1
+
+# text gap must remain consistent across callers so annotation objects retain their layout ownership
 KTextGap = 1.4
+
+# text height must remain consistent across callers so annotation objects retain their layout ownership
 KTextHeight = 3.5
+
+# decimals must remain consistent across callers so annotation objects retain their layout ownership
 KDecimals = 2
+
+# the tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTolerance = 1e-9
 
 
+# dimension plan needs an explicit state contract so annotation objects retain their layout ownership
 @MakeDataClass(frozen=True, slots=True)
 class DimensionPlan:
     DimensionKind: str
@@ -43,19 +67,23 @@ class DimensionPlan:
     Anchors: tuple[KPointPair, ...]
 
 
+# the measure text contract needs a shared interpretation so annotation objects retain their layout ownership
 def MeasureText(Measurement: float) -> str:
     TextValue = f"{Measurement:.{KDecimals}f}".rstrip("0").rstrip(".")
     return "0" if TextValue in ("", "-0") else TextValue
 
 
+# the shifted contract needs a shared interpretation so annotation objects retain their layout ownership
 def Shifted(Point: KPointPair, Toward: KPointPair, Length: float) -> KPointPair:
     return (Point[0] + Toward[0] * Length, Point[1] + Toward[1] * Length)
 
 
+# the pair operation needs one geometric convention so annotation objects retain their layout ownership
 def DotPair(First: KPointPair, Second: KPointPair) -> float:
     return First[0] * Second[0] + First[1] * Second[1]
 
 
+# the vector operation needs one geometric convention so annotation objects retain their layout ownership
 def UnitVector(Vector: KPointPair) -> KPointPair:
     Length = Hypotenuse(*Vector)
     if Length <= KTolerance:
@@ -63,10 +91,12 @@ def UnitVector(Vector: KPointPair) -> KPointPair:
     return (Vector[0] / Length, Vector[1] / Length)
 
 
+# normal needs one geometric convention so annotation objects retain their layout ownership
 def Normal(Vector: KPointPair) -> KPointPair:
     return (-Vector[1], Vector[0])
 
 
+# the arrow at contract needs a shared interpretation so annotation objects retain their layout ownership
 def ArrowAt(TipPoint: KPointPair, Inward: KPointPair, SideAxis: KPointPair) -> KArrow:
     BasePoint = Shifted(TipPoint, Inward, KArrowSize)
     Halved = KArrowSize / KArrowRatio
@@ -77,12 +107,14 @@ def ArrowAt(TipPoint: KPointPair, Inward: KPointPair, SideAxis: KPointPair) -> K
     )
 
 
+# the reading axis contract needs a distinct decoding boundary so annotation objects retain their layout ownership
 def ReadingAxis(DimAxis: KPointPair) -> KPointPair:
     if DimAxis[0] > KTolerance or (abs(DimAxis[0]) <= KTolerance and DimAxis[1] > 0):
         return DimAxis
     return (-DimAxis[0], -DimAxis[1])
 
 
+# the linear axis contract needs a shared interpretation so annotation objects retain their layout ownership
 def LinearAxis(Draft: DimensionDraft) -> tuple[KPointPair, KPointPair, KPointPair]:
     First, Second = Draft.FirstPoint, Draft.SecondPoint
     if Draft.DimensionKind == "Horizontal":
@@ -100,6 +132,7 @@ def LinearAxis(Draft: DimensionDraft) -> tuple[KPointPair, KPointPair, KPointPai
     )
 
 
+# the extension line contract needs a shared interpretation so annotation objects retain their layout ownership
 def ExtensionLine(Point: KPointPair, FootPoint: KPointPair) -> KSegment:
     Outward = UnitVector((FootPoint[0] - Point[0], FootPoint[1] - Point[1]))
     return (
@@ -108,6 +141,7 @@ def ExtensionLine(Point: KPointPair, FootPoint: KPointPair) -> KSegment:
     )
 
 
+# the text operation needs a consistent construction rule so annotation objects retain their layout ownership
 def PlaceText(
     Middle: KPointPair, DimAxis: KPointPair, Height: float
 ) -> tuple[KPointPair, float]:
@@ -116,6 +150,7 @@ def PlaceText(
     return Point, ArcTangent(Reading[1], Reading[0])
 
 
+# extension lines needs an explicit validity boundary so annotation objects retain their layout ownership
 def ExtensionLines(
     Pairs: tuple[tuple[KPointPair, KPointPair], ...],
 ) -> tuple[KSegment, ...]:
@@ -130,6 +165,7 @@ def ExtensionLines(
     return tuple(Lines)
 
 
+# the inside lines contract needs a shared interpretation so annotation objects retain their layout ownership
 def InsideLines(
     FootPair: KSegment, Toward: KPointPair, SideAxis: KPointPair
 ) -> KLayout:
@@ -151,6 +187,7 @@ def InsideLines(
     )
 
 
+# the split lines contract needs a stable decomposition so annotation objects retain their layout ownership
 def SplitLines(
     FootPair: KSegment, Toward: KPointPair, SideAxis: KPointPair, Width: float
 ) -> KLayout:
@@ -173,6 +210,7 @@ def SplitLines(
     )
 
 
+# the outside lines contract needs a shared interpretation so annotation objects retain their layout ownership
 def OutsideLines(
     FootPair: KSegment, Toward: KPointPair, SideAxis: KPointPair, Width: float
 ) -> KLayout:
@@ -199,6 +237,7 @@ def OutsideLines(
     )
 
 
+# the flank lines contract needs a shared interpretation so annotation objects retain their layout ownership
 def FlankLines(FootPair: KSegment, Toward: KPointPair, SideAxis: KPointPair) -> KLayout:
     FirstFoot, SecondFoot = FootPair
     Backward = (-Toward[0], -Toward[1])
@@ -223,6 +262,7 @@ def FlankLines(FootPair: KSegment, Toward: KPointPair, SideAxis: KPointPair) -> 
     )
 
 
+# the fit layout contract needs a shared interpretation so annotation objects retain their layout ownership
 def FitLayout(
     FootPair: KSegment,
     Toward: KPointPair,
@@ -241,6 +281,7 @@ def FitLayout(
     return OutsideLines(FootPair, Toward, SideAxis, Width)
 
 
+# linear plan needs an explicit validity boundary so annotation objects retain their layout ownership
 def LinearPlan(Draft: DimensionDraft) -> DimensionPlan:
     First, Second = Draft.FirstPoint, Draft.SecondPoint
     DimAxis, FirstFoot, SecondFoot = LinearAxis(Draft)
@@ -279,6 +320,7 @@ def LinearPlan(Draft: DimensionDraft) -> DimensionPlan:
     )
 
 
+# round plan needs an explicit validity boundary so annotation objects retain their layout ownership
 def RoundPlan(Draft: DimensionDraft) -> DimensionPlan:
     First, Second = Draft.FirstPoint, Draft.SecondPoint
     Outward = UnitVector((Second[0] - First[0], Second[1] - First[1]))
@@ -319,6 +361,7 @@ def RoundPlan(Draft: DimensionDraft) -> DimensionPlan:
     )
 
 
+# the plan dimension contract needs a stable decomposition so annotation objects retain their layout ownership
 def PlanDimension(Draft: DimensionDraft) -> DimensionPlan:
     if Draft.DimensionKind not in KDimensionKinds:
         raise ValueError(

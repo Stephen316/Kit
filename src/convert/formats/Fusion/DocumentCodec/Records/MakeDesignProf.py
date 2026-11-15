@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.SelectClasses import SelectCl
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# the design prof operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakeDesignProf(
     Schemas: tuple[ClassSchema, ...],
     Classes: tuple[MetaClass, ...],

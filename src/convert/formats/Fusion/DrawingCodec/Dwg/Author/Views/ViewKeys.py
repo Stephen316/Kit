@@ -7,6 +7,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetKeys import (
 )
 
 
+# view keys needs an explicit state contract so projected geometry retains its paper and model relationships
 @MakeDataClass(frozen=True, slots=True)
 class ViewKeys:
     Inner: str
@@ -21,6 +22,7 @@ class ViewKeys:
     ViewRep: str
 
 
+# the keys operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def MakeKeys(Index: int) -> ViewKeys:
     NameText = f"View{Index}"
     Action = f"{KPaperNetwork}/{NameText}"

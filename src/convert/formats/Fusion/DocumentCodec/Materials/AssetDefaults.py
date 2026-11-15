@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchema
 from convert.formats.Fusion.MaterialCodec.Schema.SelectFields import SelectFields
 
 
+# the asset defaults contract needs a shared interpretation so appearance references remain connected to their owning entities
 def AssetDefaults(
     NameValue: str,
     Fields: dict[str, SchemaNode],

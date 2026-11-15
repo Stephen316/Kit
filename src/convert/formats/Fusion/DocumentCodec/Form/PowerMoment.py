@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 
 
+# the power moment contract needs a shared interpretation so editable control cages retain their document relationships
 def PowerMoment(
     Point: KJournalVector, Normal: KJournalVector, Powers: tuple[int, int, int]
 ) -> float:

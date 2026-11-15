@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Defaults.SettingsPolicy import SettingsPolicy
 
 
+# the roots operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddRootsMut(Author: AuthorState) -> None:
     Author.Allocate(
         "settings",

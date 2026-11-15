@@ -5,9 +5,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.OrderJumps impor
 from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
+# the spline frame shape must stay shared so spline stencil reconstruction uses one contract for compatible values
 KSplineFrame = tuple[list[float], list[float]]
 
 
+# find span must resolve unambiguously so control cage contributions retain their intended weights
 def FindSpan(Knots: list[float], Degree: int, Param: float) -> int:
     SpanIndex = Degree
     while SpanIndex < len(Knots) - Degree - 2 and Param >= Knots[SpanIndex + 1]:
@@ -15,6 +17,7 @@ def FindSpan(Knots: list[float], Degree: int, Param: float) -> int:
     return SpanIndex
 
 
+# the basis level contract needs a shared interpretation so control cage contributions retain their intended weights
 def BasisLevel(
     Knots: list[float], SpanIndex: int, Degree: int, Param: float
 ) -> list[float]:
@@ -32,6 +35,7 @@ def BasisLevel(
     return Values
 
 
+# the basis slope contract needs a shared interpretation so control cage contributions retain their intended weights
 def BasisSlope(
     Knots: list[float], SpanIndex: int, Degree: int, Param: float
 ) -> list[float]:
@@ -47,6 +51,7 @@ def BasisSlope(
     return Slopes
 
 
+# mass frame needs an explicit validity boundary so control cage contributions retain their intended weights
 def MassFrame(
     Values: list[float],
     Slopes: list[float],
@@ -73,6 +78,7 @@ def MassFrame(
     return Point, Tangent
 
 
+# the curve frame contract needs a shared interpretation so control cage contributions retain their intended weights
 def CurveFrame(Curve: BsCurve, Param: float) -> KSplineFrame:
     Knots = SpreadKnots(Curve.Knots, Curve.Multiplicity)
     SpanIndex = FindSpan(Knots, Curve.Degree, Param)
@@ -93,6 +99,7 @@ def CurveFrame(Curve: BsCurve, Param: float) -> KSplineFrame:
     return Point, Tangent
 
 
+# the knot list contract needs a shared interpretation so control cage contributions retain their intended weights
 def KnotList(Knots: tuple[SplineKnot, ...]) -> list[float]:
     return SpreadKnots(
         tuple(KnotValue.Value for KnotValue in Knots),
@@ -100,6 +107,7 @@ def KnotList(Knots: tuple[SplineKnot, ...]) -> list[float]:
     )
 
 
+# the rational frame contract needs a shared interpretation so control cage contributions retain their intended weights
 def RationalFrame(
     Surface: NubsSurface,
     Spans: tuple[int, int, int],
@@ -136,6 +144,7 @@ def RationalFrame(
     )
 
 
+# the surface frame contract needs a shared interpretation so control cage contributions retain their intended weights
 def SurfaceFrame(Surface: NubsSurface, ParamU: float, ParamV: float) -> KSplineFrame:
     KnotsU, KnotsV = KnotList(Surface.KnotsU), KnotList(Surface.KnotsV)
     Width = len(KnotsU) - Surface.DegreeU - 1

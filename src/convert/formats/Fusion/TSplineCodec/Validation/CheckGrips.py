@@ -4,6 +4,7 @@ from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckInd
 from convert.formats.Fusion.TSplineCodec.Validation.CheckCompounds import CheckCompounds
 
 
+# invalid grips input must fail here so control cage topology retains its native connectivity
 def CheckGrips(Surface: TsplineSurface) -> None:
     if not 0 < len(Surface.Grips) <= 1000000:
         raise ValueError("Invalid TSM grip allocation")

@@ -22,6 +22,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Attributes.SketchAttrib import (
 )
 
 
+# invalid inventory input must fail here so public geometry remains consistent with native circular topology
 def CheckInventory(State: GeometryState, HasSolid: bool) -> None:
     Bodies = 3 if HasSolid else 1
     Edges = 4 if HasSolid else 1

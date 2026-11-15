@@ -1,6 +1,7 @@
 from struct import iter_unpack as IterUnpack
 
 
+# the terminal operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadTerminal(Payload: bytes) -> tuple[int, ...]:
     if len(Payload) % 4:
         raise ValueError("Misaligned Fusion mesh terminal-delta stream")

@@ -3,6 +3,7 @@ from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Graph.GraphChecks import ResolveField
 
 
+# the order lines contract needs a stable decomposition so public document claims remain grounded in native records
 def OrderLines(
     Graph: NativeGraph, Lines: tuple[NativeNode, ...]
 ) -> tuple[NativeNode, ...]:

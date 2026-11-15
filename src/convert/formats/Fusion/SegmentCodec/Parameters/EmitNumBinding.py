@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Parameters.NumberBinding import NumberB
 from convert.formats.Fusion.SegmentCodec.Parameters.ParamSink import ParamSink
 
 
+# the number binding operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitNumBinding(Value: NumberBinding) -> bytes:
     References = tuple(
         PackHistRef(Identity)

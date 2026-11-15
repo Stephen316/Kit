@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the coedges operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildCoedges() -> tuple[GeometryRecord, ...]:
     Values = (
         (11, 13, 15, True, 7),

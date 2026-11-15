@@ -16,9 +16,11 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmVec
 from convert.formats.Fusion.Topology.AsmEdge.AsmFields import RequireAsm
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmTable
 
+# the geometry stamp cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGeometryStamp = GeometryStamp("Kit", "Geometry integration", "2026-11-12T00:00:00Z")
 
 
+# the smb archive contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     ("Radius", "Height", "BasePoint"),
     (
@@ -70,6 +72,7 @@ def TestSmbArchive(
         assert (Reference.x, Reference.y, Reference.z) == (1, 0, 0)
 
 
+# the smb links contract needs boundary coverage so stored document relationships remain consistent
 def TestSmbLinks() -> None:
     Model = CylinderBody(12.5, 16.75, (-3.5, 4.5, 2.5))
     Table = ReadAsmTable(EmitCylinderSmb(Model, KGeometryStamp))
@@ -94,6 +97,7 @@ def TestSmbLinks() -> None:
             assert ReadAsmNum(Record, 6) == KCircleHalf
 
 
+# the smb trailing contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Suffix", (b"\x00", b"\x11", b"trailing"))
 def TestSmbTrailing(Suffix: bytes) -> None:
     Model = CylinderBody(4.5, 6.25, (1.5, 2.5, 3.5))

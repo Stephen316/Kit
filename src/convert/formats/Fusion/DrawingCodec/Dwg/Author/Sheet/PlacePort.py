@@ -31,13 +31,23 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import (
     PaperSize,
 )
 
+# always on must remain consistent across callers so paper layouts retain consistent object ownership
 KAlwaysOn = 0x8000
+
+# grid beyond must remain consistent across callers so paper layouts retain consistent object ownership
 KGridBeyond = 0x40000
+
+# adaptive grid must remain consistent across callers so paper layouts retain consistent object ownership
 KAdaptiveGrid = 0x80000
+
+# the overall flags variants need one shared contract so drawing sheet authoring cannot omit a supported value shape
 KOverallFlags = KAlwaysOn | KGridBeyond | KAdaptiveGrid
+
+# scale record must remain consistent across callers so paper layouts retain consistent object ownership
 KScaleRecord = "ASDK_XREC_ANNOTATION_SCALE_INFO"
 
 
+# the port operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlacePortMut(
     Ledger: DraftBook,
     KeyText: str,
@@ -50,6 +60,7 @@ def PlacePortMut(
     return OwnMut(Ledger, KPaperSpace, KeyText)
 
 
+# the overall operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceOverallMut(Ledger: DraftBook, Paper: PaperSize) -> str:
     Center = (Paper.PaperWidth / 2, Paper.PaperHeight / 2)
     FolderKey = KOverallPort + "/Xdic"

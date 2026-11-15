@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.Vocabulary.ReadVocabulary import (
 from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
 
 
+# the draw schemas operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 @CacheValue
 def ReadDrawSchemas() -> tuple[ClassSchema, ...]:
     Catalog: dict[tuple[str, int], ClassSchema] = {}

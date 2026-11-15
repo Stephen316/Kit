@@ -1,10 +1,12 @@
 from __future__ import annotations
 
 
+# the path operation needs a distinct decoding boundary so published evidence stays bound to the reviewed revision
 def DecodePath(PathData: bytes) -> str:
     return PathData.decode("utf-8", "surrogateescape")
 
 
+# the numstat operation needs a distinct decoding boundary so published evidence stays bound to the reviewed revision
 def ParseNumstat(RawData: bytes) -> list[tuple[str, str | None, int, int, bool]]:
     EntryList: list[tuple[str, str | None, int, int, bool]] = []
     Records = iter(RawData.split(b"\0"))
@@ -23,6 +25,7 @@ def ParseNumstat(RawData: bytes) -> list[tuple[str, str | None, int, int, bool]]
     return EntryList
 
 
+# the statuses operation needs a distinct decoding boundary so published evidence stays bound to the reviewed revision
 def ParseStatuses(RawData: bytes) -> dict[str, str]:
     StatusMap: dict[str, str] = {}
     Fields = iter(RawData.split(b"\0"))

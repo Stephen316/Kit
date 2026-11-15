@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.EntityCodec.Values.ValueQuota import ValueQuota
 
 
+# entity catalog needs an explicit state contract so entity identifiers retain their schema and reference meaning
 @MakeDataClass(frozen=True, slots=True)
 class EntityCatalog:
     RootGuid: str

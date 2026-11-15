@@ -8,6 +8,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import (
 )
 
 
+# the snapshot wire operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadSnapWire(Payload: bytes) -> BrepWire:
     if type(Payload) is not bytes or not 0 < len(Payload) <= 2 * 1024 * 1024:
         raise ValueError("Invalid or oversized cuboid snapshot")

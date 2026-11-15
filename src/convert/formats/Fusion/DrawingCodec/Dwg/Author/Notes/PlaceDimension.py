@@ -29,20 +29,43 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.DimensionDraft import (
     DimensionDraft,
 )
 
+# style key must remain consistent across callers so annotation objects retain their layout ownership
 KStyleKey = "DIMSTYLE:Dim-ISO-25"
+
+# dim layer must remain consistent across callers so annotation objects retain their layout ownership
 KDimLayer = "LAYER:FD_Dimensions"
+
+# point layer must remain consistent across callers so annotation objects retain their layout ownership
 KPointLayer = "LAYER:Defpoints"
+
+# by block must remain consistent across callers so annotation objects retain their layout ownership
 KByBlock = 8192
+
+# line weight must remain consistent across callers so annotation objects retain their layout ownership
 KLineWeight = 30
+
+# the jag groups order must stay explicit so annotation objects retain their layout ownership
 KJagGroups = (("1070", 387), ("1070", 0), ("1070", 389), ("1010", (0.0, 0.0, 0.0)))
+
+# suppress first must remain consistent across callers so annotation objects retain their layout ownership
 KSuppressFirst = 75
+
+# user placed must remain consistent across callers so annotation objects retain their layout ownership
 KUserPlaced = 288
+
+# the style overrides vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KStyleOverrides: dict[str, tuple[int, ...]] = {
     "Radius": (KSuppressFirst, KUserPlaced),
     "Diameter": (KUserPlaced,),
 }
+
+# placed text must remain consistent across callers so annotation objects retain their layout ownership
 KPlacedText = 10
+
+# the draft fields shape must stay shared so drawing annotation authoring uses one contract for compatible values
 KDraftFields = dict[str, KDraftValue]
+
+# the class names vocabulary must stay centralized so drawing annotation authoring agrees on supported native identities
 KClassNames = {
     "Horizontal": "DIMENSION_LINEAR",
     "Vertical": "DIMENSION_LINEAR",
@@ -52,10 +75,12 @@ KClassNames = {
 }
 
 
+# the factor item contract needs a shared interpretation so annotation objects retain their layout ownership
 def FactorItem(NameText: str, Value: float) -> DraftEed:
     return DraftEed(HardPointer("APPID:" + NameText), DraftRecord((("1040", Value),)))
 
 
+# the factor eed contract needs a shared interpretation so annotation objects retain their layout ownership
 def FactorEed(Factor: float, DimensionKind: str) -> tuple[DraftEed, ...]:
     Overrides: tuple[tuple[str, KDraftValue], ...] = tuple(
         Override
@@ -81,6 +106,7 @@ def FactorEed(Factor: float, DimensionKind: str) -> tuple[DraftEed, ...]:
     )
 
 
+# the block common contract needs a shared interpretation so annotation objects retain their layout ownership
 def BlockCommon(BlockKey: str, Layer: str) -> KDraftFields:
     return {
         "EntityMode": 0,
@@ -92,6 +118,7 @@ def BlockCommon(BlockKey: str, Layer: str) -> KDraftFields:
     }
 
 
+# the lines operation needs a consistent construction rule so annotation objects retain their layout ownership
 def PlaceLinesMut(Ledger: DraftBook, BlockKey: str, Planned: DimensionPlan) -> None:
     for Index, (Start, Finish) in enumerate(Planned.Lines):
         KeyText = OwnMut(Ledger, BlockKey, f"{BlockKey}/Line{Index}")
@@ -117,6 +144,7 @@ def PlaceLinesMut(Ledger: DraftBook, BlockKey: str, Planned: DimensionPlan) -> N
         )
 
 
+# the text operation needs a consistent construction rule so annotation objects retain their layout ownership
 def PlaceTextMut(Ledger: DraftBook, BlockKey: str, Planned: DimensionPlan) -> None:
     KeyText = OwnMut(Ledger, BlockKey, f"{BlockKey}/Text")
     Point = (*Planned.TextPoint, 0.0)
@@ -146,6 +174,7 @@ def PlaceTextMut(Ledger: DraftBook, BlockKey: str, Planned: DimensionPlan) -> No
     )
 
 
+# the points operation needs a consistent construction rule so annotation objects retain their layout ownership
 def PlacePointsMut(Ledger: DraftBook, BlockKey: str, Planned: DimensionPlan) -> None:
     for Index, Point in enumerate(Planned.Anchors):
         KeyText = OwnMut(Ledger, BlockKey, f"{BlockKey}/Point{Index}")
@@ -155,6 +184,7 @@ def PlacePointsMut(Ledger: DraftBook, BlockKey: str, Planned: DimensionPlan) -> 
         )
 
 
+# the kind fields contract needs a shared interpretation so annotation objects retain their layout ownership
 def KindFields(Planned: DimensionPlan) -> KDraftFields:
     First = (*Planned.FirstPoint, 0.0)
     Second = (*Planned.SecondPoint, 0.0)
@@ -177,6 +207,7 @@ def KindFields(Planned: DimensionPlan) -> KDraftFields:
     return Fields
 
 
+# the dim operation needs a consistent construction rule so annotation objects retain their layout ownership
 def PlaceDimMut(Ledger: DraftBook, Index: int, Draft: DimensionDraft) -> str:
     Planned = PlanDimension(Draft)
     BlockKey = PlaceBlockMut(Ledger, f"BLOCK_HEADER:Dimension{Index}", "*D")

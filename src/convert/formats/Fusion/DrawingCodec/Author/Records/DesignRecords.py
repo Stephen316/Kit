@@ -29,6 +29,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetKeys import (
 from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 
 
+# the design records contract needs a shared interpretation so sheet objects retain their intended document relationships
 def DesignRecords(
     SpecValue: DrawingSpec, FileName: str, History: SaveState
 ) -> tuple[EntityRecord, ...]:
@@ -65,18 +66,22 @@ def DesignRecords(
     return tuple(sorted((*KContainerRecords, *Built), key=RecordKey))
 
 
+# the record key contract needs a shared interpretation so sheet objects retain their intended document relationships
 def RecordKey(Record: EntityRecord) -> tuple[int, bool]:
     return Record.ObjectId, not Record.IsPrimary
 
 
+# the sheet handle contract needs a shared interpretation so sheet objects retain their intended document relationships
 def SheetHandle(LayoutHandle: int) -> str:
     return f"{LayoutHandle:X}"
 
 
+# the specification ids contract needs a shared interpretation so sheet objects retain their intended document relationships
 def SpecIds(SpecValue: DrawingSpec) -> RecordIds:
     return PlanIds(1, 1, SpecValue.Annotations)
 
 
+# design next id needs an explicit validity boundary so sheet objects retain their intended document relationships
 def DesignNextId(SpecValue: DrawingSpec, History: SaveState) -> int:
     NextFree = SpecIds(SpecValue).NextFree
     if History.DesignNextId is None:

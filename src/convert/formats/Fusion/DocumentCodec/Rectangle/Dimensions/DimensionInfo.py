@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.Model.DimensionAx
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakeColor, MakePoint
 
 
+# the dimension info contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DimensionInfo(
     Author: AuthorState, AxisValue: DimensionAxis
 ) -> list[dict[str, object]]:

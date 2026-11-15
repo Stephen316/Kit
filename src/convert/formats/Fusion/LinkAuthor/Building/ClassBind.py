@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.MetaContext import MetaContext
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# the extend classes contract needs a shared interpretation so cross document references retain their intended ownership
 def ExtendClasses(Segment: ParsedSegment) -> tuple[MetaClass, ...]:
     Known = {Entry.ClassGuid.upper() for Entry in Segment.Metadata.Classes}
     Added = tuple(
@@ -19,6 +20,7 @@ def ExtendClasses(Segment: ParsedSegment) -> tuple[MetaClass, ...]:
     return Segment.Metadata.Classes + Added
 
 
+# bind codes needs an explicit validity boundary so cross document references retain their intended ownership
 def BindCodes(
     Classes: tuple[MetaClass, ...], Records: tuple[EntityRecord, ...]
 ) -> tuple[EntityRecord, ...]:
@@ -37,6 +39,7 @@ def BindCodes(
     )
 
 
+# the owners operation needs a consistent construction rule so cross document references retain their intended ownership
 def AddOwners(
     Classes: tuple[MetaClass, ...], Records: tuple[EntityRecord, ...]
 ) -> tuple[MetaClass, ...]:
@@ -55,6 +58,7 @@ def AddOwners(
     )
 
 
+# extend segment needs an explicit validity boundary so cross document references retain their intended ownership
 def ExtendSegment(
     Segment: ParsedSegment,
     Records: tuple[EntityRecord, ...],
@@ -63,6 +67,8 @@ def ExtendSegment(
 ) -> ParsedSegment:
     NextId, Contexts = Bounds
     Classes = ExtendClasses(Segment)
+
+    # ordering by id not record is primary must stay deterministic so document link authoring resolves equivalent inputs consistently
     Ordered = tuple(
         sorted(Added, key=lambda Record: (Record.ObjectId, not Record.IsPrimary))
     )

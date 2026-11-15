@@ -13,7 +13,10 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartCases import (
     KOracleRoot,
 )
 
+# the authored cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KAuthored = KOracleRoot / "Authored"
+
+# the suites cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSuites = (
     "NativeAcceptance.json",
     "NativeAcceptanceExtrudes.json",
@@ -36,10 +39,12 @@ KSuites = (
 )
 
 
+# shared read report setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadReport(NameValue: str) -> dict[str, object]:
     return CastValue(dict[str, object], LoadJson((KAuthored / NameValue).read_text()))
 
 
+# the suite report contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("SuiteName", KSuites)
 def TestSuiteReport(SuiteName: str) -> None:
     Manifest = CastValue(dict[str, dict[str, object]], ReadReport("Manifest.json"))

@@ -28,13 +28,19 @@ from tests.convert.formats.FusionCodec.Brep.Complex.SnapshotStates import (
     KSnapshotStates,
 )
 
+# authored root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KAuthoredRoot = (
     FilePath(__file__).resolve().parents[6] / "re/Fusion/LocalOracle/ComplexGeometry"
 )
+
+# the authored names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KAuthoredNames = ("AuthoredPatch", "AuthoredRational", "AuthoredPillow")
+
+# the history members cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHistoryMembers = tuple(Value for Value in KComplexMembers if Value[1] == "smbh")
 
 
+# shared is snapshot style setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsSnapshotStyle(Entities: tuple[KJournalEntity, ...]) -> bool:
     TagValues = {MakeEntityNode(Value).Tokens[1][1] for Value in Entities}
     Owned = any(
@@ -46,6 +52,7 @@ def IsSnapshotStyle(Entities: tuple[KJournalEntity, ...]) -> bool:
     return TagValues == {-1} and not Owned and not Tracked
 
 
+# the form bytes contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -61,6 +68,7 @@ def TestFormBytes(
     assert SnapshotForm(Entities) == Entities
 
 
+# the form history contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -76,6 +84,7 @@ def TestFormHistory(Relative: str, Suffix: str, Digest: str) -> None:
     )
 
 
+# the form author contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Label", KAuthoredNames)
 def TestFormAuthor(Label: str) -> None:
     Journal = ReadJournal((KAuthoredRoot / (Label + ".smbh")).read_bytes())
@@ -87,6 +96,7 @@ def TestFormAuthor(Label: str) -> None:
     assert len(Entities) == len(ReadGeometry(Stored).Entities)
 
 
+# the form faults contract needs boundary coverage so stored document relationships remain consistent
 def TestFormFaults() -> None:
     Journal = ReadJournal((KAuthoredRoot / "AuthoredPatch.smbh").read_bytes())
     Entities = ReadGeometry((KAuthoredRoot / "AuthoredPatch.smb").read_bytes()).Entities

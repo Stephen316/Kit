@@ -7,6 +7,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
 
 
+# journal state tables need bounded traversal so malformed histories cannot consume an unbounded record stream
 def ReadStatesMut(Cursor: MetaCursor, Width: int = 8) -> tuple[DeltaState, ...]:
     States: list[DeltaState] = []
     while (NameValue := ReadAsmName(Cursor)) != "End-of-ASM-History-Section":

@@ -6,6 +6,7 @@ from convert.formats.Fusion.DocumentCodec.Form.PowerMoment import PowerMoment
 from convert.formats.Fusion.DocumentCodec.Form.VectorMath import DotProduct
 
 
+# the mass accum contract needs a shared interpretation so editable control cages retain their document relationships
 def MassAccumMut(
     Total: dict[str, float], Point: KJournalVector, Normal: KJournalVector
 ) -> None:
