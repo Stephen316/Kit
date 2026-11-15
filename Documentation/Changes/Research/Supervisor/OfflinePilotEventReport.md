@@ -13,4 +13,6 @@ The report counts submissions, claims, settled outcomes, expired claims, resourc
 
 Use this controller evidence alongside independently measured operator interventions, application activity, active agent time and accepted document gains when the offline pilot starts. A controller completion records a settled outcome. Independent conversion acceptance has its own evidence gates.
 
+Use the [pinned private evidence report](PrivatePilotEvidence.md) to attach separately sourced intervention, interval and acceptance records to that fixed window.
+
 Hosted controller coverage exercises multiple pages, an event appended beyond the fixed cutoff, a parked claim, replay and byte-identical readback of the store.
