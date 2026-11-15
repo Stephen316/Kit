@@ -31,4 +31,4 @@ The eleven input blobs and the matching PE identities are pinned in the [archive
 | Baseline B, six edits and inch display | 2,854 | 2,962 | 2,980 | 3,039 | 3,064 |
 | YZ and through-all | 2,814 | 2,922 | 2,940 | 2,999 | 3,024 |
 
-All eleven reach 34 typed archive rows. The hatch, material, density and model-data class/object pairs are 49/50, 51/52, 53/54 and 55/56. The next part call is the inline body-visualization loader at `sldmodu+0x10eea6f`. Continue the typed root fields from that point before entering the later atom and sketch records.
+All eleven reach 34 typed archive rows. The hatch, material, density and model-data class/object pairs are 49/50, 51/52, 53/54 and 55/56. The next part call is the inline body-visualization loader at `sldmodu+0x10eea6f`. The [atom and first sketch walk](P04AtomWalk.md) continues from that call.
