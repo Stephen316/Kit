@@ -98,18 +98,21 @@ tolerance, so its read is a superset of `Design.allParameters`.
 Kit reads the BRep journal of a Fusion-saved design and counts its topology entities. Fusion reports
 the same totals for the same file:
 
-| File | Kit journal | Fusion | Match |
-| ---- | ----------- | ------ | ----- |
-| `mirror_xy.f3d` | 12 face, 24 edge, 16 vertex | 2 bodies of 6, 12, 8 | yes |
-| `analytic.f3d` | 4 face, 2 edge, 2 vertex | sphere 1/0/0, torus 1/0/0, cone 2/2/2 | yes |
-| `shell_both.f3d` | 17 face, 36 edge, 24 vertex | 1 body of 11, 24, 16 | **no** |
+| File | Kit, resolved | Fusion | Match |
+| ---- | ------------- | ------ | ----- |
+| `mirror_xy.f3d` | 12 face, 24 edge, 16 vertex, 2 body | 2 bodies of 6, 12, 8 | yes |
+| `analytic.f3d` | 4 face, 2 edge, 2 vertex, 3 body | sphere 1/0/0, torus 1/0/0, cone 2/2/2 | yes |
+| `shell_both.f3d` | 11 face, 24 edge, 16 vertex, 1 body | 1 body of 11, 24, 16 | yes |
 
-The first two agree exactly. The third does not, and the reason is in the journal: `shell_both` carries
-3 `DeltaState` records and 266 entities for an `ActiveCount` of 195, so a count over every entity
-includes the pre-shell topology as well as the shelled result.
+The journal is a history, not a snapshot. `shell_both` carries 3 `DeltaState` records and 266 entities
+for an `ActiveCount` of 195, so a count over every entity includes the pre-shell topology as well as
+the shelled result. `WalkStates` walks the delta-state chain from the active node and undoes each state, so its first
+`LiveState` is the live topology. That yields 195 live entities for an `ActiveCount` of 195 and the 11
+faces, 24 edges and 16 vertices Fusion reports.
 
-The journal is a history, not a snapshot. A topology count has to be resolved through the state links
-before it can be compared with Fusion, and this record does not do that yet.
+Across the corpus, `WalkStates` resolves 500 journals with no failures, and the live count equals
+`ActiveCount` in all 500. The other 39 designs have a `PrismHistory` wrapping a `HistoryState` rather
+than a journal, which is a different representation this record does not cover.
 
 The journal header reports `FileVersion` 23200, `RootCount` 3, `Scale` 50.0 and tolerances of 1e-6 and
 1e-10.
