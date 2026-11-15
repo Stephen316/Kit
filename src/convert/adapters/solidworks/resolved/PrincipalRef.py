@@ -1,6 +1,5 @@
 from dataclasses import dataclass as Dataclass
 
-from convert.adapters.solidworks.container.Archive import KNullKind
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.LocalFrame import (
     ReadLocalPart,
@@ -32,7 +31,7 @@ def ReadPlaneRef(
     )
     UnitIndex, PartIndex = ReadLocalPart(Cursor, Generation)
     FeatureId, TimeValue = Cursor.ReadInts("<iI")
-    _ = Cursor.TakePointer((None,), KNullKind, CompactOnly=True)
+    Cursor.ReadNull()
     (AxisCode,) = Cursor.ReadInts("<i")
     BasisValue, ShiftScale = ReadLocalPose(Cursor)
     return PrincipalRef(

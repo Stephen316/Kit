@@ -1,6 +1,11 @@
 """Walk the guarded P04 support component to its owned face plane data."""
 
 from convert.adapters.solidworks.container.Archive import KClassRefKind
+from convert.adapters.solidworks.resolved.PlaneAtom import (
+    ReadAtomMaps as read_partition_tail,
+    ReadPlaneAtom as read_plane_atom,
+)
+from convert.adapters.solidworks.resolved.PlaneGeom import ReadRefGeom
 from FaceOccurrence import read_face_data, read_local_component
 from FeatureBase import read_empty_label, read_feature_base
 from SketchRoot import Require
@@ -16,53 +21,9 @@ def read_plane_concept(cursor):
     Require(cursor.read("<Hi"), (0, 0), "empty resolved node list")
 
 
-# the local atom branch owns the temporary surface arrays and rollback state
-def read_plane_atom(cursor):
-    Require(cursor.read("<3H"), (0, 0, 0), "empty source atom lists and keeper")
-    Require(cursor.read("<2i"), (0, 0), "absent transfer arrays")
-    cursor.null()  # moAtom_c
-    count, mode = cursor.read("<2i")
-    Require(count, 0, "empty atom id list")
-    Require(mode in range(4), True, "known atom body mode")
-    arrays_offset = cursor.position
-
-    Require(cursor.read("<i"), (0,), "absent profile atom array")
-    cursor.read("<i")
-    chooser, flags, other_chooser = cursor.read("<3H")
-    Require((chooser, other_chooser), (0, 0), "absent base body choosers")
-    cursor.read("<i")
-    Require(cursor.read("<2H"), (0, 0), "absent additional body choosers")
-    cursor.read("<i")
-    Require(cursor.read("<i"), (0,), "absent action array")
-
-    Require(cursor.read("<i"), (1,), "saved local partition record")
-    cursor.null()  # moPMarkRecord_c
-    read_partition_tail(cursor)
-    return arrays_offset, flags
-
-
-# the later atom fields share the same guarded empty branches after the partition pointer
-def read_partition_tail(cursor):
-    Require(cursor.read("<3i"), (0, 0, 0), "empty local partition fields")
-    cursor.read("<i")
-    Require(cursor.read("<3i"), (0, 0, 0), "empty atom maps")
-    cursor.read("<i")
-    Require(
-        cursor.read("<4i"),
-        (0, 0, 0, 0),
-        "absent visual map animation and face labels",
-    )
-    cursor.read("<i")
-
-
-# the reference point and type precede the owned plane data pointer on this branch
+# both embedded and principal records use the packaged geometry framing
 def read_ref_geometry(cursor, expected_mode=4):
-    point = cursor.vector(3)
-    mode, _ = cursor.read("<2i")
-    Require(mode, expected_mode, "supported plane geometry mode")
-    cursor.null()  # moFeatureRefWrapper_c
-    Require(cursor.read("<i"), (0,), "guarded plane geometry trailer")
-    return point
+    return ReadRefGeom(cursor, expected_mode)
 
 
 # the component and its local plane must resolve before the nested face reader starts

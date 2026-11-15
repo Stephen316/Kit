@@ -55,13 +55,17 @@ class FaceCursor(ArchiveCursor):
         _, _, index = self.TakePointer((name,), kind, CompactOnly=True)
         return index
 
-    # a null child chooses the witnessed branch without inventing an object map entry
-    def null(self):
-        if self.null_events is not None:
+    # report adapters retain null events even when packaged parsers consume them
+    def TakePointer(self, *args, **options):
+        offset, counter = self.Offset, self.NextIndex
+        result = super().TakePointer(*args, **options)
+        if self.null_events is not None and result[0].kind == KNullKind:
             self.null_events.append(
-                (self.position, self.next_index, KNullKind, None, 0)
+                (offset, counter, KNullKind, None, 0)
             )
-        self.pointer(KNullKind)
+        return result
+
+    null = ArchiveCursor.ReadNull
 
 # a surface identifier is usable only when its typed feature reference resolves ownership
 def read_surface_id(cursor, kind, cap=False, pointer_kind=KClassRefKind):

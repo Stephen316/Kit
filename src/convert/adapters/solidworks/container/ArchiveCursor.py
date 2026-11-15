@@ -3,6 +3,7 @@ import struct as Struct
 from typing import TypeAlias, cast as CastValue
 
 from convert.adapters.solidworks.container.Archive import (
+    KNullKind,
     ArchiveError,
     ReadString,
     ReadTag,
@@ -23,6 +24,8 @@ KArchiveEvent: TypeAlias = tuple[int, int, str, str | None, int]
 
 # field readers need one checked byte position for scalar and string framing
 class FieldCursor:
+    BlobValue: bytes
+    Offset: int
 
     # each decoded field depends on the preceding native boundary
     def __init__(self, BlobValue: bytes, Offset: int) -> None:
@@ -115,3 +118,7 @@ class ArchiveCursor(FieldCursor):
                 (Offset, Counter, TagValue.kind, NameValue, ObjectIndex)
             )
         return TagValue, NameValue, ObjectIndex
+
+    # optional objects on the compact native paths must leave the map unchanged
+    def ReadNull(self) -> None:
+        _ = self.TakePointer((None,), KNullKind, CompactOnly=True)

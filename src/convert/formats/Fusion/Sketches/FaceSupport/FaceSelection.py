@@ -51,7 +51,7 @@ def MakeFacePick(
     )
     if (
         len({Identity for Identity, _ in Contexts}) != 4
-        or {EdgeValue for _, EdgeValue in Contexts} != Perimeter
+        or frozenset(EdgeValue for _, EdgeValue in Contexts) != Perimeter
     ):
         raise ValueError(
             "Fusion sketch support contexts do not match the face boundary"

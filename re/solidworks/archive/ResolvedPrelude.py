@@ -121,25 +121,17 @@ def read_detail_cabinet(cursor):
 
 # the principal plane payload owns the stored world normal and display frame
 def read_default_plane_data(cursor, pointer_kind):
-    from FaceOccurrence import read_transform
-    from SketchRoot import Require
+    from convert.adapters.solidworks.resolved.PlaneGeom import ReadDatumData
 
-    data = cursor.pointer(pointer_kind, "moDefaultRefPlnData_c")
-    point = cursor.vector(3)
-    normal = cursor.vector(3)
-    transform = read_transform(cursor)
-    cursor.vector(4)
-    cursor.null()  # moCompEdge_c
-    Require(cursor.read("<3iB"), (0, -4, -4, 0), "guarded default plane fields")
-    cursor.vector(3)  # display root
-    Require(cursor.read("<2iH"), (1, 0, 0), "guarded default plane scalar tail")
-    for _ in range(3):
-        cursor.null()  # facet reference, axis and sketch entity
+    datum = ReadDatumData(cursor, pointer_kind)
     return {
-        "object_index": data,
-        "point_metres": point,
-        "normal_world": normal,
-        "transform": transform,
+        "object_index": datum.ObjectIndex,
+        "point_metres": datum.PointMetres,
+        "normal_world": datum.NormalWorld,
+        "transform": {
+            "basis": datum.BasisValue,
+            "translation_scale": datum.ShiftScale,
+        },
     }
 
 

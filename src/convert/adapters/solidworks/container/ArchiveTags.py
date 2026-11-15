@@ -22,8 +22,7 @@ def ResolveMapType(
     if TagValue.kind == KDefinitionKind:
         if TagValue.schema != SchemaValue:
             raise ArchiveError(
-                f"archive schema {TagValue.schema} for {TagValue.class_name} "
-                f"differs from {SchemaValue}"
+                f"archive schema {TagValue.schema} differs from {SchemaValue}"
             )
         return TagValue.class_name
     if TagValue.index and TagValue.kind in (KClassRefKind, KObjectRefKind):
