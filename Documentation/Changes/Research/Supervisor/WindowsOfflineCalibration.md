@@ -8,7 +8,7 @@ The worker reports user and system CPU time and measures its own `PeakWorkingSet
 
 On stop, calibration pauses admission in the trial's private pool and lets the supervisor settle the active workers. If the grace period expires or a dead supervisor leaves a running member, calibration terminates the owned outer job. It verifies the job is empty before recovery proceeds in a separate contained launch. Observer death closes its handle and terminates the entire outer job. A host job that rejects nesting causes the trial launch to fail. [Nested Job Objects](https://learn.microsoft.com/en-us/windows/win32/procthread/nested-jobs)
 
-The Windows process selection covers the real fixed offline reader sweep, a decoder rejection, explicit termination of a nested worker tree, and abrupt observer exit with a held worker and descendant. Remote execution is pending.
+The Windows process selection covers the real fixed offline reader sweep, a decoder rejection, explicit termination of a nested worker tree, and abrupt observer exit with a held worker and descendant. The Windows research job passed all 29 selected process cases at `cdf53e1f`. [Windows research job](https://github.com/TryUniCAD/Kit/actions/runs/43693322495/job/132748412625)
 
 ## First Windows discovery sweep
 

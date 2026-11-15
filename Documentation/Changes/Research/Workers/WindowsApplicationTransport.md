@@ -8,4 +8,6 @@ Request and response identities pair the actual process ID with exact Windows cr
 
 The restart and acceptance fences retain a completed spool until controller acceptance. A restarted host parks requests against that installation. Output uses the protocol's immutable reads and exclusive publication. The external owner controls the licensed application lifecycle. [Durable worker output](DurableWorkerOutputs.md)
 
-The existing Windows research selection includes real host and client process scenarios for request exchange, both forms of contention, refusal of a multiply linked lock, normal fixture shutdown, and acceptance retention after host restart. Remote verification is pending. A native SOLIDWORKS counterpart still needs a pinned operation, an installation owner process and recovery evidence for hung or lost COM calls. [SOLIDWORKS readback lifecycle](SolidWorksCutFaceReadback.md)
+The Windows research selection includes live host and client process scenarios for request exchange, both forms of contention, refusal of a multiply linked lock, normal fixture shutdown, and acceptance retention after host restart. At `cdf53e1f`, the job passed all 29 selected process cases. [Windows research job](https://github.com/TryUniCAD/Kit/actions/runs/43693322495/job/132748412625)
+
+A native SOLIDWORKS counterpart still needs a pinned operation, an installation owner process and recovery evidence for hung or lost COM calls. [SOLIDWORKS readback lifecycle](SolidWorksCutFaceReadback.md)
