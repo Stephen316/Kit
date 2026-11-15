@@ -24,6 +24,6 @@ Publication failures leave scheduling and controller settlement to their existin
 
 The hosted POSIX pause case compares live status with the actual admission event and checks configuration mismatch, pause, and normal exit.
 The hosted Windows recovery case checks a live decision and refusal of the retained snapshot after forced owner exit.
-Exact-revision hosted execution remains pending.
+It passed with all 92 Windows supervisor cases at PR head `648ddf5c` and tested merge `7d662f29`. [Hosted Windows evidence](https://github.com/TryUniCAD/Kit/actions/runs/43774889237/job/132998931881)
 
 See [supervisor commands](../../../Reference/Research/ResearchSupervisor.md#commands).
