@@ -8,27 +8,10 @@ KPortableFeatures = frozenset(
 KOperations = frozenset(Value.value for Value in BooleanOp)
 
 
-def HasContract(Document: CadDocument) -> bool:
-    if set(Document.metadata) != {"fusion.authoring"}:
-        return False
-    from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
-
-    try:
-        _ = EncodeDocument(Document)
-    except (TypeError, ValueError):
-        return False
-    return True
-
-
 def FeatureFindings(Document: CadDocument) -> tuple[str, ...]:
     Findings: list[str] = []
-    NativeContract = any(
-        StepValue.kind == FeatureKind.NATIVE for StepValue in Document.feature_timeline
-    ) and HasContract(Document)
     for StepValue in Document.feature_timeline:
-        if StepValue.kind not in KPortableFeatures and not (
-            StepValue.kind == FeatureKind.NATIVE and NativeContract
-        ):
+        if StepValue.kind not in KPortableFeatures:
             Findings.append(
                 f"{Document.source.path}: feature {StepValue.id} kind ({StepValue.kind})"
             )

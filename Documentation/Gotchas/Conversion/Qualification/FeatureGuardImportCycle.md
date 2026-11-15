@@ -12,6 +12,6 @@ An interpreter that already loaded these adapters can hide this ordering failure
 
 ## Workaround
 
-Import the encoder only inside `HasContract`, after the metadata has selected the existing Fusion authoring contract. Normal package initialization then finishes before the guard evaluates that contract.
+The intermediate repair imported the encoder only during contract evaluation. The final guard removes the encoder dependency and its unsupported native-tag exception after the [part-state qualification failure](NativePartStateAllowlist.md) showed that the proposed public contract was not reachable. Normal package initialization no longer crosses into the Fusion adapter from this guard.
 Keep the installed-wheel fresh-interpreter import gate enabled; source type checks alone do not exercise import ordering.
 The [native qualification change](../../../Changes/Research/Readers/NativeSemanticWriteQualification.md) records this repair and its pending current-head verification.

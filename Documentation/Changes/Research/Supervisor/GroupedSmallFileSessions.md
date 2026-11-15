@@ -64,3 +64,5 @@ Remote results must be recorded on the tested commit before treating these cases
 These are synthetic format/process fixtures.
 They do not qualify native CAD applications, conversion acceptance or Windows grouped execution.
 Calibration and the unattended pilot remain separate work.
+
+The first macOS run at `6e2da255` stopped before process execution because the new fence module collided with an existing unpackaged pytest module. The new module is renamed to `GroupedFenceTests.py`; [the basename gotcha](../../../Gotchas/Ci/PytestBasenameCollision.md) links the failure. Both case selections and their assertions remain enabled.
