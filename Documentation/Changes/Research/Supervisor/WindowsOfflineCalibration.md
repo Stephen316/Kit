@@ -24,3 +24,20 @@ On November 15, 2026, the calibration implementation at `b0f223ef` ran on Window
 All four trials produced the same decoded-output digest `69a83ff3138bd794dfef16aa97d1e1ae8aef57afd74002f5dadf29b9a2d0c8a6`. Job, session and claim cleanup passed with zero forced terminations. CPU and memory telemetry was complete for all 100 decodes. The eight-way run fell short of the one-second overlap requirement. The sweep produced no concurrency recommendation. A comparable saturated trial and independent attribution of an operating-system OOM termination remain open.
 
 The canonical manifest SHA-256 is `31cfa5d61538e6488ab968e3c9e9e31cde4be0b573203bb64aa1d0bad548c2c2`. The private calibration report SHA-256 is `72e0707142d2614263e7666a70c53f48d0cfbd2ae722ffdd16657f02a5a645d4`. The speed and cleanup measurements describe execution of the fixed research reader. Native conversion qualification needs separate evidence.
+
+## Fusion discovery sweep
+
+On November 15, 2026, the Windows calibration at `68181ec830b0b1e4eb3cc8e7e72a2d08b577bf5c` measured 25 distinct receipt-pinned Fusion archives from the P01, P03 and P04 discovery captures. Input sizes ranged from 34,781 to 91,326 bytes. Each job used the fixed `decode.fusion` reader with partial fallback enabled after a strict rejection. It ran with Python 3.14.6 and pywin32 312. Resource settings retained one thread per job, a 120-second job deadline, a 1 GiB sampled worker limit and host reserves of two CPUs and 4 GiB.
+
+| Requested workers | Decodes completed | Decodes per minute | Peak simultaneous decodes | Requested overlap in seconds | Trial meets overlap and measurement criteria |
+| ---: | ---: | ---: | ---: | ---: | --- |
+| 1 | 25 | 15.82 | 1 | 6.802 | Yes |
+| 2 | 25 | 29.09 | 2 | 2.739 | Yes |
+| 4 | 25 | 46.58 | 4 | 2.167 | Yes |
+| 8 | 25 | 52.67 | 7 | 0 | No |
+
+All 100 jobs supplied CPU and working-set telemetry. Each trial returned decoded-output digest `e5557411b7d15f018cb0db1c4ed5796bc1f153d87b6a5fa4d60888151883c384`. Every trial verified empty sessions, claims and Job Object membership after orderly shutdown. The host retained at least 14.49 GiB of available physical memory, with a peak sampled aggregate worker working set of 375 MiB at the eight-worker request.
+
+The one-to-two and two-to-four comparisons met the existing criteria and improved measured throughput by 83.9% and 60.1%. The eight-worker request held eight active supervisor sessions, but its decoder intervals peaked at seven for 0.149 seconds. The four-to-eight comparison is noncomparable because the trial never reached the eight-way decode overlap required for the one-second window. The sweep returned no concurrency recommendation. Sustained eight-way decoding and independently attributed operating-system OOM backoff remain open.
+
+The calibration source digest is `ff601a0e22e2eb674d5fd84eda80ff3eb9db36b335beaaead838e3c940d327c0`. The canonical manifest SHA-256 is `56236c41ee096c69abc644144a12dd38322a94e4860d068bf18ae9724bb124bc`. The private calibration report SHA-256 is `3d1e6a73af30decb315c4601cb1a0c69811123ef750685eaaee024b59cd770ff`.
