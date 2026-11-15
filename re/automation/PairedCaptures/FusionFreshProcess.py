@@ -2,6 +2,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import subprocess
@@ -218,7 +219,101 @@ def measure(helper, document, label):
     return reading
 
 
-def recompute(helper, document, result, label):
+# tokens can resolve to multiple descendants after a split, so only unique entities can match
+def same_entity(design, first, second):
+    left = design.findEntityByToken(first.entityToken)
+    right = design.findEntityByToken(second.entityToken)
+    return len(left) == len(right) == 1 and left[0] == right[0]
+
+
+# each observation uses one rollback stage and restores the imported document before export
+def measure_at_marker(timeline, feature, before, observe):
+    original = timeline.markerPosition
+    try:
+        expected = feature.index + (0 if before else 1)
+        require(feature.rollTo(before) and timeline.markerPosition == expected, "Fusion did not reach the requested timeline marker")
+        return {"marker": expected, **observe()}
+    except Exception:
+        return {"status": "unavailable", "diagnostic": traceback.format_exc()}
+    finally:
+        if timeline.markerPosition != original:
+            timeline.markerPosition = original
+        require(timeline.markerPosition == original, "Fusion did not restore the original timeline marker")
+
+
+# the associated sketch reference must match an actual boss end face at the source stage
+def cut_support(helper, design, sketch, boss):
+    adsk = helper["adsk"]
+    reference = sketch.referencePlane
+    face = adsk.fusion.BRepFace.cast(reference) if reference is not None else None
+    if face is None:
+        return {"status": "unresolved", "reference_type": getattr(reference, "objectType", None)}
+    point = face.pointOnFace
+    found, normal = face.evaluator.getNormalAtPoint(point)
+    require(found and adsk.core.Plane.cast(face.geometry) is not None, "Fusion did not report a planar support normal")
+    start_faces, end_faces = boss.startFaces, boss.endFaces
+    start_matches = sum(same_entity(design, face, start_faces.item(i)) for i in range(start_faces.count))
+    end_matches = sum(same_entity(design, face, end_faces.item(i)) for i in range(end_faces.count))
+    body_matches = sum(same_entity(design, face.body, boss.bodies.item(i)) for i in range(boss.bodies.count))
+    normal_world = list(normal.asArray())
+    point_world_mm = helper["point_mm"](point)
+    area_mm2 = face.area * 100
+    require(
+        all(math.isfinite(value) for value in [*normal_world, *point_world_mm, area_mm2]) and area_mm2 > 0,
+        "Fusion reported invalid support geometry",
+    )
+    return {
+        "status": "verified" if (start_matches, end_matches, body_matches) == (0, 1, 1) else "unresolved",
+        "reference_type": reference.objectType,
+        "boss_start_face_matches": start_matches,
+        "boss_end_face_matches": end_matches,
+        "boss_body_matches": body_matches,
+        "normal_world": normal_world,
+        "point_world_mm": point_world_mm,
+        "signed_offset_mm": sum(a * b for a, b in zip(point_world_mm, normal_world)),
+        "area_mm2": area_mm2,
+    }
+
+
+# an empty or unmatched participant list leaves body ownership unresolved
+def cut_participants(design, cut, boss):
+    participants = tuple(cut.participantBodies or ())
+    bodies = boss.bodies
+    matches = [sum(same_entity(design, participant, bodies.item(i)) for i in range(bodies.count))
+               for participant in participants]
+    return {
+        "status": "verified" if matches == [1] else "unresolved",
+        "participant_count": len(participants),
+        "boss_body_count": bodies.count,
+        "boss_body_matches_per_participant": matches,
+    }
+
+
+# preserve the normal import and rebuild observations before running rollback probes
+def cut_reference_evidence(helper, document):
+    design = helper["design_of"](document)
+    timeline = design.timeline
+    root = design.rootComponent
+    sketch = root.sketches.itemByName("CutSketch")
+    extrusions = root.features.extrudeFeatures
+    boss = extrusions.itemByName("BlindBoss")
+    cuts = [feature for name in ("BlindCut", "ThroughAllCut")
+            if (feature := extrusions.itemByName(name)) is not None]
+    if sketch is None or boss is None or len(cuts) != 1 or timeline.markerPosition != timeline.count:
+        return {"status": "unresolved", "reason": "expected P04 actors at the end of the timeline"}
+    (cut,) = cuts
+    if not boss.timelineObject.index < sketch.timelineObject.index < cut.timelineObject.index:
+        return {"status": "unresolved", "reason": "unexpected P04 feature order"}
+    return {
+        "scope": "after_normal_recompute",
+        "support_after_sketch": measure_at_marker(timeline, sketch.timelineObject, False,
+                                                  lambda: cut_support(helper, design, sketch, boss)),
+        "participants_before_cut": measure_at_marker(timeline, cut.timelineObject, True,
+                                                    lambda: cut_participants(design, cut, boss)),
+    }
+
+
+def recompute(helper, document, result, label, recipe_id=None):
     result["before_recompute"] = measure(helper, document, label + " before recompute")
     result["compute_all_return"] = helper["design_of"](document).computeAll()
     result["after_recompute"] = measure(helper, document, label + " after recompute")
@@ -227,6 +322,8 @@ def recompute(helper, document, result, label):
         for feature in result[stage]["feature_tree"]:
             require(feature["health"]["state"] == "healthy" and not feature["suppressed"]
                     and not feature["rolled_back"], f"Unhealthy feature {feature['name']}: {label} {stage}")
+    if recipe_id == "P04":
+        result["cut_reference_evidence"] = cut_reference_evidence(helper, document)
 
 
 def check_baseline(helper, recipe, reading):
@@ -241,12 +338,12 @@ def check_baseline(helper, recipe, reading):
             require(observed["body_count"] == 0, f"Unexpected body in {recipe['id']}: {key}")
 
 
-def read_archive(helper, app, source, pin, owned, reading):
+def read_archive(helper, app, source, pin, owned, reading, recipe_id=None):
     checked_bytes(source, pin)
     reading["native_input"] = pin
     document = import_document(app, source, reading, owned)
     try:
-        recompute(helper, document, reading, source.name)
+        recompute(helper, document, reading, source.name, recipe_id)
     finally:
         checked_bytes(source, pin)
     return document
@@ -289,7 +386,7 @@ def capture_first(helper, app, recipes, output, owned, report):
         recipe_id = recipe["id"]
         row = report["captures"][recipe_id] = {}
         document = helper["BUILDERS"][recipe_id](app, {"basis": helper["BASE_PLANE"][recipe_id]})
-        recompute(helper, document, row, "independently authored baseline A")
+        recompute(helper, document, row, "independently authored baseline A", recipe_id)
         check_baseline(helper, recipe, row)
         row["save_a"] = save_archive(helper, document, output, f"{recipe_id}-fusion-fresh-baseline-a.f3d")
         helper["close"](document, owned)
@@ -319,12 +416,12 @@ def capture_repeat(helper, app, recipes, output, owned, report, first, existing)
         save_a = first["captures"][recipe_id]["save_a"]
         require(save_a["file"] == f"{recipe_id}-fusion-fresh-baseline-a.f3d", "Unexpected phase A archive name")
         reopened_a = row["fresh_reopen_a"] = {}
-        document = read_archive(helper, app, output.parent / "phase-a" / save_a["file"], save_a, owned, reopened_a)
+        document = read_archive(helper, app, output.parent / "phase-a" / save_a["file"], save_a, owned, reopened_a, recipe_id)
         check_baseline(helper, recipe, reopened_a)
         save_b = row["save_b"] = save_archive(helper, document, output, f"{recipe_id}-fusion-fresh-baseline-b.f3d")
         helper["close"](document, owned)
         reopened_b = row["repeat_readback_b"] = {}
-        document = read_archive(helper, app, output / save_b["file"], save_b, owned, reopened_b)
+        document = read_archive(helper, app, output / save_b["file"], save_b, owned, reopened_b, recipe_id)
         check_baseline(helper, recipe, reopened_b)
         helper["close"](document, owned)
         if recipe_id in existing:
@@ -333,13 +430,13 @@ def capture_repeat(helper, app, recipes, output, owned, report, first, existing)
             row["existing_source_measurements"] = original["measurements"]
             for label, pin in original["archives"].items():
                 reading = row[f"existing_readback_{label}"] = {}
-                document = read_archive(helper, app, REPO / pin["path"], pin, owned, reading)
+                document = read_archive(helper, app, REPO / pin["path"], pin, owned, reading, recipe_id)
                 check_baseline(helper, recipe, reading)
                 helper["close"](document, owned)
             variants = row["existing_variant_readbacks"] = {}
             for name, pin in sorted(original["variants"].items()):
                 reading = variants[name] = {}
-                document = read_archive(helper, app, REPO / pin["path"], pin, owned, reading)
+                document = read_archive(helper, app, REPO / pin["path"], pin, owned, reading, recipe_id)
                 helper["close"](document, owned)
 
 
