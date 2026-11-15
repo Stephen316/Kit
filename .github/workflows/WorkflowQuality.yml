@@ -117,6 +117,11 @@ jobs:
           uv run --frozen python re/automation/SolidworksCensus.py
           --check-resolved-lengths "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
 
+      - name: Verify saved discovery evidence through both native archive readers
+        run: >-
+          uv run --isolated --frozen --no-default-groups --extra dev --python 3.14
+          python -m pytest tests/Research/ArchiveEvidenceTests.py -q
+
       - name: Exercise native file reading and writing
         run: >-
           uv run pytest
