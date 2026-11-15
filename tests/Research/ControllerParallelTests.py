@@ -102,7 +102,7 @@ def CheckTurnOrder() -> None:
         )
         JobList = [
             PoolJob(JobName, "fixture.decode", inputs={"native": "bound:fixture"})
-            for JobName, DocItems, EvidenceItems in JobData
+            for JobName, _, _ in JobData
         ]
         Ranks: list[dict[str, object]] = [
             {
