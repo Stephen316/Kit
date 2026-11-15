@@ -42,29 +42,34 @@ def group_alive(pid):
         return True
 
 
-def process_state(pid):
+def group_running(pid):
+    if not group_alive(pid):
+        return False
     try:
-        content = Path(f"/proc/{pid}/stat").read_text(encoding="ascii")
-    except (OSError, UnicodeDecodeError):
-        return None
-    return content[content.rindex(")") + 2:].split()[0]
-
-
-def orphan_gone(pid, start):
-    return process_start(pid) != start or process_state(pid) == "Z" or not group_alive(pid)
+        result = subprocess.run(["/bin/ps", "-axo", "pgid=,stat="], capture_output=True, text=True, timeout=10, check=False, env={"LC_ALL": "C", "PATH": "/bin:/usr/bin"})
+    except (OSError, subprocess.SubprocessError):
+        return True
+    if result.returncode != 0:
+        return True
+    return any(fields[0] == str(pid) and not fields[1].startswith("Z") for line in result.stdout.splitlines() if len(fields := line.split()) >= 2)
 
 
 def stop_orphan(pid, start, grace):
+    if process_start(pid) != start:
+        return False
     signal_group(pid, signal.SIGTERM)
     until = time.monotonic() + grace
-    while not orphan_gone(pid, start) and time.monotonic() < until:
+    while group_running(pid) and time.monotonic() < until:
         time.sleep(0.1)
-    if not orphan_gone(pid, start):
+    if group_running(pid):
+        current = process_start(pid)
+        if current is not None and current != start:
+            return False
         signal_group(pid, signal.SIGKILL)
         until = time.monotonic() + 5
-        while not orphan_gone(pid, start) and time.monotonic() < until:
+        while group_running(pid) and time.monotonic() < until:
             time.sleep(0.1)
-    return orphan_gone(pid, start)
+    return not group_running(pid)
 
 
 def peak_bytes(usage):

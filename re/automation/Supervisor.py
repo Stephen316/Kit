@@ -14,7 +14,7 @@ from Records import bounded, canonical, label, read_record, reason_text
 from Runners import Registry
 from Sessions import Session, read_bounded, write_private
 
-CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds"}
+CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds", "max_log_bytes"}
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -58,6 +58,7 @@ def read_config(path):
         "worker": label(config.get("worker", "supervisor:local")), "pools": pools,
         "resources": {label(name): bounded(capacity, 1, 64) for name, capacity in resources.items()},
         "grace": float(grace), "poll": float(poll),
+        "max_log_bytes": bounded(config.get("max_log_bytes", 1048576), 1024, 67108864),
     }
 
 
@@ -79,6 +80,7 @@ class Supervisor:
         self.sessions = self.state / "sessions"
         self.claims = self.state / "claims"
         self.grace = config["grace"]
+        self.max_log_bytes = config["max_log_bytes"]
         self.adapter = load_adapter(config["controller"], ROOT)
         self.registry = Registry(config["registry"], ROOT) if claiming else None
         self.running = {}
@@ -122,6 +124,8 @@ class Supervisor:
             recorded = record.get("process_start")
             matched = type(pid) is int and isinstance(recorded, str) and process_start(pid) == recorded
             stopped = stop_orphan(pid, recorded, self.grace) if matched else False
+            if matched and not stopped:
+                raise OSError(f"session process group could not be stopped: {directory.name}")
             receipt = {
                 "receipt_version": 1, "session": directory.name, "job_id": record.get("job_id"), "attempt": record.get("attempt"),
                 "pid": pid, "process_start": recorded, "identity_matched": matched, "stopped": stopped,
@@ -196,6 +200,8 @@ class Supervisor:
                     if session is not None and session.process is not None:
                         signal_group(session.pid, signal.SIGKILL)
                         session.process.wait()
+                        for capture in session.logs.values():
+                            capture.close()
                     path = self.state / f".setup-{name}.json"
                     detail = f"session setup failed: {type(error).__name__}: {error}"[:2048]
                     write_private(path, {"session_version": 1, "receipt": None, "result": None, "error": detail, "stderr_tail": None})

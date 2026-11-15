@@ -7,6 +7,7 @@ import subprocess
 import time
 from pathlib import Path
 
+from LogCapture import LogCapture
 from Processes import peak_bytes, process_start, signal_group, stderr_tail
 from Records import canonical
 from Runners import result_error, safe_name
@@ -52,6 +53,7 @@ class Session:
         self.stop_reason = None
         self.kill_at = None
         self.killed = False
+        self.logs = {}
 
     def prepare(self):
         self.directory.mkdir(mode=0o700)
@@ -77,12 +79,16 @@ class Session:
         work = str(self.directory / "work")
         environment = {name: os.environ[name] for name in ENVIRONMENT if name in os.environ}
         environment.update({"HOME": work, "TMPDIR": work, "KIT_SESSION": str(self.directory)})
-        streams = [os.open(self.directory / name, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600) for name in ("stdout.log", "stderr.log")]
         try:
-            self.process = subprocess.Popen(argv, cwd=self.supervisor.root, env=environment, stdin=subprocess.DEVNULL, stdout=streams[0], stderr=streams[1], start_new_session=True, close_fds=True)
+            for name in ("stdout", "stderr"):
+                self.logs[name] = LogCapture(self.directory / f"{name}.log", self.supervisor.max_log_bytes)
+            self.process = subprocess.Popen(argv, cwd=self.supervisor.root, env=environment, stdin=subprocess.DEVNULL, stdout=self.logs["stdout"].writer, stderr=self.logs["stderr"].writer, start_new_session=True, close_fds=True)
         finally:
-            for stream in streams:
-                os.close(stream)
+            for capture in self.logs.values():
+                if self.process is None:
+                    capture.close()
+                else:
+                    capture.close_writer()
         self.pid = self.process.pid
         self.process_start = process_start(self.pid)
         write_private(self.directory / "session.json", {
@@ -99,6 +105,8 @@ class Session:
         self.kill_at = now + max(0.1, min(self.supervisor.grace, self.deadline - now - 1))
 
     def tend(self, now, paused):
+        for capture in self.logs.values():
+            capture.drain()
         if os.waitid(os.P_PID, self.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT) is not None:
             signal_group(self.pid, signal.SIGKILL)
             reaped, status, usage = os.wait4(self.pid, 0)
@@ -127,6 +135,8 @@ class Session:
         return None
 
     def complete(self, status, usage):
+        for capture in self.logs.values():
+            capture.close()
         ended = time.time()
         signaled = os.WIFSIGNALED(status)
         receipt = {
@@ -136,6 +146,7 @@ class Session:
             "signal": os.WTERMSIG(status) if signaled else None, "stop_reason": self.stop_reason,
             "started_at": self.started, "ended_at": ended, "duration_seconds": ended - self.started,
             "peak_memory_bytes": peak_bytes(usage), "orphan": False,
+            "logs": {name: capture.receipt() for name, capture in self.logs.items()},
         }
         write_private(self.directory / "receipt.json", receipt)
         result, error, tail = None, None, None
@@ -159,5 +170,7 @@ class Session:
         return self.supervisor.settle(self, outcome, reason, {"session_version": 1, "receipt": receipt, "result": result, "error": error, "stderr_tail": tail})
 
     def remove(self):
+        for capture in self.logs.values():
+            capture.close()
         shutil.rmtree(self.directory, ignore_errors=True)
         Path(self.claim_path).unlink(missing_ok=True)
