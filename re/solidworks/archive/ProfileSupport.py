@@ -11,8 +11,8 @@ from SketchRoot import KGeneration, Require
 
 
 # the saved contour chain supplies the edge list through its typed instance
-def read_chain(cursor):
-    index = cursor.pointer(KClassRefKind, "moSketchChain_c")
+def read_chain(cursor, pointer_kind=KClassRefKind):
+    index = cursor.pointer(pointer_kind, "moSketchChain_c")
     Require(cursor.read("<H"), (4,), "four profile chain edges")
     edge_ids = cursor.read("<4I")
     Require(cursor.read("<H"), (1,), "one secondary chain id")

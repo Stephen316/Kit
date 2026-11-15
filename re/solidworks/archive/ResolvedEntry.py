@@ -321,8 +321,10 @@ def read_list_prefix(blob, config_map):
         KClassRefKind,
         KDefinitionKind,
         KObjectRefKind,
+        ReadTag,
     )
     from FaceOccurrence import FaceCursor
+    from RectangleTail import read_rectangle_tail
     from SketchRoot import Require
 
     base, count = unpack_from("<iH", blob)
@@ -396,6 +398,13 @@ def read_list_prefix(blob, config_map):
     )
     origin["support"]["plane_object"] = front["object_index"]
     rectangle = read_profile_link(cursor)
+    rectangle_tail = read_rectangle_tail(cursor, rectangle, planes)
+    next_tag = ReadTag(blob, cursor.position)
+    Require(
+        (next_tag.kind, next_tag.schema, next_tag.class_name),
+        (KDefinitionKind, 1, "moExtrusion_c"),
+        "next resolved feature after rectangle",
+    )
     return {
         "list_count": count,
         "prior_map_index": base,
@@ -404,7 +413,8 @@ def read_list_prefix(blob, config_map):
         "principal_planes": planes,
         "origin": origin,
         "rectangle_link": rectangle,
-        "stopped_in": "moProfileFeature_c",
+        "rectangle": rectangle_tail,
+        "next_class": next_tag.class_name,
         "next_offset": cursor.position,
         "next_map_index": cursor.next_index,
     }
@@ -493,9 +503,16 @@ def compare_profile_witness(name, resolved, config_map, report, control):
         profiles[0],
         "reached rectangle agrees with licensed profile",
     )
+    surface = report["list_prefix"]["rectangle"]["trim_surface"]
+    Require(
+        (surface["feature_ref_class"], surface["file_reference"]["object_index"]),
+        (350, 353),
+        "reached file reference agrees with licensed map",
+    )
     report.update(
         native_handoff_witness_sha256=control["handoff_sha256"],
         native_profile_witness_sha256=control["link_sha256"],
+        native_map_witness_sha256=resolved_pin["map_witness_sha256"],
         separately_witnessed_profiles=profiles,
     )
 
@@ -524,6 +541,21 @@ def read_capture(root, asset, measured):
     ]
     rectangle = prefix["rectangle_link"]
     Require(profiles[:1], [rectangle["name"]], "first measured user profile")
+    sketches = [
+        item for item in measured["sketches"] if item["name"] == rectangle["name"]
+    ]
+    Require(len(sketches), 1, "one measured rectangle sketch")
+    support = prefix["rectangle"]["support"]
+    Require(
+        support["plane_name"], sketches[0]["support_name"], "measured rectangle support"
+    )
+    transform = support["transform"]
+    basis = transform["basis"] or (1, 0, 0, 0, 1, 0, 0, 0, 1)
+    Require(
+        (*basis, *transform["translation_scale"]),
+        tuple(sketches[0]["model_to_sketch_transform"][:13]),
+        "measured rectangle placement",
+    )
     report = {
         "file": name,
         "native_sha256": digest,

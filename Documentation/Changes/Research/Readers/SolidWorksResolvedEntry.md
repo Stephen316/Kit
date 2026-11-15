@@ -1,6 +1,6 @@
 # P04 SOLIDWORKS resolved entry and profile linkage
 
-Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command checks the exact P04 receipt, independent measurements and native file digests. It walks from the resolved list header through the RectangleSketch link for all eleven captures. For baseline A and YZ it also verifies both decompressed stream hashes and compares the separately witnessed profile links. The JSON report SHA-256 is `1dab0425819fb00e9446465930ea0538e0224836601eae08bd26d11cc17cc4fb`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
+Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command checks the exact P04 receipt, independent measurements and native file digests. It walks from the resolved list header to the extrusion declaration after RectangleSketch for all eleven captures. For baseline A and YZ it also verifies both decompressed stream hashes and compares the separately witnessed profile links and file reference allocations. The JSON report SHA-256 is `c4d178436ecf117d1590062044989186e6dcb2122583c99c1f78aa75f5f1f67d`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
 
 The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949 in YZ. The resolved list load begins at byte 4 with next archive index 279. The offline reader uses the completed Config-0 class and object map to start the list and to resolve the two separately anchored sketch references. The first four resolved bytes corroborate the counter at 279. The short list count at byte 4 is 21, and the first class definition begins at byte 6. [Offline map replay](../../../../re/solidworks/records/P04SketchResidence.md#offline-map-replay)
 
@@ -53,4 +53,21 @@ The offline profile read begins at the saved schema-1 `moProfileFeature_c` decla
 | Baseline A | CutSketch | 35 | 9,417 | 9,594 | 9,600 | 74 |
 | YZ | CutSketch | 35 | 9,487 | 9,664 | 9,670 | 74 |
 
-The sequential walk reads `moProfileFeature_c` at 5,525, allocates class slot 341 and object 342, then reaches the RectangleSketch backreference at 5,742. All eleven resolve it to the `sgSketch` previously allocated at slot 155 in Config-0. The cursor stops immediately after that pointer at 5,744 with next map index 344. The baseline A and YZ results agree with the independent pointer witnesses. This replay has yet to traverse the remaining RectangleSketch fields and the intervening feature records to reach CutSketch. The [face-support replay](SolidWorksFaceOccurrence.md) carries the separately anchored CutSketch profile from its sketch pointer through the typed supporting-face return.
+The sequential walk reads `moProfileFeature_c` at 5,525, allocates class slot 341 and object 342, then reaches the RectangleSketch backreference at 5,742. All eleven resolve it to the `sgSketch` previously allocated at slot 155 in Config-0. The cursor after that pointer is 5,744 with next map index 344. The baseline A and YZ results agree with the independent pointer witnesses.
+
+## RectangleSketch return and file reference
+
+The modern profile continuation reads one `moSketchChain_c`, which reaches byte 5,851 with edges `[1, 2, 3, 4]` and next map index 346. The embedded kernel body, edge tables and contour map are empty in this profile. The local `moCompRefPlane_c` at 5,874 refers to the retained part and one of the previously decoded principal planes. The reader compares the support name and the stored transform to independent SOLIDWORKS measurements for all eleven captures. Ten use Front Plane and the identity transform. The YZ capture uses Right Plane and the stored YZ basis.
+
+After the profile support, the reads at `sldmodu+0x9dc195`, `0x9dc204`, `0x9dc470`, `0x9dc4ba`, `0x9dc582`, `0x9dc5c6` and `0x9dc638` frame the two cached trim arrays at `0x9dc67c` and `0x9dc693`. On the recorded build the simple surface and left and right trim classes share the surface identifier base at `0xa67a20`. The simple surface loader at `0xa69930` adds one dword after the base, and the trim loader at `0xa67990` adds two. The single simple surface refers back to the current RectangleSketch and allocates `moFR_c` class slot 350 and `moExtObject_c` object slot 353. Both allocations agree with the independent baseline A and YZ live map observations. The four trim edges share that file reference and native feature ID and time. The edge IDs cover the saved chain once. YZ changes the trim class and ID order, while the other ten captures share the same order. [Licensed face map](SolidWorksFaceOccurrence.md)
+
+The file reference loader at `sldarchiveu+0xd8e0` uses the shared file fields at `0xe940` and the inline configuration-name reader at `0x181b0`. It materializes two string handles for the saved file path and title. Their widths come from the strings in each archive. The report includes the file reference allocation, offsets and shared timestamp. The final profile state dword follows the trim arrays through `sldmodu+0x9dc7e1`. The subsequent schema-1 `moExtrusion_c` tag is visible at the derived cursor, with next index 367 in every capture.
+
+| Capture | File reference span | RectangleSketch return |
+| --- | ---: | ---: |
+| Baseline A | 6,072–6,207 | 6,380 |
+| YZ | 6,144–6,277 | 6,450 |
+| Through-all | 6,072–6,205 | 6,378 |
+| Baseline B, six parameter edits and inch display | 6,072–6,435 | 6,608 |
+
+The intervening extrusion still separates the sequential replay from CutSketch. The [face-support replay](SolidWorksFaceOccurrence.md) carries the separately anchored CutSketch profile from its sketch pointer through the typed supporting-face return.
