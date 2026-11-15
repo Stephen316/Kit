@@ -11,3 +11,5 @@ The report uses the same capture and collector pins as the [licensed cap compari
 The centering expressions must reference the measured base and cut sizes in the saved operand order. The report verifies both native equation attachments to their target dimensions and evaluates the two measured differences divided by two. This covers the verified P04 sketches and keeps the observations separate from an editable cross-format round trip.
 
 The `008e83c08` replay matched both licensed phases for eleven parts. It checked 88 driving and 44 derived dimension observations, with 44 measured equation assignments. The report's SHA-256 is `f64a9141829077017eee094fb8b2a2c8409b71fe1f59ee1eafbb3b3fe54b6fc7`.
+
+The `44dbcaaa4` replay also matched all 264 ordered attachment slots. The 220 perimeter operands matched the licensed point IDs and local coordinates. The other 44 slots resolved to the licensed Origin feature. Their projected positions matched the saved proxies, which carry sketch-local IDs. The expanded report SHA-256 is `d232bec27cc78ef616415717ae2a8b1bf570351057c6e181077ad37d51094789`.
