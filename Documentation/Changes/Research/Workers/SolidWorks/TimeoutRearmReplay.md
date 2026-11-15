@@ -16,4 +16,9 @@ A rearm that still awaits a terminal record or dispatch lock polls within the ex
 An unresolved intent remains available for a later supervisor restart.
 
 The Windows process fixture interrupts the original supervisor after `FinishJob`, keeps the verified listener running and requires a replacement supervisor to issue the same job's next ordinary attempt.
-The fixture and licensed verification of this revision remain pending.
+
+## Licensed restart witness
+
+Published revision `5770f1b322688e55237172d7a6d57c983f334ce0` ran the controller and licensed SOLIDWORKS listener with a 25-second deadline and two attempts. The supervisor exited immediately after A03 accepted the first timeout. The quarantined spool and private rearm intent remained. A replacement supervisor reused the accepted failure receipt `9e395c8e703e67d02807370ca5d5482f4237d7049dad04453d6b4f37b7e1b4d9` with the same live listener.
+
+The replacement recorded one recovered rearm, removed its committed intent and archived all 22 verified spool files under manifest `2b782bd9681edb391553c758fe5e20341c47399b7d8d3d93a41ce69180441579`. A03 recorded only the second claim after restart. The listener accepted a distinct request under the new lease, and the second short-deadline timeout remained quarantined at the configured attempt limit. The private witness summary SHA-256 is `277c1a21840761475cd277c1b9dd9e20b189a693643e6754207d20898fe211f2`.
