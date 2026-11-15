@@ -22,3 +22,4 @@ The eight-way decoder overlap increased from 0.554 to 1.976 seconds, clearing th
 The first eight supervisor start records span 1.402 seconds, compared with 3.084 seconds in the baseline. Across the seven gaps, the sum of the session-construction-to-launcher-creation intervals fell from 1.456 to 0.084 seconds. The timings combine claim, staging and launch operations at their recorded boundaries. Host background load and run-to-run variation remain uncontrolled.
 
 The calibration source digest is `bdfcc94936c34716fe59482fcdef4a8bb7479fa474789b52d90399d42b7b9634`. The private calibration report SHA-256 is `419b4c497181006b979825467a6c8ab016b8a52084b62583af7489de6fbcf24a`.
+The shared read-only lookup also paged all 163 controller events from the optimized eight-worker calibration across two pages. The audit recovered 32 claim and 32 completion events in contiguous ID order with the source database digest unchanged.
