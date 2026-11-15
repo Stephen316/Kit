@@ -231,18 +231,25 @@ public sealed class SolidWorksScopeControl
     void Cut(IModelDoc2 doc, Dictionary<string, IBody2> bodies, Dictionary<string, object> control)
     {
         var sketch = Rectangle(doc, (string)cutSpec["sketch"], Bounds(cutSpec["profile_bounds_mm"]), TopFace(bodies["A"]));
+        var selectedIds = Strings(control["input_body_ids"]);
         bool automatic = control["input_body_ids"] == null;
-        Check(sketch.Select2(false, 0), "Could not select the through-all sketch");
-        foreach (string id in Strings(control["input_body_ids"]))
-        {
-            var data = doc.ISelectionManager.CreateSelectData();
-            data.Mark = 1;
-            Check(bodies[id].Select2(true, data), "Could not append scoped solid " + id);
-        }
+        Check(doc.Extension.SelectByID2(sketch.Name, "SKETCH", 0, 0, 0, false, 0, null, 0),
+            "Could not select the through-all sketch");
+        foreach (string id in selectedIds)
+            Check(doc.Extension.SelectByID2(bodies[id].Name, "SOLIDBODY", 0, 0, 0, true, 1, null, 0),
+                "Could not append scoped solid " + id);
+        var selection = doc.ISelectionManager;
+        Check(selection.GetSelectedObjectCount2(1) == selectedIds.Length,
+            "The Cut scope selections do not match the requested roster");
+        for (int index = 0; index < selectedIds.Length; index++)
+            Check(Same(selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
+                "The Cut scope selection did not resolve to the intended native body");
+        var supportBounds = Bounds(ObjectValue(bodySpecs["A"])["bounds_mm"]);
+        double apiDepth = (supportBounds[1][2] - supportBounds[0][2]) / Mm;
         var feature = doc.FeatureManager.FeatureCut4(true, false, false, (int)swEndConditions_e.swEndCondThroughAll,
-            0, 0, 0, false, false, false, false, 0, 0, false, false, false, false, false,
+            0, apiDepth, apiDepth, false, false, false, false, 0, 0, false, false, false, false, false,
             true, automatic, false, false, false, (int)swStartConditions_e.swStartSketchPlane, 0, false, false);
-        Check(feature != null, "Could not create the scoped through-all Cut");
+        Check(feature != null, "Could not create the scoped through-all Cut for " + control["mode"]);
         feature.Name = (string)cutSpec["feature"];
         doc.ClearSelection2(true);
         Check(doc.ForceRebuild3(false), "Could not rebuild the scoped through-all Cut");
