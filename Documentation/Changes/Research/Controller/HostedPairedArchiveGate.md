@@ -2,6 +2,8 @@
 
 The Linux policy job in `Workflow quality` publishes `PairedArchiveGate-RUN_ATTEMPT` after its existing archive test step passes on a pull request. The receipt records the passing P01/P03 public reader history check and P04 paired cut history check, the GitHub workflow run and attempt, and the exact tested synthetic merge and its head and base commits. It includes the tested merge tree and head tree so a consumer can compare inputs when the base contributes changes.
 
+The producer records the base from the tested commit's first parent. See [hosted merge parents](HostedPairedArchiveMergeParents.md) for the ancestry check and the observed base metadata mismatch.
+
 The corpus section binds the original paired capture commit, specification digest and six capture receipt digests to the native save pins. Its `saves` map matches the shape of the [stage 11 result](PairedDiscoveryReplay.md), with six P01, eight P03 and eleven P04 variant pairs and distinct repeat-save pins for both applications. The receipt covers discovery data. The job uploads the compact JSON and retains the raw pytest report on the runner.
 
 Use the read-only verifier with the exact workflow and aggregate runs, the [pending roster](PendingCiRoster.md), and a full audited commit present in the local Git checkout. Set `GH_TOKEN` or `GITHUB_TOKEN` through the authorized read-only credential source.

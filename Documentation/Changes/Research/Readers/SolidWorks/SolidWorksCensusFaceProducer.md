@@ -6,4 +6,6 @@ Generate the report with `python re/automation/SolidworksCensus.py --output /pri
 
 The previous [hosted census](https://github.com/TryUniCAD/Kit/actions/runs/43765839649) decoded all 25 files and matched 757 comparisons. Its eleven unobserved rows were the P04 face producers. [Typed face occurrence in census output](../../../../Gotchas/Conversion/SolidWorksHistoricalFaceCensus.md)
 
-The local research replay at `d5102489` decoded the same 25 files and matched all 768 comparisons. All eleven P04 entries recorded `BlindBoss` as the face producer. The report SHA-256 is `8986598e5e43898076c15e660092d8709871fd7529aae55715e4d30da10a6f10`. Hosted verification of the updated check is pending.
+The local research replay at `d5102489` decoded the same 25 files and matched all 768 comparisons. All eleven P04 entries recorded `BlindBoss` as the face producer. The report SHA-256 is `8986598e5e43898076c15e660092d8709871fd7529aae55715e4d30da10a6f10`.
+
+The hosted run for PR head `3c3b1508` repeated all 768 comparisons and passed the support check on tested merge `9ebe965d500572819aa780e777895dac0ee83006`. The downloaded census report SHA-256 is `89aea0c02cfe99815a338247a2e6a7ce0a36db908a09db4a5b222b3d6e58ced5`. The job later failed while binding the separate archive receipt. [Hosted check](https://github.com/TryUniCAD/Kit/actions/runs/43769573935/job/132982256249), [Merge parent evidence](../../Controller/HostedPairedArchiveMergeParents.md)

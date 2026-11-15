@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import re
+import subprocess
 from pathlib import Path
 
 from Corpus import git
@@ -36,6 +37,22 @@ def commit(value):
     return value
 
 
+def tested_merge_base(tested, head, event_base):
+    parents = git(ROOT, "--no-replace-objects", "rev-list", "--parents", "-n", "1", "HEAD")
+    parents = parents.decode("ascii").split()
+    require(
+        len(parents) == 3 and parents[0] == tested and parents[2] == head,
+        "paired archive checkout is not the exact hosted merge for the event head",
+    )
+    base = commit(parents[1])
+    if base != event_base:
+        try:
+            git(ROOT, "--no-replace-objects", "merge-base", "--is-ancestor", event_base, base)
+        except subprocess.CalledProcessError as error:
+            raise ValueError("tested merge base does not descend from the event base") from error
+    return base
+
+
 def provenance(environment):
     require(
         environment["GITHUB_EVENT_NAME"] == "pull_request"
@@ -59,17 +76,18 @@ def provenance(environment):
         and repo["full_name"] == environment["GITHUB_REPOSITORY"]
         and str(repo["id"]) == environment["GITHUB_REPOSITORY_ID"]
         and environment["GITHUB_REF"] == f"refs/pull/{number}/merge"
+        and environment["GITHUB_BASE_REF"]
+        and pull["base"]["ref"] == environment["GITHUB_BASE_REF"]
         and workflow_ref.startswith(f"{repo['full_name']}/{WORKFLOW}@"),
         "paired archive gate repository or pull request identity differs",
     )
     tested = commit(environment["GITHUB_SHA"])
     workflow = commit(environment["GITHUB_WORKFLOW_SHA"])
-    head, base = (commit(pull[side]["sha"]) for side in ("head", "base"))
+    head, event_base = (commit(pull[side]["sha"]) for side in ("head", "base"))
+    base = tested_merge_base(tested, head, event_base)
     workflow_blob = git(ROOT, "rev-parse", f"HEAD:{WORKFLOW}")
     require(
-        git(ROOT, "rev-list", "--parents", "-n", "1", "HEAD").decode("ascii").split()
-        == [tested, base, head]
-        and git(ROOT, "rev-parse", f"{workflow}:{WORKFLOW}") == workflow_blob
+        git(ROOT, "rev-parse", f"{workflow}:{WORKFLOW}") == workflow_blob
         and not git(
             ROOT,
             "status",
@@ -82,7 +100,7 @@ def provenance(environment):
             "re/Fusion/Study",
             "tests/Research/Archives",
         ),
-        "paired archive gate checkout differs from the workflow and merge parents",
+        "paired archive gate source differs from the hosted checkout",
     )
     run = int(environment["GITHUB_RUN_ID"])
     attempt = int(environment["GITHUB_RUN_ATTEMPT"])
