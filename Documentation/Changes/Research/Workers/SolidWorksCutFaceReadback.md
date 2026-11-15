@@ -33,7 +33,7 @@ The launcher binds the original files and collector to the committed Git revisio
 It verifies the scratch hashes before opening and verifies both the original and scratch hashes after readback.
 The collector starts SOLIDWORKS and requests normal exit from the empty session it owns.
 
-Keep `plan.json`, `measurements.json` and `receipt.json` together.
+Keep `plan.json`, `measurements.json` and `receipt.json` together in private storage. SOLIDWORKS persistent references can contain the absolute path of the opened file.
 An `observed` receipt means all eleven parts were read and their supporting faces passed the native checks.
 Review unresolved dimension or relation slots before making a binding claim.
 An incomplete receipt or a missing receipt requires diagnosis before reuse.

@@ -377,7 +377,10 @@ public sealed class P04Readback
                 {
                     Require(application.GetDocumentCount() == 0, "The owned SOLIDWORKS process still has open documents");
                     application.ExitApp();
-                    Require(process.WaitForExit(30000), "The owned SOLIDWORKS process did not exit");
+                    Marshal.FinalReleaseComObject(application);
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Require(process.WaitForExit(60000), "The owned SOLIDWORKS process did not exit");
                     result["owned_process_exit_observed"] = true;
                 }
                 catch (Exception error)
