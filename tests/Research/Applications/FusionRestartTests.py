@@ -82,7 +82,7 @@ def CheckFreshWait(TmpPath: FilePath) -> None:
             StopProcess(First)
             Second = Harness.StartHost()
             try:
-                _ = Harness.WaitHost(Second.pid)
+                Harness.WaitHost(Second.pid)
                 assert ReadWait(Waiter) == {"status": "ready"}
             finally:
                 StopProcess(Second)
