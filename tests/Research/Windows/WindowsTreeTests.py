@@ -1,4 +1,5 @@
 import sys as System
+import json as JsonCodec
 import tempfile as TempFiles
 from pathlib import Path as FilePath
 
@@ -28,6 +29,11 @@ def CheckWinTree() -> None:
         )
         Events = Harness.RunIdle(IdleSeconds=1)
         JobInfo = Harness.ReadJob("windows:tree")
+        if JobInfo["state"] != "completed":
+            print(
+                JsonCodec.dumps({"job": JobInfo, "events": Events}, sort_keys=True),
+                flush=True,
+            )
         assert JobInfo["state"] == "completed", {"job": JobInfo, "events": Events}
         for ProcessId in WaitForPids(RecordPath):
             WaitForExit(ProcessId)
