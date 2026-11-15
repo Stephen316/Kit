@@ -2,6 +2,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import secrets
 import subprocess
 import sys
 from pathlib import Path
@@ -9,6 +10,7 @@ from pathlib import Path
 from GroupClaims import read_group
 from Records import canonical, label, read_record
 from OutputManifest import InvalidOutput
+from RecoveryFence import StaleOwner
 
 OPERATIONS = ("LockPath", "DefinePool", "DefineResource", "SubmitJobs", "BindInput", "ClaimJob", "RenewLease", "FinishJob", "FetchInput", "ReadStatus")
 
@@ -38,15 +40,20 @@ def without_token(record):
 class A03Adapter:
     OutputArtifactsVersion = 1
     GroupClaimsVersion = 1
+    RecoveryFenceVersion = 1
 
     def __init__(self, options):
         if set(options) != {"store"} or not isinstance(options["store"], str):
             raise ValueError("the a03 adapter takes only a store path")
         self.store = Path(options["store"]).resolve()
         self.command = [sys.executable, str(Path(__file__).with_name("Controller.py")), "--store", str(self.store)]
+        self.owner = None
 
     def Invoke(self, *items, stale=False):
-        result = subprocess.run(self.command + [str(item) for item in items], capture_output=True, text=True, timeout=120, check=False)
+        ownership = ["--owner", self.owner] if self.owner is not None else []
+        result = subprocess.run(self.command + ownership + [str(item) for item in items], capture_output=True, text=True, timeout=120, check=False)
+        if result.returncode == 5:
+            raise StaleOwner("a03 rejected the replaced supervisor owner")
         if stale and result.returncode == 3:
             return None
         if items[0] == "finish" and result.returncode == 4:
@@ -57,6 +64,16 @@ class A03Adapter:
 
     def LockPath(self):
         return self.store / "supervisor.lock"
+
+    def BeginOwner(self):
+        if self.owner is not None:
+            raise ValueError("supervisor owner was already installed")
+        owner = secrets.token_hex(32)
+        response = self.Invoke("rotate-owner", "--new-owner", owner)
+        if not isinstance(response, dict) or set(response) != {"recovery_fence_version"} or type(response["recovery_fence_version"]) is not int or response["recovery_fence_version"] != 1:
+            raise ValueError("a03 returned an invalid recovery fence acknowledgement")
+        self.owner = owner
+        return response
 
     def DefinePool(self, name, kinds):
         return self.Invoke("pool", name, *[part for kind in kinds for part in ("--kind", kind)])
@@ -145,4 +162,7 @@ def load_adapter(config, root):
     capability = getattr(adapter, "GroupClaimsVersion", None)
     if capability is not None and (type(capability) is not int or capability != 1 or any(not callable(getattr(adapter, name, None)) for name in ("ClaimGroup", "RenewGroup", "FinishGroup"))):
         raise ValueError("group-capable adapter must provide protocol 1 ClaimGroup, RenewGroup and FinishGroup")
+    fence = getattr(adapter, "RecoveryFenceVersion", None)
+    if fence is not None and (type(fence) is not int or fence != 1 or not callable(getattr(adapter, "BeginOwner", None))):
+        raise ValueError("recovery-fenced adapter must provide protocol 1 BeginOwner")
     return adapter

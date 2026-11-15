@@ -117,6 +117,10 @@ class Supervisor:
         if adapter_lock is not None:
             Path(adapter_lock).parent.mkdir(parents=True, exist_ok=True, mode=0o700)
             self.locks.append(lock(adapter_lock))
+        if getattr(self.adapter, "RecoveryFenceVersion", None) == 1:
+            response = self.adapter.BeginOwner()
+            if not isinstance(response, dict) or set(response) != {"recovery_fence_version"} or type(response["recovery_fence_version"]) is not int or response["recovery_fence_version"] != 1:
+                raise ValueError("controller adapter did not install a protocol 1 recovery fence")
 
     def report(self, action, session, detail):
         record = {"event": action, "at": time.time(), **detail}

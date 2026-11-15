@@ -10,14 +10,18 @@ from GroupFinish import finish_group
 from Ledger import Ledger
 from OutputManifest import InvalidOutput
 from Records import StaleLease, canonical, read_record
+from RecoveryFence import StaleOwner, check_owner, rotate_owner
 
 
 def main():
     parser = argparse.ArgumentParser(description="Local deterministic research job and evidence controller")
     parser.add_argument("--store", type=Path, required=True)
+    parser.add_argument("--owner")
     commands = parser.add_subparsers(dest="command", required=True)
     initialize = commands.add_parser("init")
     initialize.add_argument("--max-running", type=int, default=4)
+    ownership = commands.add_parser("rotate-owner")
+    ownership.add_argument("--new-owner", required=True)
     binding = commands.add_parser("bind")
     binding.add_argument("name")
     binding.add_argument("file", type=Path)
@@ -65,7 +69,13 @@ def main():
     args = parser.parse_args()
     try:
         with Ledger(args.store, args.command == "init", getattr(args, "max_running", 4)) as ledger:
-            if args.command == "init":
+            if args.command != "rotate-owner":
+                check_owner(ledger, args.owner)
+            if args.command == "rotate-owner":
+                if args.owner is not None:
+                    raise ValueError("owner rotation must not reuse a supervised invocation")
+                response = rotate_owner(ledger, args.new_owner)
+            elif args.command == "init":
                 response = {"store_version": 4, "max_running": ledger.db.execute("SELECT value FROM settings WHERE key='max_running'").fetchone()[0]}
             elif args.command == "bind":
                 response = ledger.bind(args.name, args.file)
@@ -127,6 +137,9 @@ def main():
     except StaleLease as error:
         print(f"controller stale lease: {error}", file=sys.stderr)
         return 3
+    except StaleOwner as error:
+        print(f"controller stale supervisor owner: {error}", file=sys.stderr)
+        return 5
     except InvalidOutput as error:
         print(f"controller invalid output: {error}"[:4096], file=sys.stderr)
         return 4
