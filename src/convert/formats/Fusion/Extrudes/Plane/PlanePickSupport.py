@@ -22,10 +22,14 @@ def ReadPickFooter(
     Cursor: MetaCursor,
     *,
     ModeCode: int = 5,
+    Marker: bytes | None = None,
 ) -> tuple[int, int]:
-    Marker = (
-        KCutPickMarker if ModeCode in (KCutTargetMode, KSketchFaceMode) else b"\1\1\0\0"
-    )
+    if Marker is None:
+        Marker = (
+            KCutPickMarker
+            if ModeCode in (KCutTargetMode, KSketchFaceMode)
+            else b"\1\1\0\0"
+        )
     if (
         Cursor.ReadWord() != 0
         or Cursor.ReadWord() != ModeCode

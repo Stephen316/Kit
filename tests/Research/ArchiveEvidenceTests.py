@@ -7,8 +7,11 @@ import pytest as Pytest
 
 from convert.api.ApiOpen import OpenDocument
 from interchange.document.models.DocumentModel import CadDocument
+from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
+from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import PointGeometry
 from interchange.geometry.models.Selection import Selection
+from interchange.geometry.models.VectorSpace import SpaceVector
 
 
 # each command compares saved archive records with pinned independent application measurements
@@ -326,7 +329,7 @@ def CheckFaceChart(Variant: str, Support: Selection) -> None:
     ] == [(Start, 81)]
 
 
-# the feature must preserve its historical target without adding the extent selector
+# the cut must retain its own target when a separate extent reference is present
 @Pytest.mark.parametrize("Variant", KCutVariants)
 def CheckCutTarget(Variant: str) -> None:
     Document = OpenCutArchive(Variant)
@@ -337,10 +340,11 @@ def CheckCutTarget(Variant: str) -> None:
     }
     Cutter, Source = Features["446"], Features["277"]
     (Target,) = [
-        Value for Value in Document.selections if Value.id in Cutter.selection_ids
+        Value
+        for Value in Document.selections
+        if Value.id in Cutter.selection_ids and Value.query.get("role") == "target"
     ]
     assert Cutter.operation == "cut"
-    assert Cutter.definition is None
     assert Target.id not in Source.selection_ids
     assert Target.path == ()
     assert Target.query["kind"] == "historical_body"
@@ -357,6 +361,62 @@ def CheckCutTarget(Variant: str) -> None:
     assert Target.attributes["fusion.support_object_id"] == 451
     assert Target.attributes["fusion.recipe_object_id"] == 453
     assert Target.attributes["fusion.context_object_ids"] == ()
+    CheckCutEnding(Variant, Cutter, Document)
+
+
+# through all must retain its authored selector without synthesizing a dimension
+def CheckCutAll(
+    Cutter: FeatureStep, Definition: ExtrudeFeature, Document: CadDocument
+) -> None:
+    assert Definition.end_condition == ExtrudeEnd.KThroughAll
+    assert Definition.length is None
+    assert Definition.up_to_reference == ""
+    assert Cutter.attributes["fusion.extrude.end_flags"] == 2
+    assert "fusion.extrude.along_parameter_id" not in Cutter.attributes
+    (Extent,) = [
+        Value
+        for Value in Document.selections
+        if Value.id in Cutter.selection_ids
+        and Value.query.get("role") == "extent_reference"
+    ]
+    assert Cutter.attributes["fusion.extrude.end_selector_id"] == Extent.id
+    assert Extent.query["native_body_id"] == 309
+    assert Extent.query["native_anchor_id"] == 315
+    assert Extent.query["native_source_id"] == 277
+    assert Extent.attributes["fusion.proxy_object_id"] == 461
+    assert Extent.attributes["fusion.descriptor_object_id"] == 464
+    assert Extent.attributes["fusion.context_object_ids"] == (536,)
+
+
+# the edited value and the rotated basis distinguish genuine saved direction and depth
+def CheckCutEnding(Variant: str, Cutter: FeatureStep, Document: CadDocument) -> None:
+    Definition = Cutter.definition
+    assert isinstance(Definition, ExtrudeFeature), Document.diagnostics
+    assert Definition.direction == (
+        SpaceVector(-1.0, 0.0, 0.0)
+        if Variant == "plane-yz"
+        else SpaceVector(0.0, 0.0, -1.0)
+    )
+    if Variant == "termination-through-all":
+        CheckCutAll(Cutter, Definition, Document)
+        return
+    assert Definition.end_condition == ExtrudeEnd.KBlind
+    assert Cutter.attributes["fusion.extrude.end_flags"] == 0
+    assert "fusion.extrude.end_selector_id" not in Cutter.attributes
+    assert Definition.length is not None
+    Depth = 0.5 if Variant == "edit-cut_depth_mm-5" else 0.4
+    assert Definition.length.unit == "cm"
+    assert Definition.length.value == Depth
+    (Owned,) = [
+        Value
+        for Value in Document.parameters
+        if Value.id == Cutter.attributes["fusion.extrude.along_parameter_id"]
+    ]
+    assert Owned.id in Cutter.parameter_ids
+    assert Owned.owner_id == Cutter.id
+    assert Owned.value.value == -Depth
+    assert Owned.expression is not None
+    assert Owned.expression.source == f"-( {int(10 * Depth)} mm )"
 
 
 # a coincident cached frame must still carry the separately authored face recipe instead of a datum

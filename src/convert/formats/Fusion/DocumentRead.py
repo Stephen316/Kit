@@ -9,6 +9,7 @@ from convert.formats.Fusion.BodyInputs.BodyInputProject import ProjectPicks
 from convert.formats.Fusion.ConstructionPlane.ProjectConstruction import (
     ProjectDatums,
 )
+from convert.formats.Fusion.Extrudes.Cut.ProjectCutEnds import ProjectCutEnds
 from convert.formats.Fusion.Extrudes.ExtrudeProject import ProjectExtrudes
 from convert.formats.Fusion.Extrudes.Plane.PlaneExtProject import ProjectPlaneExt
 from convert.formats.Fusion.FormulaDeps.FormulaLink import LinkFormulaDeps
@@ -223,6 +224,7 @@ def FinishFusionDoc(
 ) -> CadDocument:
     Document = ProjectBodyList(Document, BulkData, Spans, History)
     Document = ProjectPicks(Document, BulkData, Spans, History)
+    Document = ProjectCutEnds(Document, BulkData, Spans)
     Document = ProjectFaces(Document, BulkData, Spans, LoadBlob)
     Document = ProjectScale(Document, BulkData, Spans, History, LoadBlob)
     Document.AssertValid()

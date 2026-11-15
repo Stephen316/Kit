@@ -19,6 +19,9 @@ KBodyDesc = "9716F783-676D-42E0-93F9-EBF273E7C035"
 # the witnessed cut target uses this mode in both the proxy and descriptor
 KCutTargetMode = 8
 
+# the extent field has its own descriptor mode with a required root context
+KCutEndMode = 9
+
 # the cut target mode uses distinct markers from the ordinary body pick
 KCutPickMarker = b"\4\1\0\0"
 
@@ -42,11 +45,18 @@ class BodyPick:
 
 # the tail holds explicit helper and support links followed by the owning feature
 def ReadBodyTail(
-    Cursor: MetaCursor, FeatureId: int, CutTarget: bool
+    Cursor: MetaCursor,
+    FeatureId: int,
+    CutTarget: bool,
+    CutEnding: bool,
+    ContextCount: int,
 ) -> tuple[int, int]:
+    if CutEnding and (CutTarget or ContextCount != 1):
+        raise ValueError("Fusion Cut extent descriptor requires its own root context")
+    CutMode = KCutEndMode if CutEnding else KCutTargetMode if CutTarget else None
     Header = Cursor.TakeBytes(14)
-    Marker = KCutPickMarker if CutTarget else b"\1\1\0\0"
-    if CutTarget and Header != bytes((KCutTargetMode,)) + bytes(13):
+    Marker = KCutPickMarker if CutMode is not None else b"\1\1\0\0"
+    if CutMode is not None and Header != bytes((CutMode,)) + bytes(13):
         raise ValueError("Unsupported Fusion Cut body pick mode")
     if Cursor.TakeBytes(4) != Marker or not IsFinite(
         Unpack("<d", Cursor.TakeBytes(8))[0]
@@ -75,6 +85,7 @@ def ReadBodyPick(
     FeatureId: int,
     *,
     CutTarget: bool = False,
+    CutEnding: bool = False,
 ) -> BodyPick:
     Cursor = SelectCursor(BulkData, Owners, DescriptorId, KBodyDesc)
     if (
@@ -97,7 +108,9 @@ def ReadBodyPick(
     if Cursor.ReadWord() != 1:
         raise ValueError("Unsupported Fusion body pick anchor count")
     AnchorId = ReadNativeRef(Cursor)
-    HelperId, SupportId = ReadBodyTail(Cursor, FeatureId, CutTarget)
+    HelperId, SupportId = ReadBodyTail(
+        Cursor, FeatureId, CutTarget, CutEnding, len(ContextIds)
+    )
     Helper = SelectCursor(BulkData, Owners, HelperId, KPickHelper)
     if Helper.DataValue != b"\0\1" + bytes(12):
         raise ValueError("Unsupported Fusion body pick helper")

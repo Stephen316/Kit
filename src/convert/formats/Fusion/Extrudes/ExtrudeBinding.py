@@ -1,3 +1,4 @@
+from convert.formats.Fusion.Extrudes.ExtCacheOwner import CheckExtCache
 from convert.formats.Fusion.Extrudes.ExtrudeInputs import ExtrudeInputs
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.NativeParam import NativeParam
@@ -8,9 +9,6 @@ from convert.formats.Fusion.SelectionProxy import SelectCursor
 
 # observed extrusion values use the real numeric binding class
 KExtrudeBinding = "D91D429C-1BB5-4640-B49F-69AF14F463E9"
-
-# the adjacent auxiliary record independently identifies the feature receiving the controls
-KExtrudeCache = "0897AF07-EF1B-42E5-BDD9-1C746A085CBC"
 
 
 # owner and role checks keep unrelated numeric records out of distance controls
@@ -41,16 +39,7 @@ def CheckExtInputs(
     FeatureId: int,
     Fields: ExtrudeInputs,
 ) -> None:
-    Cache = SelectCursor(BulkData, Owners, Fields.CacheId, KExtrudeCache)
-    if (
-        len(Cache.DataValue) != 81
-        or Cache.TakeBytes(2) != bytes(2)
-        or ReadNativeRef(Cache) != FeatureId
-    ):
-        raise ValueError("Unsupported Fusion Extrude auxiliary cache prefix")
-    Cache.Offset = 70
-    if ReadNativeRef(Cache) != FeatureId:
-        raise ValueError("Fusion Extrude auxiliary cache owner disagrees")
+    CheckExtCache(BulkData, Owners, FeatureId, Fields.CacheId)
     ForAgainst = Fields.SecondTaperId if Fields.SideMode == "two_sided" else None
     Bindings = (
         (Fields.AlongId, "AlongDistance"),

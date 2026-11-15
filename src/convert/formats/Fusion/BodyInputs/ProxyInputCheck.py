@@ -15,6 +15,8 @@ def CheckInputProxy(
     ProxyId: int,
     Descriptors: tuple[int, ...],
     ModeCode: int,
+    *,
+    Marker: bytes | None = None,
 ) -> None:
     Cursor = SelectCursor(BulkData, Owners, ProxyId, KSelectProxy)
     Cursor.Offset = len(Cursor.DataValue) - 88
@@ -23,5 +25,7 @@ def CheckInputProxy(
     Secondary = SelectCursor(BulkData, Owners, ReadNativeRef(Cursor), KProxySecondary)
     if Secondary.DataValue != b"\x00\x00\x01\x01\x00":
         raise ValueError("Unsupported Fusion body proxy secondary record")
-    _, SupportId = ReadPickFooter(BulkData, Owners, Cursor, ModeCode=ModeCode)
+    _, SupportId = ReadPickFooter(
+        BulkData, Owners, Cursor, ModeCode=ModeCode, Marker=Marker
+    )
     CheckPickLinks(BulkData, Owners, SupportId, ProxyId, Descriptors)
