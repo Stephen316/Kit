@@ -95,6 +95,7 @@ It refuses a schema that uses any other keyword.
 Model runners such as Codex and Claude are not registry entries yet; they belong to A10.
 An application runner's configured installation must match the installation it uses for dispatch.
 Keep the installation file in a private directory controlled by the supervisor owner.
+Preserve the supervisor state directory and original installation bytes for [acknowledgement recovery](../../Changes/Research/Workers/ApplicationAckRecovery.md) across process restart.
 
 ## Optional grouped sessions
 

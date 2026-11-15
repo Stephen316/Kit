@@ -12,7 +12,9 @@ import time
 from pathlib import Path
 
 from Adapters import load_adapter
+from ApplicationAckIntent import current_completion, intent_digest, make_intent, read_intent
 from GroupSessions import GroupSession, release_group
+from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
 from Records import bounded, canonical, label, read_record, reason_text
 from ResourceBudget import ResourceBudget
@@ -92,12 +94,13 @@ def lock(path):
     return descriptor
 
 
-def acknowledge_application(installation, store, owner, claim):
+def acknowledge_application(installation, store, owner, intent):
     command = Path(__file__).with_name("ApplicationWorkers") / "AcknowledgeApplication.py"
-    identity = {"owner": owner, "generation": claim["generation"], "fingerprint": claim["fingerprint"], "attempts": claim["attempt"]}
+    identity = {key: intent[key] for key in ("generation", "fingerprint", "attempts", "session", "installation_sha256")}
+    identity.update({"owner": owner, "intent_sha256": intent_digest(intent)})
     result = subprocess.run(
         [sys.executable, "-E", str(command), "--installation", str(installation), "--store", str(store),
-         "--job", claim["job"]["id"], "--supervisor-claim-stdin"],
+         "--job", intent["job"], "--supervisor-claim-stdin"],
         input=canonical(identity), capture_output=True, text=True, timeout=180, check=False,
     )
     if result.returncode != 0:
@@ -119,6 +122,7 @@ class Supervisor:
         self.state = config["state"]
         self.sessions = self.state / "sessions"
         self.claims = self.state / "claims"
+        self.acknowledgement_intents = self.state / "application-acknowledgements"
         self.grace = config["grace"]
         self.max_log_bytes = config["max_log_bytes"]
         self.adapter = load_adapter(config["controller"], ROOT)
@@ -235,48 +239,104 @@ class Supervisor:
     def settle(self, session, outcome, reason, payload):
         reason = reason_text(reason)
         stale = None
+        intent = None
+        intent_error = None
+        intent_path = self.acknowledgement_intents / f"{session.name}.json"
         if session.stop_reason == "stale_lease":
             self.counts["stale"] += 1
         else:
+            if outcome == "completed" and session.spec["kind"] in self.installations:
+                try:
+                    candidate = make_intent(session, self.installations[session.spec["kind"]], self.adapter.store)
+                    self.acknowledgement_intents.mkdir(mode=0o700, exist_ok=True)
+                    write_private(intent_path, candidate)
+                except (OSError, ValueError) as error:
+                    intent_error = f"{type(error).__name__}: {error}"[:2048]
+                else:
+                    intent = candidate
+                    payload = {**payload, "application_acknowledgement_sha256": intent_digest(intent)}
             path = session.directory / "finish.json"
             write_private(path, payload)
-            stale = self.adapter.FinishJob(session.claim_path, outcome, path, reason)["stale"]
+            try:
+                stale = self.adapter.FinishJob(session.claim_path, outcome, path, reason)["stale"]
+            except InvalidOutput:
+                if intent is not None:
+                    self.remove_acknowledgement_intent(intent_path, self.acknowledgement_detail(intent, False))
+                raise
+            if stale is True and intent is not None:
+                self.remove_acknowledgement_intent(intent_path, self.acknowledgement_detail(intent, False))
             self.budget.record(session.spec, session.name, outcome, stale, payload["receipt"], self.report)
             finished = self.counts["finished"]
             finished[outcome] = finished.get(outcome, 0) + 1
         self.report("finished", session, {"outcome": None if session.stop_reason == "stale_lease" else outcome, "reason": reason, "stale": stale, "receipt": payload["receipt"]})
-        if stale is False and outcome == "completed" and session.spec["kind"] in self.installations:
-            try:
-                installation = self.installations[session.spec["kind"]]
-                future = self.acknowledger.submit(
-                    acknowledge_application, installation, self.adapter.store, self.adapter.owner, session.claim,
-                )
-            except (OSError, RuntimeError) as error:
-                self.report("application_acknowledgement_failed", session, {"error": f"{type(error).__name__}: {error}"[:2048]})
-            else:
-                self.application_acks[future] = session
+        if stale is False and intent is not None:
+            self.queue_application_ack(intent_path, intent, False)
+        elif stale is False and intent_error is not None:
+            self.report("application_acknowledgement_failed", session, {"error": intent_error})
         session.remove()
         return True
 
+    def acknowledgement_detail(self, intent, recovered):
+        return {"session": intent["session"], "pool": intent["pool"], "job": intent["job"],
+                "attempt": intent["attempts"], "recovered": recovered}
+
+    def remove_acknowledgement_intent(self, path, detail):
+        try:
+            path.unlink(missing_ok=True)
+        except OSError as error:
+            self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+
+    def queue_application_ack(self, path, intent, recovered):
+        detail = self.acknowledgement_detail(intent, recovered)
+        try:
+            future = self.acknowledger.submit(
+                acknowledge_application, self.installations[intent["kind"]], self.adapter.store, self.adapter.owner, intent,
+            )
+        except (OSError, RuntimeError) as error:
+            self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+        else:
+            self.application_acks[future] = (path, detail)
+
+    def recover_application_acks(self):
+        for path in sorted(self.acknowledgement_intents.glob("*.json")):
+            detail = {"session": path.stem, "recovered": True}
+            try:
+                intent = read_intent(path)
+                detail = self.acknowledgement_detail(intent, True)
+                if (intent["kind"] not in self.installations
+                        or self.registry.runners[intent["kind"]]["pool"] != intent["pool"]
+                        or str(self.adapter.store) != intent["store"]):
+                    raise ValueError("application acknowledgement intent has no matching owner configuration")
+                if current_completion(self.adapter, intent):
+                    self.queue_application_ack(path, intent, True)
+                else:
+                    self.remove_acknowledgement_intent(path, detail)
+                    self.report("application_acknowledgement_not_accepted", None, detail)
+            except subprocess.SubprocessError:
+                self.report("application_acknowledgement_failed", None, {**detail, "error": "controller check did not finish"})
+            except (OSError, ValueError, KeyError, TypeError, RecursionError) as error:
+                self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+
     def report_application_acks(self):
-        for future, session in list(self.application_acks.items()):
+        for future, (path, detail) in list(self.application_acks.items()):
             if not future.done():
                 continue
             del self.application_acks[future]
             try:
                 response = future.result()
             except CancelledError:
-                self.report("application_acknowledgement_failed", session, {"error": "supervisor stopped before acknowledgement started"})
+                self.report("application_acknowledgement_failed", None, {**detail, "error": "supervisor stopped before acknowledgement started"})
             except subprocess.TimeoutExpired:
-                self.report("application_acknowledgement_failed", session, {"error": "application acknowledgement timed out"})
+                self.report("application_acknowledgement_failed", None, {**detail, "error": "application acknowledgement timed out"})
             except (OSError, ValueError, KeyError, TypeError) as error:
-                self.report("application_acknowledgement_failed", session, {"error": f"{type(error).__name__}: {error}"[:2048]})
+                self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
             else:
-                self.report("application_acknowledgement", session, response)
+                self.remove_acknowledgement_intent(path, detail)
+                self.report("application_acknowledgement", None, {**detail, **response})
 
     def fill(self, paused):
         claimed = False
-        pending = {session.pool for session in self.application_acks.values()}
+        pending = {detail["pool"] for _, detail in self.application_acks.values()}
         for pool, settings in sorted(self.config["pools"].items()):
             if pool in paused or pool in pending:
                 continue
@@ -360,6 +420,7 @@ class Supervisor:
         signal.signal(signal.SIGINT, self.shutdown)
         self.acquire()
         self.recover()
+        self.recover_application_acks()
         self.synchronize()
         self.budget.refresh(self.running)
         started = time.monotonic()

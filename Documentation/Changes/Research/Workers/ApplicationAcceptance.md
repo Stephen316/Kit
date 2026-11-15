@@ -29,7 +29,7 @@ If the accepted phase requires a restart, the command restores the old-process r
 A new application process must still verify the previous process exited.
 The command does not launch or stop a CAD application.
 
-After a supervisor crash or acknowledgement refusal, an agent can invoke the owner command with the existing trusted configuration.
+If automatic recovery refuses an acknowledgement, an agent can invoke the owner command with the existing trusted configuration.
 See [supervised application acceptance](SupervisedApplicationAcceptance.md) for optional automatic invocation after the controller finishes an attempt.
 Downstream input binding remains open.
 

@@ -43,17 +43,7 @@ class AcceptanceHost:
 
     # a completed controller attempt must outlive the supervisor process before reconciliation
     def Run(self) -> list[dict[str, object]]:
-        self.Supervisor.SubmitJobs(
-            [
-                FixtureJob(
-                    self.JobName,
-                    "fixture.capture",
-                    inputs={"source": "source"},
-                    options={"mode": self.ModeValue},
-                    lease_seconds=30,
-                ),
-            ]
-        )
+        SubmitFixture(self)
         Events = [
             CastValue(dict[str, object], Event) for Event in self.Supervisor.RunIdle()
         ]
@@ -97,3 +87,18 @@ class AcceptanceHost:
             return {}
         Response: dict[str, object] = JsonCodec.loads(Result.stdout)
         return Response
+
+
+# the same application request must reach normal intake in uninterrupted and crash cases
+def SubmitFixture(Harness: AcceptanceHost) -> None:
+    Harness.Supervisor.SubmitJobs(
+        [
+            FixtureJob(
+                Harness.JobName,
+                "fixture.capture",
+                inputs={"source": "source"},
+                options={"mode": Harness.ModeValue},
+                lease_seconds=30,
+            ),
+        ]
+    )

@@ -19,8 +19,8 @@ An `application_acknowledgement_failed` event records a refusal or interruption 
 Check the reported cause and use the owner command to resume any interrupted cleanup.
 The acknowledgement journal and retained records protect pending cleanup across interruption.
 
-The supervisor hands off completed attempts from its current run.
-Reconciliation of a prior supervisor run, licensed application startup and restart, and downstream input binding remain open.
+See [interrupted acknowledgement recovery](ApplicationAckRecovery.md) for restart behavior.
+Licensed application startup and restart and downstream input binding remain open.
 The process cases exercise the supervisor, A03, and fixture application transport for accepted output, a mismatched installation binding, and a stale owner or attempt.
 They are selected by remote Linux, macOS and Windows research CI.
 Remote verification is pending.

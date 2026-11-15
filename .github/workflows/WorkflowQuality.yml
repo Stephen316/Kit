@@ -228,6 +228,7 @@ jobs:
           python -m pytest -q tests/Research/Windows tests/Research/Outputs
           tests/Research/Applications/ApplicationParkTests.py
           tests/Research/Applications/Acceptance/AcceptanceSupervisorTests.py
+          tests/Research/Applications/Acceptance/AcceptanceCrashTests.py
           tests/Research/Owners tests/Research/WindowsRecords
 
   macos-supervisor:
