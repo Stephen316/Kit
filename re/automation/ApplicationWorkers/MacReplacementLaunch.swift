@@ -26,14 +26,21 @@ func digest(_ file: URL, maximum: Int) -> String? {
     return boundedBytes(file, maximum: maximum).map(digest)
 }
 
-func matchesPhysicalPath(_ observed: String?, _ expected: String) -> Bool {
-    guard let observed, observed.hasPrefix("/"), !observed.utf8.contains(0),
+func matchesPhysicalPath(_ observed: String, _ expected: String) -> Bool {
+    guard observed.hasPrefix("/"), !observed.utf8.contains(0),
           let resolved = observed.withCString({ Darwin.realpath($0, nil) }) else {
         return false
     }
     defer { Darwin.free(resolved) }
     let path = UnsafeRawBufferPointer(start: resolved, count: Darwin.strlen(resolved))
     return path.elementsEqual(expected.utf8)
+}
+
+func matchesPhysicalFileURL(_ observed: URL?, _ expected: String) -> Bool {
+    guard let observed, observed.isFileURL else {
+        return false
+    }
+    return matchesPhysicalPath(observed.path, expected)
 }
 
 let arguments = CommandLine.arguments
@@ -56,7 +63,7 @@ guard matchesPhysicalPath(path, path),
       let application = Bundle(url: target),
       application.bundleIdentifier == identifier,
       let entry = application.executableURL,
-      matchesPhysicalPath(entry.path, executable),
+      matchesPhysicalFileURL(entry, executable),
       digest(info, maximum: 1_048_576) == arguments[4],
       digest(entry, maximum: 268_435_456) == arguments[5] else {
     refuse(5, "Application bundle does not match the reviewed launch profile")
@@ -79,7 +86,7 @@ guard matchesPhysicalPath(requestPath, requestPath),
 let workspace = NSWorkspace.shared
 if workspace.runningApplications.contains(where: {
     !$0.isTerminated && ($0.bundleIdentifier == identifier ||
-        matchesPhysicalPath($0.bundleURL?.path, path))
+        matchesPhysicalFileURL($0.bundleURL, path))
 }) {
     refuse(2, "An application counterpart is already running")
 }
@@ -103,8 +110,8 @@ workspace.openApplication(at: target, configuration: configuration) { app, error
     guard let app, !app.isTerminated,
           app.processIdentifier > 0,
           app.bundleIdentifier == identifier,
-          matchesPhysicalPath(app.bundleURL?.path, path),
-          matchesPhysicalPath(app.executableURL?.path, executable) else {
+          matchesPhysicalFileURL(app.bundleURL, path),
+          matchesPhysicalFileURL(app.executableURL, executable) else {
         refuse(3, "LaunchServices did not return the exact requested application")
     }
     let result: [String: Any] = [
