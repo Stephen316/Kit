@@ -6,7 +6,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
-from tests.Research.Windows.SetWinRunnerMut import SetWinRunnerMut
+from tests.Research.Windows.SetWinRunner import SetWinRunner
 
 
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
@@ -15,7 +15,7 @@ def CheckWinLogs() -> None:
         Harness = SessionHost(
             FilePath(TempPath), {"decode": 1}, {"fixture.decode": "decode"}
         )
-        SetWinRunnerMut(Harness)
+        SetWinRunner(Harness)
         ConfigInfo = JsonCodec.loads(Harness.ConfigFile.read_text(encoding="utf-8"))
         ConfigInfo["max_log_bytes"] = 1024
         _ = Harness.ConfigFile.write_text(JsonCodec.dumps(ConfigInfo), encoding="utf-8")

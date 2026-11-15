@@ -7,6 +7,8 @@ from pathlib import Path as FilePath
 
 
 def RunChild() -> None:
+    if System.platform != "win32":
+        raise OSError("Windows child fixture requires a Windows host")
     _ = Signals.signal(Signals.SIGBREAK, Signals.SIG_IGN)
     RecordPath = FilePath(System.argv[2])
     _ = RecordPath.write_text(

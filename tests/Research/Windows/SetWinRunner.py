@@ -4,7 +4,7 @@ import sys as System
 from tests.Research.SupervisorClient import SessionHost
 
 
-def SetWinRunnerMut(Harness: SessionHost, MemoryLimit: int = 512) -> None:
+def SetWinRunner(Harness: SessionHost, MemoryLimit: int = 512) -> None:
     RegistryFile = Harness.RootPath / "Runners.json"
     Registry = JsonCodec.loads(RegistryFile.read_text(encoding="utf-8"))
     for EntryInfo in Registry["runners"].values():

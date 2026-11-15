@@ -24,6 +24,8 @@ class Busy(Exception):
 
 
 def read_config(path):
+    if sys.platform == "win32" and (sys.version_info < (3, 14) or sys.getwindowsversion().major < 10):
+        raise ValueError("Windows supervision requires Windows 10 or newer and Python 3.14 or newer")
     path = Path(path).resolve()
     config = read_record(path)
     if not {"state", "controller", "registry", "pools"} <= config.keys() or config.keys() - CONFIG_KEYS:

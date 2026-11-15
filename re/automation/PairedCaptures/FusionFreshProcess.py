@@ -86,7 +86,22 @@ def pinned_existing(revision, recipe_id):
         require(pin["sha256"] == records[0]["sha256"] and pin["size_bytes"] == records[0]["size_bytes"],
                 f"Existing archive does not match the receipt: {name}")
         native[label] = pin
-    return {"receipt": receipt_pin, "measurements": measurements, "archives": native}
+    variants = {}
+    require(2 <= len(receipt["native_files"]) <= 100, "Invalid native capture roster size")
+    for record in receipt["native_files"]:
+        name = record["file"]
+        require(isinstance(name, str) and 1 <= len(name) <= 255 and Path(name).name == name
+                and "\\" not in name and name.startswith(f"{recipe_id}-fusion-") and name.endswith(".f3d"),
+                f"Invalid capture archive name for {recipe_id}")
+        if name in (native["a"]["path"].rsplit("/", 1)[-1], native["b"]["path"].rsplit("/", 1)[-1]):
+            continue
+        require(name not in variants, f"Duplicate capture archive: {name}")
+        pin = committed_file(revision, receipt_path.parent / name)
+        require(pin["sha256"] == record["sha256"] and pin["size_bytes"] == record["size_bytes"],
+                f"Existing archive does not match the receipt: {name}")
+        variants[name] = pin
+    require(len(native) + len(variants) == len(receipt["native_files"]), "Capture roster contains duplicate archives")
+    return {"receipt": receipt_pin, "measurements": measurements, "archives": native, "variants": variants}
 
 
 def launcher(tool_path, tool_hash, plan_path, plan_hash, phase):
@@ -320,6 +335,11 @@ def capture_repeat(helper, app, recipes, output, owned, report, first, existing)
                 reading = row[f"existing_readback_{label}"] = {}
                 document = read_archive(helper, app, REPO / pin["path"], pin, owned, reading)
                 check_baseline(helper, recipe, reading)
+                helper["close"](document, owned)
+            variants = row["existing_variant_readbacks"] = {}
+            for name, pin in sorted(original["variants"].items()):
+                reading = variants[name] = {}
+                document = read_archive(helper, app, REPO / pin["path"], pin, owned, reading)
                 helper["close"](document, owned)
 
 

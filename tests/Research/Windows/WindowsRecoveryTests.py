@@ -5,7 +5,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
-from tests.Research.Windows.SetWinRunnerMut import SetWinRunnerMut
+from tests.Research.Windows.SetWinRunner import SetWinRunner
 from tests.Research.Windows.WaitForExit import WaitForExit
 from tests.Research.Windows.WaitForPids import WaitForPids
 
@@ -15,7 +15,7 @@ def CheckWinRestart() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
         Harness = SessionHost(RootPath, {"decode": 1}, {"fixture.decode": "decode"})
-        SetWinRunnerMut(Harness)
+        SetWinRunner(Harness)
         RecordPath = RootPath / "ProcessIds.json"
         Harness.SubmitJobs(
             [

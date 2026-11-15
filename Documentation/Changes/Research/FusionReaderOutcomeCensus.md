@@ -53,11 +53,14 @@ Its 714 outcomes match the prior aggregate totals: 12 strict, 685 partial and 17
 The report is committed unchanged as `re/automation/FusionOutcomes.json`.
 Its observed SDK checkout is `ec41e96ee4eb884e1097311a2a25cd6a1119cdec`.
 GitHub records that checkout as the merge of base `1087ffe828caf3ef32b31f242ed3ebd69de30821` and the stated PR head.
+Read actual candidate parents when verifying later runs: [pull base metadata can lag](../../Gotchas/Git/PullBaseSnapshotCanLag.md).
 The SDK source digest verified at PR head `480d9d3a` is: `2884b881f89fff12e64391a3da3b2d0bf676904fa2df08481959dba617d00d63`.
 
 The corpus process check now compares each later report with this committed baseline.
 Its mutation scenarios also reject missing inputs, improved outcomes, duplicate records and mismatched corpus identities.
-The enforcement revision still requires fresh remote verification before A05b can complete.
+[The enforcement run](https://github.com/TryUniCAD/Kit/actions/runs/43663892794/job/132658933617) passed all five reader process scenarios at `b86f30c7`.
+The complete 714-file outcome roster matched the unchanged baseline.
+This completes A05b's outcome gate without closing A05c semantic qualification.
 No local tests, decoding, or native application runs verified this change.
 
 Outcome equality does not compare geometry, constraints, dependencies, or serialized document content.

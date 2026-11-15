@@ -95,7 +95,7 @@ class Session:
                 else:
                     capture.close_writer()
         self.pid = self.process.pid
-        self.process_start = process_start(self.pid)
+        self.process_start = self.process.identity if os.name == "nt" else process_start(self.pid)
         write_private(self.directory / "session.json", {
             "session_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
             "attempt": self.claim["attempt"], "pid": self.pid, "process_start": self.process_start,

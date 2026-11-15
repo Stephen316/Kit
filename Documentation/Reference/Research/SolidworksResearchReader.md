@@ -117,6 +117,8 @@ Its support-evidence gate checks 25 measured plane identifiers, including three 
 These candidates do not change production support decoding or establish semantic qualification.
 
 [Direct adapter writes](../../Changes/Research/DirectAdapterWriteSafeguards.md) apply the registry's research, inch-length and equation safeguards before output mutation.
+The [support write gate](../../Changes/Research/SolidWorksSupportWriteGate.md) also rejects native-derived sketches with fallback, missing or unframed support evidence.
+Native reading and manual serialization remain available for inspection.
 
 ### Historical corpus
 

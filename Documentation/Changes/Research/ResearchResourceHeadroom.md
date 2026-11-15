@@ -60,5 +60,6 @@ This fixture configuration does not change the production defaults.
 
 Local verification is limited to static syntax, formatting, and whitespace checks.
 No local test or reproduction ran.
-Exact-revision remote results are pending when this entry is introduced.
+[The Linux process gate](https://github.com/TryUniCAD/Kit/actions/runs/43663892794/job/132658933617) passed eleven supervisor scenarios at `b86f30c7`, including all three resource cases.
+Windows dispatch and the dedicated macOS gate require their own current-revision evidence.
 See the [supervisor guide](../../Reference/Research/ResearchSupervisor.md) and [step register](../../Reference/Research/AutomationSteps.md).

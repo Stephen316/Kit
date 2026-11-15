@@ -15,8 +15,11 @@ Production conversion must not import this research code.
 ## Before you start
 
 You need Python 3.11 or later on Linux or macOS.
-The supervisor uses `fcntl`, process groups and `os.wait4`, so Windows is not supported.
-A08e plans Windows support for a single Windows host that runs both CAD applications.
+Windows requires Windows 10 or newer, Python 3.14 and the existing locked `pywin32` development extra.
+The Windows path uses private Job Objects, restricted handle inheritance and process creation-time fencing.
+Linux and macOS retain their process-group and `wait4` paths.
+See [Windows supervision](../../Changes/Research/WindowsResearchSupervisor.md) for the exact process contract and verification limits.
+Actual application authoring workers remain A08c work.
 Initialize an [A03 controller store](ResearchController.md#commands), or supply another adapter.
 Choose a private state directory on a local disk.
 
@@ -141,6 +144,7 @@ An `admission` event records changes to a pool's blocking reason.
 
 Linux uses `MemAvailable` and available CPU affinity.
 macOS uses free pages plus the larger of inactive or purgeable pages from `vm_stat`.
+Windows uses available physical memory from `GlobalMemoryStatusEx` and the supervisor's process affinity mask.
 These measurements do not enforce container quotas.
 Each supervision pass samples resident memory for the whole process group.
 An exceeded `max_memory_mib` stops that group with reason `memory_limit` through the existing retry protocol.
@@ -173,6 +177,9 @@ A second supervisor exits with status `4` and a `supervisor busy` message.
 At startup, the supervisor reads each remaining session directory.
 It stops the recorded process group only when the process identifier and the process start time both match.
 On Linux the start time comes from `/proc/<pid>/stat`; on macOS it comes from `ps -o lstart=`.
+Windows records the creation time before resuming the initial thread and retains the private Job Object name.
+It checks both creation time and job membership before stopping a live recorded process.
+Closing the last supervisor Job Object handle terminates contained descendants after a supervisor crash.
 It writes an orphan receipt and finishes the job with `retry` if the claim file is still present.
 A stale lease is accepted, because the controller has already expired or replaced that attempt.
 
@@ -213,6 +220,7 @@ These limits are intentional for A08a:
 - Restart cleanup checks surviving process-group members after leader termination. Failed cleanup prevents releasing the job.
 - An expired A03 attempt still marks its resources unavailable, also for counted provider resources.
 - Application workers belong to A08c, and model runners belong to A10.
+- Windows uses Job Objects for descendant cleanup. Its receipt records a Windows exit code and no POSIX signal number.
 
 ## If the task fails
 

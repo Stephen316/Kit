@@ -23,11 +23,11 @@ def RunWindows() -> None:
     if Options["mode"] == "flood":
         _ = System.stdout.buffer.write(b"stdout" * (4096 * 256))
         _ = System.stderr.buffer.write(b"stderr" * (4096 * 256))
-        System.stdout.buffer.flush()
-        System.stderr.buffer.flush()
+        _ = System.stdout.buffer.flush()
+        _ = System.stderr.buffer.flush()
     else:
         StartChild(Options)
-    ResultInfo = {
+    ResultInfo: dict[str, object] = {
         "outcome": "completed",
         "reason": "Windows process fixture finished",
         "records": {

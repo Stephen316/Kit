@@ -6,7 +6,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
-from tests.Research.Windows.SetWinRunnerMut import SetWinRunnerMut
+from tests.Research.Windows.SetWinRunner import SetWinRunner
 from tests.Research.Windows.WaitForExit import WaitForExit
 
 
@@ -15,7 +15,7 @@ def CheckWinMemory() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
         Harness = SessionHost(RootPath, {"decode": 1}, {"fixture.decode": "decode"})
-        SetWinRunnerMut(Harness, MemoryLimit=1)
+        SetWinRunner(Harness, MemoryLimit=1)
         Harness.SubmitJobs(
             [
                 FixtureJob(

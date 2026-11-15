@@ -44,6 +44,12 @@ def CheckPlanPins(RecipeId: str) -> None:
         }
         assert PlanInfo["recipes"] == ["P01"]
         assert set(PlanInfo["existing"]["P01"]["archives"]) == {"a", "b"}
+        assert set(PlanInfo["existing"]["P01"]["variants"]) == {
+            "P01-fusion-edit-width_mm-41.f3d",
+            "P01-fusion-edit-height_mm-23.f3d",
+            "P01-fusion-plane-yz.f3d",
+            "P01-fusion-units-inch.f3d",
+        }
         for PhaseName in ("a", "b"):
             assert (OutputPath / f"phase-{PhaseName}.py").is_file()
             assert not (OutputPath / f"phase-{PhaseName}").exists()

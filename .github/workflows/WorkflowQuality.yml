@@ -136,7 +136,7 @@ jobs:
 
       - name: Publish Fusion research reader census
         if: always()
-        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: FusionReaderCensus-${{ github.run_attempt }}
           path: ${{ runner.temp }}/FusionReaderCensus.json
@@ -152,6 +152,64 @@ jobs:
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py -q
+
+  windows-supervisor:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Windows research supervisor
+    runs-on: windows-2025
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked Windows process environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Verify Windows supervisor through process boundaries
+        run: >-
+          uv run --frozen --no-default-groups --extra dev --python 3.14
+          python -m pytest -q tests/Research/Windows
+
+  macos-supervisor:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: macOS research supervisor
+    runs-on: macos-26
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked macOS process environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Verify macOS supervisor through process boundaries
+        run: >-
+          uv run --frozen --no-default-groups --extra dev --python 3.14
+          python -m pytest -q tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py
 
   zizmor:
     if: >-
