@@ -71,6 +71,8 @@ table owns is silently dropped. `moCompRefPlane_c` is owned there for its `runs_
 
 ## 2. `moCompRefPlane_c` run 1 — a conditional basis block, not an opaque run
 
+This section describes the historical walker span. Licensed 19000-generation traces place the plane axis and adjacent profile matrix in separate serializers. [Licensed loader observations](PrincipalSupportCandidates.md#licensed-loader-observations)
+
 This single run blocked all 32 donors. The table recorded it as `opaque`: 42 bytes in 21 of the 22
 traced instances, 114 in `planetop` node 211, "the 72-byte difference is real and unexplained".
 

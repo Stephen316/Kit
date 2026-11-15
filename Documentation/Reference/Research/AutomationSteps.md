@@ -286,7 +286,7 @@ Native execution, automatic application restart, automatic acceptance acknowledg
 Completed and abandoned application spools stay retained until owner verification of actual controller acceptance; the completed-spool bound is 32 files and 520 MiB, not an OS write quota.
 
 A04c records [hashed principal support candidates](../../Changes/Research/PrincipalSupportEvidence.md) for 25 measured identifiers, including three YZ variants.
-The [matching loader](../../../re/solidworks/records/PrincipalSupportCandidates.md#feature-reference-timestamp) identifies the principal-plane candidate's reference timestamp. Production class ownership, the P04 face reference encoding and complete constraint bindings remain open.
+Licensed traces resolve the principal-plane class in four captures and locate the enclosing profile transform in both traced YZ rectangle profiles. The production archive walk, P04 face reference encoding and complete constraint bindings remain open. [Licensed loader observations](../../../re/solidworks/records/PrincipalSupportCandidates.md#licensed-loader-observations)
 The [native-field refusal](../../Changes/Research/Readers/NativeFieldWriteRefusal.md) and [writer qualification](../../Changes/Research/Readers/NativeSemanticWriteQualification.md) regressions passed, preserving required-semantic refusal and destinations through real public/direct boundaries.
 The full Fusion run also verifies the corrected explicit/inferred writer-ordering cases.
 None of those refusals supplies the missing positive native qualification.

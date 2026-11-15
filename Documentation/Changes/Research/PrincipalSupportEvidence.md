@@ -12,14 +12,10 @@ python re/automation/SolidworksCensus.py --check-support-evidence SolidworksDisc
 
 The check requires 25 measured principal-plane candidates, including three YZ variants.
 It requires each candidate to remain explicitly unqualified.
-It does not qualify face support, constraints, editable output or native conversion.
-The production reader remains unchanged until class-reference and tag-domain proof is available.
+Face support, constraints, editable output and native conversion require separate qualification.
 
 ## Evidence and limits
 
 Read-only extraction examined the 25 committed P01/P03/P04 source files at `c1c3fcce5b8b67373113ec44ad5d122a52bd7260`.
 Each rectangle span contained one candidate whose plane id matched the independent source measurement.
-The [finding](../../../re/solidworks/records/PrincipalSupportCandidates.md) records offsets, field widths and the refuted fixed-signature assumption.
-No local tests, collection, neutral decoding or native application ran.
-Static syntax and source-link checks are separate from pending remote process verification.
-A04c remains open.
+Licensed SOLIDWORKS resolved the plane class through the live archive map in P01 YZ, P03 YZ, P04 baseline A and P04 YZ. The P01 and P03 traces also located the enclosing profile's matrix flag immediately after the plane axis. The production reader still needs a structural walk to the profile occurrence before it can use this evidence. [Field layout and licensed traces](../../../re/solidworks/records/PrincipalSupportCandidates.md#licensed-loader-observations)
