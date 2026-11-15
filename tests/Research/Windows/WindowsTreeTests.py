@@ -26,7 +26,8 @@ def CheckWinTree() -> None:
                 )
             ]
         )
-        _ = Harness.RunIdle(IdleSeconds=1)
-        assert Harness.ReadJob("windows:tree")["state"] == "completed"
+        Events = Harness.RunIdle(IdleSeconds=1)
+        JobInfo = Harness.ReadJob("windows:tree")
+        assert JobInfo["state"] == "completed", {"job": JobInfo, "events": Events}
         for ProcessId in WaitForPids(RecordPath):
             WaitForExit(ProcessId)
