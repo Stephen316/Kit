@@ -41,7 +41,10 @@ def AttachGeomRule(
     )
     Reordered = KindValue in (ConstraintKind.KMidpoint, ConstraintKind.KPointOnObject)
     Expected = Native.Arguments[::-1] if Reordered else Native.Arguments
-    if Native.Dependencies != Expected:
+    if Native.Dependencies != Expected and not (
+        KindValue == ConstraintKind.KCoincident
+        and Native.Dependencies == Native.Arguments[::-1]
+    ):
         raise ValueError("Fusion geometric relation argument roles disagree")
     Origin = RecordOrigin(SpanValue)
     return SketchRelation(

@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from convert.api.ApiOpen import OpenDocument
+from interchange.geometry.models.GeometryCurves import PointGeometry
 
 
 # each command compares saved archive records with pinned independent application measurements
@@ -214,3 +215,37 @@ def CheckDimOrder(Variant: str) -> None:
         ):
             AxisSign = -AxisSign
         assert Attrs["fusion.signed_distance_multiplier"] == AxisSign
+
+
+# the saved corner anchor must survive the public registry with both distinct native identities
+@Pytest.mark.parametrize(
+    ("Family", "Capture", "Variant"),
+    (
+        ("P01", "5dc3245eb59c", "baseline-a"),
+        ("P03", "8d53584027ff", "plane-yz"),
+        ("P04", "9cf53a55ea8b", "termination-through-all"),
+    ),
+)
+def CheckCoincident(Family: str, Capture: str, Variant: str) -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    Archive = (
+        RootDir
+        / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
+        / f"{Family}-fusion-{Variant}.f3d"
+    )
+    Document = OpenDocument(Archive, StrictMode=False)
+    (Sketch,) = [
+        Value for Value in Document.sketches if Value.name == "RectangleSketch"
+    ]
+    (Relation,) = [Value for Value in Sketch.constraints if Value.kind == "coincident"]
+    assert tuple(Value.entity_id for Value in Relation.references) == (
+        "fusion-sketch-entity-228",
+        "fusion-sketch-entity-205",
+    )
+    assert Relation.attributes["fusion.constraint_argument_ids"] == (228, 205)
+    assert Relation.attributes["fusion.constraint_dependency_ids"] == (205, 228)
+    Entities = {Entity.id: Entity for Entity in Sketch.entities}
+    for Target in Relation.references:
+        Geometry = Entities[Target.entity_id].geometry
+        assert isinstance(Geometry, PointGeometry)
+        assert (Geometry.point.x, Geometry.point.y) == (0.0, 0.0)
