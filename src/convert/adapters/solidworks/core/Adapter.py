@@ -704,6 +704,7 @@ def AsmDoc(
         {DocValue.id: DocValue.document for DocValue in Documents},
         MeshIds,
         Label,
+        ResolveComponents=ResolveComponents,
     )
     Instances = AsmInstances(Native)
     MateSourceValues, SourceDiagnostics = MateSources(
@@ -1132,6 +1133,7 @@ def AsmDefinitions(
     Documents: dict[str, CadDocument],
     MeshIds: dict[int, str],
     Label: str,
+    ResolveComponents: bool = True,
 ) -> tuple[ComponentDefinition, ...]:
     Result: list[ComponentDefinition] = []
     for Definition in Native.definitions:
@@ -1194,6 +1196,19 @@ def AsmDefinitions(
                         "native_object_id": Definition.object_id,
                         "native_file_id": Definition.file_id,
                         "native_source_path": Definition.source_path,
+                        **(
+                            {
+                                "source_resolved": Definition.object_id
+                                == Native.root_definition_id
+                                or DocValue is not None
+                            }
+                            if ResolveComponents
+                            else (
+                                {"source_resolution": "deferred"}
+                                if Definition.object_id != Native.root_definition_id
+                                else {}
+                            )
+                        ),
                         "alternate_configuration_name": Definition.alternate_configuration_name,
                         "last_modified_stamp": Definition.last_modified_stamp,
                         "configuration_flags": Definition.configuration_flags,

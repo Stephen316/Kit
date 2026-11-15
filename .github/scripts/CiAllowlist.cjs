@@ -32,7 +32,12 @@ const KQualitySources =
   /\.(?:cjs|cs|cts|go|java|js|jsx|kt|kts|mjs|mts|py|pyi|rb|ts|tsx)$/i;
 const StaticChecks = {
   "FusionCompatibility.yml": {
-    required: ["Fusion archive compatibility"],
+    required: [
+      "Fusion archive compatibility",
+      "CLI conversion and inspection compatibility",
+      "CLI process compatibility (Core)",
+      "CLI process compatibility (Qualification)",
+    ],
   },
   "PythonQuality.yml": {
     required: ["Ruff", "Black", "Pyright", "Mypy"],
@@ -63,6 +68,8 @@ const StaticChecks = {
       "Zizmor",
       "actionlint",
       "Verify CI policy and pytest compatibility",
+      "Research CLI compatibility",
+      "Research CLI Windows compatibility",
     ],
     preflight: "PR CI reuse (Workflow quality)",
   },

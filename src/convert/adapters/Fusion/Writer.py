@@ -50,6 +50,7 @@ class FusionWriter:
                 "final_overwrite",
                 "allow_carrier",
                 "require_self_contained",
+                "require_native_transfers",
                 "allow_non_native",
                 "portable",
             }

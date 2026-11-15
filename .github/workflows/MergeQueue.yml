@@ -60,6 +60,7 @@ jobs:
         with:
           path: |
             src/**/__pycache__
+            Cli/**/__pycache__
             tools/**/__pycache__
             tests/**/__pycache__
           key: queue-bytecode-${{ github.event.merge_group.base_sha || env.AuditSha }}
@@ -195,6 +196,7 @@ jobs:
         with:
           path: |
             src/**/__pycache__
+            Cli/**/__pycache__
             tools/**/__pycache__
             tests/**/__pycache__
           key: queue-bytecode-${{ github.event.merge_group.base_sha || env.AuditSha }}
@@ -202,7 +204,7 @@ jobs:
 
       - name: Precompile repository bytecode
         if: steps.bytecode.outputs.cache-matched-key == ''
-        run: uv run --no-sync --python 3.14 python -m compileall -q -j 0 src tools tests
+        run: uv run --no-sync --python 3.14 python -m compileall -q -j 0 src Cli tools tests
 
       - name: Download the shard plan
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
@@ -211,6 +213,7 @@ jobs:
           path: ${{ runner.temp }}/ShardPlan
 
       - name: Select this shard's tests
+        id: selection
         env:
           SHARD_INDEX: ${{ matrix.shard }}
         run: |
@@ -220,9 +223,24 @@ jobs:
             "${RUNNER_TEMP}/ShardPlan/ShardPlan.json" > "${RUNNER_TEMP}/ShardTests.txt"
           test -s "${RUNNER_TEMP}/ShardTests.txt"
           echo "Running $(wc -l < "${RUNNER_TEMP}/ShardTests.txt") planned tests on $(nproc) CPUs" | tee -a "$GITHUB_STEP_SUMMARY"
+          if grep --quiet '^tests/CliResearch/' "${RUNNER_TEMP}/ShardTests.txt"; then
+            echo "research=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Checkout pinned PR94 tools for research CLI cases
+        if: steps.selection.outputs.research == 'true'
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Stephen316/Kit
+          ref: b86f30c7e41abdc3812ada795a193377f6ddd220
+          path: ResearchCheckout
+          fetch-depth: 0
+          persist-credentials: false
 
       - name: Run this shard's tests
         id: tests
+        env:
+          KIT_RESEARCH_CHECKOUT: ${{ github.workspace }}/ResearchCheckout
         run: >-
           uv run --no-sync --python 3.14 python -m pytest
           -p no:cacheprovider -p tools.TestShards.Reuse.Track.TrackHooks
@@ -456,7 +474,7 @@ jobs:
         run: uv sync --frozen --all-groups --all-extras --python 3.11
 
       - name: Run Bandit SAST
-        run: uv run bandit -q -r src tools .github/scripts -x .venv,examples,Parashell,modules,re,tests -s B101,B105,B314,B404,B405,B603,B607
+        run: uv run bandit -q -r src Cli tools .github/scripts -x .venv,examples,Parashell,modules,re,tests -s B101,B105,B314,B404,B405,B603,B607
 
   semgrep:
     if: github.event_name == 'merge_group' || github.event_name == 'push'
@@ -685,7 +703,7 @@ jobs:
         run: >-
           uv run flake8 --select=DUO
           --exclude=.venv,examples,Parashell,modules,re,tests
-          src tools .github/scripts
+          src Cli tools .github/scripts
 
   gitleaks:
     if: github.event_name == 'merge_group' || github.event_name == 'push'

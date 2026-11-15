@@ -19,6 +19,8 @@ import pytest as Pytest
         ("check", "Analyze (javascript-typescript)"),
         ("check", "Build and verify release artifacts"),
         ("check", "Label first-time contributors"),
+        ("check", "CLI process compatibility (Core)"),
+        ("check", "CLI process compatibility (Qualification)"),
         ("quality-fork", "Ruff"),
         ("quality-docs", "Ruff"),
         ("quality-subset", "Ruff"),

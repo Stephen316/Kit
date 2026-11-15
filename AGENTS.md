@@ -142,3 +142,42 @@ authorizes a supported admin override when independently enforced protections
 otherwise block a fully green, conflict-free PR. It never authorizes bypassing
 pending or failed queue acceptance, changing protection settings, or bypassing
 enforced tool approvals. Follow the skill's administrator-requested merge rules.
+
+## Deterministic decoding through the CLI
+
+Install this CLI checkout with `uv tool install --python 3.14 .`.
+Use a separate, trusted checkout containing PR #94's research tools and pinned Git objects.
+Use `kit research` or `python -m KitCli research` for this developer workflow.
+`python -m convert` supports SDK formats, decoding, and conversion; research execution stays outside its runtime.
+The CLI is delivered in its own PR; do not add CLI implementation work to PR #94.
+Use that research checkout's absolute path as `--root` and choose unused output directories.
+
+```sh
+kit research --root /path/to/KitPr94 solidworks --asset re/solidworks/examples/.SLDPRT/example.SLDPRT --output /tmp/KitPinnedPart
+kit research --root /path/to/KitPr94 fusion --asset re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d --output /tmp/KitPinnedFusion
+kit research --root /path/to/KitPr94 corpus check --manifest /path/to/KitPr94/re/automation/Corpus.json
+```
+
+These commands use PR #94's pinned readers and corpus verifier in a fresh process with that checkout's SDK.
+They verify committed bytes and preserve the readers' document JSON, separate receipts, fingerprints, and Fusion summary.
+Keep receipts with documents and inspect unresolved evidence; a completed decode does not establish portable semantics or native conversion acceptance.
+Repeat `--asset` for a Fusion batch; `--allow-partial` records strict rejection before fallback.
+Fusion exit `3` means published rejected/error outcomes and must not be treated as complete decoding.
+Do not remove `kit.research_read_status: unqualified` metadata to force conversion.
+
+For durable research jobs, use the existing controller and configured supervisor:
+
+```sh
+kit research --root /path/to/KitPr94 controller --store /tmp/KitResearchState init --max-running 4
+kit research --root /path/to/KitPr94 controller --store /tmp/KitResearchState status
+kit research --root /path/to/KitPr94 supervisor --config /path/to/Supervisor.json run --idle-seconds 30
+```
+
+Configure actual trusted worker programs before using the supervisor; the CLI does not supply a production decode runner or model provider.
+Controller leases, retries, pool controls, and worker dispatch remain owned by PR #94's tools.
+Models remain disabled by default. Model execution retains the plan's explicit authorization requirements.
+The supervisor requires Linux or macOS; Fusion research requires Python 3.14.
+Use `kit research --root /path/to/KitPr94 TOOL --help` for tool-specific commands.
+Use `kit decode SOURCE` for working-file inspection and `kit convert SOURCE DESTINATION` for supported conversion.
+Read [the deterministic CLI procedure](Documentation/Tasks/ResearchCommandLine.md) before changing these workflows.
+All execution for verification remains in remote CI under the repository's local-test prohibition.

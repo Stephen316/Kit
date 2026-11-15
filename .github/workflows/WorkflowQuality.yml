@@ -72,6 +72,7 @@ jobs:
           tests/Policy/ReviewerAggregationTests.py tests/steering/AgentSkillsMigrationTests.py
           tests/convert/api/ApiMetadataTests.py tests/Policy/DiffBreakdownTests.py
           tests/Policy/ShardPlanTests.py
+          tests/convert/Commands/CliRuntimeTests.py
 
       - name: Exercise native file reading and writing
         run: >-
@@ -79,6 +80,88 @@ jobs:
           tests/convert/solidworks
           tests/convert/formats/ParasolidTests.py
           tests/steering/RationaleCommentsTests.py
+
+  research-cli:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Research CLI compatibility
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      KIT_RESEARCH_CHECKOUT: ${{ github.workspace }}/ResearchCheckout
+    steps:
+      - name: Checkout CLI repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Checkout pinned PR94 research tools
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Stephen316/Kit
+          ref: b86f30c7e41abdc3812ada795a193377f6ddd220
+          path: ResearchCheckout
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install CLI and compatibility dependencies
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Verify deterministic tools through the installed CLI
+        run: >-
+          uv run --no-sync --python 3.14 python -m pytest tests/CliResearch -q
+
+  research-cli-windows:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Research CLI Windows compatibility
+    runs-on: windows-2025
+    timeout-minutes: 20
+    env:
+      KIT_RESEARCH_CHECKOUT: ${{ github.workspace }}/ResearchCheckout
+    steps:
+      - name: Checkout CLI repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Checkout pinned PR94 research tools
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: Stephen316/Kit
+          ref: b86f30c7e41abdc3812ada795a193377f6ddd220
+          path: ResearchCheckout
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Install CLI and compatibility dependencies
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Verify reader and controller exit statuses through the installed CLI
+        run: >-
+          uv run --no-sync --python 3.14 python -m pytest
+          tests/CliResearch/BridgeRejectTests.py
+          tests/CliResearch/SwReaderTests.py
+          tests/CliResearch/FusionReaderTests.py
+          tests/CliResearch/ReaderRejectTests.py
+          tests/CliResearch/InterruptTests.py
+          tests/CliResearch/LeaseFlowTests.py -q
 
   zizmor:
     if: >-

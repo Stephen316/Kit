@@ -14,6 +14,66 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  cli-process:
+    name: CLI process compatibility (${{ matrix.group }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - group: Core
+            targets: >-
+              tests/convert/Commands
+              --ignore=tests/convert/Commands/Feature
+              --ignore=tests/convert/Commands/Metadata
+              --ignore=tests/convert/Commands/Sketch
+          - group: Qualification
+            targets: >-
+              tests/convert/Commands/Feature
+              tests/convert/Commands/Metadata
+              tests/convert/Commands/Sketch
+    env:
+      CLI_TARGETS: ${{ matrix.targets }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+        with:
+          version: "0.12.5"
+          enable-cache: true
+          cache-dependency-glob: uv.lock
+
+      - name: Synchronize the locked environment
+        run: uv sync --frozen --no-default-groups --extra dev --python 3.14
+
+      - name: Verify packaged native schema provenance
+        run: uv run --no-sync --python 3.14 python re/Fusion/Reconstruction/EntityGraph/PromoteCatalog.py --check
+
+      - name: Exercise CLI conversion and inspection through process boundaries
+        run: |
+          read -r -a TestTargets <<< "$CLI_TARGETS"
+          uv run --no-sync --python 3.14 pytest \
+            -p no:cacheprovider \
+            --numprocesses logical --dist load --maxschedchunk 1 \
+            "${TestTargets[@]}"
+
+  cli-compatibility:
+    name: CLI conversion and inspection compatibility
+    if: always()
+    needs: cli-process
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      CLI_RESULT: ${{ needs.cli-process.result }}
+    steps:
+      - name: Require every CLI process group to pass
+        run: test "$CLI_RESULT" = success
+
   archive-compatibility:
     name: Fusion archive compatibility
     runs-on: ubuntu-24.04

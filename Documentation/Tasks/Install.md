@@ -35,7 +35,7 @@ The lockfile can contain development dependencies with additional platform requi
 3. Create an isolated worktree for the task.
 
    ```sh
-   git worktree add ../KitIntegration -b docs/integration origin/main
+   git worktree add ../KitIntegration -b feat/integration origin/main
    ```
 
 4. Open the worktree.
@@ -76,9 +76,10 @@ The installed Python packages are `convert` and `interchange`.
 Use `from convert import convert` for the public conversion function.
 Do not infer an import name from the distribution name.
 
-The `kit` entry-point group in package metadata is not a console command declaration.
-This guide uses the Python API.
-It does not claim that `kit convert` is an installed executable.
+The separate console-script declaration installs the `kit` executable.
+The `kit` plugin entry-point group continues to expose the SDK function.
+Run `uv run --frozen kit --help` for available commands.
+See [the CLI procedure](CommandLine.md) for conversion and developer decoding.
 
 ## If the task fails
 
