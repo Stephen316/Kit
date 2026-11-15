@@ -330,6 +330,8 @@ The [A04c face producer census](../../Changes/Research/Readers/SolidWorks/SolidW
 
 The [A08b grouped settlement change](../../Changes/Research/Supervisor/GroupedAdaptiveSettlement.md) excludes a physical worker group from adaptive capacity decisions when the controller fences every member's completion. The [deadline-pair event](../../Changes/Research/Supervisor/AdaptiveDeadlineEvidence.md) records both accepted physical sessions and their elapsed interval. Hosted verification is pending.
 
+The [kernel OOM estimate](../../Changes/Research/Supervisor/KernelOomMemoryEstimate.md) doubles the persisted reservation floor for the affected kind, tool version and group size after one accepted, verified Linux kernel OOM. Successful measurements retain their own history. The hosted cgroup witness now checks the new reservation and independent ordinary `SIGKILL` control.
+
 The [A08e archive verifier](../../Changes/Research/Workers/SolidWorks/OfflineRearmEvidence.md) checked 94 retained objects across four licensed Windows runs after their listeners exited. The P04 run at `5770f1b3` also proved replacement-supervisor recovery from separately pinned event and spool records.
 
 The [Windows owner fixture](../../Gotchas/Research/Workers/WindowsOwnerFixtureCollector.md) now uses an isolated Python collector to supply its exit code. At `786736c55`, the disposable PowerShell collector timed out before one recovery case reached the missing-ticket check. The other 89 cases passed. Hosted verification of the fixture change is pending.

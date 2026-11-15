@@ -5,7 +5,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 
-# embedded Windows process identity must work when the interpreter skips site packages
+# embedded windows process identity must work when the interpreter skips site packages
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinStart() -> None:
     SourceFile = (
