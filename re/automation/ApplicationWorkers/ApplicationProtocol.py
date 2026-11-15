@@ -16,6 +16,7 @@ MAX_BYTES = 256 * 1024 * 1024
 MAX_SPOOL_BYTES = 520 * 1024 * 1024
 MAX_SPOOL_FILES = 32
 ACKNOWLEDGEMENT = "acceptance-journal.json"
+CANCEL_REASON = "requesting worker stopped before application completion"
 FUSION_PROVIDER = "autodesk.fusion.addin"
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
@@ -321,7 +322,7 @@ class QueueClient:
     def close(self):
         try:
             if self.pending:
-                self.cancel("requesting worker stopped before application completion")
+                self.cancel(CANCEL_REASON)
         finally:
             self.lock.close()
 
@@ -377,7 +378,14 @@ class QueueClient:
                     raise WaitingApplication(str(response.get("reason", "application is unavailable")))
                 return response
             time.sleep(0.05)
-        self.cancel("application challenge or operation exceeded its request deadline")
+        try:
+            self.cancel(CANCEL_REASON)
+        except (OSError, ValueError) as error:
+            self.pending = False
+            raise WaitingApplication(
+                "application reached its deadline and cancellation evidence could not be fully recorded"
+            ) from error
+        self.pending = False
         raise ApplicationTimeout(request)
 
 

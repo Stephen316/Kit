@@ -4,6 +4,7 @@ When a dispatched P04 request runs past its queue deadline, the worker retains i
 The record identifies the installation, source revision, resource roster, job, session, generation, input fingerprint and attempt.
 A03 still settles that result through its normal lease and owner checks as `waiting_application`.
 Other application waits, including refusal before a request was dispatched, carry no timeout claim.
+The [cancellation publication](../SingleTimeoutCancellation.md) completes before the worker emits a linked timeout.
 
 The listener keeps the exact timed-out request in `native-timeout-request.json` in the failed spool.
 The `native-recovery.json` version 2 record ties its disposition to that request and to the listener's Windows process identity.
