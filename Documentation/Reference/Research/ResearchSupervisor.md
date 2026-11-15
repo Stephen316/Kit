@@ -162,6 +162,10 @@ Automatic restart and downstream input binding remain open.
 `finish.json` becomes the controller result for every finished attempt.
 After the controller accepts it, the supervisor removes the session directory and the claim file.
 
+POSIX startup now blocks the configured worker until `session.json` and its directory are synced and current leases pass renewal.
+A private pipe makes an unreleased bootstrap exit if the supervisor dies; the process identity remains stable across worker execution.
+See the [launch gate change](../../Changes/Research/Supervisor/PosixWorkerLaunchGate.md) for the 30-second bootstrap bound and pending process evidence.
+
 Each output stream retains its first `max_log_bytes` bytes.
 The supervisor continues draining additional output so a full log does not block the runner.
 Receipts record each stream's limit, observed bytes, retained bytes and dropped bytes.
