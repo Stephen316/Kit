@@ -1000,7 +1000,7 @@ def CheckSwPart(Variant: str) -> None:
     (Stored,) = Document.brep.bodies
     assert Stored.design_body_id == BodyValue.id
     Summary = BodyValue.topology
-    assert Summary is not None and Summary.bounding_box is not None
+    assert Summary.bounding_box is not None
     Count = 10 if Variant == "termination-through-all" else 11
     assert (Summary.solid_count, Summary.shell_count, Summary.face_count) == (
         1,
@@ -1055,10 +1055,7 @@ def AssertSwMass(
     if Variant == "plane-yz":
         Centre = Centre[2], Centre[0], Centre[1]
     (BodyValue,) = Document.bodies
-    assert (
-        BodyValue.topology is not None
-        and BodyValue.topology.volume == Pytest.approx(Volume)
-    )
+    assert BodyValue.topology.volume == Pytest.approx(Volume)
     assert BodyValue.attributes["solidworks.body_centroid_mm"] == Pytest.approx(Centre)
 
 
@@ -1111,6 +1108,7 @@ def AssertCutAxis(RuleValue: SketchRelation, SketchValue: Sketch, Config: bytes)
     assert RuleSpan.record_kind == "sketch-axis-relation"
     (NativeId,) = UnpackFrom("<i", Config, LineSpan.offset + 6)
     (TypeCode,) = UnpackFrom("<i", Config, RuleSpan.offset + 29)
+    assert isinstance(NativeId, int)
     assert NativeId == RuleValue.attributes["native_segment_id"]
     assert (
         TypeCode
