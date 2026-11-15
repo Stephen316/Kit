@@ -318,7 +318,7 @@ Start with one batch for each working day or for each 10–20 candidates.
 Use the pilot measurements to change that size.
 
 The A03 controller already supplies the `waiting_ci` state, fingerprint resumption and dependent invalidation.
-No batch artifact, batch command or stage 11 checker exists yet.
+The [paired discovery runner](../../Changes/Research/Controller/PairedDiscoveryReplay.md) implements stage 11 for P01, P03 and P04. The [pending CI roster](../../Changes/Research/Controller/PendingCiRoster.md) freezes parked attempts and their immutable evidence. Candidate-family coverage and controller release from terminal receipts remain open.
 
 
 ### Proposed fast local checks

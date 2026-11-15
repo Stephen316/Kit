@@ -358,7 +358,8 @@ def refusal_controls(rows, tolerance):
     }
 
 
-def report():
+def report(counterexamples=None):
+    first_error = len(counterexamples) if counterexamples is not None else 0
     snapshot = GitSnapshot(ROOT)
     data = snapshot.blob(REVISION, SPECIFICATION)
     require(
@@ -422,7 +423,19 @@ def report():
                     )
                 )
             except (KeyError, ValueError) as error:
-                raise ValueError(f"{kind}/{variant}: {error}") from error
+                if counterexamples is None:
+                    raise ValueError(f"{kind}/{variant}: {error}") from error
+                counterexamples.append({
+                    "recipe": kind,
+                    "variant": variant,
+                    "sources": {
+                        "fusion": left_assets[variant]["sha256"],
+                        "solidworks": right_assets[variant]["sha256"],
+                    },
+                    "reason": str(error)[:2048],
+                })
+    if counterexamples is not None and len(counterexamples) > first_error:
+        return {"pairs": rows}
     require(
         Counter(row["recipe_id"] for row in rows) == {"P01": 6, "P03": 8},
         "unexpected paired discovery roster",

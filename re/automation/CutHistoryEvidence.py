@@ -274,7 +274,8 @@ def receipt_document(git, entry):
     return git.parse_document(contents, path)
 
 
-def archive_report(context, historical):
+def archive_report(context, historical, counterexamples=None):
+    first_error = len(counterexamples) if counterexamples is not None else 0
     git, spec, fusion, solidworks = context
     bodies = (
         {row["variant"]: row for row in historical["pairs"]} if historical else None
@@ -303,7 +304,18 @@ def archive_report(context, historical):
                 "solidworks_original_reopen": measured_sw,
             }
         )
-        docs = read_pair(git, rows, measured)
+        try:
+            docs = read_pair(git, rows, measured)
+        except (KeyError, ValueError) as error:
+            if counterexamples is None:
+                raise
+            counterexamples.append({
+                "recipe": "P04",
+                "variant": variant,
+                "sources": {name: row["sha256"] for name, row in rows.items()},
+                "reason": str(error)[:2048],
+            })
+            continue
         if historical is None and variant == "baseline-a":
             ambiguous = outcome(
                 ambiguous_boundary, docs["fusion"], tolerances["length_mm_absolute"]
@@ -328,6 +340,8 @@ def archive_report(context, historical):
                 tolerances,
             ),
         }
+    if counterexamples is not None and len(counterexamples) > first_error:
+        return {"pairs": pairs, "historical_body_evidence": historical}
     result = {
         "scope": "P04 discovery archives and independent historical measurements",
         "capture_receipts": {
@@ -357,9 +371,13 @@ def archive_report(context, historical):
     return result
 
 
-def report(directory, receipt_digest):
+def report(directory, receipt_digest, counterexamples=None):
     context = captures()
-    return archive_report(context, compare_captures(context, directory, receipt_digest))
+    return archive_report(
+        context,
+        compare_captures(context, directory, receipt_digest),
+        counterexamples,
+    )
 
 
 if __name__ == "__main__":

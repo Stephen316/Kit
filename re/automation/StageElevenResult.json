@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "required": [
+    "schema",
+    "scope",
+    "candidate_revision",
+    "native_qualified",
+    "fresh_native_fusion",
+    "evidence_sha256",
+    "saves",
+    "counterexamples"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "type": "integer", "const": 1 },
+    "scope": { "type": "string", "const": "p01-p03-p04-paired-reader-discovery" },
+    "candidate_revision": { "type": "string", "minLength": 40, "maxLength": 40 },
+    "native_qualified": { "type": "boolean", "const": false },
+    "fresh_native_fusion": { "type": "string", "const": "unverified" },
+    "evidence_sha256": { "type": "object" },
+    "saves": { "type": "object" },
+    "counterexamples": { "type": "array" }
+  }
+}
