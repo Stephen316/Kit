@@ -12,6 +12,7 @@ class AcceptanceHost:
 
     # a dedicated result schema prevents fixture output from bypassing normal supervisor intake
     def __init__(self, RootPath: FilePath, ModeValue: str = "echo") -> None:
+        super().__init__()
         self.Dispatch = DispatchHost(RootPath)
         self.Supervisor = SessionHost(
             RootPath, {"application": 1}, {"fixture.capture": "application"}
