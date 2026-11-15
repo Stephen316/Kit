@@ -261,7 +261,7 @@ def OpenCutArchive(Variant: str) -> CadDocument:
 
 
 # source coordinates must vary with the saved chart while the historical body remains scoped
-def CheckBodyChart(Variant: str, Support: Selection) -> None:
+def AssertBodyChart(Variant: str, Support: Selection) -> None:
     Attributes = Support.attributes
     Expected = {
         "plane-yz": (5, 196, 25480),
@@ -291,7 +291,7 @@ def CheckBodyChart(Variant: str, Support: Selection) -> None:
 
 
 # native ring ordinals must report original stored occurrences outside the view namespace
-def CheckFaceChart(Variant: str, Support: Selection) -> None:
+def AssertFaceChart(Variant: str, Support: Selection) -> None:
     Expected = {
         "plane-yz": (
             194,
@@ -451,8 +451,8 @@ def CheckCutSupport(Variant: str) -> None:
     assert Support.attributes["fusion.edge_recipe_object_ids"] == tuple(
         range(FirstEdge, FirstEdge + 16, 4)
     )
-    CheckBodyChart(Variant, Support)
-    CheckFaceChart(Variant, Support)
+    AssertBodyChart(Variant, Support)
+    AssertFaceChart(Variant, Support)
     assert "fusion.native_state" not in Document.metadata
 
 
