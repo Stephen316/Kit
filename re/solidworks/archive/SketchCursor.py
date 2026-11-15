@@ -2,6 +2,7 @@
 
 import math as Math
 import struct as Struct
+from types import SimpleNamespace
 
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
@@ -22,6 +23,29 @@ KEmptyDimensionComponent = (0,) * 10 + (-1,) * 4 + (0,) * 5 + (KGeneration,)
 
 # inline members and their nested objects must share the restored archive map
 class SketchCursor:
+
+    # only a just-allocated inline sketch may take over the enclosing archive map
+    @classmethod
+    def FromEnclosing(ClassValue, Parent, Offset, ObjectIndex):
+        TagValue = ReadTag(Parent.blob, Offset)
+        Require(
+            TagValue.kind in (KDefinitionKind, KClassRefKind),
+            True,
+            "inline sketch allocation",
+        )
+        Require(Parent.position, Offset + TagValue.size, "inline sketch payload start")
+        Require(ObjectIndex, Parent.next_index - 1, "latest inline sketch allocation")
+        Require(Parent.objects.get(ObjectIndex), "sgSketch", "inline sketch object type")
+        return ClassValue(
+            Parent.blob,
+            SimpleNamespace(
+                offset=Offset,
+                Counter=Parent.next_index,
+                Classes=Parent.classes,
+                Objects=Parent.objects,
+            ),
+            None,
+        )
 
     # each sketch begins with the strictly allocated map from its enclosing part archive
     def __init__(SelfData, BlobValue, Start, ReadSketchObject):
@@ -95,6 +119,16 @@ class SketchCursor:
             True,
             f"typed archive pointer at {Offset} ({NameValue})",
         )
+        if TagValue.kind in (KDefinitionKind, KClassRefKind):
+            Width = 2 if TagValue.kind == KDefinitionKind else 1
+            Require(
+                all(
+                    Index not in SelfData.Classes and Index not in SelfData.Objects
+                    for Index in range(Counter, Counter + Width)
+                ),
+                True,
+                f"unused map slots at {Offset}",
+            )
         SelfData.Offset += TagValue.size
         ObjectIndex = TagValue.index
         if TagValue.kind == KDefinitionKind:

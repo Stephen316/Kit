@@ -200,7 +200,7 @@ def read_origin_entry(cursor):
         KClassRefKind if "sgSketch" in cursor.classes.values() else KDefinitionKind
     )
     sketch = cursor.pointer(sketch_kind, "sgSketch")
-    geometry = read_origin_geometry(cursor, sketch_offset)
+    geometry = read_origin_geometry(cursor, sketch_offset, sketch)
     presentation = read_presentation(cursor)
     tail = read_feature_tail(cursor)
     return {
@@ -219,20 +219,12 @@ def read_origin_entry(cursor):
 
 
 # the origin relation refers to a point handle within the sole origin point
-def read_origin_geometry(cursor, sketch_offset):
-    from types import SimpleNamespace
-
+def read_origin_geometry(cursor, sketch_offset, sketch_object):
     from SketchCursor import SketchCursor
     from SketchGeom import ReadDims, ReadPointItem
     from SketchRoot import Require
 
-    entry = SimpleNamespace(
-        offset=sketch_offset,
-        Counter=cursor.next_index,
-        Classes=cursor.classes,
-        Objects=cursor.objects,
-    )
-    sketch = SketchCursor(cursor.blob, entry, None)
+    sketch = SketchCursor.FromEnclosing(cursor, sketch_offset, sketch_object)
     body = sketch.Offset
     Require(sketch.ReadCount(), 1, "one origin point")
     _, _, point = ReadPointItem(sketch)

@@ -1,7 +1,5 @@
 """Follow ordinary resolved rectangles through their saved principal support."""
 
-from types import SimpleNamespace
-
 from ProfileSupport import read_chain
 from RectangleTail import read_principal_profile_support, read_rectangle_trim
 from ResolvedPrelude import read_profile_body_prefix, read_resolved_prelude
@@ -27,16 +25,7 @@ def read_rectangle_entry(
     name, feature_id, _ = read_profile_body_prefix(cursor, (0x40000000, 0xC0000000))
     offset = cursor.position
     sketch_object = cursor.pointer(KClassRefKind, "sgSketch")
-    archive = SketchCursor(
-        blob,
-        SimpleNamespace(
-            offset=offset,
-            Counter=cursor.next_index,
-            Classes=cursor.classes,
-            Objects=cursor.objects,
-        ),
-        None,
-    )
+    archive = SketchCursor.FromEnclosing(cursor, offset, sketch_object)
     geometry = ReadGeometry(archive, sketch_object)
     display = []
     archive.PointerEvents = display
