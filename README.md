@@ -36,6 +36,22 @@ Check the format reference and result for each input.
 SOLIDWORKS output is unavailable until a generative serializer replaces the removed recorded-payload writer.
 The [Fusion public adapter](Documentation/Changes/Fusion/Adapter/FusionPublicAdapter.md) reads and writes qualified parameter, circle, rectangle, cylinder, cuboid, and frustum documents. Arbitrary feature graphs remain unsupported; `strict=False` explicitly selects the earlier partial reader.
 
+## Command line
+
+Use a release containing the CLI, or install from a source checkout with `uv tool install .`.
+Supply a real input file and an unused destination before running:
+
+```sh
+kit formats
+kit convert model.f3d model.json
+kit decode model.f3d --layer container
+```
+
+The CLI uses strict reading and applies the output policy.
+It does not establish complete format coverage or target-application acceptance.
+See [command-line usage](Documentation/Tasks/CommandLine.md) for setup, developer views, and limits.
+Use [deterministic research commands](Documentation/Tasks/ResearchCommandLine.md) with PR #94's checkout for pinned decoding and evidence receipts.
+
 ## Conversion example
 
 Call `convert(source, destination)` with the input and output paths.

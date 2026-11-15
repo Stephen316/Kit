@@ -99,10 +99,13 @@ def GetCapValue(CapData: Capability) -> str:
 def GetWriteOptions(OptionsData: WriteOptions) -> tuple[WriteOptions, bool, bool]:
     AllowCarrier = OptionsData.OptionValues.get("allow_carrier", False)
     NeedSelfContained = OptionsData.OptionValues.get("require_self_contained", True)
+    NeedNative = OptionsData.OptionValues.get("require_native_transfers", False)
     if not isinstance(AllowCarrier, bool):
         raise TypeError("allow_carrier must be a boolean")
     if not isinstance(NeedSelfContained, bool):
         raise TypeError("require_self_contained must be a boolean")
+    if not isinstance(NeedNative, bool):
+        raise TypeError("require_native_transfers must be a boolean")
     OptionValues = dict(OptionsData.OptionValues)
     OptionValues["allow_carrier"] = AllowCarrier
     OptionValues["require_self_contained"] = NeedSelfContained
@@ -172,6 +175,11 @@ def RunCheckedMut(
     CheckedResult = NormalizeUsable(
         ReplaceValue(ResultData, transfers=TransferValues, dropped=frozenset())
     )
+    if OptionsData.OptionValues.get("require_native_transfers", False) is True and any(
+        TransferData.TransferModeData is not TransferMode.KNative
+        for TransferData in CheckedResult.Transfers
+    ):
+        raise UsabilityError(AdapterData.info.FormatId, CheckedResult)
     if NeedSelfContained and CheckedResult.Requirements:
         raise UsabilityError(AdapterData.info.FormatId, CheckedResult)
     if not AllowCarrier and (

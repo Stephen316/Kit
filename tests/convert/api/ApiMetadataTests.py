@@ -5,16 +5,27 @@ import tomllib as TomlLib
 
 from convert import convert as ConvertLegacy
 from convert.api.ApiContext import KAdapterRegistry
+from KitCli.MainEntry import MainEntry
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
-# one sdk entry point prevents competing command surfaces from drifting apart
+# installed command discovery must preserve the existing plugin entry point alongside the executable
 def CheckEntryPoint() -> None:
     EntryPoints = GetPackage("unicad-kit").entry_points
     assert [
         (ItemData.group, ItemData.name, ItemData.value) for ItemData in EntryPoints
-    ] == [("kit", "convert", "convert:convert")]
-    assert next(iter(EntryPoints)).load() is ConvertLegacy
+    ] == [
+        ("console_scripts", "kit", "KitCli.MainEntry:MainEntry"),
+        ("kit", "convert", "convert:convert"),
+    ]
+    assert (
+        next(Value for Value in EntryPoints if Value.group == "kit").load()
+        is ConvertLegacy
+    )
+    assert (
+        next(Value for Value in EntryPoints if Value.group == "console_scripts").load()
+        is MainEntry
+    )
 
 
 # the metadata contract needs boundary coverage so independent codecs retain consistent data contracts
@@ -25,7 +36,7 @@ def CheckMetadata() -> None:
     ProjectData = MetadataData["project"]
     assert ProjectData["name"] == "unicad-kit"
     assert ProjectData["entry-points"] == {"kit": {"convert": "convert:convert"}}
-    assert "scripts" not in ProjectData
+    assert ProjectData["scripts"] == {"kit": "KitCli.MainEntry:MainEntry"}
     assert "gui-scripts" not in ProjectData
     assert ProjectData["license"] == "MIT"
     assert ProjectData["license-files"] == [
@@ -41,7 +52,13 @@ def CheckMetadata() -> None:
         "/README.md",
         "/pyproject.toml",
         "/src",
+        "/Cli",
         "/uv.lock",
+    ]
+    assert MetadataData["tool"]["hatch"]["build"]["targets"]["wheel"]["packages"] == [
+        "src/interchange",
+        "src/convert",
+        "Cli/KitCli",
     ]
     ReadmeText = (KRootPath / ProjectData["readme"]).read_text(encoding="utf-8")
     for SuffixText in (".SLDPRT", ".SLDASM", ".FCStd", ".CATPart", ".CATProduct"):

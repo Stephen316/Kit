@@ -40,11 +40,14 @@ dev = [
     "typing-extensions>=4.12",
 ]
 
+[project.scripts]
+kit = "KitCli.MainEntry:MainEntry"
+
 [project.entry-points."kit"]
 convert = "convert:convert"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/interchange", "src/convert"]
+packages = ["src/interchange", "src/convert", "Cli/KitCli"]
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -52,6 +55,7 @@ include = [
     "/README.md",
     "/pyproject.toml",
     "/src",
+    "/Cli",
     "/uv.lock",
 ]
 
@@ -92,7 +96,7 @@ dev = [
 [tool.ruff]
 target-version = "py311"
 line-length = 120
-src = ["src", "tests", "tools"]
+src = ["src", "Cli", "tests", "tools"]
 exclude = [".venv", "examples", "modules", "re", ".github/scripts"]
 force-exclude = true
 
@@ -120,15 +124,16 @@ enable_error_code = [
     "unused-awaitable",
 ]
 explicit_package_bases = true
-files = ["src", "tests", "tools"]
+files = ["src", "Cli", "tests", "tools"]
 exclude = '^(\.venv|examples|modules|re)/'
-mypy_path = ["src", "typings", ".", "re/tooling/ghidra/Generation"]
+mypy_path = ["src", "Cli", "typings", ".", "re/tooling/ghidra/Generation"]
 warn_unused_configs = true
 show_error_codes = true
 pretty = true
 
 [tool.pyright]
-include = ["src", "tests", "tools"]
+extraPaths = ["src", "Cli"]
+include = ["src", "Cli", "tests", "tools"]
 exclude = [".venv", "examples", "modules", "re", "tests/oracle"]
 ignore = ["re"]
 typeCheckingMode = "strict"

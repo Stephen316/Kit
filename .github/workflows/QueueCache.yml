@@ -40,13 +40,14 @@ jobs:
       - name: Compile repository bytecode with source hashes
         run: >-
           uv run --no-sync --python 3.14 python -m compileall -q -j 0
-          --invalidation-mode checked-hash src tools tests
+          --invalidation-mode checked-hash src Cli tools tests
 
       - name: Save the compiled repository bytecode
         uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             src/**/__pycache__
+            Cli/**/__pycache__
             tools/**/__pycache__
             tests/**/__pycache__
           key: queue-bytecode-${{ github.sha }}

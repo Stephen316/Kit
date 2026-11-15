@@ -62,6 +62,8 @@ def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
         ("queue-missing", "success", "Merge queue acceptance"),
         ("quality-missing", "success", "Code Quality"),
         ("quality-empty", "success", "Code Quality analysis"),
+        ("queue", "pending", "CLI process compatibility (Core)"),
+        ("queue", "pending", "CLI process compatibility (Qualification)"),
     ),
 )
 def TestPendingGate(CaseMode: str, Verdict: str, PendingCheck: str) -> None:

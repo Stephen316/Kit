@@ -1,6 +1,7 @@
 # isolated execution proves the wheel needs no cad application or external runtime hook
 KIsolatedRuntime = r"""
 import io
+from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 import sys
 from zipfile import ZipFile
@@ -85,9 +86,20 @@ from convert.formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWi
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 from convert.formats.Fusion.SourceProof.InspectSource import ReadSourceProof
 from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveMeta import ReadActiveMeta
+from convert.Commands.MainEntry import MainEntry as SdkEntry
+from KitCli.MainEntry import MainEntry as CliEntry
 
 root = Path(sys.argv[2])
 output = Path(sys.argv[3])
+sys.argv[:] = ["kit", "formats", "--json"]
+with redirect_stdout(io.StringIO()):
+    assert CliEntry() == 0
+assert "importlib.metadata" not in sys.modules
+sys.argv[:] = ["convert", "research", "--root", str(output), "controller", "--help"]
+with redirect_stderr(io.StringIO()) as error_stream:
+    assert SdkEntry() == 1
+assert "Run research with kit or python -m KitCli" in error_stream.getvalue()
+assert "KitCli.ResearchSignals" not in sys.modules
 adapters = {adapter.format_id for adapter in available_adapters()}
 assert adapters == {
     "catia.v5",

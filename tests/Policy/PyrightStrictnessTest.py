@@ -49,7 +49,7 @@ def TestStrictMode() -> None:
 def TestConfigScope() -> None:
     Config = LoadPyConfig()
     IncludeValue = CastValue(list[str], Config["include"])
-    assert set(IncludeValue) == {"src", "tests", "tools"}
+    assert set(IncludeValue) == {"src", "Cli", "tests", "tools"}
     assert Config["pythonVersion"] == "3.11"
 
 
@@ -73,7 +73,7 @@ KPyrightProbeText = KHashMarker + " pyright" + ":"
 # suppression scans keep diagnostics honest by banning inline escapes
 def TestBansEscapes() -> None:
     Offenders: list[str] = []
-    for AreaName in ("src", "tests", "tools"):
+    for AreaName in ("src", "Cli", "tests", "tools"):
         for PathInfo in (KRootPath / AreaName).rglob("*.py"):
             FileText = PathInfo.read_text(encoding="utf-8", errors="ignore")
             if KIgnoreProbeText in FileText or KPyrightProbeText in FileText:
