@@ -40,3 +40,5 @@ tests were not run; remote execution is pending for this revision. This refusal
 check does not qualify native geometry, constraints, field maps or CAD output.
 
 See [the field-retention gotcha](../../../Gotchas/Conversion/NativeSketchFieldRefusal.md).
+
+The first remote matrix at `ef431a17` exposed fixture assumptions: cuboids use `DistanceExtrude`, JSON strict mode does not bypass model validation, and stream writers require the canonical `interchange.json` format identifier. The repaired fixtures retain structural read rejection for malformed persisted graphs and separately exercise semantic refusal with validation disabled. See [JSON construction](../../../Gotchas/Conversion/JsonReaderAlwaysValidates.md) and [the cuboid definition](../../../Gotchas/Conversion/Fusion/Api/CuboidDefinitionType.md). Production guards remain unchanged by these fixture repairs.
