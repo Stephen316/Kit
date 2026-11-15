@@ -47,7 +47,7 @@ Only the recognized sketch child slot establishes ownership. The same resolved r
 
 The cross-stream link is established for these P04 discovery files. Production decoding needs a versioned walk of the profile sketch slot and the shared archive object map. Trace or parse object allocations to identify each `sgSketch` span, including inline objects and class references. Preserve geometry and dimension provenance in `Config-0` and owner-reference provenance in `ResolvedFeatures`. The observed fixture offsets and object indices can serve as regression evidence.
 
-The matching loader confirms the map handoff to the resolved-feature read. A guarded configuration walk reaches the unit-component record in all eleven captures and stops at its first reference to incoming object slot 2. [Archive map and loader walk](P04ArchiveWalk.md)
+The matching loader confirms the map handoff to the resolved-feature read. The guarded configuration walk reaches the unit component in all eleven captures. Licensed baseline A and YZ traces identify its first reference as the loaded part at slot 2 and establish the map seed for the next offline walk. [Archive map and loader walk](P04ArchiveWalk.md)
 
 The resolved stream identifies `CutSketch` as face-supported. [Licensed native readback](../../../Documentation/Changes/Research/Workers/SolidWorksCutFaceReadback.md) independently identifies the same persistent boss-face support before and after rebuild in all eleven files and records the support transforms. Mapping that face occurrence to its archive encoding remains open.
 
