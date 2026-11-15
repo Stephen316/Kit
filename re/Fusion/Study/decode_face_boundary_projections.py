@@ -4,6 +4,7 @@ Each output naming recipe matches exactly one explicit source-context recipe by
 full stored recipe bytes. Coordinates and entry ordinals never choose sources.
 """
 import struct
+from functools import partial
 
 from decode_brep_recipes import RECIPE_GUID
 from decode_selection import native_proxy_references
@@ -15,7 +16,8 @@ from decode_sketch_projections import CONTROLLER_GUID, ENTRY_GUID, decode_sketch
 SCOPE = 'Captured family1 face-boundary projections: explicit four-output naming/cache pairs, unique stored recipe correspondence, historical body provenance and cached sketch endpoint cycle; persistent face/edge topology unresolved'
 
 
-def decode_face_boundary_projection_family(data, records, features, controller, chunk, primary, naming_leaf, cached_output):
+def decode_face_boundary_projection_family(data, records, features, controller, chunk, primary, naming_leaf, cached_output,
+                                          *, marked_face_descriptors=()):
     """Optional controller_family_decoder callback for decode_sketch_projections."""
     if (controller.class_guid != CONTROLLER_GUID or len(chunk) != 105
             or chunk[:6] != bytes.fromhex('000001000001')
@@ -40,7 +42,8 @@ def decode_face_boundary_projection_family(data, records, features, controller, 
     if len(descriptor) != 309 or reference(descriptor, 298) != owner:
         raise ValueError('Face boundary source descriptor owner/extent disagrees')
     source_summary = decode_selection_context_variants(data, records,
-        prior_summary={'unresolved': [{'descriptor_object_id': descriptor_id}]})
+        prior_summary={'unresolved': [{'descriptor_object_id': descriptor_id}]},
+        marked_face_descriptors=marked_face_descriptors)
     if len(source_summary['contexts']) != 1 or source_summary['unresolved']:
         raise ValueError('Face boundary source context routes unresolved')
     face = source_summary['contexts'][0]
@@ -115,7 +118,7 @@ def decode_face_boundary_projection_family(data, records, features, controller, 
     return relationships
 
 
-def decode_face_boundary_projections(data, records, features):
+def decode_face_boundary_projections(data, records, features, *, marked_face_descriptors=()):
     """Additional relationships/unresolved/scope/groups; no feature mutation."""
     candidates = set()
     for record in records:
@@ -123,8 +126,8 @@ def decode_face_boundary_projections(data, records, features):
             payload = data[record.body:record.end]
             if len(payload) >= 30 and struct.unpack_from('<I', payload, 26)[0] == 1:
                 candidates.add(record.object_id)
-    parsed = decode_sketch_projections(data, records, features,
-        controller_family_decoder=decode_face_boundary_projection_family)
+    family = partial(decode_face_boundary_projection_family, marked_face_descriptors=marked_face_descriptors)
+    parsed = decode_sketch_projections(data, records, features, controller_family_decoder=family)
     relationships = [item for item in parsed['relationships'] if item.get('controller_family') == 1]
     groups = {}
     for item in relationships:

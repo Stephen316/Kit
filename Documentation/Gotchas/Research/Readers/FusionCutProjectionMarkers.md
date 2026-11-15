@@ -1,0 +1,3 @@
+# Fusion P04 projection selectors preserve distinct stored markers
+
+The P04 four-context face descriptor uses `04 01 00 00` at both trailer-marker positions. The ordinary boundary context parser expects `01 01 00 00`. The pinned P04 report admits the exact pair through the independently verified descriptor identity. Its named 116-byte line-edge recipe ends in signed `−1`, where the existing linear Pipe form uses zero. Retain the original bytes and use the appropriate bounded parser option before joining name operands and incidence. [P04 saved projected edges](../../../Changes/Research/Readers/FusionCutProjectionEvidence.md)

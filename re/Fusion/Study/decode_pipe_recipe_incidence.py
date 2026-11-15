@@ -15,11 +15,17 @@ from decode_recipe_components import decode_counted_recipe
 SCOPE = 'Observed Pipe two-named-face selector and linear endpoint face operands resolve one stored initial-geometry edge through reciprocal topology; cached source geometry/closure only, incomplete native operation and full Pipe tools unresolved'
 
 
-def decode_pipe_edge_recipe_operands(recipe):
-    """Decode observed selector operands; retain unresolved circular tail exactly."""
+def decode_pipe_edge_recipe_operands(recipe, *, face_boundary_tail=False):
+    """Decode observed selector operands; retain unresolved circular tail exactly.
+
+    A qualified face-boundary caller can admit the distinct signed minus-one
+    trailer for the 116-byte linear operand frame.
+    """
     payload = bytes.fromhex(recipe['payload_hex'])
     if recipe['payload_kind'] != 'edge_recipe_data' or len(payload) not in (116, 120):
         raise ValueError('Only captured116/120-byte Pipe edge operation payloads supported')
+    if face_boundary_tail and len(payload) != 116:
+        raise ValueError('Face-boundary marker requires the observed linear edge layout')
     direct, secondary, count = struct.unpack_from('<iiI', payload)
     names = recipe['name_table']
     if secondary != -1 or count != 2 or direct < -1 or direct >= len(names):
@@ -54,10 +60,11 @@ def decode_pipe_edge_recipe_operands(recipe):
             vertices.append({'operand_ordinal': ordinal, 'stored_direct_vertex_name_index': -1,
                              'face_name_references': refs, 'stored_tail_fields_int32': [0, 0],
                              'subrecipe_bytes_hex': payload[cursor:cursor+40].hex()})
-        if payload[112:] != bytes(4) or used != set(range(len(names))):
+        tail = -1 if face_boundary_tail else 0
+        if payload[112:] != struct.pack('<i', tail) or used != set(range(len(names))):
             raise ValueError('Unobserved linear Pipe operation trailer/name coverage')
         result.update(operand_layout='TwoFaceEdgeWithTwoThreeFaceVertexOperands',
-                      vertex_face_operands=vertices, stored_edge_tail_field_int32=0)
+                      vertex_face_operands=vertices, stored_edge_tail_field_int32=tail)
     else:
         if direct < 0 or len(names) != 3 or direct in used or struct.unpack_from('<i', payload, 28)[0] != 1:
             raise ValueError('Unobserved circular Pipe named-edge/tail framing')

@@ -18,11 +18,13 @@ EDGE_CONTEXT = '50AEE8B4-9456-4DD7-847D-6F6C909BBB9D'
 SCOPE = 'Explicit counted topology context lists, namespace joins, typed naming/progenitor recipe routes and reciprocal historical body provenance; geometry and persistent topology unresolved'
 
 
-def decode_selection_context_variants(data, records, body_selections=None, prior_summary=None):
+def decode_selection_context_variants(data, records, body_selections=None, prior_summary=None, *, marked_face_descriptors=()):
     """Additional contexts/unresolved/scope; merge successes by descriptor_object_id.
 
     Existing successful context dictionaries are deliberately left to the default
     reader. A supplied prior_summary avoids rescanning that reader.
+    An explicit marked_face_descriptors roster admits the captured four-context
+    marker variant for only those descriptor identities.
     """
     body_summary = body_selections if body_selections is not None else decode_body_selections(data, records)
     prior = prior_summary if prior_summary is not None else decode_selection_context_recipes(data, records, body_summary)
@@ -156,8 +158,10 @@ def decode_selection_context_variants(data, records, body_selections=None, prior
                 raise ValueError('Context variant historical anchor unresolved or ambiguous')
             anchor = matched[0]
             cursor += 15
-            if (payload[cursor+14:cursor+18] != b'\1\1\0\0'
-                    or payload[cursor+26:cursor+30] != b'\1\1\0\0'
+            marked = record.object_id in marked_face_descriptors
+            marker = b'\x04\1\0\0' if marked else b'\1\1\0\0'
+            if ((marked and count != 4) or payload[cursor+14:cursor+18] != marker
+                    or payload[cursor+26:cursor+30] != marker
                     or payload[cursor+41:cursor+44] != b'\1\0\0' or payload[cursor+55] != 0):
                 raise ValueError('Unobserved context variant trailer markers')
             owner = reference(payload, cursor+56)
