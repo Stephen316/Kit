@@ -66,9 +66,7 @@ import pytest as Pytest
         ),
     ),
 )
-def CheckArchive(
-    ScriptPath: str, Options: tuple[str, ...], ReportDigest: str
-) -> None:
+def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -> None:
     RepoPath = FilePath(__file__).resolve().parents[2]
     ResultInfo = Subprocess.run(
         [System.executable, "-B", ScriptPath, *Options],
