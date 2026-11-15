@@ -2,7 +2,7 @@
 
 Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command verifies the exact P04 receipt, native files and both decompressed stream hashes for baseline A and YZ. It replays the resolved entry and the two profile records from their separate checkpoints, then writes a JSON evidence report. The report SHA-256 is `2654df41089c9e43631a4b0faad0fc9be1735954a2e80034c894d54efd86776e`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
 
-The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949 in YZ. The resolved list load begins at byte 4 with next archive index 279. Both known `sgSketch` objects remain in the same map. The first four resolved bytes record 279. The short list count at byte 4 is 21, and the first class definition begins at byte 6. Replay uses the previously established `moNodeName_c` class at index 4. [Archive handoff](../../../../re/solidworks/records/P04ArchiveWalk.md)
+The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949 in YZ. The resolved list load begins at byte 4 with next archive index 279. The offline reader uses the completed Config-0 class and object map to start the list and to resolve the two separately anchored sketch references. The first four resolved bytes corroborate the counter at 279. The short list count at byte 4 is 21, and the first class definition begins at byte 6. [Offline map replay](../../../../re/solidworks/records/P04SketchResidence.md#offline-map-replay)
 
 | Record | Feature ID | Object slot | Entry | Reached cursor | Next map index |
 | --- | ---: | ---: | ---: | ---: | ---: |

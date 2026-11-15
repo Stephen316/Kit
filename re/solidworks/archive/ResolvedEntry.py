@@ -33,10 +33,6 @@ CONTROLS = {
 }
 
 
-# the shared part map gives the typed profile links their earlier sketch owners
-SKETCH_OBJECTS = {74: "sgSketch", 155: "sgSketch"}
-
-
 # both named record types inherit the guarded modern node concept and feature fields
 def read_named_feature(cursor):
     from convert.adapters.solidworks.container.Archive import ReadString
@@ -56,7 +52,7 @@ def read_named_feature(cursor):
 
 
 # folder suffixes are confined to the ordinary bodies at the start of these captures
-def read_list_prefix(blob):
+def read_list_prefix(blob, config_map):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
@@ -65,10 +61,15 @@ def read_list_prefix(blob):
     from SketchRoot import Require
 
     base, count = unpack_from("<iH", blob)
-    Require(
-        (base, count), (279, 21), "licensed handoff counter and short resolved list"
+    Require(base, config_map.NextIndex, "derived configuration map counter")
+    Require(count, 21, "witnessed short resolved list")
+    cursor = FaceCursor(
+        blob,
+        6,
+        config_map.NextIndex,
+        config_map.Classes.copy(),
+        config_map.Objects.copy(),
     )
-    cursor = FaceCursor(blob, 6, base, {4: "moNodeName_c"}, {})
     folders = []
     for type_name, suffix in (
         ("moCommentsFolder_c", (0, 0)),
@@ -100,7 +101,7 @@ def read_list_prefix(blob):
 
 
 # fixed witness anchors provide evidence before the full resolved list is available
-def read_profile(blob, start, reference, reference_class, target):
+def read_profile(blob, config_map, start, reference, reference_class, target):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
@@ -124,9 +125,17 @@ def read_profile(blob, start, reference, reference_class, target):
             "typed profile definition",
         )
     name_tag = ReadTag(blob, start + tag.size)
-    Require((name_tag.kind, name_tag.index), (KClassRefKind, 4), "typed profile name")
+    Require(
+        (name_tag.kind, config_map.Classes.get(name_tag.index)),
+        (KClassRefKind, "moNodeName_c"),
+        "typed profile name in the configuration map",
+    )
     cursor = FaceCursor(
-        blob[: reference + 2], start + tag.size + name_tag.size, 0, {}, SKETCH_OBJECTS
+        blob[: reference + 2],
+        start + tag.size + name_tag.size,
+        config_map.NextIndex,
+        config_map.Classes,
+        config_map.Objects,
     )
     name, feature_id = read_named_feature(cursor)
     cursor.read("<i")  # moModelFeature_c
@@ -149,6 +158,7 @@ def read_profile(blob, start, reference, reference_class, target):
 
 # stream hashes prevent earlier native checkpoints from being reused on changed files
 def read_capture(root, asset, control):
+    from ConfigMap import ReadConfigMap
     from convert.adapters.solidworks.container.Archive import ContainerMo
     from convert.adapters.solidworks.container.Container import SldprtArchive
     from SketchRoot import KGeneration, Require
@@ -170,11 +180,17 @@ def read_capture(root, asset, control):
     Require(
         sha256(resolved).hexdigest(), resolved_pin["sha256"], "pinned resolved stream"
     )
-    prefix = read_list_prefix(resolved)
+    config_map, _ = ReadConfigMap(config, KApplicationBuild)
+    prefix = read_list_prefix(resolved, config_map)
     profiles = [
-        read_profile(resolved, 5525, 5742, None, 155),
+        read_profile(resolved, config_map, 5525, 5742, None, 155),
         read_profile(
-            resolved, control["cut_start"], resolved_pin["sketch_reference"], 341, 74
+            resolved,
+            config_map,
+            control["cut_start"],
+            resolved_pin["sketch_reference"],
+            341,
+            74,
         ),
     ]
     Require(
