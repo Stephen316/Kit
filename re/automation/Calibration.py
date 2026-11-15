@@ -165,6 +165,32 @@ class Calibration:
         identity, forced = None, []
         started, offset, pending = time.monotonic(), 0, b""
         stop_at = None
+
+        def observe():
+            nonlocal samples, group_samples, minimum_memory, peak_groups
+            host = host_resources()
+            current_groups = sample_workers(process, directory)
+            if current_groups is not None:
+                group_samples += 1
+                peak_groups = max(peak_groups, current_groups)
+            observation = {
+                "at_monotonic_ns": time.monotonic_ns(),
+                "active_group_rss_bytes": current_groups,
+                **host,
+            }
+            samples += 1
+            observed_cpus.add(host["logical_cpus"])
+            minimum_memory = (
+                host["available_memory_bytes"]
+                if minimum_memory is None
+                else min(minimum_memory, host["available_memory_bytes"])
+            )
+            if len(observations) < 256:
+                observations.append(observation)
+            else:
+                observations[-1] = observation
+            return host
+
         try:
             process, identity = start_supervisor(
                 command,
@@ -186,27 +212,7 @@ class Calibration:
             while process.poll() is None:
                 for capture in logs.values():
                     capture.drain()
-                host = host_resources()
-                current_groups = sample_workers(process, directory)
-                if current_groups is not None:
-                    group_samples += 1
-                    peak_groups = max(peak_groups, current_groups)
-                observation = {
-                    "at_monotonic_ns": time.monotonic_ns(),
-                    "active_group_rss_bytes": current_groups,
-                    **host,
-                }
-                samples += 1
-                observed_cpus.add(host["logical_cpus"])
-                minimum_memory = (
-                    host["available_memory_bytes"]
-                    if minimum_memory is None
-                    else min(minimum_memory, host["available_memory_bytes"])
-                )
-                if len(observations) < 256:
-                    observations.append(observation)
-                else:
-                    observations[-1] = observation
+                host = observe()
                 if (
                     host["available_memory_bytes"]
                     < manifest["reserved_memory_mib"] * 1048576
@@ -252,6 +258,13 @@ class Calibration:
                     forced = force_stop(process, identity)
                     break
                 time.sleep(0.1)
+            if (
+                sys.platform == "win32"
+                and process.returncode == 0
+                and reason is None
+                and group_samples
+            ):
+                observe()
         except (OSError, ValueError, KeyError, TypeError) as error:
             reason = (
                 reason or f"measurement_or_supervision_error:{type(error).__name__}"
