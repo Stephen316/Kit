@@ -29,4 +29,5 @@ def ReadExtrude(
         Fields.Direction,
         ProfileId,
         ProxyId,
+        Fields.CacheId,
     )

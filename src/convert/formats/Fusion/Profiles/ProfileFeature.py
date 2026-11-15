@@ -81,6 +81,7 @@ def AttachProfile(
                 {
                     **StepValue.attributes,
                     "fusion.profile_descriptor_id": Descriptor.ObjectId,
+                    "fusion.profile_loop_object_id": LoopId,
                     **ProxyAttrs,
                     **Profile,
                 }

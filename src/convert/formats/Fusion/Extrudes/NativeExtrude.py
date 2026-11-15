@@ -13,3 +13,4 @@ class NativeExtrude:
     Direction: tuple[float, float, float]
     ProfileId: int
     ProxyId: int
+    CacheId: int
