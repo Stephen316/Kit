@@ -7,6 +7,7 @@ from tests.convert.formats.FusionCodec.Documents.Materials.MaterialFields import
 from tests.convert.formats.FusionCodec.Documents.Rectangle.RectFields import RectFields
 
 
+# the mat links contract needs boundary coverage so stored document relationships remain consistent
 def CheckMatLinks(Model: DocumentModel) -> None:
     assert len(Model.Materials) == 1
     Assets = {Asset.InstanceId: Asset for Asset in Model.Materials[0].Package.Assets}

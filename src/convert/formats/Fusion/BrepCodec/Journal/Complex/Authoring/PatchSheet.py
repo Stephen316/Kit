@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.PoleCount import (
 )
 
 
+# boundary curve needs an explicit validity boundary so nested spline and surface records retain their relationships
 def BoundaryCurve(Surface: BsSurface, SideIndex: int) -> BsCurve:
     CheckBsSurface(Surface)
     UCount = PoleCount(Surface.UDegree, Surface.UMultiplicity)
@@ -40,6 +41,7 @@ def BoundaryCurve(Surface: BsSurface, SideIndex: int) -> BsCurve:
     )
 
 
+# the line pcurve contract needs a shared interpretation so nested spline and surface records retain their relationships
 def LinePcurve(
     StartPoint: tuple[float, float],
     EndPoint: tuple[float, float],
@@ -49,6 +51,7 @@ def LinePcurve(
     return BsCurve(False, 1, 0, (Lower, Upper), (1, 1), 2, (StartPoint, EndPoint), ())
 
 
+# patch sheet needs an explicit validity boundary so nested spline and surface records retain their relationships
 def PatchSheet(Surface: BsSurface, EntityTag: int = -1) -> NurbsBody:
     CheckBsSurface(Surface)
     if Surface.UClosure or Surface.VClosure or Surface.USingular or Surface.VSingular:

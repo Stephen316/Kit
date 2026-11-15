@@ -5,6 +5,7 @@ from convert.formats.Fusion.MeshCodec.Streams.EmitCorners import EmitCorners
 from convert.formats.Fusion.MeshCodec.Streams.EmitTerminal import EmitTerminal
 
 
+# the payloads operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def MakePayloads(Value: ParaMesh) -> dict[str, bytes]:
     Registry = Value.Registry
     return {

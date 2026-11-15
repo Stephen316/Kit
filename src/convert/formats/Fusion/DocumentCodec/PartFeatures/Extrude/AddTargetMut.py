@@ -11,9 +11,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import (
     FocusRole,
 )
 
+# body operation type must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KBodyOperationType = 33
 
 
+# the body recipe of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def BodyRecipeOf(Label: FaceLabel) -> RecipeValue:
     TagValue = RecipeTag(
         tuple(Label.PrimaryId.encode("ascii")), Label.SecondaryId, Label.OperationIds, 0
@@ -21,6 +23,7 @@ def BodyRecipeOf(Label: FaceLabel) -> RecipeValue:
     return RecipeValue(3, ((TagValue,),), (), BodyRecipe(0, -1))
 
 
+# the target operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddTargetMut(Author: AuthorState, Prefix: str, Label: FaceLabel) -> list[str]:
     Reference = Author.Reference
     MainRole = Prefix + "feature"

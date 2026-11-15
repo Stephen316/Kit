@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Values.DecodeScalar import DecodeScala
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the value operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeValue(ReaderMut: MaterialReader, Field: PropertySpec) -> KMaterialValue:
     if Field.ValueKind == "TextureURI":
         return tuple(ReaderMut.ReadText() for _ in range(ReaderMut.ReadSmall()))

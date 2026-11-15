@@ -27,10 +27,14 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleSpans import (
     PoleRow,
 )
 
+# the mix row shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KMixRow = dict[int, Fraction]
+
+# the knot list shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KKnotList = tuple[Fraction, ...]
 
 
+# cap frame needs an explicit state contract so neighboring patches retain consistent subdivision boundaries
 @MakeDataClass(frozen=True, slots=True)
 class CapFrame:
     Region: int
@@ -44,6 +48,7 @@ class CapFrame:
     Places: frozenset[KPolePlace]
 
 
+# the weights operation needs one geometric convention so neighboring patches retain consistent subdivision boundaries
 def MixWeights(Parts: KIterable[tuple[Fraction, KMixRow]]) -> KMixRow:
     Total: KMixRow = {}
     for Scalar, Weights in Parts:
@@ -52,6 +57,7 @@ def MixWeights(Parts: KIterable[tuple[Fraction, KMixRow]]) -> KMixRow:
     return {Index: Value for Index, Value in Total.items() if Value != 0}
 
 
+# the insert once contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def InsertOnce(
     Weights: list[KMixRow], KnotList: list[Fraction], Value: Fraction
 ) -> list[KMixRow]:
@@ -70,6 +76,7 @@ def InsertOnce(
     return Found
 
 
+# insert weights needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def InsertWeights(BaseList: KKnotList, FullList: KKnotList) -> tuple[KMixRow, ...]:
     Weights: list[KMixRow] = [
         {Index: Fraction(1)} for Index in range(len(BaseList) - KEndCount - 1)
@@ -84,6 +91,7 @@ def InsertWeights(BaseList: KKnotList, FullList: KKnotList) -> tuple[KMixRow, ..
     return tuple(Weights)
 
 
+# mixed places needs one geometric convention so neighboring patches retain consistent subdivision boundaries
 def MixedPlaces(
     KeyTable: KMapping[KPolePlace, KCapKey],
     MixesU: tuple[KMixRow, ...],
@@ -101,6 +109,7 @@ def MixedPlaces(
     )
 
 
+# the one frame contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def OneFrame(
     Graph: CageGraph,
     PlanValue: FacePlan,
@@ -128,6 +137,7 @@ def OneFrame(
     )
 
 
+# the region frames contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RegionFrames(
     Graph: CageGraph, PlanValue: FacePlan, Scale: int, Levels: KMapping[int, int]
 ) -> tuple[CapFrame, ...]:
@@ -139,6 +149,7 @@ def RegionFrames(
     )
 
 
+# base row needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def BaseRow(
     Frame: CapFrame,
     Answers: KMapping[KCapKey, KPoleRow],
@@ -159,6 +170,7 @@ def BaseRow(
     return RowValue
 
 
+# the frame rows contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FrameRows(
     Frame: CapFrame,
     Answers: KMapping[KCapKey, KPoleRow],

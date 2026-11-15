@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Extrusion.ProfileSides import ProfileS
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# link body tags must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkBodyTags(Author: AuthorState) -> None:
     Sides = ProfileSides(Author)
     Labels = tuple(str(SideValue.ProgenitorTag) for SideValue in Sides)

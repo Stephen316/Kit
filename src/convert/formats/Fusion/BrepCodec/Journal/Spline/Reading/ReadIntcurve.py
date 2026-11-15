@@ -16,6 +16,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadPrefixMut impor
 )
 
 
+# the intcurve operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadIntcurve(Cursor: FieldCursor) -> IntcurveNode:
     Prefix = ReadPrefixMut(Cursor)
     Reversed = IsLogicalMut(Cursor)

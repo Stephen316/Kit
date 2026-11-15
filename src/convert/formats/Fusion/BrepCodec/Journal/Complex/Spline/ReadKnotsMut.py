@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import 
 )
 
 
+# the knots operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadKnotsMut(
     Cursor: FieldCursor, Count: int
 ) -> tuple[tuple[float, ...], tuple[int, ...]]:
@@ -21,6 +22,7 @@ def ReadKnotsMut(
     )
 
 
+# the poles operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadPolesMut(
     Cursor: FieldCursor, Count: int, Width: int, Rational: bool
 ) -> tuple[tuple[tuple[float, ...], ...], tuple[float, ...]]:
@@ -37,6 +39,7 @@ def ReadPolesMut(
     return Poles, Weights
 
 
+# the degree operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadDegreeMut(Cursor: FieldCursor) -> int:
     Degree = ReadLongMut(Cursor)
     if not 1 <= Degree <= 25:

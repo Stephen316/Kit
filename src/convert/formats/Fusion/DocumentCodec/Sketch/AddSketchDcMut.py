@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the sketch dc operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddSketchDcMut(Author: AuthorState) -> None:
     Author.Allocate("dc_sketch", "DcSketch", ParentRole="nodes")
     Author.Allocate("sketch_progenitors", "ProgenitorTable")

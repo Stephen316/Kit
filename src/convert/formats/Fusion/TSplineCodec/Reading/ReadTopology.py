@@ -10,6 +10,7 @@ from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 from convert.formats.Fusion.TSplineCodec.Wire.ReadNumber import ReadNumber
 
 
+# the topology operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadTopology(Cursor: TextCursor) -> CageTopology:
     Faces = tuple(ReadFace(Fields) for Fields in ReadRows(Cursor, "f", 2))
     Edges = tuple(

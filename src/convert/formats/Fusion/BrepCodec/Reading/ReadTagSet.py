@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadSketchLink import ReadSketchLi
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the tag set operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadTagSet(
     Table: AsmTable, Mapping: dict[int, int], HasHistory: bool
 ) -> TopologyTags:

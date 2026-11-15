@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import Clas
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
+# tool layout must remain consistent across callers so native records retain their segment ownership and schema
 KToolLayout = ClassLayout(
     ClassStamp(
         "60F291CB-499B-4AB1-B0E5-340368671724",

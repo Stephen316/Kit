@@ -8,6 +8,7 @@ from convert.formats.Fusion.EntityCodec.Values.ValueCalls import KReadValue
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
+# the sketch operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadSketchMut(
     Cursor: MetaCursor, Catalog: EntityCatalog, Depth: int, Reader: KReadValue
 ) -> ValueStruct[KEntityValue]:

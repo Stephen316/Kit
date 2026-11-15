@@ -3,6 +3,7 @@ from convert.formats.Fusion.GraphicsCodec.Validation.SceneTargets import SceneTa
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# invalid doc scene input must fail here so supporting records retain their owning document relationships
 def CheckDocScene(Value: DocumentModel) -> None:
     if Value.Graphics is None:
         return

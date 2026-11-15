@@ -12,11 +12,14 @@ from convert.formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import SheetSize
 from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
 
+# token pattern must remain consistent across callers so sheet objects retain their intended document relationships
 KTokenPattern = r"[A-Za-z0-9_-]{22}"
 
+# database pattern must remain consistent across callers so sheet objects retain their intended document relationships
 KDatabasePattern = r"ExtFile\.(.+)\.dwg"
 
 
+# invalid specification input must fail here so sheet objects retain their intended document relationships
 def CheckSpec(SpecValue: DrawingSpec, Database: DrawingDatabase) -> None:
     if not isinstance(CastValue(object, SpecValue), DrawingSpec) or not isinstance(
         CastValue(object, Database), DrawingDatabase
@@ -34,6 +37,7 @@ def CheckSpec(SpecValue: DrawingSpec, Database: DrawingDatabase) -> None:
         CheckHistory(SpecValue.History)
 
 
+# invalid sheet input must fail here so sheet objects retain their intended document relationships
 def CheckSheet(Sheet: SheetSpec, LayoutHandle: int) -> None:
     if not isinstance(CastValue(object, Sheet), SheetSpec) or not IsName(
         Sheet.SheetName
@@ -47,6 +51,7 @@ def CheckSheet(Sheet: SheetSpec, LayoutHandle: int) -> None:
         raise ValueError("Invalid drawing layout handle")
 
 
+# invalid identity input must fail here so sheet objects retain their intended document relationships
 def CheckIdentity(Identity: DrawingIdentity) -> None:
     if not isinstance(CastValue(object, Identity), DrawingIdentity):
         raise ValueError("Expected a typed drawing identity")
@@ -71,6 +76,7 @@ def CheckIdentity(Identity: DrawingIdentity) -> None:
         raise ValueError("Drawing lineage tokens must be 22 urlsafe characters")
 
 
+# invalid design input must fail here so sheet objects retain their intended document relationships
 def CheckDesign(Design: DesignTarget) -> None:
     if not isinstance(CastValue(object, Design), DesignTarget):
         raise ValueError("Expected a typed design target")
@@ -97,6 +103,7 @@ def CheckDesign(Design: DesignTarget) -> None:
         raise ValueError("Invalid design name or object identity")
 
 
+# invalid history input must fail here so sheet objects retain their intended document relationships
 def CheckHistory(History: SaveState) -> None:
     if not isinstance(CastValue(object, History), SaveState):
         raise ValueError("Expected a typed drawing save state")
@@ -111,6 +118,7 @@ def CheckHistory(History: SaveState) -> None:
         raise ValueError("Invalid drawing save label or cache folder")
 
 
+# the guid decision must stay consistent so sheet objects retain their intended document relationships
 def IsGuid(TextValue: str) -> bool:
     if type(TextValue) is not str:
         return False
@@ -120,9 +128,11 @@ def IsGuid(TextValue: str) -> bool:
         return False
 
 
+# the token decision must stay consistent so sheet objects retain their intended document relationships
 def IsToken(TextValue: str) -> bool:
     return type(TextValue) is str and MatchText(KTokenPattern, TextValue) is not None
 
 
+# the name decision must stay consistent so sheet objects retain their intended document relationships
 def IsName(TextValue: str) -> bool:
     return type(TextValue) is str and bool(TextValue) and "/" not in TextValue

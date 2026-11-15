@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import 
 )
 
 
+# the count operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadCountMut(Cursor: FieldCursor, Maximum: int) -> int:
     Count = ReadLongMut(Cursor)
     if not 0 <= Count <= Maximum:

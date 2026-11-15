@@ -6,6 +6,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWi
 from convert.formats.Fusion.SegmentCodec.Metadata.WriteMetaWire import WriteMetaWire
 
 
+# shared mutate zip setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MutateZipMut(Members: dict[str, bytes], Mutation: str) -> None:
     if Mutation == "directory":
         del Members["FusionAssetName[Active]/Breps.BlobParts/"]

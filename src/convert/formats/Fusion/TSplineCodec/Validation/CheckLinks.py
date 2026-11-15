@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckIndices
 
 
+# invalid links input must fail here so control cage topology retains its native connectivity
 def CheckLinks(Topology: CageTopology) -> None:
     for Index, LinkValue in enumerate(Topology.Links):
         CheckIndices(

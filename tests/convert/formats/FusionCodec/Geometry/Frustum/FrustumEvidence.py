@@ -4,6 +4,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 
+# the frustum evidence boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(frozen=True, slots=True)
 class FrustumEvidence:
     Table: AsmTable

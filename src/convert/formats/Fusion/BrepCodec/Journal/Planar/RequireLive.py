@@ -2,9 +2,11 @@ from typing import TypeVar
 
 from convert.formats.Fusion.BrepCodec.Journal.Planar.LiveTable import LiveTable
 
+# live node must remain consistent across callers so topology changes retain their native revision relationships
 KLiveNode = TypeVar("KLiveNode")
 
 
+# invalid live input must fail here so topology changes retain their native revision relationships
 def RequireLive(
     Table: LiveTable, Reference: int, ClassType: type[KLiveNode]
 ) -> KLiveNode:

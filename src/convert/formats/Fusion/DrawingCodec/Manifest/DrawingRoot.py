@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Manifest.RootAsset import RootAsset
 from convert.formats.Fusion.DrawingCodec.Manifest.RootLink import RootLink
 
 
+# drawing root needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class DrawingRoot:
     DocType: str

@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 )
 
 
+# shared break incidence setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BreakIncidence(Payload: bytes, Fault: str) -> bytes:
     Native = ReadGeometry(Payload)
     SlotId, Value = next(

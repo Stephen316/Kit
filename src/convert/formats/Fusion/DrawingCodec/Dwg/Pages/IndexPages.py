@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgCryptHeader import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgMapPage import DwgMapPage
 
 
+# index pages needs an explicit validity boundary so section boundaries and object references remain consistent
 def IndexPages(
     MapPages: tuple[DwgMapPage, ...], CryptHeader: DwgCryptHeader
 ) -> dict[int, DwgMapPage]:

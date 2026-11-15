@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import 
 )
 
 
+# loft specification needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class LoftSpec:
     LowerProfile: tuple[KProfileCurve, ...]

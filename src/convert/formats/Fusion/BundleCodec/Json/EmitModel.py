@@ -3,6 +3,7 @@ from convert.formats.Fusion.BundleCodec.Json.JsonTypes import KJsonValue
 from convert.formats.Fusion.BundleCodec.Model.BundleModel import BundleModel
 
 
+# the model operation needs a consistent construction rule so linked archive members retain their document relationships
 def EmitModel(Value: BundleModel) -> KJsonValue:
     GraphValue: KJsonValue = {
         "creationDate": Value.Graph.CreatedAt,

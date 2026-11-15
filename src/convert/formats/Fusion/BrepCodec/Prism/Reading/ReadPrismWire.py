@@ -9,6 +9,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import (
 )
 
 
+# the prism wire operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismWire(Payload: bytes) -> BrepWire:
     if type(Payload) is not bytes or not 0 < len(Payload) <= 2 * 1024 * 1024:
         raise ValueError("Invalid or oversized prism history payload")

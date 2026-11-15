@@ -2,6 +2,7 @@ from convert.formats.Fusion.GeometryCodec.EntityRef import EntityRef
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# invalid boundary representation references input must fail here so topology identity survives native history reconstruction
 def CheckBrepRefs(Records: tuple[GeometryRecord, ...], RootCount: int) -> None:
     if not 2 <= RootCount <= len(Records) or Records[0].NameValue != "asmheader":
         raise ValueError("Fusion BRep root table is invalid")

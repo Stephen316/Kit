@@ -7,9 +7,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# probe offset must remain consistent across callers so body topology remains consistent with its modeling operation
 KProbeOffset = 1e-5
 
 
+# the side probe contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SideProbe(
     Value: KPlaneSpan,
 ) -> tuple[tuple[float, float], tuple[float, float]]:

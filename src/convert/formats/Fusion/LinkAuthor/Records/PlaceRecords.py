@@ -38,6 +38,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the action operation needs a consistent construction rule so cross document references retain their intended ownership
 def PlaceAction(KeySet: PlaceKeys) -> ActionKeys:
     return ActionKeys(
         KeySet.Feature,
@@ -50,6 +51,7 @@ def PlaceAction(KeySet: PlaceKeys) -> ActionKeys:
     )
 
 
+# the instance record contract needs a shared interpretation so cross document references retain their intended ownership
 def InstanceRecord(
     RootInfo: RootFacts,
     Facts: TargetFacts,
@@ -83,6 +85,7 @@ def InstanceRecord(
     )
 
 
+# the records operation needs a consistent construction rule so cross document references retain their intended ownership
 def PlaceRecords(
     RootInfo: RootFacts,
     Facts: TargetFacts,

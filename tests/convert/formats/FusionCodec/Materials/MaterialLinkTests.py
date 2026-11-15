@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Models.AssetLinks import AssetLinks
 from tests.convert.formats.FusionCodec.Materials.ReadNative import ReadNative
 
 
+# the missing link contract needs boundary coverage so stored document relationships remain consistent
 def TestMissingLink() -> None:
     Native = ReadNative()
     Assets = DecodeMaterials(Native.Streams, Native.Schemas)

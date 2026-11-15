@@ -6,6 +6,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneState import SceneState
 
 
+# the scene operation needs one orchestration boundary so display geometry retains its entity and scene relationships
 def FinishScene(State: SceneState) -> tuple[SceneObject, ...]:
     if not State.HasGlobals:
         raise ValueError("Graphics world has no serializer version declaration")

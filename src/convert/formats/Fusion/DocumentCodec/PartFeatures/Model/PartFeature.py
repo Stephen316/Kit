@@ -47,6 +47,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.SweepSpec import (
     SweepSpec,
 )
 
+# the part feature variants need one shared contract so parametric feature reconstruction cannot omit a supported value shape
 KPartFeature: TypeAlias = (  # lgtm[py/unused-global-variable]
     FilletSpec
     | ChamferSpec

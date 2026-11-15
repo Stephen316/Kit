@@ -13,6 +13,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 
 
+# the doc segment operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadDocSegment(
     Streams: SegmentStreams, Metadata: MetaSegment, Profile: EntityProfile
 ) -> ParsedSegment:

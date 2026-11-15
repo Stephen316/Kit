@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartFeature import 
 )
 
 
+# document specification needs an explicit state contract so model state retains its native feature and ownership relationships
 @MakeDataClass(frozen=True, slots=True)
 class DocumentSpec:
     Title: str

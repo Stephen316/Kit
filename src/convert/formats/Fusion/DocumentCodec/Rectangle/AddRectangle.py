@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
 
 
+# the rectangle operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddRectangle(Author: AuthorState) -> None:
     AddSketchMut(Author)
     Generation = Author.Policy.SketchGeneration

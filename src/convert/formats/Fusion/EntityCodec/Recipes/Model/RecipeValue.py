@@ -6,6 +6,7 @@ from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipePayload import (
 from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeTag import RecipeTag
 
 
+# recipe value needs an explicit state contract so entity identifiers retain their schema and reference meaning
 @MakeDataClass(frozen=True, slots=True)
 class RecipeValue:
     Version: int

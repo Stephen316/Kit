@@ -26,7 +26,10 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetKeys import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewSource import ViewSource
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.HoleData import HoleData
 
+# round trip must remain consistent across callers so projected geometry retains its paper and model relationships
 KRoundTrip = "ACAD_XREC_ROUNDTRIP"
+
+# the identity order must stay explicit so projected geometry retains its paper and model relationships
 KIdentity = (
     1.0,
     0.0,
@@ -47,6 +50,7 @@ KIdentity = (
 )
 
 
+# guid groups needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def GuidGroups(GuidText: str) -> tuple[tuple[str, KDraftValue], ...]:
     try:
         Parts = UUID(GuidText).fields
@@ -61,6 +65,7 @@ def GuidGroups(GuidText: str) -> tuple[tuple[str, KDraftValue], ...]:
     )
 
 
+# the source groups contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def SourceGroups(Source: ViewSource) -> tuple[tuple[str, KDraftValue], ...]:
     BodyText = f"{Source.BodyId:X}"
     return (
@@ -78,6 +83,7 @@ def SourceGroups(Source: ViewSource) -> tuple[tuple[str, KDraftValue], ...]:
     )
 
 
+# the source operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceSourceMut(Ledger: DraftBook, Source: ViewSource) -> None:
     Owner: KDraftFields = {
         "Owner": SoftPointer(KRootFolder),
@@ -128,6 +134,7 @@ def PlaceSourceMut(Ledger: DraftBook, Source: ViewSource) -> None:
     PlaceFusionMut(Ledger, Source, Record)
 
 
+# the fusion operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceFusionMut(Ledger: DraftBook, Source: ViewSource, RecordKey: str) -> None:
     Folder = KFusionSource + "/Xdic"
     _ = PlaceMut(

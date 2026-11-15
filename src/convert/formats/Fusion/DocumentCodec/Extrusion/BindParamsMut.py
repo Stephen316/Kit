@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Defaults.MakeNumeric import MakeNumeri
 from convert.formats.Fusion.DocumentCodec.Tapered.TaperParameter import TaperParameter
 
 
+# the bind parameters contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def BindParamsMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Along = MakeNumeric(

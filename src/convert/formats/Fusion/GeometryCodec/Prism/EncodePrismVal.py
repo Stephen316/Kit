@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbValue import EncodeSmbValue
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the prism val operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EncodePrismVal(Value: KGeometryValue, NameValue: str, Index: int) -> bytes:
     if NameValue == "straight-curve" and Index in (3, 4):
         if not isinstance(Value, tuple) or len(Value) != 3:

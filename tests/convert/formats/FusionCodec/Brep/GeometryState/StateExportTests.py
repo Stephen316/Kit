@@ -19,6 +19,7 @@ from tests.convert.formats.FusionCodec.Brep.Planar.PlanarSamples import (
 )
 
 
+# the state export contract needs boundary coverage so stored document relationships remain consistent
 def TestStateExport(TmpPath: FilePath) -> None:
     Journal = CreatePolyBody(
         MakeTetrahedron(), KPlanarHistory, KPlanarStamp, KPlanarPlace

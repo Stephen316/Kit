@@ -20,6 +20,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.History.SketchCurve impor
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import KShapeFace
 
 
+# the draft loops contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def DraftLoops(
     PlanValue: BodyPlan, FaceValue: KShapeFace, FindIndex: DraftLookup
 ) -> list[KDraftNode]:

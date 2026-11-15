@@ -13,6 +13,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 
 
+# invalid manifold input must fail here so feature parameters remain connected to the resulting geometry
 def CheckManifold(Faces: tuple[KShapeFace, ...]) -> None:
     UseSenses: dict[KShapeEdge, list[bool]] = {}
     for FaceValue in Faces:
@@ -24,6 +25,7 @@ def CheckManifold(Faces: tuple[KShapeFace, ...]) -> None:
             raise ValueError("Fusion part shape is not a closed two-manifold")
 
 
+# the shape operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def BuildShape(Solid: PrismSolid) -> ShapeBody:
     Faces: tuple[KShapeFace, ...] = (*WallFaces(Solid.Slabs), *CapFaces(Solid.Slabs))
     Shape = ShapeBody(

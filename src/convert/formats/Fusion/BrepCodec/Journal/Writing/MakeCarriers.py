@@ -34,6 +34,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Geometry.MakeTransform imp
 )
 
 
+# the carriers operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeCarriers(Value: KJournalEntity) -> AsmRecord:
     if isinstance(Value, SphereNode):
         return MakeSphereNode(Value)

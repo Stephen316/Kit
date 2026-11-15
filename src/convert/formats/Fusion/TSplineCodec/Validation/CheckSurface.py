@@ -7,6 +7,7 @@ from convert.formats.Fusion.TSplineCodec.Validation.CheckSymmetry import CheckSy
 from convert.formats.Fusion.TSplineCodec.Validation.CheckKnots import CheckKnots
 
 
+# invalid surface input must fail here so control cage topology retains its native connectivity
 def CheckSurface(Surface: TsplineSurface) -> None:
     CheckHeader(Surface.Header)
     CheckTopology(Surface.Topology)

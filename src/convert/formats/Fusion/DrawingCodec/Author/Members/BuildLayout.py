@@ -25,6 +25,7 @@ from convert.formats.Fusion.DrawingCodec.Model.PackageSlot import PackageSlot
 from convert.formats.Fusion.DrawingCodec.Package.EntryLayout import EntryLayout
 
 
+# the layout operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def BuildLayout(
     Prefix: str,
     Members: tuple[str, ...],
@@ -63,6 +64,7 @@ def BuildLayout(
     )
 
 
+# invalid folders input must fail here so sheet objects retain their intended document relationships
 def CheckFolders(Members: tuple[str, ...], FolderOrder: tuple[str, ...]) -> None:
     if len(FolderOrder) != len(KFolderOrder) or set(FolderOrder) != set(KFolderOrder):
         raise ValueError("Fusion drawing folder order must permute the known folders")
@@ -70,6 +72,7 @@ def CheckFolders(Members: tuple[str, ...], FolderOrder: tuple[str, ...]) -> None
         raise ValueError("Fusion drawing member lies outside the known folders")
 
 
+# the folder parts contract needs a shared interpretation so sheet objects retain their intended document relationships
 def FolderParts(
     Parts: tuple[ContainerPart, ...], FolderOrder: tuple[str, ...]
 ) -> tuple[ContainerPart, ...]:

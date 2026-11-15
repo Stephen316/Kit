@@ -7,6 +7,7 @@ from convert.formats.Fusion.MaterialCodec.Package.PackageLimits import (
 from convert.formats.Fusion.MaterialCodec.Package.Schema.CheckNode import CheckNode
 
 
+# invalid schemas input must fail here so typed appearance properties retain their native identifiers
 def CheckSchemas(Values: tuple[SchemaNode, ...]) -> None:
     if not 0 < len(Values) <= KMaxSchemas or any(
         Value.TagName != "AssetSchema" for Value in Values

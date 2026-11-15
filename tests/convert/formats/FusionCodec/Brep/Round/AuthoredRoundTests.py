@@ -21,6 +21,7 @@ from tests.convert.formats.FusionCodec.Brep.Round.RoundSamples import (
 )
 
 
+# the round author contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("ShapeIndex", (0, 1, 2))
 def TestRoundAuthor(TmpPath: FilePath, ShapeIndex: int) -> None:
     Shape = KRoundBodies[ShapeIndex]

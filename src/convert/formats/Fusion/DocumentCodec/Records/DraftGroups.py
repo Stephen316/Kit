@@ -10,6 +10,7 @@ from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 
 
+# invalid filled input must fail here so model state retains its native feature and ownership relationships
 def CheckFilled(
     ClassName: str, Members: tuple[FieldSpec[WireType], ...], Fields: dict[str, object]
 ) -> None:
@@ -24,6 +25,7 @@ def CheckFilled(
         )
 
 
+# draft groups needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def DraftGroups(
     Author: AuthorState, Entity: DraftEntity
 ) -> tuple[EntityGroup[KEntityValue], ...]:

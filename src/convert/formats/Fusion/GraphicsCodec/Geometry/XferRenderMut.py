@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer render needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferRenderMut(State: SceneCodec, Value: RenderMesh | None) -> RenderMesh:
     Bounds = State.Vector(Value.Bounds if Value else None, 6)
     FormatRef = State.LinkedObject("VertexFormat", Value.FormatRef if Value else None)

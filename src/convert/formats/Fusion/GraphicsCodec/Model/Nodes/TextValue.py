@@ -3,6 +3,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Nodes.RenderFrame import RenderF
 from convert.formats.Fusion.GraphicsCodec.Model.Values.ObjectRef import ObjectRef
 
 
+# text value needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class TextValue:
     Frame: RenderFrame

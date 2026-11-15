@@ -2,6 +2,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, AsmTable
 
 
+# invalid topology input must fail here so topology identity survives native history reconstruction
 def CheckTopology(
     Expected: tuple[AsmRecord, ...], Actual: AsmTable, Mapping: dict[int, int]
 ) -> None:

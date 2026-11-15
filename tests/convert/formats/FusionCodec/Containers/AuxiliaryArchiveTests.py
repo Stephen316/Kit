@@ -19,9 +19,11 @@ from tests.convert.formats.FusionCodec.Containers.FindEntityField import FindEnt
 from tests.convert.formats.FusionCodec.Containers.MakeContainer import MakeContainer
 from tests.convert.formats.FusionCodec.Containers.ReadAuxiliary import ReadAuxiliary
 
+# the instance rev cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KInstanceRev = "31415926-1111-4222-8333-0123456789ab"
 
 
+# the aux archive contract needs boundary coverage so stored document relationships remain consistent
 def TestAuxArchive(TmpPath: FilePath) -> None:
     Envelope = MakeContainer()
     Specification = DocumentSpec(
@@ -64,6 +66,7 @@ def TestAuxArchive(TmpPath: FilePath) -> None:
     assert len([Entry for Entry in BrowserRows if Entry.ObjectId == 200]) == 2
 
 
+# the wrong roles contract needs boundary coverage so stored document relationships remain consistent
 def TestWrongRoles(TmpPath: FilePath) -> None:
     Envelope = MakeContainer()
     Specification = DocumentSpec("Invalid assembly", "spanLength", 12.25, "parameter")

@@ -17,6 +17,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadTextMut import 
 )
 
 
+# the edge node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadEdgeNode(Cursor: FieldCursor) -> EdgeNode:
     Prefix = ReadPrefixMut(Cursor)
     StartVertex = ReadRefMut(Cursor)

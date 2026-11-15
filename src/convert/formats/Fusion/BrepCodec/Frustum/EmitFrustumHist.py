@@ -21,6 +21,7 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the frustum history operation needs a consistent construction rule so circular boundaries retain consistent cone and rim geometry
 def EmitFrustumHist(
     Model: FrustumBody,
     Identity: BodyIdentity,

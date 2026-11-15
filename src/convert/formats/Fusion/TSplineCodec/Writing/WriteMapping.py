@@ -1,6 +1,7 @@
 from convert.formats.Fusion.TSplineCodec.Model.GripMapping import GripMapping
 
 
+# the mapping operation needs a consistent construction rule so control cage topology retains its native connectivity
 def WriteMapping(Mapping: GripMapping | None) -> tuple[str, ...]:
     if Mapping is None:
         return ()

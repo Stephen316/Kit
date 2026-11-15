@@ -64,18 +64,31 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
     PartRecords,
 )
 
+# the line cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLine = LineCurve((0.0, 0.0), (0.0, 20.0))
+
+# the bend cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBend: tuple[KPathCurve, ...] = (KLine, ArcCurve((-30.0, 20.0), 30.0, 0.0, 90.0))
+
+# the hook cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHook = (*KBend, LineCurve((-30.0, 50.0), (-50.0, 50.0)))
+
+# the curve cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCurve: tuple[KPathCurve, ...] = (
     LineCurve((0.0, 0.0), (0.0, 10.0)),
     ArcCurve((20.0, 10.0), 20.0, 180.0, -90.0),
     ArcCurve((20.0, 50.0), 20.0, -90.0, 90.0),
 )
+
+# the sweep cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSweep = SweepSpec(KBend, -5.0, 5.0, 0.0, 10.0, FeatureName="Bend sweep")
+
+# the rail cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRail = SweepSpec(
     KBend, -15.0, -5.0, 0.0, 10.0, "Rail profile", "Rail path", "Rail sweep"
 )
+
+# the sweep cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSweepCases: dict[str, tuple[KPartFeature, ...]] = {
     "SweepBend": (KSweep,),
     "SweepHook": (SweepSpec(KHook, -5.0, 5.0, 0.0, 10.0, FeatureName="Bend sweep"),),
@@ -86,6 +99,7 @@ KSweepCases: dict[str, tuple[KPartFeature, ...]] = {
 }
 
 
+# the sweep solid contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", ("SweepBend", "SweepHook"))
 def TestSweepSolid(NameValue: str) -> None:
     _, Stages = SolvePart(FamilySpec(KSweepCases[NameValue]))
@@ -99,6 +113,7 @@ def TestSweepSolid(NameValue: str) -> None:
     assert Measured.AreaCm == ApproxValue(Observed["area_cm2"], rel=1e-7)
 
 
+# the sweep volume contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     ("NameValue", "LengthMm", "AreaCm", "Counts"),
     (
@@ -119,6 +134,7 @@ def TestSweepVolume(
     assert Measured.VolumeCm == ApproxValue(AreaCm * LengthMm / 10.0, rel=1e-9)
 
 
+# the sweep stages contract needs boundary coverage so stored document relationships remain consistent
 def TestSweepStages() -> None:
     _, Stages = SolvePart(FamilySpec(KSweepCases["SweepBend"]))
     (Stage,) = Stages
@@ -135,6 +151,7 @@ def TestSweepStages() -> None:
     assert [Stage.StateId for Stage in Stages] == [4, 5]
 
 
+# the sweep parts contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KSweepCases))
 def TestSweepParts(NameValue: str) -> None:
     Features = KSweepCases[NameValue]
@@ -169,6 +186,7 @@ def TestSweepParts(NameValue: str) -> None:
     assert IsIdentityRef(History)
 
 
+# the sweep tags contract needs boundary coverage so stored document relationships remain consistent
 def TestSweepTags() -> None:
     TagMap = SweepTags(2)
     assert list(TagMap) == [
@@ -185,6 +203,7 @@ def TestSweepTags() -> None:
     assert FaceIds(TagMap) == (b"10", b"11", b"12", b"5", b"5", b"7", b"8", b"8")
 
 
+# the sweep table contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     ("NameValue", "TableTag", "Labels"),
     (
@@ -211,10 +230,12 @@ def TestSweepTable(NameValue: str, TableTag: int, Labels: tuple[int, ...]) -> No
     assert "operationId', Value=302" in MapText
 
 
+# shared path case setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PathCase(*Curves: KPathCurve) -> tuple[KPartFeature, ...]:
     return (SweepSpec(Curves, -5.0, 5.0, 0.0, 10.0),)
 
 
+# the value rejects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KValueRejects: tuple[tuple[KPartFeature, ...], ...] = (
     PathCase(),
     (SweepSpec(CastValue(tuple[KPathCurve, ...], list(KBend)), -5.0, 5.0, 0.0, 10.0),),
@@ -227,15 +248,21 @@ KValueRejects: tuple[tuple[KPartFeature, ...], ...] = (
     (SweepSpec(KBend, -5.0, 5.0, 0.0, 10.0, PathName=""),),
     (SweepSpec(KBend, -5.0, 5.0, 0.0, 10.0, FeatureName="a\x00b"),),
 )
+
+# the twin arc cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTwinArc = (
     ArcCurve((-30.0, 20.0), 30.0, 0.0, 45.0),
     ArcCurve((-30.0, 20.0), 30.0, 45.0, 45.0),
 )
+
+# loop path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KLoopPath = (
     KLine,
     ArcCurve((-10.0, 20.0), 10.0, 0.0, 270.0),
     LineCurve((-10.0, 10.0), (10.0, 10.0)),
 )
+
+# path rejects needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KPathRejects: tuple[tuple[KPartFeature, ...], ...] = (
     PathCase(LineCurve((5.0, 0.0), (5.0, 20.0))),
     PathCase(LineCurve((0.0, 0.0), (20.0, 0.0))),
@@ -249,6 +276,8 @@ KPathRejects: tuple[tuple[KPartFeature, ...], ...] = (
     (SweepSpec(KLoopPath, -2.0, 2.0, 0.0, 10.0),),
     PathCase(LineCurve((0.0, 0.0), (0.0, 0.0))),
 )
+
+# the after rejects cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KAfterRejects: tuple[tuple[KPartFeature, ...], ...] = (
     (KSweep, FilletSpec((5.0, 0.0), 1.0)),
     (KSweep, MoveSpec((5.0, 0.0, 0.0), "Move")),
@@ -260,12 +289,14 @@ KAfterRejects: tuple[tuple[KPartFeature, ...], ...] = (
 )
 
 
+# the sweep reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Features", (*KValueRejects, *KPathRejects, *KAfterRejects))
 def TestSweepReject(Features: tuple[KPartFeature, ...]) -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(FamilySpec(Features))
 
 
+# the sweep extra contract needs boundary coverage so stored document relationships remain consistent
 def TestSweepExtra() -> None:
     Extra = ExtrudeSpec(RectCurves((20.0, 20.0), (30.0, 30.0)), 5.0, "new")
     _, Stages = SolvePart(FamilySpec((KSweep, Extra)))
@@ -276,6 +307,7 @@ def TestSweepExtra() -> None:
     ]
 
 
+# the sweep cuboid contract needs boundary coverage so stored document relationships remain consistent
 def TestSweepCuboid() -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(

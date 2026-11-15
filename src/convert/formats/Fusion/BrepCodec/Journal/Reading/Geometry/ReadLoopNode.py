@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the loop node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadLoopNode(Cursor: FieldCursor) -> LoopNode:
     Prefix = ReadPrefixMut(Cursor)
     NextLoop = ReadRefMut(Cursor)

@@ -6,6 +6,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedEdge import Enhan
 from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedFace import EnhancedFace
 
 
+# lod value needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class LodValue:
     NodeData: NodePayload

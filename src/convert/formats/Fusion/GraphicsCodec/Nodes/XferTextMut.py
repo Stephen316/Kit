@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer text contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferTextMut(State: SceneCodec, Value: TextValue | None) -> TextValue:
     Frame = XferFrameMut(State, Value.Frame if Value else None)
     Matrix = State.Vector(Value.Matrix if Value else None, 16)

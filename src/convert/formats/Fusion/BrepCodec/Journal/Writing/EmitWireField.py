@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbString import EncodeSmbString
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken, KIntCodes
 
 
+# the wire field operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def EmitWireField(Field: KAsmToken, Width: int = 8) -> bytes:
     TagValue, Value = Field
     if TagValue in (4, 12, 21):

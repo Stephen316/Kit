@@ -60,7 +60,8 @@ Do not hide a necessary condition in another page.
 Copy API names, keyword names, and error codes exactly.
 Use inline code for these identifiers.
 Use fenced blocks with a language identifier for examples.
-Do not add explanatory comments or comment-oriented docstrings to code examples.
+Apply the required rationale convention to Python declarations in code examples.
+Do not add other explanatory comments or comment-oriented docstrings.
 Explain the example in the surrounding text.
 
 State all input-file prerequisites before an example.

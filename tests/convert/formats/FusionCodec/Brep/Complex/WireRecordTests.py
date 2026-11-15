@@ -24,6 +24,7 @@ from tests.convert.formats.FusionCodec.Brep.Complex.ComplexMembers import (
     ComplexMember,
 )
 
+# the wire cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWireCases: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/Study/splitfacemodes-4fc4adf2a868/along_vector.f3d",
@@ -48,6 +49,7 @@ KWireCases: tuple[tuple[str, str], ...] = (
 )
 
 
+# shared swap entity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapEntity(
     Journal: JournalModel, Index: int, Value: KJournalEntity
 ) -> JournalModel:
@@ -56,6 +58,7 @@ def SwapEntity(
     return ReplaceValue(Journal, Entities=tuple(Entities))
 
 
+# shared find wire setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FindWire(Journal: JournalModel) -> tuple[int, WireNode]:
     Found = tuple(
         (Index, Value)
@@ -66,6 +69,7 @@ def FindWire(Journal: JournalModel) -> tuple[int, WireNode]:
     return Found[0]
 
 
+# the wire record contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -92,6 +96,7 @@ def TestWireRecord(Relative: str, Digest: str) -> None:
     assert EmitJournal(Journal) == Payload
 
 
+# the wire faults contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -117,6 +122,7 @@ def TestWireFaults(Relative: str, Digest: str) -> None:
         _ = EmitJournal(Misled)
 
 
+# the wire node contract needs boundary coverage so stored document relationships remain consistent
 def TestWireNode() -> None:
     for Inside in (False, True):
         Value = WireNode(EntityPrefix(-1, -1), -1, 15, 8, Inside)

@@ -1,3 +1,4 @@
+# the subtype family vocabulary must stay centralized so journal grammar decoding agrees on supported native identities
 KSubtypeFamily: dict[str, str] = {
     "exact_spl_sur": "surface",
     "cyl_spl_sur": "surface",
@@ -19,6 +20,7 @@ KSubtypeFamily: dict[str, str] = {
     "exp_par_cur": "pcurve",
 }
 
+# the scope family vocabulary must stay centralized so journal grammar decoding agrees on supported native identities
 KScopeFamily: dict[str, str] = {
     "surfacescope": "surface",
     "curvescope": "curve",

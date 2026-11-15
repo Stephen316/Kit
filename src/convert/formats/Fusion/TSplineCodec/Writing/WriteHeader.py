@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeade
 from convert.formats.Fusion.TSplineCodec.Writing.NumberText import NumberText
 
 
+# the header operation needs a consistent construction rule so control cage topology retains its native connectivity
 def WriteHeader(Header: SurfaceHeader) -> tuple[str, ...]:
     return (
         "#TS0200",

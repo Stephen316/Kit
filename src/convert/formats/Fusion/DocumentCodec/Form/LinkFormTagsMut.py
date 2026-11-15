@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
 
+# the window values contract needs a shared interpretation so editable control cages retain their document relationships
 def WindowValues(
     Author: AuthorState, LabelValue: FormLabel
 ) -> list[list[dict[str, object]]]:
@@ -23,6 +24,7 @@ def WindowValues(
     ]
 
 
+# the tag info contract needs a shared interpretation so editable control cages retain their document relationships
 def TagInfo(Author: AuthorState, Labels: tuple[FormLabel, ...]) -> list[object]:
     Encoded = tuple(LabelValue.Label.encode("ascii") for LabelValue in Labels)
     Offsets = [0]
@@ -41,6 +43,7 @@ def TagInfo(Author: AuthorState, Labels: tuple[FormLabel, ...]) -> list[object]:
     ]
 
 
+# link form tags must resolve unambiguously so editable control cages retain their document relationships
 def LinkFormTagsMut(Author: AuthorState, SpecValue: FormSpec) -> None:
     Reference = Author.Reference
     Labels = FormLabels(SpecValue.Body)

@@ -4,6 +4,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import RequireAsm
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the topology contract needs boundary coverage so stored document relationships remain consistent
 def CheckTopology(Table: AsmTable) -> None:
     for Identity, Record in enumerate(Table.Records):
         for Index, Token in enumerate(Record.Tokens):

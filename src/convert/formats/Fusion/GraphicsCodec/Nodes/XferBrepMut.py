@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer boundary representation contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferBrepMut(State: SceneCodec, Value: BrepWorld | None) -> BrepWorld:
     if State.IsFlag(Value is not None and Value.EdgeGroup is not None):
         Result = XferLodsMut(State, Value)

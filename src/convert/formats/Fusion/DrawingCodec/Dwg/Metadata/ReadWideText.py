@@ -2,6 +2,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.ReadFields import ReadFields
 from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.TakeSpan import TakeSpan
 
 
+# the wide text operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadWideText(DataValue: bytes, Offset: int) -> tuple[str, int]:
     Count = ReadFields(DataValue, Offset, "<H", "wide text length")[0]
     Encoded = TakeSpan(DataValue, Offset + 2, Count * 2, "wide text")

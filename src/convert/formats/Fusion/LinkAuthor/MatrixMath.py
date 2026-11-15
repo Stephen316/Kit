@@ -1,9 +1,11 @@
 from math import isfinite as IsFinite
 from typing import cast as CastValue
 
+# the rigid tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KRigidTolerance = 1e-9
 
 
+# the compose matrix contract needs a shared interpretation so cross document references retain their intended ownership
 def ComposeMatrix(
     LeftValue: tuple[float, ...], RightValue: tuple[float, ...]
 ) -> tuple[float, ...]:
@@ -17,6 +19,7 @@ def ComposeMatrix(
     )
 
 
+# the invert rigid contract needs a shared interpretation so cross document references retain their intended ownership
 def InvertRigid(Matrix: tuple[float, ...]) -> tuple[float, ...]:
     Rotation = tuple(
         Matrix[Column * 4 + RowIndex] for RowIndex in range(3) for Column in range(3)
@@ -41,10 +44,12 @@ def InvertRigid(Matrix: tuple[float, ...]) -> tuple[float, ...]:
     )
 
 
+# the finite number decision must stay consistent so cross document references retain their intended ownership
 def IsFiniteNum(Entry: object) -> bool:
     return type(Entry) in (int, float) and IsFinite(CastValue(float, Entry))
 
 
+# matrix items needs an explicit validity boundary so cross document references retain their intended ownership
 def MatrixItems(Matrix: object) -> tuple[float, ...]:
     if type(Matrix) is not tuple:
         raise ValueError("Fusion placement matrix must be a tuple")
@@ -54,6 +59,7 @@ def MatrixItems(Matrix: object) -> tuple[float, ...]:
     return tuple(float(CastValue(float, Entry)) for Entry in Entries)
 
 
+# invalid matrix input must fail here so cross document references retain their intended ownership
 def CheckMatrix(Matrix: object) -> tuple[float, ...]:
     Values = MatrixItems(Matrix)
     if Values[12:16] != (0.0, 0.0, 0.0, 1.0):

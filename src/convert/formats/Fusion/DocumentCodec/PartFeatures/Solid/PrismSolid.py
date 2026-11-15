@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import Fa
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSlab import PrismSlab
 
 
+# prism solid needs an explicit state contract so body topology remains consistent with its modeling operation
 @MakeDataClass(frozen=True, slots=True)
 class PrismSolid:
     Slabs: tuple[PrismSlab, ...]

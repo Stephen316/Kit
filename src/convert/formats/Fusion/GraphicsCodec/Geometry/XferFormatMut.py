@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer format contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferFormatMut(State: SceneCodec, Value: VertexFormat | None) -> VertexFormat:
     Count = State.CountValue(len(Value.Fields) if Value else None, "<i")
     Fields: list[VertexField] = []

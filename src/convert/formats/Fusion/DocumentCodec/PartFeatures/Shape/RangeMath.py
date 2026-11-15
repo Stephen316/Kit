@@ -1,7 +1,11 @@
+# the range shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KRange = tuple[float, float]
+
+# the range limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KRangeLimit = 1e-9
 
 
+# the merge ranges contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def MergeRanges(Ranges: list[KRange]) -> list[KRange]:
     Merged: list[KRange] = []
     for Lower, Upper in sorted(Ranges):
@@ -12,6 +16,7 @@ def MergeRanges(Ranges: list[KRange]) -> list[KRange]:
     return Merged
 
 
+# the range minus contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RangeMinus(Ranges: list[KRange], Removed: list[KRange]) -> list[KRange]:
     Result: list[KRange] = []
     for Lower, Upper in MergeRanges(Ranges):
@@ -27,6 +32,7 @@ def RangeMinus(Ranges: list[KRange], Removed: list[KRange]) -> list[KRange]:
     return Result
 
 
+# the split ranges contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def SplitRanges(Ranges: list[KRange], CutValues: list[float]) -> list[KRange]:
     Result: list[KRange] = []
     for Lower, Upper in Ranges:

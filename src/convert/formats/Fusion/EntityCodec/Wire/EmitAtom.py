@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Wire.AtomKinds import KAtomKinds, KShare
 from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitScalar import EmitScalar
 
 
+# the atom operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitAtom(Value: KEntityValue, Shape: WireType) -> bytes:
     Format, _, Lower, Upper = KAtomKinds[Shape.KindValue]
     if Shape.KindValue in ("f32", "f64"):

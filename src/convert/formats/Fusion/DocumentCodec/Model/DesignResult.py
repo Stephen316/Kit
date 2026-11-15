@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 from convert.formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfile
 
 
+# design result needs an explicit state contract so model state retains its native feature and ownership relationships
 @MakeDataClass(frozen=True, slots=True)
 class DesignResult:
     Streams: SegmentStreams

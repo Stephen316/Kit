@@ -19,6 +19,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord
 from convert.formats.Fusion.DrawingCodec.Dwg.Objects.ModularCodes import ReadModular
 
 
+# the split texts contract needs a stable decomposition so section boundaries and object references remain consistent
 def SplitTexts(
     BodyValue: bytes, DataStart: int, DataBits: int
 ) -> tuple[tuple[str, ...], bool, int]:
@@ -32,6 +33,7 @@ def SplitTexts(
     return tuple(TextItems), True, TextStart
 
 
+# the split handles contract needs a stable decomposition so section boundaries and object references remain consistent
 def SplitHandles(BodyValue: bytes, DataBits: int) -> tuple[DwgHandleRef, ...]:
     TotalBits = len(BodyValue) * 8
     Cursor = BitCursor(BodyValue, DataBits, TotalBits)
@@ -44,6 +46,7 @@ def SplitHandles(BodyValue: bytes, DataBits: int) -> tuple[DwgHandleRef, ...]:
     return tuple(HandleRefs)
 
 
+# the split object contract needs a stable decomposition so section boundaries and object references remain consistent
 def SplitObject(DataValue: bytes, Offset: int) -> tuple[DwgObject, int]:
     BodySize, Position = ReadModular(DataValue, Offset)
     HandleBits, Position = ReadUnsignedMc(DataValue, Position)

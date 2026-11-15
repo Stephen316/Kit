@@ -14,6 +14,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgPageImage import DwgPageImage
 
 
+# the data page operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitDataPage(
     PageImage: DwgPageImage, SectionId: int, Packed: bytes, Offset: int, PageSize: int
 ) -> bytes:
@@ -33,6 +34,7 @@ def EmitDataPage(
     return Masked + Packed + Padding
 
 
+# the sys page operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitSysPage(
     PageImage: DwgPageImage, RawValue: bytes, Packed: bytes, PageSize: int
 ) -> bytes:
@@ -51,6 +53,7 @@ def EmitSysPage(
     return Header + Packed + Slack
 
 
+# the lay pages contract needs a shared interpretation so section boundaries and object references remain consistent
 def LayPages(
     DwgModel: DwgFile,
     Packed: dict[int, bytes],

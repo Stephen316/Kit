@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the planes operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildPlanes(Model: CylinderBody) -> tuple[GeometryRecord, ...]:
     Bound = KeywordToken("I")
     return tuple(

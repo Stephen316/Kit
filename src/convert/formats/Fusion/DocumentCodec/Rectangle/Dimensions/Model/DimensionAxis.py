@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# dimension axis needs an explicit state contract so model state retains its native feature and ownership relationships
 @MakeDataClass(frozen=True, slots=True)
 class DimensionAxis:
     RoleName: str

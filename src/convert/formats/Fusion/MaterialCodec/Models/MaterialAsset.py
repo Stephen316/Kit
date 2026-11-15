@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import PropertyValue
 
 
+# material asset needs an explicit state contract so typed appearance properties retain their native identifiers
 @MakeDataClass(frozen=True, slots=True)
 class MaterialAsset:
     SchemaName: str

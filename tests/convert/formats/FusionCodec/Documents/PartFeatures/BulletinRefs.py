@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 
 
+# shared bulletin references setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BulletinRefs(History: JournalModel) -> tuple[set[int], set[int], set[int]]:
     Created: set[int] = set()
     Replaced: set[int] = set()
@@ -17,6 +18,7 @@ def BulletinRefs(History: JournalModel) -> tuple[set[int], set[int], set[int]]:
     return Created, Replaced, Deleted
 
 
+# shared is identity reference setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsIdentityRef(History: JournalModel) -> bool:
     Created, Replaced, Deleted = BulletinRefs(History)
     Stored = all(Entry < History.ActiveCount or Entry in Deleted for Entry in Created)

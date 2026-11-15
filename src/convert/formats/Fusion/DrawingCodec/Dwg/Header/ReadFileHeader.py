@@ -2,9 +2,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.ReadFields import ReadFields
 from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.TakeSpan import TakeSpan
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
 
+# the version texts vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KVersionTexts = frozenset({"AC1027", "AC1032"})
 
 
+# the file header operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadFileHeader(Content: bytes) -> DwgFileHeader:
     Prefix = TakeSpan(Content, 0, 0x80, "file header")
     VersionText = Prefix[:6].decode("latin-1")

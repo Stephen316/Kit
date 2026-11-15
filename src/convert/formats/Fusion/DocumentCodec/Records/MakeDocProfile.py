@@ -7,6 +7,7 @@ from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 
 
+# the doc profile operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakeDocProfile(
     Schemas: tuple[ClassSchema, ...], Metadata: tuple[MetaSegment, ...], SegmentId: int
 ) -> EntityProfile:

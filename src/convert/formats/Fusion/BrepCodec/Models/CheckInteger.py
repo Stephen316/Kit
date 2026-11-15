@@ -1,3 +1,4 @@
+# invalid integer input must fail here so topology identity survives native history reconstruction
 def CheckInteger(
     Value: int, Label: str, Lower: int = -(1 << 63), Upper: int = (1 << 63) - 1
 ) -> None:

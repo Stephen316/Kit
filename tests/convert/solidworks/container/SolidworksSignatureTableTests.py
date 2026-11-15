@@ -91,6 +91,7 @@ def HostRows(BlobInfo: bytes) -> list[tuple[int, tuple[str, str, str]]]:
     return RowsInfo
 
 
+# recorded signature facts keep container validation reproducible when licensed vendor modules are unavailable
 def RecordedRows() -> list[tuple[int, tuple[str, str, str]]]:
     RecordInfo = JsonLib.loads(KProvenance.read_text(encoding="utf-8"))
     return [

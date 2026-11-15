@@ -10,6 +10,7 @@ from interchange.geometry.models.GeometryCurves import PointGeometry
 from interchange.geometry.models.Sketch import Sketch, SketchEntity
 
 
+# the sketch operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeSketch(SpecValue: DocumentSpec) -> Sketch:
     Entities: list[SketchEntity] = []
     if HasRectangle(SpecValue):

@@ -11,9 +11,11 @@ from tools.TestShards.Reuse.Track.NoteImportMut import NoteImportMut
 from tools.TestShards.Reuse.Track.ReadPackage import ReadPackage
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
+# the import fields order must stay explicit so dependency changes cannot revive stale passing results
 KImportFields = ("name", "globals", "locals", "fromlist", "level")
 
 
+# the note call contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def NoteCallMut(
     State: TrackState, ArgList: tuple[object, ...], KeyArgs: Mapping[str, object]
 ) -> None:

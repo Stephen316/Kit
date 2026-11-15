@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import KEdgeCorners
 
 
+# the curves operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildCurves(
     Corners: tuple[tuple[float, float, float], ...],
 ) -> tuple[GeometryRecord, ...]:

@@ -9,9 +9,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import (
     LineCurve,
 )
 
+# the profile curve variants need one shared contract so parametric feature reconstruction cannot omit a supported value shape
 KProfileCurve: TypeAlias = LineCurve | ArcCurve | CircleCurve
 
 
+# extrude specification needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class ExtrudeSpec:
     Profile: tuple[KProfileCurve, ...]

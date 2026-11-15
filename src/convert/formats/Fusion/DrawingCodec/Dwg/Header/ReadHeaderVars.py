@@ -33,6 +33,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.WalkSpec import (
 )
 
 
+# locate area needs an explicit validity boundary so section boundaries and object references remain consistent
 def LocateArea(DataValue: bytes, FileHeader: DwgFileHeader) -> tuple[int, int]:
     if TakeSpan(DataValue, 0, 16, "header start sentinel") != KHeaderStart:
         raise ValueError("DWG header variables start sentinel mismatch")
@@ -49,6 +50,7 @@ def LocateArea(DataValue: bytes, FileHeader: DwgFileHeader) -> tuple[int, int]:
     return DataStart, AreaFinish
 
 
+# the texts operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadTexts(DataValue: bytes, TextStart: int, TextFinish: int) -> tuple[str, ...]:
     Cursor = BitCursor(DataValue, TextStart, TextFinish)
     TextItems: list[str] = []
@@ -57,6 +59,7 @@ def ReadTexts(DataValue: bytes, TextStart: int, TextFinish: int) -> tuple[str, .
     return tuple(TextItems)
 
 
+# the references operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadRefs(
     DataValue: bytes, RefStart: int, RefFinish: int
 ) -> tuple[DwgHandleRef, ...]:
@@ -70,6 +73,7 @@ def ReadRefs(
     return tuple(HandleRefs)
 
 
+# the header vars operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadHeaderVars(
     DataValue: bytes, FileHeader: DwgFileHeader
 ) -> tuple[DwgRecord, DwgRecord]:
@@ -94,6 +98,7 @@ def ReadHeaderVars(
     return HeaderVars, Frame
 
 
+# the type header contract needs a shared interpretation so section boundaries and object references remain consistent
 def TypeHeader(
     DataValue: bytes | None, FileHeader: DwgFileHeader
 ) -> tuple[DwgRecord, tuple[tuple[str, DwgRecord], ...]]:

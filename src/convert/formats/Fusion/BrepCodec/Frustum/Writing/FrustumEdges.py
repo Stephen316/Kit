@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderEdges import BuildEdges
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the frustum edges contract needs a shared interpretation so circular boundaries retain consistent cone and rim geometry
 def FrustumEdges(Frame: FrustumFrame) -> tuple[GeometryRecord, ...]:
     return tuple(
         Replace(

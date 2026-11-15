@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Brep.Frustum.FrustumArchive import Frustu
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the fresh history contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("TopRadius", (8.0, 12.5, 17.0))
 def TestFreshHist(TmpPath: FilePath, TopRadius: float) -> None:
     Sample = MakeSample()
@@ -51,6 +52,7 @@ def TestFreshHist(TmpPath: FilePath, TopRadius: float) -> None:
     )
 
 
+# the scale frame contract needs boundary coverage so stored document relationships remain consistent
 def TestScaleFrame(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     Model = FrustumBody(12.5, 17.0, 21.75, (3.0, -4.0, 5.0))

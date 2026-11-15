@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Wire.EmitAtom import EmitAtom
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the count operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitCountMut(
     Output: FeatureSink, Items: tuple[object, ...], Catalog: EntityCatalog
 ) -> None:

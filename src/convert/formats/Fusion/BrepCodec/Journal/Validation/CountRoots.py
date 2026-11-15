@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
 from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
 
 
+# the count roots contract needs a shared interpretation so inconsistent revision links fail before history reconstruction
 def CountRoots(Entities: tuple[KJournalEntity, ...]) -> int:
     return sum(
         isinstance(Value, BodyNode)

@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.States.DeltaState import DeltaStat
 from convert.formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
 
 
+# undo state needs an explicit validity boundary so inconsistent revision links fail before history reconstruction
 def UndoStateMut(
     State: DeltaState, Versions: dict[int, int], Aliases: tuple[int, ...]
 ) -> None:

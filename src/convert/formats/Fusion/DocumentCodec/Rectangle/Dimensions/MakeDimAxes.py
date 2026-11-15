@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.Model.DimensionAx
 )
 
 
+# the dim axes operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakeDimAxes(SpecValue: DocumentSpec) -> tuple[DimensionAxis, ...]:
     return (
         DimensionAxis(

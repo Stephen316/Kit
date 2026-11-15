@@ -7,9 +7,11 @@ from Report.RenderFooter import RenderFooter
 from Report.RenderSummary import RenderSummary
 from Rules.RuleSet import RuleSet
 
+# comment limit needs one explicit bound so diff reporting cannot accept inconsistent resource or layout limits
 KCommentLimit = 60000
 
 
+# render report needs an explicit validity boundary so reviewers can distinguish semantic changes from generated noise
 def RenderReport(
     Snapshot: dict[str, object],
     Rules: RuleSet,

@@ -7,14 +7,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Image.PageKinds import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
 
+# size rounds needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KSizeRounds = 8
 
 
+# the fit size contract needs a shared interpretation so section boundaries and object references remain consistent
 def FitSize(Declared: int, Needed: int) -> int:
     Minimum = (Needed + 31) // 32 * 32
     return Declared if Declared >= Minimum else Minimum
 
 
+# size pages needs an explicit validity boundary so section boundaries and object references remain consistent
 def SizePages(
     DwgModel: DwgFile, Packed: dict[int, bytes], SectionMap: bytes
 ) -> tuple[dict[int, int], dict[int, tuple[bytes, bytes]]]:

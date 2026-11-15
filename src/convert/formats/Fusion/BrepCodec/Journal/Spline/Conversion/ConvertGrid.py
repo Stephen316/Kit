@@ -33,12 +33,14 @@ from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# the jumps operation needs one geometric convention so surface geometry retains the control cage shape
 def ScaleJumps(
     Lists: tuple[tuple[float, ...], ...], Scale: int
 ) -> tuple[tuple[float, ...], ...]:
     return tuple(tuple(KnotValue * Scale for KnotValue in Values) for Values in Lists)
 
 
+# the convert grid contract needs a shared interpretation so surface geometry retains the control cage shape
 def ConvertGrid(Surface: TsplineSurface) -> GridResult:
     CheckSurface(Surface)
     Mapping = CheckGridCage(Surface)

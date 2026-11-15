@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 from convert.formats.Fusion.GeometryCodec.Prism.PrismUse import PrismUse
 
 
+# the uses operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildUses() -> tuple[PrismUse, ...]:
     EdgeIds = {Corners: Index for Index, Corners in enumerate(KEdgeCorners)}
     return tuple(

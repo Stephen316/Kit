@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 
 
+# link extrude must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkExtrudeMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Author.Change(

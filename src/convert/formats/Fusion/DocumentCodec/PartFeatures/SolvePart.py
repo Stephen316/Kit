@@ -110,9 +110,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ToolSlab import (
     ToolSlab,
 )
 
+# base sketch tags must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KBaseSketchTags = 9
 
 
+# apply extrude needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ApplyExtrude(
     Solid: PrismSolid | None, Feature: ExtrudeSpec, Operation: int, Sketched: SketchPlan
 ) -> PrismSolid:
@@ -136,6 +138,7 @@ def ApplyExtrude(
     )
 
 
+# the bevel legs contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def BevelLegs(Feature: FilletSpec | ChamferSpec) -> tuple[float, float]:
     if isinstance(Feature, FilletSpec):
         return Feature.RadiusMm / 10.0, Feature.RadiusMm / 10.0
@@ -147,6 +150,7 @@ def BevelLegs(Feature: FilletSpec | ChamferSpec) -> tuple[float, float]:
     return Amount, Amount
 
 
+# the round solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RoundSolid(
     Solid: PrismSolid, Feature: FilletSpec | ChamferSpec, Operation: int
 ) -> PrismSolid:
@@ -163,6 +167,7 @@ def RoundSolid(
     return Result
 
 
+# the corner solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CornerSolid(
     Solid: PrismSolid, Feature: FilletSpec | ChamferSpec, Operation: int
 ) -> PrismSolid:
@@ -183,6 +188,7 @@ def CornerSolid(
     return Solid
 
 
+# apply feature needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ApplyFeature(
     Solid: PrismSolid | None, Feature: KPartFeature, Operation: int
 ) -> PrismSolid:
@@ -213,6 +219,7 @@ def ApplyFeature(
     return HollowSolid(Solid, Feature.ThicknessMm / 10.0, Operation, Sides)
 
 
+# the base solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def BaseSolid(SpecValue: DocumentSpec, Policy: AuthorPolicy) -> PrismSolid | None:
     if SpecValue.ProfileKind == "part":
         return None
@@ -224,6 +231,7 @@ def BaseSolid(SpecValue: DocumentSpec, Policy: AuthorPolicy) -> PrismSolid | Non
     )
 
 
+# copy context needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CopyContext(
     Features: tuple[KPartFeature, ...], Feature: KCopySpec, Index: int
 ) -> tuple[int, float]:
@@ -235,12 +243,14 @@ def CopyContext(
     return Index, Plane.OffsetMm / 10.0
 
 
+# the level round decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsLevelRound(Feature: KPartFeature) -> bool:
     return (
         isinstance(Feature, (FilletSpec, ChamferSpec)) and Feature.LevelMm is not None
     )
 
 
+# invalid taper input must fail here so feature parameters remain connected to the resulting geometry
 def CheckTaper(Solid: PrismSolid | None, Feature: KPartFeature) -> None:
     if Solid is None or IsStateless(Feature):
         return
@@ -252,6 +262,7 @@ def CheckTaper(Solid: PrismSolid | None, Feature: KPartFeature) -> None:
         raise ValueError("Fusion edge rounds must follow every other solid feature")
 
 
+# stage solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def StageSolid(
     Solid: PrismSolid | None,
     Feature: KPartFeature,
@@ -271,6 +282,7 @@ def StageSolid(
     return CopySolid(Solid, Feature, Operation, Source, Extra)
 
 
+# the sketch stage contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SketchStage(Feature: KPartFeature, NextTag: int, Ordinal: int) -> SketchPlan | None:
     if isinstance(Feature, ExtrudeSpec):
         return ReplaceValue(PlanSketch(Feature.Profile, NextTag), Ordinal=Ordinal)
@@ -286,6 +298,7 @@ def SketchStage(Feature: KPartFeature, NextTag: int, Ordinal: int) -> SketchPlan
     return None
 
 
+# the plan stages contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def PlanStages(
     Feature: KPartFeature, NextTag: int, Ordinal: int
 ) -> tuple[SketchPlan | None, SketchPlan | None, int]:
@@ -304,6 +317,7 @@ def PlanStages(
     return Sketched, Upper, Upper.NextTag
 
 
+# the count family contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CountFamilyMut(Counts: dict[str, int], Feature: KPartFeature) -> int:
     Names = [FamilyOf(Feature).ClassName]
     if isinstance(Feature, LoftSpec):
@@ -313,6 +327,7 @@ def CountFamilyMut(Counts: dict[str, int], Feature: KPartFeature) -> int:
     return Counts[Names[0]]
 
 
+# sketch solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def SketchSolid(
     Solid: PrismSolid | None,
     Feature: KPartFeature,
@@ -331,6 +346,7 @@ def SketchSolid(
     raise ValueError("Fusion sketched features are extrudes, revolves, lofts or sweeps")
 
 
+# the new body decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsNewBody(Feature: KPartFeature) -> bool:
     if isinstance(Feature, (LoftSpec, SweepSpec)):
         return True
@@ -339,6 +355,7 @@ def IsNewBody(Feature: KPartFeature) -> bool:
     return Feature.Operation == "new"
 
 
+# lone body needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def LoneBody(State: KBodyState, Feature: KPartFeature) -> PrismSolid | None:
     Bodies, Shown = State
     if not Shown or IsNewBody(Feature):
@@ -348,6 +365,7 @@ def LoneBody(State: KBodyState, Feature: KPartFeature) -> PrismSolid | None:
     return Bodies[Shown[0]]
 
 
+# the feature solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FeatureSolidMut(
     State: KBodyState,
     Feature: KPartFeature,
@@ -369,6 +387,7 @@ def FeatureSolidMut(
     return (After if Solid is None else Solid), After
 
 
+# solve part needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def SolvePart(
     SpecValue: DocumentSpec,
 ) -> tuple[PrismSolid | None, tuple[PartStage, ...]]:

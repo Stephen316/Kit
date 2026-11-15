@@ -2,11 +2,14 @@ from convert.formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegme
 from convert.formats.Fusion.DrawingCodec.Legacy.LegacySegment import LegacySegment
 from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
 
+# file class must remain consistent across callers so drawing members retain their sheet and model associations
 KFileClass = "3B30D852-778A-4752-9EBD-A154875C911C"
 
+# file field must remain consistent across callers so drawing members retain their sheet and model associations
 KFileField = "persistedFileName"
 
 
+# invalid database input must fail here so drawing members retain their sheet and model associations
 def CheckDatabase(
     Segments: tuple[ParsedSegment | LegacySegment, ...],
     Database: DrawingDatabase | None,

@@ -7,6 +7,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitTex
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the named operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitNamedMut(Entries: tuple[NamedMetadata, ...], Catalog: EntityCatalog) -> bytes:
     if len({Entry.FieldName for Entry in Entries}) != len(Entries):
         raise ValueError("Duplicate Fusion entity named metadata")

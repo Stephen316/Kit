@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbValue import EncodeSmbValue
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the cylinder smb operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EmitCylinderSmb(Model: CylinderBody, Stamp: GeometryStamp) -> bytes:
     Parts = [EmitSmbHeader(Stamp)]
     for Record in BuildRecords(Model):

@@ -1,6 +1,7 @@
 from struct import iter_unpack as IterUnpack
 
 
+# the corners operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadCorners(Payload: bytes, Vertices: int) -> tuple[tuple[int, ...], int]:
     if not Payload or len(Payload) % 12:
         raise ValueError("Invalid Fusion mesh triangle corner allocation")

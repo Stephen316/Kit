@@ -12,6 +12,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeAttribHead 
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, KAsmToken
 
 
+# the fdm attribute operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeFdmAttrib(Value: FeatureAttrib) -> AsmRecord:
     if Value.DataName not in KFeatureLayouts:
         raise ValueError("Unsupported Fusion feature attribute data")

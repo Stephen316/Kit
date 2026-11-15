@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# the entities operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def DecodeEntities(
     Records: tuple[BulkRecord, ...],
     Classes: tuple[MetaClass, ...],

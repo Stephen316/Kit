@@ -34,9 +34,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import (
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
 
+# blank prefix must remain consistent across callers so nested spline and surface records retain their relationships
 KBlankPrefix = EntityPrefix(-1, -1)
 
 
+# the carrier operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeCarrier(Carrier: KFaceCarrier) -> SplineNode | PlaneNode | ConeNode:
     if isinstance(Carrier, BsSurface):
         return SplineNode(
@@ -73,6 +75,7 @@ def MakeCarrier(Carrier: KFaceCarrier) -> SplineNode | PlaneNode | ConeNode:
     )
 
 
+# the nurbs faces operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeNurbsFaces(
     Model: NurbsBody, Layout: NurbsLayout
 ) -> tuple[FaceNode | LoopNode | SplineNode | PlaneNode | ConeNode, ...]:
@@ -107,6 +110,7 @@ def MakeNurbsFaces(
     return (*Faces, *Loops, *Surfaces)
 
 
+# the nurbs uses operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeNurbsUses(Model: NurbsBody, Layout: NurbsLayout) -> tuple[CoedgeNode, ...]:
     UseList = ModelUses(Model)
     Results: list[CoedgeNode] = []
@@ -139,6 +143,7 @@ def MakeNurbsUses(Model: NurbsBody, Layout: NurbsLayout) -> tuple[CoedgeNode, ..
     return tuple(Results)
 
 
+# the nurbs edges operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeNurbsEdges(
     Model: NurbsBody, Layout: NurbsLayout, Coedges: tuple[CoedgeNode, ...]
 ) -> tuple[EdgeNode | VertexNode | PointNode, ...]:
@@ -179,6 +184,7 @@ def MakeNurbsEdges(
     return (*Edges, *Vertices, *Points)
 
 
+# the nurbs curves operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeNurbsCurves(
     Model: NurbsBody, Layout: NurbsLayout
 ) -> tuple[PcurveNode | IntcurveNode, ...]:

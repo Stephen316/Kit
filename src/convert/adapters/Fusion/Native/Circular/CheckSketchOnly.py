@@ -11,6 +11,7 @@ from convert.adapters.Fusion.Native.Graph.SketchContext import SketchContext
 from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
+# invalid sketch only input must fail here so public geometry remains consistent with native circular topology
 def CheckSketchOnly(
     Graph: NativeGraph, Context: SketchContext, Model: DocumentModel
 ) -> None:

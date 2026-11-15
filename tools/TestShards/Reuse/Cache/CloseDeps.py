@@ -7,6 +7,7 @@ from tools.TestShards.Reuse.Cache.ListConftests import ListConftests
 from tools.TestShards.Reuse.Track.ModuleDeps import ModuleDeps
 
 
+# the close deps contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def CloseDeps(Graph: DepGraph, ModKey: str, Blobs: Mapping[str, str]) -> ModuleDeps:
     Record = Graph.Modules.get(ModKey, ModuleDeps())
     Closure = ModuleDeps(set(), set(Record.Folders), Record.Opaque)

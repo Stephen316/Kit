@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# history state needs an explicit state contract so topology identity survives native history reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class HistoryState:
     CurrentId: int
@@ -12,6 +13,7 @@ class HistoryState:
     BoardStatus: int
     MaxStateId: int | None = None
 
+    # invalid history state state must fail at construction so boundary representation history never receives an inconsistent contract
     def __post_init__(self) -> None:
         MaxState = self.CurrentStateId if self.MaxStateId is None else self.MaxStateId
         object.__setattr__(self, "MaxStateId", MaxState)

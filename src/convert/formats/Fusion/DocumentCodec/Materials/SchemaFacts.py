@@ -1,6 +1,7 @@
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the schema facts contract needs a shared interpretation so appearance references remain connected to their owning entities
 def SchemaFacts(Declared: SchemaNode) -> tuple[str, str, bool]:
     TypeValue = ""
     LocalValue = ""
@@ -16,6 +17,7 @@ def SchemaFacts(Declared: SchemaNode) -> tuple[str, str, bool]:
     return TypeValue, LocalValue, Concrete
 
 
+# find schema must resolve unambiguously so appearance references remain connected to their owning entities
 def FindSchema(
     Indexed: dict[str, SchemaNode], TypeValue: str, LocalValue: str
 ) -> str | None:

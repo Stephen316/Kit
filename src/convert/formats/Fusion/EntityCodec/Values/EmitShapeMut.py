@@ -12,6 +12,7 @@ from convert.formats.Fusion.EntityCodec.Values.EmitMatrix import EmitMatrix
 from convert.formats.Fusion.EntityCodec.Values.ValueCalls import KEmitValue
 
 
+# the shape operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitShapeMut(
     Value: KEntityValue,
     Shape: WireType,

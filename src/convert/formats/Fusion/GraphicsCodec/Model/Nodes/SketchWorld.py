@@ -5,6 +5,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Nodes.LodValue import LodValue
 from convert.formats.Fusion.GraphicsCodec.Model.Values.ObjectRef import ObjectRef
 
 
+# sketch world needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class SketchWorld:
     FaceBody: BrepWorld | None

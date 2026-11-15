@@ -46,9 +46,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
     MixRows,
 )
 
+# the polar steps order must stay explicit so extraordinary vertices remain compatible with surrounding patches
 KPolarSteps = ((2.0, 2), (-2.0, 3), (1.0, 4))
 
 
+# the polar pole contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def PolarPole(
     Reference: KMapping[KCapKey, KPoleRow], CapKey: KCapKey
 ) -> KPoleRow | None:
@@ -70,6 +72,7 @@ def PolarPole(
     return MixRows(Parts)
 
 
+# the layout operation needs a consistent construction rule so extraordinary vertices remain compatible with surrounding patches
 def MakeLayout(
     Request: CapInput, Limit: KPoleRow, CapList: tuple[KCapKey, ...]
 ) -> CapLayout:
@@ -95,6 +98,7 @@ def MakeLayout(
     )
 
 
+# spoke ratios needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def SpokeRatios(
     Valence: int, KnotsI: tuple[KKnotTuple, ...], KnotsJ: tuple[KKnotTuple, ...]
 ) -> tuple[tuple[Fraction, ...], tuple[Fraction, ...]]:
@@ -108,6 +112,7 @@ def SpokeRatios(
     return RatiosI, RatiosJ
 
 
+# the rows operation needs one geometric convention so extraordinary vertices remain compatible with surrounding patches
 def ScaleRows(
     RowList: list[KCapRow], Grips: list[int]
 ) -> tuple[list[list[float]], list[list[float]]]:
@@ -122,6 +127,7 @@ def ScaleRows(
     return Matrix, Sides
 
 
+# the dart reference contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def DartReference(
     Reference: KMapping[KCapKey, KPoleRow], Spoke: int
 ) -> dict[KCapKey, KPoleRow]:
@@ -139,6 +145,7 @@ def DartReference(
     return Found
 
 
+# the cap row list contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def CapRowList(Request: CapInput, Layout: CapLayout, Limit: KPoleRow) -> list[KCapRow]:
     Ratios = SpokeRatios(Request.Valence, Layout.KnotsI, Layout.KnotsJ)
     if IsDart(Request.Creased):
@@ -154,6 +161,7 @@ def CapRowList(Request: CapInput, Layout: CapLayout, Limit: KPoleRow) -> list[KC
     ]
 
 
+# solve caps needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def SolveCaps(Request: CapInput) -> dict[KCapKey, KPoleRow]:
     DartCap = IsDart(Request.Creased)
     if any(Request.Creased) and not DartCap:

@@ -10,6 +10,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitGroup import EmitGr
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the feature operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitFeature(Value: FeatureRecord) -> bytes:
     if not isinstance(CastValue(object, Value), FeatureRecord):
         raise ValueError("Invalid Fusion feature record")

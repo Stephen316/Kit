@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderVertices import BuildVertices
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the frustum vertices contract needs a shared interpretation so circular boundaries retain consistent cone and rim geometry
 def FrustumVertices(Frame: FrustumFrame) -> tuple[GeometryRecord, ...]:
     return tuple(
         Replace(

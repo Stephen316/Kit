@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.ParsePackageXml import (
 )
 
 
+# the group operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadGroup(Payload: bytes, GroupName: str) -> XmlElement:
     RootValue = ParsePackageXml(Payload)
     CheckElement(RootValue, "root", {"version": "1", "name": "root"})

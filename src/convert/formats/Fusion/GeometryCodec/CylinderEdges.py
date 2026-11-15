@@ -7,6 +7,7 @@ from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the edges operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildEdges() -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

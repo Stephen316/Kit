@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Bundles.BundleSource import BundleSource
 from tests.convert.formats.FusionCodec.Bundles.ReadRelations import ReadRelations
 
 
+# the bundle graph contract needs boundary coverage so stored document relationships remain consistent
 def TestBundleGraph() -> None:
     Source = BundleSource().read_bytes()
     Bundle = ReadBundle(Source)
@@ -35,6 +36,7 @@ def TestBundleGraph() -> None:
     assert ReadBundle(Output) == Bundle
 
 
+# the lost target contract needs boundary coverage so stored document relationships remain consistent
 def TestLostTarget() -> None:
     Bundle = ReadBundle(BundleSource().read_bytes())
     GraphValue = Bundle.Description.Graph
@@ -44,6 +46,7 @@ def TestLostTarget() -> None:
         _ = EmitBundle(ReplaceValue(Bundle, Description=Description))
 
 
+# the extra member contract needs boundary coverage so stored document relationships remain consistent
 def TestExtraMember() -> None:
     Stream = BytesIO(BundleSource().read_bytes())
     with ZipFile(Stream, "a") as Archive:

@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Model.NamedValue import NamedValue
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# the aux groups operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def MakeAuxGroups(
     ByName: dict[str, NativeSchema],
     ByGuid: dict[str, NativeSchema],

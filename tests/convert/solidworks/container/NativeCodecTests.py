@@ -6,6 +6,7 @@ from convert.adapters.solidworks.container.Container import BuildSldprt, SldprtA
 from convert.adapters.solidworks.container.SldprtFormat import SldprtFormat
 from tests.convert.solidworks.container.CodecFixture import CodecFixture
 
+# the sample cases must remain explicit so format translation exercises the intended compatibility boundary
 KSample = (
     FilePath(__file__).parents[4]
     / "re"
@@ -16,6 +17,7 @@ KSample = (
 )
 
 
+# the version read contract needs boundary coverage so independent codecs retain consistent data contracts
 @TestMark.parametrize("Version", (3, 4))
 def TestVersionRead(Version: int) -> None:
     Original = ReadSldprt(KSample)
@@ -28,6 +30,7 @@ def TestVersionRead(Version: int) -> None:
     assert Document.brep_payloads == Original.brep_payloads
 
 
+# the version save contract needs boundary coverage so independent codecs retain consistent data contracts
 @TestMark.parametrize("Version", (3, 4))
 def TestVersionSave(Version: int) -> None:
     Streams = SldprtArchive.open(KSample).streams
@@ -50,6 +53,7 @@ def TestVersionSave(Version: int) -> None:
     assert ReadSldprt(Override).parameters == Document.parameters
 
 
+# the nested frame contract needs boundary coverage so independent codecs retain consistent data contracts
 def TestNestedFrame() -> None:
     Streams = SldprtArchive.open(KSample).streams
     Nested = CodecFixture({"swXmlContents/KeyWords": b"not the document history"})
@@ -60,6 +64,7 @@ def TestNestedFrame() -> None:
     assert SldprtArchive.from_bytes(Fixture).streams == Streams
 
 
+# the damage read contract needs boundary coverage so independent codecs retain consistent data contracts
 @TestMark.parametrize("Damage", ("checksum", "size", "trailing", "truncated"))
 def TestDamageRead(Damage: str) -> None:
     Streams = SldprtArchive.open(KSample).streams

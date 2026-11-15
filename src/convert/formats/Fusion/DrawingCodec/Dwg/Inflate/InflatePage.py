@@ -7,6 +7,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.ReadLiteral import ReadLite
 from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.TakeByte import TakeByte
 
 
+# the inflate page contract needs a shared interpretation so compressed page boundaries cannot overrun their declared payload
 def InflatePage(Packed: bytes, Limit: int) -> bytes:
     Output = bytearray()
     Opcode = TakeByte(Packed, 0)

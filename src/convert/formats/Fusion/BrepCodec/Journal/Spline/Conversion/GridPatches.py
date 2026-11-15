@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 
 
+# grid patches needs an explicit validity boundary so surface geometry retains the control cage shape
 def GridPatches(
     Topology: CageTopology,
     Spokes: tuple[int, ...],

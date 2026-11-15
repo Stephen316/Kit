@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.FaceResult import (
 )
 
 
+# cage result needs an explicit state contract so control cage contributions retain their intended weights
 @MakeDataClass(frozen=True, slots=True)
 class CageResult:
     Faces: tuple[FaceResult, ...]

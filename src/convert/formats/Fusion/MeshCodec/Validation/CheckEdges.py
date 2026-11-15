@@ -1,6 +1,7 @@
 from convert.formats.Fusion.MeshCodec.Model.ParaMesh import ParaMesh
 
 
+# invalid edges input must fail here so vertex and index streams retain their intended connectivity
 def CheckEdges(Value: ParaMesh) -> None:
     TriangleEdges: set[tuple[int, int]] = set()
     for Offset in range(0, len(Value.Corners), 3):

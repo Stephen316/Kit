@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.States.BulletinBoard import Bullet
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the boards operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeBoards(Boards: tuple[BulletinBoard, ...]) -> tuple[KAsmToken, ...]:
     Fields: list[KAsmToken] = []
     for Board in Boards:

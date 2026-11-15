@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntit
 from convert.formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes
 
 
+# invalid subtypes input must fail here so topology changes retain their native revision relationships
 def CheckSubtypes(Entities: tuple[KJournalEntity, ...]) -> None:
     Families: list[str] = []
     for Value in Entities:

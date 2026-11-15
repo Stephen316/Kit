@@ -8,6 +8,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the vertices operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildVertices() -> tuple[GeometryRecord, ...]:
     Owners = {
         Corner: (KFirstEdge + Index, Endpoint)

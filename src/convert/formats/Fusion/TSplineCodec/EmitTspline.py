@@ -11,6 +11,7 @@ from convert.formats.Fusion.TSplineCodec.Writing.WriteSymmetry import WriteSymme
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# the tspline operation needs a consistent construction rule so control cage topology retains its native connectivity
 def EmitTspline(Surface: TsplineSurface) -> bytes:
     CheckSurface(Surface)
     Records = WriteHeader(Surface.Header) + WriteTopology(Surface.Topology)

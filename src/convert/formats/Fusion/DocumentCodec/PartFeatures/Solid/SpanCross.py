@@ -16,9 +16,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the meet limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KMeetLimit = 1e-9
 
 
+# the on both decision must stay consistent so body topology remains consistent with its modeling operation
 def IsOnBoth(First: KPlaneSpan, Second: KPlaneSpan, Point: KPoint) -> bool:
     return (
         SpanDistance(First, Point) < KMeetLimit
@@ -26,12 +28,14 @@ def IsOnBoth(First: KPlaneSpan, Second: KPlaneSpan, Point: KPoint) -> bool:
     )
 
 
+# shared ends needs a shared interpretation so body topology remains consistent with its modeling operation
 def SharedEnds(First: KPlaneSpan, Second: KPlaneSpan) -> list[KPoint]:
     Points = [SpanStart(First), SpanFinish(First), SpanStart(Second)]
     Points.append(SpanFinish(Second))
     return [Point for Point in Points if IsOnBoth(First, Second, Point)]
 
 
+# the line meet contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LineMeet(First: LineSpan, Second: LineSpan) -> list[KPoint]:
     (StartX, StartY), (FinishX, FinishY) = First.StartCm, First.FinishCm
     (OtherX, OtherY), (FarAlongX, FarAlongY) = Second.StartCm, Second.FinishCm
@@ -46,6 +50,7 @@ def LineMeet(First: LineSpan, Second: LineSpan) -> list[KPoint]:
     return [Point] if IsOnBoth(First, Second, Point) else []
 
 
+# the line heading contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LineHeading(Value: LineSpan) -> tuple[KPoint, KPoint]:
     DeltaX = Value.FinishCm[0] - Value.StartCm[0]
     DeltaY = Value.FinishCm[1] - Value.StartCm[1]
@@ -53,6 +58,7 @@ def LineHeading(Value: LineSpan) -> tuple[KPoint, KPoint]:
     return Value.StartCm, (DeltaX / Length, DeltaY / Length)
 
 
+# the arc meet contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ArcMeet(First: ArcSpan, Second: KPlaneSpan) -> list[KPoint]:
     Circle = (First.CenterCm, First.RadiusCm)
     if isinstance(Second, LineSpan):
@@ -68,6 +74,7 @@ def ArcMeet(First: ArcSpan, Second: KPlaneSpan) -> list[KPoint]:
     return [Point for Point in Points if IsOnBoth(First, Second, Point)]
 
 
+# the span cross contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SpanCross(First: KPlaneSpan, Second: KPlaneSpan) -> list[KPoint]:
     if isinstance(First, ArcSpan):
         return ArcMeet(First, Second)

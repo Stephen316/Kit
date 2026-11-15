@@ -10,6 +10,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 )
 
 
+# bind materials needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def BindMaterials(Value: DocumentModel) -> dict[int, MaterialPackage]:
     Parts = {PartValue.Name: PartValue for PartValue in Value.Materials}
     if len(Parts) != len(Value.Materials):

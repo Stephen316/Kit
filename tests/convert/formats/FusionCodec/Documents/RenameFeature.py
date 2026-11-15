@@ -3,6 +3,7 @@ from dataclasses import replace as ReplaceValue
 from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
+# shared rename feature setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RenameFeature(Value: DocumentModel, Label: str) -> DocumentModel:
     Segments = tuple(
         ReplaceValue(

@@ -13,6 +13,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeStateNode import MakeStateNode
 
 
+# shared poison journal setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PoisonJournal(Payload: bytes, Fault: str) -> bytes:
     if Fault == "trailing":
         return Payload + b"unknown"

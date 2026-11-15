@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Reading.FrustumLinks import Frustu
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, AsmTable
 
 
+# map frustum must resolve unambiguously so circular boundaries retain consistent cone and rim geometry
 def MapFrustum(Expected: tuple[AsmRecord, ...], Actual: AsmTable) -> dict[int, int]:
     if len(Expected) != len(Actual.Records):
         raise ValueError("Unsupported frustum entity count")

@@ -37,6 +37,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 
 
+# the seat loop contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SeatLoop(
     Slabs: tuple[PrismSlab, ...], Index: int, LoopValue: KPlaneLoop, Upright: bool
 ) -> KPlaneLoop:
@@ -46,6 +47,7 @@ def SeatLoop(
     return next((Other for Other in Below if IsSameRing(Other, LoopValue)), LoopValue)
 
 
+# wall for needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def WallFor(
     Spans: tuple[KPlaneSpan, KPlaneSpan, KPlaneSpan],
     Joints: tuple[tuple[float, float], ...],
@@ -71,6 +73,7 @@ def WallFor(
     return WallFace(SpanValue, Lower, Upper, (RingValue,), Flared)
 
 
+# the slab entries contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SlabEntries(Slabs: tuple[PrismSlab, ...]) -> list[WallPiece | WallFace]:
     Entries: list[WallPiece | WallFace] = []
     for Index, SlabValue in enumerate(Slabs):
@@ -92,6 +95,7 @@ def SlabEntries(Slabs: tuple[PrismSlab, ...]) -> list[WallPiece | WallFace]:
     return Entries
 
 
+# the group face contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def GroupFace(
     Members: list[WallPiece],
     Sides: tuple[KSides, dict[tuple[float, float], list[float]]],
@@ -106,6 +110,7 @@ def GroupFace(
     return WallFace(Members[0].Span, Lower, Upper, Loops)
 
 
+# the wall faces contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def WallFaces(Slabs: tuple[PrismSlab, ...]) -> tuple[WallFace, ...]:
     Entries = SlabEntries(Slabs)
     Pieces = [Entry for Entry in Entries if isinstance(Entry, WallPiece)]

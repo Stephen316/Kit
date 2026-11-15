@@ -12,10 +12,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSectionInfo import (
     DwgSectionInfo,
 )
 
+# data page type must remain consistent across callers so section boundaries and object references remain consistent
 KDataPageType = 0x4163043B
+
+# page mask must remain consistent across callers so section boundaries and object references remain consistent
 KPageMask = 0x4164536B
 
 
+# the data page operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadDataPage(
     Content: bytes,
     MapPage: DwgMapPage,

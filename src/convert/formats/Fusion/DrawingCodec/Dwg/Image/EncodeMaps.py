@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Image.PageKinds import KDataPageTyp
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
 
 
+# the sect map operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeSectMap(
     DwgModel: DwgFile, Contents: dict[str, bytes], Packed: dict[int, bytes]
 ) -> bytes:
@@ -39,6 +40,7 @@ def EncodeSectMap(
     return bytes(Output)
 
 
+# the page map operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodePageMap(DwgModel: DwgFile, Sizes: dict[int, int]) -> bytes:
     return b"".join(
         PackFields("<iI", PageImage.PageNumber, Sizes[PageImage.PageNumber])

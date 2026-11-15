@@ -18,9 +18,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 )
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, KAsmToken
 
+# the splice table shape must stay shared so journal reconstruction uses one contract for compatible values
 KSpliceTable: TypeAlias = dict[tuple[int, int], int]
 
 
+# the snapshot drop decision must stay consistent so topology changes retain their native revision relationships
 def IsSnapshotDrop(Entities: tuple[KJournalEntity, ...], Index: int) -> bool:
     Value = Entities[Index]
     if isinstance(Value, TrackAttrib):
@@ -33,6 +35,7 @@ def IsSnapshotDrop(Entities: tuple[KJournalEntity, ...], Index: int) -> bool:
     return isinstance(Entities[Owner], BodyNode)
 
 
+# attribute chain needs an explicit validity boundary so topology changes retain their native revision relationships
 def AttribChain(Records: tuple[AsmRecord, ...], Owner: int) -> tuple[int, ...]:
     Chain: list[int] = []
     Current = Records[Owner].Tokens[0][1]
@@ -44,6 +47,7 @@ def AttribChain(Records: tuple[AsmRecord, ...], Owner: int) -> tuple[int, ...]:
     return tuple(Chain)
 
 
+# the chain splices contract needs a shared interpretation so topology changes retain their native revision relationships
 def ChainSplices(Records: tuple[AsmRecord, ...], Drops: frozenset[int]) -> KSpliceTable:
     Splices: KSpliceTable = {}
     for Owner in range(1, len(Records)):
@@ -59,6 +63,7 @@ def ChainSplices(Records: tuple[AsmRecord, ...], Drops: frozenset[int]) -> KSpli
     return Splices
 
 
+# the snapshot target contract needs a shared interpretation so topology changes retain their native revision relationships
 def SnapshotTarget(
     Index: int, SlotField: tuple[int, int], Drops: frozenset[int], Splices: KSpliceTable
 ) -> int:
@@ -66,6 +71,7 @@ def SnapshotTarget(
     return -1 if Target < 0 or Target in Drops else Target
 
 
+# snapshot order needs an explicit validity boundary so topology changes retain their native revision relationships
 def SnapshotOrder(
     Entities: tuple[KJournalEntity, ...],
     Records: tuple[AsmRecord, ...],
@@ -93,6 +99,7 @@ def SnapshotOrder(
     return tuple(Order)
 
 
+# the snapshot token contract needs a shared interpretation so topology changes retain their native revision relationships
 def SnapshotToken(
     Index: int,
     SlotIndex: int,
@@ -110,6 +117,7 @@ def SnapshotToken(
     return (TagValue, Positions[Target] if Target >= 0 else -1)
 
 
+# snapshot form needs an explicit validity boundary so topology changes retain their native revision relationships
 def SnapshotForm(
     Entities: tuple[KJournalEntity, ...],
 ) -> tuple[KJournalEntity, ...]:

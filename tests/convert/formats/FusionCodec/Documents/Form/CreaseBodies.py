@@ -15,14 +15,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurf
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
 
+# shared span knots setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SpanKnots(Spans: int) -> tuple[float, ...]:
     return tuple(float(Index) for Index in range(Spans + 1))
 
 
+# shared span counts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SpanCounts(Spans: int) -> tuple[int, ...]:
     return (3, *([1] * (Spans - 1)), 3)
 
 
+# shared pole places setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PolePlaces(Spans: int) -> list[float]:
     Spread = (
         [0.0] * 4 + [float(Index) for Index in range(1, Spans)] + [float(Spans)] * 4
@@ -30,16 +33,19 @@ def PolePlaces(Spans: int) -> list[float]:
     return [sum(Spread[Index + 1 : Index + 4]) / 3.0 for Index in range(Spans + 3)]
 
 
+# shared fold crease setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldCrease(Spans: int) -> BsCurve:
     Poles = tuple((0.0, Place, 0.0) for Place in PolePlaces(Spans))
     return BsCurve(False, 3, 0, SpanKnots(Spans), SpanCounts(Spans), 3, Poles, ())
 
 
+# shared fold trace setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldTrace(Spans: int, Across: float) -> BsCurve:
     Poles = ((Across, 0.0), (Across, float(Spans)))
     return BsCurve(False, 1, 0, (0.0, float(Spans)), (1, 1), 2, Poles, ())
 
 
+# shared fold sheet setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldSheet(
     Spans: int, RowPairs: list[tuple[KJournalVector, KJournalVector]]
 ) -> NubsSurface:
@@ -52,6 +58,7 @@ def FoldSheet(
     return NubsSurface(1, 3, 0, 0, 0, 0, KnotsU, KnotsV, Points)
 
 
+# shared fold faces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldFaces(Angles: tuple[float, ...]) -> tuple[NubsSurface, NubsSurface]:
     Spans = len(Angles) - 3
     Places = PolePlaces(Spans)
@@ -64,6 +71,7 @@ def FoldFaces(Angles: tuple[float, ...]) -> tuple[NubsSurface, NubsSurface]:
     return FlatSheet, FoldSheet(Spans, list(zip(Turned, Crease)))
 
 
+# shared fold body setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldBody(Angles: tuple[float, ...], Splits: tuple[float, ...] = ()) -> FormBody:
     Spans = len(Angles) - 3
     Curve = FoldCrease(Spans)

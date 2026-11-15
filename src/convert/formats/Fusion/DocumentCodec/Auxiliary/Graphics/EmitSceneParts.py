@@ -3,6 +3,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicScene import Graphi
 from convert.formats.Fusion.GraphicsCodec.EmitGraphics import EmitGraphics
 
 
+# the scene parts operation needs a consistent construction rule so supporting records retain their owning document relationships
 def EmitSceneParts(Value: GraphicScene | None) -> tuple[ContainerPart, ...]:
     if Value is None:
         return ()

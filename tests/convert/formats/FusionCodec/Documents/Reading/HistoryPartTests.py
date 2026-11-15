@@ -14,6 +14,7 @@ from tests.convert.formats.FusionCodec.Brep.Prism.PrismSample import MakePrism
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the history part contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Profile", ("cylinder", "prism"))
 def TestHistoryPart(TmpPath: FilePath, Profile: str) -> None:
     if Profile == "prism":
@@ -38,6 +39,7 @@ def TestHistoryPart(TmpPath: FilePath, Profile: str) -> None:
     assert EmitBodyPart(Value).Payload == Stored
 
 
+# the part kinds contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "PartName",
     ("Breps.BlobParts/BREP.Snapshot.smb", "ProteinAssets.BlobParts/Asset.protein"),

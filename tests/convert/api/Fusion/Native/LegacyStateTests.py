@@ -6,6 +6,7 @@ from convert import open_document as OpenDocument, write_document as WriteDocume
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# the legacy state contract needs boundary coverage so stored document relationships remain consistent
 def TestLegacyState(TmpPath: FilePath) -> None:
     Source = TmpPath / "Source.f3d"
     _ = WriteDocument(AdapterCase("parameter"), Source, destination_format="f3d")

@@ -5,6 +5,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Nodes.BrepWorld import BrepWorld
 from convert.formats.Fusion.GraphicsCodec.Model.Nodes.SketchWorld import SketchWorld
 
 
+# group value needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class GroupValue:
     Matrix: tuple[float, ...] | None

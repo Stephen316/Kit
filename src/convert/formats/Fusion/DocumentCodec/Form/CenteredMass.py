@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# centered mass needs an explicit validity boundary so editable control cages retain their document relationships
 def CenteredMass(
     MassValues: dict[str, float],
 ) -> tuple[dict[str, object], dict[str, object], dict[str, object]]:

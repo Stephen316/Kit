@@ -14,6 +14,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckPackage import
 )
 
 
+# the package operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadPackage(Payload: bytes) -> MaterialPackage:
     if type(Payload) is not bytes or not 0 < len(Payload) <= KMaxPackage:
         raise ValueError("Invalid material package size")

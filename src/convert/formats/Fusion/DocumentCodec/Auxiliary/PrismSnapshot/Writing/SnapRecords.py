@@ -18,6 +18,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
 
 
+# the snapshot records contract needs a shared interpretation so supporting records retain their owning document relationships
 def SnapRecords(Value: PrismSnapshot) -> tuple[GeometryRecord, ...]:
     Solid = SolidRecords(Value.Frame)
     Roots = (

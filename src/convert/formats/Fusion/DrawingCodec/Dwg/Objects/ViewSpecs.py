@@ -22,6 +22,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Objects.ViewParts import (
     KViewTrailer,
 )
 
+# the view specifications vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KViewSpecs: dict[str, str] = {
     "ACDBASSOCNETWORK": KAssocAction
     + "BL NetworkVersion; BL MaxActionIndex; BL ActionCount; "

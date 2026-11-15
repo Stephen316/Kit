@@ -2,9 +2,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Attributes.NestedTag import KNeste
 from convert.formats.Fusion.BrepCodec.Journal.Validation.ReadLiveRef import ReadLiveRef
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
+# the nested form order must stay explicit so inconsistent revision links fail before history reconstruction
 KNestedForm = ((7, "generic_tag_attrib_def"), *KNestedHead[:7])
 
 
+# the nested tag decision must stay consistent so inconsistent revision links fail before history reconstruction
 def IsNestedTag(Record: AsmRecord) -> bool:
     return (
         Record.Name == "ATTRIB_CUSTOM-attrib"
@@ -12,6 +14,7 @@ def IsNestedTag(Record: AsmRecord) -> bool:
     )
 
 
+# invalid nest tags input must fail here so inconsistent revision links fail before history reconstruction
 def CheckNestTags(
     Records: tuple[AsmRecord, ...], Versions: dict[int, int], Aliases: tuple[int, ...]
 ) -> None:

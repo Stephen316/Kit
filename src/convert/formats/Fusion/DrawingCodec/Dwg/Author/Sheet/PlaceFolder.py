@@ -10,10 +10,12 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.PlaceMut import PlaceMut
 
 
+# the entry name contract needs a shared interpretation so paper layouts retain consistent object ownership
 def EntryName(NameText: str) -> DraftRecord:
     return DraftRecord((("EntryName", NameText),))
 
 
+# the folder operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceFolderMut(
     Ledger: DraftBook, KeyText: str, OwnerKey: str, IsExtension: bool, NameText: str
 ) -> str:
@@ -37,6 +39,7 @@ def PlaceFolderMut(
     return KeyText + "/" + NameText
 
 
+# entry text needs an explicit validity boundary so paper layouts retain consistent object ownership
 def EntryText(Entry: KDraftValue) -> str:
     if not isinstance(Entry, DraftRecord):
         raise ValueError("Authored DWG dictionary entry is not a named record")
@@ -46,6 +49,7 @@ def EntryText(Entry: KDraftValue) -> str:
     return Value
 
 
+# enrol needs an explicit validity boundary so paper layouts retain consistent object ownership
 def EnrolMut(Ledger: DraftBook, FolderKey: str, NameText: str, KeyText: str) -> str:
     Names = Ledger.SlotItems.get(FolderKey + ".Entries")
     Items = Ledger.SlotItems.get(FolderKey + ".Items")

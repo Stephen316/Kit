@@ -37,6 +37,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineS
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# stencil swap needs an explicit state contract so control cage contributions retain their intended weights
 @MakeDataClass(frozen=True, slots=True)
 class StencilSwap:
     Prior: CageResult
@@ -44,6 +45,7 @@ class StencilSwap:
     Surface: TsplineSurface
 
 
+# the swap scope contract needs a shared interpretation so control cage contributions retain their intended weights
 def SwapScope(
     Value: SubtransNode | SubtypeRef, Context: StencilSwap
 ) -> SubtransNode | SubtypeRef:
@@ -52,6 +54,7 @@ def SwapScope(
     return Value
 
 
+# the near weights decision must stay consistent so control cage contributions retain their intended weights
 def IsNearWeights(Former: tuple[float, ...], Latter: tuple[float, ...]) -> bool:
     return IsNear(
         tuple((WeightValue,) for WeightValue in Former),
@@ -59,6 +62,7 @@ def IsNearWeights(Former: tuple[float, ...], Latter: tuple[float, ...]) -> bool:
     )
 
 
+# the same cache decision must stay consistent so control cage contributions retain their intended weights
 def IsSameCache(Cache: NubsSurface, Prior: NubsSurface) -> bool:
     return (
         (Cache.KnotsU, Cache.KnotsV) == (Prior.KnotsU, Prior.KnotsV)
@@ -68,6 +72,7 @@ def IsSameCache(Cache: NubsSurface, Prior: NubsSurface) -> bool:
     )
 
 
+# the same curve decision must stay consistent so control cage contributions retain their intended weights
 def IsSameCurve(Prior: BsCurve, Stored: BsCurve) -> bool:
     return (
         (Prior.Rational, Prior.Knots, Prior.Multiplicity)
@@ -77,6 +82,7 @@ def IsSameCurve(Prior: BsCurve, Stored: BsCurve) -> bool:
     )
 
 
+# swap surf needs an explicit validity boundary so control cage contributions retain their intended weights
 def SwapSurf(Value: TsplineSurf, Context: StencilSwap) -> TsplineSurf:
     Places = {
         FaceValue.FaceIndex: Index
@@ -104,6 +110,7 @@ def SwapSurf(Value: TsplineSurf, Context: StencilSwap) -> TsplineSurf:
     )
 
 
+# swap exact needs an explicit validity boundary so control cage contributions retain their intended weights
 def SwapExact(Value: SubtypeNode, Context: StencilSwap) -> SubtypeNode:
     Stored = SplineCurve(Value)
     for Index, Prior in enumerate(Context.Prior.Curves):
@@ -122,6 +129,7 @@ def SwapExact(Value: SubtypeNode, Context: StencilSwap) -> SubtypeNode:
     raise ValueError("Fusion Form cage swap found a stale boundary curve")
 
 
+# the swap tree contract needs a shared interpretation so control cage contributions retain their intended weights
 def SwapTree(Value: KGrammarValue, Context: StencilSwap) -> KGrammarValue:
     if isinstance(Value, TsplineSurf):
         return SwapSurf(Value, Context)
@@ -141,6 +149,7 @@ def SwapTree(Value: KGrammarValue, Context: StencilSwap) -> KGrammarValue:
     return Value
 
 
+# swap place needs an explicit validity boundary so control cage contributions retain their intended weights
 def SwapPlace(Value: PointNode, Context: StencilSwap) -> PointNode:
     for Index, Prior in enumerate(Context.Prior.Points):
         if IsNear((Prior,), (Value.PositionCm,)):
@@ -148,6 +157,7 @@ def SwapPlace(Value: PointNode, Context: StencilSwap) -> PointNode:
     raise ValueError("Fusion Form cage swap found a stale vertex point")
 
 
+# the swap stencil contract needs a shared interpretation so control cage contributions retain their intended weights
 def SwapStencil(Value: KJournalEntity, Context: StencilSwap) -> KJournalEntity:
     if isinstance(Value, PointNode):
         return SwapPlace(Value, Context)

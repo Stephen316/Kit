@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import (
     ThermalSpec,
 )
 
+# the rule cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRuleCases: dict[str, tuple[MaterialSpec, str]] = {
     "concrete": (
         MaterialSpec(ClassName="Concrete"),
@@ -32,6 +33,8 @@ KRuleCases: dict[str, tuple[MaterialSpec, str]] = {
         "no place in its Fusion schema",
     ),
 }
+
+# the finish cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFinishCases: dict[str, tuple[MaterialSpec, str]] = {
     "metalglass": (
         MaterialSpec(Finish=FinishSpec(Metallic=True, Refraction=1.5)),
@@ -46,6 +49,8 @@ KFinishCases: dict[str, tuple[MaterialSpec, str]] = {
         "choice is not declared",
     ),
 }
+
+# the input cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KInputCases: dict[str, tuple[MaterialSpec, str]] = {
     "plasma": (
         MaterialSpec(TypeName="Plasma"),
@@ -56,6 +61,8 @@ KInputCases: dict[str, tuple[MaterialSpec, str]] = {
         "Invalid authored material type",
     ),
 }
+
+# the step cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStepCases: dict[str, tuple[MaterialSpec, str]] = {
     "basicdirection": (
         MaterialSpec(
@@ -86,6 +93,8 @@ KStepCases: dict[str, tuple[MaterialSpec, str]] = {
         "choice is not declared",
     ),
 }
+
+# the class cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KClassCases: dict[str, tuple[MaterialSpec, str]] = {
     "emptyclass": (
         MaterialSpec(ClassName=""),
@@ -100,6 +109,8 @@ KClassCases: dict[str, tuple[MaterialSpec, str]] = {
         "flag must be a boolean",
     ),
 }
+
+# the bad cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBadCases = {
     **KRuleCases,
     **KFinishCases,

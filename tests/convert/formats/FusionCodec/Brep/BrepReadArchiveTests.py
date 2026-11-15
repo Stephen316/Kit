@@ -10,9 +10,11 @@ from convert.formats.Fusion.BrepCodec.ReadHistory import ReadHistory
 from convert.formats.Fusion.BrepCodec.ReadSnapshot import ReadSnapshot
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[5]
 
 
+# the boundary representation archive contract needs boundary coverage so stored document relationships remain consistent
 def TestBrepArchive(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     HistoryBytes = EmitHistory(
@@ -58,6 +60,7 @@ def TestBrepArchive(TmpPath: FilePath) -> None:
     )
 
 
+# the native boundary representation contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

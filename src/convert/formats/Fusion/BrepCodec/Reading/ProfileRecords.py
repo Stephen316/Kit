@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the profile records contract needs a shared interpretation so topology identity survives native history reconstruction
 def ProfileRecords(HasHistory: bool) -> tuple[AsmRecord, ...]:
     Model = CylinderBody(1.0, 1.0, (0.0, 0.0, 0.0))
     Label = FeatureTag("1", (0,))

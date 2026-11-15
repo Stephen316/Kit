@@ -23,11 +23,17 @@ from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import (
     ReadSeries,
 )
 
+# the work modes vocabulary must stay centralized so pattern feature construction agrees on supported native identities
 KWorkModes: dict[str, object] = dict(isVisibleBeforeRollback=True)
+
+# the point modes vocabulary must stay centralized so pattern feature construction agrees on supported native identities
 KPointModes: dict[str, object] = dict(KWorkModes, chainPropagation=True)
+
+# the plane modes vocabulary must stay centralized so pattern feature construction agrees on supported native identities
 KPlaneModes: dict[str, object] = dict(KPointModes, isProportionalParam=True)
 
 
+# link plane must resolve unambiguously so repeated instances retain their intended placement and ownership
 def LinkPlaneMut(Author: AuthorState, Prefix: str, Feature: PlaneSpec) -> None:
     Reference = Author.Reference
     Group = Author.FindEntity("work_geometries").FieldValues
@@ -59,6 +65,7 @@ def LinkPlaneMut(Author: AuthorState, Prefix: str, Feature: PlaneSpec) -> None:
     )
 
 
+# the plane operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddPlaneMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature = Stage.Feature
     if not isinstance(Feature, PlaneSpec):

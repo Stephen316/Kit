@@ -10,10 +10,12 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeUse import KSh
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import WallFace
 
 
+# the made by contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MadeBy(OperationIds: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(Value for Value in OperationIds if Value > 0)
 
 
+# the sketch curve contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SketchCurve(
     BodyValue: ShapeBody, FaceValue: KShapeFace, EdgeValue: KShapeEdge
 ) -> int | None:

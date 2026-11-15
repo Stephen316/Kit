@@ -26,23 +26,32 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
 )
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# the grid place shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KGridPlace = tuple[int, int]
+
+# the pole grid shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KPoleGrid = list[list[KIndexedRow]]
+
+# the side grip shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KSideGrip = tuple[KGridPlace, int]
 
 
+# the compound decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsCompound(Surface: TsplineSurface) -> bool:
     return len(Surface.Grips) > len(Surface.Topology.Vertices)
 
 
+# the grid places contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def GridPlaces(Surface: TsplineSurface) -> tuple[KGridPlace, ...]:
     return PlaceVertices(Surface.Topology, SpokeIndices(Surface.Topology))
 
 
+# the rim place decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsRimPlace(Place: KGridPlace, Limits: KGridPlace) -> bool:
     return Place[0] in (0, Limits[0]) or Place[1] in (0, Limits[1])
 
 
+# base grid needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def BaseGrid(
     Surface: TsplineSurface, Places: tuple[KGridPlace, ...], Limits: KGridPlace
 ) -> dict[KGridPlace, int]:
@@ -67,6 +76,7 @@ def BaseGrid(
     return Found
 
 
+# side grips needs an explicit validity boundary so neighboring patches retain consistent subdivision boundaries
 def SideGrips(
     Surface: TsplineSurface, Places: tuple[KGridPlace, ...], Limits: KGridPlace
 ) -> dict[int, list[KSideGrip]]:
@@ -88,6 +98,7 @@ def SideGrips(
     return Found
 
 
+# the crease lines contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CreaseLines(
     Graph: CageGraph, Places: tuple[KGridPlace, ...], Limits: KGridPlace
 ) -> tuple[frozenset[int], frozenset[int]]:
@@ -104,6 +115,7 @@ def CreaseLines(
     return frozenset(LinesU), frozenset(LinesV)
 
 
+# the uniform knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def UniformKnots(Limit: int) -> KKnotList:
     Inner = tuple(Fraction(Value) for Value in range(1, Limit))
     return (
@@ -111,6 +123,7 @@ def UniformKnots(Limit: int) -> KKnotList:
     )
 
 
+# the split line contract needs a stable decomposition so neighboring patches retain consistent subdivision boundaries
 def SplitLine(
     Knots: KKnotList, Poles: list[KIndexedRow], Lines: frozenset[int]
 ) -> tuple[KKnotList, list[KIndexedRow]]:
@@ -120,10 +133,12 @@ def SplitLine(
     return Current
 
 
+# the transposed contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def Transposed(GridRows: KPoleGrid) -> KPoleGrid:
     return [list(Column) for Column in zip(*GridRows)]
 
 
+# the split grid contract needs a stable decomposition so neighboring patches retain consistent subdivision boundaries
 def SplitGrid(
     BaseGrips: dict[KGridPlace, int],
     Limits: KGridPlace,

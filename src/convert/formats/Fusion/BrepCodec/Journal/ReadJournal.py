@@ -18,6 +18,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
 
 
+# the journal operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadJournal(Payload: bytes) -> JournalModel:
     if type(Payload) is not bytes or not 0 < len(Payload) <= KJournalBytes:
         raise ValueError("Invalid or oversized Fusion journal payload")

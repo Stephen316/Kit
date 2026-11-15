@@ -12,6 +12,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.CheckRectDims imp
 )
 
 
+# invalid doc specification input must fail here so model state retains its native feature and ownership relationships
 def CheckDocSpec(SpecValue: DocumentSpec) -> None:
     if not isinstance(CastValue(object, SpecValue), DocumentSpec):
         raise ValueError("A typed Fusion document specification is required")

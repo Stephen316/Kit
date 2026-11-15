@@ -16,6 +16,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentMod
 from tests.convert.api.Fusion.Native.ChangeNative import ChangeField
 
 
+# shared change rotary setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeRotary(Model: DocumentModel, RoleName: str) -> DocumentModel:
     if RoleName == "circle":
         Circle = BuildGraph(Model).OneClass("CircArc3D")
@@ -35,6 +36,7 @@ def ChangeRotary(Model: DocumentModel, RoleName: str) -> DocumentModel:
     return ReplaceData(Model, Bodies=(ReplaceData(BodyValue, History=History),))
 
 
+# shared change snapshot tag setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangeSnapTag(Model: DocumentModel) -> DocumentModel:
     PartValue = Model.Snapshots[0]
     Snapshot = PartValue.Snapshot

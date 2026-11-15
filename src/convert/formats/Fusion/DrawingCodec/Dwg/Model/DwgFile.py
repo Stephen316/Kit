@@ -15,6 +15,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSectionInfo import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSummary import DwgSummary
 
 
+# drawing file needs an explicit state contract so section boundaries and object references remain consistent
 @MakeDataClass(frozen=True, slots=True)
 class DwgFile:
     FileHeader: DwgFileHeader

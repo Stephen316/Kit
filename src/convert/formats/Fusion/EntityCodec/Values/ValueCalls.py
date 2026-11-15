@@ -6,7 +6,10 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityCatalog import EntityCatalo
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
+# the read value shape must stay shared so entity reconstruction uses one contract for compatible values
 KReadValue: TypeAlias = Callable[
     [MetaCursor, WireType, EntityCatalog, int], KEntityValue
 ]
+
+# the emit value shape must stay shared so entity reconstruction uses one contract for compatible values
 KEmitValue: TypeAlias = Callable[[KEntityValue, WireType, EntityCatalog, int], bytes]

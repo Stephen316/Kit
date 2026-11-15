@@ -1,11 +1,13 @@
 from math import isfinite as IsFinite
 
 
+# invalid real input must fail here so profile topology remains connected to its extrusion history
 def CheckReal(Value: float) -> None:
     if isinstance(Value, bool) or not IsFinite(Value):
         raise ValueError("Prism history requires finite real geometry")
 
 
+# invalid vector input must fail here so profile topology remains connected to its extrusion history
 def CheckVector(Value: tuple[float, float, float]) -> None:
     if type(Value) is not tuple or len(Value) != 3:
         raise ValueError("Prism history requires three-component vectors")
@@ -13,6 +15,7 @@ def CheckVector(Value: tuple[float, float, float]) -> None:
         CheckReal(Member)
 
 
+# the prism operation needs one geometric convention so profile topology remains connected to its extrusion history
 def DotPrism(
     First: tuple[float, float, float], Second: tuple[float, float, float]
 ) -> float:

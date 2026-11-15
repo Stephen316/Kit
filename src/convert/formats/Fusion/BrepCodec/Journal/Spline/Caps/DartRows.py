@@ -20,8 +20,13 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
     MixRows,
 )
 
+# the dart term shape must stay shared so spline cap reconstruction uses one contract for compatible values
 KDartTerm = tuple[int, int, int, int]
+
+# the dart row shape must stay shared so spline cap reconstruction uses one contract for compatible values
 KDartRow = tuple[int, tuple[KDartTerm, ...], tuple[int, int, int, int]]
+
+# the dart rows order must stay explicit so extraordinary vertices remain compatible with surrounding patches
 KDartRows: tuple[KDartRow, ...] = (
     (
         1,
@@ -163,10 +168,12 @@ KDartRows: tuple[KDartRow, ...] = (
 )
 
 
+# the dart decision must stay consistent so extraordinary vertices remain compatible with surrounding patches
 def IsDart(Creased: tuple[bool, ...]) -> bool:
     return len(Creased) == KDartValence and sum(Creased) == 1
 
 
+# dart spoke needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def DartSpoke(Creased: tuple[bool, ...]) -> int:
     if not IsDart(Creased):
         raise ValueError(
@@ -175,6 +182,7 @@ def DartSpoke(Creased: tuple[bool, ...]) -> int:
     return Creased.index(True)
 
 
+# the dart hidden contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def DartHidden(Spoke: int) -> frozenset[KCapKey]:
     Found: set[KCapKey] = {("ep",)}
     for Offset in (1, -1):
@@ -185,6 +193,7 @@ def DartHidden(Spoke: int) -> frozenset[KCapKey]:
     return frozenset(Found)
 
 
+# the relative key contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def RelativeKey(Spoke: int, Offset: int, IndexI: int, IndexJ: int) -> KCapKey:
     Sector = (Spoke + Offset) % KDartValence
     if IndexJ == 0:
@@ -192,12 +201,14 @@ def RelativeKey(Spoke: int, Offset: int, IndexI: int, IndexJ: int) -> KCapKey:
     return ("in", Sector, IndexI, IndexJ)
 
 
+# the mirror term contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def MirrorTerm(Offset: int, IndexI: int, IndexJ: int) -> tuple[int, int, int]:
     if IndexJ == 0:
         return -Offset, IndexI, 0
     return -1 - Offset, IndexJ, IndexI
 
 
+# the orbit row contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def OrbitRow(
     Layout: CapLayout, Spoke: int, Parity: int, Terms: tuple[KDartTerm, ...]
 ) -> list[float]:
@@ -211,6 +222,7 @@ def OrbitRow(
     return Dense
 
 
+# the dart side contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def DartSide(
     Layout: CapLayout, Limit: KPoleRow, Spoke: int, Weights: tuple[int, ...]
 ) -> KPoleRow:
@@ -225,6 +237,7 @@ def DartSide(
     )
 
 
+# the middle rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def MiddleRows(Layout: CapLayout, Spoke: int) -> list[KCapRow]:
     Triples: list[tuple[KCapKey, KCapKey, KCapKey]] = [
         (
@@ -247,6 +260,7 @@ def MiddleRows(Layout: CapLayout, Spoke: int) -> list[KCapRow]:
     return Found
 
 
+# the dart rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def DartRows(
     Layout: CapLayout,
     Limit: KPoleRow,

@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the source link operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeSourceLink(Value: SketchLink) -> tuple[KAsmToken, ...]:
     Numbers = (
         Value.PrimaryId,

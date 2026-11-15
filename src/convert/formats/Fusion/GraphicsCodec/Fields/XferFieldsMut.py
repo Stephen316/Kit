@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer fields needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferFieldsMut(
     State: SceneCodec,
     Rules: tuple[FieldRule, ...],

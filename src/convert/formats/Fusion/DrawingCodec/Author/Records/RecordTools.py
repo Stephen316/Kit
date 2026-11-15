@@ -8,15 +8,20 @@ from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# client guid must remain consistent across callers so sheet objects retain their intended document relationships
 KClientGuid = "A7AEA631-985B-4DD1-8CE2-DE2C-14B54081"
 
+# child guid must remain consistent across callers so sheet objects retain their intended document relationships
 KChildGuid = "834C9DEF-4C39-4587-A08D-A5BD1267B7B4"
 
+# parent guid must remain consistent across callers so sheet objects retain their intended document relationships
 KParentGuid = "CB844AB6-240D-4fc9-9C9F-3679DC896D6F"
 
+# object guid must remain consistent across callers so sheet objects retain their intended document relationships
 KObjectGuid = "63D6AD42-466A-40B7-9CCD-EB21BC500EF6"
 
 
+# the child tail contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ChildTail(
     Parent: LocalRef | None, Children: tuple[LocalRef, ...] = ()
 ) -> tuple[EntityGroup[KEntityValue], ...]:
@@ -27,6 +32,7 @@ def ChildTail(
     )
 
 
+# the object tail contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ObjectTail(Parent: LocalRef | None) -> tuple[EntityGroup[KEntityValue], ...]:
     return (
         EntityGroup(KObjectGuid, (NamedValue("rClientObject", None),)),
@@ -34,6 +40,7 @@ def ObjectTail(Parent: LocalRef | None) -> tuple[EntityGroup[KEntityValue], ...]
     )
 
 
+# the record operation needs a consistent construction rule so sheet objects retain their intended document relationships
 def MakeRecord(
     ObjectId: int,
     Groups: tuple[EntityGroup[KEntityValue], ...],

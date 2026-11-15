@@ -6,6 +6,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.records.RecordSource import CadSource
 
 
+# the project circular contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def ProjectCircular(
     Model: DocumentModel, Source: CadSource, Graph: NativeGraph
 ) -> CadDocument:

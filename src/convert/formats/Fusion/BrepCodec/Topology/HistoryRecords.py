@@ -16,6 +16,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderRecords import BuildRecords
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the history operation needs a consistent construction rule so topology identity survives native history reconstruction
 def BuildHistory(
     Model: CylinderBody,
     Identity: BodyIdentity,

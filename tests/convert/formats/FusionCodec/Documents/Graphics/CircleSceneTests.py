@@ -9,9 +9,11 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.CircleArcValue import (
 )
 from convert.formats.Fusion.GraphicsCodec.Model.Values.RenderMesh import RenderMesh
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[6]
 
 
+# the circle scene contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

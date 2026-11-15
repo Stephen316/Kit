@@ -7,10 +7,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadSystemPage import (
     ReadSystemPage,
 )
 
+# page map type must remain consistent across callers so section boundaries and object references remain consistent
 KPageMapType = 0x41630E3B
+
+# page base must remain consistent across callers so section boundaries and object references remain consistent
 KPageBase = 0x100
 
 
+# the page map operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadPageMap(Content: bytes, CryptHeader: DwgCryptHeader) -> tuple[DwgMapPage, ...]:
     MapOffset = CryptHeader.PageMapAddress + KPageBase
     MapData = ReadSystemPage(Content, MapOffset, KPageMapType)

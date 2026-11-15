@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Schema.NamedTypes import NamedTypes
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# bind profile needs an explicit validity boundary so entity identifiers retain their schema and reference meaning
 def BindProfile(
     Profile: EntityProfile, Classes: tuple[MetaClass, ...]
 ) -> EntityCatalog:

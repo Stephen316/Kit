@@ -25,6 +25,7 @@ from convert.geometry.Formula.FormulaUnits import (
 )
 from interchange.records.RecordParameter import ParameterValue
 
+# is matching quantity must share the matches quantity contract so expression evaluation cannot drift between equivalent names
 IsMatchingQty = MatchesQuantity
 
 

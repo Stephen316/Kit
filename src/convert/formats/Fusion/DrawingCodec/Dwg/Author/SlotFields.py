@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import (
 )
 
 
+# declare needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def DeclareMut(Ledger: DraftBook, SlotName: str) -> str:
     if SlotName in Ledger.SlotItems:
         raise ValueError(f"Authored DWG slot {SlotName!r} is declared twice")
@@ -15,6 +16,7 @@ def DeclareMut(Ledger: DraftBook, SlotName: str) -> str:
     return SlotName
 
 
+# the counted slot contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def CountedSlot(
     Ledger: DraftBook, SlotName: str, CountName: str, ItemsName: str
 ) -> dict[str, KDraftValue]:
@@ -25,10 +27,12 @@ def CountedSlot(
     }
 
 
+# the reactor slot contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def ReactorSlot(Ledger: DraftBook, KeyText: str) -> dict[str, KDraftValue]:
     return CountedSlot(Ledger, KeyText + ".Reactors", "ReactorCount", "Reactors")
 
 
+# the insert slot contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def InsertSlot(Ledger: DraftBook, KeyText: str) -> dict[str, KDraftValue]:
     SlotName = DeclareMut(Ledger, KeyText + ".Inserts")
     return {

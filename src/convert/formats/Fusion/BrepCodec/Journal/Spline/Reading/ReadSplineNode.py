@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadPrefixMut impor
 )
 
 
+# the spline node operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadSplineNode(Cursor: FieldCursor) -> SplineNode:
     Prefix = ReadPrefixMut(Cursor)
     Reversed = IsLogicalMut(Cursor)

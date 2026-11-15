@@ -9,6 +9,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmRim import AsmUse
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism graph operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismGraph(Table: AsmTable) -> PrismGraph:
     ShellId, Current = ReadAsmShell(Table, 1)
     Faces: list[int] = []

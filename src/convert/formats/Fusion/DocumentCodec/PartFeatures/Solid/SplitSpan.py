@@ -10,9 +10,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanLength,
 )
 
+# the split limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KSplitLimit = 1e-9
 
 
+# the span parameter contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def SpanParam(Value: KPlaneSpan, Point: KPoint) -> float:
     if isinstance(Value, LineSpan):
         DeltaX = Value.FinishCm[0] - Value.StartCm[0]
@@ -24,6 +26,7 @@ def SpanParam(Value: KPlaneSpan, Point: KPoint) -> float:
     return ((Angle - Value.StartAngle) * Sense % KFullTurn) * Value.RadiusCm
 
 
+# the cut parameters contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def CutParams(Value: KPlaneSpan, Points: list[KPoint]) -> list[float]:
     Length = SpanLength(Value)
     Params: list[float] = []
@@ -39,6 +42,7 @@ def CutParams(Value: KPlaneSpan, Points: list[KPoint]) -> list[float]:
     return sorted(Params)
 
 
+# the arc pieces contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ArcPieces(Value: ArcSpan, Params: list[float]) -> list[KPlaneSpan]:
     Sense = 1.0 if Value.SweepAngle > 0 else -1.0
     Bounds = [0.0, *Params, SpanLength(Value)]
@@ -56,6 +60,7 @@ def ArcPieces(Value: ArcSpan, Params: list[float]) -> list[KPlaneSpan]:
     ]
 
 
+# the split span contract needs a stable decomposition so body topology remains consistent with its modeling operation
 def SplitSpan(Value: KPlaneSpan, Points: list[KPoint]) -> list[KPlaneSpan]:
     Params = CutParams(Value, Points)
     if not Params or (IsFullCircle(Value) and len(Params) == 1 and Params[0] == 0.0):

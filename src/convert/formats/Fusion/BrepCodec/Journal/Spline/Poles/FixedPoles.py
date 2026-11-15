@@ -16,6 +16,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleMesh import PoleM
 from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import KPoleRow
 
 
+# the fixed spot contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FixedSpot(KnotList: tuple[Fraction, ...], Value: Fraction) -> int | None:
     for Index in range(len(KnotList) - KEndCount - 1):
         if KnotList[Index + 1 : Index + KEndCount + 1] == (Value,) * KEndCount:
@@ -23,6 +24,7 @@ def FixedSpot(KnotList: tuple[Fraction, ...], Value: Fraction) -> int | None:
     return None
 
 
+# the fixed rows contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FixedRows(
     Graph: CageGraph,
     PlanValue: FacePlan,

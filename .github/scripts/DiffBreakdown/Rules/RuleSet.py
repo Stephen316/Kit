@@ -8,7 +8,10 @@ from Rules.LoadRules import LoadRules
 from Rules.ValidateConfig import ValidateConfig
 
 
+# the rule set contract needs a dedicated boundary so review categories remain consistent across push snapshots
 class RuleSet:
+
+    # rule set needs explicit initial state so review categories remain consistent across push snapshots
     def __init__(self, RulesText: str, ConfigText: str) -> None:
         self.Config = JsonLib.loads(ConfigText)
         ValidateConfig(self.Config)
@@ -16,6 +19,7 @@ class RuleSet:
         SourceText = f"{RulesText}\0{ConfigText}"
         self.Version = Hashlib.sha256(SourceText.encode()).hexdigest()
 
+    # the classify contract needs a shared interpretation so review categories remain consistent across push snapshots
     def Classify(
         self, PathText: str, IsBinary: bool = False, IsSpacing: bool = False
     ) -> dict[str, object]:
@@ -41,6 +45,7 @@ class RuleSet:
             "Risks": sorted(RiskSet - {""}),
         }
 
+    # the rate match contract needs a shared interpretation so review categories remain consistent across push snapshots
     @staticmethod
     def RateMatch(Matched: str | None, IsBinary: bool, IsSpacing: bool) -> str:
         if IsBinary or IsSpacing:

@@ -3,6 +3,7 @@ from convert.formats.Fusion.MeshCodec.Wire.EmitProto import EmitProto
 from convert.formats.Fusion.MeshCodec.Wire.ProtoField import ProtoField
 
 
+# the group operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitGroup(Group: FaceGroup) -> ProtoField:
     return ProtoField(
         6,

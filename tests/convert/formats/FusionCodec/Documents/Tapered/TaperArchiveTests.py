@@ -20,6 +20,7 @@ from tests.convert.formats.FusionCodec.Documents.Tapered.CheckTaperRefs import (
 )
 
 
+# the taper doc contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Degrees", (-5.0, 0.0, 7.0))
 def TestTaperDoc(TmpPath: FilePath, Degrees: float) -> None:
     SpecValue = DocumentSpec(

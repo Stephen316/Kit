@@ -25,6 +25,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadJournal import ReadJournal
 from convert.formats.Fusion.BrepCodec.Reading.ReadTagSet import ReadTagSet
 
 
+# the frustum history operation needs a distinct decoding boundary so circular boundaries retain consistent cone and rim geometry
 def ReadFrustumHist(Payload: bytes) -> FrustumHistory:
     WireValue = ReadBrepWire(Payload, True)
     History = ReadJournal(WireValue.Journal, len(WireValue.Table.Records))

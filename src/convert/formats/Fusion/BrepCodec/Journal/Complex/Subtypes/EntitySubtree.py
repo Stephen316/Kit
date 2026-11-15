@@ -15,6 +15,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRe
 from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
 
 
+# the entity subtree contract needs a shared interpretation so nested spline and surface records retain their relationships
 def EntitySubtree(Entity: KJournalEntity) -> KGrammarValue:
     if isinstance(Entity, SplineNode):
         return Entity.Surface
@@ -23,6 +24,7 @@ def EntitySubtree(Entity: KJournalEntity) -> KGrammarValue:
     return None
 
 
+# swap subtree needs an explicit validity boundary so nested spline and surface records retain their relationships
 def SwapSubtree(Entity: KJournalEntity, Value: KGrammarValue) -> KJournalEntity:
     if isinstance(Value, (SubtypeNode, SubtypeRef, TsplineSurf)):
         if isinstance(Entity, SplineNode):

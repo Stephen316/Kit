@@ -4,6 +4,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmPrismEdges import AsmPrismEdge
 from convert.formats.Fusion.Topology.AsmEdge.AsmRim import AsmUse
 
 
+# prism graph needs an explicit state contract so profile topology remains connected to its extrusion history
 @MakeDataClass(frozen=True, slots=True)
 class PrismGraph:
     ShellId: int

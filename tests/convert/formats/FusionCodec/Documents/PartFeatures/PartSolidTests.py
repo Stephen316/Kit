@@ -14,6 +14,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartCases import (
 )
 
 
+# the part solid contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", ("Fillet", "Chamfer", "Shell"))
 def TestPartSolid(NameValue: str) -> None:
     _, Stages = SolvePart(PartSpec(NameValue))
@@ -33,6 +34,7 @@ def TestPartSolid(NameValue: str) -> None:
     )
 
 
+# the part stages contract needs boundary coverage so stored document relationships remain consistent
 def TestPartStages() -> None:
     BaseSolid, Stages = SolvePart(PartSpec("MultiFeature"))
     assert [Stage.StateId for Stage in Stages] == [5, 6, 7, 8]

@@ -11,6 +11,7 @@ from tests.convert.formats.FusionCodec.Mesh.ReadMeshCases import ReadMeshCases
 from tests.convert.formats.FusionCodec.Mesh.ReadMeshFile import ReadMeshFile
 
 
+# the mesh archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseValue", ReadMeshCases())
 def TestMeshArchive(CaseValue: MeshCase) -> None:
     Model = ReadParaMesh(ReadMeshFile(CaseValue))

@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
 from convert.formats.Fusion.BrepCodec.Prism.Models.PrismTags import PrismTags
 
 
+# invalid prism tags input must fail here so profile topology remains connected to its extrusion history
 def CheckPrismTags(Identity: BodyIdentity, TagSet: PrismTags) -> None:
     if (
         type(TagSet.Faces) is not tuple

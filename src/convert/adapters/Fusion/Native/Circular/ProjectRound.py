@@ -34,6 +34,7 @@ from interchange.records.RecordConfig import Configuration
 from interchange.records.RecordSource import CadSource
 
 
+# project round needs an explicit validity boundary so public geometry remains consistent with native circular topology
 def ProjectRound(
     Model: DocumentModel, Source: CadSource, Graph: NativeGraph
 ) -> CadDocument:

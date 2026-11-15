@@ -5,6 +5,7 @@ from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Sketch import SketchEntity
 
 
+# rect geometry needs an explicit state contract so public document claims remain grounded in native records
 @MakeDataClass(frozen=True, slots=True)
 class RectGeometry:
     Entities: tuple[SketchEntity, ...]

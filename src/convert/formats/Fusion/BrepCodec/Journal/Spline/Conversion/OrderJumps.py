@@ -2,11 +2,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCu
 from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
+# order slack must remain consistent across callers so surface geometry retains the control cage shape
 KOrderSlack = 1e-10
+
+# order degree must remain consistent across callers so surface geometry retains the control cage shape
 KOrderDegree = 3
+
+# periodic closure must remain consistent across callers so surface geometry retains the control cage shape
 KPeriodicClosure = 2
 
 
+# the spread knots contract needs a shared interpretation so surface geometry retains the control cage shape
 def SpreadKnots(Values: tuple[float, ...], Counts: tuple[int, ...]) -> list[float]:
     Spread = [Values[0]]
     for KnotValue, Count in zip(Values, Counts):
@@ -15,6 +21,7 @@ def SpreadKnots(Values: tuple[float, ...], Counts: tuple[int, ...]) -> list[floa
     return Spread
 
 
+# the derive level contract needs a shared interpretation so surface geometry retains the control cage shape
 def DeriveLevel(
     Knots: list[float], Poles: list[list[float]], Level: int
 ) -> list[list[float]]:
@@ -31,6 +38,7 @@ def DeriveLevel(
     return Derived
 
 
+# the span value contract needs a shared interpretation so surface geometry retains the control cage shape
 def SpanValue(
     Knots: list[float],
     Poles: list[list[float]],
@@ -54,6 +62,7 @@ def SpanValue(
     return Points[Degree]
 
 
+# the pole levels contract needs a shared interpretation so surface geometry retains the control cage shape
 def PoleLevels(
     Knots: list[float], Poles: tuple[tuple[float, ...], ...]
 ) -> list[list[list[float]]]:
@@ -63,6 +72,7 @@ def PoleLevels(
     return Levels
 
 
+# the seam orders contract needs a shared interpretation so surface geometry retains the control cage shape
 def SeamOrders(
     Knots: list[float], Poles: tuple[tuple[float, ...], ...]
 ) -> dict[float, int]:
@@ -83,6 +93,7 @@ def SeamOrders(
     return {}
 
 
+# the knot orders contract needs a shared interpretation so surface geometry retains the control cage shape
 def KnotOrders(
     Knots: list[float], Poles: tuple[tuple[float, ...], ...], Periodic: bool = False
 ) -> dict[float, int]:
@@ -109,6 +120,7 @@ def KnotOrders(
     return Orders
 
 
+# the split orders contract needs a stable decomposition so surface geometry retains the control cage shape
 def SplitOrders(
     Merged: dict[float, int],
 ) -> tuple[tuple[float, ...], tuple[float, ...], tuple[float, ...]]:
@@ -119,6 +131,7 @@ def SplitOrders(
     )
 
 
+# mass poles needs an explicit validity boundary so surface geometry retains the control cage shape
 def MassPoles(
     Poles: tuple[tuple[float, ...], ...], Weights: tuple[float, ...]
 ) -> tuple[tuple[float, ...], ...]:
@@ -130,6 +143,7 @@ def MassPoles(
     )
 
 
+# curve orders needs an explicit validity boundary so surface geometry retains the control cage shape
 def CurveOrders(
     Curve: BsCurve,
 ) -> tuple[tuple[float, ...], tuple[float, ...], tuple[float, ...]]:
@@ -143,6 +157,7 @@ def CurveOrders(
     return SplitOrders(KnotOrders(Knots, Curve.Poles, Periodic))
 
 
+# the merge orders contract needs a stable decomposition so surface geometry retains the control cage shape
 def MergeOrders(
     Knots: tuple[SplineKnot, ...],
     Lines: list[tuple[tuple[float, ...], ...]],
@@ -159,6 +174,7 @@ def MergeOrders(
     return SplitOrders(Merged)
 
 
+# surface orders needs an explicit validity boundary so surface geometry retains the control cage shape
 def SurfaceOrders(Surface: NubsSurface) -> tuple[tuple[float, ...], ...]:
     if (Surface.DegreeU, Surface.DegreeV) != (KOrderDegree, KOrderDegree):
         raise ValueError("Fusion jump orders need bicubic surfaces")

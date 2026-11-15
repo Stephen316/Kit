@@ -3,6 +3,7 @@ from struct import pack as PackValue
 from convert.formats.Fusion.GraphicsCodec.Model.Values.VertexData import VertexData
 
 
+# pack vertices needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def PackVertices(Value: VertexData | None, Width: int, Format: str) -> bytes | None:
     if Value is None:
         return None

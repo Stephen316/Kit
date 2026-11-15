@@ -3,6 +3,7 @@ from convert.formats.Fusion.MeshCodec.Streams.ReadStream import ReadStream
 from convert.formats.Fusion.MeshCodec.Streams.StreamSpecs import StreamSpecs
 
 
+# the streams operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadStreams(Value: MeshRegistry, Payloads: tuple[bytes, ...]) -> dict[str, bytes]:
     Specs = StreamSpecs(Value)
     Result: dict[str, bytes] = {}

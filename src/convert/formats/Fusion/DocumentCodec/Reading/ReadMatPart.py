@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Model.MaterialPart import MaterialPart
 from convert.formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage
 
 
+# the mat part operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadMatPart(Value: ContainerPart) -> MaterialPart:
     if (
         FullMatch(

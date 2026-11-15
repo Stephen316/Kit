@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.CheckWeights import
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.PoleCount import PoleCount
 
 
+# invalid bs surface input must fail here so nested spline and surface records retain their relationships
 def CheckBsSurface(Value: BsSurface) -> None:
     if Value.RationalForm not in (("both", "u", "v") if Value.Rational else ("",)):
         raise ValueError("Unsupported Fusion B-spline surface rational form")

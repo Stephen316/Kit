@@ -4,6 +4,7 @@ from convert.formats.Fusion.BundleCodec.Validation.CheckGraph import CheckGraph
 from convert.formats.Fusion.BundleCodec.Validation.CheckObject import CheckObject
 
 
+# invalid model input must fail here so linked archive members retain their document relationships
 def CheckModel(Value: BundleModel) -> None:
     Objects = Value.Graph.Objects
     Owners = {Entry.ObjectId: Entry for Entry in Objects}

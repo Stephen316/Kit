@@ -12,6 +12,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Validation.Che
 )
 
 
+# invalid region input must fail here so supporting records retain their owning document relationships
 def CheckRegion(
     Value: RegionFrame, Corners: tuple[tuple[float, float, float], ...]
 ) -> None:
@@ -48,6 +49,7 @@ def CheckRegion(
     CheckSheetPlane(Value)
 
 
+# invalid sheet plane input must fail here so supporting records retain their owning document relationships
 def CheckSheetPlane(Value: RegionFrame) -> None:
     Plane = Value.Plane
     for Vector in (Plane.OriginCm, Plane.Normal, Plane.Basis):

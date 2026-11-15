@@ -2,6 +2,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the link pairs operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadLinkPairs(
     Wanted: AsmRecord, Stored: AsmRecord, RecordCount: int
 ) -> tuple[tuple[int, int], ...]:

@@ -7,6 +7,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadLocalRef import (
 )
 
 
+# the references operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadRefsMut(
     Cursor: MetaCursor, KindValue: FieldKind
 ) -> tuple[LocalRef | None, ...]:

@@ -1,3 +1,4 @@
+# the snapshot heads order must stay explicit so topology identity survives native history reconstruction
 KSnapshotHeads = (
     (6, 48),
     (7, 49),

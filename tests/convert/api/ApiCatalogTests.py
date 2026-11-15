@@ -16,6 +16,7 @@ KLegacyFormats = frozenset(
 )
 
 
+# the read only formats cases must remain explicit so format translation exercises the intended compatibility boundary
 KReadOnlyFormats = frozenset({"solidworks.sldprt"})
 
 

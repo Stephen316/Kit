@@ -6,6 +6,7 @@ from convert.formats.Fusion.DrawingCodec.Manifest.DrawingAsset import DrawingAss
 from convert.formats.Fusion.DrawingCodec.Manifest.ManifestRules import KModernVersion
 
 
+# the segments operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitSegments(
     Asset: DrawingAsset,
     Folders: tuple[str, ...],

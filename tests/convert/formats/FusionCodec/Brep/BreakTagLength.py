@@ -1,6 +1,7 @@
 from struct import pack as PackValue
 
 
+# shared break tag length setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BreakTagLength(Payload: bytes, PrimaryId: str) -> bytes:
     TextBytes = PrimaryId.encode("ascii")
     StringField = bytes((7, len(TextBytes))) + TextBytes

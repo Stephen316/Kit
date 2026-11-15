@@ -3,6 +3,7 @@ from convert.formats.Fusion.BundleCodec.Model.BundleObject import BundleObject
 from convert.formats.Fusion.BundleCodec.Validation.CheckRefs import CheckRefs
 
 
+# invalid object input must fail here so linked archive members retain their document relationships
 def CheckObject(Value: BundleObject, ObjectIds: set[int]) -> None:
     _ = EncodeZipName(Value.MemberPath)
     if (

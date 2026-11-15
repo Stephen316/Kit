@@ -7,27 +7,34 @@ import tempfile as Tempfile
 import unittest as Unittest
 from pathlib import Path as FilePath
 
+# repo root needs a stable location so source policy resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[2]
 
+# the assertions cases must remain explicit so source policy exercises the intended compatibility boundary
 KAssertions = Unittest.TestCase()
 
+# the table text cases must remain explicit so source policy exercises the intended compatibility boundary
 KTableText = """KMethodProgram = (
     (0, 4, 1, "primitive:int", 7),
     (4, 8, 2, "primitive:double", float.fromhex("0x1.0p-1")),
 )
 """
 
+# the program text cases must remain explicit so source policy exercises the intended compatibility boundary
 KProgramText = "EncodedData = ReplayResolved((), 0)\n"
 
+# the clean text cases must remain explicit so source policy exercises the intended compatibility boundary
 KCleanText = "KPoint = (0, 4)\nKName = ('a', 'b', 'c', 'Feature')\n"
 
 
+# shared write source setup keeps fixtures consistent so source policy failures identify the intended compatibility boundary
 def WriteSource(FolderPath: FilePath, FileName: str, SourceText: str) -> None:
     SourcePath = FolderPath / "src" / "family" / FileName
     SourcePath.parent.mkdir(parents=True, exist_ok=True)
     _ = SourcePath.write_text(SourceText, encoding="utf-8")
 
 
+# shared run setup keeps fixtures consistent so source policy failures identify the intended compatibility boundary
 def RunCheck(FolderPath: FilePath, *ArgValues: str) -> Subprocess.CompletedProcess[str]:
     EnvValues = {**OsLib.environ, "PYTHONPATH": str(KRepoRoot)}
     return Subprocess.run(
@@ -40,8 +47,10 @@ def RunCheck(FolderPath: FilePath, *ArgValues: str) -> Subprocess.CompletedProce
     )
 
 
+# the clean boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class TestClean(Unittest.TestCase):
 
+    # the clean contract needs boundary coverage so invalid owned sources fail at the command boundary
     @staticmethod
     def CheckClean() -> None:
         CaseSelf = KAssertions
@@ -55,8 +64,10 @@ class TestClean(Unittest.TestCase):
         CaseSelf.assertIn("no recorded payloads in 1 files", ResultInfo.stdout)
 
 
+# the recorded boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class TestRecorded(Unittest.TestCase):
 
+    # the recorded contract needs boundary coverage so invalid owned sources fail at the command boundary
     @staticmethod
     def CheckRecorded() -> None:
         CaseSelf = KAssertions
@@ -79,8 +90,10 @@ class TestRecorded(Unittest.TestCase):
         CaseSelf.assertIn("found in 2 files", ResultInfo.stderr)
 
 
+# the inputs boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class TestInputs(Unittest.TestCase):
 
+    # the inputs contract needs boundary coverage so invalid owned sources fail at the command boundary
     @staticmethod
     def CheckInputs() -> None:
         CaseSelf = KAssertions

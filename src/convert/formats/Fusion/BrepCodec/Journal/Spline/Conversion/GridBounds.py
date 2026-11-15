@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import Bs
 from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
 
 
+# the grid bounds contract needs a shared interpretation so surface geometry retains the control cage shape
 def GridBounds(Surface: NubsSurface) -> tuple[BsCurve, BsCurve, BsCurve, BsCurve]:
     Plain = BsSurface(
         False,

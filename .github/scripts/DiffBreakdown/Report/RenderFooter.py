@@ -4,6 +4,7 @@ from Report.MarkdownText import CommitLink
 from SnapshotMarker import BuildMarker
 
 
+# the render trend contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderTrend(
     Snapshot: dict[str, object], History: list[dict[str, object]]
 ) -> list[str]:
@@ -24,6 +25,7 @@ def RenderTrend(
     ]
 
 
+# the render footer contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderFooter(
     Snapshot: dict[str, object], History: list[dict[str, object]]
 ) -> list[str]:

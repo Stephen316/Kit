@@ -13,10 +13,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
     PrismSolid,
 )
 
+# the move frame shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KMoveFrame = tuple[float, float, float, float, float]
+
+# the quarter turns vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KQuarterTurns = {0: (1.0, 0.0), 90: (0.0, 1.0), 180: (-1.0, 0.0), 270: (0.0, -1.0)}
 
 
+# the move frame contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MoveFrame(Feature: MoveSpec) -> KMoveFrame:
     Wrapped = Feature.TurnDegrees % 360.0
     Exact = KQuarterTurns.get(int(Wrapped)) if Wrapped.is_integer() else None
@@ -26,6 +30,7 @@ def MoveFrame(Feature: MoveSpec) -> KMoveFrame:
     return CosValue, SinValue, ShiftX, ShiftY, Turned
 
 
+# the move point contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MovePoint(Point: tuple[float, float], Frame: KMoveFrame) -> tuple[float, float]:
     CosValue, SinValue, ShiftX, ShiftY, _ = Frame
     return (
@@ -34,6 +39,7 @@ def MovePoint(Point: tuple[float, float], Frame: KMoveFrame) -> tuple[float, flo
     )
 
 
+# the move span contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MoveSpan(Value: KPlaneSpan, Frame: KMoveFrame) -> KPlaneSpan:
     if isinstance(Value, LineSpan):
         Start, Finish = MovePoint(Value.StartCm, Frame), MovePoint(
@@ -45,6 +51,7 @@ def MoveSpan(Value: KPlaneSpan, Frame: KMoveFrame) -> KPlaneSpan:
     return ArcSpan(Center, Value.RadiusCm, Opening, Value.SweepAngle, Value.Label)
 
 
+# the move loops contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MoveLoops(
     Loops: tuple[KPlaneLoop, ...], Frame: KMoveFrame
 ) -> tuple[KPlaneLoop, ...]:
@@ -53,6 +60,7 @@ def MoveLoops(
     )
 
 
+# the move solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def MoveSolid(Solid: PrismSolid, Feature: MoveSpec) -> PrismSolid:
     Frame = MoveFrame(Feature)
     LiftCm = Feature.OffsetMm[2] / 10.0

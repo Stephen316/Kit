@@ -13,6 +13,7 @@ from interchange.geometry.models.Transform import Transform
 from interchange.records.RecordTopology import TopologyCounts
 
 
+# the circle sketch contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def CircleSketch(Context: KSketchContexts, Shape: CircleShape) -> Sketch:
     return Sketch(
         Context.Sketch.Identity,
@@ -23,6 +24,7 @@ def CircleSketch(Context: KSketchContexts, Shape: CircleShape) -> Sketch:
     )
 
 
+# the circle feature contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def CircleFeature(Context: KSketchContexts) -> FeatureStep:
     NameValue = TextValue(Context.SketchFeature.Fields["featureUserName"]) or TextValue(
         Context.Sketch.Fields["userName"]
@@ -36,6 +38,7 @@ def CircleFeature(Context: KSketchContexts) -> FeatureStep:
     )
 
 
+# the circular body contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def CircularBody(
     Context: ExtrudeContext, Shape: CircleShape, Model: FrustumBody, MaterialId: str
 ) -> tuple[BrepModel, DesignBody]:

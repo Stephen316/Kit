@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Corpus.ReadCorpusData import ReadCorpusDa
 from tests.convert.formats.FusionCodec.Corpus.ReadCorpusFile import ReadCorpusFile
 
 
+# the corpus wire contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("FileName", tuple(sorted(ReadCorpusData()["Profiles"])))
 def TestCorpusWire(FileName: str) -> None:
     Source = ReadCorpusFile(FileName)

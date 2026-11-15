@@ -7,6 +7,7 @@ from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 
+# the features operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeFeatures(SpecValue: DocumentSpec) -> tuple[FeatureStep, ...]:
     if SpecValue.ProfileKind == "parameter":
         return ()

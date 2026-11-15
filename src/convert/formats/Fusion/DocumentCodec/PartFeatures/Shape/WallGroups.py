@@ -4,9 +4,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import Lin
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PlaneSpan import KPlaneSpan
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import SpanHeading
 
+# the group limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KGroupLimit = 1e-9
 
 
+# the collinear decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsCollinear(Lower: LineSpan, Upper: LineSpan) -> bool:
     HeadX, HeadY = SpanHeading(Lower, False)
     OtherX, OtherY = SpanHeading(Upper, False)
@@ -19,6 +21,7 @@ def IsCollinear(Lower: LineSpan, Upper: LineSpan) -> bool:
     return min(1.0, Finish) - max(0.0, Start) > KGroupLimit
 
 
+# the continued decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsContinued(Lower: KPlaneSpan, Upper: KPlaneSpan) -> bool:
     if Lower == Upper:
         return True
@@ -29,6 +32,7 @@ def IsContinued(Lower: KPlaneSpan, Upper: KPlaneSpan) -> bool:
     return IsCollinear(Lower, Upper)
 
 
+# the root of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RootOf(Parents: list[int], Index: int) -> int:
     Current = Index
     while Parents[Current] != Current:
@@ -36,6 +40,7 @@ def RootOf(Parents: list[int], Index: int) -> int:
     return Current
 
 
+# the wall groups contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def WallGroups(Pieces: list[WallPiece]) -> list[list[int]]:
     Parents = list(range(len(Pieces)))
     for Index, Piece in enumerate(Pieces):

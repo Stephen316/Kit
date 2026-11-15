@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Stores.DecodeStore import DecodeStore
 from convert.formats.Fusion.MaterialCodec.Table.DecodeTable import DecodeTable
 
 
+# the materials operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeMaterials(
     Streams: MaterialData, Schemas: tuple[MaterialSchema, ...]
 ) -> tuple[MaterialAsset, ...]:

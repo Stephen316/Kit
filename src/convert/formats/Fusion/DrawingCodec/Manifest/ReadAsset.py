@@ -11,6 +11,7 @@ from convert.formats.Fusion.DrawingCodec.Manifest.ManifestRules import (
 from convert.formats.Fusion.SegmentCodec.Manifest.OpenWireCursor import OpenWireCursor
 
 
+# the asset operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadAsset(Payload: bytes) -> DrawingAsset:
     Cursor = OpenWireCursor(Payload)
     NameValue, AssetId, RevisionId = (

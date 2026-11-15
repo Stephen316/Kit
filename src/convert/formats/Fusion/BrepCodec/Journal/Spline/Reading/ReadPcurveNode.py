@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the pcurve node operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPcurveNode(Cursor: FieldCursor) -> PcurveNode:
     Prefix = ReadPrefixMut(Cursor)
     FormValue = ReadLongMut(Cursor)

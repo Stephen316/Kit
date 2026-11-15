@@ -25,6 +25,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LabelGroups import 
 )
 
 
+# the draft faces contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def DraftFaces(PlanValue: BodyPlan, FindIndex: DraftLookup) -> list[KDraftNode]:
     Ordinal = PlanValue.Ordinal
     Nodes: list[KDraftNode] = []

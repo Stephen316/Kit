@@ -6,6 +6,7 @@ from convert.formats.Fusion.TSplineCodec.Wire.TextCursor import TextCursor
 from convert.formats.Fusion.TSplineCodec.Wire.ReadNumber import ReadNumber
 
 
+# the symmetry operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadSymmetry(Cursor: TextCursor) -> PlaneSymmetry | None:
     if not Cursor.HasKind("105sym"):
         return None

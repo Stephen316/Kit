@@ -34,6 +34,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeGenAttrib i
 )
 
 
+# the attributes operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeAttributes(Value: KJournalEntity) -> AsmRecord:
     if isinstance(Value, TimeAttrib):
         return MakeTimeAttrib(Value)

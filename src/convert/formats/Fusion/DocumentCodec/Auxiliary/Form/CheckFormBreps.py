@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
 from convert.formats.Fusion.BrepCodec.Journal.Spline.ListPrograms import ListPrograms
 
 
+# invalid form breps input must fail here so supporting records retain their owning document relationships
 def CheckFormBreps(Value: DocumentModel, Surfaces: tuple[TsplineSurface, ...]) -> None:
     Tables = tuple(
         BodyValue.History.Entities

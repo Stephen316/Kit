@@ -14,10 +14,12 @@ from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 
+# the compounds decision must stay consistent so surface geometry retains the control cage shape
 def HasCompounds(Surface: TsplineSurface) -> bool:
     return len(Surface.Grips) > len(Surface.Topology.Vertices)
 
 
+# the inner creases decision must stay consistent so surface geometry retains the control cage shape
 def HasInnerCreases(Surface: TsplineSurface) -> bool:
     Creases = Surface.Creases
     if Creases is None:
@@ -30,11 +32,13 @@ def HasInnerCreases(Surface: TsplineSurface) -> bool:
     return not set(Creases.EdgeIndices) <= RimEdges
 
 
+# the plain knots decision must stay consistent so surface geometry retains the control cage shape
 def IsPlainKnots(Surface: TsplineSurface) -> bool:
     Intervals = tuple(EdgeValue.KnotInterval for EdgeValue in Surface.Topology.Edges)
     return not isinstance(Surface, KnotSurface) or Surface.EdgeKnots == Intervals
 
 
+# convert form needs an explicit validity boundary so surface geometry retains the control cage shape
 def ConvertForm(Surface: TsplineSurface) -> FormBody:
     CheckSurface(Surface)
     if not IsPlainKnots(Surface):

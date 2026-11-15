@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Values.EmitFieldsMut import EmitFieldsMu
 from convert.formats.Fusion.EntityCodec.Values.ValueCalls import KEmitValue
 
 
+# the sketch operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitSketchMut(
     Value: KEntityValue, Catalog: EntityCatalog, Depth: int, Writer: KEmitValue
 ) -> bytes:

@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 
+# the queue gate contract needs boundary coverage so the real command boundary enforces repository contracts
 @Pytest.mark.parametrize(
     "CheckName",
     (
@@ -16,6 +17,7 @@ import pytest as Pytest
         "Test suite / Plan",
         "Test suite / Shard (2)",
         "Test suite / Report",
+        "Verify rationale comments on changed sources",
     ),
 )
 @Pytest.mark.parametrize(

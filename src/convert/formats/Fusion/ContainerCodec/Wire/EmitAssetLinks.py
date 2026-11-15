@@ -9,6 +9,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import (
 from convert.formats.Fusion.SegmentCodec.Manifest.ManifestSink import ManifestSink
 
 
+# the asset links operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitAssetLinks(SinkValue: ManifestSink, Links: tuple[AssetLink, ...]) -> None:
     SinkValue.AddCount(Links, KMaxLinks)
     LinkIds: set[str] = set()

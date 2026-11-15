@@ -53,16 +53,21 @@ from tests.convert.formats.FusionCodec.Brep.Complex.NurbsSamples import (
     NurbsModels,
 )
 
+# the blend member cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBlendMember = (
     "re/Fusion/Study/asymmetricfilletflips-b09b81df3c08/swapped_offsets_false.f3d",
     "smbh",
     "2b82d2b4cc4605b991f7d0a74548fd377e385e02e343a41659a179cc8038e0d0",
 )
+
+# the sweep member cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSweepMember = (
     "re/Fusion/Study/solidsweeps-5b5ecd5e01b9/solid_twist_sixty.f3d",
     "smbh",
     "d6fc5fbc00178448125739aaf2b60752e322ee9dd64dfebe244de1495f0541d6",
 )
+
+# the loft member cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLoftMember = (
     "re/Fusion/Study/lofts-838ea6e83e97/both_direction.f3d",
     "smb",
@@ -70,6 +75,7 @@ KLoftMember = (
 )
 
 
+# shared find typed setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FindTyped(
     Entities: tuple[KJournalEntity, ...], SubtypeName: str
 ) -> tuple[int, SubtypeNode]:
@@ -81,6 +87,7 @@ def FindTyped(
     )
 
 
+# shared blend fault setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BlendFault(Record: SrfSrfBlend, Fault: str) -> SrfSrfBlend:
     assert isinstance(Record.FirstRadius, OffsetRadius)
     if Fault == "second":
@@ -91,6 +98,7 @@ def BlendFault(Record: SrfSrfBlend, Fault: str) -> SrfSrfBlend:
     return ReplaceValue(Record, FirstRadius=Radius)
 
 
+# the blend fields contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -114,6 +122,7 @@ def TestBlendFields() -> None:
     assert Record.VarBlendSpline is None
 
 
+# the blend edit contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -141,6 +150,7 @@ def TestBlendEdit() -> None:
     assert Found.Body.FirstRadius.OffsetValue == 0.5
 
 
+# the blend faults contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -156,6 +166,7 @@ def TestBlendFaults(Fault: str) -> None:
         _ = EmitJournal(ReplaceValue(Journal, Entities=tuple(Entities)))
 
 
+# the sweep fields contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -176,6 +187,7 @@ def TestSweepFields() -> None:
     assert Record.Path.InnerPath.Formula.ChoiceKey == "VEC(0,0,1)"
 
 
+# the loft fields contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -196,6 +208,7 @@ def TestLoftFields() -> None:
     assert Piece.PieceFlag is False
 
 
+# the nurbs fields contract needs boundary coverage so stored document relationships remain consistent
 def TestNurbsFields() -> None:
     Journal = CreateNurbsBody(NurbsModels()[0][1], KNurbsHistory, KNurbsStamp)
     _, Pcurve = FindTyped(Journal.Entities, "exp_par_cur")
@@ -213,6 +226,7 @@ def TestNurbsFields() -> None:
     assert Curve.Body.Context.Discontinuities == ((), (), ())
 
 
+# the record walk contract needs boundary coverage so stored document relationships remain consistent
 def TestRecordWalk() -> None:
     Journal = CreateNurbsBody(NurbsModels()[0][1], KNurbsHistory, KNurbsStamp)
     _, Pcurve = FindTyped(Journal.Entities, "exp_par_cur")
@@ -229,6 +243,7 @@ def TestRecordWalk() -> None:
     )
 
 
+# the positional contract needs boundary coverage so stored document relationships remain consistent
 def TestPositional() -> None:
     Journal = CreateNurbsBody(NurbsModels()[0][1], KNurbsHistory, KNurbsStamp)
     Index, Pcurve = FindTyped(Journal.Entities, "exp_par_cur")

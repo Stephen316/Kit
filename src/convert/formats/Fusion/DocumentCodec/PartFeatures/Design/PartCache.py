@@ -5,10 +5,12 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 
 
+# the vector operation needs a consistent construction rule so modeling operations retain their document and timeline ownership
 def MakeVector(First: float, Second: float, Third: float) -> dict[str, float]:
     return {"x": First, "y": Second, "z": Third}
 
 
+# the part cache contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def PartCache(Author: AuthorState, Solid: PrismSolid) -> list[dict[str, object]]:
     MassValue = SolidMass(Solid)
     Volume = MassValue["volume"]

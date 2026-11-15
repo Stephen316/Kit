@@ -1,6 +1,7 @@
 from struct import pack as PackValue
 
 
+# the terminal operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitTerminal(Values: tuple[int, ...]) -> bytes:
     if any(type(Value) is not int or not 0 <= Value < 1 << 32 for Value in Values):
         raise ValueError("Fusion mesh terminal-delta value exceeds uint32")

@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Models.VertexIndices import VertexIndices
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the apply vertices contract needs a shared interpretation so topology identity survives native history reconstruction
 def ApplyVertices(
     Records: tuple[GeometryRecord, ...], Vertices: VertexIndices
 ) -> tuple[GeometryRecord, ...]:

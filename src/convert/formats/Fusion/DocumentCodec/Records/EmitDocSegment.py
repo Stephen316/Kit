@@ -9,6 +9,7 @@ from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
 
 
+# the doc segment operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def EmitDocSegment(Value: ParsedSegment) -> SegmentStreams:
     if type(Value.BulkSlack) is not bytes:
         raise ValueError("Fusion bulk slack must be bytes")

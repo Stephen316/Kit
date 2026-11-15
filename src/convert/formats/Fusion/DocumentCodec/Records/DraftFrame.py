@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Records.DraftSubjects import DraftSubj
 from convert.formats.Fusion.EntityCodec.Model.EntityFrame import EntityFrame
 
 
+# the draft frame contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DraftFrame(Author: AuthorState, Entity: DraftEntity) -> EntityFrame:
     Subjects = DraftSubjects(Author, Entity)
     Metadata = (

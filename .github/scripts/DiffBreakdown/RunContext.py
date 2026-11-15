@@ -5,9 +5,11 @@ import string as StringLib
 
 from RequireSha import RequireSha
 
+# the repo characters vocabulary must stay centralized so diff reporting agrees on supported native identities
 KRepoCharacters = frozenset(StringLib.ascii_letters + StringLib.digits + "_.-")
 
 
+# the context operation needs a distinct decoding boundary so published evidence stays bound to the reviewed revision
 def ReadContext() -> dict[str, object]:
     EnvValues = OsLib.environ
     Repository = EnvValues["GITHUB_REPOSITORY"]
@@ -32,6 +34,7 @@ def ReadContext() -> dict[str, object]:
     }
 
 
+# the identity operation needs a consistent construction rule so published evidence stays bound to the reviewed revision
 def BuildIdentity(
     Context: dict[str, object], Trusted: str, Previous: dict[str, object] | None
 ) -> dict[str, object]:

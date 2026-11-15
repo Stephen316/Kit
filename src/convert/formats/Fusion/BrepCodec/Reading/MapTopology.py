@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadLinkPairs import ReadLinkPairs
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, AsmTable
 
 
+# map topology must resolve unambiguously so topology identity survives native history reconstruction
 def MapTopology(Expected: tuple[AsmRecord, ...], Actual: AsmTable) -> dict[int, int]:
     if len(Expected) != len(Actual.Records):
         raise ValueError("Unsupported Fusion BRep entity count")

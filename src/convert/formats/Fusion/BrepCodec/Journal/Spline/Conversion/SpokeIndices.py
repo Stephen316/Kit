@@ -1,8 +1,10 @@
 from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 
+# the spoke names order must stay explicit so surface geometry retains the control cage shape
 KSpokeNames = ("NORTH", "WEST", "SOUTH", "EAST")
 
 
+# spoke indices needs an explicit validity boundary so surface geometry retains the control cage shape
 def SpokeIndices(Topology: CageTopology) -> tuple[int, ...]:
     Spokes = [-1] * len(Topology.Links)
     for VertexIndex, Vertex in enumerate(Topology.Vertices):

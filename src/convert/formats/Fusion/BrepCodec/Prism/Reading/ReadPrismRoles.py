@@ -7,6 +7,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the prism roles operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismRoles(Graph: PrismGraph) -> PrismRoles:
     Corners = {
         Identity: Index for Index, Identity in enumerate(OrderCorners(Graph.Points))

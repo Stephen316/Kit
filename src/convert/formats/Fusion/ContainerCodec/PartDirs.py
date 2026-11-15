@@ -2,6 +2,7 @@ from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerP
 from convert.formats.Fusion.ContainerCodec.ContainerLayout import KAssetPrefix
 
 
+# the part dirs contract needs a shared interpretation so archive members retain their native ownership and reference relationships
 def PartDirs(Values: tuple[ContainerPart, ...]) -> set[str]:
     return {
         KAssetPrefix + "/".join(Entry.Name.split("/")[:Index]) + "/"

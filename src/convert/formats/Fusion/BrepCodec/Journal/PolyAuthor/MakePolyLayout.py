@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.Polyhedron import Polyh
 from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
 
 
+# the poly layout operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyLayout(Model: Polyhedron) -> PolyLayout:
     CheckPolySpec(Model)
     Points = tuple(

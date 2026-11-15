@@ -31,23 +31,28 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
     KJournalVector,
 )
 
+# the tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTolerance = 1e-6
 
 
+# the near decision must stay consistent so nested spline and surface records retain their relationships
 def IsNear(First: tuple[float, ...], Second: tuple[float, ...]) -> bool:
     return len(First) == len(Second) and all(
         abs(Former - Latter) <= KTolerance for Former, Latter in zip(First, Second)
     )
 
 
+# the product operation needs one geometric convention so nested spline and surface records retain their relationships
 def DotProduct(First: tuple[float, ...], Second: tuple[float, ...]) -> float:
     return sum(Former * Latter for Former, Latter in zip(First, Second))
 
 
+# the size operation needs one geometric convention so nested spline and surface records retain their relationships
 def VectorSize(Value: tuple[float, ...]) -> float:
     return SquareRoot(DotProduct(Value, Value))
 
 
+# invalid frame input must fail here so nested spline and surface records retain their relationships
 def CheckFrame(Primary: KJournalVector, Secondary: KJournalVector) -> None:
     if not all(IsFinite(Value) for Value in (*Primary, *Secondary)):
         raise ValueError("Fusion analytic carrier requires finite vectors")
@@ -57,6 +62,7 @@ def CheckFrame(Primary: KJournalVector, Secondary: KJournalVector) -> None:
         raise ValueError("Fusion analytic carrier axes must be perpendicular")
 
 
+# the carrier gap contract needs a shared interpretation so nested spline and surface records retain their relationships
 def CarrierGap(
     Carrier: PlaneCarrier | CylinderCarrier, Point: tuple[float, ...]
 ) -> float:
@@ -73,10 +79,12 @@ def CarrierGap(
     return abs(VectorSize(Radial) - VectorSize(Carrier.MajorAxisCm))
 
 
+# the collapsed decision must stay consistent so nested spline and surface records retain their relationships
 def IsCollapsed(Poles: tuple[tuple[float, ...], ...]) -> bool:
     return all(IsNear(Point, Poles[0]) for Point in Poles)
 
 
+# invalid surf form input must fail here so nested spline and surface records retain their relationships
 def CheckSurfForm(Surface: BsSurface) -> None:
     CheckBsSurface(Surface)
     UCount = PoleCount(Surface.UDegree, Surface.UMultiplicity)
@@ -111,6 +119,7 @@ def CheckSurfForm(Surface: BsSurface) -> None:
             raise ValueError("Fusion singular high side requires one collapsed pole")
 
 
+# invalid carrier input must fail here so nested spline and surface records retain their relationships
 def CheckCarrier(Carrier: KFaceCarrier) -> None:
     if isinstance(Carrier, BsSurface):
         CheckSurfForm(Carrier)
@@ -123,6 +132,7 @@ def CheckCarrier(Carrier: KFaceCarrier) -> None:
             raise ValueError("Fusion cylinder carrier requires a positive radius")
 
 
+# the use ends contract needs a shared interpretation so nested spline and surface records retain their relationships
 def UseEnds(Model: NurbsBody, UseSpec: NurbsUse) -> tuple[int, int]:
     EdgeSpec = Model.Edges[UseSpec.EdgeIndex]
     if UseSpec.Reversed:
@@ -130,6 +140,7 @@ def UseEnds(Model: NurbsBody, UseSpec: NurbsUse) -> tuple[int, int]:
     return EdgeSpec.StartVertex, EdgeSpec.EndVertex
 
 
+# the edge samples contract needs a shared interpretation so nested spline and surface records retain their relationships
 def EdgeSamples(EdgeSpec: NurbsEdge, UseSpec: NurbsUse) -> tuple[float, ...]:
     Lower, Upper = EdgeRange(EdgeSpec)
     Knots = set(EdgeSpec.Curve.Knots)
@@ -139,6 +150,7 @@ def EdgeSamples(EdgeSpec: NurbsEdge, UseSpec: NurbsUse) -> tuple[float, ...]:
     return tuple(sorted(Steps | {Value for Value in Knots if Lower <= Value <= Upper}))
 
 
+# invalid nurbs edge input must fail here so nested spline and surface records retain their relationships
 def CheckNurbsEdge(Model: NurbsBody, EdgeSpec: NurbsEdge) -> None:
     CheckBsCurve(EdgeSpec.Curve, 3)
     Lower, Upper = EdgeRange(EdgeSpec)
@@ -160,6 +172,7 @@ def CheckNurbsEdge(Model: NurbsBody, EdgeSpec: NurbsEdge) -> None:
         raise ValueError("Fusion NURBS edge curve does not meet its vertices")
 
 
+# invalid spline use input must fail here so nested spline and surface records retain their relationships
 def CheckSplineUse(Surface: BsSurface, EdgeSpec: NurbsEdge, UseSpec: NurbsUse) -> None:
     Pcurve = UseSpec.Pcurve
     if Pcurve is None:
@@ -181,6 +194,7 @@ def CheckSplineUse(Surface: BsSurface, EdgeSpec: NurbsEdge, UseSpec: NurbsUse) -
             raise ValueError("Fusion NURBS pcurve leaves its edge on the surface")
 
 
+# invalid nurbs use input must fail here so nested spline and surface records retain their relationships
 def CheckNurbsUse(Model: NurbsBody, FaceSpec: NurbsFace, UseSpec: NurbsUse) -> None:
     EdgeSpec = Model.Edges[UseSpec.EdgeIndex]
     Carrier = FaceSpec.Surface
@@ -194,6 +208,7 @@ def CheckNurbsUse(Model: NurbsBody, FaceSpec: NurbsFace, UseSpec: NurbsUse) -> N
             raise ValueError("Fusion NURBS edge leaves its analytic face")
 
 
+# invalid seam pair input must fail here so nested spline and surface records retain their relationships
 def CheckSeamPair(
     Surface: BsSurface, EdgeSpec: NurbsEdge, First: NurbsUse, Second: NurbsUse
 ) -> None:
@@ -221,6 +236,7 @@ def CheckSeamPair(
         raise ValueError("Fusion seam uses must lie one period apart")
 
 
+# invalid seams input must fail here so nested spline and surface records retain their relationships
 def CheckSeams(Model: NurbsBody, FaceSpec: NurbsFace) -> None:
     Surface = FaceSpec.Surface
     if not isinstance(Surface, BsSurface):
@@ -236,6 +252,7 @@ def CheckSeams(Model: NurbsBody, FaceSpec: NurbsFace) -> None:
             CheckSeamPair(Surface, Model.Edges[EdgeIndex], SeamUses[0], SeamUses[1])
 
 
+# invalid nurbs loop input must fail here so nested spline and surface records retain their relationships
 def CheckNurbsLoop(Model: NurbsBody, FaceSpec: NurbsFace) -> None:
     CheckCarrier(FaceSpec.Surface)
     for LoopUses in FaceLoops(FaceSpec):
@@ -249,6 +266,7 @@ def CheckNurbsLoop(Model: NurbsBody, FaceSpec: NurbsFace) -> None:
     CheckSeams(Model, FaceSpec)
 
 
+# invalid nurbs body input must fail here so nested spline and surface records retain their relationships
 def CheckNurbsBody(Model: NurbsBody) -> None:
     if not Model.Faces or not Model.Edges or not 1 <= len(Model.PointsCm) <= 4096:
         raise ValueError("Fusion NURBS body requires faces, edges and vertices")

@@ -8,6 +8,7 @@ from tests.convert.formats.FusionCodec.Mesh.ReadMeshFile import ReadMeshFile
 from tests.convert.formats.FusionCodec.Mesh.ReplaceMember import ReplaceMember
 
 
+# the mesh guard contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "KindValue, Message",
     (

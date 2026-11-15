@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
 from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 
 
+# invalid snapshot tags input must fail here so public geometry remains consistent with native circular topology
 def CheckSnapTags(
     State: GeometryState,
     SolidFaces: tuple[FaceNode, ...],
@@ -59,6 +60,7 @@ def CheckSnapTags(
     CheckAttribsMut(State, Expected)
 
 
+# invalid attribs input must fail here so public geometry remains consistent with native circular topology
 def CheckAttribsMut(
     State: GeometryState, Expected: dict[int, FeatureTag | SketchLink]
 ) -> None:

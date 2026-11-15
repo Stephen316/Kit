@@ -17,6 +17,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the joint state contract needs a stable decomposition so cross document references retain their intended ownership
 def JointState() -> ValueObject[KEntityValue]:
     return ValueObject(
         (
@@ -35,6 +36,7 @@ def JointState() -> ValueObject[KEntityValue]:
     )
 
 
+# the feature state contract needs a shared interpretation so cross document references retain their intended ownership
 def FeatureState(Feature: int) -> ValueObject[KEntityValue]:
     return ValueObject(
         (
@@ -44,6 +46,7 @@ def FeatureState(Feature: int) -> ValueObject[KEntityValue]:
     )
 
 
+# the operand value contract needs a shared interpretation so cross document references retain their intended ownership
 def OperandValue(
     RootInfo: RootFacts, InstanceId: int, Alignment: tuple[float, ...] | None
 ) -> ValueObject[KEntityValue]:

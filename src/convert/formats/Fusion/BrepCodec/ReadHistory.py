@@ -13,6 +13,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadVertices import ReadVertices
 from convert.formats.Fusion.BrepCodec.Topology.HistoryRecords import BuildHistory
 
 
+# the history operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadHistory(Payload: bytes) -> HistoryModel:
     WireValue = ReadBrepWire(Payload, True)
     Mapping = MapTopology(ProfileRecords(True), WireValue.Table)

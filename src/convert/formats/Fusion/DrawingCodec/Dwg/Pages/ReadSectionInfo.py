@@ -8,6 +8,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.CheckSection import CheckSect
 from convert.formats.Fusion.DrawingCodec.Dwg.Pages.DecodeName import DecodeName
 
 
+# the section info operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSectionInfo(MapData: bytes, Offset: int) -> tuple[DwgSectionInfo, int]:
     Fields = ReadFields(MapData, Offset, "<Q6I", "section description")
     NameText = DecodeName(TakeSpan(MapData, Offset + 32, 64, "section name"))

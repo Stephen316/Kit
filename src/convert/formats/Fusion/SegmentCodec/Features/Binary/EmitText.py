@@ -3,6 +3,7 @@ from struct import pack as PackValue
 from convert.formats.Fusion.SegmentCodec.Features.FeatureLimits import KMaxFeatureText
 
 
+# the text operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitText(Value: str, WideText: bool = False) -> bytes:
     if type(Value) is not str or len(Value) > KMaxFeatureText:
         raise ValueError("Invalid Fusion feature text")

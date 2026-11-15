@@ -7,6 +7,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContext import SketchContext
 
 
+# select sketch must resolve unambiguously so public document claims remain grounded in native records
 def SelectSketch(Graph: NativeGraph) -> SketchContext:
     Component = Graph.OneClass("FusionComponent")
     Fragment = ResolveField(Graph, Component, "rDesignFragment", "DcDesignFragment")

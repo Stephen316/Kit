@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 from convert.formats.Fusion.GeometryCodec.Prism.PrismUse import PrismUse
 
 
+# the edges operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildEdges(UseValues: tuple[PrismUse, ...]) -> tuple[GeometryRecord, ...]:
     Owners = {
         Value.EdgeIndex: KFirstCoedge + Index for Index, Value in enumerate(UseValues)

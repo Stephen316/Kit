@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntit
 from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
 
 
+# the list tsplines contract needs a shared interpretation so topology changes retain their native revision relationships
 def ListTsplines(Entities: tuple[KJournalEntity, ...]) -> tuple[TsplineSurf, ...]:
     return tuple(
         Found

@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.History.StateLedger impor
 )
 
 
+# the version table contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def VersionTable(
     Contents: list[dict[KSegmentKey, tuple[object, ...]]],
 ) -> tuple[dict[tuple[KSegmentKey, int], int], int, list[tuple[KSegmentKey, int]]]:
@@ -22,6 +23,8 @@ def VersionTable(
         for Start in Values
         if (KeyValue, Start) not in Positions
     ]
+
+    # ordering by pair value 1 must stay deterministic so parametric feature reconstruction resolves equivalent inputs consistently
     Archived.sort(key=lambda PairValue: PairValue[1])
     for Offset, PairValue in enumerate(Archived):
         Positions[PairValue] = len(Final) + Offset
@@ -29,6 +32,7 @@ def VersionTable(
     return Positions, len(Final), Order
 
 
+# the version at contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def VersionAt(
     Positions: dict[tuple[KSegmentKey, int], int], KeyValue: KSegmentKey, State: int
 ) -> int:

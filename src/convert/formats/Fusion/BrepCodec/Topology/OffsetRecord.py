@@ -3,6 +3,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the offset record contract needs a shared interpretation so topology identity survives native history reconstruction
 def OffsetRecord(Record: GeometryRecord) -> GeometryRecord:
     Values: list[KGeometryValue] = []
     for Value in Record.Fields:

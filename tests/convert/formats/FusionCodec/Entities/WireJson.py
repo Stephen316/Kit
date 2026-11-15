@@ -6,6 +6,7 @@ from convert.formats.Fusion.EntityCodec.Schema.WireType import KWireKind
 from tests.convert.formats.FusionCodec.Entities.FieldJson import FieldJson
 
 
+# the wire json boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class WireJson(TypedDict):
     KindValue: KWireKind
     Arguments: NotRequired[list[WireJson]]

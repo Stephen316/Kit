@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfil
 from convert.formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
 
 
+# the external profile contract needs a shared interpretation so archive members retain their native ownership and reference relationships
 def ExternalProfile(
     Profile: EntityProfile, Records: Iterable[EntityRecord], SegmentId: int
 ) -> EntityProfile:

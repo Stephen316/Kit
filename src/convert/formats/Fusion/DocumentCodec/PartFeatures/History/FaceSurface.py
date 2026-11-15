@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import Lin
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import SpanHeading
 
 
+# the face surface contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FaceSurface(FaceValue: KShapeFace) -> tuple[KFreeSurface, bool]:
     if isinstance(FaceValue, FreeFace):
         return FaceValue.Surface, FaceValue.Reversed
@@ -71,6 +72,7 @@ def FaceSurface(FaceValue: KShapeFace) -> tuple[KFreeSurface, bool]:
     return Cylinder, SpanValue.SweepAngle < 0
 
 
+# the wall normal contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def WallNormal(
     FaceValue: WallFace, Outward: tuple[float, float]
 ) -> tuple[float, float, float]:
@@ -86,6 +88,7 @@ def WallNormal(
     return (Outward[0] * Height / Slant, Outward[1] * Height / Slant, -Spread / Slant)
 
 
+# the wall slope contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def WallSlope(FaceValue: WallFace) -> float:
     RoofSpan = FaceValue.RoofSpan
     if not isinstance(RoofSpan, ArcSpan) or not isinstance(FaceValue.Span, ArcSpan):

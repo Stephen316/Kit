@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# legacy segment needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class LegacySegment:
     Header: LegacyHeader

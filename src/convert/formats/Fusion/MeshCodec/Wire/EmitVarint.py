@@ -1,3 +1,4 @@
+# the varint operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitVarint(Number: int) -> bytes:
     if type(Number) is not int or not 0 <= Number < 1 << 64:
         raise ValueError("Fusion mesh varint exceeds uint64")

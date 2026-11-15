@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# feature tag needs an explicit state contract so topology identity survives native history reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class FeatureTag:
     PrimaryId: str
@@ -10,6 +11,7 @@ class FeatureTag:
     SecondaryId: int = 0
     ApproachId: int = 0
 
+    # invalid feature tag state must fail at construction so boundary representation history never receives an inconsistent contract
     def __post_init__(self) -> None:
         if (
             type(self.PrimaryId) is not str

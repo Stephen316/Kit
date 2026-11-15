@@ -4,6 +4,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Model.ClassStamp import ClassS
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
 
+# class layout needs an explicit state contract so native records retain their segment ownership and schema
 @MakeDataClass(frozen=True, slots=True)
 class ClassLayout:
     Stamp: ClassStamp

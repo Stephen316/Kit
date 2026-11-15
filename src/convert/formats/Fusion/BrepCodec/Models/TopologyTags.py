@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
 
 
+# topology tags needs an explicit state contract so topology identity survives native history reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class TopologyTags:
     SideFace: FeatureTag

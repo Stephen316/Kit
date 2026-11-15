@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Validation.Che
 )
 
 
+# invalid snapshot input must fail here so supporting records retain their owning document relationships
 def CheckSnapshot(Value: PrismSnapshot) -> None:
     if Value.Header != BrepHeader(23200, 4, 2, 10.0, 1e-6, 1e-10):
         raise ValueError("Unsupported cuboid snapshot header")

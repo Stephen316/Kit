@@ -3,6 +3,7 @@ from __future__ import annotations
 from tools.TestShards.Reuse.Cache.ReadObject import ReadObject
 
 
+# the texts operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def ReadTexts(Value: object, Label: str) -> dict[str, str]:
     Fields = ReadObject(Value, Label)
     Texts = {

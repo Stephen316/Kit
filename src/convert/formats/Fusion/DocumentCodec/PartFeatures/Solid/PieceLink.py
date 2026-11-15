@@ -14,13 +14,16 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the link limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KLinkLimit = 1e-7
 
 
+# the near decision must stay consistent so body topology remains consistent with its modeling operation
 def IsNear(First: KPoint, Second: KPoint) -> bool:
     return Hypotenuse(First[0] - Second[0], First[1] - Second[1]) < KLinkLimit
 
 
+# the turn angle contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def TurnAngle(Before: KPlaneSpan, After: KPlaneSpan) -> float:
     InwardX, InwardY = SpanHeading(Before, True)
     OutwardX, OutwardY = SpanHeading(After, False)
@@ -29,6 +32,7 @@ def TurnAngle(Before: KPlaneSpan, After: KPlaneSpan) -> float:
     )
 
 
+# next piece needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def NextPiece(Pieces: list[KPlaneSpan], Chain: list[int], Taken: set[int]) -> int:
     Latest = Pieces[Chain[-1]]
     Finish = SpanFinish(Latest)
@@ -40,9 +44,12 @@ def NextPiece(Pieces: list[KPlaneSpan], Chain: list[int], Taken: set[int]) -> in
     ]
     if not Options:
         raise ValueError("Fusion part region boundary is open")
+
+    # ordering by turn angle latest pieces index must stay deterministic so solid feature construction resolves equivalent inputs consistently
     return max(Options, key=lambda Index: TurnAngle(Latest, Pieces[Index]))
 
 
+# the same carrier decision must stay consistent so body topology remains consistent with its modeling operation
 def IsSameCarrier(Before: KPlaneSpan, After: KPlaneSpan) -> bool:
     if Before.Label != After.Label:
         return False
@@ -57,6 +64,7 @@ def IsSameCarrier(Before: KPlaneSpan, After: KPlaneSpan) -> bool:
     return False
 
 
+# the join pair contract needs a stable decomposition so body topology remains consistent with its modeling operation
 def JoinPair(Before: KPlaneSpan, After: KPlaneSpan) -> KPlaneSpan:
     if isinstance(Before, LineSpan) and isinstance(After, LineSpan):
         return LineSpan(Before.StartCm, After.FinishCm, Before.Label)
@@ -70,6 +78,7 @@ def JoinPair(Before: KPlaneSpan, After: KPlaneSpan) -> KPlaneSpan:
     )
 
 
+# the merge runs contract needs a stable decomposition so body topology remains consistent with its modeling operation
 def MergeRuns(Spans: list[KPlaneSpan]) -> KPlaneLoop:
     Merged: list[KPlaneSpan] = []
     for Value in Spans:
@@ -82,6 +91,7 @@ def MergeRuns(Spans: list[KPlaneSpan]) -> KPlaneLoop:
     return tuple(Merged)
 
 
+# link pieces must resolve unambiguously so body topology remains consistent with its modeling operation
 def LinkPieces(Pieces: list[KPlaneSpan]) -> list[KPlaneLoop]:
     Taken: set[int] = set()
     Loops: list[KPlaneLoop] = []

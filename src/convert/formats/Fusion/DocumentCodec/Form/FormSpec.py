@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import (
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# form specification needs an explicit state contract so editable control cages retain their document relationships
 @MakeDataClass(frozen=True, slots=True)
 class FormSpec:
     Title: str

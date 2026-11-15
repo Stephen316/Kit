@@ -10,13 +10,23 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetSizes import (
     PaperSize,
 )
 
+# the point pair shape must stay shared so drawing sheet authoring uses one contract for compatible values
 KPointPair = tuple[float, float]
+
+# the segment shape must stay shared so drawing sheet authoring uses one contract for compatible values
 KSegment = tuple[KPointPair, KPointPair]
+
+# zone step must remain consistent across callers so paper layouts retain consistent object ownership
 KZoneStep = 100.0
+
+# zone letters must remain consistent across callers so paper layouts retain consistent object ownership
 KZoneLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+# the asme sides order must stay explicit so paper layouts retain consistent object ownership
 KAsmeSides = (8.5 * KInchLength, 11.0 * KInchLength)
 
 
+# frame rule needs an explicit state contract so paper layouts retain consistent object ownership
 @MakeDataClass(frozen=True, slots=True)
 class FrameRule:
     FilingMargin: float
@@ -28,7 +38,10 @@ class FrameRule:
     FromCorner: bool
 
 
+# iso frame must remain consistent across callers so paper layouts retain consistent object ownership
 KIsoFrame = FrameRule(20.0, 5.0, 5.0, 15.0, 2.5, True, False)
+
+# asme frame must remain consistent across callers so paper layouts retain consistent object ownership
 KAsmeFrame = FrameRule(
     KAsmeMargin,
     0.25 * KInchLength,
@@ -40,6 +53,7 @@ KAsmeFrame = FrameRule(
 )
 
 
+# zone label needs an explicit state contract so paper layouts retain consistent object ownership
 @MakeDataClass(frozen=True, slots=True)
 class ZoneLabel:
     TextValue: str
@@ -48,6 +62,7 @@ class ZoneLabel:
     TextHeight: float
 
 
+# border plan needs an explicit state contract so paper layouts retain consistent object ownership
 @MakeDataClass(frozen=True, slots=True)
 class BorderPlan:
     BlockName: str
@@ -57,6 +72,7 @@ class BorderPlan:
     Labels: tuple[ZoneLabel, ...]
 
 
+# frame box needs an explicit state contract so paper layouts retain consistent object ownership
 @MakeDataClass(frozen=True, slots=True)
 class FrameBox:
     LeftEdge: float
@@ -67,29 +83,35 @@ class FrameBox:
     RowCount: int
     Style: FrameRule
 
+    # the middle x contract needs a shared interpretation so paper layouts retain consistent object ownership
     @property
     def MiddleX(self) -> float:
         return (self.LeftEdge + self.RightEdge) / 2
 
+    # the middle y contract needs a shared interpretation so paper layouts retain consistent object ownership
     @property
     def MiddleY(self) -> float:
         return (self.BottomEdge + self.TopEdge) / 2
 
+    # the step x contract needs a shared interpretation so paper layouts retain consistent object ownership
     @property
     def StepX(self) -> float:
         SpanLength = self.RightEdge - self.LeftEdge + 2 * self.Style.ZoneReach
         return SpanLength / self.ColumnCount
 
+    # the step y contract needs a shared interpretation so paper layouts retain consistent object ownership
     @property
     def StepY(self) -> float:
         SpanLength = self.TopEdge - self.BottomEdge + 2 * self.Style.ZoneReach
         return SpanLength / self.RowCount
 
 
+# the frame of contract needs a shared interpretation so paper layouts retain consistent object ownership
 def FrameOf(Paper: PaperSize) -> FrameRule:
     return KIsoFrame if Paper.IsMetric else KAsmeFrame
 
 
+# side zones needs an explicit validity boundary so paper layouts retain consistent object ownership
 def SideZones(Length: float, Metric: bool) -> int:
     if Metric:
         return 2 * max(1, round(Length / KZoneStep))
@@ -100,17 +122,20 @@ def SideZones(Length: float, Metric: bool) -> int:
     raise ValueError(f"Authored DWG sheet side {Length!r} is not an ASME side")
 
 
+# the zone counts contract needs a shared interpretation so paper layouts retain consistent object ownership
 def ZoneCounts(Paper: PaperSize) -> tuple[int, int]:
     Across = SideZones(Paper.PaperWidth, Paper.IsMetric)
     return Across, SideZones(Paper.PaperHeight, Paper.IsMetric)
 
 
+# the label operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def MakeLabel(TextValue: str, Middle: KPointPair, Height: float) -> ZoneLabel:
     Across, Upward = MiddleOffset(TextValue, Height)
     Corner = (Middle[0] - Across, Middle[1] - Upward)
     return ZoneLabel(TextValue, Middle, Corner, Height)
 
 
+# the trim lines contract needs a shared interpretation so paper layouts retain consistent object ownership
 def TrimLines(Width: float, Height: float, MarkLength: float) -> tuple[KSegment, ...]:
     Segments: list[KSegment] = []
     for CornerX, Inward in ((0.0, MarkLength), (Width, -MarkLength)):
@@ -120,6 +145,7 @@ def TrimLines(Width: float, Height: float, MarkLength: float) -> tuple[KSegment,
     return tuple(Segments) if MarkLength else ()
 
 
+# the frame lines contract needs a shared interpretation so paper layouts retain consistent object ownership
 def FrameLines(Frame: FrameBox) -> tuple[KSegment, ...]:
     LeftEdge, RightEdge = Frame.LeftEdge, Frame.RightEdge
     BottomEdge, TopEdge = Frame.BottomEdge, Frame.TopEdge
@@ -131,6 +157,7 @@ def FrameLines(Frame: FrameBox) -> tuple[KSegment, ...]:
     )
 
 
+# the centre marks contract needs a shared interpretation so paper layouts retain consistent object ownership
 def CentreMarks(Frame: FrameBox) -> list[KSegment]:
     BandWidth = Frame.Style.BandWidth
     MiddleX, MiddleY = Frame.MiddleX, Frame.MiddleY
@@ -148,6 +175,7 @@ def CentreMarks(Frame: FrameBox) -> list[KSegment]:
     ]
 
 
+# the divisions contract needs a shared interpretation so paper layouts retain consistent object ownership
 def Divisions(Middle: float, StepSize: float, Count: int, Centred: bool) -> list[float]:
     Levels = [Middle] if not Centred else []
     for Index in range(1, Count // 2):
@@ -155,6 +183,7 @@ def Divisions(Middle: float, StepSize: float, Count: int, Centred: bool) -> list
     return Levels
 
 
+# the mark lines contract needs a shared interpretation so paper layouts retain consistent object ownership
 def MarkLines(Frame: FrameBox) -> tuple[KSegment, ...]:
     BandWidth, Centred = Frame.Style.BandWidth, Frame.Style.CentreMarks
     LeftEdge, RightEdge = Frame.LeftEdge, Frame.RightEdge
@@ -169,6 +198,7 @@ def MarkLines(Frame: FrameBox) -> tuple[KSegment, ...]:
     return tuple(Marks)
 
 
+# the zone names contract needs a shared interpretation so paper layouts retain consistent object ownership
 def ZoneNames(Frame: FrameBox) -> tuple[list[str], list[str]]:
     Numbers = [str(Index + 1) for Index in range(Frame.ColumnCount)]
     Letters = list(KZoneLetters[: Frame.RowCount])
@@ -178,6 +208,7 @@ def ZoneNames(Frame: FrameBox) -> tuple[list[str], list[str]]:
     return Numbers, Letters
 
 
+# the zone labels contract needs a shared interpretation so paper layouts retain consistent object ownership
 def ZoneLabels(Frame: FrameBox) -> tuple[ZoneLabel, ...]:
     BandWidth, Height = Frame.Style.BandWidth, Frame.Style.LabelHeight
     Numbers, Letters = ZoneNames(Frame)
@@ -195,6 +226,7 @@ def ZoneLabels(Frame: FrameBox) -> tuple[ZoneLabel, ...]:
     return tuple(Labels)
 
 
+# the plan border contract needs a stable decomposition so paper layouts retain consistent object ownership
 def PlanBorder(Paper: PaperSize) -> BorderPlan:
     Width, Height, Margin = Paper.PaperWidth, Paper.PaperHeight, Paper.FrameMargin
     Style = FrameOf(Paper)

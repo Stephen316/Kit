@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadTextMut import 
 from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 
 
+# the tag groups operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadTagGroups(Cursor: FieldCursor) -> tuple[FeatureTag, ...]:
     for Expected in ((4, 3), (4, 3), (4, -1), (7, "generic_tag_attrib_def ")):
         NeedFieldMut(Cursor, Expected)

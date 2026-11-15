@@ -12,6 +12,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 
 
+# invalid scopes input must fail here so public document claims remain grounded in native records
 def CheckScopes(Graph: NativeGraph, Context: KSketchContexts, AssetId: str) -> None:
     for NodeValue in Graph.Nodes.values():
         if NodeValue.SegmentId != 0 or "rScope" not in NodeValue.Fields:

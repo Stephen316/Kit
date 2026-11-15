@@ -43,6 +43,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.RevolveSpec import 
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec
 
+# the block cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBlock = ExtrudeSpec(
     (
         LineCurve((0.0, 0.0), (40.0, 0.0)),
@@ -57,6 +58,8 @@ KBlock = ExtrudeSpec(
     "Base sketch",
     "Base extrude",
 )
+
+# the pocket cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPocket = ExtrudeSpec(
     (CircleCurve((8.0, 8.0), 3.0),),
     20.0,
@@ -66,6 +69,8 @@ KPocket = ExtrudeSpec(
     "Pocket sketch",
     "Pocket extrude",
 )
+
+# the slot cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSlot = ExtrudeSpec(
     (
         LineCurve((10.0, 19.0), (14.0, 19.0)),
@@ -80,6 +85,8 @@ KSlot = ExtrudeSpec(
     "Slot sketch",
     "Slot pocket",
 )
+
+# the disc cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDisc = ExtrudeSpec(
     (CircleCurve((0.0, 0.0), 20.0),),
     12.0,
@@ -89,6 +96,8 @@ KDisc = ExtrudeSpec(
     "Disc sketch",
     "Disc extrude",
 )
+
+# the ring cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRing = ExtrudeSpec(
     (CircleCurve((12.0, 0.0), 3.0),),
     6.0,
@@ -98,6 +107,8 @@ KRing = ExtrudeSpec(
     "Pocket sketch",
     "Pocket extrude",
 )
+
+# the family cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFamilyCases: dict[str, tuple[tuple[KPartFeature, ...], float, int, int]] = {
     "HoleFlat": ((KBlock, HoleSpec((20.0, 15.0), 8.0, 10.0)), 23.497345, 8, 14),
     "HoleCounterbore": (
@@ -252,6 +263,8 @@ KFamilyCases: dict[str, tuple[tuple[KPartFeature, ...], float, int, int]] = {
         12,
     ),
 }
+
+# the family names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFamilyNames: dict[type[object], str] = {
     ExtrudeSpec: "DcExtrudeFeature",
     HoleSpec: "DcHoleFeature",
@@ -271,6 +284,7 @@ KFamilyNames: dict[type[object], str] = {
 }
 
 
+# shared family specification setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FamilySpec(Features: tuple[KPartFeature, ...]) -> DocumentSpec:
     return DocumentSpec(
         Title="Kit family",

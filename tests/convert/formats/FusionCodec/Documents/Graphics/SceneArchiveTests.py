@@ -11,6 +11,7 @@ from tests.convert.formats.FusionCodec.Documents.Graphics.GraphicsSources import
 )
 
 
+# the native scene contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("SourceIndex, ObjectCount", ((0, 39), (1, 41)))
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"

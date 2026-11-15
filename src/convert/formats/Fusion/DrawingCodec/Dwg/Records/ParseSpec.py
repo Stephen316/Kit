@@ -1,12 +1,16 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Records.SpecOp import SpecOp
 
+# the macro texts vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KMacroTexts = {
     "CMC": "BS {0}Index; BL {0}Rgb; RC {0}Flags; if {0}Flags&1 {{ TU {0}Name }}; if {0}Flags&2 {{ TU {0}Book }}",
     "TIME": "BL {0}Day; BL {0}Msec",
 }
+
+# the stops vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KStops = frozenset({"{", "}", ";"})
 
 
+# the specification operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ParseSpec(SpecText: str) -> tuple[SpecOp, ...]:
     Spaced = SpecText.replace("{", " { ").replace("}", " } ").replace(";", " ; ")
     Tokens = tuple(Spaced.split())
@@ -16,6 +20,7 @@ def ParseSpec(SpecText: str) -> tuple[SpecOp, ...]:
     return SpecOps
 
 
+# the block operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ParseBlock(
     Tokens: tuple[str, ...], Position: int
 ) -> tuple[tuple[SpecOp, ...], int]:
@@ -33,6 +38,7 @@ def ParseBlock(
     return tuple(SpecOps), Position
 
 
+# the words operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def TakeWords(Tokens: tuple[str, ...], Position: int) -> tuple[tuple[str, ...], int]:
     Finish = Position
     while Finish < len(Tokens) and Tokens[Finish] not in KStops:
@@ -41,6 +47,7 @@ def TakeWords(Tokens: tuple[str, ...], Position: int) -> tuple[tuple[str, ...], 
     return Tokens[Position:Finish], Finish + SkipCount
 
 
+# the compound operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ParseCompound(
     Words: tuple[str, ...], Tokens: tuple[str, ...], Position: int
 ) -> tuple[SpecOp, int]:
@@ -55,12 +62,14 @@ def ParseCompound(
     return SpecOp(OpKind, OpName, Words[2:], BodyOps, ElseOps), Position
 
 
+# skip close needs an explicit validity boundary so section boundaries and object references remain consistent
 def SkipClose(Tokens: tuple[str, ...], Position: int) -> int:
     if Position >= len(Tokens) or Tokens[Position] != "}":
         raise ValueError("DWG record spec block is not closed")
     return Position + 1
 
 
+# expand macro needs an explicit validity boundary so section boundaries and object references remain consistent
 def ExpandMacro(Words: tuple[str, ...]) -> tuple[SpecOp, ...]:
     if len(Words) < 2:
         raise ValueError(f"DWG record spec statement {Words!r} has no field name")

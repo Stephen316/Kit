@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Mesh.CheckMeshRefs import (
 from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
+# invalid doc meshes input must fail here so supporting records retain their owning document relationships
 def CheckDocMeshes(Value: DocumentModel) -> None:
     Records = tuple(
         Record

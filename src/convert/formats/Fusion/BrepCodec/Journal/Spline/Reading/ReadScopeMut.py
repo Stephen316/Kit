@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import 
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
 
 
+# the scope operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadScopeMut(Cursor: FieldCursor, Family: str) -> str | SubtypeRef:
     NeedFieldMut(Cursor, (15, None))
     TagValue, Value = ReadFieldMut(Cursor)

@@ -6,6 +6,7 @@ from convert.formats.Fusion.ContainerCodec.Model.FusionContainer import FusionCo
 from convert.formats.Fusion.ContainerCodec.PartDirs import PartDirs
 
 
+# container dirs needs an explicit validity boundary so archive members retain their native ownership and reference relationships
 def ContainerDirs(Value: FusionContainer, Folders: tuple[str, ...]) -> set[str]:
     if (
         type(Value.EmptyFolders) is not tuple

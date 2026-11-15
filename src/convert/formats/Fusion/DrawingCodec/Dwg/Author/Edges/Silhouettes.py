@@ -21,16 +21,25 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     DotProduct,
 )
 
+# silhouette top must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSilhouetteTop = 0xFFFFFFFF
+
+# face stride must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KFaceStride = 2048
+
+# seam gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSeamGap = 1e-9
+
+# side gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSideGap = 1e-12
 
 
+# the angle gap contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def AngleGap(First: float, Second: float) -> float:
     return abs((First - Second + KFullTurn / 2) % KFullTurn - KFullTurn / 2)
 
 
+# the side angles contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def SideAngles(Shape: RoundFace, Sight: KPointTriple) -> tuple[float, ...]:
     Climb = DotProduct(Sight, Shape.Along)
     Across = DotProduct(Sight, Shape.XAxis)
@@ -46,6 +55,7 @@ def SideAngles(Shape: RoundFace, Sight: KPointTriple) -> tuple[float, ...]:
     return ((Middle + Halfway) % KFullTurn, (Middle - Halfway) % KFullTurn)
 
 
+# side span needs an explicit validity boundary so projected boundaries retain their intended visibility and geometry
 def SideSpan(Shape: RoundFace, Angle: float) -> tuple[float, float] | None:
     if any(AngleGap(Angle, SeamItem.Angle) < KSeamGap for SeamItem in Shape.Seams):
         return None
@@ -66,6 +76,7 @@ def SideSpan(Shape: RoundFace, Angle: float) -> tuple[float, float] | None:
     return (min(Heights), max(Heights))
 
 
+# the side line contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def SideLine(Shape: RoundFace, Angle: float, Height: float) -> KPointTriple:
     Radial = Combine(
         (0.0, 0.0, 0.0), (Cosine(Angle), Shape.XAxis), (SineOf(Angle), Shape.YAxis)
@@ -74,6 +85,7 @@ def SideLine(Shape: RoundFace, Angle: float, Height: float) -> KPointTriple:
     return Combine(Shape.Origin, (Height, Shape.Along), (Width, Radial))
 
 
+# the silhouettes contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def Silhouettes(Shape: SolidShape, Sight: KPointTriple) -> tuple[SolidEdge, ...]:
     Found: list[SolidEdge] = []
     for Round in Shape.Rounds:

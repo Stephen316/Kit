@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer path contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferPathMut(State: SceneCodec, Value: NodePath | None) -> NodePath:
     Count = State.CountValue(len(Value.Entries) if Value else None)
     Entries: list[PathEntity] = []

@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# segment of needs an explicit validity boundary so cross document references retain their intended ownership
 def SegmentOf(Model: DocumentModel, KindValue: SegmentKind) -> ParsedSegment:
     Found = tuple(
         Segment
@@ -16,6 +17,7 @@ def SegmentOf(Model: DocumentModel, KindValue: SegmentKind) -> ParsedSegment:
     return Found[0]
 
 
+# text items needs an explicit validity boundary so cross document references retain their intended ownership
 def TextItems(Value: KEntityValue) -> tuple[tuple[str, str], ...]:
     if not isinstance(Value, ValueMap):
         raise ValueError("Fusion link authoring expected a text map")

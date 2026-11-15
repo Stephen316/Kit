@@ -10,6 +10,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.PackageCore import Packa
 from convert.formats.Fusion.MaterialCodec.Package.Model.ResourceInfo import ResourceInfo
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
+# the material types order must stay explicit so public document claims remain grounded in native records
 KMaterialTypes: tuple[type[object], ...] = (
     AssetLinks,
     ColorValue,

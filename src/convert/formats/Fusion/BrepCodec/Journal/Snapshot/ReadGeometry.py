@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadM
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
+# the geometry operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadGeometry(Payload: bytes) -> GeometryState:
     if type(Payload) is not bytes or not 0 < len(Payload) <= KJournalBytes:
         raise ValueError("Invalid or oversized Fusion geometry payload")

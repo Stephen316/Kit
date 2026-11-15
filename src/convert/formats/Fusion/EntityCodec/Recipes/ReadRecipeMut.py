@@ -8,6 +8,7 @@ from convert.formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
+# the recipe operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadRecipeMut(
     Cursor: MetaCursor, Catalog: EntityCatalog, Depth: int
 ) -> RecipeValue:

@@ -13,6 +13,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.ReadSchema import ReadSchema
 from convert.formats.Fusion.EntityCodec.Vocabulary.ReadWireType import ReadWireType
 
 
+# the catalog operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 @CacheValue
 def ReadCatalog() -> NativeCatalog:
     Source = FilePath(__file__).with_name("NativeClasses.xz")

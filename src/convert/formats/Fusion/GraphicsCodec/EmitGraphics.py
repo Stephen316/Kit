@@ -8,6 +8,7 @@ from convert.formats.Fusion.GraphicsCodec.Fields.XferOverrideMut import XferOver
 from convert.formats.Fusion.GraphicsCodec.Worlds.XferWorldMut import XferWorldMut
 
 
+# the graphics operation needs a consistent construction rule so display geometry retains its entity and scene relationships
 def EmitGraphics(Value: GraphicScene) -> GraphicsData:
     if not isinstance(CastValue(object, Value), GraphicScene):
         raise ValueError("Expected a typed Fusion graphics scene")

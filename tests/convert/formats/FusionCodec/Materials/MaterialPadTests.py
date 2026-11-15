@@ -7,6 +7,7 @@ from tests.convert.formats.FusionCodec.Materials.FillPadding import FillPadding
 from tests.convert.formats.FusionCodec.Materials.ReadNative import ReadNative
 
 
+# the native pad contract needs boundary coverage so stored document relationships remain consistent
 def TestNativePad() -> None:
     Native = ReadNative()
     Padded = ReplaceValue(

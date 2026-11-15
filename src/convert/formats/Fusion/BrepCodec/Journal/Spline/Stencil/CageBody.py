@@ -24,6 +24,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import 
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# the shape edges contract needs a shared interpretation so control cage contributions retain their intended weights
 def ShapeEdges(Shape: CappedShape, Result: CageResult) -> tuple[FormEdge, ...]:
     return tuple(
         FormEdge(
@@ -40,6 +41,7 @@ def ShapeEdges(Shape: CappedShape, Result: CageResult) -> tuple[FormEdge, ...]:
     )
 
 
+# shape faces needs an explicit validity boundary so control cage contributions retain their intended weights
 def ShapeFaces(Shape: CappedShape, Result: CageResult) -> tuple[FormFace, ...]:
     Found = {FaceValue.FaceIndex: FaceValue for FaceValue in Result.Faces}
     if set(Found) != {FaceValue.Region for FaceValue in Shape.Faces}:
@@ -60,6 +62,7 @@ def ShapeFaces(Shape: CappedShape, Result: CageResult) -> tuple[FormFace, ...]:
     )
 
 
+# shape body needs an explicit validity boundary so control cage contributions retain their intended weights
 def ShapeBody(Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps) -> FormBody:
     Shape, Result = CageParts(Surface, CapSolver)
     if len(Result.Points) != len(Shape.Points):
@@ -72,6 +75,7 @@ def ShapeBody(Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps) -> FormB
     )
 
 
+# the cage body contract needs a shared interpretation so control cage contributions retain their intended weights
 def CageBody(Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps) -> FormBody:
     BodyValue = ClassifyEdges(ShapeBody(Surface, CapSolver))
     CheckFolds(BodyValue)

@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.CuboidCache import CuboidCac
 from convert.formats.Fusion.DocumentCodec.Tapered.TaperCache import TaperCache
 
 
+# the body cache contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def BodyCache(Author: AuthorState) -> list[dict[str, object]]:
     if Author.SpecValue.ProfileKind == "cuboid":
         return CuboidCache(Author)

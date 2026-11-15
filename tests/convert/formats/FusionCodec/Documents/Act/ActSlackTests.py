@@ -21,6 +21,7 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
 )
 
 
+# shared pick segment setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PickSegment(
     Segments: tuple[ParsedSegment, ...], KindValue: SegmentKind
 ) -> ParsedSegment:
@@ -31,6 +32,7 @@ def PickSegment(
     return Matches[0]
 
 
+# the act slack contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion archive requires ZIP Zstandard"
 )
@@ -50,6 +52,7 @@ def TestActSlack(CaseValue: tuple[str, str, int]) -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the slack drop contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion archive requires ZIP Zstandard"
 )
@@ -64,6 +67,7 @@ def TestSlackDrop() -> None:
     )
 
 
+# the slack gate contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion archive requires ZIP Zstandard"
 )
@@ -83,6 +87,7 @@ def TestSlackGate() -> None:
         _ = EmitDocSegment(ReplaceValue(ActSegment, BulkSlack=Mutable))
 
 
+# the other trail contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion archive requires ZIP Zstandard"
 )
@@ -92,6 +97,7 @@ def TestOtherTrail() -> None:
         _ = ReadDocument(Archive)
 
 
+# the browser tail contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion archive requires ZIP Zstandard"
 )
@@ -102,6 +108,7 @@ def TestBrowserTail() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# shared trail archive setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TrailArchive(KindValue: SegmentKind, Length: int) -> bytes:
     Container = ReadContainer(ReadFormFile(*KSlackCases[0][:2]))
     Streams = tuple(

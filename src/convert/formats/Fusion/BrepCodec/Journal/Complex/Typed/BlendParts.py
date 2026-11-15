@@ -27,9 +27,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 )
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
+# the offset kinds order must stay explicit so native geometry variants retain distinct field contracts
 KOffsetKinds = ("edge_offset", "fixed_width")
 
 
+# the support operation needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class BlendSupport(TypedBase):
     SupportKind: str
@@ -42,6 +44,7 @@ class BlendSupport(TypedBase):
     ThirdPcurve: BsCurve | None
 
 
+# offset radius needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class OffsetRadius(TypedBase):
     RadiusKind: str
@@ -52,6 +55,7 @@ class OffsetRadius(TypedBase):
     OffsetValue: float
 
 
+# interp sample needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class InterpSample(TypedBase):
     Values: tuple[float, float, float, float]
@@ -59,6 +63,7 @@ class InterpSample(TypedBase):
     Direction: KTriple
 
 
+# interp radius needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class InterpRadius(TypedBase):
     LeadEnum: int
@@ -70,6 +75,7 @@ class InterpRadius(TypedBase):
     Samples: tuple[InterpSample, ...]
 
 
+# the frame operation needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class BlendFrame(TypedBase):
     FirstRange: KRange
@@ -82,9 +88,11 @@ class BlendFrame(TypedBase):
     HapCaches: tuple[int, int, int]
 
 
+# the radius variants need one shared contract so typed journal reconstruction cannot omit a supported value shape
 KRadius: TypeAlias = OffsetRadius | InterpRadius
 
 
+# the support from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SupportFrom(Value: KGrammarValue) -> BlendSupport:
     Parts = NeedItems(Value, 8)
     return BlendSupport(
@@ -99,6 +107,7 @@ def SupportFrom(Value: KGrammarValue) -> BlendSupport:
     )
 
 
+# the support tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SupportTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, BlendSupport)
     return (
@@ -113,6 +122,7 @@ def SupportTree(Value: KGrammarValue) -> KGrammarValue:
     )
 
 
+# the sample from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SampleFrom(Value: KGrammarValue) -> InterpSample:
     Parts = NeedItems(Value, 6)
     Values = (
@@ -124,6 +134,7 @@ def SampleFrom(Value: KGrammarValue) -> InterpSample:
     return InterpSample(Values, NeedTriple(Parts[4]), NeedTriple(Parts[5]))
 
 
+# radius from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def RadiusFrom(Value: KGrammarValue) -> KRadius:
     Choice = NeedChoice(Value)
     if Choice.ChoiceKey in KOffsetKinds:
@@ -150,6 +161,7 @@ def RadiusFrom(Value: KGrammarValue) -> KRadius:
     )
 
 
+# radius tree needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def RadiusTree(Value: KGrammarValue) -> KGrammarValue:
     if isinstance(Value, OffsetRadius):
         if Value.RadiusKind not in KOffsetKinds:
@@ -175,6 +187,7 @@ def RadiusTree(Value: KGrammarValue) -> KGrammarValue:
     return ChoiceValue("interp", Parts)
 
 
+# frame from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def FrameFrom(Parts: tuple[KGrammarValue, ...]) -> BlendFrame:
     if len(Parts) != 10:
         raise ValueError("Fusion blend frame disagrees with its grammar")
@@ -190,6 +203,7 @@ def FrameFrom(Parts: tuple[KGrammarValue, ...]) -> BlendFrame:
     )
 
 
+# the frame tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def FrameTree(Value: KGrammarValue) -> tuple[KGrammarValue, ...]:
     Record = NeedRecord(Value, BlendFrame)
     return (

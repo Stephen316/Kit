@@ -18,11 +18,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import (
     KDwgValue,
 )
 
+# the slot map shape must stay shared so native drawing authoring uses one contract for compatible values
 KSlotMap = Mapping[str, Sequence[KDraftValue]]
+
+# byte limit needs one explicit bound so native drawing authoring cannot accept inconsistent resource or layout limits
 KByteLimit = 255
+
+# null pointer must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KNullPointer = DwgHandleRef(4, 0)
 
 
+# handle of needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def HandleOf(Handles: Mapping[str, int], KeyText: str) -> int:
     Handle = Handles.get(KeyText)
     if Handle is None:
@@ -30,6 +36,7 @@ def HandleOf(Handles: Mapping[str, int], KeyText: str) -> int:
     return Handle
 
 
+# resolve slot needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def ResolveSlot(
     Value: DraftSlot, Handles: Mapping[str, int], Slots: KSlotMap
 ) -> KDwgValue:
@@ -47,6 +54,7 @@ def ResolveSlot(
     return ResolveDraft(tuple(Items), Handles, Slots)
 
 
+# the resolve record contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def ResolveRecord(
     Value: DraftRecord, Handles: Mapping[str, int], Slots: KSlotMap
 ) -> DwgRecord:
@@ -58,6 +66,7 @@ def ResolveRecord(
     )
 
 
+# the resolve draft contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def ResolveDraft(
     Value: KDraftValue, Handles: Mapping[str, int], Slots: KSlotMap
 ) -> KDwgValue:

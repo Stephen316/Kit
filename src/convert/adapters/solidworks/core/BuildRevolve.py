@@ -9,6 +9,7 @@ if TypeChecking:
     from convert.adapters.solidworks.core.Native import NativeOperation, NativeSketch
 
 
+# the revolve operation needs a consistent construction rule so stream contents retain their geometry and feature relationships
 def BuildRevolve(
     Operation: NativeOperation | None, Sketches: Mapping[int, NativeSketch]
 ) -> RevolutionFeature | None:

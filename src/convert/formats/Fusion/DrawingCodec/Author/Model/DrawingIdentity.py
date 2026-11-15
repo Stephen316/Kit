@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# drawing identity needs an explicit state contract so sheet objects retain their intended document relationships
 @MakeDataClass(frozen=True, slots=True)
 class DrawingIdentity:
     DocumentId: str

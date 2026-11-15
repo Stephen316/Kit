@@ -94,17 +94,40 @@ for DefinitionAttrName, DefinitionAttrValue in {
 for TopologyAttrName, TopologyAttrValue in {"__module__": __name__}.items():
     setattr(TopologyCounts, TopologyAttrName, TopologyAttrValue)
 
+# the public extrusion end condition name must remain available so existing integrations keep resolving the canonical implementation
 ExtrusionEndCondition = ExtrudeEnd
+
+# the public feature definition name must remain available so existing integrations keep resolving the canonical implementation
 FeatureDefinition = FeatureDef
+
+# the public topology summary name must remain available so existing integrations keep resolving the canonical implementation
 TopologySummary = TopologyCounts
+
+# the public adapter capabilities name must remain available so existing integrations keep resolving the canonical implementation
 AdapterCapabilities = AdapterCaps
+
+# the public body name must remain available so existing integrations keep resolving the canonical implementation
 Body = DesignBody
+
+# the public circular pattern feature name must remain available so existing integrations keep resolving the canonical implementation
 CircularPatternFeature = CirclePattern
+
+# the public extrusion feature name must remain available so existing integrations keep resolving the canonical implementation
 ExtrusionFeature = ExtrudeFeature
+
+# the public feature configuration state name must remain available so existing integrations keep resolving the canonical implementation
 FeatureConfigurationState = FeatureCfgState
+
+# the public linear pattern feature name must remain available so existing integrations keep resolving the canonical implementation
 LinearPatternFeature = LinearPattern
+
+# the public native feature definition name must remain available so existing integrations keep resolving the canonical implementation
 NativeFeatureDefinition = NativeFeature
+
+# the public reference plane feature name must remain available so existing integrations keep resolving the canonical implementation
 ReferencePlaneFeature = RefPlaneFeature
+
+# the public revolution feature name must remain available so existing integrations keep resolving the canonical implementation
 RevolutionFeature = RevolveFeature
 
 

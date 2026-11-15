@@ -12,6 +12,7 @@ from tests.convert.formats.FusionCodec.Documents.NamedGroups import NamedGroups
 from tests.convert.formats.FusionCodec.Documents.Rectangle.RectValues import ReadPoint
 
 
+# the taper cache contract needs boundary coverage so stored document relationships remain consistent
 def TestTaperCache(TmpPath: FilePath) -> None:
     Source = TmpPath / "CachedTaper.f3d"
     _ = Source.write_bytes(

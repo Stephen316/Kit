@@ -1,3 +1,4 @@
+# the name operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def DecodeName(NameBytes: bytes) -> str:
     Trimmed = NameBytes.split(b"\x00", 1)[0]
     if any(ByteValue < 0x20 or ByteValue > 0x7E for ByteValue in Trimmed):

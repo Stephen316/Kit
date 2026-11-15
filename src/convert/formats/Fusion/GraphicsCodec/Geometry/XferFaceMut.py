@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer face needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferFaceMut(State: SceneCodec, Value: EnhancedFace | None) -> EnhancedFace:
     StreamIndex = State.Integer(Value.StreamIndex if Value else None)
     ByteOffset = State.Integer(Value.ByteOffset if Value else None)

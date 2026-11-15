@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 
 
+# shell loops needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def ShellLoops(
     Outer: KPlaneLoop,
     ThicknessCm: float,
@@ -33,6 +34,7 @@ def ShellLoops(
     return (Outer, Inner)
 
 
+# hollow solid needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def HollowSolid(
     Solid: PrismSolid,
     ThicknessCm: float,

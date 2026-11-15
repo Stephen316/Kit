@@ -9,6 +9,7 @@ from convert.formats.Fusion.DrawingCodec.Package.PackageLimits import (
 )
 
 
+# the local operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadLocal(
     DataValue: bytes,
     RowValue: CentralRow,

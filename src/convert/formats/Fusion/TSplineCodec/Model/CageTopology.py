@@ -6,6 +6,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageLink import CageLink
 from convert.formats.Fusion.TSplineCodec.Model.EndCondition import EndCondition
 
 
+# cage topology needs an explicit state contract so control cage topology retains its native connectivity
 @dataclass(frozen=True)
 class CageTopology:
     Faces: tuple[CageFace, ...]

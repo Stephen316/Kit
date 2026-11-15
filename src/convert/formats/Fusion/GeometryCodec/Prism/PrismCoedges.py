@@ -11,6 +11,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 from convert.formats.Fusion.GeometryCodec.Prism.PrismUse import PrismUse
 
 
+# the coedges operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildCoedges(UseValues: tuple[PrismUse, ...]) -> tuple[GeometryRecord, ...]:
     Lookup = {
         (Value.Start, Value.Finish): KFirstCoedge + Index

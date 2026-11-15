@@ -1,5 +1,6 @@
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
+# the front matrix order must stay explicit so feature parameters remain connected to the resulting geometry
 KFrontMatrix = (
     1.0,
     0.0,
@@ -20,6 +21,7 @@ KFrontMatrix = (
 )
 
 
+# frame axes needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def FrameAxes(
     PlaneRole: str, LiftCm: float = 0.0
 ) -> tuple[dict[str, object], dict[str, object]]:
@@ -30,6 +32,7 @@ def FrameAxes(
     return MakePoint(1.0), MakePoint(0.0, 1.0)
 
 
+# the frame matrix contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FrameMatrix(PlaneRole: str, LiftCm: float = 0.0) -> dict[str, object]:
     if LiftCm:
         Entries = [0.0] * 16
@@ -42,6 +45,7 @@ def FrameMatrix(PlaneRole: str, LiftCm: float = 0.0) -> dict[str, object]:
     return {}
 
 
+# the frame normal contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FrameNormal(PlaneRole: str) -> dict[str, object]:
     if PlaneRole == "xz_plane":
         return MakePoint(KFrontMatrix[2], KFrontMatrix[6], KFrontMatrix[10])

@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the feature tag operation needs a consistent construction rule so native topology can resolve its owning modeling operation
 def MakeFeatureTag(Owner: int, TagValue: FeatureTag) -> GeometryRecord:
     Payload = MakeTagPayload(TagValue)
     return MakeAttribute(Owner, "generic_tag_attrib_def", Payload)

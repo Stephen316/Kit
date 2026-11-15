@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.FormLayout import (
 )
 
 
+# invalid form parts input must fail here so supporting records retain their owning document relationships
 def CheckFormParts(
     Owners: dict[int, EntityRecord], Forms: tuple[DocumentForm, ...]
 ) -> dict[int, TsplineSurface]:

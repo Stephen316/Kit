@@ -3,6 +3,7 @@ from uuid import UUID as UuidValue
 from convert.formats.Fusion.DocumentCodec.Auxiliary.Mesh.MeshLayout import KMeshFolder
 
 
+# mesh name needs an explicit validity boundary so supporting records retain their owning document relationships
 def MeshName(Value: str) -> str:
     Prefix = KMeshFolder + "ParaMeshGeometry."
     if not Value.startswith(Prefix) or not Value.endswith(".paramesh"):

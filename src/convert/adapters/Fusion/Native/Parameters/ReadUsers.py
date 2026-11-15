@@ -10,6 +10,7 @@ from convert.adapters.Fusion.Native.Parameters.ReadParameters import ProjectPara
 from interchange.records.RecordParameter import Parameter
 
 
+# the users operation needs a distinct decoding boundary so public document claims remain grounded in native records
 def ReadUsers(Graph: NativeGraph, Context: SketchContext) -> tuple[Parameter, ...]:
     Table = ResolveField(Graph, Context.Component, "rParameterTable", "ParameterTable")
     Nodes = LinkedNodes(Graph, Table, "children")

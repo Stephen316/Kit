@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadSketchLink import ReadSketchLi
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism tags operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismTags(Table: AsmTable, Mapping: dict[int, int]) -> PrismTags:
     Faces = tuple(
         ReadFeatureTag(Table, Mapping[KFirstFaceTag + Index]) for Index in range(6)

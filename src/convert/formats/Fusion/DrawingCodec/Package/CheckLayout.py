@@ -9,6 +9,7 @@ from convert.formats.Fusion.DrawingCodec.Package.PackageLimits import (
 )
 
 
+# invalid layout input must fail here so drawing members retain their sheet and model associations
 def CheckLayout(NameValue: str, Layout: EntryLayout, SizeValue: int) -> bytes:
     if not isinstance(CastValue(object, Layout), EntryLayout) or any(
         type(Value) is not int

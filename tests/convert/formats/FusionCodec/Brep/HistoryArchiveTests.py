@@ -13,6 +13,7 @@ from tests.convert.formats.FusionCodec.Brep.ReadBodyFaces import ReadBodyFaces
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the history contract needs boundary coverage so stored document relationships remain consistent
 def TestHistory(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     Target = TmpPath / "History.smbh"

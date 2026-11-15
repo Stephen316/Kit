@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.FormLayout import (
 )
 
 
+# invalid form nodes input must fail here so supporting records retain their owning document relationships
 def CheckFormNodes(
     Record: EntityRecord,
     Owners: dict[int, EntityRecord],

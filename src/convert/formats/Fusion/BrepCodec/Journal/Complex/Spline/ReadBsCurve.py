@@ -23,6 +23,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadNameMut import 
 )
 
 
+# the bs body operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadBsBodyMut(Cursor: FieldCursor, NameText: str, Dimension: int) -> BsCurve:
     if NameText not in ("nubs", "nurbs"):
         raise ValueError("Unsupported Fusion B-spline curve form: " + NameText)
@@ -41,10 +42,12 @@ def ReadBsBodyMut(Cursor: FieldCursor, NameText: str, Dimension: int) -> BsCurve
     return Value
 
 
+# the bs curve operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadBsCurveMut(Cursor: FieldCursor, Dimension: int) -> BsCurve:
     return ReadBsBodyMut(Cursor, ReadNameMut(Cursor), Dimension)
 
 
+# the bs option operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadBsOptionMut(Cursor: FieldCursor) -> BsCurve | None:
     NameText = ReadNameMut(Cursor)
     if NameText == "nullbs":

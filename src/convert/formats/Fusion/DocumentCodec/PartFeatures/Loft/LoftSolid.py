@@ -29,13 +29,16 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ToolSlab import (
     ToolSlab,
 )
 
+# parallel must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KParallel = 1e-9
 
 
+# the loft shaper contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LoftShaper(Feature: LoftSpec) -> ExtrudeSpec:
     return ExtrudeSpec(Feature.LowerProfile, Feature.HeightMm)
 
 
+# pair span needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def PairSpan(Lower: KPlaneSpan, Upper: KPlaneSpan) -> KPlaneSpan:
     if isinstance(Lower, LineSpan) and isinstance(Upper, LineSpan):
         First, Second = SpanHeading(Lower, False), SpanHeading(Upper, False)
@@ -50,6 +53,7 @@ def PairSpan(Lower: KPlaneSpan, Upper: KPlaneSpan) -> KPlaneSpan:
     raise ValueError("Fusion lofts pair parallel lines or coaxial circles")
 
 
+# loft roof needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def LoftRoof(Feature: LoftSpec, Lower: KPlaneLoop, Operation: int) -> KPlaneLoop:
     Labels = ToolLabels(LoftShaper(Feature), Operation)
     Upper = {
@@ -63,6 +67,7 @@ def LoftRoof(Feature: LoftSpec, Lower: KPlaneLoop, Operation: int) -> KPlaneLoop
     return RoofLoop
 
 
+# the loft solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LoftSolid(Feature: LoftSpec, Operation: int) -> PrismSolid:
     SlabValue = ToolSlab(LoftShaper(Feature), Operation)
     RoofLoop = LoftRoof(Feature, SlabValue.Loops[0], Operation)

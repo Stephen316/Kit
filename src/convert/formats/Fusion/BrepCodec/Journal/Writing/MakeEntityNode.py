@@ -51,6 +51,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
 )
 
 
+# the entity node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeEntityNode(Value: KJournalEntity) -> AsmRecord:
     if isinstance(Value, KComplexTypes):
         return MakeComplex(Value)

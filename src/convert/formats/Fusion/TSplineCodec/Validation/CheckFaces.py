@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckIndices
 
 
+# invalid faces input must fail here so control cage topology retains its native connectivity
 def CheckFaces(Topology: CageTopology) -> None:
     Visited: set[int] = set()
     for Index, FaceValue in enumerate(Topology.Faces):

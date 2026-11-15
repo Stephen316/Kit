@@ -1,6 +1,7 @@
 from struct import pack_into as PackInto
 
 
+# shared corrupt store setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CorruptStore(Payload: bytes, Failure: str) -> bytes:
     Result = bytearray(Payload)
     if Failure == "cycle":

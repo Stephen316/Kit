@@ -21,14 +21,20 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchPlan import
     SketchPlan,
 )
 
+# path tracking needs a stable location so parametric feature reconstruction resolves inputs independently of the caller working directory
 KPathTracking = 5
+
+# the path sketch shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KPathSketch: TypeAlias = tuple[SketchPlan, int]
+
+# the vertex names order must stay explicit so feature parameters remain connected to the resulting geometry
 KVertexNames = (
     ("EdgeEndVertexProgenitor", "_end"),
     ("EdgeStartVertexProgenitor", "_start"),
 )
 
 
+# the point seed operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPointSeedMut(
     Author: AuthorState, RoleName: str, Sketch: int, TagValue: int
 ) -> None:
@@ -38,6 +44,7 @@ def AddPointSeedMut(
     Author.Change(RoleName, m_entityRecipe=Author.Reference(RoleName + "_recipe"))
 
 
+# the curve recipe operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddCurveRecipe(
     Author: AuthorState, RoleName: str, Sketch: int, Segment: SketchEdge
 ) -> None:
@@ -46,6 +53,7 @@ def AddCurveRecipe(
     Author.Allocate(RoleName, "SketchCurveEntityRecipe", Fields=Recipe)
 
 
+# the edge seed operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddEdgeSeedMut(
     Author: AuthorState, RoleName: str, Segment: SketchEdge, Drawn: KPathSketch
 ) -> dict[str, object] | None:
@@ -66,6 +74,7 @@ def AddEdgeSeedMut(
     return Author.Reference(RoleName)
 
 
+# curve cache needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CurveCache(Segment: SketchEdge) -> tuple[str, dict[str, object]]:
     Curve = Segment.Curve
     if isinstance(Curve, LineCurve):
@@ -91,6 +100,7 @@ def CurveCache(Segment: SketchEdge) -> tuple[str, dict[str, object]]:
     return "ETCachedCircleArc", Geometry
 
 
+# the path reference operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPathRefMut(
     Author: AuthorState, Prefix: str, Index: int, Drawn: KPathSketch
 ) -> str:
@@ -120,6 +130,7 @@ def AddPathRefMut(
     return RoleName
 
 
+# the path operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPathMut(Author: AuthorState, Prefix: str, Drawn: KPathSketch) -> list[str]:
     AddPlaceMut(Author, Prefix, ("path", "ModelDataRef"), {})
     RefRoles = [

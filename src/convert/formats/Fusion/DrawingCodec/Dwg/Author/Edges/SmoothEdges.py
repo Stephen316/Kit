@@ -16,9 +16,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     Scaled,
 )
 
+# smooth gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSmoothGap = 1e-6
 
 
+# the face normal contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def FaceNormal(Shape: FlatFace | RoundFace, Point: KPointTriple) -> KPointTriple:
     if isinstance(Shape, FlatFace):
         return Shape.Normal
@@ -29,6 +31,7 @@ def FaceNormal(Shape: FlatFace | RoundFace, Point: KPointTriple) -> KPointTriple
     return UnitVector(Minus(Radial, Scaled(Shape.Along, Shape.Slope)))
 
 
+# invalid smooth input must fail here so projected boundaries retain their intended visibility and geometry
 def CheckSmooth(
     Built: tuple[FlatFace | RoundFace, ...],
     Paths: dict[str, KEdgePath],

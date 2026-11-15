@@ -9,6 +9,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import ReadSeries
 
 
+# link dims must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkDimsMut(Author: AuthorState, AxisValues: tuple[DimensionAxis, ...]) -> None:
     Reference = Author.Reference
     Dimensions = [

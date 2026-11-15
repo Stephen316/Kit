@@ -14,8 +14,13 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import (
     ShellSpec,
 )
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[6]
+
+# oracle root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KOracleRoot = KRepoRoot / "re/Fusion/LocalOracle/FeatureAuthoring"
+
+# the part cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPartCases: dict[str, tuple[KPartFeature, ...]] = {
     "Fillet": (FilletSpec((40.0, 30.0), 3.0),),
     "Chamfer": (ChamferSpec((40.0, 30.0), 3.0),),
@@ -28,6 +33,8 @@ KPartCases: dict[str, tuple[KPartFeature, ...]] = {
         ShellSpec(2.0, "Hollow"),
     ),
 }
+
+# the family classes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFamilyClasses: dict[type[object], str] = {
     FilletSpec: "DcFilletEdgeFeature",
     ChamferSpec: "DcChamferFeature",
@@ -35,6 +42,7 @@ KFamilyClasses: dict[type[object], str] = {
 }
 
 
+# shared part specification setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PartSpec(NameValue: str, Features: tuple[KPartFeature, ...] = ()) -> DocumentSpec:
     return DocumentSpec(
         Title="Kit " + NameValue,

@@ -18,6 +18,7 @@ from tests.convert.formats.FusionCodec.Documents.Graphics.FindValues import (
     FindValues,
 )
 
+# the opacity cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOpacityCases: tuple[tuple[str, str, int], ...] = (
     (
         "re/Fusion/LocalOracle/Features/vendor_23mm.f3d",
@@ -32,6 +33,7 @@ KOpacityCases: tuple[tuple[str, str, int], ...] = (
 )
 
 
+# the opacity contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

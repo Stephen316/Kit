@@ -44,9 +44,11 @@ from tests.convert.formats.FusionCodec.Drawings.DwgAuthorTests import (
     MakeDraft,
 )
 
+# the guid text cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGuidText = "0f0e0d0c-0b0a-4908-8706-050403020100"
 
 
+# the sheet sizes contract needs boundary coverage so stored document relationships remain consistent
 def TestSheetSizes() -> None:
     Expected = {
         "A4 Portrait": (210.0, 297.0, True),
@@ -76,6 +78,7 @@ def TestSheetSizes() -> None:
             _ = SheetSize(SizeName)
 
 
+# the border plan contract needs boundary coverage so stored document relationships remain consistent
 def TestBorderPlan() -> None:
     Border = PlanBorder(SheetSize("A3 Landscape"))
     assert Border.BlockName == "ISO_A3_SHEET"
@@ -108,6 +111,7 @@ def TestBorderPlan() -> None:
         assert "".join(Found) == Letters
 
 
+# the asme border contract needs boundary coverage so stored document relationships remain consistent
 def TestAsmeBorder() -> None:
     Border = PlanBorder(SheetSize("B Landscape"))
     assert Border.BlockName == "ASME_B_SHEET" and Border.TrimLines == ()
@@ -147,6 +151,7 @@ def TestAsmeBorder() -> None:
         )
 
 
+# the header plan contract needs boundary coverage so stored document relationships remain consistent
 def TestHeaderPlan() -> None:
     Values = dict(PlanHeader(SheetSize("A1 Landscape")).DraftFields)
     assert Values["PLimMax"] == (841.0, 594.0)
@@ -164,6 +169,7 @@ def TestHeaderPlan() -> None:
     assert Header["InsUnits"] == 4
 
 
+# the table vocab contract needs boundary coverage so stored document relationships remain consistent
 def TestTableVocab() -> None:
     Layers = {Layer.EntryName: Layer.LayerValues for Layer in KLayerSpecs}
     assert (Layers["Visible"], Layers["Hidden"], Layers["TITLEBLOCK"]) == (
@@ -183,6 +189,7 @@ def TestTableVocab() -> None:
         assert Strokes[NameText] == Expected
 
 
+# the title plan contract needs boundary coverage so stored document relationships remain consistent
 def TestTitlePlan() -> None:
     Title = PlanTitle()
     FieldTags = [Field.Tag for Field in Title.Fields]
@@ -192,6 +199,7 @@ def TestTitlePlan() -> None:
     assert -180.0 in Spans and 180.0 in Spans
 
 
+# the standard contract needs boundary coverage so stored document relationships remain consistent
 def TestStandard() -> None:
     Model = ReadDwgFile(AuthorDwg(MakeDraft(KViews, ())))
     Kinds = Counter(Entry.ClassKind for Entry in Model.DwgObjects)
@@ -204,6 +212,7 @@ def TestStandard() -> None:
     assert Kinds["LTYPE"] == len(KLinetypeSpecs)
 
 
+# the text extent contract needs boundary coverage so stored document relationships remain consistent
 def TestTextExtent() -> None:
     Height, Width = TextExtent("40", 3.5)
     assert IsClose(Height, 3.5 * 1497 / 1466)
@@ -219,6 +228,7 @@ def TestTextExtent() -> None:
     assert TextExtent("∅5", 3.5) == TextExtent("Ø5", 3.5)
 
 
+# the body path contract needs boundary coverage so stored document relationships remain consistent
 def TestBodyPath() -> None:
     PathIds = [Entry.DraftFields[0][1] for Entry in BodyPath(KSource)]
     assert PathIds == [0x1C5, 0x1C5]
@@ -230,6 +240,7 @@ def TestBodyPath() -> None:
     assert Items["GuidTail"] == Parsed.bytes[8:]
 
 
+# the view state contract needs boundary coverage so stored document relationships remain consistent
 def TestViewState() -> None:
     Bodies = (
         (KGuidText, (-1.0, 0.0, 0.5), (4.0, 2.0, 1.5)),
@@ -246,6 +257,7 @@ def TestViewState() -> None:
     assert UnpackFrom("<q", Double, 187)[0] == 3
 
 
+# the dim kinds contract needs boundary coverage so stored document relationships remain consistent
 def TestDimKinds() -> None:
     Drafts = (
         DimensionDraft((100.0, 80.0), (160.0, 80.0), 95.0),
@@ -284,12 +296,14 @@ def TestDimKinds() -> None:
         _ = PlanDimension(DimensionDraft((0.0, 0.0), (10.0, 0.0), 5.0, 1.0, "Arc"))
 
 
+# shared is near point setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsNearPoint(Planned: tuple[float, float], Recorded: tuple[float, float]) -> bool:
     return all(
         IsClose(Value, Saved, abs_tol=1e-5) for Value, Saved in zip(Planned, Recorded)
     )
 
 
+# the short dims contract needs boundary coverage so stored document relationships remain consistent
 def TestShortDims() -> None:
     Saved = (
         ((92.5, 174.14), (97.5, 179.14), 10.5, 2.0, 5, (103.421803, 199.911045)),
@@ -341,6 +355,7 @@ def TestShortDims() -> None:
         )
 
 
+# the view axes contract needs boundary coverage so stored document relationships remain consistent
 def TestViewAxes() -> None:
     Corner = 3**-0.5
     Slanted = ViewDraft((180.0, 120.0), 1.0, (-Corner, -Corner, -Corner))
@@ -350,6 +365,7 @@ def TestViewAxes() -> None:
     assert ReadDwgFile(AuthorDwg(MakeDraft((Sideways,), ())))
 
 
+# the hole data contract needs boundary coverage so stored document relationships remain consistent
 def TestHoleData() -> None:
     TextValue = HoleData(453)
     Parsed = ReadJson(TextValue)

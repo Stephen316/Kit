@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 from math import pi as KPiValue
 
 
+# the mass cache contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def MassCache(Author: AuthorState) -> list[dict[str, object]]:
     RadiusValue, HeightValue = (
         Author.SpecValue.RadiusMm / 10.0,

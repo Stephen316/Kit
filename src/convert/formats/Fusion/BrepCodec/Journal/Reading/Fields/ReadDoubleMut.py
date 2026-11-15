@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadFieldMut import
 )
 
 
+# the double operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadDoubleMut(Cursor: FieldCursor) -> float:
     TagValue, Value = ReadFieldMut(Cursor)
     if TagValue != 6 or type(Value) is not float:

@@ -7,6 +7,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pack.PackPage import PackPage
 from convert.formats.Fusion.DrawingCodec.Dwg.Pack.PlanPage import PlanPage
 
 
+# the pack or plan contract needs a shared interpretation so section boundaries and object references remain consistent
 def PackOrPlan(Payload: bytes, PackPlan: DwgPackPlan | None) -> bytes:
     if PackPlan is not None:
         with Suppress(ValueError):
@@ -14,6 +15,7 @@ def PackOrPlan(Payload: bytes, PackPlan: DwgPackPlan | None) -> bytes:
     return PackPage(Payload, PlanPage(Payload))
 
 
+# pack data needs an explicit validity boundary so section boundaries and object references remain consistent
 def PackData(DwgModel: DwgFile, Contents: dict[str, bytes]) -> dict[int, bytes]:
     Infos = {SectInfo.SectionName: SectInfo for SectInfo in DwgModel.SectionInfos}
     Packed: dict[int, bytes] = {}

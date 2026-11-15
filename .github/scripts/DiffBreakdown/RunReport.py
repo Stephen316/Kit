@@ -12,10 +12,14 @@ from Rules.RuleSet import RuleSet
 from RunContext import BuildIdentity, ReadContext
 from WriteOutputs import KOutputPath, KRequestPath, WriteJson, WriteOutputs
 
+# root path needs a stable location so diff reporting resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[3]
+
+# config path needs a stable location so diff reporting resolves inputs independently of the caller working directory
 KConfigPath = KRootPath / ".github" / "config"
 
 
+# the report operation needs one orchestration boundary so published evidence stays bound to the reviewed revision
 def RunReport(IsPublish: bool) -> None:
     Context = ReadContext()
     Rules = RuleSet(

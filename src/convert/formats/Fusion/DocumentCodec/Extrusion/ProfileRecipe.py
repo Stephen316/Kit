@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleTag import RectangleTag
 
 
+# the profile recipe contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def ProfileRecipe(Author: AuthorState) -> dict[str, object]:
     FirstTag = Author.Policy.FirstSketchTag
     if Author.SpecValue.ProfileKind != "cuboid":

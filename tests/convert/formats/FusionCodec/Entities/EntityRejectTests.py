@@ -7,6 +7,7 @@ from tests.convert.formats.FusionCodec.Entities.ReadNative import ReadNative
 from tests.convert.formats.FusionCodec.Entities.ReadProfile import ReadProfile
 
 
+# the bad version contract needs boundary coverage so stored document relationships remain consistent
 def TestBadVersion() -> None:
     Native = ReadNative("extrude_07mm.f3d")
     Profile = ReadProfile(Native.Targets)
@@ -16,6 +17,7 @@ def TestBadVersion() -> None:
         _ = DecodeEntities(Native.Records, Classes, Profile)
 
 
+# the extra bytes contract needs boundary coverage so stored document relationships remain consistent
 def TestExtraBytes() -> None:
     Native = ReadNative("extrude_07mm.f3d")
     Profile = ReadProfile(Native.Targets)

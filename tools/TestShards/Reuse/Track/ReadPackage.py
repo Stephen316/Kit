@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Mapping
 
 
+# the package operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def ReadPackage(Globals: Mapping[str, object]) -> str:
     Package = Globals.get("__package__")
     if isinstance(Package, str):

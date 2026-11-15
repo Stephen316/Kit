@@ -5,6 +5,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.NodeTarget import NodeTar
 from convert.formats.Fusion.GraphicsCodec.Model.Values.KSetValue import KSetValue
 
 
+# override set needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class OverrideSet(Generic[KSetValue]):
     SetValue: AppliedSet[KSetValue]

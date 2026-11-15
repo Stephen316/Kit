@@ -15,9 +15,11 @@ from tests.convert.formats.FusionCodec.Geometry.Prism.PrismPlanes import CheckFa
 from tests.convert.formats.FusionCodec.Geometry.Prism.PrismVolume import PrismVolume
 from tests.convert.formats.FusionCodec.Geometry.Prism.ReadCuboid import ReadCuboid
 
+# the prism stamp cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPrismStamp = GeometryStamp("Kit", "Prism integration", "2026-11-12T00:00:00Z")
 
 
+# the cuboid shape contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Lengths,BasePoint",
     (
@@ -51,6 +53,7 @@ def TestCuboidShape(
     CheckFacePlanes(Evidence)
 
 
+# the cuboid links contract needs boundary coverage so stored document relationships remain consistent
 def TestCuboidLinks() -> None:
     Evidence = ReadCuboid(
         EmitCuboidSmb(CuboidBody(17.5, 23.25, 8.75, (-12.5, 7.25, 3.5)), KPrismStamp)
@@ -66,6 +69,7 @@ def TestCuboidLinks() -> None:
             assert ReadAsmPtr(Owner, 3 if Endpoint == 0 else 5) == Identity
 
 
+# the cuboid tail contract needs boundary coverage so stored document relationships remain consistent
 def TestCuboidTail() -> None:
     Payload = EmitCuboidSmb(CuboidBody(1.5, 2.5, 3.5, (0, 0, 0)), KPrismStamp)
     with RaiseError(ValueError):

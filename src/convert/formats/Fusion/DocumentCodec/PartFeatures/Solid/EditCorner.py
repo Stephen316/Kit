@@ -11,6 +11,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 
 
+# edit corner needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def EditCorner(
     Solid: PrismSolid,
     CornerCm: tuple[float, float],

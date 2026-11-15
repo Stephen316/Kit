@@ -11,6 +11,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr, Requir
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# map solid must resolve unambiguously so supporting records retain their owning document relationships
 def MapSolid(Table: AsmTable, Graph: PrismGraph, Roles: PrismRoles) -> dict[int, int]:
     Mapping = {
         0: 0,

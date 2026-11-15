@@ -6,6 +6,7 @@ from convert.formats.Fusion.TSplineCodec.Wire.TextCursor import TextCursor
 from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 
 
+# the mapping operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadMapping(Cursor: TextCursor) -> GripMapping | None:
     if not Cursor.HasKind("0m"):
         return None

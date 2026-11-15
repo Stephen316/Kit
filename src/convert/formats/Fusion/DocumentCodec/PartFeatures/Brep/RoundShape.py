@@ -55,10 +55,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import Wal
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import FaceLabel
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import LineSpan
 
+# the users shape must stay shared so feature geometry uses one contract for compatible values
 KUsers = dict[KShapeEdge, list[KUsePlace]]
+
+# the swaps shape must stay shared so feature geometry uses one contract for compatible values
 KSwaps = dict[KShapeEdge, KShapeEdge]
 
 
+# chain frames needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def ChainFrames(
     Shape: ShapeBody, PlanValue: RoundPlan, Round: EdgeRound
 ) -> list[CornerFrame]:
@@ -82,6 +86,7 @@ def ChainFrames(
     return Frames
 
 
+# link wall must resolve unambiguously so edge and face relationships survive parametric feature construction
 def LinkWall(Shape: ShapeBody, PlanValue: RoundPlan, Index: int) -> WallFace:
     WallValue = Shape.Faces[PlanValue.Links[Index].WallIndex]
     if not isinstance(WallValue, WallFace):
@@ -89,12 +94,14 @@ def LinkWall(Shape: ShapeBody, PlanValue: RoundPlan, Index: int) -> WallFace:
     return WallValue
 
 
+# the trim contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def TrimMut(
     Swaps: KSwaps, EdgeValue: KShapeEdge, Point: KSpaceVector, Target: KSpaceVector
 ) -> None:
     Swaps[EdgeValue] = TrimEdge(Swaps.get(EdgeValue, EdgeValue), Point, Target)
 
 
+# the joint trim contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def JointTrimMut(
     Swaps: KSwaps, Users: KUsers, PlanValue: RoundPlan, Frames: list[CornerFrame]
 ) -> None:
@@ -109,6 +116,7 @@ def JointTrimMut(
         )
 
 
+# invalid square input must fail here so edge and face relationships survive parametric feature construction
 def CheckSquare(FaceValue: KShapeFace, Frame: CornerFrame) -> None:
     if not isinstance(FaceValue, WallFace) or not isinstance(FaceValue.Span, LineSpan):
         raise ValueError("Fusion edge rounds need flat end faces")
@@ -117,6 +125,7 @@ def CheckSquare(FaceValue: KShapeFace, Frame: CornerFrame) -> None:
         raise ValueError("Fusion edge rounds need end faces square to the edge")
 
 
+# the end trim contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def EndTrimMut(
     Swaps: KSwaps,
     Context: tuple[ShapeBody, KUsers, RoundPlan],
@@ -143,6 +152,7 @@ def EndTrimMut(
     return EndList
 
 
+# the loops operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def BlendLoops(
     Edges: tuple[FreeEdge, FreeEdge], Crosses: list[FreeEdge], Index: int
 ) -> tuple[tuple[ShapeUse, ...], ...]:
@@ -159,6 +169,7 @@ def BlendLoops(
     )
 
 
+# the faces operation needs one geometric convention so edge and face relationships survive parametric feature construction
 def BlendFacesMut(
     Shape: ShapeBody,
     PlanValue: RoundPlan,
@@ -183,6 +194,7 @@ def BlendFacesMut(
     return Faces
 
 
+# the apply plan contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ApplyPlan(
     Shape: ShapeBody,
     Users: KUsers,
@@ -204,6 +216,7 @@ def ApplyPlan(
     return ReplaceValue(Shape, Faces=(*Faces, *Added)), Change
 
 
+# the apply rounds contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ApplyRounds(
     Shape: ShapeBody, Rounds: tuple[EdgeRound, ...]
 ) -> tuple[ShapeBody, dict[str, float]]:

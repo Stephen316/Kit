@@ -8,7 +8,10 @@ from tools.TestShards.Reuse.Track.NoteSpawnMut import NoteSpawnMut
 from tools.TestShards.Reuse.Track.TrackErrors import KTrackErrors
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
+# the list events vocabulary must stay centralized so test reuse agrees on supported native identities
 KListEvents = frozenset({"os.listdir", "os.scandir"})
+
+# the spawn events vocabulary must stay centralized so test reuse agrees on supported native identities
 KSpawnEvents = frozenset(
     {
         "os.exec",
@@ -24,7 +27,10 @@ KSpawnEvents = frozenset(
 )
 
 
+# the audit operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def BuildAudit(State: TrackState) -> Callable[[str, tuple[object, ...]], None]:
+
+    # the handle audit contract needs a shared interpretation so dependency changes cannot revive stale passing results
     def HandleAudit(EventName: str, ArgList: tuple[object, ...]) -> None:
         IsOpen = EventName == "open"
         IsList = EventName in KListEvents

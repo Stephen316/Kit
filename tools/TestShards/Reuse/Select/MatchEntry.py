@@ -8,6 +8,7 @@ from tools.TestShards.Reuse.Cache.ReusableOutcomes import KReusableOutcomes
 from tools.TestShards.Reuse.Cache.TreeIndex import TreeIndex
 
 
+# match entry must resolve unambiguously so dependency changes cannot revive stale passing results
 def MatchEntry(
     ModKey: str,
     Entry: Mapping[str, object],

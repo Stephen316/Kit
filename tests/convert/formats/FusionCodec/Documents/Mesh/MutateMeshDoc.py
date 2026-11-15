@@ -12,6 +12,7 @@ from tests.convert.formats.FusionCodec.Documents.Mesh.AlterMeshParts import (
 )
 
 
+# shared mutate mesh doc setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MutateMeshDoc(Source: bytes, Variant: str) -> bytes:
     Container = ReadContainer(Source)
     Model = ReadDocument(Source)

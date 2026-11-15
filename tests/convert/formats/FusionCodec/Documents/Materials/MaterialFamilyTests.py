@@ -41,6 +41,7 @@ from tests.convert.formats.FusionCodec.Documents.Materials.MaterialCases import 
 )
 
 
+# shared asset roles setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AssetRoles(Package: MaterialPackage) -> tuple[str, str | None, str]:
     Roles = {Asset.AssetRole: Asset.SchemaName for Asset in Package.Assets}
     assert len(Roles) == len(Package.Assets)
@@ -48,6 +49,7 @@ def AssetRoles(Package: MaterialPackage) -> tuple[str, str | None, str]:
     return (Roles["Structural"], Roles.get("Thermal"), Roles["materialappearance"])
 
 
+# shared physical id setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PhysicalId(Package: MaterialPackage) -> str:
     Found = tuple(
         Asset.InstanceId
@@ -58,6 +60,7 @@ def PhysicalId(Package: MaterialPackage) -> str:
     return Found[0]
 
 
+# shared same given setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SameGiven(
     Given: MechanicSpec | ThermalSpec | FinishSpec,
     Found: MechanicSpec | ThermalSpec | FinishSpec,
@@ -79,6 +82,7 @@ def SameGiven(
             assert Actual == Expected
 
 
+# shared same steps setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SameSteps(
     Expected: tuple[DirectionValue, ...], Actual: tuple[DirectionValue, ...]
 ) -> None:
@@ -89,6 +93,7 @@ def SameSteps(
         )
 
 
+# shared same material setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SameMaterial(Given: MaterialSpec, Found: MaterialSpec) -> None:
     assert Found.NameValue == Given.NameValue
     assert IsClose(Found.Density, Given.Density, rel_tol=1e-12)
@@ -104,6 +109,7 @@ def SameMaterial(Given: MaterialSpec, Found: MaterialSpec) -> None:
         assert Found.TypeName == Given.TypeName
 
 
+# the families contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseName", tuple(KFamilyCases))
 def TestFamilies(CaseName: str) -> None:
     SpecValue, Expected = KFamilyCases[CaseName]
@@ -112,6 +118,7 @@ def TestFamilies(CaseName: str) -> None:
     assert ReadPackage(EmitPackage(Built.Package)) == Built.Package
 
 
+# the bad family contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseName", tuple(KBadCases))
 def TestBadFamily(CaseName: str) -> None:
     SpecValue, Message = KBadCases[CaseName]
@@ -119,6 +126,7 @@ def TestBadFamily(CaseName: str) -> None:
         _ = BuildMaterial(SpecValue)
 
 
+# the fix point contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseName", tuple(KFamilyCases))
 def TestFixPoint(CaseName: str) -> None:
     SpecValue, Expected = KFamilyCases[CaseName]
@@ -134,6 +142,7 @@ def TestFixPoint(CaseName: str) -> None:
     SameMaterial(Projected, Reprojected)
 
 
+# the family doc contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("CaseName", tuple(KFamilyCases))
 def TestFamilyDoc(CaseName: str) -> None:
     SpecValue = KFamilyCases[CaseName][0]
@@ -152,6 +161,7 @@ def TestFamilyDoc(CaseName: str) -> None:
     assert DecodeState(EncodeState(SpecValue)) == SpecValue
 
 
+# the old state contract needs boundary coverage so stored document relationships remain consistent
 def TestOldState() -> None:
     SpecValue = MaterialSpec("Older material", 2870.0, ColorValue(0.2, 0.4, 0.6, 1.0))
     Encoded = CastValue(dict[str, object], EncodeState(SpecValue))

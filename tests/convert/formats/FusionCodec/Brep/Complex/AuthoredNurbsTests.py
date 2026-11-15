@@ -42,11 +42,13 @@ from tests.convert.formats.FusionCodec.Brep.GeometryState.GeometryArchive import
 )
 from tests.convert.formats.FusionCodec.Brep.Journal.JournalArchive import JournalArchive
 
+# accepted root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KAcceptedRoot = (
     FilePath(__file__).resolve().parents[6] / "re/Fusion/LocalOracle/ComplexGeometry"
 )
 
 
+# the nurbs author contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Label,Model", NurbsModels())
 def TestNurbsAuthor(TmpPath: FilePath, Label: str, Model: NurbsBody) -> None:
     Journal = CreateNurbsBody(Model, KNurbsHistory, KNurbsStamp)
@@ -82,12 +84,14 @@ def TestNurbsAuthor(TmpPath: FilePath, Label: str, Model: NurbsBody) -> None:
     )
 
 
+# the nurbs fault contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Fault", KNurbsFaults)
 def TestNurbsFault(Fault: str) -> None:
     with RaisesError(ValueError):
         _ = CreateNurbsBody(BrokenNurbs(Fault), KNurbsHistory, KNurbsStamp)
 
 
+# the nurbs guards contract needs boundary coverage so stored document relationships remain consistent
 def TestNurbsGuards() -> None:
     Surface = BicubicPatch()
     with RaisesError(ValueError):

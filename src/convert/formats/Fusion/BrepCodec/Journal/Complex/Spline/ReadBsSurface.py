@@ -23,6 +23,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadNameMut import 
 )
 
 
+# the surface operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
 def ReadSurfaceMut(Cursor: FieldCursor) -> BsSurface:
     NameText = ReadNameMut(Cursor)
     if NameText not in ("nubs", "nurbs"):

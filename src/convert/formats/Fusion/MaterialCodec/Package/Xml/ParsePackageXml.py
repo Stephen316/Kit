@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Package.PackageLimits import (
 )
 
 
+# the package xml operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ParsePackageXml(Payload: bytes) -> XmlElement:
     if not 0 < len(Payload) <= KMaxXmlBytes:
         raise ValueError("Invalid material XML size")

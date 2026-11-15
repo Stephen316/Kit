@@ -16,6 +16,7 @@ from tools.TestShards.ReusePlan import ReusePlan
 from tools.TestShards.WritePlan import WritePlan
 
 
+# the run operation needs one orchestration boundary so every collected case receives exactly one verified outcome
 def MainRun(ArgList: list[str] | None = None) -> int:
     ParserInfo = BuildPlanArgs()
     ArgsInfo = ParserInfo.parse_args(ArgList)

@@ -18,6 +18,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the group operation needs a consistent construction rule so cross document references retain their intended ownership
 def PlaceGroup(
     RootInfo: RootFacts,
     Facts: tuple[TargetFacts, ...],
@@ -46,6 +47,7 @@ def PlaceGroup(
     return Records
 
 
+# the joint group contract needs a stable decomposition so cross document references retain their intended ownership
 def JointGroup(
     RootInfo: RootFacts,
     Facts: tuple[TargetFacts, ...],
@@ -66,6 +68,7 @@ def JointGroup(
     return JointRecords(RootInfo, Sides[0], Sides[1], Scheme.Joint)
 
 
+# the design records contract needs a shared interpretation so cross document references retain their intended ownership
 def DesignRecords(
     RootInfo: RootFacts,
     Facts: tuple[TargetFacts, ...],

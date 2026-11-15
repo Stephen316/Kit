@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Materials.CheckStore import CheckStore
 from tests.convert.formats.FusionCodec.Materials.ReadNative import ReadNative
 
 
+# the archive edit contract needs boundary coverage so stored document relationships remain consistent
 def TestArchiveEdit(TmpPath: FilePath) -> None:
     Native = ReadNative()
     Changed = ChangeAssets(DecodeMaterials(Native.Streams, Native.Schemas))

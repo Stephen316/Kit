@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the cuboid cache contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def CuboidCache(Author: AuthorState) -> list[dict[str, object]]:
     Width = Author.SpecValue.WidthMm / 10.0
     Depth = Author.SpecValue.DepthMm / 10.0

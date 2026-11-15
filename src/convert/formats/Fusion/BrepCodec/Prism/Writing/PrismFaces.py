@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the prism faces contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismFaces(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     Following = dict(zip(Frame.FaceOrder, Frame.FaceOrder[1:] + (-1,), strict=True))
     return tuple(
@@ -33,6 +34,7 @@ def PrismFaces(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     )
 
 
+# the prism loops contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismLoops(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

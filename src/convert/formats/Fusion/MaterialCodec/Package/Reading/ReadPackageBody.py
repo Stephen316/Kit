@@ -24,6 +24,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Schema.SchemaIdentity import (
 from convert.formats.Fusion.MaterialCodec.Package.SchemaModels import SchemaModels
 
 
+# the package body operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadPackageBody(
     Archive: IndexedArchive, Prefix: str, HasResources: bool
 ) -> MaterialPackage:

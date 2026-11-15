@@ -10,6 +10,7 @@ from tests.convert.formats.FusionCodec.Mesh.ReadMeshCases import ReadMeshCases
 from tests.convert.formats.FusionCodec.Mesh.ReadMeshFile import KRootPath
 
 
+# the mesh docs contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "FileName", tuple(sorted({CaseValue["Archive"] for CaseValue in ReadMeshCases()}))
 )

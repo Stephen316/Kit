@@ -6,11 +6,13 @@ from convert.formats.Fusion.BundleCodec.Model.BundleLink import BundleLink
 from convert.formats.Fusion.BundleCodec.Model.BundleRefs import BundleRefs
 
 
+# the link operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadLink(Value: KJsonValue) -> BundleLink:
     Fields = JsonObject(Value, "id metadata")
     return BundleLink(JsonInteger(Fields["id"]), ReadMetadata(Fields["metadata"]))
 
 
+# the references operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadRefs(Value: KJsonValue) -> BundleRefs:
     Fields = JsonObject(Value, "type ids relationships")
     KindValue = JsonString(Fields["type"])

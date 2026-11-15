@@ -8,6 +8,7 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the frustum deny contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Lengths,BasePoint",
     (

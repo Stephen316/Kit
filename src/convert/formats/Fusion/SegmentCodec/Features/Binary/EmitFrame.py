@@ -9,6 +9,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitTex
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the frame operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitFrame(Frame: FeatureFrame, IsPrimary: bool) -> bytes:
     if (
         not isinstance(CastValue(object, Frame), FeatureFrame)

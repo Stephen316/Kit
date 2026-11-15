@@ -7,6 +7,7 @@ from convert.formats.Fusion.MeshCodec.Wire.ReadProto import ReadProto
 from convert.formats.Fusion.MeshCodec.Wire.SelectFields import SelectFields
 
 
+# the face data operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadFaceData(Payload: bytes) -> tuple[str, tuple[FaceGroup, ...]]:
     Fields = ReadProto(Payload)
     Streams = tuple(Field for Field in Fields if Field.Number == 5)

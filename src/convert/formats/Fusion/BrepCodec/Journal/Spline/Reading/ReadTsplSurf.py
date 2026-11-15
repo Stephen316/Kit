@@ -23,6 +23,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Reading.ReadTransScope impo
 )
 
 
+# the tspl surf operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadTsplSurf(Cursor: FieldCursor) -> TsplineSurf:
     Revision = ReadLongMut(Cursor)
     if Revision <= 0:

@@ -7,6 +7,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
 
 
+# invalid fields input must fail here so public document claims remain grounded in native records
 def RequireFields(NodeValue: NativeNode, Values: dict[str, KEntityValue]) -> None:
     for NameValue, Expected in Values.items():
         if NodeValue.Fields.get(NameValue) != Expected:
@@ -15,6 +16,7 @@ def RequireFields(NodeValue: NativeNode, Values: dict[str, KEntityValue]) -> Non
             )
 
 
+# empty fields needs an explicit validity boundary so public document claims remain grounded in native records
 def EmptyFields(NodeValue: NativeNode, Names: tuple[str, ...]) -> None:
     for NameValue in Names:
         Value = NodeValue.Fields[NameValue]
@@ -22,6 +24,7 @@ def EmptyFields(NodeValue: NativeNode, Names: tuple[str, ...]) -> None:
             raise ValueError(f"Unsupported populated native Fusion {NameValue}")
 
 
+# resolve field needs an explicit validity boundary so public document claims remain grounded in native records
 def ResolveField(
     Graph: NativeGraph, NodeValue: NativeNode, FieldName: str, ClassName: str
 ) -> NativeNode:
@@ -31,6 +34,7 @@ def ResolveField(
     return Target
 
 
+# linked nodes must resolve unambiguously so public document claims remain grounded in native records
 def LinkedNodes(
     Graph: NativeGraph, NodeValue: NativeNode, FieldName: str
 ) -> tuple[NativeNode, ...]:
@@ -40,6 +44,7 @@ def LinkedNodes(
     )
 
 
+# same nodes needs an explicit validity boundary so public document claims remain grounded in native records
 def SameNodes(Actual: tuple[NativeNode, ...], Expected: tuple[NativeNode, ...]) -> None:
     if sorted(NodeValue.Identity for NodeValue in Actual) != sorted(
         NodeValue.Identity for NodeValue in Expected
@@ -49,6 +54,7 @@ def SameNodes(Actual: tuple[NativeNode, ...], Expected: tuple[NativeNode, ...]) 
         )
 
 
+# same numbers needs an explicit validity boundary so public document claims remain grounded in native records
 def SameNumbers(Actual: tuple[float, ...], Expected: tuple[float, ...]) -> None:
     if len(Actual) != len(Expected) or any(
         not IsClose(First, Second, rel_tol=1e-10, abs_tol=1e-9)

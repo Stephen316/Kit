@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer payload needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferPayloadMut(State: SceneCodec, Value: NodePayload | None) -> NodePayload:
     Selector = State.Integer(Value.Selector if Value else None)
     DataValue, IsXref, ActEntity, InstanceId = None, None, None, None

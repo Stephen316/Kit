@@ -12,6 +12,7 @@ from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the entity operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitEntity(
     Record: EntityRecord, Scope: RecordScope, Catalog: EntityCatalog
 ) -> BulkRecord:

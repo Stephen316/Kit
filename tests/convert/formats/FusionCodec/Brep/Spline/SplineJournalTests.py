@@ -23,6 +23,7 @@ from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 from tests.convert.formats.FusionCodec.Brep.Spline.SplineMembers import SplineMembers
 
 
+# the spline parts contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
@@ -43,6 +44,7 @@ def TestSplineParts() -> None:
     assert Count == 66
 
 
+# the subtype references contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )

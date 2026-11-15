@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Values.DecodeValue import DecodeValue
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the fields operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeFields(
     ReaderMut: MaterialReader, Fields: tuple[PropertySpec, ...], IsDefinition: bool
 ) -> tuple[PropertyValue, ...]:

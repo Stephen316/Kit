@@ -10,15 +10,20 @@ from convert.formats.Fusion.DrawingCodec.Package.EntryLayout import EntryLayout
 from convert.formats.Fusion.DrawingCodec.Package.PackageEntry import PackageEntry
 from convert.formats.Fusion.DrawingCodec.Package.ReadPackage import ReadPackage
 
+# the folder layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFolderLayout = EntryLayout(0, 0x0800, 0x5A21, 0x5B6C, 63, 10, 16)
 
+# the stored layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStoredLayout = EntryLayout(0, 0x0800, 0x5A21, 0x5B6C, 63, 10, 0)
 
+# the deflate layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDeflateLayout = EntryLayout(8, 0x0808, 0x6000, 0x5B6C, 20, 20, 0)
 
+# the zstd layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KZstdLayout = EntryLayout(93, 0x0800, 0x5A21, 0x5B6C, 63, 63, 0)
 
 
+# shared sample package setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SamplePackage(Method: EntryLayout) -> DrawingPackage:
     return DrawingPackage(
         (
@@ -29,6 +34,7 @@ def SamplePackage(Method: EntryLayout) -> DrawingPackage:
     )
 
 
+# shared inflate zstd setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def InflateZstd(DataValue: bytes, SizeValue: int) -> bytes:
     Codec = ImportSkip("compression.zstd")
     Result = Codec.decompress(DataValue)
@@ -36,6 +42,7 @@ def InflateZstd(DataValue: bytes, SizeValue: int) -> bytes:
     return Result
 
 
+# the deflate contract needs boundary coverage so stored document relationships remain consistent
 def TestDeflate() -> None:
     Package = SamplePackage(KDeflateLayout)
     DataValue = EmitPackage(Package)
@@ -48,6 +55,7 @@ def TestDeflate() -> None:
         assert (InfoValue.create_version, InfoValue.extract_version) == (20, 20)
 
 
+# the zstd frames contract needs boundary coverage so stored document relationships remain consistent
 def TestZstdFrames() -> None:
     Codec = ImportSkip("compression.zstd")
     Package = SamplePackage(KZstdLayout)
@@ -59,6 +67,7 @@ def TestZstdFrames() -> None:
         _ = ReadPackage(Packed)
 
 
+# the bad layout contract needs boundary coverage so stored document relationships remain consistent
 def TestBadLayout() -> None:
     BadFlags = EntryLayout(8, 0x0001, 0, 0, 20, 20, 0)
     with ExpectError(ValueError, match="Unsupported"):
@@ -76,6 +85,7 @@ def TestBadLayout() -> None:
         _ = EmitPackage(DrawingPackage(()))
 
 
+# the read rejects contract needs boundary coverage so stored document relationships remain consistent
 def TestReadRejects() -> None:
     DataValue = EmitPackage(SamplePackage(KDeflateLayout))
     with ExpectError(ValueError, match="central directory"):

@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import IsSealed
 
 
+# the shift loops contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def ShiftLoops(
     Loops: tuple[KPlaneLoop, ...], Extra: tuple[int, ...]
 ) -> tuple[KPlaneLoop, ...]:
@@ -26,6 +27,7 @@ def ShiftLoops(
     )
 
 
+# the shift slab contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def ShiftSlab(Shaper: PrismSlab, Extra: tuple[int, ...]) -> PrismSlab:
     return ReplaceValue(
         Shaper,
@@ -36,6 +38,7 @@ def ShiftSlab(Shaper: PrismSlab, Extra: tuple[int, ...]) -> PrismSlab:
     )
 
 
+# paste solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def PasteSolid(Source: PrismSolid, Operation: int, Ordinal: int) -> PrismSolid:
     if IsSealed(Source):
         raise ValueError("Fusion body pastes take bodies that are not tapered or swept")

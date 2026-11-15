@@ -7,6 +7,7 @@ from convert.formats.Fusion.MeshCodec.Streams.StreamSpecs import StreamSpecs
 from convert.formats.Fusion.MeshCodec.Validation.CheckMesh import CheckMesh
 
 
+# the para mesh operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitParaMesh(Value: ParaMesh) -> bytes:
     CheckMesh(Value)
     Payloads = MakePayloads(Value)

@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 )
 
 
+# invalid asset references input must fail here so model state retains its native feature and ownership relationships
 def CheckAssetRefs(
     Fields: dict[str, KEntityValue],
     Package: MaterialPackage,

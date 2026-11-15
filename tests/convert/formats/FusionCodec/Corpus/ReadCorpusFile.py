@@ -7,9 +7,11 @@ from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWi
 from tests.convert.formats.FusionCodec.Entities.NativeGraph import NativeGraph
 from tests.convert.formats.FusionCodec.Entities.ReadRecords import ReadRecords
 
+# root path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[5]
 
 
+# shared read corpus file setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadCorpusFile(FileName: str) -> NativeGraph:
     with OpenFusionZip((KRootPath / FileName).read_bytes()) as Archive:
         BulkData = Archive.ReadMember(

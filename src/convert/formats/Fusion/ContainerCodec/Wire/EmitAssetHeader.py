@@ -17,6 +17,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadAssetMeta import 
 )
 
 
+# the asset header operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitAssetHeader(Value: AssetHeader) -> bytes:
     _ = SegmentFolders(Value)
     SinkValue = ManifestSink()

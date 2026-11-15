@@ -45,16 +45,24 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
     ReadFormFile,
 )
 
+# the pole slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPoleSlack = 1e-15
+
+# the plane carrier cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPlaneCarrier = KGridArchives[4]
+
+# the other layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOtherLayout = next(
     CaseValue for CaseValue in KGridArchives if CaseValue[0].endswith("Plane3x2.f3d")
 )
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
 
 
+# shared form entities setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FormEntities(Model: DocumentModel) -> list[tuple[KJournalEntity, ...]]:
     Found = [
         BodyValue.History.Entities
@@ -69,6 +77,7 @@ def FormEntities(Model: DocumentModel) -> list[tuple[KJournalEntity, ...]]:
     return Found
 
 
+# shared point gap setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PointGap(
     LeftPoints: tuple[tuple[float, ...], ...],
     RightPoints: tuple[tuple[float, ...], ...],
@@ -81,6 +90,7 @@ def PointGap(
     )
 
 
+# shared grid counts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def GridCounts(Model: DocumentModel, Result: GridResult, Slack: float) -> list[int]:
     Counts = [0, 0, 0]
     for Entities in FormEntities(Model):
@@ -121,6 +131,7 @@ def GridCounts(Model: DocumentModel, Result: GridResult, Slack: float) -> list[i
     return Counts
 
 
+# the grid native contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KGridArchives, ids=lambda CaseValue: FilePath(CaseValue[0]).stem
@@ -131,6 +142,7 @@ def TestGridNative(CaseValue: tuple[str, str]) -> None:
     assert GridCounts(Model, Result, KPoleSlack) == [2, 8, 8]
 
 
+# the grid refuse contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KGridRefusals, ids=lambda CaseValue: FilePath(CaseValue[0]).stem
@@ -141,6 +153,7 @@ def TestGridRefuse(CaseValue: tuple[str, str, str]) -> None:
         _ = ConvertGrid(Model.Forms[0].Surface)
 
 
+# the grid swap contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KGridCages, ids=lambda CaseValue: FilePath(CaseValue[0]).stem
@@ -157,6 +170,7 @@ def TestGridSwap(CaseValue: tuple[str, str, str]) -> None:
     assert GridCounts(Swapped, ConvertGrid(Surface), 0.0) == [2, 8, 8]
 
 
+# shared break cage setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BreakCage(Surface: TsplineSurface, Fault: str) -> TsplineSurface:
     if Fault == "weight":
         Grips = (ReplaceValue(Surface.Grips[0], Weight=1.5), *Surface.Grips[1:])
@@ -169,6 +183,7 @@ def BreakCage(Surface: TsplineSurface, Fault: str) -> TsplineSurface:
     return ReplaceValue(Surface, Topology=Topology)
 
 
+# the grid fault contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize("Fault", ("weight", "mapping", "direction"))
 def TestGridFault(Fault: str) -> None:
@@ -179,6 +194,7 @@ def TestGridFault(Fault: str) -> None:
         _ = SwapGridCage(Model, BreakCage(Model.Forms[0].Surface, Fault))
 
 
+# the grid stale contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestGridStale() -> None:
     Model = ReadDocument(ReadFormFile(*KShiftedCache))
@@ -186,6 +202,7 @@ def TestGridStale() -> None:
         _ = SwapGridCage(Model, Model.Forms[0].Surface)
 
 
+# the grid layout contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestGridLayout() -> None:
     Model = ReadDocument(ReadFormFile(*KPlaneCarrier))

@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# rotary shape needs an explicit validity boundary so public geometry remains consistent with native circular topology
 def RotaryShape(
     Context: ExtrudeContext, Shape: CircleShape, History: HistoryModel | FrustumHistory
 ) -> FrustumBody:

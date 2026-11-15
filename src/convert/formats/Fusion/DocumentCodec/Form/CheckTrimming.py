@@ -1,9 +1,11 @@
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
 from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import FormBody
 
+# parameter slack must remain consistent across callers so editable control cages retain their document relationships
 KParamSlack = 1e-9
 
 
+# the boundary decision must stay consistent so editable control cages retain their document relationships
 def IsBoundary(Curve: BsCurve, Bounds: tuple[float, float, float, float]) -> bool:
     return any(
         all(
@@ -19,6 +21,7 @@ def IsBoundary(Curve: BsCurve, Bounds: tuple[float, float, float, float]) -> boo
     )
 
 
+# invalid trimming input must fail here so editable control cages retain their document relationships
 def CheckTrimming(Model: FormBody) -> None:
     for FaceValue in Model.Faces:
         Cache = FaceValue.Surface.Cache

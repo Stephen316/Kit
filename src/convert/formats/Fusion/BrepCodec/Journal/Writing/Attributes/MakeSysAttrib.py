@@ -12,6 +12,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Attributes.VertedgeAttrib import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, KAsmToken
 
 
+# the sys links operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeSysLinks(Links: AttribLinks) -> tuple[KAsmToken, ...]:
     return (
         (12, -1),
@@ -22,6 +23,7 @@ def MakeSysLinks(Links: AttribLinks) -> tuple[KAsmToken, ...]:
     )
 
 
+# the stitch node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeStitchNode(Value: StitchAttrib) -> AsmRecord:
     if len(Value.HintValues) != 3:
         raise ValueError("Fusion stitch hint requires three doubles")
@@ -31,6 +33,7 @@ def MakeStitchNode(Value: StitchAttrib) -> AsmRecord:
     )
 
 
+# the vertedge operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeVertedge(Value: VertedgeAttrib) -> AsmRecord:
     if not 0 <= len(Value.EdgeSlots) <= KVertedgeCap:
         raise ValueError("Fusion vertex edge list exceeds its bounds")
@@ -45,5 +48,6 @@ def MakeVertedge(Value: VertedgeAttrib) -> AsmRecord:
     )
 
 
+# the no merge operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeNoMerge(Value: NoMergeAttrib) -> AsmRecord:
     return AsmRecord("no_merge_attribute-st-attrib", MakeSysLinks(Value.Links))

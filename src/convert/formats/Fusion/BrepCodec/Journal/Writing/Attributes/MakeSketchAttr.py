@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeSourceLink 
 )
 
 
+# the sketch attribute operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeSketchAttr(Value: SketchAttrib) -> AsmRecord:
     return AsmRecord(
         "ATTRIB_CUSTOM-attrib",

@@ -1,3 +1,4 @@
+# aux header specification must remain consistent across callers so section boundaries and object references remain consistent
 KAuxHeaderSpec = "; ".join(
     (
         "Bytes AuxMarker 3; RS DwgVersion",
@@ -15,18 +16,24 @@ KAuxHeaderSpec = "; ".join(
         "RL ReservedJ; RL ReservedK; RL ReservedL; RL ReservedM",
     )
 )
+
+# obj free space specification must remain consistent across callers so section boundaries and object references remain consistent
 KObjFreeSpaceSpec = "; ".join(
     (
         "RLL ReservedLong; RLL ApproxObjects; RL TdUpdateDay; RL TdUpdateMsec",
         "RC PairCount; each Pairs PairCount { RLL PairFirst; RLL PairSecond }",
     )
 )
+
+# app history specification must remain consistent across callers so section boundaries and object references remain consistent
 KAppHistorySpec = "; ".join(
     (
         "Bytes HistoryIds 32; RL LeadWord; WT InfoName; RL EntryCount",
         "each Entries EntryCount { Bytes EntryKey 16; WT EntryText }",
     )
 )
+
+# file dep specification must remain consistent across callers so section boundaries and object references remain consistent
 KFileDepSpec = "; ".join(
     (
         "RL FeatureCount; each Features FeatureCount { ST FeatureName }",
@@ -35,6 +42,8 @@ KFileDepSpec = "; ".join(
         "RL FileSize; RS AffectsGraphics; RL RefCount }",
     )
 )
+
+# the byte specifications vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KByteSpecs = {
     "AcDb:AuxHeader": KAuxHeaderSpec,
     "AcDb:Template": "WT Description; RS Measurement",

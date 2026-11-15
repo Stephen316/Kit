@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Prism.ReadPrismHist import ReadPrismHist
 from convert.formats.Fusion.BrepCodec.ReadHistory import ReadHistory
 
 
+# the typed body operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadTypedBody(
     Payload: bytes, Profile: str
 ) -> HistoryModel | PrismHistory | FrustumHistory | None:

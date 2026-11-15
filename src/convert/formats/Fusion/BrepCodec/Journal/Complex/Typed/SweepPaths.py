@@ -20,6 +20,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
 
+# path head needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class PathHead(TypedBase):
     IsNoZ: bool
@@ -29,6 +30,7 @@ class PathHead(TypedBase):
     HasScale: bool
 
 
+# law path needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class LawPath(TypedBase):
     Header: PathHead
@@ -36,6 +38,7 @@ class LawPath(TypedBase):
     IsTwistPeriodic: bool
 
 
+# rail path needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class RailPath(TypedBase):
     Header: PathHead
@@ -46,6 +49,7 @@ class RailPath(TypedBase):
     TrailFlags: tuple[bool, bool, bool]
 
 
+# normal path needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class NormalPath(TypedBase):
     Header: PathHead
@@ -53,6 +57,7 @@ class NormalPath(TypedBase):
     TrailFlag: bool
 
 
+# twist path needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class TwistPath(TypedBase):
     Header: PathHead
@@ -63,9 +68,11 @@ class TwistPath(TypedBase):
     SecondReal: float
 
 
+# the sweep path variants need one shared contract so typed journal reconstruction cannot omit a supported value shape
 KSweepPath: TypeAlias = LawPath | RailPath | NormalPath | TwistPath
 
 
+# the head from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def HeadFrom(Railhead: KGrammarValue, Scale: KGrammarValue) -> PathHead:
     NoZFlag, Curve, Bounds, RealValue = NeedItems(Railhead, 4)
     return PathHead(
@@ -77,12 +84,14 @@ def HeadFrom(Railhead: KGrammarValue, Scale: KGrammarValue) -> PathHead:
     )
 
 
+# the head tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def HeadTree(Value: KGrammarValue) -> tuple[KGrammarValue, KGrammarValue]:
     Header = NeedRecord(Value, PathHead)
     Railhead = (Header.IsNoZ, Header.PathCurve, Header.PathRange, Header.PathReal)
     return Railhead, Header.HasScale
 
 
+# rail from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def RailFrom(Header: PathHead, Parts: tuple[KGrammarValue, ...]) -> RailPath:
     if len(Parts) != 7:
         raise ValueError("Fusion sweep rail path disagrees with its grammar")
@@ -97,6 +106,7 @@ def RailFrom(Header: PathHead, Parts: tuple[KGrammarValue, ...]) -> RailPath:
     )
 
 
+# twist from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def TwistFrom(Header: PathHead, Parts: tuple[KGrammarValue, ...]) -> TwistPath:
     if len(Parts) != 5:
         raise ValueError("Fusion sweep twist path disagrees with its grammar")
@@ -110,6 +120,7 @@ def TwistFrom(Header: PathHead, Parts: tuple[KGrammarValue, ...]) -> TwistPath:
     )
 
 
+# path from needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def PathFrom(Value: KGrammarValue) -> KSweepPath:
     Choice = NeedChoice(Value)
     Parts = NeedItems(Choice.Body, None)
@@ -127,6 +138,7 @@ def PathFrom(Value: KGrammarValue) -> KSweepPath:
     raise ValueError("Unsupported Fusion sweep path variant")
 
 
+# the path tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def PathTree(Value: KGrammarValue) -> ChoiceValue:
     if isinstance(Value, LawPath):
         LawParts = (Value.Formula, Value.IsTwistPeriodic)

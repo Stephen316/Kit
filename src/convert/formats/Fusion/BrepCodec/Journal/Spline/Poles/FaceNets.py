@@ -16,13 +16,23 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
     MixRows,
 )
 
+# the slot shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KSlot = tuple[int, int]
+
+# the net rows shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KNetRows = tuple[tuple[KPoleRow, ...], ...]
+
+# the corner steps order must stay explicit so neighboring patches retain consistent subdivision boundaries
 KCornerSteps = ((0, 0), (1, 0), (1, 1), (0, 1))
+
+# the outward order must stay explicit so neighboring patches retain consistent subdivision boundaries
 KOutward = ((0, -1), (1, 0), (0, 1), (-1, 0))
+
+# ring steps must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KRingSteps = 3
 
 
+# the group size contract needs a stable decomposition so neighboring patches retain consistent subdivision boundaries
 def GroupSize(MeshValue: PoleMesh, Vertex: int, FaceKey: KFaceKey) -> int:
     Found = {FaceKey}
     Pending = [FaceKey]
@@ -40,6 +50,7 @@ def GroupSize(MeshValue: PoleMesh, Vertex: int, FaceKey: KFaceKey) -> int:
     return len(Found)
 
 
+# the corner fit decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsCornerFit(MeshValue: PoleMesh, Vertex: int, FaceKey: KFaceKey) -> bool:
     KindValue = VertexKind(MeshValue, Vertex)
     if KindValue == KDartKind:
@@ -50,12 +61,14 @@ def IsCornerFit(MeshValue: PoleMesh, Vertex: int, FaceKey: KFaceKey) -> bool:
     return GroupSize(MeshValue, Vertex, FaceKey) == Wanted
 
 
+# reflect needs one geometric convention so neighboring patches retain consistent subdivision boundaries
 def Reflect(
     GridRows: dict[KSlot, KPoleRow], NearSlot: KSlot, FarSlot: KSlot
 ) -> KPoleRow:
     return MixRows(((2.0, GridRows[NearSlot]), (-1.0, GridRows[FarSlot])))
 
 
+# the side slots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SideSlots(MeshValue: PoleMesh, LoopValue: tuple[int, ...]) -> dict[KSlot, KPoleRow]:
     GridRows = {
         KCornerSteps[Corner]: MeshValue.Values[LoopValue[Corner]] for Corner in range(4)
@@ -81,6 +94,7 @@ def SideSlots(MeshValue: PoleMesh, LoopValue: tuple[int, ...]) -> dict[KSlot, KP
     return GridRows
 
 
+# the diagonal contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def Diagonal(
     MeshValue: PoleMesh, LoopValue: tuple[int, ...], Corner: int
 ) -> int | None:
@@ -95,6 +109,7 @@ def Diagonal(
     return MeshValue.Faces[Entry[0]][(Entry[1] + 2) % 4]
 
 
+# the corner slot contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CornerSlot(
     MeshValue: PoleMesh,
     LoopValue: tuple[int, ...],
@@ -119,6 +134,7 @@ def CornerSlot(
     return None if Across is None else MeshValue.Values[Across]
 
 
+# the face net contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def FaceNet(MeshValue: PoleMesh, FaceKey: KFaceKey) -> KNetRows | None:
     LoopValue = MeshValue.Faces[FaceKey]
     if len(LoopValue) != 4:
@@ -140,10 +156,12 @@ def FaceNet(MeshValue: PoleMesh, FaceKey: KFaceKey) -> KNetRows | None:
     )
 
 
+# the edge order contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def EdgeOrder(Start: int, Final: int) -> tuple[int, int]:
     return (Start, Final) if Start < Final else (Final, Start)
 
 
+# the child faces contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def ChildFaces(
     MeshValue: PoleMesh,
     Ordered: list[KFaceKey],
@@ -168,6 +186,7 @@ def ChildFaces(
     return Faces
 
 
+# the child sharp contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def ChildSharp(
     MeshValue: PoleMesh, EdgeIds: dict[tuple[int, int], int], VertexIds: dict[int, int]
 ) -> frozenset[KEdgeKey]:
@@ -179,6 +198,7 @@ def ChildSharp(
     return frozenset(Found)
 
 
+# the split mesh contract needs a stable decomposition so neighboring patches retain consistent subdivision boundaries
 def SplitMesh(MeshValue: PoleMesh, KeepFaces: frozenset[KFaceKey]) -> PoleMesh:
     Ordered = sorted(KeepFaces)
     EdgeList = sorted(
@@ -221,6 +241,7 @@ def SplitMesh(MeshValue: PoleMesh, KeepFaces: frozenset[KFaceKey]) -> PoleMesh:
     )
 
 
+# the ring faces contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RingFaces(MeshValue: PoleMesh, Seeds: frozenset[KFaceKey]) -> frozenset[KFaceKey]:
     Found = set(Seeds)
     for _ in range(KRingSteps):
@@ -233,6 +254,7 @@ def RingFaces(MeshValue: PoleMesh, Seeds: frozenset[KFaceKey]) -> frozenset[KFac
     return frozenset(Found)
 
 
+# the mesh levels contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def MeshLevels(MeshValue: PoleMesh, Depth: int) -> dict[KFaceKey, KNetRows | None]:
     NetTable = {FaceKey: FaceNet(MeshValue, FaceKey) for FaceKey in MeshValue.Faces}
     Broken: frozenset[KFaceKey] = frozenset(

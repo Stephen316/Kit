@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut impor
 )
 
 
+# the point node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadPointNode(Cursor: FieldCursor) -> PointNode:
     Prefix = ReadPrefixMut(Cursor)
     PositionCm = ReadVectorMut(Cursor, 19)

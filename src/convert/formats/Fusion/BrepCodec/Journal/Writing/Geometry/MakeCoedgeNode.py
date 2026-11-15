@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.BrepCodec.Journal.Writing.MakePrefix import MakePrefix
 
 
+# the coedge node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeCoedgeNode(Value: CoedgeNode) -> AsmRecord:
     return AsmRecord(
         "coedge",

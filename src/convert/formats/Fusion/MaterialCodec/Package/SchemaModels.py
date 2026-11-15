@@ -12,6 +12,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Schema.SchemaIdentity import (
 from convert.formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchemas
 
 
+# the schema models contract needs a shared interpretation so typed appearance properties retain their native identifiers
 def SchemaModels(Schemas: tuple[SchemaNode, ...]) -> tuple[MaterialSchema, ...]:
     CheckSchemas(Schemas)
     Models = tuple(

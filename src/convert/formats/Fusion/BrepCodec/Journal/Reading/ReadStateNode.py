@@ -25,6 +25,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.CheckFieldEnd impor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the state node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadStateNode(Record: AsmRecord) -> DeltaState:
     Cursor = FieldCursor(Record)
     StateId = ReadLongMut(Cursor)

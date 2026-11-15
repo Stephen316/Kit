@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Stores.StoreBlock import StoreBlock
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the blocks operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadBlocks(Payload: bytes) -> tuple[StoreBlock, ...]:
     Reader = MaterialReader(Payload)
     Header = tuple(Reader.ReadUInt() for _ in range(4))

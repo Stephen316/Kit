@@ -19,6 +19,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
 )
 
 
+# shared chain owners setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChainOwners(History: JournalModel) -> dict[int, int]:
     Links: dict[int, set[int]] = {}
     for State in History.States:
@@ -38,6 +39,7 @@ def ChainOwners(History: JournalModel) -> dict[int, int]:
     return Owners
 
 
+# shared scope ids setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ScopeIds(Value: KEntityValue) -> tuple[KEntityValue, ...]:
     Inner = Value.Value if isinstance(Value, OptionalValue) else Value
     assert isinstance(Inner, ValueObject)
@@ -49,6 +51,7 @@ def ScopeIds(Value: KEntityValue) -> tuple[KEntityValue, ...]:
     )
 
 
+# the tag chains contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KPartCases))
 def TestTagChains(NameValue: str) -> None:
     Model = ReadDocument(EmitDocument(PartSpec(NameValue)))
@@ -70,6 +73,7 @@ def TestTagChains(NameValue: str) -> None:
     assert BodyTags == [0]
 
 
+# the reference scope contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KPartCases))
 def TestRefScope(NameValue: str) -> None:
     Model = ReadDocument(EmitDocument(PartSpec(NameValue)))
@@ -85,6 +89,7 @@ def TestRefScope(NameValue: str) -> None:
     assert all(Found == Expected for Found in Scopes)
 
 
+# the bulletin ids contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KPartCases))
 def TestBulletinIds(NameValue: str) -> None:
     Model = ReadDocument(EmitDocument(PartSpec(NameValue)))

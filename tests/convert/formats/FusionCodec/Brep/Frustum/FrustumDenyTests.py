@@ -13,6 +13,7 @@ from tests.convert.formats.FusionCodec.Brep.Frustum.NativeHistory import NativeH
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the journal deny contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -28,6 +29,7 @@ def TestJournalDeny(SourcePath: str) -> None:
         _ = ReadFrustumHist(NativeHistory(SourcePath))
 
 
+# the frame reject contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Failure", ("axis", "angle", "scale", "normal", "orientation", "point", "owner")
 )
@@ -61,6 +63,7 @@ def TestFrameReject(TmpPath: FilePath, Failure: str) -> None:
     assert not (TmpPath / "Rejected.zip").exists()
 
 
+# the history tail contract needs boundary coverage so stored document relationships remain consistent
 def TestHistoryTail(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     Model = FrustumBody(12.5, 17.0, 21.75, (3.0, -4.0, 5.0))

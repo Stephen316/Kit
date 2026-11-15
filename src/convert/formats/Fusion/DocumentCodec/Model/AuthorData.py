@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DraftEntity import DraftEntity
 from convert.formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
 
 
+# author data needs an explicit state contract so model state retains its native feature and ownership relationships
 @MakeDataClass(slots=True)
 class AuthorData:
     SpecValue: DocumentSpec

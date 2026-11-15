@@ -11,6 +11,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.FeatureLimits import KMaxFeatureText
 
 
+# the frame operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadFrameMut(
     Cursor: MetaCursor, IsPrimary: bool, Catalog: EntityCatalog
 ) -> EntityFrame:

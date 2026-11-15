@@ -13,6 +13,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import KFirstFace
 
 
+# the prism attributes contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismAttrs(Identity: BodyIdentity, TagSet: PrismTags) -> tuple[GeometryRecord, ...]:
     return (
         MakeTimestamp(1, Identity.AuthoredMicros, KBodyGeneric),

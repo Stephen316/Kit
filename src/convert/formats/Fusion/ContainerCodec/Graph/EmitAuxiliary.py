@@ -14,6 +14,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import (
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 
 
+# the auxiliary operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitAuxiliary(
     Segment: SegmentKind,
     Schemas: tuple[NativeSchema, ...],
@@ -23,6 +24,8 @@ def EmitAuxiliary(
     SegmentId, Storage = KSegmentLayout[Segment]
     if SegmentId is None or not Records:
         raise ValueError("Invalid Fusion auxiliary segment")
+
+    # ordering by id not entry is primary must stay deterministic so container reconstruction resolves equivalent inputs consistently
     Ordered = tuple(
         sorted(Records, key=lambda Entry: (Entry.ObjectId, not Entry.IsPrimary))
     )

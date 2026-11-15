@@ -34,11 +34,22 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.TitlePlan import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.TitleText import TitleText
 
+# width default must remain consistent across callers so paper layouts retain consistent object ownership
 KWidthDefault = 0x10
+
+# top left flags must remain consistent across callers so paper layouts retain consistent object ownership
 KTopLeftFlags = 0x7D
+
+# top align must remain consistent across callers so paper layouts retain consistent object ownership
 KTopAlign = 3
+
+# title layer must remain consistent across callers so paper layouts retain consistent object ownership
 KTitleLayer = "LAYER:TITLEBLOCK"
+
+# title style must remain consistent across callers so paper layouts retain consistent object ownership
 KTitleStyle = "STYLE:FusionTitle"
+
+# the attdef common vocabulary must stay centralized so drawing sheet authoring agrees on supported native identities
 KAttdefCommon: dict[str, KDraftValue] = {
     "HasGraphics": 0,
     "EntityMode": 0,
@@ -57,12 +68,21 @@ KAttdefCommon: dict[str, KDraftValue] = {
     "Invisible": 0,
     "LineWeight": 29,
 }
+
+# the definition only order must stay explicit so paper layouts retain consistent object ownership
 KDefinitionOnly = ("DefVersion", "Prompt")
+
+# title insert must remain consistent across callers so paper layouts retain consistent object ownership
 KTitleInsert = KPaperSpace + "/Title"
+
+# border insert must remain consistent across callers so paper layouts retain consistent object ownership
 KBorderInsert = KPaperSpace + "/Border"
+
+# the point shape must stay shared so drawing sheet authoring uses one contract for compatible values
 KPoint = tuple[float, float]
 
 
+# the top left data contract needs a shared interpretation so paper layouts retain consistent object ownership
 def TopLeftData(Corner: KPoint, Height: float) -> dict[str, KDraftValue]:
     return {
         "DataFlags": KTopLeftFlags,
@@ -76,6 +96,7 @@ def TopLeftData(Corner: KPoint, Height: float) -> dict[str, KDraftValue]:
     }
 
 
+# the attdef common contract needs a shared interpretation so paper layouts retain consistent object ownership
 def AttdefCommon(BlockKey: str) -> dict[str, KDraftValue]:
     return {
         **KAttdefCommon,
@@ -85,6 +106,7 @@ def AttdefCommon(BlockKey: str) -> dict[str, KDraftValue]:
     }
 
 
+# the title block contract needs a shared interpretation so paper layouts retain consistent object ownership
 def TitleBlockMut(Ledger: DraftBook, Title: TitlePlan) -> None:
     BlockKey = SheetBlockMut(Ledger, KTitleBlock.split(":", 1)[1])
     for Index, Segment in enumerate(Title.Lines):
@@ -123,6 +145,7 @@ def TitleBlockMut(Ledger: DraftBook, Title: TitlePlan) -> None:
         )
 
 
+# the insert operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceInsertMut(
     Ledger: DraftBook,
     KeyText: str,
@@ -151,6 +174,7 @@ def PlaceInsertMut(
     _ = OwnMut(Ledger, KPaperSpace, KeyText)
 
 
+# the planar point contract needs a stable decomposition so paper layouts retain consistent object ownership
 def PlanarPoint(Value: KDraftValue) -> KPoint:
     if not isinstance(Value, tuple) or len(Value) != 2:
         raise ValueError("Authored DWG title attribute has no planar position")
@@ -160,11 +184,13 @@ def PlanarPoint(Value: KDraftValue) -> KPoint:
     return (Across, Upward)
 
 
+# the shifted contract needs a shared interpretation so paper layouts retain consistent object ownership
 def Shifted(Value: KDraftValue, Corner: KPoint) -> KPoint:
     Across, Upward = PlanarPoint(Value)
     return (Across + Corner[0], Upward + Corner[1])
 
 
+# the attribute data contract needs a shared interpretation so paper layouts retain consistent object ownership
 def AttribData(
     Definition: DraftRow, Chosen: TitleText, Corner: KPoint
 ) -> dict[str, KDraftValue]:
@@ -185,10 +211,12 @@ def AttribData(
     return Fields
 
 
+# the tag of contract needs a shared interpretation so paper layouts retain consistent object ownership
 def TagOf(Definition: DraftRow) -> str:
     return str(dict(Definition.ClassData.DraftFields)["Tag"])
 
 
+# the title operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceTitleMut(
     Ledger: DraftBook, Paper: PaperSize, Texts: tuple[TitleText, ...]
 ) -> None:

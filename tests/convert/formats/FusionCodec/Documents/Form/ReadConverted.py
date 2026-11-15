@@ -71,15 +71,29 @@ from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# the feature guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFeatureGuid = "6C90740C-229E-4EE5-8F35-A4E5AE4F7C73"
+
+# the body guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBodyGuid = "D3937028-C20C-4E65-B010-94AD418A5C20"
+
+# the cache guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCacheGuid = "C46D3EEB-40E1-43FA-83DC-9CB204335417"
+
+# the serializer guid cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSerializerGuid = "40DCC3F41D-E94F-B3B1-3E95-9B6ABE572C"
+
+# the window names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWindowNames = ("uLow", "uHigh", "vLow", "vHigh")
+
+# the tag windows shape must stay shared so native document reconstruction uses one contract for compatible values
 KTagWindows = dict[str, tuple[int, tuple[FormWindow, ...]]]
+
+# the region table shape must stay shared so native document reconstruction uses one contract for compatible values
 KRegionTable = tuple[tuple[PatchCell, ...], ...]
 
 
+# the read state boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(slots=True)
 class ReadState:
     Entities: tuple[KJournalEntity, ...]
@@ -92,12 +106,14 @@ class ReadState:
     Regions: list[KRegionTable]
 
 
+# shared active nodes setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ActiveNodes(Model: DocumentModel) -> tuple[KJournalEntity, ...]:
     History = Model.Bodies[0].History
     assert isinstance(History, JournalModel)
     return History.Entities[: History.ActiveCount]
 
 
+# shared history micros setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HistoryMicros(Model: DocumentModel) -> int:
     Found = [
         Entity.UnixMicros
@@ -108,6 +124,7 @@ def HistoryMicros(Model: DocumentModel) -> int:
     return int(Found[0])
 
 
+# shared clear tags setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ClearTags(Entities: tuple[KJournalEntity, ...]) -> tuple[KJournalEntity, ...]:
     Cleared: list[KJournalEntity] = []
     for Entity in Entities:
@@ -119,6 +136,7 @@ def ClearTags(Entities: tuple[KJournalEntity, ...]) -> tuple[KJournalEntity, ...
     return tuple(Cleared)
 
 
+# shared subtype table setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SubtypeTable(Entities: tuple[KJournalEntity, ...]) -> tuple[KSubtypeEntry, ...]:
     return tuple(
         Found
@@ -128,12 +146,14 @@ def SubtypeTable(Entities: tuple[KJournalEntity, ...]) -> tuple[KSubtypeEntry, .
     )
 
 
+# shared resolve entry setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ResolveEntry(Value: KGrammarValue, Table: tuple[KSubtypeEntry, ...]) -> object:
     while isinstance(Value, SubtypeRef):
         Value = Table[Value.Index]
     return Value
 
 
+# shared entity label setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EntityLabel(Entities: tuple[KJournalEntity, ...], Attribute: int) -> str:
     Labels: list[str] = []
     while Attribute >= 0:
@@ -147,6 +167,7 @@ def EntityLabel(Entities: tuple[KJournalEntity, ...], Attribute: int) -> str:
     return Labels[0] if Labels else ""
 
 
+# shared object window setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ObjectWindow(ItemValue: KEntityValue) -> FormWindow:
     assert isinstance(ItemValue, ValueObject)
     Fields = GroupFields(ItemValue.Groups)
@@ -160,6 +181,7 @@ def ObjectWindow(ItemValue: KEntityValue) -> FormWindow:
     return FormWindow(FaceIndex, *Numbers)
 
 
+# shared class fields setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ClassFields(Model: DocumentModel, ClassGuid: str) -> list[dict[str, KEntityValue]]:
     return [
         GroupFields(Record.Groups)
@@ -170,6 +192,7 @@ def ClassFields(Model: DocumentModel, ClassGuid: str) -> list[dict[str, KEntityV
     ]
 
 
+# shared local fields setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LocalFields(Model: DocumentModel, Target: KEntityValue) -> dict[str, KEntityValue]:
     assert isinstance(Target, LocalRef)
     Found = [
@@ -181,6 +204,7 @@ def LocalFields(Model: DocumentModel, Target: KEntityValue) -> dict[str, KEntity
     return Found[0]
 
 
+# shared cached entity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CachedEntity(Model: DocumentModel) -> tuple[int, int, tuple[KEntityValue, ...]]:
     (Cache,) = ClassFields(Model, KCacheGuid)
     Entity = Cache["cachedEntityId"]
@@ -194,6 +218,7 @@ def CachedEntity(Model: DocumentModel) -> tuple[int, int, tuple[KEntityValue, ..
     raise AssertionError("cached Form tool entity has no top-entity identity")
 
 
+# shared body type setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BodyType(Model: DocumentModel) -> int:
     (Fields,) = ClassFields(Model, KBodyGuid)
     Value = Fields["bodyType"]
@@ -201,6 +226,7 @@ def BodyType(Model: DocumentModel) -> int:
     return Value
 
 
+# shared record windows setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RecordWindows(Record: EntityRecord) -> tuple[int, tuple[FormWindow, ...]]:
     Fields = GroupFields(Record.Groups)
     Items = Fields["tsEntityProgenitors"]
@@ -209,6 +235,7 @@ def RecordWindows(Record: EntityRecord) -> tuple[int, tuple[FormWindow, ...]]:
     return EntityType, tuple(ObjectWindow(ItemValue) for ItemValue in Items.Items)
 
 
+# shared tag windows setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TagWindows(Model: DocumentModel) -> KTagWindows:
     Owners = {
         Record.ObjectId: Record
@@ -234,6 +261,7 @@ def TagWindows(Model: DocumentModel) -> KTagWindows:
     return Found
 
 
+# shared face chain setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FaceChain(Entities: tuple[KJournalEntity, ...]) -> list[int]:
     Bodies = [Entity for Entity in Entities if isinstance(Entity, BodyNode)]
     assert len(Bodies) == 1
@@ -251,6 +279,7 @@ def FaceChain(Entities: tuple[KJournalEntity, ...]) -> list[int]:
     return Chain
 
 
+# shared loop uses setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoopUses(Entities: tuple[KJournalEntity, ...], FaceIndex: int) -> list[int]:
     FaceValue = Entities[FaceIndex]
     assert isinstance(FaceValue, FaceNode)
@@ -265,6 +294,7 @@ def LoopUses(Entities: tuple[KJournalEntity, ...], FaceIndex: int) -> list[int]:
         Chain.append(Coedge.NextCoedge)
 
 
+# shared float list setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FloatList(Value: KGrammarValue) -> tuple[float, ...]:
     assert type(Value) is tuple
     Numbers: list[float] = []
@@ -274,12 +304,14 @@ def FloatList(Value: KGrammarValue) -> tuple[float, ...]:
     return tuple(Numbers)
 
 
+# shared curve jumps setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CurveJumps(Value: SubtypeNode) -> tuple[tuple[float, ...], ...]:
     Record = Value.Body
     assert isinstance(Record, ExactIntCur)
     return tuple(FloatList(Entry) for Entry in Record.Context.Discontinuities)
 
 
+# shared vertex slot setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def VertexSlotMut(State: ReadState, Index: int) -> int:
     if Index not in State.VertexSlots:
         Vertex = State.Entities[Index]
@@ -291,6 +323,7 @@ def VertexSlotMut(State: ReadState, Index: int) -> int:
     return State.VertexSlots[Index]
 
 
+# shared edge slot setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeSlotMut(State: ReadState, Index: int) -> int:
     if Index in State.EdgeSlots:
         return State.EdgeSlots[Index]
@@ -315,6 +348,7 @@ def EdgeSlotMut(State: ReadState, Index: int) -> int:
     return State.EdgeSlots[Index]
 
 
+# the shift contract needs boundary coverage so stored document relationships remain consistent
 def CheckShift(Surface: TsplineSurf, OffsetU: float, OffsetV: float) -> None:
     Cache = Surface.Cache
     for Offset, Knots, Closure in (
@@ -325,6 +359,7 @@ def CheckShift(Surface: TsplineSurf, OffsetU: float, OffsetV: float) -> None:
         assert Offset == 0.0 or (Closure != 0 and abs(Offset) == Period)
 
 
+# shared read use setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadUseMut(State: ReadState, Index: int, Region: int) -> FormUse:
     Coedge = State.Entities[Index]
     assert isinstance(Coedge, CoedgeNode)
@@ -344,6 +379,7 @@ def ReadUseMut(State: ReadState, Index: int, Region: int) -> FormUse:
     return FormUse(EdgeIndex, Coedge.Reversed, Trace, Members.FitTolerance)
 
 
+# shared read face setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadFaceMut(State: ReadState, Index: int) -> FormFace:
     FaceValue = State.Entities[Index]
     assert isinstance(FaceValue, FaceNode)
@@ -363,6 +399,7 @@ def ReadFaceMut(State: ReadState, Index: int) -> FormFace:
     return FormFace(Shape, SideUses, Label, FaceValue.DoubleSided, FaceValue.Contained)
 
 
+# shared read converted setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadConverted(Model: DocumentModel) -> FormBody:
     assert len(Model.Forms) == 1 and len(Model.Bodies) == 1
     Entities = ActiveNodes(Model)

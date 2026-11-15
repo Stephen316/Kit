@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Validation.FrustumNumbers import (
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# invalid rim frame input must fail here so circular boundaries retain consistent cone and rim geometry
 def CheckRimFrame(Model: FrustumBody, Frame: RimFrame, IsUpper: bool) -> None:
     CheckRimFields(Frame)
     Radius = (Model.TopRadius if IsUpper else Model.BottomRadius) / 10

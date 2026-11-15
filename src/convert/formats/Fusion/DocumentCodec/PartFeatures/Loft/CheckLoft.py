@@ -11,6 +11,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import 
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LoftSpec import LoftSpec
 
 
+# invalid loft names input must fail here so feature parameters remain connected to the resulting geometry
 def CheckLoftNames(Feature: LoftSpec) -> None:
     Names = (
         Feature.LowerName,
@@ -25,6 +26,7 @@ def CheckLoftNames(Feature: LoftSpec) -> None:
             raise ValueError("Invalid Fusion loft name")
 
 
+# invalid loft input must fail here so feature parameters remain connected to the resulting geometry
 def CheckLoft(Feature: LoftSpec) -> None:
     CheckLoftNames(Feature)
     if not IsNumber(CastValue(object, Feature.HeightMm)) or Feature.HeightMm <= 0:

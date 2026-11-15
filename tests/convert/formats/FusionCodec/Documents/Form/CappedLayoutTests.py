@@ -35,10 +35,15 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
     ReadFormFile,
 )
 
+# the shape slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KShapeSlack = 1e-12
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
+
+# the native cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNativeCases = (
     (
         "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxControl.f3d",
@@ -53,18 +58,25 @@ KNativeCases = (
         "7d09d4698b57fefff528de75bb35757c615312f1eb6bdd7f1570751ab1ea219a",
     ),
 )
+
+# the letter cubes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLetterCubes = [(0, 0, 0), (1, 0, 0), (0, 1, 0)]
+
+# the tee cubes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTeeCubes = [(0, 0, 0), (1, 0, 0), (2, 0, 0), (1, 1, 0)]
 
 
+# shared region faces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RegionFaces(Shape: CappedShape) -> list[tuple[int, ...]]:
     return [tuple(CellValue.Face for CellValue in Cells) for Cells in Shape.Regions]
 
 
+# shared region offsets setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RegionOffsets(Shape: CappedShape, Region: int) -> list[tuple[float, float, int]]:
     return [CellValue.Offset for CellValue in Shape.Regions[Region]]
 
 
+# shared edge users setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeUsers(Shape: CappedShape) -> dict[int, list[tuple[int, bool]]]:
     Found: dict[int, list[tuple[int, bool]]] = {}
     for FaceValue in Shape.Faces:
@@ -74,6 +86,7 @@ def EdgeUsers(Shape: CappedShape) -> dict[int, list[tuple[int, bool]]]:
     return Found
 
 
+# shared solid shape setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SolidShape(Shape: CappedShape) -> None:
     assert [Entry.Region for Entry in Shape.Faces] == list(
         reversed(range(len(Shape.Regions)))
@@ -96,6 +109,7 @@ def SolidShape(Shape: CappedShape) -> None:
         assert Curve.Region == min(Region for Region, _ in Members)
 
 
+# shared trace shape setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TraceShape(Shape: CappedShape) -> None:
     for FaceValue in Shape.Faces:
         for UseValue in FaceValue.Uses:
@@ -110,6 +124,7 @@ def TraceShape(Shape: CappedShape) -> None:
             assert UseValue.Fit == 0.0
 
 
+# the box shape contract needs boundary coverage so stored document relationships remain consistent
 def TestBoxShape() -> None:
     Shape = CappedLayout(MakeSurface(BoxParts((1, 1, 1))))
     assert (len(Shape.Faces), len(Shape.Edges), len(Shape.Points)) == (6, 12, 8)
@@ -120,6 +135,7 @@ def TestBoxShape() -> None:
     TraceShape(Shape)
 
 
+# the box cells contract needs boundary coverage so stored document relationships remain consistent
 def TestBoxCells() -> None:
     Shape = CappedLayout(MakeSurface(BoxParts((2, 3, 4))))
     assert [len(Cells) for Cells in Shape.Regions] == [12, 12, 8, 8, 6, 6]
@@ -128,6 +144,7 @@ def TestBoxCells() -> None:
     TraceShape(Shape)
 
 
+# the letter prism contract needs boundary coverage so stored document relationships remain consistent
 def TestLetterPrism() -> None:
     Shape = CappedLayout(MakeSurface(CubeParts(KLetterCubes)))
     Singles = [(Index,) for Index in (2, 3, 5, 6, 7, 8, 9, 11, 12, 13)]
@@ -140,17 +157,20 @@ def TestLetterPrism() -> None:
     TraceShape(Shape)
 
 
+# the tee blocks contract needs boundary coverage so stored document relationships remain consistent
 def TestTeeBlocks() -> None:
     with RaisesError(ValueError, match="face lines tie"):
         _ = CappedLayout(MakeSurface(CubeParts(KTeeCubes)))
 
 
+# the dart refusal contract needs boundary coverage so stored document relationships remain consistent
 def TestDartRefusal() -> None:
     Surface = ReadTspline(ReadFormFile(*KDartCage))
     with RaisesError(ValueError, match="dart rule needs a cap point or crease"):
         _ = CappedLayout(Surface)
 
 
+# the turn offsets contract needs boundary coverage so stored document relationships remain consistent
 def TestTurnOffsets() -> None:
     Shape = CappedLayout(MakeSurface(PrismParts(3)))
     Singles = [(Index,) for Index in range(6)]
@@ -168,6 +188,7 @@ def TestTurnOffsets() -> None:
     TraceShape(Shape)
 
 
+# the torus seams contract needs boundary coverage so stored document relationships remain consistent
 def TestTorusSeams() -> None:
     Shape = CappedLayout(MakeSurface(TorusParts((8, 6))))
     assert Shape.Regions == (
@@ -200,6 +221,7 @@ def TestTorusSeams() -> None:
     TraceShape(Shape)
 
 
+# the sharp box contract needs boundary coverage so stored document relationships remain consistent
 def TestSharpBox() -> None:
     Parts = BoxParts((2, 2, 2))
     Plain = MakeSurface(Parts)
@@ -215,6 +237,7 @@ def TestSharpBox() -> None:
     SolidShape(Shape)
 
 
+# shared scaled cage setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ScaledCage(Surface: TsplineSurface, Values: list[float]) -> TsplineSurface:
     Topology = Surface.Topology
     Edges = tuple(
@@ -224,6 +247,7 @@ def ScaledCage(Surface: TsplineSurface, Values: list[float]) -> TsplineSurface:
     return ReplaceValue(Surface, Topology=ReplaceValue(Topology, Edges=Edges))
 
 
+# the knot scale contract needs boundary coverage so stored document relationships remain consistent
 def TestKnotScale() -> None:
     Plain = MakeSurface(BoxParts((2, 2, 2)))
     BaseShape = CappedLayout(Plain)
@@ -247,6 +271,7 @@ def TestKnotScale() -> None:
         _ = CappedLayout(ScaledCage(Plain, [1.5]))
 
 
+# shared trace spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TraceSpread(LeftCurve: BsCurve, RightCurve: BsCurve) -> float:
     Plain = ReplaceValue(LeftCurve, Knots=RightCurve.Knots, Poles=RightCurve.Poles)
     assert Plain == RightCurve
@@ -263,6 +288,7 @@ def TraceSpread(LeftCurve: BsCurve, RightCurve: BsCurve) -> float:
     return max(Knots + Poles)
 
 
+# shared window spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def WindowSpread(
     Built: tuple[FormWindow, ...], Stored: tuple[FormWindow, ...]
 ) -> float:
@@ -285,6 +311,7 @@ def WindowSpread(
     )
 
 
+# shared native edges setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NativeEdges(Shape: CappedShape, Native: FormBody) -> None:
     assert len(Shape.Edges) == len(Native.Edges)
     for EdgeValue, NativeEdge in zip(Shape.Edges, Native.Edges):
@@ -307,6 +334,7 @@ def NativeEdges(Shape: CappedShape, Native: FormBody) -> None:
         assert WindowSpread(EdgeValue.Windows, NativeEdge.Windows) <= KShapeSlack
 
 
+# shared native faces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NativeFaces(Shape: CappedShape, Native: FormBody) -> None:
     assert len(Shape.Faces) == len(Native.Faces)
     for FaceValue, NativeFace in zip(Shape.Faces, Native.Faces):
@@ -324,6 +352,7 @@ def NativeFaces(Shape: CappedShape, Native: FormBody) -> None:
             assert abs(UseValue.Fit - NativeUse.Fit) <= KShapeSlack
 
 
+# the native shape contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 @MarkTests.parametrize(
     "CaseValue", KNativeCases, ids=lambda CaseValue: FilePath(CaseValue[0]).stem

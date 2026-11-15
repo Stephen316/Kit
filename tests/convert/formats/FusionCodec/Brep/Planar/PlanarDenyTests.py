@@ -20,6 +20,7 @@ from tests.convert.formats.FusionCodec.Brep.Planar.PlanarSamples import (
 )
 
 
+# the planar deny contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Fault", ("face-winding", "curve-origin", "zero-direction", "singular-transform")
 )
@@ -33,6 +34,7 @@ def TestPlanarDeny(TmpPath: FilePath, Fault: str) -> None:
         _ = ReadPlanarState(Parsed)
 
 
+# the empty state contract needs boundary coverage so stored document relationships remain consistent
 def TestEmptyState(TmpPath: FilePath) -> None:
     Model = CreatePolyBody(MakeTetrahedron(), KPlanarHistory, KPlanarStamp)
     Parsed = JournalArchive(TmpPath / "EmptyInitialState.zip", EmitJournal(Model))

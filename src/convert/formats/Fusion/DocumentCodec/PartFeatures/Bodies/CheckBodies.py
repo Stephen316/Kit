@@ -23,15 +23,20 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Pattern.CheckCopy import 
     CheckShape,
 )
 
+# body limit needs one explicit bound so parametric feature reconstruction cannot accept inconsistent resource or layout limits
 KBodyLimit = 16
+
+# the combine kinds order must stay explicit so feature parameters remain connected to the resulting geometry
 KCombineKinds = ("join", "cut", "intersect")
 
 
+# invalid ordinal input must fail here so feature parameters remain connected to the resulting geometry
 def CheckOrdinal(Value: object) -> None:
     if type(Value) is not int or not 1 <= Value <= KBodyLimit:
         raise ValueError("Fusion body numbers must be qualified positive integers")
 
 
+# invalid combine input must fail here so feature parameters remain connected to the resulting geometry
 def CheckCombine(Feature: CombineSpec) -> None:
     CheckOrdinal(Feature.TargetBody)
     Tools = CastValue(object, Feature.ToolBodies)
@@ -45,6 +50,7 @@ def CheckCombine(Feature: CombineSpec) -> None:
         raise ValueError("Fusion combine tool keeping is a boolean")
 
 
+# invalid body specification input must fail here so feature parameters remain connected to the resulting geometry
 def CheckBodySpec(Feature: KBodySpec) -> None:
     if isinstance(Feature, CombineSpec):
         CheckCombine(Feature)

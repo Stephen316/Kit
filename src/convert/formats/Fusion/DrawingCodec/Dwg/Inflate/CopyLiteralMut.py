@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.TakeSpan import TakeSpan
 
 
+# copy literal needs an explicit validity boundary so compressed page boundaries cannot overrun their declared payload
 def CopyLiteralMut(
     Output: bytearray, Packed: bytes, Position: int, Count: int, Limit: int
 ) -> int:

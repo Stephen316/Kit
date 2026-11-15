@@ -32,6 +32,7 @@ from convert.formats.Fusion.DrawingCodec.Members.SheetCodec import ReadSheet
 from convert.formats.Fusion.DrawingCodec.Segments.ReadSegments import ReadSegmentsMut
 
 
+# the drawing operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadDrawing(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> FusionDrawing:
@@ -85,6 +86,7 @@ def ReadDrawing(
     return Result
 
 
+# the member operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def TakeMemberMut(Members: dict[str, bytes], NameValue: str) -> bytes:
     Payload = Members.pop(NameValue, None)
     if Payload is None:
@@ -92,6 +94,7 @@ def TakeMemberMut(Members: dict[str, bytes], NameValue: str) -> bytes:
     return Payload
 
 
+# the database operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def TakeDatabaseMut(Active: dict[str, bytes]) -> DrawingDatabase | None:
     Names = tuple(
         NameValue for NameValue in Active if NameValue.startswith(KDatabaseFolder)
@@ -103,6 +106,7 @@ def TakeDatabaseMut(Active: dict[str, bytes]) -> DrawingDatabase | None:
     return DrawingDatabase(Names[0].removeprefix(KDatabaseFolder), Active.pop(Names[0]))
 
 
+# the settings operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def TakeSettingsMut(Active: dict[str, bytes]) -> tuple[JsonPart, ...]:
     Names = tuple(
         NameValue
@@ -114,6 +118,7 @@ def TakeSettingsMut(Active: dict[str, bytes]) -> tuple[JsonPart, ...]:
     return tuple(ReadJsonPart(NameValue, Active.pop(NameValue)) for NameValue in Names)
 
 
+# the images operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def TakeImagesMut(Active: dict[str, bytes]) -> tuple[ContainerPart, ...]:
     Names = tuple(
         NameValue

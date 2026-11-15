@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeTagGroups i
 )
 
 
+# the tag attribute operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeTagAttrib(Value: TagAttrib) -> AsmRecord:
     return AsmRecord(
         "ATTRIB_CUSTOM-attrib",

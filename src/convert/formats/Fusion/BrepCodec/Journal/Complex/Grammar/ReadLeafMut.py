@@ -22,6 +22,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut impor
 )
 
 
+# the leaf operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadLeafMut(Cursor: FieldCursor, LeafKind: str) -> KGrammarValue:
     if LeafKind == "flag":
         return IsLogicalMut(Cursor)

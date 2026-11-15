@@ -16,6 +16,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import (
     FocusRole,
 )
 
+# the axis rows vocabulary must stay centralized so pattern feature construction agrees on supported native identities
 KAxisRows: dict[str, tuple[float, float, float]] = {
     "x_axis": (2.0, 0.0, 0.0),
     "y_axis": (0.0, 2.0, 0.0),
@@ -23,12 +24,14 @@ KAxisRows: dict[str, tuple[float, float, float]] = {
 }
 
 
+# the axis operation needs one geometric convention so repeated instances retain their intended placement and ownership
 def UnitAxis(AxisRole: str) -> dict[str, float]:
     AxisRow = KAxisRows[AxisRole]
     Length = Hypotenuse(*AxisRow)
     return PointOf((AxisRow[0] / Length, AxisRow[1] / Length, AxisRow[2] / Length))
 
 
+# the seed operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddSeedMut(
     Author: AuthorState, RoleName: str, EntityRole: str
 ) -> dict[str, object] | None:
@@ -41,6 +44,7 @@ def AddSeedMut(
     return Author.Reference(RoleName + "_seed")
 
 
+# the entity reference operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddEntityRefMut(
     Author: AuthorState, Prefix: str, NameValue: str, Target: tuple[str, int]
 ) -> str:
@@ -58,6 +62,7 @@ def AddEntityRefMut(
     return RoleName
 
 
+# the axis operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddAxisMut(
     Author: AuthorState, Prefix: str, NameValue: str, AxisRole: str
 ) -> list[str]:
@@ -84,6 +89,7 @@ def AddAxisMut(
     return [Prefix + NameValue, RefRole]
 
 
+# the body cache operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddBodyCacheMut(Author: AuthorState, RoleName: str, TagValue: int) -> None:
     TopologyCache(Author, RoleName, TagValue)
     Author.Change(
@@ -91,6 +97,7 @@ def AddBodyCacheMut(Author: AuthorState, RoleName: str, TagValue: int) -> None:
     )
 
 
+# the source operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddSourceMut(
     Author: AuthorState, Prefix: str, SourceRole: str, TagSet: tuple[int, int, int]
 ) -> list[str]:
@@ -111,6 +118,7 @@ def AddSourceMut(
     return [Prefix + "source_set", Prefix + "source", RefRole]
 
 
+# the adjacent operation needs a consistent construction rule so repeated instances retain their intended placement and ownership
 def AddAdjacentMut(Author: AuthorState, Prefix: str, FaceTag: int) -> None:
     AddBodyCacheMut(Author, Prefix + "adjacent_cache", FaceTag)
     Adjacent = [Author.Reference(Prefix + "adjacent_cache")]

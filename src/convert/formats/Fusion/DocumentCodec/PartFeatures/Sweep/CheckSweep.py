@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.SweepSpec import (
 )
 
 
+# invalid sweep names input must fail here so feature parameters remain connected to the resulting geometry
 def CheckSweepNames(Feature: SweepSpec) -> None:
     for TextValue in (Feature.ProfileName, Feature.PathName, Feature.FeatureName):
         if not isinstance(CastValue(object, TextValue), str) or not TextValue:
@@ -22,6 +23,7 @@ def CheckSweepNames(Feature: SweepSpec) -> None:
             raise ValueError("Invalid Fusion sweep name")
 
 
+# invalid sweep input must fail here so feature parameters remain connected to the resulting geometry
 def CheckSweep(Feature: SweepSpec) -> None:
     CheckSweepNames(Feature)
     Amounts = (Feature.LeftMm, Feature.RightMm, Feature.LowerMm, Feature.UpperMm)

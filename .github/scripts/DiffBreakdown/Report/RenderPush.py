@@ -3,12 +3,14 @@ from __future__ import annotations
 from Report.MarkdownText import EscapeText
 from SummarizeFiles import SummarizeFiles
 
+# rewrite note must remain consistent across callers so reviewers can distinguish semantic changes from generated noise
 KRewriteNote = (
     "The previous head is not an ancestor of this head: a force push, rebase, or "
     "history rewrite occurred. The push measurement compares the exact two trees."
 )
 
 
+# the render push contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderPush(Snapshot: dict[str, object]) -> list[str]:
     RowList = ["", "### What changed in this push", ""]
     Closing = ["", "Net PR snapshot changes are not the lines edited during this push."]

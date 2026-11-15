@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Form.FormLabels import FormLabels
 from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 
+# the frame kinds order must stay explicit so editable control cages retain their document relationships
 KFrameKinds = (
     ("facet", "ControlFrameFacet"),
     ("edge", "ControlFrameEdge"),
@@ -10,6 +11,7 @@ KFrameKinds = (
 )
 
 
+# the frame counts contract needs a shared interpretation so editable control cages retain their document relationships
 def FrameCounts(SpecValue: FormSpec) -> tuple[int, int, int, int]:
     Topology = SpecValue.Surface.Topology
     return (
@@ -20,6 +22,7 @@ def FrameCounts(SpecValue: FormSpec) -> tuple[int, int, int, int]:
     )
 
 
+# the frame operation needs a consistent construction rule so editable control cages retain their document relationships
 def AddFrameMut(Author: AuthorState, SpecValue: FormSpec) -> None:
     Author.Allocate("form_frame", "ControlFrameMesh")
     Author.Allocate("form_surface", "TsSurface")
@@ -44,6 +47,7 @@ def AddFrameMut(Author: AuthorState, SpecValue: FormSpec) -> None:
             Author.Allocate(f"form_{KindName}_{Index}", ClassName)
 
 
+# the form operation needs a consistent construction rule so editable control cages retain their document relationships
 def AddFormMut(Author: AuthorState, SpecValue: FormSpec) -> None:
     Author.Allocate(
         "form_feature", "DcTSplineFeature", ParentRole="nodes", NamedPairs=[]

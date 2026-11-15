@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeUse import Sha
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PlaneSpan import KPlaneSpan
 
 
+# wall face needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class WallFace:
     Span: KPlaneSpan

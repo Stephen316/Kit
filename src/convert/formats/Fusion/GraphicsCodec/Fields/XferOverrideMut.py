@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer override contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferOverrideMut(
     State: SceneCodec, Values: tuple[OverrideSet[SceneSet], ...] | None
 ) -> tuple[OverrideSet[SceneSet], ...]:

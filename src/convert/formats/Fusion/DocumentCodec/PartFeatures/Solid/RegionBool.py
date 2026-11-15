@@ -26,9 +26,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SplitSpan import SplitSpan
 
+# the region shape must stay shared so solid feature construction uses one contract for compatible values
 KRegion = tuple[KPlaneLoop, ...]
 
 
+# the member decision must stay consistent so body topology remains consistent with its modeling operation
 def IsMember(
     Combine: str, First: KRegion, Second: KRegion, Point: tuple[float, float]
 ) -> bool:
@@ -43,6 +45,7 @@ def IsMember(
     raise ValueError("Unsupported Fusion part region operation")
 
 
+# the split loops contract needs a stable decomposition so body topology remains consistent with its modeling operation
 def SplitLoops(Loops: KRegion, Others: KRegion) -> list[KPlaneSpan]:
     OtherSpans = [Value for LoopValue in Others for Value in LoopValue]
     Pieces: list[KPlaneSpan] = []
@@ -55,6 +58,7 @@ def SplitLoops(Loops: KRegion, Others: KRegion) -> list[KPlaneSpan]:
     return Pieces
 
 
+# the piece key contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def PieceKey(Value: KPlaneSpan) -> tuple[float, ...]:
     if isinstance(Value, ArcSpan):
         Middle = ArcPoint(Value, Value.StartAngle + Value.SweepAngle / 2.0)
@@ -65,6 +69,7 @@ def PieceKey(Value: KPlaneSpan) -> tuple[float, ...]:
     return tuple(round(Coordinate, 7) + 0.0 for Point in Points for Coordinate in Point)
 
 
+# select pieces must resolve unambiguously so body topology remains consistent with its modeling operation
 def SelectPieces(First: KRegion, Second: KRegion, Combine: str) -> list[KPlaneSpan]:
     Chosen: dict[tuple[float, ...], KPlaneSpan] = {}
     for Piece in SplitLoops(First, Second) + SplitLoops(Second, First):
@@ -83,6 +88,7 @@ def SelectPieces(First: KRegion, Second: KRegion, Combine: str) -> list[KPlaneSp
     return list(Chosen.values())
 
 
+# region bool needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def RegionBool(First: KRegion, Second: KRegion, Combine: str) -> KRegion:
     Pieces = SelectPieces(First, Second, Combine)
     Loops = [CanonLoop(LoopValue) for LoopValue in LinkPieces(Pieces)]

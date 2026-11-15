@@ -32,6 +32,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanLength,
 )
 
+# the gauss nodes order must stay explicit so modeling operations retain their document and timeline ownership
 KGaussNodes = (
     (-SquareRoot(0.6), 5.0 / 9.0),
     (0.0, 8.0 / 9.0),
@@ -39,6 +40,7 @@ KGaussNodes = (
 )
 
 
+# the plane moments contract needs a stable decomposition so modeling operations retain their document and timeline ownership
 def PlaneMoments(Polygon: list[tuple[float, float]]) -> dict[str, float]:
     SumValues = dict(x=0.0, y=0.0, xx=0.0, yy=0.0, xy=0.0)
     for Index, (StartX, StartY) in enumerate(Polygon):
@@ -65,6 +67,7 @@ def PlaneMoments(Polygon: list[tuple[float, float]]) -> dict[str, float]:
     return SumValues
 
 
+# the point operation needs one geometric convention so modeling operations retain their document and timeline ownership
 def MixPoint(
     Lower: tuple[float, float], Upper: tuple[float, float], Ratio: float
 ) -> tuple[float, float]:
@@ -74,6 +77,7 @@ def MixPoint(
     )
 
 
+# the loops at contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def LoopsAt(SlabValue: PrismSlab, Level: float) -> tuple[KPlaneLoop, ...]:
     Ratio = (Level - SlabValue.LowerCm) / (SlabValue.UpperCm - SlabValue.LowerCm)
     Loops: list[KPlaneLoop] = []
@@ -94,6 +98,7 @@ def LoopsAt(SlabValue: PrismSlab, Level: float) -> tuple[KPlaneLoop, ...]:
     return tuple(Loops)
 
 
+# the taper mass contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def TaperMassMut(MassValue: dict[str, float], SlabValue: PrismSlab) -> None:
     Middle = (SlabValue.LowerCm + SlabValue.UpperCm) / 2.0
     HalfValue = (SlabValue.UpperCm - SlabValue.LowerCm) / 2.0
@@ -114,6 +119,7 @@ def TaperMassMut(MassValue: dict[str, float], SlabValue: PrismSlab) -> None:
             MassValue[KeyValue] += Plane[KeyValue] * Scale
 
 
+# the prism mass contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def PrismMass(Solid: PrismSolid) -> dict[str, float]:
     MassValue = dict(
         volume=0.0, x=0.0, y=0.0, z=0.0, xx=0.0, yy=0.0, zz=0.0, xy=0.0, xz=0.0, yz=0.0
@@ -143,6 +149,7 @@ def PrismMass(Solid: PrismSolid) -> dict[str, float]:
     return MassValue
 
 
+# the solid mass contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def SolidMass(Solid: PrismSolid) -> dict[str, float]:
     if not Solid.Rounds:
         return PrismMass(Solid)
@@ -154,6 +161,7 @@ def SolidMass(Solid: PrismSolid) -> dict[str, float]:
     }
 
 
+# the line spread contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def LineSpread(Lower: LineSpan, Upper: LineSpan) -> float:
     HeadX, HeadY = SpanHeading(Lower, False)
     DeltaX = Upper.StartCm[0] - Lower.StartCm[0]
@@ -161,6 +169,7 @@ def LineSpread(Lower: LineSpan, Upper: LineSpan) -> float:
     return DeltaX * HeadY - DeltaY * HeadX
 
 
+# the wall area contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def WallArea(FaceValue: WallFace) -> float:
     Height = FaceValue.UpperCm - FaceValue.LowerCm
     RoofSpan = FaceValue.RoofSpan
@@ -180,6 +189,7 @@ def WallArea(FaceValue: WallFace) -> float:
     return (Lengths[0] + Lengths[1]) / 2.0 * Hypotenuse(Height, Growth)
 
 
+# solid area needs an explicit validity boundary so modeling operations retain their document and timeline ownership
 def SolidArea(Solid: PrismSolid) -> float:
     Total = 0.0
     for FaceValue in BuildShape(Solid).Faces:

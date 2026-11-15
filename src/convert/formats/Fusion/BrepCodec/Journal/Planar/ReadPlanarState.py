@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.MakeLiveTable import MakeLi
 from convert.formats.Fusion.BrepCodec.Journal.Planar.PlanarShell import PlanarShell
 
 
+# the planar state operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPlanarState(
     Model: JournalModel, StateId: int | None = None
 ) -> tuple[PlanarShell, ...]:

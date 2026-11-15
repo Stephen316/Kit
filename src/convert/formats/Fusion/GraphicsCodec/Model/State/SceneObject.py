@@ -4,6 +4,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.ObjectRef import ObjectRe
 from convert.formats.Fusion.GraphicsCodec.Model.State.KObjectValue import KObjectValue
 
 
+# scene object needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class SceneObject:
     Reference: ObjectRef

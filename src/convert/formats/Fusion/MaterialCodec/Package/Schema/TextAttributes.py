@@ -1,3 +1,4 @@
+# the text attributes vocabulary must stay centralized so material reconstruction agrees on supported native identities
 KTextAttrs = {
     "String": (
         "id",

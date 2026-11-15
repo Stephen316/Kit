@@ -42,6 +42,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.CheckDocMats import 
 from convert.formats.Fusion.DocumentCodec.Records.EmitDocSegment import EmitDocSegment
 
 
+# the parsed operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def EmitParsed(Value: DocumentModel) -> bytes:
     CheckDocMats(Value)
     CheckDocConfig(Value)

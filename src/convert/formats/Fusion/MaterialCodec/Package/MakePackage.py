@@ -14,6 +14,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckPackage import
 )
 
 
+# the package operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def MakePackage(
     PackageId: str,
     AssetId: str,

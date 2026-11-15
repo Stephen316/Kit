@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer circle needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferCircleMut(State: SceneCodec, Value: CircleArcValue | None) -> CircleArcValue:
     Sampling = State.Integer(Value.Sampling if Value else None, "<i")
     Interval = State.Vector(Value.Interval if Value else None, 2, "<d")

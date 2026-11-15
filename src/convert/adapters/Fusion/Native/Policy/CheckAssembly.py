@@ -10,6 +10,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 
 
+# invalid assembly input must fail here so public document claims remain grounded in native records
 def CheckAssembly(Graph: NativeGraph, Context: KSketchContexts) -> None:
     Component = Graph.Resolve(Context.Component.Fields["rACTComponent"])
     Instance = Graph.OneClass("ComponentInstance")

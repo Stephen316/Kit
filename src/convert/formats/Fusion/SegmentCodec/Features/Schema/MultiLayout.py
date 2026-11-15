@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import Clas
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
+# multi layout must remain consistent across callers so native records retain their segment ownership and schema
 KMultiLayout = ClassLayout(
     ClassStamp(
         "2EDC2536-D95B-4469-8ACA-DC07124D9C43",

@@ -29,6 +29,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
 )
 
 
+# the edge label contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def EdgeLabel(Shaped: ShapeBody, EdgeValue: KShapeEdge) -> FaceLabel | None:
     if isinstance(EdgeValue, FreeEdge):
         return EdgeValue.Label
@@ -43,6 +44,7 @@ def EdgeLabel(Shaped: ShapeBody, EdgeValue: KShapeEdge) -> FaceLabel | None:
     return None
 
 
+# the draft edges contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def DraftEdges(PlanValue: BodyPlan, FindIndex: DraftLookup) -> list[KDraftNode]:
     Ordinal = PlanValue.Ordinal
     Nodes: list[KDraftNode] = []

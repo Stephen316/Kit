@@ -1,5 +1,6 @@
 from types import MappingProxyType
 
+# vector fields must remain consistent across callers so geometric values retain their native record boundaries
 KVectorFields = MappingProxyType(
     {
         ("cone-surface", 3): (19, 10),
@@ -14,4 +15,6 @@ KVectorFields = MappingProxyType(
         ("point", 3): (19, 10),
     }
 )
+
+# length scalars needs one explicit bound so geometry serialization cannot accept inconsistent resource or layout limits
 KLengthScalars = frozenset({("cone-surface", 11)})

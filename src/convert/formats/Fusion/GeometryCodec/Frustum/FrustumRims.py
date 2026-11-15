@@ -1,6 +1,7 @@
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# the frustum rims contract needs a shared interpretation so geometric values retain their native record boundaries
 def FrustumRims(
     Model: FrustumBody,
 ) -> tuple[tuple[tuple[float, float, float], float], ...]:

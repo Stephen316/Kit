@@ -1,5 +1,6 @@
 from convert.formats.Fusion.ContainerCodec.Browser.BrowserNode import BrowserNode
 
+# the browser nodes order must stay explicit so archive members retain their native ownership and reference relationships
 KBrowserNodes = (
     BrowserNode(
         "component", "FusionComponentInstanceBrowserEntry", "root_instance", None

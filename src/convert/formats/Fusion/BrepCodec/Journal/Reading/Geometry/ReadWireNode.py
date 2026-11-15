@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the wire node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadWireNode(Cursor: FieldCursor) -> WireNode:
     Prefix = ReadPrefixMut(Cursor)
     NextWire = ReadRefMut(Cursor)

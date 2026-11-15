@@ -23,14 +23,19 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Pattern.AddCopyRefs impor
     AddSeedMut,
 )
 
+# base name must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KBaseName = "Base Feature"
+
+# the paste tracking order must stay explicit so feature parameters remain connected to the resulting geometry
 KPasteTracking = (5, 9)
 
 
+# the paired body contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def PairedBody(NameValue: str, RoleName: str) -> list[dict[str, object]]:
     return [{"name": NameValue, "metatype": "PassiveRefMetaType", "role": RoleName}]
 
 
+# the paste reference operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPasteRefMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, BodyTags: dict[int, int]
 ) -> list[str]:
@@ -62,6 +67,7 @@ def AddPasteRefMut(
     return [DataRole, BodyRefRole]
 
 
+# the cached operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddCachedMut(
     Author: AuthorState, Stage: PartStage, RoleName: str, PairName: str
 ) -> str:
@@ -100,6 +106,7 @@ def AddCachedMut(
     return BodyUuid
 
 
+# the base operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddBaseMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     Reference = Author.Reference
     BaseRole, DataRole = Prefix + "base", Prefix + "modeling"
@@ -143,6 +150,7 @@ def AddBaseMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     )
 
 
+# the paste operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPasteMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, BodyTags: dict[int, int]
 ) -> list[str]:

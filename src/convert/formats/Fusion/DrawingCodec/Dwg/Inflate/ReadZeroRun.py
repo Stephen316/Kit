@@ -1,6 +1,7 @@
 from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.TakeByte import TakeByte
 
 
+# the zero run operation needs a distinct decoding boundary so compressed page boundaries cannot overrun their declared payload
 def ReadZeroRun(Packed: bytes, Position: int) -> tuple[int, int]:
     Total = 0
     Cursor = Position

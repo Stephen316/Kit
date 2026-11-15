@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.BundleCodec.Model.BundleGraph import BundleGraph
 
 
+# bundle model needs an explicit state contract so linked archive members retain their document relationships
 @MakeDataClass(frozen=True, slots=True)
 class BundleModel:
     DesignId: str

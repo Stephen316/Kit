@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from convert.formats.Fusion.MeshCodec.Model.FaceGroup import FaceGroup
 
 
+# mesh registry needs an explicit state contract so vertex and index streams retain their intended connectivity
 @dataclass(frozen=True)
 class MeshRegistry:
     MeshId: str

@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakePrefix import MakePref
 from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeContained import MakeContained
 
 
+# the face node operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeFaceNode(Value: FaceNode) -> AsmRecord:
     return AsmRecord(
         "face",

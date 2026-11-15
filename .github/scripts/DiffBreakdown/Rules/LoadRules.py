@@ -7,6 +7,7 @@ from Rules.SplitRule import SplitRule
 from Rules.ValidateConfig import RequireName
 
 
+# rule entry needs an explicit state contract so review categories remain consistent across push snapshots
 @DataClass(frozen=True)
 class RuleEntry:
     Pattern: str
@@ -14,6 +15,7 @@ class RuleEntry:
     Source: str
 
 
+# the rules operation needs a distinct decoding boundary so review categories remain consistent across push snapshots
 def LoadRules(
     RulesText: str, Categories: dict[str, dict[str, str]]
 ) -> tuple[list[RuleEntry], dict[str, dict[str, str]]]:

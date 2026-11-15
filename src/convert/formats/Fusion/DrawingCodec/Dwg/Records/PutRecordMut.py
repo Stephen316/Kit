@@ -36,6 +36,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.SpecScope import (
 )
 
 
+# the record operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutRecordMut(
     SpecOps: tuple[SpecOp, ...], Record: DwgRecord, Sinks: RecordSinks, Scopes: KScopes
 ) -> None:
@@ -48,12 +49,14 @@ def PutRecordMut(
         )
 
 
+# the field operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def TakeFieldMut(Pending: list[DwgField], FieldName: str) -> DwgField:
     if not Pending or Pending[-1].FieldName != FieldName:
         raise ValueError(f"DWG record lacks field {FieldName!r} at its spec position")
     return Pending.pop()
 
 
+# the ops operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutOpsMut(
     SpecOps: tuple[SpecOp, ...],
     Pending: list[DwgField],
@@ -84,6 +87,7 @@ def PutOpsMut(
         Written.append(Entry)
 
 
+# the paired operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutPairedMut(
     Operation: SpecOp,
     Items: tuple[DwgRecord, ...],
@@ -98,6 +102,7 @@ def PutPairedMut(
         PutRecordMut(Operation.BodyOps, ItemRecord, Sinks, PartnerScope)
 
 
+# the value operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutValueMut(
     Operation: SpecOp, Value: KDwgValue, Sinks: RecordSinks, Scopes: KScopes
 ) -> None:
@@ -127,6 +132,7 @@ def PutValueMut(
         PutBulkMut(Operation, Value, Sinks, Scopes)
 
 
+# the bulk operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutBulkMut(
     Operation: SpecOp, Value: KDwgValue, Sinks: RecordSinks, Scopes: KScopes
 ) -> None:

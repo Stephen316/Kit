@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from xml.etree.ElementTree import Element as XmlElement
 
 
+# invalid element input must fail here so typed appearance properties retain their native identifiers
 def CheckElement(
     Value: XmlElement,
     TagName: str,

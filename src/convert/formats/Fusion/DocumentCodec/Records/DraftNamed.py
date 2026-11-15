@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the draft named contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DraftNamed(Author: AuthorState, Entry: dict[str, object]) -> NamedMetadata:
     FieldName = ReadString(Entry["name"])
     TypeName = ReadString(Entry["metatype"])

@@ -1,6 +1,7 @@
 from convert.formats.Fusion.MeshCodec.Wire.ByteCursor import ByteCursor
 
 
+# the varint operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadVarint(Cursor: ByteCursor) -> int:
     Result = 0
     for Shift in range(0, 70, 7):

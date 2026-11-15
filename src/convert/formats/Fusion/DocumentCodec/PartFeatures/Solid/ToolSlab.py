@@ -11,6 +11,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ProfileLoop import 
 )
 
 
+# the tool labels contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ToolLabels(Feature: ExtrudeSpec, Operation: int) -> tuple[FaceLabel, ...]:
     IsTwoSided = Feature.Extent in ("symmetric", "two")
     return tuple(
@@ -24,6 +25,7 @@ def ToolLabels(Feature: ExtrudeSpec, Operation: int) -> tuple[FaceLabel, ...]:
     )
 
 
+# the tool range contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ToolRange(Feature: ExtrudeSpec) -> tuple[float, float]:
     Distance = Feature.DistanceMm / 10.0
     if Feature.Extent == "flip":
@@ -35,6 +37,7 @@ def ToolRange(Feature: ExtrudeSpec) -> tuple[float, float]:
     return (0.0, Distance)
 
 
+# the tool slab contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ToolSlab(Feature: ExtrudeSpec, Operation: int) -> PrismSlab:
     Lower, Upper = ToolRange(Feature)
     Start, Finish = FaceLabel("1", (Operation,)), FaceLabel("2", (Operation,))
@@ -43,6 +46,7 @@ def ToolSlab(Feature: ExtrudeSpec, Operation: int) -> PrismSlab:
     return PrismSlab(Lower, Upper, (LoopValue,), Floor, Ceiling)
 
 
+# the tool edge tags contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ToolEdgeTags(
     Feature: ExtrudeSpec, Operation: int, CurveTag: int
 ) -> tuple[tuple[FaceLabel, float, FaceLabel], ...]:

@@ -1,3 +1,4 @@
+# the global versions vocabulary must stay centralized so graphics reconstruction agrees on supported native identities
 KGlobalVersions = {
     "TextureMappingAttribute": (1,),
     "TextureEffectAttribute": (1, 2),
@@ -9,4 +10,6 @@ KGlobalVersions = {
     "GraphicsGlobalVersion": (1,),
     "OGSBlobVersion": (0,),
 }
+
+# the optional versions vocabulary must stay centralized so graphics reconstruction agrees on supported native identities
 KOptionalVersions = frozenset({"GraphicsBlobFeatures"})

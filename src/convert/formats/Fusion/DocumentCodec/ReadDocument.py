@@ -30,6 +30,7 @@ from convert.formats.Fusion.DocumentCodec.Records.ReadDocSegment import ReadDocS
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 
+# the document operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadDocument(
     Payload: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> DocumentModel:

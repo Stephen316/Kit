@@ -16,17 +16,23 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Caps.RoundTrig import (
     RoundSine,
 )
 
+# the weight triple shape must stay shared so spline cap reconstruction uses one contract for compatible values
 KWeightTriple = tuple[Fraction, Fraction, Fraction]
+
+# the ring weights vocabulary must stay centralized so spline cap reconstruction agrees on supported native identities
 KRingWeights: dict[Fraction, KWeightTriple] = {
     Fraction(2, 3): (Fraction(37, 104), Fraction(83, 52), Fraction(43, 26)),
     Fraction(1, 2): (Fraction(9, 40), Fraction(21, 20), Fraction(6, 5)),
 }
+
+# the tangent weights vocabulary must stay centralized so spline cap reconstruction agrees on supported native identities
 KTangentWeights: dict[Fraction, KWeightTriple] = {
     Fraction(2, 3): (Fraction(-17, 468), Fraction(4, 117), Fraction(-49, 468)),
     Fraction(1, 2): (Fraction(0), Fraction(-1, 24), Fraction(-1, 24)),
 }
 
 
+# ratio weights needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def RatioWeights(
     Table: dict[Fraction, KWeightTriple], Ratio: Fraction
 ) -> tuple[float, float, float]:
@@ -38,10 +44,12 @@ def RatioWeights(
     return float(Found[0]), float(Found[1]), float(Found[2])
 
 
+# the spoke slot contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def SpokeSlot(Layout: CapLayout, Spoke: int, Index: int) -> int:
     return Layout.Slots[("spoke", Spoke % Layout.Valence, Index)]
 
 
+# the sector line contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def SectorLine(
     Layout: CapLayout, Sector: int, Ratios: tuple[Fraction, ...]
 ) -> list[float]:
@@ -56,6 +64,7 @@ def SectorLine(
     return Dense
 
 
+# the net tangents contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def NetTangents(Layout: CapLayout, Limit: KPoleRow) -> list[KPoleRow]:
     return [
         MixRows(((1.0, Layout.Netref[SpokeSlot(Layout, Spoke, 1)]), (-1.0, Limit)))
@@ -63,6 +72,7 @@ def NetTangents(Layout: CapLayout, Limit: KPoleRow) -> list[KPoleRow]:
     ]
 
 
+# the ring rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def RingRows(
     Layout: CapLayout, Limit: KPoleRow, Ratios: tuple[Fraction, ...]
 ) -> list[KCapRow]:
@@ -88,6 +98,7 @@ def RingRows(
     return Found
 
 
+# the tangent rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def TangentRows(Layout: CapLayout, Ratios: tuple[Fraction, ...]) -> list[KCapRow]:
     Valence = Layout.Valence
     Cosine = RoundCosine(2.0 * math.pi / Valence)
@@ -109,6 +120,7 @@ def TangentRows(Layout: CapLayout, Ratios: tuple[Fraction, ...]) -> list[KCapRow
     return Found
 
 
+# the twist rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def TwistRows(Layout: CapLayout) -> list[KCapRow]:
     Valence = Layout.Valence
     if Valence % 2:

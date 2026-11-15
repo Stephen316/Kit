@@ -5,5 +5,6 @@ from convert.formats.Fusion.GeometryCodec.CylinderPoints import BuildPoints
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the carriers operation needs a consistent construction rule so topology identity survives native history reconstruction
 def BuildCarriers(Model: CylinderBody) -> tuple[GeometryRecord, ...]:
     return (BuildCurves(Model)[1], BuildPlanes(Model)[1], BuildPoints(Model)[1])

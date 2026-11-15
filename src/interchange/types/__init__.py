@@ -59,13 +59,28 @@ BindCompatMut(
     {__name__: globals()},
 )
 
+# the public json scalar name must remain available so existing integrations keep resolving the canonical implementation
 JsonScalar = KJsonScalar
+
+# the public json value name must remain available so existing integrations keep resolving the canonical implementation
 JsonValue = KJsonValue
+
+# the public boolean operation name must remain available so existing integrations keep resolving the canonical implementation
 BooleanOperation = BooleanOp
+
+# the public parameter override name must remain available so existing integrations keep resolving the canonical implementation
 ParameterOverride = ParamOverride
+
+# the public topology summary name must remain available so existing integrations keep resolving the canonical implementation
 TopologySummary = TopologyCounts
+
+# the public vector2 name must remain available so existing integrations keep resolving the canonical implementation
 Vector2 = PlaneVector
+
+# the public vector3 name must remain available so existing integrations keep resolving the canonical implementation
 Vector3 = SpaceVector
+
+# the public frozen mapping name must remain available so existing integrations keep resolving the canonical implementation
 frozen_mapping = FreezeMapping
 
 BindFunctionMut(

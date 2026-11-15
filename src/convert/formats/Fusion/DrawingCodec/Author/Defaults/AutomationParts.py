@@ -6,6 +6,7 @@ from convert.formats.Fusion.DrawingCodec.Members.JsonPart import JsonPart
 from convert.formats.Fusion.DrawingCodec.Members.JsonStyle import JsonStyle
 from convert.formats.Fusion.DrawingCodec.Model.DrawingNames import KSettingsFolder
 
+# the setting order order must stay explicit so sheet objects retain their intended document relationships
 KSettingOrder = (
     "AutomaticDrawingGeneration",
     "AssemblyViewDefaultSettings",
@@ -18,6 +19,7 @@ KSettingOrder = (
     "SubAssemblyViewDefaultSettings",
 )
 
+# the dimension groups order must stay explicit so sheet objects retain their intended document relationships
 KDimensionGroups = (
     ("MainAssemblyAnnotationSettings", False),
     ("SubAssemblyAnnotationSettings", False),
@@ -26,6 +28,7 @@ KDimensionGroups = (
     ("SMFlatPatternAnnotationSettings", True),
 )
 
+# the automation parts order must stay explicit so sheet objects retain their intended document relationships
 KAutomationParts = (
     JsonPart(
         KSettingsFolder + "AutomaticDrawingGeneration.json",

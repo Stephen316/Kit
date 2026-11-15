@@ -1,3 +1,4 @@
+# the browser targets vocabulary must stay centralized so container reconstruction agrees on supported native identities
 KBrowserTargets = {
     "settings": "23FD63FB-4EBE-4C85-A42B-5D9809AA3499",
     "component": "E03784ED-5E19-4E14-B9F2-3B07017018CD",

@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer frame needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferFrameMut(State: SceneCodec, Value: RenderFrame | None) -> RenderFrame:
     Matrix = State.OptionalMat(Value.Matrix if Value else None)
     State.EmptyLinks(2)

@@ -16,10 +16,14 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.SimpleMesh import SimpleM
 if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
+# edge item must remain consistent across callers so display geometry retains its entity and scene relationships
 KEdgeItem = 6
+
+# face item must remain consistent across callers so display geometry retains its entity and scene relationships
 KFaceItem = 7
 
 
+# transfer lod needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferLodMut(State: SceneCodec, Value: LodValue | None) -> LodValue:
     NodeData = XferPayloadMut(State, Value.NodeData if Value else None)
     LodMask = State.Integer(Value.LodMask if Value else None)

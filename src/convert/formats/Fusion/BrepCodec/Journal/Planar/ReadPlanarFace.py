@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireL
 from convert.formats.Fusion.BrepCodec.Journal.Planar.StableRef import StableRef
 
 
+# the planar face operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPlanarFace(Table: LiveTable, FaceRef: int, ShellRef: int) -> FaceBoundary:
     FaceValue = RequireLive(Table, FaceRef, FaceNode)
     if StableRef(Table, FaceValue.OwnerShell) != ShellRef or FaceValue.DoubleSided:

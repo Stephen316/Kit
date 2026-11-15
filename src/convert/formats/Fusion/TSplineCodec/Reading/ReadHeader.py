@@ -4,6 +4,7 @@ from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 from convert.formats.Fusion.TSplineCodec.Wire.ReadNumber import ReadNumber
 
 
+# the header operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadHeader(Cursor: TextCursor) -> SurfaceHeader:
     _ = Cursor.ReadFields("#TS0200", 0)
     Degree = ReadInteger(Cursor.ReadFields("degree", 1)[0])

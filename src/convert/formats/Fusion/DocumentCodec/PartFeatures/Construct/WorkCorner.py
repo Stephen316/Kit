@@ -13,9 +13,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 from convert.formats.Fusion.EntityCodec.Recipes.Model.EdgeRecipe import EdgeRecipe
 from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipeValue import RecipeValue
 
+# the stack tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KStackTolerance = 1e-9
 
 
+# corner walls needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CornerWalls(
     Solid: PrismSolid, CornerCm: tuple[float, float]
 ) -> tuple[FaceLabel, FaceLabel]:
@@ -38,6 +40,7 @@ def CornerWalls(
     return next(iter(Found))
 
 
+# the axis recipe contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def AxisRecipe(Solid: PrismSolid, CornerCm: tuple[float, float]) -> RecipeValue:
     Incoming, Outgoing = CornerWalls(Solid, CornerCm)
     Labels = [
@@ -56,6 +59,7 @@ def AxisRecipe(Solid: PrismSolid, CornerCm: tuple[float, float]) -> RecipeValue:
     return RecipeValue(3, RecipeTags(Labels), (), Payload)
 
 
+# the recipe operation needs one geometric convention so feature parameters remain connected to the resulting geometry
 def PointRecipe(Solid: PrismSolid, CornerCm: tuple[float, float]) -> RecipeValue:
     Incoming, Outgoing = CornerWalls(Solid, CornerCm)
     Labels = [Solid.Slabs[0].FloorLabel, Outgoing, Incoming]

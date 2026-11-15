@@ -42,6 +42,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchPlan import
 )
 
 
+# the stage range contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def StageRange(Author: AuthorState, Stage: PartStage) -> tuple[int, int]:
     Feature = Stage.Feature
     IsFirst = Stage.After.Ordinal == 1
@@ -53,6 +54,7 @@ def StageRange(Author: AuthorState, Stage: PartStage) -> tuple[int, int]:
     return Stage.StateId - 1, Stage.StateId
 
 
+# the seed table operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSeedTable(
     Author: AuthorState, Stage: PartStage, Prefix: str, Sketched: SketchPlan
 ) -> None:
@@ -72,6 +74,7 @@ def AddSeedTable(
     Author.Change(Prefix + "progenitors", ProgenitorTagVec=Pairs, tagId=len(Pairs) + 3)
 
 
+# the extrude feat operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddExtrudeFeat(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     Feature, Sketched = Stage.Feature, Stage.Sketch
     if not isinstance(Feature, ExtrudeSpec) or Sketched is None:

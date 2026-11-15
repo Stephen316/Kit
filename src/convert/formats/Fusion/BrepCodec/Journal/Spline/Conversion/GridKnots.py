@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
 
+# grid knots needs an explicit validity boundary so surface geometry retains the control cage shape
 def GridKnots(SpanCount: int, Scale: int) -> tuple[SplineKnot, ...]:
     if SpanCount < 1:
         raise ValueError("Fusion grid conversion needs one span per direction")

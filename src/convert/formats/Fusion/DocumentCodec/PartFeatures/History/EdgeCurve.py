@@ -14,9 +14,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the space point shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KSpacePoint = tuple[float, float, float]
 
 
+# the edge ends contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def EdgeEnds(EdgeValue: KShapeEdge) -> tuple[KSpacePoint, KSpacePoint]:
     if isinstance(EdgeValue, FreeEdge):
         return EdgeValue.StartCm, EdgeValue.FinishCm
@@ -29,10 +31,12 @@ def EdgeEnds(EdgeValue: KShapeEdge) -> tuple[KSpacePoint, KSpacePoint]:
     return (*EdgeValue.PointCm, EdgeValue.LowerCm), (*Summit, EdgeValue.UpperCm)
 
 
+# the space length contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SpaceLength(Start: KSpacePoint, Finish: KSpacePoint) -> float:
     return Hypotenuse(Finish[0] - Start[0], Finish[1] - Start[1], Finish[2] - Start[2])
 
 
+# the edge curve contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def EdgeCurve(EdgeValue: KShapeEdge) -> tuple[StraightNode | EllipseNode, float, float]:
     if isinstance(EdgeValue, FreeEdge):
         return EdgeValue.Curve, EdgeValue.LowerParam, EdgeValue.UpperParam

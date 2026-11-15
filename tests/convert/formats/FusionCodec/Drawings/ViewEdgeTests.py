@@ -31,9 +31,16 @@ from tests.convert.formats.FusionCodec.Drawings.ViewSolids import (
     HoleSolid,
 )
 
+# the lower cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLower = (0.0, 0.0, 0.0)
+
+# the upper cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KUpper = (40.0, 20.0, 10.0)
+
+# the hole cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHole = HoleSolid(KLower, KUpper, (10.0, 10.0), 4.0)
+
+# the source cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSource = ViewSource(
     0x1C5,
     "1_Component",
@@ -42,14 +49,20 @@ KSource = ViewSource(
     (4.0, 2.0, 1.0),
     Solid=KHole,
 )
+
+# the base cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBase = BaseFrame(ViewDraft((0.0, 0.0)))
+
+# the silhouettes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSilhouettes = (0xFFFFFFFE, 0xFFFFFFFF)
 
 
+# shared rows of setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RowsOf(Frame: ViewFrame, ShowHidden: bool) -> tuple[EdgeRow, ...]:
     return ViewEdges(ReadSolid(KHole, KLower, KUpper), Frame, ShowHidden)
 
 
+# shared line at setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LineAt(Entry: EdgeRow) -> tuple[tuple[float, ...], tuple[float, ...]]:
     assert isinstance(Entry.Piece, LinePath)
     return (
@@ -58,6 +71,7 @@ def LineAt(Entry: EdgeRow) -> tuple[tuple[float, ...], tuple[float, ...]]:
     )
 
 
+# the hole edges contract needs boundary coverage so stored document relationships remain consistent
 def TestHoleEdges() -> None:
     for ShowHidden in (False, True):
         EdgeRows = RowsOf(KBase, ShowHidden)
@@ -76,6 +90,7 @@ def TestHoleEdges() -> None:
     assert LineAt(Above[1])[0] == (6.0, 10.0, 0.0)
 
 
+# the edge on ring contract needs boundary coverage so stored document relationships remain consistent
 def TestEdgeOnRing() -> None:
     EdgeRows = RowsOf(ChildFrame(KBase, (1.0, 0.0)), True)
     assert 0 not in [Entry.EdgeId for Entry in EdgeRows]
@@ -83,6 +98,7 @@ def TestEdgeOnRing() -> None:
     assert [Entry.EdgeId for Entry in RowsOf(Behind, True)] == [0, 4, 7, 10, 13]
 
 
+# shared edge records setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeRecords(Model: DwgFile) -> list[tuple[int, tuple[DwgRecord, ...]]]:
     Found: list[tuple[int, tuple[DwgRecord, ...]]] = []
     for Entry in Model.DwgObjects:
@@ -111,10 +127,12 @@ def EdgeRecords(Model: DwgFile) -> list[tuple[int, tuple[DwgRecord, ...]]]:
     return Found
 
 
+# shared field map setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FieldMap(Record: DwgRecord) -> dict[str, object]:
     return {Member.FieldName: Member.FieldValue for Member in Record.RecordFields}
 
 
+# shared authored edges setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AuthoredEdges(ShowHidden: bool) -> list[tuple[int, tuple[DwgRecord, ...]]]:
     Views = tuple(Replaced(Drafted, ShowHidden=ShowHidden) for Drafted in KViews)
     return EdgeRecords(
@@ -122,6 +140,7 @@ def AuthoredEdges(ShowHidden: bool) -> list[tuple[int, tuple[DwgRecord, ...]]]:
     )
 
 
+# the stored edges contract needs boundary coverage so stored document relationships remain consistent
 def TestStoredEdges() -> None:
     for ShowHidden, Styles, Counts in (
         (False, [2, 6, 6], [5, 4, 4]),
@@ -143,6 +162,7 @@ def TestStoredEdges() -> None:
     assert FieldMap(Drawn[0].ClassData)["Center"] == (-10.0, 10.0, 0.0)
 
 
+# the edge rejects contract needs boundary coverage so stored document relationships remain consistent
 def TestEdgeRejects() -> None:
     with ExpectError(ValueError, match="solid"):
         _ = AuthorDwg(Replaced(MakeDraft(KViews), Source=Replaced(KSource, Solid=None)))

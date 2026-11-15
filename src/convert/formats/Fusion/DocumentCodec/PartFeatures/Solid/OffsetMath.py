@@ -9,11 +9,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanHeading,
 )
 
+# the point shape must stay shared so solid feature construction uses one contract for compatible values
 KPoint: TypeAlias = tuple[float, float]
+
+# the line shape must stay shared so solid feature construction uses one contract for compatible values
 KLine: TypeAlias = tuple[KPoint, KPoint]
+
+# the circle shape must stay shared so solid feature construction uses one contract for compatible values
 KCircle: TypeAlias = tuple[KPoint, float]
 
 
+# offset circle needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def OffsetCircle(Value: KPlaneSpan, AmountCm: float) -> KCircle | None:
     if isinstance(Value, LineSpan):
         return None
@@ -25,6 +31,7 @@ def OffsetCircle(Value: KPlaneSpan, AmountCm: float) -> KCircle | None:
     return Value.CenterCm, Radius
 
 
+# the tangent line contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def TangentLine(Corner: KPoint, Heading: KPoint, AmountCm: float) -> KLine:
     return (
         (Corner[0] - Heading[1] * AmountCm, Corner[1] + Heading[0] * AmountCm),
@@ -32,6 +39,7 @@ def TangentLine(Corner: KPoint, Heading: KPoint, AmountCm: float) -> KLine:
     )
 
 
+# the line cross contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def LineCross(First: KLine, Second: KLine) -> list[KPoint]:
     (StartX, StartY), (HeadX, HeadY) = First
     (OtherX, OtherY), (TurnX, TurnY) = Second
@@ -42,6 +50,7 @@ def LineCross(First: KLine, Second: KLine) -> list[KPoint]:
     return [(StartX + HeadX * Along, StartY + HeadY * Along)]
 
 
+# the circle line contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def CircleLine(Circle: KCircle, Straight: KLine) -> list[KPoint]:
     (CenterX, CenterY), Radius = Circle
     (StartX, StartY), (HeadX, HeadY) = Straight
@@ -57,6 +66,7 @@ def CircleLine(Circle: KCircle, Straight: KLine) -> list[KPoint]:
     ]
 
 
+# the circle cross contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def CircleCross(First: KCircle, Second: KCircle) -> list[KPoint]:
     (FirstX, FirstY), FirstRadius = First
     (OtherX, OtherY), OtherRadius = Second
@@ -75,6 +85,7 @@ def CircleCross(First: KCircle, Second: KCircle) -> list[KPoint]:
     ]
 
 
+# mixed cross needs one geometric convention so body topology remains consistent with its modeling operation
 def MixedCross(
     FirstArc: KCircle | None, OtherArc: KCircle | None, Lines: tuple[KLine, KLine]
 ) -> list[KPoint]:
@@ -87,6 +98,7 @@ def MixedCross(
     return LineCross(*Lines)
 
 
+# offset joint needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def OffsetJoint(Before: KPlaneSpan, After: KPlaneSpan, AmountCm: float) -> KPoint:
     Corner = SpanFinish(Before)
     Inward = SpanHeading(Before, True)
@@ -104,12 +116,15 @@ def OffsetJoint(Before: KPlaneSpan, After: KPlaneSpan, AmountCm: float) -> KPoin
     )
     if not Points:
         raise ValueError("Fusion part offset curves do not meet")
+
+    # ordering by 0 point 1 naive 1 must stay deterministic so solid feature construction resolves equivalent inputs consistently
     return min(
         Points,
         key=lambda Point: Hypotenuse(Point[0] - Naive[0], Point[1] - Naive[1]),
     )
 
 
+# the arc range contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ArcRange(
     Center: KPoint, Start: KPoint, Finish: KPoint, Sweep: float
 ) -> tuple[float, float]:

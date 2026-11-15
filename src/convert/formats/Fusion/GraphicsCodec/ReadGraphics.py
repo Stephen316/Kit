@@ -9,6 +9,7 @@ from convert.formats.Fusion.GraphicsCodec.Fields.XferOverrideMut import XferOver
 from convert.formats.Fusion.GraphicsCodec.Worlds.XferWorldMut import XferWorldMut
 
 
+# the graphics operation needs a distinct decoding boundary so display geometry retains its entity and scene relationships
 def ReadGraphics(
     WorldData: bytes,
     MeshStreams: tuple[GraphicsStream, ...],

@@ -4,6 +4,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, ReadAsmToken
 
 
+# the geometry tokens contract needs a shared interpretation so topology identity survives native history reconstruction
 def GeometryTokens(Records: tuple[GeometryRecord, ...]) -> tuple[AsmRecord, ...]:
     return tuple(
         AsmRecord(

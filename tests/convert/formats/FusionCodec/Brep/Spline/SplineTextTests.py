@@ -17,6 +17,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.EmitWireField import (
 )
 
 
+# the patch text contract needs boundary coverage so stored document relationships remain consistent
 def TestPatchText() -> None:
     Regions = (
         (
@@ -32,6 +33,7 @@ def TestPatchText() -> None:
     assert ReadPatches(PatchText) == Regions
 
 
+# the patch words contract needs boundary coverage so stored document relationships remain consistent
 def TestPatchWords() -> None:
     Regions = (
         (
@@ -46,6 +48,7 @@ def TestPatchWords() -> None:
     assert ReadPatches(PatchText) == Regions
 
 
+# the patch deny contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "TextValue",
     (
@@ -65,6 +68,7 @@ def TestPatchDeny(TextValue: str) -> None:
         _ = ReadPatches(TextValue)
 
 
+# the wide text contract needs boundary coverage so stored document relationships remain consistent
 def TestWideText() -> None:
     assert WideWord("a" * 255) == (7, "a" * 255)
     assert WideWord("a" * 256) == (8, "a" * 256)
@@ -78,6 +82,7 @@ def TestWideText() -> None:
         _ = EmitWireField((8, "a" * 32768))
 
 
+# the pole count contract needs boundary coverage so stored document relationships remain consistent
 def TestPoleCount() -> None:
     Knots = (SplineKnot(0.0, 3), SplineKnot(1.0, 1), SplineKnot(2.0, 3))
     assert CountPoles(Knots, 3) == 5

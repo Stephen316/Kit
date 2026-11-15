@@ -3,6 +3,7 @@ from convert.formats.Fusion.MeshCodec.Wire.ProtoField import ProtoField
 from convert.formats.Fusion.MeshCodec.Wire.ReadVarint import ReadVarint
 
 
+# the proto operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadProto(Payload: bytes) -> tuple[ProtoField, ...]:
     Cursor = ByteCursor(Payload)
     Result: list[ProtoField] = []

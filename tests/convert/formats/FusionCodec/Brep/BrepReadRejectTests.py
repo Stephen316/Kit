@@ -14,6 +14,7 @@ from convert.formats.Fusion.GeometryCodec.EntityRef import EntityRef
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the history bad contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Mutation",
     (
@@ -59,6 +60,7 @@ def TestHistoryBad(TmpPath: FilePath, Mutation: str) -> None:
         _ = ReadHistory(Target.read_bytes())
 
 
+# the snapshot history contract needs boundary coverage so stored document relationships remain consistent
 def TestSnapHistory(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     Snapshot = EmitSnapshot(Sample.Model, Sample.TagSet, Sample.Stamp)

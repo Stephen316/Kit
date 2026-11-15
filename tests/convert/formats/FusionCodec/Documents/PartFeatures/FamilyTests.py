@@ -59,6 +59,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
 )
 
 
+# the family solid contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KFamilyCases))
 def TestFamilySolid(NameValue: str) -> None:
     Features, Volume, Faces, Edges = KFamilyCases[NameValue]
@@ -68,6 +69,7 @@ def TestFamilySolid(NameValue: str) -> None:
     assert Measured.VolumeCm == ApproxValue(Volume, abs=1e-6)
 
 
+# the fam native contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "NameValue",
     (
@@ -93,6 +95,7 @@ def TestFamNative(NameValue: str) -> None:
     assert Measured.AreaCm == ApproxValue(Native["area_cm2"], rel=1e-7)
 
 
+# the fam archive contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("NameValue", tuple(KFamilyCases))
 def TestFamArchive(NameValue: str) -> None:
     Features = KFamilyCases[NameValue][0]
@@ -112,6 +115,7 @@ def TestFamArchive(NameValue: str) -> None:
     assert IsIdentityRef(History)
 
 
+# the plane state contract needs boundary coverage so stored document relationships remain consistent
 def TestPlaneState() -> None:
     _, Stages = SolvePart(FamilySpec(KFamilyCases["MirrorFeature"][0]))
     assert [Stage.StateId for Stage in Stages] == [4, 5, 5, 6]
@@ -128,6 +132,7 @@ def TestPlaneState() -> None:
     ]
 
 
+# the rejected cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRejected: tuple[tuple[KPartFeature, ...], ...] = (
     (KBlock, PatternSpec(0, 3, 12.0)),
     (KBlock, KPocket, PatternSpec(1, 1, 12.0)),
@@ -152,12 +157,14 @@ KRejected: tuple[tuple[KPartFeature, ...], ...] = (
 )
 
 
+# the fam reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Features", KRejected)
 def TestFamReject(Features: tuple[KPartFeature, ...]) -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(FamilySpec(Features))
 
 
+# the hole places cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHolePlaces: tuple[tuple[str, int, tuple[float, float]], ...] = (
     ("HoleFlat", 6, (0.0, 0.0)),
     ("MultiPocketPart", 17, (-1.2, -0.7)),
@@ -165,6 +172,7 @@ KHolePlaces: tuple[tuple[str, int, tuple[float, float]], ...] = (
 )
 
 
+# the hole place contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(("NameValue", "PointKind", "Offsets"), KHolePlaces)
 def TestHolePlace(NameValue: str, PointKind: int, Offsets: tuple[float, float]) -> None:
     Model = ReadDocument(EmitDocument(FamilySpec(KFamilyCases[NameValue][0])))

@@ -4,6 +4,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Model.FieldValue import KField
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the local reference operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitLocalRef(Value: KFieldValue) -> bytes:
     if Value is None:
         return b"\0"

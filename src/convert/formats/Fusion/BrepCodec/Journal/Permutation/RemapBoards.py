@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.States.BulletinChange import (
 )
 
 
+# the remap boards contract needs a shared interpretation so topology changes retain their native revision relationships
 def RemapBoards(
     Boards: tuple[BulletinBoard, ...], Mapping: tuple[int, ...]
 ) -> tuple[BulletinBoard, ...]:

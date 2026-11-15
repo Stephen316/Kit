@@ -1,5 +1,6 @@
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 
+# the named kinds vocabulary must stay centralized so entity reconstruction agrees on supported native identities
 KNamedKinds = {
     "IntrinsicMetaTypebool": WireType("bool"),
     "IntrinsicMetaTypeuint8": WireType("u8"),

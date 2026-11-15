@@ -19,6 +19,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.IsLogicalMut import
 )
 
 
+# the transform operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadTransform(Cursor: FieldCursor) -> TransformNode:
     Attribute = ReadRefMut(Cursor)
     EntityTag = ReadLongMut(Cursor)

@@ -6,6 +6,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.records.RecordSource import CadSource
 
 
+# project vendor needs an explicit validity boundary so public document claims remain grounded in native records
 def ProjectVendor(Model: DocumentModel, Source: CadSource) -> CadDocument:
     if Model.Meshes or not (
         Model.Graphics is not None or Model.Snapshots or Model.Configurations

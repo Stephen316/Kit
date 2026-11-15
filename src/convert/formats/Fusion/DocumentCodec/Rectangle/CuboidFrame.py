@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Prism.Writing.FreshPrism import FreshPrism
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the cuboid frame contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def CuboidFrame(Model: CuboidBody) -> PrismFrame:
     Frame = FreshPrism(Model)
     Boundary = ((0, 1), (1, 3), (3, 2), (2, 0))

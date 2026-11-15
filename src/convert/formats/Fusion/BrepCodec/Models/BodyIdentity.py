@@ -4,6 +4,7 @@ from math import isfinite as IsFinite
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# body identity needs an explicit state contract so topology identity survives native history reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class BodyIdentity:
     BodyKey: int
@@ -11,6 +12,7 @@ class BodyIdentity:
     SecondaryId: int
     AuthoredMicros: float
 
+    # invalid body identity state must fail at construction so boundary representation history never receives an inconsistent contract
     def __post_init__(self) -> None:
         CheckInteger(self.BodyKey, "body key", Lower=0)
         CheckInteger(

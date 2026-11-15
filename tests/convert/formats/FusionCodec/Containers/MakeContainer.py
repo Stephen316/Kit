@@ -10,6 +10,7 @@ from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
 from tests.convert.formats.FusionCodec.AssetTestPlan import MakeAssetPlan
 
 
+# shared make container setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeContainer() -> FusionContainer:
     PlanValue = MakeAssetPlan()
     Document = DocumentHeader(

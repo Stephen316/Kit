@@ -26,17 +26,23 @@ from tests.convert.formats.FusionCodec.Drawings.DrawingSource import (
     HistoricBundle,
 )
 
+# the bundle layout cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBundleLayout = EntryLayout(8, 0x0808, 0x6000, 0x5B6C, 20, 20, 0)
 
+# the storage cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStorage = "urn:adsk.objects:os.object:wip.dm.prod/"
 
+# design path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KDesignPath = "00000000-0000-4000-8000-0000000000d3.f3d"
 
+# drawing path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KDrawingPath = "00000000-0000-4000-8000-0000000000d2.f2d"
 
+# the stranger role cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStrangerRole = "00000000-0000-4000-8000-0000000000aa"
 
 
+# shared kit bundle setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def KitBundle(Drawing: FusionDrawing, Source: bytes, RoleText: str) -> DrawingBundle:
     Properties = dict(Drawing.Root.References[0].Properties)
     DesignName = Properties["toDocDisplayName"]
@@ -81,6 +87,7 @@ def KitBundle(Drawing: FusionDrawing, Source: bytes, RoleText: str) -> DrawingBu
     return DrawingBundle(Model, Drawing, (BundleFile(KDesignPath, Source),), Layout)
 
 
+# the kit bundle contract needs boundary coverage so stored document relationships remain consistent
 def TestKitBundle() -> None:
     Sources = DrawingSources()
     Replay = FrameReplay()
@@ -96,10 +103,12 @@ def TestKitBundle() -> None:
         _ = EmitDrawBundle(Stranger, Replay.Compress)
 
 
+# the design route contract needs boundary coverage so stored document relationships remain consistent
 def TestDesignRoute() -> None:
     assert isinstance(RouteBundle(BundleSource().read_bytes()), FusionBundle)
 
 
+# the historic contract needs boundary coverage so stored document relationships remain consistent
 def TestHistoric() -> None:
     DataValue = HistoricBundle()
     Bundle = ReadDrawBundle(DataValue)

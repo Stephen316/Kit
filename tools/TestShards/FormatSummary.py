@@ -8,6 +8,7 @@ from tools.TestShards.ReusePlan import ReusePlan
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the format summary contract needs a shared interpretation so every collected case receives exactly one verified outcome
 def FormatSummary(
     Plans: Sequence[ShardPlan],
     Tally: ReportTally,

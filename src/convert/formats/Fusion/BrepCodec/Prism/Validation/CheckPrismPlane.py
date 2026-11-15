@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import KFaceCorners
 from convert.formats.Fusion.GeometryCodec.Prism.PrismPlanes import KFaceFrames
 
 
+# invalid prism plane input must fail here so profile topology remains connected to its extrusion history
 def CheckPrismPlane(Frame: PrismFrame, Index: int) -> None:
     Value = Frame.Planes[Index]
     for Vector in (Value.OriginCm, Value.Normal, Value.Basis):

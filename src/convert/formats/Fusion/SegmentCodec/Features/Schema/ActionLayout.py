@@ -1,6 +1,7 @@
 from convert.formats.Fusion.SegmentCodec.Features.Model.ClassStamp import ClassStamp
 from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import ClassLayout
 
+# action layout must remain consistent across callers so native records retain their segment ownership and schema
 KActionLayout = ClassLayout(
     ClassStamp(
         "6370B480-4C9F-4AF3-A8DD-D364B7AF7275",

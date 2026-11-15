@@ -9,6 +9,7 @@ from tests.convert.formats.FusionCodec.Documents.Dimensions.DimensionFields impo
 )
 
 
+# the dim graph contract needs boundary coverage so stored document relationships remain consistent
 def CheckDimGraph(Model: DocumentModel) -> None:
     Sketch = DimensionRows(Model, "DcSketch")[0]
     SketchRef = LocalRef(Sketch.ObjectId)

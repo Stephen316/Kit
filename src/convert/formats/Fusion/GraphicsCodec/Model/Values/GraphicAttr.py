@@ -4,6 +4,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.FieldValue import FieldVa
 from convert.formats.Fusion.GraphicsCodec.Model.Values.KSetValue import KSetValue
 
 
+# graphic attribute needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class GraphicAttr(Generic[KSetValue]):
     ClassName: str

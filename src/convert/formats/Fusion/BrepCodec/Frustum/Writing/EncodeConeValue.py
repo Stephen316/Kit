@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryFields import KVectorFields
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the cone value operation needs a consistent construction rule so circular boundaries retain consistent cone and rim geometry
 def EncodeConeValue(Value: KGeometryValue, NameValue: str, Index: int) -> bytes:
     if isinstance(Value, tuple):
         TagValue = KVectorFields[(NameValue, Index)][0]

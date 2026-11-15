@@ -9,6 +9,7 @@ from tools.TestShards.Reuse.Track.FinishSession import FinishSession
 from tools.TestShards.Reuse.Track.RunProtocol import RunProtocol
 from tools.TestShards.Reuse.Track.StartTracking import StartTracking
 
+# the hook specifications vocabulary must stay centralized so test reuse agrees on supported native identities
 KHookSpecs: dict[str, tuple[object, tuple[str, ...]]] = {
     "pytest_addoption": (AddOptions, ("parser",)),
     "pytest_load_initial_conftests": (

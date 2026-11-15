@@ -7,6 +7,7 @@ from convert.adapters.Fusion.Native.Graph.GraphChecks import (
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 
+# the empty classes order must stay explicit so public document claims remain grounded in native records
 KEmptyClasses = (
     "AssyConstraints",
     "AssyConstraintOccurrences",
@@ -33,6 +34,7 @@ KEmptyClasses = (
 )
 
 
+# invalid containers input must fail here so public document claims remain grounded in native records
 def CheckContainers(Graph: NativeGraph, Context: KSketchContexts) -> None:
     for ClassName in KEmptyClasses:
         for NodeValue in Graph.ByClass(ClassName):

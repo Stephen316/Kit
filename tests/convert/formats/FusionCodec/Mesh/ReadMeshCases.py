@@ -7,6 +7,7 @@ from typing import cast as CastValue
 from tests.convert.formats.FusionCodec.Mesh.MeshCase import MeshCase
 
 
+# shared read mesh cases setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 @CacheValue
 def ReadMeshCases() -> tuple[MeshCase, ...]:
     DataPath = FilePath(__file__).with_name("MeshSources.xz")

@@ -10,9 +10,11 @@ from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
 from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
+# the drawing kinds vocabulary must stay centralized so drawing packages agrees on supported native identities
 KDrawingKinds = frozenset((SegmentKind.KDrawingDesign, SegmentKind.KDrawingAct))
 
 
+# the segments operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadSegmentsMut(
     Asset: DrawingAsset, Folders: tuple[str, ...], Members: dict[str, bytes]
 ) -> tuple[ParsedSegment | LegacySegment, ...]:

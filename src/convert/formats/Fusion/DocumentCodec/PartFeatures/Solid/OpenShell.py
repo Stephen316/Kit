@@ -19,9 +19,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the open limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KOpenLimit = 1e-7
 
 
+# the on side decision must stay consistent so body topology remains consistent with its modeling operation
 def IsOnSide(Value: KPlaneSpan, PointCm: KPoint) -> bool:
     if not isinstance(Value, LineSpan):
         return False
@@ -34,6 +36,7 @@ def IsOnSide(Value: KPlaneSpan, PointCm: KPoint) -> bool:
     return Apart < KOpenLimit and KOpenLimit < Along < Length - KOpenLimit
 
 
+# side index needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def SideIndex(LoopValue: KPlaneLoop, PointCm: KPoint) -> int:
     Matches = [
         Index for Index, Value in enumerate(LoopValue) if IsOnSide(Value, PointCm)
@@ -43,6 +46,7 @@ def SideIndex(LoopValue: KPlaneLoop, PointCm: KPoint) -> int:
     return Matches[0]
 
 
+# open run needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def OpenRun(LoopValue: KPlaneLoop, SidesCm: tuple[KPoint, ...]) -> tuple[int, ...]:
     Count = len(LoopValue)
     Chosen = {SideIndex(LoopValue, Point) for Point in SidesCm}
@@ -54,6 +58,7 @@ def OpenRun(LoopValue: KPlaneLoop, SidesCm: tuple[KPoint, ...]) -> tuple[int, ..
     return tuple((Heads[0] + Stride) % Count for Stride in range(len(Chosen)))
 
 
+# mixed joint needs one geometric convention so body topology remains consistent with its modeling operation
 def MixedJoint(
     Before: KPlaneSpan, After: KPlaneSpan, Amounts: tuple[float, float]
 ) -> KPoint:
@@ -70,6 +75,7 @@ def MixedJoint(
     return Points[0]
 
 
+# the open joints contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def OpenJoints(LoopValue: KPlaneLoop, Amounts: list[float]) -> list[KPoint]:
     Joints: list[KPoint] = []
     for Index, Value in enumerate(LoopValue):
@@ -82,6 +88,7 @@ def OpenJoints(LoopValue: KPlaneLoop, Amounts: list[float]) -> list[KPoint]:
     return Joints
 
 
+# side piece needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def SidePiece(Value: KPlaneSpan, Start: KPoint, Finish: KPoint) -> LineSpan:
     HeadX, HeadY = SpanHeading(Value, False)
     if (Finish[0] - Start[0]) * HeadX + (Finish[1] - Start[1]) * HeadY <= 1e-9:
@@ -89,6 +96,7 @@ def SidePiece(Value: KPlaneSpan, Start: KPoint, Finish: KPoint) -> LineSpan:
     return LineSpan(Start, Finish, Value.Label)
 
 
+# the open loop contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def OpenLoop(
     LoopValue: KPlaneLoop,
     ThicknessCm: float,

@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 )
 
 
+# the asm root operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeAsmRoot(Value: AsmRoot) -> AsmRecord:
     return AsmRecord(
         "asmheader",

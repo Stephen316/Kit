@@ -17,6 +17,7 @@ from convert.formats.Fusion.BrepCodec.Wire.EmitBrepHeader import EmitBrepHeader
 from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 
 
+# the geometry operation needs a consistent construction rule so topology changes retain their native revision relationships
 def EmitGeometry(Model: GeometryState) -> bytes:
     CheckGeometry(Model)
     Width = Model.Header.IntWidth

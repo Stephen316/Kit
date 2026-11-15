@@ -4,6 +4,7 @@ from pathlib import Path as FilePath
 from tests.convert.formats.FusionCodec.TSpline.TsmCase import TsmCase
 
 
+# shared read tsm file setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadTsmFile(CaseValue: TsmCase) -> bytes:
     RootPath = FilePath(__file__).resolve().parents[5]
     SourcePath = (RootPath / CaseValue["Source"]).resolve()

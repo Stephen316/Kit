@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the deps operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def WriteDeps(State: TrackState, OutDir: FilePath, Worker: str) -> None:
     Payload = {
         "Worker": Worker,

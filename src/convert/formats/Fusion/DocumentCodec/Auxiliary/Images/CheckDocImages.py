@@ -7,9 +7,11 @@ from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import (
     GroupFields,
 )
 
+# image class must remain consistent across callers so supporting records retain their owning document relationships
 KImageClass = "830A2A2B-0AA9-4D6A-ACA1-F7A2B2A06573"
 
 
+# invalid doc images input must fail here so supporting records retain their owning document relationships
 def CheckDocImages(Value: DocumentModel) -> None:
     Expected: list[str] = []
     for Segment in Value.Segments:

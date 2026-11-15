@@ -21,6 +21,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartRecords import
     PartRecords,
 )
 
+# the work fields cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWorkFields: dict[str, tuple[str, ...]] = {
     "DcWorkAxis": ("creationType", "featureBaseName", "featureUserName"),
     "DcWorkPoint": ("creationType", "chainPropagation", "pointOnPathType"),
@@ -31,6 +32,7 @@ KWorkFields: dict[str, tuple[str, ...]] = {
 }
 
 
+# shared work payloads setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def WorkPayloads(Model: DocumentModel) -> list[object]:
     Found: list[object] = []
     for Fields in PartRecords(Model, "ASMRecipe"):
@@ -47,6 +49,7 @@ def WorkPayloads(Model: DocumentModel) -> list[object]:
     return Found
 
 
+# shared work shape setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def WorkShape(Model: DocumentModel) -> dict[str, list[object]]:
     Shape: dict[str, list[object]] = {
         ClassName: [
@@ -62,6 +65,7 @@ def WorkShape(Model: DocumentModel) -> dict[str, list[object]]:
     return Shape
 
 
+# the work state contract needs boundary coverage so stored document relationships remain consistent
 def TestWorkState() -> None:
     _, Stages = SolvePart(FamilySpec(KFamilyCases["ConstructionSet"][0]))
     assert [Stage.StateId for Stage in Stages] == [4, 4, 4, 4]
@@ -74,6 +78,7 @@ def TestWorkState() -> None:
     assert all(Stage.After == Stages[0].After for Stage in Stages)
 
 
+# the work native contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Fusion control requires ZIP Zstandard"
 )

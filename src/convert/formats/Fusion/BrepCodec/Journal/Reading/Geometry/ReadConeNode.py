@@ -17,6 +17,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut impor
 )
 
 
+# the cone node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadConeNode(Cursor: FieldCursor) -> ConeNode:
     Prefix = ReadPrefixMut(Cursor)
     OriginCm = ReadVectorMut(Cursor, 19)

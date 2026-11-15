@@ -18,6 +18,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 )
 
 
+# the occur record contract needs a shared interpretation so cross document references retain their intended ownership
 def OccurRecord(
     RootInfo: RootFacts,
     ObjectId: int,
@@ -37,6 +38,7 @@ def OccurRecord(
     )
 
 
+# occur records needs an explicit validity boundary so cross document references retain their intended ownership
 def OccurRecords(
     RootInfo: RootFacts,
     Facts: TargetFacts,

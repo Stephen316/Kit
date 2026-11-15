@@ -4,6 +4,7 @@ from convert.formats.Fusion.MeshCodec.Wire.ByteCursor import ByteCursor
 from convert.formats.Fusion.MeshCodec.Wire.ReadMap import ReadMap
 
 
+# the stream operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadStream(Payload: bytes, Expected: dict[str, int | bool]) -> bytes:
     Cursor = ByteCursor(Payload)
     Descriptor = ReadMap(Cursor.TakeBytes(Cursor.Integer(2)))

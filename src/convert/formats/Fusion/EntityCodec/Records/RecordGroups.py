@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Schema.ClassSchema import ClassSchema
 from convert.formats.Fusion.EntityCodec.Schema.EntityCatalog import EntityCatalog
 
 
+# the record groups contract needs a shared interpretation so entity identifiers retain their schema and reference meaning
 def RecordGroups(
     ObjectId: int, TypeCode: int, Scope: RecordScope, Catalog: EntityCatalog
 ) -> tuple[ClassSchema, ...]:

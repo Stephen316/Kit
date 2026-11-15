@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ClassLayout import Clas
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldSpec import FieldSpec
 
+# tool link layout must remain consistent across callers so native records retain their segment ownership and schema
 KToolLinkLayout = ClassLayout(
     ClassStamp(
         "0897AF07-EF1B-42E5-BDD9-1C746A085CBC",

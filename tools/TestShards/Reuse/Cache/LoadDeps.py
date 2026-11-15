@@ -9,6 +9,7 @@ from tools.TestShards.Reuse.Cache.MergeDepsMut import MergeDepsMut
 from tools.TestShards.Reuse.Cache.ReadObject import ReadObject
 
 
+# the deps operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def LoadDeps(DepPaths: Iterable[FilePath]) -> DepGraph:
     Graph = DepGraph({}, {}, {}, set(), set(), [])
     for DepPath in DepPaths:

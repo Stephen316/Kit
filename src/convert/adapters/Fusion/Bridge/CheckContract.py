@@ -5,6 +5,7 @@ from typing import cast as CastValue
 from convert.adapters.Fusion.State.DecodeState import DecodeState
 
 
+# invalid contract input must fail here so public document claims remain grounded in native records
 def CheckContract(Value: object, FieldName: str, Version: int = 1) -> object:
     if not isinstance(Value, Mapping):
         raise ValueError("Fusion conversion requires a versioned semantic contract")

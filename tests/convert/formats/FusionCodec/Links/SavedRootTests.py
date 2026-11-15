@@ -14,6 +14,7 @@ from convert.formats.Fusion.DocumentCodec.Records.EmitDocSegment import (
 )
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
+# saved root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KSavedRoot = (
     FilePath(__file__).resolve().parents[5]
     / "re"
@@ -24,11 +25,13 @@ KSavedRoot = (
     / "KitAsmRootSaved.f3d"
 )
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
 
+# shared segment of kind setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SegmentOfKind(
     Segments: tuple[ParsedSegment, ...], KindValue: SegmentKind
 ) -> ParsedSegment:
@@ -39,6 +42,7 @@ def SegmentOfKind(
     return Matches[0]
 
 
+# the saved root contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestSavedRoot() -> None:
     Payload = KSavedRoot.read_bytes()
@@ -58,6 +62,7 @@ def TestSavedRoot() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the slack bound contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestSlackBound() -> None:
     Container = ReadContainer(KSavedRoot.read_bytes())

@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.ParsePackageXml import (
 )
 
 
+# the node from xml contract needs a shared interpretation so typed appearance properties retain their native identifiers
 def NodeFromXml(Value: XmlElement) -> SchemaNode:
     return SchemaNode(
         Value.tag,
@@ -15,5 +16,6 @@ def NodeFromXml(Value: XmlElement) -> SchemaNode:
     )
 
 
+# the schema node operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadSchemaNode(Payload: bytes) -> SchemaNode:
     return NodeFromXml(ParsePackageXml(Payload))

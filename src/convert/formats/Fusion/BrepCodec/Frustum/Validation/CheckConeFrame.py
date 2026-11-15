@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Validation.FrustumNumbers import (
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# invalid cone frame input must fail here so circular boundaries retain consistent cone and rim geometry
 def CheckConeFrame(Model: FrustumBody, Surface: ConeFrame) -> None:
     for Vector in (Surface.OriginCm, Surface.Axis, Surface.MajorVectorCm):
         CheckVector(Vector)

@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageFace import CageFace
 from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 
 
+# the face operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadFace(Fields: tuple[str, ...]) -> CageFace:
     Origin = ReadInteger(Fields[0])
     Hidden = ReadInteger(Fields[1])

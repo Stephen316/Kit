@@ -10,9 +10,11 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckResources impo
     CheckResources,
 )
 
+# the reserved order must stay explicit so typed appearance properties retain their native identifiers
 KReserved = ("", ".", "..", "cnx.xml", "core.xml")
 
 
+# invalid segment input must fail here so typed appearance properties retain their native identifiers
 def CheckSegment(NameValue: str) -> None:
     if (
         type(NameValue) is not str
@@ -22,6 +24,7 @@ def CheckSegment(NameValue: str) -> None:
         raise ValueError("Invalid material resource folder name")
 
 
+# invalid folder input must fail here so typed appearance properties retain their native identifiers
 def CheckFolder(Value: PackageFolder, Depth: int) -> None:
     if Depth > KMaxFolderDepth:
         raise ValueError("Material resource folders exceed the depth limit")

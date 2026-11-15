@@ -9,6 +9,7 @@ from convert.formats.Fusion.MeshCodec.Streams.MakePayloads import MakePayloads
 from convert.formats.Fusion.MeshCodec.Streams.StreamSpecs import StreamSpecs
 
 
+# shared mutate mesh setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MutateMesh(Model: ParaMesh, KindValue: str) -> bytes:
     Registry = Model.Registry
     Payloads = MakePayloads(Model)

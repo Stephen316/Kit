@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the browser root map contract needs a shared interpretation so archive members retain their native ownership and reference relationships
 def BrowserRootMap(
     Design: DesignResult, Roles: dict[str, int]
 ) -> dict[str, KEntityValue]:

@@ -4,6 +4,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.document.models.DocumentWalk import WalkDocuments
 
 
+# invalid mat writes input must fail here so format boundaries expose consistent document behavior
 def CheckMatWrites(Document: CadDocument, Adapter: CadWriterAdapter) -> None:
     if not any(Value.materials for Value in WalkDocuments(Document)):
         return

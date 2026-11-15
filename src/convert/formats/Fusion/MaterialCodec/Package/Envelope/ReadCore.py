@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.ReadFields import ReadFiel
 from convert.formats.Fusion.MaterialCodec.Package.Xml.ReadGroup import ReadGroup
 
 
+# the core operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadCore(Payload: bytes) -> PackageCore:
     Group = ReadGroup(Payload, "content")
     if len(Group) != 1:

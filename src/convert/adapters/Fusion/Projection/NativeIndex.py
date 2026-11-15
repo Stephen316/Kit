@@ -10,12 +10,14 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# native index needs an explicit state contract so public document claims remain grounded in native records
 @MakeDataClass(frozen=True, slots=True)
 class NativeIndex:
     Segment: ParsedSegment
     Names: dict[str, tuple[int, ...]]
     Fields: dict[int, dict[str, KEntityValue]]
 
+    # find one must resolve unambiguously so public document claims remain grounded in native records
     def FindOne(self, NameValue: str) -> dict[str, KEntityValue]:
         Identities = self.Names.get(NameValue, ())
         if len(Identities) != 1:
@@ -23,6 +25,7 @@ class NativeIndex:
         return self.Fields[Identities[0]]
 
 
+# the index operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeIndex(ModelValue: DocumentModel) -> NativeIndex:
     Segments = tuple(
         ItemValue
@@ -58,6 +61,7 @@ def MakeIndex(ModelValue: DocumentModel) -> NativeIndex:
     return NativeIndex(Segments[0], Identities, Fields)
 
 
+# the record fields contract needs a shared interpretation so public document claims remain grounded in native records
 def RecordFields(
     Records: tuple[EntityRecord, ...], Identity: int
 ) -> dict[str, KEntityValue]:
@@ -70,18 +74,21 @@ def RecordFields(
     }
 
 
+# struct fields needs an explicit validity boundary so public document claims remain grounded in native records
 def StructFields(Value: KEntityValue) -> dict[str, KEntityValue]:
     if not isinstance(Value, ValueStruct):
         raise ValueError("Qualified Fusion projection requires a typed structure")
     return {Field.FieldName: Field.Value for Field in Value.Fields}
 
 
+# native text needs an explicit validity boundary so public document claims remain grounded in native records
 def NativeText(Value: KEntityValue) -> str:
     if not isinstance(Value, str):
         raise ValueError("Qualified Fusion projection requires text")
     return Value
 
 
+# native number needs an explicit validity boundary so public document claims remain grounded in native records
 def NativeNumber(Value: KEntityValue) -> float:
     if type(Value) not in (float, int):
         raise ValueError("Qualified Fusion projection requires a numeric value")

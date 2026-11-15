@@ -26,6 +26,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the tcoedge node operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeTcoedgeNode(Value: TcoedgeNode) -> AsmRecord:
     return AsmRecord(
         "tcoedge-coedge",
@@ -41,6 +42,7 @@ def MakeTcoedgeNode(Value: TcoedgeNode) -> AsmRecord:
     )
 
 
+# the tedge node operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeTedgeNode(Value: TedgeNode) -> AsmRecord:
     return AsmRecord(
         "tedge-edge",
@@ -53,6 +55,7 @@ def MakeTedgeNode(Value: TedgeNode) -> AsmRecord:
     )
 
 
+# the tvertex node operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeTvertexNode(Value: TvertexNode) -> AsmRecord:
     return AsmRecord(
         "tvertex-vertex",

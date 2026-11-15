@@ -5,9 +5,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.PlaceFolder import (
     EnrolMut,
 )
 
+# scale folder must remain consistent across callers so paper layouts retain consistent object ownership
 KScaleFolder = "NOD/ACAD_SCALELIST"
 
 
+# the name operation needs one geometric convention so paper layouts retain consistent object ownership
 def ScaleName(ViewScale: float) -> str:
     if ViewScale <= 0:
         raise ValueError("Authored DWG view scale must be positive")
@@ -16,6 +18,7 @@ def ScaleName(ViewScale: float) -> str:
     return f"1:{1 / ViewScale:g}"
 
 
+# the scale operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceScaleMut(Ledger: DraftBook, ViewScale: float) -> str:
     NameText = ScaleName(ViewScale)
     KeyText = KScaleFolder + "/" + NameText

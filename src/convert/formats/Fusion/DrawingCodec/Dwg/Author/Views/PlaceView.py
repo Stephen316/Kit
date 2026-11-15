@@ -30,14 +30,19 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewKeys import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewPlan import ViewPlan
 
+# frame flags must remain consistent across callers so projected geometry retains its paper and model relationships
 KFrameFlags = 966656
+
+# port flags must remain consistent across callers so projected geometry retains its paper and model relationships
 KPortFlags = 835584
 
 
+# the synergy eed contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def SynergyEed() -> tuple[DraftEed, ...]:
     return (DraftEed(HardPointer("APPID:AcSynergy"), DraftRecord((("1070", 1),))),)
 
 
+# the blocks operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceBlocksMut(Ledger: DraftBook, KeySet: ViewKeys, Planned: ViewPlan) -> None:
     _ = PlaceBlockMut(Ledger, KeySet.Inner, "*S")
     _ = PlaceBlockMut(Ledger, KeySet.Outer, "*S")
@@ -73,6 +78,7 @@ def PlaceBlocksMut(Ledger: DraftBook, KeySet: ViewKeys, Planned: ViewPlan) -> No
     AppendMut(Ledger, KeySet.Outer + ".Inserts", SoftPointer(KeySet.ModelRef))
 
 
+# the ports operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlacePortsMut(Ledger: DraftBook, KeySet: ViewKeys, Planned: ViewPlan) -> None:
     Width, Height = Planned.BorderSize
     Center = (*Planned.Center, 0.0)
@@ -117,6 +123,7 @@ def PlacePortsMut(Ledger: DraftBook, KeySet: ViewKeys, Planned: ViewPlan) -> Non
     )
 
 
+# the drawing operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceDrawingMut(
     Ledger: DraftBook, KeySet: ViewKeys, Planned: ViewPlan, ScaleKey: str
 ) -> None:
@@ -139,6 +146,7 @@ def PlaceDrawingMut(
     _ = OwnMut(Ledger, KPaperSpace, KeySet.Drawing)
 
 
+# the view operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceViewMut(Ledger: DraftBook, Planned: ViewPlan, ScaleKey: str) -> ViewKeys:
     KeySet = MakeKeys(Planned.Index)
     PlaceBlocksMut(Ledger, KeySet, Planned)

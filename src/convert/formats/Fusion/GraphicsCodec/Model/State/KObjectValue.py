@@ -16,6 +16,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.QualifierValue import (
 )
 from convert.formats.Fusion.GraphicsCodec.Model.Values.NodePath import NodePath
 
+# the object value variants need one shared contract so graphics reconstruction cannot omit a supported value shape
 KObjectValue = (
     GroupValue
     | GeoValue

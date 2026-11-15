@@ -11,6 +11,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the prism coedges contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismCoedges(Frame: PrismFrame) -> tuple[GeometryRecord, ...]:
     UseValues = BuildUses()
     Lookup = {

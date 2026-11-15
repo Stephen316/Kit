@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitLocalRef import (
 )
 
 
+# the references operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitRefs(KindValue: FieldKind, Value: KFieldValue) -> bytes:
     if type(Value) is not tuple or len(Value) > KMaxFeatureRefs:
         raise ValueError("Invalid Fusion feature reference collection")

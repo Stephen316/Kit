@@ -17,6 +17,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Snapshots.SnapshotName impor
 from convert.formats.Fusion.DocumentCodec.Model.DocumentSnap import DocumentSnap
 
 
+# the snapshot part operation needs a consistent construction rule so supporting records retain their owning document relationships
 def EmitSnapPart(Value: DocumentSnap) -> ContainerPart:
     SnapshotName(Value.Name)
     Snapshot = Value.Snapshot

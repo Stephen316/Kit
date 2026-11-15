@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckTimestamp impo
 )
 
 
+# invalid core input must fail here so typed appearance properties retain their native identifiers
 def CheckCore(Value: PackageCore) -> None:
     try:
         _ = UuidValue(Value.Identifier)

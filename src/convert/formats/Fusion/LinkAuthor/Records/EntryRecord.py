@@ -24,6 +24,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the entry record contract needs a shared interpretation so cross document references retain their intended ownership
 def EntryRecord(
     RootInfo: RootFacts, Facts: TargetFacts, Linkage: LinkKeys, KeySet: PlaceKeys
 ) -> EntityRecord:

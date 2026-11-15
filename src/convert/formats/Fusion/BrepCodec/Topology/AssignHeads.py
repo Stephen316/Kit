@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.EntityRef import EntityRef
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# assign heads needs an explicit validity boundary so topology identity survives native history reconstruction
 def AssignHeads(
     Records: tuple[GeometryRecord, ...], Links: tuple[tuple[int, int], ...]
 ) -> tuple[GeometryRecord, ...]:

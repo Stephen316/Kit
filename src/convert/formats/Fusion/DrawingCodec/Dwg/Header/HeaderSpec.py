@@ -1,3 +1,4 @@
+# header specification must remain consistent across callers so section boundaries and object references remain consistent
 KHeaderSpec = "; ".join(
     (
         "since AC1027 { BLL RequiredVersions }",

@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue impor
 from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeBound import MakeBound
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken, KAsmValue
 
+# the leaf tags vocabulary must stay centralized so journal grammar decoding agrees on supported native identities
 KLeafTags: dict[str, int] = {
     "real": 6,
     "int": 4,
@@ -17,6 +18,7 @@ KLeafTags: dict[str, int] = {
 }
 
 
+# the leaf value decision must stay consistent so nested geometry retains unambiguous record boundaries
 def IsLeafValue(LeafKind: str, Value: KGrammarValue) -> bool:
     if LeafKind in ("int", "enum"):
         return type(Value) is int
@@ -33,6 +35,7 @@ def IsLeafValue(LeafKind: str, Value: KGrammarValue) -> bool:
     return False
 
 
+# the leaf operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeLeaf(LeafKind: str, Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     if LeafKind == "flag" and type(Value) is bool:
         return ((10 if Value else 11, None),)

@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.CuboidRecords import CuboidRecor
 from convert.formats.Fusion.GeometryCodec.Prism.EncodePrismVal import EncodePrismVal
 
 
+# the cuboid smb operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EmitCuboidSmb(Model: CuboidBody, Stamp: GeometryStamp) -> bytes:
     Parts = [EmitSmbHeader(Stamp)]
     for Record in CuboidRecords(Model):

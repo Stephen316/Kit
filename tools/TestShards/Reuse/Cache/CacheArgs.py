@@ -4,6 +4,7 @@ import argparse as ArgParse
 from pathlib import Path as FilePath
 
 
+# the cache args operation needs a consistent construction rule so dependency changes cannot revive stale passing results
 def BuildCacheArgs() -> ArgParse.ArgumentParser:
     ParserInfo = ArgParse.ArgumentParser(
         description="Record the dependencies of passing test modules for later plans."

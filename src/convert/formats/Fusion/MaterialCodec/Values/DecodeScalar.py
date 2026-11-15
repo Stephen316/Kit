@@ -5,6 +5,7 @@ from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 from convert.formats.Fusion.MaterialCodec.Wire.MaterialReader import MaterialReader
 
 
+# the scalar operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def DecodeScalar(ReaderMut: MaterialReader, Field: PropertySpec) -> KScalarValue:
     if Field.ValueKind in ("String", "URL", "Uuid"):
         return ReaderMut.ReadText()

@@ -15,32 +15,51 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSummary import DwgSummary
 
+# the free marks order must stay explicit so drawing objects retain valid ownership and reference relationships
 KFreeMarks = (50, 100, 512, 0xFFFFFFFF)
+
+# short count needs one explicit bound so native drawing authoring cannot accept inconsistent resource or layout limits
 KShortCount = 4
+
+# short fill must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KShortFill = 0x5555
+
+# aux marker must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KAuxMarker = bytes.fromhex("ff8801")
+
+# the aux version order must stay explicit so drawing objects retain valid ownership and reference relationships
 KAuxVersion = (33, 285)
+
+# the aux saved order must stay explicit so drawing objects retain valid ownership and reference relationships
 KAuxSaved = (22, 46)
+
+# the aux codes order must stay explicit so drawing objects retain valid ownership and reference relationships
 KAuxCodes = (4, 1381, 0, 0, 0, 1, 0, 0, 0, 16843008, 65538)
+
+# aux names must remain consistent across callers so drawing objects retain valid ownership and reference relationships
 KAuxNames = tuple(f"Code{Letter}" for Letter in "ABCDEF") + tuple(
     f"Reserved{Letter}" for Letter in "BCDEF"
 )
 
 
+# the record operation needs a consistent construction rule so drawing objects retain valid ownership and reference relationships
 def MakeRecord(*Pairs: tuple[str, KDwgValue]) -> DwgRecord:
     return DwgRecord(tuple(DwgField(Called, Value) for Called, Value in Pairs))
 
 
+# the author summary contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def AuthorSummary(Moment: DwgDayTime) -> DwgSummary:
     return DwgSummary(
         "", "", "", "", "", "", "", "", DwgDayTime(0, 0), Moment, Moment, (), (0, 0)
     )
 
 
+# the author app info contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def AuthorAppInfo() -> DwgAppInfo:
     return DwgAppInfo(3, "AppInfoDataList", (DwgAppEntry(KProductKey, KProductText),))
 
 
+# the free space contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def FreeSpace(ObjectCount: int, Moment: DwgDayTime) -> DwgRecord:
     Pairs = tuple(
         DwgRecord((DwgField("PairFirst", Marker), DwgField("PairSecond", 0)))
@@ -58,6 +77,7 @@ def FreeSpace(ObjectCount: int, Moment: DwgDayTime) -> DwgRecord:
     )
 
 
+# the aux header contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def AuxHeader(HandSeed: int, Moment: DwgDayTime) -> DwgRecord:
     Codes = tuple(zip(KAuxNames, KAuxCodes))
     return MakeRecord(
@@ -86,6 +106,7 @@ def AuxHeader(HandSeed: int, Moment: DwgDayTime) -> DwgRecord:
     )
 
 
+# save shorts needs an explicit validity boundary so drawing objects retain valid ownership and reference relationships
 def SaveShorts(VersionGuid: str) -> DwgRecord:
     try:
         Digits = UUID(VersionGuid.strip("{}")).bytes
@@ -104,6 +125,7 @@ def SaveShorts(VersionGuid: str) -> DwgRecord:
     return MakeFrame(18 * KShortCount, TailBits, b"")
 
 
+# the rev history contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def RevHistory() -> DwgRecord:
     return MakeRecord(
         ("ReservedA", 0),
@@ -113,6 +135,7 @@ def RevHistory() -> DwgRecord:
     )
 
 
+# the section vars contract needs a shared interpretation so drawing objects retain valid ownership and reference relationships
 def SectionVars(
     HandSeed: int, ObjectCount: int, Moment: DwgDayTime, VersionGuid: str
 ) -> tuple[tuple[str, DwgRecord], ...]:

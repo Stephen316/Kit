@@ -10,6 +10,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer sketch contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferSketchMut(State: SceneCodec, Value: SketchWorld | None) -> SketchWorld:
     FaceBody = (
         XferBrepMut(State, Value.FaceBody if Value else None)

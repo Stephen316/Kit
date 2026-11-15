@@ -15,9 +15,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import (
     AsText,
 )
 
+# the fixed sizes vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KFixedSizes = {2: "<B", 40: "<d", 41: "<d", 42: "<d", 70: "<H", 71: "<I"}
 
 
+# the eed value operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadEedValue(
     DataValue: bytes, Position: int, ItemCode: int
 ) -> tuple[KDwgValue, int]:
@@ -44,6 +46,7 @@ def ReadEedValue(
     return (float(Value) if Layout == "<d" else int(Value)), Position + len(SpanBytes)
 
 
+# the eed items operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadEedItems(DataValue: bytes) -> DwgRecord:
     Fields: list[DwgField] = []
     Position = 0
@@ -54,6 +57,7 @@ def ReadEedItems(DataValue: bytes) -> DwgRecord:
     return DwgRecord(tuple(Fields))
 
 
+# the eed value operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeEedValue(ItemCode: int, Value: KDwgValue) -> bytes:
     if ItemCode == 0:
         Encoded = AsText(Value).encode("utf-16-le")
@@ -72,6 +76,7 @@ def EncodeEedValue(ItemCode: int, Value: KDwgValue) -> bytes:
     return PackFields(Layout, AsInt(Value))
 
 
+# the eed items operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeEedItems(EedItems: DwgRecord) -> bytes:
     return b"".join(
         bytes((int(Entry.FieldName) - 1000,))

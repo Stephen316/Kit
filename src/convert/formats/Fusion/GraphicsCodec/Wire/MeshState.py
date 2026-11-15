@@ -3,7 +3,10 @@ from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import (
 )
 
 
+# the mesh state contract needs a dedicated boundary so display geometry retains its entity and scene relationships
 class MeshState:
+
+    # mesh state needs explicit initial state so display geometry retains its entity and scene relationships
     def __init__(
         self,
         Streams: tuple[GraphicsStream, ...],

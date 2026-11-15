@@ -18,10 +18,12 @@ from convert.formats.Fusion.LinkAuthor.Planning.FeatureOrder import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the local items contract needs a shared interpretation so cross document references retain their intended ownership
 def LocalItems(Identities: tuple[int, ...]) -> tuple[LocalRef, ...]:
     return tuple(LocalRef(Identity) for Identity in Identities)
 
 
+# the edit places contract needs a shared interpretation so cross document references retain their intended ownership
 def EditPlaces(
     Records: tuple[EntityRecord, ...], RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[EntityRecord, ...]:
@@ -50,6 +52,7 @@ def EditPlaces(
     return AppendItems(Records, RootInfo.Overrides, "children", Overrides)
 
 
+# edit features needs an explicit validity boundary so cross document references retain their intended ownership
 def EditFeatures(
     Records: tuple[EntityRecord, ...], RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[EntityRecord, ...]:
@@ -74,6 +77,7 @@ def EditFeatures(
     )
 
 
+# edit joint needs an explicit validity boundary so cross document references retain their intended ownership
 def EditJoint(
     Records: tuple[EntityRecord, ...], RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[EntityRecord, ...]:
@@ -100,6 +104,7 @@ def EditJoint(
     )
 
 
+# the edit design contract needs a shared interpretation so cross document references retain their intended ownership
 def EditDesign(
     Records: tuple[EntityRecord, ...], RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[EntityRecord, ...]:

@@ -1,3 +1,4 @@
+# the numeric operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def MakeNumeric(
     NameValue: str, LengthMm: float, Comment: str, Birthday: int
 ) -> dict[str, object]:

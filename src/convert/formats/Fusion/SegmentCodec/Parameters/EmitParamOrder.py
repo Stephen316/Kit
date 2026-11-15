@@ -9,6 +9,7 @@ from convert.formats.Fusion.SegmentCodec.Parameters.ParamScope import ParamScope
 from convert.formats.Fusion.SegmentCodec.Parameters.ParamSink import ParamSink
 
 
+# the parameter order operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitParamOrder(Value: ParamScope) -> bytes:
     CheckParamScope(Value)
     Output = ParamSink()

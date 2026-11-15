@@ -3,6 +3,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadRawCharMut import ReadRawC
 from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadRawLongMut import ReadRawLongMut
 
 
+# the bit long operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadBitLongMut(Cursor: BitCursor) -> int:
     CodeBits = Cursor.TakeBits(2)
     if CodeBits == 0:

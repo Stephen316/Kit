@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.PackageFolder import (
 )
 
 
+# the folder entries contract needs a shared interpretation so typed appearance properties retain their native identifiers
 def FolderEntries(Value: PackageFolder, PathValue: str) -> dict[str, bytes]:
     Result = {PathValue + "core.xml": EmitCore(Value.Core)}
     if Value.Links:

@@ -9,6 +9,7 @@ from tests.convert.formats.FusionCodec.TSpline.ReadTsmCases import ReadTsmCases
 from tests.convert.formats.FusionCodec.TSpline.ReadTsmFile import ReadTsmFile
 
 
+# the tsm reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "Fault", ("mate", "flags", "owner", "number", "arity", "unknown", "cap", "star")
 )

@@ -17,6 +17,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSectionInfo import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Pack.ReadPackPlan import ReadPackPlan
 
 
+# the data image operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadDataImage(
     Content: bytes,
     MapPage: DwgMapPage,
@@ -44,6 +45,7 @@ def ReadDataImage(
     )
 
 
+# the sys image operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSysImage(
     Content: bytes, MapPage: DwgMapPage, SecondAddress: int
 ) -> DwgPageImage:
@@ -66,6 +68,7 @@ def ReadSysImage(
     )
 
 
+# the images operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadImages(Content: bytes, Inventory: DwgInventory) -> tuple[DwgPageImage, ...]:
     Owners: dict[int, tuple[DwgSectionInfo, DwgDataPage]] = {}
     for Section in Inventory.Sections:

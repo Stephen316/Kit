@@ -10,13 +10,17 @@ from tests.convert.formats.FusionCodec.Brep.Prism.PrismArchive import (
     StorePrism,
 )
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[6]
+
+# the native source cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNativeSource = (
     KRepoRoot
     / "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d"
 )
 
 
+# the native prism contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

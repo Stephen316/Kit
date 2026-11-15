@@ -8,9 +8,12 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 from interchange import CadDocument
 
+# the profile kind shape must stay shared so native document reconstruction uses one contract for compatible values
 KProfileKind = Literal[
     "parameter", "circle", "rectangle", "extrusion", "cuboid", "frustum"
 ]
+
+# the profile names cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KProfileNames: tuple[KProfileKind, ...] = (
     "parameter",
     "circle",
@@ -21,6 +24,7 @@ KProfileNames: tuple[KProfileKind, ...] = (
 )
 
 
+# shared adapter case setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AdapterCase(ProfileKind: KProfileKind) -> CadDocument:
     Specification = DocumentSpec(
         "Public Fusion",

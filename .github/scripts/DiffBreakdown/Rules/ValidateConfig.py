@@ -2,19 +2,30 @@ from __future__ import annotations
 
 import re as Regex
 
+# the policy names vocabulary must stay centralized so diff classification agrees on supported native identities
 KPolicyNames = frozenset({"review", "excluded", "separate"})
+
+# name pattern must remain consistent across callers so review categories remain consistent across push snapshots
 KNamePattern = r"[A-Za-z0-9][A-Za-z0-9 ()_/-]{0,63}"
+
+# color pattern must remain consistent across callers so review categories remain consistent across push snapshots
 KColorPattern = r"[0-9A-Fa-f]{6}"
+
+# size limits needs one explicit bound so diff classification cannot accept inconsistent resource or layout limits
 KSizeLimits = (("TopFiles", 10), ("DetailFiles", 50), ("ReviewThreshold", 10**7))
+
+# the role keys order must stay explicit so review categories remain consistent across push snapshots
 KRoleKeys = ("Unknown", "Binary", "Formatting")
 
 
+# invalid name input must fail here so review categories remain consistent across push snapshots
 def RequireName(NameText: str) -> str:
     if Regex.fullmatch(KNamePattern, NameText) is None:
         raise ValueError(f"Invalid category name: {NameText!r}")
     return NameText
 
 
+# invalid config input must fail here so review categories remain consistent across push snapshots
 def ValidateConfig(Config: dict[str, object]) -> None:
     if Config.get("Version") != 1:
         raise ValueError("Unsupported diff breakdown configuration version")

@@ -1,6 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 
+# redirect design needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class RedirectDesign:
     FileVersion: int
@@ -10,6 +11,7 @@ class RedirectDesign:
     VersionUrn: str
 
 
+# redirect value needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class RedirectValue:
     Name: str
@@ -17,6 +19,7 @@ class RedirectValue:
     DataType: str
 
 
+# redirect link needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class RedirectLink:
     Source: str
@@ -25,6 +28,7 @@ class RedirectLink:
     Properties: tuple[RedirectValue, ...]
 
 
+# redirections needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class Redirections:
     SchemaVersion: int

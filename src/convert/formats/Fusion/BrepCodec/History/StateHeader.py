@@ -2,6 +2,7 @@ from convert.formats.Fusion.GeometryCodec.EntityRef import EntityRef
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the state head operation needs a consistent construction rule so topology identity survives native history reconstruction
 def MakeStateHead(
     StateId: int, NodeIndex: int, PriorNode: int, NextNode: int
 ) -> tuple[KGeometryValue, ...]:

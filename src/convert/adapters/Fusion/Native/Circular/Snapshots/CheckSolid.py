@@ -16,6 +16,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import Ellips
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# invalid solid input must fail here so public geometry remains consistent with native circular topology
 def CheckSolid(
     State: GeometryState, Faces: tuple[FaceNode, ...], Model: FrustumBody
 ) -> None:
@@ -60,6 +61,7 @@ def CheckSolid(
         )
 
 
+# invalid solid rim input must fail here so public geometry remains consistent with native circular topology
 def CheckSolidRim(
     State: GeometryState, EdgeValue: EdgeNode, Model: FrustumBody
 ) -> None:

@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the insert state operation needs a consistent construction rule so topology identity survives native history reconstruction
 def MakeInsertState(History: HistoryState, RecordCount: int) -> GeometryRecord:
     Values: list[KGeometryValue] = [
         *MakeStateHead(History.CurrentId, 0, -1, 1),

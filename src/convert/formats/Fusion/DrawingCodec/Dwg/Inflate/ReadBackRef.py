@@ -2,6 +2,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.ReadExtended import ReadExt
 from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.TakeByte import TakeByte
 
 
+# the back reference operation needs a distinct decoding boundary so compressed page boundaries cannot overrun their declared payload
 def ReadBackRef(Packed: bytes, Position: int, Opcode: int) -> tuple[int, int, int, int]:
     Cursor = Position
     if Opcode >= 0x40:

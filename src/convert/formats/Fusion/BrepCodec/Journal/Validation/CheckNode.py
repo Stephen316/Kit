@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.EmitWireRecord import (
 )
 
 
+# invalid node input must fail here so inconsistent revision links fail before history reconstruction
 def CheckNode(Value: KJournalEntity) -> None:
     Record = MakeEntityNode(Value)
     _ = EmitWireRecord(Record)

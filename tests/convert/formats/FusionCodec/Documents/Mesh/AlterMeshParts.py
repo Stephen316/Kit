@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Mesh.EmitMeshPart import (
 from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
+# shared alter mesh parts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AlterMeshParts(
     Parts: tuple[ContainerPart, ...], Model: DocumentModel, Variant: str
 ) -> tuple[ContainerPart, ...]:

@@ -4,6 +4,7 @@ from convert.formats.Fusion.TSplineCodec.Model.KnotSurface import KnotSurface
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# invalid knots input must fail here so control cage topology retains its native connectivity
 def CheckKnots(Surface: TsplineSurface) -> None:
     if not isinstance(Surface, KnotSurface):
         return

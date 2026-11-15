@@ -33,17 +33,24 @@ from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# history header must remain consistent across callers so surface geometry retains the control cage shape
 KHistoryHeader = BrepHeader(23200, 2, 3, 50.0, 1e-6, 1e-10)
+
+# snapshot header must remain consistent across callers so surface geometry retains the control cage shape
 KSnapshotHeader = BrepHeader(23200, 2, 2, 10.0, 1e-6, 1e-10)
+
+# form history must remain consistent across callers so surface geometry retains the control cage shape
 KFormHistory = HistoryState(4, 2, 4, 1, 2)
 
 
+# form boundary representation needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class FormBrep:
     History: JournalModel
     Snapshot: GeometryState
 
 
+# invalid form marks input must fail here so surface geometry retains the control cage shape
 def CheckFormMarks(Marks: FormMarks) -> None:
     if not isinstance(CastValue(object, Marks), FormMarks):
         raise ValueError("Converted Form BRep needs typed provenance marks")
@@ -54,6 +61,7 @@ def CheckFormMarks(Marks: FormMarks) -> None:
             raise ValueError("Converted Form BRep marks must be exact integers")
 
 
+# the create form boundary representation contract needs a shared interpretation so surface geometry retains the control cage shape
 def CreateFormBrep(
     Surface: TsplineSurface, Model: FormBody, Marks: FormMarks
 ) -> FormBrep:

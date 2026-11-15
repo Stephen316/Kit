@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from xml.etree.ElementTree import Element as XmlElement
 
 
+# the fields operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
 def ReadFields(Value: XmlElement, Types: Mapping[str, str]) -> dict[str, str]:
     Fields: dict[str, str] = {}
     for Child in Value:

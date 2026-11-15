@@ -1,9 +1,11 @@
 from struct import pack as PackBytes
 from zlib import compress as Compress
 
+# the magic cases must remain explicit so format translation exercises the intended compatibility boundary
 KMagic = bytes.fromhex("231dd571da8148a2a85898b21b89ef99")
 
 
+# shared frame fixture setup keeps fixtures consistent so format translation failures identify the intended compatibility boundary
 def FrameFixture(DataValue: bytes, Damage: str = "", Chained: bool = True) -> bytes:
     Pieces = (
         (DataValue[:2], DataValue[2:31], DataValue[31:]) if Chained else (DataValue,)

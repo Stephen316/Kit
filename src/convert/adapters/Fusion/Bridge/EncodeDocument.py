@@ -13,6 +13,7 @@ from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from interchange.document.models.DocumentModel import CadDocument
 
 
+# the document operation needs a consistent construction rule so public document claims remain grounded in native records
 def EncodeDocument(Document: CadDocument) -> bytes:
     Document.AssertValid()
     if set(Document.metadata) == {"fusion.authoring"}:

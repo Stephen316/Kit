@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.Records.NativeAuxiliary import (
 )
 
 
+# the graph operation needs a consistent construction rule so public document claims remain grounded in native records
 def BuildGraph(Value: DocumentModel) -> NativeGraph:
     Catalog = {Entry.Value.ClassGuid.upper(): Entry for Entry in ReadNames()}
     Auxiliary = {Entry.ClassGuid.upper() for Entry in KAuxiliarySchemas}
@@ -40,6 +41,7 @@ def BuildGraph(Value: DocumentModel) -> NativeGraph:
     return NativeGraph(Nodes, Bases)
 
 
+# class bases needs an explicit validity boundary so public document claims remain grounded in native records
 def ClassBases(
     Value: NativeSchema, Catalog: dict[str, NativeSchema]
 ) -> tuple[str, ...]:

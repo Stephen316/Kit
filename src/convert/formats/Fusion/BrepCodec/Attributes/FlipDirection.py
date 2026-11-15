@@ -1,3 +1,4 @@
+# flip direction needs an explicit validity boundary so native topology can resolve its owning modeling operation
 def FlipDirection(Direction: int) -> int:
     if Direction == (1 << 32) - 1:
         return Direction

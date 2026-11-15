@@ -6,17 +6,20 @@ import tempfile as Tempfile
 import unittest as UnitTest
 from pathlib import Path as FilePath
 
+from pytest import mark as TestMarks
+
 from tests.Policy.RepoFixture import RepoFixture
 
 # fixture sources must carry one compliant rationale so clean cases prove real coverage
 KCleanSource = """\
+
+# doubling stays shared so fixture comparisons exercise consistent source behavior
 def Double(Value):
     return Value * 2
 """
 
 # fixture sources omit the mandatory rationale so violation detection gets exercised
 KBadSource = """\
-# doubling lives here because several fixture assertions reuse the same math
 def Broken():
     return 1
 """
@@ -58,7 +61,7 @@ class TestDiffGate(UnitTest.TestCase):
             RootPath = FilePath(TmpPath)
             FixtureInfo = RepoFixture(RootPath)
             FixtureInfo.WriteFile("Alpha.py", KCleanSource)
-            InvalidSource = KBadSource.replace("doubling", "Doubling")
+            InvalidSource = KCleanSource.replace("doubling", "Doubling")
             FixtureInfo.WriteFile("Legacy.py", InvalidSource)
             BaseRef = FixtureInfo.CommitAll("base")
             FixtureInfo.WriteFile("Bravo.py", InvalidSource)
@@ -75,13 +78,13 @@ class TestDiffGate(UnitTest.TestCase):
         with Tempfile.TemporaryDirectory() as TmpPath:
             RootPath = FilePath(TmpPath)
             FixtureInfo = RepoFixture(RootPath)
-            FixtureInfo.WriteFile("Alpha.py", KBadSource)
-            BaseRef = FixtureInfo.CommitAll("base")
             FixtureInfo.WriteFile("Alpha.py", KCleanSource)
+            BaseRef = FixtureInfo.CommitAll("base")
+            FixtureInfo.WriteFile("Alpha.py", KBadSource)
             HeadRef = FixtureInfo.CommitAll("head")
             ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
-        self.assertEqual(ResultInfo.returncode, 0, ResultInfo.stderr)
-        self.assertIn("passed", ResultInfo.stdout)
+        self.assertEqual(ResultInfo.returncode, 1, ResultInfo.stderr)
+        self.assertIn("RAT001", ResultInfo.stdout)
 
 
 # scope coverage proves excluded trees and non python edits never trigger failures
@@ -127,13 +130,16 @@ class TestArgGate(UnitTest.TestCase):
         self.assertEqual(ResultInfo.returncode, 2)
 
 
+# the kept reason contract needs boundary coverage so invalid owned sources fail at the command boundary
 def CheckKeptReason() -> None:
     with Tempfile.TemporaryDirectory() as TmpPath:
         RootPath = FilePath(TmpPath)
         FixtureInfo = RepoFixture(RootPath)
-        FixtureInfo.WriteFile("Alpha.py", KBadSource)
+        FixtureInfo.WriteFile("Alpha.py", KCleanSource)
         BaseRef = FixtureInfo.CommitAll("base")
-        FixtureInfo.WriteFile("Alpha.py", KBadSource.replace("return 1", "return 2"))
+        FixtureInfo.WriteFile(
+            "Alpha.py", KCleanSource.replace("Value * 2", "Value * 3")
+        )
         FixtureInfo.WriteFile("Bravo.py", KCleanSource)
         HeadRef = FixtureInfo.CommitAll("head")
         ResultInfo = RunModule(RootPath, BaseRef, HeadRef)
@@ -148,14 +154,104 @@ def CheckNewReason() -> None:
         FixtureInfo = RepoFixture(RootPath)
         FixtureInfo.WriteFile("Alpha.py", KCleanSource)
         BaseRef = FixtureInfo.CommitAll("base")
-        FixtureInfo.WriteFile("Bravo.py", "\n" + KBadSource)
+        FixtureInfo.WriteFile("Bravo.py", KCleanSource)
         HeadRef = FixtureInfo.CommitAll("add rationale")
         PassedInfo = RunModule(RootPath, BaseRef, HeadRef)
         FixtureInfo.WriteFile(
-            "Bravo.py", "\n" + KBadSource + "\n# this comment explains nothing\n"
+            "Bravo.py", KCleanSource + "\n# this comment explains nothing\n"
         )
         HeadRef = FixtureInfo.CommitAll("add stray comment")
         FailedInfo = RunModule(RootPath, BaseRef, HeadRef)
     assert PassedInfo.returncode == 0, PassedInfo.stdout
     assert FailedInfo.returncode == 1, FailedInfo.stderr
     assert "Bravo.py:6:1: CMT002" in FailedInfo.stdout
+
+
+# every declaration form must fail through the command boundary when its required reason disappears
+@TestMarks.parametrize(
+    "SourceText",
+    (
+        "class Model:\n    pass\n",
+        "def Compute():\n    return 1\n",
+        "async def FetchData():\n    return 1\n",
+        "@staticmethod\ndef Compute():\n    return 1\n",
+        "KResult = 1\n",
+        "KResult: int = 1\n",
+        "from pathlib import Path\n\nLegacyPath = Path\n",
+        "KCallback = lambda Value: Value\n",
+        "\n# nested scopes need coverage so local helpers cannot silently lose their purpose\n"
+        + "def OuterCall():\n    def InnerCall():\n        return 1\n"
+        + "    return InnerCall()\n",
+        "\n# callable behavior needs coverage so inline callbacks retain their ordering purpose\n"
+        + "def OrderValues(Values):\n    return sorted(Values, key=lambda Value: -Value)\n",
+        "if True:\n    KResult = 1\n",
+    ),
+)
+def CheckNoReasons(TmpPath: FilePath, SourceText: str) -> None:
+    FixtureInfo = RepoFixture(TmpPath)
+    FixtureInfo.WriteFile("Alpha.py", SourceText)
+    _ = FixtureInfo.CommitAll("missing reason")
+    ResultInfo = RunModule(TmpPath)
+    assert ResultInfo.returncode == 1, ResultInfo.stdout + ResultInfo.stderr
+    assert "Alpha.py:" in ResultInfo.stdout
+    assert "RAT001" in ResultInfo.stdout
+
+
+# existing debt must remain visible even when another change leaves its file untouched
+def CheckDebt(TmpPath: FilePath) -> None:
+    FixtureInfo = RepoFixture(TmpPath)
+    FixtureInfo.WriteFile("Legacy.py", KBadSource)
+    _ = FixtureInfo.CommitAll("legacy debt")
+    FixtureInfo.WriteFile("Alpha.py", KCleanSource)
+    FixtureInfo.WriteFile(
+        "tools/steering/SteeringBaseline.txt",
+        "Legacy.py\tRAT001\tdeclaration needs a rationale comment\n",
+    )
+    _ = FixtureInfo.CommitAll("unrelated change and baseline")
+    ResultInfo = RunModule(TmpPath)
+    assert ResultInfo.returncode == 1, ResultInfo.stdout + ResultInfo.stderr
+    assert "Legacy.py:1:1: RAT001" in ResultInfo.stdout
+    assert "Alpha.py:" not in ResultInfo.stdout
+
+
+# syntax and placement rules need process coverage so restoration cannot accept mechanically valid explanations
+@TestMarks.parametrize(
+    "SourceText,RuleCode",
+    (
+        (
+            "import math\n# shared math exists so callers agree on one contract\nKValue = 1\n",
+            "RAT002",
+        ),
+        ("# too short\nKValue = 1\n", "RAT003"),
+        (
+            "# Shared math exists so callers agree on one contract\nKValue = 1\n",
+            "RAT003",
+        ),
+        (
+            "# shared math exists so callers agree on one contract.\nKValue = 1\n",
+            "RAT003",
+        ),
+        ("# returns the input value multiplied by two\nKValue = 1\n", "RAT004"),
+    ),
+)
+def CheckTextRules(TmpPath: FilePath, SourceText: str, RuleCode: str) -> None:
+    FixtureInfo = RepoFixture(TmpPath)
+    FixtureInfo.WriteFile("Alpha.py", SourceText)
+    _ = FixtureInfo.CommitAll("invalid reason")
+    ResultInfo = RunModule(TmpPath)
+    assert ResultInfo.returncode == 1, ResultInfo.stdout + ResultInfo.stderr
+    assert RuleCode in ResultInfo.stdout
+
+
+# only repository root exclusions may bypass enforcement so nested owned packages cannot hide missing rationale
+def CheckRootScope(TmpPath: FilePath) -> None:
+    FixtureInfo = RepoFixture(TmpPath)
+    for Folder in ("re", "examples", "modules", "Parashell"):
+        FixtureInfo.WriteFile(f"{Folder}/External.py", KBadSource)
+        FixtureInfo.WriteFile(f"src/{Folder}/Owned.py", KBadSource)
+    _ = FixtureInfo.CommitAll("root and nested scope")
+    ResultInfo = RunModule(TmpPath)
+    assert ResultInfo.returncode == 1, ResultInfo.stdout + ResultInfo.stderr
+    for Folder in ("re", "examples", "modules", "Parashell"):
+        assert f"src/{Folder}/Owned.py:" in ResultInfo.stdout
+        assert f"{Folder}/External.py:" not in ResultInfo.stdout

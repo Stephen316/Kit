@@ -8,6 +8,7 @@ from convert.formats.Fusion.EntityCodec.Values.ValueCalls import KEmitValue
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the pairs operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitPairsMut(
     Value: KEntityValue,
     Shape: WireType,

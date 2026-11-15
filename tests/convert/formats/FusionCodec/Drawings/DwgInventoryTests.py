@@ -5,12 +5,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadDwgInve
 from tests.convert.formats.FusionCodec.Drawings.DrawingSource import HistoricBundle
 
 
+# shared historic drawing setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HistoricDwg() -> bytes:
     Database = ReadDrawBundle(HistoricBundle()).Drawing.Database
     assert Database is not None
     return Database.Content
 
 
+# the historic drawing contract needs boundary coverage so stored document relationships remain consistent
 def TestHistoricDwg() -> None:
     Content = HistoricDwg()
     Inventory = ReadDwgInventory(Content)
@@ -23,6 +25,7 @@ def TestHistoricDwg() -> None:
     assert Inventory.HandleMap.HandleCount == 900
 
 
+# the drawing rejects contract needs boundary coverage so stored document relationships remain consistent
 def TestDwgRejects() -> None:
     Content = HistoricDwg()
     with ExpectError(ValueError, match="unsupported"):

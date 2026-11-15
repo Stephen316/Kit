@@ -54,16 +54,19 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.MakeBsSurface impor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the join tokens contract needs a stable decomposition so nested geometry retains unambiguous record boundaries
 def JoinTokens(Groups: Iterable[tuple[KAsmToken, ...]]) -> tuple[KAsmToken, ...]:
     return tuple(ChainItems.from_iterable(Groups))
 
 
+# invalid tuple input must fail here so nested geometry retains unambiguous record boundaries
 def NeedTuple(Value: KGrammarValue, Length: int | None) -> tuple[KGrammarValue, ...]:
     if type(Value) is not tuple or (Length is not None and len(Value) != Length):
         raise ValueError("Fusion grammar sequence disagrees with its rule")
     return Value
 
 
+# the rule operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeRule(Grammar: KGrammarRule, Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     if isinstance(Grammar, LeafRule):
         return MakeLeaf(Grammar.LeafKind, Value)
@@ -89,6 +92,7 @@ def MakeRule(Grammar: KGrammarRule, Value: KGrammarValue) -> tuple[KAsmToken, ..
     return MakeChoice(Grammar, Value)
 
 
+# the cross operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeCross(Grammar: CrossRule, Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     LeadItems, TrailItems = (
         NeedTuple(Element, None) for Element in NeedTuple(Value, 2)
@@ -101,6 +105,7 @@ def MakeCross(Grammar: CrossRule, Value: KGrammarValue) -> tuple[KAsmToken, ...]
     )
 
 
+# the probe operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeProbe(
     Grammar: PickRule | SwitchRule | PeekRule, ChoiceKey: int | str
 ) -> tuple[KAsmToken, ...]:
@@ -119,6 +124,7 @@ def MakeProbe(
     return ((21 if Grammar.ProbeKind == "enum" else 4, ChoiceKey),)
 
 
+# the choice operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeChoice(
     Grammar: PickRule | SwitchRule | PeekRule, Value: KGrammarValue
 ) -> tuple[KAsmToken, ...]:
@@ -138,6 +144,7 @@ def MakeChoice(
     return (*MakeProbe(Grammar, Value.ChoiceKey), *MakeRule(Selected, Value.Body))
 
 
+# the call operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeCall(RuleName: str, Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     if RuleName in KScopeFamily:
         return MakeScope(KScopeFamily[RuleName], Value)
@@ -154,6 +161,7 @@ def MakeCall(RuleName: str, Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     raise ValueError("Fusion grammar value disagrees with its rule: " + RuleName)
 
 
+# the scope operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeScope(Family: str, Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     if isinstance(Value, TsplineSurf) and Family == "surface":
         return MakeTsplSurf(Value)

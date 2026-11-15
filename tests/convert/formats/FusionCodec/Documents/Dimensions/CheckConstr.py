@@ -8,6 +8,7 @@ from tests.convert.formats.FusionCodec.Documents.Dimensions.DimensionFields impo
 from tests.convert.formats.FusionCodec.Documents.Rectangle.RectValues import ReadPoint
 
 
+# the constr contract needs boundary coverage so stored document relationships remain consistent
 def CheckConstr(Model: DocumentModel) -> None:
     Records = DimensionRows(Model, "SketchGeomConstraint")
     Sketch = DimensionFields(DimensionRows(Model, "MSketch")[0])

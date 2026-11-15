@@ -6,9 +6,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.History.DraftKey import (
     KDraftState,
 )
 
+# the segment key shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KSegmentKey = tuple[KDraftKey, int]
 
 
+# the state contents contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def StateContents(
     States: tuple[KDraftState, ...],
 ) -> list[dict[KSegmentKey, tuple[object, ...]]]:

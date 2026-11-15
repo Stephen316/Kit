@@ -69,6 +69,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadTextMut import 
 )
 
 
+# the rule operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadRuleMut(Cursor: FieldCursor, Grammar: KGrammarRule) -> KGrammarValue:
     if isinstance(Grammar, LeafRule):
         return ReadLeafMut(Cursor, Grammar.LeafKind)
@@ -89,6 +90,7 @@ def ReadRuleMut(Cursor: FieldCursor, Grammar: KGrammarRule) -> KGrammarValue:
     return ReadChoiceMut(Cursor, Grammar)
 
 
+# the cross operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadCrossMut(Cursor: FieldCursor, Grammar: CrossRule) -> KGrammarValue:
     TrailCount = ReadCountMut(Cursor, 4096)
     LeadCount = ReadCountMut(Cursor, 4096)
@@ -97,6 +99,7 @@ def ReadCrossMut(Cursor: FieldCursor, Grammar: CrossRule) -> KGrammarValue:
     return LeadItems, TrailItems
 
 
+# the probe operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadProbeMut(
     Cursor: FieldCursor, Grammar: PickRule | SwitchRule | PeekRule
 ) -> int | str:
@@ -111,6 +114,7 @@ def ReadProbeMut(
     return ReadLongMut(Cursor, 21 if Grammar.ProbeKind == "enum" else 4)
 
 
+# the choice operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadChoiceMut(
     Cursor: FieldCursor, Grammar: PickRule | SwitchRule | PeekRule
 ) -> ChoiceValue:
@@ -127,6 +131,7 @@ def ReadChoiceMut(
     return ChoiceValue(ChoiceKey, ReadRuleMut(Cursor, Selected))
 
 
+# the call operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadCallMut(Cursor: FieldCursor, RuleName: str) -> KGrammarValue:
     if RuleName in KScopeFamily:
         return ReadSubtypeMut(Cursor, KScopeFamily[RuleName])
@@ -141,6 +146,7 @@ def ReadCallMut(Cursor: FieldCursor, RuleName: str) -> KGrammarValue:
     return ReadRuleMut(Cursor, KNamedRules[RuleName])
 
 
+# the subtype operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadSubtypeMut(Cursor: FieldCursor, Family: str) -> KSubtypeValue:
     Scope = ReadScopeMut(Cursor, Family)
     if isinstance(Scope, SubtypeRef):

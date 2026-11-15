@@ -17,6 +17,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the prism frame operation needs a distinct decoding boundary so profile topology remains connected to its extrusion history
 def ReadPrismFrame(
     Table: AsmTable, Graph: PrismGraph, Roles: PrismRoles, Mapping: dict[int, int]
 ) -> PrismFrame:

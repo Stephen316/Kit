@@ -7,6 +7,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import (
 )
 
 
+# graphic scene needs an explicit state contract so display geometry retains its entity and scene relationships
 @MakeDataClass(frozen=True, slots=True)
 class GraphicScene:
     Globals: SceneGlobals

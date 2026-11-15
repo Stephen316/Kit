@@ -3,6 +3,7 @@ from convert.formats.Fusion.TSplineCodec.Model.ControlGrip import ControlGrip
 from convert.formats.Fusion.TSplineCodec.Model.SymmetryMap import SymmetryMap
 
 
+# plane symmetry needs an explicit state contract so control cage topology retains its native connectivity
 @dataclass(frozen=True)
 class PlaneSymmetry:
     Origin: ControlGrip

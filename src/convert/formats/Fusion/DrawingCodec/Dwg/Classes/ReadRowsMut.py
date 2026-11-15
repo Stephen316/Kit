@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Classes.ReadClassRowMut import (
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassRow import DwgClassRow
 
 
+# the rows operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadRowsMut(
     MainCursor: BitCursor, TextCursor: BitCursor
 ) -> tuple[DwgClassRow, ...]:

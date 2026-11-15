@@ -51,6 +51,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.RevolveSpec import 
 from interchange.enums.EnumFeatures import FeatureKind
 from interchange.features.FeatureStep import FeatureStep
 
+# the step kinds vocabulary must stay centralized so native adapter translation agrees on supported native identities
 KStepKinds: dict[type[object], FeatureKind] = {
     FilletSpec: FeatureKind.KFillet,
     ChamferSpec: FeatureKind.KChamfer,
@@ -76,10 +77,12 @@ KStepKinds: dict[type[object], FeatureKind] = {
 }
 
 
+# the step kind contract needs a shared interpretation so public document claims remain grounded in native records
 def StepKind(Feature: KPartFeature) -> FeatureKind:
     return KStepKinds.get(type(Feature), FeatureKind.KShell)
 
 
+# the part steps operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakePartSteps(SpecValue: DocumentSpec) -> tuple[FeatureStep, ...]:
     Steps: list[FeatureStep] = []
     Previous = "extrude"

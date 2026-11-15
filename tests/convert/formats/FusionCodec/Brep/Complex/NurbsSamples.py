@@ -13,13 +13,24 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import Bs
 from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
+# the nurbs history cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNurbsHistory = HistoryState(7, 2, 7, 1, 2, 7)
+
+# the nurbs stamp cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNurbsStamp = GeometryStamp(
     "Kit independent NURBS author", "ASM 232.5.0.65535 OSX", "Thu Nov 12 00:00:00 2026"
 )
+
+# the pillow side cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPillowSide = 2.0
+
+# the pillow origin cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPillowOrigin = (0.5, 0.25, -0.75)
+
+# the pillow axes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPillowAxes = {"x": (1, 0, 0), "y": (0, 1, 0), "z": (0, 0, 1)}
+
+# the pillow faces cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPillowFaces = (
     ((0, 0, 0), "y", "x", 0.25, 1.0, False),
     ((0, 0, 1), "x", "y", 0.5, 1.8, True),
@@ -28,19 +39,27 @@ KPillowFaces = (
     ((0, 0, 0), "z", "y", 0.35, 1.0, False),
     ((1, 0, 0), "y", "z", 0.35, 1.0, False),
 )
+
+# the patch heights cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPatchHeights = (
     (0.0, 0.2, 0.1, -0.1, 0.0),
     (0.3, 0.9, 1.1, 0.6, 0.2),
     (0.1, 0.7, 1.4, 0.8, -0.2),
     (0.0, -0.1, 0.3, 0.2, 0.1),
 )
+
+# the patch shifts cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPatchShifts = {(1, 2): (0.15, 0.0), (2, 3): (0.0, -0.1)}
+
+# the rational heights cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRationalHeights = (
     (0.0, 0.3, 0.1),
     (0.2, 1.0, 0.4),
     (0.4, 1.3, 0.2),
     (0.1, 0.2, 0.0),
 )
+
+# the rational weights cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRationalWeights = (
     (1.0, 0.8, 1.0),
     (0.9, 0.6, 0.9),
@@ -49,6 +68,7 @@ KRationalWeights = (
 )
 
 
+# shared greville grid setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def GrevilleGrid(
     Degree: int, Knots: tuple[float, ...], Counts: tuple[int, ...]
 ) -> tuple[float, ...]:
@@ -69,6 +89,7 @@ def GrevilleGrid(
     return tuple(Averages)
 
 
+# shared bicubic patch setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BicubicPatch() -> BsSurface:
     UGrid = GrevilleGrid(3, (0.0, 0.4, 1.0), (3, 1, 3))
     VGrid = GrevilleGrid(3, (0.0, 1.0), (3, 3))
@@ -101,6 +122,7 @@ def BicubicPatch() -> BsSurface:
     )
 
 
+# shared rational patch setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RationalPatch() -> BsSurface:
     Poles = tuple(
         (
@@ -134,6 +156,7 @@ def RationalPatch() -> BsSurface:
     )
 
 
+# shared corner point setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CornerPoint(Corner: tuple[int, int, int]) -> tuple[float, float, float]:
     return (
         KPillowOrigin[0] + KPillowSide * Corner[0],
@@ -142,10 +165,12 @@ def CornerPoint(Corner: tuple[int, int, int]) -> tuple[float, float, float]:
     )
 
 
+# shared corner index setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CornerIndex(Corner: tuple[int, int, int]) -> int:
     return Corner[0] + 2 * Corner[1] + 4 * Corner[2]
 
 
+# shared pillow edges setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PillowEdges() -> tuple[NurbsEdge, ...]:
     Edges: list[NurbsEdge] = []
     for AxisIndex in range(3):
@@ -180,6 +205,7 @@ def PillowEdges() -> tuple[NurbsEdge, ...]:
     return tuple(Edges)
 
 
+# shared pillow surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PillowSurface(
     Origin: tuple[int, int, int],
     UName: str,
@@ -240,6 +266,7 @@ def PillowSurface(
     )
 
 
+# shared pillow face setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PillowFace(
     Edges: tuple[NurbsEdge, ...],
     Origin: tuple[int, int, int],
@@ -284,6 +311,7 @@ def PillowFace(
     return NurbsFace(Surface, tuple(LoopUses))
 
 
+# shared pillow body setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PillowBody() -> NurbsBody:
     Edges = PillowEdges()
     Points = tuple(
@@ -294,6 +322,7 @@ def PillowBody() -> NurbsBody:
     return NurbsBody(Points, Edges, Faces)
 
 
+# shared nurbs models setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NurbsModels() -> tuple[tuple[str, NurbsBody], ...]:
     return (
         ("AuthoredPatch", PatchSheet(BicubicPatch())),

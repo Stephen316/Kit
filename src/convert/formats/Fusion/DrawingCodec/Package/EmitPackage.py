@@ -18,6 +18,7 @@ from convert.formats.Fusion.DrawingCodec.Package.PackageLimits import (
 from convert.formats.Fusion.DrawingCodec.Package.PackPayload import PackPayload
 
 
+# the package operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitPackage(
     Value: DrawingPackage, CompressZstd: Callable[[bytes], bytes] | None = None
 ) -> bytes:
@@ -43,6 +44,7 @@ def EmitPackage(
     return Output.getvalue()
 
 
+# the entry operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def WriteEntryMut(
     Output: BytesIO,
     Entry: PackageEntry,
@@ -98,6 +100,7 @@ def WriteEntryMut(
     return RowValue
 
 
+# the central operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def WriteCentralMut(Output: BytesIO, RowValue: CentralRow) -> None:
     Layout = RowValue.Layout
     _ = Output.write(

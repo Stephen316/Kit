@@ -3,13 +3,17 @@ from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.LinkAuthor.Model.AssemblyPlan import AssemblyPlan
 
+# place meta must remain consistent across callers so cross document references retain their intended ownership
 KPlaceMeta = "DcXRefPCIFeatureMetaType"
 
+# pin meta must remain consistent across callers so cross document references retain their intended ownership
 KPinMeta = "DcGroundOccurrenceFeatureMetaType"
 
+# joint meta must remain consistent across callers so cross document references retain their intended ownership
 KJointMeta = "DcJointAsBuiltFeatureMetaType"
 
 
+# the feature pairs contract needs a shared interpretation so cross document references retain their intended ownership
 def FeaturePairs(Scheme: AssemblyPlan) -> tuple[tuple[int, int], ...]:
     Pairs = [(KeySet.FeatureId, KeySet.Feature) for KeySet in Scheme.Places]
     Pairs.extend(
@@ -22,6 +26,7 @@ def FeaturePairs(Scheme: AssemblyPlan) -> tuple[tuple[int, int], ...]:
     return tuple(sorted(Pairs))
 
 
+# the node order contract needs a shared interpretation so cross document references retain their intended ownership
 def NodeOrder(Scheme: AssemblyPlan) -> tuple[int, ...]:
     Nodes = {KeySet.Feature: KeySet.NodeId for KeySet in Scheme.Places}
     Features = tuple(PairValue[1] for PairValue in FeaturePairs(Scheme))
@@ -32,6 +37,7 @@ def NodeOrder(Scheme: AssemblyPlan) -> tuple[int, ...]:
     )
 
 
+# the index map contract needs a shared interpretation so cross document references retain their intended ownership
 def IndexMap(Scheme: AssemblyPlan) -> ValueMap[KEntityValue]:
     Counts = (
         (KPlaceMeta, len(Scheme.Places)),

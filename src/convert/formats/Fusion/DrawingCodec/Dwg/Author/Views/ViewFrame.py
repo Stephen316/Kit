@@ -5,13 +5,23 @@ from math import sqrt as SquareRoot
 
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Spec.ViewDraft import ViewDraft
 
+# the point pair shape must stay shared so drawing view authoring uses one contract for compatible values
 KPointPair = tuple[float, float]
+
+# the point triple shape must stay shared so drawing view authoring uses one contract for compatible values
 KPointTriple = tuple[float, float, float]
+
+# the tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTolerance = 1e-9
+
+# base kind must remain consistent across callers so projected geometry retains its paper and model relationships
 KBaseKind = 4
+
+# projected kind must remain consistent across callers so projected geometry retains its paper and model relationships
 KProjectedKind = 0
 
 
+# view frame needs an explicit state contract so projected geometry retains its paper and model relationships
 @MakeDataClass(frozen=True, slots=True)
 class ViewFrame:
     Eye: KPointTriple
@@ -22,6 +32,7 @@ class ViewFrame:
     ViewAngle: float
 
 
+# cross needs one geometric convention so projected geometry retains its paper and model relationships
 def Cross(First: KPointTriple, Second: KPointTriple) -> KPointTriple:
     return (
         First[1] * Second[2] - First[2] * Second[1],
@@ -30,26 +41,32 @@ def Cross(First: KPointTriple, Second: KPointTriple) -> KPointTriple:
     )
 
 
+# the product operation needs one geometric convention so projected geometry retains its paper and model relationships
 def DotProduct(First: KPointTriple, Second: KPointTriple) -> float:
     return sum(Former * Right for Former, Right in zip(First, Second))
 
 
+# scaled needs one geometric convention so projected geometry retains its paper and model relationships
 def Scaled(Vector: KPointTriple, Factor: float) -> KPointTriple:
     return (Vector[0] * Factor, Vector[1] * Factor, Vector[2] * Factor)
 
 
+# the added contract needs a consistent construction rule so projected geometry retains its paper and model relationships
 def Added(First: KPointTriple, Second: KPointTriple) -> KPointTriple:
     return (First[0] + Second[0], First[1] + Second[1], First[2] + Second[2])
 
 
+# the unit decision must stay consistent so projected geometry retains its paper and model relationships
 def IsUnit(Vector: KPointTriple) -> bool:
     return abs(SquareRoot(DotProduct(Vector, Vector)) - 1) < KTolerance
 
 
+# the axis decision must stay consistent so projected geometry retains its paper and model relationships
 def IsAxis(Vector: KPointTriple) -> bool:
     return sum(abs(Component) > KTolerance for Component in Vector) == 1
 
 
+# base frame needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def BaseFrame(Draft: ViewDraft) -> ViewFrame:
     if not IsUnit(Draft.EyeDirection) or not IsUnit(Draft.UpVector):
         raise ValueError("Authored DWG view directions must be unit vectors")
@@ -65,6 +82,7 @@ def BaseFrame(Draft: ViewDraft) -> ViewFrame:
     )
 
 
+# child frame needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def ChildFrame(Parent: ViewFrame, Offset: KPointPair) -> ViewFrame:
     Across, Upward = Offset
     if abs(Upward) < KTolerance and abs(Across) > KTolerance:
@@ -85,6 +103,7 @@ def ChildFrame(Parent: ViewFrame, Offset: KPointPair) -> ViewFrame:
     )
 
 
+# the twist angle contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def TwistAngle(Frame: ViewFrame) -> float:
     Normal = Frame.Eye
     IsPolar = max(abs(Normal[0]), abs(Normal[1])) < 1 / 64

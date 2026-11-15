@@ -6,6 +6,7 @@ from convert.formats.Fusion.BundleCodec.Json.JsonTypes import KJsonValue
 from convert.formats.Fusion.BundleCodec.Json.ReadJson import ReadJson
 from convert.formats.Fusion.DrawingCodec.Members.SheetLayout import SheetLayout
 
+# the sheet keys order must stay explicit so drawing members retain their sheet and model associations
 KSheetKeys = (
     "verticalZones",
     "sheetHeight",
@@ -18,6 +19,7 @@ KSheetKeys = (
 )
 
 
+# the sheet operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitSheet(Value: SheetLayout) -> bytes:
     if not isinstance(CastValue(object, Value), SheetLayout):
         raise ValueError("Expected a typed Fusion drawing sheet layout")
@@ -45,6 +47,7 @@ def EmitSheet(Value: SheetLayout) -> bytes:
     return EmitJson(Fields)
 
 
+# the sheet operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadSheet(Payload: bytes) -> SheetLayout:
     Fields = ReadJson(Payload)
     if not isinstance(Fields, dict) or tuple(Fields) != KSheetKeys:

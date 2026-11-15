@@ -4,6 +4,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertySpec import PropertySpe
 from convert.formats.Fusion.MaterialCodec.Schema.SchemaTable import KSchemaTable
 
 
+# resolve bases needs an explicit validity boundary so typed appearance properties retain their native identifiers
 def ResolveBasesMut(
     SchemaName: str,
     Declared: dict[str, MaterialSchema],

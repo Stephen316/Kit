@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# prism history needs an explicit state contract so profile topology remains connected to its extrusion history
 @MakeDataClass(frozen=True, slots=True)
 class PrismHistory:
     Model: CuboidBody

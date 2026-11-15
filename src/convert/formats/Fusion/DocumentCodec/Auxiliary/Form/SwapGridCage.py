@@ -26,6 +26,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSnap import DocumentSnap
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# the form body decision must stay consistent so supporting records retain their owning document relationships
 def IsFormBody(Entities: tuple[KJournalEntity, ...]) -> bool:
     return any(
         isinstance(Entity, SplineNode) and isinstance(Entity.Surface, TsplineSurf)
@@ -33,6 +34,7 @@ def IsFormBody(Entities: tuple[KJournalEntity, ...]) -> bool:
     )
 
 
+# the swap all contract needs a shared interpretation so supporting records retain their owning document relationships
 def SwapAll(
     Entities: tuple[KJournalEntity, ...],
     Prior: GridResult,
@@ -42,6 +44,7 @@ def SwapAll(
     return tuple(SwapEntity(Entity, Prior, Result, Surface) for Entity in Entities)
 
 
+# the swap body contract needs a shared interpretation so supporting records retain their owning document relationships
 def SwapBody(
     BodyValue: DocumentBody,
     Prior: GridResult,
@@ -55,6 +58,7 @@ def SwapBody(
     return ReplaceValue(BodyValue, History=ReplaceValue(History, Entities=Entities))
 
 
+# the swap snapshot contract needs a shared interpretation so supporting records retain their owning document relationships
 def SwapSnap(
     SnapValue: DocumentSnap,
     Prior: GridResult,
@@ -68,6 +72,7 @@ def SwapSnap(
     return ReplaceValue(SnapValue, Snapshot=ReplaceValue(State, Entities=Entities))
 
 
+# swap grid cage needs an explicit validity boundary so supporting records retain their owning document relationships
 def SwapGridCage(Model: DocumentModel, Surface: TsplineSurface) -> DocumentModel:
     if len(Model.Forms) != 1:
         raise ValueError("Fusion grid cage swap needs exactly one Form")

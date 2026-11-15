@@ -2,6 +2,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the geometry operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def AddGeometryMut(Author: AuthorState) -> None:
     Author.Allocate(
         "origin_point", "WorkPoint", ParentRole="origin", Fields={"originName": "O"}

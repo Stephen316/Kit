@@ -8,6 +8,7 @@ from tests.convert.formats.FusionCodec.Documents.Rectangle.RectValues import (
 )
 
 
+# the rect graph contract needs boundary coverage so stored document relationships remain consistent
 def CheckRectGraph(Model: DocumentModel) -> None:
     Lines = RectFields(Model, "Line3D")
     assert len(Lines) == 4

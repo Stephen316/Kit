@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import Subtran
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 
+# the list programs contract needs a shared interpretation so topology changes retain their native revision relationships
 def ListPrograms(Entities: tuple[KJournalEntity, ...]) -> tuple[TsplineSurface, ...]:
     return tuple(
         Support.Subtrans.Surface

@@ -36,7 +36,10 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the asset view contract needs a dedicated boundary so appearance references remain connected to their owning entities
 class AssetView:
+
+    # asset view needs explicit initial state so appearance references remain connected to their owning entities
     def __init__(self, Asset: MaterialAsset, Indexed: dict[str, SchemaNode]) -> None:
         super().__init__()
         self.Asset = Asset
@@ -46,6 +49,7 @@ class AssetView:
         }
         self.LocalValue = SchemaFacts(Indexed[Asset.SchemaName])[1]
 
+    # the value operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
     def ReadValue(self, Candidates: tuple[str, ...]) -> KInputValue | None:
         Present = tuple(Field for Field in Candidates if Field in self.Values)
         if len(Present) > 1:
@@ -59,6 +63,7 @@ class AssetView:
         return InputValue(Declared, Value)
 
 
+# the number operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadNumber(Source: AssetView, Candidates: tuple[str, ...]) -> float | None:
     Value = Source.ReadValue(Candidates)
     if Value is None or type(Value) is float:
@@ -66,6 +71,7 @@ def ReadNumber(Source: AssetView, Candidates: tuple[str, ...]) -> float | None:
     raise ValueError("Fusion material value is not a number")
 
 
+# the flag operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadFlag(Source: AssetView, Candidates: tuple[str, ...]) -> bool | None:
     Value = Source.ReadValue(Candidates)
     if Value is None or type(Value) is bool:
@@ -73,6 +79,7 @@ def ReadFlag(Source: AssetView, Candidates: tuple[str, ...]) -> bool | None:
     raise ValueError("Fusion material value is not a flag")
 
 
+# the color operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadColor(Source: AssetView, Candidates: tuple[str, ...]) -> ColorValue | None:
     Value = Source.ReadValue(Candidates)
     if Value is None or isinstance(Value, ColorValue):
@@ -80,6 +87,7 @@ def ReadColor(Source: AssetView, Candidates: tuple[str, ...]) -> ColorValue | No
     raise ValueError("Fusion material value is not a color")
 
 
+# the numbers operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadNumbers(
     Source: AssetView,
     Mapping: dict[str, tuple[str, ...]],
@@ -92,12 +100,14 @@ def ReadNumbers(
     }
 
 
+# the choice operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadChoice(Source: AssetView, FieldName: str) -> str | None:
     if FieldName not in Source.Values:
         return None
     return ChoiceLabel(Source.Fields[FieldName], Source.Values[FieldName])
 
 
+# the steps operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadSteps(Source: AssetView) -> tuple[DirectionValue, ...]:
     Steps: list[DirectionValue] = []
     for FieldKey, Candidates in KMechanicFields.items():
@@ -114,6 +124,7 @@ def ReadSteps(Source: AssetView) -> tuple[DirectionValue, ...]:
     return tuple(Steps)
 
 
+# the mechanics operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadMechanics(Source: AssetView) -> MechanicSpec:
     return MechanicSpec(
         **ReadNumbers(Source, KMechanicFields),
@@ -122,6 +133,7 @@ def ReadMechanics(Source: AssetView) -> MechanicSpec:
     )
 
 
+# project material needs an explicit validity boundary so appearance references remain connected to their owning entities
 def ProjectMaterial(Package: MaterialPackage, PhysicalId: str) -> MaterialSpec:
     Indexed = IndexSchemas(Package.Schemas)
     Assets = {Asset.InstanceId: Asset for Asset in Package.Assets}

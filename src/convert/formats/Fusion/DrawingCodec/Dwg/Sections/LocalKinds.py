@@ -21,6 +21,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import (
 )
 
 
+# the encoded operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def TakeEncoded(Cursor: BitCursor, ByteCount: int) -> str:
     if ByteCount * 8 > Cursor.Limit - Cursor.Position:
         raise ValueError("DWG section text exceeds the section data")
@@ -31,6 +32,7 @@ def TakeEncoded(Cursor: BitCursor, ByteCount: int) -> str:
         raise ValueError("DWG section text is not valid UTF-16") from ErrorInfo
 
 
+# the wide operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadWideMut(Cursor: BitCursor) -> str:
     TextValue = TakeEncoded(Cursor, 2 * ReadRawShortMut(Cursor))
     if not TextValue.endswith("\x00"):
@@ -38,12 +40,14 @@ def ReadWideMut(Cursor: BitCursor) -> str:
     return TextValue[:-1]
 
 
+# the wide operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutWideMut(Writer: BitWriter, Value: KDwgValue) -> None:
     Encoded = (AsText(Value) + "\x00").encode("utf-16-le")
     PutRawShortMut(Writer, len(Encoded) // 2)
     PutBytesMut(Writer, Encoded)
 
 
+# the sized operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSizedMut(Cursor: BitCursor) -> str:
     ByteCount = ReadRawLongMut(Cursor)
     if ByteCount % 2:
@@ -51,33 +55,40 @@ def ReadSizedMut(Cursor: BitCursor) -> str:
     return TakeEncoded(Cursor, ByteCount)
 
 
+# the sized operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutSizedMut(Writer: BitWriter, Value: KDwgValue) -> None:
     Encoded = AsText(Value).encode("utf-16-le")
     PutRawLongMut(Writer, len(Encoded))
     PutBytesMut(Writer, Encoded)
 
 
+# the quad operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadQuadMut(Cursor: BitCursor) -> int:
     LowWord = ReadRawLongMut(Cursor)
     return LowWord | ReadRawLongMut(Cursor) << 32
 
 
+# the quad operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutQuadMut(Writer: BitWriter, Value: KDwgValue) -> None:
     Number = AsInt(Value)
     PutRawLongMut(Writer, Number & 0xFFFFFFFF)
     PutRawLongMut(Writer, Number >> 32)
 
 
+# the data reference operation needs a consistent construction rule so section boundaries and object references remain consistent
 def PutDataRefMut(Writer: BitWriter, Value: KDwgValue) -> None:
     PutHandleMut(Writer, AsHandle(Value))
 
 
+# the local reads vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KLocalReads: dict[str, Callable[[BitCursor], KDwgValue]] = {
     "HD": ReadHandleMut,
     "WT": ReadWideMut,
     "ST": ReadSizedMut,
     "RLL": ReadQuadMut,
 }
+
+# the local puts vocabulary must stay centralized so native drawing reconstruction agrees on supported native identities
 KLocalPuts: dict[str, Callable[[BitWriter, KDwgValue], None]] = {
     "HD": PutDataRefMut,
     "WT": PutWideMut,

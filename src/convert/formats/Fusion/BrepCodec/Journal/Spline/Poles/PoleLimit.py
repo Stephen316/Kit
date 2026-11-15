@@ -10,9 +10,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
     MixRows,
 )
 
+# limit steps needs one explicit bound so spline pole reconstruction cannot accept inconsistent resource or layout limits
 KLimitSteps = 200
 
 
+# the smooth mask contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SmoothMask(MeshValue: PoleMesh, Vertex: int) -> KPoleRow:
     FaceKeys = MeshValue.Touch[Vertex]
     Valence = len(FaceKeys)
@@ -26,16 +28,19 @@ def SmoothMask(MeshValue: PoleMesh, Vertex: int) -> KPoleRow:
     return MixRows(Parts)
 
 
+# the mesh row contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def MeshRow(MeshValue: PoleMesh, Weights: KPoleRow) -> KPoleRow:
     return MixRows(
         (Weight, MeshValue.Values[Member]) for Member, Weight in Weights.items()
     )
 
 
+# the smooth limit contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SmoothLimit(MeshValue: PoleMesh, Vertex: int) -> KPoleRow:
     return MeshRow(MeshValue, SmoothMask(MeshValue, Vertex))
 
 
+# the ring matrix contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RingMatrix(MeshValue: PoleMesh, Vertex: int) -> dict[int, KPoleRow]:
     FaceKeys = MeshValue.Touch[Vertex]
     Faces = {FaceKey: MeshValue.Faces[FaceKey] for FaceKey in FaceKeys}
@@ -61,10 +66,12 @@ def RingMatrix(MeshValue: PoleMesh, Vertex: int) -> dict[int, KPoleRow]:
     return Matrix
 
 
+# the ring step contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RingStep(Matrix: dict[int, KPoleRow], Weights: KPoleRow) -> KPoleRow:
     return MixRows((Weight, Matrix[Member]) for Member, Weight in Weights.items())
 
 
+# the ring limit contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RingLimit(MeshValue: PoleMesh, Vertex: int) -> KPoleRow:
     Matrix = RingMatrix(MeshValue, Vertex)
     Weights: KPoleRow = {Vertex: 1.0}
@@ -76,6 +83,7 @@ def RingLimit(MeshValue: PoleMesh, Vertex: int) -> KPoleRow:
     return MeshRow(MeshValue, Weights)
 
 
+# the level limit contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def LevelLimit(MeshValue: PoleMesh, Vertex: int, Level: int) -> KPoleRow:
     Matrix = RingMatrix(MeshValue, Vertex)
     Weights = SmoothMask(MeshValue, Vertex)
@@ -84,6 +92,7 @@ def LevelLimit(MeshValue: PoleMesh, Vertex: int, Level: int) -> KPoleRow:
     return MeshRow(MeshValue, Weights)
 
 
+# the limit row contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def LimitRow(MeshValue: PoleMesh, Vertex: int, Level: int) -> KPoleRow:
     FaceKeys = MeshValue.Touch[Vertex]
     IsClosed = len(MeshValue.Around[Vertex]) == len(FaceKeys)

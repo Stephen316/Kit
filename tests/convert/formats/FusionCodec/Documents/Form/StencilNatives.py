@@ -1,3 +1,4 @@
+# the stencil natives cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStencilNatives: tuple[tuple[str, str, str], ...] = (
     (
         "re/Fusion/LocalOracle/FormDocuments/Acceptance/Saved/BoxControl.f3d",

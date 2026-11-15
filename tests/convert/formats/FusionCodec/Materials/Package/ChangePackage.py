@@ -2,6 +2,7 @@ from io import BytesIO as ByteStream
 from zipfile import ZIP_DEFLATED as KZipDeflated, ZipFile
 
 
+# shared change package setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ChangePackage(Payload: bytes, ModeName: str) -> bytes:
     with ZipFile(ByteStream(Payload)) as Archive:
         Members = {

@@ -16,6 +16,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.RefKinds import (
 from convert.formats.Fusion.SegmentCodec.Features.Binary.ScalarKinds import KScalarKinds
 
 
+# the field operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadFieldMut(Cursor: MetaCursor, KindValue: FieldKind) -> KFieldValue:
     if KindValue in KScalarKinds:
         return ReadScalarMut(Cursor, KindValue)

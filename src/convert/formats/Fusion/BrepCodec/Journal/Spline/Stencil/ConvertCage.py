@@ -37,16 +37,25 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilTable import
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
+# rational form must remain consistent across callers so control cage contributions retain their intended weights
 KRationalForm = "both"
+
+# periodic closure must remain consistent across callers so control cage contributions retain their intended weights
 KPeriodicClosure = 2
+
+# closed closure must remain consistent across callers so control cage contributions retain their intended weights
 KClosedClosure = 1
+
+# row slack must remain consistent across callers so control cage contributions retain their intended weights
 KRowSlack = 1e-12
 
 
+# the rational decision must stay consistent so control cage contributions retain their intended weights
 def IsRational(Values: StencilRows, Indices: tuple[int, ...]) -> bool:
     return any(Values.Weighted[Index] for Index in Indices)
 
 
+# the face operation needs a consistent construction rule so control cage contributions retain their intended weights
 def MakeFace(
     FaceValue: StencilFace, Values: StencilRows, Closure: tuple[int, int] = (0, 0)
 ) -> FaceResult:
@@ -84,6 +93,7 @@ def MakeFace(
     return FaceResult(FaceValue.FaceIndex, Result, SurfaceOrders(Result))
 
 
+# the curve operation needs a consistent construction rule so control cage contributions retain their intended weights
 def MakeCurve(
     CurveValue: StencilCurve, Values: StencilRows, Closure: int = 0
 ) -> BsCurve:
@@ -98,6 +108,7 @@ def MakeCurve(
     return BsCurve(False, 3, Closure, Knots, Counts, 3, Poles, ())
 
 
+# the same rows decision must stay consistent so control cage contributions retain their intended weights
 def IsSameRows(Table: StencilTable, First: int, Second: int) -> bool:
     Former, Latter = dict(Table.Rows[First]), dict(Table.Rows[Second])
     return all(
@@ -106,6 +117,7 @@ def IsSameRows(Table: StencilTable, First: int, Second: int) -> bool:
     )
 
 
+# the seam closure contract needs a shared interpretation so control cage contributions retain their intended weights
 def SeamClosure(
     Table: StencilTable, Starts: tuple[int, ...], Finals: tuple[int, ...], Period: int
 ) -> int:
@@ -117,6 +129,7 @@ def SeamClosure(
     return KClosedClosure if IsClosed else 0
 
 
+# the face closure contract needs a shared interpretation so control cage contributions retain their intended weights
 def FaceClosure(
     Table: StencilTable, Shape: CappedShape, FaceValue: StencilFace
 ) -> tuple[int, int]:
@@ -135,11 +148,13 @@ def FaceClosure(
     )
 
 
+# the curve closure contract needs a shared interpretation so control cage contributions retain their intended weights
 def CurveClosure(Table: StencilTable, CurveValue: StencilCurve, Closure: int) -> int:
     EndRows = (CurveValue.Poles[:1], CurveValue.Poles[-1:])
     return SeamClosure(Table, *EndRows, Closure == KPeriodicClosure)
 
 
+# apply stencil needs an explicit validity boundary so control cage contributions retain their intended weights
 def ApplyStencil(
     Table: StencilTable, Surface: TsplineSurface, Shape: CappedShape
 ) -> CageResult:
@@ -166,6 +181,7 @@ def ApplyStencil(
     )
 
 
+# the cage parts contract needs a shared interpretation so control cage contributions retain their intended weights
 def CageParts(
     Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps
 ) -> tuple[CappedShape, CageResult]:
@@ -174,5 +190,6 @@ def CageParts(
     return Shape, ApplyStencil(BuildTable(Surface, CapSolver), Surface, Shape)
 
 
+# the convert cage contract needs a shared interpretation so control cage contributions retain their intended weights
 def ConvertCage(Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps) -> CageResult:
     return CageParts(Surface, CapSolver)[1]

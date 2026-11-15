@@ -4,9 +4,11 @@ from pathlib import Path as FilePath
 from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
 from tests.convert.formats.FusionCodec.Mesh.MeshCase import MeshCase
 
+# root path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[5]
 
 
+# shared read mesh file setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMeshFile(CaseValue: MeshCase) -> bytes:
     Source = (KRootPath / CaseValue["Archive"]).read_bytes()
     assert HashBytes(Source).hexdigest() == CaseValue["SourceHash"]

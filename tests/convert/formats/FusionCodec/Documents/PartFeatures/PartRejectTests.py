@@ -18,6 +18,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartCases import (
     PartSpec,
 )
 
+# the rejected cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRejected: tuple[tuple[KPartFeature, ...], ...] = (
     (ShellSpec(2.0), FilletSpec((40.0, 30.0), 3.0)),
     (FilletSpec((40.0, 30.0), -3.0),),
@@ -33,12 +34,14 @@ KRejected: tuple[tuple[KPartFeature, ...], ...] = (
 )
 
 
+# the part reject contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Features", KRejected)
 def TestPartReject(Features: tuple[KPartFeature, ...]) -> None:
     with RaisesError(ValueError):
         _ = EmitDocument(PartSpec("Rejected", Features))
 
 
+# the part profile contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "SpecValue",
     (

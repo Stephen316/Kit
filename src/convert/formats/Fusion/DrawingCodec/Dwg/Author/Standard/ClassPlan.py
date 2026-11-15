@@ -4,9 +4,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.ClassVocab import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassRow import DwgClassRow
 
+# first class must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KFirstClass = 500
 
 
+# the plan classes contract needs a stable decomposition so native drawing objects use a consistent symbol vocabulary
 def PlanClasses(Ledger: DraftBook) -> tuple[DwgClassRow, ...]:
     UsedKinds = {Entry.ClassName for Entry in Ledger.DraftRows}
     ClassRows: list[DwgClassRow] = []

@@ -5,6 +5,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRe
 from convert.formats.Fusion.GraphicsCodec.Model.Nodes.NodePayload import NodePayload
 
 
+# the scene targets contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def SceneTargets(Value: GraphicScene, ActSegment: int) -> tuple[EntityRef, ...]:
     Pending: list[object] = [Value]
     Results: set[EntityRef] = set()
@@ -21,4 +22,6 @@ def SceneTargets(Value: GraphicScene, ActSegment: int) -> tuple[EntityRef, ...]:
             )
             if isinstance(Current, NodePayload) and Current.ActEntity is not None:
                 Results.add(EntityRef(ActSegment, Current.ActEntity))
+
+    # ordering by segment id entry object id must stay deterministic so graphics reconstruction resolves equivalent inputs consistently
     return tuple(sorted(Results, key=lambda Entry: (Entry.SegmentId, Entry.ObjectId)))

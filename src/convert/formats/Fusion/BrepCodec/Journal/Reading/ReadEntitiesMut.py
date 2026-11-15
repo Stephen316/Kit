@@ -9,6 +9,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
 
 
+# the entities operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadEntitiesMut(
     Cursor: MetaCursor, EndName: str, Width: int = 8
 ) -> tuple[KJournalEntity, ...]:

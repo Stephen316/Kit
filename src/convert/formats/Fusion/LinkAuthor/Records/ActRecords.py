@@ -36,6 +36,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RecordValues import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the fresh revisions contract needs a shared interpretation so cross document references retain their intended ownership
 def FreshRevisions() -> tuple[tuple[str, str], ...]:
     Shared, Properties, Placement = str(MakeUuid()), str(MakeUuid()), str(MakeUuid())
     return tuple(
@@ -47,6 +48,7 @@ def FreshRevisions() -> tuple[tuple[str, str], ...]:
     )
 
 
+# the data record contract needs a shared interpretation so cross document references retain their intended ownership
 def DataRecord(
     ObjectId: int, Revisions: tuple[tuple[str, str], ...], Identifier: str
 ) -> EntityRecord:
@@ -58,6 +60,7 @@ def DataRecord(
     )
 
 
+# the refd record contract needs a shared interpretation so cross document references retain their intended ownership
 def RefdRecord(
     Facts: TargetFacts, Linkage: LinkKeys, KeySet: PlaceKeys
 ) -> EntityRecord:
@@ -81,6 +84,7 @@ def RefdRecord(
     )
 
 
+# the act records contract needs a shared interpretation so cross document references retain their intended ownership
 def ActRecords(
     RootInfo: RootFacts, Facts: TargetFacts, Linkage: LinkKeys, KeySet: PlaceKeys
 ) -> tuple[EntityRecord, ...]:

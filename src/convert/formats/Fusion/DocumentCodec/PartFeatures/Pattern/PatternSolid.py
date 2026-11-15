@@ -37,11 +37,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ToolSlab import (
     ToolSlab,
 )
 
+# the copy specification variants need one shared contract so pattern feature construction cannot omit a supported value shape
 KCopySpec = PatternSpec | CircularSpec | MirrorSpec
+
+# the edge tags shape must stay shared so pattern feature construction uses one contract for compatible values
 KEdgeTags = tuple[tuple[FaceLabel, float, FaceLabel], ...]
+
+# the source tool shape must stay shared so pattern feature construction uses one contract for compatible values
 KSourceTool = tuple[tuple[PrismSlab, ...], tuple[tuple[FaceLabel, int], ...], KEdgeTags]
 
 
+# the copy places contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def CopyPlaces(Feature: KCopySpec, MirrorCm: float) -> list[KPlacement]:
     if isinstance(Feature, MirrorSpec):
         return [((2.0 * MirrorCm, 0.0), 0.0, True)]
@@ -63,6 +69,7 @@ def CopyPlaces(Feature: KCopySpec, MirrorCm: float) -> list[KPlacement]:
     ]
 
 
+# source tool needs an explicit validity boundary so repeated instances retain their intended placement and ownership
 def SourceTool(Source: PartStage) -> KSourceTool:
     Feature = Source.Feature
     First = Source.Operations[0]
@@ -80,6 +87,7 @@ def SourceTool(Source: PartStage) -> KSourceTool:
     return (ToolSlab(Feature, First + 1),), Curves, Tagged
 
 
+# the source faces contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def SourceFaces(Shapers: tuple[PrismSlab, ...]) -> tuple[FaceLabel, ...]:
     Walls = tuple(
         Value.Label
@@ -96,6 +104,7 @@ def SourceFaces(Shapers: tuple[PrismSlab, ...]) -> tuple[FaceLabel, ...]:
     return Walls + tuple(dict.fromkeys(CapLabels))
 
 
+# the copy solid contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def CopySolid(
     Solid: PrismSolid,
     Feature: KCopySpec,

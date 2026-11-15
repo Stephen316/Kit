@@ -5,6 +5,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityFrame import EntityFrame
 from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 
 
+# the draft records contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def DraftRecords(
     Author: AuthorState, TypeCodes: dict[str, int]
 ) -> tuple[EntityRecord, ...]:

@@ -12,6 +12,7 @@ from convert.formats.Fusion.Topology.AsmEdge.PrismCarriers import CheckPrismLine
 from tests.convert.formats.FusionCodec.Geometry.Prism.PrismEvidence import PrismEvidence
 
 
+# shared read cuboid setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadCuboid(DataValue: bytes) -> PrismEvidence:
     Table = ReadAsmTable(DataValue)
     ShellId, FaceId = ReadAsmShell(Table, 1)

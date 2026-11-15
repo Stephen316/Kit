@@ -13,10 +13,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.BodyRole import (
     FocusRole,
 )
 
+# the tangent classes order must stay explicit so feature parameters remain connected to the resulting geometry
 KTangentClasses = ("DRPoint", "DRVector")
+
+# no tangent must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KNoTangent = -1.0
 
 
+# the tangent free contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TangentFree(Author: AuthorState) -> list[dict[str, object]]:
     Fields: dict[str, object] = {
         "tangentPointParam" + str(Index): KNoTangent for Index in range(3)
@@ -24,11 +28,13 @@ def TangentFree(Author: AuthorState) -> list[dict[str, object]]:
     return [Author.MakeGroup("TangentPointDataValue", Fields)]
 
 
+# the topology cache contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def TopologyCache(Author: AuthorState, RoleName: str, TagValue: int) -> None:
     Fields: dict[str, object] = {"cachedEntityId": TagValue, "scope": PartScope(Author)}
     Author.Allocate(RoleName, "ETCachedTopology", Fields=Fields)
 
 
+# the face reference operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddFaceRefMut(
     Author: AuthorState,
     Prefix: str,
@@ -51,6 +57,7 @@ def AddFaceRefMut(
     )
 
 
+# the place operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddPlaceMut(
     Author: AuthorState,
     Prefix: str,
@@ -71,6 +78,7 @@ def AddPlaceMut(
     )
 
 
+# the through operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddThroughMut(
     Author: AuthorState, Prefix: str, Label: FaceLabel, BodyTag: int
 ) -> list[str]:

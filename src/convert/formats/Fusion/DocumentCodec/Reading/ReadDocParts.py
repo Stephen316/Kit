@@ -32,6 +32,7 @@ from convert.formats.Fusion.DocumentCodec.ReadBodyPart import ReadBodyPart
 from convert.formats.Fusion.DocumentCodec.Reading.ReadMatPart import ReadMatPart
 
 
+# the doc parts operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadDocParts(
     Values: tuple[ContainerPart, ...],
 ) -> DocumentParts:

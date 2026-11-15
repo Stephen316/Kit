@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut impor
 )
 
 
+# the points operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPointsMut(
     Cursor: FieldCursor, Count: int, Width: int
 ) -> tuple[tuple[float, ...], ...]:

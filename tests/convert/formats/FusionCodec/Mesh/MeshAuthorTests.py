@@ -8,6 +8,7 @@ from convert.formats.Fusion.MeshCodec.ReadParaMesh import ReadParaMesh
 from tests.convert.formats.FusionCodec.Mesh.AuthoredMesh import AuthoredMesh
 
 
+# the authored contract needs boundary coverage so stored document relationships remain consistent
 def TestAuthored() -> None:
     Model = AuthoredMesh()
     Member = "FusionAssetName[Active]/ParaMeshGeometry.BlobParts/ParaMeshGeometry.authored.paramesh"

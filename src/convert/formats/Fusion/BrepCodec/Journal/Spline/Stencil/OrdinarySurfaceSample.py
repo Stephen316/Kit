@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 
 
+# the ordinary sample contract needs a shared interpretation so control cage contributions retain their intended weights
 def OrdinarySample(
     Values: list[float],
     RisingU: list[float],

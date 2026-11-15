@@ -24,6 +24,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Writing.SnapRe
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the prism snapshot operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadPrismSnap(Payload: bytes) -> PrismSnapshot:
     WireValue = ReadSnapWire(Payload)
     Frame, TagSet, Mapping = ReadSolid(WireValue.Table)

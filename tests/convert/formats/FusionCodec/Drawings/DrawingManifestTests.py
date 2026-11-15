@@ -13,11 +13,14 @@ from convert.formats.Fusion.DrawingCodec.Manifest.ReadRoot import ReadRoot
 from convert.formats.Fusion.DrawingCodec.Manifest.RootAsset import RootAsset
 from convert.formats.Fusion.DrawingCodec.Manifest.RootLink import RootLink
 
+# the asset id cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KAssetId = "5c99c6f1-54e3-4150-9edd-ca384be2cba6"
 
+# the role id cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRoleId = "6a5f6318-0a66-4894-917d-ee31c5e9b85c"
 
 
+# shared modern root setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ModernRoot() -> DrawingRoot:
     LinkValue = RootLink(
         KRoleId,
@@ -49,6 +52,7 @@ def ModernRoot() -> DrawingRoot:
     )
 
 
+# shared modern asset setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ModernAsset() -> DrawingAsset:
     return DrawingAsset(
         "Documentation",
@@ -80,6 +84,7 @@ def ModernAsset() -> DrawingAsset:
     )
 
 
+# the modern root contract needs boundary coverage so stored document relationships remain consistent
 def TestModernRoot() -> None:
     Value = ModernRoot()
     Payload = EmitRoot(Value)
@@ -94,6 +99,7 @@ def TestModernRoot() -> None:
         _ = EmitRoot(ReplaceValue(Value, Version=15))
 
 
+# the legacy root contract needs boundary coverage so stored document relationships remain consistent
 def TestLegacyRoot() -> None:
     Modern = ModernRoot()
     LinkValue = ReplaceValue(
@@ -112,6 +118,7 @@ def TestLegacyRoot() -> None:
         _ = EmitRoot(ReplaceValue(Value, References=(Modern.References[0],)))
 
 
+# the modern asset contract needs boundary coverage so stored document relationships remain consistent
 def TestModernAsset() -> None:
     Value = ModernAsset()
     Payload = EmitAsset(Value)

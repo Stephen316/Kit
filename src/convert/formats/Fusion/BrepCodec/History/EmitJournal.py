@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Wire.EmitBrepRecord import EmitBrepRecord
 from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 
 
+# the journal operation needs a consistent construction rule so topology identity survives native history reconstruction
 def EmitJournal(History: HistoryState, RecordCount: int) -> bytes:
     return (
         EncodeSmbName("Begin-of-ASM-History-Data")

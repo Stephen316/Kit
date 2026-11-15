@@ -1,9 +1,11 @@
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
 from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
 
+# jump slack must remain consistent across callers so surface geometry retains the control cage shape
 KJumpSlack = 1e-10
 
 
+# span thirds needs an explicit validity boundary so surface geometry retains the control cage shape
 def SpanThirds(Curve: BsCurve) -> list[list[float]]:
     Knots = [Curve.Knots[0]]
     for KnotValue, Count in zip(Curve.Knots, Curve.Multiplicity):
@@ -27,6 +29,7 @@ def SpanThirds(Curve: BsCurve) -> list[list[float]]:
     return Layers
 
 
+# third jumps needs an explicit validity boundary so surface geometry retains the control cage shape
 def ThirdJumps(Curve: BsCurve) -> tuple[float, ...]:
     if Curve.Degree != 3 or Curve.Rational:
         raise ValueError("Fusion grid conversion needs nonrational cubic curves")
@@ -42,11 +45,13 @@ def ThirdJumps(Curve: BsCurve) -> tuple[float, ...]:
     )
 
 
+# the union jumps contract needs a shared interpretation so surface geometry retains the control cage shape
 def UnionJumps(Curves: list[BsCurve]) -> tuple[float, ...]:
     Found = {KnotValue for Curve in Curves for KnotValue in ThirdJumps(Curve)}
     return tuple(sorted(Found))
 
 
+# the grid jumps contract needs a shared interpretation so surface geometry retains the control cage shape
 def GridJumps(
     Surface: NubsSurface, Width: int, Height: int
 ) -> tuple[tuple[float, ...], ...]:

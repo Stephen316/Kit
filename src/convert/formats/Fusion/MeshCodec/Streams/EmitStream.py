@@ -4,6 +4,7 @@ from lzma import compress as Compress
 from convert.formats.Fusion.MeshCodec.Wire.EmitMap import EmitMap
 
 
+# the stream operation needs a consistent construction rule so vertex and index streams retain their intended connectivity
 def EmitStream(Payload: bytes, Descriptor: dict[str, int | bool]) -> bytes:
     if len(Payload) > 64 * 1024 * 1024:
         raise ValueError("Fusion mesh decoded allocation exceeds limit")

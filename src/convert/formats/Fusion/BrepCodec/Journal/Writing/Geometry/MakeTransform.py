@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the transform operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeTransform(Value: TransformNode) -> AsmRecord:
     return AsmRecord(
         "transform",

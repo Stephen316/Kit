@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.VectorMath import (
 )
 
 
+# transform scale needs an explicit validity boundary so topology changes retain their native revision relationships
 def TransformScale(Value: TransformNode) -> float:
     Factor = (
         DotProduct(Value.ColumnX, CrossProduct(Value.ColumnY, Value.ColumnZ))

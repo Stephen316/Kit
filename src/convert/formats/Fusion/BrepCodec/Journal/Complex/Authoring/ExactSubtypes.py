@@ -23,13 +23,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.SurfaceRecords impor
 )
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import KBreaks
 
+# the empty range order must stay explicit so nested spline and surface records retain their relationships
 KEmptyRange = (1.0, 0.0)
 
+# null surface must remain consistent across callers so nested spline and surface records retain their relationships
 KNullSurface = ChoiceValue("null_surface", ())
 
+# the no breaks order must stay explicit so nested spline and surface records retain their relationships
 KNoBreaks: KBreaks = ((), (), ())
 
 
+# the exact surface contract needs a shared interpretation so nested spline and surface records retain their relationships
 def ExactSurface(Surface: BsSurface) -> SubtypeNode:
     CheckBsSurface(Surface)
     Common = SplineCommon(Surface, 0.0, KNoBreaks, KNoBreaks)
@@ -37,6 +41,7 @@ def ExactSurface(Surface: BsSurface) -> SubtypeNode:
     return SubtypeNode("exact_spl_sur", Record)
 
 
+# the exact curve contract needs a shared interpretation so nested spline and surface records retain their relationships
 def ExactCurve(Curve: BsCurve) -> SubtypeNode:
     CheckBsCurve(Curve, 3)
     Context = CurveContext(
@@ -54,6 +59,7 @@ def ExactCurve(Curve: BsCurve) -> SubtypeNode:
     return SubtypeNode("exact_int_cur", ExactIntCur(Context, KEmptyRange, 0, 0))
 
 
+# parameter curve needs an explicit validity boundary so nested spline and surface records retain their relationships
 def ParamCurve(Curve: BsCurve, SurfaceIndex: int) -> SubtypeNode:
     CheckBsCurve(Curve, 2)
     if type(SurfaceIndex) is not int or SurfaceIndex < 0:
@@ -65,6 +71,7 @@ def ParamCurve(Curve: BsCurve, SurfaceIndex: int) -> SubtypeNode:
     return SubtypeNode("exp_par_cur", ExpParCur(Curve, 0.0, Carrier))
 
 
+# spline surface needs an explicit validity boundary so nested spline and surface records retain their relationships
 def SplineSurface(Value: KSubtypeValue) -> BsSurface:
     if isinstance(Value, SubtypeNode) and Value.SubtypeName == "exact_spl_sur":
         if isinstance(Value.Body, ExactSplSur):
@@ -72,6 +79,7 @@ def SplineSurface(Value: KSubtypeValue) -> BsSurface:
     raise ValueError("Fusion surface is not an exact B-spline surface")
 
 
+# spline curve needs an explicit validity boundary so nested spline and surface records retain their relationships
 def SplineCurve(Value: KSubtypeValue) -> BsCurve:
     if isinstance(Value, SubtypeNode) and Value.SubtypeName == "exact_int_cur":
         if isinstance(Value.Body, ExactIntCur):
@@ -79,6 +87,7 @@ def SplineCurve(Value: KSubtypeValue) -> BsCurve:
     raise ValueError("Fusion curve is not an exact B-spline curve")
 
 
+# pcurve spline needs an explicit validity boundary so nested spline and surface records retain their relationships
 def PcurveSpline(Value: KSubtypeValue) -> BsCurve:
     if isinstance(Value, SubtypeNode) and Value.SubtypeName == "exp_par_cur":
         if isinstance(Value.Body, ExpParCur):

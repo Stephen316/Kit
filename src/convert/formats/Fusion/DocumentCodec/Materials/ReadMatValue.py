@@ -7,6 +7,7 @@ from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the mat value operation needs a distinct decoding boundary so appearance references remain connected to their owning entities
 def ReadMatValue(Value: SchemaNode) -> KMaterialValue:
     Attributes = dict(Value.Attributes)
     TextValue = Attributes.get("val", "")

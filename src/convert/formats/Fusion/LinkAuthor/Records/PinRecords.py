@@ -32,6 +32,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RefRecords import OccurRef, RefRe
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the reference operation needs a consistent construction rule so cross document references retain their intended ownership
 def PlaceRef(
     RootInfo: RootFacts,
     Facts: TargetFacts,
@@ -52,6 +53,7 @@ def PlaceRef(
     )
 
 
+# pin records needs an explicit validity boundary so cross document references retain their intended ownership
 def PinRecords(
     RootInfo: RootFacts,
     Facts: TargetFacts,

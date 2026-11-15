@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.VectorMath import (
 from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
 
 
+# the poly faces operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyFaces(Layout: PolyLayout) -> tuple[FaceNode, ...]:
     return tuple(
         FaceNode(
@@ -26,6 +27,7 @@ def MakePolyFaces(Layout: PolyLayout) -> tuple[FaceNode, ...]:
     )
 
 
+# the poly loops operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyLoops(Layout: PolyLayout) -> tuple[LoopNode, ...]:
     return tuple(
         LoopNode(
@@ -38,6 +40,7 @@ def MakePolyLoops(Layout: PolyLayout) -> tuple[LoopNode, ...]:
     )
 
 
+# the poly planes operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyPlanes(Layout: PolyLayout) -> tuple[PlaneNode, ...]:
     Results: list[PlaneNode] = []
     for RingValue in Layout.FaceLoops:

@@ -2,10 +2,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.ReadFields import ReadFields
 from convert.formats.Fusion.DrawingCodec.Dwg.Bytes.TakeSpan import TakeSpan
 from convert.formats.Fusion.DrawingCodec.Dwg.Integrity.CrcSixteen import CrcSixteen
 
+# class start must remain consistent across callers so section boundaries and object references remain consistent
 KClassStart = bytes.fromhex("8da1c4b8c4a9f8c5c0dcf45fe7cfb68a")
+
+# class finish must remain consistent across callers so section boundaries and object references remain consistent
 KClassFinish = bytes.fromhex("725e3b473b56073a3f230ba018304975")
 
 
+# invalid class frame input must fail here so section boundaries and object references remain consistent
 def CheckClassFrame(DataValue: bytes, AreaFinish: int) -> int:
     if TakeSpan(DataValue, 0, 16, "class start sentinel") != KClassStart:
         raise ValueError("DWG class section start sentinel mismatch")

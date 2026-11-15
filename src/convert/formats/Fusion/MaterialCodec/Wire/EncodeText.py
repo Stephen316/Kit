@@ -3,6 +3,7 @@ from struct import pack as PackValue
 from convert.formats.Fusion.MaterialCodec.Limits import KMaxString
 
 
+# the text operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeText(Value: str) -> bytes:
     if type(Value) is not str:
         raise ValueError("Fusion material text must be a string")

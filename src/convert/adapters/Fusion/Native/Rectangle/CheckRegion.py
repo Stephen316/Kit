@@ -11,6 +11,7 @@ from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
+# invalid region input must fail here so public document claims remain grounded in native records
 def CheckRegion(
     Graph: NativeGraph,
     Context: ExtrudeContext,

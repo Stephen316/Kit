@@ -14,6 +14,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ManifestCursor import
 )
 
 
+# the root operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadRoot(Payload: bytes) -> DrawingRoot:
     Cursor = OpenWireCursor(Payload)
     if Cursor.ReadText() != KRootFormat:
@@ -74,6 +75,7 @@ def ReadRoot(Payload: bytes) -> DrawingRoot:
     return Result
 
 
+# the root link operation needs a distinct decoding boundary so drawing members retain their sheet and model associations
 def ReadRootLink(Cursor: ManifestCursor, IsModern: bool) -> RootLink:
     RoleValue = Cursor.ReadText(True, Maximum=KMaxPathText)
     Unresolved = None if IsModern else Cursor.ReadText(True, Maximum=KMaxPathText)

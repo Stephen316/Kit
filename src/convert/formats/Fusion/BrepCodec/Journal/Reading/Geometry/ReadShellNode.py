@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the shell node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadShellNode(Cursor: FieldCursor) -> ShellNode:
     Prefix = ReadPrefixMut(Cursor)
     NextShell = ReadRefMut(Cursor)

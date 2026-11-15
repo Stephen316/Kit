@@ -3,11 +3,17 @@ from __future__ import annotations
 import base64 as BaseCodec
 import json as JsonLib
 
+# marker open must remain consistent across callers so published evidence stays bound to the reviewed revision
 KMarkerOpen = "<!-- kit-diff-breakdown:v1:"
+
+# marker close must remain consistent across callers so published evidence stays bound to the reviewed revision
 KMarkerClose = " -->"
+
+# the omitted keys vocabulary must stay centralized so diff reporting agrees on supported native identities
 KOmittedKeys = frozenset({"Files", "PushFiles", "CommentId"})
 
 
+# the marker operation needs a consistent construction rule so published evidence stays bound to the reviewed revision
 def BuildMarker(Snapshot: dict[str, object]) -> str:
     Compact = {
         KeyText: Value
@@ -20,6 +26,7 @@ def BuildMarker(Snapshot: dict[str, object]) -> str:
     )
 
 
+# the marker operation needs a distinct decoding boundary so published evidence stays bound to the reviewed revision
 def DecodeMarker(BodyText: str) -> dict[str, object] | None:
     StartIndex = BodyText.find(KMarkerOpen)
     if StartIndex < 0:

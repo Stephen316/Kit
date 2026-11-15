@@ -6,6 +6,7 @@ from convert.formats.Fusion.MaterialCodec.Values.EncodeLinks import EncodeLinks
 from convert.formats.Fusion.MaterialCodec.Values.EncodeValue import EncodeValue
 
 
+# the fields operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeFields(
     Fields: tuple[PropertySpec, ...],
     Values: tuple[PropertyValue, ...],

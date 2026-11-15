@@ -31,6 +31,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadActiveMeta import
 )
 
 
+# the container operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadContainer(
     Payload: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> FusionContainer:

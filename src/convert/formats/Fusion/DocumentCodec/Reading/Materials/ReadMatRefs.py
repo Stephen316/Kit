@@ -18,6 +18,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the mat references operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
 def ReadMatRefs(
     Value: DocumentModel, FieldName: str
 ) -> tuple[tuple[MaterialPackage | None, str], ...]:
@@ -40,6 +41,7 @@ def ReadMatRefs(
     return tuple(Result)
 
 
+# resolve mat reference needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def ResolveMatRef(
     Value: KEntityValue, Managers: dict[int, MaterialPackage]
 ) -> tuple[MaterialPackage | None, str] | None:

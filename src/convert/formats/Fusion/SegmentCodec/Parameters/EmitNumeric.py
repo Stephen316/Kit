@@ -6,6 +6,7 @@ from convert.formats.Fusion.SegmentCodec.Parameters.CheckParamMeta import CheckP
 from convert.formats.Fusion.SegmentCodec.Parameters.ParamSink import ParamSink
 
 
+# the numeric operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitNumeric(Value: NativeParam) -> bytes:
     if (
         type(Value.RoleName) is not str

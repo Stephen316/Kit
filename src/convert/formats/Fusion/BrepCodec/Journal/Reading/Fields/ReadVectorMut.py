@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 
 
+# the vector operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadVectorMut(Cursor: FieldCursor, TagValue: int) -> KJournalVector:
     Actual, Value = ReadFieldMut(Cursor)
     if Actual != TagValue or not isinstance(Value, tuple) or len(Value) != 3:

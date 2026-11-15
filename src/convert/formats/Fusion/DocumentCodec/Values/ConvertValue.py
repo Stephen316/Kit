@@ -17,6 +17,7 @@ from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 from convert.formats.Fusion.EntityCodec.Tags.SketchFields import KSketchFields
 
 
+# convert matrix needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def ConvertMatrix(Value: object) -> MatrixValue:
     Fields = ReadObject(Value)
     if Fields == {"identity": True}:
@@ -33,6 +34,7 @@ def ConvertMatrix(Value: object) -> MatrixValue:
     return MatrixValue(tuple(Numbers))
 
 
+# convert value needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def ConvertValue(
     Value: object, Shape: WireType, Catalog: dict[str, NativeSchema]
 ) -> KEntityValue:

@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.ReadLiveRef import Read
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# invalid use ring input must fail here so inconsistent revision links fail before history reconstruction
 def CheckUseRing(
     SlotId: int, Records: dict[int, AsmRecord], Aliases: tuple[int, ...]
 ) -> None:

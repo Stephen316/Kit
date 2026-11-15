@@ -7,6 +7,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartCases import (
     KRepoRoot,
 )
 
+# the vocabularies cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KVocabularies = (
     "src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json",
     "src/convert/formats/Fusion/DocumentCodec/PartFeatures/Vocabulary/FeatureClasses.json",
@@ -14,6 +15,7 @@ KVocabularies = (
 )
 
 
+# shared class guids setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ClassGuids() -> dict[str, str]:
     return {
         Schema.NameValue: Schema.Value.ClassGuid.upper()
@@ -22,6 +24,7 @@ def ClassGuids() -> dict[str, str]:
     }
 
 
+# shared part records setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PartRecords(
     Model: DocumentModel, ClassName: str
 ) -> tuple[dict[str, KEntityValue], ...]:

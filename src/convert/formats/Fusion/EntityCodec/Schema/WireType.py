@@ -5,6 +5,7 @@ from typing import Literal, TypeAlias
 
 from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 
+# the wire kind shape must stay shared so entity reconstruction uses one contract for compatible values
 KWireKind: TypeAlias = Literal[
     "bool",
     "u8",
@@ -33,6 +34,7 @@ KWireKind: TypeAlias = Literal[
 ]
 
 
+# wire type needs an explicit state contract so entity identifiers retain their schema and reference meaning
 @MakeDataClass(frozen=True, slots=True)
 class WireType:
     KindValue: KWireKind

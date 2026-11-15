@@ -13,15 +13,22 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleRows import (
     BlendRows,
 )
 
+# the knot list shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KKnotList = tuple[Fraction, ...]
+
+# the line rows shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KLineRows = tuple[KKnotList, list[KIndexedRow]]
+
+# the curve rows shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KCurveRows = tuple[tuple[float, ...], tuple[int, ...], list[KIndexedRow]]
 
 
+# negated needs one geometric convention so neighboring patches retain consistent subdivision boundaries
 def Negated(Knots: KKnotList) -> KKnotList:
     return tuple(-Value for Value in reversed(Knots))
 
 
+# the side poles contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SidePoles(
     PlanValue: FacePlan, GridRows: dict[KPolePlace, KIndexedRow], SideIndex: int
 ) -> KLineRows:
@@ -40,6 +47,7 @@ def SidePoles(
     return (Negated(PlanValue.FullV), [GridRows[Place] for Place in Places])
 
 
+# the insert knot contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def InsertKnot(
     Knots: KKnotList, Poles: list[KIndexedRow], Value: Fraction
 ) -> KLineRows:
@@ -60,6 +68,7 @@ def InsertKnot(
     return (Knots[: SpanIndex + 1] + (Value,) + Knots[SpanIndex + 1 :], Fresh)
 
 
+# the clamp knot contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def ClampKnot(LineRows: KLineRows, Value: Fraction) -> KLineRows:
     Knots, Poles = LineRows
     if Knots.count(Value) > KEndCount or not Knots[0] < Value < Knots[-1]:
@@ -69,6 +78,7 @@ def ClampKnot(LineRows: KLineRows, Value: Fraction) -> KLineRows:
     return (Knots, Poles)
 
 
+# the curve rows contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CurveRows(
     PlanValue: FacePlan,
     GridRows: dict[KPolePlace, KIndexedRow],
@@ -87,6 +97,7 @@ def CurveRows(
     )
 
 
+# the span of contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SpanOf(Knots: KKnotList, Value: Fraction) -> int:
     Spans = [
         Index for Index in range(len(Knots) - 1) if Knots[Index] < Knots[Index + 1]
@@ -95,6 +106,7 @@ def SpanOf(Knots: KKnotList, Value: Fraction) -> int:
     return Inside[-1] if Inside else Spans[-1]
 
 
+# the de boor row contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def DeBoorRow(
     Knots: KKnotList, SpanIndex: int, Value: Fraction, Points: list[KIndexedRow]
 ) -> KIndexedRow:
@@ -107,6 +119,7 @@ def DeBoorRow(
     return Working[3]
 
 
+# the surface point contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SurfacePoint(
     PlanValue: FacePlan,
     GridRows: dict[KPolePlace, KIndexedRow],

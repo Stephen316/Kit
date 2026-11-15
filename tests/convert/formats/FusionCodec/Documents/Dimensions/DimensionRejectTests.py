@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
 from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 
+# the dim names contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "WidthName,DepthName",
     (
@@ -37,6 +38,7 @@ def TestDimNames(TmpPath: FilePath, WidthName: str, DepthName: str) -> None:
     assert not Target.exists()
 
 
+# the dim profile contract needs boundary coverage so stored document relationships remain consistent
 def TestDimProfile(TmpPath: FilePath) -> None:
     Target = TmpPath / "WrongProfile.f3d"
     with RaisesError(ValueError, match="rectangle or cuboid"):
@@ -53,6 +55,7 @@ def TestDimProfile(TmpPath: FilePath) -> None:
     assert not Target.exists()
 
 
+# the dim boolean contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("Selection", (1, None, "yes"))
 def TestDimBoolean(TmpPath: FilePath, Selection: bool) -> None:
     Target = TmpPath / "WrongBoolean.f3d"

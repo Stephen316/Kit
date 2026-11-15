@@ -9,6 +9,7 @@ from interchange.geometry.models.VectorSpace import SpaceVector
 from interchange.records.RecordTopology import TopologyCounts
 
 
+# the part body operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakePartBody(SpecValue: DocumentSpec) -> DesignBody:
     _, Stages = SolvePart(SpecValue)
     if not Stages:

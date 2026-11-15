@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer set base contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferSetBaseMut(State: SceneCodec, Value: SceneSet | None, SetKind: int) -> SceneSet:
     FlagsValue = State.Integer(Value.FlagsValue if Value else None)
     RemovedFlags = State.Integer(Value.RemovedFlags if Value else None)

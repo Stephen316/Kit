@@ -3,6 +3,7 @@ from convert.formats.Fusion.BrepCodec.Journal.States.DeltaState import DeltaStat
 from convert.formats.Fusion.BrepCodec.Journal.States.StreamState import StreamState
 
 
+# the insert history decision must stay consistent so model state retains its native feature and ownership relationships
 def IsInsertHistory(Model: JournalModel) -> bool:
     if len(Model.States) != 2 or Model.ActiveCount != len(Model.Entities):
         return False

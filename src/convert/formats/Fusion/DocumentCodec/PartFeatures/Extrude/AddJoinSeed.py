@@ -10,6 +10,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Extrude.AddTargetMut impo
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import FaceLabel
 
 
+# the join seed operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddJoinSeedMut(
     Author: AuthorState,
     Prefix: str,

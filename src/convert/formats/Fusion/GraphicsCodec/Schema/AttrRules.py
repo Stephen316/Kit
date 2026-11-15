@@ -1,5 +1,6 @@
 from convert.formats.Fusion.GraphicsCodec.Schema.FieldRule import FieldRule
 
+# the attribute rules vocabulary must stay centralized so graphics reconstruction agrees on supported native identities
 KAttrRules: dict[str, tuple[FieldRule, ...]] = {
     "HWSelectionPostProcessingAttribute": (),
     "DepthPriorityAttribute": (FieldRule("DepthPriority", "i32"),),

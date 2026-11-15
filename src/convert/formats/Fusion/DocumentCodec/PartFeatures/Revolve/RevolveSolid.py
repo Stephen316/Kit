@@ -23,16 +23,25 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import KFullTurn
 
+# full angle must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KFullAngle = 360.0
+
+# the revolve order order must stay explicit so feature parameters remain connected to the resulting geometry
 KRevolveOrder = (2, 1, 0, 3)
+
+# revolve faces must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KRevolveFaces = 6
+
+# body secondary must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KBodySecondary = 7
 
 
+# the full turn decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsFullTurn(Feature: RevolveSpec) -> bool:
     return Feature.AngleDegrees == KFullAngle
 
 
+# the revolve profile contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RevolveProfile(Feature: RevolveSpec) -> tuple[LineCurve, ...]:
     Inner, Outer = Feature.InnerMm, Feature.OuterMm
     Lower, Upper = 0.0 - Feature.LowerMm, 0.0 - Feature.UpperMm
@@ -44,12 +53,14 @@ def RevolveProfile(Feature: RevolveSpec) -> tuple[LineCurve, ...]:
     )
 
 
+# the revolve labels contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RevolveLabels(Operation: int) -> tuple[FaceLabel, ...]:
     return tuple(
         FaceLabel(str(Index + 1), (Operation,)) for Index in range(KRevolveFaces)
     )
 
 
+# the revolve loops contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RevolveLoops(
     Feature: RevolveSpec, Labels: tuple[FaceLabel, ...]
 ) -> tuple[KPlaneLoop, ...]:
@@ -73,6 +84,7 @@ def RevolveLoops(
     return (CanonLoop(Spans),)
 
 
+# the revolve slab contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RevolveSlab(Feature: RevolveSpec, Operation: int) -> PrismSlab:
     Labels = RevolveLabels(Operation)
     Loops = RevolveLoops(Feature, Labels)
@@ -80,6 +92,7 @@ def RevolveSlab(Feature: RevolveSpec, Operation: int) -> PrismSlab:
     return PrismSlab(*Bounds, Loops, Labels[4], Labels[2])
 
 
+# apply revolve needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ApplyRevolve(
     Solid: PrismSolid | None, Feature: RevolveSpec, Operation: int, Sketched: SketchPlan
 ) -> PrismSolid:

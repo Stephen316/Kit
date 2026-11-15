@@ -4,9 +4,11 @@ from typing import cast as CastValue
 
 from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import ReadObject
 
+# the default files order must stay explicit so feature parameters remain connected to the resulting geometry
 KDefaultFiles = ("FeatureDefaults.json", "PasteDefaults.json")
 
 
+# the feature defaults contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def FeatureDefaults() -> dict[str, dict[str, object]]:
     Result: dict[str, dict[str, object]] = {}
     for FileName in KDefaultFiles:

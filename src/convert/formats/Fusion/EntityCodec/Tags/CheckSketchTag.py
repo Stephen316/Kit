@@ -3,6 +3,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.EntityCodec.Tags.SketchFields import KSketchFields
 
 
+# invalid sketch tag input must fail here so entity identifiers retain their schema and reference meaning
 def CheckSketchTag(Value: ValueStruct[KEntityValue]) -> None:
     Indexed = {Field.FieldName: Field.Value for Field in Value.Fields}
     if len(Indexed) != len(Value.Fields) or set(Indexed) != {

@@ -1,6 +1,7 @@
 from uuid import UUID as UuidValue
 
 
+# invalid uuid input must fail here so native records retain their segment ownership and schema
 def CheckUuid(Value: str) -> None:
     if type(Value) is not str or len(Value) != 36:
         raise ValueError("Invalid Fusion feature UUID text")

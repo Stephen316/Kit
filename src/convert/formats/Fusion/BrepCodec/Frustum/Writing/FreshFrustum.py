@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Writing.FreshRim import FreshRim
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# the fresh frustum contract needs a shared interpretation so circular boundaries retain consistent cone and rim geometry
 def FreshFrustum(Model: FrustumBody) -> FrustumFrame:
     RadiusDelta = Model.TopRadius - Model.BottomRadius
     SlantLength = Hypot(Model.Height, RadiusDelta)

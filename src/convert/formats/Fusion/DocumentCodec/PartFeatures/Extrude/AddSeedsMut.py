@@ -5,9 +5,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchPlan import
 )
 from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleTag import RectangleTag
 
+# first curve tag must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KFirstCurveTag = 3
 
 
+# the neighbours contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def Neighbours(
     Sketched: SketchPlan, Segment: SketchEdge, Point: int | None
 ) -> list[int]:
@@ -20,6 +22,7 @@ def Neighbours(
     ]
 
 
+# the seeds operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSeedsMut(
     Author: AuthorState, Prefix: str, Sketched: SketchPlan, Order: tuple[int, ...]
 ) -> list[dict[str, object]]:

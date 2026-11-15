@@ -18,6 +18,7 @@ from tests.convert.formats.FusionCodec.Brep.Planar.PlanarSamples import (
 )
 
 
+# the placed poly contract needs boundary coverage so stored document relationships remain consistent
 def TestPlacedPoly(TmpPath: FilePath) -> None:
     Model = CreatePolyBody(
         MakeTetrahedron(), KPlanarHistory, KPlanarStamp, KPlanarPlace

@@ -10,9 +10,11 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from tests.convert.formats.FusionCodec.Geometry.Frustum.ReadFrustum import ReadFrustum
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[6]
 
 
+# the native taper contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

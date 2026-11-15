@@ -22,22 +22,36 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
     ViewFrame,
 )
 
+# cover gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KCoverGap = 1e-6
+
+# depth gap needs one explicit bound so drawing edge authoring cannot accept inconsistent resource or layout limits
 KDepthGap = 1e-6
+
+# parallel must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KParallel = 1e-6
+
+# sweep gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSweepGap = 1e-9
+
+# self gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSelfGap = 1e-7
+
+# edge on gap must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KEdgeOnGap = 1e-9
 
 
+# the flat of contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def FlatOf(Frame: ViewFrame, Point: KPointTriple) -> KPointPair:
     return (DotProduct(Point, Frame.Right), DotProduct(Point, Frame.Up))
 
 
+# the depth of contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def DepthOf(Frame: ViewFrame, Point: KPointTriple) -> float:
     return DotProduct(Point, Frame.Eye)
 
 
+# the parallel decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsParallel(First: KPointPair, Second: KPointPair) -> bool:
     Former, Latter = Distance(*First), Distance(*Second)
     if Former < KEdgeOnGap or Latter < KEdgeOnGap:
@@ -47,6 +61,7 @@ def IsParallel(First: KPointPair, Second: KPointPair) -> bool:
     )
 
 
+# the line cover decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsLineCover(
     Frame: ViewFrame,
     Curve: LinePath,
@@ -72,6 +87,7 @@ def IsLineCover(
     return Apart <= KCoverGap and Nearer
 
 
+# the round angles contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def RoundAngles(
     Frame: ViewFrame, Curve: RoundPath, Sighted: KPointPair
 ) -> tuple[float, ...]:
@@ -97,10 +113,12 @@ def RoundAngles(
     return (Phase + Halfway, Phase - Halfway)
 
 
+# the same angle decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsSameAngle(First: float, Second: float) -> bool:
     return abs((First - Second + KFullTurn / 2) % KFullTurn - KFullTurn / 2) < KSelfGap
 
 
+# the round cover decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsRoundCover(
     Frame: ViewFrame,
     Curve: RoundPath,
@@ -125,6 +143,7 @@ def IsRoundCover(
     return False
 
 
+# the covered decision must stay consistent so projected boundaries retain their intended visibility and geometry
 def IsCovered(
     Frame: ViewFrame, Candidates: tuple[SolidEdge, ...], Index: int, Param: float
 ) -> bool:
@@ -148,6 +167,7 @@ def IsCovered(
     return False
 
 
+# the flat span contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def FlatSpan(Frame: ViewFrame, Curve: LinePath | RoundPath) -> float:
     if isinstance(Curve, RoundPath):
         return Curve.Radius

@@ -48,13 +48,24 @@ from tests.convert.formats.FusionCodec.Documents.Form.ReadFormFile import (
     ReadFormFile,
 )
 
+# the frame slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFrameSlack = 1e-12
+
+# the frame knots cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFrameKnots = ((0.0, 3), (0.25, 2), (1.0, 1), (1.75, 2), (2.0, 3))
+
+# the frame parameters cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFrameParams = (0.0, 0.1, 0.25, 0.6, 1.0, 1.3, 1.75, 1.9, 2.0)
+
+# the need zip cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KNeedZip = MarkTests.skipif(
     PythonVersion < (3, 14), reason="native Form archive requires ZIP Zstandard"
 )
+
+# the ramp places cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRampPlaces = PolePlaces(6)
+
+# limit folds needs one explicit bound so native document reconstruction cannot accept inconsistent resource or layout limits
 KLimitFolds = (
     (0.5, "tangent"),
     (0.9, "tangent"),
@@ -65,10 +76,15 @@ KLimitFolds = (
     (-1.001, "unknown"),
     (2.0, "unknown"),
 )
+
+# the split fault cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSplitFault = "may split or reclassify"
+
+# the crease piece shape must stay shared so native document reconstruction uses one contract for compatible values
 KCreasePiece = tuple[tuple[float, float] | None, str]
 
 
+# shared spread order setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SpreadOrder(Knots: tuple[tuple[float, int], ...]) -> list[float]:
     return SpreadKnots(
         tuple(KnotValue for KnotValue, _ in Knots),
@@ -76,6 +92,7 @@ def SpreadOrder(Knots: tuple[tuple[float, int], ...]) -> list[float]:
     )
 
 
+# shared greville setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def Greville(Knots: tuple[tuple[float, int], ...]) -> list[float]:
     Spread = SpreadOrder(Knots)
     return [
@@ -83,22 +100,28 @@ def Greville(Knots: tuple[tuple[float, int], ...]) -> list[float]:
     ]
 
 
+# shared fold pieces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldPieces(
     Angles: tuple[float, ...], Splits: tuple[float, ...] = ()
 ) -> list[KCreasePiece]:
     Classified = ClassifyEdges(FoldBody(Angles, Splits))
     Pieces = [(EdgeValue.Bounds, EdgeValue.Convexity) for EdgeValue in Classified.Edges]
+
+    # ordering by or 0 0 0 0 must stay deterministic so native document reconstruction resolves equivalent inputs consistently
     return sorted(Pieces, key=lambda Piece: Piece[0] or (0.0, 0.0))
 
 
+# shared fold classes setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FoldClasses(Angles: tuple[float, ...], Splits: tuple[float, ...] = ()) -> list[str]:
     return [Label for _, Label in FoldPieces(Angles, Splits)]
 
 
+# shared edge classes setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def EdgeClasses(BodyValue: FormBody) -> list[str]:
     return [EdgeValue.Convexity for EdgeValue in BodyValue.Edges]
 
 
+# shared split spread setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SplitSpread(Built: FormBody, Native: FormBody) -> float:
     Spreads = [
         abs(LeftValue - RightValue)
@@ -115,10 +138,12 @@ def SplitSpread(Built: FormBody, Native: FormBody) -> float:
     return max(Spreads)
 
 
+# shared ramp angles setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RampAngles(Slope: float, RootPlace: float) -> tuple[float, ...]:
     return tuple(Slope * (Place - RootPlace) for Place in KRampPlaces)
 
 
+# shared move grip setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MoveGrip(
     Surface: TsplineSurface, GripIndex: int, Shift: tuple[float, float, float]
 ) -> TsplineSurface:
@@ -138,6 +163,7 @@ def MoveGrip(
     return ReplaceValue(Surface, Grips=Grips)
 
 
+# the curve frame contract needs boundary coverage so stored document relationships remain consistent
 def TestCurveFrame() -> None:
     Places = Greville(KFrameKnots)
     Curve = BsCurve(
@@ -158,6 +184,7 @@ def TestCurveFrame() -> None:
         assert abs(Tangent[1]) <= KFrameSlack
 
 
+# the surface axes contract needs boundary coverage so stored document relationships remain consistent
 def TestSurfaceAxes() -> None:
     Places = Greville(KFrameKnots)
     Knots = tuple(SplineKnot(KnotValue, Count) for KnotValue, Count in KFrameKnots)
@@ -175,6 +202,7 @@ def TestSurfaceAxes() -> None:
                 ) <= (KFrameSlack)
 
 
+# the crease class contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestCreaseClass() -> None:
     Model = ReadDocument(ReadFormFile(*KCreaseCarrier))
@@ -194,6 +222,7 @@ def TestCreaseClass() -> None:
     assert EdgeClasses(Oracle) == Classes
 
 
+# the crease fault contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestCreaseFault() -> None:
     Model = ReadDocument(ReadFormFile(*KCreaseCarrier))
@@ -213,6 +242,7 @@ def TestCreaseFault() -> None:
         _ = ConvertForm(CutCage)
 
 
+# the crease gap contract needs boundary coverage so stored document relationships remain consistent
 @KNeedZip
 def TestCreaseGap() -> None:
     Model = ReadDocument(ReadFormFile(*KCreaseCarrier))
@@ -225,6 +255,7 @@ def TestCreaseGap() -> None:
     assert Native.count("unknown") + 1 == Classes.count("unknown")
 
 
+# the crease limit contract needs boundary coverage so stored document relationships remain consistent
 def TestCreaseLimit() -> None:
     for Angle, Label in KLimitFolds:
         assert FoldClasses((Angle,) * 7) == [Label]
@@ -234,6 +265,7 @@ def TestCreaseLimit() -> None:
     assert FoldClasses(RampAngles(1.0006 / 6.0, 0.0)) == ["unknown"]
 
 
+# the flat knots contract needs boundary coverage so stored document relationships remain consistent
 def TestFlatKnots() -> None:
     Steep = RampAngles(1.0, 3.0)
     assert FoldClasses(Steep, (3.0,)) == ["unknown", "unknown"]
@@ -252,6 +284,7 @@ def TestFlatKnots() -> None:
             _ = FoldClasses(Angles, Splits)
 
 
+# the turn roots contract needs boundary coverage so stored document relationships remain consistent
 def TestTurnRoots() -> None:
     assert FoldClasses(RampAngles(0.5, 1.4)) == ["unknown"]
     Crossed = RampAngles(1.0, 2.5)

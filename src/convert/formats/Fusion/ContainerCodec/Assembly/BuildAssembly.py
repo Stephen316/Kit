@@ -20,6 +20,7 @@ from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the assembly operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def BuildAssembly(
     Design: DesignResult, Title: str, SnapshotId: str, InstanceRev: str
 ) -> AuxiliaryGraph:

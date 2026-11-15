@@ -32,6 +32,7 @@ from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 from convert.formats.Fusion.EntityCodec.Schema.NamedType import NamedType
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 
+# the entity types order must stay explicit so public document claims remain grounded in native records
 KEntityTypes: tuple[type[object], ...] = (
     EntityFrame,
     EntityGroup,

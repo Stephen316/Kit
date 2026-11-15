@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PasteSpec import Pa
 from convert.formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import AuthorSchemas
 
 
+# the create author contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def CreateAuthor(SpecValue: DocumentSpec, AssetId: str) -> AuthorState:
     Policy = AuthorPolicy()
     Schemas = AuthorSchemas(

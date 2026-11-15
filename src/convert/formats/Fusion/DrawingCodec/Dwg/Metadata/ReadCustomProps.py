@@ -3,6 +3,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Metadata.ReadTextRun import ReadTex
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgCustomProp import DwgCustomProp
 
 
+# the custom props operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadCustomProps(
     DataValue: bytes, Offset: int
 ) -> tuple[tuple[DwgCustomProp, ...], int]:

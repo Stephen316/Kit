@@ -7,6 +7,7 @@ from convert.formats.Fusion.BundleCodec.Model.FusionBundle import FusionBundle
 from convert.formats.Fusion.BundleCodec.Validation.CheckModel import CheckModel
 
 
+# the bundle operation needs a distinct decoding boundary so linked archive members retain their document relationships
 def ReadBundle(
     DataValue: bytes, InflateZstd: Callable[[bytes, int], bytes] | None = None
 ) -> FusionBundle:

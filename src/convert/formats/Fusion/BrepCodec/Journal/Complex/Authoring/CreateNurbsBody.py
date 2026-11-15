@@ -30,6 +30,7 @@ from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the nurbs nodes operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeNurbsNodes(Model: NurbsBody) -> tuple[KJournalEntity, ...]:
     CheckNurbsBody(Model)
     Layout = MakeNurbsLayout(Model)
@@ -50,6 +51,7 @@ def MakeNurbsNodes(Model: NurbsBody) -> tuple[KJournalEntity, ...]:
     return Entities
 
 
+# create nurbs body needs an explicit validity boundary so nested spline and surface records retain their relationships
 def CreateNurbsBody(
     Model: NurbsBody, History: HistoryState, Stamp: GeometryStamp
 ) -> JournalModel:

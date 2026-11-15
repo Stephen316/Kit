@@ -9,6 +9,7 @@ from convert.formats.Fusion.DrawingCodec.Members.JsonFields import (
 from convert.formats.Fusion.DrawingCodec.Members.JsonStyle import JsonStyle
 
 
+# the json operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def WriteJson(Value: KFrozenJson, Style: JsonStyle) -> bytes:
     Plain = ThawJson(Value)
     CheckJsonTree(Plain)
@@ -23,6 +24,7 @@ def WriteJson(Value: KFrozenJson, Style: JsonStyle) -> bytes:
     return TextValue.encode("utf-8")
 
 
+# the spaced text contract needs a shared interpretation so drawing members retain their sheet and model associations
 def SpacedText(Value: KFrozenJson) -> str:
     if isinstance(Value, JsonFields):
         Fields = (

@@ -5,6 +5,7 @@ from typing import cast as CastValue
 from tools.TestShards.ShardPlan import ShardPlan
 
 
+# the shard operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def ParseShard(Entry: object) -> ShardPlan:
     if not isinstance(Entry, dict):
         raise ValueError("shard plan entry is not an object")

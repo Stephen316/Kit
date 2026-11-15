@@ -41,11 +41,22 @@ from tests.convert.formats.FusionCodec.Documents.Form.CappedCages import (
     TorusParts,
 )
 
+# the row slack cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRowSlack = 1e-12
+
+# the roof counts cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRoofCounts = (2, 3, 1)
+
+# the ridge ends cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRidgeEnds = ((1.0, 0.0, 1.0), (1.0, 3.0, 1.0))
+
+# turn path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KTurnPath = ((0.0, 1.0, 2.0), (1.0, 1.0, 2.0), (1.0, 2.0, 2.0))
+
+# line path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KLinePath = ((0.0, 1.0, 2.0), (1.0, 1.0, 2.0), (2.0, 1.0, 2.0))
+
+# the cube knots cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCubeKnots = (
     SplineKnot(0.0, 3),
     SplineKnot(0.125, 2),
@@ -57,22 +68,28 @@ KCubeKnots = (
 )
 
 
+# the call log boundary needs grouped coverage so repository automation cannot silently change its observable contract
 class CallLog:
+
+    # shared call log setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
     def __init__(self) -> None:
         super().__init__()
         self.Requests: list[CapInput] = []
 
+    # shared call log setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
     def __call__(self, Request: CapInput) -> KMapping[KCapKey, KPoleRow]:
         self.Requests.append(Request)
         return SolveCaps(Request)
 
 
+# shared sharp surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SharpSurface() -> TsplineSurface:
     Parts = BoxParts((2, 2, 2))
     Plain = MakeSurface(Parts)
     return ReplaceValue(Plain, Creases=BoxCreases(Parts, Plain, 2.0))
 
 
+# shared has unit rows setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HasUnitRows(Table: StencilTable) -> bool:
     return all(
         abs(sum(Value for _, Value in RowValue) - 1.0) < KRowSlack
@@ -80,6 +97,7 @@ def HasUnitRows(Table: StencilTable) -> bool:
     )
 
 
+# the cube knots contract needs boundary coverage so stored document relationships remain consistent
 def TestCubeKnots() -> None:
     Table = BuildTable(MakeSurface(BoxParts((1, 1, 1))))
     assert len(Table.Faces) == 6
@@ -89,6 +107,7 @@ def TestCubeKnots() -> None:
         assert len(FaceValue.Poles) == 13 * 13
 
 
+# the cube hook contract needs boundary coverage so stored document relationships remain consistent
 def TestCubeHook() -> None:
     Logger = CallLog()
     Table = BuildTable(MakeSurface(BoxParts((1, 1, 1))), Logger)
@@ -107,11 +126,13 @@ def TestCubeHook() -> None:
     assert HasUnitRows(Table)
 
 
+# the row sums contract needs boundary coverage so stored document relationships remain consistent
 def TestRowSums() -> None:
     for Parts in (BoxParts((2, 3, 4)), PrismParts(5), PrismParts(6)):
         assert HasUnitRows(BuildTable(MakeSurface(Parts)))
 
 
+# the sharp box contract needs boundary coverage so stored document relationships remain consistent
 def TestSharpBox() -> None:
     Logger = CallLog()
     Table = BuildTable(SharpSurface(), Logger)
@@ -125,6 +146,7 @@ def TestSharpBox() -> None:
     assert HasUnitRows(Table)
 
 
+# the torus face contract needs boundary coverage so stored document relationships remain consistent
 def TestTorusFace() -> None:
     Logger = CallLog()
     Table = BuildTable(MakeSurface(TorusParts((8, 6))), Logger)
@@ -136,6 +158,7 @@ def TestTorusFace() -> None:
     assert HasUnitRows(Table)
 
 
+# the curve ends contract needs boundary coverage so stored document relationships remain consistent
 def TestCurveEnds() -> None:
     Table = BuildTable(MakeSurface(BoxParts((2, 3, 4))))
     PointRows = {Table.Rows[Index] for Index in Table.Points}
@@ -146,6 +169,7 @@ def TestCurveEnds() -> None:
         assert Table.Rows[CurveValue.Poles[-1]] in PointRows
 
 
+# shared is box edge setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsBoxEdge(First: KCoords, Second: KCoords) -> bool:
     Bounds = [
         AxisIndex
@@ -156,6 +180,7 @@ def IsBoxEdge(First: KCoords, Second: KCoords) -> bool:
     return len(Bounds) >= 2
 
 
+# shared is ridge edge setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def IsRidgeEdge(First: KCoords, Second: KCoords) -> bool:
     return all(
         Point[0] == 1.0 and Point[2] == float(KRoofCounts[2])
@@ -163,6 +188,7 @@ def IsRidgeEdge(First: KCoords, Second: KCoords) -> bool:
     )
 
 
+# shared roof surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RoofSurface(IsListed: bool) -> TsplineSurface:
     Parts = BoxParts(KRoofCounts)
     Plain = MakeSurface(Parts)
@@ -186,6 +212,7 @@ def RoofSurface(IsListed: bool) -> TsplineSurface:
     )
 
 
+# shared path graph setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PathGraph(Parts: KCageParts, PathPoints: tuple[KCoords, ...]) -> CageGraph:
     Plain = MakeSurface(Parts)
     Links = Plain.Topology.Links
@@ -204,6 +231,7 @@ def PathGraph(Parts: KCageParts, PathPoints: tuple[KCoords, ...]) -> CageGraph:
     return ReadGraph(ReplaceValue(Plain, Creases=CreaseData(tuple(sorted(Edges)), ())))
 
 
+# the roof fixed contract needs boundary coverage so stored document relationships remain consistent
 def TestRoofFixed() -> None:
     Parts = BoxParts(KRoofCounts)
     Graph = ReadGraph(RoofSurface(False))
@@ -214,6 +242,7 @@ def TestRoofFixed() -> None:
     assert FixedKnots(2) == tuple((Value, 1) for Value in Halves)
 
 
+# the roof table contract needs boundary coverage so stored document relationships remain consistent
 def TestRoofTable() -> None:
     Logger = CallLog()
     Table = BuildTable(RoofSurface(False), Logger)
@@ -222,6 +251,7 @@ def TestRoofTable() -> None:
     assert HasUnitRows(Table)
 
 
+# the listed roof contract needs boundary coverage so stored document relationships remain consistent
 def TestListedRoof() -> None:
     Plain = BuildTable(RoofSurface(False))
     Listed = BuildTable(RoofSurface(True))
@@ -229,6 +259,7 @@ def TestListedRoof() -> None:
     assert Listed.Rows == Plain.Rows
 
 
+# the turn caps contract needs boundary coverage so stored document relationships remain consistent
 def TestTurnCaps() -> None:
     Parts = BoxParts((2, 2, 2))
     Middle = Parts[0].index(KTurnPath[1])
@@ -240,6 +271,7 @@ def TestTurnCaps() -> None:
     assert FixedPoints(LineGraph) == {}
 
 
+# the apply table contract needs boundary coverage so stored document relationships remain consistent
 def TestApplyTable() -> None:
     Surface = MakeSurface(BoxParts((1, 1, 1)))
     Heavy = ReplaceValue(Surface.Grips[0], Weight=2.0)

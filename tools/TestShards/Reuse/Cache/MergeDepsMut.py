@@ -8,6 +8,7 @@ from tools.TestShards.Reuse.Cache.ReadStrings import ReadStrings
 from tools.TestShards.Reuse.Track.ModuleDeps import ModuleDeps
 
 
+# the merge deps contract needs a stable decomposition so dependency changes cannot revive stale passing results
 def MergeDepsMut(Graph: DepGraph, Payload: Mapping[str, object]) -> None:
     PythonText = Payload.get("Python")
     if not isinstance(PythonText, str):

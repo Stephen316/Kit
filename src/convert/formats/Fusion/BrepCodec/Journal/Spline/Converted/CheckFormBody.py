@@ -21,9 +21,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
 from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# point slack must remain consistent across callers so surface geometry retains the control cage shape
 KPointSlack = 1e-6
 
 
+# the near point decision must stay consistent so surface geometry retains the control cage shape
 def IsNearPoint(PoleValue: tuple[float, ...], Point: tuple[float, ...]) -> bool:
     return (
         max(
@@ -34,6 +36,7 @@ def IsNearPoint(PoleValue: tuple[float, ...], Point: tuple[float, ...]) -> bool:
     )
 
 
+# form bounds needs an explicit validity boundary so surface geometry retains the control cage shape
 def FormBounds(Value: FormEdge) -> tuple[float, float]:
     Knots = Value.Curve.Knots
     if Value.Bounds is None:
@@ -45,6 +48,7 @@ def FormBounds(Value: FormEdge) -> tuple[float, float]:
     return Value.Bounds
 
 
+# invalid form edge input must fail here so surface geometry retains the control cage shape
 def CheckFormEdge(Value: FormEdge, Model: FormBody, FaceCount: int) -> None:
     if not isinstance(CastValue(object, Value), FormEdge):
         raise ValueError("Converted Form edge must be typed")
@@ -78,6 +82,7 @@ def CheckFormEdge(Value: FormEdge, Model: FormBody, FaceCount: int) -> None:
     CheckWindows(Value.Windows, FaceCount)
 
 
+# invalid form surf input must fail here so surface geometry retains the control cage shape
 def CheckFormSurf(Value: FormSurface, RegionCount: int) -> None:
     if not isinstance(CastValue(object, Value), FormSurface):
         raise ValueError("Converted Form face surface must be typed")
@@ -91,6 +96,7 @@ def CheckFormSurf(Value: FormSurface, RegionCount: int) -> None:
         raise ValueError("Converted Form surface discontinuities must be finite")
 
 
+# invalid form use input must fail here so surface geometry retains the control cage shape
 def CheckFormUse(Value: FormUse, Model: FormBody) -> FormEdge:
     if not isinstance(CastValue(object, Value), FormUse):
         raise ValueError("Converted Form coedge must be typed")
@@ -108,6 +114,7 @@ def CheckFormUse(Value: FormUse, Model: FormBody) -> FormEdge:
     return EdgeValue
 
 
+# invalid form face input must fail here so surface geometry retains the control cage shape
 def CheckFormFace(Value: FormFace, Model: FormBody) -> None:
     if not isinstance(CastValue(object, Value), FormFace):
         raise ValueError("Converted Form face must be typed")
@@ -137,6 +144,7 @@ def CheckFormFace(Value: FormFace, Model: FormBody) -> None:
         raise ValueError("Converted Form face label must be a positive integer")
 
 
+# invalid form usage input must fail here so surface geometry retains the control cage shape
 def CheckFormUsage(Model: FormBody) -> None:
     Senses: dict[int, list[bool]] = {}
     for FaceValue in Model.Faces:
@@ -174,6 +182,7 @@ def CheckFormUsage(Model: FormBody) -> None:
         raise ValueError("Converted Form faces must own distinct patch programs")
 
 
+# invalid form body input must fail here so surface geometry retains the control cage shape
 def CheckFormBody(Model: FormBody, Surface: TsplineSurface) -> None:
     if not isinstance(CastValue(object, Model), FormBody):
         raise ValueError("A typed converted Form body is required")

@@ -11,6 +11,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
 )
 
 
+# part stage needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class PartStage:
     Feature: KPartFeature

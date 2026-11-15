@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbString import EncodeSmbString
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the smb header operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EmitSmbHeader(Stamp: GeometryStamp) -> bytes:
     Header = b"ASM BinaryFile8" + PackValue("<4q", 23200, 0, 2, 2)
     Strings = b"".join(

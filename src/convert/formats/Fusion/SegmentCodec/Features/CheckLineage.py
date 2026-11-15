@@ -17,6 +17,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.SketchLayout import (
 )
 
 
+# invalid lineage input must fail here so native records retain their segment ownership and schema
 def CheckLineage(Lineage: tuple[ClassStamp, ...]) -> tuple[ClassLayout, ...]:
     if type(Lineage) is not tuple or not 1 <= len(Lineage) <= KMaxLineage:
         raise ValueError("Invalid Fusion feature class lineage")

@@ -1,7 +1,10 @@
 from struct import pack as PackValue, unpack as UnpackValue, calcsize as CalcSize
 
 
+# the byte stream contract needs a dedicated boundary so display geometry retains its entity and scene relationships
 class ByteStream:
+
+    # byte stream needs explicit initial state so display geometry retains its entity and scene relationships
     def __init__(self, Payload: bytes | None) -> None:
         super().__init__()
         self.IsReading = Payload is not None
@@ -9,6 +12,7 @@ class ByteStream:
         self.Position = 0
         self.Output = bytearray()
 
+    # transfer needs an explicit validity boundary so display geometry retains its entity and scene relationships
     def Transfer(self, Length: int, Value: bytes | None) -> bytes:
         if self.IsReading:
             Ending = self.Position + Length
@@ -22,6 +26,7 @@ class ByteStream:
         self.Output.extend(Value)
         return Value
 
+    # integer needs an explicit validity boundary so display geometry retains its entity and scene relationships
     def Integer(self, Value: int | None, Format: str = "<I") -> int:
         if not self.IsReading and type(Value) is not int:
             raise ValueError("Expected an integer graphics field")

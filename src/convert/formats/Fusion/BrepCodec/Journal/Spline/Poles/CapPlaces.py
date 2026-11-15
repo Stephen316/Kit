@@ -20,11 +20,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.PoleKnots import (
     MergeMut,
 )
 
+# the pole place shape must stay shared so spline pole reconstruction uses one contract for compatible values
 KPolePlace = tuple[int, int]
+
+# reach spans must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KReachSpans = 4
+
+# narrow spans must remain consistent across callers so neighboring patches retain consistent subdivision boundaries
 KNarrowSpans = 2
 
 
+# face plan needs an explicit state contract so neighboring patches retain consistent subdivision boundaries
 @MakeDataClass(frozen=True, slots=True)
 class FacePlan:
     Region: int
@@ -34,6 +40,7 @@ class FacePlan:
     FullV: tuple[Fraction, ...]
 
 
+# corner use needs an explicit state contract so neighboring patches retain consistent subdivision boundaries
 @MakeDataClass(frozen=True, slots=True)
 class CornerUse:
     FaceIndex: int
@@ -47,6 +54,7 @@ class CornerUse:
     AlongI: bool
 
 
+# the corner uses contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CornerUses(
     Graph: CageGraph, PlanValue: FacePlan, Scale: int, Levels: KMapping[int, int]
 ) -> list[CornerUse]:
@@ -75,6 +83,7 @@ def CornerUses(
     return Found
 
 
+# the side index contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SideIndex(
     KnotList: tuple[Fraction, ...], PoleSpot: int, Value: Fraction, SignValue: int
 ) -> int:
@@ -88,6 +97,7 @@ def SideIndex(
     return LastSpot - PoleSpot - Count
 
 
+# the arg distances contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def ArgDistances(
     KnotList: tuple[Fraction, ...], PoleSpot: int, Value: Fraction, SignValue: int
 ) -> list[Fraction]:
@@ -96,6 +106,7 @@ def ArgDistances(
     )
 
 
+# the axis indices contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def AxisIndices(
     KnotList: tuple[Fraction, ...], Value: Fraction, SignValue: int, Reach: Fraction
 ) -> dict[int, int]:
@@ -110,10 +121,12 @@ def AxisIndices(
     return Found
 
 
+# the cap spacing contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CapSpacing(Scale: int, Level: int) -> Fraction:
     return Scale * Fraction(1, 2 ** (Level + 1))
 
 
+# the near spots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def NearSpots(
     KnotList: tuple[Fraction, ...], Value: Fraction, SignValue: int, EdgeReach: Fraction
 ) -> dict[int, list[Fraction]]:
@@ -125,6 +138,7 @@ def NearSpots(
     return Found
 
 
+# the base mask contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def BaseMask(
     BaseLists: tuple[tuple[Fraction, ...], tuple[Fraction, ...]],
     UseList: list[CornerUse],
@@ -142,6 +156,7 @@ def BaseMask(
     return Found
 
 
+# the corner groups contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CornerGroups(
     Graph: CageGraph, PlanValue: FacePlan, Scale: int, Levels: KMapping[int, int]
 ) -> dict[tuple[int, Fraction, Fraction], list[CornerUse]]:
@@ -152,6 +167,7 @@ def CornerGroups(
     return Found
 
 
+# the key operation needs a consistent construction rule so neighboring patches retain consistent subdivision boundaries
 def PlaceKey(
     BaseLists: tuple[tuple[Fraction, ...], tuple[Fraction, ...]],
     Place: KPolePlace,
@@ -166,6 +182,7 @@ def PlaceKey(
     raise ValueError("Fusion Form cap places found a cap pole outside its sectors")
 
 
+# the own list contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def OwnList(
     FullList: tuple[Fraction, ...], OwnMap: KMapping[Fraction, int]
 ) -> tuple[Fraction, ...]:
@@ -177,6 +194,7 @@ def OwnList(
     return tuple(Found)
 
 
+# the cell ranges contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def CellRanges(
     CellValue: PatchCell, Scale: int
 ) -> tuple[tuple[Fraction, Fraction], tuple[Fraction, Fraction]]:
@@ -186,10 +204,12 @@ def CellRanges(
     return (min(PlacesU), max(PlacesU)), (min(PlacesV), max(PlacesV))
 
 
+# the range edge contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def RangeEdge(Bounds: tuple[Fraction, Fraction], SignValue: int) -> Fraction:
     return Bounds[0] if SignValue > 0 else Bounds[1]
 
 
+# the on strip decision must stay consistent so neighboring patches retain consistent subdivision boundaries
 def IsOnStrip(
     CellValue: PatchCell, Scale: int, CornerInfo: CornerUse, AlongU: bool
 ) -> bool:
@@ -206,6 +226,7 @@ def IsOnStrip(
     )
 
 
+# the strip list contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def StripList(
     Graph: CageGraph,
     PlanValue: FacePlan,
@@ -229,6 +250,7 @@ def StripList(
     return OwnList(PlanValue.FullU if AlongU else PlanValue.FullV, Owned)
 
 
+# the own lists contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def OwnLists(
     Graph: CageGraph,
     PlanValue: FacePlan,
@@ -242,6 +264,7 @@ def OwnLists(
     )
 
 
+# the sector knots contract needs a shared interpretation so neighboring patches retain consistent subdivision boundaries
 def SectorKnots(
     KnotList: tuple[Fraction, ...], Value: Fraction, SignValue: int
 ) -> KSectorKnots:

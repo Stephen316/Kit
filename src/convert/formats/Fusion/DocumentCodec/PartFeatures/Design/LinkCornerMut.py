@@ -7,22 +7,35 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import (
 )
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartStage import PartStage
 
+# data row must remain consistent across callers so modeling operations retain their document and timeline ownership
 KDataRow = 1
+
+# the chamfer types vocabulary must stay centralized so design feature construction agrees on supported native identities
 KChamferTypes = {"equal": 1, "two": 2, "angle": 3}
+
+# the chain modes vocabulary must stay centralized so design feature construction agrees on supported native identities
 KChainModes: dict[str, object] = dict(bIsComputeChain=True)
+
+# the fillet edge vocabulary must stay centralized so design feature construction agrees on supported native identities
 KFilletEdge: dict[str, object] = dict(KChainModes, bConstantRadius=True)
+
+# the fillet modes vocabulary must stay centralized so design feature construction agrees on supported native identities
 KFilletModes: dict[str, object] = dict(
     isRollingBallCorners=True, isTangentPropagation=True
 )
+
+# the chamfer modes vocabulary must stay centralized so design feature construction agrees on supported native identities
 KChamferModes: dict[str, object] = dict(cornerType=1, isTangentPropagation=True)
 
 
+# the corner count contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def CornerCount(Feature: object) -> int:
     if isinstance(Feature, (FilletSpec, ChamferSpec)):
         return 1 + len(Feature.MoreCornersMm)
     return 1
 
 
+# link corner must resolve unambiguously so modeling operations retain their document and timeline ownership
 def LinkCornerMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     Reference = Author.Reference
     MainRole = Prefix + "feature"

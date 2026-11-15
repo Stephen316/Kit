@@ -29,6 +29,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderRoots import BuildRoots
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the frustum records contract needs a shared interpretation so circular boundaries retain consistent cone and rim geometry
 def FrustumRecords(
     Identity: BodyIdentity,
     TagSet: TopologyTags,

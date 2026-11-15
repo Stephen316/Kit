@@ -1,12 +1,16 @@
 from convert.formats.Fusion.ContainerCodec.Preview.EmitPreview import EmitPreview
 
+# paper color must remain consistent across callers so sheet objects retain their intended document relationships
 KPaperColor = b"\xff\xff\xff\xff"
 
+# ink color must remain consistent across callers so sheet objects retain their intended document relationships
 KInkColor = b"\x40\x40\x40\xff"
 
+# clear color must remain consistent across callers so sheet objects retain their intended document relationships
 KClearColor = b"\x00\x00\x00\x00"
 
 
+# the sheet image contract needs a shared interpretation so sheet objects retain their intended document relationships
 def SheetImage(Width: int, Height: int, Aspect: float) -> bytes:
     SheetHeight = min(Height, round(Width / Aspect))
     TopEdge = (Height - SheetHeight) // 2
@@ -23,6 +27,7 @@ def SheetImage(Width: int, Height: int, Aspect: float) -> bytes:
     return EmitPreview(Width, Height, bytes(Pixels))
 
 
+# the fill box contract needs a shared interpretation so sheet objects retain their intended document relationships
 def FillBoxMut(
     Pixels: bytearray, Width: int, BoxValue: tuple[int, int, int, int], Color: bytes
 ) -> None:
@@ -33,6 +38,7 @@ def FillBoxMut(
         Pixels[Start : Start + SpanWidth * 4] = Color * SpanWidth
 
 
+# the frame box contract needs a shared interpretation so sheet objects retain their intended document relationships
 def FrameBoxMut(
     Pixels: bytearray, Width: int, BoxValue: tuple[int, int, int, int], Color: bytes
 ) -> None:

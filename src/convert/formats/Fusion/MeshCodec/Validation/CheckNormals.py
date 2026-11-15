@@ -3,6 +3,7 @@ from math import isfinite as IsFinite
 from convert.formats.Fusion.MeshCodec.Model.ParaMesh import ParaMesh
 
 
+# invalid normals input must fail here so vertex and index streams retain their intended connectivity
 def CheckNormals(Value: ParaMesh) -> None:
     if len(Value.Normals) != len(Value.Positions) + len(Value.Overrides):
         raise ValueError("Fusion mesh normal table allocation disagrees with overrides")

@@ -9,6 +9,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ManifestCursor import
 )
 
 
+# the root links operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadRootLinks(Cursor: ManifestCursor) -> tuple[ManifestLink, ...]:
     FlagValue = Cursor.TakeBytes(1)
     if FlagValue == b"\0":

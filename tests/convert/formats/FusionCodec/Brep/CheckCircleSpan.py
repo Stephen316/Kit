@@ -8,6 +8,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmVec
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the circle span contract needs boundary coverage so stored document relationships remain consistent
 def CheckCircleSpan(Table: AsmTable, Model: CylinderBody, CurveCount: int) -> None:
     Curves = tuple(Record for Record in Table.Records if Record.Name == "ellipse-curve")
     assert len(Curves) == CurveCount

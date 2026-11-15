@@ -38,14 +38,31 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.HeaderDefaults impo
     KByLayerColor,
 )
 
+# the empty folders order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KEmptyFolders = ("ACAD_GROUP", "ACAD_PLOTSETTINGS", "ACAD_COLOR", "ACAD_VISUALSTYLE")
+
+# the slot folders order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KSlotFolders = ("ACAD_LAYOUT", "ACAD_SCALELIST", "SY_ROOT_DICTIONARY")
+
+# the materials order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KMaterials = ("ByBlock", "ByLayer")
+
+# file source must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KFileSource = 1
+
+# scene source must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KSceneSource = 0
+
+# all channels must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KAllChannels = 63
+
+# cylinder map must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KCylinderMap = 2
+
+# tile map must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KTileMap = 1
+
+# the view standard order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KViewStandard = (
     ("StandardVersion", 100),
     ("StandardLongOne", 0),
@@ -56,6 +73,7 @@ KViewStandard = (
 )
 
 
+# the child common contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def ChildCommon(OwnerKey: str) -> KDraftFields:
     return {
         "ReactorCount": 1,
@@ -66,6 +84,7 @@ def ChildCommon(OwnerKey: str) -> KDraftFields:
     }
 
 
+# the slot folder contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def SlotFolder(Ledger: DraftBook, KeyText: str) -> KDraftFields:
     Names = DeclareMut(Ledger, KeyText + ".Entries")
     Items = DeclareMut(Ledger, KeyText + ".Items")
@@ -78,6 +97,7 @@ def SlotFolder(Ledger: DraftBook, KeyText: str) -> KDraftFields:
     }
 
 
+# the folder operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceFolderMut(
     Ledger: DraftBook, NameText: str, ClassName: str = "DICTIONARY"
 ) -> str:
@@ -96,6 +116,7 @@ def PlaceFolderMut(
     return KeyText
 
 
+# map record must resolve unambiguously so native drawing objects use a consistent symbol vocabulary
 def MapRecord(Source: int) -> DraftRecord:
     Identity = tuple(
         DraftRecord((("Element", 1.0 if Index % 5 == 0 else 0.0),))
@@ -115,6 +136,7 @@ def MapRecord(Source: int) -> DraftRecord:
     )
 
 
+# the material data contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def MaterialData(NameText: str) -> KDraftFields:
     Plain = MapRecord(KFileSource)
     return {
@@ -144,6 +166,7 @@ def MaterialData(NameText: str) -> KDraftFields:
     }
 
 
+# the line record contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def LineRecord(Offset: float) -> DraftRecord:
     return DraftRecord(
         (
@@ -156,6 +179,7 @@ def LineRecord(Offset: float) -> DraftRecord:
     )
 
 
+# the child operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceChildMut(
     Ledger: DraftBook,
     FolderKey: str,
@@ -169,6 +193,7 @@ def PlaceChildMut(
     return KeyText
 
 
+# the styles operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceStylesMut(Ledger: DraftBook) -> None:
     Materials = PlaceFolderMut(Ledger, "ACAD_MATERIAL")
     for NameText in KMaterials:
@@ -193,6 +218,7 @@ def PlaceStylesMut(Ledger: DraftBook) -> None:
     _ = PlaceChildMut(Ledger, Plots, "Normal", "ACDBPLACEHOLDER", {})
 
 
+# the model operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceModelMut(Ledger: DraftBook, Paper: PaperSize) -> None:
     ModelLayout = KLayoutFolder + "/Model"
     _ = PlaceMut(
@@ -244,6 +270,7 @@ def PlaceModelMut(Ledger: DraftBook, Paper: PaperSize) -> None:
     _ = EnrolMut(Ledger, KLayoutFolder, "Model", ModelLayout)
 
 
+# the named operation needs a consistent construction rule so native drawing objects use a consistent symbol vocabulary
 def PlaceNamedMut(Ledger: DraftBook, Paper: PaperSize) -> None:
     _ = PlaceMut(
         Ledger,

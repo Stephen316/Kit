@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurf
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
 
+# grid result needs an explicit state contract so surface geometry retains the control cage shape
 @MakeDataClass(frozen=True, slots=True)
 class GridResult:
     Surface: NubsSurface

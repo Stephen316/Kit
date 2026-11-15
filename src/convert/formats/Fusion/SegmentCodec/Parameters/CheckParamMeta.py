@@ -1,6 +1,7 @@
 from convert.formats.Fusion.NativeParam import NativeParam
 
 
+# invalid parameter meta input must fail here so native records retain their segment ownership and schema
 def CheckParamMeta(Value: NativeParam) -> tuple[bool, bool]:
     Metadata = Value.Metadata
     if type(Metadata) is not bytes:

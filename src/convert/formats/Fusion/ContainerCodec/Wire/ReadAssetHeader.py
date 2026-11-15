@@ -26,6 +26,7 @@ from convert.formats.Fusion.SourceProof.Auxiliary.Manifest.ReadAssetMeta import 
 )
 
 
+# the link tail operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadLinkTail(Cursor: ManifestCursor) -> str:
     if Cursor.ReadWord() != KAssetMarker:
         raise ValueError("Unsupported Fusion asset link marker")
@@ -41,6 +42,7 @@ def ReadLinkTail(Cursor: ManifestCursor) -> str:
     return Value
 
 
+# the asset header operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadAssetHeader(Payload: bytes) -> AssetHeader:
     Cursor = OpenWireCursor(Payload)
     if Cursor.ReadText(True) != KAssetName:

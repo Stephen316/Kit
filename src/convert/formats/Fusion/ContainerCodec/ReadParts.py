@@ -9,6 +9,7 @@ from convert.formats.Fusion.ContainerCodec.ContainerLayout import (
 from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
 
 
+# the parts operation needs a distinct decoding boundary so archive members retain their native ownership and reference relationships
 def ReadParts(
     Archive: IndexedArchive,
 ) -> tuple[tuple[ContainerPart, ...], tuple[str, ...]]:

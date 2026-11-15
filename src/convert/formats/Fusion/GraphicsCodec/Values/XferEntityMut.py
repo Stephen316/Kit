@@ -6,6 +6,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer entity needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferEntityMut(
     State: SceneCodec, Status: int | None, Target: EntityRef | None
 ) -> tuple[int, EntityRef | None]:

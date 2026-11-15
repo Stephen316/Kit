@@ -1,6 +1,7 @@
 from enum import StrEnum
 
 
+# the field kind contract needs a dedicated boundary so native records retain their segment ownership and schema
 class FieldKind(StrEnum):
     KBoolean = "bool"
     KUnsigned = "uint32"

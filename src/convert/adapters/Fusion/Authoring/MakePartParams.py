@@ -28,6 +28,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LoftSpec import Lof
 from interchange.records.RecordParameter import Parameter
 
 
+# the driving length contract needs a shared interpretation so public document claims remain grounded in native records
 def DrivingLength(Feature: KPartFeature) -> tuple[str, float] | None:
     if isinstance(Feature, FilletSpec):
         return "Radius", Feature.RadiusMm
@@ -51,6 +52,7 @@ def DrivingLength(Feature: KPartFeature) -> tuple[str, float] | None:
     return None
 
 
+# the part parameters operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakePartParams(SpecValue: DocumentSpec) -> tuple[Parameter, ...]:
     Values: list[Parameter] = []
     for Index, Feature in enumerate(SpecValue.Features):

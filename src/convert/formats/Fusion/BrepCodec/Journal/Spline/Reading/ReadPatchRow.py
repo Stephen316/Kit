@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.WritePatches import
 )
 
 
+# the patch word operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPatchWord(WordText: str) -> float:
     try:
         Value: float = int(WordText)
@@ -16,12 +17,14 @@ def ReadPatchWord(WordText: str) -> float:
     return Value
 
 
+# the whole operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadWhole(Value: float) -> int:
     if not isinstance(Value, int):
         raise ValueError("Invalid Fusion T-spline patch index")
     return Value
 
 
+# the patch row operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadPatchRow(LineText: str) -> tuple[PatchCell, ...]:
     Words = LineText.split(" ")
     if len(Words) < 2 or Words[-1]:

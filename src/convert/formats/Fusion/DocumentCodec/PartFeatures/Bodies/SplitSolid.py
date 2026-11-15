@@ -19,10 +19,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.RegionOp import Reg
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.RegionBool import KRegion
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import IsSealed
 
+# the split sides order must stay explicit so feature parameters remain connected to the resulting geometry
 KSplitSides = ("1", "-1")
+
+# the split bodies order must stay explicit so feature parameters remain connected to the resulting geometry
 KSplitBodies = (2, 3)
 
 
+# the half region contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def HalfRegion(
     Plane: PlaneSpec, Bounds: tuple[float, float], SideIndex: int, Label: FaceLabel
 ) -> KRegion:
@@ -46,6 +50,7 @@ def HalfRegion(
     return (CanonLoop(Spans),)
 
 
+# the upright piece contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def UprightPiece(
     Solid: PrismSolid, Plane: PlaneSpec, SideIndex: int, Label: FaceLabel
 ) -> tuple[PrismSlab | None, ...]:
@@ -67,6 +72,7 @@ def UprightPiece(
     return tuple(Pieces)
 
 
+# the level piece contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LevelPiece(
     Solid: PrismSolid, Level: float, SideIndex: int, Label: FaceLabel
 ) -> tuple[PrismSlab | None, ...]:
@@ -84,6 +90,7 @@ def LevelPiece(
     return tuple(Pieces)
 
 
+# the split solid contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def SplitSolid(
     Solid: PrismSolid, Plane: PlaneSpec, Operation: int, Ordinal: int
 ) -> tuple[PrismSolid, PrismSolid]:

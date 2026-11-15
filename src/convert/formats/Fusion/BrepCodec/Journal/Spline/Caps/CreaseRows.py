@@ -34,11 +34,22 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Caps.RoundTrig import (
     RoundSine,
 )
 
+# even window must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KEvenWindow = 5
+
+# odd window must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KOddWindow = 6
+
+# pin reach must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KPinReach = 4
+
+# dart valence must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KDartValence = 4
+
+# crease ratio must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KCreaseRatio = Fraction(2, 3)
+
+# the wedge terms order must stay explicit so extraordinary vertices remain compatible with surrounding patches
 KWedgeTerms: tuple[tuple[str, int, int, Fraction, Fraction], ...] = (
     ("S", 0, 1, Fraction(0), Fraction(-1, 40)),
     ("S", 0, 2, Fraction(3, 160), Fraction(1, 20)),
@@ -48,9 +59,12 @@ KWedgeTerms: tuple[tuple[str, int, int, Fraction, Fraction], ...] = (
     ("A", 2, 2, Fraction(0), Fraction(-4, 5)),
     ("A", 3, 2, Fraction(0), Fraction(1)),
 )
+
+# the triple odd order must stay explicit so extraordinary vertices remain compatible with surrounding patches
 KTripleOdd = (Fraction(-102, 5), Fraction(13, 10), Fraction(-1, 5))
 
 
+# crease spoke needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def CreaseSpoke(Creased: tuple[bool, ...]) -> int:
     Spokes = [Spoke for Spoke, IsCrease in enumerate(Creased) if IsCrease]
     if len(Spokes) != 1 or len(Creased) == KDartValence:
@@ -60,14 +74,17 @@ def CreaseSpoke(Creased: tuple[bool, ...]) -> int:
     return Spokes[0]
 
 
+# the sector key contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def SectorKey(Layout: CapLayout, Sector: int, IndexI: int, IndexJ: int) -> KCapKey:
     return ("in", Sector % Layout.Valence, IndexI, IndexJ)
 
 
+# the net row contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def NetRow(Layout: CapLayout, CapKey: KCapKey) -> KPoleRow:
     return Layout.Netref[Layout.Slots[CapKey]]
 
 
+# the kept hard contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def KeptHard(Layout: CapLayout, Limit: KPoleRow, Spoke: int) -> list[KCapRow]:
     Smooth = SmoothRows(Layout)
     Block = len(Smooth) // Layout.Valence
@@ -80,6 +97,7 @@ def KeptHard(Layout: CapLayout, Limit: KPoleRow, Spoke: int) -> list[KCapRow]:
     ]
 
 
+# the pin rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def PinRows(Layout: CapLayout, Spoke: int) -> list[KCapRow]:
     Reach = range(2, KPinReach + 1)
     Pinned: list[KCapKey] = [
@@ -95,6 +113,7 @@ def PinRows(Layout: CapLayout, Spoke: int) -> list[KCapRow]:
     return Found
 
 
+# the kept windows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def KeptWindows(
     Layout: CapLayout,
     Ratios: tuple[tuple[Fraction, ...], tuple[Fraction, ...]],
@@ -115,6 +134,7 @@ def KeptWindows(
     return Found, Windows[Upper][0]
 
 
+# the crease ring contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def CreaseRing(
     Layout: CapLayout, Limit: KPoleRow, RatiosI: tuple[Fraction, ...], Spoke: int
 ) -> list[KCapRow]:
@@ -136,6 +156,7 @@ def CreaseRing(
     return Found
 
 
+# the crease tangent contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def CreaseTangent(
     Layout: CapLayout, RatiosI: tuple[Fraction, ...], Spoke: int
 ) -> KCapRow:
@@ -144,6 +165,7 @@ def CreaseTangent(
     return CombineRows(((RoundCosine(Angle), SineRow), (-RoundSine(Angle), CosineRow)))
 
 
+# the wedge row contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def WedgeRow(Layout: CapLayout, Spoke: int) -> KCapRow:
     Valence = Layout.Valence
     Cosine = RoundCosine(2.0 * math.pi / Valence)
@@ -163,6 +185,7 @@ def WedgeRow(Layout: CapLayout, Spoke: int) -> KCapRow:
     return DeltaRow(Layout, Dense, {})
 
 
+# the sector total contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def SectorTotal(
     Layout: CapLayout, Limit: KPoleRow, Places: tuple[tuple[int, int], ...]
 ) -> KPoleRow:
@@ -177,6 +200,7 @@ def SectorTotal(
     return MixRows(Parts)
 
 
+# the crease defect contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def CreaseDefect(Layout: CapLayout, Spoke: int, Index: int) -> KPoleRow:
     return MixRows(
         (
@@ -187,6 +211,7 @@ def CreaseDefect(Layout: CapLayout, Spoke: int, Index: int) -> KPoleRow:
     )
 
 
+# the odd side contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def OddSide(Layout: CapLayout, Limit: KPoleRow, Spoke: int) -> KPoleRow:
     Valence = Layout.Valence
     First = CreaseDefect(Layout, Spoke, 1)
@@ -209,6 +234,7 @@ def OddSide(Layout: CapLayout, Limit: KPoleRow, Spoke: int) -> KPoleRow:
     return MixRows(Parts)
 
 
+# the crease rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def CreaseRows(
     Layout: CapLayout,
     Limit: KPoleRow,
@@ -218,6 +244,7 @@ def CreaseRows(
     return CreaseBody(Layout, Limit, Ratios, CreaseSpoke(Creased))
 
 
+# crease body needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def CreaseBody(
     Layout: CapLayout,
     Limit: KPoleRow,

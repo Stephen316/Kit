@@ -10,6 +10,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitTex
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the frame operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitFrameMut(Frame: EntityFrame, IsPrimary: bool, Catalog: EntityCatalog) -> bytes:
     Output = FeatureSink()
     Output.AddBytes(EmitText(Frame.RootId))

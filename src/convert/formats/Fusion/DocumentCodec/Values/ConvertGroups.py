@@ -10,6 +10,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityGroup import EntityGroup
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# the convert groups contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def ConvertGroups(
     Value: object, Catalog: dict[str, NativeSchema], Converter: KValueConverter
 ) -> tuple[EntityGroup[KEntityValue], ...]:

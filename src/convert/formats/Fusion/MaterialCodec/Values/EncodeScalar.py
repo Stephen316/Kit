@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Wire.EncodeInteger import EncodeIntege
 from convert.formats.Fusion.MaterialCodec.Wire.EncodeText import EncodeText
 
 
+# the scalar operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeScalar(Value: KScalarValue, Field: PropertySpec) -> bytes:
     if Field.ValueKind in ("String", "URL", "Uuid") and isinstance(Value, str):
         return EncodeText(Value)

@@ -12,11 +12,14 @@ from convert.formats.Fusion.SegmentCodec.Metadata.MetaLimits import KMaxMetaIds
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaOffset
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaSink import MetaSink
 
+# legacy version must remain consistent across callers so drawing members retain their sheet and model associations
 KLegacyVersion = 2
 
+# modern magic must remain consistent across callers so drawing members retain their sheet and model associations
 KModernMagic = 1234
 
 
+# invalid legacy head input must fail here so drawing members retain their sheet and model associations
 def CheckLegacyHead(Header: LegacyHeader) -> None:
     if not isinstance(CastValue(object, Header), LegacyHeader):
         raise ValueError("Expected a typed legacy Fusion drawing segment header")
@@ -29,6 +32,7 @@ def CheckLegacyHead(Header: LegacyHeader) -> None:
         raise ValueError("Unsupported legacy Fusion drawing segment header")
 
 
+# the legacy operation needs a consistent construction rule so drawing members retain their sheet and model associations
 def EmitLegacy(Value: LegacySegment) -> tuple[bytes, bytes]:
     if not isinstance(CastValue(object, Value), LegacySegment):
         raise ValueError("Expected a typed legacy Fusion drawing segment")

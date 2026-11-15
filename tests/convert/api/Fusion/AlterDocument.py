@@ -3,6 +3,7 @@ from dataclasses import replace as ReplaceData
 from interchange import CadDocument, ParameterValue
 
 
+# shared alter document setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AlterDocument(Document: CadDocument, FieldName: str) -> CadDocument:
     if FieldName == "parameter":
         FirstParam = Document.parameters[0]

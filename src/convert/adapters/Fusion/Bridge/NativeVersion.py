@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from typing import cast as CastValue
 
 
+# native version needs an explicit validity boundary so public document claims remain grounded in native records
 def NativeVersion(Value: object) -> int:
     if not isinstance(Value, Mapping):
         raise ValueError("Native Fusion state requires a versioned mapping")

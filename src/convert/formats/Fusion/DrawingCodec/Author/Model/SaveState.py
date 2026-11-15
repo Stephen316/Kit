@@ -13,6 +13,7 @@ from convert.formats.Fusion.DrawingCodec.Author.Defaults.DrawingPolicy import (
 )
 
 
+# save state needs an explicit state contract so sheet objects retain their intended document relationships
 @MakeDataClass(frozen=True, slots=True)
 class SaveState:
     SaveLabel: str = KFirstSave

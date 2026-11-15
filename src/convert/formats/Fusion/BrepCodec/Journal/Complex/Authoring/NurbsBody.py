@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 )
 
 
+# plane carrier needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class PlaneCarrier:
     OriginCm: KJournalVector
@@ -15,6 +16,7 @@ class PlaneCarrier:
     ReferenceAxis: KJournalVector
 
 
+# cylinder carrier needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class CylinderCarrier:
     OriginCm: KJournalVector
@@ -22,9 +24,11 @@ class CylinderCarrier:
     MajorAxisCm: KJournalVector
 
 
+# the face carrier variants need one shared contract so complex journal geometry cannot omit a supported value shape
 KFaceCarrier: TypeAlias = BsSurface | PlaneCarrier | CylinderCarrier
 
 
+# nurbs edge needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class NurbsEdge:
     StartVertex: int
@@ -33,6 +37,7 @@ class NurbsEdge:
     Bounds: tuple[float, float] | None = None
 
 
+# nurbs use needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class NurbsUse:
     EdgeIndex: int
@@ -42,6 +47,7 @@ class NurbsUse:
     OffsetV: float = 0.0
 
 
+# nurbs face needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class NurbsFace:
     Surface: KFaceCarrier
@@ -49,6 +55,7 @@ class NurbsFace:
     Holes: tuple[tuple[NurbsUse, ...], ...] = ()
 
 
+# nurbs body needs an explicit state contract so nested spline and surface records retain their relationships
 @MakeDataClass(frozen=True, slots=True)
 class NurbsBody:
     PointsCm: tuple[KJournalVector, ...]

@@ -3,6 +3,7 @@ from struct import pack as PackValue
 from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedEdge import EnhancedEdge
 
 
+# pack edge needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def PackEdge(Value: EnhancedEdge | None, Format: str) -> bytes | None:
     if Value is None:
         return None

@@ -6,6 +6,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmToken
 
 
+# the boundary representation head operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadBrepHeadMut(
     Cursor: MetaCursor, HasHistory: bool
 ) -> tuple[BrepHeader, GeometryStamp]:

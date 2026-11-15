@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the sphere node operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeSphereNode(Value: SphereNode) -> AsmRecord:
     CheckRoundNode(Value)
     return AsmRecord(

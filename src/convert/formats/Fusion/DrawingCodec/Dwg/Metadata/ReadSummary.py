@@ -7,6 +7,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgDayTime import DwgDayTime
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSummary import DwgSummary
 
 
+# the summary operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSummary(DataValue: bytes) -> DwgSummary:
     TextValues, Offset = ReadTextRun(DataValue, 0, 8)
     Clock = ReadFields(DataValue, Offset, "<6I", "summary info times")

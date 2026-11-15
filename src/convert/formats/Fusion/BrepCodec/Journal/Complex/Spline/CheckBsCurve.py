@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.CheckWeights import
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.PoleCount import PoleCount
 
 
+# invalid bs curve input must fail here so nested spline and surface records retain their relationships
 def CheckBsCurve(Value: BsCurve, Dimension: int) -> None:
     if Value.Dimension != Dimension:
         raise ValueError("Fusion B-spline curve has the wrong dimension")

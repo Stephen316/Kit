@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PartStage import Pa
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PasteSpec import PasteSpec
 
 
+# link feature must resolve unambiguously so modeling operations retain their document and timeline ownership
 def LinkFeatureMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, Children: list[str]
 ) -> None:

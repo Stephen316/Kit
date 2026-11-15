@@ -5,6 +5,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.PartCases import (
     KOracleRoot,
 )
 
+# the reports cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KReports = (
     "Capture.json",
     "CaptureFamilies.json",
@@ -14,6 +15,7 @@ KReports = (
 )
 
 
+# shared native bodies setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NativeBodies(NameValue: str) -> list[dict[str, object]]:
     Found: list[dict[str, object]] = []
     for Source in KReports:
@@ -26,6 +28,7 @@ def NativeBodies(NameValue: str) -> list[dict[str, object]]:
     return CastValue(list[dict[str, object]], Observed["bodies"])
 
 
+# shared native control setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NativeControl(NameValue: str) -> dict[str, object]:
     Bodies = NativeBodies(NameValue)
     assert len(Bodies) == 1

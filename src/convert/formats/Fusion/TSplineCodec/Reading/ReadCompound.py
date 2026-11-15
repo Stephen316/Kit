@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CompoundGrip import CompoundGrip
 from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 
 
+# the compound operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadCompound(Fields: tuple[str, ...]) -> CompoundGrip:
     Values = tuple(ReadInteger(Field) for Field in Fields)
     if len(Values) < 2 or Values[1] != 4:

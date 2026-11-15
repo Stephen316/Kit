@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
 )
 
 
+# bind manager needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def BindManager(
     Fields: dict[str, KEntityValue], Parts: dict[str, MaterialPart]
 ) -> tuple[str, MaterialPackage | None]:

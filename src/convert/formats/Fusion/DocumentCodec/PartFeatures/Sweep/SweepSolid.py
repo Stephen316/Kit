@@ -38,10 +38,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Sweep.SweepTags import (
     WallLabel,
 )
 
+# clearance must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KClearance = 1e-7
+
+# the joint limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KJointLimit = 1e-6
 
 
+# the sweep profile contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SweepProfile(Feature: SweepSpec) -> tuple[LineCurve, ...]:
     LeftMm, RightMm = Feature.LeftMm, Feature.RightMm
     Lower, Upper = 0.0 - Feature.LowerMm, 0.0 - Feature.UpperMm
@@ -53,6 +57,7 @@ def SweepProfile(Feature: SweepSpec) -> tuple[LineCurve, ...]:
     )
 
 
+# offset span needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def OffsetSpan(Value: KPlaneSpan, Amount: float, Label: FaceLabel) -> KPlaneSpan:
     if isinstance(Value, LineSpan):
         HeadX, HeadY = SpanHeading(Value, False)
@@ -67,6 +72,7 @@ def OffsetSpan(Value: KPlaneSpan, Amount: float, Label: FaceLabel) -> KPlaneSpan
     return ReplaceValue(Value, RadiusCm=Radius, Label=Label)
 
 
+# the near joint decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsNearJoint(Point: tuple[float, float], Joints: list[tuple[float, float]]) -> bool:
     return any(
         Hypotenuse(Point[0] - Joint[0], Point[1] - Joint[1]) < KJointLimit
@@ -74,6 +80,7 @@ def IsNearJoint(Point: tuple[float, float], Joints: list[tuple[float, float]]) -
     )
 
 
+# invalid crossing input must fail here so feature parameters remain connected to the resulting geometry
 def CheckCrossing(LoopValue: KPlaneLoop) -> None:
     Count = len(LoopValue)
     for First in range(Count):
@@ -88,6 +95,7 @@ def CheckCrossing(LoopValue: KPlaneLoop) -> None:
                 raise ValueError("Fusion sweep bodies must not cross themselves")
 
 
+# the sweep loop contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SweepLoop(Feature: SweepSpec, Operation: int) -> KPlaneLoop:
     Spans = PathSpans(Feature)
     TagMap = SweepTags(len(Spans))
@@ -112,6 +120,7 @@ def SweepLoop(Feature: SweepSpec, Operation: int) -> KPlaneLoop:
     return LoopValue
 
 
+# the sweep solid contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def SweepSolid(Feature: SweepSpec, Operation: int) -> PrismSolid:
     LoopValue = SweepLoop(Feature, Operation)
     TagMap = SweepTags(len(Feature.Path))

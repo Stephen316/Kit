@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import cast as CastValue
 
 
+# the object operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def ReadObject(Value: object, Label: str) -> dict[str, object]:
     if not isinstance(Value, dict):
         raise ValueError(f"{Label} is not an object")

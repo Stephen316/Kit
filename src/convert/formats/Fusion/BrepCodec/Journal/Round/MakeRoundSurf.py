@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.TorusBody import TorusBody
 from convert.formats.Fusion.BrepCodec.Journal.Round.TorusNode import TorusNode
 
 
+# the round surf operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakeRoundSurf(Model: SphereBody | TorusBody) -> SphereNode | TorusNode:
     Center = (Model.CenterMm[0] / 10, Model.CenterMm[1] / 10, Model.CenterMm[2] / 10)
     Prefix = EntityPrefix(-1, -1)

@@ -10,6 +10,7 @@ from convert.formats.Fusion.EntityCodec.Recipes.Model.RecipePayload import (
 )
 from convert.formats.Fusion.EntityCodec.Recipes.Model.VertexRecipe import VertexRecipe
 
+# the recipe kinds vocabulary must stay centralized so entity reconstruction agrees on supported native identities
 KRecipeKinds: dict[type[KRecipePayload], str] = {
     BaseRecipe: "base_recipe_data",
     BodyRecipe: "body_recipe_data",

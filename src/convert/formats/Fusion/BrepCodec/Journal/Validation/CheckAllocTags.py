@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 )
 
 
+# invalid alloc tags input must fail here so inconsistent revision links fail before history reconstruction
 def CheckAllocTags(Model: JournalModel) -> None:
     for Value in Model.Entities:
         Record = MakeEntityNode(Value)

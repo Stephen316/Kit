@@ -6,6 +6,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
 
 
+# nubs surface needs an explicit state contract so topology changes retain their native revision relationships
 @MakeDataClass(frozen=True, slots=True)
 class NubsSurface:
     DegreeU: int

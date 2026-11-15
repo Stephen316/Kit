@@ -8,6 +8,7 @@ from tools.TestShards.ReportTally import ReportTally
 from tools.TestShards.ShardLog import ShardLog
 
 
+# the tally reports contract needs a shared interpretation so every collected case receives exactly one verified outcome
 def TallyReports(ShardLogs: Sequence[ShardLog]) -> ReportTally:
     Durations: dict[str, float] = {}
     Outcomes: dict[str, str] = {}

@@ -17,16 +17,32 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Edges.SolidParts import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import ViewFrame
 
+# covered must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KCovered = 0
+
+# hidden must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KHidden = 1
+
+# shown must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KShown = 2
+
+# sample step must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KSampleStep = 0.25
+
+# fewest samples must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KFewestSamples = 16
+
+# most samples must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KMostSamples = 2048
+
+# bisections must remain consistent across callers so projected boundaries retain their intended visibility and geometry
 KBisections = 52
+
+# the short piece tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KShortPiece = 1e-6
 
 
+# edge scene needs an explicit state contract so projected boundaries retain their intended visibility and geometry
 @MakeDataClass(frozen=True, slots=True)
 class EdgeScene:
     Shape: SolidShape
@@ -34,6 +50,7 @@ class EdgeScene:
     Candidates: tuple[SolidEdge, ...]
 
 
+# edge piece needs an explicit state contract so projected boundaries retain their intended visibility and geometry
 @MakeDataClass(frozen=True, slots=True)
 class EdgePiece:
     Begin: float
@@ -41,6 +58,7 @@ class EdgePiece:
     State: int
 
 
+# the state operation needs one geometric convention so projected boundaries retain their intended visibility and geometry
 def PointState(Scene: EdgeScene, Index: int, Param: float) -> int:
     if IsCovered(Scene.Frame, Scene.Candidates, Index, Param):
         return KCovered
@@ -48,6 +66,7 @@ def PointState(Scene: EdgeScene, Index: int, Param: float) -> int:
     return KHidden if IsHidden(Scene.Shape, Point, Scene.Frame.Eye) else KShown
 
 
+# the bisect contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def Bisect(
     Scene: EdgeScene, Index: int, Lower: float, Upper: float, Below: int
 ) -> float:
@@ -60,12 +79,14 @@ def Bisect(
     return (Lower + Upper) / 2
 
 
+# the sample count contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def SampleCount(Scene: EdgeScene, Index: int) -> int:
     Curve = Scene.Candidates[Index].Curve
     Reach = max(FlatSpan(Scene.Frame, Curve), PathLength(Curve))
     return max(KFewestSamples, min(KMostSamples, CeilValue(Reach / KSampleStep)))
 
 
+# the raw pieces contract needs a shared interpretation so projected boundaries retain their intended visibility and geometry
 def RawPieces(Scene: EdgeScene, Index: int) -> list[EdgePiece]:
     Count = SampleCount(Scene, Index)
     Params = [(Sample + 0.5) / Count for Sample in range(Count)]
@@ -86,6 +107,7 @@ def RawPieces(Scene: EdgeScene, Index: int) -> list[EdgePiece]:
     ]
 
 
+# the split pieces contract needs a stable decomposition so projected boundaries retain their intended visibility and geometry
 def SplitPieces(Scene: EdgeScene, Index: int) -> list[EdgePiece]:
     Pieces = RawPieces(Scene, Index)
     Curve = Scene.Candidates[Index].Curve

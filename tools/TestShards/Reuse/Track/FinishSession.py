@@ -11,6 +11,7 @@ from tools.TestShards.Reuse.Track.ActiveTrackers import KActiveTrackers
 from tools.TestShards.Reuse.Track.WriteDeps import WriteDeps
 
 
+# the session operation needs one orchestration boundary so dependency changes cannot revive stale passing results
 def FinishSession(SessionInfo: Pytest.Session) -> None:
     State = KActiveTrackers.pop("State", None)
     if State is None:

@@ -9,6 +9,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertySpec import (
 )
 
 
+# shared read schema setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadSchema(Schema: XmlElement) -> MaterialSchema:
     Identity = Schema.find("UID")
     assert Identity is not None

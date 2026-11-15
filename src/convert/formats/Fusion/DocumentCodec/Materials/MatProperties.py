@@ -22,6 +22,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import PropertyVa
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the physical props contract needs a shared interpretation so appearance references remain connected to their owning entities
 def PhysicalProps(
     SpecValue: MaterialSpec, Aspects: tuple[str, ...], Fields: dict[str, SchemaNode]
 ) -> tuple[PropertyValue, ...]:
@@ -33,6 +34,7 @@ def PhysicalProps(
     )
 
 
+# the specification values contract needs a shared interpretation so appearance references remain connected to their owning entities
 def SpecValues(
     Source: object, Mapping: dict[str, tuple[str, ...]]
 ) -> tuple[tuple[tuple[str, ...], KInputValue], ...]:
@@ -44,6 +46,7 @@ def SpecValues(
     return tuple(Values)
 
 
+# the all operation needs a consistent construction rule so appearance references remain connected to their owning entities
 def PlaceAll(
     Fields: dict[str, SchemaNode],
     Values: tuple[tuple[tuple[str, ...], KInputValue], ...],
@@ -55,6 +58,7 @@ def PlaceAll(
     )
 
 
+# struct props needs an explicit validity boundary so appearance references remain connected to their owning entities
 def StructProps(
     SpecValue: MaterialSpec, Fields: dict[str, SchemaNode]
 ) -> tuple[PropertyValue, ...]:
@@ -84,6 +88,7 @@ def StructProps(
     return tuple(Placed.values())
 
 
+# thermal props needs an explicit validity boundary so appearance references remain connected to their owning entities
 def ThermalProps(
     SpecValue: MaterialSpec, Fields: dict[str, SchemaNode]
 ) -> tuple[PropertyValue, ...]:
@@ -104,6 +109,7 @@ def ThermalProps(
     return PlaceAll(Fields, tuple(Values))
 
 
+# the props operation needs one orchestration boundary so appearance references remain connected to their owning entities
 def FinishProps(
     SpecValue: MaterialSpec, Fields: dict[str, SchemaNode], FinishLocal: str
 ) -> tuple[PropertyValue, ...]:

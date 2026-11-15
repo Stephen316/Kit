@@ -31,13 +31,23 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewFrame import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewKeys import ViewKeys
 
+# visible layer must remain consistent across callers so projected geometry retains its paper and model relationships
 KVisibleLayer = "LAYER:Visible"
+
+# hidden layer must remain consistent across callers so projected geometry retains its paper and model relationships
 KHiddenLayer = "LAYER:Hidden"
+
+# line curve must remain consistent across callers so projected geometry retains its paper and model relationships
 KLineCurve = 23
+
+# round curve must remain consistent across callers so projected geometry retains its paper and model relationships
 KRoundCurve = 11
+
+# the draft items shape must stay shared so drawing view authoring uses one contract for compatible values
 KDraftItems = tuple[tuple[str, KDraftValue], ...]
 
 
+# the cached curve contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def CachedCurve(Curve: KEdgePath) -> KDraftItems:
     if isinstance(Curve, LinePath):
         return (
@@ -57,6 +67,7 @@ def CachedCurve(Curve: KEdgePath) -> KDraftItems:
     )
 
 
+# the line fields contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def LineFields(Curve: LinePath) -> dict[str, KDraftValue]:
     IsFlat = Curve.Start[2] == 0 and Curve.Finish[2] == 0
     Fields: dict[str, KDraftValue] = {
@@ -73,6 +84,7 @@ def LineFields(Curve: LinePath) -> dict[str, KDraftValue]:
     return Fields
 
 
+# the round fields contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def RoundFields(Curve: RoundPath) -> dict[str, KDraftValue]:
     Across = ArbitraryAxis(Curve.Normal)
     Upward = Cross(Curve.Normal, Across)
@@ -97,6 +109,7 @@ def RoundFields(Curve: RoundPath) -> dict[str, KDraftValue]:
     return Fields
 
 
+# the edge record contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def EdgeRecord(Entry: EdgeRow, KeyText: str) -> DraftRecord:
     return DraftRecord(
         (
@@ -113,6 +126,7 @@ def EdgeRecord(Entry: EdgeRow, KeyText: str) -> DraftRecord:
     )
 
 
+# the piece operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlacePieceMut(
     Ledger: DraftBook, KeySet: ViewKeys, Entry: EdgeRow, KeyText: str
 ) -> None:
@@ -126,6 +140,7 @@ def PlacePieceMut(
     _ = PlaceMut(Ledger, KeyText, ClassName, EntityCommon(KeySet.Inner, Layer), Fields)
 
 
+# the edges operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceEdgesMut(
     Ledger: DraftBook, KeySet: ViewKeys, EdgeRows: tuple[EdgeRow, ...]
 ) -> tuple[DraftRecord, ...]:

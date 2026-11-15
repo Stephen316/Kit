@@ -19,12 +19,14 @@ from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
 from convert.formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# the instance gates order must stay explicit so sheet objects retain their intended document relationships
 KInstanceGates = (
     NamedMetadata("GatedByParent", "IntrinsicMetaTypebool", False),
     NamedMetadata("ResolutionTime", "IntrinsicMetaTypeHString", ""),
     NamedMetadata("SelfGated", "IntrinsicMetaTypebool", False),
 )
 
+# material value must remain consistent across callers so sheet objects retain their intended document relationships
 KMaterialValue = ValueObject(
     (
         EntityGroup(
@@ -41,6 +43,7 @@ KMaterialValue = ValueObject(
 )
 
 
+# the component record contract needs a shared interpretation so sheet objects retain their intended document relationships
 def ComponentRecord(
     Identity: DrawingIdentity, CycleColor: tuple[float, float, float]
 ) -> EntityRecord:
@@ -78,6 +81,7 @@ def ComponentRecord(
     )
 
 
+# the instance record contract needs a shared interpretation so sheet objects retain their intended document relationships
 def InstanceRecord(Identity: DrawingIdentity, InstanceGates: bool) -> EntityRecord:
     Fields = (
         NamedValue("bGroundToParent", False),

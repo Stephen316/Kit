@@ -24,6 +24,7 @@ from interchange.geometry.models.Sketch import SketchEntity
 from interchange.geometry.models.VectorPlane import PlaneVector
 
 
+# the circle operation needs a distinct decoding boundary so public geometry remains consistent with native circular topology
 def ReadCircle(Graph: NativeGraph, Context: KSketchContexts) -> CircleShape:
     Circle = Graph.OneClass("CircArc3D")
     Center = ResolveField(Graph, Circle, "rCenterPoint", "Point3D")
@@ -81,6 +82,7 @@ def ReadCircle(Graph: NativeGraph, Context: KSketchContexts) -> CircleShape:
     return CircleShape(Circle, Center, (*Entities, Entity), Geometry)
 
 
+# the points operation needs a distinct decoding boundary so public geometry remains consistent with native circular topology
 def ReadPoints(
     Graph: NativeGraph, Context: KSketchContexts, Points: tuple[NativeNode, ...]
 ) -> tuple[SketchEntity, ...]:

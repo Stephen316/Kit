@@ -13,10 +13,13 @@ from convert.formats.Fusion.DocumentCodec.Materials.Model.ThermalSpec import (
 )
 from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 
+# the default case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDefaultCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(),
     ("StructuralBasicSchema", None, "PrismOpaqueSchema"),
 )
+
+# the plastic case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPlasticCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Plastic",
@@ -29,6 +32,8 @@ KPlasticCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralPlasticSchema", None, "PrismOpaqueSchema"),
 )
+
+# the glass case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGlassCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Glass",
@@ -42,6 +47,8 @@ KGlassCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralGenericSchema", "ThermalSolidSchema", "PrismTransparentSchema"),
 )
+
+# the gas case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGasCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Gas",
@@ -54,6 +61,8 @@ KGasCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralGasSchema", "ThermalGasSchema", "PrismTransparentSchema"),
 )
+
+# the liquid case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLiquidCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Liquid",
@@ -66,6 +75,8 @@ KLiquidCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralLiquidSchema", "ThermalLiquidSchema", "PrismTransparentSchema"),
 )
+
+# the wood case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KWoodCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Wood",
@@ -78,6 +89,8 @@ KWoodCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralWoodSchema", "ThermalSolidSchema", "PrismOpaqueSchema"),
 )
+
+# the metal case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMetalCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Metal",
@@ -90,6 +103,8 @@ KMetalCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralMetalSchema", "ThermalSolidSchema", "PrismMetalSchema"),
 )
+
+# the stone case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStoneCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Stone",
@@ -103,6 +118,8 @@ KStoneCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralBasicSchema", "ThermalSolidSchema", "PrismOpaqueSchema"),
 )
+
+# the layered case cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLayeredCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     MaterialSpec(
         "Kit Layered",
@@ -115,6 +132,8 @@ KLayeredCase: tuple[MaterialSpec, tuple[str, str | None, str]] = (
     ),
     ("StructuralPlasticSchema", None, "PrismLayeredSchema"),
 )
+
+# the base cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KBaseCases = {
     "default": KDefaultCase,
     "plastic": KPlasticCase,
@@ -126,6 +145,8 @@ KBaseCases = {
     "stone": KStoneCase,
     "layered": KLayeredCase,
 }
+
+# the grain cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGrainCases: dict[str, tuple[MaterialSpec, tuple[str, str | None, str]]] = {
     "orthowood": (
         MaterialSpec(
@@ -150,7 +171,11 @@ KGrainCases: dict[str, tuple[MaterialSpec, tuple[str, str | None, str]]] = {
         ("StructuralWoodSchema", None, "PrismOpaqueSchema"),
     ),
 }
+
+# the family cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFamilyCases = {**KBaseCases, **KGrainCases}
+
+# the class types cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KClassTypes: dict[str, str] = {
     "orthowood": "Wood",
     "default": "Generic",

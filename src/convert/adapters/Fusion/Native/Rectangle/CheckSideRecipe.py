@@ -5,6 +5,7 @@ from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# invalid side recipe input must fail here so public document claims remain grounded in native records
 def CheckSideRecipe(Value: KEntityValue, Shape: RectGeometry) -> int:
     Fields = ObjectFields(Value)
     Values = SeriesItems(Fields["sketchTags"])

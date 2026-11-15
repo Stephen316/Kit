@@ -4,6 +4,7 @@ from convert.formats.Fusion.SegmentCodec.Manifest.ManifestLayout import KExportL
 from convert.formats.Fusion.SegmentCodec.Manifest.ManifestSink import ManifestSink
 
 
+# the lineage operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitLineage(SinkValue: ManifestSink, Lineage: tuple[str, str] | None) -> None:
     if Lineage is None:
         SinkValue.AddBytes(b"\1")

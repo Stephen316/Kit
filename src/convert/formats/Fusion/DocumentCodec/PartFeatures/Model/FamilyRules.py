@@ -51,6 +51,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.SweepSpec import (
     SweepSpec,
 )
 
+# the family rules vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KFamilyRules: dict[type[object], FamilyRule] = {
     FilletSpec: FamilyRule("DcFilletEdgeFeature", "Fillet", 1, 8),
     ChamferSpec: FamilyRule("DcChamferFeature", "Chamfer", 1, 8),
@@ -77,6 +78,7 @@ KFamilyRules: dict[type[object], FamilyRule] = {
 }
 
 
+# family of needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def FamilyOf(Feature: KPartFeature) -> FamilyRule:
     RuleValue = KFamilyRules.get(type(Feature))
     if RuleValue is None:
@@ -84,6 +86,7 @@ def FamilyOf(Feature: KPartFeature) -> FamilyRule:
     return RuleValue
 
 
+# the operations of contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def OperationsOf(Feature: KPartFeature) -> int:
     if isinstance(Feature, (PatternSpec, BodyGridSpec)):
         return Feature.CountU * Feature.CountV
@@ -92,9 +95,11 @@ def OperationsOf(Feature: KPartFeature) -> int:
     return FamilyOf(Feature).OperationCount
 
 
+# the stateless decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsStateless(Feature: KPartFeature) -> bool:
     return isinstance(Feature, (PlaneSpec, AxisSpec, PointSpec))
 
 
+# the sketched decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsSketched(Feature: KPartFeature) -> bool:
     return isinstance(Feature, (ExtrudeSpec, RevolveSpec))

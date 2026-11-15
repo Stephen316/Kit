@@ -17,9 +17,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import Subtran
 from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# match slack must remain consistent across callers so surface geometry retains the control cage shape
 KMatchSlack = 1e-9
 
 
+# the near decision must stay consistent so surface geometry retains the control cage shape
 def IsNear(
     LeftPoints: tuple[tuple[float, ...], ...],
     RightPoints: tuple[tuple[float, ...], ...],
@@ -36,6 +38,7 @@ def IsNear(
     )
 
 
+# swap surface needs an explicit validity boundary so surface geometry retains the control cage shape
 def SwapSurface(
     Value: SplineNode, Prior: GridResult, Result: GridResult, Surface: TsplineSurface
 ) -> SplineNode:
@@ -63,6 +66,7 @@ def SwapSurface(
     return ReplaceValue(Value, Surface=Changed)
 
 
+# swap curve needs an explicit validity boundary so surface geometry retains the control cage shape
 def SwapCurve(
     Value: IntcurveNode, Prior: GridResult, Result: GridResult
 ) -> IntcurveNode:
@@ -79,6 +83,7 @@ def SwapCurve(
     raise ValueError("Fusion grid cage swap found a stale boundary curve")
 
 
+# swap point needs an explicit validity boundary so surface geometry retains the control cage shape
 def SwapPoint(Value: PointNode, Prior: GridResult, Result: GridResult) -> PointNode:
     for Index, Corner in enumerate(Prior.Corners):
         if IsNear((Corner,), (Value.PositionCm,)):
@@ -86,6 +91,7 @@ def SwapPoint(Value: PointNode, Prior: GridResult, Result: GridResult) -> PointN
     raise ValueError("Fusion grid cage swap found a stale corner point")
 
 
+# the swap entity contract needs a shared interpretation so surface geometry retains the control cage shape
 def SwapEntity(
     Value: KJournalEntity,
     Prior: GridResult,

@@ -10,6 +10,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the owned ids contract needs a shared interpretation so cross document references retain their intended ownership
 def OwnedIds(Segment: ParsedSegment, ClassGuid: str) -> tuple[int, ...]:
     return tuple(
         Identity
@@ -19,6 +20,7 @@ def OwnedIds(Segment: ParsedSegment, ClassGuid: str) -> tuple[int, ...]:
     )
 
 
+# sole id needs an explicit validity boundary so cross document references retain their intended ownership
 def SoleId(Segment: ParsedSegment, ClassGuid: str) -> int:
     Found = OwnedIds(Segment, ClassGuid)
     if len(Found) != 1:
@@ -26,6 +28,7 @@ def SoleId(Segment: ParsedSegment, ClassGuid: str) -> int:
     return Found[0]
 
 
+# the value operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadValue(
     Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str
 ) -> KEntityValue:
@@ -42,6 +45,7 @@ def ReadValue(
     return Found[0]
 
 
+# the local operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadLocal(Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str) -> int:
     Value = ReadValue(Records, ObjectId, FieldName)
     if not isinstance(Value, LocalRef):
@@ -49,6 +53,7 @@ def ReadLocal(Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str) 
     return Value.ObjectId
 
 
+# the text operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadText(Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str) -> str:
     Value = ReadValue(Records, ObjectId, FieldName)
     if type(Value) is not str:
@@ -56,6 +61,7 @@ def ReadText(Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str) -
     return Value
 
 
+# the number operation needs a distinct decoding boundary so cross document references retain their intended ownership
 def ReadNumber(Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str) -> int:
     Value = ReadValue(Records, ObjectId, FieldName)
     if type(Value) is not int:
@@ -63,6 +69,7 @@ def ReadNumber(Records: tuple[EntityRecord, ...], ObjectId: int, FieldName: str)
     return Value
 
 
+# the value operation needs a consistent construction rule so cross document references retain their intended ownership
 def WriteValue(
     Records: tuple[EntityRecord, ...],
     ObjectId: int,
@@ -96,6 +103,7 @@ def WriteValue(
     )
 
 
+# append items needs an explicit validity boundary so cross document references retain their intended ownership
 def AppendItems(
     Records: tuple[EntityRecord, ...],
     ObjectId: int,
@@ -108,6 +116,7 @@ def AppendItems(
     return WriteValue(Records, ObjectId, FieldName, ValueSeries(Current.Items + Items))
 
 
+# the mark frame contract needs a shared interpretation so cross document references retain their intended ownership
 def MarkFrame(
     Records: tuple[EntityRecord, ...], ObjectId: int
 ) -> tuple[EntityRecord, ...]:
@@ -121,6 +130,7 @@ def MarkFrame(
     )
 
 
+# the pairs operation needs a consistent construction rule so cross document references retain their intended ownership
 def AddPairs(
     Records: tuple[EntityRecord, ...],
     ObjectId: int,

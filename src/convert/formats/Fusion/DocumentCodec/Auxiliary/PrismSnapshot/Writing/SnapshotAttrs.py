@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.PrismSn
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the snapshot attributes contract needs a shared interpretation so supporting records retain their owning document relationships
 def SnapshotAttrs(Value: PrismSnapshot) -> tuple[GeometryRecord, ...]:
     Solid = (
         *tuple(
@@ -30,6 +31,7 @@ def SnapshotAttrs(Value: PrismSnapshot) -> tuple[GeometryRecord, ...]:
     return (*Solid, *Regions)
 
 
+# the snapshot heads contract needs a shared interpretation so supporting records retain their owning document relationships
 def SnapshotHeads() -> tuple[tuple[int, int], ...]:
     return (
         *((6 + Index, 138 + Index) for Index in range(6)),

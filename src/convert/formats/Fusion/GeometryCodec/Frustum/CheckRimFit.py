@@ -1,6 +1,7 @@
 from math import isfinite as IsFinite
 
 
+# invalid rim fit input must fail here so geometric values retain their native record boundaries
 def CheckRimFit(
     BottomRadius: float,
     TopRadius: float,

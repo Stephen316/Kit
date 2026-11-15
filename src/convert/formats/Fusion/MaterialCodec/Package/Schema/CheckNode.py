@@ -5,6 +5,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Schema.SchemaGrammar import (
 )
 
 
+# invalid node input must fail here so typed appearance properties retain their native identifiers
 def CheckNode(Value: SchemaNode) -> None:
     if Value.TagName not in KSchemaAttrs or Value.TextValue:
         raise ValueError("Unsupported material schema declaration")

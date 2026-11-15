@@ -14,6 +14,7 @@ from convert.formats.Fusion.TSplineCodec.Authoring.PickVertRoots import (
 )
 
 
+# the topology operation needs a consistent construction rule so control cage topology retains its native connectivity
 def MakeTopology(
     Links: tuple[CageLink, ...],
     VertexCount: int,

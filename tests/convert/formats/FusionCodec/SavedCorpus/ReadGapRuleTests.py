@@ -32,19 +32,24 @@ from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
 from convert.formats.Fusion.TSplineCodec.Model.KnotSurface import KnotSurface
 from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
+# root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRoot = FilePath(__file__).resolve().parents[5]
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the oracle cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KOracle = "re/Fusion/LocalOracle/"
 
 
+# shared read corpus setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadCorpus(RelativeName: str) -> bytes:
     return (KRoot / RelativeName).read_bytes()
 
 
+# the flag bytes contract needs boundary coverage so stored document relationships remain consistent
 def TestFlagBytes() -> None:
     assert ReadFlagMut(MetaCursor(b"\x00")) is False
     assert ReadFlagMut(MetaCursor(b"\x01")) is True
@@ -56,6 +61,7 @@ def TestFlagBytes() -> None:
             _ = EmitFlag(Value)
 
 
+# the narrow asm contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestNarrowAsm() -> None:
     Model = ReadDocument(ReadCorpus("re/Fusion/examples/.f3d/example2.f3d"))
@@ -68,6 +74,7 @@ def TestNarrowAsm() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the default mat contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMarks.parametrize(
     "RelativeName",
@@ -85,6 +92,7 @@ def TestDefaultMat(RelativeName: str) -> None:
     assert SpecValue.Density == 7850.0
 
 
+# the absent mat contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestAbsentMat() -> None:
     Model = ReadDocument(ReadCorpus(KOracle + "Authored/ProductionExtrusion.f3d"))
@@ -93,6 +101,7 @@ def TestAbsentMat() -> None:
         _ = NativeMaterial(Model)
 
 
+# the stale form contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestStaleForm() -> None:
     Model = ReadDocument(ReadCorpus(KOracle + "FormDocuments/Stale/BoxBrepMoved.f3d"))
@@ -100,6 +109,7 @@ def TestStaleForm() -> None:
         _ = EmitParsed(Model)
 
 
+# the apple torus contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestAppleTorus() -> None:
     Model = ReadDocument(
@@ -108,6 +118,7 @@ def TestAppleTorus() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the edge knots contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestEdgeKnots() -> None:
     Archive = ZipFile(
@@ -123,6 +134,7 @@ def TestEdgeKnots() -> None:
     assert ReadTspline(EmitTspline(Surface)) == Surface
 
 
+# shared image member setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ImageMember() -> DocumentModel:
     Bundle = ReadBundle(ReadCorpus("re/Fusion/examples/.f3z/example1.f3z"))
     for Entry in Bundle.Documents:
@@ -132,6 +144,7 @@ def ImageMember() -> DocumentModel:
     raise AssertionError("example bundle lacks image parts")
 
 
+# the image parts contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestImageParts() -> None:
     Model = ImageMember()
@@ -145,6 +158,7 @@ def TestImageParts() -> None:
     assert ReadDocument(EmitParsed(Model)) == Model
 
 
+# the image name contract needs boundary coverage so stored document relationships remain consistent
 def TestImageName() -> None:
     Valid = "Images.BlobParts/Image." + str(UuidValue(int=1)) + ".png"
     Payload = b"\x89PNG\r\n\x1a\n" + bytes(4)
@@ -155,6 +169,7 @@ def TestImageName() -> None:
         _ = CheckImagePart(ContainerPart(Valid, bytes(12)))
 
 
+# the folder rule contract needs boundary coverage so stored document relationships remain consistent
 def TestFolderRule() -> None:
     Stamp = "2026-01-01T00:00:00Z"
     CoreValue = PackageCore(str(UuidValue(int=1)), Stamp, Stamp, 1, "Resources")

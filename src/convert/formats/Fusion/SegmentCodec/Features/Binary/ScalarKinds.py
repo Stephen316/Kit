@@ -2,6 +2,7 @@ from types import MappingProxyType as ReadOnlyMap
 
 from convert.formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
 
+# scalar kinds must remain consistent across callers so native records retain their segment ownership and schema
 KScalarKinds = ReadOnlyMap(
     {
         FieldKind.KBoolean: ("B", 1, 0, 1),

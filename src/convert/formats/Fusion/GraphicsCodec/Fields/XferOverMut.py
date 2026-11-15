@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer over needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferOverMut(
     State: SceneCodec, WireKind: str, Current: object
 ) -> ObjectRef | NodeTarget | tuple[OverrideSet[SceneSet], ...] | None:

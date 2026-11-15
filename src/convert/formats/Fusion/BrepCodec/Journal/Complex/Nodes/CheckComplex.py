@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntit
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
 
 
+# invalid form sign input must fail here so nested spline and surface records retain their relationships
 def CheckFormSign(Entities: tuple[KJournalEntity, ...], Coedge: CoedgeNode) -> None:
     if not 0 <= Coedge.Pcurve < len(Entities):
         return
@@ -20,6 +21,7 @@ def CheckFormSign(Entities: tuple[KJournalEntity, ...], Coedge: CoedgeNode) -> N
         raise ValueError("Fusion pcurve form sign disagrees with its coedge sense")
 
 
+# invalid tolerance input must fail here so nested spline and surface records retain their relationships
 def CheckTolerance(Entities: tuple[KJournalEntity, ...], Tolerant: TedgeNode) -> None:
     for Vertex in (Tolerant.Base.StartVertex, Tolerant.Base.EndVertex):
         Value = Entities[Vertex] if 0 <= Vertex < len(Entities) else None
@@ -27,6 +29,7 @@ def CheckTolerance(Entities: tuple[KJournalEntity, ...], Tolerant: TedgeNode) ->
             raise ValueError("Fusion tolerant vertex is tighter than its tolerant edge")
 
 
+# invalid complex input must fail here so nested spline and surface records retain their relationships
 def CheckComplex(Entities: tuple[KJournalEntity, ...]) -> None:
     for Value in Entities:
         if isinstance(Value, TcoedgeNode):

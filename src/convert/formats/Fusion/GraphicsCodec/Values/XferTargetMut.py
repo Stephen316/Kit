@@ -8,6 +8,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer target contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferTargetMut(State: SceneCodec, Value: NodeTarget | None) -> NodeTarget:
     if State.IsFlag(Value is not None and Value.ExternalRef is not None):
         Target = Value.ExternalRef if Value else None

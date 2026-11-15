@@ -15,6 +15,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.CheckRootOrder import (
 )
 
 
+# permute geometry needs an explicit validity boundary so topology changes retain their native revision relationships
 def PermuteGeometry(Model: GeometryState, Order: tuple[int, ...]) -> GeometryState:
     CheckGeometry(Model)
     if type(Order) is not tuple or any(type(Value) is not int for Value in Order):

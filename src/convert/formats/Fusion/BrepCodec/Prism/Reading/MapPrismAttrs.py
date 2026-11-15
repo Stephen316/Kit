@@ -10,6 +10,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import ReadAsmPtr, Requir
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# map prism attributes must resolve unambiguously so profile topology remains connected to its extrusion history
 def MapPrismAttrs(Table: AsmTable, Topology: dict[int, int]) -> dict[int, int]:
     BodyRoot = RequireAsm(Table, 1, "body", 6)
     TimestampId = ReadAsmPtr(BodyRoot, 0)

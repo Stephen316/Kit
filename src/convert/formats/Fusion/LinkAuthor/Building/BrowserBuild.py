@@ -16,6 +16,7 @@ from convert.formats.Fusion.LinkAuthor.Records.EntryRecord import EntryRecord
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the browser set contract needs a shared interpretation so cross document references retain their intended ownership
 def BrowserSet(
     RootInfo: RootFacts,
     Facts: tuple[TargetFacts, ...],
@@ -33,6 +34,7 @@ def BrowserSet(
     )
 
 
+# edit browser needs an explicit validity boundary so cross document references retain their intended ownership
 def EditBrowser(
     Records: tuple[EntityRecord, ...], RootInfo: RootFacts, Scheme: AssemblyPlan
 ) -> tuple[EntityRecord, ...]:

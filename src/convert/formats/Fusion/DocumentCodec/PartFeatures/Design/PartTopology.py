@@ -16,6 +16,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanExtent import (
 )
 
 
+# part topology needs an explicit state contract so modeling operations retain their document and timeline ownership
 @MakeDataClass(frozen=True, slots=True)
 class PartTopology:
     FaceCount: int
@@ -27,6 +28,7 @@ class PartTopology:
     UpperCm: tuple[float, float, float]
 
 
+# the measure part contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def MeasurePart(Solid: PrismSolid) -> PartTopology:
     Shape = BuildShape(Solid)
     Edges = {

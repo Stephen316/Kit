@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Configuration.ConfigName imp
 from convert.formats.Fusion.DocumentCodec.Model.ConfigPart import ConfigPart
 
 
+# the config part operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadConfigPart(Value: ContainerPart) -> ConfigPart:
     KindValue = ConfigName(Value.Name)
     if not 0 < len(Value.Payload) <= 1024:

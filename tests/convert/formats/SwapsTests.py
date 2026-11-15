@@ -150,12 +150,15 @@ KPartSuffixes = (".SLDPRT", ".FCStd", ".CATPart")
 # this binding exists because shared behavior needs one stable value
 KAssemblySuffixes = (".SLDASM", ".FCStd", ".CATProduct")
 
+# the read only suffixes cases must remain explicit so format translation exercises the intended compatibility boundary
 KReadOnlySuffixes = frozenset({".SLDPRT", ".SLDASM"})
 
+# the part targets cases must remain explicit so format translation exercises the intended compatibility boundary
 KPartTargets = tuple(
     SuffixName for SuffixName in KPartSuffixes if SuffixName not in KReadOnlySuffixes
 )
 
+# the assembly targets cases must remain explicit so format translation exercises the intended compatibility boundary
 KAssemblyTargets = tuple(
     SuffixName
     for SuffixName in KAssemblySuffixes
@@ -617,6 +620,7 @@ def TestEVFSRBD(
         )
 
 
+# shared assert reverse setup keeps fixtures consistent so format translation failures identify the intended compatibility boundary
 def AssertReverse(
     CaseNames: tuple[str, str, str],
     Destination: PathValue,
@@ -639,6 +643,7 @@ def AssertReverse(
     AssertTVR(ReverseResult, SourceSuffix, IsAssembly)
 
 
+# the no sw writer contract needs boundary coverage so independent codecs retain consistent data contracts
 @Pytest.mark.parametrize(
     ("NameValue", "SourceSuffix", "Source", "IsAssembly"),
     KMatrixSources,

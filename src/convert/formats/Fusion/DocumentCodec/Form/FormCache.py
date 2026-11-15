@@ -7,6 +7,7 @@ from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the form cache contract needs a shared interpretation so editable control cages retain their document relationships
 def FormCache(
     Author: AuthorState, Model: FormBody, IsClosed: bool
 ) -> list[dict[str, object]]:

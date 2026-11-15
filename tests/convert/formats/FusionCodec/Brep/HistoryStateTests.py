@@ -14,9 +14,11 @@ from convert.formats.Fusion.BrepCodec.Reading.ReadJournal import ReadJournal
 from convert.formats.Fusion.BrepCodec.Wire.EmitBrepRecord import EmitBrepRecord
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
+# repo root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRepoRoot = FilePath(__file__).resolve().parents[5]
 
 
+# the rolled state contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -43,6 +45,7 @@ def TestRolledState(TmpPath: FilePath) -> None:
     assert ReadHistory(Target.read_bytes()).History == History
 
 
+# the board status contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Status", (-1, 4, 1 << 31))
 def TestBoardStatus(TmpPath: FilePath, Status: int) -> None:
     Sample = MakeSample()
@@ -63,6 +66,7 @@ def TestBoardStatus(TmpPath: FilePath, Status: int) -> None:
         _ = ReadHistory(Target.read_bytes())
 
 
+# the state limit contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("Maximum", (16, 1 << 31))
 def TestStateLimit(TmpPath: FilePath, Maximum: int) -> None:
     Sample = MakeSample()

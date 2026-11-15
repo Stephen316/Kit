@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.MakeFieldsMut import MakeF
 from convert.formats.Fusion.MaterialCodec.Package.Xml.MakeGroup import MakeGroup
 
 
+# the resources operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EmitResources(Values: tuple[ResourceInfo, ...]) -> bytes:
     RootValue, Group = MakeGroup("default")
     for Value in Values:

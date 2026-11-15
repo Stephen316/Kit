@@ -7,6 +7,7 @@ from convert.formats.Fusion.BundleCodec.Model.FusionBundle import FusionBundle
 from convert.formats.Fusion.BundleCodec.Validation.CheckModel import CheckModel
 
 
+# the bundle operation needs a consistent construction rule so linked archive members retain their document relationships
 def EmitBundle(Value: FusionBundle) -> bytes:
     CheckModel(Value.Description)
     Manifest = EmitJson({"root": Value.Description.RootPath})

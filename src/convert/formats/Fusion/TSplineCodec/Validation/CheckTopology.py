@@ -5,6 +5,7 @@ from convert.formats.Fusion.TSplineCodec.Validation.CheckEdges import CheckEdges
 from convert.formats.Fusion.TSplineCodec.Validation.CheckVertices import CheckVertices
 
 
+# invalid topology input must fail here so control cage topology retains its native connectivity
 def CheckTopology(Topology: CageTopology) -> None:
     Counts = (
         len(Topology.Faces),

@@ -2,6 +2,7 @@ from convert.formats.Fusion.MeshCodec.Model.MeshRegistry import MeshRegistry
 from convert.formats.Fusion.MeshCodec.Validation.CheckUuid import CheckUuid
 
 
+# invalid registry input must fail here so vertex and index streams retain their intended connectivity
 def CheckRegistry(Value: MeshRegistry) -> None:
     Names = (
         Value.VertexStream,

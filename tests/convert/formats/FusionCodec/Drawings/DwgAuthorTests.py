@@ -20,8 +20,13 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, Dw
 from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile
 from tests.convert.formats.FusionCodec.Drawings.ViewSolids import BoxSolid
 
+# the moment cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMoment = DateTime(2026, 11, 12, 12, 0, 0)
+
+# the layout handle cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLayoutHandle = 0x2E50
+
+# the source cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSource = ViewSource(
     0x1C5,
     "1_Component",
@@ -30,14 +35,19 @@ KSource = ViewSource(
     (4.0, 2.0, 1.5),
     Solid=BoxSolid((-10.0, 0.0, 5.0), (40.0, 20.0, 15.0)),
 )
+
+# the views cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KViews = (
     ViewDraft((180.46875, 120.609375), 4.0),
     ViewDraft((298.0, 120.609375), 4.0, Parent=0),
     ViewDraft((180.46875, 197.203125), 4.0, Parent=0),
 )
+
+# the dimension cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDimension = DimensionDraft((260.46875, 80.609375), (100.46875, 80.609375), 70.109375)
 
 
+# shared make draft setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeDraft(
     Views: tuple[ViewDraft, ...] = (),
     Dimensions: tuple[DimensionDraft, ...] = (),
@@ -58,6 +68,7 @@ def MakeDraft(
     )
 
 
+# shared read back setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadBack(Content: bytes) -> DwgFile:
     Model = ReadDwgFile(Content)
     assert EmitDwgFile(Model) == Content
@@ -66,10 +77,12 @@ def ReadBack(Content: bytes) -> DwgFile:
     return Model
 
 
+# shared kind counts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def KindCounts(Model: DwgFile) -> Counter[str]:
     return Counter(Entry.ClassKind for Entry in Model.DwgObjects)
 
 
+# shared fields of setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FieldsOf(Model: DwgFile, ClassKind: str) -> list[dict[str, object]]:
     return [
         {Member.FieldName: Member.FieldValue for Member in Entry.ClassData.RecordFields}
@@ -78,12 +91,14 @@ def FieldsOf(Model: DwgFile, ClassKind: str) -> list[dict[str, object]]:
     ]
 
 
+# shared items of setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ItemsOf(Fields: dict[str, object]) -> tuple[DwgField, ...]:
     Items = Fields["Items"]
     assert isinstance(Items, DwgRecord)
     return Items.RecordFields
 
 
+# the new sheet contract needs boundary coverage so stored document relationships remain consistent
 def TestNewSheet() -> None:
     Content = AuthorDwg(MakeDraft())
     assert AuthorDwg(MakeDraft()) == Content
@@ -103,6 +118,7 @@ def TestNewSheet() -> None:
     assert not Stamps
 
 
+# the new shell contract needs boundary coverage so stored document relationships remain consistent
 def TestNewShell() -> None:
     Model = ReadBack(AuthorDwg(MakeDraft()))
     Numbers = sorted(
@@ -121,6 +137,7 @@ def TestNewShell() -> None:
     assert Flags and not any(Flags)
 
 
+# shared header shorts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def HeaderShorts(Model: DwgFile) -> tuple[list[int], int]:
     Width, TailBits, _ = FrameParts(dict(Model.SectionVars)["AcDb:Header"])
     Padding = Width - 72
@@ -133,6 +150,7 @@ def HeaderShorts(Model: DwgFile) -> tuple[list[int], int]:
     return Values, (TailBits & FillMask) ^ (0x55 & FillMask)
 
 
+# the save shorts contract needs boundary coverage so stored document relationships remain consistent
 def TestSaveShorts() -> None:
     Values, Mismatch = HeaderShorts(ReadBack(AuthorDwg(MakeDraft(KViews))))
     assert Values == [0x6666, 0x6666, 0x7777, 0x8848]
@@ -143,6 +161,7 @@ def TestSaveShorts() -> None:
     assert HeaderShorts(Model)[0] == [0x5555, 0x5555, 0x5555, 0x0040]
 
 
+# the new views contract needs boundary coverage so stored document relationships remain consistent
 def TestNewViews() -> None:
     Model = ReadBack(AuthorDwg(MakeDraft(KViews, (KDimension,))))
     Counts = KindCounts(Model)
@@ -169,6 +188,7 @@ def TestNewViews() -> None:
     assert len(Listed) == 3 and set(Listed) == RepHandles
 
 
+# the view ports contract needs boundary coverage so stored document relationships remain consistent
 def TestViewPorts() -> None:
     Model = ReadBack(AuthorDwg(MakeDraft(KViews)))
     Ports = {
@@ -189,6 +209,7 @@ def TestViewPorts() -> None:
         assert Frame["ViewTarget"] == (0.0, 0.0, 0.0)
 
 
+# the dimension contract needs boundary coverage so stored document relationships remain consistent
 def TestDimension() -> None:
     Model = ReadBack(AuthorDwg(MakeDraft((), (KDimension,))))
     Fields = FieldsOf(Model, "DIMENSION_LINEAR")[0]
@@ -197,6 +218,7 @@ def TestDimension() -> None:
     assert Texts == ["160"]
 
 
+# the new rejects contract needs boundary coverage so stored document relationships remain consistent
 def TestNewRejects() -> None:
     with ExpectError(ValueError, match="reserved"):
         _ = AuthorDwg(MakeDraft(LayoutHandle=0))

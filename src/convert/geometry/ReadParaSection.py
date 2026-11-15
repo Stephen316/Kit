@@ -6,6 +6,7 @@ from convert.geometry.InflateFrame import InflateFrame
 from convert.geometry.SectionBounds import SectionBounds
 
 
+# the para section operation needs a distinct decoding boundary so native geometry retains a consistent interchange interpretation
 def ReadParaSection(DataValue: bytes, MagicOffset: int, SizeLimit: int) -> ParaSection:
     FrameStart = MagicOffset + len(KWrapperMagic)
     SectionEnd, Chained = SectionBounds(DataValue, MagicOffset)

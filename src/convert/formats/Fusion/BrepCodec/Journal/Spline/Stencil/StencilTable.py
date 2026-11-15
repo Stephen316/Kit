@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilFace import 
 )
 
 
+# stencil table needs an explicit state contract so control cage contributions retain their intended weights
 @MakeDataClass(frozen=True, slots=True)
 class StencilTable:
     GripCount: int

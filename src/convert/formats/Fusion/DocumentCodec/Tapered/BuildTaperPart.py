@@ -13,6 +13,7 @@ from convert.formats.Fusion.DocumentCodec.Tapered.TaperTags import TaperTags
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the taper part operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def BuildTaperPart(
     SpecValue: DocumentSpec, Design: DesignResult
 ) -> tuple[ContainerPart, ...]:

@@ -7,11 +7,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import 
     ExtrudeSpec,
 )
 
+# the boolean codes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KBooleanCodes = {"join": 1, "cut": 2, "intersect": 3, "new": 4}
+
+# the direction codes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KDirectionCodes = {"two": 2, "symmetric": 3}
+
+# zero angle must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KZeroAngle = "0.0 deg"
 
 
+# the extrude shape contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def ExtrudeShape(Feature: ExtrudeSpec) -> dict[str, object]:
     IsTwoSided = Feature.Extent in ("two", "symmetric")
     return dict(
@@ -24,6 +30,7 @@ def ExtrudeShape(Feature: ExtrudeSpec) -> dict[str, object]:
     )
 
 
+# the extent parameters operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddExtentParams(
     Author: AuthorState, Prefix: str, Feature: ExtrudeSpec
 ) -> list[str]:

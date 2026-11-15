@@ -9,6 +9,7 @@ from tools.TestShards.PhaseReport import PhaseReport
 from tools.TestShards.ShardLog import ShardLog
 
 
+# the report log operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def ReadReportLog(LogPath: FilePath) -> ShardLog:
     Phases: list[PhaseReport] = []
     Finished = False

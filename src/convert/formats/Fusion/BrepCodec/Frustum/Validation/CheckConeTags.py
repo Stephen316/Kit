@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
 from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 
 
+# invalid cone tags input must fail here so circular boundaries retain consistent cone and rim geometry
 def CheckConeTags(Identity: BodyIdentity, TagSet: TopologyTags) -> None:
     Faces = (TagSet.SideFace, TagSet.TopFace, TagSet.BottomFace)
     if len({Value.PrimaryId for Value in Faces}) != 3:

@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 
 
+# the smt value operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EncodeSmtValue(Value: KGeometryValue) -> str:
     if isinstance(Value, EntityRef):
         return f"${Value.Index}"

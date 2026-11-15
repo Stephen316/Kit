@@ -1,5 +1,6 @@
 from convert.formats.Fusion.DrawingCodec.Author.Model.PartColumn import PartColumn
 
+# the part columns order must stay explicit so sheet objects retain their intended document relationships
 KPartColumns = (
     PartColumn("ItemId", "Item", True, 1.5, 1.5748, True),
     PartColumn("Qty", "Qty", True, 1.5, 1.5748, True),

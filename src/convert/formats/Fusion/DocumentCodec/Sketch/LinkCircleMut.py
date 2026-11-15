@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Sketch.LinkSketchMut import LinkSketch
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# link circle must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkCircleMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     Author.Change("circle_center", curveUses=Reference("center_uses"))

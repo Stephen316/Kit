@@ -18,6 +18,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DesignResult import DesignResult
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
 
+# the pack document contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def PackDocument(
     Design: DesignResult, Title: str, Parts: tuple[ContainerPart, ...]
 ) -> bytes:

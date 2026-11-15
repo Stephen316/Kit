@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import Author
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# shared rect fields setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RectFields(
     Model: DocumentModel, ClassName: str
 ) -> tuple[dict[str, KEntityValue], ...]:

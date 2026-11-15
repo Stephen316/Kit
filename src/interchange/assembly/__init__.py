@@ -33,9 +33,16 @@ BindCompatMut(
 )
 BindAssemblyMut(AssemblyData, TransformMatrix)
 
+# the public component definition name must remain available so existing integrations keep resolving the canonical implementation
 ComponentDefinition = ComponentDef
+
+# the public component document name must remain available so existing integrations keep resolving the canonical implementation
 ComponentDocument = ComponentDoc
+
+# the public component instance name must remain available so existing integrations keep resolving the canonical implementation
 ComponentInstance = ComponentInst
+
+# the public matrix4 name must remain available so existing integrations keep resolving the canonical implementation
 Matrix4 = TransformMatrix
 
 # assembly consumers need one intentional historical public contract

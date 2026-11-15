@@ -14,6 +14,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the prism part operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def BuildPrismPart(
     SpecValue: DocumentSpec, Design: DesignResult
 ) -> tuple[ContainerPart, ...]:

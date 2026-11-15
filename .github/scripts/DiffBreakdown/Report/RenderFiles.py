@@ -4,6 +4,7 @@ from Report.MarkdownText import EscapeText, FileLink
 from Report.ShareCounts import CountLines
 
 
+# the notable decision must stay consistent so reviewers can distinguish semantic changes from generated noise
 def IsNotable(FileItem: dict[str, object]) -> bool:
     return (
         FileItem["Confidence"] == "unclassified"
@@ -13,6 +14,7 @@ def IsNotable(FileItem: dict[str, object]) -> bool:
     )
 
 
+# the largest row contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def LargestRow(Snapshot: dict[str, object], FileItem: dict[str, object]) -> str:
     IsBinary = bool(FileItem["Binary"])
     AddText = "binary" if IsBinary else f"+{FileItem['Additions']:,}"
@@ -23,6 +25,7 @@ def LargestRow(Snapshot: dict[str, object], FileItem: dict[str, object]) -> str:
     )
 
 
+# the notable row contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def NotableRow(Snapshot: dict[str, object], FileItem: dict[str, object]) -> str:
     OldPath = FileItem["PreviousPath"]
     Origin = f" from {EscapeText(OldPath)}" if OldPath else ""
@@ -32,10 +35,13 @@ def NotableRow(Snapshot: dict[str, object], FileItem: dict[str, object]) -> str:
     )
 
 
+# the render files contract needs a shared interpretation so reviewers can distinguish semantic changes from generated noise
 def RenderFiles(
     Snapshot: dict[str, object], TopCount: int, DetailCount: int
 ) -> list[str]:
     FileList = Snapshot["Files"]
+
+    # ordering by count lines entry entry path must stay deterministic so diff reporting resolves equivalent inputs consistently
     Largest = sorted(FileList, key=lambda Entry: (-CountLines(Entry), Entry["Path"]))
     Notable = [FileItem for FileItem in FileList if IsNotable(FileItem)]
     RowList = ["", "<details>", "<summary>Largest changed files</summary>", ""]

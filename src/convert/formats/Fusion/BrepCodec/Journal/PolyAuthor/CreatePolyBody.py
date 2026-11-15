@@ -21,6 +21,7 @@ from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# create poly body needs an explicit validity boundary so topology changes retain their native revision relationships
 def CreatePolyBody(
     Model: Polyhedron,
     History: HistoryState,

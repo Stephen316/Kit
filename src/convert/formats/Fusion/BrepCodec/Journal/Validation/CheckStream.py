@@ -5,6 +5,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.CheckWorking import (
 from convert.formats.Fusion.BrepCodec.Models.CheckInteger import CheckInteger
 
 
+# invalid stream input must fail here so inconsistent revision links fail before history reconstruction
 def CheckStream(Model: JournalModel) -> None:
     Value = Model.Stream
     for Number in (

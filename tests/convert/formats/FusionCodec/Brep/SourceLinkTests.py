@@ -12,6 +12,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmTable
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the source links contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("HasHistory", (False, True))
 def TestSourceLinks(HasHistory: bool) -> None:
     Sample = MakeSample()

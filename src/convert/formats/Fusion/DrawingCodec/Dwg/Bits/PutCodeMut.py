@@ -10,10 +10,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.PutRawMut import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef
 
+# one bits must remain consistent across callers so compact fields retain unambiguous bit positions
 KOneBits = PackFields("<d", 1.0)
+
+# zero bits must remain consistent across callers so compact fields retain unambiguous bit positions
 KZeroBits = PackFields("<d", 0.0)
 
 
+# the bit short operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutBitShortMut(Writer: BitWriter, Value: int) -> None:
     if Value == 0:
         Writer.PutBits(2, 2)
@@ -27,6 +31,7 @@ def PutBitShortMut(Writer: BitWriter, Value: int) -> None:
         PutRawShortMut(Writer, Value)
 
 
+# the bit long operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutBitLongMut(Writer: BitWriter, Value: int) -> None:
     if Value == 0:
         Writer.PutBits(2, 2)
@@ -38,12 +43,14 @@ def PutBitLongMut(Writer: BitWriter, Value: int) -> None:
         PutRawLongMut(Writer, Value)
 
 
+# the bit ll operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutBitLLMut(Writer: BitWriter, Value: int) -> None:
     ByteCount = (Value.bit_length() + 7) // 8
     Writer.PutBits(ByteCount, 3)
     PutBytesMut(Writer, Value.to_bytes(ByteCount, "little"))
 
 
+# the bit dbl operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutBitDblMut(Writer: BitWriter, Value: float) -> None:
     Packed = PackFields("<d", Value)
     if Packed == KOneBits:
@@ -55,6 +62,7 @@ def PutBitDblMut(Writer: BitWriter, Value: float) -> None:
         PutRawDblMut(Writer, Value)
 
 
+# the def dbl operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutDefDblMut(Writer: BitWriter, Value: float, Default: float) -> None:
     Packed = PackFields("<d", Value)
     BaseBits = PackFields("<d", Default)
@@ -71,6 +79,7 @@ def PutDefDblMut(Writer: BitWriter, Value: float, Default: float) -> None:
         PutBytesMut(Writer, Packed)
 
 
+# the handle operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutHandleMut(Writer: BitWriter, Reference: DwgHandleRef) -> None:
     ByteCount = (Reference.RefValue.bit_length() + 7) // 8
     Writer.PutBits(Reference.RefCode, 4)
@@ -78,12 +87,14 @@ def PutHandleMut(Writer: BitWriter, Reference: DwgHandleRef) -> None:
     Writer.PutBits(Reference.RefValue, 8 * ByteCount)
 
 
+# the unicode operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutUnicodeMut(Writer: BitWriter, TextValue: str) -> None:
     Encoded = TextValue.encode("utf-16-le")
     PutBitShortMut(Writer, len(Encoded) // 2)
     PutBytesMut(Writer, Encoded)
 
 
+# the obj type operation needs a consistent construction rule so compact fields retain unambiguous bit positions
 def PutObjTypeMut(Writer: BitWriter, Value: int) -> None:
     if Value < 0x100:
         Writer.PutBits(0, 2)

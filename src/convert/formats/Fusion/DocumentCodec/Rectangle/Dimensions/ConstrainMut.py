@@ -18,6 +18,7 @@ from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.MakeDimAxes impor
 from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import ReadInteger
 
 
+# the constrain contract needs a shared interpretation so model state retains its native feature and ownership relationships
 def ConstrainMut(Author: AuthorState) -> None:
     AddConstrMut(Author)
     AxisValues = MakeDimAxes(Author.SpecValue)

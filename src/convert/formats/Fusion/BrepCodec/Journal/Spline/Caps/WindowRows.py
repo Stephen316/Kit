@@ -10,7 +10,10 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Caps.CapLayout import (
 from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.CapHook import KCapKey
 from convert.formats.Fusion.BrepCodec.Journal.Spline.Caps.RoundTrig import RoundCosine
 
+# the window term shape must stay shared so spline cap reconstruction uses one contract for compatible values
 KWindowTerm = tuple[str, int, int, int, int]
+
+# the window rows order must stay explicit so extraordinary vertices remain compatible with surrounding patches
 KWindowRows: tuple[tuple[KWindowTerm, ...], ...] = (
     (
         ("B12", 1, 0, 0, 0),
@@ -87,6 +90,7 @@ KWindowRows: tuple[tuple[KWindowTerm, ...], ...] = (
 )
 
 
+# the window key contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def WindowKey(LocalName: str, Spoke: int, Valence: int) -> KCapKey:
     if LocalName[0] == "S":
         Offset, Index = LocalName[1:].split(".")
@@ -95,6 +99,7 @@ def WindowKey(LocalName: str, Spoke: int, Valence: int) -> KCapKey:
     return ("in", Sector % Valence, int(LocalName[1]), int(LocalName[2]))
 
 
+# the key ratio contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def KeyRatio(
     CapKey: KCapKey, RatiosI: tuple[Fraction, ...], RatiosJ: tuple[Fraction, ...]
 ) -> Fraction:
@@ -108,6 +113,7 @@ def KeyRatio(
     return Fraction(0)
 
 
+# the window rows contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def WindowRows(
     Layout: CapLayout, RatiosI: tuple[Fraction, ...], RatiosJ: tuple[Fraction, ...]
 ) -> list[KCapRow]:

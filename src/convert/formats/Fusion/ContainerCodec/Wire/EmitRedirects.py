@@ -6,13 +6,17 @@ from convert.formats.Fusion.ContainerCodec.Model.DocRedirects import DocRedirect
 from convert.formats.Fusion.ContainerCodec.Model.RedirectDesign import RedirectDesign
 from convert.formats.Fusion.ContainerCodec.Model.RedirectRef import RedirectRef
 
+# redirect label must remain consistent across callers so archive members retain their native ownership and reference relationships
 KRedirectLabel = "RedirectionsStream"
 
+# redirect kind must remain consistent across callers so archive members retain their native ownership and reference relationships
 KRedirectKind = "XREF"
 
+# redirect type must remain consistent across callers so archive members retain their native ownership and reference relationships
 KRedirectType = "STRING"
 
 
+# design tree needs an explicit validity boundary so archive members retain their native ownership and reference relationships
 def DesignTree(Value: RedirectDesign) -> dict[str, KJsonValue]:
     if (
         not isinstance(CastValue(object, Value), RedirectDesign)
@@ -38,6 +42,7 @@ def DesignTree(Value: RedirectDesign) -> dict[str, KJsonValue]:
     }
 
 
+# refer tree needs an explicit validity boundary so archive members retain their native ownership and reference relationships
 def ReferTree(Value: RedirectRef) -> dict[str, KJsonValue]:
     if (
         not isinstance(CastValue(object, Value), RedirectRef)
@@ -67,6 +72,7 @@ def ReferTree(Value: RedirectRef) -> dict[str, KJsonValue]:
     }
 
 
+# the redirects operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitRedirects(Value: DocRedirects) -> bytes:
     if (
         not isinstance(CastValue(object, Value), DocRedirects)

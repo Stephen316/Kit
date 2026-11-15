@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut impor
 )
 
 
+# the jumps operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadJumpsMut(Cursor: FieldCursor, Arrays: int) -> tuple[tuple[float, ...], ...]:
     Values: list[tuple[float, ...]] = []
     for _ in range(Arrays):

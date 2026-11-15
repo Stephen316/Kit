@@ -33,9 +33,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     IsFullCircle,
 )
 
+# the upward order must stay explicit so edge and face relationships survive parametric feature construction
 KUpward = (0.0, 0.0, 1.0)
 
 
+# the middle axis contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def MiddleAxis(
     SpanValue: ArcSpan, UseValue: ShapeUse, Point: KSpaceVector
 ) -> KSpaceVector:
@@ -48,6 +50,7 @@ def MiddleAxis(
     return (Cosine(Angle) + 0.0, SineOf(Angle) + 0.0, 0.0)
 
 
+# the line surface contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def LineSurface(Frame: CornerFrame, Round: EdgeRound, Sense: float) -> KFreeSurface:
     Prefix = EntityPrefix(-1, -1)
     if not Round.Rounded:
@@ -79,8 +82,11 @@ def LineSurface(Frame: CornerFrame, Round: EdgeRound, Sense: float) -> KFreeSurf
     )
 
 
+# the ring cone contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def RingCone(SpanValue: ArcSpan, Frame: CornerFrame, Middle: KSpaceVector) -> ConeNode:
     Center = SpanValue.CenterCm
+
+    # ordering by value 2 must stay deterministic so feature geometry resolves equivalent inputs consistently
     Points = sorted((Frame.CapPoint, Frame.WallPoint), key=lambda Value: Value[2])
     Radii = [Hypotenuse(Value[0] - Center[0], Value[1] - Center[1]) for Value in Points]
     Slope = ArcTangent(Radii[1] - Radii[0], Points[1][2] - Points[0][2])
@@ -103,6 +109,7 @@ def RingCone(SpanValue: ArcSpan, Frame: CornerFrame, Middle: KSpaceVector) -> Co
     )
 
 
+# ring surface needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def RingSurface(
     UseValue: ShapeUse, Frame: CornerFrame, Round: EdgeRound
 ) -> KFreeSurface:
@@ -132,6 +139,7 @@ def RingSurface(
     )
 
 
+# link surface must resolve unambiguously so edge and face relationships survive parametric feature construction
 def LinkSurface(
     UseValue: ShapeUse, Frame: CornerFrame, Round: EdgeRound, Sense: float
 ) -> tuple[KFreeSurface, bool]:

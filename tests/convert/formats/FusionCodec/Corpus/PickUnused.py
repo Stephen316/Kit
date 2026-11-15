@@ -3,6 +3,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 from tests.convert.formats.FusionCodec.Entities.NativeGraph import NativeGraph
 
 
+# shared pick unused setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PickUnused(Source: NativeGraph) -> MetaClass:
     Bases = {Entry.BaseGuid.upper() for Entry in Source.Metadata.Classes}
     Codes = {Record.TypeCode for Record in Source.Records}

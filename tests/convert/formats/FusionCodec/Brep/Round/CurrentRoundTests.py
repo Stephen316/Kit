@@ -19,6 +19,7 @@ from tests.convert.formats.FusionCodec.Brep.GeometryState.GeometryArchive import
 from tests.convert.formats.FusionCodec.Brep.Round.NativeRound import NativeRound
 
 
+# the round smb contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

@@ -5,11 +5,14 @@ from convert.formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
+# max type text must remain consistent across callers so entity identifiers retain their schema and reference meaning
 KMaxTypeText = 37
 
+# inline type must remain consistent across callers so entity identifiers retain their schema and reference meaning
 KInlineType = b"\x24"
 
 
+# the reference operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadRefMut(Cursor: MetaCursor) -> LocalRef | SegmentRef | CrossRef | None:
     if not ReadAtomMut(Cursor, WireType("bool")):
         return None

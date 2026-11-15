@@ -10,6 +10,7 @@ from convert.formats.Fusion.MaterialCodec.Limits import (
 from convert.formats.Fusion.MaterialCodec.Stores.EncodedStore import EncodedStore
 
 
+# the store operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EncodeStore(Payloads: Iterable[bytes]) -> EncodedStore:
     Result = bytearray(PackValue("<IIII", KBlockSize, KEndBlock, KEndBlock, 0))
     Roots: list[int] = []

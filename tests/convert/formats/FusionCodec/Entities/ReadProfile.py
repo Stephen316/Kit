@@ -10,12 +10,14 @@ from convert.formats.Fusion.EntityCodec.Schema.FieldSpec import FieldSpec
 from tests.convert.formats.FusionCodec.Entities.ProfileJson import ProfileJson
 from tests.convert.formats.FusionCodec.Entities.ReadWire import ReadWire
 
+# profile path needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KProfilePath = (
     FilePath(__file__).resolve().parents[5]
     / "re/Fusion/Reconstruction/EntityGraph/DesignProfile.json.xz"
 )
 
 
+# shared read profile setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadProfile(Targets: tuple[ExternalTarget, ...]) -> EntityProfile:
     Value = CastValue(ProfileJson, LoadJson(Decompress(KProfilePath.read_bytes())))
     assert Value["ExternalTargets"] == []

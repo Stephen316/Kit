@@ -12,6 +12,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSection import DwgSection
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSummary import DwgSummary
 
 
+# drawing inventory needs an explicit state contract so section boundaries and object references remain consistent
 @MakeDataClass(frozen=True, slots=True)
 class DwgInventory:
     FileHeader: DwgFileHeader

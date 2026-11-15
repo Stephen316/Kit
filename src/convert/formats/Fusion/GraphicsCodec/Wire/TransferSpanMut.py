@@ -5,6 +5,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.MeshState import MeshState
 
 
+# transfer span needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def TransferSpanMut(
     State: MeshState, Stream: int, Offset: int, Length: int, Payload: bytes | None
 ) -> bytes:

@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
 
 
+# the prism sample boundary needs grouped coverage so repository automation cannot silently change its observable contract
 @MakeDataClass(frozen=True, slots=True)
 class PrismSample:
     Model: CuboidBody
@@ -18,6 +19,7 @@ class PrismSample:
     Stamp: GeometryStamp
 
 
+# shared make prism setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakePrism() -> PrismSample:
     return PrismSample(
         CuboidBody(17.0, 23.0, 31.0, (-7.0, 13.0, 5.0)),

@@ -14,6 +14,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut impor
 )
 
 
+# the plane node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadPlaneNode(Cursor: FieldCursor) -> PlaneNode:
     Prefix = ReadPrefixMut(Cursor)
     OriginCm = ReadVectorMut(Cursor, 19)

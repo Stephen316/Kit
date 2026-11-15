@@ -7,6 +7,7 @@ from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import PropertyVa
 from convert.formats.Fusion.MaterialCodec.Package.Model.SchemaNode import SchemaNode
 
 
+# the mat asset operation needs a consistent construction rule so appearance references remain connected to their owning entities
 def BuildMatAsset(
     Family: AssetFamily,
     Nodes: dict[str, SchemaNode],

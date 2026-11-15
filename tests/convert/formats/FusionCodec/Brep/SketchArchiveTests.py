@@ -13,6 +13,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbString import EncodeSmbString
 from tests.convert.formats.FusionCodec.Brep.SampleInputs import MakeSample
 
 
+# the sketch zip contract needs boundary coverage so stored document relationships remain consistent
 def TestSketchZip(TmpPath: FilePath) -> None:
     Sample = MakeSample()
     Sketch = SketchLink((1 << 64) - 1, (1 << 63) + 37, (1 << 32) - 1, 4, 4)
@@ -32,6 +33,7 @@ def TestSketchZip(TmpPath: FilePath) -> None:
     assert ParsedSnapshot.TagSet.Sketch == Sketch
 
 
+# the sketch range contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize("SplitPair", ("0 2", "3 2", "1 0"))
 def TestSketchRange(TmpPath: FilePath, SplitPair: str) -> None:
     Sample = MakeSample()

@@ -49,6 +49,7 @@ from convert.formats.Fusion.BrepCodec.Prism.Models.PrismLine import PrismLine
 from convert.formats.Fusion.BrepCodec.Prism.Models.PrismPlane import PrismPlane
 from convert.formats.Fusion.BrepCodec.Prism.Models.PrismTags import PrismTags
 
+# the boundary representation types order must stay explicit so public document claims remain grounded in native records
 KBrepTypes: tuple[type[object], ...] = (
     ConeFrame,
     FrustumFrame,

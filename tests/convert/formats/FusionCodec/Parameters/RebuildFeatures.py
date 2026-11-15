@@ -8,6 +8,7 @@ from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWi
 from tests.convert.formats.FusionCodec.Parameters.RecodeFeatures import RecodeFeatures
 
 
+# shared rebuild features setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RebuildFeatures(Source: bytes) -> bytes:
     with ZipFile(BytesIO(Source)) as Archive:
         BulkName = KDesignPrefix + "BulkStream.dat"

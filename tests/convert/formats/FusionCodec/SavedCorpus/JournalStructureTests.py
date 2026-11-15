@@ -23,14 +23,18 @@ from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import (
 from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
+# the fixtures cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFixtures = FilePath(__file__).resolve().parents[5] / "re" / "Fusion" / "Study"
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the reencoded cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KReencoded = (".protein", ".smb", ".smbh")
 
+# the history stems cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KHistoryStems = (
     "embosstext-cd769aa41cdf/two_texts",
     "pathpatterns-de9857f6a1bc/arc_along",
@@ -57,6 +61,7 @@ KHistoryStems = (
     "rectsymmetry-f09c57dcfd51/symmetric_two",
 )
 
+# root stems needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KRootStems = (
     "extents-f0f33a9a605f/from_plane",
     "extents-f0f33a9a605f/to_plane",
@@ -74,6 +79,7 @@ KRootStems = (
     "surfacetools-856ca50cf4c7/unstitch_chain",
 )
 
+# the edge stems cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KEdgeStems = (
     "analytic-86a12b291d0a/analytic",
     "holeplacements-04adf73afe93/center_edge",
@@ -93,6 +99,7 @@ KEdgeStems = (
     "tools-fda3948848f4/Hole",
 )
 
+# the fill stems cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFillStems = (
     "boundaryfills-a0953038318b/component_middle",
     "boundaryfills-a0953038318b/cut_middle",
@@ -105,18 +112,22 @@ KFillStems = (
     "boundaryfills-a0953038318b/plane_first",
 )
 
+# the fixed stems cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFixedStems = KHistoryStems + KRootStems + KEdgeStems + KFillStems
 
 
+# shared read members setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMembers(DataValue: bytes) -> dict[str, bytes]:
     with ZipFile(BytesIO(DataValue)) as Archive:
         return {Entry: Archive.read(Entry) for Entry in Archive.namelist()}
 
 
+# shared load fixture setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadFixture(StemName: str) -> bytes:
     return (KFixtures / f"{StemName}.f3d").read_bytes()
 
 
+# shared load member setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadMember(StemName: str, Suffix: str) -> bytes:
     Found = [
         DataValue
@@ -127,18 +138,21 @@ def LoadMember(StemName: str, Suffix: str) -> bytes:
     return Found[0]
 
 
+# shared load journal setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadJournal(StemName: str) -> JournalModel:
     Model = ReadJournal(LoadMember(StemName, ".smbh"))
     assert ReadJournal(EmitJournal(Model)) == Model
     return Model
 
 
+# shared swap entity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapEntity(
     Entities: tuple[KJournalEntity, ...], Index: int, Value: KJournalEntity
 ) -> tuple[KJournalEntity, ...]:
     return Entities[:Index] + (Value,) + Entities[Index + 1 :]
 
 
+# the journal trip contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("StemName", KFixedStems)
 def TestJournalTrip(StemName: str) -> None:
@@ -156,6 +170,7 @@ def TestJournalTrip(StemName: str) -> None:
     assert not Changed
 
 
+# the working open contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestWorkingOpen() -> None:
     Model = LoadJournal("pathpatterns-de9857f6a1bc/arc_along")
@@ -178,9 +193,12 @@ def TestWorkingOpen() -> None:
         _ = EmitJournal(Replace(Model, States=States))
 
 
+# the board bound contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestBoardBound() -> None:
     Model = LoadJournal("patterns-35e49809a812/symmetric_one")
+
+    # ordering by in model states index boards must stay deterministic so native document reconstruction resolves equivalent inputs consistently
     Position = max(
         range(len(Model.States)),
         key=lambda Index: sum(
@@ -199,6 +217,7 @@ def TestBoardBound() -> None:
         _ = EmitJournal(Replace(Model, States=States))
 
 
+# the root count contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestRootCount() -> None:
     Model = LoadJournal("extents-f0f33a9a605f/from_plane")
@@ -207,6 +226,7 @@ def TestRootCount() -> None:
         _ = EmitJournal(Replace(Model, Header=Header))
 
 
+# the apex edge contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestApexEdge() -> None:
     Model = LoadJournal("holes-926347c1eaa8/simple")
@@ -224,6 +244,7 @@ def TestApexEdge() -> None:
         _ = EmitJournal(Replace(Model, Entities=Edited))
 
 
+# the torus ring contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestTorusRing() -> None:
     Model = LoadJournal("specialfillets-d50f7a4f04e0/rule_all_both")
@@ -241,6 +262,7 @@ def TestTorusRing() -> None:
         _ = EmitJournal(Replace(Model, Entities=Edited))
 
 
+# the edge ring contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestEdgeRing() -> None:
     Model = ReadGeometry(

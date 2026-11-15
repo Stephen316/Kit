@@ -15,6 +15,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Records.RecordStreams import (
 )
 
 
+# the typed operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ParseTyped(
     Generic: DwgObject, CommonKind: str, ClassKind: str, VersionText: str
 ) -> DwgObject:
@@ -44,6 +45,7 @@ def ParseTyped(
     )
 
 
+# the type object contract needs a shared interpretation so section boundaries and object references remain consistent
 def TypeObject(
     Generic: DwgObject, ClassName: str, IsEntity: bool, VersionText: str
 ) -> DwgObject:

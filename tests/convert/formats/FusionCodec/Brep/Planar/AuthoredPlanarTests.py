@@ -22,6 +22,7 @@ from tests.convert.formats.FusionCodec.Brep.Planar.PlanarSamples import (
 )
 
 
+# the poly file contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "ShapeName,Volume,FaceCount",
     (

@@ -16,6 +16,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRe
 from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
 
 
+# the walk subtypes contract needs a shared interpretation so nested spline and surface records retain their relationships
 def WalkSubtypes(Value: KGrammarValue) -> tuple[KSubtypeEntry, ...]:
     if isinstance(Value, SubtypeNode):
         return (Value, *WalkSubtypes(Value.Body))
@@ -32,6 +33,7 @@ def WalkSubtypes(Value: KGrammarValue) -> tuple[KSubtypeEntry, ...]:
     return ()
 
 
+# the defined name contract needs a shared interpretation so nested spline and surface records retain their relationships
 def DefinedName(Value: KSubtypeEntry) -> str:
     if isinstance(Value, SubtypeNode):
         return Value.SubtypeName
@@ -42,12 +44,14 @@ def DefinedName(Value: KSubtypeEntry) -> str:
     return "ref"
 
 
+# with subtrans needs an explicit validity boundary so nested spline and surface records retain their relationships
 def WithSubtrans(Value: TsplineSurf, Subtrans: KGrammarValue) -> TsplineSurf:
     if not isinstance(Subtrans, (SubtransNode, SubtypeRef)):
         raise ValueError("Fusion T-spline surface lost its subtransform scope")
     return ReplaceValue(Value, Subtrans=Subtrans)
 
 
+# map subtypes must resolve unambiguously so nested spline and surface records retain their relationships
 def MapSubtypes(Value: KGrammarValue, Mapping: dict[int, int]) -> KGrammarValue:
     if isinstance(Value, SubtypeNode):
         return SubtypeNode(Value.SubtypeName, MapSubtypes(Value.Body, Mapping))

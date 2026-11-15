@@ -15,14 +15,19 @@ from tests.convert.formats.FusionCodec.Materials.Package.NativePackage import (
     NativePackage,
 )
 
+# the stamp cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStamp = "2026-01-01T00:00:00Z"
+
+# the image cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KImage = b"\x89PNG\r\n\x1a\nkit"
 
 
+# shared make core setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeCore(Number: int, NameValue: str) -> PackageCore:
     return PackageCore(str(UuidValue(int=Number)), KStamp, KStamp, 1, NameValue)
 
 
+# shared make asset setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeAsset(Number: int, NameValue: str) -> PackageFolder:
     LeafValue = PackageFolder(
         MakeCore(Number + 2, "0"),
@@ -40,12 +45,14 @@ def MakeAsset(Number: int, NameValue: str) -> PackageFolder:
     return PackageFolder(MakeCore(Number, NameValue), (Middle,))
 
 
+# shared make tree setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeTree() -> PackageFolder:
     return PackageFolder(
         MakeCore(1, "Resources"), (MakeAsset(10, "second"), MakeAsset(20, "first"))
     )
 
 
+# the folder write contract needs boundary coverage so stored document relationships remain consistent
 def TestFolderWrite() -> None:
     Original = ReadPackage(NativePackage())
     assert Original.Resources is None
@@ -74,6 +81,7 @@ def TestFolderWrite() -> None:
     assert ReadPackage(Payload) == Changed
 
 
+# the folder drop contract needs boundary coverage so stored document relationships remain consistent
 def TestFolderDrop() -> None:
     Original = ReadPackage(NativePackage())
     Changed = ReplaceValue(Original, Resources=MakeTree())

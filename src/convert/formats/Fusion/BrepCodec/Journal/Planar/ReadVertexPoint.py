@@ -9,6 +9,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.RequireLive import RequireL
 from convert.formats.Fusion.BrepCodec.Journal.Planar.StableRef import StableRef
 
 
+# the vertex point operation needs a distinct decoding boundary so topology changes retain their native revision relationships
 def ReadVertexPoint(Table: LiveTable, VertexRef: int) -> KJournalVector:
     Vertex = RequireLive(Table, VertexRef, VertexNode)
     OwnerEdge = RequireLive(Table, Vertex.OwnerEdge, EdgeNode)

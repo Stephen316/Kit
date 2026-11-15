@@ -12,6 +12,7 @@ from convert.formats.Fusion.DocumentCodec.Reading.HistoryShapes import (
 from convert.formats.Fusion.DocumentCodec.Reading.IsInsertHistory import IsInsertHistory
 
 
+# pick body view must resolve unambiguously so model state retains its native feature and ownership relationships
 def PickBodyView(Model: JournalModel) -> str:
     if not IsInsertHistory(Model):
         return "journal"

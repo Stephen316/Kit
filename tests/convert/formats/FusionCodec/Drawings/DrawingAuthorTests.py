@@ -25,6 +25,7 @@ from tests.convert.formats.FusionCodec.Drawings.DwgAuthorTests import (
     MakeDraft,
 )
 
+# the design cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDesign = DesignTarget(
     DisplayName="Kit Bracket",
     AssetId="a1a1a1a1-b2b2-4c3c-8d4d-e5e5e5e5e5e5",
@@ -37,10 +38,15 @@ KDesign = DesignTarget(
     BodiesId=9,
     SketchesId=10,
 )
+
+# the database name cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDatabaseName = "ExtFile.f1f1f1f1-a2a2-4b3b-8c4c-d5d5d5d5d5d5.dwg"
+
+# the design data cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KDesignData = b"PK\x05\x06" + bytes(18)
 
 
+# shared make specification setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeSpec() -> DrawingSpec:
     return DrawingSpec(
         "Kit Bracket Drawing",
@@ -51,6 +57,7 @@ def MakeSpec() -> DrawingSpec:
     )
 
 
+# the fresh ids contract needs boundary coverage so stored document relationships remain consistent
 def TestFreshIds() -> None:
     First, Second = MakeIdentity(), MakeIdentity()
     assert First.DocumentId != Second.DocumentId
@@ -58,6 +65,7 @@ def TestFreshIds() -> None:
     assert len(First.DrawingToken) == 22
 
 
+# the new bundle contract needs boundary coverage so stored document relationships remain consistent
 def TestNewBundle() -> None:
     Codec = ImportSkip("compression.zstd")
     Content = AuthorDwg(MakeDraft(KViews, (KDimension,)))
@@ -66,6 +74,7 @@ def TestNewBundle() -> None:
     Bundle = BuildBundle(SpecValue, Drawing, KDesignData)
     Emitted = EmitDrawBundle(Bundle, Codec.compress)
 
+    # shared inflate zstd setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
     def InflateZstd(Packed: bytes, Expected: int) -> bytes:
         Result = Codec.decompress(Packed)
         assert isinstance(Result, bytes) and len(Result) == Expected
@@ -80,6 +89,7 @@ def TestNewBundle() -> None:
     assert [Entry.DataValue for Entry in Again.Documents] == [KDesignData]
 
 
+# the specification rejects contract needs boundary coverage so stored document relationships remain consistent
 def TestSpecRejects() -> None:
     Database = DrawingDatabase(KDatabaseName, AuthorDwg(MakeDraft()))
     with ExpectError(ValueError, match="ExtFile"):
@@ -92,6 +102,7 @@ def TestSpecRejects() -> None:
         _ = BuildBundle(MakeSpec(), Drawing, b"")
 
 
+# the sheet paper contract needs boundary coverage so stored document relationships remain consistent
 def TestSheetPaper() -> None:
     Database = DrawingDatabase(KDatabaseName, AuthorDwg(MakeDraft()))
     Larger = ReplaceValue(MakeSpec(), Sheet=SheetSpec("Kit Sheet", "A1 Landscape"))
@@ -107,6 +118,7 @@ def TestSheetPaper() -> None:
         _ = BuildDrawing(Mixed, Database)
 
 
+# the record ids contract needs boundary coverage so stored document relationships remain consistent
 def TestRecordIds() -> None:
     Single = PlanIds(1, 1, ())
     assert (Single.Sources, Single.Sheets, Single.NextFree) == ((39,), (41,), 42)
@@ -132,6 +144,7 @@ def TestRecordIds() -> None:
     assert SheetOrders(Design) == PaperTabs == [2]
 
 
+# shared sheet orders setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SheetOrders(Design: ParsedSegment) -> list[object]:
     return [
         Member.Value
@@ -142,5 +155,6 @@ def SheetOrders(Design: ParsedSegment) -> list[object]:
     ]
 
 
+# shared read model setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadModel(Database: DrawingDatabase) -> DwgFile:
     return ReadDwgFile(Database.Content)

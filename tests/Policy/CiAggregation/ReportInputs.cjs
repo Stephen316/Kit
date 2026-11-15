@@ -75,15 +75,11 @@ function BuildReports(CaseMode, Verdict, CheckName) {
   }
 
   if (CaseMode === "queue" || CaseMode === "queue-run") {
-    const Run = Runs.find((Item) => Item.name === "Merge queue");
-    const Target =
-      CaseMode === "queue-run"
-        ? Run
-        : Checks.find(
-            (Check) =>
-              Check.check_suite.id === Run.check_suite_id &&
-              Check.name === CheckName,
-          );
+    const Check = Checks.find((Item) => Item.name === CheckName);
+    const Run = Runs.find(
+      (Item) => Item.check_suite_id === Check.check_suite.id,
+    );
+    const Target = CaseMode === "queue-run" ? Run : Check;
     Target.status = Verdict === "pending" ? "in_progress" : "completed";
     Target.conclusion = Verdict;
   }

@@ -10,9 +10,11 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Pages.ReadSystemPage import (
     ReadSystemPage,
 )
 
+# section map type must remain consistent across callers so section boundaries and object references remain consistent
 KSectionMapType = 0x4163003B
 
 
+# the section map operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadSectionMap(
     Content: bytes, MapPage: DwgMapPage
 ) -> tuple[tuple[int, ...], tuple[DwgSectionInfo, ...]]:

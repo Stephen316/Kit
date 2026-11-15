@@ -11,6 +11,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
 
 
+# convert series needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def ConvertSeries(
     Value: object,
     Shape: WireType,

@@ -5,6 +5,7 @@ from convert.formats.Fusion.DocumentCodec.Model.MaterialPart import MaterialPart
 from convert.formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage
 
 
+# the mat part operation needs a consistent construction rule so model state retains its native feature and ownership relationships
 def EmitMatPart(Value: MaterialPart) -> ContainerPart:
     if (
         FullMatch(

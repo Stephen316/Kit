@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumFrame import Frustum
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# the frustum body operation needs a distinct decoding boundary so circular boundaries retain consistent cone and rim geometry
 def ReadFrustumBody(Frame: FrustumFrame) -> FrustumBody:
     Origin = Frame.Lower.CenterCm
     return FrustumBody(

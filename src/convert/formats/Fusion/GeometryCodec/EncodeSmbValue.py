@@ -9,6 +9,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 from convert.formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
 
 
+# the smb value operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EncodeSmbValue(Value: KGeometryValue, NameValue: str, Index: int) -> bytes:
     if isinstance(Value, EntityRef):
         return b"\x0c" + PackValue("<q", Value.Index)

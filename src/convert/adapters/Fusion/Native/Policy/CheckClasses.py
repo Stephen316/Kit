@@ -3,6 +3,7 @@ from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
 from convert.adapters.Fusion.Native.Policy.DesignClasses import KDesignClasses
 
 
+# invalid classes input must fail here so public document claims remain grounded in native records
 def CheckClasses(Graph: NativeGraph) -> None:
     Schemas = {Schema.Value.ClassGuid.upper(): Schema.Value for Schema in ReadNames()}
     for NodeValue in Graph.Nodes.values():

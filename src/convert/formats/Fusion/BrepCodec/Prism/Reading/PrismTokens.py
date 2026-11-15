@@ -4,6 +4,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, ReadAsmToken
 
 
+# the prism tokens contract needs a shared interpretation so profile topology remains connected to its extrusion history
 def PrismTokens(Records: tuple[GeometryRecord, ...]) -> tuple[AsmRecord, ...]:
     return tuple(
         AsmRecord(

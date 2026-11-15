@@ -29,6 +29,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TreeParts import (
 from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedBase import TypedBase
 
 
+# loft piece needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class LoftPiece(TypedBase):
     PieceKind: int
@@ -42,6 +43,7 @@ class LoftPiece(TypedBase):
     PieceVector: KTriple | None
 
 
+# loft section needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class LoftSection(TypedBase):
     SectionValue: float
@@ -51,6 +53,7 @@ class LoftSection(TypedBase):
     TrailInt: int
 
 
+# loft spl sur needs an explicit state contract so native geometry variants retain distinct field contracts
 @MakeDataClass(frozen=True, slots=True)
 class LoftSplSur(TypedBase):
     Revision: int
@@ -63,6 +66,7 @@ class LoftSplSur(TypedBase):
     Common: SplineCommon
 
 
+# the piece from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def PieceFrom(Value: KGrammarValue) -> LoftPiece:
     Choice = NeedChoice(Value)
     PieceKind = NeedWhole(Choice.ChoiceKey)
@@ -83,6 +87,7 @@ def PieceFrom(Value: KGrammarValue) -> LoftPiece:
     )
 
 
+# piece tree needs an explicit validity boundary so native geometry variants retain distinct field contracts
 def PieceTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, LoftPiece)
     Trail = (Record.ReparamInt, Record.Reparam, Record.PieceVector)
@@ -98,6 +103,7 @@ def PieceTree(Value: KGrammarValue) -> KGrammarValue:
     return ChoiceValue(Record.PieceKind, (*Shared, *Middle, Trail))
 
 
+# the section from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SectionFrom(Value: KGrammarValue) -> LoftSection:
     SectionValue, Pieces, PathParts = NeedItems(Value, 3)
     Curve, Wrappers, TrailInt = NeedItems(PathParts, 3)
@@ -110,6 +116,7 @@ def SectionFrom(Value: KGrammarValue) -> LoftSection:
     )
 
 
+# the section tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def SectionTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, LoftSection)
     Pieces = tuple(PieceTree(Element) for Element in Record.Pieces)
@@ -117,6 +124,7 @@ def SectionTree(Value: KGrammarValue) -> KGrammarValue:
     return Record.SectionValue, Pieces, PathParts
 
 
+# the loft from contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def LoftFrom(Value: KGrammarValue) -> LoftSplSur:
     Parts = NeedItems(Value, 12)
     Flags = (
@@ -137,6 +145,7 @@ def LoftFrom(Value: KGrammarValue) -> LoftSplSur:
     )
 
 
+# the loft tree contract needs a shared interpretation so native geometry variants retain distinct field contracts
 def LoftTree(Value: KGrammarValue) -> KGrammarValue:
     Record = NeedRecord(Value, LoftSplSur)
     return (

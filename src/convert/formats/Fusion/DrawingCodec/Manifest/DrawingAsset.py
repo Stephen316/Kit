@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Manifest.AssetLink import AssetLink
 from convert.formats.Fusion.DrawingCodec.Manifest.DrawingSlot import DrawingSlot
 
 
+# drawing asset needs an explicit state contract so drawing members retain their sheet and model associations
 @MakeDataClass(frozen=True, slots=True)
 class DrawingAsset:
     Name: str

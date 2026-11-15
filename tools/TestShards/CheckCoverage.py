@@ -6,6 +6,7 @@ from tools.TestShards.Reuse.Cache.ReusableOutcomes import KReusableOutcomes
 from tools.TestShards.ReusePlan import ReusePlan
 
 
+# invalid coverage input must fail here so every collected case receives exactly one verified outcome
 def CheckCoverage(Planned: Sequence[str], Reused: ReusePlan) -> list[str]:
     Problems: list[str] = []
     Overlap = Reused.Outcomes.keys() & set(Planned)

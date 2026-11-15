@@ -6,9 +6,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.CapFace import CapF
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import WallFace
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import FaceLabel
 
+# the shape face variants need one shared contract so parametric feature reconstruction cannot omit a supported value shape
 KShapeFace: TypeAlias = WallFace | CapFace | FreeFace
 
 
+# shape body needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class ShapeBody:
     Faces: tuple[KShapeFace, ...]

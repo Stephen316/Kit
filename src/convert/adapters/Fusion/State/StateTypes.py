@@ -8,6 +8,7 @@ from convert.adapters.Fusion.State.Types.MaterialTypes import KMaterialTypes
 from convert.adapters.Fusion.State.Types.MetaIndexTypes import KMetaIndexTypes
 from convert.adapters.Fusion.State.Types.SegmentTypes import KSegmentTypes
 
+# the state types order must stay explicit so public document claims remain grounded in native records
 KStateTypes: tuple[type[object], ...] = (
     *KBrepTypes,
     *KContainerTypes,
@@ -20,6 +21,7 @@ KStateTypes: tuple[type[object], ...] = (
     *KSegmentTypes,
 )
 
+# state names must remain consistent across callers so public document claims remain grounded in native records
 KStateNames = {
     f"{ClassType.__module__}.{ClassType.__name__}": ClassType
     for ClassType in KStateTypes

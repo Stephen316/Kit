@@ -1,3 +1,4 @@
+# copy match needs an explicit validity boundary so compressed page boundaries cannot overrun their declared payload
 def CopyMatchMut(Output: bytearray, Distance: int, Length: int, Limit: int) -> None:
     Start = len(Output) - Distance - 1
     if Start < 0:

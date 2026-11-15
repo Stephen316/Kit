@@ -1,3 +1,4 @@
+# the gauss rule order must stay explicit so editable control cages retain their document relationships
 KGaussRule = (
     (-0.9894009349916499, 0.0271524594117544),
     (-0.9445750230732326, 0.0622535239386479),
@@ -17,6 +18,7 @@ KGaussRule = (
     (0.9894009349916499, 0.0271524594117544),
 )
 
+# the power map vocabulary must stay centralized so form feature reconstruction agrees on supported native identities
 KPowerMap = {
     "x": (1, 0, 0),
     "y": (0, 1, 0),

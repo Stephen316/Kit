@@ -5,11 +5,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Poles.CapHook import (
     KSectorKnots,
 )
 
+# the knot tuple shape must stay shared so spline cap reconstruction uses one contract for compatible values
 KKnotTuple = tuple[Fraction, ...]
+
+# degree must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KDegree = 3
+
+# clamp must remain consistent across callers so extraordinary vertices remain compatible with surrounding patches
 KClamp = 4
 
 
+# expand knots needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def ExpandKnots(Knots: KSectorKnots) -> KKnotTuple:
     Values = sorted(Fraction(Value) for Value, Count in Knots for _ in range(Count))
     if not Values:
@@ -29,6 +35,7 @@ def ExpandKnots(Knots: KSectorKnots) -> KKnotTuple:
     return Expanded
 
 
+# the inside decision must stay consistent so extraordinary vertices remain compatible with surrounding patches
 def IsInside(Knots: KKnotTuple, Index: int, Param: Fraction, IsLeft: bool) -> bool:
     Lower, Upper = Knots[Index], Knots[Index + 1]
     if IsLeft:
@@ -36,10 +43,12 @@ def IsInside(Knots: KKnotTuple, Index: int, Param: Fraction, IsLeft: bool) -> bo
     return Lower <= Param < Upper
 
 
+# the knot share contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 def KnotShare(Value: Fraction, Width: Fraction) -> Fraction:
     return Value / Width if Width else Fraction(0)
 
 
+# the spline basis contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 @CacheResult(maxsize=None)
 def SplineBasis(
     Knots: KKnotTuple, Index: int, Degree: int, Param: Fraction, IsLeft: bool
@@ -58,6 +67,7 @@ def SplineBasis(
     return Total
 
 
+# the basis derive contract needs a shared interpretation so extraordinary vertices remain compatible with surrounding patches
 @CacheResult(maxsize=None)
 def BasisDerive(
     Knots: KKnotTuple, Param: Fraction, Order: int, IsLeft: bool
@@ -83,6 +93,7 @@ def BasisDerive(
     return tuple(Values[:Count])
 
 
+# knot ratio needs an explicit validity boundary so extraordinary vertices remain compatible with surrounding patches
 def KnotRatio(Knots: KKnotTuple) -> Fraction:
     StepValue = Knots[KClamp]
     EdgeValue = 2 * StepValue

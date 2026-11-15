@@ -23,10 +23,14 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the join tolerance tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KJoinTolerance = 1e-7
+
+# seam angle must remain consistent across callers so body topology remains consistent with its modeling operation
 KSeamAngle = KFullTurn / 2.0
 
 
+# the curve span contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def CurveSpan(Curve: KProfileCurve, Label: FaceLabel) -> KPlaneSpan:
     if isinstance(Curve, LineCurve):
         Start = (Curve.StartMm[0] / 10.0, Curve.StartMm[1] / 10.0)
@@ -44,10 +48,12 @@ def CurveSpan(Curve: KProfileCurve, Label: FaceLabel) -> KPlaneSpan:
     return ArcSpan(Center, Curve.RadiusMm / 10.0, KSeamAngle, KFullTurn, Label)
 
 
+# the joined decision must stay consistent so body topology remains consistent with its modeling operation
 def IsJoined(First: tuple[float, float], Second: tuple[float, float]) -> bool:
     return Hypotenuse(First[0] - Second[0], First[1] - Second[1]) < KJoinTolerance
 
 
+# chain spans needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def ChainSpans(Spans: tuple[KPlaneSpan, ...]) -> KPlaneLoop:
     Chain = list(Spans[:1])
     if len(Spans) > 1 and not any(
@@ -65,10 +71,12 @@ def ChainSpans(Spans: tuple[KPlaneSpan, ...]) -> KPlaneLoop:
     return tuple(Chain)
 
 
+# the reverse loop contract needs a shared interpretation so body topology remains consistent with its modeling operation
 def ReverseLoop(LoopValue: KPlaneLoop) -> KPlaneLoop:
     return CanonLoop(tuple(ReverseSpan(Value) for Value in reversed(LoopValue)))
 
 
+# profile loop needs an explicit validity boundary so body topology remains consistent with its modeling operation
 def ProfileLoop(
     Profile: tuple[KProfileCurve, ...], Labels: tuple[FaceLabel, ...]
 ) -> KPlaneLoop:

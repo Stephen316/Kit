@@ -26,6 +26,7 @@ from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.MakePolyUses import (
 from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
 
 
+# the poly nodes operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyNodes(
     Layout: PolyLayout, EntityTag: int, Placement: TransformNode | None
 ) -> tuple[KJournalEntity, ...]:

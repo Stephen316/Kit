@@ -12,6 +12,7 @@ from convert.formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntit
 from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
 
 
+# the shift subtypes contract needs a shared interpretation so nested spline and surface records retain their relationships
 def ShiftSubtypes(
     Entities: tuple[KJournalEntity, ...], Order: tuple[int, ...]
 ) -> tuple[KJournalEntity, ...]:

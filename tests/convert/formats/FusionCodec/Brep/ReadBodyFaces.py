@@ -4,6 +4,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# shared read body faces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadBodyFaces(Table: AsmTable, RootId: int) -> tuple[AsmRecord, ...]:
     BodyRoot = RequireAsm(Table, RootId, "body", 6)
     LumpRoot = RequireAsm(Table, ReadAsmPtr(BodyRoot, 3), "lump", 6)

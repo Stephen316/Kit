@@ -7,6 +7,7 @@ from tools.Donors.CountSource import CountSource
 from tools.Donors.ShowPath import ShowPath
 
 
+# the scan counts contract needs a shared interpretation so captured document data cannot become production writer input
 def ScanCounts(SourceList: Sequence[FilePath]) -> dict[str, tuple[int, int]]:
     CountMap: dict[str, tuple[int, int]] = {}
     for SourcePath in SourceList:

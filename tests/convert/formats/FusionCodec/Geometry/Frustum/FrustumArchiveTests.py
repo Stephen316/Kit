@@ -11,9 +11,11 @@ from tests.convert.formats.FusionCodec.Geometry.Frustum.CheckConeLinks import (
 )
 from tests.convert.formats.FusionCodec.Geometry.Frustum.ReadFrustum import ReadFrustum
 
+# the frustum stamp cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFrustumStamp = GeometryStamp("Kit", "Frustum integration", "2026-11-12T00:00:00Z")
 
 
+# the frustum file contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "Lengths,BasePoint",
     (
@@ -61,6 +63,7 @@ def TestFrustumFile(
     )
 
 
+# the frustum tail contract needs boundary coverage so stored document relationships remain consistent
 def TestFrustumTail() -> None:
     Payload = EmitFrustumSmb(FrustumBody(5.0, 9.0, 12.0, (0, 0, 0)), KFrustumStamp)
     with RaiseError(ValueError):

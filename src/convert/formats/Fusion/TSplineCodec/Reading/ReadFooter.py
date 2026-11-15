@@ -5,6 +5,7 @@ from convert.formats.Fusion.TSplineCodec.Wire.ReadInteger import ReadInteger
 from convert.formats.Fusion.TSplineCodec.Wire.ReadNumber import ReadNumber
 
 
+# the footer operation needs a distinct decoding boundary so control cage topology retains its native connectivity
 def ReadFooter(Cursor: TextCursor, Header: SurfaceHeader) -> SurfaceHeader:
     Tolerance = ReadNumber(Cursor.ReadFields("tol", 1)[0])
     GeometryTol = ReadNumber(Cursor.ReadFields("geom-tol", 1)[0])

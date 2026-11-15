@@ -12,6 +12,7 @@ from tests.convert.api.Fusion.AdapterCases import (
 )
 
 
+# the public round contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize("ProfileKind", KProfileNames)
 def TestPublicRound(TmpPath: FilePath, ProfileKind: KProfileKind) -> None:
     Document = AdapterCase(ProfileKind)

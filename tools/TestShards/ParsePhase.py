@@ -5,6 +5,7 @@ from collections.abc import Mapping
 from tools.TestShards.PhaseReport import PhaseReport
 
 
+# the phase operation needs a distinct decoding boundary so every collected case receives exactly one verified outcome
 def ParsePhase(Fields: Mapping[object, object]) -> PhaseReport:
     TestId = Fields.get("nodeid")
     Phase = Fields.get("when")

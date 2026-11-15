@@ -2,6 +2,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCu
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# the field operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadFieldMut(Cursor: FieldCursor) -> KAsmToken:
     if Cursor.Offset >= len(Cursor.Record.Tokens):
         raise ValueError("Truncated Fusion journal entity")

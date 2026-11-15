@@ -4,6 +4,7 @@ from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 from convert.formats.Fusion.GeometryCodec.GeometryValue import KGeometryValue
 
 
+# the attribute operation needs a consistent construction rule so native topology can resolve its owning modeling operation
 def MakeAttribute(
     Owner: int,
     Family: str,

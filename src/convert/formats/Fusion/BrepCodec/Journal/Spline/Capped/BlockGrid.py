@@ -6,11 +6,17 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import (
 )
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
+# the place shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KPlace = tuple[int, int, int]
+
+# the shift shape must stay shared so capped spline reconstruction uses one contract for compatible values
 KShift = tuple[int, int]
+
+# the steps order must stay explicit so cap boundaries remain connected to the surrounding surface
 KSteps = ((1, 0), (0, 1), (-1, 0), (0, -1))
 
 
+# block grid needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class BlockGrid:
     Faces: tuple[int, ...]
@@ -21,6 +27,7 @@ class BlockGrid:
     WrapsV: bool
 
 
+# the next place contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def NextPlace(
     Graph: CageGraph, Place: KPlace, Corner: int, LinkIndex: int
 ) -> tuple[int, KPlace]:
@@ -32,6 +39,7 @@ def NextPlace(
     return Neighbour, (Place[0] + StepU, Place[1] + StepV, TurnIndex)
 
 
+# spread block needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def SpreadBlock(
     Graph: CageGraph, Faces: tuple[int, ...], Drawn: tuple[bool, ...]
 ) -> tuple[dict[int, KPlace], list[KShift]]:
@@ -54,6 +62,7 @@ def SpreadBlock(
     return Places, Shifts
 
 
+# block periods needs an explicit validity boundary so cap boundaries remain connected to the surrounding surface
 def BlockPeriods(Shifts: list[KShift]) -> KShift:
     Leading = (0, 0)
     Trailing = 0
@@ -72,10 +81,12 @@ def BlockPeriods(Shifts: list[KShift]) -> KShift:
     return abs(Leading[0]), Trailing
 
 
+# the axis value contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def AxisValue(Value: int, Lowest: int, Period: int) -> int:
     return Value % Period if Period else Value - Lowest
 
 
+# the block operation needs a consistent construction rule so cap boundaries remain connected to the surrounding surface
 def PlaceBlock(
     Graph: CageGraph, Faces: tuple[int, ...], Drawn: tuple[bool, ...]
 ) -> BlockGrid:
@@ -99,6 +110,7 @@ def PlaceBlock(
     return BlockGrid(Faces, Cells, Width, Height, PeriodU > 0, PeriodV > 0)
 
 
+# scaled cell needs one geometric convention so cap boundaries remain connected to the surrounding surface
 def ScaledCell(FaceIndex: int, Place: KPlace, Scale: int) -> PatchCell:
     Column, RowIndex, TurnIndex = Place
     Offsets = (
@@ -113,6 +125,7 @@ def ScaledCell(FaceIndex: int, Place: KPlace, Scale: int) -> PatchCell:
     )
 
 
+# the grid cells contract needs a shared interpretation so cap boundaries remain connected to the surrounding surface
 def GridCells(GridValue: BlockGrid, Scale: int) -> tuple[PatchCell, ...]:
     return tuple(
         ScaledCell(FaceIndex, Place, Scale)

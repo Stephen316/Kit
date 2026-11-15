@@ -8,6 +8,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 
 
+# invalid circle uses input must fail here so public geometry remains consistent with native circular topology
 def CheckCircleUses(
     Graph: NativeGraph,
     Circle: NativeNode,

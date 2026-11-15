@@ -21,6 +21,7 @@ from convert.formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
 from convert.formats.Fusion.MetaCursor import MetaCursor
 
 
+# the node operation needs a distinct decoding boundary so entity identifiers retain their schema and reference meaning
 def ReadNodeMut(
     Cursor: MetaCursor, KindValue: str, Catalog: EntityCatalog, Depth: int
 ) -> KRecipePayload:

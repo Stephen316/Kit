@@ -6,6 +6,7 @@ from convert.formats.Fusion.MeshCodec.Model.OctaNormal import OctaNormal
 from convert.formats.Fusion.MeshCodec.Model.ParaMesh import ParaMesh
 
 
+# shared authored mesh setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AuthoredMesh() -> ParaMesh:
     Registry = MeshRegistry(
         "b8e63e79-79f0-4cbc-8e89-c89204dbf349",

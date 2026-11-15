@@ -12,6 +12,7 @@ from tests.convert.formats.FusionCodec.Brep.Frustum.NativeHistory import NativeH
 from tests.convert.formats.FusionCodec.Brep.Prism.PrismArchive import StorePrism
 
 
+# the journal part contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

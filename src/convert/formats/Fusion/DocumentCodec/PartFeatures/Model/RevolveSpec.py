@@ -2,6 +2,7 @@ from dataclasses import dataclass as MakeDataClass
 from typing import Literal
 
 
+# revolve specification needs an explicit state contract so feature parameters remain connected to the resulting geometry
 @MakeDataClass(frozen=True, slots=True)
 class RevolveSpec:
     InnerMm: float

@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Validation.ReadLiveRef import Read
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# invalid whole face input must fail here so topology changes retain their native revision relationships
 def CheckWholeFace(
     FaceValue: AsmRecord, Surface: AsmRecord, Aliases: tuple[int, ...]
 ) -> None:

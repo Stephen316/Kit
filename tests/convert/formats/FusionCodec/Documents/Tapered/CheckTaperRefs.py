@@ -7,6 +7,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 from tests.convert.formats.FusionCodec.Documents.NamedGroups import NamedGroups
 
 
+# the taper references contract needs boundary coverage so stored document relationships remain consistent
 def CheckTaperRefs(Model: DocumentModel, Degrees: float) -> None:
     Taper = next(
         Fields

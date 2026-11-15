@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Integrity.CrcSixteen import CrcSixt
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleMap import DwgHandleMap
 
 
+# drawing references need verified block checksums and boundaries before object handles can be trusted
 def CountHandles(DataValue: bytes, ObjectSize: int) -> DwgHandleMap:
     Offset = 0
     HandleCount = 0

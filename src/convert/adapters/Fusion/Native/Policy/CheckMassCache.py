@@ -4,6 +4,7 @@ from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
 
 
+# invalid mass cache input must fail here so public document claims remain grounded in native records
 def CheckMassCache(Context: ExtrudeContext, History: PrismHistory) -> None:
     Model = History.Model
     Lengths = (Model.Width / 10, Model.Depth / 10, Model.Height / 10)

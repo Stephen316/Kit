@@ -5,6 +5,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Model.FieldValue import KField
 from convert.formats.Fusion.SegmentCodec.Features.Model.VectorValue import VectorValue
 
 
+# the vector operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitVector(Value: KFieldValue) -> bytes:
     if not isinstance(Value, VectorValue):
         raise ValueError("Fusion feature vector requires typed coordinates")

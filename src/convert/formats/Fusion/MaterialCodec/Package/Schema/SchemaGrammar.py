@@ -5,6 +5,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Schema.TextAttributes import (
     KTextAttrs,
 )
 
+# the schema attributes vocabulary must stay centralized so material reconstruction agrees on supported native identities
 KSchemaAttrs = {
     "AssetSchema": (),
     "UID": ("val",),
@@ -30,6 +31,8 @@ KSchemaAttrs = {
         "percentage",
     ),
 }
+
+# the schema children vocabulary must stay centralized so material reconstruction agrees on supported native identities
 KSchemaChildren = {
     "AssetSchema": (
         "UID",

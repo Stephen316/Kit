@@ -11,6 +11,7 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# transfer mesh needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def XferMeshMut(State: SceneCodec, Value: SimpleMesh | None) -> SimpleMesh:
     Bounds = State.Vector(Value.Bounds if Value else None, 6)
     Primitive = State.Integer(Value.Primitive if Value else None, "<i")

@@ -9,6 +9,7 @@ from tests.convert.api.Fusion.AdapterCases import AdapterCase
 from tests.convert.api.Fusion.AlterDocument import AlterDocument
 
 
+# the author gate contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "FieldName", ("parameter", "material", "body", "history", "metadata", "source")
 )
@@ -22,6 +23,7 @@ def TestAuthorGate(TmpPath: FilePath, FieldName: str) -> None:
     assert tuple(TmpPath.iterdir()) == (Target,)
 
 
+# the native gate contract needs boundary coverage so stored document relationships remain consistent
 @MarkTests.parametrize(
     "FieldName", ("parameter", "material", "body", "history", "metadata")
 )

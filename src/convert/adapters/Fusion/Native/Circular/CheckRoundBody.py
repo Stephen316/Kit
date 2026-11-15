@@ -9,6 +9,7 @@ from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 
 
+# invalid round body input must fail here so public geometry remains consistent with native circular topology
 def CheckRoundBody(
     Graph: NativeGraph, Context: ExtrudeContext, TagSet: TopologyTags
 ) -> None:

@@ -15,6 +15,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import Fa
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSlab import PrismSlab
 
 
+# the copy label contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CopyLabel(Label: FaceLabel, Loops: tuple[tuple[ShapeUse, ...], ...]) -> FaceLabel:
     Owners = {
         UseValue.Edge.Span.Label.OperationIds
@@ -33,6 +34,7 @@ def CopyLabel(Label: FaceLabel, Loops: tuple[tuple[ShapeUse, ...], ...]) -> Face
     return ShiftLabel(Label, Owner[Width:])
 
 
+# the cap faces contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def CapFaces(Slabs: tuple[PrismSlab, ...]) -> tuple[CapFace, ...]:
     Levels = sorted(
         {

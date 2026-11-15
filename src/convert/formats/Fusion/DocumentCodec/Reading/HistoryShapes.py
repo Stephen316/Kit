@@ -1,3 +1,4 @@
+# the rotary shape vocabulary must stay centralized so document reconstruction agrees on supported native identities
 KRotaryShape = {
     "asmheader": 1,
     "body": 1,
@@ -14,6 +15,8 @@ KRotaryShape = {
     "ellipse-curve": 2,
     "ATTRIB_CUSTOM-attrib": 9,
 }
+
+# the prism shape vocabulary must stay centralized so document reconstruction agrees on supported native identities
 KPrismShape = {
     "asmheader": 1,
     "body": 1,

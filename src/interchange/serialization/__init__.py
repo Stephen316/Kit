@@ -111,12 +111,25 @@ BindFunctionMut(
     globals(),
 )
 
+# the public dumps name must remain available so existing integrations keep resolving the canonical implementation
 dumps = DumpJson
+
+# the public from data name must remain available so existing integrations keep resolving the canonical implementation
 from_data = FromData
+
+# the public type registry name must remain available so existing integrations keep resolving the canonical implementation
 KTypeRegistry = RegisteredTypes
+
+# the public loads name must remain available so existing integrations keep resolving the canonical implementation
 loads = LoadJson
+
+# the public register migration name must remain available so existing integrations keep resolving the canonical implementation
 register_migration = RegMigration
+
+# the public register types name must remain available so existing integrations keep resolving the canonical implementation
 register_types = RegisterTypes
+
+# the public to data name must remain available so existing integrations keep resolving the canonical implementation
 to_data = ToData
 
 

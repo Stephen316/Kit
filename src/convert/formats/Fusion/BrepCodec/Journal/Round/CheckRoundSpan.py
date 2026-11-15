@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.CheckRoundFrame import (
 )
 
 
+# invalid round span input must fail here so topology changes retain their native revision relationships
 def CheckRoundSpan(CenterMm: KJournalVector, RadiusMm: float) -> None:
     CheckRoundFrame(CenterMm, (0.0, 0.0, 1.0), (1.0, 0.0, 0.0))
     if (

@@ -18,9 +18,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.SpanMath import (
     SpanStart,
 )
 
+# the offset limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KOffsetLimit = 1e-7
 
 
+# offset index needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def OffsetIndex(LoopValue: KPlaneLoop, PointCm: KPoint) -> int:
     Matches = [
         Index for Index, Value in enumerate(LoopValue) if IsOnSide(Value, PointCm)
@@ -30,6 +32,7 @@ def OffsetIndex(LoopValue: KPlaneLoop, PointCm: KPoint) -> int:
     return Matches[0]
 
 
+# kept piece needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def KeptPiece(Value: KPlaneSpan, Start: KPoint, Finish: KPoint) -> LineSpan:
     HeadX, HeadY = SpanHeading(Value, False)
     Along = (Finish[0] - Start[0]) * HeadX + (Finish[1] - Start[1]) * HeadY
@@ -38,6 +41,7 @@ def KeptPiece(Value: KPlaneSpan, Start: KPoint, Finish: KPoint) -> LineSpan:
     return LineSpan(Start, Finish, Value.Label)
 
 
+# the simple decision must stay consistent so feature parameters remain connected to the resulting geometry
 def IsSimple(LoopValue: KPlaneLoop) -> bool:
     Count = len(LoopValue)
     for First in range(Count):
@@ -49,6 +53,7 @@ def IsSimple(LoopValue: KPlaneLoop) -> bool:
     return True
 
 
+# shift loop needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ShiftLoop(LoopValue: KPlaneLoop, Index: int, DistanceCm: float) -> KPlaneLoop:
     Count = len(LoopValue)
     Before, After = (Index - 1) % Count, (Index + 1) % Count

@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# mesh reference needs an explicit validity boundary so supporting records retain their owning document relationships
 def MeshReference(
     Value: KEntityValue, Owners: dict[int, EntityRecord], ClassGuid: str
 ) -> EntityRecord:

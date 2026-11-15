@@ -5,6 +5,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderCoedges import BuildCoedges
 from convert.formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
 
 
+# the frustum coedges contract needs a shared interpretation so circular boundaries retain consistent cone and rim geometry
 def FrustumCoedges(Frame: FrustumFrame) -> tuple[GeometryRecord, ...]:
     Senses = (
         Frame.Upper.SideReverse,

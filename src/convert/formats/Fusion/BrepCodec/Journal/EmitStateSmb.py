@@ -16,6 +16,7 @@ from convert.formats.Fusion.GeometryCodec.EncodeSmbName import EncodeSmbName
 from convert.formats.Fusion.BrepCodec.Journal.Validation.CountRoots import CountRoots
 
 
+# the state smb operation needs a consistent construction rule so topology changes retain their native revision relationships
 def EmitStateSmb(
     Model: JournalModel, StateId: int | None = None, *, Snapshot: bool = False
 ) -> bytes:

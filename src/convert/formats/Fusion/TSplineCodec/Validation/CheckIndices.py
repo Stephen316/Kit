@@ -1,3 +1,4 @@
+# invalid indices input must fail here so control cage topology retains its native connectivity
 def CheckIndices(
     Values: tuple[int, ...], Limit: int, KindValue: str, IsUnique: bool = True
 ) -> None:

@@ -14,12 +14,14 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut impor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
 
 
+# subdata size needs an explicit validity boundary so nested geometry retains unambiguous record boundaries
 def SubdataSize(SubdataKind: int, RowCount: int, ColumnCount: int) -> int:
     if SubdataKind != 213 or not 1 <= RowCount <= 64 or not 0 <= ColumnCount <= 64:
         raise ValueError("Unsupported Fusion loft section subdata form")
     return RowCount * (ColumnCount + 2) * 2
 
 
+# the subdata operation needs a distinct decoding boundary so nested geometry retains unambiguous record boundaries
 def ReadSubdataMut(Cursor: FieldCursor) -> LoftSubdata:
     SubdataKind = ReadCountMut(Cursor, 1024)
     RowCount = ReadCountMut(Cursor, 64)
@@ -33,6 +35,7 @@ def ReadSubdataMut(Cursor: FieldCursor) -> LoftSubdata:
     )
 
 
+# the subdata operation needs a consistent construction rule so nested geometry retains unambiguous record boundaries
 def MakeSubdata(Value: KGrammarValue) -> tuple[KAsmToken, ...]:
     if not isinstance(Value, LoftSubdata) or len(Value.Values) != SubdataSize(
         Value.SubdataKind, Value.RowCount, Value.ColumnCount

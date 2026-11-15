@@ -3,6 +3,7 @@ from uuid import UUID
 from convert.formats.Fusion.BundleCodec.Model.BundleRefs import BundleRefs
 
 
+# invalid references input must fail here so linked archive members retain their document relationships
 def CheckRefs(Value: BundleRefs, ObjectIds: set[int]) -> None:
     Targets = set(Value.Targets)
     if not Targets or len(Targets) != len(Value.Targets) or not Targets <= ObjectIds:

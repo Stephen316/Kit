@@ -7,6 +7,7 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmFields import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 
 
+# the feature tag operation needs a distinct decoding boundary so topology identity survives native history reconstruction
 def ReadFeatureTag(Table: AsmTable, Identity: int) -> FeatureTag:
     Record = RequireAsm(Table, Identity, "ATTRIB_CUSTOM-attrib")
     Count = ReadAsmInt(Record, 14)

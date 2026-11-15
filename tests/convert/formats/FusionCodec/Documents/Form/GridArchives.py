@@ -1,3 +1,4 @@
+# the grid archives cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGridArchives: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/LocalOracle/ActSlack/Saves/PlaneFirst.f3d",
@@ -69,6 +70,7 @@ KGridArchives: tuple[tuple[str, str], ...] = (
     ),
 )
 
+# the grid refusals cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGridRefusals: tuple[tuple[str, str, str], ...] = (
     (
         "re/Fusion/LocalOracle/TSpline/Box.f3d",
@@ -87,16 +89,19 @@ KGridRefusals: tuple[tuple[str, str, str], ...] = (
     ),
 )
 
+# the planar area cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPlanarArea = (
     "re/Fusion/LocalOracle/FormDocuments/Grid/Primitives/Plane3x2.f3d",
     "59c1f79b6bbe739774fbbb2b1eea2f5ef9719588171951941ae4b6a21bed6ba3",
 )
 
+# the shifted cache cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KShiftedCache = (
     "re/Fusion/LocalOracle/FormDocuments/Cache/PlaneSurfShifted.f3d",
     "81c4ac56521bc0c6ffef7bbca49999767fd3374b70c302775250c05396000997",
 )
 
+# the grid cages cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KGridCages: tuple[tuple[str, str, str], ...] = (
     (
         "re/Fusion/LocalOracle/FormDocuments/Grid/Affine.tsm",

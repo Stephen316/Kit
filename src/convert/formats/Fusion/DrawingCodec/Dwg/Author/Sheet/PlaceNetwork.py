@@ -29,14 +29,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Sheet.SheetKeys import (
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.SlotFields import CountedSlot
 
+# network name must remain consistent across callers so paper layouts retain consistent object ownership
 KNetworkName = "ACAD_ASSOCNETWORK"
 
 
+# the action entry contract needs a shared interpretation so paper layouts retain consistent object ownership
 def ActionEntry(IsOwned: int, ActionKey: str) -> DraftRecord:
     Action = HardOwner(ActionKey) if IsOwned else SoftPointer(ActionKey)
     return DraftRecord((("IsOwned", IsOwned), ("Action", Action)))
 
 
+# the network operation needs a consistent construction rule so paper layouts retain consistent object ownership
 def PlaceNetworkMut(Ledger: DraftBook) -> None:
     _ = PlaceFolderMut(Ledger, KPaperFolder, KPaperSpace, True, KNetworkName)
     _ = PlaceFolderMut(Ledger, KPaperNetworks, KPaperFolder, False, KNetworkName)
@@ -75,6 +78,7 @@ def PlaceNetworkMut(Ledger: DraftBook) -> None:
     )
 
 
+# the enlist contract needs a shared interpretation so paper layouts retain consistent object ownership
 def EnlistMut(Ledger: DraftBook, ActionKey: str) -> int:
     AppendMut(Ledger, KNetworkActions, ActionEntry(1, ActionKey))
     return len(Ledger.SlotItems[KNetworkActions])

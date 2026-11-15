@@ -8,12 +8,14 @@ from GitHubCli import CommentClient, GhFailure
 from ReadHistory import FindDuplicate, IsSuperseded, ReadHistory
 
 
+# the retryable decision must stay consistent so published evidence stays bound to the reviewed revision
 def IsRetryable(ErrorInfo: Exception) -> bool:
     if isinstance(ErrorInfo, GhFailure):
         return ErrorInfo.IsTransient() and not ErrorInfo.IsRateLimited()
     return isinstance(ErrorInfo, Subprocess.TimeoutExpired)
 
 
+# publish comment needs an explicit validity boundary so published evidence stays bound to the reviewed revision
 def PublishComment(
     Client: CommentClient,
     Snapshot: dict[str, object],

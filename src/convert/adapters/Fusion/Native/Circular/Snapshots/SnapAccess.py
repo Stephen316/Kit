@@ -4,9 +4,11 @@ from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
 
+# entity type must remain consistent across callers so public geometry remains consistent with native circular topology
 KEntityType = TypeVar("KEntityType")
 
 
+# snapshot entity needs an explicit validity boundary so public geometry remains consistent with native circular topology
 def SnapEntity(
     State: GeometryState, Identity: int, ClassType: type[KEntityType]
 ) -> KEntityType:

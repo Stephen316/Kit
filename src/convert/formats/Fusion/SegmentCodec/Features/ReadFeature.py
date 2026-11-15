@@ -10,6 +10,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadFrame import ReadFr
 from convert.formats.Fusion.SegmentCodec.Features.Binary.ReadGroup import ReadGroupMut
 
 
+# the feature operation needs a distinct decoding boundary so native records retain their segment ownership and schema
 def ReadFeature(Payload: bytes, Lineage: tuple[ClassStamp, ...]) -> FeatureRecord:
     if type(Payload) is not bytes or len(Payload) > KMaxFeatureBytes:
         raise ValueError("Invalid or oversized Fusion feature payload")

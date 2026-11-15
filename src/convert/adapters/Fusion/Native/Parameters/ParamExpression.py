@@ -7,6 +7,7 @@ from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from interchange.records.RecordParameter import Expression
 
 
+# parameter expression needs an explicit validity boundary so public document claims remain grounded in native records
 def ParamExpression(
     NodeValue: NativeNode, Catalog: dict[str, NativeNode]
 ) -> Expression:

@@ -7,11 +7,17 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgCryptHeader import (
     DwgCryptHeader,
 )
 
+# crypt size needs one explicit bound so native drawing reconstruction cannot accept inconsistent resource or layout limits
 KCryptSize = 0x6C
+
+# crypt mask must remain consistent across callers so section boundaries and object references remain consistent
 KCryptMask = MakeCryptMask(KCryptSize)
+
+# file id bytes must remain consistent across callers so section boundaries and object references remain consistent
 KFileIdBytes = b"AcFssFcAJMB\x00"
 
 
+# the crypt header operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadCryptHeader(Content: bytes) -> DwgCryptHeader:
     Encoded = TakeSpan(Content, 0x80, KCryptSize, "encrypted R2004 header")
     Decoded = bytes(

@@ -16,6 +16,7 @@ from convert.formats.Fusion.MaterialCodec.Records.CheckAssets import CheckAssets
 from convert.formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchemas
 
 
+# invalid package input must fail here so typed appearance properties retain their native identifiers
 def CheckPackage(Value: MaterialPackage) -> None:
     CheckCoreRoles(Value)
     Schemas = SchemaModels(Value.Schemas)

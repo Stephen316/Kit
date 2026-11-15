@@ -8,6 +8,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import Wal
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PlaneSpan import KPlaneSpan
 
 
+# cap tag set needs an explicit validity boundary so modeling operations retain their document and timeline ownership
 def CapTagSet(
     States: tuple[TagState, ...], Index: int, IsRoof: bool
 ) -> tuple[int, int, int]:
@@ -26,14 +27,17 @@ def CapTagSet(
     return FaceTags[FaceKey(Covers[0])], BodyTag, Ledger.NextTag
 
 
+# the roof tag set contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RoofTagSet(States: tuple[TagState, ...], Index: int) -> tuple[int, int, int]:
     return CapTagSet(States, Index, True)
 
 
+# the roof tag contract needs a shared interpretation so modeling operations retain their document and timeline ownership
 def RoofTag(States: tuple[TagState, ...], Index: int) -> int:
     return RoofTagSet(States, Index)[0]
 
 
+# side tags needs an explicit validity boundary so modeling operations retain their document and timeline ownership
 def SideTags(
     States: tuple[TagState, ...], Index: int, Spans: tuple[KPlaneSpan, ...]
 ) -> tuple[int, ...]:

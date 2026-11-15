@@ -14,10 +14,12 @@ from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttri
 from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 
 
+# the role operation needs one geometric convention so feature parameters remain connected to the resulting geometry
 def PointRole(Prefix: str, Index: int | None) -> str | None:
     return None if Index is None else Prefix + "point" + str(Index)
 
 
+# line fields needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def LineFields(
     Author: AuthorState, Prefix: str, Segment: SketchEdge
 ) -> dict[str, object]:
@@ -41,6 +43,7 @@ def LineFields(
     )
 
 
+# arc fields needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ArcFields(
     Author: AuthorState, Prefix: str, Segment: SketchEdge
 ) -> dict[str, object]:
@@ -65,6 +68,7 @@ def ArcFields(
     )
 
 
+# the sketch geometry operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSketchGeom(Author: AuthorState, Prefix: str, Sketched: SketchPlan) -> None:
     Generation = Author.Policy.SketchGeneration
     for Index, PointCm in enumerate(Sketched.PointsCm):
@@ -96,6 +100,7 @@ def AddSketchGeom(Author: AuthorState, Prefix: str, Sketched: SketchPlan) -> Non
     LinkPointUses(Author, Prefix, Sketched)
 
 
+# link point uses must resolve unambiguously so feature parameters remain connected to the resulting geometry
 def LinkPointUses(Author: AuthorState, Prefix: str, Sketched: SketchPlan) -> None:
     for Index in range(len(Sketched.PointsCm)):
         Users = [

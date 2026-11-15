@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Handles.ReadUnsignedMc import (
 )
 
 
+# scan block needs an explicit validity boundary so object references resolve within the declared object stream
 def ScanBlock(BlockBody: bytes, LastHandle: int, ObjectSize: int) -> tuple[int, int]:
     Position = 2
     HandleValue = 0

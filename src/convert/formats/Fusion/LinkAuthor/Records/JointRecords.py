@@ -47,6 +47,7 @@ from convert.formats.Fusion.LinkAuthor.Records.RefRecords import OccurRef, RefRe
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# joint side needs an explicit state contract so cross document references retain their intended ownership
 @MakeDataClass(frozen=True, slots=True)
 class JointSide:
     Facts: TargetFacts
@@ -55,6 +56,7 @@ class JointSide:
     Pinned: bool
 
 
+# the joint record contract needs a stable decomposition so cross document references retain their intended ownership
 def JointRecord(
     RootInfo: RootFacts, First: JointSide, Second: JointSide, JointId: int
 ) -> EntityRecord:
@@ -95,6 +97,7 @@ def JointRecord(
     )
 
 
+# the side reference contract needs a shared interpretation so cross document references retain their intended ownership
 def SideRef(
     RootInfo: RootFacts,
     Joined: JointSide,
@@ -115,6 +118,7 @@ def SideRef(
     )
 
 
+# the source reference contract needs a shared interpretation so cross document references retain their intended ownership
 def SourceRef(
     RootInfo: RootFacts, Identities: tuple[int, int, int], Parent: int
 ) -> OccurRef:
@@ -131,6 +135,7 @@ def SourceRef(
     )
 
 
+# the joint records contract needs a stable decomposition so cross document references retain their intended ownership
 def JointRecords(
     RootInfo: RootFacts, First: JointSide, Second: JointSide, KeySet: ActionKeys
 ) -> tuple[EntityRecord, ...]:

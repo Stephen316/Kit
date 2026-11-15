@@ -9,6 +9,7 @@ from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# the rotary mass contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def RotaryMass(Context: ExtrudeContext, Model: FrustumBody) -> None:
     Lower, Upper, Height = (
         Model.BottomRadius / 10,
@@ -55,6 +56,7 @@ def RotaryMass(Context: ExtrudeContext, Model: FrustumBody) -> None:
     CacheNumbers(PointCoords(Cache["moiOffDiag"]), CrossTerms)
 
 
+# cache numbers needs an explicit validity boundary so public geometry remains consistent with native circular topology
 def CacheNumbers(Actual: tuple[float, ...], Expected: tuple[float, ...]) -> None:
     if len(Actual) != len(Expected) or any(
         not IsClose(First, Second, rel_tol=1e-6, abs_tol=1e-8)

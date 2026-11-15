@@ -6,6 +6,7 @@ from convert.formats.Fusion.GeometryCodec.Frustum.FrustumRecords import FrustumR
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the frustum smb operation needs a consistent construction rule so geometric values retain their native record boundaries
 def EmitFrustumSmb(Model: FrustumBody, Stamp: GeometryStamp) -> bytes:
     Parts = [EmitSmbHeader(Stamp)]
     for Record in FrustumRecords(Model):

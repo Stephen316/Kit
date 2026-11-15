@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.VectorMath import (
 from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
 
 
+# the poly edges operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyEdges(
     Layout: PolyLayout, Coedges: tuple[CoedgeNode, ...]
 ) -> tuple[EdgeNode, ...]:
@@ -38,6 +39,7 @@ def MakePolyEdges(
     return tuple(Results)
 
 
+# the poly curves operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyCurves(Layout: PolyLayout) -> tuple[StraightNode, ...]:
     Results: list[StraightNode] = []
     for Start, Finish in Layout.Edges:

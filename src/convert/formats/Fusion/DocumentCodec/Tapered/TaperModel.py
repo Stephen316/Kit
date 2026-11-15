@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# taper model needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def TaperModel(SpecValue: DocumentSpec) -> FrustumBody:
     UpperRadius = SpecValue.RadiusMm + SpecValue.LengthMm * Tangent(
         Radians(SpecValue.TaperDegrees)

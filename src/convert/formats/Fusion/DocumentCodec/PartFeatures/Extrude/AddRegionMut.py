@@ -18,6 +18,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.ToolSlab import (
 from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleTag import RectangleTag
 
 
+# the region tags contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def RegionTags(
     Feature: ExtrudeSpec, Sketched: SketchPlan, Operation: int
 ) -> list[dict[str, object]]:
@@ -33,6 +34,7 @@ def RegionTags(
     return TagList
 
 
+# the region operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddRegionMut(
     Author: AuthorState,
     Prefix: str,

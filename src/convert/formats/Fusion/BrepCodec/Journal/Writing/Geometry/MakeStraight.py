@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the straight operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeStraight(Value: StraightNode) -> AsmRecord:
     return AsmRecord(
         "straight-curve",

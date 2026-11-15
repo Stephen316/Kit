@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
 from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
 
 
+# link sketch must resolve unambiguously so model state retains its native feature and ownership relationships
 def LinkSketchMut(Author: AuthorState) -> None:
     Reference = Author.Reference
     SketchName = SketchRole(Author)

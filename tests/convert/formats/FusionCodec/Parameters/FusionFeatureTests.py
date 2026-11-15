@@ -7,11 +7,13 @@ from convert.adapters.Fusion.Adapter import FusionReader
 from tests.convert.formats.FusionCodec.Parameters.RebuildParams import RebuildParams
 from tests.convert.formats.FusionCodec.Parameters.RebuildFeatures import RebuildFeatures
 
+# feature root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KFeatureRoot = (
     FilePath(__file__).resolve().parents[5] / "re/Fusion/LocalOracle/Features"
 )
 
 
+# the features contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.parametrize(
     "FileName",
     ("circle_sketch.f3d", "extrude_07mm.f3d", "extrude_13mm.f3d"),

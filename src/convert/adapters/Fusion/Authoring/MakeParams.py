@@ -6,6 +6,7 @@ from interchange.enums.EnumValues import ValueKind
 from interchange.records.RecordParameter import Expression, Parameter, ParameterValue
 
 
+# the length operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeLength(
     Identity: str,
     NameValue: str,
@@ -30,6 +31,7 @@ def MakeLength(
     )
 
 
+# the parameters operation needs a consistent construction rule so public document claims remain grounded in native records
 def MakeParams(SpecValue: DocumentSpec) -> tuple[Parameter, ...]:
     Values = [
         MakeLength(

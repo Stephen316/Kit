@@ -12,6 +12,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.Snapshots.SnapshotName impor
 from convert.formats.Fusion.DocumentCodec.Model.DocumentSnap import DocumentSnap
 
 
+# the snapshot part operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadSnapPart(Value: ContainerPart) -> DocumentSnap:
     SnapshotName(Value.Name)
     if type(Value.Payload) is not bytes or not 0 < len(Value.Payload) <= KJournalBytes:

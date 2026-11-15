@@ -27,12 +27,14 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Views.ViewPlan import (
 )
 
 
+# the root index contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def RootIndex(Plans: tuple[ViewPlan, ...], Index: int) -> int:
     while Plans[Index].Parent >= 0:
         Index = Plans[Index].Parent
     return Index
 
 
+# the views operation needs a consistent construction rule so projected geometry retains its paper and model relationships
 def PlaceViewsMut(Ledger: DraftBook, Draft: DwgDraft) -> None:
     if not Draft.Views:
         return

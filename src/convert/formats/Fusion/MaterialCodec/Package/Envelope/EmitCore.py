@@ -8,6 +8,7 @@ from convert.formats.Fusion.MaterialCodec.Package.Xml.MakeFieldsMut import MakeF
 from convert.formats.Fusion.MaterialCodec.Package.Xml.MakeGroup import MakeGroup
 
 
+# the core operation needs a consistent construction rule so typed appearance properties retain their native identifiers
 def EmitCore(Value: PackageCore) -> bytes:
     RootValue, Group = MakeGroup("content")
     Asset = SubElement(

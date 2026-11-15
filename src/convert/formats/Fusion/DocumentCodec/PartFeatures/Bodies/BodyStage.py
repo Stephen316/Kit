@@ -29,11 +29,17 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
     PrismSolid,
 )
 
+# the body specification variants need one shared contract so parametric feature reconstruction cannot omit a supported value shape
 KBodySpec = CombineSpec | SplitSpec | BodyGridSpec | BodyRingSpec | PasteSpec
+
+# the body specifications order must stay explicit so feature parameters remain connected to the resulting geometry
 KBodySpecs = (CombineSpec, SplitSpec, BodyGridSpec, BodyRingSpec, PasteSpec)
+
+# the body state shape must stay shared so parametric feature reconstruction uses one contract for compatible values
 KBodyState = tuple[dict[int, PrismSolid], list[int]]
 
 
+# shown body needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def ShownBody(State: KBodyState, Ordinal: object) -> PrismSolid:
     Bodies, Shown = State
     if type(Ordinal) is not int or Ordinal not in Shown:
@@ -41,6 +47,7 @@ def ShownBody(State: KBodyState, Ordinal: object) -> PrismSolid:
     return Bodies[Ordinal]
 
 
+# combine stage needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def CombineStageMut(
     State: KBodyState, Feature: CombineSpec, Operation: int
 ) -> PrismSolid:
@@ -56,6 +63,7 @@ def CombineStageMut(
     return After
 
 
+# the split stage contract needs a stable decomposition so feature parameters remain connected to the resulting geometry
 def SplitStageMut(
     State: KBodyState,
     Feature: SplitSpec,
@@ -77,6 +85,7 @@ def SplitStageMut(
     return First
 
 
+# the paste stage contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def PasteStageMut(State: KBodyState, Feature: PasteSpec, Operation: int) -> PrismSolid:
     Source = ShownBody(State, Feature.SourceBody)
     Pasted = PasteSolid(Source, Operation, len(State[0]) + 1)
@@ -85,6 +94,7 @@ def PasteStageMut(State: KBodyState, Feature: PasteSpec, Operation: int) -> Pris
     return Pasted
 
 
+# the body stage contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def BodyStageMut(
     State: KBodyState,
     Feature: KBodySpec,

@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadRawShortMut import (
 )
 
 
+# the bit short operation needs a distinct decoding boundary so compact fields retain unambiguous bit positions
 def ReadBitShortMut(Cursor: BitCursor) -> int:
     CodeBits = Cursor.TakeBits(2)
     if CodeBits == 0:

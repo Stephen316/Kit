@@ -5,6 +5,7 @@ from tools.TestShards.Reuse.Track.FindOpener import FindOpener
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the note spawn contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def NoteSpawnMut(State: TrackState) -> None:
     Opener, _ = FindOpener(State.RootText)
     if Opener is not None:

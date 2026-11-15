@@ -11,10 +11,13 @@ KAsmValue: TypeAlias = int | float | str | bytes | tuple[float, ...] | None
 # each serialized token keeps the wire discriminator needed by field readers
 KAsmToken: TypeAlias = tuple[int, KAsmValue]
 
+# record tokens must remain consistent across callers so stored document relationships remain consistent
 KRecordTokens = 1 << 20
 
+# the int codes vocabulary must stay centralized so native document reconstruction agrees on supported native identities
 KIntCodes = {4: "<i", 8: "<q"}
 
+# the asm widths vocabulary must stay centralized so native document reconstruction agrees on supported native identities
 KAsmWidths = {b"ASM BinaryFile8": 8, b"ASM BinaryFile4": 4}
 
 

@@ -11,6 +11,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.WalkSpec import (
 )
 
 
+# the byte specification operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadByteSpec(SpecText: str, DataValue: bytes, VersionText: str) -> DwgRecord:
     Cursor = BitCursor(DataValue, 0, len(DataValue) * 8)
     Streams = RecordStreams(Cursor, (), (), VersionText)
@@ -20,6 +21,7 @@ def ReadByteSpec(SpecText: str, DataValue: bytes, VersionText: str) -> DwgRecord
     return Record
 
 
+# the byte specification operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EmitByteSpec(SpecText: str, Record: DwgRecord, VersionText: str) -> bytes:
     Sinks = RecordSinks(VersionText)
     PutWalkMut(CachedSpec(SpecText), Record, Sinks, ())

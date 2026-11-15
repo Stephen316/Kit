@@ -11,6 +11,7 @@ from convert.formats.Fusion.MeshCodec.Validation.CheckMesh import CheckMesh
 from convert.formats.Fusion.MeshCodec.Validation.CheckRegistry import CheckRegistry
 
 
+# the para mesh operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadParaMesh(Payload: bytes) -> ParaMesh:
     Metadata, Names, Payloads = ReadEnvelope(Payload)
     Registry = ReadRegistry(Metadata, Names)

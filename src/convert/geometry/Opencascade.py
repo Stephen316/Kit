@@ -2417,5 +2417,8 @@ def DecodeLegacy(DataValue: bytes, **LegacyValues: object) -> BrepModel | None:
     )
 
 
+# the public decode ascii boundary representation name must remain available so existing integrations keep resolving the canonical implementation
 decode_ascii_brep = DecodeLegacy
+
+# the public is structurally valid ascii boundary representation name must remain available so existing integrations keep resolving the canonical implementation
 is_structurally_valid_ascii_brep = IsValidBrep

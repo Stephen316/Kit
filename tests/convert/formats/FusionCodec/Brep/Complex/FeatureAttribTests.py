@@ -28,6 +28,7 @@ from tests.convert.formats.FusionCodec.Brep.Complex.ComplexMembers import (
     ComplexMember,
 )
 
+# the thread cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KThreadCases: tuple[tuple[str, str, int, int], ...] = (
     (
         "re/Fusion/Study/threadmodes-d51d2ae60564/modeled_full.f3d",
@@ -42,6 +43,8 @@ KThreadCases: tuple[tuple[str, str, int, int], ...] = (
         1,
     ),
 )
+
+# the merge cases cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMergeCases: tuple[tuple[str, str], ...] = (
     (
         "re/Fusion/Study/splitfacemodes-4fc4adf2a868/along_vector.f3d",
@@ -52,9 +55,12 @@ KMergeCases: tuple[tuple[str, str], ...] = (
         "2b6828acc2e271e82268dc60d4c7b084308ea65ed571f67f8829c3646dfe861a",
     ),
 )
+
+# the type codes cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KTypeCodes = {"feature_data": 1902, "thread_face_data": 1901}
 
 
+# shared swap entity setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SwapEntity(
     Journal: JournalModel, Index: int, Value: KJournalEntity
 ) -> JournalModel:
@@ -63,6 +69,7 @@ def SwapEntity(
     return ReplaceValue(Journal, Entities=tuple(Entities))
 
 
+# the thread data contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -88,6 +95,7 @@ def TestThreadData(Relative: str, Digest: str, FeatureTag: int, TailCode: int) -
     assert EmitJournal(Journal) == Payload
 
 
+# the fdm faults contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -115,6 +123,7 @@ def TestFdmFaults() -> None:
         _ = MakeEntityNode(ReplaceValue(Thread, Points=Broken))
 
 
+# the no merge contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
@@ -147,6 +156,7 @@ def TestNoMerge(Relative: str, Digest: str) -> None:
         _ = EmitJournal(SwapEntity(Journal, Index, ReplaceValue(Value, Links=Misowned)))
 
 
+# the degenerate contract needs boundary coverage so stored document relationships remain consistent
 @TestMarks.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )

@@ -5,6 +5,7 @@ from convert.formats.Fusion.DrawingCodec.Manifest.ManifestRules import (
 )
 
 
+# the modern wire decision must stay consistent so drawing members retain their sheet and model associations
 def IsModernWire(Magic: int, Version: int) -> bool:
     if Magic == KModernMagic and Version == KModernVersion:
         return True

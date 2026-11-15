@@ -4,6 +4,7 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.History.TagLedger import 
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import ShapeBody
 
 
+# the ledger tags contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
 def LedgerTags(
     Bodies: tuple[ShapeBody, ...], Ledger: TagLedger
 ) -> list[tuple[dict[tuple[object, ...], int], int]]:

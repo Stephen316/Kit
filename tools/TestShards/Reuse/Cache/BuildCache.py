@@ -8,6 +8,7 @@ from tools.TestShards.Reuse.Cache.ReadInputs import ReadInputs
 from tools.TestShards.Reuse.Cache.WriteCache import WriteCache
 
 
+# the run operation needs one orchestration boundary so dependency changes cannot revive stale passing results
 def MainRun(ArgList: list[str] | None = None) -> int:
     ArgsInfo = BuildCacheArgs().parse_args(ArgList)
     try:

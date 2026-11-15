@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Frustum.Models.RimFrame import RimFrame
 from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
+# the fresh rim contract needs a shared interpretation so circular boundaries retain consistent cone and rim geometry
 def FreshRim(Model: FrustumBody, IsUpper: bool) -> RimFrame:
     Origin = Model.BasePoint
     Center = (

@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Bits.ReadRawShortMut import (
 )
 
 
+# locate strings needs an explicit validity boundary so section boundaries and object references remain consistent
 def LocateStrings(DataValue: bytes, DataStart: int, EndBit: int) -> tuple[int, int]:
     if BitCursor(DataValue, EndBit - 1, EndBit).TakeBits(1) != 1:
         raise ValueError("DWG class string stream is absent")

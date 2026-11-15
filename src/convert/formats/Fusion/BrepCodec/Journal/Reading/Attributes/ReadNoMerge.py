@@ -7,5 +7,6 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Attributes.ReadSysAttrib i
 from convert.formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
 
 
+# the no merge operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadNoMerge(Cursor: FieldCursor) -> NoMergeAttrib:
     return NoMergeAttrib(ReadSysLinks(Cursor))

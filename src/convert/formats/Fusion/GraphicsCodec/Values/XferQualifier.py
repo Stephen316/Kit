@@ -9,5 +9,6 @@ if TYPE_CHECKING:
     from convert.formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
 
 
+# the transfer qualifier contract needs a shared interpretation so display geometry retains its entity and scene relationships
 def XferQualifier(State: SceneCodec, Value: QualifierValue | None) -> QualifierValue:
     return QualifierValue(State.OptionalText(Value.ImagePath if Value else None))

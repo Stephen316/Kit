@@ -3,6 +3,7 @@ from typing import cast as CastValue
 from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 
+# invalid rect dims input must fail here so model state retains its native feature and ownership relationships
 def CheckRectDims(SpecValue: DocumentSpec) -> None:
     if type(SpecValue.ConstrainRectangle) is not bool:
         raise ValueError("Rectangle constraint selection must be Boolean")

@@ -17,6 +17,7 @@ def CheckEntryPoint() -> None:
     assert next(iter(EntryPoints)).load() is ConvertLegacy
 
 
+# the metadata contract needs boundary coverage so independent codecs retain consistent data contracts
 def CheckMetadata() -> None:
     MetadataData = TomlLib.loads(
         (KRootPath / "pyproject.toml").read_text(encoding="utf-8")

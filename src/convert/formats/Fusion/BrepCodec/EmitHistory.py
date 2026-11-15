@@ -12,6 +12,7 @@ from convert.formats.Fusion.GeometryCodec.CylinderBody import CylinderBody
 from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 
+# the history operation needs a consistent construction rule so topology identity survives native history reconstruction
 def EmitHistory(
     Model: CylinderBody,
     Identity: BodyIdentity,

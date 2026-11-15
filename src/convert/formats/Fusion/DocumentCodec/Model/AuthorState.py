@@ -5,7 +5,10 @@ from convert.formats.Fusion.DocumentCodec.Model.DraftEntity import DraftEntity
 from convert.formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
 
 
+# the author state contract needs a dedicated boundary so model state retains its native feature and ownership relationships
 class AuthorState(AuthorData):
+
+    # allocate needs an explicit validity boundary so model state retains its native feature and ownership relationships
     def Allocate(
         self,
         RoleName: str,
@@ -32,22 +35,28 @@ class AuthorState(AuthorData):
             )
         )
 
+    # the reference contract needs a shared interpretation so model state retains its native feature and ownership relationships
     def Reference(self, RoleName: str | None) -> dict[str, object] | None:
         return None if RoleName is None else {"entityId": self.Roles[RoleName]}
 
+    # the act reference contract needs a shared interpretation so model state retains its native feature and ownership relationships
     def ActReference(self, RoleName: str) -> dict[str, object]:
         ActRoles = {"component": 100, "instances": 101, "root_instance": 102}
         return {"entityId": ActRoles[RoleName], "segmentId": self.Policy.ActSegmentId}
 
+    # find entity must resolve unambiguously so model state retains its native feature and ownership relationships
     def FindEntity(self, RoleName: str) -> DraftEntity:
         return next(Entity for Entity in self.Entities if Entity.RoleName == RoleName)
 
+    # the change contract needs a shared interpretation so model state retains its native feature and ownership relationships
     def Change(self, RoleName: str, **Fields: object) -> None:
         self.FindEntity(RoleName).FieldValues.update(Fields)
 
+    # the group operation needs a consistent construction rule so model state retains its native feature and ownership relationships
     def MakeGroup(self, NameValue: str, Fields: dict[str, object]) -> dict[str, object]:
         return {"identifier": self.ByName[NameValue].Value.ClassGuid, "fields": Fields}
 
+    # the lineage contract needs a shared interpretation so model state retains its native feature and ownership relationships
     def Lineage(self, ClassGuid: str) -> tuple[NativeSchema, ...]:
         Result: list[NativeSchema] = []
         while ClassGuid and ClassGuid.upper() != "98542EB9-A4F2-4137-A808-DBB5B3CD6159":
@@ -56,12 +65,14 @@ class AuthorState(AuthorData):
             ClassGuid = Schema.Value.BaseGuid
         return tuple(Result)
 
+    # the value operation needs a consistent construction rule so model state retains its native feature and ownership relationships
     def MakeValue(self, NameValue: str) -> list[dict[str, object]]:
         return [
             self.MakeGroup(Schema.NameValue, CopyValue(self.Defaults[Schema.NameValue]))
             for Schema in self.Lineage(self.ByName[NameValue].Value.ClassGuid)
         ]
 
+    # the localize contract needs a shared interpretation so model state retains its native feature and ownership relationships
     def Localize(self, TextValue: str) -> list[dict[str, object]]:
         return [
             self.MakeGroup(

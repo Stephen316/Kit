@@ -26,19 +26,46 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.HeaderDefaults impo
 )
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef
 
+# text style must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KTextStyle = "STYLE:Standard"
+
+# dim style must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KDimStyle = "DIMSTYLE:Dim-ISO-25"
+
+# the point shape must stay shared so drawing standard authoring uses one contract for compatible values
 KPoint = tuple[float, float, float]
+
+# empty far must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KEmptyFar = 1e20
+
+# the empty box order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KEmptyBox = ((KEmptyFar, KEmptyFar, KEmptyFar), (-KEmptyFar, -KEmptyFar, -KEmptyFar))
+
+# zero guid must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KZeroGuid = "{00000000-0000-0000-0000-000000000000}"
+
+# layer weight must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KLayerWeight = 29
+
+# plain lines must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KPlainLines = 0x200
+
+# long names must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KLongNames = 0x800
+
+# named plots must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KNamedPlots = 0x2000
+
+# millimetre units must remain consistent across callers so native drawing objects use a consistent symbol vocabulary
 KMillimetreUnits = 4
+
+# the ucs corners order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KUcsCorners = ("Top", "Bottom", "Left", "Right", "Front", "Back")
+
+# the table owners order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KTableOwners = ("BLOCK", "LAYER", "STYLE", "LTYPE", "VIEW", "UCS", "VPORT")
+
+# the dictionaries order must stay explicit so native drawing objects use a consistent symbol vocabulary
 KDictionaries = (
     ("LayoutDictHandle", "LAYOUT"),
     ("PlotSettingsDictHandle", "PLOTSETTINGS"),
@@ -49,6 +76,7 @@ KDictionaries = (
 )
 
 
+# the current vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def CurrentVars() -> KVarGroup:
     return {
         "HandSeed": DwgHandleRef(0, 0),
@@ -61,10 +89,12 @@ def CurrentVars() -> KVarGroup:
     }
 
 
+# the paper extents contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def PaperExtents(Paper: PaperSize) -> tuple[KPoint, KPoint]:
     return ((0.0, 0.0, 0.0), (Paper.PaperWidth, Paper.PaperHeight, 0.0))
 
 
+# the space vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def SpaceVars(
     Prefix: str, Extents: tuple[KPoint, KPoint], Paper: PaperSize
 ) -> KVarGroup:
@@ -87,6 +117,7 @@ def SpaceVars(
     }
 
 
+# the table vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def TableVars() -> KVarGroup:
     return {
         **{
@@ -106,6 +137,7 @@ def TableVars() -> KVarGroup:
     }
 
 
+# the diction vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def DictionVars() -> KVarGroup:
     Named: KVarGroup = {
         FieldName: HardPointer("NOD/ACAD_" + Entry)
@@ -114,6 +146,7 @@ def DictionVars() -> KVarGroup:
     return {**Named, "UnknownDictHandle": KNullHard}
 
 
+# the vars operation needs one geometric convention so native drawing objects use a consistent symbol vocabulary
 def UnitVars() -> KVarGroup:
     return {
         "PackedFlags": KLayerWeight | KPlainLines | KLongNames | KNamedPlots,
@@ -140,6 +173,7 @@ def UnitVars() -> KVarGroup:
     }
 
 
+# the closing vars contract needs a shared interpretation so native drawing objects use a consistent symbol vocabulary
 def ClosingVars() -> KVarGroup:
     return {
         **KModernVars,
@@ -152,6 +186,7 @@ def ClosingVars() -> KVarGroup:
     }
 
 
+# the plan header contract needs a stable decomposition so native drawing objects use a consistent symbol vocabulary
 def PlanHeader(Paper: PaperSize) -> DraftRecord:
     Values: KVarGroup = {
         **KLegacyHead,

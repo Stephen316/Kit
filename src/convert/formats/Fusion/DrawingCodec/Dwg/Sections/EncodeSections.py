@@ -9,6 +9,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.SectionCodecs import (
 )
 
 
+# the sections operation needs a consistent construction rule so section boundaries and object references remain consistent
 def EncodeSections(
     HeaderVars: DwgRecord,
     SectionVars: tuple[tuple[str, DwgRecord], ...],

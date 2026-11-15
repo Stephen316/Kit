@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Model.SegmentRef import SegmentRef
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the observer decision must stay consistent so cross document references retain their intended ownership
 def IsObserver(
     Target: LocalRef | SegmentRef | CrossRef | None,
     Origin: int,
@@ -17,6 +18,7 @@ def IsObserver(
     return False
 
 
+# the next slot contract needs a shared interpretation so cross document references retain their intended ownership
 def NextSlot(Model: DocumentModel, Design: int, ObjectId: int) -> int:
     Taken = tuple(
         Subject.ObserverIndex

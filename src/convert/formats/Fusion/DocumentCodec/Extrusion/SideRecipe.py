@@ -3,6 +3,7 @@ from convert.formats.Fusion.DocumentCodec.Model.ProfileSide import ProfileSide
 from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleTag import RectangleTag
 
 
+# side recipe needs an explicit validity boundary so model state retains its native feature and ownership relationships
 def SideRecipe(SideValue: ProfileSide) -> dict[str, object]:
     if SideValue.PreviousTag is None and SideValue.FollowingTag is None:
         return CurveRecipe(SideValue.SketchTag, True)

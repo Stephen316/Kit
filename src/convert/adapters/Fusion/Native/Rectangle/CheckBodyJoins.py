@@ -17,6 +17,7 @@ from convert.adapters.Fusion.Native.Graph.KnownHistory import KKnownHistory
 from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
+# invalid body joins input must fail here so public document claims remain grounded in native records
 def CheckBodyJoins(
     Graph: NativeGraph, Context: ExtrudeContext, Model: DocumentModel
 ) -> KKnownHistory:

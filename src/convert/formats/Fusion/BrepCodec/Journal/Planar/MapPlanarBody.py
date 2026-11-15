@@ -11,6 +11,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Planar.TransformScale import (
 )
 
 
+# map planar body must resolve unambiguously so topology changes retain their native revision relationships
 def MapPlanarBody(Model: PlanarShell, Value: TransformNode) -> PlanarShell:
     Factor = TransformScale(Value)
     Points = tuple(MapPoint(Value, Point) for Point in Model.PointsCm)

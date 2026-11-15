@@ -12,7 +12,10 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.OverrideSet import Overri
 from convert.formats.Fusion.GraphicsCodec.Model.Values.SceneSet import SceneSet
 
 
+# the scene codec contract needs a dedicated boundary so display geometry retains its entity and scene relationships
 class SceneCodec(SceneState):
+
+    # scene codec needs explicit initial state so display geometry retains its entity and scene relationships
     def __init__(
         self,
         Payload: bytes | None,
@@ -29,19 +32,23 @@ class SceneCodec(SceneState):
         self.ObjectHook = ObjectHook
         self.OverrideHook = OverrideHook
 
+    # the object value contract needs a shared interpretation so display geometry retains its entity and scene relationships
     def ObjectValue(self, ClassName: str, Value: ObjectRef | None) -> ObjectRef:
         return self.ObjectHook(self, ClassName, Value)
 
+    # linked object must resolve unambiguously so display geometry retains its entity and scene relationships
     def LinkedObject(self, ClassName: str, Value: ObjectRef | None) -> ObjectRef | None:
         if not self.IsFlag(Value is not None):
             return None
         self.ExpectText(ClassName)
         return self.ObjectValue(ClassName, Value)
 
+    # the override sets contract needs a shared interpretation so display geometry retains its entity and scene relationships
     def OverrideSets(
         self, Values: tuple[OverrideSet[SceneSet], ...] | None
     ) -> tuple[OverrideSet[SceneSet], ...]:
         return self.OverrideHook(self, Values)
 
+    # the finalize contract needs a shared interpretation so display geometry retains its entity and scene relationships
     def Finalize(self) -> tuple[SceneObject, ...]:
         return FinishScene(self)

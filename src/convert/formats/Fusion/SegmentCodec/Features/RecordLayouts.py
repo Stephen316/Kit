@@ -4,6 +4,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Schema.ManagedLayout import (
 )
 
 
+# the record layouts contract needs a shared interpretation so native records retain their segment ownership and schema
 def RecordLayouts(
     Layouts: tuple[ClassLayout, ...],
 ) -> tuple[bool, tuple[ClassLayout, ...]]:

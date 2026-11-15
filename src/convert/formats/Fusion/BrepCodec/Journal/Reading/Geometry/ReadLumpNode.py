@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
 )
 
 
+# the lump node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadLumpNode(Cursor: FieldCursor) -> LumpNode:
     Prefix = ReadPrefixMut(Cursor)
     NextLump = ReadRefMut(Cursor)

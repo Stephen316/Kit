@@ -10,6 +10,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitLocalRef import (
 from convert.formats.Fusion.SegmentCodec.Features.Binary.FeatureSink import FeatureSink
 
 
+# the subjects operation needs a consistent construction rule so native records retain their segment ownership and schema
 def EmitSubjects(Subjects: tuple[SubjectEntry, ...]) -> bytes:
     if type(Subjects) is not tuple or len(Subjects) > KMaxFeatureRefs:
         raise ValueError("Invalid Fusion feature subject list")

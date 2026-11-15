@@ -7,6 +7,7 @@ from convert.formats.Fusion.SegmentCodec.Features.Binary.EmitLocalRef import Emi
 from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
+# the cross reference operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitCrossRef(Value: CrossRef) -> bytes:
     if (
         type(Value.ObjectId) is not int
@@ -27,6 +28,7 @@ def EmitCrossRef(Value: CrossRef) -> bytes:
     )
 
 
+# the reference operation needs a consistent construction rule so entity identifiers retain their schema and reference meaning
 def EmitReference(Value: KEntityValue) -> bytes:
     if Value is None or isinstance(Value, LocalRef):
         return EmitLocalRef(Value)

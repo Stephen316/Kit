@@ -23,9 +23,11 @@ Current user instructions, `AGENTS.md`, and the operational rules in the main
 quality, security, architecture, naming, formatting, design, and verification
 requirements retain their original force and scope. In particular:
 
-- Do not add explanatory code comments or comment-oriented docstrings; preserve
-  required license notices and existing comments. The preserved rationale-comment
-  guidance records the former rule and does not authorize adding comments now.
+- Apply the mandatory rationale-comment standard to every Python declaration,
+  lambda, and module binding, including existing code and aliases. This required
+  comment overrides the preserved general comment ban. Do not add other
+  explanatory comments or comment-oriented docstrings. Preserve required license
+  notices, third-party attribution, and existing comments.
 - Unit tests remain prohibited. Use integration, end-to-end, smoke, compatibility,
   and repository-wide policy checks at real boundaries. Do not reinterpret an
   old request for an isolated test as permission to add one.

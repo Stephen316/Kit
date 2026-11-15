@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import Counter
 
 
+# the describe cache contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def DescribeCache(Measured: int, Carried: int, Reasons: Counter[str]) -> str:
     LineList = [
         "## Test cache",

@@ -6,18 +6,29 @@ from convert.formats.Fusion.TSplineCodec.Model.CreaseData import CreaseData
 from convert.formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
 from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
+# the lattice shape must stay shared so native document reconstruction uses one contract for compatible values
 KLattice = tuple[int, int, int]
+
+# the coords shape must stay shared so native document reconstruction uses one contract for compatible values
 KCoords = tuple[float, float, float]
+
+# the quad shape must stay shared so native document reconstruction uses one contract for compatible values
 KQuad = tuple[int, int, int, int]
+
+# the cage parts shape must stay shared so native document reconstruction uses one contract for compatible values
 KCageParts = tuple[list[KCoords], list[KQuad]]
+
+# the corner steps cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KCornerSteps = ((0, 0), (1, 0), (1, 1), (0, 1))
 
 
+# shared make surface setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeSurface(Parts: KCageParts) -> TsplineSurface:
     Grips = tuple(ControlGrip(Coords[0], Coords[1], Coords[2]) for Coords in Parts[0])
     return MakeClosedCage(Grips, tuple(Parts[1]), SurfaceHeader(VersionCount=1))
 
 
+# shared normal part setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NormalPart(Corners: list[KLattice], AxisIndex: int) -> int:
     Origin, Along, Across = Corners[0], Corners[1], Corners[3]
     First, Second = (AxisIndex + 1) % 3, (AxisIndex + 2) % 3
@@ -26,6 +37,7 @@ def NormalPart(Corners: list[KLattice], AxisIndex: int) -> int:
     ) * (Across[First] - Origin[First])
 
 
+# shared plane key setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PlaneKey(AxisIndex: int, Plane: int, Spans: KQuad) -> KLattice:
     Values = [0, 0, 0]
     Values[AxisIndex] = Plane
@@ -34,6 +46,7 @@ def PlaneKey(AxisIndex: int, Plane: int, Spans: KQuad) -> KLattice:
     return (Values[0], Values[1], Values[2])
 
 
+# shared plane quad setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PlaneQuad(AxisIndex: int, Plane: int, Spans: KQuad, Facing: int) -> list[KLattice]:
     Corners = [
         PlaneKey(
@@ -44,6 +57,7 @@ def PlaneQuad(AxisIndex: int, Plane: int, Spans: KQuad, Facing: int) -> list[KLa
     return Corners if NormalPart(Corners, AxisIndex) * Facing > 0 else Corners[::-1]
 
 
+# shared lattice parts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LatticeParts(Faces: list[list[KLattice]]) -> KCageParts:
     Lookup: dict[KLattice, int] = {}
     Quads: list[KQuad] = []
@@ -54,6 +68,7 @@ def LatticeParts(Faces: list[list[KLattice]]) -> KCageParts:
     return Coords, Quads
 
 
+# shared box parts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BoxParts(Counts: KLattice) -> KCageParts:
     Faces: list[list[KLattice]] = []
     for AxisIndex in range(3):
@@ -67,6 +82,7 @@ def BoxParts(Counts: KLattice) -> KCageParts:
     return LatticeParts(Faces)
 
 
+# shared cube parts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def CubeParts(Cubes: list[KLattice]) -> KCageParts:
     Filled = set(Cubes)
     Faces: list[list[KLattice]] = []
@@ -84,6 +100,7 @@ def CubeParts(Cubes: list[KLattice]) -> KCageParts:
     return LatticeParts(Faces)
 
 
+# shared mean point setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MeanPoint(Coords: list[KCoords], Indices: tuple[int, ...]) -> KCoords:
     Count = len(Indices)
     return (
@@ -93,6 +110,7 @@ def MeanPoint(Coords: list[KCoords], Indices: tuple[int, ...]) -> KCoords:
     )
 
 
+# shared split faces setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def SplitFaces(Start: list[KCoords], Faces: list[tuple[int, ...]]) -> KCageParts:
     Coords = list(Start)
     Middles: dict[tuple[int, int], int] = {}
@@ -115,6 +133,7 @@ def SplitFaces(Start: list[KCoords], Faces: list[tuple[int, ...]]) -> KCageParts
     return Coords, Quads
 
 
+# shared prism parts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def PrismParts(Sides: int) -> KCageParts:
     Angles = [KFullTurn * Index / Sides for Index in range(Sides)]
     Coords = [
@@ -133,10 +152,12 @@ def PrismParts(Sides: int) -> KCageParts:
     return SplitFaces(Coords, Faces)
 
 
+# shared torus spot setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TorusSpot(Major: int, Minor: int, Counts: tuple[int, int]) -> int:
     return (Major % Counts[0]) * Counts[1] + Minor % Counts[1]
 
 
+# shared torus point setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TorusPoint(Major: int, Minor: int, Counts: tuple[int, int]) -> KCoords:
     Around = KFullTurn * Major / Counts[0]
     Within = KFullTurn * Minor / Counts[1]
@@ -148,6 +169,7 @@ def TorusPoint(Major: int, Minor: int, Counts: tuple[int, int]) -> KCoords:
     )
 
 
+# shared torus parts setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def TorusParts(Counts: tuple[int, int]) -> KCageParts:
     Coords: list[KCoords] = []
     Quads: list[KQuad] = []
@@ -165,10 +187,12 @@ def TorusParts(Counts: tuple[int, int]) -> KCageParts:
     return Coords, Quads
 
 
+# shared bound count setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BoundCount(Coords: KCoords, Upper: float) -> int:
     return sum(1 for Value in Coords if Value in (0.0, Upper))
 
 
+# shared box creases setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BoxCreases(Parts: KCageParts, Surface: TsplineSurface, Upper: float) -> CreaseData:
     Links = Surface.Topology.Links
     Coords = Parts[0]
@@ -181,6 +205,7 @@ def BoxCreases(Parts: KCageParts, Surface: TsplineSurface, Upper: float) -> Crea
     return CreaseData(tuple(sorted(Edges)), ())
 
 
+# shared ring creases setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RingCreases(Surface: TsplineSurface, Rings: list[set[int]]) -> CreaseData:
     Links = Surface.Topology.Links
     Edges = {

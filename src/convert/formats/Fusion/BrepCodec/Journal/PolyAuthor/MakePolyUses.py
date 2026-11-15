@@ -3,6 +3,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import Entit
 from convert.formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
 
 
+# the poly uses operation needs a consistent construction rule so topology changes retain their native revision relationships
 def MakePolyUses(Layout: PolyLayout) -> tuple[CoedgeNode, ...]:
     Links = tuple(
         (FaceIndex, LocalIndex, Start, RingValue[(LocalIndex + 1) % len(RingValue)])

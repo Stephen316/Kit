@@ -2,6 +2,7 @@ from convert.formats.Fusion.MeshCodec.Wire.ByteCursor import ByteCursor
 from convert.formats.Fusion.MeshCodec.Wire.ReadMapAtom import ReadMapAtom
 
 
+# the map operation needs a distinct decoding boundary so vertex and index streams retain their intended connectivity
 def ReadMap(Payload: bytes) -> dict[str, int | bool]:
     Cursor = ByteCursor(Payload)
     CodeValue = Cursor.Integer(1)

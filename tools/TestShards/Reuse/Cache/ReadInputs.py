@@ -12,6 +12,7 @@ from tools.TestShards.Reuse.Cache.ReadTree import ReadTree
 from tools.TestShards.TallyReports import TallyReports
 
 
+# the inputs operation needs a distinct decoding boundary so dependency changes cannot revive stale passing results
 def ReadInputs(
     PlanPath: FilePath,
     ReportsPath: FilePath,

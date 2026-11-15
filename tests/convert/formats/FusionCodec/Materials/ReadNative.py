@@ -7,11 +7,13 @@ from convert.formats.Fusion.MaterialCodec.Models.MaterialData import MaterialDat
 from tests.convert.formats.FusionCodec.Materials.NativeMaterial import NativeMaterial
 from tests.convert.formats.FusionCodec.Materials.ReadSchema import ReadSchema
 
+# feature root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KFeatureRoot = (
     FilePath(__file__).resolve().parents[5] / "re/Fusion/LocalOracle/Features"
 )
 
 
+# shared read native setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadNative() -> NativeMaterial:
     with ZipFile(KFeatureRoot / "extrude_07mm.f3d") as Archive:
         Member = next(

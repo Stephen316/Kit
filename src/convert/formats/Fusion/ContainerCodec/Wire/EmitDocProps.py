@@ -7,6 +7,7 @@ from convert.formats.Fusion.ContainerCodec.Model.DocProps import DocProps
 from convert.formats.Fusion.ContainerCodec.Model.DocStruct import DocStruct
 
 
+# struct tree needs an explicit validity boundary so archive members retain their native ownership and reference relationships
 def StructTree(Value: DocStruct) -> dict[str, KJsonValue]:
     if (
         not isinstance(CastValue(object, Value), DocStruct)
@@ -38,6 +39,7 @@ def StructTree(Value: DocStruct) -> dict[str, KJsonValue]:
     }
 
 
+# the doc props operation needs a consistent construction rule so archive members retain their native ownership and reference relationships
 def EmitDocProps(Value: DocProps | None) -> bytes:
     if Value is None:
         return bytes(4)

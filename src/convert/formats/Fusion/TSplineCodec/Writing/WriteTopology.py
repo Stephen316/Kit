@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.CageTopology import CageTopology
 from convert.formats.Fusion.TSplineCodec.Writing.NumberText import NumberText
 
 
+# the topology operation needs a consistent construction rule so control cage topology retains its native connectivity
 def WriteTopology(Topology: CageTopology) -> tuple[str, ...]:
     Faces = tuple(
         f"f {Value.OriginLink} {int(Value.IsHidden)}" for Value in Topology.Faces

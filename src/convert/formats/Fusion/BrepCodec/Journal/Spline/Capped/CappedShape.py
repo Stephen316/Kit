@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
 from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
 
+# capped curve needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class CappedCurve:
     Region: int
@@ -17,6 +18,7 @@ class CappedCurve:
     Links: tuple[int, ...]
 
 
+# capped edge needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class CappedEdge:
     StartVertex: int
@@ -28,6 +30,7 @@ class CappedEdge:
     Bounds: tuple[float, float] | None
 
 
+# capped face needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class CappedFace:
     Region: int
@@ -37,6 +40,7 @@ class CappedFace:
     Contained: bool | None
 
 
+# capped shape needs an explicit state contract so cap boundaries remain connected to the surrounding surface
 @MakeDataClass(frozen=True, slots=True)
 class CappedShape:
     Points: tuple[int, ...]

@@ -4,6 +4,7 @@ from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
 from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
+# shared dimension rows setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DimensionRows(Model: DocumentModel, ClassName: str) -> tuple[EntityRecord, ...]:
     ClassGuid = next(
         Schema.Value.ClassGuid.upper()
@@ -19,6 +20,7 @@ def DimensionRows(Model: DocumentModel, ClassName: str) -> tuple[EntityRecord, .
     )
 
 
+# shared dimension fields setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def DimensionFields(Record: EntityRecord) -> dict[str, KEntityValue]:
     return {
         Field.FieldName: Field.Value

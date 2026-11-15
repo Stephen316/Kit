@@ -2,6 +2,7 @@ from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Validation.CheckIndices import CheckIndices
 
 
+# invalid compounds input must fail here so control cage topology retains its native connectivity
 def CheckCompounds(Surface: TsplineSurface) -> None:
     Mapping = Surface.Mapping
     if Mapping is None:

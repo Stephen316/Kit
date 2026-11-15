@@ -3,6 +3,7 @@ from convert.geometry.ParaFraming import KWrapperMagic
 from convert.geometry.ParaFormatError import ParaFormatError
 
 
+# section bounds needs an explicit validity boundary so native geometry retains a consistent interchange interpretation
 def SectionBounds(DataValue: bytes, MagicOffset: int) -> tuple[int, bool]:
     if MagicOffset >= 4:
         ChainSize = UnpackFrom("<I", DataValue, MagicOffset - 4)[0]

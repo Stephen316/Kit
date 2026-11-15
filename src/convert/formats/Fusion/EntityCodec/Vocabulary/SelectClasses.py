@@ -9,6 +9,7 @@ from convert.formats.Fusion.EntityCodec.Vocabulary.PickSchema import PickSchema
 from convert.formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaClass
 
 
+# select classes must resolve unambiguously so entity identifiers retain their schema and reference meaning
 def SelectClasses(
     Classes: tuple[MetaClass, ...], Catalog: NativeCatalog, Opaque: bool = False
 ) -> dict[str, ClassSchema]:

@@ -35,8 +35,13 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Profile.SketchPlan import
 )
 from convert.formats.Fusion.DocumentCodec.Rectangle.RectangleTag import RectangleTag
 
+# no rail must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KNoRail = -1
+
+# profile section must remain consistent across callers so feature parameters remain connected to the resulting geometry
 KProfileSection = 2
+
+# the loft modes vocabulary must stay centralized so parametric feature reconstruction agrees on supported native identities
 KLoftModes: dict[str, object] = dict(
     IsEndTangencyFlippedDirection=True,
     IsStartTangencyFlippedDirection=True,
@@ -49,6 +54,7 @@ KLoftModes: dict[str, object] = dict(
 )
 
 
+# loft plans needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
 def LoftPlans(Stage: PartStage) -> tuple[LoftSpec, SketchPlan, SketchPlan]:
     Feature, Lower, Upper = Stage.Feature, Stage.Sketch, Stage.Upper
     if not isinstance(Feature, LoftSpec) or Lower is None or Upper is None:
@@ -56,6 +62,7 @@ def LoftPlans(Stage: PartStage) -> tuple[LoftSpec, SketchPlan, SketchPlan]:
     return Feature, Lower, Upper
 
 
+# the loft plane operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddLoftPlaneMut(
     Author: AuthorState, Stage: PartStage, Prefix: str, Stages: tuple[PartStage, ...]
 ) -> None:
@@ -72,6 +79,7 @@ def AddLoftPlaneMut(
     LinkFeatureMut(Author, PlaneStage, Prefix + "wp_", Children)
 
 
+# the curve seed operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddCurveSeedMut(Author: AuthorState, RoleName: str, CurveTag: int) -> object:
     Author.Allocate(RoleName, "SketchCurveProgenitor", NamedPairs=[])
     Author.Allocate(RoleName + "_recipe", "SketchCurveRecipe")
@@ -88,6 +96,7 @@ def AddCurveSeedMut(Author: AuthorState, RoleName: str, CurveTag: int) -> object
     return Author.Reference(RoleName)
 
 
+# the loft table operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddLoftTable(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     _, Lower, Upper = LoftPlans(Stage)
     Author.Allocate(Prefix + "progenitors", "ProgenitorTable")
@@ -107,6 +116,7 @@ def AddLoftTable(Author: AuthorState, Stage: PartStage, Prefix: str) -> None:
     Author.Change(Prefix + "progenitors", ProgenitorTagVec=Pairs, tagId=len(Pairs) + 3)
 
 
+# the sections operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddSectionsMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[str]:
     Feature, Lower, Upper = LoftPlans(Stage)
     Reference = Author.Reference
@@ -133,6 +143,7 @@ def AddSectionsMut(Author: AuthorState, Stage: PartStage, Prefix: str) -> list[s
     return Children
 
 
+# the loft feat operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
 def AddLoftFeat(
     Author: AuthorState, Stage: PartStage, Prefix: str, Stages: tuple[PartStage, ...]
 ) -> None:

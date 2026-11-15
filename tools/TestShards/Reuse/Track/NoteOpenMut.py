@@ -7,6 +7,7 @@ from tools.TestShards.Reuse.Track.IsReadOpen import IsReadOpen
 from tools.TestShards.Reuse.Track.TrackState import TrackState
 
 
+# the note open contract needs a shared interpretation so dependency changes cannot revive stale passing results
 def NoteOpenMut(State: TrackState, ArgList: tuple[object, ...]) -> None:
     PathValue, ModeValue, FlagValue = (*ArgList, None, None, None)[:3]
     if PathValue is None or not IsReadOpen(ModeValue, FlagValue):

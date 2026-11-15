@@ -28,9 +28,11 @@ from convert.formats.Fusion.LinkAuthor.Reading.ReadRoot import ReadRoot
 from convert.formats.Fusion.LinkAuthor.Reading.ReadTarget import ReadTarget
 from convert.formats.Fusion.MetaIndex import SegmentKind
 
+# the link kinds order must stay explicit so cross document references retain their intended ownership
 KLinkKinds = (SegmentKind.KDesign, SegmentKind.KAct, SegmentKind.KBrowser)
 
 
+# the rebuild profiles contract needs a shared interpretation so cross document references retain their intended ownership
 def RebuildProfiles(Segments: tuple[ParsedSegment, ...]) -> tuple[ParsedSegment, ...]:
     Schemas = ReadDocSchemas()
     Metadata = tuple(Segment.Metadata for Segment in Segments)
@@ -45,6 +47,7 @@ def RebuildProfiles(Segments: tuple[ParsedSegment, ...]) -> tuple[ParsedSegment,
     )
 
 
+# link document must resolve unambiguously so cross document references retain their intended ownership
 def LinkDocument(BaseSpec: DocumentModel, Request: AssemblySpec) -> DocumentModel:
     if (
         tuple(Segment.Metadata.Header.Segment for Segment in BaseSpec.Segments)
@@ -92,6 +95,7 @@ def LinkDocument(BaseSpec: DocumentModel, Request: AssemblySpec) -> DocumentMode
     )
 
 
+# the assembly operation needs a consistent construction rule so cross document references retain their intended ownership
 def EmitAssembly(Request: AssemblySpec) -> bytes:
     Checked = CheckAsmSpec(Request)
     return EmitParsed(LinkDocument(ReadDocument(EmitDocument(Checked.Base)), Checked))

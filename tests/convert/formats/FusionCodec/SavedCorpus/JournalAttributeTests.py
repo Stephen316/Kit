@@ -33,14 +33,18 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
 from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
+# the study cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KStudy = FilePath(__file__).resolve().parents[5] / "re" / "Fusion" / "Study"
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the reencoded cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KReencoded = (".protein", ".smb", ".smbh")
 
+# the edit files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KEditFiles = (
     "draftmodes-9b1a30f74aed/symmetric.f3d",
     "draftmodes-9b1a30f74aed/two_angles.f3d",
@@ -62,6 +66,7 @@ KEditFiles = (
     "partinglinedrafts-c4d07c76fcd5/moving_both_three.f3d",
 )
 
+# the face files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFaceFiles = (
     "splitfacemodes-4fc4adf2a868/along_vector.f3d",
     "splitfacemodes-4fc4adf2a868/closest_point.f3d",
@@ -79,6 +84,7 @@ KFaceFiles = (
     "surfacetrimtools-ca26d21e7ad9/sketch_line.f3d",
 )
 
+# the thread files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KThreadFiles = (
     "threadfamilies-459264fae49b/ansi_unified_external.f3d",
     "threadfamilies-459264fae49b/bsp_pipe_internal.f3d",
@@ -97,18 +103,26 @@ KThreadFiles = (
     "threadmultifaces-e4bc4a120fbf/internal_two_full.f3d",
 )
 
+# the saved files cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSavedFiles = (*KEditFiles, *KFaceFiles, *KThreadFiles)
 
+# the split file cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KSplitFile = "splitfacemodes-4fc4adf2a868/along_vector.f3d"
+
+# the move file cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMoveFile = "moretools-88a2cd6cad0b/MoveRotate.f3d"
+
+# the thread file cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KThreadFile = "threadmodes-d51d2ae60564/modeled_full.f3d"
 
 
+# shared read members setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadMembers(DataValue: bytes) -> dict[str, bytes]:
     with ZipFile(BytesIO(DataValue)) as Archive:
         return {Entry: Archive.read(Entry) for Entry in Archive.namelist()}
 
 
+# shared load journals setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadJournals(FileName: str) -> tuple[JournalModel, ...]:
     Model = ReadDocument((KStudy / FileName).read_bytes())
     return tuple(
@@ -118,12 +132,14 @@ def LoadJournals(FileName: str) -> tuple[JournalModel, ...]:
     )
 
 
+# shared list entities setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ListEntities(FileName: str) -> tuple[KJournalEntity, ...]:
     return tuple(
         Value for Journal in LoadJournals(FileName) for Value in Journal.Entities
     )
 
 
+# the saved replay contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 @TestMark.parametrize("FileName", KSavedFiles)
 def TestSavedReplay(FileName: str) -> None:
@@ -145,6 +161,7 @@ def TestSavedReplay(FileName: str) -> None:
     assert all(Before[Entry] == After[Entry] for Entry in Journals)
 
 
+# the typed kinds contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestTypedKinds() -> None:
     SplitValues = ListEntities(KSplitFile)
@@ -164,6 +181,7 @@ def TestTypedKinds() -> None:
     assert any(Value.DataName == "feature_data" for Value in ThreadValues)
 
 
+# the name records contract needs boundary coverage so stored document relationships remain consistent
 def TestNameRecords() -> None:
     Values: tuple[KJournalEntity, ...] = (
         NameAttrib(AttribLinks(-1, 3, 7), (2, 1, 1, 2), "SCULPT_WORKPLANE_TOOL", -282),
@@ -176,6 +194,7 @@ def TestNameRecords() -> None:
         assert ReadEntityNode(Record) == Value
 
 
+# the name reject contract needs boundary coverage so stored document relationships remain consistent
 def TestNameReject() -> None:
     with Raises(ValueError):
         _ = NameAttrib(AttribLinks(-1, -1, 9), (2, 1, 1, 2), "sb_split_edge")
@@ -183,6 +202,7 @@ def TestNameReject() -> None:
         _ = NameAttrib(AttribLinks(-1, -1, 9), (2, 3, 1, 2), "")
 
 
+# the nest reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestNestReject() -> None:
     Journal = next(
@@ -203,6 +223,7 @@ def TestNestReject() -> None:
         _ = EmitJournal(Replace(Journal, Entities=tuple(Entities)))
 
 
+# the wire reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestWireReject() -> None:
     Journal = next(
@@ -223,6 +244,7 @@ def TestWireReject() -> None:
         _ = EmitJournal(Replace(Journal, Entities=tuple(Entities)))
 
 
+# the thread limit contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestThreadLimit() -> None:
     Value = next(

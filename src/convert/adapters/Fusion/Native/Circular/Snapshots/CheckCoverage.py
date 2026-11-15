@@ -10,6 +10,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNod
 from convert.formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
 
 
+# invalid coverage input must fail here so public geometry remains consistent with native circular topology
 def CheckCoverage(State: GeometryState) -> None:
     Edges = tuple(Entity for Entity in State.Entities if isinstance(Entity, EdgeNode))
     Vertices = tuple(
@@ -31,6 +32,7 @@ def CheckCoverage(State: GeometryState) -> None:
         )
 
 
+# the entity indices contract needs a shared interpretation so public geometry remains consistent with native circular topology
 def EntityIndices(State: GeometryState, ClassType: type[object]) -> set[int]:
     return {
         Index

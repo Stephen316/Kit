@@ -3,6 +3,7 @@ from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedEdge import Enhan
 from convert.formats.Fusion.GraphicsCodec.Model.Values.EnhancedFace import EnhancedFace
 
 
+# audit items needs an explicit validity boundary so display geometry retains its entity and scene relationships
 def AuditItems(
     EdgeNodes: tuple[LodValue, ...], FaceNodes: tuple[LodValue, ...]
 ) -> None:

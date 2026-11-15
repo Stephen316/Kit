@@ -4,6 +4,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadFieldMut import
 )
 
 
+# the text operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
 def ReadTextMut(Cursor: FieldCursor) -> str:
     TagValue, Value = ReadFieldMut(Cursor)
     if TagValue != 7 or type(Value) is not str or not Value.isascii():

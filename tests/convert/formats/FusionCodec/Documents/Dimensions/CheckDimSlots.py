@@ -6,6 +6,7 @@ from tests.convert.formats.FusionCodec.Documents.Dimensions.DimensionFields impo
 )
 
 
+# the dim slots contract needs boundary coverage so stored document relationships remain consistent
 def CheckDimSlots(Model: DocumentModel) -> None:
     Settings = DimensionRows(Model, "AssetSettings")[0].ObjectId
     Indices: list[int] = []

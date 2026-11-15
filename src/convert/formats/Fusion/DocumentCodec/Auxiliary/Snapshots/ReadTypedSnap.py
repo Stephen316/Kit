@@ -12,6 +12,7 @@ from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.ReadPrismSnap 
 )
 
 
+# the typed snapshot operation needs a distinct decoding boundary so supporting records retain their owning document relationships
 def ReadTypedSnap(
     Payload: bytes, Geometry: GeometryState
 ) -> SnapshotModel | PrismSnapshot | None:

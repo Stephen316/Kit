@@ -42,6 +42,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Writing.Geometry.MakeVertexNode im
 )
 
 
+# the topology operation needs a consistent construction rule so revision ownership survives native history reconstruction
 def MakeTopology(Value: KJournalEntity) -> AsmRecord:
     if isinstance(Value, AsmRoot):
         return MakeAsmRoot(Value)

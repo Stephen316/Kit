@@ -6,6 +6,7 @@ from convert.formats.Fusion.LinkAuthor.Model.PlacedPart import PlacedPart
 from convert.formats.Fusion.LinkAuthor.Model.RigidJoint import RigidJoint
 
 
+# assembly specification needs an explicit state contract so cross document references retain their intended ownership
 @MakeDataClass(frozen=True, slots=True)
 class AssemblySpec:
     Base: DocumentSpec

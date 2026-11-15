@@ -8,6 +8,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
 from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 
 
+# shared alter planar setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def AlterPlanar(Model: JournalModel, Fault: str) -> JournalModel:
     Entities = list(Model.Entities)
     for Index, Value in enumerate(Entities):

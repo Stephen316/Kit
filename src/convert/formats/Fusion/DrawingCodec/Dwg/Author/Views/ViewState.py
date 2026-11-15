@@ -2,15 +2,29 @@ from struct import pack as PackFields
 from sys import float_info as FloatInfo
 from uuid import UUID
 
+# the point triple shape must stay shared so drawing view authoring uses one contract for compatible values
 KPointTriple = tuple[float, float, float]
+
+# the state body shape must stay shared so drawing view authoring uses one contract for compatible values
 KStateBody = tuple[str, KPointTriple, KPointTriple]
+
+# state lead must remain consistent across callers so projected geometry retains its paper and model relationships
 KStateLead = bytes(18)
+
+# state mark must remain consistent across callers so projected geometry retains its paper and model relationships
 KStateMark = bytes.fromhex("2184de7b09")
+
+# state tail must remain consistent across callers so projected geometry retains its paper and model relationships
 KStateTail = bytes.fromhex("9101")
+
+# first ordinal must remain consistent across callers so projected geometry retains its paper and model relationships
 KFirstOrdinal = 2
+
+# the empty box order must stay explicit so projected geometry retains its paper and model relationships
 KEmptyBox = (FloatInfo.max, FloatInfo.max, -FloatInfo.max, -FloatInfo.max)
 
 
+# guid bytes needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def GuidBytes(GuidText: str) -> bytes:
     try:
         return UUID(GuidText).bytes_le
@@ -20,6 +34,7 @@ def GuidBytes(GuidText: str) -> bytes:
         ) from Failure
 
 
+# the state body contract needs a shared interpretation so projected geometry retains its paper and model relationships
 def StateBody(Index: int, BodyEntry: KStateBody) -> bytes:
     GuidText, Lower, Upper = BodyEntry
     return b"".join(
@@ -35,6 +50,7 @@ def StateBody(Index: int, BodyEntry: KStateBody) -> bytes:
     )
 
 
+# view state needs an explicit validity boundary so projected geometry retains its paper and model relationships
 def ViewState(
     Target: KPointTriple,
     EyeAxis: KPointTriple,

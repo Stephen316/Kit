@@ -8,6 +8,7 @@ from convert.formats.Fusion.GeometryCodec.Prism.PrismLayout import (
 )
 
 
+# the loops operation needs a consistent construction rule so geometric values retain their native record boundaries
 def BuildLoops() -> tuple[GeometryRecord, ...]:
     return tuple(
         MakeRecord(

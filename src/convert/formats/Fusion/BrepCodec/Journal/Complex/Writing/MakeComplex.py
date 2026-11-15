@@ -27,6 +27,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Complex.Writing.MakeTolerant impor
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
+# the complex operation needs a consistent construction rule so nested spline and surface records retain their relationships
 def MakeComplex(Value: KComplexEntity) -> AsmRecord:
     if isinstance(Value, SplineNode):
         return MakeSplineNode(Value)

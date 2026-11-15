@@ -12,6 +12,7 @@ from convert.formats.Fusion.DocumentCodec.Materials.Vocabulary.FamilyFields impo
 from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 
 
+# invalid color input must fail here so appearance references remain connected to their owning entities
 def CheckColor(Color: object) -> None:
     if not isinstance(Color, ColorValue):
         raise ValueError("A typed material RGBA color is required")
@@ -31,6 +32,7 @@ def CheckColor(Color: object) -> None:
             )
 
 
+# invalid steps input must fail here so appearance references remain connected to their owning entities
 def CheckSteps(Steps: object) -> None:
     if not isinstance(Steps, tuple):
         raise ValueError("Material directions must be a short tuple")
@@ -53,6 +55,7 @@ def CheckSteps(Steps: object) -> None:
         Visited.add((Entry.FieldKey, Entry.Direction))
 
 
+# invalid parts input must fail here so appearance references remain connected to their owning entities
 def CheckParts(Value: object, PartType: type[object]) -> None:
     if type(Value) is not PartType:
         raise ValueError("Material part specification has the wrong type")

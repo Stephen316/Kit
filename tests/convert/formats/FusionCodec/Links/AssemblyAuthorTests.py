@@ -38,6 +38,7 @@ from convert.formats.Fusion.LinkAuthor.Records.LinkGuids import (
 from convert.formats.Fusion.MetaIndex import SegmentKind
 from convert.formats.Fusion.SegmentCodec.Manifest.LinkLayout import KUnchangedGuid
 
+# the fixtures cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFixtures = (
     FilePath(__file__).resolve().parents[5]
     / "re"
@@ -47,12 +48,15 @@ KFixtures = (
     / "Fixtures"
 )
 
+# the requires codec cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KRequiresCodec = TestMark.skipif(
     PythonVersion < (3, 14), reason="native Fusion fixture requires ZIP Zstandard"
 )
 
+# the masked cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KMasked = "masked"
 
+# the fresh fields cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFreshFields = frozenset(
     {
         "persistentId",
@@ -80,25 +84,34 @@ KFreshFields = frozenset(
     }
 )
 
+# the fresh data cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KFreshData = (3, 9, 13)
 
+# part in root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KPartInRoot = (0.6, -0.8, 0.0, 5.0, 0.8, 0.6, 0.0, 2.0, 0.0, 0.0, 1.0, 1.0)
 
+# sub in root needs a stable location so native document reconstruction resolves inputs independently of the caller working directory
 KSubInRoot = (1.0, 0.0, 0.0, -3.0, 0.0, 0.0, -1.0, 4.0, 0.0, 1.0, 0.0, 0.5)
 
+# the part in sub cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KPartInSub = (0.0, -1.0, 0.0, 2.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 1.0)
 
+# the affine row cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KAffineRow = (0.0, 0.0, 0.0, 1.0)
 
+# the lineage prefix cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KLineagePrefix = "urn:kit:synthetic:lineage:"
 
+# the version prefix cases must remain explicit so native document reconstruction exercises the intended compatibility boundary
 KVersionPrefix = "urn:kit:synthetic:file:"
 
 
+# shared load fixture setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def LoadFixture(StemName: str) -> DocumentModel:
     return ReadDocument((KFixtures / f"{StemName}.f3d").read_bytes())
 
 
+# shared mask value setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MaskValue(Value: object, Roles: dict[int, tuple[str, int]]) -> object:
     if isinstance(Value, CrossRef):
         return (Value.ObjectId, Roles[Value.Token], Value.TypeGuid.upper())
@@ -141,6 +154,7 @@ def MaskValue(Value: object, Roles: dict[int, tuple[str, int]]) -> object:
     return Value
 
 
+# shared record view setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def RecordView(
     Model: DocumentModel, Fresh: tuple[int, ...]
 ) -> dict[tuple[str, int, bool], object]:
@@ -160,6 +174,7 @@ def RecordView(
     return Result
 
 
+# shared native specification setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def NativeSpec(Native: DocumentModel) -> AssemblySpec:
     Links = {
         dict(Entry.Properties)["toDocDisplayName"]: dict(Entry.Properties)
@@ -193,6 +208,7 @@ def NativeSpec(Native: DocumentModel) -> AssemblySpec:
     return AssemblySpec(BaseSpec, Targets, Placements, RigidJoint(0, 1))
 
 
+# the replay contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestReplay() -> None:
     Native = LoadFixture("R4_joint")
@@ -208,6 +224,7 @@ def TestReplay() -> None:
     assert not Mismatched
 
 
+# shared make part setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakePart(Title: str, Param: str, Length: float, Radius: float) -> bytes:
     Request = DocumentSpec(
         Title, Param, Length, ProfileKind="extrusion", RadiusMm=Radius
@@ -215,6 +232,7 @@ def MakePart(Title: str, Param: str, Length: float, Radius: float) -> bytes:
     return EncodeDocument(MakeFusionDoc(Request))
 
 
+# shared make target setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def MakeTarget(Title: str, DataValue: bytes) -> LinkTarget:
     return LinkTarget(
         Title,
@@ -224,6 +242,7 @@ def MakeTarget(Title: str, DataValue: bytes) -> LinkTarget:
     )
 
 
+# shared build nested setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BuildNested() -> tuple[bytes, bytes, bytes, bytes]:
     PartA = MakePart("KitAsmPartA", "heightA", 5.0, 10.0)
     PartB = MakePart("KitAsmPartB", "lengthB", 12.0, 4.0)
@@ -250,6 +269,7 @@ def BuildNested() -> tuple[bytes, bytes, bytes, bytes]:
     return PartA, PartB, SubData, RootData
 
 
+# shared class records setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ClassRecords(Model: DocumentModel, ClassGuid: str) -> tuple[EntityRecord, ...]:
     return tuple(
         Record
@@ -260,6 +280,7 @@ def ClassRecords(Model: DocumentModel, ClassGuid: str) -> tuple[EntityRecord, ..
     )
 
 
+# shared field of setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def FieldOf(Record: EntityRecord, FieldName: str) -> object:
     Values = [
         Field.Value
@@ -271,6 +292,7 @@ def FieldOf(Record: EntityRecord, FieldName: str) -> object:
     return Values[0]
 
 
+# the kit nested contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestKitNested() -> None:
     PartA, PartB, SubData, RootData = BuildNested()
@@ -309,6 +331,7 @@ def TestKitNested() -> None:
     assert len(PartB) > 0
 
 
+# shared bad specifications setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def BadSpecs() -> tuple[AssemblySpec, ...]:
     Target = MakeTarget("KitAsmPartA", MakePart("KitAsmPartA", "heightA", 5.0, 10.0))
     BaseSpec = DocumentSpec("KitAsmRoot", "rootLength", 10.0, ProfileKind="parameter")
@@ -329,6 +352,7 @@ def BadSpecs() -> tuple[AssemblySpec, ...]:
     )
 
 
+# the specification reject contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestSpecReject() -> None:
     for Request in BadSpecs():
@@ -336,6 +360,7 @@ def TestSpecReject() -> None:
             _ = EmitAssembly(Request)
 
 
+# the zero change contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestZeroChange() -> None:
     Asset = LoadFixture("R4_joint").Asset
@@ -347,6 +372,7 @@ def TestZeroChange() -> None:
         _ = EmitAssetHeader(Broken)
 
 
+# the slots contract needs boundary coverage so stored document relationships remain consistent
 @KRequiresCodec
 def TestSlots() -> None:
     Target = LoadFixture("P_A1_saved")

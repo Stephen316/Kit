@@ -4,6 +4,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgSectionInfo import (
 )
 
 
+# unpack page needs an explicit validity boundary so section boundaries and object references remain consistent
 def UnpackPage(Packed: bytes, SectionInfo: DwgSectionInfo, Needed: int) -> bytes:
     if SectionInfo.CompressFlag == 1:
         Payload = Packed

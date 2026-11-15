@@ -8,9 +8,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import Lin
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PlaneSpan import KPlaneSpan
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSlab import PrismSlab
 
+# the placement shape must stay shared so pattern feature construction uses one contract for compatible values
 KPlacement = tuple[tuple[float, float], float, bool]
 
 
+# the shift label contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def ShiftLabel(Label: FaceLabel, Extra: tuple[int, ...]) -> FaceLabel:
     return ReplaceValue(
         Label,
@@ -19,6 +21,7 @@ def ShiftLabel(Label: FaceLabel, Extra: tuple[int, ...]) -> FaceLabel:
     )
 
 
+# the move point contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def MovePoint(Point: tuple[float, float], Place: KPlacement) -> tuple[float, float]:
     (OffsetX, OffsetY), Angle, IsMirror = Place
     PointX = -Point[0] if IsMirror else Point[0]
@@ -29,6 +32,7 @@ def MovePoint(Point: tuple[float, float], Place: KPlacement) -> tuple[float, flo
     return Turned[0] + OffsetX, Turned[1] + OffsetY
 
 
+# the move span contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def MoveSpan(
     Value: KPlaneSpan, Place: KPlacement, Extra: tuple[int, ...]
 ) -> KPlaneSpan:
@@ -49,6 +53,7 @@ def MoveSpan(
     return ArcSpan(Center, Value.RadiusCm, Turned, Value.SweepAngle, Label)
 
 
+# the move slab contract needs a shared interpretation so repeated instances retain their intended placement and ownership
 def MoveSlab(Shaper: PrismSlab, Place: KPlacement, Extra: tuple[int, ...]) -> PrismSlab:
     Loops = tuple(
         CanonLoop(

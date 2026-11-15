@@ -7,6 +7,7 @@ from convert.formats.Fusion.BrepCodec.Journal.Round.SphereNode import SphereNode
 from convert.formats.Fusion.BrepCodec.Journal.Round.TorusNode import TorusNode
 
 
+# invalid round node input must fail here so topology changes retain their native revision relationships
 def CheckRoundNode(Value: SphereNode | TorusNode) -> None:
     Radii: tuple[float, ...]
     if isinstance(Value, SphereNode):

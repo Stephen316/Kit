@@ -28,9 +28,11 @@ from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.WallFace import Wal
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.FaceLabel import FaceLabel
 from convert.formats.Fusion.DocumentCodec.PartFeatures.Solid.LineSpan import LineSpan
 
+# the turn limit tolerance prevents rounding noise from creating false geometric distinctions during reconstruction
 KTurnLimit = 1e-9
 
 
+# chain plans needs an explicit validity boundary so edge and face relationships survive parametric feature construction
 def ChainPlans(Shape: ShapeBody, Points: tuple[KSpaceVector, ...]) -> list[RoundPlan]:
     Users = ShapeUsers(Shape)
     Plans: list[RoundPlan] = []
@@ -49,11 +51,13 @@ def ChainPlans(Shape: ShapeBody, Points: tuple[KSpaceVector, ...]) -> list[Round
     return Plans
 
 
+# the straight decision must stay consistent so edge and face relationships survive parametric feature construction
 def IsStraight(Shape: ShapeBody, LinkValue: ChainLink) -> bool:
     WallValue = Shape.Faces[LinkValue.WallIndex]
     return isinstance(WallValue, WallFace) and isinstance(WallValue.Span, LineSpan)
 
 
+# the mitre decision must stay consistent so edge and face relationships survive parametric feature construction
 def IsMitre(
     Shape: ShapeBody, PlanValue: RoundPlan, Before: ChainLink, After: ChainLink
 ) -> bool:
@@ -70,6 +74,7 @@ def IsMitre(
     return Turning > KTurnLimit
 
 
+# the follow decision must stay consistent so edge and face relationships survive parametric feature construction
 def CanFollow(Shape: ShapeBody, First: RoundPlan, Second: RoundPlan) -> bool:
     if (First.CapIndex, First.LoopIndex) != (Second.CapIndex, Second.LoopIndex):
         return False
@@ -81,6 +86,7 @@ def CanFollow(Shape: ShapeBody, First: RoundPlan, Second: RoundPlan) -> bool:
     return IsMitre(Shape, First, First.Links[-1], Second.Links[0])
 
 
+# the join plans contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def JoinPlans(First: RoundPlan, Second: RoundPlan) -> RoundPlan:
     return ReplaceValue(
         First,
@@ -90,6 +96,7 @@ def JoinPlans(First: RoundPlan, Second: RoundPlan) -> RoundPlan:
     )
 
 
+# the close plan contract needs a shared interpretation so edge and face relationships survive parametric feature construction
 def ClosePlan(Shape: ShapeBody, PlanValue: RoundPlan) -> RoundPlan:
     if not CanFollow(Shape, PlanValue, PlanValue):
         return PlanValue
@@ -97,6 +104,7 @@ def ClosePlan(Shape: ShapeBody, PlanValue: RoundPlan) -> RoundPlan:
     return ReplaceValue(PlanValue, Closed=True, Mitres=Mitres)
 
 
+# the merge decision must stay consistent so edge and face relationships survive parametric feature construction
 def CanMergeMut(Shape: ShapeBody, Plans: list[RoundPlan]) -> bool:
     for First in Plans:
         for Second in Plans:
@@ -108,14 +116,18 @@ def CanMergeMut(Shape: ShapeBody, Plans: list[RoundPlan]) -> bool:
     return False
 
 
+# the group plans contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def GroupPlans(Shape: ShapeBody, Points: tuple[KSpaceVector, ...]) -> list[RoundPlan]:
     Plans = ChainPlans(Shape, Points)
     while CanMergeMut(Shape, Plans):
         continue
     Closed = [ClosePlan(Shape, PlanValue) for PlanValue in Plans]
+
+    # ordering by min plan value numbers must stay deterministic so feature geometry resolves equivalent inputs consistently
     return sorted(Closed, key=lambda PlanValue: min(PlanValue.Numbers))
 
 
+# the with cap decision must stay consistent so edge and face relationships survive parametric feature construction
 def IsWithCap(
     Shape: ShapeBody,
     PlanValue: RoundPlan,
@@ -129,6 +141,7 @@ def IsWithCap(
     return isinstance(CapValue, CapFace) and CapNormal(CapValue)[2] > 0.0
 
 
+# the plan legs contract needs a stable decomposition so edge and face relationships survive parametric feature construction
 def PlanLegs(Shape: ShapeBody, PlanValue: RoundPlan, Round: EdgeRound) -> EdgeRound:
     SeedLink = PlanValue.Links[PlanValue.Numbers.index(min(PlanValue.Numbers))]
     if IsWithCap(Shape, PlanValue, SeedLink, Round.Blends):

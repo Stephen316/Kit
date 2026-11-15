@@ -13,6 +13,7 @@ from convert.formats.Fusion.DrawingCodec.Dwg.Sections.SectionCodecs import (
 )
 
 
+# the drawing file operation needs a distinct decoding boundary so section boundaries and object references remain consistent
 def ReadDwgFile(Content: bytes) -> DwgFile:
     Inventory = ReadInventory(Content)
     Named = {

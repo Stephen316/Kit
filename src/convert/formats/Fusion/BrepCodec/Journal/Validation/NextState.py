@@ -1,6 +1,7 @@
 from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
 
 
+# next state needs an explicit validity boundary so inconsistent revision links fail before history reconstruction
 def NextState(Model: JournalModel, Current: int) -> int:
     Following = Model.States[Current].NextNode
     if Following == -1:
