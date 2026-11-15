@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 19,502 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 20,906 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -8,7 +8,7 @@ The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) r
 | Ten model views | The load branch of `sldmodu!moView_c::Serialize` at `0x10ea3a9` reads its name, two transforms, and scalar fields separated by three collection counts. All three collections are empty in the witnessed views. The two auxiliary lists are inline when present. |
 | Model and annotation transforms | The `sldmgu!mgXform_c::restore` path at `0x331d0` reads the matrix-present flag, an optional nine-double matrix, four translation and scale doubles, and an extension mode byte. Mode zero is required. |
 
-The ten views consume 1,980 bytes in the observed captures. Each parsed body reaches its next type token, except the last view, which ends nine bytes before the feature-color table. That intervening data remains an opaque advance. The ten-view sequence remains bounded by the witnessed ordinary model shape.
+The ten views consume 1,980 bytes in the observed captures. The model loader selects the ten-object loop at `sldmodu+0x10f2914` and reads each typed view at `0x10f2963`. The final view returns before a byte and two integers read by the model at `0x10f2c2f`, `0x10f2c51` and `0x10f2c61`.
 
 ## Detail settings before the first length pointer
 
@@ -53,6 +53,12 @@ The [detail settings tail](../../../../re/solidworks/archive/ConfigDetailEnd.py)
 | Printer widths and detail tail | `0x12ad10` and `0x13ae54` | 998 |
 
 Two checked zero bytes at the boundary have unassigned ownership. The next typed declaration is `moEnvFolder_c` at offset 37,961.
+
+## Environment lights and model view suffix
+
+The [environment reader](../../../../re/solidworks/archive/ConfigScene.py) follows the folder serializer at `sldmodu+0xd70af0` into its concept and feature fields. The saved four-entry list carries one ambient light and three directional lights. Each child reads its node name, nullable feature fields and the light body at `0xaca160`. The user name is framed text, the user property count is zero, and directional lights add a vector and a double at `0xac97b2` and `0xac97e9`. The folder resumes its inherited feature fields after the fourth light and ends with its own two integers.
+
+The model's fields after the view loop reach the schema-zero `moFeatColorTab_c` at baseline A offset 41,476. Its serializer at `sldmfcu+0xd21c0` reads the empty color table count. The model reads the following null pointer and three integers, including the zero count for an optional inline node list at `sldmodu+0x10f2d12`. Its next typed object is `moSketchBlockMgr_c` at offset 41,516.
 
 ## Verification
 

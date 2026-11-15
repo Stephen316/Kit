@@ -31,6 +31,7 @@ from ConfigDetail import (
 )
 from ConfigDetailEnd import ReadDetailEnd
 from ConfigLabel import ReadLabelDefs
+from ConfigScene import ReadEnvironment
 from ConfigTable import ReadTableDefs
 from ConfigTol import ReadTolData
 from SketchReader import ReadSketchConfiguration
@@ -161,37 +162,8 @@ def ReadModelPresentation(Cursor):
     ReadTolData(Cursor, Partial(ReadPointer, Cursor, Events, KNullKind))
     ReadDetailEnd(Cursor)
     Require(Cursor.ReadValue("<H"), (0,), "post-detail boundary word")
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (0, KDefinitionKind, "moEnvFolder_c"),
-            (0, KClassRefKind, "moNodeName_c"),
-            (64, KNullKind, None),
-            (2, KDefinitionKind, "moAmbientLight_c"),
-            (0, KClassRefKind, "moNodeName_c"),
-            (42, KNullKind, None),
-            (47, KNullKind, None),
-            (30, KNullKind, None),
-        ),
-    )
-    for Width, KindValue in (
-        (142, KDefinitionKind),
-        (182, KClassRefKind),
-        (182, KClassRefKind),
-    ):
-        ReadPointers(
-            Cursor,
-            Events,
-            (
-                (Width, KindValue, "moDirectionLight_c"),
-                (0, KClassRefKind, "moNodeName_c"),
-                (52, KNullKind, None),
-                (47, KNullKind, None),
-                (30, KNullKind, None),
-            ),
-        )
-    ReadPointers(Cursor, Events, ((227, KNullKind, None), (30, KNullKind, None), (44, KNullKind, None)))
+    ReadEnvironment(Cursor, Partial(ReadPointer, Cursor, Events))
+    ReadPointer(Cursor, Events, KNullKind)
     ListKind = KClassRefKind if "suObList" in Cursor.Classes.values() else KDefinitionKind
     ReadPointer(Cursor, Events, ListKind, "suObList")
     Require(Cursor.ReadValue("<H"), (0,), "empty leading view list")
@@ -200,14 +172,18 @@ def ReadModelPresentation(Cursor):
     for _ in range(9):
         ReadPointer(Cursor, Events, KClassRefKind, "moView_c")
         ReadConfigView(Cursor)
-    Cursor.AdvanceBytes(9)
+    Cursor.ReadValue("<B2i")
     ReadPointer(Cursor, Events, KDefinitionKind, "moFeatColorTab_c", 0)
+    Require(Cursor.ReadCount(), 0, "empty feature color table")
+    ReadPointer(Cursor, Events, KNullKind)
+    Cursor.ReadValue("<i")
+    Require(Cursor.ReadCount(), 0, "absent inline model node list")
+    Cursor.ReadValue("<i")
     ReadPointers(
         Cursor,
         Events,
         (
-            (4, KNullKind, None),
-            (12, KDefinitionKind, "moSketchBlockMgr_c"),
+            (0, KDefinitionKind, "moSketchBlockMgr_c"),
             (0, KNullKind, None),
             (24, KNullKind, None),
             (47, KNullKind, None),
