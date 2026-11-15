@@ -45,12 +45,12 @@ def CheckHandoff() -> None:
         with RunQueueHost(Harness.Dispatch):
             Events = Harness.Run()
             (Finished,) = tuple(
-                Event for Event in Events if Event["event"] == "finished"
+                Event for Event in Events if Event.get("event") == "finished"
             )
             (AckEvent,) = tuple(
                 Event
                 for Event in Events
-                if Event["event"] == "application_acknowledgement"
+                if Event.get("event") == "application_acknowledgement"
             )
             assert Events.index(Finished) < Events.index(AckEvent)
             assert Finished["outcome"] == "completed"
@@ -78,7 +78,7 @@ def CheckMismatch() -> None:
             (Refusal,) = tuple(
                 Event
                 for Event in Events
-                if Event["event"] == "application_acknowledgement_failed"
+                if Event.get("event") == "application_acknowledgement_failed"
             )
             assert "fence does not match" in str(Refusal["error"])
             assert Refusal["job"] == Harness.JobName
