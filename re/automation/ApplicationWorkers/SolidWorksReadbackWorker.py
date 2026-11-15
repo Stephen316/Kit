@@ -7,7 +7,7 @@ import sys
 import time
 
 from ApplicationProtocol import (
-    HostQueue, PROTOCOL, QueueClient, WaitingApplication, committed_bytes, configuration,
+    HostQueue, MAX_BYTES, PROTOCOL, QueueClient, WaitingApplication, committed_bytes, configuration,
     encoded, file_bytes, pin, record, require, sha256, write_new, write_record,
 )
 
@@ -35,7 +35,7 @@ def verify_sources(config):
 
 def native_result(work, config):
     plan = file_bytes(work / OUTPUTS["readback.plan"])
-    measurements = file_bytes(work / OUTPUTS["readback.measurements"])
+    measurements = file_bytes(work / OUTPUTS["readback.measurements"], MAX_BYTES)
     receipt = record(work / OUTPUTS["readback.receipt"])
     plan_sha256 = sha256(plan)
     report = json.loads(measurements)
@@ -122,6 +122,8 @@ def dispatch(session, config):
                 "copied SOLIDWORKS evidence differs from the phase proof")
         write_record(session / "work/dispatch.json", response)
         artifacts["dispatch"] = pin(session / "work/dispatch.json", "dispatch.json")
+        require(sum(item["size_bytes"] for item in artifacts.values()) <= MAX_BYTES,
+                "SOLIDWORKS readback artifacts and dispatch exceed the application output budget")
         records.update({**request, "host": response["host"], "solidworks_build": proof["solidworks_build"],
                         "readback_plan_sha256": proof["readback_plan_sha256"]})
         return {"outcome": "completed", "reason": response["reason"], "records": records, "artifacts": artifacts}
