@@ -135,7 +135,9 @@ def origin_plane_route(data, records, primary, feature):
 
 
 # exact saved participants and historical inventory are independent scope checks
-def compare_sketch(data, records, index, features, historical, variant):
+def compare_sketch(
+    data, records, index, features, historical, variant, *, measured_world_curves=None
+):
     summary = decode_sketches(
         data, records, features, allow_reversed_point_dimensions=True
     )
@@ -212,26 +214,11 @@ def compare_sketch(data, records, index, features, historical, variant):
         and not historical["other_curve_count"],
         "P01 rectangle geometry roster differs",
     )
-    measured_curves = []
-    for line in historical["entities"]:
-        world_points = []
-        for key in ("start_mm", "end_mm"):
-            x, y, z = line[key]
-            require(z == 0, "P01 historical local line is not within the sketch plane")
-            world_points.append(
-                [
-                    origin + x * axis_x + y * axis_y
-                    for origin, axis_x, axis_y in zip(
-                        historical["origin_mm"],
-                        historical["x_direction"],
-                        historical["y_direction"],
-                        strict=True,
-                    )
-                ]
-            )
-        measured_curves.append(
-            {**line, "start_world_mm": world_points[0], "end_world_mm": world_points[1]}
-        )
+    measured_curves = (
+        historical_world_curves(historical)
+        if measured_world_curves is None
+        else measured_world_curves
+    )
     line_indices = match_lines(
         lines,
         {
@@ -370,6 +357,31 @@ def compare_sketch(data, records, index, features, historical, variant):
         "historical_profile_area_mm2": historical["profile_areas_mm2"][0],
         "sketch_coverage": coverage,
     }
+
+
+# the standalone capture uses local points while the shared capture already records world points
+def historical_world_curves(historical):
+    measured_curves = []
+    for line in historical["entities"]:
+        world_points = []
+        for key in ("start_mm", "end_mm"):
+            x, y, z = line[key]
+            require(z == 0, "P01 historical local line is not within the sketch plane")
+            world_points.append(
+                [
+                    origin + x * axis_x + y * axis_y
+                    for origin, axis_x, axis_y in zip(
+                        historical["origin_mm"],
+                        historical["x_direction"],
+                        historical["y_direction"],
+                        strict=True,
+                    )
+                ]
+            )
+        measured_curves.append(
+            {**line, "start_world_mm": world_points[0], "end_world_mm": world_points[1]}
+        )
+    return measured_curves
 
 
 # only the original pinned discovery receipt controls which files and measurements enter the comparison
