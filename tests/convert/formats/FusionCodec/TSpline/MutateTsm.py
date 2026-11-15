@@ -1,6 +1,10 @@
 def MutateTsm(Payload: bytes, Fault: str) -> bytes:
     Records = Payload.decode("ascii").splitlines()
-    KindValue = "0g" if Fault == "number" else "l"
+    KindValue = {
+        "number": "0g",
+        "cap": "cap-type",
+        "star": "star-smoothness",
+    }.get(Fault, "l")
     Position = next(
         Index
         for Index, Value in enumerate(Records)
@@ -19,6 +23,8 @@ def MutateTsm(Payload: bytes, Fault: str) -> bytes:
         Fields.append("0")
     elif Fault == "unknown":
         Records.append("50001vert 0")
+    elif Fault in ("cap", "star"):
+        Fields[1] = "G3CAPS" if Fault == "cap" else "3"
     else:
         raise ValueError("Unknown integration mutation")
     Records[Position] = " ".join(Fields)

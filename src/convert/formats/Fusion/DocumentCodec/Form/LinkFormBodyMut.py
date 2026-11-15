@@ -1,31 +1,12 @@
 from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
     FormBody,
 )
+from convert.formats.Fusion.DocumentCodec.Form.FormCache import FormCache
 from convert.formats.Fusion.DocumentCodec.Form.FormParts import FormParts
 from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec
 from convert.formats.Fusion.DocumentCodec.Materials.PhysicalValue import PhysicalValue
 from convert.formats.Fusion.DocumentCodec.Materials.VisualValue import VisualValue
 from convert.formats.Fusion.DocumentCodec.Model.AuthorState import AuthorState
-from convert.formats.Fusion.DocumentCodec.Values.ValueShapes import MakePoint
-
-
-def BlankCache(Author: AuthorState) -> list[dict[str, object]]:
-    return [
-        Author.MakeGroup(
-            "MassPropertyCacheValue",
-            dict(
-                area=0.0,
-                areaPrec=0.0,
-                cog=MakePoint(),
-                inertiaPrec=0.0,
-                moi=MakePoint(),
-                moiOffDiag=MakePoint(),
-                revisionGuid="00000000-0000-0000-0000-000000000000",
-                volume=0.0,
-                volumePrec=0.0,
-            ),
-        )
-    ]
 
 
 def IsClosedForm(Model: FormBody) -> bool:
@@ -39,7 +20,7 @@ def LinkFormBodyMut(Author: AuthorState, SpecValue: FormSpec, Parts: FormParts) 
         "body",
         actIdentifier=f"{Author.Policy.DesignSegmentId}_{Author.Roles['body']}",
         bodyType=2 if IsClosedForm(SpecValue.Body) else 4,
-        cache=BlankCache(Author),
+        cache=FormCache(Author, SpecValue.Body, IsClosedForm(SpecValue.Body)),
         massProperties=Author.MakeValue("MassPropertiesValue"),
         persistentId=Author.BodyId,
         rGroupParent=Reference("bodies"),

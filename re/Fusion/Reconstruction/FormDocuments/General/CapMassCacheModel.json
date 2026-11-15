@@ -1,0 +1,65 @@
+{
+ "scope": "Body.cache for independently emitted Form documents",
+ "wire_owner": "Body.cache",
+ "wire_type": "One MassPropertyCacheValue inherited group",
+ "empty_group_result": {
+  "label": "refuted",
+  "observed": "Fusion entity inherited group count differs from its schema"
+ },
+ "zero_group_result": {
+  "label": "refuted",
+  "observed": "All 10 initial centers were zero before computeAll and produced 30 differences in InitialMassFailure.json"
+ },
+ "integration": {
+  "label": "confirmed",
+  "rule": "Sixteen-point Gaussian quadrature over every bicubic knot span, followed by divergence-theorem vector moments and origin-based second moments",
+  "implementation": "src/convert/formats/Fusion/DocumentCodec/Form",
+  "periodic_domain": "The full domain is retained",
+  "nonperiodic_domain": "Every coedge must lie on a complete parameter-space boundary or CheckTrimming raises",
+  "open_surface_domain": "Area only; volume and vector moments are zero"
+ },
+ "fields": {
+  "area": {"class": "derived", "meaning": "Sum of magnitudes of scaled surface cross products", "label": "confirmed"},
+  "areaPrec": {"class": "format metadata", "meaning": "Zero precision value from the established cache schema", "label": "confirmed"},
+  "cog": {"class": "derived", "meaning": "First vector moments divided by nonzero volume", "label": "confirmed"},
+  "inertiaPrec": {"class": "format metadata", "meaning": "Zero precision value from the established cache schema", "label": "confirmed"},
+  "moi": {"class": "derived", "meaning": "Second moments about the coordinate origin, with the center recorded separately", "label": "confirmed"},
+  "moiOffDiag": {"class": "derived", "meaning": "Negated cross products about the coordinate origin", "label": "confirmed"},
+  "revisionGuid": {"class": "bookkeeping", "meaning": "The new AuthorState revision id", "label": "confirmed"},
+  "volume": {"class": "derived", "meaning": "One third of the closed-surface position and normal dot-product integral", "label": "confirmed"},
+  "volumePrec": {"class": "format metadata", "meaning": "Zero precision value from the established cache schema", "label": "confirmed"}
+ },
+ "native_evidence": {
+  "fusion": "2706.1.17",
+  "previous_process": 98846,
+  "accepted_process": 24703,
+  "cases": 11,
+  "comparisons": 319,
+  "problem_count": 0,
+  "dropped": [],
+  "vendor_loadable": true,
+  "application_usable": true,
+  "fresh_process_verified": true,
+  "off_origin_translation_cm": [13, -21, 42],
+   "comparison_rule": "Compare three center coordinates and six inertia components after dividing API moments by physical density",
+   "cache_comparisons": {"planar_area_relative_tolerance": 1e-8, "other_mass_relative_tolerance": 1e-8, "absolute_tolerance": 1e-8, "brep_geometry_tolerance_cm": 1e-8},
+   "curved_area_rule": "Keep quadrature convergence evidence without claiming exact equality with a different native estimator",
+   "shift_rule": "Check translated center and all six tensor components with the parallel-axis formula at 1e-8 absolute and relative tolerance",
+   "analytic_cube_rule": "Emit and read a real six-face closed unit-cube document, then check cache area 6, volume 1, center 0.5 on each axis, diagonal inertia 2/3, and off-diagonal products -1/4 at 1e-8 absolute and relative tolerance",
+   "api_return_rule": "getXYZMomentsOfInertia returns one success flag followed by six mass-weighted moments",
+   "material_densities_kg_cm3": {"kit": 0.001, "native": 0.00785},
+   "report": "re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json",
+   "report_sha256": "55e37af5b25d4603399b042fc8ae1fb8c1dba9639afae4818b4d08ba43e8f109"
+ },
+ "declaration_behavior": {
+  "label": "confirmed",
+  "cap_types": "Fusion canonicalizes G0CAPS and G2CAPS to G1CAPS before editing and after reopen",
+  "star_smoothness": "Values 0, 1 and 2 are retained",
+  "kit_before_native_import": "The original SurfaceHeader is retained"
+ },
+ "scrub": {
+  "archives_changed": 2,
+  "typed_models_unchanged": 11,
+  "report": "re/Fusion/LocalOracle/FormDocuments/General/CapAccept/ScrubValidation.json"
+ }
+}

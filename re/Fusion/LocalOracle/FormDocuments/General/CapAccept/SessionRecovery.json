@@ -1,0 +1,18 @@
+{
+ "scope": "Fresh-process oracle restart after the preflight probe",
+ "preflight": "SessionProbe.json",
+ "previous_oracle_process_id": 98846,
+ "documents_open_before_request": 0,
+ "action": "Graceful AppleScript quit, followed by a guarded bundle-identifier launch only after the application stopped",
+ "quit_result": "Autodesk Fusion initially returned User cancelled (-128)",
+ "subsequent_bridge_result": "ECONNREFUSED on 127.0.0.1:9766",
+ "running_state_after_error": false,
+ "process_terminated": true,
+ "forced_termination_attempted": false,
+ "documents_affected": false,
+ "fresh_launch_initiated": true,
+ "accepted_oracle_process_id": 24703,
+ "fresh_process_verified": true,
+ "native_acceptance": "NativeAcceptance.json",
+ "workaround": "Check the actual running state after a quit error. Start the application only when it is stopped and the preflight document count is zero"
+}
