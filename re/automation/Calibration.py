@@ -7,6 +7,13 @@ import time
 from pathlib import Path
 
 from Adapters import A03Adapter
+from CalibrationGroupEvidence import (
+    GROUP_LIMIT_BYTES,
+    GROUP_MAX_MEMBERS,
+    LOG_LIMIT,
+    compare,
+    observe as observe_groups,
+)
 from CalibrationManifest import ROOT, file_identity, load_manifest, source_identity
 from CalibrationMetrics import jobs as measured_jobs
 from CalibrationMetrics import recommendation, summarize
@@ -25,7 +32,6 @@ from Sessions import write_private
 
 STEPS = (1, 2, 4, 8, 16)
 DEFAULT_MAX_CONCURRENCY = 8
-LOG_LIMIT = 4 * 1048576
 
 
 class Calibration:
@@ -36,10 +42,20 @@ class Calibration:
     def interrupt(self, number, frame):
         self.interrupted = True
 
-    def prepare(self, directory, requested, manifest, specifications, bindings):
+    def prepare(
+        self,
+        directory,
+        requested,
+        manifest,
+        specifications,
+        bindings,
+        *,
+        grouped=False,
+        paired=False,
+    ):
         directory.mkdir(mode=0o700)
         store = directory / "Controller"
-        with Ledger(store, True, requested) as ledger:
+        with Ledger(store, True, GROUP_MAX_MEMBERS if paired else requested) as ledger:
             ledger.pool(manifest["pool"], [manifest["kind"]])
             for name, settings in manifest["resources"].items():
                 ledger.resource(
@@ -94,16 +110,24 @@ class Calibration:
                 }
             }
         }
+        runner = registry["runners"][manifest["kind"]]
+        group_fields = (
+            {
+                "group_protocol": 1,
+                "group_limit_bytes": GROUP_LIMIT_BYTES,
+                "group_peak_memory_mib": runner["initial_peak_memory_mib"],
+            }
+            if grouped
+            else {}
+        )
+        runner.update(group_fields)
         write_private(directory / "Runners.json", registry)
         interpreted = Registry(directory / "Runners.json", ROOT)
-        if interpreted.runners[manifest["kind"]].get(
-            "group_protocol"
-        ) is not None or any(
-            key.startswith("group_") for key in registry["runners"][manifest["kind"]]
+        interpreted_runner = interpreted.runners[manifest["kind"]]
+        if interpreted_runner["group_protocol"] != (1 if grouped else None) or any(
+            interpreted_runner[field] != value for field, value in group_fields.items()
         ):
-            raise ValueError(
-                "calibration requires an explicitly single-job runner interpretation"
-            )
+            raise ValueError("deployed runner grouping differs from calibration")
         if interpreted.argv(manifest["kind"], directory / "Probe") != [
             sys.executable,
             str(Path(__file__).with_name("CalibrationDecode.py")),
@@ -116,11 +140,9 @@ class Calibration:
             directory / "RegistryContract.json",
             {
                 "sha256": file_identity(directory / "Runners.json")["sha256"],
-                "declared_group_fields": [],
-                "runtime_group_protocol": interpreted.runners[manifest["kind"]].get(
-                    "group_protocol"
-                ),
-                "single_job_per_session": True,
+                "declared_group_fields": sorted(group_fields),
+                "runtime_group_protocol": interpreted_runner["group_protocol"],
+                "single_job_per_session": not grouped,
             },
         )
         config = {
@@ -375,10 +397,22 @@ class Calibration:
         if capture.seen > capture.retained:
             raise OSError("private recovery log exceeded its retained limit")
 
-    def run(self, manifest_path, output, max_concurrency=DEFAULT_MAX_CONCURRENCY):
+    def run(
+        self,
+        manifest_path,
+        output,
+        max_concurrency=DEFAULT_MAX_CONCURRENCY,
+        *,
+        compare_grouped=False,
+    ):
         if max_concurrency not in (DEFAULT_MAX_CONCURRENCY, STEPS[-1]):
             raise ValueError("calibration maximum concurrency must be 8 or 16")
         steps = tuple(step for step in STEPS if step <= max_concurrency)
+        plan = (
+            [("Singleton", 1, False), ("Grouped", 1, True)]
+            if compare_grouped
+            else [(f"Trial{step}", step, False) for step in steps]
+        )
         if sys.platform not in ("linux", "darwin", "win32"):
             raise ValueError("offline calibration requires Linux, macOS, or Windows")
         if sys.version_info < (3, 14):
@@ -398,14 +432,20 @@ class Calibration:
         initial_sources = source_identity()
         identity = {"manifest_sha256": manifest_sha, **initial_sources}
         trials, summary, stopped = [], [], None
-        for requested in steps:
+        for name, requested, grouped in plan:
             if self.interrupted:
                 stopped = "interrupted"
                 break
-            directory = output / f"Trial{requested}"
+            directory = output / name
             try:
                 adapter = self.prepare(
-                    directory, requested, manifest, specifications, bindings
+                    directory,
+                    requested,
+                    manifest,
+                    specifications,
+                    bindings,
+                    grouped=grouped,
+                    paired=compare_grouped,
                 )
                 host = host_resources()
             except (OSError, ValueError, KeyError, TypeError) as error:
@@ -467,7 +507,12 @@ class Calibration:
                 )
             if source_identity() != initial_sources:
                 reason = "sources_changed"
-            records = measured_jobs(adapter, directory / "Controller", specifications)
+            records = measured_jobs(
+                adapter,
+                directory / "Controller",
+                specifications,
+                verify_accepted=compare_grouped,
+            )
             if any(
                 record["state"] in {"failed", "rejected"}
                 or record["attempts"] > 1
@@ -498,6 +543,10 @@ class Calibration:
                 limited,
                 current_identity,
             )
+            if compare_grouped:
+                trial.update(
+                    observe_groups(directory, manifest, specifications, grouped, trial)
+                )
             trial.update(
                 {
                     "observations": observations,
@@ -522,20 +571,24 @@ class Calibration:
                 break
         if self.interrupted:
             stopped = stopped or "interrupted"
-        recommended, comparisons = recommendation(trials)
+        recommended, comparisons = (
+            (None, [compare(trials)]) if compare_grouped else recommendation(trials)
+        )
         report = {
             "calibration_version": 1,
             **identity,
             "adaptive_limits": False,
-            "grouping": False,
-            "requested_steps": list(steps),
+            "grouping": compare_grouped,
+            "requested_steps": [requested for _, requested, _ in plan],
             "trials": summary,
-            "completed_sweep": len(trials) == len(steps) and stopped is None,
+            "completed_sweep": len(trials) == len(plan) and stopped is None,
             "stop_reason": stopped,
             "recommended_concurrency": recommended if stopped is None else None,
             "comparisons": comparisons,
             "native_acceptance": "not_established",
         }
+        if compare_grouped:
+            report["scope"] = "paired-single-slot-grouped-offline"
         write_private(output / "Calibration.json", report)
         return report
 
@@ -546,16 +599,30 @@ def main():
     )
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument(
-        "--max-concurrency", type=int, choices=(DEFAULT_MAX_CONCURRENCY, STEPS[-1]),
-        default=DEFAULT_MAX_CONCURRENCY, help="include concurrency 16 in the fixed sweep",
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument(
+        "--max-concurrency",
+        type=int,
+        choices=(DEFAULT_MAX_CONCURRENCY, STEPS[-1]),
+        default=DEFAULT_MAX_CONCURRENCY,
+        help="include concurrency 16 in the fixed sweep",
+    )
+    modes.add_argument(
+        "--compare-grouped",
+        action="store_true",
+        help="compare one physical slot with and without grouped archive decoding",
     )
     args = parser.parse_args()
     calibration = Calibration()
     signal.signal(signal.SIGTERM, calibration.interrupt)
     signal.signal(signal.SIGINT, calibration.interrupt)
     try:
-        report = calibration.run(args.manifest, args.output, args.max_concurrency)
+        report = calibration.run(
+            args.manifest,
+            args.output,
+            args.max_concurrency,
+            compare_grouped=args.compare_grouped,
+        )
         print(
             canonical(
                 {

@@ -1,5 +1,4 @@
 import hashlib
-import json
 import os
 import sys
 import time
@@ -9,10 +8,12 @@ from Records import canonical
 from Sessions import read_bounded, write_private
 
 ROOT = Path(__file__).resolve().parents[2]
+SOURCE = str(ROOT / "src")
 
 
 def decode(content, kind, options):
-    sys.path.insert(0, str(ROOT / "src"))
+    if SOURCE not in sys.path:
+        sys.path.insert(0, SOURCE)
     if kind == "decode.solidworks":
         from convert.adapters.solidworks.core.Adapter import ReadSldprt
 
@@ -33,7 +34,52 @@ def decode(content, kind, options):
 
 def run(session):
     session = Path(session).resolve()
-    packet = read_bounded(session / "job.json")
+    path = session / "group.json"
+    if not path.exists() and not path.is_symlink():
+        decode_member(session, read_bounded(session / "job.json"))
+        return
+    if path.is_symlink() or (session / "job.json").exists():
+        raise ValueError("group must have one distinct private manifest")
+    group = read_bounded(path)
+    if (
+        not isinstance(group, dict)
+        or set(group)
+        != {"group_session_version", "session", "pool", "members", "stop_at"}
+        or type(group["group_session_version"]) is not int
+        or group["group_session_version"] != 1
+        or group["session"] != session.name
+    ):
+        raise ValueError("decoder group manifest does not match protocol 1")
+    members = group["members"]
+    if (
+        not isinstance(members, list)
+        or not 2 <= len(members) <= 20
+        or members != [f"jobs/{index:02d}/job.json" for index in range(len(members))]
+    ):
+        raise ValueError("decoder group must contain 2–20 ordered private members")
+    packets, identities = [], set()
+    for name in members:
+        member = session / name
+        if member.resolve() != member:
+            raise ValueError("decoder group member is aliased")
+        packet = read_bounded(member)
+        if (
+            type(packet["session_version"]) is not int
+            or packet["session_version"] != 1
+            or packet["session"] != group["session"]
+            or packet["pool"] != group["pool"]
+            or packet["stop_at"] != group["stop_at"]
+            or packet["result"] != "result.json"
+            or packet["job"]["id"] in identities
+        ):
+            raise ValueError("decoder member does not match the private group")
+        identities.add(packet["job"]["id"])
+        packets.append((member.parent, packet))
+    for directory, packet in packets:
+        decode_member(directory, packet)
+
+
+def decode_member(session, packet):
     job = packet["job"]
     source = packet["inputs"]["source"]
     path = (session / source["path"]).resolve()
