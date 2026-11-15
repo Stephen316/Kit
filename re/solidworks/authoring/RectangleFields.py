@@ -279,7 +279,7 @@ def line_fields(blob, span, line, endpoints, tallies):
     }
 
 
-def examine_archive(raw, name, reopen):
+def read_profile(raw, name):
     archive = SldprtArchive.from_bytes(raw, name)
     require(ContainerMo(archive.streams) == KGeneration, "unexpected saved generation")
     config, description = read_rectangle_configuration(
@@ -288,7 +288,11 @@ def examine_archive(raw, name, reopen):
     require(description["atom_count"] == 0, "expected a sketch-only configuration")
     blob = archive.require("Contents/Config-0-ResolvedFeatures")
     cursor, _ = read_resolved_prelude(blob, config, 18)
-    profile = ReadProfileBody(cursor, KGeneration)
+    return blob, ReadProfileBody(cursor, KGeneration)
+
+
+def examine_archive(raw, name, reopen):
+    blob, profile = read_profile(raw, name)
     ordered, proxy, endpoints, tallies = measured_graph(reopen, profile.NameValue)
     point_spans, line_spans = profile.Members.Points, profile.Members.Lines
     require(len(point_spans) == len(line_spans) == 5, "unexpected inline member roster")
@@ -333,7 +337,7 @@ def examine_archive(raw, name, reopen):
     }
 
 
-def report():
+def pinned_captures():
     snapshot = GitSnapshot(ROOT)
     raw_specs = snapshot.blob(REVISION, SPECIFICATIONS)
     require(sha256(raw_specs) == SPECIFICATION_SHA256, "pinned specifications changed")
@@ -363,24 +367,27 @@ def report():
     readbacks = snapshot.document(REVISION, intake["measurements"]["path"])[
         "observations"
     ]["reopened_files"]
-    cases = []
+    files = []
     for asset in intake["native_files"]:
         name = asset["path"].rsplit("/", 1)[-1]
         raw = snapshot.blob(REVISION, asset["path"])
         require(sha256(raw) == asset["sha256"], "pinned part digest changed")
-        cases.append(
-            {
-                "archive": name,
-                "source_sha256": asset["sha256"],
-                **examine_archive(raw, name, readbacks[name]),
-            }
-        )
-    require(len(cases) == 6, "unexpected P01 discovery count")
+        files.append((name, asset["sha256"], raw, readbacks[name]))
+    require(len(files) == 6, "unexpected P01 discovery count")
+    return intake["measurements"], files
+
+
+def report():
+    measurements, captures = pinned_captures()
+    cases = [
+        {"archive": name, "source_sha256": digest, **examine_archive(raw, name, reopen)}
+        for name, digest, raw, reopen in captures
+    ]
     return {
         "scope": "p01-inline-sketch-field-fragments",
         "capture_revision": REVISION,
         "application_build": KApplicationBuild,
-        "measurements": intake["measurements"],
+        "measurements": measurements,
         "native_candidate_emitted": False,
         "cases": cases,
     }
