@@ -14,7 +14,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from InferenceArchives import archive_cases, archive_gaps
-from InferenceRunner import FIELD_KIND, RESCAN_KIND, result_schema
+from InferenceHoldoutGate import verify_holdout
+from InferenceRunner import FIELD_KIND, GAP_KIND, RESCAN_KIND, result_schema
 from InferenceSchedule import build_schedule
 from PairedCaptureIntake import require
 from Records import canonical, digest
@@ -60,7 +61,7 @@ class GateStore:
         registry = self.write(
             "Registry.json",
             {
-                "runners": {FIELD_KIND: entry, RESCAN_KIND: entry},
+                "runners": {FIELD_KIND: entry, GAP_KIND: entry, RESCAN_KIND: entry},
             },
         )
         self.config = self.write(
@@ -112,10 +113,11 @@ class GateStore:
         )
         return {job["id"]: job for job in self.controller("status")["jobs"]}
 
-    def result(self, job, statuses):
+    def result(self, job, statuses, expected="completed"):
         status = statuses[job["id"]]
         require(
-            status["state"] == "completed", f"inference job did not complete: {status}"
+            status["state"] == expected,
+            f"inference job did not reach {expected}: {status}",
         )
         value = self.controller("artifact", status["result"])
         return json.loads(Path(value["path"]).read_bytes())["result"]["records"]
@@ -137,12 +139,11 @@ def stage(gate, plan, streams, archives):
             pin: {"format": source_format, "binding": gate.bind(pin, content)}
             for pin, (source_format, content) in sorted(archives.items())
         },
-        "distinguishing_evidence": [
-            "direction-negative",
-            "depth-edit",
-            "width-edit",
-            "height-edit",
-        ],
+        "distinguishing_evidence": (
+            ["direction-negative", "depth-edit", "width-edit", "height-edit"]
+            if streams
+            else (["through-all", "blind"] if plan["status"] == "refuted" else [])
+        ),
         "depends_on": [],
     }
 
@@ -192,6 +193,49 @@ def verify_case(gate, jobs, statuses):
     }
 
 
+def verify_gaps(gate):
+    gaps, native_sources = archive_gaps()
+    jobs = {}
+    for report in gaps:
+        archives = {pin: native_sources[pin] for pin in report["affected_archives"]}
+        request = stage(gate, report, {}, archives)
+        request["assessment_kind"] = GAP_KIND
+        jobs[report["status"]] = gate.schedule(request)
+    require(
+        set(jobs) == {"refuted", "needs-distinguishing-evidence"},
+        "paired Cut gaps lost their distinguishing controls",
+    )
+    statuses = gate.run()
+    for verdict, scheduled in jobs.items():
+        approved = verdict == "refuted"
+        expected = "completed" if approved else "waiting_evidence"
+        assessment = gate.result(scheduled[0], statuses, expected)
+        require(
+            assessment["assessment"]["status"] == verdict,
+            "paired gap outcome differs from the pinned report",
+        )
+        if approved:
+            rescans = [gate.result(job, statuses) for job in scheduled[1:]]
+            require(
+                sorted(row["source_sha256"] for row in rescans)
+                == assessment["source_sha256"]
+                and all(
+                    row["assessment_sha256"] == digest(assessment) for row in rescans
+                ),
+                "paired counterexample rescans did not follow their archived scope",
+            )
+        else:
+            require(
+                all(
+                    statuses[job["id"]]["state"] == "waiting_evidence"
+                    and statuses[job["id"]]["attempts"] == 0
+                    for job in scheduled[1:]
+                ),
+                "unresolved paired gap released dependent rescans before the grid evidence",
+            )
+    return gaps
+
+
 def check(directory):
     gate = GateStore(directory)
     requests = [stage(gate, *case) for case in archive_cases()]
@@ -215,19 +259,13 @@ def check(directory):
         "rule change caused a rescan beyond the affected scope",
     )
     verify_case(gate, schedules[0], changed)
-    gaps = archive_gaps()
-    require(
-        {(gap["scope"], gap["status"]) for gap in gaps}
-        == {
-            ("p04-cut-termination", "refuted"),
-            ("p04-through-all-body-selection", "needs-distinguishing-evidence"),
-        },
-        "paired Cut hypotheses lost their controls or unresolved policy",
-    )
+    gaps = verify_gaps(gate)
+    holdout = verify_holdout(gate)
     return {
         "inference_version": 1,
         "cases": results,
         "shared_gaps": gaps,
+        "holdout_process_checks": holdout,
         "unchanged_attempts": len(unchanged),
         "affected_jobs": sorted(rerun),
     }

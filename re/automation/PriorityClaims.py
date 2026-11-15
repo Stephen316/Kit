@@ -63,6 +63,16 @@ def runnable_jobs(ledger, pool, *, grouped=False):
             WHERE request.installation=p.installation AND request.lane=0
               AND request.definition_hash=grid.definition_hash
               AND grid.state='queued'
+              AND grid.next_run<=:now
+              AND NOT EXISTS (
+                  SELECT 1 FROM job_resources required
+                  LEFT JOIN resources available ON available.name=required.resource
+                  WHERE required.job_id=grid.id AND (COALESCE(available.available,0)=0 OR (
+                      SELECT COUNT(*) FROM job_resources held
+                      JOIN jobs owner ON owner.id=held.job_id
+                      WHERE held.resource=required.resource AND owner.state='running'
+                  )>=available.capacity)
+              )
         ))
         ORDER BY schedule_lane,COALESCE(turn.attempt,0),
             CASE WHEN p.job_id IS NOT NULL THEN (

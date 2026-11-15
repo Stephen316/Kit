@@ -441,6 +441,11 @@ def archive_gaps():
         evidence["application"]: cut_contrasts(snapshot, evidence)
         for evidence in (fusion, solidworks)
     }
+    native_sources = {
+        asset["sha256"]: (FORMATS[app], native_bytes(snapshot, asset))
+        for app, proof in apps.items()
+        for asset in (item["archive"] for item in proof["controls"].values())
+    }
     sw_control = apps["solidworks"]["controls"]["termination-through-all"]
     require(
         sw_control["archive"]["sha256"] == CONTROL_ARCHIVE
@@ -452,16 +457,21 @@ def archive_gaps():
     require(
         sha256(grid) == SOURCE_SHA256["ScopeControlSpec.json"], "scope grid pin differs"
     )
-    return [
+    gaps = [
         {
+            "inference_version": 1,
             "scope": "p04-cut-termination",
             "recipe_family": recipe["family"],
             "capture_revision": REVISION,
             "status": "refuted",
             "hypothesis": "Every paired Cut owns the same blind depth field",
+            "affected_archives": {
+                pin: source_format for pin, (source_format, _) in native_sources.items()
+            },
             "counterexamples": apps,
         },
         {
+            "inference_version": 1,
             "scope": "p04-through-all-body-selection",
             "recipe_family": recipe["family"],
             "capture_revision": REVISION,
@@ -469,7 +479,9 @@ def archive_gaps():
             "hypothesis": "A saved target list identifies automatic versus explicit selection",
             "reason": "One saved target is compatible with both policies on a one-body model",
             "affected_archives": {
-                app: proof["controls"]["termination-through-all"]["archive"]
+                proof["controls"]["termination-through-all"]["archive"][
+                    "sha256"
+                ]: FORMATS[app]
                 for app, proof in apps.items()
             },
             "requested_grid": {
@@ -480,3 +492,4 @@ def archive_gaps():
             },
         },
     ]
+    return gaps, native_sources

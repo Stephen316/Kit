@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 from InferenceInputs import checksum
-from InferenceRunner import FIELD_KIND, FORMATS, RESCAN_KIND
+from InferenceRunner import FIELD_KIND, FORMATS, GAP_KIND, RESCAN_KIND
 from Records import canonical, digest, label, read_record, specification
 
 REQUEST_FIELDS = {
@@ -30,7 +30,7 @@ REQUEST_FIELDS = {
 
 def build_schedule(request):
     if (
-        set(request) - {"grids"} != REQUEST_FIELDS
+        set(request) - {"grids", "assessment_kind"} != REQUEST_FIELDS
         or type(request["inference_version"]) is not int
         or request["inference_version"] != 1
     ):
@@ -41,9 +41,13 @@ def build_schedule(request):
     archives = request["archives"]
     evidence = request["distinguishing_evidence"]
     dependencies = request["depends_on"]
+    kind = request.get("assessment_kind", FIELD_KIND)
+    if kind not in {FIELD_KIND, GAP_KIND}:
+        raise ValueError("unsupported inference assessment kind")
     if (
         not isinstance(streams, dict)
-        or not 1 <= len(streams) <= 63
+        or not 0 <= len(streams) <= 63
+        or bool(streams) != (kind == FIELD_KIND)
         or "plan" in streams
     ):
         raise ValueError("schedule must select 1–63 streams and a distinct plan")
@@ -90,7 +94,7 @@ def build_schedule(request):
             {
                 **version,
                 "id": assessment_id,
-                "kind": FIELD_KIND,
+                "kind": kind,
                 "inputs": {"plan": request["plan_input"], **streams},
                 "depends_on": [*dependencies, *required_grids],
                 "options": {"scope": scope},
