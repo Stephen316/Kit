@@ -236,7 +236,6 @@ def read_face_data(cursor):
     component = read_component_face(cursor)
     close_plane_data(cursor, plane)
     Require(cursor.read("<i"), (0,), "face-based component plane axis code")
-    Require(cursor.position, len(cursor.blob), "exact enclosing support return")
     return {
         "plane_data_object": index,
         "support_end": cursor.position,

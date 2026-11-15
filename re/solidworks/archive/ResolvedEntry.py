@@ -226,7 +226,9 @@ def read_origin_entry(cursor):
     name, feature_id, _ = read_profile_body_prefix(cursor, (0xC0000000,))
     Require((name, feature_id), ("Origin", 5), "typed origin profile")
     sketch_offset = cursor.position
-    sketch_kind = KClassRefKind if "sgSketch" in cursor.classes.values() else KDefinitionKind
+    sketch_kind = (
+        KClassRefKind if "sgSketch" in cursor.classes.values() else KDefinitionKind
+    )
     sketch = cursor.pointer(sketch_kind, "sgSketch")
     geometry = read_origin_geometry(cursor, sketch_offset)
     presentation = read_presentation(cursor)
@@ -443,8 +445,11 @@ def read_resolved_prelude(blob, config_map, expected_count):
 
 
 # P04 continues from the ordinary document prelude through the cut's dependencies
-def read_list_prefix(blob, config_map, through_cut=False):
-    from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefinitionKind
+def read_list_prefix(blob, config_map, through_cut=False, through_support=False):
+    from convert.adapters.solidworks.container.Archive import (
+        KClassRefKind,
+        KDefinitionKind,
+    )
     from RectangleTail import read_rectangle_tail
     from SketchRoot import Require
 
@@ -464,7 +469,7 @@ def read_list_prefix(blob, config_map, through_cut=False):
         "next_offset": cursor.position,
         "next_map_index": cursor.next_index,
     }
-    if through_cut:
+    if through_cut or through_support:
         from BossPrefix import read_boss_close
 
         boss.update(read_boss_close(cursor))
@@ -481,6 +486,15 @@ def read_list_prefix(blob, config_map, through_cut=False):
         report.update(
             cut_link=cut,
             stopped_in="moProfileFeature_c",
+            next_offset=cursor.position,
+            next_map_index=cursor.next_index,
+        )
+    if through_support:
+        from CutSupport import read_cut_support
+
+        result = read_cut_support(cursor, report["cut_link"], boss)
+        report.update(
+            cut_support=result,
             next_offset=cursor.position,
             next_map_index=cursor.next_index,
         )
@@ -540,6 +554,7 @@ def read_profile(blob, config_map, start, reference, reference_class, target):
 
 # native offsets corroborate reached links only on the two independently traced inputs
 def compare_profile_witness(name, resolved, config_map, report, control):
+    from CutSupport import check_cut_witness
     from SketchRoot import Require
 
     resolved_pin = WINDOWS[name]
@@ -596,6 +611,9 @@ def compare_profile_witness(name, resolved, config_map, report, control):
         resolved_pin["ordered_edges"],
         "reached boss cap has the licensed ordered boundaries",
     )
+    cut_support = report["list_prefix"].get("cut_support")
+    if cut_support is not None:
+        check_cut_witness(cut_support, resolved_pin)
     report.update(
         native_handoff_witness_sha256=control["handoff_sha256"],
         native_profile_witness_sha256=control["link_sha256"],
@@ -605,7 +623,7 @@ def compare_profile_witness(name, resolved, config_map, report, control):
 
 
 # exact blob pinning binds every sequential replay to its measured discovery case
-def read_capture(root, asset, measured, through_cut=False):
+def read_capture(root, asset, measured, through_cut=False, through_support=False):
     from ConfigMap import ReadConfigMap
     from convert.adapters.solidworks.container.Archive import ContainerMo
     from convert.adapters.solidworks.container.Container import SldprtArchive
@@ -620,7 +638,7 @@ def read_capture(root, asset, measured, through_cut=False):
     config = container.require("Contents/Config-0")
     resolved = container.require("Contents/Config-0-ResolvedFeatures")
     config_map, _ = ReadConfigMap(config, KApplicationBuild)
-    prefix = read_list_prefix(resolved, config_map, through_cut)
+    prefix = read_list_prefix(resolved, config_map, through_cut, through_support)
     profiles = [
         feature["name"]
         for feature in measured["feature_tree"]
@@ -662,7 +680,7 @@ def read_capture(root, asset, measured, through_cut=False):
         ),
         "measured boss direction and termination",
     )
-    if through_cut:
+    if through_cut or through_support:
         cut = prefix["cut_link"]
         Require(profiles[1:2], [cut["name"]], "second measured user profile")
         depth = boss["depth_display"]["dimension"]
@@ -673,6 +691,13 @@ def read_capture(root, asset, measured, through_cut=False):
             if item["name"] == depth["parameter_name"]
         ]
         Require(dimensions, [depth["metres"]], "measured named boss depth dimension")
+    if through_support:
+        from CutSupport import check_cut_normal
+
+        cut = prefix["cut_link"]
+        cuts = [item for item in measured["sketches"] if item["name"] == cut["name"]]
+        Require(len(cuts), 1, "one measured cut sketch")
+        check_cut_normal(prefix["cut_support"], cuts[0])
     report = {
         "file": name,
         "native_sha256": digest,
@@ -691,6 +716,11 @@ def main():
     parser.add_argument(
         "--through-cut", action="store_true", help="walk to the CutSketch link"
     )
+    parser.add_argument(
+        "--through-support",
+        action="store_true",
+        help="walk through the CutSketch support",
+    )
     arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
     sys.path.insert(0, str(root / "src"))
@@ -701,7 +731,13 @@ def main():
         "capture_receipt_sha256": KReceiptDigest,
         "application_build": KApplicationBuild,
         "captures": [
-            read_capture(root, asset, measured[asset["file"]], arguments.through_cut)
+            read_capture(
+                root,
+                asset,
+                measured[asset["file"]],
+                arguments.through_cut,
+                arguments.through_support,
+            )
             for asset in receipt["native_files"]
         ],
     }

@@ -101,3 +101,16 @@ After the display returns, `moFromEndSpec_c` at slot 415 records type 0 for the 
 | YZ | 9,354 | 9,487 | 9,670 | 9,672 |
 | Through-all | 9,282 | 9,415 | 9,598 | 9,600 |
 | Baseline B, six parameter edits and inch display | 9,512 | 9,645 | 9,828 | 9,830 |
+
+## Continuous CutSketch support
+
+Run `python re/solidworks/archive/ResolvedEntry.py --through-support` to carry the derived Config-0 and ResolvedFeatures map through the CutSketch support in all eleven captures. The JSON report SHA-256 is `52e1dfee9c4c633104e9624c2ea24139ed5a6b792b3a0e36696372c14a0e0264`. The independent [face-support replay](SolidWorksFaceOccurrence.md) retains its own stream anchors, licensed map and output digest.
+
+The sequential reader continues from the resolved CutSketch pointer into the chain, framed kernel packet, four typed profile edges and embedded supporting plane. These fields use the classes and object references materialized by the preceding walk. The loaded support cap and four profile face references carry the same file object, feature ID, timestamp and positive occurrence as the earlier BlindBoss cap. The ordered support boundary IDs also match the boss cap. This comparison holds for all eleven captures. Independent reopen measurements identify face support in every capture. The decoded world normal agrees with the measured sketch transform in each case, with +X for YZ and +Z for the remaining ten.
+
+Baseline A and YZ match the independently licensed kernel packet, reference plane, nested face, map and support return boundaries. Baseline A also matches the licensed atom span. The replay reaches map index 475 after the qualifying support in every capture. The enclosing CutSketch feature trailer and later resolved-list entries remain outside this replay.
+
+| Capture | Support entry | Support return | Ordered cap boundaries |
+| --- | ---: | ---: | --- |
+| Baseline A | 11,531 | 12,588 | `[4, 1, 2, 3]` |
+| YZ | 11,595 | 12,724 | `[4, 3, 2, 1]` |

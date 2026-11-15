@@ -132,6 +132,7 @@ def read_capture(root, asset, reading, witness):
         profile["support_offset"], witness["support_start"], "licensed support token"
     )
     prefix = read_reference_plane(cursor, context=0)
+    Require(cursor.position, end, "exact enclosing support return")
     Require(
         prefix["plane_data_start"],
         witness["plane_data_start"],

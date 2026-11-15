@@ -66,6 +66,11 @@ def read_edge(cursor, pointer_kind):
 # reaching the witnessed token through typed reads distinguishes the effective support from lookalikes
 def read_profile_support(cursor):
     sketch = cursor.pointer(KObjectRefKind, "sgSketch")
+    return read_profile_body(cursor, sketch)
+
+
+# the sequential reader already resolved the sketch before entering the profile body
+def read_profile_body(cursor, sketch):
     Require(cursor.read("<Ii"), (1, 1), "one modern profile chain")
     chain = read_chain(cursor)
     body = read_body_packet(cursor)

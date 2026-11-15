@@ -2,6 +2,8 @@
 
 Run `python re/solidworks/archive/FaceEvidence.py` from the repository root with Git and the repository Python environment available. The command writes a JSON report for the two licensed discovery captures. It verifies the pinned P04 receipt, independent measurements, native file hashes, full resolved-stream hashes and model generation 19000. Starting at the witnessed CutSketch `sgSketch` pointer, it follows the typed profile and embedded reference plane through the supporting face return on one archive map. It compares the decoded orientation, face identity and boundaries with native observations. The report SHA-256 is `2005a0fb4ea376c4d55ae499a796e239351b6b0ff743f04656f687c41c1a0a98`. [Licensed support, nested ownership and face controls](../../../../re/solidworks/records/P04SketchResidence.md#licensed-cut-sketch-support-owner)
 
+The [continuous support replay](SolidWorksResolvedEntry.md#continuous-cutsketch-support) derives this map from the earlier Config-0 and resolved records for all eleven discovery captures. Its baseline A and YZ results cross-check these independent licensed boundaries.
+
 | Capture | Face-plane declaration | Typed face token and return | End of support | Plane root (m) | Normal | Primary tuple | Ordered edge occurrences |
 | --- | ---: | ---: | ---: | --- | --- | --- | --- |
 | Baseline A | 11,927 | 12,200–12,366 | 12,588 | `(0,0,0.01)` | `+Z` | `(34,1794688208,1)` | `4,1,2,3` |
