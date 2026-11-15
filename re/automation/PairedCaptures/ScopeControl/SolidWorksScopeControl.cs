@@ -209,12 +209,11 @@ public sealed class SolidWorksScopeControl
         return bodies.ToDictionary(item => item.Key, item =>
         {
             var body = item.Value;
-            var mass = (IMassProperty2)doc.Extension.CreateMassProperty2();
-            mass.UseSystemUnits = true;
-            mass.SelectedItems = new object[] { body };
-            Check(mass.Recalculate() && mass.Volume > 0, "Could not measure isolated solid " + item.Key);
+            var mass = Numbers(body.GetMassProperties(1.0));
+            Check(mass.Length == 12 && mass.Take(4).All(value => !double.IsNaN(value) && !double.IsInfinity(value))
+                && mass[3] > 0, "Could not measure isolated solid " + item.Key);
             return (object)Row("bounds_mm", new[] { Extremes(body, -1), Extremes(body, 1) },
-                "volume_mm3", mass.Volume * 1e9, "centroid_mm", Numbers(mass.CenterOfMass).Select(value => value * Mm).ToArray(),
+                "volume_mm3", mass[3] * 1e9, "centroid_mm", mass.Take(3).Select(value => value * Mm).ToArray(),
                 "face_count", body.GetFaceCount(), "edge_count", body.GetEdgeCount(),
                 "vertex_count", body.GetVertexCount(), "producer", Identity(producers[item.Key]));
         });
