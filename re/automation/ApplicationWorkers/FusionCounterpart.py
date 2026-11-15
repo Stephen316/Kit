@@ -16,6 +16,8 @@ def pinned_plan(host, work, body):
     except RecursionError as error:
         raise ValueError("application plan exceeds the supported nesting") from error
     protocol["require"](isinstance(plan, dict), "application plan must be an object")
+    if protocol["windows_phase_a"](host.config):
+        protocol["require"]("scope" not in plan, "Windows Fusion only admits ordinary Phase A")
     if plan.get("scope") == SCOPE:
         return pinned_scope_plan(host, plan)
     protocol["require"](set(plan) == {"schema", "source_revision", "recipes", "pins", "existing"}
@@ -24,6 +26,8 @@ def pinned_plan(host, work, body):
                         and len(set(plan["recipes"])) == len(plan["recipes"])
                         and set(plan["recipes"]) <= {"P01", "P02", "P03", "P04"}, "invalid pinned Fusion phase plan")
     tool = protocol["load_pinned"](host.config, protocol["TOOL"])
+    if protocol["windows_phase_a"](host.config):
+        tool["WINDOWS_GIT"] = protocol["windows_git"]()
     names = {"tool": tool["TOOL"], "helper": tool["HELPER"], "bindings": tool["BINDINGS"],
              "specification": tool["SPEC"], "control": tool["CONTROL"]}
     protocol["require"](set(plan["pins"]) == set(names), "Fusion phase pin roster changed")
@@ -129,7 +133,12 @@ def capture_phase(host, work, value, app, plan, tool):
         )
         return capture_scope_phase(host, work, value, app, plan, tool)
     phase = body["phase"]
-    tool["run_phase"](work / "plan.json", body["plan_sha256"], phase)
+    windows = protocol["windows_phase_a"](host.config)
+    if windows:
+        process = protocol["windows_process"](host.host)
+        tool["run_phase"](work / "plan.json", body["plan_sha256"], phase, windows_process=process)
+    else:
+        tool["run_phase"](work / "plan.json", body["plan_sha256"], phase)
     result = protocol["record"](work / f"phase-{phase}" / "measurements.json")
     protocol["require"](result["status"] == "complete" and result["phase"] == phase
                         and result["plan_sha256"] == body["plan_sha256"]
@@ -137,6 +146,8 @@ def capture_phase(host, work, value, app, plan, tool):
                         and result["source_revision"] == host.config["source_revision"]
                         and result["fusion_version"] == app.version,
                         "Fusion phase receipt does not match the dispatched process and plan")
+    if windows:
+        protocol["require"](result["process"] == process, "Windows phase process identity changed")
     names = {f"phase-{phase}.receipt": f"phase-{phase}/receipt.json",
              f"phase-{phase}.measurements": f"phase-{phase}/measurements.json"}
     names.update({f"phase-{phase}.{recipe}": f"phase-{phase}/{recipe}-fusion-fresh-baseline-{phase}.f3d"
@@ -324,12 +335,14 @@ def capture_scope_phase(host, work, value, app, plan, tool):
 
 def serve(host, request_path, app):
     def action(value, work):
-        protocol["require"](host.config["application"] == "fusion" and os.name == "posix", "Fusion dispatch host is unsupported")
+        windows = protocol["windows_phase_a"](host.config)
+        protocol["require"](host.config["application"] == "fusion" and (windows or os.name == "posix"), "Fusion dispatch host is unsupported")
         body = value["body"]
         expected = {"plan_sha256"} if value["operation"] == "probe" else {"plan_sha256", "probe_sha256", "phase"}
         protocol["require"](set(body) == expected, "application request contains unsupported fields")
         if value["operation"] == "phase":
             protocol["require"](body["phase"] in ("a", "b"), "unsupported Fusion phase")
+            protocol["require"](not windows or body["phase"] == "a", "Windows Fusion Phase B remains parked")
         plan, tool = pinned_plan(host, work, body)
         if value["operation"] == "probe":
             return measure_probe(host, work, value, app, plan, tool)

@@ -29,6 +29,7 @@ import sys
 assert find_spec('win32api') is None and find_spec('pywintypes') is None
 identity = runpy.run_path(sys.argv[1])
 process_start = identity['process_start']
+peer_matches = identity['peer_matches']
 current_process = ctypes.WinDLL('kernel32').GetCurrentProcess
 current_process.argtypes = []
 current_process.restype = wintypes.HANDLE
@@ -43,6 +44,8 @@ try:
     started = process_start(peer.pid)
     assert started is not None and started.startswith('windows:')
     assert int(started.split(':')[1]) > 0 and process_start(peer.pid) == started
+    assert peer_matches(peer.pid, started)
+    assert not peer_matches(peer.pid, 'windows:' + str(int(started.split(':')[1]) + 1))
     try:
         process_start(peer.pid + (1 << 32))
     except OverflowError:
@@ -54,6 +57,7 @@ finally:
     peer.wait(timeout=10)
 
 assert peer.returncode == 0 and process_start(peer.pid) is None
+assert not peer_matches(peer.pid, started)
 """,
             str(SourceFile),
         ],
