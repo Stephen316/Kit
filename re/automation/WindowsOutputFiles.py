@@ -20,13 +20,13 @@ def open_output(root, relative):
             path = Path(root.anchor)
             for part in ("", *root.parts[1:], *relative.split("/")[:-1]):
                 path /= part
-                handle = win32file.CreateFile(str(path), 0, win32con.FILE_SHARE_READ, None, win32con.OPEN_EXISTING, win32con.FILE_FLAG_BACKUP_SEMANTICS | win32con.FILE_FLAG_OPEN_REPARSE_POINT, None)
+                handle = win32file.CreateFile(str(path), 0, win32con.FILE_SHARE_READ, None, win32con.OPEN_EXISTING, win32con.FILE_FLAG_BACKUP_SEMANTICS | win32file.FILE_FLAG_OPEN_REPARSE_POINT, None)
                 stack.callback(handle.Close)
                 attributes = win32file.GetFileInformationByHandle(handle)[0]
                 if not attributes & win32con.FILE_ATTRIBUTE_DIRECTORY or attributes & win32con.FILE_ATTRIBUTE_REPARSE_POINT:
                     raise ValueError("output ancestor must be a directory without a reparse point")
             path /= relative.split("/")[-1]
-            handle = win32file.CreateFile(str(path), win32con.GENERIC_READ, win32con.FILE_SHARE_READ, None, win32con.OPEN_EXISTING, win32con.FILE_FLAG_OPEN_REPARSE_POINT, None)
+            handle = win32file.CreateFile(str(path), win32con.GENERIC_READ, win32con.FILE_SHARE_READ, None, win32con.OPEN_EXISTING, win32file.FILE_FLAG_OPEN_REPARSE_POINT, None)
             try:
                 attributes = win32file.GetFileInformationByHandle(handle)[0]
                 if attributes & (win32con.FILE_ATTRIBUTE_DIRECTORY | win32con.FILE_ATTRIBUTE_REPARSE_POINT):

@@ -63,10 +63,16 @@ closed when those handles cannot be acquired.
 `tests/Research/Outputs` adds real supervisor/controller process scenarios for
 durability after cleanup, output corruption at dependency checks, unsafe files,
 manifest limits, adapter capability and revoked leases. Local tests were not run.
-Remote Linux, macOS and Windows execution is pending for this revision.
+The [Windows job at `ef431a17`](https://github.com/TryUniCAD/Kit/actions/runs/43668887044/job/132674284189)
+reported three failed and eight passed process cases. The three failures exposed
+an incorrect owner for the mandatory reparse-open flag. The repair uses the
+`win32file` export proven by pinned pywin32 source. A fresh remote Windows run
+remains required; this failure does not qualify Windows intake.
 
 The post-copy lease-expiry and concurrent-file-mutation rejection paths require
 independent synchronized process evidence. This change does not claim those
 branches were exercised. Licensed application capture/readback remains separate.
 
 See [the intake gotcha](../../../Gotchas/Research/Workers/WorkerOutputsNeedIntake.md).
+The [flag-owner gotcha](../../../Gotchas/Research/Workers/Pywin32ReparseFlagOwner.md)
+records the real Windows failure and source verification.
