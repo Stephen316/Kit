@@ -11,7 +11,7 @@ from ApplicationProtocol import (
     ACKNOWLEDGEMENT, check_spool, committed_bytes, directory, encoded, file_bytes, identity,
     owner_lock, pin, record, request_link, require, sync_directory, validate_request,
 )
-from SolidWorksReadbackWorker import OPERATION, PROVIDER, plan_hash, verify_native_ticket, verify_sources
+from SolidWorksReadbackWorker import OPERATION, PROVIDER, phase_request, verify_native_ticket, verify_sources
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ApplicationHolds import commit_rearm, parked_timeout, rearm_history
@@ -34,12 +34,12 @@ def claim_from_stdin():
     return validate_rearm_intent(value["intent"]), value["owner"]
 
 
-def terminal_timeout(spool, config, timeout):
+def terminal_timeout(spool, config, timeout, operation):
     request = record(spool / "native-timeout-request.json")
     validate_request(request, config, timeout["queue_job_id"], "phase")
     link = request_link(request)
     require(all(link[key] == timeout[key] for key in link)
-            and request["body"] == {"phase": OPERATION, "plan_sha256": plan_hash(config)}
+            and request["body"] == phase_request(config, operation)
             and not os.path.lexists(spool / "phase.running") and not os.path.lexists(spool / "phase.request")
             and not os.path.lexists(spool / "pending-acceptance.json"),
             "terminal spool does not contain the exact timed-out request")
@@ -92,8 +92,9 @@ def read_hold(store, claim, owner):
             ledger.verify_object(prior["archive"])
             return {"status": "already_rearmed", "archive": prior["archive"]}
         ledger.refresh()
-        hold, _, _, timeout = parked_timeout(ledger, claim)
-        return {"hold": dict(hold), "timeout": timeout}
+        hold, _, spec, timeout = parked_timeout(ledger, claim)
+        return {"hold": dict(hold), "timeout": timeout,
+                "operation": spec["options"].get("readback_operation", OPERATION)}
 
 
 def rearm(config, store, claim, owner):
@@ -103,6 +104,7 @@ def rearm(config, store, claim, owner):
         if "status" in parked:
             return parked
         timeout = parked["timeout"]
+        operation = parked["operation"]
         require(timeout["installation"] == config["installation"] and timeout["source_revision"] == config["source_revision"]
                 and not os.path.lexists(root / ACKNOWLEDGEMENT),
                 "parked attempt does not belong to this installation or another acknowledgement is pending")
@@ -123,7 +125,7 @@ def rearm(config, store, claim, owner):
             fence = record(fence_path)
         except FileNotFoundError:
             fence = None
-        listener = terminal_timeout(spool, config, timeout)
+        listener = terminal_timeout(spool, config, timeout, operation)
         require((fence is None and in_archive) or (
                     isinstance(fence, dict) and fence["reason"] == "quarantined" and fence["job_id"] == queue_job_id
                     and fence["installation"] == config["installation"] and fence["host"] in (None, listener)
@@ -133,9 +135,10 @@ def rearm(config, store, claim, owner):
             check_owner(ledger.db, owner)
             ledger.refresh()
             hold, receipt, spec, current = parked_timeout(ledger, claim)
-            require(dict(hold) == parked["hold"] and current == timeout,
+            require(dict(hold) == parked["hold"] and current == timeout
+                    and spec["options"].get("readback_operation", OPERATION) == operation,
                     "controller hold changed while the failed spool was staged")
-            require(terminal_timeout(spool, config, timeout) == listener,
+            require(terminal_timeout(spool, config, timeout, operation) == listener,
                     "terminal timeout changed while the failed spool was staged")
             if fence is not None:
                 require(record(fence_path) == fence, "application fence changed during archival")

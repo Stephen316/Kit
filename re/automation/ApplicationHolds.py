@@ -46,11 +46,12 @@ def matched_timeout(row, spec, result, owner):
                 "installation": records.get("installation"), "session": receipt.get("session"),
                 "generation": row["generation"], "fingerprint": row["fingerprint"], "attempt": row["attempts"]}
     client = timeout["client"]
+    pinned = {"source_revision": timeout["source_revision"]}
     return (
         all(timeout[key] == value for key, value in expected.items())
         and all(type(timeout[key]) is int for key in ("version", "generation", "attempt"))
         and isinstance(timeout["installation"], str) and isinstance(timeout["session"], str)
-        and spec["options"] == {"source_revision": timeout["source_revision"]}
+        and spec["options"] in (pinned, {**pinned, "readback_operation": "p01-p03-readback"})
         and all(isinstance(timeout[key], str) and re.fullmatch(pattern, timeout[key])
                 for key, pattern in (("queue_job_id", "[0-9a-f]{32}"), ("nonce", "[0-9a-f]{48}"),
                                      ("request_sha256", "[0-9a-f]{64}"), ("source_revision", "[0-9a-f]{40}")))

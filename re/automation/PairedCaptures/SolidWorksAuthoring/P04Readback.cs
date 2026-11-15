@@ -377,7 +377,25 @@ public sealed class P04Readback
             "The native Boss does not have one blind extent");
         return Row("feature", Feature(boss), "profile", Feature(profiles[0]),
             "end_condition", extrusion.GetEndCondition(true), "depth_m", extrusion.GetDepth(true),
-            "reverse_direction", extrusion.ReverseDirection, "both_directions", extrusion.BothDirections);
+            "reverse_direction", extrusion.ReverseDirection, "both_directions", extrusion.BothDirections,
+            "depth_dimension", BossDepth(boss, extrusion.GetDepth(true)));
+    }
+
+    object BossDepth(IFeature boss, double depth)
+    {
+        var owned = new List<IDimension>();
+        for (var current = boss.GetFirstDisplayDimension(); current != null; current = boss.GetNextDisplayDimension(current))
+        {
+            var display = (IDisplayDimension)current;
+            var dimension = display.GetDimension2(0) as IDimension;
+            if (dimension != null && dimension.Name == "depth_mm" && Same(dimension.GetFeatureOwner(), boss))
+                owned.Add(dimension);
+        }
+        Require(owned.Count == 1 && owned[0].DrivenState == (int)swDimensionDrivenState_e.swDimensionDriving
+            && Math.Abs(owned[0].SystemValue - depth) <= 1e-10, "Boss depth is not bound to the observed driving dimension");
+        var value = owned[0];
+        return Row("name", value.Name, "full_name", value.FullName, "driven_state", value.DrivenState,
+            "system_value_m", value.SystemValue, "owner", Feature(boss));
     }
 
     object ObservePrincipal(IModelDoc2 document, bool includesBoss)

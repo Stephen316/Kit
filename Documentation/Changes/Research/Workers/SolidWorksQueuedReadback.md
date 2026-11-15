@@ -1,6 +1,6 @@
-# Queue the licensed SOLIDWORKS P04 readback
+# Queue licensed SOLIDWORKS discovery readback
 
-This Windows application worker submits one fixed operation to the local application queue. The owner process runs the existing licensed P04 collector in a fresh SOLIDWORKS session. The collector verifies both healthy controls and all eleven discovery captures before and after rebuild. The controller retains the plan, measurements, receipt and dispatch record as immutable artifacts. [P04 collector and retained evidence](SolidWorksCutFaceReadback.md)
+This Windows application worker submits a fixed discovery operation to the local application queue. The owner process starts a fresh SOLIDWORKS session. The collector verifies both healthy controls and measures the selected capture set before and after rebuild. The controller retains the plan, measurements, receipt and dispatch record as immutable artifacts. [P04 collector and retained evidence](SolidWorksCutFaceReadback.md)
 
 Use the [application installation configuration](LocalApplicationDispatch.md#configure-an-installation) with `application` set to `solidworks`, an owner-private local endpoint and a Git checkout at the exact configured `source_revision`. Start the listener in the licensed Windows desktop with SOLIDWORKS closed. Use the existing Windows supervisor Python environment with pywin32 and supply the installed interop assembly for build `34.4.1.1011`.
 
@@ -16,11 +16,17 @@ python re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py --installati
 
 Give the installation a counted controller resource with capacity one. Once the listener owns the endpoint, mark the resource available with the controller's `resource <name> --available` command. The listener and native collector still verify each request and application session. [Resource availability](../../../Reference/Research/ResearchController.md)
 
-The listener stages the launcher from Git-verified bytes. The launcher verifies its own copy and the collector, specification, control and P04 archive bytes against the pinned checkout. The job supplies no executable path, CAD path or case selector. The [direct launch](SolidWorks/OwnedReadback.md) binds the collector's COM session to the process created by the listener. The collector closes that process before the host returns a successful phase.
+The listener stages the launcher from Git-verified bytes. The launcher verifies its own copy and the collector, specification, control and discovery archive bytes against the pinned checkout. The listener and registered runner agree on the fixed operation. The [direct launch](SolidWorks/OwnedReadback.md) binds the collector's COM session to the process created by the listener. The collector closes that process before the host returns a successful phase.
 
 An unavailable listener, stuck COM call or failed native control parks the job behind the application fence. A dedicated unattended desktop can enable [bounded timeout cleanup](SolidWorks/OwnedReadback.md#bound-timeout-recovery) and separately opt into [cleanup after a collector failure](SolidWorks/CollectorFailure.md). Inspect the retained disposition before retrying. On success the supervisor can acknowledge the exact accepted attempt using its configured installation. [Controller acceptance](SupervisedApplicationAcceptance.md)
 
 The readback records its source and native executable hashes. Broader native Windows dispatch, failed COM recovery and paired conversion qualification remain open.
+
+## P01 and P03 rectangle readback
+
+For this discovery set, add `--readback-operation p01-p03-readback` before `listen` in the owner command and before `dispatch` in the runner command. The job has empty inputs and options for the same `source_revision` and `"readback_operation": "p01-p03-readback"`. The fixed roster comes from the six P01 and eight P03 receipt entries. The collector records the principal datum, native sketch transform, four world edges, dimensions and constraint operands. For P03 it also records the selected Boss profile, blind length and direction, and solid measurements. Both before- and after-rebuild observations come from read-only copies.
+
+The licensed job at `e73200e83bf1456767595a8a92910fee5f21f9bc` used build `34.4.1.1011`. It observed all fourteen profiles, passed both healthy controls, and verified unchanged input bytes and owned process exit. A03 accepted the job on its first attempt and acknowledged its spool. The accepted result SHA-256 is `ee200894ec059271e434f1a99f059d6d84067bf1dc2b6bb4567fef5247415e91`. The readback receipt SHA-256 is `54a4a653c457ea2a749c37aec07de9ab6cbfcafbbbd379cd18f721cc7612e1bb`. The paired qualification still needs a fresh Fusion process.
 
 ## Licensed job evidence
 

@@ -14,7 +14,7 @@ from tests.Research.SupervisorClient import FixtureJob, KRepoRoot, SessionHost
 
 
 # the rearm fixture needs a bound terminal queue record and a real disposable process handle
-def RearmListener(Queue: DispatchHost) -> "Subprocess.Popen[str]":
+def RearmListener(Queue: DispatchHost, Operation: str) -> "Subprocess.Popen[str]":
     PathValue = Queue.RootPath / "RearmFixture.py"
     _ = PathValue.write_text(
         """import os
@@ -27,15 +27,17 @@ import win32process
 
 sys.path.insert(0, sys.argv[1])
 from ApplicationProtocol import configuration, encoded, sha256, write_record
-from SolidWorksReadbackWorker import BUILD, PROVIDER, ReadbackQueue, native_identity, record_timeout
+from SolidWorksReadbackWorker import BUILD, PROVIDER, ReadbackQueue, native_identity, phase_request, record_timeout
 
 config = configuration(Path(sys.argv[2]))
-host = ReadbackQueue(config, PROVIDER)
+operation = sys.argv[3]
+host = ReadbackQueue(config, PROVIDER, operation)
 exe = str(Path(os.environ['SystemRoot']) / 'System32/WindowsPowerShell/v1.0/powershell.exe')
 def args(script):
     return [exe, '-NoProfile', '-NonInteractive', '-Command', script]
 
 def fixture(value, work):
+    assert value["body"] == phase_request(config, operation)
     output = work / 'readback'
     output.mkdir()
     child, thread, _, _ = win32process.CreateProcess(
@@ -81,6 +83,7 @@ finally:
             str(PathValue),
             str(KRepoRoot / "re/automation/ApplicationWorkers"),
             str(Queue.ConfigFile),
+            Operation,
         ],
         stdout=Subprocess.PIPE,
         stderr=Subprocess.PIPE,
@@ -90,8 +93,11 @@ finally:
 
 # the real supervisor must consume the original attempt budget and retain both failed spools
 @TestMark.skipif(OsLayer.name != "nt", reason="requires Windows application transport")
-@TestMark.parametrize("Restart", (False, True))
-def CheckRearm(Restart: bool) -> None:
+@TestMark.parametrize(
+    ("Restart", "Operation"),
+    ((False, "p04-readback"), (True, "p04-readback"), (False, "p01-p03-readback")),
+)
+def CheckRearm(Restart: bool, Operation: str) -> None:
     with TempFiles.TemporaryDirectory() as TempName:
         RootPath = FilePath(TempName).resolve()
         Queue = DispatchHost(RootPath)
@@ -102,14 +108,18 @@ def CheckRearm(Restart: bool) -> None:
         SetAppRunner(Harness, Queue.ConfigFile, Readback=True)
         RegistryPath = RootPath / "Runners.json"
         Registry = JsonCodec.loads(RegistryPath.read_bytes())
-        Registry["runners"]["fixture.app"]["application_installation"] = str(
-            Queue.ConfigFile
-        )
+        Runner = Registry["runners"]["fixture.app"]
+        Runner["application_installation"] = str(Queue.ConfigFile)
+        if Operation != "p04-readback":
+            Runner["argv"][-2:-2] = ["--readback-operation", Operation]
         _ = RegistryPath.write_text(JsonCodec.dumps(Registry), encoding="utf-8")
-        Listener = RearmListener(Queue)
+        Listener = RearmListener(Queue, Operation)
         try:
             _ = Queue.WaitFile("ready.json")
-            RunRetries(Harness, str(Config["source_revision"]), Restart)
+            Options = {"source_revision": str(Config["source_revision"])}
+            if Operation != "p04-readback":
+                Options["readback_operation"] = Operation
+            RunRetries(Harness, Options, Restart)
             AssertSpools(Queue)
         finally:
             (Queue.Endpoint / "stop-fixture").touch()
@@ -118,7 +128,7 @@ def CheckRearm(Restart: bool) -> None:
 
 
 # a successful rearm must issue only the next configured attempt without erasing the first result
-def RunRetries(Harness: SessionHost, Revision: str, Restart: bool) -> None:
+def RunRetries(Harness: SessionHost, Options: dict[str, str], Restart: bool) -> None:
     Harness.SubmitJobs(
         [
             FixtureJob(
@@ -129,7 +139,7 @@ def RunRetries(Harness: SessionHost, Revision: str, Restart: bool) -> None:
                 max_attempts=2,
                 retry_base_seconds=1,
                 resources=["application:missing"],
-                options={"source_revision": Revision},
+                options={**Options},
             )
         ]
     )
