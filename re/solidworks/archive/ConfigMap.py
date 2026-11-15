@@ -27,6 +27,8 @@ from ConfigDetail import (
     ReadStyleHead,
     ReadStyleTail,
 )
+from ConfigLabel import ReadLabelDefs
+from ConfigTable import ReadTableDefs
 from SketchReader import ReadSketchConfiguration
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
@@ -147,11 +149,13 @@ def ReadModelPresentation(Cursor):
         ReadLengthLink(Cursor, Events)
         ReadStyleTail(Cursor, Format)
     ReadAnnotDefs(Cursor)
+    ReadTableDefs(Cursor)
+    ReadLabelDefs(Cursor)
     ReadPointers(
         Cursor,
         Events,
         (
-            (6857, KNullKind, None),
+            (1821, KNullKind, None),
             (0, KNullKind, None),
             (48, KNullKind, None),
             (0, KNullKind, None),

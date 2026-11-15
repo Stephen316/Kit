@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 9,917 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 14,953 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -28,7 +28,13 @@ The [annotation settings reader](../../../../re/solidworks/archive/ConfigAnnot.p
 
 Each member uses `moBaseAnnotationDefs_c` at `0x136430`, including a guarded absent layer, two inline line widths and a framed character format. The subclass load paths add scalar settings, three framed strings for balloons and a second character format for welds. The revision cloud and view location label layouts close the annotation section without archive allocations.
 
-Baseline A reaches `moTableDefs_c` at decompressed offset 28,368. The next open interval begins with that serializer and covers 6,857 bytes to the next traced null pointer in these archives.
+## Inline table and label settings
+
+In baseline A, the [table settings](../../../../re/solidworks/archive/ConfigTable.py) run from decompressed offsets 28,368 to 29,834. The `moTableDefs_c` serializer at `sldmfcu+0x1402e0` invokes nine inline table members identified by the constructor at `0x1b33f0`. Each shares `moGeneralTableDefs_c` at `0x13d640`, which reads the layer-free settings, two widths and a font. The revision and bill-of-materials variants add framed strings. A separate inline font follows the hole table, and the parent ends with two doubles.
+
+The [label settings](../../../../re/solidworks/archive/ConfigLabel.py) follow from offsets 29,834 to 33,404. The `moLabelDefs_c` serializer at `0x13e7d0` visits five label members identified by the constructor at `0x127480`, with a separate inline font after the auxiliary member. The shared loader at `0x14d8c0` reads the guarded absent layer, two framed strings, six character formats and two line widths. The orthographic and miscellaneous vtables both select the serializer at `0x14dd50`.
+
+The remaining 1,821-byte interval begins with the surface-finish data helper at `0x13a489` and continues to the next traced null pointer. Both completed sections are inline and preserve the archive map.
 
 ## Verification
 
