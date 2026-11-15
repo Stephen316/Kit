@@ -1,0 +1,34 @@
+{
+  "schema": 1,
+  "scope": "two-body-through-all-discovery",
+  "units": "mm",
+  "bodies": {
+    "A": {
+      "producer": "ScopeBossA",
+      "bounds_mm": [[0, 0, 0], [40, 20, 10]]
+    },
+    "B": {
+      "producer": "ScopeBossB",
+      "bounds_mm": [[10, 5, -10], [30, 15, -5]]
+    }
+  },
+  "cut": {
+    "sketch": "ScopeCutSketch",
+    "feature": "ScopeThroughAll",
+    "support_body": "A",
+    "profile_bounds_mm": [[15, 6, 10], [25, 14, 10]],
+    "direction_world": [0, 0, -1],
+    "end_condition": "through_all",
+    "depth_mm": null
+  },
+  "cases": [
+    {"mode": "automatic", "input_body_ids": null, "expected_affected_body_ids": ["A", "B"]},
+    {"mode": "explicit_a", "input_body_ids": ["A"], "expected_affected_body_ids": ["A"]},
+    {"mode": "explicit_ab", "input_body_ids": ["A", "B"], "expected_affected_body_ids": ["A", "B"]}
+  ],
+  "tolerances": {
+    "length_mm_absolute": 0.000001,
+    "volume_mm3_absolute": 0.000001,
+    "volume_relative": 0.00000001
+  }
+}
