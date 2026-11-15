@@ -1,0 +1,7 @@
+# SOLIDWORKS reader ownership controls
+
+The hosted archive checks rebuild representative discovery containers with one altered field or stream. The P01 YZ control selects a valid Front Plane while retaining the saved Right Plane frame. The P03 control changes the boss partition selector and checks that the earlier rectangle still qualifies. The P04 cap control selects the opposing valid cap. The reader must withhold that cut attachment while retaining the independent outer rectangle and equation bindings.
+
+Three P04 active-partition controls preserve the decodable embedded profile while substituting an unsupported partition, truncating the selected wrapper, or removing the selected stream. They require an absent typed part body in each case. The retained unsupported wrapper stays available for inspection. The truncated wrapper retains its stream-specific decode diagnostic in a partial read. The cut attachment remains available from the independent resolved stream.
+
+The positive provenance audit at `be5f4f9e` replayed the 25 pinned P01, P03 and P04 captures. The public output matched the independent reopen for 36 sketch frames, 144 line identities and axis constraints, 94 ordered dimensions and 25 Origin coincidences. The checked archive sourced 25 principal placements, eleven historical face placements and thirty operation end spans. [Hosted archive controls](../../../../../tests/Research/Archives/SolidWorksBoundaryTests.py), [active partition selection](SolidWorksActivePartition.md)
