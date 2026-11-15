@@ -55,6 +55,7 @@ audit and the current boundary.
    every claim above that says "measured".
 
 The [rectangle field synthesis experiment](authoring/RectangleFields.md) records the first generation-19000 sketch-member fields reproduced from the pinned independent P01 measurements.
+The [part container bookkeeping experiment](authoring/PartBookkeeping.md) builds a metadata-only archive and verifies the configuration-to-resolved dispatch fields.
 
 `GroundTruth.md` (real-world 63-file corpus baseline; the document that proved Kit's feature-flag
 constants missed ~99% of real features) and `ReportResolved.md` (the reader-module fixes that came

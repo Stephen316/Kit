@@ -1,0 +1,5 @@
+# SOLIDWORKS part container bookkeeping
+
+Run `python re/solidworks/authoring/PartBookkeeping.py compare` to check the six pinned P01 saves. The replay reconstructs the empty configuration-object stream, shared model and display stamp fields, and the Config-to-Resolved dispatch bookkeeping. All 18 metadata streams matched. The resolved archive begins at the inherited next map index 106 and contains 18 root items. [Store sites and exact split lengths](../../../../re/solidworks/authoring/PartBookkeeping.md)
+
+The `emit` command takes explicit creation, update and body counters. It generated a 401-byte metadata container that the existing archive reader and directory validator accepted. Its SHA-256 is `60a62ec90ba384e383aa29396baf87f6fe10f81a7f35cc0c35189c211bab8881` for the documented inputs. The container has no model generation stream, full configuration or feature history. SOLIDWORKS stays read-only and native editable acceptance remains open. [Generation procedure and observed absences](../../../../re/solidworks/authoring/PartBookkeeping.md#generate-without-a-capture)
