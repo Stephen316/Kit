@@ -34,6 +34,8 @@ The principal rerun at `0d527bb9ec59f7728545cd6aacfa98eb5951549b` tied every P03
 
 At that revision a separate 25-second deadline run verified principal-scope timeout recovery. The worker confirmed exit on the first owned process handle, A03 archived the failed request, and the supervisor issued exactly one further attempt. The second deadline exhausted the retry budget and preserved the quarantine. The first archive manifest SHA-256 is `c86b44fe62a4e68f94cd828c99e3517a30c34610e732c6198de11f4f0adb5025`.
 
+The run at `60fb1c73d83fdd62cd93f1e8271a94fb2ea55c02` repeated that sequence with the single-cancellation change. It confirmed owned exit and preserved 25 files in the first archive. The second attempt exhausted the configured budget and retained its quarantine. The first archive manifest SHA-256 is `dfc8a653899a14ae5f9ddc083f91301aaeaf10418b20f089276bd37a2172adaf`. [Application timeout cancellation](SingleTimeoutCancellation.md)
+
 ## Licensed job evidence
 
 Two Windows runs used source revision `195d45c7a6a0660dbd633e85872988171f32fd8d` and licensed SOLIDWORKS `34.4.1.1011`. Each run verified both healthy controls, unchanged source bytes and supporting-face identity before and after rebuild for all eleven discovery captures. Each observed its owned SOLIDWORKS process exit. A03 accepted all four output roles and the verification driver read every artifact back from the controller by SHA-256 and size.
