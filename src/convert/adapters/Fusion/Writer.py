@@ -6,6 +6,9 @@ from convert.adapters.base.WriteResult import WriteResult
 from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
 from convert.adapters.Fusion.Bridge.WritePayloadMut import WritePayloadMut
 from convert.adapters.Fusion.Bridge.WriterInfo import KWriterInfo
+from convert.adapters.registry.EquationWrite import CheckEquations
+from convert.adapters.registry.InchWrite import CheckInchWrite
+from convert.adapters.registry.ResearchWrite import CheckResearch
 from interchange.document.models.DocumentCaps import InferCaps
 from interchange.document.models.DocumentModel import CadDocument
 
@@ -33,6 +36,9 @@ class FusionWriter:
         Target: KTargetType,
         Options: WriteOptions | None = None,
     ) -> WriteResult:
+        CheckResearch(Document)
+        CheckInchWrite(Document)
+        CheckEquations(Document)
         Settings = Options if Options is not None else WriteOptions()
         if (
             Settings.configuration is not None

@@ -5,6 +5,9 @@ from convert.adapters.base import WriteOptions
 from convert.adapters.base import WriteResult
 from convert.adapters.json.Metadata import KInfoValue
 from convert.adapters.json.StreamIo import WriteStream
+from convert.adapters.registry.EquationWrite import CheckEquations
+from convert.adapters.registry.InchWrite import CheckInchWrite
+from convert.adapters.registry.ResearchWrite import CheckResearch
 from interchange import CadDocument
 
 
@@ -21,6 +24,9 @@ class JsonWriter:
         Target: Destination,
         Options: WriteOptions | None = None,
     ) -> WriteResult:
+        CheckResearch(DocValue)
+        CheckInchWrite(DocValue)
+        CheckEquations(DocValue)
         Settings = Options or WriteOptions()
         if Settings.validate:
             DocValue.assert_valid()

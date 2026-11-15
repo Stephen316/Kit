@@ -58,6 +58,9 @@ from interchange import (
 )
 from interchange.serialization.EncodeData import ToData
 from interchange.serialization.WireData import ValidateWireMap
+from convert.adapters.registry.EquationWrite import CheckEquations
+from convert.adapters.registry.InchWrite import CheckInchWrite
+from convert.adapters.registry.ResearchWrite import CheckResearch
 from convert.adapters.freecad.Archive import (
     DOCUMENT_ENTRY as DocEntry,
     MANIFEST_ENTRY as ManifestEntry,
@@ -2707,6 +2710,9 @@ class FreeCadAdapter(PairProtocol):
         *,
         Overwrite: bool | None = None,
     ) -> WriteResult:
+        CheckResearch(DocValue)
+        CheckInchWrite(DocValue)
+        CheckEquations(DocValue)
         return WriteTarget(self, DocValue, Target, Options, Overwrite)
 
 
