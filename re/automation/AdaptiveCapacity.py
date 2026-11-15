@@ -1,6 +1,9 @@
 import time
 
 
+DEADLINE_WINDOW_SECONDS = 600
+
+
 class AdaptiveCapacity:
     def __init__(self, enabled):
         self.enabled = enabled
@@ -27,7 +30,7 @@ class AdaptiveCapacity:
         state["reason"] = reason
         return {"before_limit": before, "target_limit": state["target"], "adaptive_reason": reason, "adaptive_revision": state["revision"]}
 
-    def finished(self, pool, outcome, receipt):
+    def finished(self, pool, session, outcome, receipt):
         if not self.enabled:
             return None
         state = self.state(pool)
@@ -42,19 +45,28 @@ class AdaptiveCapacity:
             return self.backoff(state, "linux_memcg_oom", now)
         if reason != "deadline":
             return None
-        state["deadlines"] = [stamp for stamp in state["deadlines"] if now - stamp <= 600]
-        state["deadlines"].append(now)
-        if len(state["deadlines"]) < 2:
+        state["deadlines"] = [(name, stamp) for name, stamp in state["deadlines"] if now - stamp <= DEADLINE_WINDOW_SECONDS]
+        if not state["deadlines"]:
+            state["deadlines"].append((session, now))
+            return None
+        first_session, first_at = state["deadlines"][0]
+        if session == first_session:
             return None
         state["deadlines"] = []
-        return {**self.backoff(state, "deadline_pair", now), "deadline_count": 2, "deadline_window_seconds": 600}
+        return {
+            **self.backoff(state, "deadline_pair", now),
+            "deadline_count": 2,
+            "deadline_window_seconds": DEADLINE_WINDOW_SECONDS,
+            "deadline_sessions": [first_session, session],
+            "deadline_elapsed_seconds": now - first_at,
+        }
 
     def limit(self, pool, capacity, host, reserved_memory, estimate):
         if not self.enabled:
             return {"active_limit": capacity, "calculated_capacity": capacity, "adaptive_reason": "disabled", "adaptive_revision": 0, "upward_blocked_reason": "disabled"}
         state = self.state(pool)
         now = time.monotonic()
-        state["deadlines"] = [stamp for stamp in state["deadlines"] if now - stamp <= 600]
+        state["deadlines"] = [(name, stamp) for name, stamp in state["deadlines"] if now - stamp <= DEADLINE_WINDOW_SECONDS]
         if state["target"] is None and capacity > 0:
             state["target"] = max(1, capacity // 2)
             state["revision"] += 1

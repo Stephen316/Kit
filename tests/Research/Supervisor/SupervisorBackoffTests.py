@@ -31,6 +31,22 @@ def CheckDeadlines() -> None:
         assert Backoffs[0]["deadline_count"] == 2
         assert Backoffs[0]["deadline_window_seconds"] == 600
         assert Backoffs[0]["target_limit"] == max(1, Backoffs[0]["before_limit"] // 2)
+        Finishes = [
+            Event
+            for Event in Events
+            if Event.get("event") == "finished"
+            and Event["stale"] is False
+            and Event["receipt"]["stop_reason"] == "deadline"
+        ]
+        assert len(Finishes) == 2
+        Sessions = [Event["session"] for Event in Finishes]
+        assert len(set(Sessions)) == 2
+        assert all(
+            Event["receipt"]["session"] == Event["session"] for Event in Finishes
+        )
+        assert Backoffs[0]["deadline_sessions"] == Sessions
+        assert Backoffs[0]["session"] == Sessions[-1]
+        assert 0 <= Backoffs[0]["deadline_elapsed_seconds"] <= 600
         for Index in range(2):
             Stopped = Harness.ReadJob(f"adaptive:deadline{Index}")
             assert Stopped["state"] == "failed"

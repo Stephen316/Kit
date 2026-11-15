@@ -237,6 +237,7 @@ Memory-limit stops, independently matched Linux memory-cgroup OOM receipts, two 
 Existing sessions drain normally when the target falls.
 Set `adaptive_limits` to `false` to use the measured capacity directly.
 See [adaptive pool limits](../../Changes/Research/Supervisor/AdaptivePoolLimits.md) for evidence events and branch limits.
+The deadline-pair event records both physical session IDs and the elapsed time between their accepted stop observations. [Deadline backoff evidence](../../Changes/Research/Supervisor/AdaptiveDeadlineEvidence.md)
 The matched Windows offline sweep sustained sixteen decoders for 5.681 seconds and completed all applicable comparisons. Every measured throughput gain exceeded the recommendation threshold. [Offline calibration](OfflineCalibration.md) [Matched Windows sweep](../../Changes/Research/Supervisor/SixteenWorkerCalibration.md#windows-sweep-with-the-warm-claim-helper) [Grouped session evidence](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md)
 
 ## Stops, pauses and stale leases

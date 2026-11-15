@@ -28,7 +28,7 @@ class ResourceBudget:
         if len(self.recorded_sessions) > 4096:
             del self.recorded_sessions[next(iter(self.recorded_sessions))]
         if stale is False:
-            change = self.adaptive.finished(self.registry.runners[specification["kind"]]["pool"], outcome, receipt)
+            change = self.adaptive.finished(self.registry.runners[specification["kind"]]["pool"], session, outcome, receipt)
             if change is not None:
                 report("adaptive_backoff", None, {"pool": self.registry.runners[specification["kind"]]["pool"], "job": specification["id"], "session": session, **change})
         if stale is not False or outcome != "completed" or self.history_error is not None:
