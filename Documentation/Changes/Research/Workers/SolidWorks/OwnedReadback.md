@@ -28,4 +28,11 @@ Starting a new listener does not clear a SOLIDWORKS fence.
 
 A separate licensed probe verified direct launch, passive COM identity, read-only healthy control rebuild and normal exit via the held handle.
 The Windows process checks use a disposable operating-system child to exercise missing tickets, changed tickets and mismatched handle identity.
-The queued implementation and its timeout path still require licensed verification.
+
+## Licensed queue verification
+
+Two licensed Windows runs used revision `566ec2c705aa50a5576570d30d08fb79439de162` and SOLIDWORKS `34.4.1.1011`. The normal run read and rebuilt all eleven P04 discovery files, verified every supporting face, observed exit on the held native handle and acknowledged the accepted spool. Recomputing the ownership ticket digest from the accepted measurements matched the durable dispatch proof. The accepted result SHA-256 is `c48724c377c328c5471504c62749b6847c8d023e31d0d7024675b74ecc8ee9a7`. The ticket SHA-256 is `cdbd56b064b2db891e38d7f65f043c0af8fad3618dc398be33c2cdcb877610c4`.
+
+The short-deadline run used a 25-second controller job limit and enabled owner timeout recovery. The collector had published the verified empty-startup ticket when its request expired. The listener stopped the collector, verified the exact ticket and held native identity, terminated the owned process and observed its exit. A03 recorded `waiting_application` for attempt one. The phase expired with an empty artifact list, and the quarantine and spool remained present. The controller receipt SHA-256 is `6b517d8aedd737ba58243de8b46ab48ab3603c83b809211e1f16a31d94b17c24`. The recovery receipt SHA-256 is `68769557195d000dde1eba144c99694efe185ea620dcb270c8011ffa28790da8`.
+
+The independent refusal cases still await remote CI. Releasing the resource and scheduling a bounded retry after confirmed cleanup remain separate operations.
