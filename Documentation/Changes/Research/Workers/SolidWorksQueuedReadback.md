@@ -18,7 +18,7 @@ Give the installation a counted controller resource with capacity one. Once the 
 
 The listener stages the launcher from Git-verified bytes. The launcher verifies its own copy and the collector, specification, control and P04 archive bytes against the pinned checkout. The job supplies no executable path, CAD path or case selector. The [direct launch](SolidWorks/OwnedReadback.md) binds the collector's COM session to the process created by the listener. The collector closes that process before the host returns a successful phase.
 
-An unavailable listener, stuck COM call or failed native control parks the job behind the application fence. A dedicated unattended desktop can enable [bounded cleanup of a proved process](SolidWorks/OwnedReadback.md#bound-timeout-recovery). Inspect the retained disposition before retrying. On success the supervisor can acknowledge the exact accepted attempt using its configured installation. [Controller acceptance](SupervisedApplicationAcceptance.md)
+An unavailable listener, stuck COM call or failed native control parks the job behind the application fence. A dedicated unattended desktop can enable [bounded timeout cleanup](SolidWorks/OwnedReadback.md#bound-timeout-recovery) and separately opt into [cleanup after a collector failure](SolidWorks/CollectorFailure.md). Inspect the retained disposition before retrying. On success the supervisor can acknowledge the exact accepted attempt using its configured installation. [Controller acceptance](SupervisedApplicationAcceptance.md)
 
 The readback records its source and native executable hashes. Broader native Windows dispatch, failed COM recovery and paired conversion qualification remain open.
 

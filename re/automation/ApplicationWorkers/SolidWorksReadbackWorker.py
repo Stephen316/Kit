@@ -157,7 +157,7 @@ def stop_collector(collector):
         collector.wait(timeout=5)
 
 
-def recover_owned_process(handle, launch, ticket):
+def recover_owned_process(handle, launch, ticket, deadline=None):
     import pywintypes
     import win32event
     import win32process
@@ -169,23 +169,42 @@ def recover_owned_process(handle, launch, ticket):
     require(status == win32event.WAIT_TIMEOUT, "owned process wait did not report a live identity")
     expected = {key: launch[key] for key in ("pid", "created", "session", "image")}
     require(native_identity(handle) == expected and expected["session"] == session_id(os.getpid()),
-            "held SOLIDWORKS process identity changed before timeout recovery")
+            "held SOLIDWORKS process identity changed before recovery")
+    wait_ms = 5000 if deadline is None else min(5000, int((deadline - time.time()) * 1000))
+    require(wait_ms > 0, "collector deadline expired before owned process recovery")
     try:
         win32process.TerminateProcess(handle, 1)
     except pywintypes.error:
         if win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_OBJECT_0:
             return "already_exited", ticket_hash
         raise
-    require(win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0,
+    if deadline is not None:
+        wait_ms = max(0, min(wait_ms, int((deadline - time.time()) * 1000)))
+    require(win32event.WaitForSingleObject(handle, wait_ms) == win32event.WAIT_OBJECT_0,
             "termination did not signal the held SOLIDWORKS process")
     return "terminated_owned_process", ticket_hash
 
 
-def record_timeout(work, request, listener, collector, handle, launch, recovery_enabled):
-    recovery = {
+def new_recovery(request, listener, trigger):
+    return {
         "version": 2, "installation": request["installation"], "source_revision": request["source_revision"],
-        **request_link(request), "listener": listener, "trigger": "collector_timeout", "status": "quarantined",
+        **request_link(request), "listener": listener, "trigger": trigger, "status": "quarantined",
     }
+
+
+def update_owned_recovery(work, recovery, handle, launch, deadline=None):
+    require(launch["request_sha256"] == recovery["request_sha256"]
+            and launch["source_revision"] == recovery["source_revision"],
+            "held SOLIDWORKS launch belongs to a different request")
+    recovery["status"], recovery["owner_ticket_sha256"] = recover_owned_process(
+        handle, launch, work / "readback/native-owner.json", deadline,
+    )
+    recovery["pid"] = launch["pid"]
+    recovery["created"] = launch["created"]
+
+
+def record_timeout(work, request, listener, collector, handle, launch, recovery_enabled):
+    recovery = new_recovery(request, listener, "collector_timeout")
     try:
         stop_collector(collector)
         if not recovery_enabled:
@@ -193,21 +212,26 @@ def record_timeout(work, request, listener, collector, handle, launch, recovery_
         elif handle is None or launch is None:
             recovery["reason"] = "no retained direct launch identity"
         else:
-            require(launch["request_sha256"] == recovery["request_sha256"]
-                    and launch["source_revision"] == recovery["source_revision"],
-                    "held SOLIDWORKS launch belongs to a different timeout request")
-            recovery["status"], recovery["owner_ticket_sha256"] = recover_owned_process(
-                handle, launch, work / "readback/native-owner.json",
-            )
-            recovery["pid"] = launch["pid"]
-            recovery["created"] = launch["created"]
+            update_owned_recovery(work, recovery, handle, launch)
     except Exception as error:
         recovery["reason"] = f"{type(error).__name__}: {error}"[:2048]
     write_record(work / "native-timeout-request.json", request)
     write_record(work / "native-recovery.json", recovery)
 
 
-def run_collector(host, request, work, interop, staged, recovery_enabled):
+def record_collector_failure(work, request, listener, collector, handle, launch):
+    recovery = new_recovery(request, listener, "collector_failure")
+    try:
+        return_code = collector.poll()
+        require(return_code is not None, "collector has not exited")
+        recovery["collector_return_code"] = return_code
+        update_owned_recovery(work, recovery, handle, launch, request["deadline"])
+    except Exception as error:
+        recovery["reason"] = f"{type(error).__name__}: {error}"[:2048]
+    write_record(work / "native-failure-recovery.json", recovery)
+
+
+def run_collector(host, request, work, interop, staged, recovery_enabled, recover_failure):
     expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
     require(request["operation"] == "phase" and request["body"] == expected,
             "installation only accepts the pinned P04 readback phase")
@@ -253,6 +277,15 @@ def run_collector(host, request, work, interop, staged, recovery_enabled):
         except subprocess.TimeoutExpired:
             record_timeout(work, request, host.host, collector, handle, launch, recovery_enabled)
             raise
+        except Exception as error:
+            if recover_failure and handle is not None and launch is not None:
+                try:
+                    record_collector_failure(work, request, host.host, collector, handle, launch)
+                except (OSError, ValueError) as retention_error:
+                    raise WaitingApplication(
+                        f"{error}; native failure evidence could not be retained ({type(retention_error).__name__})"
+                    ) from error
+            raise
         finally:
             try:
                 stop_collector(collector)
@@ -261,11 +294,11 @@ def run_collector(host, request, work, interop, staged, recovery_enabled):
                     handle.Close()
 
 
-def perform_readback(host, request, work, interop, launcher, recovery_enabled):
+def perform_readback(host, request, work, interop, launcher, recovery_enabled, recover_failure):
     expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
     staged = work / Path(LAUNCHER).name
     write_new(staged, launcher)
-    owner_hash = run_collector(host, request, work, interop, staged, recovery_enabled)
+    owner_hash = run_collector(host, request, work, interop, staged, recovery_enabled, recover_failure)
     proof = native_result(work, host.config)
     require(proof["native_owner_sha256"] == owner_hash, "SOLIDWORKS measurements do not preserve the verified ownership ticket")
     files = {role: pin(work / relative, relative) for role, relative in OUTPUTS.items()}
@@ -274,7 +307,7 @@ def perform_readback(host, request, work, interop, launcher, recovery_enabled):
     }, files
 
 
-def listen(config, interop, recovery_enabled):
+def listen(config, interop, recovery_enabled, recover_failure):
     require(os.name == "nt" and config["application"] == "solidworks", "SOLIDWORKS readback host requires Windows")
     verify_sources(config)
     launcher = committed_bytes(config, LAUNCHER)
@@ -285,7 +318,9 @@ def listen(config, interop, recovery_enabled):
             if request is None:
                 time.sleep(0.05)
                 continue
-            host.perform(request, lambda value, work: perform_readback(host, value, work, interop, launcher, recovery_enabled))
+            host.perform(request, lambda value, work: perform_readback(
+                host, value, work, interop, launcher, recovery_enabled, recover_failure,
+            ))
     finally:
         host.close()
 
@@ -345,11 +380,13 @@ def main():
     listener = commands.add_parser("listen")
     listener.add_argument("--interop", type=Path, required=True)
     listener.add_argument("--recover-owned-timeout", action="store_true")
+    listener.add_argument("--recover-owned-failure", action="store_true")
     commands.add_parser("dispatch").add_argument("session", type=Path)
     args = parser.parse_args()
     if args.command == "listen":
         try:
-            listen(configuration(args.installation), args.interop.resolve(strict=True), args.recover_owned_timeout)
+            listen(configuration(args.installation), args.interop.resolve(strict=True),
+                   args.recover_owned_timeout, args.recover_owned_failure)
         except KeyboardInterrupt:
             return 0
     else:
