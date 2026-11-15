@@ -93,44 +93,28 @@ def read_detail_cabinet(cursor):
     }
 
 
-# the principal plane payload owns the stored world normal and display frame
-def read_default_plane_data(cursor, pointer_kind):
-    from convert.adapters.solidworks.resolved.PlaneGeom import ReadDatumData
-
-    datum = ReadDatumData(cursor, pointer_kind)
-    return {
-        "object_index": datum.ObjectIndex,
-        "point_metres": datum.PointMetres,
-        "normal_world": datum.NormalWorld,
-        "transform": {
-            "basis": datum.BasisValue,
-            "translation_scale": datum.ShiftScale,
-        },
-    }
-
-
-# principal planes use the same model feature and atom as component reference planes
+# the research report keeps the stored principal identity and all native spans
 def read_principal_plane(cursor, pointer_kind):
-    from convert.adapters.solidworks.container.Archive import KClassRefKind
-    from SketchRoot import Require
-    from SupportPlane import read_plane_atom, read_ref_geometry
+    from convert.adapters.solidworks.resolved.PrincipalDatum import ReadPrincipal
 
-    offset = cursor.position
-    plane = cursor.pointer(pointer_kind, "moRefPlane_c")
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = ReadNamedFeat(cursor, (0xC0000000,))
-    Require(cursor.read("<i"), (0,), "guarded principal model feature")
-    read_plane_atom(cursor)
-    read_ref_geometry(cursor, expected_mode=5)
-    data = read_default_plane_data(cursor, pointer_kind)
+    datum = ReadPrincipal(cursor, pointer_kind)
+    geometry = datum.Geometry
     return {
-        "name": name,
-        "native_feature_id": feature_id,
-        "offset": offset,
-        "cursor": cursor.position,
-        "object_index": plane,
-        "next_map_index": cursor.next_index,
-        "plane_data": data,
+        "name": datum.NameValue,
+        "native_feature_id": datum.FeatureId,
+        "offset": datum.Offset,
+        "cursor": datum.EndOffset,
+        "object_index": datum.ObjectIndex,
+        "next_map_index": datum.NextIndex,
+        "plane_data": {
+            "object_index": geometry.ObjectIndex,
+            "point_metres": geometry.PointMetres,
+            "normal_world": geometry.NormalWorld,
+            "transform": {
+                "basis": geometry.BasisValue,
+                "translation_scale": geometry.ShiftScale,
+            },
+        },
     }
 
 
