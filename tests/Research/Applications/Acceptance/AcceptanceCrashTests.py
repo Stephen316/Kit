@@ -97,11 +97,11 @@ def CheckAckBoot(CrashPoint: str) -> None:
                 RootPath / "SupervisorState/application-acknowledgements"
             ).glob("*.json")
             (Spool,) = (Harness.Dispatch.Endpoint / "jobs").iterdir()
-            CheckRecovery(Harness, CrashPoint, Intent, Spool)
+            AssertRecovery(Harness, CrashPoint, Intent, Spool)
 
 
 # recovery must preserve the original fence if acceptance or source ownership changed
-def CheckRecovery(
+def AssertRecovery(
     Harness: AcceptanceHost, CrashPoint: str, IntentPath: FilePath, SpoolPath: FilePath
 ) -> None:
     Original = Harness.Supervisor.ReadJob(Harness.JobName)
