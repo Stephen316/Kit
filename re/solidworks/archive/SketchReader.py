@@ -122,6 +122,12 @@ def ReadGeometry(Cursor, ObjectIndex):
 
 # one cursor can finish nested sketches without losing the enclosing relation frames
 def ReadSketches(BlobValue, BuildName):
+    Sketches, Cursor = ReadSketchConfiguration(BlobValue, BuildName)
+    return Sketches, {"end": Cursor.Offset, "next_map_index": Cursor.NextIndex}
+
+
+# the config tail needs the allocated map as well as the measured sketch summary
+def ReadSketchConfiguration(BlobValue, BuildName):
     Start = ReadSketchStart(BlobValue)
     Sketches = []
 
@@ -138,4 +144,4 @@ def ReadSketches(BlobValue, BuildName):
     ReadSketchObject(Cursor, Cursor.NextIndex - 1)
     ReadRelationManagerTail(Cursor)
     Require(len(Sketches), 2, "both expected sketch bodies")
-    return Sketches, {"end": Cursor.Offset, "next_map_index": Cursor.NextIndex}
+    return Sketches, Cursor

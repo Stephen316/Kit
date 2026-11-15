@@ -49,7 +49,7 @@ The cross-stream link is established for these P04 discovery files. Production d
 
 The matching loader confirms the map handoff to the resolved-feature read. Licensed baseline A and YZ traces identify the unit component's first reference as the loaded part at slot 2. The strict walk from that map seed reaches the first `sgSketch` allocation at class 73 and object 74 in all eleven captures. It follows the first equation's dimension handle to the sketch pointer. The older sketch layout's terminal guard stops inside the first sketch after the entity-handle and external-reference continuation. [Archive map and loader walk](P04ArchiveWalk.md), [atom and first sketch walk](P04AtomWalk.md)
 
-The resolved stream identifies `CutSketch` as face-supported. [Licensed native readback](../../../Documentation/Changes/Research/Workers/SolidWorksCutFaceReadback.md) independently identifies the same persistent boss-face support before and after rebuild in all eleven files and records the support transforms. Mapping that face occurrence to its archive encoding remains open.
+The resolved stream identifies `CutSketch` as face-supported. [Licensed native readback](../../../Documentation/Changes/Research/Workers/SolidWorksCutFaceReadback.md) independently identifies the same persistent boss-face support before and after rebuild in all eleven files and records the support transforms. The [typed archive replay](../../../Documentation/Changes/Research/Readers/SolidWorksFaceOccurrence.md) reaches that occurrence from the cut profile in both traced controls.
 
 ## Licensed sketch boundaries and resolved references
 
@@ -68,14 +68,25 @@ The profile serializer's typed `sgSketch` pointer read at `0x9dbbcf` receives th
 
 ## Native map handoff
 
-Two further owned sessions followed the archive from the [relation manager return](P04SketchGap.md#follow-the-second-sketch-return) through the final Config-0 cursor. The model cache copies the active array at `sldmodu+0xece7ef`. Before `ResolvedFeatures` reads its first list at `0x4489de`, the archive has consumed its four-byte header and restored the same allocation counter and the same two sketch instances. Both full runtime buffers matched the pinned stream hashes, and both scratch parts kept their original hashes after the owned processes exited.
+Three further owned sessions followed the archive from the [relation manager return](P04SketchGap.md#follow-the-second-sketch-return) through the final Config-0 cursor. The model cache copies the active array at `sldmodu+0xece7ef`. Before `ResolvedFeatures` reads its first list at `0x4489de`, the archive has consumed its four-byte header and restored the same allocation counter and the same two sketch instances. Both full runtime buffers matched the pinned stream hashes in each session. Each scratch part kept its original hash after the owned process exited.
 
 | Capture | Config-0 reads after relation manager | Cursor at cache | Next map index at cache and before resolved list |
 | --- | ---: | ---: | ---: |
 | Baseline A | 94 | 42,879 | 279 |
 | YZ | 96 | 42,949 | 279 |
+| Width edit, 44 mm | 93 | 42,925 | 279 |
 
-The private normalized map-handoff witness SHA-256 is `54f90a4fa10312c19bab9422e6a493daa96034187083b4a02203e087080c5bb9` for baseline A and `fd422752ee69e812b6cfc43c18ca2392f859c388a24b429b0ab41ed14d780423` for YZ. The native cursor and counter establish the join target. An offline walk still has to derive the final allocations from the fields following the relation manager and pass that map into the resolved-feature reader.
+The private normalized map-handoff witness SHA-256 is `54f90a4fa10312c19bab9422e6a493daa96034187083b4a02203e087080c5bb9` for baseline A, `fd422752ee69e812b6cfc43c18ca2392f859c388a24b429b0ab41ed14d780423` for YZ, and `959afea685896f886a1340edf7394b81fce1f83e65b69d22820b577cbece6dda` for the width edit. In each trace, calls with the same cursor, counter, and token reduce to 92 distinct pointer reads.
+
+### Offline map replay
+
+`python re/solidworks/archive/ConfigMap.py` reconstructs the complete typed `Config-0` map for all eleven receipt-pinned P04 discovery captures. It starts with the actual sketch and relation manager allocations, walks the presentation suffix, and hands back the map at stream end. It compares the counter to the resolved header after completing the walk. All eleven produce counter 279 and retain sketches at slots 74 and 155. All 92 cursor, counter, and raw tag observations match each of the three licensed traces. The report SHA-256 is `d54ce30559d5905d56c290f4dabb3e961861673afeccc3071dc7cac40202853a`. A changed schema on the sole schema-zero declaration, `moFeatColorTab_c`, is rejected in each traced capture.
+
+The first annotation view stores a framed name and two `mgXform` values. The reader follows `moView_c::Serialize` at `sldmodu+0x10ea1d0` into the two `mgXform::restore` calls. Each transform has a matrix flag, nine additional doubles when set, four doubles, and a reference flag. The YZ `*Right` view has the 72-byte matrix that the baseline `*Front` view omits. The tagged continuation also follows the second `*Top` view.
+
+Two licensed field traces resolve the eight-byte difference after the bend-note pointer. Both read an empty text-pair table and traverse the 13-byte scalar run to the inline sketch-region count at `sldmodu+0x10f5514`. Baseline A has one populated `moSketchRegion_c`. The width edit adds an empty region before its populated region and stores another four-byte value after both regions. The region loader at `0xadce00` reads a row count and two integers plus one double per row. In baseline A the count is at 42,366 and the exploded-view pointer at 42,648. In the width edit they are at 42,404 and 42,694. The private field summaries are `677a2bd7311bbd18b1a7a957c5e251ef41e6927c80cb200d8facdfaeabd42c7f` and `f35eeb09e8395cbe7a5ef221044d57c22a66bc592b25f22b241d977277b0d2e8`, respectively. Seven captures use two regions, covering the six parameter edits and the inch variant. The two baselines, YZ, and through-all use one region.
+
+This map replay is scoped to the eleven P04 discovery archives and the witnessed application build. The fixed presentation spans preserve their typed boundary checks. Their internal fields and the full subsequent resolved-feature list still need to be decoded before production qualification.
 
 ## Face reference control
 

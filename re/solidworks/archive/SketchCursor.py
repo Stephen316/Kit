@@ -77,12 +77,12 @@ class SketchCursor:
         return ObjectIndex
 
     # display evidence and geometry must use one allocation rule for the same archive
-    def TakePointer(SelfData, Expected, KindValue=None):
+    def TakePointer(SelfData, Expected, KindValue=None, SchemaValue=1):
         Offset = SelfData.Offset
         TagValue = ReadTag(SelfData.BlobValue, Offset)
         if KindValue is not None:
             Require(TagValue.kind, KindValue, f"archive tag kind at {Offset}")
-        NameValue = SelfData.FindType(TagValue)
+        NameValue = SelfData.FindType(TagValue, SchemaValue)
         Require(
             NameValue in Expected,
             True,
@@ -100,9 +100,9 @@ class SketchCursor:
         return TagValue, NameValue, ObjectIndex
 
     # reference tokens must resolve the correct kind before a caller can use them
-    def FindType(SelfData, TagValue):
+    def FindType(SelfData, TagValue, SchemaValue=1):
         if TagValue.kind == KDefinitionKind:
-            Require(TagValue.schema, 1, f"archive schema at {SelfData.Offset}")
+            Require(TagValue.schema, SchemaValue, f"archive schema at {SelfData.Offset}")
             return TagValue.class_name
         if TagValue.kind == KClassRefKind and TagValue.index in SelfData.Classes:
             return SelfData.Classes[TagValue.index]
