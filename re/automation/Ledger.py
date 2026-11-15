@@ -11,6 +11,8 @@ from ApplicationHolds import invalidate_application_hold, retry_delay, save_appl
 from Artifacts import Artifacts
 from OutputIntake import OutputIntake
 from OutputManifest import InvalidOutput, output_manifest
+from PriorityBacklog import fill_backlog
+from PriorityClaims import record_turn, runnable_jobs
 from Records import StaleLease, bounded, canonical, digest, label, read_record, reason_text, specification
 
 
@@ -412,14 +414,9 @@ class Ledger:
         running = self.db.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
         if running >= maximum:
             return {"job": None, "reason": "concurrency limit"}
+        fill_backlog(self)
         while True:
-            row = self.db.execute(
-                "SELECT j.* FROM jobs j WHERE j.state='queued' AND j.next_run<=? "
-                "AND (? IS NULL OR j.kind IN (SELECT kind FROM pool_kinds WHERE pool=?)) "
-                "AND NOT EXISTS (SELECT 1 FROM job_resources r LEFT JOIN resources a ON a.name=r.resource WHERE r.job_id=j.id AND (COALESCE(a.available,0)=0 "
-                "OR (SELECT COUNT(*) FROM job_resources held JOIN jobs owner ON owner.id=held.job_id WHERE held.resource=r.resource AND owner.state='running')>=a.capacity)) "
-                "ORDER BY j.created,j.id LIMIT 1", (time.time(), pool, pool)
-            ).fetchone()
+            row = runnable_jobs(self, pool).fetchone()
             if row is None:
                 return {"job": None, "reason": "no runnable jobs"}
             self.verify_job(row)
@@ -427,9 +424,11 @@ class Ledger:
             if row["attempts"] >= spec["max_attempts"]:
                 self.db.execute("UPDATE jobs SET state='failed',reason=? WHERE id=?", ("attempt budget exhausted", row["id"]))
                 continue
-            return self.issue_claim(row, spec, worker)
+            if row["schedule_installation"] is not None:
+                fill_backlog(self, (row["schedule_installation"],))
+            return self.issue_claim(row, spec, worker, pool)
 
-    def issue_claim(self, row, spec, worker):
+    def issue_claim(self, row, spec, worker, pool):
         now = time.time()
         token = secrets.token_hex(32)
         deadline = now + spec["timeout_seconds"]
@@ -442,6 +441,7 @@ class Ledger:
             "UPDATE jobs SET state='running',attempts=attempts+1,worker=?,token_hash=?,lease_until=?,deadline=?,active_attempt=?,reason=NULL,receipt=NULL,result=NULL WHERE id=?",
             (worker, hashlib.sha256(token.encode()).hexdigest(), lease_until, deadline, attempt, row["id"]),
         )
+        record_turn(self, row, pool, attempt)
         self.event(row["id"], "claimed", {"attempt": row["attempts"] + 1, "worker": worker})
         return {"job": spec, "generation": row["generation"], "attempt": row["attempts"] + 1, "fingerprint": row["fingerprint"], "snapshot": json.loads(row["snapshot"]), "lease_token": token, "lease_until": lease_until, "deadline": deadline}
 

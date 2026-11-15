@@ -207,3 +207,122 @@ def CheckFencing() -> None:
         Requeued = JsonCodec.loads(Client.RunCli("status", "--job", "stale:inputs"))
         assert Requeued["jobs"][0]["state"] == "queued"
         assert Requeued["jobs"][0]["generation"] == 2
+
+
+# process scenarios share the scheduler file contract
+def WriteSchedule(
+    ScheduleFile: FilePath,
+    JobList: list[dict[str, object]],
+    RankRows: list[dict[str, object]],
+) -> FilePath:
+    _ = ScheduleFile.write_text(
+        JsonCodec.dumps({"schedule_version": 1, "jobs": JobList, "priority": RankRows}),
+        encoding="utf-8",
+    )
+    return ScheduleFile
+
+
+# grid admission must replenish standard work and preserve live claims and decode prerequisites
+def CheckGridQueue() -> None:
+    with TempFiles.TemporaryDirectory() as TempPath:
+        RootPath = FilePath(TempPath)
+        Client = JobClient(RootPath, 4)
+        InstallName = "application:fixture"
+        AppKind = "fixture.grid"
+        _ = Client.RunCli("resource", InstallName, "--available", "--capacity", "1")
+        _ = Client.RunCli("pool", "application", "--kind", AppKind)
+        _ = Client.RunCli("pool", "decode", "--kind", "fixture.decode")
+        GridNames = ["grid:request-a", "grid:request-b"]
+        GridNames.extend(f"grid:standard-{Index:02d}" for Index in range(11))
+        GridSpecs = [
+            PoolJob(GridName, AppKind, resources=[InstallName])
+            for GridName in GridNames
+        ]
+        GridRanks: list[dict[str, object]] = [
+            {
+                "id": GridName,
+                "family": "rectangle",
+                "documents": ["reference"],
+                "distinguishing_evidence": ["direction"],
+                "grid": "requested" if Index < 2 else "standard",
+                "installation": InstallName,
+            }
+            for Index, GridName in enumerate(GridNames)
+        ]
+        GridRanks[1]["documents"] = ["one", "two", "three"]
+        DecodeSpec = PoolJob(
+            "decode:after-grid",
+            "fixture.decode",
+            depends_on=["grid:request-a"],
+            inputs={"grid": {"dependency": "grid:request-a"}},
+        )
+        DecodeRank: dict[str, object] = {
+            "id": "decode:after-grid",
+            "family": "rectangle",
+            "documents": ["reference"],
+            "distinguishing_evidence": [],
+        }
+        PlanFile = WriteSchedule(
+            RootPath / "Schedule.json",
+            GridSpecs + [DecodeSpec],
+            GridRanks + [DecodeRank],
+        )
+        Initial = JsonCodec.loads(Client.RunCli("schedule", str(PlanFile)))
+        assert Initial["queued_by_installation"] == {InstallName: 10}
+        assert Initial["deferred_standard"] == 3
+        assert ClaimName(Client, RootPath / "Blocked.json", "--pool", "decode") is None
+        FirstFile = RootPath / "First.json"
+        assert ClaimName(Client, FirstFile, "--pool", "application") == "grid:request-a"
+        NewlyQueued = JsonCodec.loads(
+            Client.RunCli("status", "--job", "grid:standard-08")
+        )
+        assert NewlyQueued["jobs"][0]["state"] == "queued"
+        assert (
+            ClaimName(Client, RootPath / "Busy.json", "--pool", "application") is None
+        )
+
+        GridRanks[0]["distinguishing_evidence"] = ["changed-priority"]
+        PlanFile = WriteSchedule(
+            RootPath / "Refresh.json", GridSpecs[:1], GridRanks[:1]
+        )
+        _ = Client.RunCli("schedule", str(PlanFile))
+        _ = Client.RunCli("heartbeat", "--lease", str(FirstFile))
+        GridSpecs[0]["rule_version"] = "rule@2"
+        PlanFile = WriteSchedule(
+            RootPath / "Conflict.json", GridSpecs[:1], GridRanks[:1]
+        )
+        _ = Client.RunCli("schedule", str(PlanFile), ExitCode=1)
+        _ = Client.RunCli(
+            "finish",
+            "--lease",
+            str(FirstFile),
+            "--result",
+            str(PlanFile),
+            "--outcome",
+            "completed",
+            "--reason",
+            "grid observed",
+        )
+        assert (
+            ClaimName(Client, RootPath / "Decode.json", "--pool", "decode")
+            == "decode:after-grid"
+        )
+        SecondFile = RootPath / "Second.json"
+        assert (
+            ClaimName(Client, SecondFile, "--pool", "application") == "grid:request-b"
+        )
+        _ = Client.RunCli(
+            "finish",
+            "--lease",
+            str(SecondFile),
+            "--result",
+            str(PlanFile),
+            "--outcome",
+            "completed",
+            "--reason",
+            "grid observed",
+        )
+        assert (
+            ClaimName(Client, RootPath / "Standard.json", "--pool", "application")
+            == "grid:standard-00"
+        )
