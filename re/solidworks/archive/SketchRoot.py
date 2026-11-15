@@ -5,6 +5,7 @@ import json as Json
 from pathlib import Path
 from struct import unpack_from as Unpack
 
+from ArchiveVersion import KGeneration
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
@@ -20,10 +21,6 @@ from convert.adapters.solidworks.container.Archive import (
 
 # configuration research starts from the part root witnessed on native map initialization
 KRootClass = "moPart_c"
-
-# the captured loader context limits the layouts to one model generation
-KGeneration = 19000
-
 
 # archive probes need to return the exact map before reading the next body
 class EntryStop(Segmentation):

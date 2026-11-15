@@ -1,5 +1,6 @@
 """Read generation-19000 sketch presentation and region records structurally."""
 
+from ArchiveVersion import KApplicationBuild
 from DepthDisplay import read_sketch_display_close, read_sketch_display_open
 from SketchGeom import ReadPointCoincidence
 from SketchRoot import Require
@@ -124,8 +125,6 @@ def ReadSketchReturn(Cursor):
 
 # sketch geometry and its presentation retain one archive cursor through the region return
 def ReadPresentation(Cursor, BuildName, Geometry):
-    from SketchEvidence import KApplicationBuild
-
     Require(BuildName, KApplicationBuild, "witnessed sketch presentation build")
     PointIds = [Point["id"] for Point in Geometry["point_relation_tallies"]]
     Coincidences = ReadLogicalTail(Cursor, PointIds)

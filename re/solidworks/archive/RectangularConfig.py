@@ -1,8 +1,8 @@
 """Replay the configuration map for rectangle parts without saved equations."""
 
-from ConfigMap import ReadModelPresentation
+from ArchiveVersion import KApplicationBuild
+from ConfigPresentation import ReadModelPresentation
 from SketchCursor import SketchCursor
-from SketchEvidence import KApplicationBuild
 from SketchRoot import (
     AtomEnd,
     EndGhosts,

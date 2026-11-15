@@ -124,7 +124,8 @@ def build_report(
         require,
         sha256,
     )
-    from RectangularConfig import KApplicationBuild, read_rectangle_configuration
+    from ArchiveVersion import KApplicationBuild
+    from RectangularConfig import read_rectangle_configuration
     from P03BossEvidence import (
         check_boss_operation,
         check_boss_witness,

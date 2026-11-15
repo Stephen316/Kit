@@ -1,15 +1,9 @@
 """Walk the guarded P04 support component to its owned face plane data."""
 
-from convert.adapters.solidworks.container.Archive import KClassRefKind, ReadString
+from convert.adapters.solidworks.container.Archive import KClassRefKind
 from FaceOccurrence import read_face_data, read_local_component
+from FeatureBase import read_empty_label, read_feature_base
 from SketchRoot import Require
-
-
-# empty labels keep the replay on the witnessed ordinary feature layout
-def read_empty_label(cursor):
-    name, width = ReadString(cursor.blob, cursor.position)
-    Require(name, "", "empty feature label")
-    cursor.position += width
 
 
 # the embedded plane concept has neither its own node name nor resolved child entries
@@ -20,24 +14,6 @@ def read_plane_concept(cursor):
     Require(cursor.read("<i"), (0,), "absent lightweight child list")
     cursor.null()  # moVisualProperties_c
     Require(cursor.read("<Hi"), (0, 0), "empty resolved node list")
-
-
-# both embedded planes and named nodes need the same modern feature base framing
-def read_feature_base(cursor):
-    mode, _, _ = cursor.read("<2iI")
-    Require(mode, 0, "ordinary feature mode")
-    Require(cursor.read("<B"), (0,), "absent alternate feature label")
-    cursor.read("<4i")
-    cursor.vector(1)
-    cursor.read("<i")
-    cursor.null()  # moFolder_c
-    read_empty_label(cursor)
-    Require(cursor.read("<B"), (0,), "observed editable state")
-    cursor.read("<HHBIHhf")  # entity display, style and line width
-    cursor.read("<2i")
-    cursor.null()  # moFeatComment_c
-    cursor.read("<IBB")
-    cursor.read("<5iH2i")  # includes the modern feature field at sldmodu+0x9d1bc4
 
 
 # the local atom branch owns the temporary surface arrays and rollback state

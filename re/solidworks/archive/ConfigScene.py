@@ -2,8 +2,8 @@
 
 from functools import partial as Partial
 
+from FeatureBase import read_feature_base
 from SketchRoot import Require
-from SupportPlane import read_feature_base
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,

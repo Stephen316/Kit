@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces at least 21,430 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces at least 21,430 bytes of fixed advances per discovery capture with field reads. The [model presentation reader](../../../../re/solidworks/archive/ConfigPresentation.py) uses the typed cursor and its archive maps. The ordinary configuration reader uses that source path directly. The report CLI verifies the capture receipt and independently checks the derived map against the saved resolved-stream header.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -83,6 +83,8 @@ An independent licensed reopen of pinned P04 baseline A reached the exploded-vie
 ## Verification
 
 Run `python re/solidworks/archive/ConfigMap.py` from the repository root. The report for eleven P04 captures retains SHA-256 `d54ce30559d5905d56c290f4dabb3e961861673afeccc3071dc7cac40202853a`. The P04 resolved-list modes and the P01/P03 rectangular modes retain their exact prior report bytes. The revised reader matches every presentation pointer offset, allocation counter and token in the seven licensed controls. That covers 87 events per P01 baseline A and YZ archive, 92 per P03 baseline A and YZ archive, and 92 per P04 baseline A, YZ and width edit archive. [Native map evidence](../../../../re/solidworks/records/P04SketchResidence.md#offline-map-replay), [rectangular report commands](SolidWorksRectangularPlaneEvidence.md)
+
+The ordinary source entry point also consumed all four hashed P01/P03 baseline A and YZ configuration buffers with the capture, report and face-support modules unavailable to import. It reached stream end in each case and reproduced all 358 saved presentation pointer observations.
 
 In a memory-only baseline A control, increasing the first line font name and its enclosing split length by 16 bytes shifted all subsequent pointer offsets by 16 while preserving the exact token and allocation sequence through stream end. A second control replaced the dual unit's null child with a length class reference and was rejected at that boundary.
 

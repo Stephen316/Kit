@@ -11,6 +11,8 @@ from subprocess import check_output as CheckOutput
 from sys import path as ImportPaths
 from sys import stdout as StandardOutput
 
+from ArchiveVersion import KApplicationBuild
+
 # discovery claims must replay against the original immutable capture revision
 KCaptureRev = "466dcb172dfa3803463e07ccde963ba01671d200"
 
@@ -19,10 +21,6 @@ KCaptureFolder = "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
 
 # the exact receipt binds all native saves and the independent measurement digest
 KReceiptDigest = "7fd2fffa3c690998753a80cab81da2f1c2446c9fcec39574e3983a7f4345cae5"
-
-# accepted display framing is scoped to the independently witnessed platform build
-KApplicationBuild = "34.4.1.1011"
-
 
 # git blob reads avoid workspace capture changes and never invoke licensed software
 def ReadPinned(RootPath, FileName):
