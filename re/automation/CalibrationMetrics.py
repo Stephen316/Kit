@@ -28,7 +28,7 @@ def overlap(intervals, requested):
     return peak, longest / 1e9
 
 
-def jobs(adapter, store, expected):
+def jobs(adapter, store, expected, *, verify_accepted=False):
     rows, after = [], None
     while True:
         page = adapter.ReadStatus(after=after)
@@ -50,6 +50,32 @@ def jobs(adapter, store, expected):
         receipt = payload.get("receipt") or {}
         declared = payload.get("result") or {}
         measurement = declared.get("records")
+        physical = {}
+        if verify_accepted and row["state"] == "completed":
+            objects.verify(row["receipt"])
+            durable = read_record(objects.path(row["receipt"]))
+            if (
+                durable["receipt_version"] != 1
+                or durable["job_id"] != row["id"]
+                or durable["generation"] != row["generation"]
+                or durable["fingerprint"] != row["fingerprint"]
+                or durable["attempt"] != row["attempts"]
+                or durable["outcome"] != "completed"
+                or durable["result_sha256"] != row["result"]
+                or receipt["job_id"] != row["id"]
+                or receipt["attempt"] != row["attempts"]
+                or receipt["orphan"] is not False
+                or declared["outcome"] != "completed"
+                or durable["snapshot"]["inputs"]["source"]["sha256"]
+                != measurement["input_sha256"]
+            ):
+                raise ValueError(
+                    "accepted controller receipt differs from its measured archive"
+                )
+            physical = {
+                "session": receipt["session"],
+                "group_size": receipt.get("group_size", 1),
+            }
         records.append(
             {
                 "id": row["id"],
@@ -67,6 +93,7 @@ def jobs(adapter, store, expected):
                 "signal": receipt.get("signal"),
                 "stop_reason": receipt.get("stop_reason"),
                 "measurement": measurement,
+                **physical,
             }
         )
     return records
