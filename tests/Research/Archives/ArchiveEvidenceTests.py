@@ -742,13 +742,15 @@ def CheckSwCutOp(Variant: str) -> None:
     Spans = {Value.record_kind: Value for Value in CutStep.provenance.spans}
     (BodySpan,) = Target.provenance.spans
     assert BodySpan == Spans["cut-target-body"] and BodySpan.length > 100
-    AssertCutDepth(NativePath, Document, CutStep, Definition, Variant)
+    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
+    AssertCutDepth(Archive, Document, CutStep, Definition, Variant)
     AssertSwCutFace(Variant, Document)
+    AssertCutRules(Variant, Document, Archive.require("Contents/Config-0"))
 
 
 # the blind parameter and through all absence must match saved raw bytes
 def AssertCutDepth(
-    NativePath: FilePath,
+    Archive: SldprtArchive,
     Document: CadDocument,
     CutStep: FeatureStep,
     Definition: ExtrudeFeature,
@@ -756,7 +758,6 @@ def AssertCutDepth(
 ) -> None:
     assert CutStep.provenance is not None
     Spans = {Value.record_kind: Value for Value in CutStep.provenance.spans}
-    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
     if Variant == "termination-through-all":
         assert Definition.length is None and not CutStep.parameter_ids
         Unset = Spans["extrusion-depth-absent"]
@@ -815,7 +816,11 @@ def AssertSwCutFace(Variant: str, Document: CadDocument) -> None:
 
 # the typed local perimeter retains native line records in their directed closure
 def AssertSwCutLoop(SketchValue: Sketch) -> None:
-    Lines = SketchValue.entities
+    Lines = tuple(
+        Value
+        for Value in SketchValue.entities
+        if isinstance(Value.geometry, LineGeometry)
+    )
     assert tuple(Value.attributes.get("native_segment_id") for Value in Lines) == (
         1,
         4,
@@ -988,8 +993,8 @@ def CheckSwPart(Variant: str) -> None:
         / f"P04-solidworks-{Variant}.SLDPRT"
     )
     Document = OpenDocument(NativePath)
-    assert Document.brep is not None and not Document.brep.validate()
     (BodyValue,) = Document.bodies
+    assert Document.brep is not None and not Document.brep.validate(frozenset((BodyValue.id,)))
     (Stored,) = Document.brep.bodies
     assert Stored.design_body_id == BodyValue.id
     Summary = BodyValue.topology
@@ -1023,6 +1028,128 @@ def CheckSwPart(Variant: str) -> None:
     )
     assert Summary.bounding_box.minimum == SpaceVector(0, 0, 0)
     assert Summary.bounding_box.maximum == SpaceVector(*Maximum)
+
+
+# the archived origin proxy must keep both its local point and earlier feature ownership
+def AssertCutOrigin(Document: CadDocument, SketchValue: Sketch) -> None:
+    (Proxy,) = tuple(
+        Value
+        for Value in SketchValue.entities
+        if isinstance(Value.geometry, PointGeometry)
+    )
+    assert (
+        Proxy.fixed and Proxy.construction and isinstance(Proxy.geometry, PointGeometry)
+    )
+    assert (Proxy.geometry.point.x, Proxy.geometry.point.y) == (0.0, 0.0)
+    assert Proxy.attributes["native_point_id"] == (4, 5)
+    assert Proxy.attributes["native_origin_point_handle"] == (0, -1, 0)
+    assert Proxy.provenance is not None
+    assert tuple(SpanValue.record_kind for SpanValue in Proxy.provenance.spans) == (
+        "cut-origin-proxy-point",
+        "origin-source-point",
+    )
+    PickId = Proxy.attributes["solidworks.projection_source_selection_id"]
+    (OriginPick,) = tuple(Value for Value in Document.selections if Value.id == PickId)
+    (OriginPath,) = OriginPick.path
+    assert (OriginPath.entity_id, OriginPath.subelement) == (
+        "sldprt:feature:5",
+        "point:0",
+    )
+    (Owner,) = tuple(
+        Value for Value in Document.feature_timeline if Value.id == "sldprt:feature:35"
+    )
+    assert (
+        OriginPick.id in Owner.selection_ids
+        and OriginPath.entity_id in Owner.input_feature_ids
+    )
+
+
+# an axis record must bind a typed line rather than an equivalently numbered trim edge
+def AssertCutAxis(RuleValue: SketchRelation, SketchValue: Sketch, Config: bytes) -> int:
+    (Reference,) = RuleValue.references
+    assert Reference.point == ""
+    (LineValue,) = tuple(
+        Value for Value in SketchValue.entities if Value.id == Reference.entity_id
+    )
+    assert isinstance(LineValue.geometry, LineGeometry)
+    assert LineValue.provenance is not None and RuleValue.provenance is not None
+    (LineSpan,) = LineValue.provenance.spans
+    (RuleSpan,) = RuleValue.provenance.spans
+    assert RuleSpan.stream == LineSpan.stream == "Contents/Config-0"
+    assert RuleSpan.record_kind == "sketch-axis-relation"
+    (NativeId,) = UnpackFrom("<i", Config, LineSpan.offset + 6)
+    (TypeCode,) = UnpackFrom("<i", Config, RuleSpan.offset + 29)
+    assert NativeId == RuleValue.attributes["native_segment_id"]
+    assert (
+        TypeCode
+        == RuleValue.attributes["native_code"]
+        == (4 if RuleValue.kind == "horizontal" else 5)
+    )
+    return NativeId
+
+
+# each saved value and role must bind to the ordered configuration point operands
+def AssertCutDist(
+    Variant: str, RuleValue: SketchRelation, ParamValue: Parameter, Config: bytes
+) -> None:
+    assert RuleValue.provenance is not None and ParamValue.provenance is not None
+    BodySpan, Scalar = RuleValue.provenance.spans
+    assert BodySpan.record_kind == "sketch-distance"
+    assert BodySpan.stream == Scalar.stream == "Contents/Config-0"
+    assert Scalar in ParamValue.provenance.spans and Scalar.length == 8
+    assert ParamValue.value.value == UnpackFrom("<d", Config, Scalar.offset)[0] * 1000
+    assert ParamValue.value.unit == "mm"
+    First, Second = RuleValue.references
+    Named = ParamValue.name
+    if Named in ("cut_width_mm", "cut_height_mm"):
+        assert (
+            RuleValue.kind == "distance"
+            and RuleValue.driving
+            and ParamValue.role == "driving"
+        )
+        assert First.entity_id == Second.entity_id and {First.point, Second.point} == {
+            "start",
+            "end",
+        }
+        return
+    assert Named in ("cut_left_mm", "cut_bottom_mm") and ParamValue.role == "derived"
+    assert not RuleValue.driving and ParamValue.expression is not None
+    assert RuleValue.attributes["native_point_ids"] == ((4, 5), (0, 1))
+    assert (
+        First.entity_id.endswith(":native-point:5")
+        and First.point == ""
+        and Second.point == "start"
+    )
+    IsRotated = Variant == "plane-yz"
+    assert RuleValue.kind == (
+        "distance_x" if (Named == "cut_left_mm") != IsRotated else "distance_y"
+    )
+    assert RuleValue.attributes["solidworks.signed_distance_multiplier"] == (
+        -1 if IsRotated and Named == "cut_bottom_mm" else 1
+    )
+
+
+# every cut capture must retain its four measured line targets and four typed value bindings
+def AssertCutRules(Variant: str, Document: CadDocument, Config: bytes) -> None:
+    (SketchValue,) = tuple(
+        Value for Value in Document.sketches if Value.id == "sldprt:sketch:35"
+    )
+    assert len(SketchValue.constraints) == 8
+    AssertCutOrigin(Document, SketchValue)
+    Parameters = {
+        Value.id: Value
+        for Value in Document.parameters
+        if Value.id in SketchValue.parameter_ids
+    }
+    AxisIds: set[int] = set()
+    for RuleValue in SketchValue.constraints:
+        if RuleValue.parameter_id is None:
+            AxisIds.add(AssertCutAxis(RuleValue, SketchValue, Config))
+        else:
+            AssertCutDist(
+                Variant, RuleValue, Parameters.pop(RuleValue.parameter_id), Config
+            )
+    assert not Parameters and AxisIds == {1, 2, 3, 4}
 
 
 # saved edge allocations vary across edits so each archive supplies its own expected source start
