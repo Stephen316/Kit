@@ -14,6 +14,9 @@ Use this procedure when your application must inspect the neutral document befor
 
 JSON output is Kit interchange data.
 It is not a native CAD application document.
+When exporting a SOLIDWORKS source, require explicit decoded sketch support references and resolved inch dimensions and equation dependencies.
+A successful read can retain unresolved evidence and remain ineligible for writing.
+See [the source support restriction](../Changes/Research/SolidWorksSupportWriteGate.md).
 
 ## Procedure
 
@@ -41,7 +44,7 @@ It is not a native CAD application document.
 
 4. Evaluate the returned `WriteResult`.
 
-Expected result: the writer returns its output record.
+Expected result: the writer returns its output record for an eligible document, or refuses unresolved source semantics before output mutation.
 The example preserves the separation between the source model and the output attestation.
 
 ## Options
@@ -87,6 +90,8 @@ Do not assume that arbitrary streams support rollback.
 
 For an ambiguous writer, set `destination_format` explicitly.
 For invalid model references, correct the model before writing again.
+For unqualified SOLIDWORKS supports, keep the inspection evidence and resolve the native association before retrying.
+Do not replace a fallback classification with an explicit-reference label without supporting evidence.
 For a failed destination stream, create a fresh stream before retrying.
 See [error recovery](Troubleshoot.md).
 

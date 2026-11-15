@@ -17,6 +17,8 @@ It includes the output checks needed before acceptance.
 The paths `bracket.SLDPRT` and `bracket.FCStd` are example paths.
 Supply a real input at the source path before executing the example.
 A file with unsupported content can fail even when its suffix has an adapter.
+SOLIDWORKS fallback or unframed sketch supports prevent export, including interchange JSON.
+Reading and inspection remain available. See [the support restriction](../Changes/Research/SolidWorksSupportWriteGate.md).
 
 ## Procedure
 
@@ -76,6 +78,8 @@ Keep incomplete output as diagnostic evidence and continue the implementation wo
 
 For a filesystem error, check destination permissions, free space, and existing companion paths.
 For unsupported source content, preserve the source and report its format and feature family.
+For unqualified sketch supports, retain the native reference evidence before implementing a supported mapping.
+Neither `allow_carrier=True` nor disabled model validation qualifies an unresolved source association.
 Stop before distributing an output that has no required acceptance evidence.
 
 ## Sources

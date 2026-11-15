@@ -12,9 +12,8 @@ from convert.adapters import (
     WriteResult,
 )
 from convert.adapters.json import JsonAdapter
-from convert.api.ApiOpen import OpenDocument
 from interchange import CadDocument, Capability
-from tests.convert.api.ApiTestPaths import KSamplePath
+from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 from typing_extensions import override as Override
 
@@ -127,4 +126,4 @@ def BuildAdapter(FormatId: str, **NamedValues: str) -> ResultAdapter:
 
 # shared fixture ownership prevents structural refactors from leaking old helper names here
 def BuildSource() -> CadDocument:
-    return OpenDocument(KSamplePath)
+    return CadDocument.from_json(AdapterCase("rectangle").to_json())

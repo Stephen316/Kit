@@ -82,6 +82,7 @@ They do not claim native CAD application support for JSON.
 | Existing destination            | `FileExistsError` unless replacement is permitted |
 | Missing or ambiguous adapter    | Registry selection error                          |
 | Invalid input or model          | Reader or model validation error                  |
+| Unqualified source evidence     | `ValueError` before destination mutation           |
 | Dropped capability              | Capability-loss error                             |
 | Unacceptable output attestation | `ApplicationUsabilityError`                       |
 | Incorrect returned stream count | `OSError` with partial stream effects possible    |
@@ -94,6 +95,13 @@ If a stream's `write()` returns `None`, the final count check does not run.
 Verify output independently when the stream cannot report an accurate count.
 Stream writes and payload extraction have different failure boundaries.
 See [engine behavior](../Architecture/Engine.md) and [error recovery](../../Tasks/Troubleshoot.md).
+
+Successful reading does not qualify a document for writing.
+SOLIDWORKS exports reject fallback or unframed sketch supports and unresolved inch dimensions or equation dependencies.
+Research-marked documents also remain ineligible for output.
+These checks apply to registry writes, direct adapters, nested documents, and persisted interchange input.
+Setting `validate=False` or allowing carriers does not remove these checks.
+See [the sketch support gate](../../Changes/Research/SolidWorksSupportWriteGate.md).
 
 ## Adapter author contracts
 

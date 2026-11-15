@@ -17,6 +17,8 @@ The new support guard correctly refused export. The positive fixture expectation
 Keep the original native fixture and its unresolved evidence unchanged.
 Use it to verify direct JSON export refusal and destination preservation.
 Use an independently authored Fusion file for the positive direct JSON boundary check.
+Use the same independent source for generic bridge and carrier policy cases.
+Registry staging cases can use its typed neutral serialization while retaining their output and rollback assertions.
 Keep the P04 native equation text and dependency checks independent from support qualification.
 Require export refusal while P04 support evidence remains unqualified, even when both formulas have resolved dependencies.
 Do not replace fallback classifications with `plane-reference` to make an export pass.

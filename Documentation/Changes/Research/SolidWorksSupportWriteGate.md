@@ -45,6 +45,13 @@ It also passes through native file creation, public reading, and public JSON wri
 That positive case retains no SOLIDWORKS support attributes.
 No support attribute is relabeled to make a positive fixture pass.
 
+Generic public bridge, carrier-policy, and registry staging cases also used the unqualified bundled SOLIDWORKS example.
+Their positive sources now use the independent rectangle, with an actual Fusion file for public conversion cases.
+Registry cases restore its typed neutral serialization before exercising their real file or stream boundary.
+The transfer, usability, strict carrier refusal, and rollback assertions remain in place.
+Dedicated native API coverage preserves inspection and requires refusal without changing an existing destination.
+The public API and task guides now state that a successful read does not qualify an export.
+
 No local tests, decoding, or CAD application experiments verified this change.
 Remote integration results and current-head review remain required.
 The SOLIDWORKS support-reference class and ownership proof remains unfinished under A04c.
