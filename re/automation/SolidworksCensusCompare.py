@@ -343,7 +343,28 @@ def compare_timeline(measured, neutral):
     return observation("neutral.authored_sketch_extrusion_timeline", expected, actual)
 
 
-def compare(measured, native, neutral, tolerance, capture_name):
+def compare_body_measurements(measured, neutral, tolerances):
+    if measured["body_count"] != 1:
+        return []
+    expected_volume, actual_volume = measured["volume_mm3"], neutral.get("body_volume_mm3")
+    expected_center, actual_center = measured["center_of_mass_mm"], neutral.get("body_centroid_mm")
+    volume_matches = actual_volume is not None and math.isclose(
+        expected_volume, actual_volume,
+        abs_tol=tolerances["volume_mm3_absolute"],
+        rel_tol=tolerances["volume_relative"],
+    )
+    center_matches = actual_center is not None and all(
+        lengths_equal(expected, actual, tolerances["length_mm_absolute"])
+        for expected, actual in zip(expected_center, actual_center, strict=True)
+    )
+    return [
+        observation("neutral.body.volume_mm3", expected_volume, actual_volume, volume_matches),
+        observation("neutral.body.center_of_mass_mm", expected_center, actual_center, center_matches),
+    ]
+
+
+def compare(measured, native, neutral, tolerances, capture_name):
+    tolerance = tolerances["length_mm_absolute"]
     comparisons = [
         observation("neutral.solid_count", measured["body_count"], neutral.get("solid_count")),
         observation("neutral.source_display_unit", {3: "in", 5: "mm"}[measured["units_code"]], neutral.get("native_display_unit")),
@@ -353,6 +374,7 @@ def compare(measured, native, neutral, tolerance, capture_name):
         *compare_equations(measured, native, neutral),
         *compare_operations(measured, native, neutral, tolerance),
         *compare_sketches(measured, native, neutral, tolerance),
+        *compare_body_measurements(measured, neutral, tolerances),
     ]
     if capture_name in P03_BOUNDS_CASES:
         comparisons.append(compare_boss_bounds(measured, neutral, tolerance))

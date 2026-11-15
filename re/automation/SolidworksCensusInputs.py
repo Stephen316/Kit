@@ -44,7 +44,7 @@ def capture_inputs(root, revision):
         require(recipe["split"] == "discovery", f"ineligible discovery case: {recipe_id}")
         directory = base / "PairedCaptures" / recipe_id / folder
         rows.extend(read_capture(directory, recipe, count, receipt_sha, entries, read_blob, control_sha))
-    return rows, specification["comparison_tolerances"]["length_mm_absolute"]
+    return rows, specification["comparison_tolerances"]
 
 
 def read_capture(directory, recipe, count, receipt_sha, entries, read_blob, control_sha):

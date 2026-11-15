@@ -116,6 +116,8 @@ The [timeline comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDi
 
 The [profile section comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryProfileSections.md) compares the saved closed loop's area and world-space centroid with the licensed section measurements.
 
+The [body measurements comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryBodyMeasurements.md) compares the typed single-solid volume and centroid with the licensed body measurements.
+
 The P04 termination check uses the same measured receipts. It requires ten matching blind cut depths and one typed cut with the through-all end condition and an absent length. The source evidence retains native code 1. Destinations require separately qualified reconstruction. [Depthless through-all cut projection](../../Changes/Research/Readers/SolidWorksThroughAllProjection.md)
 
 The inch-length check verifies seven named, feature-owned resolved dimensions and three blind depths in the inch variants. Display metadata identifies the source unit and its native property stream. P04's six sketch dimensions remain outside this check while their configuration-stream ownership is unresolved. [Resolved-feature inch lengths](../../Changes/Research/SolidWorksResolvedInchLengths.md)

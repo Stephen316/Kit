@@ -144,7 +144,9 @@ def neutral_data(document, receipt):
     }
     plane_by_id = {item.id: item for item in document.support_planes}
     selection_by_id = {item.id: item for item in document.selections}
-    bounds = document.bodies[0].topology.bounding_box if len(document.bodies) == 1 else None
+    body = document.bodies[0] if len(document.bodies) == 1 else None
+    bounds = body.topology.bounding_box if body is not None else None
+    solid = body is not None and body.topology.solid_count == 1
     return {
         "status": "decoded",
         "sdk_revision": receipt["sdk_revision"],
@@ -154,6 +156,8 @@ def neutral_data(document, receipt):
         "canonical_unit": str(document.units),
         "native_display_unit": document.metadata.get("source_display_units"),
         "solid_count": sum(item.topology.solid_count for item in document.bodies),
+        "body_volume_mm3": body.topology.volume if solid else None,
+        "body_centroid_mm": body.attributes.get("solidworks.body_centroid_mm") if solid else None,
         "active_configurations": [item.name for item in document.configurations if item.active],
         "body_bounding_box_mm": None if bounds is None else (
             vector(bounds.minimum), vector(bounds.maximum)

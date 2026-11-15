@@ -23,6 +23,6 @@ The existing hosted Linux witness checks the actual 64 MiB cgroup OOM and the or
 The OOM case checks the reservation increase from 64 to 128 MiB, reload from the private file and duplicate-session refusal.
 The ordinary kill control checks the original 64 MiB estimate.
 The existing adaptive limit and exact controller receipt checks remain part of both cases.
-Exact-revision hosted execution remains pending.
+At PR head `47de6ad0`, the hosted witness passed on tested merge `b008c6a82a1556c0e0018bfb5fa0e47e2dcc4f8e`. The accepted kernel OOM increased the recorded admission estimate from 64 to 128 MiB. The ordinary `SIGKILL` control stayed at 64 MiB, and cleanup passed in both cases. The downloaded JSON SHA-256 is `a56ea85b2b843a4e8518b97b838ff1a94046b9f647bd37ea580545dd7a165302`. [Hosted job](https://github.com/TryUniCAD/Kit/actions/runs/43772995626/job/132992935388), [Witness artifact](https://github.com/TryUniCAD/Kit/actions/runs/43772995626/artifacts/14185416716)
 
 See [supervisor memory learning](../../../Reference/Research/ResearchSupervisor.md#versioned-memory-learning) and [the hosted Linux witness](HostedSupervisorOom.md).

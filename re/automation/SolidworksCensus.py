@@ -17,7 +17,7 @@ from SolidworksCensusRead import native_read, neutral_read
 from SolidworksSupportEvidence import require_support_candidates
 
 
-def run_case(root, manifest, directory, case, revision, tolerance):
+def run_case(root, manifest, directory, case, revision, tolerances):
     recipe, asset, content, evidence, measured = case
     native = native_read(content, asset["path"])
     neutral = neutral_read(root, manifest, asset, directory / Path(asset["path"]).stem, revision)
@@ -46,7 +46,7 @@ def run_case(root, manifest, directory, case, revision, tolerance):
                 for sketch in measured["sketches"]
             ],
         },
-        "comparisons": compare(measured, native, neutral, tolerance, Path(asset["path"]).name),
+        "comparisons": compare(measured, native, neutral, tolerances, Path(asset["path"]).name),
     }
 
 
@@ -54,7 +54,7 @@ def run(root, output):
     if output.exists():
         raise ValueError("select a new census output path")
     revision = git(root, "rev-parse", "HEAD").decode().strip()
-    captures, tolerance = capture_inputs(root, revision)
+    captures, tolerances = capture_inputs(root, revision)
     sys.path.insert(0, str(root / "src"))
     with TemporaryDirectory(prefix="kit-a04c-") as temporary:
         directory = Path(temporary)
@@ -66,7 +66,7 @@ def run(root, output):
         }, sort_keys=True), encoding="utf-8")
 
         def inspect(case):
-            return run_case(root, manifest, directory, case, revision, tolerance)
+            return run_case(root, manifest, directory, case, revision, tolerances)
 
         with ThreadPoolExecutor(max_workers=4) as workers:
             findings = list(workers.map(inspect, captures))
@@ -79,7 +79,11 @@ def run(root, output):
         "revision": revision,
         "scope": "SOLIDWORKS P01/P03/P04 discovery only",
         "manifest_sha256": manifest_sha,
-        "length_comparison_tolerance_mm": tolerance,
+        "length_comparison_tolerance_mm": tolerances["length_mm_absolute"],
+        "volume_comparison_tolerances": {
+            "absolute_mm3": tolerances["volume_mm3_absolute"],
+            "relative": tolerances["volume_relative"],
+        },
         "native_acceptance": "not_established",
         "semantic_qualification": "unverified",
         "summary": {"files": len(findings), "boundaries": dict(boundaries), "comparisons": dict(comparisons)},
