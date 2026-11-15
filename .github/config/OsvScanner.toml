@@ -2,10 +2,6 @@
 # upstream blocker exists, and each blocker is re-checked whenever its package gets upgraded.
 
 [[IgnoredVulns]]
-id = "GHSA-9w56-46f6-3qhx"
-reason = "dev-only; checkov 3.3.13 (latest release) pins asteval==1.0.6 exactly, so 1.0.9 is unreachable"
-
-[[IgnoredVulns]]
 id = "GHSA-wj6h-64fc-37mp"
 reason = "PYSEC-2026-1325 in ecdsa is dev-only, has no fixed release, and checkov requires ecdsa>=0.19,<1.0"
 
