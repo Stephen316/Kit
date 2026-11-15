@@ -9,6 +9,7 @@ from GroupClaims import claim_group, read_group, renew_group, write_group
 from GroupFinish import finish_group
 from Ledger import Ledger
 from OutputManifest import InvalidOutput
+from PrioritySchedule import schedule
 from Records import StaleLease, canonical, read_record
 from RecoveryFence import StaleOwner, check_owner, owner_digest, rotate_owner
 from SingleClaim import claim_to_file
@@ -30,6 +31,8 @@ def main():
     submit.add_argument("file", type=Path)
     batch = commands.add_parser("submit-batch")
     batch.add_argument("file", type=Path)
+    planned = commands.add_parser("schedule")
+    planned.add_argument("file", type=Path)
     resource = commands.add_parser("resource")
     resource.add_argument("name")
     availability = resource.add_mutually_exclusive_group()
@@ -92,6 +95,8 @@ def main():
                 if set(record) != {"jobs"}:
                     raise ValueError("batch record must contain only jobs")
                 response = ledger.submit_many(record["jobs"])
+            elif args.command == "schedule":
+                response = schedule(ledger, read_record(args.file))
             elif args.command == "resource":
                 response = ledger.resource(args.name, True if args.available else False if args.unavailable else None, args.capacity)
             elif args.command == "pool":

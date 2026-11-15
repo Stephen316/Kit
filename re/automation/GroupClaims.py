@@ -2,9 +2,10 @@ import json
 import os
 import shutil
 import tempfile
-import time
 from pathlib import Path
 
+from PriorityBacklog import fill_backlog
+from PriorityClaims import runnable_jobs
 from Records import StaleLease, bounded, canonical, digest, label, read_record
 
 
@@ -59,19 +60,15 @@ def claim_group(ledger, worker, pool, entries):
     running = ledger.db.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
     if maximum - running < 2:
         return []
-    rows = ledger.db.execute(
-        "SELECT j.* FROM jobs j WHERE j.state='queued' AND j.next_run<=? "
-        "AND j.kind IN (SELECT kind FROM pool_kinds WHERE pool=?) "
-        "AND NOT EXISTS (SELECT 1 FROM job_resources r LEFT JOIN resources a ON a.name=r.resource WHERE r.job_id=j.id AND (COALESCE(a.available,0)=0 "
-        "OR (SELECT COUNT(*) FROM job_resources held JOIN jobs owner ON owner.id=held.job_id WHERE held.resource=r.resource AND owner.state='running')>=a.capacity)) "
-        "ORDER BY j.created,j.id", (time.time(), pool)
-    ).fetchall()
+    fill_backlog(ledger)
+    rows = runnable_jobs(ledger, pool, grouped=True).fetchall()
     selected, reserved, identity, total = [], {}, None, 0
     for row in rows:
         spec = json.loads(row["definition"])
         if row["attempts"] >= spec["max_attempts"]:
             continue
-        key = (spec["kind"], spec["tool_version"], spec["rule_version"])
+        key = (spec["kind"], spec["tool_version"], spec["rule_version"],
+               row["schedule_lane"], row["schedule_family"])
         solo = ledger.db.execute("SELECT 1 FROM group_solo WHERE job_id=? AND generation=? AND fingerprint=?", (row["id"], row["generation"], row["fingerprint"])).fetchone()
         if identity is None:
             if spec["kind"] not in limits or solo or not spec["inputs"]:
@@ -107,7 +104,10 @@ def claim_group(ledger, worker, pool, entries):
             break
     if len(selected) < 2:
         return []
-    claims = [ledger.issue_claim(row, spec, worker) for row, spec in selected]
+    installations = [row["schedule_installation"] for row, spec in selected if row["schedule_installation"] is not None]
+    if installations:
+        fill_backlog(ledger, installations)
+    claims = [ledger.issue_claim(row, spec, worker, pool) for row, spec in selected]
     ledger.event(None, "group_claimed", {"jobs": [claim["job"]["id"] for claim in claims], "input_bytes": total, "group_protocol": 1})
     return claims
 
