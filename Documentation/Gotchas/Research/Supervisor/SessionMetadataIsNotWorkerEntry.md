@@ -9,8 +9,10 @@ The [Linux supervisor job](https://github.com/TryUniCAD/Kit/actions/runs/4367462
 That fixture killed the supervisor as soon as `session.json` appeared.
 
 Tests that require a live orphan must wait for a PID-bound marker published by the actual worker in the intended execution phase.
-The sleep-first fixture now writes, syncs and atomically renames that marker before sleeping.
-The restart test waits for it before killing the supervisor, while retaining its identity, stopped-process and fake-PID bystander checks.
+The sleep-first and hold branches share one phase-parameterized marker writer, which writes, syncs and atomically renames the marker before sleeping.
+The restart test waits for sleep-first entry before killing the supervisor, while retaining its identity, stopped-process and fake-PID bystander checks.
+Both evidence-rebinding cases wait for hold entry before changing the binding, so they continue to test a stale running worker rather than rejected startup.
+Their stale-event, running-session and final-result assertions remain intact.
 The separate launch-gate cases continue to test supervisor death before release.
 
 The [launch-gate change](../../../Changes/Research/Supervisor/PosixWorkerLaunchGate.md) records the distinction and the repaired fixture's pending remote verification.

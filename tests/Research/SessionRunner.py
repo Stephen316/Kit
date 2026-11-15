@@ -39,19 +39,19 @@ def HasHoldInput(SessionPath: FilePath) -> bool:
     )
 
 
-def WriteSleep(SessionPath: FilePath) -> None:
-    StagePath = SessionPath / ".sleep-first.entered.tmp"
+def WritePhase(SessionPath: FilePath, PhaseName: str) -> None:
+    StagePath = SessionPath / f".{PhaseName}.entered.tmp"
     Handle = OsLayer.open(
         StagePath, OsLayer.O_CREAT | OsLayer.O_EXCL | OsLayer.O_WRONLY, 0o600
     )
     try:
         with OsLayer.fdopen(Handle, "w", encoding="utf-8") as Writer:
             _ = Writer.write(
-                JsonCodec.dumps({"pid": OsLayer.getpid(), "phase": "sleep-first"})
+                JsonCodec.dumps({"pid": OsLayer.getpid(), "phase": PhaseName})
             )
             Writer.flush()
             OsLayer.fsync(Writer.fileno())
-        OsLayer.replace(StagePath, SessionPath / "sleep-first.entered.json")
+        OsLayer.replace(StagePath, SessionPath / f"{PhaseName}.entered.json")
     finally:
         StagePath.unlink(missing_ok=True)
 
@@ -75,9 +75,10 @@ def RunFixture() -> int:
         TimeClock.sleep(120)
         return 0
     if ModeName == "sleep-first" and int(Session["attempt"]) == 1:
-        WriteSleep(SessionPath)
+        WritePhase(SessionPath, "sleep-first")
         TimeClock.sleep(120)
     if ModeName == "hold" and HasHoldInput(SessionPath):
+        WritePhase(SessionPath, "hold")
         TimeClock.sleep(120)
     return WriteResult(SessionPath, JobInfo)
 

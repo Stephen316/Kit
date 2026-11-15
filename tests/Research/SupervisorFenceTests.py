@@ -40,6 +40,12 @@ def CheckStaleLease() -> None:
         Running = Harness.StartRun("--idle-seconds", "3", "--max-seconds", "60")
         try:
             SessionInfo = Harness.WaitSession("stale:hold")
+            WaitWorkerEntry(
+                RootPath,
+                str(SessionInfo["session"]),
+                int(str(SessionInfo["pid"])),
+                "hold",
+            )
             Changed = TimeClock.monotonic()
             Harness.BindBytes("evidence:hold", b"release")
             Output, ErrorText = Running.communicate(timeout=60)
@@ -48,23 +54,29 @@ def CheckStaleLease() -> None:
             _ = Running.wait()
         assert Running.returncode == 0, ErrorText
         assert TimeClock.monotonic() - Changed < 30
-        assert IsProcessGone(int(str(SessionInfo["pid"])))
-        Events = ParseEvents(Output)
-        Summary = JsonCodec.loads(JsonCodec.dumps(Events[-1]))["summary"]
-        assert Summary["stale"] == 1, Events
-        assert Summary["finished"] == {"completed": 1}
-        Stopped = [
-            Event
-            for Event in Events
-            if Event.get("event") == "finished" and Event.get("outcome") is None
-        ]
-        assert len(Stopped) == 1
-        Receipt = JsonCodec.loads(JsonCodec.dumps(Stopped[0]["receipt"]))
-        assert Receipt["stop_reason"] == "stale_lease"
-        Released = Harness.ReadJob("stale:hold")
-        assert Released["state"] == "completed", Released
-        assert Released["generation"] == 2
-        assert Released["attempts"] == 1
+        AssertStaleRun(Output, Harness, SessionInfo)
+
+
+def AssertStaleRun(
+    Output: str, Harness: SessionHost, SessionInfo: dict[str, object]
+) -> None:
+    assert IsProcessGone(int(str(SessionInfo["pid"])))
+    Events = ParseEvents(Output)
+    Summary = JsonCodec.loads(JsonCodec.dumps(Events[-1]))["summary"]
+    assert Summary["stale"] == 1, Events
+    assert Summary["finished"] == {"completed": 1}
+    Stopped = [
+        Event
+        for Event in Events
+        if Event.get("event") == "finished" and Event.get("outcome") is None
+    ]
+    assert len(Stopped) == 1
+    Receipt = JsonCodec.loads(JsonCodec.dumps(Stopped[0]["receipt"]))
+    assert Receipt["stop_reason"] == "stale_lease"
+    Released = Harness.ReadJob("stale:hold")
+    assert Released["state"] == "completed", Released
+    assert Released["generation"] == 2
+    assert Released["attempts"] == 1
 
 
 def WriteFakeReuse(RootPath: FilePath, ProcessId: int) -> None:
@@ -133,7 +145,9 @@ def CheckRestart() -> None:
         try:
             SessionInfo = Harness.WaitSession("restart:first")
             OrphanId = int(str(SessionInfo["pid"]))
-            WaitWorkerEntry(RootPath, str(SessionInfo["session"]), OrphanId)
+            WaitWorkerEntry(
+                RootPath, str(SessionInfo["session"]), OrphanId, "sleep-first"
+            )
             First.send_signal(Signals.SIGKILL)
             _ = First.communicate(timeout=30)
             assert not IsProcessGone(OrphanId)
@@ -187,7 +201,13 @@ def CheckAdapter() -> None:
         )
         Running = Harness.StartRun("--idle-seconds", "3", "--max-seconds", "90")
         try:
-            _ = Harness.WaitSession("mini:hold", Timeout=60)
+            SessionInfo = Harness.WaitSession("mini:hold", Timeout=60)
+            WaitWorkerEntry(
+                RootPath,
+                str(SessionInfo["session"]),
+                int(str(SessionInfo["pid"])),
+                "hold",
+            )
             _ = Harness.RunCli("run", "--idle-seconds", "1", ExitCode=4)
             Harness.BindBytes("evidence:hold", b"release")
             Output, ErrorText = Running.communicate(timeout=90)

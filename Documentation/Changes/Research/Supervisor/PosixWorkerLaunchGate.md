@@ -38,6 +38,8 @@ No local tests or reproductions ran.
 The [Linux supervisor stage](https://github.com/TryUniCAD/Kit/actions/runs/43674626489/job/132692018859) at `95b3f2e478742e3b166aef5ba13b495f2ff6434e` passed 42 cases, including the new launch cases.
 Its existing live-orphan restart case failed because it killed the supervisor on metadata visibility, before worker entry was guaranteed.
 That fixture now waits for an atomically published worker-entry marker and retains every identity, stopped-process and fake-PID protection assertion.
+Both held-evidence rebinding cases also wait for the actual hold phase, using the same marker writer and waiter with an explicit phase parameter.
+Their stale/running-session assertions remain unchanged.
 See [the fixture gotcha](../../../Gotchas/Research/Supervisor/SessionMetadataIsNotWorkerEntry.md).
 The repaired restart case, macOS process results and existing Windows compatibility gates still require evidence on the tested revision.
 The [startup gotcha](../../../Gotchas/Research/Supervisor/WorkersCanStartBeforeMetadata.md) describes the original recovery gap.
