@@ -1,4 +1,4 @@
-"""Replay the P04 resolved-list entry and its separately witnessed profiles."""
+"""Replay the P04 resolved-list entry through its first sketch backreference."""
 
 from argparse import ArgumentParser
 from hashlib import sha256
@@ -42,9 +42,8 @@ def read_named_concept(cursor, expected_flags):
     name, length = ReadString(cursor.blob, cursor.position)
     cursor.position += length
     node_state, flags, node_id, node_tail = cursor.read("<iIii")
-    Require(
-        (node_state, flags, node_tail), (0, expected_flags, 0), "ordinary typed node"
-    )
+    Require((node_state, node_tail), (0, 0), "ordinary typed node")
+    Require(flags in expected_flags, True, "witnessed typed node flags")
     read_empty_label(cursor)
     Require(cursor.read("<i"), (0,), "empty lightweight child list")
     cursor.null()  # moVisualProperties_c
@@ -52,7 +51,7 @@ def read_named_concept(cursor, expected_flags):
 
 
 # ordinary features can proceed to their own fields after an empty resolved list
-def read_named_feature(cursor, expected_flags=0x40000000):
+def read_named_feature(cursor, expected_flags=(0x40000000,)):
     from SketchRoot import Require
     from SupportPlane import read_feature_base
 
@@ -112,7 +111,7 @@ def read_detail_cabinet(cursor):
     offset = cursor.position
     cabinet = cursor.pointer(KDefinitionKind, "moDetailCabinet_c")
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, native_id = read_named_concept(cursor, 0x40000000)
+    name, native_id = read_named_concept(cursor, (0x40000000,))
     Require(cursor.read("<H"), (2,), "two resolved cabinet members")
 
     notes_class = "moNotesAreaFtrFolder_c"
@@ -183,7 +182,7 @@ def read_principal_plane(cursor, pointer_kind):
     offset = cursor.position
     plane = cursor.pointer(pointer_kind, "moRefPlane_c")
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = read_named_feature(cursor, expected_flags=0xC0000000)
+    name, feature_id = read_named_feature(cursor, expected_flags=(0xC0000000,))
     Require(cursor.read("<i"), (0,), "guarded principal model feature")
     read_plane_atom(cursor)
     read_ref_geometry(cursor, expected_mode=5)
@@ -218,16 +217,19 @@ def read_origin_entry(cursor):
         KClassRefKind,
         KDefinitionKind,
     )
+    from OriginTail import read_feature_tail, read_presentation
     from SketchRoot import Require
 
     offset = cursor.position
     origin = cursor.pointer(KDefinitionKind, "moOriginProfileFeature_c")
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id, _ = read_profile_body_prefix(cursor, 0xC0000000)
+    name, feature_id, _ = read_profile_body_prefix(cursor, (0xC0000000,))
     Require((name, feature_id), ("Origin", 5), "typed origin profile")
     sketch_offset = cursor.position
     sketch = cursor.pointer(KClassRefKind, "sgSketch")
     geometry = read_origin_geometry(cursor, sketch_offset)
+    presentation = read_presentation(cursor)
+    tail = read_feature_tail(cursor)
     return {
         "name": name,
         "native_feature_id": feature_id,
@@ -236,6 +238,9 @@ def read_origin_entry(cursor):
         "sketch_offset": sketch_offset,
         "sketch_object": sketch,
         "geometry": geometry,
+        "presentation": presentation,
+        **tail,
+        "end": cursor.position,
         "next_map_index": cursor.next_index,
     }
 
@@ -278,6 +283,35 @@ def read_origin_geometry(cursor, sketch_offset):
         "point_metres": point,
         "point_relation_type": type_code,
         "point_handle_object": handle,
+    }
+
+
+# sequential profile links must use an existing configuration sketch allocation
+def read_profile_link(cursor):
+    from convert.adapters.solidworks.container.Archive import (
+        KClassRefKind,
+        KDefinitionKind,
+        KObjectRefKind,
+    )
+
+    start = cursor.position
+    class_index = cursor.next_index
+    object_index = cursor.pointer(KDefinitionKind, "moProfileFeature_c")
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, feature_id, early_pointer = read_profile_body_prefix(
+        cursor, (0x40000000, 0xC0000000)
+    )
+    sketch_offset = cursor.position
+    sketch = cursor.pointer(KObjectRefKind, "sgSketch")
+    return {
+        "name": name,
+        "native_feature_id": feature_id,
+        "profile_offset": start,
+        "profile_class": class_index,
+        "profile_object": object_index,
+        "early_profile_pointer": early_pointer,
+        "sketch_offset": sketch_offset,
+        "sketch_object": sketch,
     }
 
 
@@ -354,6 +388,14 @@ def read_list_prefix(blob, config_map):
         "guarded principal plane identities and orientation",
     )
     origin = read_origin_entry(cursor)
+    front, *_ = planes
+    Require(
+        origin["support"]["native_feature_id"],
+        front["native_feature_id"],
+        "origin support resolves the saved front plane",
+    )
+    origin["support"]["plane_object"] = front["object_index"]
+    rectangle = read_profile_link(cursor)
     return {
         "list_count": count,
         "prior_map_index": base,
@@ -361,7 +403,8 @@ def read_list_prefix(blob, config_map):
         "environment_alias": {"offset": alias_start, "object_index": environment},
         "principal_planes": planes,
         "origin": origin,
-        "stopped_in": "sgSketch",
+        "rectangle_link": rectangle,
+        "stopped_in": "moProfileFeature_c",
         "next_offset": cursor.position,
         "next_map_index": cursor.next_index,
     }
@@ -404,7 +447,7 @@ def read_profile(blob, config_map, start, reference, reference_class, target):
         config_map.Classes,
         config_map.Objects,
     )
-    name, feature_id, early_pointer = read_profile_body_prefix(cursor, 0x40000000)
+    name, feature_id, early_pointer = read_profile_body_prefix(cursor, (0x40000000,))
     Require(cursor.position, reference, "exact recorded sketch slot boundary")
     object_index = cursor.pointer(KObjectRefKind, "sgSketch")
     Require(object_index, target, "witnessed sketch object")
@@ -418,32 +461,16 @@ def read_profile(blob, config_map, start, reference, reference_class, target):
     }
 
 
-# stream hashes prevent earlier native checkpoints from being reused on changed files
-def read_capture(root, asset, control):
-    from ConfigMap import ReadConfigMap
-    from convert.adapters.solidworks.container.Archive import ContainerMo
-    from convert.adapters.solidworks.container.Container import SldprtArchive
-    from SketchRoot import KGeneration, Require
+# native offsets corroborate reached links only on the two independently traced inputs
+def compare_profile_witness(name, resolved, config_map, report, control):
+    from SketchRoot import Require
 
-    name = asset["file"]
-    native = ReadPinned(root, name)
-    digest = sha256(native).hexdigest()
-    Require((digest, len(native)), (asset["sha256"], asset["size_bytes"]), name)
-    container = SldprtArchive.from_bytes(native, name)
-    Require(ContainerMo(container.streams), KGeneration, "model generation")
-    config = container.require("Contents/Config-0")
-    resolved = container.require("Contents/Config-0-ResolvedFeatures")
     resolved_pin = WINDOWS[name]
     Require(
-        sha256(config).hexdigest(),
-        control["config_sha256"],
-        "pinned configuration stream",
+        (report["config_sha256"], report["resolved_sha256"]),
+        (control["config_sha256"], resolved_pin["sha256"]),
+        "pinned configuration and resolved streams",
     )
-    Require(
-        sha256(resolved).hexdigest(), resolved_pin["sha256"], "pinned resolved stream"
-    )
-    config_map, _ = ReadConfigMap(config, KApplicationBuild)
-    prefix = read_list_prefix(resolved, config_map)
     profiles = [
         read_profile(resolved, config_map, 5525, 5742, None, 155),
         read_profile(
@@ -458,18 +485,55 @@ def read_capture(root, asset, control):
     Require(
         [(item["name"], item["native_feature_id"]) for item in profiles],
         [("RectangleSketch", 26), ("CutSketch", 35)],
-        "measured profile names and identities",
+        "licensed profile names and identities",
     )
-    return {
+    rectangle = report["list_prefix"]["rectangle_link"]
+    Require(
+        {field: rectangle[field] for field in profiles[0]},
+        profiles[0],
+        "reached rectangle agrees with licensed profile",
+    )
+    report.update(
+        native_handoff_witness_sha256=control["handoff_sha256"],
+        native_profile_witness_sha256=control["link_sha256"],
+        separately_witnessed_profiles=profiles,
+    )
+
+
+# exact blob pinning binds every sequential replay to its measured discovery case
+def read_capture(root, asset, measured):
+    from ConfigMap import ReadConfigMap
+    from convert.adapters.solidworks.container.Archive import ContainerMo
+    from convert.adapters.solidworks.container.Container import SldprtArchive
+    from SketchRoot import KGeneration, Require
+
+    name = asset["file"]
+    native = ReadPinned(root, name)
+    digest = sha256(native).hexdigest()
+    Require((digest, len(native)), (asset["sha256"], asset["size_bytes"]), name)
+    container = SldprtArchive.from_bytes(native, name)
+    Require(ContainerMo(container.streams), KGeneration, "model generation")
+    config = container.require("Contents/Config-0")
+    resolved = container.require("Contents/Config-0-ResolvedFeatures")
+    config_map, _ = ReadConfigMap(config, KApplicationBuild)
+    prefix = read_list_prefix(resolved, config_map)
+    profiles = [
+        feature["name"]
+        for feature in measured["feature_tree"]
+        if feature["type"] == "ProfileFeature"
+    ]
+    rectangle = prefix["rectangle_link"]
+    Require(profiles[:1], [rectangle["name"]], "first measured user profile")
+    report = {
         "file": name,
         "native_sha256": digest,
-        "config_sha256": control["config_sha256"],
-        "resolved_sha256": resolved_pin["sha256"],
-        "native_handoff_witness_sha256": control["handoff_sha256"],
-        "native_profile_witness_sha256": control["link_sha256"],
+        "config_sha256": sha256(config).hexdigest(),
+        "resolved_sha256": sha256(resolved).hexdigest(),
         "list_prefix": prefix,
-        "separately_witnessed_profiles": profiles,
     }
+    if name in CONTROLS:
+        compare_profile_witness(name, resolved, config_map, report, CONTROLS[name])
+    return report
 
 
 # the report preserves the distinct sources of entry and profile provenance
@@ -477,16 +541,15 @@ def main():
     ArgumentParser(description=__doc__).parse_args()
     root = Path(__file__).resolve().parents[3]
     sys.path.insert(0, str(root / "src"))
-    receipt, _ = ReadReceipts(root)
-    assets = {asset["file"]: asset for asset in receipt["native_files"]}
+    receipt, measured = ReadReceipts(root)
     evidence = {
         "scope": "p04_resolved_entry_research",
         "capture_revision": KCaptureRev,
         "capture_receipt_sha256": KReceiptDigest,
         "application_build": KApplicationBuild,
         "captures": [
-            read_capture(root, assets[name], control)
-            for name, control in CONTROLS.items()
+            read_capture(root, asset, measured[asset["file"]])
+            for asset in receipt["native_files"]
         ],
     }
     output = json.dumps(evidence, sort_keys=True, indent=2, allow_nan=False)
