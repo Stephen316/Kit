@@ -11,7 +11,7 @@ def RunLearning() -> None:
     for Offset in range(0, len(Content), 4096):
         Content[Offset] = 1
     TimeClock.sleep(1)
-    ResultInfo = {
+    ResultInfo: dict[str, object] = {
         "outcome": "completed",
         "reason": "measured fixture finished",
         "records": {

@@ -25,16 +25,18 @@ def StartChild(Options: dict[str, str]) -> None:
         creationflags=int(getattr(Subprocess, "CREATE_NEW_PROCESS_GROUP")),
     )
     UntilTime = TimeClock.monotonic() + 10
+    Observation: dict[str, int] = {}
+    JobName = ""
     while True:
         try:
             Observation = JsonCodec.loads(
                 FilePath(Options["pid_file"] + ".ready").read_text(encoding="utf-8")
             )
-            SessionInfo = JsonCodec.loads(
+            JobName = JsonCodec.loads(
                 (FilePath(OsLayer.environ["KIT_SESSION"]) / "session.json").read_text(
                     encoding="utf-8"
                 )
-            )
+            )["job_object"]
             break
         except (OSError, ValueError):
             pass
@@ -42,9 +44,7 @@ def StartChild(Options: dict[str, str]) -> None:
             raise RuntimeError("child did not report readiness")
         TimeClock.sleep(0.01)
     assert ChildProcess.poll() is None
-    ProcessIds = BindChild(
-        ChildProcess.pid, OsLayer.getpid(), Observation, SessionInfo["job_object"]
-    )
+    ProcessIds = BindChild(ChildProcess.pid, OsLayer.getpid(), Observation, JobName)
     _ = FilePath(Options["pid_file"]).write_text(
         JsonCodec.dumps(ProcessIds), encoding="utf-8"
     )

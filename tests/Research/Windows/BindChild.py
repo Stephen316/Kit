@@ -17,16 +17,20 @@ def BindChild(
         ApplicationPid != LauncherPid and ParentPid == LauncherPid
     ), {"launcher": LauncherPid, "caller": CallerPid, "observation": Observation}
     ProcessIds = sorted({CallerPid, LauncherPid, ApplicationPid})
-    JobHandle = WindowsJobs.OpenJobObject(WindowsJobs.JOB_OBJECT_QUERY, False, JobName)
+    JobHandle = getattr(WindowsJobs, "OpenJobObject")(
+        WindowsJobs.JOB_OBJECT_QUERY, False, JobName
+    )
     try:
         for ProcessId in ProcessIds:
             ProcessHandle = WindowsApi.OpenProcess(
                 WindowsFlags.PROCESS_QUERY_LIMITED_INFORMATION, False, ProcessId
             )
             try:
-                assert WindowsJobs.IsProcessInJob(ProcessHandle, JobHandle), ProcessId
+                assert WindowsJobs.IsProcessInJob(
+                    ProcessHandle, int(JobHandle)
+                ), ProcessId
             finally:
-                ProcessHandle.Close()
+                WindowsApi.CloseHandle(ProcessHandle)
     finally:
         JobHandle.Close()
     return ProcessIds

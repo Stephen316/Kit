@@ -137,7 +137,8 @@ See [bounded session logs](../../Changes/Research/Supervisor/BoundedSessionLogs.
 The supervisor checks CPU and memory headroom before claiming a job.
 Running sessions reserve their configured threads across all pools.
 New and growing sessions reserve memory beyond the last host measurement.
-The largest registered runner estimate determines admission for each pool.
+The largest registered runner estimate and any higher learned estimate determine admission for each pool.
+Running sessions use the estimate for their exact job kind and tool version.
 Use separate pools for runners with materially different estimates.
 Denied jobs stay queued without consuming a lease or attempt.
 An `admission` event records changes to a pool's blocking reason.
@@ -152,6 +153,21 @@ Receipts retain `sampled_group_peak_memory_bytes` and `memory_limit_bytes`.
 This sampled threshold is not an operating-system allocation limit.
 A missing required measurement stops active sessions and exits after cleanup.
 See [resource headroom](../../Changes/Research/Supervisor/ResearchResourceHeadroom.md) for bounds and remaining limits.
+
+## Versioned memory learning
+
+Accepted completions with a positive sampled process-group peak enter private `state/memory-history.json`.
+The history keeps the last 50 observations per job kind and `tool_version`, with at most 128 recently updated groups.
+Before five observations the registry estimate applies; afterward the nearest-rank 95th percentile receives a 25 percent margin, rounded up to a byte.
+A new tool version starts with its registry estimate.
+Retried, rejected, stale and unmeasured sessions contribute no sample.
+
+The controller exposes the next job's version only after a claim.
+Pre-claim admission therefore keeps the registry estimate and any higher learned version estimate.
+It never uses an older version's smaller footprint to admit an unknown version.
+Invalid stored history blocks claims; a history write failure preserves the prior cache and disables learning until restart while leaving the accepted job complete.
+See [versioned memory estimates](../../Changes/Research/Supervisor/VersionedMemoryEstimates.md) and [the version boundary](../../Gotchas/Research/Supervisor/PreclaimVersionsAreUnknown.md).
+Adaptive concurrency ramps, calibration batches and grouped jobs remain unimplemented.
 
 ## Stops, pauses and stale leases
 

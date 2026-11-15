@@ -4,12 +4,12 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-**Current work: A02d capture evidence, A04c semantic qualification and A08e platform verification.**
+**Current work: A02d capture evidence, A04c semantic qualification and A08b/A08e worker verification.**
 A05a reader integration and A08a supervisor process gates passed at `c1c3fcce5b8b67373113ec44ad5d122a52bd7260`.
 A05 semantic qualification remains blocked independently.
 The current request authorizes remaining deterministic work in dependency order on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 A04a–A04b and A03e are verified at code checkpoint `eba0ab488a6a00e2a31fd5ed8ab0bee564b371db`.
-Task branch: `feat/research-plan-followthrough-20261113`.
+Current continuation branch: `feat/pr94-status-20261115-0117`; publication stays on the shared PR head.
 A02's corpus tooling and paired specifications are complete; independent capture qualification remains blocked.
 Claim subsequent runnable child steps explicitly.
 Model execution and policy exceptions retain the approvals described in the plan.
@@ -262,8 +262,10 @@ The records remain unqualified until native class ownership and the opaque tag d
 A08b adds [bounded logs and restart cleanup](../../Changes/Research/Supervisor/BoundedSessionLogs.md), with eight supervisor scenarios passed at `480d9d3a`.
 CPU/memory admission and sampled group-memory stops passed all eleven Linux supervisor scenarios at `b86f30c7`.
 It does not close adaptive capacity, calibration, grouped jobs, application workers or Windows support.
-A08e Windows Job Object supervision now has six process scenarios awaiting real Windows CI.
-A separate macOS process gate verifies the existing POSIX path.
+A08b now also implements [version-scoped memory estimates](../../Changes/Research/Supervisor/VersionedMemoryEstimates.md); its new process cases are checking remotely. Adaptive concurrency ramps, calibration batches and grouped jobs remain open.
+A08e's [Windows gate at `30707236`](https://github.com/TryUniCAD/Kit/actions/runs/43666746526/job/132667719525) passed five cases; descendant completion retried after an exit status of 1 in 10.366 seconds. Source inspection identified an invalid launcher/interpreter PID equality in the fixture, now repaired with explicit parent-chain and Job Object membership proof. Final Windows completion remains unverified.
+The [macOS gate at `35080cec`](https://github.com/TryUniCAD/Kit/actions/runs/43666501725/job/132666944085) passed all eleven POSIX process cases in 75.81 seconds.
+At `35080cec`, the affected native/API/registry stage passed 188 cases with 159 existing unavailable-corpus skips; seven corpus/preparation and three SOLIDWORKS reader cases also passed before the run was superseded. Those completed steps do not make its cancelled overall job green.
 A02d preparation now pins every committed Fusion variant for restarted-process readback; native execution remains blocked.
 The two-week A15 pilot has not started and cannot be replaced by a short CI run.
 

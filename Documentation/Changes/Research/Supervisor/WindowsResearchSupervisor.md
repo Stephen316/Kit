@@ -51,7 +51,10 @@ uv run --frozen --no-default-groups --extra dev --python 3.14 python -m pytest -
 The scenarios cover bounded output, private paths, leader exit, descendant cleanup, headroom, memory stops, lock contention, crash recovery and stale identities.
 Source inspection and AST syntax checks ran locally.
 No local tests, Windows emulation or CAD process ran.
-Windows execution and Linux/macOS regression evidence remain pending remote CI.
+The macOS gate at `35080cec` passed eleven POSIX process cases in 75.81 seconds.
+The Windows gate at `30707236` passed five cases and retried descendant completion after an exit status of 1.
+The source-proven launcher fixture repair below still requires exact-head Windows execution.
+Linux resource controls passed eleven supervisor scenarios at `b86f30c7`; current-head regression remains separate.
 
 The child fixture also handles the separate launcher PID used by Windows virtual environments.
 It records the interpreter's parent chain and verifies each distinct process against the supervisor's job object.
