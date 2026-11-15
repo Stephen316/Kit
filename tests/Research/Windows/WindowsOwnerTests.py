@@ -75,16 +75,20 @@ try:
         win32process.TerminateProcess(handle, 0)
         assert win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0
     return_code = 17 if mode == 'failure' else 0
-    command = [
-        sys.executable, '-I', '-S', '-c',
-        'import sys; sys.exit(int(sys.argv[1]))', str(return_code),
-    ]
-    with subprocess.Popen(command, creationflags=subprocess.CREATE_NO_WINDOW) as collector:
+    collector = subprocess.Popen(
+        [sys._base_executable, '-I', '-S', '-c', f'raise SystemExit({return_code})'],
+        creationflags=subprocess.CREATE_NO_WINDOW,
+    )
+    try:
         assert collector.wait(timeout=10) == return_code
         if mode == 'failure':
             record_collector_failure(root, request, listener, collector, handle, launch)
         else:
             record_timeout(root, request, listener, collector, handle, launch, True)
+    finally:
+        if collector.poll() is None:
+            collector.kill()
+            collector.wait(timeout=5)
     if mode == 'failure':
         result = record(root / 'native-failure-recovery.json')
         assert result['trigger'] == 'collector_failure' and result['collector_return_code'] == 17

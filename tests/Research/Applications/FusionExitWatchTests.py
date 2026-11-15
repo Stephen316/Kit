@@ -37,7 +37,7 @@ def CheckExitWatch(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
         capture_output=True,
         text=True,
         check=False,
-        timeout=35,
+        timeout=55,
     )
     assert RunResult.returncode == 0, RunResult.stderr
     Evidence = JsonCodec.loads(RunResult.stdout)

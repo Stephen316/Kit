@@ -200,7 +200,8 @@ def run_pair(root, target, case):
         return result
     finally:
         if observer.poll() is None:
-            observer.communicate(timeout=12)
+            observer.kill()
+            observer.communicate(timeout=2)
 
 
 def exercise(root, case):
@@ -213,8 +214,12 @@ def exercise(root, case):
     try:
         print(json.dumps(run_pair(root, target, case)))
     finally:
-        if target.poll() is None:
-            target.communicate("exit\n", timeout=10)
+        target.stdin.close()
+        try:
+            target.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            target.kill()
+            target.wait(timeout=2)
 
 
 if __name__ == "__main__":
