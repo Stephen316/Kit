@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 
 from tests.Research.Applications.Acceptance.AcceptanceHost import AcceptanceHost
 from tests.Research.Applications.DispatchHost import KRepoRoot
+from tests.Research.Applications.RunQueueHost import RunQueueHost
 
 
 # the trusted binding must originate in the registry independently of the runner arguments
@@ -41,9 +42,7 @@ def CheckHandoff() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = AcceptanceHost(FilePath(TempPath).resolve(), "handoff")
         BindOwner(Harness, Harness.Dispatch.ConfigFile.name)
-        Server = Harness.Dispatch.StartHost()
-        try:
-            Harness.Dispatch.WaitHost(Server.pid)
+        with RunQueueHost(Harness.Dispatch):
             Events = Harness.Run()
             (Finished,) = tuple(
                 Event for Event in Events if Event["event"] == "finished"
@@ -63,9 +62,6 @@ def CheckHandoff() -> None:
             assert not list((Harness.Dispatch.Endpoint / "jobs").iterdir())
             Fence = Harness.Dispatch.Endpoint / "fence.json"
             assert JsonCodec.loads(Fence.read_bytes())["reason"] == "restart_required"
-        finally:
-            Server.terminate()
-            _ = Server.communicate(timeout=15)
 
 
 # a separately configured owner mismatch must not erase the accepted output or its fence
@@ -77,9 +73,7 @@ def CheckMismatch() -> None:
         OwnerInfo["installation"] = "fixture:other-owner"
         _ = OwnerPath.write_text(JsonCodec.dumps(OwnerInfo), encoding="utf-8")
         BindOwner(Harness, OwnerPath.name)
-        Server = Harness.Dispatch.StartHost()
-        try:
-            Harness.Dispatch.WaitHost(Server.pid)
+        with RunQueueHost(Harness.Dispatch):
             Events = Harness.Run()
             (Refusal,) = tuple(
                 Event
@@ -95,18 +89,13 @@ def CheckMismatch() -> None:
             assert (Spool / "fixture.bin").is_file()
             assert (Harness.Dispatch.Endpoint / "fence.json").is_file()
             assert Harness.Reconcile()["status"] == "acknowledged"
-        finally:
-            Server.terminate()
-            _ = Server.communicate(timeout=15)
 
 
 # delayed handoffs must match the current supervisor owner and exact accepted attempt
 def CheckClaimFence() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = AcceptanceHost(FilePath(TempPath).resolve())
-        Server = Harness.Dispatch.StartHost()
-        try:
-            Harness.Dispatch.WaitHost(Server.pid)
+        with RunQueueHost(Harness.Dispatch):
             Spool = Harness.Accept()
             JobInfo = Harness.Supervisor.ReadJob(Harness.JobName)
             AttemptNumber = JobInfo["attempts"]
@@ -131,6 +120,3 @@ def CheckClaimFence() -> None:
             assert (Spool / "fixture.bin").is_file()
             assert Harness.Reconcile(ClaimInfo=ClaimInfo)["status"] == "acknowledged"
             assert not Spool.exists()
-        finally:
-            Server.terminate()
-            _ = Server.communicate(timeout=15)

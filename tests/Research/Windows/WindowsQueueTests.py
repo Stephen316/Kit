@@ -5,8 +5,8 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from tests.Research.Applications.DispatchHost import DispatchHost
+from tests.Research.Applications.RunQueueHost import RunQueueHost
 from tests.Research.Windows.RunQueueClient import RunQueueClient
-from tests.Research.Windows.RunQueueHost import RunQueueHost
 
 
 # windows request completion must preserve process identity and retain publication custody across host restart

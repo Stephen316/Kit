@@ -5,7 +5,7 @@ from contextlib import contextmanager as ContextManager
 from tests.Research.Applications.DispatchHost import DispatchHost
 
 
-# windows fixture shutdown must release the actual interpreter even when its launcher has a different identity
+# the fixture must expose and stop the serving interpreter when its launcher has a different identity
 @ContextManager
 def RunQueueHost(Harness: DispatchHost) -> IterItems[dict[str, object]]:
     StopFile = Harness.Endpoint / "stop-fixture"
