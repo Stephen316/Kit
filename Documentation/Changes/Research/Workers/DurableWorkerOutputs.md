@@ -74,5 +74,5 @@ independent synchronized process evidence. This change does not claim those
 branches were exercised. Licensed application capture/readback remains separate.
 
 See [the intake gotcha](../../../Gotchas/Research/Workers/WorkerOutputsNeedIntake.md).
-The [flag-owner gotcha](../../../Gotchas/Research/Workers/Pywin32ReparseFlagOwner.md)
+The [flag-owner gotcha](../../../Gotchas/Research/Workers/PythonWinReparseFlagOwner.md)
 records the real Windows failure and source verification.

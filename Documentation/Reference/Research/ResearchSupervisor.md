@@ -131,6 +131,10 @@ The existing controller `artifact` operation retrieves those bytes; status and d
 Custom adapters must declare `OutputArtifactsVersion = 1`; otherwise only the existing metadata result protocol is accepted.
 See [durable worker outputs](../../Changes/Research/Workers/DurableWorkerOutputs.md) for the wire format, lease fences and remaining verification limits.
 
+The [local application dispatcher](../../Changes/Research/Workers/LocalApplicationDispatch.md) submits pinned Fusion phases to an owner-controlled add-in queue.
+Its fresh main-thread control probe, restart handoff and private spool protocol remain separate from native qualification.
+Automatic restart and downstream input binding remain open.
+
 `finish.json` becomes the controller result for every finished attempt.
 After the controller accepts it, the supervisor removes the session directory and the claim file.
 

@@ -120,6 +120,7 @@ jobs:
           tests/convert/api/ApiTests.py
           tests/convert/api/ApiSupportTests.py
           tests/convert/registry
+          tests/convert/qualification
           tests/steering/RationaleCommentsTests.py
 
       - name: Verify typed carrier compatibility at native write boundaries
@@ -164,7 +165,7 @@ jobs:
       - name: Verify durable research output intake through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest tests/Research/Outputs -q
+          python -m pytest tests/Research/Outputs tests/Research/Applications -q
 
       - name: Verify pinned Fusion research reader through process boundaries
         env:
@@ -219,7 +220,7 @@ jobs:
       - name: Verify Windows supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest -q tests/Research/Windows tests/Research/Outputs
+          python -m pytest -q tests/Research/Windows tests/Research/Outputs tests/Research/Applications/ApplicationParkTests.py
 
   macos-supervisor:
     if: >-
@@ -248,7 +249,7 @@ jobs:
       - name: Verify macOS supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest -q -s tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Outputs
+          python -m pytest -q -s tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Outputs tests/Research/Applications
 
   zizmor:
     if: >-
