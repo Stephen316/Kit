@@ -21,7 +21,7 @@ def CheckResultRim(
     RingValue: tuple[AsmUse, ...],
     Edges: dict[int, AsmPrismEdge],
     Points: dict[int, SpaceVector],
-) -> None:
+) -> SpaceVector:
     FaceValue = RequireAsm(Table, RingValue[0].FaceId, "face", 10)
     Plane = RequireAsm(Table, ReadAsmPtr(FaceValue, 7), "plane-surface", 11)
     if Plane.Tokens[:3] != KPrismCarrier or any(
@@ -39,3 +39,4 @@ def CheckResultRim(
         for VertexId in Edges[UseValue.EdgeId].Vertices
     ):
         raise ValueError("Fusion Cut result loop is outside its saved plane")
+    return Normal

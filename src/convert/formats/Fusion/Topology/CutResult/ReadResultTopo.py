@@ -10,8 +10,13 @@ from convert.formats.Fusion.Topology.AsmEdge.AsmRim import AsmUse
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmTable
 from convert.formats.Fusion.Topology.AsmEdge.PrismCarriers import CheckPrismLine
 from convert.formats.Fusion.Topology.CutResult.CheckResultRim import CheckResultRim
+from convert.formats.Fusion.Topology.CutResult.CutMass import (
+    CutResultStats,
+    ReadCutMass,
+)
 from convert.formats.Fusion.Topology.CutResult.ReadResultRims import ReadResultRims
 from convert.formats.Fusion.Topology.CutResult.ResultBounds import ResultBounds
+from interchange.features.FeatureExtrude import ExtrudeFeature
 from interchange.records.RecordTopology import TopologyCounts
 
 
@@ -57,7 +62,9 @@ def CheckResultRefs(
 
 
 # exact loop structures and carriers establish saved counts and bounds for the supported cut extent
-def ReadResultTopo(Table: AsmTable, BodyIndex: int, FaceCount: int) -> TopologyCounts:
+def ReadResultTopo(
+    Table: AsmTable, BodyIndex: int, FaceCount: int, Definition: ExtrudeFeature
+) -> CutResultStats:
     Loops = ReadResultRims(Table, BodyIndex, FaceCount)
     Edges = ReadRingEdges(Table, tuple(Loops.values()), 24)
     Points = ReadAsmVerts(Table, Edges, 16)
@@ -81,13 +88,18 @@ def ReadResultTopo(Table: AsmTable, BodyIndex: int, FaceCount: int) -> TopologyC
     CheckResultJoin(Edges)
     for Value in Edges.values():
         CheckPrismLine(Table, Value, Points)
-    for RingValue in Loops.values():
-        CheckResultRim(Table, RingValue, Edges, Points)
-    return TopologyCounts(
+    Normals = {
+        RingValue[0].FaceId: CheckResultRim(Table, RingValue, Edges, Points)
+        for RingValue in Loops.values()
+    }
+    Topology = TopologyCounts(
         solid_count=1,
         shell_count=1,
         face_count=FaceCount,
         edge_count=len(Edges),
         vertex_count=len(Points),
         bounding_box=ResultBounds(Points),
+    )
+    return ReadCutMass(
+        Table, tuple(Loops.values()), Edges, Points, Normals, Topology, Definition
     )

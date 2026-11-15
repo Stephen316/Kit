@@ -48,7 +48,7 @@ def ProjectCutBody(
         return Document
     try:
         return AttachCutBody(
-            Document, BulkData, Spans, Cutter, Support, FaceCount, LoadBlob
+            Document, BulkData, Spans, Cutter, Definition, Support, FaceCount, LoadBlob
         )
     except ValueError as ErrorInfo:
         return Replace(

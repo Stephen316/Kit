@@ -9,12 +9,24 @@ from convert.formats.Fusion.Topology.BodyEvidence import (
 )
 from convert.formats.Fusion.Topology.BodyInventory import ReadBodyInventory
 from convert.formats.Fusion.Topology.CutResult.CutChart import ReadCutChart
+from convert.formats.Fusion.Topology.CutResult.CutMass import CutResultStats
+from convert.formats.Fusion.Topology.CutResult.CutMetricBox import AxisValues
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
 from interchange.features.FeatureBody import DesignBody
+from interchange.features.FeatureExtrude import ExtrudeFeature
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Selection import Selection
+
+
+# a saved centroid is separate from any density or material property
+def CutMassAttrs(Stats: CutResultStats) -> dict[str, object]:
+    if Stats.Centroid is not None:
+        return {"fusion.body_centroid_mm": AxisValues(Stats.Centroid)}
+    if Stats.Refusal is not None:
+        return {"fusion.saved_cut_mass_unresolved": Stats.Refusal}
+    return {}
 
 
 # a current native body and final cut must agree before claiming any neutral body structure
@@ -23,6 +35,7 @@ def AttachCutBody(
     BulkData: bytes,
     Spans: tuple[RecordSpan, ...],
     StepValue: FeatureStep,
+    Definition: ExtrudeFeature,
     Support: Selection,
     FaceCount: int,
     LoadBlob: Callable[[str], bytes],
@@ -40,14 +53,14 @@ def AttachCutBody(
     if Members is None or len(Members) != 1 or Members[0].ObjectId != BodyId:
         raise ValueError("Fusion Cut result and current native body inventory disagree")
     (Member,) = Members
-    Topology = ReadCutChart(Support, FaceCount, LoadBlob)
+    Stats = ReadCutChart(Support, FaceCount, Definition, LoadBlob)
     Owners = {Value.ObjectId: Value for Value in Spans if Value.IsPrimary}
     Origin = ParamOrigin(Owners[BodyId])
     BodyValue = DesignBody(
         id=f"fusion-saved-body-{BodyId}",
         name=Member.Name or "Cut result",
         final_feature_id=StepValue.id,
-        topology=Topology,
+        topology=Stats.Topology,
         provenance=Replace(
             Origin,
             spans=Origin.spans
@@ -73,6 +86,7 @@ def AttachCutBody(
                     "fusion.history_body_result_clock"
                 ],
                 "fusion.historical_support_selection_id": Support.id,
+                **CutMassAttrs(Stats),
             }
         ),
     )

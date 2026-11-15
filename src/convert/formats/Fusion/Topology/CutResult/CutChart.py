@@ -5,15 +5,19 @@ from convert.formats.Fusion.ArchiveRead.IndexedArchive import KHistoryPrefix
 from convert.formats.Fusion.Topology.AsmEdge.AsmBodyClock import ReadBodyClock
 from convert.formats.Fusion.Topology.AsmEdge.AsmPrism import ReadAsmBody
 from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmTable
+from convert.formats.Fusion.Topology.CutResult.CutMass import CutResultStats
 from convert.formats.Fusion.Topology.CutResult.ReadResultTopo import ReadResultTopo
+from interchange.features.FeatureExtrude import ExtrudeFeature
 from interchange.geometry.models.Selection import Selection
-from interchange.records.RecordTopology import TopologyCounts
 
 
 # the verified history member digest binds final topology to the cut actor rather than the prior boss
 def ReadCutChart(
-    Support: Selection, FaceCount: int, LoadBlob: Callable[[str], bytes]
-) -> TopologyCounts:
+    Support: Selection,
+    FaceCount: int,
+    Definition: ExtrudeFeature,
+    LoadBlob: Callable[[str], bytes],
+) -> CutResultStats:
     Member = Support.attributes.get("fusion.history_body_member")
     Digest = Support.attributes.get("fusion.history_body_sha256")
     BodyIndex = Support.attributes.get("fusion.history_body_result_ordinal")
@@ -39,4 +43,4 @@ def ReadCutChart(
         or ReadBodyClock(Table, BodyIndex, Handle) != ClockValue
     ):
         raise ValueError("Fusion Cut result root or actor clock disagrees")
-    return ReadResultTopo(Table, BodyIndex, FaceCount)
+    return ReadResultTopo(Table, BodyIndex, FaceCount, Definition)
