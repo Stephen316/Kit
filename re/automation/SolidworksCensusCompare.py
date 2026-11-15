@@ -61,10 +61,15 @@ def segments_equal(expected, actual, tolerance):
 def compare_dimensions(measured, native, neutral, tolerance):
     native_dims = {item["name"]: item for item in native.get("dimensions", ())}
     neutral_params = {item["name"]: item for item in neutral.get("parameters", ())}
+    assigned = {equation.split("=", 1)[0].strip().strip('"') for equation in measured["equations"]}
     comparisons = []
+    expected_names = []
     for feature in measured["feature_tree"]:
         for dim in feature["dimensions"]:
             name = f"{dim['name']}@{feature['name']}"
+            if "@".join(dim["full_name"].split("@")[:2]) != name:
+                raise ValueError(f"licensed measurement has a mismatched parameter owner: {name}")
+            expected_names.append(name)
             expected = dim["system_value"] * 1000
             extracted = native_dims.get(name, {}).get("value_mm")
             projected = neutral_params.get(name, {})
@@ -73,6 +78,14 @@ def compare_dimensions(measured, native, neutral, tolerance):
                 observation("native.dimension." + name, expected, extracted, lengths_equal(expected, extracted, tolerance)),
                 observation("neutral.dimension." + name, expected, value, lengths_equal(expected, value, tolerance)),
             ))
+            state = dim["driven_state"]
+            if state in (1, 2):
+                role = "driving" if state == 2 else "derived" if name in assigned else "reference"
+                comparisons.append(observation(f"neutral.dimension.{name}.parameter_role", role, projected.get("role")))
+    comparisons.append(observation(
+        "neutral.named_parameter_roster", sorted(expected_names),
+        sorted(item["name"] for item in neutral["parameters"]) if "parameters" in neutral else None,
+    ))
     return comparisons
 
 
