@@ -1,7 +1,8 @@
 """Read the shared modern resolved list through its principal planes and origin."""
 
-from convert.adapters.solidworks.resolved.NamedNode import ReadNamedFeat
 from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode as read_named_concept
+from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
+from convert.adapters.solidworks.resolved.ProfileEntry import ReadProfileHead as read_profile_body_prefix
 from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
 
 
@@ -56,86 +57,41 @@ def report_principal(datum):
     }
 
 
-# origin and user profiles both need the same framing for the earlier null pointer
-def read_profile_body_prefix(cursor, expected_flags):
-    from SketchRoot import Require
-
-    name, feature_id = ReadNamedFeat(cursor, expected_flags)
-    cursor.read("<i")  # moModelFeature_c
-    Require(cursor.read("<i"), (0,), "guarded scalar before the early profile pointer")
-    early_pointer = cursor.position
-    cursor.null()
-    Require(cursor.read("<i"), (0,), "guarded scalar after the early profile pointer")
-    return name, feature_id, early_pointer
-
-
-# the origin materializes a resolved only sketch through the retained configuration class
-def read_origin_entry(cursor):
-    from convert.adapters.solidworks.container.Archive import (
-        KClassRefKind,
-        KDefinitionKind,
-    )
-    from OriginTail import read_feature_tail, read_presentation
-    from SketchRoot import Require
-
-    offset = cursor.position
-    origin = cursor.pointer(KDefinitionKind, "moOriginProfileFeature_c")
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id, _ = read_profile_body_prefix(cursor, (0xC0000000,))
-    Require((name, feature_id), ("Origin", 5), "typed origin profile")
-    sketch_offset = cursor.position
-    sketch_kind = (
-        KClassRefKind if "sgSketch" in cursor.classes.values() else KDefinitionKind
-    )
-    sketch = cursor.pointer(sketch_kind, "sgSketch")
-    geometry = read_origin_geometry(cursor, sketch_offset, sketch)
-    presentation = read_presentation(cursor)
-    tail = read_feature_tail(cursor)
+# origin reports retain every field through the typed feature return
+def report_origin(origin):
+    geometry = origin.Geometry
     return {
-        "name": name,
-        "native_feature_id": feature_id,
-        "offset": offset,
-        "object_index": origin,
-        "sketch_offset": sketch_offset,
-        "sketch_object": sketch,
-        "geometry": geometry,
-        "presentation": presentation,
-        **tail,
-        "end": cursor.position,
-        "next_map_index": cursor.next_index,
-    }
-
-
-# the origin relation refers to a point handle within the sole origin point
-def read_origin_geometry(cursor, sketch_offset, sketch_object):
-    from SketchCursor import SketchCursor
-    from SketchGeom import ReadDims, ReadPointItem
-    from SketchRoot import Require
-
-    sketch = SketchCursor.FromEnclosing(cursor, sketch_offset, sketch_object)
-    body = sketch.Offset
-    Require(sketch.ReadCount(), 1, "one origin point")
-    _, _, point = ReadPointItem(sketch)
-    Require(point, (0, 0), "origin point coordinates")
-    Require(sketch.ReadCount(), 0, "empty origin lines")
-    ReadDims(sketch)
-    Require(sketch.Dimensions, [], "empty origin value dimensions")
-    Require(sketch.ReadValue("<3H"), (0, 0, 1), "one origin member relation")
-    _, _, type_code = sketch.ReadDimBase(None)
-    Require(type_code, 17, "witnessed origin relation type")
-    Require(sketch.ReadValue("<2H"), (65534, 0), "guarded origin relation fields")
-    handle = sketch.ReadObject("sgPointHandle")
-    Require(
-        sketch.Handles[handle], (0, -1, 0), "relation targets the local origin point"
-    )
-    cursor.position = sketch.Offset
-    cursor.next_index = sketch.NextIndex
-    return {
-        "body": body,
-        "end": cursor.position,
-        "point_metres": point,
-        "point_relation_type": type_code,
-        "point_handle_object": handle,
+        "name": origin.NameValue,
+        "native_feature_id": origin.FeatureId,
+        "offset": origin.Offset,
+        "object_index": origin.ObjectIndex,
+        "sketch_offset": origin.SketchOffset,
+        "sketch_object": origin.SketchIndex,
+        "geometry": {
+            "body": geometry.Offset,
+            "end": geometry.EndOffset,
+            "point_metres": geometry.PointValue,
+            "point_relation_type": geometry.RelationType,
+            "point_handle_object": geometry.Handle,
+        },
+        "presentation": {
+            "lists": [
+                {"offset": item.Offset, "object_index": item.ObjectIndex, "end": item.EndOffset}
+                for item in origin.Lists
+            ],
+            "sketch_end": origin.DisplayEnd,
+        },
+        "support": {
+            "offset": origin.Support.Offset,
+            "object_index": origin.Support.ObjectIndex,
+            "unit_component": origin.Support.UnitIndex,
+            "part_object": origin.Support.PartIndex,
+            "native_feature_id": origin.Support.FeatureId,
+            "native_time_word": origin.Support.TimeValue,
+        },
+        "feature_state_word": origin.StateValue,
+        "end": origin.EndOffset,
+        "next_map_index": origin.NextIndex,
     }
 
 
@@ -143,7 +99,7 @@ def read_origin_geometry(cursor, sketch_offset, sketch_object):
 def read_resolved_prelude(blob, config_map, expected_count):
     from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
     from FaceOccurrence import FaceCursor
-    from SketchRoot import Require
+    from SketchRoot import KGeneration, Require
 
     entry = OpenResolved(blob, config_map, expected_count)
     cursor = FaceCursor(
@@ -158,7 +114,7 @@ def read_resolved_prelude(blob, config_map, expected_count):
     folders.append(report_cabinet(system.Details))
     folders.extend(report_folder(folder) for folder in system.LaterFolders)
     planes = [report_principal(plane) for plane in system.Planes]
-    origin = read_origin_entry(cursor)
+    origin = report_origin(ReadOrigin(cursor, KGeneration))
     front, *_ = planes
     Require(
         origin["support"]["native_feature_id"],

@@ -20,7 +20,7 @@ from interchange import (
 from convert.geometry.Opencascade import decode_ascii_brep as DecodeAsciiBrep
 from convert.adapters.base import ParseUntrusted
 from convert.adapters.solidworks.container.Container import SldprtFormatError
-from convert.adapters.solidworks.container.PlaneBasis import MatrixAxes
+from convert.adapters.solidworks.container.PlaneBasis import IsOrthonormal, MatrixAxes
 from convert.adapters.solidworks.container.Format import (
     ASSEMBLY_SUFFIX as AsmSuffix,
     CANONICAL_PLANE_FEATURE_TYPE as CanonicalPlaneFeatureType,
@@ -1302,21 +1302,6 @@ def RepairPlaneIMut(ObjectIds: dict[str, int]) -> None:
             NextId += 1
         ObjectIds[KeyValue] = NextId
         Taken.add(NextId)
-
-
-# this definition exists because focused behavior needs one stable owner
-def IsOrthonormal(Vectors: tuple[tuple[float, float, float], ...]) -> bool:
-    return all(
-        (
-            MathValue.isclose(NormAction(Vector), 1.0, abs_tol=1e-09)
-            for Vector in Vectors
-        )
-    ) and all(
-        (
-            MathValue.isclose(DotAction(LeftValue, Right), 0.0, abs_tol=1e-09)
-            for LeftValue, Right in Itertools.combinations(Vectors, 2)
-        )
-    )
 
 
 # root parsing isolates native header identity and log count validation

@@ -15,9 +15,11 @@ class PrincipalRef:
     UnitIndex: int
     PartIndex: int
     FeatureId: int
+    FeatureOffset: int
     TimeValue: int
     AxisCode: int
     BasisValue: tuple[float, ...] | None
+    BasisOffset: int | None
     ShiftScale: tuple[float, ...]
 
 
@@ -30,9 +32,11 @@ def ReadPlaneRef(
         ("moCompRefPlane_c",), KindValue, CompactOnly=True
     )
     UnitIndex, PartIndex = ReadLocalPart(Cursor, Generation)
+    FeatureOffset = Cursor.Offset
     FeatureId, TimeValue = Cursor.ReadInts("<iI")
     Cursor.ReadNull()
     (AxisCode,) = Cursor.ReadInts("<i")
+    PoseOffset = Cursor.Offset
     BasisValue, ShiftScale = ReadLocalPose(Cursor)
     return PrincipalRef(
         Offset,
@@ -40,8 +44,10 @@ def ReadPlaneRef(
         UnitIndex,
         PartIndex,
         FeatureId,
+        FeatureOffset,
         TimeValue,
         AxisCode,
         BasisValue,
+        PoseOffset + 1 if BasisValue is not None else None,
         ShiftScale,
     )
