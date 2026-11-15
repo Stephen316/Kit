@@ -101,4 +101,10 @@ def MakeFacePick(
             }
         ),
     )
-    return FaceRecipePick(SelectionValue, BodyName, FaceName, Perimeter)
+    ContextEdges = tuple(
+        (ContextId, RecipeId, EdgeValue)
+        for ContextId, (RecipeId, EdgeValue) in zip(
+            FaceValue.ContextIds, Contexts, strict=True
+        )
+    )
+    return FaceRecipePick(SelectionValue, BodyName, FaceName, Perimeter, ContextEdges)

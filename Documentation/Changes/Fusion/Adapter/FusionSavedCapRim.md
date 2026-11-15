@@ -1,0 +1,7 @@
+# Saved Fusion CutSketch projected edges
+
+The partial F3D reader follows the CutSketch boundary controller to its four line caches and verifies that the controller consumes the same face selector as the sketch support. Every output naming record must uniquely match the complete bytes of one already verified source-context edge recipe. The reader uses that recipe's ordered native vertex incidence on the prior Boss face, then checks both cached endpoints in component millimeters and requires the four distinct outputs to close in native order. [Saved face occurrence](FusionSavedFaceOccurrence.md), [Archived projection evidence](../../Research/Readers/FusionCutProjectionEvidence.md)
+
+Each verified line retains the automatic boundary classification, controller and source-context IDs, the original history member and the archived edge and directed vertex ordinals with their byte spans. This provenance supplements the saved geometry, construction flags and profile membership. A failed projection join preserves the saved face, original line records and a diagnostic. [Public archive scenarios](../../../../tests/Research/ArchiveEvidenceTests.py)
+
+The pinned source evidence covers 44 projected lines across the eleven P04 discovery archives. Baseline output lines `381`, `384`, `387` and `388` have original source edge ordinals `112`, `130`, `155` and `132`, with separate YZ and through-all records. Fresh live link identity, persistent native handles and editable acceptance remain open.

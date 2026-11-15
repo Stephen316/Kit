@@ -1,9 +1,7 @@
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SelectionProxy import SelectCursor
-
-# the output entry only identifies a cache point and its independently scoped naming leaf
-KProjEntry = "CA72DD8E-2861-4DDD-9721-03039B5FB113"
+from convert.formats.Fusion.Sketches.Projections.ProjController import KProjEntry
 
 # zero progenitor attributes distinguish this origin point from projected edges
 KOriginOutName = "CB4F4CC2-9D6F-48BA-9B1F-20C1992C9C9C"

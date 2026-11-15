@@ -12,6 +12,7 @@ from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import PointGeometry
 from interchange.geometry.models.Selection import Selection
+from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.VectorSpace import SpaceVector
 
 
@@ -395,7 +396,44 @@ def AssertFaceChart(Variant: str, Support: Selection) -> None:
     ] == [(Start, 81)]
 
 
-# the cut must retain its own target when a separate extent reference is present
+# edits and rotated support preserve exact sources for the four cached reference lines
+def AssertCapRim(Variant: str, SketchValue: Sketch, Support: Selection) -> None:
+    Expected = {
+        "plane-yz": ((113, 131, 156, 133), (137, 138, 159, 161)),
+        "termination-through-all": ((167, 180, 173, 158), (160, 181, 174, 162)),
+    }
+    Edges, Vertices = Expected.get(
+        Variant, ((112, 130, 155, 132), (136, 137, 158, 160))
+    )
+    Lines = {
+        Value.id: Value
+        for Value in SketchValue.entities
+        if Value.attributes.get("fusion.projection_mode") == "automatic_face_boundary"
+    }
+    assert set(Lines) == {
+        f"fusion-sketch-entity-{Identity}" for Identity in (381, 384, 387, 388)
+    }
+    for Identity, EdgeId, Start, Finish in zip(
+        (381, 384, 387, 388), Edges, Vertices, Vertices[1:] + Vertices[:1], strict=True
+    ):
+        LineValue = Lines[f"fusion-sketch-entity-{Identity}"]
+        assert LineValue.attributes["fusion.projection_source_edge_ordinal"] == EdgeId
+        assert LineValue.attributes["fusion.projection_source_vertex_ordinals"] == (
+            Start,
+            Finish,
+        )
+        assert LineValue.attributes["fusion.projection_controller_object_id"] == 346
+        Member = Support.attributes["fusion.history_body_member"]
+        assert LineValue.attributes["fusion.projection_source_member"] == Member
+        assert LineValue.provenance is not None
+        assert [
+            Value.record_kind
+            for Value in LineValue.provenance.spans
+            if Value.stream == Member
+        ] == ["edge", "vertex", "vertex"]
+
+
+# the feature must preserve its historical target without adding the extent selector
 @Pytest.mark.parametrize("Variant", KCutVariants)
 def CheckCutTarget(Variant: str) -> None:
     Document = OpenCutArchive(Variant)
@@ -519,6 +557,7 @@ def CheckCutSupport(Variant: str) -> None:
     )
     AssertBodyChart(Variant, Support)
     AssertFaceChart(Variant, Support)
+    AssertCapRim(Variant, Sketch, Support)
     assert "fusion.native_state" not in Document.metadata
 
 

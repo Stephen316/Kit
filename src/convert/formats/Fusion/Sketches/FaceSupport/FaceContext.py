@@ -21,6 +21,17 @@ KFaceContext = "50AEE8B4-9456-4DD7-847D-6F6C909BBB9D"
 KFaceEdgeLeaf = "4B31DA1B-FCD6-4527-BC3E-BE1FBAF867FE"
 
 
+# the same typed naming link preserves source and projected recipe ownership
+def ReadEdgeLeaf(BulkData: bytes, Owners: dict[int, RecordSpan], LeafId: int) -> int:
+    LeafWire = SelectCursor(BulkData, Owners, LeafId, KFaceEdgeLeaf)
+    if len(LeafWire.DataValue) != 18 or LeafWire.TakeBytes(6) != b"\0\1" + bytes(4):
+        raise ValueError("Unsupported Fusion sketch support naming leaf")
+    RecipeId = ReadNativeRef(LeafWire)
+    if LeafWire.TakeBytes(1) != bytes(1):
+        raise ValueError("Unsupported Fusion sketch support naming leaf trailer")
+    return RecipeId
+
+
 # both explicit context links must name the same edge recipe in the descriptor namespace
 def ReadContextEdge(
     BulkData: bytes,
@@ -53,12 +64,7 @@ def ReadContextEdge(
         or ReadNativeRef(Owner) != LeafId
     ):
         raise ValueError("Fusion sketch support context name or owner disagrees")
-    LeafWire = SelectCursor(BulkData, Owners, LeafId, KFaceEdgeLeaf)
-    if len(LeafWire.DataValue) != 18 or LeafWire.TakeBytes(6) != b"\0\1" + bytes(4):
-        raise ValueError("Unsupported Fusion sketch support naming leaf")
-    RecipeId = ReadNativeRef(LeafWire)
-    if LeafWire.TakeBytes(1) != bytes(1):
-        raise ValueError("Unsupported Fusion sketch support naming leaf trailer")
+    RecipeId = ReadEdgeLeaf(BulkData, Owners, LeafId)
     Recipe = SelectCursor(BulkData, Owners, RecipeId, KRecipeGuid)
     Names, NodeValue = ReadScopedNode(Recipe, BodyName, "edge_recipe_data", 4, 116)
     if not isinstance(NodeValue, EdgeRecipe):

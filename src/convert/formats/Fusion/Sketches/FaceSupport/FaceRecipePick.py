@@ -11,3 +11,4 @@ class FaceRecipePick:
     BodyName: str
     FaceName: str
     Boundary: frozenset[KEdgeNames]
+    ContextEdges: tuple[tuple[int, int, KEdgeNames], ...]

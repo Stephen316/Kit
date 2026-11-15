@@ -11,6 +11,7 @@ from convert.formats.Fusion.Sketches.FaceSupport.AsmSourceSpan import AsmSourceS
 from convert.formats.Fusion.Sketches.FaceSupport.FaceClock import ReadFaceClock
 from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecipePick
 from convert.formats.Fusion.Sketches.FaceSupport.RetainFaceHit import RetainFaceHit
+from convert.formats.Fusion.Sketches.FaceSupport.SavedFaceProof import SavedFaceProof
 from convert.formats.Fusion.Topology.AsmEdge.AsmBodyClock import ReadBodyClock
 from convert.formats.Fusion.Topology.AsmEdge.AsmHistory import ReadAsmHistory
 from convert.formats.Fusion.Topology.AsmEdge.AsmPrism import ReadAsmBody
@@ -30,7 +31,7 @@ def BindFaceBody(
     Frame: Transform,
     CutStep: FeatureStep,
     LoadBlob: Callable[[str], bytes],
-) -> Selection:
+) -> tuple[Selection, SavedFaceProof | None]:
     FacePick = Recipe.SelectionValue
     BodyId = FacePick.query.get("native_body_id")
     ComponentId = FacePick.query.get("native_component_id")

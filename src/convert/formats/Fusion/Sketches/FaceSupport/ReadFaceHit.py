@@ -1,4 +1,5 @@
 from convert.formats.Fusion.Sketches.FaceSupport.CheckFaceFrame import CheckFaceFrame
+from convert.formats.Fusion.Sketches.FaceSupport.FaceHitProof import FaceHitProof
 from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecipePick
 from convert.formats.Fusion.Sketches.FaceSupport.JoinFaceRim import JoinFaceRim
 from convert.formats.Fusion.Topology.AsmEdge.AsmFaceHit import AsmFaceHit
@@ -14,7 +15,7 @@ from interchange.geometry.models.Transform import Transform
 # a stored face needs a complete reciprocal topology join before its frame can corroborate it
 def ReadFaceHit(
     Revision: AsmRevision, Recipe: FaceRecipePick, Frame: Transform
-) -> AsmFaceHit:
+) -> FaceHitProof:
     Table = Revision.Table
     Prism = ReadAsmPrism(Table, Revision.BodyIndex, 4, AllowIdentity=True)
     Edges = ReadAsmEdges(Table, Prism, 4)
@@ -29,7 +30,8 @@ def ReadFaceHit(
         raise ValueError("Fusion support face is absent in the prior body naming scope")
     RingValue = Prism.Rings[FaceId]
     RimEdges = tuple(Value.EdgeId for Value in RingValue)
-    if frozenset(RimEdges) != JoinFaceRim(Edges, Names, Recipe.Boundary):
+    Matches = JoinFaceRim(Edges, Names, Recipe.Boundary)
+    if frozenset(RimEdges) != frozenset(Index for Index, _ in Matches.values()):
         raise ValueError("Fusion face recipe does not exhaust the prior face loop")
     Points = ReadAsmPoints(Table, Edges, 4)
     for EdgeId in RimEdges:
@@ -40,4 +42,5 @@ def ReadFaceHit(
     FaceValue = RequireAsm(Table, FaceId, "face", 10)
     PlaneId = ReadAsmPtr(FaceValue, 7)
     CheckFaceFrame(Table, PlaneId, Frame, tuple(Points[Value] for Value in Vertices))
-    return AsmFaceHit(FaceId, ReadAsmPtr(FaceValue, 4), PlaneId, RimEdges, Vertices)
+    HitValue = AsmFaceHit(FaceId, ReadAsmPtr(FaceValue, 4), PlaneId, RimEdges, Vertices)
+    return FaceHitProof(HitValue, Matches, Points)

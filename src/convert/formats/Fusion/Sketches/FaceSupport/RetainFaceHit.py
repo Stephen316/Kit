@@ -3,6 +3,7 @@ from dataclasses import replace as Replace
 from convert.formats.Fusion.Sketches.FaceSupport.AsmSourceSpan import AsmSourceSpan
 from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecipePick
 from convert.formats.Fusion.Sketches.FaceSupport.ReadFaceHit import ReadFaceHit
+from convert.formats.Fusion.Sketches.FaceSupport.SavedFaceProof import SavedFaceProof
 from convert.formats.Fusion.Topology.AsmEdge.AsmHistory import AsmHistory
 from convert.formats.Fusion.Topology.AsmEdge.AsmRevisions import AsmRevision
 from interchange.core.Common import FreezeMapping
@@ -18,14 +19,14 @@ def RetainFaceHit(
     Revision: AsmRevision,
     Frame: Transform,
     Member: str,
-) -> Selection:
+) -> tuple[Selection, SavedFaceProof | None]:
     Origin = FacePick.provenance
     if Origin is None:
         raise ValueError("Fusion prior body witness lacks member provenance")
     try:
-        FaceValue = ReadFaceHit(Revision, Recipe, Frame)
+        FaceEvidence = ReadFaceHit(Revision, Recipe, Frame)
     except ValueError as ErrorInfo:
-        return Replace(
+        Updated = Replace(
             FacePick,
             attributes=FreezeMapping(
                 {
@@ -34,6 +35,8 @@ def RetainFaceHit(
                 }
             ),
         )
+        return Updated, None
+    FaceValue = FaceEvidence.HitValue
     FaceOrdinal, LoopOrdinal, PlaneOrdinal = (
         Revision.Origins[Index]
         for Index in (FaceValue.FaceIndex, FaceValue.LoopIndex, FaceValue.PlaneIndex)
@@ -44,7 +47,7 @@ def RetainFaceHit(
         AsmSourceSpan(Member, History.Locations[Index], History.Records[Index].Name)
         for Index in (FaceOrdinal, LoopOrdinal, PlaneOrdinal, *Edges, *Vertices)
     )
-    return Replace(
+    Updated = Replace(
         FacePick,
         provenance=Replace(Origin, spans=Origin.spans + Spans),
         attributes=FreezeMapping(
@@ -58,3 +61,4 @@ def RetainFaceHit(
             }
         ),
     )
+    return Updated, SavedFaceProof(History, Revision, Member, FaceEvidence)
