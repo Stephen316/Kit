@@ -10,7 +10,7 @@ def TestInchProofs(TmpPath: FilePath) -> None:
     Dimensions = {
         Dimension["name"]: Dimension for Dimension in Model["features"][0]["dimensions"]
     }
-    assert len(Model["scalars"]) == 9
+    assert len(Model["scalars"]) == 10
     assert Model["diagnostics"] == []
     for NameValue in (
         "Duplicate",
@@ -19,11 +19,15 @@ def TestInchProofs(TmpPath: FilePath) -> None:
         "WrongRound",
         "Precision",
     ):
-        assert Dimensions[NameValue]["value_mm"] is None
-        assert Dimensions[NameValue]["native_offset"] is None
-        assert Dimensions[NameValue]["inch_display_value"] == 0.04
-    for NameValue in ("Valid", "NativeRole", "ZeroIdentity"):
+        Evidence = NameValue, Dimensions[NameValue], Model["scalars"]
+        assert Dimensions[NameValue]["value_mm"] is None, Evidence
+        assert Dimensions[NameValue]["native_offset"] is None, Evidence
+        assert Dimensions[NameValue]["inch_display_value"] == (
+            0.041 if NameValue == "Precision" else 0.04
+        ), Evidence
+    for NameValue in ("Valid", "NativeRole", "ZeroIdentity", "TrailingZero"):
         assert Dimensions[NameValue]["value_mm"] == 1.0
         assert Dimensions[NameValue]["inch_display_value"] is None
     assert Dimensions["Valid"]["native_role"] == "driving"
     assert Dimensions["NativeRole"]["native_role"] == "native"
+    assert Dimensions["TrailingZero"]["source_text"] == "0.040"

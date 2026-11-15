@@ -8,7 +8,8 @@ Each index entry retains every original candidate scalar in the original roster 
 The index preserves duplicate names instead of replacing a candidate with the last matching scalar.
 
 The inch binder continues to require one candidate with a native identifier, an eligible role, and a matching rounded display value.
-Missing precision, excessive display precision, duplicate names, display-only roles, and unmatched values remain unresolved.
+Missing precision, excessive significant fractional precision, duplicate names, display-only roles, and unmatched values remain unresolved.
+Trailing fractional zeros retain the reader's existing insignificant-zero behavior.
 Resolved dimensions retain the scalar's value, offset, role, and operands.
 Non-inch value matching keeps its existing behavior.
 
@@ -30,6 +31,7 @@ A separate Python process reads them through the genuine native parser and retur
 One and 256-dimension rosters exercise direct ownership and four parents sharing the same child owner.
 The scenarios compare values, native offsets, roles, operands, and unresolved-display markers.
 Additional cases retain duplicate-name ambiguity, missing identity, display-only roles, rounding mismatches, and excessive precision.
+The fixture distinguishes a third nonzero fractional digit from an insignificant trailing zero.
 The existing P02 inch-diameter public reader scenario remains part of the remote source gate.
 
 Local work used source inspection, syntax parsing, formatting, and static policy checks only.
