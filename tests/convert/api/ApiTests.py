@@ -48,7 +48,6 @@ def CheckApiBridge(TmpPath: FilePath) -> None:
     assert OpenLegacy(OutputPath) == DocumentData
 
 
-# exact replay must stay usable because unchanged native bytes need no carrier translation
 @Pytest.mark.parametrize(
     ("SourcePath", "FileName"),
     (

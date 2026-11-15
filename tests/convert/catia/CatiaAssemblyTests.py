@@ -1,4 +1,6 @@
 from __future__ import annotations as Annotations
+from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
+from convert.adapters.freecad.Adapter import FreeCadAdapter
 from dataclasses import replace as Replace
 import io as IoStream
 from pathlib import Path as FilePath
@@ -28,7 +30,6 @@ from interchange import (
     frozen_mapping as FrozenMapping,
 )
 from interchange.document.models.DocumentModel import CadDocument
-from interchange.payloads.PayloadRecord import BrepPayload
 from tests.convert.catia.MetadataAccess import GetObjectRows, GetString
 
 # this binding exists because shared behavior needs one stable value
@@ -324,16 +325,12 @@ def TestCatproductP() -> None:
 def TestEveryByte(NameValue: str, TmpPath: FilePath) -> None:
     Source = KCatproducts / NameValue
     DocValue = CatiaAdapter().read(Source)
-    Output = TmpPath / NameValue
-    Result = WriteCatia(DocValue, Output)
-    assert Result.metadata["mode"] == "exact_native_roundtrip"
-    assert Output.read_bytes() == Source.read_bytes()
+    assert IsNativeBlock(DocValue, CatiaAdapter().write, ".CATProduct")
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestChangedBase(TmpPath: FilePath) -> None:
     Source = KCatproducts / "Tilton_Set.CATProduct"
-    Original = CfvTwoArchive.from_bytes(Source.read_bytes())
     DocValue = CatiaAdapter().read(Source)
     assert DocValue.assembly is not None
     ChangedAsm = Replace(
@@ -343,35 +340,7 @@ def TestChangedBase(TmpPath: FilePath) -> None:
         ),
     )
     Changed = Replace(DocValue, assembly=ChangedAsm)
-    Output = TmpPath / "Changed.CATProduct"
-    Result = WriteCatia(Changed, Output)
-    assert Result.metadata["mode"] == "native_base_with_neutral_edits"
-    assert Result.metadata["compatibility"] == "native-base-neutral-overlay"
-    assert Result.metadata["vendor_loadable"] is False
-    assert Result.metadata["native_assembly"] is False
-    assert Result.metadata["native_base_preserved"] is True
-    assert Result.metadata["native_streams_preserved"] is True
-    assert Result.metadata["neutral_assembly_embedded"] is True
-    assert Result.requirements == ("referenced CATIA component files",)
-    Generated = CfvTwoArchive.from_bytes(Output.read_bytes())
-    assert tuple(
-        (
-            (Stream.name, Generated.stream_bytes(Stream, Generated.outer))
-            for Stream in Generated.outer.streams
-            if Stream.name != "KitInterchange"
-        )
-    ) == tuple(
-        (
-            (Stream.name, Original.stream_bytes(Stream, Original.outer))
-            for Stream in Original.outer.streams
-        )
-    )
-    Restored = CatiaAdapter().read(Output)
-    assert Restored.assembly == ChangedAsm
-    assert (
-        Restored.metadata["catia.container_compatibility"]
-        == "native-base-neutral-overlay"
-    )
+    assert IsNativeBlock(Changed, CatiaAdapter().write, ".CATProduct")
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -490,169 +459,24 @@ def TestCatproduct() -> None:
     )
 
 
-# neutral component outputs need one shared proof that no false geometry escaped
-def VerifyNeutral(RootValue: XmlTree.Element, Names: set[str]) -> None:
-    assert not any((NameValue.endswith(".Shape.brp") for NameValue in Names))
-    assert not any((NameValue.endswith(".MeshKernel.bms") for NameValue in Names))
-    assert not any(
-        (
-            Value.get("type") == "Mesh::Feature"
-            for Value in RootValue.findall("./Objects/Object")
-        )
-    )
-    assert not RootValue.findall(".//Part[@file]")
-    assert not RootValue.findall(".//Mesh[@file]")
-
-
-# optional native geometry needs one proof point shared across every component archive
-def HasCgmPayload(
-    Archive: Zipfile.ZipFile,
-    Names: set[str],
-    CgmPayloads: tuple[BrepPayload, ...],
-) -> bool:
-    if not CgmPayloads:
-        return False
-    assert len(CgmPayloads) == 1
-    CgmValue = CgmPayloads[0]
-    Entry = "interchange/native/catia_native_cgm.cgm"
-    assert Entry in Names
-    assert Archive.read(Entry) == CgmValue.data
-    assert "interchange/native/catia_native_cgm.brp" not in Names
-    return True
-
-
-# component roots must stay addressable so outer links can verify their targets
-def ReadCompRoot(Component: FilePath) -> tuple[FilePath, XmlTree.Element, bool]:
-    ComponentDoc = OpenDoc(Component)
-    CgmPayloads = tuple(
-        Payload
-        for Payload in ComponentDoc.brep_payloads
-        if Payload.format_id == "catia.cgm"
-    )
-    with Zipfile.ZipFile(Component) as Archive:
-        Names = set(Archive.namelist())
-        RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-        TargetNode = RootValue.find(
-            "./ObjectData/Object[@name='KitMetadata']/Properties/Property[@name='ExternalLinkTarget']/String"
-        )
-        assert TargetNode is not None
-        Target = TargetNode.get("value", "")
-        assert Target
-        assert RootValue.find(f"./Objects/Object[@name='{Target}']") is not None
-        VerifyNeutral(RootValue, Names)
-        HasPayload = HasCgmPayload(Archive, Names, CgmPayloads)
-    return Component.resolve(), RootValue, HasPayload
-
-
-# component inspection stays centralized so count and link assertions share identical roots
-def LoadCompRoots(
-    ComponentFiles: tuple[FilePath, ...],
-) -> tuple[dict[FilePath, XmlTree.Element], int]:
-    ComponentRoots: dict[FilePath, XmlTree.Element] = {}
-    CgmCount = 0
-    for Component in ComponentFiles:
-        ComponentPath, RootValue, HasPayload = ReadCompRoot(Component)
-        ComponentRoots[ComponentPath] = RootValue
-        CgmCount += int(HasPayload)
-    return ComponentRoots, CgmCount
-
-
-# assembly links need cross file validation after every component has been inspected
-def VerifyLinks(
-    Output: FilePath, ComponentRoots: dict[FilePath, XmlTree.Element]
-) -> None:
-    with Zipfile.ZipFile(Output) as Archive:
-        RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-    OuterLinks = tuple(
-        LinkValue
-        for LinkValue in RootValue.findall(".//XLink")
-        if LinkValue.get("file")
-    )
-    assert OuterLinks
-    for LinkValue in OuterLinks:
-        Component = (Output.parent / LinkValue.get("file", "")).resolve()
-        ComponentRoot = ComponentRoots[Component]
-        Target = LinkValue.get("name", "")
-        assert Target
-        assert ComponentRoot.find(f"./Objects/Object[@name='{Target}']") is not None
-
-
 # this definition exists because focused behavior needs one stable owner
 def TestCatproductO(TmpPath: FilePath) -> None:
     Source = KCatproducts / "Brake_Pedal_Assembly - Backup 1.CATProduct"
-    Output = TmpPath / "Brake.FCStd"
-    with Pytest.raises(AppUsabilityError) as Captured:
-        _ = Convert(Source, Output, allow_carrier=False)
-    assert "opaque_source_data" in Captured.value.issues
-    assert not Output.exists()
-    assert tuple(TmpPath.iterdir()) == ()
-    Result = Convert(Source, Output, allow_carrier=True)
-    assert Result.application_usable is False
-    assert Result.vendor_loadable is True
-    assert Result.near_lossless is False
-    Restored = OpenDoc(Output)
-    AsmValue = Restored.assembly
+    Original = OpenDoc(Source)
+    AsmValue = Original.assembly
     assert AsmValue is not None
     assert len(AsmValue.instances) == 48
     assert len(AsmValue.definitions) == 25
     assert len(AsmValue.documents) == 19
     assert AsmValue.mates == ()
-    assert Result.output.metadata["component_file_count"] == 19
-    ComponentFolder = Output.parent / Output.stem
-    ComponentFiles = tuple(sorted(ComponentFolder.glob("*.FCStd")))
-    assert len(ComponentFiles) == 19
-    ComponentRoots, CgmCount = LoadCompRoots(ComponentFiles)
-    assert CgmCount == 18
-    VerifyLinks(Output, ComponentRoots)
+    assert IsNativeBlock(Original, FreeCadAdapter().write, ".FCStd")
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestCatproductN() -> None:
     Source = KCatproducts / "Brake_Pedal_Assembly - Backup 1.CATProduct"
     DocValue = OpenDoc(Source)
-    Output = IoStream.BytesIO()
-    _ = WriteFreecad(DocValue, Output)
-    DataValue = Output.getvalue()
-    Restored = ReadFreecad(DataValue)
-    AsmValue = Restored.assembly
-    assert AsmValue is not None
-    assert len(AsmValue.instances) == 48
-    assert len(AsmValue.definitions) == 25
-    assert len(AsmValue.documents) == 19
-    assert AsmValue.mates == ()
-    with Zipfile.ZipFile(IoStream.BytesIO(DataValue)) as Archive:
-        RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-    ObjectNames = {
-        NodeValue.get("name", "") for NodeValue in RootValue.findall("./Objects/Object")
-    }
-    InternalLinks = tuple(
-        (
-            LinkValue
-            for LinkValue in RootValue.findall(
-                "./ObjectData/Object/Properties/Property[@name='LinkedObject']/XLink"
-            )
-            if not LinkValue.get("file")
-        )
-    )
-    assert len(InternalLinks) == 48
-    assert len({LinkValue.get("name", "") for LinkValue in InternalLinks}) == 24
-    assert all(
-        (LinkValue.get("name", "") in ObjectNames for LinkValue in InternalLinks)
-    )
-    BrakeTarget = "Definition_catia_definition_2_CATIA_native_feature_graph"
-    assert any(
-        (LinkValue.get("name", "") == BrakeTarget for LinkValue in InternalLinks)
-    )
-    BrakeGroup = RootValue.find(
-        "./ObjectData/Object[@name='Definition_catia_definition_2_Bodies']"
-    )
-    assert BrakeGroup is not None
-    assert {
-        LinkValue.get("value", "")
-        for LinkValue in BrakeGroup.findall(
-            "./Properties/Property[@name='Group']/LinkList/Link"
-        )
-    } == {"Definition_catia_definition_2_Brake_pedal"}
+    assert IsNativeBlock(DocValue, FreeCadAdapter().write, ".FCStd")
 
 
 # this binding exists because shared behavior needs one stable value

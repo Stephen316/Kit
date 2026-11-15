@@ -1,4 +1,8 @@
 from __future__ import annotations as Annotations
+from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
+from tests.convert.api.BuildApiSource import BuildApiSource
+from tests.interchange.fixtures.AssemblyFixture import BuildAssembly
+from convert.adapters.freecad.Adapter import FreeCadAdapter
 from dataclasses import replace as Replace
 import hashlib as Hashlib
 from io import BytesIO as BytesIo, StringIO as StringIo
@@ -17,8 +21,6 @@ from convert import (
     write_document as WriteDoc,
 )
 from convert.adapters import ReadOptions, WriteOptions
-from convert.adapters.base import CarrierReason, TransferMode
-from convert.adapters.base.WriteResult import WriteResult
 from convert.adapters.catia.Adapter import (
     CatiaAdapter,
     CatiaAdapterError,
@@ -48,7 +50,6 @@ from convert.adapters.freecad.Brep import brep_model_brep as BrepModelBrep
 from convert.adapters.solidworks import (
     read_sldprt as ReadSldprt,
 )
-from convert.engine.EngineResult import ConversionResult
 from convert.geometry.Parasolid import encode_brep_model as EncodeBrepModel
 from interchange import (
     Capability,
@@ -474,10 +475,11 @@ def VerifyPartDoc(
     assert FeaturePayload.data == Archive.stream_bytes(PartStream)
     VerifyDeclData(Archive, DocValue, Declarations)
     assert DocValue.validate() == ()
-    Output = BytesIo()
-    Result = CatiaAdapter().write(DocValue, Output)
-    assert Result.metadata["mode"] == "exact_native_roundtrip"
-    assert Output.getvalue() == Source
+    assert IsNativeBlock(
+        DocValue,
+        CatiaAdapter().write,
+        ".CATProduct" if DocValue.assembly is not None else ".CATPart",
+    )
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -540,53 +542,20 @@ def TestCfvTwoEvery() -> None:
 def TestRoundtripIs(Source: Path, TmpPath: Path) -> None:
     DocValue = OpenDoc(Source)
     Output = TmpPath / Source.name
-    if DocValue.assembly is not None:
-        with Pytest.raises(AppUsabilityError) as Captured:
-            _ = Registry.write(
-                DocValue, Output, options=WriteOptions(values={"portable": False})
-            )
-        assert Captured.value.requirements == ("referenced CATIA component files",)
-        assert not Output.exists()
-    Result = Registry.write(
-        DocValue,
-        Output,
-        options=WriteOptions(
-            values={
-                "portable": False,
-                "allow_carrier": DocValue.assembly is not None,
-                "require_self_contained": DocValue.assembly is None,
-            }
-        ),
-    )
-    assert Result.metadata["mode"] == "exact_native_roundtrip"
-    assert Result.metadata["vendor_loadable"] is True
-    assert Result.metadata["native_geometry"] is True
-    assert Result.metadata["native_history"] is True
-    assert Result.metadata["native_assembly"] is (DocValue.assembly is not None)
-    assert Result.metadata["native_self_contained"] is (DocValue.assembly is None)
-    assert Result.metadata["referenced_files_written"] == 0
-    assert Result.requirements == (
-        ("referenced CATIA component files",) if DocValue.assembly is not None else ()
-    )
-    assert Result.near_lossless is (DocValue.assembly is None)
-    assert Output.read_bytes() == Source.read_bytes()
+    _ = Output.write_bytes(b"existing destination")
+    with Pytest.raises(ValueError, match="native-only feature definitions"):
+        _ = Registry.write(DocValue, Output, options=WriteOptions(overwrite=True))
+    assert Output.read_bytes() == b"existing destination"
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestPublicSdkTo(TmpPath: Path) -> None:
-    Source = KCatproducts / "Tilton_Set.CATProduct"
-    DocValue = OpenDoc(Source)
-    Output = TmpPath / Source.name
-    Result = WriteDoc(DocValue, Output)
-    assert Result.metadata["mode"] == "generated_cfv2"
-    assert Result.metadata["compatibility"] == "kit-neutral-only"
-    assert Result.metadata["vendor_loadable"] is False
-    assert Result.metadata["native_self_contained"] is False
-    assert OpenDoc(Output).assembly == DocValue.assembly
-    Blocked = TmpPath / f"blocked{Source.suffix}"
-    with Pytest.raises(AppUsabilityError):
-        _ = WriteDoc(DocValue, Blocked, allow_carrier=False)
-    assert not Blocked.exists()
+    DocValue = OpenDoc(KCatproducts / "Tilton_Set.CATProduct")
+    Output = TmpPath / "Blocked.CATProduct"
+    _ = Output.write_bytes(b"existing destination")
+    with Pytest.raises(ValueError, match="native-only feature definitions"):
+        _ = WriteDoc(DocValue, Output, overwrite=True)
+    assert Output.read_bytes() == b"existing destination"
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -598,62 +567,13 @@ def TestPublicSdkTo(TmpPath: Path) -> None:
     ),
 )
 def TestGeneratedC(Source: Path, WriteValues: dict[str, bool], TmpPath: Path) -> None:
-    Carrier = TmpPath / f"carrier{Source.suffix}"
-    Result = WriteDoc(OpenDoc(Source), Carrier, allow_carrier=True, values=WriteValues)
-    assert Result.metadata["mode"] == "generated_cfv2"
-    Restored = OpenDoc(Carrier)
-    SavedDoc = next(
-        (
-            Payload
-            for Payload in Restored.brep_payloads
-            if Payload.id.startswith("catia:preserved-native-document:")
-        )
+    SourceDoc = OpenDoc(Source)
+    assert IsNativeBlock(
+        SourceDoc,
+        CatiaAdapter().write,
+        Source.suffix,
+        OptionsData=WriteOptions(values=WriteValues, overwrite=True),
     )
-    Token = SavedDoc.id.removeprefix("catia:preserved-native-document:")
-    SavedBinding = next(
-        (
-            Payload
-            for Payload in Restored.brep_payloads
-            if Payload.id == f"catia:preserved-native-document-binding:{Token}"
-        )
-    )
-    NativeData = Source.read_bytes()
-    NativeDigest = Hashlib.sha256(NativeData).digest()
-    assert SavedDoc.data == NativeData
-    assert SavedDoc.sha256 == NativeDigest.hex()
-    assert SavedBinding.data == NativeDigest
-    assert SavedBinding.sha256 == Hashlib.sha256(NativeDigest).hexdigest()
-    assert isinstance(SavedDoc.attributes["catia.replay_semantic_sha256"], str)
-    Replay = TmpPath / f"replay{Source.suffix}"
-    ReplayResult = Registry.write(
-        Restored,
-        Replay,
-        options=WriteOptions(
-            values={
-                "portable": False,
-                "allow_carrier": Source.suffix.casefold() == ".catproduct",
-                "require_self_contained": Source.suffix.casefold() != ".catproduct",
-            }
-        ),
-    )
-    assert ReplayResult.metadata["mode"] == "exact_native_roundtrip"
-    assert ReplayResult.requirements == (
-        ("referenced CATIA component files",)
-        if Source.suffix.casefold() == ".catproduct"
-        else ()
-    )
-    assert Replay.read_bytes() == NativeData
-    if Source.suffix.casefold() == ".catproduct":
-        Regenerated = TmpPath / "regenerated.CATProduct"
-        _ = WriteDoc(Restored, Regenerated, allow_carrier=True)
-        RegeneratedDoc = OpenDoc(Regenerated)
-        assert tuple(
-            (
-                Payload
-                for Payload in RegeneratedDoc.brep_payloads
-                if Payload.id.startswith("catia:preserved-native-document")
-            )
-        ) == (SavedDoc, SavedBinding)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -662,25 +582,10 @@ def TestStripped(TmpPath: Path) -> None:
     Changed = Replace(
         Original, metadata=FrozenMapping({**Original.metadata, "audit_change": True})
     )
-    Carrier = TmpPath / "carrier.CATPart"
-    First = WriteDoc(Changed, Carrier, allow_carrier=True)
-    assert First.vendor_loadable is False
-    Restored = OpenDoc(Carrier)
-    MetaValue = dict(Restored.metadata)
-    Compatibility = MetaValue.pop("catia.container_compatibility")
-    assert Compatibility == "native-base-neutral-overlay"
-    Stripped = Replace(Restored, metadata=FrozenMapping(MetaValue))
-    Blocked = TmpPath / "blocked.CATPart"
-    with Pytest.raises(AppUsabilityError) as Captured:
-        _ = WriteDoc(Stripped, Blocked, allow_carrier=False)
-    assert Captured.value.vendor_loadable is False
-    assert not Blocked.exists()
-    Explicit = TmpPath / "explicit.CATPart"
-    Result = WriteDoc(Stripped, Explicit, allow_carrier=True)
-    assert Result.vendor_loadable is False
-    assert Result.near_lossless is False
-    assert Explicit.read_bytes() == Carrier.read_bytes()
-    assert OpenDoc(Explicit).feature_timeline == Restored.feature_timeline
+    Restored = CadDocument.from_json(Changed.to_json())
+    assert Restored.metadata == Changed.metadata
+    assert Restored.feature_timeline == Original.feature_timeline
+    assert IsNativeBlock(Restored, CatiaAdapter().write, ".CATPart")
 
 
 # native geometry payloads need focused validation against their declared source streams
@@ -886,10 +791,11 @@ def TestCatpart() -> None:
             )
         ),
     )
-    Output = BytesIo()
-    Result = CatiaAdapter().write(Modified, Output)
-    assert Result.metadata["mode"] == "generated_cfv2"
-    assert Output.getvalue() != Generated
+    assert IsNativeBlock(
+        Modified,
+        CatiaAdapter().write,
+        ".CATProduct" if Modified.assembly is not None else ".CATPart",
+    )
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1194,103 +1100,21 @@ def TestCatpartCgr() -> None:
 
 # this definition exists because focused behavior needs one stable owner
 def TestUnresolved(TmpPath: Path) -> None:
-    Source = KCatparts / "Banjo.CATPart"
-    Original = OpenDoc(Source)
-    Output = TmpPath / "Banjo.FCStd"
-    Result = Convert(Source, Output)
-    Transfers = {Value.capability: Value for Value in Result.transfers}
-    assert Result.application_usable is False
-    assert Result.vendor_loadable is True
-    assert Result.near_lossless is False
-    for CapabilityValue in (Capability.BREP, Capability.TESSELLATION):
-        assert Transfers[CapabilityValue].mode is TransferMode.CARRIER
-        assert Transfers[CapabilityValue].carrier_reason is CarrierReason.SOURCE_OPAQUE
-    with Zipfile.ZipFile(Output) as Archive:
-        Names = Archive.namelist()
-        RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-        assert not any((NameValue.endswith(".Shape.brp") for NameValue in Names))
-        assert not any((NameValue.endswith(".MeshKernel.bms") for NameValue in Names))
-        assert not any(
-            (
-                Value.get("type") == "Mesh::Feature"
-                for Value in RootValue.findall("./Objects/Object")
-            )
-        )
-        assert not RootValue.findall(".//Part[@file]")
-        assert not RootValue.findall(".//Mesh[@file]")
-    assert OpenDoc(Output) == Original
-    ReversedPart = TmpPath / "Banjo.CATPart"
-    ReversedResult = Convert(Output, ReversedPart)
-    assert ReversedResult.application_usable is True
-    assert ReversedResult.vendor_loadable is True
-    assert ReversedPart.read_bytes() == Source.read_bytes()
-
-
-# generated carriers need their compatibility claims checked independently from restored content
-def VerifyKitMeta(Result: ConversionResult) -> None:
-    assert Result.destination_format == "catia.v5"
-    assert Result.output.metadata["mode"] == "generated_cfv2"
-    assert Result.output.metadata["compatibility"] == "kit-neutral-only"
-    assert Result.output.metadata["vendor_loadable"] is False
-    assert Result.output.metadata["native_geometry"] is False
-    assert Result.output.metadata["native_history"] is False
-    assert Result.output.metadata["native_assembly"] is False
-    assert Result.output.metadata["native_self_contained"] is False
-    assert Result.output.metadata["referenced_files_written"] == 0
-    assert Result.output.metadata["native_feature_graph"] is False
-
-
-# restored foreign content needs semantic equality checks separated from carrier metadata
-def VerifySldData(Source: CadDocument, Restored: CadDocument) -> None:
-    assert Restored.source.format_id == "catia.v5"
-    assert (
-        Restored.metadata["catia.embedded_source_format_id"] == Source.source.format_id
-    )
-    assert Restored.metadata["catia.embedded_source_path"] == Source.source.path
-    assert Restored.metadata["catia.embedded_source_sha256"] == Source.source.sha256
-    assert Restored.configurations == Source.configurations
-    assert Restored.sketches == Source.sketches
-    assert Restored.feature_timeline == Source.feature_timeline
-    Retained = tuple(
-        (
-            Payload
-            for Payload in Restored.brep_payloads
-            if Payload.kind not in {"native_document", "native_document_binding"}
-        )
-    )
-    assert Retained == Source.brep_payloads
-    assert (
-        sum(
-            (
-                Payload.kind == "native_document_binding"
-                for Payload in Restored.brep_payloads
-            )
-        )
-        == 1
-    )
-    assert (
-        sum((Payload.kind == "native_document" for Payload in Restored.brep_payloads))
-        == 1
-    )
+    Original = OpenDoc(KCatparts / "Banjo.CATPart")
+    assert any(Payload.format_id == "catia.cgm" for Payload in Original.brep_payloads)
+    assert Original.validate() == ()
+    assert IsNativeBlock(Original, FreeCadAdapter().write, ".FCStd")
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestSolidworksA(TmpPath: Path) -> None:
     Source = OpenDoc(KSldprt)
-    Output = TmpPath / "example.CATPart"
-    with Pytest.raises(AppUsabilityError):
-        _ = Convert(KSldprt, Output, allow_carrier=False)
-    Result = Convert(KSldprt, Output, allow_carrier=True)
-    VerifyKitMeta(Result)
-    Archive = CfvTwoArchive.from_bytes(Output.read_bytes())
-    assert [Value.class_name for Value in Archive.declarations()] == [
-        "CATProdCont",
-        "CATPrtCont",
-    ]
-    assert any(
-        (Folder.stream("KitInterchange") is not None for Folder in Archive.nested)
+    assert IsNativeBlock(
+        Source,
+        CatiaAdapter().write,
+        ".CATProduct" if Source.assembly is not None else ".CATPart",
+        "unqualified SOLIDWORKS sketch support",
     )
-    VerifySldData(Source, OpenDoc(Output))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1298,20 +1122,12 @@ def TestSolidworks(TmpPath: Path) -> None:
     if not KSldasm.is_file():
         Pytest.skip("bundled SOLIDWORKS assembly example is unavailable")
     Source = OpenDoc(KSldasm)
-    Output = TmpPath / "Piston.CATProduct"
-    Result = Convert(KSldasm, Output, allow_carrier=True)
-    assert Result.source_format == "solidworks.sldasm"
-    assert Result.destination_format == "catia.v5"
-    Archive = CfvTwoArchive.from_bytes(Output.read_bytes())
-    assert [Value.class_name for Value in Archive.declarations()] == ["CATProdCont"]
-    Restored = OpenDoc(Output)
-    assert Restored.source.format_id == "catia.v5"
-    assert (
-        Restored.metadata["catia.embedded_source_format_id"] == Source.source.format_id
+    assert IsNativeBlock(
+        Source,
+        CatiaAdapter().write,
+        ".CATProduct" if Source.assembly is not None else ".CATPart",
+        "unqualified SOLIDWORKS sketch support",
     )
-    assert Restored.assembly is not None
-    assert Restored.assembly == Source.assembly
-    assert len(Restored.assembly.mates) == 6
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1327,10 +1143,25 @@ def TestEnforceDoc(TmpPath: Path) -> None:
     assert not Adapter.supports(AsmValue, TmpPath / "assembly.CATPart")
     assert Adapter.supports(PartValue, BytesIo())
     assert not Adapter.supports(PartValue, StringIo())
-    with Pytest.raises(ValueError, match="\\.CATPart"):
-        _ = WriteCatia(PartValue, TmpPath / "part.CATProduct")
-    with Pytest.raises(ValueError, match="\\.CATProduct"):
-        _ = WriteCatia(AsmValue, TmpPath / "assembly.CATPart")
+    assert IsNativeBlock(
+        PartValue,
+        CatiaAdapter().write,
+        ".CATPart",
+        "unqualified SOLIDWORKS sketch support",
+    )
+
+
+def TestTypedKind(TmpPath: Path) -> None:
+    PartValue = OpenDoc(BuildApiSource(TmpPath))
+    for Document, SuffixText, ErrorText in (
+        (PartValue, ".CATProduct", "part documents require a .CATPart"),
+        (BuildAssembly(), ".CATPart", "assembly documents require a .CATProduct"),
+    ):
+        Target = TmpPath / f"Wrong{SuffixText}"
+        _ = Target.write_bytes(b"existing destination")
+        with Pytest.raises(ValueError, match=ErrorText):
+            _ = CatiaAdapter().write(Document, Target, WriteOptions(overwrite=True))
+        assert Target.read_bytes() == b"existing destination"
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1351,7 +1182,7 @@ def TestReaderKindA(Source: Path, WrongSuffix: str, TmpPath: Path) -> None:
 # this definition exists because focused behavior needs one stable owner
 def TestReaderKind(TmpPath: Path) -> None:
     Valid = TmpPath / "valid.CATPart"
-    _ = Convert(KSldprt, Valid, allow_carrier=True)
+    _ = Convert(BuildApiSource(TmpPath), Valid, allow_carrier=True)
     Renamed = TmpPath / "renamed.CATProduct"
     _ = Renamed.write_bytes(Valid.read_bytes())
     with Pytest.raises(CatiaAdapterError, match="content requires"):
@@ -1392,104 +1223,6 @@ def TestReaderPart() -> None:
         _ = CatiaAdapter().read(DataValue)
 
 
-# edited carriers need compatibility claims checked separately from archive byte retention
-def VerifyEditMeta(Result: WriteResult, Source: FilePath, Output: FilePath) -> None:
-    assert Result.metadata["mode"] == "native_base_with_neutral_edits"
-    assert Result.metadata["compatibility"] == "native-base-neutral-overlay"
-    assert Result.metadata["vendor_loadable"] is False
-    assert Result.metadata["native_geometry"] is False
-    assert Result.metadata["native_history"] is False
-    assert Result.metadata["native_base_vendor_loadable"] is True
-    assert Result.metadata["native_base_preserved"] is True
-    assert Result.metadata["native_streams_preserved"] is True
-    assert Output.read_bytes() != Source.read_bytes()
-
-
-# native streams must remain byte exact while the neutral overlay changes
-def VerifyStream(Source: FilePath, Output: FilePath) -> CfvTwoArchive:
-    OriginalArchive = CfvTwoArchive.from_bytes(Source.read_bytes())
-    OutputArchive = CfvTwoArchive.from_bytes(Output.read_bytes())
-    assert tuple(
-        (
-            (Stream.name, OutputArchive.stream_bytes(Stream, OutputArchive.outer))
-            for Stream in OutputArchive.outer.streams
-            if Stream.name != "KitInterchange"
-        )
-    ) == tuple(
-        (
-            (Stream.name, OriginalArchive.stream_bytes(Stream, OriginalArchive.outer))
-            for Stream in OriginalArchive.outer.streams
-        )
-    )
-    return OutputArchive
-
-
-# restored edits need semantic checks independent from physical archive preservation
-def VerifyEditState(Changed: CadDocument, Restored: CadDocument) -> None:
-    assert Restored.source.format_id == "catia.v5"
-    assert (
-        Restored.metadata["catia.container_compatibility"]
-        == "native-base-neutral-overlay"
-    )
-    assert Restored.configurations == Changed.configurations
-    Retained = tuple(
-        (
-            Payload
-            for Payload in Changed.brep_payloads
-            if Payload.kind not in {"native_document", "native_document_binding"}
-        )
-    )
-    RestoredRetained = tuple(
-        (
-            Payload
-            for Payload in Restored.brep_payloads
-            if Payload.kind not in {"native_document", "native_document_binding"}
-        )
-    )
-    assert RestoredRetained == Retained
-    assert (
-        sum(
-            (
-                Payload.kind == "native_document_binding"
-                for Payload in Restored.brep_payloads
-            )
-        )
-        == 2
-    )
-    assert (
-        sum((Payload.kind == "native_document" for Payload in Restored.brep_payloads))
-        == 2
-    )
-    Saved = next(
-        (
-            Payload
-            for Payload in Restored.brep_payloads
-            if Payload.id.startswith("catia:preserved-native-document:")
-        )
-    )
-    assert "catia.replay_semantic_sha256" not in Saved.attributes
-
-
-# exact carrier replay needs proof separate from edited model restoration
-def VerifyReplay(TmpPath: FilePath, Output: FilePath, Restored: CadDocument) -> None:
-    Replay = TmpPath / "ChangedReplay.CATPart"
-    ReplayResult = WriteDoc(Restored, Replay, allow_carrier=True)
-    assert ReplayResult.metadata["mode"] == "exact_carrier_roundtrip"
-    assert ReplayResult.metadata["compatibility"] == "native-base-neutral-overlay"
-    assert Replay.read_bytes() == Output.read_bytes()
-
-
-# archive tampering needs an isolated proof that native compatibility is revoked
-def VerifyTampered(Output: FilePath, OutputArchive: CfvTwoArchive) -> None:
-    Tampered = bytearray(Output.read_bytes())
-    Tolerance = OutputArchive.outer.stream("GesToler")
-    assert Tolerance is not None
-    assert len(Tolerance.extents) == 1
-    Tampered[Tolerance.extents[0].physical_offset + 10] ^= 1
-    TamperedDoc = ReadCatia(bytes(Tampered))
-    assert TamperedDoc.metadata["catia.container_compatibility"] == "kit-neutral-only"
-
-
 # this definition exists because focused behavior needs one stable owner
 def TestModifiedDoc(TmpPath: Path) -> None:
     Source = KCatparts / "Banjo.CATPart"
@@ -1497,27 +1230,20 @@ def TestModifiedDoc(TmpPath: Path) -> None:
     Changed = Replace(
         DocValue, configurations=(Config("catia:changed", "Changed", active=True),)
     )
-    Output = TmpPath / "Changed.CATPart"
-    Result = WriteDoc(Changed, Output, allow_carrier=True)
-    VerifyEditMeta(Result, Source, Output)
-    OutputArchive = VerifyStream(Source, Output)
-    Restored = OpenDoc(Output)
-    VerifyEditState(Changed, Restored)
-    VerifyReplay(TmpPath, Output, Restored)
-    VerifyTampered(Output, OutputArchive)
+    assert IsNativeBlock(Changed, CatiaAdapter().write, ".CATPart")
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestEmbeddedAnd(TmpPath: Path) -> None:
-    Source = OpenDoc(KSldprt)
+    Source = OpenDoc(BuildApiSource(TmpPath))
     Output = TmpPath / "Filtered.CATPart"
-    _ = Convert(KSldprt, Output, allow_carrier=True)
+    _ = WriteDoc(Source, Output, allow_carrier=True)
     Config = Source.configurations[0]
     Filtered = CatiaAdapter().read(
         Output, ReadOptions(configuration=Config.id, include_brep=False)
     )
     assert Filtered.source.format_id == "catia.v5"
-    assert Filtered.metadata["catia.embedded_source_format_id"] == "solidworks.sldprt"
+    assert Filtered.metadata["catia.embedded_source_format_id"] == "fusion.f3d"
     assert all(
         (
             Payload.data is None
@@ -1559,7 +1285,7 @@ def TestGeneratedB() -> None:
 
 # this definition exists because focused behavior needs one stable owner
 def TestEmbeddedDoc(TmpPath: Path) -> None:
-    Source = OpenDoc(KSldprt)
+    Source = OpenDoc(BuildApiSource(TmpPath))
     ForeignDoc = BrepPayload(
         "future:document",
         "future.cad",
@@ -1601,7 +1327,7 @@ def TestEmbeddedDoc(TmpPath: Path) -> None:
 # this definition exists because focused behavior needs one stable owner
 def TestEmbedded(TmpPath: Path) -> None:
     Output = TmpPath / "Configured.CATPart"
-    _ = Convert(KSldprt, Output, allow_carrier=True)
+    _ = Convert(BuildApiSource(TmpPath), Output, allow_carrier=True)
     with Pytest.raises(CatiaAdapterError, match="configuration"):
         _ = CatiaAdapter().read(
             Output, ReadOptions(configuration="missing-configuration")
@@ -1621,14 +1347,11 @@ def TestCatpartA() -> None:
 def TestConversion(TmpPath: Path) -> None:
     Catpart = TmpPath / "Reader.CATPart"
     Output = TmpPath / "Reader.json"
-    _ = Convert(KSldprt, Catpart, allow_carrier=True)
+    _ = Convert(BuildApiSource(TmpPath), Catpart, allow_carrier=True)
     Result = Convert(Catpart, Output)
     assert Result.source_format == "catia.v5"
     assert Result.document.source.format_id == "catia.v5"
-    assert (
-        Result.document.metadata["catia.embedded_source_format_id"]
-        == "solidworks.sldprt"
-    )
+    assert Result.document.metadata["catia.embedded_source_format_id"] == "fusion.f3d"
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1654,11 +1377,11 @@ def TestChangedCgm(TmpPath: Path) -> None:
             )
         ),
     )
-    Output = TmpPath / "ChangedGeometry.CATPart"
-    Result = WriteCatia(Changed, Output, allow_non_native=True)
-    assert Result.metadata["mode"] == "native_base_with_neutral_edits"
-    assert Result.metadata["native_base_preserved"] is True
-    assert Result.metadata["native_geometry"] is False
+    assert IsNativeBlock(
+        Changed,
+        CatiaAdapter().write,
+        ".CATProduct" if Changed.assembly is not None else ".CATPart",
+    )
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1674,13 +1397,10 @@ def TestRecomputed() -> None:
             {**Changed.metadata, "catia.roundtrip_sha256": SemanticDigest(Changed)}
         ),
     )
-    Output = BytesIo()
-    Result = WriteCatia(Changed, Output, allow_non_native=True)
-    assert Result.metadata["mode"] == "native_base_with_neutral_edits"
-    assert Result.application_usable is False
-    assert Result.vendor_loadable is False
-    assert (
-        ReadCatia(Output.getvalue()).feature_timeline[0].name == "Forged CATIA feature"
+    assert IsNativeBlock(
+        Changed,
+        CatiaAdapter().write,
+        ".CATProduct" if Changed.assembly is not None else ".CATPart",
     )
 
 
@@ -1705,10 +1425,11 @@ def TestSwappedDoc() -> None:
             )
         ),
     )
-    Output = BytesIo()
-    Result = WriteCatia(Changed, Output, allow_non_native=True)
-    assert Result.metadata["mode"] == "generated_cfv2"
-    assert Output.getvalue() != Replacement
+    assert IsNativeBlock(
+        Changed,
+        CatiaAdapter().write,
+        ".CATProduct" if Changed.assembly is not None else ".CATPart",
+    )
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1737,15 +1458,16 @@ def TestMutated() -> None:
             )
         ),
     )
-    Output = BytesIo()
-    Result = WriteCatia(Changed, Output, allow_non_native=True)
-    assert Result.metadata["mode"] == "generated_cfv2"
-    assert Output.getvalue() != Native
+    assert IsNativeBlock(
+        Changed,
+        CatiaAdapter().write,
+        ".CATProduct" if Changed.assembly is not None else ".CATPart",
+    )
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestGeneratedA() -> None:
-    Source = OpenDoc(KSldprt)
+def TestGeneratedA(TmpPath: Path) -> None:
+    Source = OpenDoc(BuildApiSource(TmpPath))
     Carrier = BytesIo()
     _ = WriteCatia(Source, Carrier, allow_non_native=True)
     CarrierData = Carrier.getvalue()
@@ -1785,8 +1507,8 @@ def TestGeneratedA() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestGenerated() -> None:
-    Source = OpenDoc(KSldprt)
+def TestGenerated(TmpPath: Path) -> None:
+    Source = OpenDoc(BuildApiSource(TmpPath))
     Carrier = BytesIo()
     _ = WriteCatia(Source, Carrier, allow_non_native=True)
     CarrierData = Carrier.getvalue()
@@ -1830,8 +1552,8 @@ def TestGenerated() -> None:
 
 # this definition exists because focused behavior needs one stable owner
 @Pytest.mark.parametrize("Change", ("capabilities", "metadata", "diagnostics"))
-def TestGeneratedD(Change: str) -> None:
-    Source = OpenDoc(KSldprt)
+def TestGeneratedD(Change: str, TmpPath: Path) -> None:
+    Source = OpenDoc(BuildApiSource(TmpPath))
     Carrier = BytesIo()
     _ = WriteCatia(Source, Carrier, allow_non_native=True)
     DocValue = CatiaAdapter().read(Carrier.getvalue())
@@ -1866,8 +1588,8 @@ def TestGeneratedD(Change: str) -> None:
 
 # this definition exists because focused behavior needs one stable owner
 @Pytest.mark.parametrize("RoleValue", (PayloadRole.DOCUMENT, PayloadRole.VERIFICATION))
-def TestForeignRole(RoleValue: PayloadRole) -> None:
-    Source = OpenDoc(KSldprt)
+def TestForeignRole(RoleValue: PayloadRole, TmpPath: Path) -> None:
+    Source = OpenDoc(BuildApiSource(TmpPath))
     PayloadData = b"foreign-payload"
     Foreign = BrepPayload(
         f"foreign:{RoleValue.value}",
@@ -1907,8 +1629,8 @@ def TestForeignRole(RoleValue: PayloadRole) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestLegacyDocIs() -> None:
-    Source = OpenDoc(KSldprt)
+def TestLegacyDocIs(TmpPath: Path) -> None:
+    Source = OpenDoc(BuildApiSource(TmpPath))
     LegacyData = b"x" * Hashlib.sha256().digest_size
     Legacy = BrepPayload(
         "catia:native-document-binding",
@@ -1936,8 +1658,8 @@ def TestLegacyDocIs() -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def TestForeign() -> None:
-    Source = OpenDoc(KSldprt)
+def TestForeign(TmpPath: Path) -> None:
+    Source = OpenDoc(BuildApiSource(TmpPath))
     PayloadData = b"foreign-payload"
     Foreign = BrepPayload(
         "foreign:auxiliary",

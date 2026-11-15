@@ -51,6 +51,18 @@ The low-level native replay helpers are unchanged.
 Existing generic API exact-copy cases now require refusal and destination preservation when the decoded history contains native-only definitions.
 Their original exact-result assertions remain for fully typed inputs.
 
+The concrete CATIA and FreeCAD caller suites now reflect this restriction.
+Native CATPart graphs and loaded CATProduct components retain their source declaration, payload, structure, and mutation inspection checks, then require an exact native-definition refusal with existing file and stream preservation.
+The former public-writer claims for native CATIA exact replay, native-base edit overlays, and native CATIA assembly component export are withdrawn while those graphs remain opaque.
+FreeCAD Revolution and Hole definitions retain model inspection and explicit JSON serialization checks, then require refusal rather than output object serialization.
+The bundled SOLIDWORKS source retains its payload digests and decoded feature names, with the earlier unqualified-support diagnostic taking precedence over native-definition rejection.
+
+Generic CATIA carrier, foreign payload, tamper, configuration, replay-binding, reader-kind, and JSON bridge cases use an independently authored Fusion rectangle and retain their output assertions.
+FreeCAD deterministic-output and stream-probe cases use that same typed input.
+Independently constructed neutral FreeCAD geometry cases retain their source identity instead of claiming a SOLIDWORKS origin.
+Wrong CATIA part and assembly destinations remain rejected before replacement using typed part and assembly inputs.
+These positive cases verify their stated boundary behavior and do not establish target-application acceptance.
+
 Formatting and source checks provide local evidence only. No local tests, decoding, or CAD application runs verified this repair.
 Remote integration results and current-head review remain required.
 This repair does not qualify native conversion or resolve the recorded missing semantics.
