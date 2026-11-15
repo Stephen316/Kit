@@ -1,12 +1,12 @@
 import json as JsonCodec
-import os as OsLayer
 import signal as Signals
 import sys as System
 import tempfile as TempFiles
-import time as TimeClock
 from pathlib import Path as FilePath
 
 from tests.Research.SupervisorClient import FixtureJob, IsGoneByTimeout, SessionHost
+from tests.Research.Supervisor.WaitChildId import WaitChildId
+from tests.Research.Supervisor.StopGroup import StopGroup
 
 
 def CheckGroupStop() -> None:
@@ -28,18 +28,7 @@ def CheckGroupStop() -> None:
         try:
             SessionInfo = Harness.WaitSession("group:stop")
             ParentId = int(str(SessionInfo["pid"]))
-            ChildFile = (
-                RootPath
-                / "SupervisorState"
-                / "sessions"
-                / str(SessionInfo["session"])
-                / "work"
-                / "child.pid"
-            )
-            UntilTime = TimeClock.monotonic() + 15
-            while not ChildFile.is_file() and TimeClock.monotonic() < UntilTime:
-                TimeClock.sleep(0.05)
-            ChildId = int(ChildFile.read_text(encoding="ascii"))
+            ChildId = WaitChildId(RootPath, str(SessionInfo["session"]))
             Running.send_signal(Signals.SIGKILL)
             _ = Running.communicate(timeout=30)
             Events = Harness.RunIdle()
@@ -55,10 +44,4 @@ def CheckGroupStop() -> None:
         finally:
             Running.kill()
             _ = Running.wait()
-            if ParentId is not None:
-                try:
-                    OsLayer.killpg(ParentId, Signals.SIGKILL)
-                except ProcessLookupError:
-                    pass
-            if ChildId is not None and not IsGoneByTimeout(ChildId, Timeout=1):
-                OsLayer.kill(ChildId, Signals.SIGKILL)
+            StopGroup(ParentId, ChildId)

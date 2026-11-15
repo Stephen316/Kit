@@ -12,7 +12,10 @@ def CheckOutcomes(CensusPath: FilePath, TempPath: FilePath) -> None:
         str(FilePath(__file__).resolve().parents[2] / "re/automation/FusionCensus.py"),
         "check",
         "--expected",
-        str(CensusPath),
+        str(
+            FilePath(__file__).resolve().parents[2]
+            / "re/automation/FusionOutcomes.json"
+        ),
         "--actual",
     ]
     SameRun = Subprocess.run(

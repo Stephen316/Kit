@@ -47,8 +47,17 @@ The [prior remote job](https://github.com/TryUniCAD/Kit/actions/runs/43656612973
 Its aggregate totals were 12 strict, 685 partial, and 17 rejected outcomes.
 That run retained no per-file Fusion report. Those totals cannot establish an exact baseline.
 
-This change adds report emission and checker process coverage using the real corpus results.
-The new remote report, reviewed baseline, and enforced baseline comparison remain required before A05b can complete.
+[Run 43663022455](https://github.com/TryUniCAD/Kit/actions/runs/43663022455/job/132656265358) retained the first complete report for PR head `480d9d3a7309490038519ad8735c2a55abd1e422`.
+The 230,719-byte report has SHA-256 `bb1169ae1d7278535d63650f932f8071ae4976c069076a5a298cf40db046b7d0`.
+Its 714 outcomes match the prior aggregate totals: 12 strict, 685 partial and 17 rejected.
+The report is committed unchanged as `re/automation/FusionOutcomes.json`.
+Its observed SDK checkout is `ec41e96ee4eb884e1097311a2a25cd6a1119cdec`.
+GitHub records that checkout as the merge of base `1087ffe828caf3ef32b31f242ed3ebd69de30821` and the stated PR head.
+The SDK source digest verified at PR head `480d9d3a` is: `2884b881f89fff12e64391a3da3b2d0bf676904fa2df08481959dba617d00d63`.
+
+The corpus process check now compares each later report with this committed baseline.
+Its mutation scenarios also reject missing inputs, improved outcomes, duplicate records and mismatched corpus identities.
+The enforcement revision still requires fresh remote verification before A05b can complete.
 No local tests, decoding, or native application runs verified this change.
 
 Outcome equality does not compare geometry, constraints, dependencies, or serialized document content.

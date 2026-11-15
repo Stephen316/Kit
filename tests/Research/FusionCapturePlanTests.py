@@ -9,7 +9,7 @@ import pytest as Pytest
 
 
 @Pytest.mark.parametrize("RecipeId", ("P01", "P05"))
-def CheckCapturePlan(RecipeId: str) -> None:
+def CheckPlanPins(RecipeId: str) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     with TempFiles.TemporaryDirectory() as TempPath:
         OutputPath = FilePath(TempPath) / "Capture"

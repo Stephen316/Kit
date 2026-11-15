@@ -31,7 +31,8 @@ The scenario kills the supervisor, restarts it, and checks child cleanup and the
 
 Local verification is limited to source inspection and static checks.
 No local tests, collection, native application work, or model calls ran.
-Remote execution results remain pending when this entry is introduced.
+[Remote workflow quality](https://github.com/TryUniCAD/Kit/actions/runs/43663022455/job/132656265358) passed eight supervisor process scenarios at `480d9d3a`, including both new boundaries.
+Later resource-control changes require their own current-revision evidence.
 This change does not complete A08b headroom, memory enforcement, calibration, or grouped sessions.
 It does not add Windows support or terminate children that deliberately leave the session's process group.
 

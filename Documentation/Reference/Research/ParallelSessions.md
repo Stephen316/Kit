@@ -212,7 +212,8 @@ Add a 25% margin to that value.
 A new tool version starts again from the registry value.
 
 On Linux, read available memory from `MemAvailable` in `/proc/meminfo`.
-On macOS, calculate available memory from free, inactive and purgeable pages in `vm_stat`.
+On macOS, use free pages plus the larger of inactive or purgeable pages in `vm_stat`.
+This lower-bound estimate does not assume that the inactive and purgeable sets are disjoint.
 `os.wait4` reports `ru_maxrss` in KiB on Linux and in bytes on macOS.
 Normalize that value before you store it.
 
@@ -482,16 +483,46 @@ Store the pairs in a supervisor configuration file, for example `ModelSteps.json
 ```json
 {
   "codex": {
-    "first": { "model": "gpt-6.1-sol", "effort": "medium", "max_seconds": 600, "max_output_tokens": 20000 },
-    "fallback": { "model": "gpt-6.1-sol", "effort": "xhigh", "max_seconds": 1800, "max_output_tokens": 60000 },
-    "budget": { "per_question_weighted_tokens": 2000000, "per_day_weighted_tokens": 20000000 },
+    "first": {
+      "model": "gpt-6.1-sol",
+      "effort": "medium",
+      "max_seconds": 600,
+      "max_output_tokens": 20000
+    },
+    "fallback": {
+      "model": "gpt-6.1-sol",
+      "effort": "xhigh",
+      "max_seconds": 1800,
+      "max_output_tokens": 60000
+    },
+    "budget": {
+      "per_question_weighted_tokens": 2000000,
+      "per_day_weighted_tokens": 20000000
+    },
     "pause_at_usage_percent": 90
   },
   "claude": {
-    "first": { "model": "claude-opus-5-5", "effort": "medium", "max_seconds": 600, "max_output_tokens": 16000 },
-    "fallback": { "model": "claude-opus-5-5", "effort": "xhigh", "max_seconds": 1800, "max_output_tokens": 64000 },
-    "token_weights": { "uncached_input": 0.000004, "cached_input": 0.0000004, "output": 0.00002 },
-    "budget": { "per_question_weighted_tokens": 5, "per_day_weighted_tokens": 50 }
+    "first": {
+      "model": "claude-opus-5-5",
+      "effort": "medium",
+      "max_seconds": 600,
+      "max_output_tokens": 16000
+    },
+    "fallback": {
+      "model": "claude-opus-5-5",
+      "effort": "xhigh",
+      "max_seconds": 1800,
+      "max_output_tokens": 64000
+    },
+    "token_weights": {
+      "uncached_input": 0.000004,
+      "cached_input": 0.0000004,
+      "output": 0.00002
+    },
+    "budget": {
+      "per_question_weighted_tokens": 5,
+      "per_day_weighted_tokens": 50
+    }
   }
 }
 ```
@@ -552,13 +583,13 @@ Codex reports cached input tokens in its token events.
 
 ## General session errors
 
-| Error                                                       | Action                                                                        |
-| ----------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| Runner exits without a valid result                         | Finish with `retry` and the bounded error output                              |
-| Operating system ends a session for memory                  | Double the peak memory estimate for that kind, halve the pool limit and retry |
-| Deadline exceeded                                           | Stop the process group and finish with `retry`                                |
+| Error                                                       | Action                                                                                |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| Runner exits without a valid result                         | Finish with `retry` and the bounded error output                                      |
+| Operating system ends a session for memory                  | Double the peak memory estimate for that kind, halve the pool limit and retry         |
+| Deadline exceeded                                           | Stop the process group and finish with `retry`                                        |
 | Three infrastructure failures in one pool within 10 minutes | Pause that pool and run bounded health probes after a cooldown. Other pools continue. |
-| Attempt budget exhausted                                    | The controller marks the job `failed` for the current prerequisite generation |
+| Attempt budget exhausted                                    | The controller marks the job `failed` for the current prerequisite generation         |
 
 The supervisor never changes a job's timeout, attempt budget or checks to force progress.
 Those changes require a new job definition.

@@ -143,11 +143,11 @@ A08b bounded logging and restart cleanup now have new process coverage awaiting 
 
 ## A05 integration and semantic qualification
 
-| Child ID | Deliverable                                                        | Depends on                              | Owner      | Status   | Exit criterion or remaining evidence                                                                                         |
-| -------- | ------------------------------------------------------------------ | --------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| A05a     | Pinned F3D/F3Z reader, run summary and typed neutral serialization | A01, A02a                               | Stephen316 | complete | Five remote scenarios passed at `c1c3fcce`: 714 inputs, 12 strict, 685 partial and 17 rejected                               |
-| A05b     | Exact per-file outcome gate                                        | A05a                                    | jdharcourt | active   | Collector and strict comparison added. Retain the first full remote report, pin its verified outcomes and enable enforcement |
-| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked  | Independently establish required P01–P05 semantics, frames, termination, constraints and dependency bindings                 |
+| Child ID | Deliverable                                                        | Depends on                              | Owner      | Status   | Exit criterion or remaining evidence                                                                                           |
+| -------- | ------------------------------------------------------------------ | --------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| A05a     | Pinned F3D/F3Z reader, run summary and typed neutral serialization | A01, A02a                               | Stephen316 | complete | Five remote scenarios passed at `c1c3fcce`: 714 inputs, 12 strict, 685 partial and 17 rejected                                 |
+| A05b     | Exact per-file outcome gate                                        | A05a                                    | jdharcourt | active   | Full remote 714-file report retained at `480d9d3a` and pinned unchanged. Baseline enforcement awaits fresh remote verification |
+| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked  | Independently establish required P01–P05 semantics, frames, termination, constraints and dependency bindings                   |
 
 The [reader guide](FusionResearchReader.md) defines the command, its run summary and its research-only receipts.
 A05a uses the strict SDK reader first and accepts the partial legacy reader only with an explicit option.
@@ -247,20 +247,21 @@ Later deterministic child steps remain available when their prerequisites pass.
 [Workflow quality at `c1c3fcce`](https://github.com/TryUniCAD/Kit/actions/runs/43656612973/job/132636421153) passed five Fusion reader, fifteen controller and six supervisor process scenarios.
 The Fusion corpus contained 714 inputs: 12 strict decodes, 685 partial decodes and 17 rejections.
 These results close A05a and A08a's recorded process gates, not semantic qualification.
-A05b's original aggregate log contains no per-file outcome roster.
-Its new collector must retain a full remote report before an exact baseline can be pinned and enforced.
+A05b now pins the first complete remote report from `480d9d3a` unchanged.
+The enforcement revision requires a fresh successful comparison with that committed baseline.
 
 A02d remains blocked: the implementation host refused connections to the documented Fusion bridge, and native UI initialization failed.
 The [fresh capture binding change](../../Changes/Research/FusionSketchBindingCapture.md) adds pinned observation-local constraint and dimension references.
-Its preparation checks run remotely. No native run or new qualified pair is claimed.
+Both preparation cases passed remotely at `480d9d3a`. No native run or new qualified pair is claimed.
 P04 supporting-face identity and unsupported or unresolved bindings remain open.
 
 A04c now records [hashed principal support candidates](../../Changes/Research/PrincipalSupportEvidence.md).
 The new gate requires 25 measured plane identifiers, including three YZ variants.
 The records remain unqualified until native class ownership and the opaque tag domain are established.
 
-A08b adds [bounded logs and restart cleanup](../../Changes/Research/BoundedSessionLogs.md), with current-revision process evidence pending.
-It does not close adaptive capacity, memory enforcement, grouped jobs, application workers or Windows support.
+A08b adds [bounded logs and restart cleanup](../../Changes/Research/BoundedSessionLogs.md), with eight supervisor scenarios passed at `480d9d3a`.
+CPU/memory admission and sampled group-memory stops have been added, with fresh remote verification pending.
+It does not close adaptive capacity, calibration, grouped jobs, application workers or Windows support.
 The two-week A15 pilot has not started and cannot be replaced by a short CI run.
 
 Formatting and source-link review do not replace the remote process checks.

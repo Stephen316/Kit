@@ -1,10 +1,10 @@
 import json as JsonCodec
 import sys as System
 import tempfile as TempFiles
-import time as TimeClock
 from pathlib import Path as FilePath
 
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
+from tests.Research.Supervisor.WatchLogFiles import WatchLogFiles
 
 
 def CheckNoisyLogs() -> None:
@@ -29,16 +29,7 @@ def CheckNoisyLogs() -> None:
             SessionPath = (
                 RootPath / "SupervisorState" / "sessions" / str(SessionInfo["session"])
             )
-            UntilTime = TimeClock.monotonic() + 30
-            while Running.poll() is None and TimeClock.monotonic() < UntilTime:
-                for LogFile in SessionPath.glob("*.log"):
-                    try:
-                        assert LogFile.stat().st_size <= 8192
-                    except FileNotFoundError:
-                        pass
-                TimeClock.sleep(0.05)
-            OutputText, ErrorText = Running.communicate(timeout=30)
-            assert Running.returncode == 0, (OutputText, ErrorText)
+            WatchLogFiles(Running, SessionPath)
         finally:
             Running.kill()
             _ = Running.wait()

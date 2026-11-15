@@ -25,7 +25,8 @@ and [token identity limitation](https://help.autodesk.com/cloudhelp/ENU/Fusion-3
 
 Static syntax inspection and source review cover the new capture path.
 Remote process coverage prepares a pinned P01 run and rejects P05 without launching Fusion.
-Its current-revision result is pending.
+[Remote workflow quality](https://github.com/TryUniCAD/Kit/actions/runs/43663022455/job/132656265358) passed both preparation cases at `480d9d3a`, alongside the five corpus process cases.
+Those offline cases do not execute the native binding collector.
 No local tests were run.
 The implementation host's Fusion bridge refused connections, and native UI initialization failed.
 No native binding observation, fresh-process run or qualification result is claimed.

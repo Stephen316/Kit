@@ -39,17 +39,19 @@ This example uses example paths:
 }
 ```
 
-| Field                | Required | Meaning                                                                  |
-| -------------------- | -------- | ------------------------------------------------------------------------ |
-| `state`              | Yes      | Private state directory with the lock, sessions, claims and pause file   |
-| `controller`         | Yes      | `{"adapter": "a03", "store": ...}`, or `module`, `class` and `options`   |
-| `registry`           | Yes      | Runner registry file                                                     |
-| `pools`              | Yes      | Each pool's `max_sessions`, 1–64; must match the pools in the registry   |
-| `worker`             | No       | Worker label recorded on each claim; default `supervisor:local`          |
-| `resources`          | No       | Counted controller resources and their capacity, 1–64, set at each start |
-| `stop_grace_seconds` | No       | Time between `SIGTERM` and `SIGKILL`, 0.1–60 seconds; default 10         |
-| `poll_seconds`       | No       | Time between supervision passes, 0.05–5 seconds; default 0.2             |
-| `max_log_bytes`      | No       | Retained bytes per output stream, 1 KiB–64 MiB; default 1 MiB            |
+| Field                 | Required | Meaning                                                                              |
+| --------------------- | -------- | ------------------------------------------------------------------------------------ |
+| `state`               | Yes      | Private state directory with the lock, sessions, claims and pause file               |
+| `controller`          | Yes      | `{"adapter": "a03", "store": ...}`, or `module`, `class` and `options`               |
+| `registry`            | Yes      | Runner registry file                                                                 |
+| `pools`               | Yes      | Each pool's `max_sessions`, 1–64; must match the pools in the registry               |
+| `worker`              | No       | Worker label recorded on each claim; default `supervisor:local`                      |
+| `resources`           | No       | Counted controller resources and their capacity, 1–64, set at each start             |
+| `stop_grace_seconds`  | No       | Time between `SIGTERM` and `SIGKILL`, 0.1–60 seconds; default 10                     |
+| `poll_seconds`        | No       | Time between supervision passes, 0.05–5 seconds; default 0.2                         |
+| `reserved_cpus`       | No       | Logical CPUs kept outside the session budget, 0–65,536; default 2                    |
+| `reserved_memory_mib` | No       | Available memory kept outside the session budget, 0–1,048,576 MiB; default 4,096 MiB |
+| `max_log_bytes`       | No       | Retained bytes per output stream, 1 KiB–64 MiB; default 1 MiB                        |
 
 The supervisor sets only the capacity of a configured resource.
 Mark a resource available with the controller command after you verify it.
@@ -75,13 +77,14 @@ The registry maps each job kind to one runner.
 The runner and schema paths in this example are placeholders.
 The repository does not ship a registry, because no production runner exists yet.
 
-| Field                     | Required | Meaning                                                                   |
-| ------------------------- | -------- | ------------------------------------------------------------------------- |
-| `pool`                    | Yes      | Pool that runs this job kind                                              |
-| `argv`                    | Yes      | 1–64 arguments; a whole `{session}` argument is the only substitution     |
-| `result_schema`           | Yes      | JSON Schema for the `records` value; relative paths resolve from the root |
-| `threads`                 | No       | Threads per session, 1–256; recorded for A08b capacity limits             |
-| `initial_peak_memory_mib` | No       | First memory estimate, 1–1,048,576 MiB; recorded for A08b capacity limits |
+| Field                     | Required | Meaning                                                                                                         |
+| ------------------------- | -------- | --------------------------------------------------------------------------------------------------------------- |
+| `pool`                    | Yes      | Pool that runs this job kind                                                                                    |
+| `argv`                    | Yes      | 1–64 arguments; a whole `{session}` argument is the only substitution                                           |
+| `result_schema`           | Yes      | JSON Schema for the `records` value; relative paths resolve from the root                                       |
+| `threads`                 | No       | Threads per session, 1–256; recorded for A08b capacity limits                                                   |
+| `max_memory_mib`          | No       | Sampled group-memory stop threshold, 1–1,048,576 MiB; default twice the initial estimate, capped at the maximum |
+| `initial_peak_memory_mib` | No       | First memory estimate, 1–1,048,576 MiB; recorded for A08b capacity limits                                       |
 
 The schema checker accepts `type`, `properties`, `required`, `additionalProperties`, `items`, `enum`, `const`, `minLength`, `maxLength`, `minimum`, `maximum`, `minItems` and `maxItems`.
 It refuses a schema that uses any other keyword.
@@ -125,6 +128,26 @@ The supervisor continues draining additional output so a full log does not block
 Receipts record each stream's limit, observed bytes, retained bytes and dropped bytes.
 These counters measure drained output, not bytes a killed process never wrote.
 See [bounded session logs](../../Changes/Research/BoundedSessionLogs.md).
+
+## Resource admission and memory stops
+
+The supervisor checks CPU and memory headroom before claiming a job.
+Running sessions reserve their configured threads across all pools.
+New and growing sessions reserve memory beyond the last host measurement.
+The largest registered runner estimate determines admission for each pool.
+Use separate pools for runners with materially different estimates.
+Denied jobs stay queued without consuming a lease or attempt.
+An `admission` event records changes to a pool's blocking reason.
+
+Linux uses `MemAvailable` and available CPU affinity.
+macOS uses free pages plus the larger of inactive or purgeable pages from `vm_stat`.
+These measurements do not enforce container quotas.
+Each supervision pass samples resident memory for the whole process group.
+An exceeded `max_memory_mib` stops that group with reason `memory_limit` through the existing retry protocol.
+Receipts retain `sampled_group_peak_memory_bytes` and `memory_limit_bytes`.
+This sampled threshold is not an operating-system allocation limit.
+A missing required measurement stops active sessions and exits after cleanup.
+See [resource headroom](../../Changes/Research/ResearchResourceHeadroom.md) for bounds and remaining limits.
 
 ## Stops, pauses and stale leases
 
@@ -185,8 +208,8 @@ Load only an adapter module that you trust, because the supervisor executes it.
 
 These limits are intentional for A08a:
 
-- Headroom, adaptive limits, calibration, memory stops and grouped small-file sessions belong to A08b.
-- Output files are bounded. Adaptive capacity, memory limits and grouped sessions remain A08b work.
+- Adaptive limits, calibration and grouped small-file sessions remain A08b work.
+- Output files are bounded. Memory stops use sampled process-group RSS and cannot contain children that leave the group.
 - Restart cleanup checks surviving process-group members after leader termination. Failed cleanup prevents releasing the job.
 - An expired A03 attempt still marks its resources unavailable, also for counted provider resources.
 - Application workers belong to A08c, and model runners belong to A10.

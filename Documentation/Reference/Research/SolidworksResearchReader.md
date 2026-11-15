@@ -112,6 +112,12 @@ The census uses mass and centroid values from the saved independent measurements
 
 The inch-length check verifies seven named, feature-owned resolved dimensions and three blind depths in the inch variants. Display metadata identifies the source unit and its native property stream. P04's six sketch dimensions remain outside this check while their configuration-stream ownership is unresolved. [Resolved-feature inch lengths](../../Changes/Research/SolidWorksResolvedInchLengths.md)
 
+The census also retains [principal support-layout candidates](../../Changes/Research/PrincipalSupportEvidence.md) with hashed native spans and explicit unresolved ownership.
+Its support-evidence gate checks 25 measured plane identifiers, including three YZ variants.
+These candidates do not change production support decoding or establish semantic qualification.
+
+[Direct adapter writes](../../Changes/Research/DirectAdapterWriteSafeguards.md) apply the registry's research, inch-length and equation safeguards before output mutation.
+
 ### Historical corpus
 
 Remote process coverage exercises actual pinned files, typed reconstruction, tamper rejection and overwrite refusal.
