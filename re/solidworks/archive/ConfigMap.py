@@ -19,7 +19,13 @@ from SketchEvidence import (
 if __name__ == "__main__":
     ImportPaths.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
-from ConfigDetail import ReadDetailStart, ReadLengthCode
+from ConfigDetail import (
+    KStyleTails,
+    ReadDetailStart,
+    ReadLengthCode,
+    ReadStyleHead,
+    ReadStyleTail,
+)
 from SketchReader import ReadSketchConfiguration
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
@@ -27,6 +33,7 @@ from convert.adapters.solidworks.container.Archive import (
     KDefinitionKind,
     KNullKind,
     KObjectRefKind,
+    ReadTag,
 )
 from convert.adapters.solidworks.container.Container import SldprtArchive
 
@@ -71,8 +78,12 @@ def ReadConfigView(Cursor):
     Cursor.ReadValue("<2i")
 
 
-# dimension styles store the scalar unit base and a length code before their child
-def ReadLengthUnit(Cursor, Events):
+# the style selects an absent or inline dual unit from the actual archive tag
+def ReadLengthLink(Cursor, Events):
+    if ReadTag(Cursor.BlobValue, Cursor.Offset).kind == KNullKind:
+        ReadPointer(Cursor, Events, KNullKind)
+        return
+    ReadPointer(Cursor, Events, KClassRefKind, "moLengthUserUnits_c")
     ReadLengthCode(Cursor)
     ReadPointer(Cursor, Events, KNullKind)
 
@@ -129,19 +140,16 @@ def ReadConfigMap(BlobValue, BuildName):
 def ReadModelPresentation(Cursor):
     Events = []
     ReadDetailStart(Cursor)
-    ReadPointer(Cursor, Events, KClassRefKind, "moLengthUserUnits_c")
-    ReadLengthUnit(Cursor, Events)
-    Cursor.AdvanceBytes(442)
-    ReadPointer(Cursor, Events, KNullKind)
-    for Width in (434, 430, 438, 434, 446, 470, 438, 450):
-        Cursor.AdvanceBytes(Width)
-        ReadPointer(Cursor, Events, KClassRefKind, "moLengthUserUnits_c")
-        ReadLengthUnit(Cursor, Events)
+    for Format in KStyleTails:
+        ReadStyleHead(Cursor)
+        ReadLengthCode(Cursor)
+        ReadLengthLink(Cursor, Events)
+        ReadStyleTail(Cursor, Format)
     ReadPointers(
         Cursor,
         Events,
         (
-            (9053, KNullKind, None),
+            (8813, KNullKind, None),
             (0, KNullKind, None),
             (48, KNullKind, None),
             (0, KNullKind, None),

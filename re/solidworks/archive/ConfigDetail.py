@@ -1,6 +1,20 @@
-"""Read the witnessed modern document detail settings through the first length pointer."""
+"""Read modern document detail settings and inline dimension styles."""
 
 from SketchRoot import Require
+
+# the dimension settings serializer calls its inline members in this order
+KStyleTails = (
+    "<I2i",  # linear
+    "<I",  # angle
+    "",  # arc length
+    "<Ii",  # radial
+    "<I",  # hole callout
+    "<iId",  # ordinate
+    "<4i2d2i",  # chamfer
+    "<iI",  # diameter
+    "<iI3i",  # angular ordinate
+    "",  # base
+)
 
 
 # each archived string must consume at least its length prefix
@@ -43,7 +57,7 @@ def ReadCharFormat(Cursor):
     Cursor.ReadValue("<didI5dI")
 
 
-# the first indexed dimension style shares its base with the other variants
+# every style starts with the same base fields and supported no-layer branch
 def ReadStyleHead(Cursor):
     Cursor.ReadValue("<3i2di2d2i")
     Cursor.ReadText()
@@ -53,24 +67,46 @@ def ReadStyleHead(Cursor):
     Cursor.ReadValue("<2iI")
 
 
-# the subtype carries a length code after the common scalar unit settings
-def ReadLengthCode(Cursor):
+# angle and length units share the scalar layout inherited from moUserUnits_c
+def ReadUnitBase(Cursor):
     Cursor.ReadValue("<2i")
     Cursor.ReadPoint(1)
     Cursor.ReadValue("<2i")
     Cursor.ReadPoint(1)
     Cursor.ReadValue("<4i")
     Cursor.ReadPoint(1)
-    _, _, UnitCode = Cursor.ReadValue("<HiH")
+    Cursor.ReadValue("<Hi")
+
+
+# length unit subclasses read their length code before the optional dual unit pointer
+def ReadLengthCode(Cursor):
+    ReadUnitBase(Cursor)
+    (UnitCode,) = Cursor.ReadValue("<H")
     Require(UnitCode <= 10, True, "length unit code")
 
 
-# the surrounding model owns the detail definitions inline before the first pointer
+# the two line fonts inline a modern short and float width before the style code
+def ReadLineFont(Cursor):
+    Cursor.ReadText()
+    Cursor.ReadValue("<hfh")
+
+
+# angle units and appearance fields follow the optional length unit in each style
+def ReadStyleTail(Cursor, Format):
+    ReadUnitBase(Cursor)
+    Cursor.ReadValue("<H")
+    ReadCharFormat(Cursor)
+    for _ in range(2):
+        ReadLineFont(Cursor)
+    Cursor.ReadValue("<3i")
+    if Format:
+        Cursor.ReadValue(Format)
+
+
+# the surrounding model owns the detail definitions before its ten styles
 def ReadDetailStart(Cursor):
     Require(Cursor.ReadValue("<H"), (0,), "pre-detail boundary word")
     ReadDetailHead(Cursor)
     ReadCharFormat(Cursor)
     Cursor.ReadValue("<i11d")
     Cursor.ReadValue("<5i2d2i3dIid7i")
-    ReadStyleHead(Cursor)
-    ReadLengthCode(Cursor)
