@@ -176,12 +176,13 @@ def _literal_source(blob,parsed,group):
         literal_straight_carrier_corroboration=lines,literal_planar_boundary_corroboration=planes,
         qualified_historical_state=None,source_before_Shell_identity=None,
         scope='Explicit same-ID literal source-box view corroborates native-derived geometry; no chronology')
-    return proof,view,topology,graph,nodes,tags,axis_faces
+    return proof,view,graph,nodes,tags,axis_faces
 
 
-def _removed_face(recipe,blob,view,topology,graph,nodes,tags,axis_faces):
+# the same bounded recipe requires a name and incidence proof across feature families
+def resolve_bounded_face_operands(recipe, parsed, graph, nodes, tags):
     operands=decode_shell_face_operands(recipe)
-    matches=match_recipe_tag_names(recipe,tags,parsed=view['view_parsed'])
+    matches=match_recipe_tag_names(recipe,tags,parsed=parsed)
     named={}
     for entry in matches['name_entries']:
         candidates=entry['candidates']
@@ -214,8 +215,17 @@ def _removed_face(recipe,blob,view,topology,graph,nodes,tags,axis_faces):
     if len(loops)!=1 or {r['edge_index'] for r in routes}!=set(loops[0]['edge_indices']):
         raise ValueError('Shell reconstruction recipe boundary does not exhaust selected source FACE loop')
     return dict(recipe=recipe,operands=operands,complete_name_correspondence=matches,
-        selected_literal_FACE_index=face,source_axis_side=axis_faces[face],boundary_incidence=routes,
-        selected_source_loop=loops[0],exact_API_handle_identity=None,qualified_historical_state=None,
+        selected_literal_FACE_index=face,boundary_incidence=routes,selected_source_loop=loops[0])
+
+
+# shell reconstruction adds its local prism classification to the shared incidence proof
+def _removed_face(recipe,view,graph,nodes,tags,axis_faces):
+    result = resolve_bounded_face_operands(recipe, view['view_parsed'], graph, nodes, tags)
+    incidence = result.pop('boundary_incidence')
+    loop = result.pop('selected_source_loop')
+    return dict(result, source_axis_side=axis_faces[result['selected_literal_FACE_index']],
+        boundary_incidence=incidence,selected_source_loop=loop,
+        exact_API_handle_identity=None,qualified_historical_state=None,
         scope='Complete literal FACE names and reciprocal source-box incidence; not a chronological removed FACE assertion')
 
 
@@ -389,11 +399,11 @@ def decode_shell_reconstruction(data,records,features,member,members,body_blob_b
                 parsed,topology=cache[name];nodes={n['index']:n for n in topology['nodes']}
                 graphs=[g for g in topology['body_graphs'] if g['body_index']==group['asm_body_index']]
                 if len(graphs)!=1:raise ValueError('Shell reconstruction mapped cache BODY absent')
-                proof,view,vt,vg,vn,tags,axes=_literal_source(blob,parsed,group)
+                proof,view,vg,vn,tags,axes=_literal_source(blob,parsed,group)
                 removed=[]
                 for index,selection in _group_selections(source,group):
                     if selection.get('counted_recipe'):
-                        row=_removed_face(selection['counted_recipe'],blob,view,vt,vg,vn,tags,axes)
+                        row=_removed_face(selection['counted_recipe'],view,vg,vn,tags,axes)
                         row['selected_input_index']=index;removed.append(row)
                 derived=derive_box_shell(proof['derived_source_prism']['axis_aligned_bounds_cm'],
                     source['settings']['inside_thickness_cm'],source['settings']['outside_thickness_cm'],
