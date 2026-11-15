@@ -75,21 +75,33 @@ def run_observer(root, seconds):
         status = seal_and_watch(
             root, readiness, executable, sha256(FENCE), seconds, verify, notify
         )
-    except PeerUnavailable:
+    except PeerUnavailable as error:
+        print(f"{type(error).__name__}: {error}", file=sys.stderr)
         status = {"status": "peer_unavailable"}
-    except ValueError:
+    except ValueError as error:
+        print(f"{type(error).__name__}: {error}", file=sys.stderr)
         status = {"status": "refused"}
     print(json.dumps(status))
 
 
 def wait_armed(root, observer):
     deadline = time.monotonic() + 10
-    while time.monotonic() < deadline and observer.poll() is None:
+    while True:
+        terminated = observer.poll() is not None
         try:
             return record(root / "armed.json")
         except FileNotFoundError:
-            time.sleep(0.02)
-    raise AssertionError("Fusion exit observer did not arm")
+            if terminated or time.monotonic() >= deadline:
+                break
+        time.sleep(0.02)
+    try:
+        stdout, stderr = observer.communicate(timeout=0.1)
+    except subprocess.TimeoutExpired as error:
+        stdout, stderr = error.stdout, error.stderr
+    raise AssertionError(
+        f"Fusion exit observer did not arm (return code {observer.returncode!r}, "
+        f"stdout {(stdout or '')[-2000:]!r}, stderr {(stderr or '')[-2000:]!r})"
+    )
 
 
 def check_receipt(root, result, armed, case):
