@@ -256,16 +256,26 @@ def neutral_relation(rule):
     }
 
 
+def face_producer(selection, feature_names):
+    if selection is None:
+        return None
+    producers = {
+        part.entity_id for part in selection.path
+        if part.entity_kind == "feature" and part.subelement.startswith(("face:", "end-face:"))
+    }
+    if len(producers) != 1:
+        return None
+    (identity,) = producers
+    return feature_names.get(identity)
+
+
 def neutral_sketch(item, plane, selections, feature_names):
     support = selections.get(plane.support_selection_id)
     entities = [neutral_entity(entity, plane.transform) for entity in item.entities]
     return {
         "name": item.name, "id": item.id, "support_name": plane.name,
         "support_selection_id": plane.support_selection_id,
-        "support_face_producer": next((
-            feature_names.get(part.entity_id, part.entity_id) for part in support.path
-            if part.subelement.startswith("face:")
-        ), None) if support is not None else None,
+        "support_face_producer": face_producer(support, feature_names),
         "support_path": [] if support is None else [
             {
                 "kind": part.entity_kind, "entity_id": part.entity_id, "subelement": part.subelement,

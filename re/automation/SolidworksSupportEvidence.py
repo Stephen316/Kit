@@ -84,3 +84,24 @@ def require_support_candidates(findings):
     if seen != 25 or yz_seen != 3:
         raise ValueError(f"support inventory requires 25 principal-plane sketches including three YZ variants, found {seen}/{yz_seen}")
     print(f"Recorded {seen} unqualified support-layout candidates including {yz_seen} measured YZ variants; native class ownership remains unproved")
+    require_cut_support(findings)
+
+
+def require_cut_support(findings):
+    required = {
+        "native.sketch.CutSketch.support_kind",
+        "neutral.sketch.CutSketch.face_selection_present",
+        "neutral.sketch.CutSketch.face_producer",
+    }
+    seen = 0
+    for capture in findings:
+        if capture["recipe_id"] != "P04":
+            continue
+        seen += 1
+        rows = [row for row in capture["comparisons"] if row["field"] in required]
+        matched = {row["field"] for row in rows if row["status"] == "matched"}
+        if len(rows) != len(required) or matched != required:
+            raise ValueError(f"Cut face support differs from the measured fixture: {capture['asset']['path']}")
+    if seen != 11:
+        raise ValueError(f"support check requires 11 measured P04 cuts, found {seen}")
+    print(f"Verified native face support and its neutral sketch producer in {seen} P04 captures")
