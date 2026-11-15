@@ -1,0 +1,5 @@
+# Compare SOLIDWORKS discovery profile sections
+
+The discovery census now compares the area and world-space centroid of the public reader's saved profile loop with the independently reopened SOLIDWORKS section. It uses the four ordered, non-construction edges from the neutral closed profile. It checks endpoint continuity and computes an area-weighted centroid from two oriented triangles in the saved sketch plane.
+
+Generate the report with `python re/automation/SolidworksCensus.py --output /private/SolidworksDiscoveryCensus.json`. Each eligible sketch has `section_area_mm2` and `section_center_world_mm` comparisons. The report uses an absolute area tolerance of `0.00000001 mm²` and the recipe's absolute length tolerance for the centroid. These comparisons cover the bounded four-edge discovery profiles. More general profiles and writes need their own acceptance evidence. [Census guide](../../../../Reference/Research/SolidworksResearchReader.md#discovery-census), [Licensed P04 support replay](SolidWorksLicensedCutSupport.md)

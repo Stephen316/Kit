@@ -7,6 +7,7 @@ P03_BOUNDS_CASES = {
     "P03-solidworks-direction-negative.SLDPRT",
 }
 BODY_Z_BOUNDS = "neutral.body.bounding_box_z_mm"
+PROFILE_AREA_TOLERANCE_MM2 = 1e-8
 
 
 def lengths_equal(expected, actual, tolerance):
@@ -216,6 +217,47 @@ def compare_operations(measured, native, neutral, tolerance):
     return comparisons
 
 
+def profile_section(sketch, tolerance):
+    loops = sketch.get("closed_profile_entity_ids", ())
+    if len(loops) != 1 or len(loops[0]) != 4 or len(set(loops[0])) != 4:
+        return None, None
+    perimeter = {
+        entity["id"]: entity["world_segment_mm"]
+        for entity in sketch["entities"] if not entity["construction"]
+    }
+    edges = [perimeter.get(identity) for identity in loops[0]]
+    if any(edge is None for edge in edges) or any(
+        math.dist(edge[1], following[0]) > tolerance
+        for edge, following in zip(edges, edges[1:] + edges[:1], strict=True)
+    ):
+        return None, None
+    anchor = edges[0][0]
+    offsets = [
+        tuple(point - origin for point, origin in zip(edge[0], anchor, strict=True))
+        for edge in edges[1:]
+    ]
+    normal = sketch["basis"]["normal"]
+    triangles = list(zip(offsets[:-1], offsets[1:], strict=True))
+    doubles = []
+    for left, right in triangles:
+        doubles.append(math.fsum(
+            scale * (left[(axis + 1) % 3] * right[(axis + 2) % 3]
+                     - left[(axis + 2) % 3] * right[(axis + 1) % 3])
+            for axis, scale in enumerate(normal)
+        ))
+    if doubles[0] * doubles[1] <= 0:
+        return None, None
+    total = math.fsum(doubles)
+    centroid = [
+        origin + math.fsum(
+            weight * (left[axis] + right[axis])
+            for weight, (left, right) in zip(doubles, triangles, strict=True)
+        ) / (3 * total)
+        for axis, origin in enumerate(anchor)
+    ]
+    return abs(total) / 2, centroid
+
+
 def compare_sketches(measured, native, neutral, tolerance):
     native_sketches = {item["name"]: item for item in native.get("sketches", ())}
     neutral_sketches = {item["name"]: item for item in neutral.get("sketches", ())}
@@ -232,6 +274,16 @@ def compare_sketches(measured, native, neutral, tolerance):
         comparisons.append(observation(
             f"neutral.sketch.{name}.world_segments_mm", expected, actual, segments_equal(expected, actual, tolerance)
         ))
+        area, center = profile_section(projected, tolerance)
+        measured_area = sketch["section_area_mm2"]
+        measured_center = sketch["section_center_world_mm"]
+        if measured_area is not None and measured_center is not None:
+            comparisons.extend((
+                observation(f"neutral.sketch.{name}.section_area_mm2", measured_area, area,
+                            lengths_equal(measured_area, area, PROFILE_AREA_TOLERANCE_MM2)),
+                observation(f"neutral.sketch.{name}.section_center_world_mm", measured_center, center,
+                            center is not None and math.dist(measured_center, center) <= tolerance),
+            ))
         for code, kind in ((4, "horizontal"), (5, "vertical")):
             constraints = [
                 rel for rel in projected.get("relations", ())
