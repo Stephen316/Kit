@@ -48,6 +48,7 @@ class AcceptanceHost:
                     "fixture.capture",
                     inputs={"source": "source"},
                     options={"mode": self.ModeValue},
+                    lease_seconds=30,
                 ),
             ]
         )
