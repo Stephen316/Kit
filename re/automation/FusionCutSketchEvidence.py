@@ -28,11 +28,11 @@ def historical_observations(capture, measurements):
     }
     for row in [*observed["edits"], *observed["variants"]]:
         variant = by_name[row["export"]]
-        require(variant not in observations, "duplicate historical P04 observation")
+        require(variant not in observations, "duplicate historical Fusion observation")
         observations[variant] = ("same_process_reopen", row["reopened"])
     require(
         set(observations) == set(by_name.values()),
-        "historical P04 observations do not match the archive roster",
+        "historical Fusion observations do not match the archive roster",
     )
     return observations
 
