@@ -1,69 +1,17 @@
-"""Read the P04 cut operation and the resolved list footer."""
+"""Replay the packaged cut operation and check its independent measured readback."""
 
-from BossPrefix import read_body_feature_tail, read_end_prefix, read_end_tail
-from convert.adapters.solidworks.container.Archive import KClassRefKind, KObjectRefKind
-from CutChooser import read_cut_choosers, read_cut_solid
-from DepthDisplay import read_depth_display
+from DepthDisplay import display_report
 from SketchRoot import Require
-from SupportPlane import read_feature_base, read_partition_tail
+from convert.adapters.solidworks.resolved.CutOpRead import ReadCutOp
 
 
-# the stored end condition determines whether the cut owns a depth parameter
-def read_cut_end(cursor):
-    specification = read_end_prefix(cursor, KClassRefKind)
-    conditions = specification["conditions"]
-    Require(conditions in ((0, 0), (1, 0)), True, "witnessed cut end conditions")
-    depth = None
-    if conditions[0] == 0:
-        depth = read_depth_display(cursor, KClassRefKind)
-    else:
-        cursor.null()
-    origin = read_end_tail(cursor, KClassRefKind, 1)
-    Require(cursor.read("<di"), (0, 1), "guarded cut feature return")
-    return {
-        **specification,
-        "depth_display": depth,
-        "from_end_object": origin,
-        "end": cursor.position,
-    }
-
-
-# the cut retains its own transfer and the boss transfer before loading the result body
 def read_cut_operation(cursor, cut, boss):
-    read_feature_base(cursor)
-    Require(cursor.read("<i3H"), (0, 0, 0, 0), "guarded cut model and atom fields")
-    Require(cursor.read("<iH"), (1, 1), "one saved cut transfer")
-    transfer = cursor.pointer(KObjectRefKind, "moAtom_c")
-    Require(transfer != boss["transfer_object"], True, "distinct cut transfer")
-    Require(cursor.read("<iH"), (1, 1), "one parent boss transfer")
-    parent = cursor.pointer(KObjectRefKind, "moAtom_c")
-    Require(parent, boss["transfer_object"], "cut refers to the earlier boss transfer")
-    cursor.null()
-    count, atom_id, mode, presence, items = cursor.read("<4iH")
-    Require((count, mode, presence, items), (1, 3, 1, 1), "one guarded cut result body")
-    body = read_cut_solid(cursor, boss, cut)
-    choosers = read_cut_choosers(cursor, boss, cut)
-    Require(cursor.read("<H3i"), (0, 0, 0, 1), "guarded cut partition selection")
-    marker = cursor.pointer(KClassRefKind, "moPMarkRecord_c")
-    (state,) = cursor.read("<i")
-    read_partition_tail(cursor)
-    atom_end = cursor.position
-    read_body_feature_tail(cursor)
-    specification = read_cut_end(cursor)
-    Require(cursor.read("<i"), (0,), "resolved list footer")
-    Require(cursor.position, len(cursor.blob), "complete resolved list extent")
-    return {
-        **cut,
-        "transfer_object": transfer,
-        "parent_transfer_object": parent,
-        "atom_id": atom_id,
-        "solid_body": body,
-        "choosers": choosers,
-        "partition_object": marker,
-        "partition_state": state,
-        "atom_end": atom_end,
-        "end_specification": specification,
-    }
+    transfers = frozenset(index for index, name in cursor.objects.items() if name == "moAtom_c")
+    parsed = ReadCutOp(cursor, cut, boss, transfers)
+    end = {key: value for key, value in parsed["end_specification"].items() if key != "depth_selector_offset"}
+    if end["depth_display"] is not None:
+        end["depth_display"] = display_report(end["depth_display"])
+    return {**parsed, "end_specification": end}
 
 
 # independent readback checks the cut placement termination and physical depth separately

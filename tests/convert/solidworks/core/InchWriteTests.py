@@ -6,17 +6,40 @@ from pytest import raises as RaisesError
 from convert import convert as ConvertFile
 from convert import open_document as OpenDocument
 from convert import write_document as WriteDocument
+from convert.adapters.solidworks import SldprtArchive
+from convert.adapters.solidworks import build_sldprt as BuildSldprt
+from convert.adapters.solidworks.container.Container import container_signatures as ContainerSignatures
 from convert.adapters.solidworks.core.BindInch import KUnresolvedInchDimension
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
-# unbound inch display lengths must prevent writes before the destination changes
-def TestInchWrite(TmpPath: FilePath) -> None:
-    SourcePath = (
+# conflicting equation tokens remove the typed bindings while leaving inch display values readable
+def UnboundInch(TmpPath: FilePath) -> FilePath:
+    Original = (
         KRootPath
         / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
         / "P04-solidworks-units-inch.SLDPRT"
+    ).read_bytes()
+    Archive = SldprtArchive.from_bytes(Original)
+    Streams = Archive.streams
+    StreamName = "Contents/Config-0"
+    Before = '"cut_left_mm@CutSketch" ='.encode("utf-16le")
+    After = '"bad_left_mm@CutSketch" ='.encode("utf-16le")
+    assert len(Before) == len(After) and Streams[StreamName].count(Before) == 1
+    Streams[StreamName] = Streams[StreamName].replace(Before, After, 1)
+    SourcePath = TmpPath / "Unbound.SLDPRT"
+    _ = SourcePath.write_bytes(
+        BuildSldprt(
+            Streams, file_id=Archive.file_id, format_version=Archive.format_version,
+            signatures=ContainerSignatures(Original),
+        )
     )
+    return SourcePath
+
+
+# unbound inch display lengths must prevent writes before the destination changes
+def TestInchWrite(TmpPath: FilePath) -> None:
+    SourcePath = UnboundInch(TmpPath)
     Document = OpenDocument(SourcePath)
     Unresolved = {
         Parameter.name
@@ -41,11 +64,7 @@ def TestInchWrite(TmpPath: FilePath) -> None:
 
 # serialized inch uncertainty must stay actionable after the source format is relabeled
 def TestRelabelInch(TmpPath: FilePath) -> None:
-    Original = OpenDocument(
-        KRootPath
-        / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
-        / "P04-solidworks-units-inch.SLDPRT"
-    )
+    Original = OpenDocument(UnboundInch(TmpPath))
     Document = ReplaceData(
         Original, source=ReplaceData(Original.source, format_id="interchange.json")
     )
