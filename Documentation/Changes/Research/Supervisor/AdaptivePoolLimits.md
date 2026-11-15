@@ -42,9 +42,9 @@ Continued below-reserve observations restart the healthy interval without repeat
 Other failed or rejected sessions reset the healthy interval without inventing a memory-failure cause.
 These decisions remain separate for each pool.
 
-An unattributed signal is not an OOM diagnosis.
-Automatic backoff specifically attributed to an operating-system OOM termination remains unqualified.
-This change does not infer that cause from `SIGKILL` or a nonzero exit status.
+An independently matched Linux memory-cgroup OOM receipt from the trusted research observer triggers backoff when the controller accepts the current attempt.
+The observer requires the exact worker, cgroup and kernel record alongside the local counter change.
+The hosted ordinary `SIGKILL` control leaves capacity unchanged. [Hosted supervisor evidence](HostedSupervisorOom.md)
 
 ## Events and verification
 
@@ -66,7 +66,9 @@ The legacy exact-pool fixtures explicitly disable adaptation while retaining mea
 Local work used source inspection, formatting, static types, syntax, and repository policy checks only.
 No local tests, native reader reproductions, application calls, or model calls ran.
 Exact-revision adaptive process evidence is recorded below.
-Calibration and grouped-session process evidence is recorded in the step register. A saturated calibration recommendation and independently attributed OOM backoff remain open.
+The matched Windows calibration cleared all four adjacent comparisons through sixteen workers. Every measured gain exceeded the recommendation threshold. [Sixteen-worker calibration](SixteenWorkerCalibration.md#windows-sweep-with-the-warm-claim-helper)
 See the [supervisor guide](../../../Reference/Research/ResearchSupervisor.md) and [step register](../../../Reference/Research/AutomationSteps.md).
 
 At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed all 57 process cases. Its actual evidence records a healthy-minute increase to two sessions and deadline-pair backoff from two to one: upward, deadline-backoff and numeric-reduction flags are all true. The [macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) passed all 74 cases. These observations do not independently attribute OS OOM kills.
+
+The hosted supervisor witness at PR head `de6c4f435921aca956fb6a60f2810f7cade8a7f9` observed one accepted 64 MiB Linux cgroup OOM and one reduction from two sessions to one. The ordinary kill control stayed at two. The checked-out candidate was `9183bac11875ac58fed81d9d5eed49f87d606e31` with main parent `8e304a455b24678b4d80e544843945f64e3e78a8`. The sanitized JSON SHA-256 is `70283be48578a565de325cc8e6f6af76231c5720d6f01737e56050ae75b49770`. [Hosted job](https://github.com/TryUniCAD/Kit/actions/runs/43713511490/job/132810006101) [Verified artifact](https://github.com/TryUniCAD/Kit/actions/runs/43713511490/artifacts/14161373278)

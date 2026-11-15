@@ -219,11 +219,11 @@ Adaptive concurrency is enabled by default through the strict boolean `adaptive_
 Each pool starts at half its calculated capacity, with a minimum of one when capacity exists.
 After the first actual start, healthy increases are bounded to one slot per 60 seconds and require measured load, available memory and applicable Linux PSI guards.
 Missing metrics block upward increases explicitly; Windows has no load-average equivalent yet.
-Memory-limit stops, two deadline stops within 600 seconds and below-reserve memory episodes reduce the target conservatively.
+Memory-limit stops, independently matched Linux memory-cgroup OOM receipts, two deadline stops within 600 seconds and below-reserve memory episodes reduce the target conservatively. [Hosted Linux OOM evidence](../../Changes/Research/Supervisor/HostedSupervisorOom.md)
 Existing sessions drain normally when the target falls.
 Set `adaptive_limits` to `false` to use the measured capacity directly.
 See [adaptive pool limits](../../Changes/Research/Supervisor/AdaptivePoolLimits.md) for evidence events and branch limits.
-[Offline calibration](OfflineCalibration.md) and [grouped small-file sessions](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md) have process evidence. A saturated calibration recommendation and independently attributed operating-system OOM backoff remain open.
+The matched Windows offline sweep sustained sixteen decoders for 5.681 seconds and completed all applicable comparisons. Every measured throughput gain exceeded the recommendation threshold. [Offline calibration](OfflineCalibration.md) [Matched Windows sweep](../../Changes/Research/Supervisor/SixteenWorkerCalibration.md#windows-sweep-with-the-warm-claim-helper) [Grouped session evidence](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md)
 
 ## Stops, pauses and stale leases
 
