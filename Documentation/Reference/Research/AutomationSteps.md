@@ -296,7 +296,7 @@ None of those refusals supplies the missing positive native qualification.
 A02d still needs a licensed Fusion run. The documented Fusion bridge refused connections, initial native UI initialization failed, and the available Windows host exposed a working SOLIDWORKS installation. The fresh SOLIDWORKS process corroborated the eleven P04 support observations.
 [Fresh-process readback](../../Changes/Research/FusionFreshProcessEvidence.md) now pins every committed Fusion variant, and [observation-local bindings](../../Changes/Research/FusionSketchBindingCapture.md) are implemented; a native run is still required to close provenance, observation binding and load diagnostics.
 P05 stays reserved for holdout. Zero native pairs are qualified.
-A06 waits for qualified A02d/A04c/A05c evidence; A07/A09 and both native writers retain their declared dependencies.
+A06 waits for qualified A02d/A04c/A05c evidence. In the [P04 final body comparison](../../Changes/Research/Readers/P04HistoricalBodyEvidence.md), all eleven pairs agree on measured topology counts and axis bounds, volume and center of mass. The authors used different sketch constraints to produce the cut. A07/A09 and both native writers retain their declared dependencies.
 A13 needs native editable acceptance. The two-week A15 pilot has not started.
 No local tests, collection, decoder experiments, native application runs or optional model-runner calls executed during this continuation.
 
