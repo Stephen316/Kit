@@ -54,6 +54,7 @@ Their valid typed-circle counterpart remains positive.
 
 New integration cases use a real CATProduct bytes read, saved and reopened relabeled interchange inputs, nested documents, all direct writer spellings, and public registry writes.
 They require preservation of files and streams and absence of newly created destination directories.
+Nested fixtures declare assembly components as assemblies rather than parts.
 Positive cases retain independent assembly model serialization, independently authored Fusion contracts, and typed FreeCAD part and assembly output.
 Generic deterministic-output and stream-probe cases now use a fully specified neutral extrusion.
 

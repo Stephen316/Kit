@@ -21,7 +21,11 @@ def NestedDocument(Original: CadDocument, Marked: CadDocument) -> CadDocument:
                 ComponentDef(
                     "definition:part",
                     "Part",
-                    ComponentKind.KPart,
+                    (
+                        ComponentKind.KAssembly
+                        if Marked.assembly is not None
+                        else ComponentKind.KPart
+                    ),
                     document_id="document:part",
                 ),
             ),
