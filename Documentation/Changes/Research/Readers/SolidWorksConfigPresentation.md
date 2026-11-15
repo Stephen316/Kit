@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 17,106 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 19,502 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -38,7 +38,21 @@ The [label settings](../../../../re/solidworks/archive/ConfigLabel.py) follow fr
 
 The [annotation helpers](../../../../re/solidworks/archive/ConfigAnnoData.py) continue from baseline A offset 33,404 to 35,177. The current surface finish, note and weld loaders begin at `sldmfcu+0x13fd00`, `0x13eb50` and `0x140670`. Their shared annotation helper at `0x1359e0` reads a font and two leader groups. The note loader has a separately counted 64-bit map which must be empty. The weld loader reads two additional character formats and calls the surface finish loader twice at `0x140cec` and `0x140cfc`.
 
-The [tolerance helper](../../../../re/solidworks/archive/ConfigTol.py) reads the inline frame count at `sldmfcu+0x13ccf3`. Each `moGTolDlgDataFrame_c` load path at `0x13d259` reads five strings, two byte fields, six counted string arrays, and scalar fields. The two calls at `0x13d480` and `0x13d48c` read typed tolerance pointers which are null in this discovery scope. Datum and indicator collections must be empty. Baseline A reaches the recorded pointer pairs at offsets 35,225 and 35,227, then 35,277 and 35,279. The helper closes at 35,565. The remaining 2,396 bytes reach the `moEnvFolder_c` definition and begin at the center mark helper.
+The [tolerance helper](../../../../re/solidworks/archive/ConfigTol.py) reads the inline frame count at `sldmfcu+0x13ccf3`. Each `moGTolDlgDataFrame_c` load path at `0x13d259` reads five strings, two byte fields, six counted string arrays, and scalar fields. The two calls at `0x13d480` and `0x13d48c` read typed tolerance pointers which are null in this discovery scope. Datum and indicator collections must be empty. Baseline A reaches the recorded pointer pairs at offsets 35,225 and 35,227, then 35,277 and 35,279. The helper closes at 35,565.
+
+## Remaining detail settings
+
+The [detail settings tail](../../../../re/solidworks/archive/ConfigDetailEnd.py) reaches the serializer return at baseline A offset 37,959. Each center mark and datum record contains the existing inline annotation helper. All exercised Swift option fields are primitive integers and doubles. The eight printer widths are floats, and the final detail fields include two character formats and framed templates.
+
+| Record | Load branch in `sldmfcu` | Baseline A bytes |
+| --- | --- | ---: |
+| Center mark | `0x136e7f` | 179 |
+| Datum feature | `0x137341` | 170 |
+| Datum target | `0x137580` | 235 |
+| Swift options | `0x11ce81` | 812 |
+| Printer widths and detail tail | `0x12ad10` and `0x13ae54` | 998 |
+
+Two checked zero bytes at the boundary have unassigned ownership. The next typed declaration is `moEnvFolder_c` at offset 37,961.
 
 ## Verification
 

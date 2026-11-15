@@ -29,6 +29,7 @@ from ConfigDetail import (
     ReadStyleHead,
     ReadStyleTail,
 )
+from ConfigDetailEnd import ReadDetailEnd
 from ConfigLabel import ReadLabelDefs
 from ConfigTable import ReadTableDefs
 from ConfigTol import ReadTolData
@@ -158,11 +159,13 @@ def ReadModelPresentation(Cursor):
     ReadNoteData(Cursor)
     ReadWeldData(Cursor)
     ReadTolData(Cursor, Partial(ReadPointer, Cursor, Events, KNullKind))
+    ReadDetailEnd(Cursor)
+    Require(Cursor.ReadValue("<H"), (0,), "post-detail boundary word")
     ReadPointers(
         Cursor,
         Events,
         (
-            (2396, KDefinitionKind, "moEnvFolder_c"),
+            (0, KDefinitionKind, "moEnvFolder_c"),
             (0, KClassRefKind, "moNodeName_c"),
             (64, KNullKind, None),
             (2, KDefinitionKind, "moAmbientLight_c"),
