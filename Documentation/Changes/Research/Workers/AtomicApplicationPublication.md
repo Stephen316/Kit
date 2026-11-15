@@ -52,3 +52,5 @@ Remote Linux/macOS execution and ordinary Windows compatibility results must be 
 - [Apple exclusive volume rename support](https://developer.apple.com/documentation/foundation/urlresourcevalues/volumesupportsexclusiverenaming)
 - [Python Windows rename behavior](https://docs.python.org/3/library/os.html#os.rename)
 - [Linux file and directory sync](https://man7.org/linux/man-pages/man2/fsync.2.html)
+
+The [macOS gate at `3327f7fe`](https://github.com/TryUniCAD/Kit/actions/runs/43673846094/job/132689552836) passed all fifty cases in 382.80 seconds, including three publication cases with 32 near-limit bidirectional exchanges and competing exclusive publishers. Linux process evidence and later shared-runtime changes remain unverified.

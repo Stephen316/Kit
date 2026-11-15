@@ -66,3 +66,5 @@ They do not qualify native CAD applications, conversion acceptance or Windows gr
 Calibration and the unattended pilot remain separate work.
 
 The first macOS run at `6e2da255` stopped before process execution because the new fence module collided with an existing unpackaged pytest module. The new module is renamed to `GroupedFenceTests.py`; [the basename gotcha](../../../Gotchas/Ci/Collection/PytestBasenameCollision.md) links the failure. Both case selections and their assertions remain enabled.
+
+The [macOS gate at `3327f7fe`](https://github.com/TryUniCAD/Kit/actions/runs/43673846094/job/132689552836) passed all fifty cases in 382.80 seconds, including fourteen grouped cases. This is checkpoint evidence; later owner/launch changes and Linux/Windows grouped execution remain unverified.

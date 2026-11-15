@@ -146,3 +146,5 @@ for the retained-spool recovery boundary.
 See the [resource requirement shape gotcha](../../../Gotchas/Research/Workers/ResourceRequirementsAreLabels.md).
 
 The first macOS run passed 28 cases and failed five: the two resource-shape fixtures, two pre-counterpart requests blocked by premature spool enumeration, and an existing PID-file publication race. The [queue admission gotcha](../../../Gotchas/Research/Workers/QueueAdmissionNeedsJobDirectory.md) records the source repair; these branches require reruns.
+
+The [macOS gate at `3327f7fe`](https://github.com/TryUniCAD/Kit/actions/runs/43673846094/job/132689552836) passed all fifty cases in 382.80 seconds, including twelve application protocol/publication cases. These fixed transport fixtures do not invoke CAD. Native host execution, Windows parking repair and newer owner/launch source remain open.
