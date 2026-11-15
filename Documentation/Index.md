@@ -49,6 +49,7 @@ Complete ASD-STE100 and ISO/IEC/IEEE 2651x conformance remains unverified.
 - [FreeCAD adapter](Reference/Adapters/Freecad.md)
 - [CATIA adapter](Reference/Adapters/Catia.md)
 - [JSON adapter and registry](Reference/Adapters/Json.md)
+- [Qualified Fusion adapter](Changes/Fusion/Adapter/FusionPublicAdapter.md)
 
 Adapter registration does not prove complete format coverage.
 Carrier preservation and source replay do not prove editable output in another format.
@@ -75,6 +76,8 @@ Use the result procedure before making a product acceptance claim.
 
 ## Maintenance
 
+- [Conversion completion roadmap](../Roadmap.md)
+- [Conversion backlog and PR ownership](Maintenance/ConversionBacklog.md)
 - [Information plan](Maintenance/InformationPlan.md)
 - [Documentation review](Maintenance/Review.md)
 - [Delivery and correction records](Maintenance/Delivery.md)

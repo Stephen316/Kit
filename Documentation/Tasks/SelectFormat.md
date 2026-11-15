@@ -35,13 +35,14 @@ If more than one writer matches a stream, supply `destination_format` explicitly
 
 ## Registered format identifiers
 
-| Identifier          | File suffix               | Reference                                                 |
-| ------------------- | ------------------------- | --------------------------------------------------------- |
-| `solidworks.sldprt` | `.SLDPRT`                 | [SOLIDWORKS adapter](../Reference/Adapters/Solidworks.md) |
-| `solidworks.sldasm` | `.SLDASM`                 | [SOLIDWORKS adapter](../Reference/Adapters/Solidworks.md) |
-| `freecad.fcstd`     | `.FCStd`                  | [FreeCAD adapter](../Reference/Adapters/Freecad.md)       |
-| `catia.v5`          | `.CATPart`, `.CATProduct` | [CATIA adapter](../Reference/Adapters/Catia.md)           |
-| `interchange.json`  | `.json`                   | [JSON adapter](../Reference/Adapters/Json.md)             |
+| Identifier          | File suffix               | Reference                                                                    |
+| ------------------- | ------------------------- | ---------------------------------------------------------------------------- |
+| `solidworks.sldprt` | `.SLDPRT`                 | [SOLIDWORKS adapter](../Reference/Adapters/Solidworks.md)                    |
+| `solidworks.sldasm` | `.SLDASM`                 | [SOLIDWORKS adapter](../Reference/Adapters/Solidworks.md)                    |
+| `freecad.fcstd`     | `.FCStd`                  | [FreeCAD adapter](../Reference/Adapters/Freecad.md)                          |
+| `catia.v5`          | `.CATPart`, `.CATProduct` | [CATIA adapter](../Reference/Adapters/Catia.md)                              |
+| `fusion.f3d`        | `.f3d`                    | [Qualified Fusion adapter](../Changes/Fusion/Adapter/FusionPublicAdapter.md) |
+| `interchange.json`  | `.json`                   | [JSON adapter](../Reference/Adapters/Json.md)                                |
 
 The discovery result from the installed revision takes precedence over this table.
 Each catalogue entry has one primary `format_id` and can have additional `aliases`.
@@ -49,8 +50,12 @@ The SOLIDWORKS entry uses `solidworks.sldprt` as its primary identifier.
 Its `aliases` field contains `solidworks.sldasm` for assemblies.
 Discovery does not return a separate entry for that alias.
 The SOLIDWORKS entry is registered as a reader only, so `.SLDPRT` and `.SLDASM` are not valid destinations.
-Fusion research code does not register `fusion.f3d` in the production catalogue.
-See the [Fusion research entry](../Changes/Fusion/FusionResearchImport.md).
+The Fusion entry is registered for reading and writing, with `f3d` as an alias.
+Its strict route accepts qualified graphs, not arbitrary Fusion documents or neutral models.
+`strict=False` explicitly selects the older partial reader, whose output the qualified writer refuses.
+Read the [qualified Fusion contract](../Changes/Fusion/Adapter/FusionPublicAdapter.md) before selecting that route.
+The earlier [research import restriction](../Changes/Fusion/FusionResearchImport.md) is historical.
+Use the [roadmap](../../Roadmap.md) and [backlog](../Maintenance/ConversionBacklog.md) for remaining coverage and ownership.
 
 ## Selection behavior
 
