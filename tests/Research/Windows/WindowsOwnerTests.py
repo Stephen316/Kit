@@ -75,7 +75,11 @@ try:
         win32process.TerminateProcess(handle, 0)
         assert win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0
     return_code = 17 if mode == 'failure' else 0
-    with subprocess.Popen(arguments(f'exit {return_code}'), creationflags=subprocess.CREATE_NO_WINDOW) as collector:
+    command = [
+        sys.executable, '-I', '-S', '-c',
+        'import sys; sys.exit(int(sys.argv[1]))', str(return_code),
+    ]
+    with subprocess.Popen(command, creationflags=subprocess.CREATE_NO_WINDOW) as collector:
         assert collector.wait(timeout=10) == return_code
         if mode == 'failure':
             record_collector_failure(root, request, listener, collector, handle, launch)
