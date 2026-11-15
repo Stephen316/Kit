@@ -47,7 +47,7 @@ guard target.resolvingSymlinksInPath().path == path,
       info.resolvingSymlinksInPath().path == info.path,
       digest(info, maximum: 1_048_576) == arguments[4],
       digest(entry, maximum: 268_435_456) == arguments[5] else {
-    refuse(1, "Application bundle does not match the reviewed launch profile")
+    refuse(5, "Application bundle does not match the reviewed launch profile")
 }
 
 let request = URL(fileURLWithPath: arguments[7])
@@ -60,7 +60,7 @@ guard arguments[7].hasPrefix("/"),
       let decoded = try? JSONSerialization.jsonObject(with: requestData),
       let record = decoded as? [String: Any],
       let fenceDigest = record["fence_sha256"] as? String else {
-    refuse(1, "Exact launch request custody is unavailable")
+    refuse(6, "Exact launch request custody is unavailable")
 }
 
 let workspace = NSWorkspace.shared
@@ -79,11 +79,15 @@ configuration.addsToRecentItems = false
 configuration.promptsUserIfNeeded = false
 
 guard digest(fence, maximum: 1_048_576) == fenceDigest else {
-    refuse(1, "The retained restart fence changed before launch")
+    refuse(7, "The retained restart fence changed before launch")
 }
 let dispatched = Date().timeIntervalSince1970
 workspace.openApplication(at: target, configuration: configuration) { app, error in
-    guard error == nil, let app, !app.isTerminated,
+    if let error {
+        let failure = error as NSError
+        refuse(3, "LaunchServices error \(failure.domain):\(failure.code)")
+    }
+    guard let app, !app.isTerminated,
           app.processIdentifier > 0,
           app.bundleIdentifier == identifier,
           app.bundleURL?.resolvingSymlinksInPath().path == path,
@@ -105,7 +109,7 @@ workspace.openApplication(at: target, configuration: configuration) { app, error
     exit(0)
 }
 
-Timer.scheduledTimer(withTimeInterval: wait, repeats: false) { _ in
+_ = Timer.scheduledTimer(withTimeInterval: wait, repeats: false) { _ in
     refuse(4, "LaunchServices response was not observed before the deadline")
 }
 RunLoop.main.run()

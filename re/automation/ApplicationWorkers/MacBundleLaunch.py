@@ -12,6 +12,25 @@ from MacApplicationPeer import process_peer
 SWIFT = "/usr/bin/swift"
 
 
+class MacLaunchError(ValueError):
+    def __init__(self, invocation):
+        self.returncode = invocation.returncode
+        self.provider_stderr = invocation.stderr[-2048:].decode(
+            "utf-8", errors="replace"
+        )
+        reason = {
+            2: "a running application counterpart prevents replacement launch",
+            3: "macOS LaunchServices did not return an exact process",
+            4: "macOS LaunchServices reply exceeded the deadline",
+            5: "macOS replacement bundle differs from its reviewed pin",
+            6: "macOS replacement request custody is unavailable",
+            7: "macOS replacement fence changed before launch",
+        }.get(
+            self.returncode, "macOS replacement launch did not return an exact process"
+        )
+        super().__init__(reason)
+
+
 def available(expected_uid=None):
     require(
         sys.platform == "darwin" and os.access(SWIFT, os.X_OK),
@@ -52,14 +71,8 @@ def launch_bundle(
             check=False,
             timeout=seconds + 5,
         )
-    if invocation.returncode == 2:
-        raise ValueError(
-            "a running application counterpart prevents replacement launch"
-        )
-    require(
-        invocation.returncode == 0 and 0 < len(invocation.stdout) <= 4096,
-        "macOS replacement launch did not return an exact process",
-    )
+    if invocation.returncode != 0 or not 0 < len(invocation.stdout) <= 4096:
+        raise MacLaunchError(invocation)
     reply = json.loads(invocation.stdout)
     pid = reply["pid"]
     dispatched = reply["dispatched_at"]

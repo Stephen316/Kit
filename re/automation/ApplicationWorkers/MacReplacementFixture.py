@@ -8,7 +8,7 @@ from plistlib import dumps
 from ApplicationProtocol import MAC_REPLACEMENT_LAUNCH, sha256
 from MacApplicationBundle import pinned_bundle
 from MacApplicationPeer import process_peer
-from MacBundleLaunch import launch_bundle
+from MacBundleLaunch import MacLaunchError, launch_bundle
 from MacProcessExit import observe_exit, watch_peer
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -91,6 +91,18 @@ def prior_peer():
     return {key: value for key, value in peer.items() if key != "executable"}
 
 
+def error_output(error):
+    return f"{error} (provider exit {error.returncode}): {error.provider_stderr!r}"
+
+
+def require_refusal(error, returncode, reason):
+    assert error.returncode == returncode and error.provider_stderr.splitlines()[
+        -1:
+    ] == [
+        reason
+    ], f"Expected launch refusal {returncode}: {reason}. Observed {error_output(error)}"
+
+
 def exercise(root):
     bundle = fixture_bundle(root)
     source = (ROOT / MAC_REPLACEMENT_LAUNCH).read_bytes()
@@ -113,15 +125,21 @@ def exercise(root):
                 30,
                 *custody,
             )
-        except ValueError as error:
-            assert "did not return an exact process" in str(error)
+        except MacLaunchError as error:
+            require_refusal(
+                error,
+                5,
+                "Application bundle does not match the reviewed launch profile",
+            )
         else:
             raise AssertionError("AppKit helper accepted changed bundle bytes")
         fence_path.write_bytes(b"changed disposable fence\n")
         try:
             launch_bundle(source, bundle, time.time(), old, 30, *custody)
-        except ValueError as error:
-            assert "did not return an exact process" in str(error)
+        except MacLaunchError as error:
+            require_refusal(
+                error, 7, "The retained restart fence changed before launch"
+            )
         else:
             raise AssertionError("AppKit helper launched after the exact fence changed")
         fence_path.write_bytes(fence)
@@ -132,8 +150,8 @@ def exercise(root):
         )
         try:
             launch_bundle(source, bundle, time.time(), old, 30, *custody)
-        except ValueError as error:
-            assert "counterpart prevents replacement launch" in str(error)
+        except MacLaunchError as error:
+            require_refusal(error, 2, "An application counterpart is already running")
         else:
             raise AssertionError("AppKit helper launched a duplicate counterpart")
         print(
@@ -146,6 +164,8 @@ def exercise(root):
                 }
             )
         )
+    except MacLaunchError as error:
+        raise AssertionError(error_output(error)) from error
     finally:
         stop = root / "NaturalExit"
         if observed is None:
