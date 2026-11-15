@@ -6,6 +6,7 @@ from tests.Research.Supervisor.LearningHost import MakeLearnHost
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# unrecognized persistent memory history must stop admission before a lease is consumed
 def CheckBadHistory() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -8,6 +8,7 @@ from tests.Research.Supervisor.MemoryHost import MakeMemoryHost
 from tests.Research.SupervisorClient import FixtureJob, IsGoneByTimeout
 
 
+# memory enforcement needs receipt evidence that the sampled process tree exceeded its limit
 def CheckMemoryStop() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

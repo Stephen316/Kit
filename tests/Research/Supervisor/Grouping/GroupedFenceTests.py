@@ -11,6 +11,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
 )
 
 
+# one invalidated lease must fence stale group results before the remaining work retries
 def CheckBatchFence() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

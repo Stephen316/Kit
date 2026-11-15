@@ -6,6 +6,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# process tree limits need excess memory in a descendant rather than only in the leader
 def RunMemory() -> None:
     SessionPath = FilePath(System.argv[1])
     SessionInfo = JsonCodec.loads(

@@ -6,6 +6,7 @@ from tests.Research.Supervisor.AdaptiveHost import MakeAdaptive
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# low memory must suspend admission before the supervisor consumes a queued attempt
 def CheckLowReserve() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = MakeAdaptive(FilePath(TempPath))

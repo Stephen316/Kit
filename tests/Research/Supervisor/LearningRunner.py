@@ -4,6 +4,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# the estimator needs a measurable memory sample from a successful real child process
 def RunLearning() -> None:
     SessionPath = FilePath(System.argv[1])
     JobText = (SessionPath / "job.json").read_text(encoding="utf-8")

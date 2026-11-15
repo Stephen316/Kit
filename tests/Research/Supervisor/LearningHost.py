@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import SessionHost
 
 
+# memory learning scenarios need predictable work that can vary independently by tool version
 def MakeLearnHost(RootPath: FilePath) -> SessionHost:
     Harness = SessionHost(RootPath, {"decode": 2}, {"fixture.decode": "decode"})
     RegistryFile = RootPath / "Runners.json"

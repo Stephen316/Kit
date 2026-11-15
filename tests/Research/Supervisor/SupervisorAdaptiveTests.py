@@ -8,6 +8,7 @@ from tests.Research.Supervisor.CheckAdaptive import CheckAdaptive
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# adaptive growth must be proven after real elapsed time rather than immediate admission
 def CheckRealMinute() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

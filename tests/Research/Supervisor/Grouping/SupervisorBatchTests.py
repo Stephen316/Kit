@@ -10,6 +10,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
 )
 
 
+# large queues must respect the group cap and keep calibration separate by size
 def CheckBatchCap() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -31,6 +32,7 @@ def CheckBatchCap() -> None:
         assert not (RootPath / "SupervisorState" / "memory-history.json").exists()
 
 
+# tool versions rule versions and oversized inputs must keep incompatible work out of shared processes
 def CheckBatchKeys() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = MakeBatchHost(FilePath(TempPath))
@@ -50,6 +52,7 @@ def CheckBatchKeys() -> None:
         CheckBatchData(Harness, 7)
 
 
+# an input at the grouping boundary must remain eligible for independent execution
 def CheckBatchBytes() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = MakeBatchHost(FilePath(TempPath))

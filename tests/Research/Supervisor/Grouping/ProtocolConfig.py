@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import SessionHost
 
 
+# invalid group protocols must fail before the supervisor can claim production work
 def RejectGroupApi(Harness: SessionHost, RootPath: FilePath, SourceText: str) -> str:
     AdapterFile = RootPath / "BrokenAdapter.py"
     _ = AdapterFile.write_text(

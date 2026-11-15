@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import KRepoRoot
 
 
+# the test must change inputs after the grouped worker owns its leases
 def WaitBatchFlag(FlagFile: FilePath, Running: Subprocess.Popen[str]) -> None:
     Until = TimeClock.monotonic() + 30
     while TimeClock.monotonic() < Until:
@@ -17,6 +18,7 @@ def WaitBatchFlag(FlagFile: FilePath, Running: Subprocess.Popen[str]) -> None:
     raise AssertionError("grouped runner did not write its start marker")
 
 
+# the test needs a grouped memory floor that can exceed individual admission estimates
 def SetGroupFloor(RootPath: FilePath, FloorMib: int) -> None:
     RegistryFile = RootPath / "Runners.json"
     Registry = JsonCodec.loads(RegistryFile.read_text(encoding="utf-8"))
@@ -25,6 +27,7 @@ def SetGroupFloor(RootPath: FilePath, FloorMib: int) -> None:
     _ = RegistryFile.write_text(JsonCodec.dumps(Registry), encoding="utf-8")
 
 
+# resource admission cases need the supervisor and controller to agree on slot capacity
 def SetBatchSlots(RootPath: FilePath, Capacity: int) -> None:
     ConfigFile = RootPath / "Supervisor.json"
     ConfigInfo = JsonCodec.loads(ConfigFile.read_text(encoding="utf-8"))

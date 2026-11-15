@@ -6,6 +6,7 @@ from tests.Research.Supervisor.LearningHost import MakeLearnHost
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# learned memory limits must stay scoped to the tool version that produced their samples
 def CheckLearning() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

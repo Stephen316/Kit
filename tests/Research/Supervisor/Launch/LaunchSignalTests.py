@@ -8,6 +8,7 @@ from pathlib import Path as FilePath
 from tests.Research.Supervisor.Launch.LaunchHost import KFixturePath
 
 
+# closing a launch reader must retain the operating system signal needed for diagnosis
 def CheckGatePipe() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         ResultInfo = Subprocess.run(

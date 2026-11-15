@@ -2,6 +2,7 @@ import json as JsonCodec
 from typing import Mapping
 
 
+# a pool may grow only after a full healthy interval with spare resources
 def CheckAdaptive(Events: list[Mapping[str, object]]) -> None:
     Admissions = [
         JsonCodec.loads(JsonCodec.dumps(Event))

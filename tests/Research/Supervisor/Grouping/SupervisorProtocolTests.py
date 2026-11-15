@@ -5,6 +5,7 @@ from tests.Research.Supervisor.Grouping.BatchHost import MakeBatchHost
 from tests.Research.Supervisor.Grouping.ProtocolConfig import RejectGroupApi
 
 
+# group capability must fail closed when its runtime protocol contract is absent
 def CheckGroupApi() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -13,6 +14,7 @@ def CheckGroupApi() -> None:
         assert "group-capable adapter must provide protocol 1" in ErrorText
 
 
+# a boolean capability value must not silently substitute for the versioned group protocol
 def CheckGroupBool() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -5,6 +5,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# adaptive scheduling needs predictable workers that can finish normally or survive graceful shutdown
 def RunAdaptive() -> None:
     SessionPath = FilePath(System.argv[1])
     JobText = (SessionPath / "job.json").read_text(encoding="utf-8")

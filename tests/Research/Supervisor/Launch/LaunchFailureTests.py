@@ -8,6 +8,7 @@ from tests.Research.Supervisor.Launch.LaunchHost import KFixturePath
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# failed launch authorization must reap its bootstrap before application code can enter
 def CheckGateError() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import KRepoRoot, SessionHost
 
 
+# grouped sessions need the real controller to check independent leases and artifact ownership
 def MakeBatchHost(RootPath: FilePath) -> SessionHost:
     StorePath = RootPath / "Store"
     ResultInfo = Subprocess.run(
@@ -36,6 +37,7 @@ def MakeBatchHost(RootPath: FilePath) -> SessionHost:
     return Harness
 
 
+# grouped process cases need a worker with declared memory estimates and protocol support
 def WriteBatchReg(RootPath: FilePath) -> None:
     RegistryFile = RootPath / "Runners.json"
     Registry = JsonCodec.loads(RegistryFile.read_text(encoding="utf-8"))

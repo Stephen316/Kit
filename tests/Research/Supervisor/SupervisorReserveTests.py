@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# configured memory reserves must protect other work without spending an attempt
 def CheckMemReserve() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# unique job identities let grouped cases verify that each member has independent results
 def BatchJobs(CountJobs: int, **Settings: object) -> list[dict[str, object]]:
     return [
         FixtureJob(
@@ -17,6 +18,7 @@ def BatchJobs(CountJobs: int, **Settings: object) -> list[dict[str, object]]:
     ]
 
 
+# grouping assertions need stable event records from both supervisor and ledger observations
 def BatchEvents(Events: list[object], EventName: str) -> list[dict[str, object]]:
     Records: list[dict[str, object]] = [
         JsonCodec.loads(JsonCodec.dumps(Event)) for Event in Events
@@ -24,6 +26,7 @@ def BatchEvents(Events: list[object], EventName: str) -> list[dict[str, object]]
     return [Record for Record in Records if Record.get("event") == EventName]
 
 
+# process success alone cannot prove each member retained its own accepted artifact and receipt
 def CheckBatchData(Harness: SessionHost, CountJobs: int) -> None:
     for Index in range(CountJobs):
         JobName = f"batch:{Index:02d}"
@@ -41,6 +44,7 @@ def CheckBatchData(Harness: SessionHost, CountJobs: int) -> None:
         assert not list((Harness.RootPath / "SupervisorState" / "claims").iterdir())
 
 
+# recovery cases need durable proof that isolated retries belong to the affected job generation
 def ReadSoloMarks(RootPath: FilePath) -> list[tuple[str, int, str]]:
     with SqlCodec.connect(RootPath / "Store" / "ledger.sqlite3") as Database:
         return list(
@@ -50,6 +54,7 @@ def ReadSoloMarks(RootPath: FilePath) -> list[tuple[str, int, str]]:
         )
 
 
+# a later successful attempt cannot replace the diagnostic from an earlier failed group
 def ReadTryResult(Harness: SessionHost, JobName: str) -> dict[str, object]:
     assert Harness.StorePath is not None
     with SqlCodec.connect(Harness.StorePath / "ledger.sqlite3") as Database:

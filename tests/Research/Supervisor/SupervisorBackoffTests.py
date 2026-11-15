@@ -6,6 +6,7 @@ from tests.Research.Supervisor.AdaptiveHost import MakeAdaptive
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# repeated deadline stops must reduce pool concurrency without obscuring the job failure reason
 def CheckDeadlines() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = MakeAdaptive(FilePath(TempPath), PoolLimit=8)

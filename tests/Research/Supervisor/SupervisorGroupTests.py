@@ -9,6 +9,7 @@ from tests.Research.Supervisor.WaitChildId import WaitChildId
 from tests.Research.Supervisor.StopGroup import StopGroup
 
 
+# owner recovery must reap a real descendant tied to the previous supervisor session
 def CheckGroupStop() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

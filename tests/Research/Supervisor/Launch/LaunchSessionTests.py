@@ -8,6 +8,7 @@ from tests.Research.Supervisor.StopGroup import StopGroup
 from tests.Research.SupervisorClient import FixtureJob, IsGoneByTimeout, SessionHost
 
 
+# successful launch must preserve one identity across the worker metadata and published receipt
 def CheckGateExec() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -6,6 +6,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# distinct member artifacts expose mixed results and deliberate digest failures during group intake
 def WriteMember(MemberRoot: FilePath) -> None:
     JobRecord = JsonCodec.loads((MemberRoot / "job.json").read_text(encoding="utf-8"))
     JobSpec = JobRecord["job"]
@@ -39,6 +40,7 @@ def WriteMember(MemberRoot: FilePath) -> None:
     )
 
 
+# one worker must exercise both grouped dispatch and the isolated retry path
 def RunBatch(SessionRoot: FilePath) -> None:
     GroupFile = SessionRoot / "group.json"
     GroupInfo = (

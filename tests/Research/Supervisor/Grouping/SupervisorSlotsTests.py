@@ -10,6 +10,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
 )
 
 
+# a limit shared with other work must constrain the number of grouped leases
 def CheckBatchSlots() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -24,6 +25,7 @@ def CheckBatchSlots() -> None:
         CheckBatchData(Harness, 5)
 
 
+# insufficient headroom for the group should leave eligible individual jobs runnable
 def CheckBatchFloor() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

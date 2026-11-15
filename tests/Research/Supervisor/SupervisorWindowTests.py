@@ -6,6 +6,7 @@ from tests.Research.Supervisor.LearningHost import MakeLearnHost
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# stale memory peaks must expire so the estimator reflects the most recent workload samples
 def CheckWindow() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

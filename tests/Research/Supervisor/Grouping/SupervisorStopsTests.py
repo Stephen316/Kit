@@ -11,6 +11,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
 )
 
 
+# a grouped memory stop must protect the pool without teaching the estimator an invalid sample
 def CheckBatchMem() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -38,6 +39,7 @@ def CheckBatchMem() -> None:
         )
 
 
+# one grouped deadline must recover its members without counting as multiple pool deadline failures
 def CheckBatchTime() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

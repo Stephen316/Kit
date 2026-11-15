@@ -6,6 +6,7 @@ from tests.Research.Supervisor.AdaptiveHost import MakeAdaptive
 from tests.Research.SupervisorClient import FixtureJob
 
 
+# numeric values must not silently activate or disable adaptive pool policy
 def CheckPolicyBool() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = MakeAdaptive(FilePath(TempPath))

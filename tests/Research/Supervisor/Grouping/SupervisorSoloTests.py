@@ -11,6 +11,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
 )
 
 
+# group crashes must preserve failure diagnostics while allowing individual members to retry
 def CheckBatchCrash() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -35,6 +36,7 @@ def CheckBatchCrash() -> None:
             )
 
 
+# a bad member artifact must stay isolated without discarding accepted siblings
 def CheckBatchFiles() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

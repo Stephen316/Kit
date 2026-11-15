@@ -6,6 +6,7 @@ from tests.Research.Supervisor.Grouping.BatchHost import MakeBatchHost
 from tests.Research.Supervisor.Grouping.BatchRecords import BatchEvents, BatchJobs
 
 
+# aggregate artifact limits must protect the store even when each member appears individually admissible
 def CheckBatchTotal() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

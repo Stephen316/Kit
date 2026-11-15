@@ -5,6 +5,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# shutdown needs a real descendant that ignores graceful termination to prove group reaping
 def StartGroup() -> None:
     Reader, Writer = OsLayer.pipe()
     ChildId = OsLayer.fork()

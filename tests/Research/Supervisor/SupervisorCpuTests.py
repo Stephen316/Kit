@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# cpu headroom must defer a job without spending its first attempt
 def CheckCpuReserve() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

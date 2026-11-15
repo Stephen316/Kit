@@ -7,6 +7,7 @@ from tests.Research.Supervisor.StopGroup import StopGroup
 from tests.Research.SupervisorClient import FixtureJob, IsGoneByTimeout
 
 
+# a real memory stop must reduce active capacity and reap the offending worker tree
 def CheckMemBackoff() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -7,6 +7,7 @@ from tests.Research.SupervisorClient import FixtureJob, SessionHost
 from tests.Research.Supervisor.WatchLogFiles import WatchLogFiles
 
 
+# log caps must preserve diagnostic accounting while the worker can still complete
 def CheckNoisyLogs() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

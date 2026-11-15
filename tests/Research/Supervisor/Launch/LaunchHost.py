@@ -4,10 +4,14 @@ import sys as System
 import time as TimeClock
 from pathlib import Path as FilePath
 
+# launch probes must find their production entry point independently of the caller directory
 KRepoRoot = FilePath(__file__).resolve().parents[4]
+
+# launch assertions share the same production guest fixture across gate failure scenarios
 KFixturePath = KRepoRoot / "re/automation/LaunchFixture.py"
 
 
+# gate scenarios need an actual bootstrap connected to a controllable owner pipe
 def StartGateHost(RootPath: FilePath) -> Subprocess.Popen[str]:
     return Subprocess.Popen(
         [System.executable, str(KFixturePath), "launch", "--root", str(RootPath)],
@@ -18,6 +22,7 @@ def StartGateHost(RootPath: FilePath) -> Subprocess.Popen[str]:
     )
 
 
+# termination scenarios need a verified process identity before checking bootstrap lifetime
 def WaitBootstrap(RootPath: FilePath) -> int:
     Until = TimeClock.monotonic() + 30
     while TimeClock.monotonic() < Until:
@@ -30,6 +35,7 @@ def WaitBootstrap(RootPath: FilePath) -> int:
     raise AssertionError("launch fixture did not create its bootstrap")
 
 
+# a stopped bootstrap can remain visible as a zombie before its parent reaps it
 def WaitGateStop(ProcessId: int) -> None:
     Until = TimeClock.monotonic() + 40
     while TimeClock.monotonic() < Until:

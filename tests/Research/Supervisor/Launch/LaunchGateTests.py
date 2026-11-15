@@ -11,6 +11,7 @@ from tests.Research.Supervisor.StopGroup import StopGroup
 from tests.Research.SupervisorClient import IsGoneByTimeout
 
 
+# closing the owner pipe must stop a blocked bootstrap without publishing a session
 def CheckGateEof() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -30,6 +31,7 @@ def CheckGateEof() -> None:
             StopGroup(BootstrapId, None)
 
 
+# a bootstrap without a grant must reap itself after the bounded wait
 def CheckGateWait() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

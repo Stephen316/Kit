@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import SessionHost
 
 
+# a known worker ceiling keeps memory stop evidence separate from ambient host pressure
 def MakeMemoryHost(RootPath: FilePath) -> SessionHost:
     Harness = SessionHost(RootPath, {"decode": 1}, {"fixture.decode": "decode"})
     RegistryFile = RootPath / "Runners.json"

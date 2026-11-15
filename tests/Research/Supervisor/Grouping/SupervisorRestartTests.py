@@ -12,6 +12,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
 from tests.Research.SupervisorClient import IsGoneByTimeout
 
 
+# restart recovery must stop the previous owned group and retry its members independently
 def CheckBatchBoot() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -3,6 +3,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# session metadata can appear before a worker has crossed the process entry boundary
 def WaitWorkerEntry(
     RootPath: FilePath, SessionName: str, ProcessId: int, PhaseName: str
 ) -> None:

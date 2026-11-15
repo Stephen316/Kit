@@ -2,6 +2,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# process cleanup cases need the recorded descendant identity before judging whether termination succeeded
 def WaitChildId(RootPath: FilePath, SessionName: str) -> int:
     ChildFile = (
         RootPath / "SupervisorState" / "sessions" / SessionName / "work/child.pid"

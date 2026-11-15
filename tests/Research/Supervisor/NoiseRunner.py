@@ -4,6 +4,7 @@ import sys as System
 from pathlib import Path as FilePath
 
 
+# both output streams need real pressure to expose unbounded capture or pipe stalls
 def WriteNoise() -> None:
     SessionPath = FilePath(System.argv[1])
     for StreamId in (1, 2):
