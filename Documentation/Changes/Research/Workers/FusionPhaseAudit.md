@@ -15,3 +15,17 @@ For each completed phase the audit checks the same accepted receipt and artifact
 The hosted fixture checks an absent installation, pending states and byte-identical ledger contents after the audit. Hosted execution of that fixture is pending. Verification of a retained native pair requires the signed-in macOS Fusion host to finish both phases. [Fresh-process host procedure](../FusionFreshProcessEvidence.md)
 
 A Phase A or Phase B attempt parked after a real dispatch timeout includes its verified queue request identity and the current controller receipt and result digests. Pass `--installation /absolute/path/Installation.json` to correlate that identity with the owner-private spool. The command checks the exact retained request bytes or the response's request digest, and reports each observed request, running or terminal state with its fence status. A terminal response may retain outputs behind an acceptance fence. This observation leaves archive and reactivation decisions with the installation owner.
+
+## Archive an unclaimed Phase A probe
+
+A macOS installation owner can archive a verified `request` observation whose sender exited and whose exact cancelled probe remains under a hostless quarantine.
+
+```sh
+python3 re/automation/ApplicationWorkers/ArchiveFusionProbe.py \
+  --config /absolute/path/Supervisor.json \
+  --queue-receipt /absolute/path/QueueReceipt.json
+```
+
+The command acquires the installation's dispatch and host locks. It verifies the still-parked A03 Phase A receipt and the untouched plan, request and cancellation bytes. It moves those files with an immutable manifest to the installation's private `failed-spools` directory, then releases that quarantine. An interrupted release can be retried with the same configuration and receipt.
+
+An active host, a pending acknowledgement, an acceptance-required fence, any phase output or changes to the recorded request cause a refusal. The archive report contains its manifest SHA-256 and the timed-out request SHA-256. The A03 resource stays parked until the installation owner separately verifies readiness and marks it available.

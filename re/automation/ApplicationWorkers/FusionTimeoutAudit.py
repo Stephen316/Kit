@@ -106,6 +106,19 @@ def inspect_response(response, timeout, config):
     }
 
 
+def match_request(raw, config, timeout, phase):
+    queued = json.loads(raw)
+    operation = timeout["operation"]
+    validate_request(queued, config, timeout["queue_job_id"], operation)
+    require(
+        sha256(raw) == timeout["request_sha256"]
+        and queued["body"]["plan_sha256"] == timeout["plan_sha256"]
+        and (operation == "probe" or queued["body"]["phase"] == phase),
+        "retained Fusion request bytes do not match the parked request",
+    )
+    return queued
+
+
 def inspect_spool(config, timeout, phase):
     queue_job_id = timeout["queue_job_id"]
     operation = timeout["operation"]
@@ -123,14 +136,7 @@ def inspect_spool(config, timeout, phase):
         if suffix == "done":
             extra = inspect_response(json.loads(raw), timeout, config)
         else:
-            queued = json.loads(raw)
-            validate_request(queued, config, queue_job_id, operation)
-            require(
-                sha256(raw) == timeout["request_sha256"]
-                and queued["body"]["plan_sha256"] == timeout["plan_sha256"]
-                and (operation == "probe" or queued["body"]["phase"] == phase),
-                "retained Fusion request bytes do not match the parked request",
-            )
+            match_request(raw, config, timeout, phase)
             extra = {}
         observations.append({"status": suffix, **extra})
     if len(observations) != 1:

@@ -66,6 +66,7 @@ def CheckFusionWait(TmpPath: FilePath) -> None:
     Accepted = Harness.ReadResult(Names["a"])
     RequestPath = VerifyTimeout(Endpoint, Accepted, Queued["plan_sha256"])
     VerifyAudit(Harness, Queued, RequestPath)
+    VerifyArchive(Harness, RequestPath)
 
 
 # only the existing owned request can explain the terminal parked attempt
@@ -124,3 +125,73 @@ def VerifyAudit(
     )
     _ = RequestPath.write_bytes(RequestBytes + b" ")
     _ = RunFusionTool(ScriptPath, Arguments, ExitCode=1)
+    _ = RequestPath.write_bytes(RequestBytes)
+
+
+# an ownership refusal must preserve the requesting spool and its exact fence
+def VerifyRefusal(
+    ArchivePath: str, Arguments: list[str], SpoolPath: FilePath, FencePath: FilePath
+) -> None:
+    import fcntl as FileLocks
+
+    FenceBytes = FencePath.read_bytes()
+    Fence = JsonCodec.loads(FenceBytes)
+    Fence["reason"] = "acceptance_required"
+    HeldBytes = JsonCodec.dumps(Fence).encode("utf-8")
+    _ = FencePath.write_bytes(HeldBytes)
+    _ = RunFusionTool(ArchivePath, Arguments, ExitCode=1)
+    assert FencePath.read_bytes() == HeldBytes
+    assert SpoolPath.is_dir()
+    _ = FencePath.write_bytes(FenceBytes)
+    with (FencePath.parent / "host.lock").open("ab") as LockFile:
+        FileLocks.flock(LockFile.fileno(), FileLocks.LOCK_EX | FileLocks.LOCK_NB)
+        _ = RunFusionTool(ArchivePath, Arguments, ExitCode=1)
+        assert FencePath.read_bytes() == FenceBytes
+        assert SpoolPath.is_dir()
+
+
+# an interrupted fence release can retry from the archived bytes without rearming the store
+def VerifyReplay(
+    ArchivePath: str, Arguments: list[str], FencePath: FilePath, FenceBytes: bytes
+) -> None:
+    Retry = JsonCodec.loads(RunFusionTool(ArchivePath, Arguments))
+    assert Retry["status"] == "already_archived" and not FencePath.exists()
+    _ = FencePath.write_bytes(FenceBytes)
+    Resumed = JsonCodec.loads(RunFusionTool(ArchivePath, Arguments))
+    assert Resumed["status"] == "archive_resumed" and not FencePath.exists()
+    assert Resumed["archive_manifest_sha256"] == Retry["archive_manifest_sha256"]
+
+
+# the archival receipt and unchanged controller prove the limits of the owner action
+def VerifyArchive(Harness: SessionHost, RequestPath: FilePath) -> None:
+    assert Harness.StorePath is not None
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    StoreHash = HashBytes(DatabasePath.read_bytes()).hexdigest()
+    ArchivePath = "re/automation/ApplicationWorkers/ArchiveFusionProbe.py"
+    Arguments = [
+        "--config",
+        str(Harness.ConfigFile),
+        "--queue-receipt",
+        str(Harness.RootPath / "TimedQueue.json"),
+    ]
+    SpoolPath = RequestPath.parent
+    Endpoint = Harness.RootPath / "AbsentEndpoint"
+    FencePath = Endpoint / "fence.json"
+    VerifyRefusal(ArchivePath, Arguments, SpoolPath, FencePath)
+    FenceBytes = FencePath.read_bytes()
+    Retained = {
+        EntryPath.name: EntryPath.read_bytes() for EntryPath in SpoolPath.iterdir()
+    }
+    Result = JsonCodec.loads(RunFusionTool(ArchivePath, Arguments))
+    assert Result["status"] == "archived" and Result["resource_rearmed"] is False
+    assert not SpoolPath.exists() and not FencePath.exists()
+    SavedPath = Endpoint / "failed-spools" / SpoolPath.name
+    for FileName, Content in Retained.items():
+        assert (SavedPath / FileName).read_bytes() == Content
+    Manifest = SavedPath / "ProbeArchive.json"
+    assert (
+        HashBytes(Manifest.read_bytes()).hexdigest()
+        == Result["archive_manifest_sha256"]
+    )
+    VerifyReplay(ArchivePath, Arguments, FencePath, FenceBytes)
+    assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
