@@ -7,15 +7,77 @@ import sys
 from pathlib import Path
 
 from P04LicensedSupport import licensed_cases
-from CutHistoryGraph import unique
+from CutHistoryGraph import unique, xyz
 from CutHistorySketch import bound_parameters
 from PairedCaptureIntake import require
 from Records import canonical
 from interchange.enums.EnumValues import ParameterRole, ValueKind
 from interchange.features.DistanceParam import GetDistParam
+from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
 
 ASSIGNMENT = re.compile(r'"([^"]+)"\s*=\s*\(\s*"([^"]+)"\s*-\s*"([^"]+)"\s*\)\s*/\s*2')
 PHASES = ("before_rebuild", "after_rebuild")
+
+
+def paired_operands(role, constraint, measured, native, tolerance):
+    attachments = measured["attachments"]
+    require(
+        measured["attachment_status"] == "observed_slots"
+        and measured["attachment_count"] == len(attachments) == len(constraint.references) == 2,
+        "expected two observed dimension attachments",
+    )
+    entities = {item.id: item for item in role.sketch.entities}
+    operands = []
+    sources = constraint.attributes["native_point_ids"]
+    for reference, point_id, attachment in zip(constraint.references, sources, attachments, strict=True):
+        entity = entities[reference.entity_id]
+        geometry = entity.geometry
+        require(
+            attachment["kind"] == "sketch_point" and attachment["native_sketch_available"] is True,
+            "licensed dimension operand is missing its sketch point owner",
+        )
+        if isinstance(geometry, LineGeometry) and reference.point in ("start", "end"):
+            point = getattr(geometry, reference.point)
+            local = (point.x, point.y, 0.0)
+            require(
+                attachment["same_sketch"] is True
+                and attachment["native_sketch_owner"] == role.sketch.name
+                and tuple(attachment["id"]) == tuple(point_id)
+                and math.dist(local, [1000 * value for value in attachment["local_m"]]) <= tolerance,
+                "licensed point ID or placement differs from the saved ordered perimeter operand",
+            )
+        else:
+            origin = native["origin_feature"]
+            measured_origin = unique(native["origin_points"], "licensed Origin point")
+            require(
+                isinstance(geometry, PointGeometry) and reference.point == ""
+                and native["origin_returns_sketch"] is True
+                and attachment["same_sketch"] is False
+                and attachment["native_sketch_owner"] == origin["name"]
+                and attachment["id"] == measured_origin["id"]
+                and attachment["local_m"] == measured_origin["local_m"] == [0, 0, 0]
+                and entity.attributes["native_origin_feature_id"] == origin["id"]
+                and entity.attributes["native_point_id"] == tuple(point_id),
+                "saved Origin proxy does not resolve to the licensed external operand",
+            )
+            frame = role.plane.transform
+            position = xyz(frame.origin)
+            expected_local = tuple(
+                -math.fsum(a * b for a, b in zip(position, xyz(axis), strict=True))
+                for axis in (frame.x_axis, frame.y_axis)
+            )
+            local = (geometry.point.x, geometry.point.y, 0.0)
+            require(
+                math.dist(local[:2], expected_local) <= tolerance,
+                "saved Origin proxy differs from the measured Origin projected into the sketch",
+            )
+        operands.append({
+            "entity_id": entity.id, "point": reference.point,
+            "saved_point_id": point_id, "measured_point_id": attachment["id"],
+            "measured_sketch": attachment["native_sketch_owner"],
+            "saved_local_mm": local,
+        })
+    return operands
 
 
 def paired_dimensions(history, role, native, tolerance):
@@ -52,6 +114,7 @@ def paired_dimensions(history, role, native, tolerance):
             "role": parameter.role.value,
             "saved_mm": length,
             "measured_mm": measured_length,
+            "ordered_operands": paired_operands(role, constraint, expected, native, tolerance),
         }
     require(not measured and matched, "a licensed dimension is missing from the saved sketch")
     return matched
