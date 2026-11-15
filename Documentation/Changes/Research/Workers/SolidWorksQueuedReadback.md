@@ -21,3 +21,14 @@ The listener stages the launcher from Git-verified bytes. The launcher verifies 
 An unavailable listener, stuck COM call or failed native control parks the job behind the application fence. Inspect the retained spool and have the installation owner recover the app process before retrying. On success the supervisor can acknowledge the exact accepted attempt using its configured installation. [Controller acceptance](SupervisedApplicationAcceptance.md)
 
 The readback records its source and native executable hashes. Broader native Windows dispatch, failed COM recovery and paired conversion qualification remain open.
+
+## Licensed job evidence
+
+Two Windows runs used source revision `195d45c7a6a0660dbd633e85872988171f32fd8d` and licensed SOLIDWORKS `34.4.1.1011`. Each run verified both healthy controls, unchanged source bytes and supporting-face identity before and after rebuild for all eleven discovery captures. Each observed its owned SOLIDWORKS process exit. A03 accepted all four output roles and the verification driver read every artifact back from the controller by SHA-256 and size.
+
+| Run | Accepted A03 result SHA-256 | Native measurements SHA-256 |
+| --- | --- | --- |
+| Uninterrupted | `0118bbe8c36e9e6c063fce955c5f56050c56ce47745237ddcda1026d2d6728c5` | `9c13a5017d39e073266662391c657eaba9a8d70ceb8ec710066ac150e6361f31` |
+| Supervisor interrupted after durable finish | `6fb3373a27b793ebdc5f66056a4cff93761ac31d77d522d7dc0b93e963fdc059` | `68a072c111f9a2e5d3334766fdaac7b3a0a3d1e43477f37325177bbeffc0e55c` |
+
+The uninterrupted run acknowledged the spool automatically after controller acceptance. In the interruption run, the initial supervisor exited after the real `FinishJob` accepted the job and before acknowledgement began. The private intent and acceptance fence remained present. The replacement supervisor reported `recovered: true` and `status: acknowledged`, cleared the spool and left the accepted receipt, result, generation, fingerprint and attempt unchanged. It issued zero additional claims. [Restart recovery contract](ApplicationAckRecovery.md)

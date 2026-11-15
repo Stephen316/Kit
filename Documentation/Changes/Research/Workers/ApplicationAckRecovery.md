@@ -23,4 +23,4 @@ This change covers supervisor process interruption and subsequent restart.
 Remote process cases interrupt the supervisor before A03 finish and after its durable response.
 They verify the digest in the accepted result and recovery after spool cleanup, as well as a transient controller status failure.
 Tampered intent bytes, changed installation bytes and a removed registry binding preserve accepted controller evidence and the original application fence.
-Remote results and licensed application execution remain pending.
+The licensed Windows P04 job verified recovery after a real controller-accepted readback, including immutable result and receipt identity through supervisor restart. Remote results for the other process cases remain pending. [Licensed job evidence](SolidWorksQueuedReadback.md#licensed-job-evidence)
