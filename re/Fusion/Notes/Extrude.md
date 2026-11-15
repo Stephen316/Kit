@@ -25,6 +25,11 @@ assembly controls, including reversed extents, signed offsets, draft, and
 the symmetric conventions. Thin and Boolean Extrudes and unresolved occurrence
 directions require further decoding.
 
+The [P04 cut extent study](../../../Documentation/Changes/Research/Readers/FusionCutExtentEvidence.md)
+records the one-sided Distance and ThroughAll contrast from eleven receipt-pinned
+Fusion discovery archives. It identifies the bound depth, signed direction
+controls and the unresolved through-all end reference.
+
 For a selected Offset construction plane in the same component, Kit preserves
 an editable `PlaneExtrude` definition. It retains the selected plane, the
 owned offset, and the length when the plane sets the start. The supported
