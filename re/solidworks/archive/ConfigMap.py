@@ -44,16 +44,50 @@ def ReadPointer(Cursor, Events, KindValue, NameValue=None, SchemaValue=1):
     Events.append((Offset, Counter, TagValue.kind, NameValue, Index))
 
 
-# standard annotation views may store a full orientation matrix in either transform
+# the presence byte selects the nine-double matrix before the translation and scale
+def ReadViewXform(Cursor):
+    (MatrixFlag,) = Cursor.ReadValue("<B")
+    Require(MatrixFlag in (0, 1), True, "view transform matrix flag")
+    if MatrixFlag:
+        Cursor.ReadPoint(9)
+    Cursor.ReadPoint(4)
+    Require(Cursor.ReadValue("<B"), (0,), "view transform extension mode")
+
+
+# the three optional view collections have no entries on the witnessed path
+def ReadConfigView(Cursor):
+    Cursor.ReadText()
+    for _ in range(2):
+        ReadViewXform(Cursor)
+    Cursor.ReadValue("<Hi")
+    Cursor.ReadPoint(1)
+    Require(Cursor.ReadCount(), 0, "empty view pointer array")
+    Cursor.ReadValue("<2i")
+    Require(Cursor.ReadCount(), 0, "empty first view list")
+    Cursor.ReadValue("<i")
+    Cursor.ReadPoint(1)
+    Require(Cursor.ReadCount(), 0, "empty second view list")
+    Cursor.ReadValue("<2i")
+
+
+# dimension styles store the scalar unit base and a length code before their child
+def ReadLengthUnit(Cursor, Events):
+    Cursor.ReadValue("<2i")
+    Cursor.ReadPoint(1)
+    Cursor.ReadValue("<2i")
+    Cursor.ReadPoint(1)
+    Cursor.ReadValue("<4i")
+    Cursor.ReadPoint(1)
+    _, _, UnitCode = Cursor.ReadValue("<HiH")
+    Require(UnitCode <= 10, True, "length unit code")
+    ReadPointer(Cursor, Events, KNullKind)
+
+
+# standard annotation views use the same transform serializer as regular views
 def ReadAnnotationView(Cursor, Events, NameValues):
     Require(Cursor.ReadText() in NameValues, True, "witnessed annotation view name")
     for _ in range(2):
-        (MatrixFlag,) = Cursor.ReadValue("<B")
-        Require(MatrixFlag in (0, 1), True, "annotation view matrix flag")
-        if MatrixFlag:
-            Cursor.ReadPoint(9)
-        Cursor.ReadPoint(4)
-        Require(Cursor.ReadValue("<B"), (0,), "annotation view transform reference")
+        ReadViewXform(Cursor)
     ReadPointers(
         Cursor,
         Events,
@@ -100,24 +134,15 @@ def ReadConfigMap(BlobValue, BuildName):
 # the same model serializer stores the presentation records after either relation path
 def ReadModelPresentation(Cursor):
     Events = []
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (1183, KClassRefKind, "moLengthUserUnits_c"),
-            (64, KNullKind, None),
-            (442, KNullKind, None),
-        ),
-    )
+    Cursor.AdvanceBytes(1183)
+    ReadPointer(Cursor, Events, KClassRefKind, "moLengthUserUnits_c")
+    ReadLengthUnit(Cursor, Events)
+    Cursor.AdvanceBytes(442)
+    ReadPointer(Cursor, Events, KNullKind)
     for Width in (434, 430, 438, 434, 446, 470, 438, 450):
-        ReadPointers(
-            Cursor,
-            Events,
-            (
-                (Width, KClassRefKind, "moLengthUserUnits_c"),
-                (64, KNullKind, None),
-            ),
-        )
+        Cursor.AdvanceBytes(Width)
+        ReadPointer(Cursor, Events, KClassRefKind, "moLengthUserUnits_c")
+        ReadLengthUnit(Cursor, Events)
     ReadPointers(
         Cursor,
         Events,
@@ -157,15 +182,11 @@ def ReadModelPresentation(Cursor):
     ReadPointer(Cursor, Events, ListKind, "suObList")
     Require(Cursor.ReadValue("<H"), (0,), "empty leading view list")
     ReadPointer(Cursor, Events, KDefinitionKind, "moView_c")
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (Width, KClassRefKind, "moView_c")
-            for Width in (146, 138, 208, 208, 210, 206, 212, 218, 218)
-        ),
-    )
-    Cursor.AdvanceBytes(225)
+    ReadConfigView(Cursor)
+    for _ in range(9):
+        ReadPointer(Cursor, Events, KClassRefKind, "moView_c")
+        ReadConfigView(Cursor)
+    Cursor.AdvanceBytes(9)
     ReadPointer(Cursor, Events, KDefinitionKind, "moFeatColorTab_c", 0)
     ReadPointers(
         Cursor,
