@@ -237,7 +237,7 @@ A04 adds a research reader boundary and evidence receipt around the existing cod
 No comparator, schema extension or application worker is established by that integration.
 Native capture qualification remains blocked separately.
 A04a–A04b passed remote verification. A04c has independent SOLIDWORKS measurements for bounded discovery comparisons.
-At PR head `59dd2c7a`, the remote discovery checks passed for the six P01 edge counts and five XY endpoint comparisons, all eight P03 boss direction cases and both P04 equation bindings in eleven captures. P01 and P03 YZ variants still fall back to the Front plane. [Discovery checks](https://github.com/TryUniCAD/Kit/actions/runs/43643100231/job/132594787367)
+At PR head `1bdb6743`, the remote discovery checks decoded all 25 parts. They verified six P01 edge counts and five XY endpoint comparisons, eight P03 boss direction cases, both P03 Front Plane directional Z bounds, both P04 equation bindings in eleven captures, and the resolved inch-length checks. The two expected Z intervals came from the independently measured boss centroids and depths. P01 and P03 YZ variants still fall back to the Front plane. [Discovery checks](https://github.com/TryUniCAD/Kit/actions/runs/43652490420/job/132623817084)
 The [P04 configuration-stream investigation](../../../re/solidworks/records/P04SketchResidence.md) locates both sketches' marker groups. The resolved feature owners still need a direct native reference.
 Later deterministic child steps remain available when their prerequisites pass.
 Formatting and source-link review do not replace the remote process checks.
