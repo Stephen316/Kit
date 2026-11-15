@@ -12,7 +12,8 @@ def SetOutputRunner(Harness: SessionHost) -> None:
     for Entry in Registry["runners"].values():
         Entry["argv"] = [
             System.executable,
-            str(FilePath(__file__).with_name("OutputRunner.py")),
+            "-m",
+            "tests.Research.Outputs.OutputRunner",
             "{session}",
         ]
     _ = RegistryPath.write_text(JsonCodec.dumps(Registry), encoding="utf-8")

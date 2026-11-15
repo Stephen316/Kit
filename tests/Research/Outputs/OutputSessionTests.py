@@ -7,7 +7,7 @@ from tests.Research.Outputs.SetOutputRunner import SetOutputRunner
 from tests.Research.SupervisorClient import FixtureJob, InitStore, SessionHost
 
 
-def CheckDurableOutputs() -> None:
+def CheckDurable() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
         Harness = SessionHost(RootPath, {"outputs": 1}, {"fixture.output": "outputs"})
@@ -36,7 +36,7 @@ def CheckDurableOutputs() -> None:
         _ = Harness.RunCli("run", "--idle-seconds", "1", ExitCode=1)
 
 
-def CheckUnsafeOutputs() -> None:
+def CheckUnsafe() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
         Harness = SessionHost(RootPath, {"outputs": 1}, {"fixture.output": "outputs"})
@@ -54,29 +54,29 @@ def CheckUnsafeOutputs() -> None:
         Harness.SubmitJobs(
             [
                 FixtureJob(
-                    Mode,
+                    ModeValue,
                     "fixture.output",
                     max_attempts=1,
                     lease_seconds=30,
-                    options={"mode": Mode},
+                    options={"mode": ModeValue},
                 )
-                for Mode in Modes
+                for ModeValue in Modes
             ]
         )
         _ = Harness.RunIdle()
-        for Mode in Modes:
-            Job = Harness.ReadJob(Mode)
-            assert Job["state"] == "failed", Job
-            Stored = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult(Mode)))
+        for ModeValue in Modes:
+            JobInfo = Harness.ReadJob(ModeValue)
+            assert JobInfo["state"] == "failed", JobInfo
+            Stored = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult(ModeValue)))
             assert Stored["result"] is None, Stored
             assert "output_artifacts" not in Stored
-            assert str(Job["reason"]).startswith(
+            assert str(JobInfo["reason"]).startswith(
                 ("invalid result:", "invalid output artifacts:")
-            ), Job
+            ), JobInfo
         assert not any((RootPath / "SupervisorState/sessions").iterdir())
 
 
-def CheckAdapterCapability() -> None:
+def CheckLegacy() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
         _ = InitStore(RootPath / "Store")
@@ -101,8 +101,8 @@ def CheckAdapterCapability() -> None:
             [FixtureJob("unsupported", "fixture.output", max_attempts=1)]
         )
         _ = Harness.RunIdle()
-        Job = Harness.ReadJob("unsupported")
-        assert Job["state"] == "failed", Job
-        assert "does not support version 1 output artifacts" in str(Job["reason"])
+        JobInfo = Harness.ReadJob("unsupported")
+        assert JobInfo["state"] == "failed", JobInfo
+        assert "does not support version 1 output artifacts" in str(JobInfo["reason"])
         Stored = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult("unsupported")))
         assert Stored["result"] is None

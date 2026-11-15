@@ -5,7 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.Outputs.OutputJob import OutputJob
 
 
-def CheckOutputBounds() -> None:
+def CheckBounds() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
         Client = OutputJob(RootPath)
@@ -27,16 +27,16 @@ def CheckOutputBounds() -> None:
         ]
         for Manifest in Cases:
             Client.FinishOutputs(Manifest)
-            Job = JsonCodec.loads(Client.RunCli("status"))["jobs"][0]
-            assert Job["state"] == "running", Job
-            assert Job["result"] is None
-            assert Job["receipt"] is None
+            JobInfo = JsonCodec.loads(Client.RunCli("status"))["jobs"][0]
+            assert JobInfo["state"] == "running", JobInfo
+            assert JobInfo["result"] is None
+            assert JobInfo["receipt"] is None
         Client.FinishOutputs({"native": Artifact}, Outcome="retry")
         Digest = str(Artifact["sha256"])
         assert not (RootPath / "State/objects" / Digest[:2] / Digest).exists()
 
 
-def CheckStaleOutputLease() -> None:
+def CheckStale() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
         Client = OutputJob(RootPath)
@@ -44,9 +44,9 @@ def CheckStaleOutputLease() -> None:
         _ = InputFile.write_bytes(b"changed input")
         _ = Client.RunCli("bind", "source", str(InputFile))
         Client.FinishOutputs({"native": dict(Client.Artifact)}, ExitCode=3)
-        Job = JsonCodec.loads(Client.RunCli("status"))["jobs"][0]
-        assert Job["state"] == "queued", Job
-        assert Job["result"] is None
-        assert Job["receipt"] is None
+        JobInfo = JsonCodec.loads(Client.RunCli("status"))["jobs"][0]
+        assert JobInfo["state"] == "queued", JobInfo
+        assert JobInfo["result"] is None
+        assert JobInfo["receipt"] is None
         Digest = str(Client.Artifact["sha256"])
         assert not (RootPath / "State/objects" / Digest[:2] / Digest).exists()
