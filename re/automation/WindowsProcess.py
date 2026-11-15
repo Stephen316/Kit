@@ -13,6 +13,7 @@ import win32process
 
 from ApplicationWorkers.WindowsIdentity import creation_time, process_start
 from WindowsApi import KERNEL, create_suspended
+from WindowsJobMembers import has_job_members, observed_members
 
 
 JOBS = {}
@@ -83,7 +84,7 @@ class WindowsProcess:
             return None
         win32job.TerminateJobObject(self.job, 1)
         until = time.monotonic() + 5
-        while win32job.QueryInformationJobObject(self.job, win32job.JobObjectBasicProcessIdList):
+        while has_job_members(self.job):
             if time.monotonic() >= until:
                 raise OSError("Windows job descendants did not terminate")
             time.sleep(0.01)
@@ -102,8 +103,11 @@ class WindowsProcess:
         return True
 
     def memory(self):
+        members = observed_members(self.job)
+        if members is None:
+            raise OSError("session memory measurement requires a complete job membership snapshot")
         total = 0
-        for pid in win32job.QueryInformationJobObject(self.job, win32job.JobObjectBasicProcessIdList):
+        for pid in members:
             try:
                 handle = win32api.OpenProcess(win32con.PROCESS_QUERY_INFORMATION | win32con.PROCESS_VM_READ | win32con.SYNCHRONIZE, False, pid)
             except pywintypes.error as error:
@@ -146,7 +150,7 @@ def stop_orphan(pid, recorded, grace, job_name):
             win32job.TerminateJobObject(job, 1)
             until = time.monotonic() + max(grace, 5)
             while time.monotonic() < until:
-                if not win32job.QueryInformationJobObject(job, win32job.JobObjectBasicProcessIdList):
+                if not has_job_members(job):
                     return True
                 time.sleep(0.05)
             return False

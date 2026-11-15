@@ -9,11 +9,11 @@ import win32event
 import win32job
 import win32process
 
-from CalibrationWindowsJob import observed_members
 from Processes import KILL_SIGNAL
 from Sessions import read_bounded
 from Supervisor import set_pause
 from WindowsApi import creation_time
+from WindowsJobMembers import observed_members
 from WindowsProcess import WindowsProcess
 
 
@@ -132,7 +132,7 @@ class CalibrationWindows(WindowsProcess):
             self.bind_interpreter()
             if self.interpreter is None:
                 return None
-        members = observed_members(self.job)
+        members = observed_members(self.job, member_limit=64)
         if members is None:
             return None
         return sum(self.member_working_set(pid) for pid in members if pid != self.pid)

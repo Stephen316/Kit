@@ -75,3 +75,9 @@ are converted at the runtime attribute boundary so Linux static analysis can
 check the fixtures without suppressions.
 
 At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Windows selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) passed all 22 cases in 77.49 seconds, including the actual launcher/interpreter ownership checks, descendant cleanup, owner recovery, output intake and immutable file records. Both application parking cases passed; no Windows native CAD worker ran.
+
+## Native Job Object membership
+
+The supervisor now reads PID lists through the same checked native buffer as [offline calibration](WindowsOfflineCalibration.md). Session memory sampling grows the buffer to the reported membership and uses only a complete snapshot. Normal finish and orphan recovery keep their existing process identity and timeout checks and require native proof that the owned job is empty.
+
+A separate Windows process witness verified two owned processes in nested jobs, their drained state, and the handling of an incomplete one-slot query. Simulated count responses verified that a supervisor query grows from 64 to 73 members and that calibration retains its 64-member ceiling.
