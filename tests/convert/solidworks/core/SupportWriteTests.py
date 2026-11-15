@@ -11,30 +11,41 @@ from convert.adapters.solidworks.core.Native import (
     KStreamOrderSupportSource,
     KUnresolvedSupportSource,
 )
+from convert.adapters.solidworks.core.OrdinaryRead import KArchiveSupport
 from tests.convert.api.ApiTestPaths import KRootPath, KSamplePath
 from tests.convert.solidworks.core.NestedDocument import NestedDocument
 from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
-# captured plane variants exercise unresolved native support at public write boundaries
+# typed placement and unframed support both retain the current qualification boundary
 @TestMark.parametrize(
-    "NativePath",
+    ("NativePath", "SupportSources"),
     (
-        "P01/solidworks-75b9308cf13e/P01-solidworks-plane-yz.SLDPRT",
-        "P03/solidworks-db1390476325/P03-solidworks-plane-yz.SLDPRT",
-        "P04/solidworks-c1986308375a/P04-solidworks-plane-yz.SLDPRT",
+        (
+            "P01/solidworks-75b9308cf13e/P01-solidworks-plane-yz.SLDPRT",
+            (KArchiveSupport,),
+        ),
+        (
+            "P03/solidworks-db1390476325/P03-solidworks-plane-yz.SLDPRT",
+            (KArchiveSupport,),
+        ),
+        (
+            "P04/solidworks-c1986308375a/P04-solidworks-plane-yz.SLDPRT",
+            (KStreamOrderSupportSource, KUnresolvedSupportSource),
+        ),
     ),
 )
 @TestMark.parametrize("IsNested", (False, True))
 @TestMark.parametrize("RelabelSource", (False, True))
 def TestSupportGate(
-    TmpPath: FilePath, NativePath: str, IsNested: bool, RelabelSource: bool
+    TmpPath: FilePath, NativePath: str, SupportSources: tuple[str, ...],
+    IsNested: bool, RelabelSource: bool
 ) -> None:
     Marked = OpenDocument(KRootPath / "re/automation/PairedCaptures" / NativePath)
     assert Marked.metadata.get(KResearchReadStatus) != "unqualified"
     assert any(
         Sketch.attributes.get("support_plane_source")
-        in {KStreamOrderSupportSource, KUnresolvedSupportSource}
+        in SupportSources
         for Sketch in Marked.sketches
     )
     if RelabelSource:
