@@ -1,3 +1,5 @@
+from convert.adapters.registry.NativeEnds import EndFindings
+from convert.adapters.registry.NativeSketch import SketchFindings
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.document.models.DocumentWalk import WalkDocuments
 from interchange.features.FeatureKinds import NativeFeature
@@ -16,4 +18,16 @@ def CheckNative(Document: CadDocument) -> None:
     if Findings:
         raise ValueError(
             "native-only feature definitions cannot be exported: " + "; ".join(Findings)
+        )
+    Findings = sorted(
+        {
+            Finding
+            for PartValue in WalkDocuments(Document)
+            for Finding in (*SketchFindings(PartValue), *EndFindings(PartValue))
+        }
+    )
+    if Findings:
+        raise ValueError(
+            "native or unresolved required semantics cannot be exported: "
+            + "; ".join(Findings)
         )
