@@ -223,7 +223,7 @@ def FinishFusionDoc(
 ) -> CadDocument:
     Document = ProjectBodyList(Document, BulkData, Spans, History)
     Document = ProjectPicks(Document, BulkData, Spans, History)
-    Document = ProjectFaces(Document, BulkData, Spans)
+    Document = ProjectFaces(Document, BulkData, Spans, LoadBlob)
     Document = ProjectScale(Document, BulkData, Spans, History, LoadBlob)
     Document.AssertValid()
     return Document

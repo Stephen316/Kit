@@ -1,19 +1,24 @@
+from collections.abc import Callable
 from dataclasses import replace as Replace
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Sketches.FaceSupport.FaceAsmSource import BindFaceBody
 from convert.formats.Fusion.Sketches.FaceSupport.FaceSelection import MakeFacePick
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Selection import Selection
 from interchange.geometry.models.SupportPlane import SupportPlane
 from interchange.records.RecordDiagnostic import Diagnostic
 
 
 # a unique accepted cut target ties the support recipe to an earlier body in the same scope
-def FaceTargets(Document: CadDocument) -> dict[str, list[Selection]]:
+def FaceTargets(
+    Document: CadDocument,
+) -> dict[str, list[tuple[Selection, FeatureStep]]]:
     Selections = {Value.id: Value for Value in Document.selections}
-    Candidates: dict[str, list[Selection]] = {}
+    Candidates: dict[str, list[tuple[Selection, FeatureStep]]] = {}
     for Feature in Document.feature_timeline:
         if (
             Feature.kind != FeatureKind.KExtrusion
@@ -27,13 +32,38 @@ def FaceTargets(Document: CadDocument) -> dict[str, list[Selection]]:
                 Target.query.get("kind") == "historical_body"
                 and Target.query.get("role") == "target"
             ):
-                Candidates.setdefault(Feature.sketch_id, []).append(Target)
+                Candidates.setdefault(Feature.sketch_id, []).append((Target, Feature))
     return Candidates
+
+
+# a refused body view preserves the independently verified design side recipe
+def AttachFaceBody(
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    FacePick: Selection,
+    CutStep: FeatureStep,
+    LoadBlob: Callable[[str], bytes],
+) -> Selection:
+    try:
+        return BindFaceBody(BulkData, Owners, FacePick, CutStep, LoadBlob)
+    except ValueError as ErrorInfo:
+        return Replace(
+            FacePick,
+            attributes=FreezeMapping(
+                {
+                    **FacePick.attributes,
+                    "fusion.history_body_unresolved": str(ErrorInfo),
+                }
+            ),
+        )
 
 
 # unresolved native occurrence identity must not replace the saved sketch frame or its basis
 def ProjectFaces(
-    Document: CadDocument, BulkData: bytes, Spans: tuple[RecordSpan, ...]
+    Document: CadDocument,
+    BulkData: bytes,
+    Spans: tuple[RecordSpan, ...],
+    LoadBlob: Callable[[str], bytes],
 ) -> CadDocument:
     Targets = FaceTargets(Document)
     if not Targets:
@@ -53,13 +83,14 @@ def ProjectFaces(
             or Frame.attributes.get("fusion.native_support_resolved")
         ):
             continue
-        if len(Choices) != 1 or Choices[0].query.get(
+        if len(Choices) != 1 or Choices[0][0].query.get(
             "native_component_id"
         ) != Frame.attributes.get("fusion.component_object_id"):
             continue
+        ((BodyPick, CutStep),) = Choices
         try:
             SelectionValue = MakeFacePick(
-                BulkData, Owners, int(Sketch.provenance.native_id), Choices[0]
+                BulkData, Owners, int(Sketch.provenance.native_id), BodyPick
             )
         except ValueError as ErrorInfo:
             Issues.append(
@@ -81,7 +112,9 @@ def ProjectFaces(
                 }
             ),
         )
-        Selections.append(SelectionValue)
+        Selections.append(
+            AttachFaceBody(BulkData, Owners, SelectionValue, CutStep, LoadBlob)
+        )
     return Replace(
         Document,
         support_planes=tuple(

@@ -8,6 +8,7 @@ import pytest as Pytest
 from convert.api.ApiOpen import OpenDocument
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.geometry.models.GeometryCurves import PointGeometry
+from interchange.geometry.models.Selection import Selection
 
 
 # each command compares saved archive records with pinned independent application measurements
@@ -253,6 +254,36 @@ def OpenCutArchive(Variant: str) -> CadDocument:
     return OpenDocument(Archive, StrictMode=False)
 
 
+# source coordinates must vary with the saved chart while the historical body remains scoped
+def CheckBodyChart(Variant: str, Support: Selection) -> None:
+    Attributes = Support.attributes
+    Expected = {
+        "plane-yz": (5, 196, 25480),
+        "termination-through-all": (5, 194, 25160),
+    }
+    Handle, Ordinal, Start = Expected.get(
+        Variant, (KCutVariants.index(Variant) + 5, 195, 25311)
+    )
+    assert "fusion.history_body_unresolved" not in Attributes, Attributes
+    assert Attributes["fusion.history_body_handle"] == Handle
+    assert Attributes["fusion.history_body_source_ordinal"] == Ordinal
+    assert Attributes["fusion.history_body_result_ordinal"] == 1
+    SourceClock = Attributes["fusion.history_body_source_clock"]
+    ResultClock = Attributes["fusion.history_body_result_clock"]
+    assert type(SourceClock) is int and type(ResultClock) is int
+    assert 0 < SourceClock < ResultClock < (1 << 53)
+    Member = Attributes["fusion.history_body_member"]
+    assert isinstance(Member, str) and Member.endswith(".smbh")
+    Digest = Attributes["fusion.history_body_sha256"]
+    assert isinstance(Digest, str) and len(Digest) == 64
+    assert Support.provenance is not None
+    assert [
+        (Origin.offset, Origin.length, Origin.record_kind)
+        for Origin in Support.provenance.spans
+        if Origin.stream == Member and Origin.record_kind == "body"
+    ] == [(186, 61, "body"), (Start, 61, "body")]
+
+
 # the feature must preserve its historical target without adding the extent selector
 @Pytest.mark.parametrize("Variant", KCutVariants)
 def CheckCutTarget(Variant: str) -> None:
@@ -316,6 +347,7 @@ def CheckCutSupport(Variant: str) -> None:
     assert Support.attributes["fusion.edge_recipe_object_ids"] == tuple(
         range(FirstEdge, FirstEdge + 16, 4)
     )
+    CheckBodyChart(Variant, Support)
 
 
 # dependent dimensions must keep saved argument and dependency orders across the public reading boundary
