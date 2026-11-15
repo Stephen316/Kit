@@ -12,5 +12,5 @@ The [Fusion run at `95b3f2e4`](https://github.com/TryUniCAD/Kit/actions/runs/436
 
 ## Workaround
 
-Keep actual-history semantic refusal for both explicit Fusion names. Retain exact missing-writer refusal for its inferred Fusion destination, and independently require semantic refusal through an inferred JSON destination whose writer exists. All destinations must remain absent. The separate typed cuboid case retains all three missing-writer checks. Current-head remote execution remains required.
+Keep actual-history semantic refusal for both explicit Fusion names. Retain exact missing-writer refusal for its inferred Fusion destination, and independently require semantic refusal through an inferred JSON destination whose writer exists. All destinations must remain absent. The separate typed cuboid case retains all three missing-writer checks. The [full Fusion run at `22a59e68`](https://github.com/TryUniCAD/Kit/actions/runs/43678423837/job/132703567976) passed all 2,960 cases with three existing drawing-example skips, including this repaired ordering coverage. Current-head review and native conversion acceptance remain separate.
 See [native semantic write qualification](../../../Changes/Research/Readers/NativeSemanticWriteQualification.md).

@@ -33,9 +33,9 @@ records the pinned source distinction. The revised case logs each refusal, adds 
 native write probe, and requires successful same-path controls after releasing
 the protected reader.
 
-At source checkpoint `7e6243b28ea5d84de2c8aea7577221c24b13ceb0`, the
-[Windows gate](https://github.com/TryUniCAD/Kit/actions/runs/43677583943/job/132701013861)
-passed all twenty-two cases in 64.92 seconds, including all four immutable-record
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the
+[Windows gate](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723)
+passed all twenty-two cases in 77.49 seconds, including all four immutable-record
 cases, both parking cases, output intake and owner recovery.
 The sharing case proved the required refusal error domains and all five successful
 post-release operations. Individual numeric error values were suppressed by

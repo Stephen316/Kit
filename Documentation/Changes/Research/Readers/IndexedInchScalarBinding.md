@@ -36,6 +36,8 @@ The existing P02 inch-diameter public reader scenario remains part of the remote
 
 Local work used source inspection, syntax parsing, formatting, and static policy checks only.
 No local test, parser reproduction, native application, or model call ran.
-Remote execution remains pending when this entry is introduced.
+Remote execution evidence is recorded below.
 Synthetic parser inputs do not establish vendor-loadability or cross-format conversion acceptance.
 See the [research reader guide](../../../Reference/Research/SolidworksResearchReader.md) and [ambiguity gotcha](../../../Gotchas/Research/Readers/InchNamesRemainAmbiguous.md).
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux native/API/registry selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed all 327 cases with 159 existing unavailable-corpus/platform skips, including the genuine parser process cases and inch-binding regressions. Synthetic parser inputs still do not establish native application or conversion acceptance.

@@ -65,6 +65,8 @@ The legacy exact-pool fixtures explicitly disable adaptation while retaining mea
 
 Local work used source inspection, formatting, static types, syntax, and repository policy checks only.
 No local tests, native reader reproductions, application calls, or model calls ran.
-Exact-revision remote adaptive execution remains pending when this entry is introduced.
-Calibration batches, grouped jobs, and independently attributed OOM backoff remain open.
+Exact-revision adaptive process evidence is recorded below.
+Calibration and grouped-session process evidence is recorded in the step register. A saturated calibration recommendation and independently attributed OOM backoff remain open.
 See the [supervisor guide](../../../Reference/Research/ResearchSupervisor.md) and [step register](../../../Reference/Research/AutomationSteps.md).
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed all 57 process cases. Its actual evidence records a healthy-minute increase to two sessions and deadline-pair backoff from two to one: upward, deadline-backoff and numeric-reduction flags are all true. The [macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) passed all 74 cases. These observations do not independently attribute OS OOM kills.

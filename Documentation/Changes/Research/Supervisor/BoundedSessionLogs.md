@@ -38,4 +38,6 @@ It does not add Windows support or terminate children that deliberately leave th
 
 See the [supervisor guide](../../../Reference/Research/ResearchSupervisor.md) and [step register](../../../Reference/Research/AutomationSteps.md).
 
-The [macOS run at `6fb599a9`](https://github.com/TryUniCAD/Kit/actions/runs/43672428040/job/132685202111) exposed an empty PID file before the restart scenario could run. The fixture now publishes that identity atomically; the [PID publication gotcha](../../../Gotchas/Research/Supervisor/PidFilePublicationRace.md) records the race and unchanged cleanup assertions. Current-head remote verification remains required.
+The [macOS run at `6fb599a9`](https://github.com/TryUniCAD/Kit/actions/runs/43672428040/job/132685202111) exposed an empty PID file before the restart scenario could run. The fixture now publishes that identity atomically; the [PID publication gotcha](../../../Gotchas/Research/Supervisor/PidFilePublicationRace.md) records the race and unchanged cleanup assertions. Later process verification is recorded below.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed all 57 supervisor cases and the [macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) passed all 74 worker cases, including the repaired PID publication, actual worker-entry and live-orphan cleanup scenarios. Native application execution remains separate.

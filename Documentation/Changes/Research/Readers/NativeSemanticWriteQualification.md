@@ -68,9 +68,11 @@ The intermediate repair deferred the encoder import until contract evaluation. T
 The [import-cycle gotcha](../../../Gotchas/Conversion/Qualification/FeatureGuardImportCycle.md) links the actual fresh-interpreter failure.
 
 No local tests, decoding, collection, or application runs verified this change.
-Remote integration and current-head review remain required.
+Remote integration evidence is recorded below; current-head configured review remains required.
 Encoding, model equality, and archive readback do not establish native application loadability, editable acceptance, or completion of A11–A15.
 
 See the [FreeCAD guide](../../../Reference/Adapters/Freecad.md), the [assembly marker gotcha](../../../Gotchas/Conversion/Qualification/NativeAssemblyMarkers.md), and the [FreeCAD default-geometry gotcha](../../../Gotchas/Conversion/Qualification/FreecadDefaultGeometry.md).
 
 The broader Fusion run at `95b3f2e4` passed 2,958 cases and exposed one caller expecting writer lookup before native-tag refusal. The repaired cases preserve the actual partial-history refusal and independent typed missing-writer behavior; [the ordering gotcha](../../../Gotchas/Conversion/Qualification/SemanticGuardPrecedesWriterLookup.md) links the failure.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux gate](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed 327 native/API/registry cases with 159 existing unavailable-corpus/platform skips plus all 31 typed-carrier boundary cases. [Full Fusion compatibility](https://github.com/TryUniCAD/Kit/actions/runs/43678423837/job/132703567976) passed 2,960 with three existing unavailable drawing-example skips in 515.95 seconds, including explicit/inferred writer-ordering coverage. Required-semantic refusal and positive typed controls passed; native editable acceptance remains unqualified.

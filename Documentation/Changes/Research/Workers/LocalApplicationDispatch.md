@@ -137,7 +137,7 @@ application behavior. Windows exercises the absent/unsupported-host cases only.
 Local execution was limited to AST, steering, Mypy, Pyright, formatting and
 whitespace checks. The first [Windows run at `6fb599a9`](https://github.com/TryUniCAD/Kit/actions/runs/43672428040/job/132685202260) passed eleven existing supervisor/output cases and rejected both new parking fixtures before dispatch because their job resource requirement used a map.
 The fixture repair uses the existing label-array job contract and keeps capacity in the supervisor resource map.
-Current-head process execution and licensed native-host execution remain pending. No captured native pair is qualified by this implementation.
+Process evidence is recorded below; licensed native-host execution remains pending. No captured native pair is qualified by this implementation.
 
 See [the main-thread availability gotcha](../../../Gotchas/Research/Workers/FusionMainThreadAvailability.md).
 See [the pre-acceptance durability gotcha](../../../Gotchas/Research/Workers/CopyIsNotAcceptance.md)
@@ -153,3 +153,5 @@ Windows installation and job records now use
 [protected immutable reads](WindowsImmutableRecords.md). The
 [path/handle timestamp gotcha](../../../Gotchas/Research/Workers/WindowsPathAndHandleTimes.md)
 explains the CPython compatibility difference and the retained mutation guards.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all twelve transport/publication cases passed within the [Linux](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) and [macOS](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) selections. The [Windows selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) passed both application parking cases and all four immutable-record cases. These fixtures did not call CAD APIs. Licensed native dispatch, automatic restart/acknowledgement and unattended acceptance remain open.

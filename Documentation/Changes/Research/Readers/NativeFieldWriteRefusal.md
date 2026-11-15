@@ -36,9 +36,11 @@ Other cases persist explicitly unresolved termination values and missing binding
 An independent constrained Fusion cuboid remains the positive write/read control.
 
 Steering, Mypy, Pyright and Black checks are required before publication. Local
-tests were not run; remote execution is pending for this revision. This refusal
+tests were not run; remote execution evidence is recorded below. This refusal
 check does not qualify native geometry, constraints, field maps or CAD output.
 
 See [the field-retention gotcha](../../../Gotchas/Conversion/NativeSketchFieldRefusal.md).
 
 The first remote matrix at `ef431a17` exposed fixture assumptions: cuboids use `DistanceExtrude`, JSON strict mode does not bypass model validation, and stream writers require the canonical `interchange.json` format identifier. The repaired fixtures retain structural read rejection for malformed persisted graphs and separately exercise semantic refusal with validation disabled. See [JSON construction](../../../Gotchas/Conversion/JsonReaderAlwaysValidates.md) and [the cuboid definition](../../../Gotchas/Conversion/Fusion/Api/CuboidDefinitionType.md). Production guards remain unchanged by these fixture repairs.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux gate](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed all 327 native/API/registry cases with 159 existing skips and all 31 typed-carrier cases, including persisted native-field refusal at public/direct boundaries. This is refusal and destination-preservation evidence, not positive qualification of the retained native fields.

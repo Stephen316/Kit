@@ -66,8 +66,8 @@ manifest limits, adapter capability and revoked leases. Local tests were not run
 The [Windows job at `ef431a17`](https://github.com/TryUniCAD/Kit/actions/runs/43668887044/job/132674284189)
 reported three failed and eight passed process cases. The three failures exposed
 an incorrect owner for the mandatory reparse-open flag. The repair uses the
-`win32file` export proven by pinned pywin32 source. A fresh remote Windows run
-remains required; this failure does not qualify Windows intake.
+`win32file` export proven by pinned pywin32 source. The successful later Windows checkpoint is recorded below; this failed
+checkpoint did not qualify Windows intake.
 
 The post-copy lease-expiry and concurrent-file-mutation rejection paths require
 independent synchronized process evidence. This change does not claim those
@@ -76,3 +76,5 @@ branches were exercised. Licensed application capture/readback remains separate.
 See [the intake gotcha](../../../Gotchas/Research/Workers/WorkerOutputsNeedIntake.md).
 The [flag-owner gotcha](../../../Gotchas/Research/Workers/PythonWinReparseFlagOwner.md)
 records the real Windows failure and source verification.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all five output-intake cases passed within the [Linux](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509), [macOS](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) and [Windows](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) selections. This verifies the flag-owner repair and declared output lifecycle through real processes. It does not establish the independently synchronized branches or licensed application evidence identified above.

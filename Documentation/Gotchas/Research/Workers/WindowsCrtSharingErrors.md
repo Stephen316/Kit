@@ -33,5 +33,8 @@ native codes from deletion, file rename and ancestor rename.
 After releasing the reader, require all five operations on the same path to
 succeed and preserve the original bytes. This distinguishes protection by the
 held reader from unrelated path or permission failures. The repair changes the
-process fixture only; production sharing restrictions remain unchanged. A new
-real Windows run must verify these stronger controls; no local tests ran.
+process fixture only; production sharing restrictions remain unchanged. The [Windows run at `22a59e68`](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723)
+passed all twenty-two cases in 77.49 seconds, including these stronger controls.
+Successful pytest capture suppressed individual error values; the assertions
+prove the required error domains without identifying each numeric value.
+No local tests ran.

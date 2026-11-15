@@ -41,5 +41,7 @@ That fixture now waits for an atomically published worker-entry marker and retai
 Both held-evidence rebinding cases also wait for the actual hold phase, using the same marker writer and waiter with an explicit phase parameter.
 Their stale/running-session assertions remain unchanged.
 See [the fixture gotcha](../../../Gotchas/Research/Supervisor/SessionMetadataIsNotWorkerEntry.md).
-The repaired restart case, macOS process results and existing Windows compatibility gates still require evidence on the tested revision.
+The repaired restart case and compatibility results are recorded below.
 The [startup gotcha](../../../Gotchas/Research/Supervisor/WorkersCanStartBeforeMetadata.md) describes the original recovery gap.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Linux supervisor selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) passed all 57 cases and the [macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) passed all 74, including the five launch cases and repaired live-orphan restart case. The separate [Windows selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) passed all 22 compatibility cases through its Job Object path. These process results do not qualify native applications.

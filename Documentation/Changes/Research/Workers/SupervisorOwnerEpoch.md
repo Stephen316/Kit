@@ -52,7 +52,9 @@ interpreter. Fixture contexts release gates and clean their owned subprocesses o
 failure. Separate process cases reject invalid capability declarations.
 
 AST, steering, Mypy, Pyright, Black and whitespace checks passed. Local tests were
-not run. Remote Linux, macOS and Windows execution remains required. This recovery
+not run. Remote Linux, macOS and Windows results are recorded below. This recovery
 mechanism establishes no native CAD qualification or merge-queue acceptance.
 
 See [the orphan-controller gotcha](../../../Gotchas/Research/Workers/OrphanControllerClaims.md).
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all five owner-fence process cases passed within the [57-case Linux](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509), [74-case macOS](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) and [22-case Windows](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) selections. Legacy no-owner calls remain outside the optional fence capability. Native CAD acceptance remains separate.

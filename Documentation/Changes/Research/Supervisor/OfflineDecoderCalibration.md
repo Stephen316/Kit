@@ -40,9 +40,11 @@ Static syntax, formatting, and source checks provide local evidence only.
 New remote process/file cases cover private-store isolation, fixed runner interpretation, actual decode counters, resource-limited non-recommendation, refused manifests, a decoder rejection, timeout, interruption, and forced cleanup after stopping the owned supervisor.
 An additional real process case reaps a group leader while retaining its child and requires cleanup refusal without signaling the unverified group.
 At source checkpoint `2ff967671c20758d56131d37708f9812aabbef40`, the [macOS process gate](https://github.com/TryUniCAD/Kit/actions/runs/43676632437/job/132698100852) passed all 74 selected cases in 501.85 seconds, including these 14 calibration cases.
-Linux and current-head reruns remain required.
+Later Linux and macOS source evidence is recorded below; current-head CI remains separate.
 No comparable saturated performance trial has been established by those fixtures.
 
 This is an A08b implementation slice.
 It does not qualify captured native pairs, reader semantics, conversion, native application loadability, grouped runtime behavior, or Windows measurement support.
 See [the operator guide](../../../Reference/Research/OfflineCalibration.md) and [the measurement gotcha](../../../Gotchas/Research/CalibrationConcurrency.md).
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all fourteen calibration cases passed within the [57-case Linux selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) in 393.51 seconds and [74-case macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) in 514.07 seconds. These are full-selection durations. The fixtures establish refusal, constrained reporting and cleanup; they do not establish a comparable saturated throughput recommendation. Windows calibration remains unavailable.

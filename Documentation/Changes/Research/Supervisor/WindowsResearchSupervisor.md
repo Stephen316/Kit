@@ -61,7 +61,7 @@ Linux resource controls passed eleven supervisor scenarios at `b86f30c7`; curren
 
 The child fixture also handles the separate launcher PID used by Windows virtual environments.
 It records the interpreter's parent chain and verifies each distinct process against the supervisor's job object.
-The [launcher identity gotcha](../../../Gotchas/Research/Supervisor/WindowsVenvLaunchers.md) records the source evidence and pending diagnostic boundary.
+The [launcher identity gotcha](../../../Gotchas/Research/Supervisor/WindowsVenvLaunchers.md) records the source evidence and the launcher/interpreter diagnostic boundary.
 
 The implementation follows [job-object containment](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects), [atomic job and handle assignment](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute), [creation-time measurement](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocesstimes) and [physical-memory measurement](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-globalmemorystatusex).
 The [Python subprocess reference](https://docs.python.org/3.14/library/subprocess.html) defines the Windows environment and handle-inheritance requirements.
@@ -73,3 +73,5 @@ change does not establish a repaired lifecycle. Windows fixture liveness uses
 the typed Win32 process-handle API. Windows-only signal and subprocess flags
 are converted at the runtime attribute boundary so Linux static analysis can
 check the fixtures without suppressions.
+
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, the [Windows selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) passed all 22 cases in 77.49 seconds, including the actual launcher/interpreter ownership checks, descendant cleanup, owner recovery, output intake and immutable file records. Both application parking cases passed; no Windows native CAD worker ran.
