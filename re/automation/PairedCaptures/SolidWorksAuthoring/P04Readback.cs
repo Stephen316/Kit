@@ -444,9 +444,11 @@ public sealed class P04Readback
             if (launch != null)
             {
                 Require(application.GetDocumentCount() == 0, "The directly launched SOLIDWORKS process did not start empty");
-                PublishTicket(ticketPath, Row("version", 1, "request_sha256", launch["request_sha256"],
+                var owner = Row("version", 1, "request_sha256", launch["request_sha256"],
                     "source_revision", launch["source_revision"], "pid", process.Id, "created", created,
-                    "session", process.SessionId, "image", launch["image"], "build", fileVersion, "initial_documents", 0));
+                    "session", process.SessionId, "image", launch["image"], "build", fileVersion, "initial_documents", 0);
+                PublishTicket(ticketPath, owner);
+                result["native_owner"] = owner;
                 owned = true;
             }
             var worker = new P04Readback(application);

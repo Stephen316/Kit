@@ -10,7 +10,7 @@ from tempfile import TemporaryFile
 import time
 
 from ApplicationProtocol import (
-    HostQueue, MAX_BYTES, PROTOCOL, QueueClient, WaitingApplication, committed_bytes, configuration,
+    ACKNOWLEDGEMENT, HostQueue, MAX_BYTES, PROTOCOL, QueueClient, WaitingApplication, committed_bytes, configuration,
     encoded, file_bytes, pin, record, require, sha256, write_new, write_record,
 )
 
@@ -24,6 +24,11 @@ OUTPUTS = {
     "readback.measurements": "readback/measurements.json",
     "readback.receipt": "readback/receipt.json",
 }
+
+
+class ReadbackQueue(HostQueue):
+    def fenced(self):
+        return os.path.lexists(self.root / "fence.json") or os.path.lexists(self.root / ACKNOWLEDGEMENT)
 
 
 def plan_hash(config):
@@ -45,6 +50,7 @@ def native_result(work, config):
     report = json.loads(measurements)
     run = report["run"]
     application = run["application"]
+    owner = run["native_owner"]
     require(json.loads(plan)["source_revision"] == config["source_revision"]
             and receipt["schema"] == 1 and receipt["status"] == "observed"
             and receipt["observed_files"] == receipt["supporting_faces_verified"] == 11
@@ -53,9 +59,11 @@ def native_result(work, config):
             and report["source_bytes_verified_after_readback"] is True
             and run["status"] == "observed" and run["owned_process_exit_observed"] is True
             and run["control_before"]["status"] == run["control_after"]["status"] == "observed"
-            and application["build"] == BUILD,
+            and application["build"] == owner["build"] == BUILD
+            and owner["source_revision"] == config["source_revision"] and owner["initial_documents"] == 0,
             "SOLIDWORKS readback lacks complete source, control, face or process-exit evidence")
-    return {"readback_plan_sha256": plan_sha256, "solidworks_build": application["build"]}
+    return {"readback_plan_sha256": plan_sha256, "solidworks_build": application["build"],
+            "native_owner_sha256": sha256(encoded(owner))}
 
 
 def session_id(pid):
@@ -140,9 +148,57 @@ def verify_native_ticket(path, launch):
     expected = {**launch, "build": BUILD, "initial_documents": 0}
     require(encoded(record(path)) == encoded(expected),
             "SOLIDWORKS collector did not ticket the exact owned scratch installation")
+    return sha256(encoded(expected))
 
 
-def run_collector(host, request, work, interop, staged):
+def stop_collector(collector):
+    if collector.poll() is None:
+        collector.kill()
+        collector.wait(timeout=5)
+
+
+def recover_owned_process(handle, launch, ticket):
+    import pywintypes
+    import win32event
+    import win32process
+
+    verify_native_ticket(ticket, launch)
+    status = win32event.WaitForSingleObject(handle, 0)
+    if status == win32event.WAIT_OBJECT_0:
+        return "already_exited"
+    require(status == win32event.WAIT_TIMEOUT, "owned process wait did not report a live identity")
+    expected = {key: launch[key] for key in ("pid", "created", "session", "image")}
+    require(native_identity(handle) == expected and expected["session"] == session_id(os.getpid()),
+            "held SOLIDWORKS process identity changed before timeout recovery")
+    try:
+        win32process.TerminateProcess(handle, 1)
+    except pywintypes.error:
+        if win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_OBJECT_0:
+            return "already_exited"
+        raise
+    require(win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0,
+            "termination did not signal the held SOLIDWORKS process")
+    return "terminated_owned_process"
+
+
+def record_timeout(work, request_pin, collector, handle, launch, recovery_enabled):
+    recovery = {**request_pin, "trigger": "collector_timeout", "status": "quarantined"}
+    try:
+        stop_collector(collector)
+        if not recovery_enabled:
+            recovery["reason"] = "automatic timeout termination is disabled for this listener"
+        elif handle is None or launch is None:
+            recovery["reason"] = "no retained direct launch identity"
+        else:
+            recovery["status"] = recover_owned_process(handle, launch, work / "readback/native-owner.json")
+            recovery["pid"] = launch["pid"]
+            recovery["created"] = launch["created"]
+    except Exception as error:
+        recovery["reason"] = f"{type(error).__name__}: {error}"[:2048]
+    write_record(work / "native-recovery.json", recovery)
+
+
+def run_collector(host, request, work, interop, staged, recovery_enabled):
     expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
     require(request["operation"] == "phase" and request["body"] == expected,
             "installation only accepts the pinned P04 readback phase")
@@ -163,7 +219,7 @@ def run_collector(host, request, work, interop, staged):
              "-QueuedRequestSha256", request_pin["request_sha256"]],
             stdout=subprocess.DEVNULL, stderr=errors, env=process_environment, creationflags=subprocess.CREATE_NO_WINDOW,
         )
-        handle = None
+        handle, launch = None, None
         try:
             ready = launch_readiness(output / "native-ready.json", collector, deadline)
             if ready is not None:
@@ -181,43 +237,46 @@ def run_collector(host, request, work, interop, staged):
             errors.seek(max(0, errors.tell() - 2048))
             require(status == 0, errors.read().decode(errors="replace") or "SOLIDWORKS readback did not finish")
             require(handle is not None, "SOLIDWORKS collector completed without a directly owned process")
-            verify_native_ticket(output / "native-owner.json", launch)
+            owner_hash = verify_native_ticket(output / "native-owner.json", launch)
             require(win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_OBJECT_0,
                     "SOLIDWORKS collector did not close the directly owned process")
+            return owner_hash
+        except subprocess.TimeoutExpired:
+            record_timeout(work, request_pin, collector, handle, launch, recovery_enabled)
+            raise
         finally:
             try:
-                if collector.poll() is None:
-                    collector.kill()
-                    collector.wait(timeout=5)
+                stop_collector(collector)
             finally:
                 if handle is not None:
                     handle.Close()
 
 
-def perform_readback(host, request, work, interop, launcher):
+def perform_readback(host, request, work, interop, launcher, recovery_enabled):
     expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
     staged = work / Path(LAUNCHER).name
     write_new(staged, launcher)
-    run_collector(host, request, work, interop, staged)
+    owner_hash = run_collector(host, request, work, interop, staged, recovery_enabled)
     proof = native_result(work, host.config)
+    require(proof["native_owner_sha256"] == owner_hash, "SOLIDWORKS measurements do not preserve the verified ownership ticket")
     files = {role: pin(work / relative, relative) for role, relative in OUTPUTS.items()}
     return "completed", "licensed P04 readback observed all eleven captures", {
         **expected, **proof, "claim": "unqualified_application_observation",
     }, files
 
 
-def listen(config, interop):
+def listen(config, interop, recovery_enabled):
     require(os.name == "nt" and config["application"] == "solidworks", "SOLIDWORKS readback host requires Windows")
     verify_sources(config)
     launcher = committed_bytes(config, LAUNCHER)
-    host = HostQueue(config, PROVIDER)
+    host = ReadbackQueue(config, PROVIDER)
     try:
         while True:
             request = host.next_path()
             if request is None:
                 time.sleep(0.05)
                 continue
-            host.perform(request, lambda value, work: perform_readback(host, value, work, interop, launcher))
+            host.perform(request, lambda value, work: perform_readback(host, value, work, interop, launcher, recovery_enabled))
     finally:
         host.close()
 
@@ -265,12 +324,14 @@ def main():
     parser = argparse.ArgumentParser(description="Queue pinned SOLIDWORKS P04 readback on Windows")
     parser.add_argument("--installation", type=Path, required=True)
     commands = parser.add_subparsers(dest="command", required=True)
-    commands.add_parser("listen").add_argument("--interop", type=Path, required=True)
+    listener = commands.add_parser("listen")
+    listener.add_argument("--interop", type=Path, required=True)
+    listener.add_argument("--recover-owned-timeout", action="store_true")
     commands.add_parser("dispatch").add_argument("session", type=Path)
     args = parser.parse_args()
     if args.command == "listen":
         try:
-            listen(configuration(args.installation), args.interop.resolve(strict=True))
+            listen(configuration(args.installation), args.interop.resolve(strict=True), args.recover_owned_timeout)
         except KeyboardInterrupt:
             return 0
     else:

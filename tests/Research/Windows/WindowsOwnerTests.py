@@ -1,0 +1,82 @@
+import os as OsLayer
+import subprocess as Subprocess
+import sys as System
+import tempfile as TempFiles
+from pathlib import Path as FilePath
+
+from pytest import mark as TestMark
+
+from tests.Research.SupervisorClient import KRepoRoot
+
+
+# refusal needs a real owned windows handle while leaving the licensed application untouched
+@TestMark.skipif(OsLayer.name != "nt", reason="requires Windows process identity")
+@TestMark.parametrize("FaultName", ("missing", "ticket", "identity"))
+def CheckOwnerGuard(FaultName: str) -> None:
+    with TempFiles.TemporaryDirectory() as TempName:
+        RootPath = FilePath(TempName).resolve()
+        ScriptPath = RootPath / "OwnerProbe.py"
+        _ = ScriptPath.write_text(
+            """import os
+import subprocess
+import sys
+from pathlib import Path
+import win32event
+import win32process
+
+sys.path.insert(0, sys.argv[1])
+from ApplicationProtocol import record, write_record
+from SolidWorksReadbackWorker import BUILD, native_identity, record_timeout
+
+root = Path(__file__).parent
+output = root / 'readback'
+output.mkdir()
+exe = str(Path(os.environ['SystemRoot']) / 'System32/WindowsPowerShell/v1.0/powershell.exe')
+startup = win32process.STARTUPINFO()
+def arguments(script):
+    return [exe, '-NoProfile', '-NonInteractive', '-Command', script]
+
+handle, thread, _, _ = win32process.CreateProcess(
+    exe, subprocess.list2cmdline(arguments('Start-Sleep -Seconds 30')),
+    None, None, False, subprocess.CREATE_NO_WINDOW, None, str(root), startup,
+)
+thread.Close()
+try:
+    request = {'version': 1, 'request_sha256': 'a' * 64, 'source_revision': 'b' * 40}
+    launch = {**request, **native_identity(handle)}
+    fault = sys.argv[2]
+    if fault == 'identity':
+        launch['created'] = 'windows:1'
+    if fault != 'missing':
+        ticket = {**launch, 'build': BUILD, 'initial_documents': 0}
+        if fault == 'ticket':
+            ticket['request_sha256'] = 'c' * 64
+        write_record(output / 'native-owner.json', ticket)
+    with subprocess.Popen(arguments('exit 0'), creationflags=subprocess.CREATE_NO_WINDOW) as collector:
+        assert collector.wait(timeout=10) == 0
+        record_timeout(root, request, collector, handle, launch, True)
+    result = record(root / 'native-recovery.json')
+    expected = {'missing': 'FileNotFoundError', 'ticket': 'did not ticket', 'identity': 'identity changed'}
+    assert result['status'] == 'quarantined' and expected[fault] in result['reason'], result
+    assert win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_TIMEOUT
+finally:
+    if win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_TIMEOUT:
+        win32process.TerminateProcess(handle, 1)
+        assert win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0
+    handle.Close()
+""",
+            encoding="utf-8",
+        )
+        Result = Subprocess.run(
+            [
+                System.executable,
+                str(ScriptPath),
+                str(KRepoRoot / "re/automation/ApplicationWorkers"),
+                FaultName,
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+            timeout=45,
+        )
+        assert Result.returncode == 0, Result.stdout + Result.stderr
