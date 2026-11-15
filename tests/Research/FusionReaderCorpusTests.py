@@ -5,6 +5,8 @@ from pathlib import Path as FilePath
 
 from tests.Research.FusionChecks import ReportCensus, VerifyChunk
 from tests.Research.FusionClient import FusionAssets, KControlAsset, ReadChunk
+from tests.Research.CollectFusion import CollectFusion
+from tests.Research.FusionOutcomes import CheckOutcomes
 
 
 def CheckFusionSet() -> None:
@@ -21,6 +23,8 @@ def CheckFusionSet() -> None:
         for TargetPath, ResultInfo in Results:
             assert ResultInfo.returncode in (0, 3), ResultInfo.stderr
             Entries += VerifyChunk(TargetPath, AssetMap)
+        CensusPath = CollectFusion(TargetList, FilePath(TempPath))
+        CheckOutcomes(CensusPath, FilePath(TempPath))
     assert sorted(Entry["path"] for Entry in Entries) == PathList
     Control = next(Entry for Entry in Entries if Entry["path"] == KControlAsset)
     assert Control["outcome"] == "decoded"
