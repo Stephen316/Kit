@@ -31,7 +31,7 @@ def CheckParking(Application: str) -> None:
                     "absent",
                     "fixture.app",
                     lease_seconds=30,
-                    resources={"application:missing": 1},
+                    resources=["application:missing"],
                     options={"phase": "a"},
                 ),
                 FixtureJob("dependent", "fixture.decode", depends_on=["absent"]),

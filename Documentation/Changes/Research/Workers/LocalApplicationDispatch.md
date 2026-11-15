@@ -129,9 +129,12 @@ The protocol fixture identifies itself as `fixture.transport`, emits
 application behavior. Windows exercises the absent/unsupported-host cases only.
 
 Local execution was limited to AST, steering, Mypy, Pyright, formatting and
-whitespace checks. Remote process execution and licensed native-host execution
-remain pending. No captured native pair is qualified by this implementation.
+whitespace checks. The first [Windows run at `6fb599a9`](https://github.com/TryUniCAD/Kit/actions/runs/43672428040/job/132685202260) passed eleven existing supervisor/output cases and rejected both new parking fixtures before dispatch because their job resource requirement used a map.
+The fixture repair uses the existing label-array job contract and keeps capacity in the supervisor resource map.
+Current-head process execution and licensed native-host execution remain pending. No captured native pair is qualified by this implementation.
 
 See [the main-thread availability gotcha](../../../Gotchas/Research/Workers/FusionMainThreadAvailability.md).
 See [the pre-acceptance durability gotcha](../../../Gotchas/Research/Workers/CopyIsNotAcceptance.md)
 for the retained-spool recovery boundary.
+
+See the [resource requirement shape gotcha](../../../Gotchas/Research/Workers/ResourceRequirementsAreLabels.md).
