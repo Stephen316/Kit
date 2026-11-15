@@ -355,7 +355,7 @@ def read_operation_node(cursor, class_name, flags, expected_profile, file_refere
 
 
 # the boss selects the rectangle profile and the file allocated by its contour
-def read_boss_entry(cursor, rectangle, file_reference):
+def read_boss_entry(cursor, rectangle, file_reference, *, directions=(0,)):
     from BossPrefix import read_boss_prefix
 
     boss = read_operation_node(
@@ -365,7 +365,7 @@ def read_boss_entry(cursor, rectangle, file_reference):
         rectangle,
         file_reference["object_index"],
     )
-    return read_boss_prefix(cursor, boss)
+    return read_boss_prefix(cursor, boss, directions=directions)
 
 
 # folder suffixes are confined to the ordinary bodies at the start of these captures

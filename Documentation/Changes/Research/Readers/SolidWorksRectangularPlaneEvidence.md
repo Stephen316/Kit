@@ -25,4 +25,18 @@ Add `--through-profile` to read each rectangle's contour surface, saved file ref
 
 All six P01 streams finish at the exact end of the resolved list with next map index 250. All eight P03 streams reach a schema-1 extrusion definition at map index 257. The licensed baseline and YZ controls independently confirm those boundaries and counters. P01 ends at 11,899 bytes in baseline A and 11,971 in YZ. The P03 extrusion starts at 11,996 in baseline A and 12,066 in YZ.
 
-Production integration, P03 boss replay after the sketch, and editable conversion remain open.
+## P03 boss operation
+
+Add `--through-operation` to follow each P03 rectangle into its typed extrusion, its depth display and the exact resolved list footer. The report SHA-256 is `d68af657f774b8dd3ec5252bc9df1cce04a1772e89e224959e7543bd447a9b0b`. The six P01 captures retain their complete profile replay. The prior command modes retain their recorded report digests.
+
+Each P03 `moExtrusion_c` selects the reached profile object 176, which owns the resolved sketch at slot 178. The read continues through the transferred atom, both body chooser caps and their typed aliases, the end specification and the named `depth_mm` parameter. The saved length stays positive. The end-spec direction field distinguishes the reverse control, and the saved principal frame supplies the world extrusion axis. The signed displacement, predicted centroid and volume agree with the independent native measurements in all eight captures. The depth edit reads 12 mm. [Native direction fields](SolidWorksBlindBossDirection.md)
+
+An offline replay comparison reproduced all 121 licensed pointer events in the extrusion in both baseline A and YZ, including token, stream offset and archive counter. The command checks those exact streams, the independent witness digests, selected nested record offsets and terminal map index 306. All eight captures consume the four-byte resolved list footer and reach exact end of stream.
+
+| Capture | Displacement in world mm | Boss entry | End-spec entry | Resolved extent |
+| --- | --- | ---: | ---: | ---: |
+| Baseline A | `(0, 0, 10)` | 11,996 | 13,052 | 15,037 |
+| YZ | `(10, 0, 0)` | 12,066 | 13,122 | 15,107 |
+| Reverse | `(0, 0, −10)` | 11,994 | 13,050 | 15,035 |
+
+Production integration and editable conversion remain open.

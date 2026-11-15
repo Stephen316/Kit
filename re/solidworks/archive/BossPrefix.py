@@ -12,12 +12,13 @@ from SupportPlane import read_feature_base, read_partition_tail
 
 
 # the optional direction and keep piece objects must be absent on the supported branch
-def read_end_prefix(cursor, pointer_kind):
+def read_end_prefix(cursor, pointer_kind, directions=(0,)):
     offset = cursor.position
     spec = cursor.pointer(pointer_kind, "moEndSpec_c")
     cursor.null()
     single_end, flip, direction = cursor.read("<3i")
-    Require((single_end, flip, direction), (1, 0, 0), "witnessed extrusion direction")
+    Require((single_end, flip), (1, 0), "witnessed single extrusion direction")
+    Require(direction in directions, True, "witnessed extrusion direction")
     cursor.null()
     conditions = cursor.read("<2i")
     return {
@@ -31,8 +32,8 @@ def read_end_prefix(cursor, pointer_kind):
 
 
 # the blind boss retains the existing depth display class before its own continuation
-def read_blind_end_prefix(cursor):
-    spec = read_end_prefix(cursor, KDefinitionKind)
+def read_blind_end_prefix(cursor, directions):
+    spec = read_end_prefix(cursor, KDefinitionKind, directions)
     Require(spec["conditions"], (0, 0), "witnessed blind end conditions")
     display = ReadTag(cursor.blob, cursor.position)
     Require(display.kind, KClassRefKind, "existing depth dimension class")
@@ -49,7 +50,7 @@ def read_blind_end_prefix(cursor):
 
 
 # the atom references the earlier configuration graph before materializing its own choosers
-def read_boss_prefix(cursor, boss):
+def read_boss_prefix(cursor, boss, *, directions=(0,)):
     read_feature_base(cursor)
     Require(cursor.read("<i3H"), (0, 0, 0, 0), "guarded boss model and atom fields")
     Require(cursor.read("<iH"), (1, 1), "one saved transfer object")
@@ -64,7 +65,7 @@ def read_boss_prefix(cursor, boss):
     read_partition_tail(cursor)
     atom_end = cursor.position
     read_body_feature_tail(cursor)
-    specification = read_blind_end_prefix(cursor)
+    specification = read_blind_end_prefix(cursor, directions)
     return {
         **boss,
         "transfer_object": transferred,

@@ -52,9 +52,7 @@ def read_resolved_display(cursor, build, sketch_object):
 
 
 # transfer the same map through the inline sketch and back to its containing feature
-def read_resolved_rectangle(
-    blob, config_map, build, has_atom, *, through_profile=False
-):
+def read_rectangle_entry(blob, config_map, build, has_atom):
     cursor, prelude = read_resolved_prelude(blob, config_map, 19 if has_atom else 18)
     start = cursor.position
     profile = cursor.pointer(KDefinitionKind, "moProfileFeature_c")
@@ -99,8 +97,16 @@ def read_resolved_rectangle(
         "end": cursor.position,
         "next_map_index": cursor.next_index,
     }
+    return cursor, rectangle
+
+
+# the standalone profile modes preserve their established report boundaries
+def read_resolved_rectangle(
+    blob, config_map, build, has_atom, *, through_profile=False
+):
+    cursor, rectangle = read_rectangle_entry(blob, config_map, build, has_atom)
     if through_profile:
-        close_rectangle(cursor, rectangle, count)
+        close_rectangle(cursor, rectangle, int(has_atom))
     return rectangle
 
 

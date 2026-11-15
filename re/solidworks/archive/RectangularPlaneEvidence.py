@@ -80,7 +80,7 @@ def check_rectangle(rectangle, native, tolerance):
 
 
 # committed source and measurement hashes bind each comparison to the same physical part
-def build_report(root, through_profile=False):
+def build_report(root, through_profile=False, through_operation=False):
     from PairedCaptureIntake import (
         CAPTURES as CAPTURE_PATH,
         SPECIFICATIONS,
@@ -91,7 +91,16 @@ def build_report(root, through_profile=False):
         sha256,
     )
     from RectangularConfig import KApplicationBuild, read_rectangle_configuration
-    from RectangularResolved import read_resolved_rectangle
+    from P03BossEvidence import (
+        check_boss_operation,
+        check_boss_witness,
+        read_rectangle_boss,
+    )
+    from RectangularResolved import (
+        close_rectangle,
+        read_rectangle_entry,
+        read_resolved_rectangle,
+    )
     from SketchRoot import KGeneration, Require
     from convert.adapters.solidworks.container.Archive import ContainerMo
     from convert.adapters.solidworks.container.Container import SldprtArchive
@@ -157,26 +166,43 @@ def build_report(root, through_profile=False):
                 config, KApplicationBuild
             )
             config_index = entry.NextIndex
-            rectangle = read_resolved_rectangle(
-                resolved,
-                entry,
-                KApplicationBuild,
-                configuration["atom_count"],
-                through_profile=through_profile,
-            )
+            read_boss = through_operation and recipe == "P03"
+            if read_boss:
+                cursor, rectangle = read_rectangle_entry(
+                    resolved, entry, KApplicationBuild, configuration["atom_count"]
+                )
+                close_rectangle(cursor, rectangle, configuration["atom_count"])
+            else:
+                rectangle = read_resolved_rectangle(
+                    resolved,
+                    entry,
+                    KApplicationBuild,
+                    configuration["atom_count"],
+                    through_profile=through_profile or through_operation,
+                )
             world_lines = check_rectangle(rectangle, readbacks[name], tolerance)
-            cases.append(
-                {
-                    "file": name,
-                    "native_sha256": asset["sha256"],
-                    "config_sha256": sha256(config),
-                    "resolved_sha256": sha256(resolved),
-                    "config_next_map_index": config_index,
-                    "config": configuration,
-                    "rectangle": rectangle,
-                    "perimeter_world_mm": world_lines,
-                }
-            )
+            case = {
+                "file": name,
+                "native_sha256": asset["sha256"],
+                "config_sha256": sha256(config),
+                "resolved_sha256": sha256(resolved),
+                "config_next_map_index": config_index,
+                "config": configuration,
+                "rectangle": rectangle,
+                "perimeter_world_mm": world_lines,
+            }
+            if read_boss:
+                boss = read_rectangle_boss(cursor, rectangle)
+                boss["measured_operation_check"] = check_boss_operation(
+                    boss,
+                    rectangle,
+                    world_lines,
+                    readbacks[name],
+                    specifications["comparison_tolerances"],
+                )
+                check_boss_witness(case, boss)
+                case["boss"] = boss
+            cases.append(case)
         report["families"].append(
             {
                 "recipe": recipe,
@@ -194,11 +220,16 @@ if __name__ == "__main__":
         action="store_true",
         help="close the rectangle and check the next list boundary",
     )
+    parser.add_argument(
+        "--through-operation",
+        action="store_true",
+        help="replay the P03 boss through the resolved stream footer",
+    )
     arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
     sys.path[:0] = [str(root / "src"), str(root / "re" / "automation")]
     output = json.dumps(
-        build_report(root, arguments.through_profile),
+        build_report(root, arguments.through_profile, arguments.through_operation),
         indent=2,
         sort_keys=True,
         allow_nan=False,
