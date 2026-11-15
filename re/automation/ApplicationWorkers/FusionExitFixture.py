@@ -99,6 +99,8 @@ def wait_marker(root, name, process, failure):
             if terminated or time.monotonic() >= deadline:
                 break
         time.sleep(0.02)
+    if process.poll() is None:
+        raise AssertionError(f"{failure} (process remained live at the deadline)")
     try:
         stdout, stderr = process.communicate(timeout=0.1)
     except subprocess.TimeoutExpired as error:
