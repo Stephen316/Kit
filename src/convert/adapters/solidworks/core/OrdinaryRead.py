@@ -3,6 +3,7 @@ from struct import error as StructError
 
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
 from convert.adapters.solidworks.container.Archive import ArchiveError
+from convert.adapters.solidworks.core.BossProjection import AttachRectBoss
 from convert.adapters.solidworks.core.Native import (
     KPlaneSupportKind,
     DecodeNotices,
@@ -100,4 +101,4 @@ def ReadRectSupport(
         Parsed = ReadRectPart(ConfigData, Resolved, Generation)
     except (ArchiveError, StructError):
         return Model
-    return AttachRectPlane(Model, Parsed)
+    return AttachRectBoss(AttachRectPlane(Model, Parsed), Parsed)

@@ -1,0 +1,101 @@
+from typing import TypedDict
+
+from convert.adapters.solidworks.container.Archive import (
+    KClassRefKind,
+    KDefinitionKind,
+    ReadTag,
+)
+from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.resolved.BossDepth import DepthDisplay, ReadBossDepth
+
+
+# the saved end specification determines one signed direction and its termination
+class EndSpec(TypedDict):
+    offset: int
+    object_index: int
+    single_end: int
+    flip: int
+    direction: int
+    conditions: tuple[int, int]
+
+
+# the blind end points to its depth display before the end record continues
+class BlindEnd(EndSpec):
+    depth_dimension_offset: int
+    depth_dimension_class: int
+
+
+# successful closure retains the complete display and exact feature boundary
+class BossClose(TypedDict):
+    depth_display: DepthDisplay
+    from_end_object: int
+    end: int
+
+
+# supported operations may expose only the single-end route with no direction reference
+def ReadEndHead(
+    Cursor: ArchiveCursor, Kind: str, Directions: tuple[int, ...] = (0,)
+) -> EndSpec:
+    Offset = Cursor.Offset
+    _, _, Spec = Cursor.TakePointer(("moEndSpec_c",), Kind, CompactOnly=True)
+    Cursor.ReadNull()
+    Single, Flip, Direction = Cursor.ReadInts("<3i")
+    RequireArch((Single, Flip), (1, 0), "witnessed single extrusion direction")
+    RequireArch(Direction in Directions, True, "witnessed extrusion direction")
+    Cursor.ReadNull()
+    First, Second = Cursor.ReadInts("<2i")
+    return {
+        "offset": Offset,
+        "object_index": Spec,
+        "single_end": Single,
+        "flip": Flip,
+        "direction": Direction,
+        "conditions": (First, Second),
+    }
+
+
+# both termination slots must agree with the blind layout before reading the display
+def ReadBlindEnd(Cursor: ArchiveCursor, Directions: tuple[int, ...]) -> BlindEnd:
+    Spec = ReadEndHead(Cursor, KDefinitionKind, Directions)
+    RequireArch(Spec["conditions"], (0, 0), "witnessed blind end conditions")
+    TagValue = ReadTag(Cursor.BlobValue, Cursor.Offset)
+    RequireArch(
+        (TagValue.kind, Cursor.Classes.get(TagValue.index)),
+        (KClassRefKind, "moDisplayDistanceDim_c"),
+        "typed depth display boundary",
+    )
+    return {
+        **Spec,
+        "depth_dimension_offset": Cursor.Offset,
+        "depth_dimension_class": TagValue.index,
+    }
+
+
+# the start must use its sketch plane after the optional draft and surface fields
+def ReadEndTail(Cursor: ArchiveCursor, Kind: str, State: int) -> int:
+    Cursor.ReadNull()
+    RequireArch(
+        Cursor.ReadValue("<BHBHd6i"),
+        (1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+        "guarded empty end surface and draft fields",
+    )
+    Cursor.ReadNull()
+    Cursor.ReadNull()
+    RequireArch(
+        Cursor.ReadInts("<4i2H3i"),
+        (0,) * 6 + (State, 0, 0),
+        "guarded end feature fields",
+    )
+    _, _, Origin = Cursor.TakePointer(("moFromEndSpec_c",), Kind, CompactOnly=True)
+    RequireArch(Cursor.ReadInts("<i"), (0,), "extrusion starts from its sketch plane")
+    _ = Cursor.ReadInts("<5i")
+    return Origin
+
+
+# the modeled depth and the from-end record must both finish before the feature returns
+def ReadBossClose(Cursor: ArchiveCursor) -> BossClose:
+    Depth = ReadBossDepth(Cursor)
+    Origin = ReadEndTail(Cursor, KDefinitionKind, 0)
+    RequireArch(Cursor.ReadValue("<di"), (0, -1), "guarded extrusion return state")
+    return {"depth_display": Depth, "from_end_object": Origin, "end": Cursor.Offset}

@@ -26,6 +26,7 @@ class SketchArchive(ArchiveCursor):
         self.PointerEvents = Parent.PointerEvents
         self.NodeNames: dict[int, str] = {}
         self.Scalars: dict[int, tuple[str, float]] = {}
+        self.ScalarOffsets: dict[int, int] = {}
         self.Dimensions: list[KDistanceRow] = []
         self.Handles: dict[int, KEntityHandle] = {}
         self.SketchReferences: dict[int, SketchReference] = {}

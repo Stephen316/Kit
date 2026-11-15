@@ -3355,7 +3355,7 @@ def Timeline(
                 operation=OperationValue,
                 definition=BuildFeature(Feature, Operation, SketchById, PlaneById),
                 selection_ids=Selected,
-                provenance=FeatureA(Feature),
+                provenance=OperationProvenance(Feature, Operation),
                 attributes=FrozenMapping(Attributes),
             )
         )
@@ -3824,6 +3824,20 @@ def ProfileExtrema(Profile: NativeProfile) -> tuple[tuple[float, float], ...]:
             (FirstCoord, SecondCoord + Radius),
         )
     return ()
+
+
+# authored operation fields retain the exact native spans where their type was proven
+def OperationProvenance(
+    Feature: NativeFeature, Operation: NativeOperation | None
+) -> Provenance:
+    Base = FeatureA(Feature)
+    if Operation is None or not Operation.archive_spans:
+        return Base
+    Spans = tuple(
+        ProvenanceSpan(Operation.native_stream, Offset, Length, Kind)
+        for Offset, Length, Kind in Operation.archive_spans
+    )
+    return Replace(Base, spans=Base.spans + Spans)
 
 
 # this definition exists because focused behavior needs one stable owner

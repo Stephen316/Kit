@@ -72,9 +72,14 @@ def ReadLengthMut(Cursor: SketchArchive, ObjectIndex: int) -> None:
     _ = Cursor.ReadInts("<4i")
     _ = Cursor.ReadText()
     _ = Cursor.ReadObject(None)
+    Offset = Cursor.Offset
     (Value,) = Cursor.ReadPoint(1)
     RequireArch(Cursor.ReadInts("<B"), (0,), "absent native length override")
-    Cursor.Scalars[ObjectIndex] = Cursor.NodeNames[NameIndex], Value
+    NameValue = Cursor.NodeNames.get(NameIndex)
+    if NameValue is None:
+        raise ArchiveError("unbound local length parameter name")
+    Cursor.Scalars[ObjectIndex] = NameValue, Value
+    Cursor.ScalarOffsets[ObjectIndex] = Offset
 
 
 # unsupported object classes must be rejected before their body can move the cursor

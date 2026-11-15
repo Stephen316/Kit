@@ -2,8 +2,8 @@
 
 from math import dist, isclose
 
-from BossPrefix import read_boss_close
-from ResolvedEntry import read_boss_entry
+from convert.adapters.solidworks.resolved.BossEntry import ReadRectangleBoss
+from DepthDisplay import display_report
 from SketchRoot import Require
 
 # licensed map checkpoints are bound to the two exact resolved streams they observed
@@ -24,15 +24,13 @@ CONTROLS = {
 # the last resolved record must consume the exact stream after its own footer
 def read_rectangle_boss(cursor, rectangle):
     file_reference = rectangle["trim"]["trim_surface"]["file_reference"]
-    boss = read_boss_entry(cursor, rectangle, file_reference, directions=(0, 1))
-    boss.update(read_boss_close(cursor))
-    Require(cursor.read("<i"), (0,), "resolved boss list footer")
-    Require(cursor.position, len(cursor.blob), "complete boss resolved stream")
+    (transfer,) = (index for index, name in cursor.objects.items() if name == "moAtom_c")
+    boss = ReadRectangleBoss(cursor, rectangle["profile_object"], file_reference["object_index"], transfer)
+    del boss["profile_ref_offset"]
     return {
         **boss,
+        "depth_display": display_report(boss["depth_display"]),
         "sketch_object": rectangle["sketch_object"],
-        "stream_end": cursor.position,
-        "next_map_index": cursor.next_index,
     }
 
 

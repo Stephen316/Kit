@@ -10,6 +10,11 @@ from convert.adapters.solidworks.container.Archive import (
 )
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart, ReadLocalPose
+from convert.adapters.solidworks.resolved.FaceIdentity import (
+    ReadFaceHead as read_face_header,
+    ReadFaceReturn as read_face_tail,
+    ReadSurfaceId,
+)
 from SketchRoot import KGeneration, Require
 
 
@@ -67,56 +72,9 @@ class FaceCursor(ArchiveCursor):
 
     null = ArchiveCursor.ReadNull
 
-# a surface identifier is usable only when its typed feature reference resolves ownership
+# report calls retain their historical keyword arguments
 def read_surface_id(cursor, kind, cap=False, pointer_kind=KClassRefKind):
-    offset = cursor.position
-    index = cursor.pointer(pointer_kind, kind)
-    cursor.null()
-    feature_ref = cursor.pointer(KClassRefKind, "moFR_c")
-    file_ref = cursor.pointer(KObjectRefKind, "moExtObject_c")
-    feature_id, time_word = cursor.read("<iI")
-    (occurrence,) = cursor.read("<i")
-    if cap:
-        Require(occurrence in (0, 1), True, "recognized end face occurrence")
-        Require(cursor.read("<i"), (0,), "supported extra end face selector")
-    return {
-        "offset": offset,
-        "end": cursor.position,
-        "class": kind,
-        "object_index": index,
-        "feature_ref_object": feature_ref,
-        "file_ref_object": file_ref,
-        "feature_id": feature_id,
-        "time_word": time_word,
-        "occurrence": occurrence,
-    }
-
-
-# body chooser and component faces share the same checked entity envelope
-def read_face_header(cursor, pointer_kind, expected_flags):
-    offset = cursor.position
-    index = cursor.pointer(pointer_kind, "moFaceRef_c")
-    body = cursor.position
-    first, second, count = cursor.read("<3I")
-    Require((first, second, count), (1, 0, 6), "witnessed face kind and entity count")
-    flags, classifier = cursor.read("<iI")
-    Require(flags, expected_flags, "witnessed face reference flags")
-    cursor.vector(2)
-    cursor.null()  # moVertexRef_c
-    return {
-        "offset": offset,
-        "body": body,
-        "object_index": index,
-        "classifier": classifier,
-    }, count - 2
-
-
-# the trailing endpoint remains typed even when its optional reference is empty
-def read_face_tail(cursor):
-    cursor.null()  # final empty entity identity
-    Require(
-        cursor.read("<5I"), (0, 0, KGeneration, 0, 0), "modern face reference trailer"
-    )
+    return ReadSurfaceId(cursor, kind, pointer_kind, Cap=cap)
 
 
 # the bounded local face branch preserves its primary cap and ordered sketch edge identities

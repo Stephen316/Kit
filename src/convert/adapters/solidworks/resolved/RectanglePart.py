@@ -3,10 +3,15 @@ from dataclasses import dataclass as Dataclass
 from convert.adapters.solidworks.config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.container.Archive import ArchiveError
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.PlaneBasis import (
     KSavedBasis,
     KUnitRows,
     MatrixAxes,
+)
+from convert.adapters.solidworks.resolved.BossEntry import (
+    RectangleBoss,
+    ReadRectangleBoss,
 )
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
 from convert.adapters.solidworks.resolved.ContourTrim import ReadRectEnd, ReadRectTrim
@@ -33,6 +38,7 @@ class RectanglePart:
     Reference: PrincipalRef
     Directions: KSavedBasis
     Origin: OriginProfile
+    Boss: RectangleBoss | None
 
 
 # the datum identity and frame must both agree with the archived sketch attachment
@@ -59,6 +65,16 @@ def ResolveDatum(
     raise ArchiveError("sketch support does not resolve an earlier principal plane")
 
 
+# sketch qualification survives a later extrusion outside the supported operation layout
+def TryRectBoss(
+    Cursor: ArchiveCursor, ProfileObject: int, FileObject: int, TransferObject: int
+) -> RectangleBoss | None:
+    try:
+        return ReadRectangleBoss(Cursor, ProfileObject, FileObject, TransferObject)
+    except ArchiveError:
+        return None
+
+
 # a typed rectangle must own the contour and reach the surrounding feature boundary
 def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> RectanglePart:
     ConfigMap, MapWalk = ReadOrdinaryMap(ConfigData, Generation)
@@ -80,11 +96,21 @@ def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> Rectang
     _ = ReadChainState(Cursor, HasAtom, EdgeIds)
     Reference = ReadProfileRef(Cursor, Generation)
     Datum, Directions = ResolveDatum(Reference, System.Planes)
-    _ = ReadRectTrim(
+    Trim = ReadRectTrim(
         Cursor,
         {"profile_object": Profile.ObjectIndex, "native_feature_id": Profile.FeatureId},
         EdgeIds,
         int(HasAtom),
     )
     _ = ReadRectEnd(Cursor, HasAtom)
-    return RectanglePart(Profile, Datum, Reference, Directions, Origin)
+    Boss = None
+    if HasAtom:
+        TryAtoms = tuple(
+            Index
+            for Index, ClassName in ConfigMap.Objects.items()
+            if ClassName == "moAtom_c"
+        )
+        if len(TryAtoms) == 1:
+            FileObject = Trim["trim_surface"]["file_reference"]["object_index"]
+            Boss = TryRectBoss(Cursor, Profile.ObjectIndex, FileObject, TryAtoms[0])
+    return RectanglePart(Profile, Datum, Reference, Directions, Origin, Boss)

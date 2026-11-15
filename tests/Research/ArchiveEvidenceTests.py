@@ -2,6 +2,7 @@ import hashlib as Hashlib
 import subprocess as Subprocess
 import sys as System
 from pathlib import Path as FilePath
+from struct import unpack_from as UnpackFrom
 
 import pytest as Pytest
 
@@ -153,6 +154,65 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
         SupportSpan.offset : SupportSpan.offset + SupportSpan.length
     ]
     assert int.from_bytes(Stored, "little", signed=True) == DatumId
+
+
+# native depth and signed direction must survive display-unit changes and the public projection
+@Pytest.mark.parametrize(
+    "Variant",
+    (
+        "baseline-a",
+        "baseline-b",
+        "direction-negative",
+        "edit-depth_mm-12",
+        "edit-height_mm-23",
+        "edit-width_mm-41",
+        "plane-yz",
+        "units-inch",
+    ),
+)
+def CheckSwBoss(Variant: str) -> None:
+    NativePath = (
+        FilePath(__file__).resolve().parents[2]
+        / "re/automation/PairedCaptures/P03/solidworks-db1390476325"
+        / f"P03-solidworks-{Variant}.SLDPRT"
+    )
+    Document = OpenDocument(NativePath)
+    (Boss,) = tuple(
+        Item for Item in Document.feature_timeline if Item.name == "BlindBoss"
+    )
+    Definition = Boss.definition
+    assert isinstance(Definition, ExtrudeFeature)
+    Depth = 12 if Variant == "edit-depth_mm-12" else 10
+    assert Definition.length is not None
+    assert (Definition.length.value, Definition.length.unit) == (Depth, "mm")
+    assert Definition.end_condition == ExtrudeEnd.BLIND
+    assert Definition.reversed == (Variant == "direction-negative")
+    (SketchValue,) = tuple(
+        Item for Item in Document.sketches if Item.id == Boss.sketch_id
+    )
+    assert SketchValue.name == "RectangleSketch"
+    assert Boss.provenance is not None
+    Spans = {Span.record_kind: Span for Span in Boss.provenance.spans}
+    assert Spans["operation-profile-reference"].length == 2
+    assert Spans["extrusion-end-spec"].length > 20
+    Scalar = Spans["extrusion-depth-scalar"]
+    assert Scalar.stream == "Contents/Config-0-ResolvedFeatures" and Scalar.length == 8
+    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
+    assert UnpackFrom("<d", Archive.require(Scalar.stream), Scalar.offset) == (
+        Depth / 1000,
+    )
+    (Parameter,) = tuple(
+        Item for Item in Document.parameters if Item.id in Boss.parameter_ids
+    )
+    assert (Parameter.name, Parameter.value.value, Parameter.value.unit) == (
+        "depth_mm",
+        Depth,
+        "mm",
+    )
+    assert Parameter.provenance is not None
+    assert [(Span.offset, Span.length) for Span in Parameter.provenance.spans] == [
+        (Scalar.offset, 8)
+    ]
 
 
 # the feature selected profile must carry the exact proxy and authored perimeter across the registry

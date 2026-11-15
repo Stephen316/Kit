@@ -1178,6 +1178,7 @@ class NativeOperation(NativeOpFrame):
     angle_copies: tuple[NativeDepthCopy, ...] = ()
     instance_count: int | None = None
     spacing_mm: float | None = None
+    archive_spans: tuple[tuple[int, int, str], ...] = ()
 
 
 # this definition exists because focused behavior needs one stable owner

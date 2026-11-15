@@ -11,7 +11,6 @@ if __name__ == "__main__":
 
 from FaceEvidence import WINDOWS
 from ResolvedPrelude import (
-    read_named_concept,
     read_profile_body_prefix,
     read_resolved_prelude,
 )
@@ -76,33 +75,13 @@ def read_profile_link(cursor, pointer_kind):
 
 # an extrusion node must select the profile already allocated by this walk
 def read_operation_node(cursor, class_name, flags, expected_profile, file_reference):
-    from convert.adapters.solidworks.container.Archive import (
-        KClassRefKind,
-        KDefinitionKind,
-        KObjectRefKind,
-    )
-    from SketchRoot import Require
+    from convert.adapters.solidworks.resolved.BossEntry import ReadOpNode
 
-    start = cursor.position
-    index = cursor.pointer(KDefinitionKind, class_name)
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = read_named_concept(cursor, flags)
-    Require(cursor.read("<H"), (1,), "one resolved operation profile")
-    profile = cursor.pointer(KObjectRefKind, "moProfileFeature_c")
-    Require(
-        profile,
-        expected_profile["profile_object"],
-        "operation owns the reached profile",
+    result = ReadOpNode(
+        cursor, class_name, flags, expected_profile["profile_object"], file_reference
     )
-    Require(cursor.read("<i"), (0,), "guarded operation node trailer")
-    return {
-        "offset": start,
-        "object_index": index,
-        "name": name,
-        "native_feature_id": feature_id,
-        "profile_object": profile,
-        "file_ref_object": file_reference,
-    }
+    del result["profile_ref_offset"]
+    return result
 
 
 # the boss selects the rectangle profile and the file allocated by its contour
