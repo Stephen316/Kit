@@ -23,12 +23,12 @@ The eleven input blobs and the matching PE identities are pinned in the [archive
 2. Follow the present bounding box through its ten double reads at `sldmgu+0x32820`. The matched `sldmgu.dll` SHA-256 is `3b82cfcaa13f099fca4f9741acbb11479dab7a6f20656052d5a750e61c6fee1e`. Consume the subsequent fixed fields and guard the two optional root lists as empty. Inline selector 2 enters the alias manager, whose `moAliasMap_c` invokes `swccu+0x1ad80`. Its empty count is a u16. The enclosing loader checks the two dword sentinels at `sldmodu+0x388540`.
 3. Read the witnessed zero dynamic-array flag. Follow the fixed scalars and guarded empty fields, including shrink-wrap, defeature, the inline `suObList` and display-note dictionary. The animation-key sequence at `sldmodu+0x10edf6f` reads a dword count and two dwords per key. The next archive action reads a typed `moMBD3DPDFPublishCacheData_c` pointer at `0x10ee108`, which is null in the discovery files.
 4. The part loader's next typed call at `sldmodu+0x10ee861` reads `gcXhatch_c`. Its `sldmfcu+0x114cc2` loading path reads one CString, two doubles and six version-gated dwords. The next part call at `sldmodu+0x10ee905` reads `moMaterial_c`, whose slot 5 at `0x10e2460` reads `moDensityParameter_c` with no additional material scalars in MO 19000.
-5. The density routine at `sldmodu+0x1035bd0` reaches the node's lightweight serializer at `0x10389e0`. Its two name-pointer slots are null in the discovery files. Four node dwords and the framed CString lie between those slots. The density tail reads one double and a zero optional-density byte on the witnessed clear `0x80` branch. The root then reads `uoModelData_c`. Its restore method at `0x1278730` reads an empty count, a null scene pointer and a dword.
+5. The density routine at `sldmodu+0x1035bd0` reaches the node's lightweight serializer at `0x10389e0`. Its two name-pointer slots are null in the discovery files. Four node dwords and the framed CString lie between those slots. The density tail reads one double and a zero optional-density byte on the witnessed clear `0x80` branch. The root then reads `uoModelData_c`. Its restore method at `0x1278730` skips the legacy count at `0x12787b5` for MO generation `0x17d` and later. On the MO 19000 path, it reads a null scene pointer at `0x127881d` and a dword at `0x1278887`.
 
 | P04 capture group | Hatch definition | Material definition | Density definition | Model-data definition | Cursor after model data |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Baseline A | 2,816 | 2,924 | 2,942 | 3,001 | 3,030 |
-| Baseline B, six edits and inch display | 2,854 | 2,962 | 2,980 | 3,039 | 3,068 |
-| YZ and through-all | 2,814 | 2,922 | 2,940 | 2,999 | 3,028 |
+| Baseline A | 2,816 | 2,924 | 2,942 | 3,001 | 3,026 |
+| Baseline B, six edits and inch display | 2,854 | 2,962 | 2,980 | 3,039 | 3,064 |
+| YZ and through-all | 2,814 | 2,922 | 2,940 | 2,999 | 3,024 |
 
 All eleven reach 34 typed archive rows. The hatch, material, density and model-data class/object pairs are 49/50, 51/52, 53/54 and 55/56. The next part call is the inline body-visualization loader at `sldmodu+0x10eea6f`. Continue the typed root fields from that point before entering the later atom and sketch records.
