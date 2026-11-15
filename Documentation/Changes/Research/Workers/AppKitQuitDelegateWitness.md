@@ -8,4 +8,4 @@ The private scratch directory retains the sealed attempt, delegate decision, any
 
 The intended Fusion integration still needs an approved signed-in witness for the exact installed app and its delegate. Until then the owner performs normal Fusion quit through the application and the existing observer records the exact exit.
 
-Hosted fixture execution is pending. No application, startup or controller source changes are required for this witness.
+At PR head `786736c55`, all three disposable delegate cases passed on hosted macOS. The same job reported separate failures in the Python exit observer fixture and the AppKit replacement launch. [Hosted macOS process checks](https://github.com/TryUniCAD/Kit/actions/runs/43770822331/job/132986201023)
