@@ -15,6 +15,7 @@ A save of such a file does not raise an error.
 | Fusion log lines on read-only access for these files  | None                                |
 | `saveAs` on a read-only authored design, 240 seconds  | Returned `True`, and no new file    |
 | `saveAs` on a read-only authored drawing, 900 seconds | Returned `True`, and no new file    |
+| `saveAs` on a freshly imported design, 300 seconds    | Returned `True`, and no new file    |
 
 Deleting old Kit acceptance documents did not make new uploads editable.
 
@@ -28,6 +29,11 @@ The server refused one deletion with `GEN_RELATED_OBJECTS`, because the file had
 
 The same stall holds for a file that Kit authored and uploaded, so it is a property of the read-only
 upload and not of the file contents.
+
+Importing the same F3D into a new document with `importManager.importToNewDocument` does not help.
+The imported document reports the authored parameter and the exact body volume, and its `saveAs`
+still returns `True` and produces no file in 300 seconds. The limit is on the account, not on how the
+document arrived.
 An authored design still opens and still accepts a parameter edit, so an unattended run can verify
 open and edit on a read-only upload and cannot verify a save.
 

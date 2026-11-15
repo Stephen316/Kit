@@ -3,6 +3,7 @@ from collections.abc import Callable
 from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
 from convert.formats.Fusion.DrawingCodec.Manifest.ReadAsset import ReadAsset
 from convert.formats.Fusion.DrawingCodec.Manifest.ReadRoot import ReadRoot
+from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile
 from convert.formats.Fusion.DrawingCodec.Model.CheckDatabase import CheckDatabase
 from convert.formats.Fusion.DrawingCodec.Model.CheckJoins import CheckJoins
 from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
@@ -103,7 +104,10 @@ def TakeDatabaseMut(Active: dict[str, bytes]) -> DrawingDatabase | None:
         raise ValueError("Fusion drawings carry at most one embedded database")
     if not Names:
         return None
-    return DrawingDatabase(Names[0].removeprefix(KDatabaseFolder), Active.pop(Names[0]))
+    return DrawingDatabase(
+        Names[0].removeprefix(KDatabaseFolder),
+        ReadDwgFile(Active.pop(Names[0])),
+    )
 
 
 # the settings operation needs a distinct decoding boundary so drawing members retain their sheet and model associations

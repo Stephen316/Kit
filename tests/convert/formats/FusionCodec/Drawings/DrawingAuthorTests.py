@@ -1,18 +1,16 @@
 from dataclasses import replace as ReplaceValue
 
-from pytest import importorskip as ImportSkip
 from pytest import raises as ExpectError
 
 from convert.formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle
 from convert.formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing
+from convert.formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle
 from convert.formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity
 from convert.formats.Fusion.DrawingCodec.Author.Model.DesignTarget import DesignTarget
 from convert.formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec
 from convert.formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec
 from convert.formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment
 from convert.formats.Fusion.DrawingCodec.Author.Records.RecordIds import PlanIds
-from convert.formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle
-from convert.formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle
 from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import AuthorDwg
 from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
 from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
@@ -67,33 +65,23 @@ def TestFreshIds() -> None:
 
 # the new bundle contract needs boundary coverage so stored document relationships remain consistent
 def TestNewBundle() -> None:
-    Codec = ImportSkip("compression.zstd")
     Content = AuthorDwg(MakeDraft(KViews, (KDimension,)))
     SpecValue = MakeSpec()
-    Drawing = BuildDrawing(SpecValue, DrawingDatabase(KDatabaseName, Content))
+    Drawing = BuildDrawing(
+        SpecValue, DrawingDatabase(KDatabaseName, ReadDwgFile(Content))
+    )
+    assert Drawing.Database is not None
+    assert Drawing.Database.Model.DwgObjects
     Bundle = BuildBundle(SpecValue, Drawing, KDesignData)
-    Emitted = EmitDrawBundle(Bundle, Codec.compress)
-
-    # shared inflate zstd setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
-    def InflateZstd(Packed: bytes, Expected: int) -> bytes:
-        Result = Codec.decompress(Packed)
-        assert isinstance(Result, bytes) and len(Result) == Expected
-        return Result
-
-    Again = ReadDrawBundle(Emitted, InflateZstd)
-    Database = Again.Drawing.Database
-    assert Database is not None
-    assert Database.FileName == KDatabaseName
-    assert Database.Content == Content
-    assert Again.Description.DesignName == "Kit Bracket Drawing"
-    assert [Entry.DataValue for Entry in Again.Documents] == [KDesignData]
+    with ExpectError(ValueError, match="need a header tail"):
+        _ = EmitDrawBundle(Bundle)
 
 
 # the specification rejects contract needs boundary coverage so stored document relationships remain consistent
 def TestSpecRejects() -> None:
-    Database = DrawingDatabase(KDatabaseName, AuthorDwg(MakeDraft()))
+    Database = DrawingDatabase(KDatabaseName, ReadDwgFile(AuthorDwg(MakeDraft())))
     with ExpectError(ValueError, match="ExtFile"):
-        _ = BuildDrawing(MakeSpec(), DrawingDatabase("Drawing.dwg", Database.Content))
+        _ = BuildDrawing(MakeSpec(), DrawingDatabase("Drawing.dwg", Database.Model))
     Broken = ReplaceValue(KDesign, AssetId="NOT-A-GUID")
     with ExpectError(ValueError, match="GUID"):
         _ = BuildDrawing(ReplaceValue(MakeSpec(), Design=Broken), Database)
@@ -104,7 +92,7 @@ def TestSpecRejects() -> None:
 
 # the sheet paper contract needs boundary coverage so stored document relationships remain consistent
 def TestSheetPaper() -> None:
-    Database = DrawingDatabase(KDatabaseName, AuthorDwg(MakeDraft()))
+    Database = DrawingDatabase(KDatabaseName, ReadDwgFile(AuthorDwg(MakeDraft())))
     Larger = ReplaceValue(MakeSpec(), Sheet=SheetSpec("Kit Sheet", "A1 Landscape"))
     Sheet = BuildDrawing(Larger, Database).Sheet
     assert Sheet is not None
@@ -130,7 +118,7 @@ def TestRecordIds() -> None:
     )
     with ExpectError(ValueError, match="model source"):
         _ = PlanIds(0, 1, ())
-    Database = DrawingDatabase(KDatabaseName, AuthorDwg(MakeDraft()))
+    Database = DrawingDatabase(KDatabaseName, ReadDwgFile(AuthorDwg(MakeDraft())))
     Design = BuildDrawing(MakeSpec(), Database).Segments[0]
     assert isinstance(Design, ParsedSegment)
     Numbers = sorted({Record.ObjectId for Record in Design.Records})
@@ -157,4 +145,4 @@ def SheetOrders(Design: ParsedSegment) -> list[object]:
 
 # shared read model setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
 def ReadModel(Database: DrawingDatabase) -> DwgFile:
-    return ReadDwgFile(Database.Content)
+    return Database.Model

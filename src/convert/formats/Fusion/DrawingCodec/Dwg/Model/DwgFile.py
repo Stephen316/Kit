@@ -31,3 +31,4 @@ class DwgFile:
     AppInfo: DwgAppInfo | None
     SectionVars: tuple[tuple[str, DwgRecord], ...]
     RawSections: tuple[tuple[str, bytes], ...]
+    HeaderBytes: bytes = b""

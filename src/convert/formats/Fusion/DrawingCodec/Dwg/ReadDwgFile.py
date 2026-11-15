@@ -39,6 +39,7 @@ def ReadDwgFile(Content: bytes) -> DwgFile:
         AppInfo=Inventory.AppInfo,
         SectionVars=HeaderFrames + ReadSectionVars(Named, VersionText),
         RawSections=(),
+        HeaderBytes=HeaderData or b"",
     )
     Encoded = EncodeContents(Typed)
     RawSections = tuple(

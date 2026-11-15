@@ -4,9 +4,11 @@ from pytest import raises as ExpectError
 
 from convert.formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment
 from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing
-from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
 from convert.formats.Fusion.DrawingCodec.Model.FusionDrawing import FusionDrawing
 from convert.formats.Fusion.DrawingCodec.Model.PackageSlot import PackageSlot
+from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import AuthorDwg
+from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile
+from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase
 from convert.formats.Fusion.DrawingCodec.Package.DrawingPackage import DrawingPackage
 from convert.formats.Fusion.DrawingCodec.Package.EmitPackage import EmitPackage
 from convert.formats.Fusion.DrawingCodec.Package.EntryLayout import EntryLayout
@@ -16,6 +18,7 @@ from convert.formats.Fusion.DrawingCodec.Members.SheetLayout import SheetLayout
 from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing
 from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
+from tests.convert.formats.FusionCodec.Drawings.DwgAuthorTests import MakeDraft
 from tests.convert.formats.FusionCodec.Drawings.DrawingSource import (
     DrawingSources,
     FrameReplay,
@@ -124,7 +127,8 @@ def TestBadMembers() -> None:
     Longer = ReplaceValue(Drawing, Layout=Drawing.Layout + (Missing,))
     with ExpectError(ValueError, match="absent member"):
         _ = EmitDrawing(Longer, Replay.Compress)
-    Unnamed = DrawingDatabase("Nested/ExtFile.dwg", b"AC1032")
+    Model = ReadDwgFile(AuthorDwg(MakeDraft()))
+    Unnamed = DrawingDatabase("Nested/ExtFile.dwg", Model)
     with ExpectError(ValueError, match="database member"):
         _ = EmitDrawing(ReplaceValue(Drawing, Database=Unnamed), Replay.Compress)
 
@@ -137,15 +141,18 @@ def TestDwgJoin() -> None:
     (Serializer,) = ClassFields(Drawing, KFileClass)
     FileName = Serializer["persistedFileName"]
     assert isinstance(FileName, str) and FileName.startswith("ExtFile.")
-    Joined = DrawingDatabase(FileName, b"AC1032")
+    Model = ReadDwgFile(AuthorDwg(MakeDraft()))
+    Joined = DrawingDatabase(FileName, Model)
     with ExpectError(ValueError, match="omits typed members"):
         _ = EmitDrawing(ReplaceValue(Drawing, Database=Joined), Replay.Compress)
-    Renamed = DrawingDatabase("ExtFile.dwg", b"AC1032")
+    Renamed = DrawingDatabase("ExtFile.dwg", Model)
     with ExpectError(ValueError, match="disagrees with its segment"):
         _ = EmitDrawing(ReplaceValue(Drawing, Database=Renamed), Replay.Compress)
     Package = ReadPackage(DataValue, Replay.Inflate)
     Stray = PackageEntry(
-        "Documentation[Active]/Dwg.BlobParts/ExtFile.dwg", b"AC1032", KMemberLayout
+        "Documentation[Active]/Dwg.BlobParts/ExtFile.dwg",
+        AuthorDwg(MakeDraft()),
+        KMemberLayout,
     )
     Grown = EmitPackage(DrawingPackage(Package.Entries + (Stray,)), Replay.Compress)
     with ExpectError(ValueError, match="disagrees with its segment"):
