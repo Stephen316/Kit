@@ -83,4 +83,17 @@ Two additional owned `34.4.1.1011` sessions bound the support read to the profil
 
 These positions are relative to the full `ResolvedFeatures` stream. At the support read, the native archive has refilled the buffer and its cursor is buffer-relative. Each session matched a unique 64-byte window ending at the support return to the pinned full stream, then verified the 64-byte window at the resulting support start. Both collectors exited and rechecked the original part hashes. The private normalized witness SHA-256 values are `e3be0391bc0f73aa2683ebcedb393369728314ea9ee2bc14d84a39d589597a38` for baseline A and `8e8207076ceaee731d6c9ed79016e32ebe622a67a8788ade87206ca4a91c7e48` for YZ.
 
-The bounded support object contains declarations for `moFaceRefPlnData_c` and `moCompFace_c`. The earlier `moFaceRef_c` declaration lies outside this object's span. The next step is to trace the inner typed reads and match the exact returned face occurrence to the native persistent-reference controls before using it in conversion.
+Follow-up licensed traces resolve the support geometry through live class 320 `moRefPlane_c`. Its nested `moFaceRefPlnData_c` allocation is slot 460, and that object's `moCompFace_c` allocation is slot 462. Both serializer entries match their live map entries and native vtables. At `sldmodu+0xa63e98`, the component reads token `0x8174`, creating an object of the existing `moFaceRef_c` class declared earlier in the stream. At `0xa63e9e` the result matches only live object slot 464 and the `moFaceRef_c` vtable. Both reads advance the map counter from 464 to 475.
+
+| Capture | Face-plane data body | Component-face body | Face-reference token and return |
+| --- | ---: | ---: | ---: |
+| Baseline A | 11,951 | 12,114 | 12,200–12,366 |
+| YZ | 12,015 | 12,250 | 12,336–12,502 |
+
+All four additional sessions opened the pinned part read-only, exited through the owned session and confirmed the source hash. The normalized nested-entry witnesses have SHA-256 `483a9fad8198dc2714b081943f828d41e8da3f09719547e8f6fe2a33d04a6717` and `3b172b14aa63a4f6e418feaff0f1eac14fb66bac198a53ded91a1b24db5d4f25`. The exact component-face pointer witnesses have SHA-256 `a9c3f9f144e65428a69c6e283224ee5dd3f2e9da12035e217519fd377bbde051` and `65e3d015dbb7505ccce2464c3f7b3b007d86a8eb3cd514d6f83cff2e39644da6`, respectively.
+
+## Supporting-face occurrence control
+
+The typed `moFaceRef_c` body begins two bytes after the component-face token. In this observed layout, the primary end-face representation carries a three-dword tuple at body +46. It records the boss feature ID, native archive time and face occurrence. Four ordered boundary surface representations carry further tuples at body +70, +90, +110 and +130. The independent persistent references declare the first boundary type inline, which shifts their later tuple offsets.
+
+All eleven pinned P04 discovery archives matched the primary and four ordered boundary tuples in the independently reopened support face both before and after rebuild. Every opposite cap matched the primary feature and time but had occurrence `0` where the supporting cap had occurrence `1`. The other four boss faces in each observation had a different primary representation type. The sweep covers 22 positive face observations and 110 distinct boss-face controls. Its private normalized summary SHA-256 is `a2d342b1c27cee0edab45494d116c8debf7eeca1f51bc8101da4dfe97be0f203`. The supporting-face fields can now be compared independently in this discovery set. Production still needs the typed structural walk from the resolved profile through its support and face reference. [Licensed persistent references](../../../Documentation/Changes/Research/Workers/SolidWorksCutFaceReadback.md)
