@@ -7,37 +7,31 @@ from convert.formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SelectionProxy import SelectCursor
+from convert.formats.Fusion.Sketches.FaceSupport.AsmSourceSpan import AsmSourceSpan
 from convert.formats.Fusion.Sketches.FaceSupport.FaceClock import ReadFaceClock
+from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecipePick
+from convert.formats.Fusion.Sketches.FaceSupport.RetainFaceHit import RetainFaceHit
 from convert.formats.Fusion.Topology.AsmEdge.AsmBodyClock import ReadBodyClock
 from convert.formats.Fusion.Topology.AsmEdge.AsmHistory import ReadAsmHistory
-from convert.formats.Fusion.Topology.AsmEdge.AsmLocation import AsmLocation
 from convert.formats.Fusion.Topology.AsmEdge.AsmPrism import ReadAsmBody
 from convert.formats.Fusion.Topology.AsmEdge.AsmRevisions import ReadAsmRevision
 from convert.formats.Fusion.Topology.BodyAsmMap import ReadBodyAsmRef
 from interchange.core.Common import FreezeMapping
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Selection import Selection
-from interchange.records.RecordProvenance import ProvenanceSpan
-
-
-# source member spans always address the untouched wire bytes
-def AsmSourceSpan(Member: str, Origin: AsmLocation, RecordKind: str) -> ProvenanceSpan:
-    return ProvenanceSpan(
-        stream=Member,
-        offset=Origin.StartOffset,
-        length=Origin.EndOffset - Origin.StartOffset,
-        record_kind=RecordKind,
-    )
+from interchange.geometry.models.Transform import Transform
 
 
 # a partial sketch support receives a prior body witness only after both actor clocks match
 def BindFaceBody(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],
-    FacePick: Selection,
+    Recipe: FaceRecipePick,
+    Frame: Transform,
     CutStep: FeatureStep,
     LoadBlob: Callable[[str], bytes],
 ) -> Selection:
+    FacePick = Recipe.SelectionValue
     BodyId = FacePick.query.get("native_body_id")
     ComponentId = FacePick.query.get("native_component_id")
     BossId = FacePick.query.get("native_source_id")
@@ -74,7 +68,7 @@ def BindFaceBody(
         AsmSourceSpan(Member, History.Locations[OlderIndex], "body"),
         AsmSourceSpan(Member, History.LatestSite, "delta_state"),
     )
-    return Replace(
+    BoundPick = Replace(
         FacePick,
         provenance=Replace(
             Origin,
@@ -98,3 +92,4 @@ def BindFaceBody(
             }
         ),
     )
+    return RetainFaceHit(BoundPick, Recipe, History, Revision, Frame, Member)

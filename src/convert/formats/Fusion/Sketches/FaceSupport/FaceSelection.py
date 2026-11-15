@@ -7,6 +7,7 @@ from convert.formats.Fusion.SelectionProxy import SelectCursor
 from convert.formats.Fusion.Sketches.FaceSupport.FaceContext import ReadContextEdge
 from convert.formats.Fusion.Sketches.FaceSupport.FaceDescriptor import ReadFaceDesc
 from convert.formats.Fusion.Sketches.FaceSupport.FaceOwner import ReadFaceOwner
+from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecipePick
 from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipes import ReadFaceEdges
 from convert.formats.Fusion.Topology.BodyAnchor import ReadBodyAnchor
 from convert.formats.Fusion.Topology.BodyRecipe import ReadBodyRecipe
@@ -18,7 +19,7 @@ from interchange.geometry.models.Selection import Selection
 # separately selected cut and sketch operands must agree on the historical body and creator
 def MakeFacePick(
     BulkData: bytes, Owners: dict[int, RecordSpan], SketchId: int, Target: Selection
-) -> Selection:
+) -> FaceRecipePick:
     BodyId = Target.query.get("native_body_id")
     SourceId = Target.query.get("native_source_id")
     BodyRecipe = Target.attributes.get("fusion.recipe_object_id")
@@ -68,7 +69,7 @@ def MakeFacePick(
         *FaceValue.ContextIds,
         *RecipeIds,
     )
-    return Selection(
+    SelectionValue = Selection(
         id=f"fusion-historical-face-{SketchId}-{DescriptorId}",
         name=f"Historical face recipe {FaceName}",
         path=(),
@@ -100,3 +101,4 @@ def MakeFacePick(
             }
         ),
     )
+    return FaceRecipePick(SelectionValue, BodyName, FaceName, Perimeter)

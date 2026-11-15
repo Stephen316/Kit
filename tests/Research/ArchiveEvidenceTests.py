@@ -208,8 +208,11 @@ def CheckFaceDatum() -> None:
         for Value in Document.support_planes
         if Value.id == Sketch.support_plane_id
     ]
-    assert Plane.attributes["fusion.native_support_resolved"] is False
+    assert Plane.attributes["fusion.native_support_resolved"] is True
     assert "fusion.native_support_object_id" not in Plane.attributes
+    assert (
+        Plane.attributes["fusion.native_support_kind"] == "historical_face_occurrence"
+    )
 
 
 # both public checks must exercise the same saved cut discovery roster
@@ -284,6 +287,45 @@ def CheckBodyChart(Variant: str, Support: Selection) -> None:
     ] == [(186, 61, "body"), (Start, 61, "body")]
 
 
+# native ring ordinals must report original stored occurrences outside the view namespace
+def CheckFaceChart(Variant: str, Support: Selection) -> None:
+    Expected = {
+        "plane-yz": (
+            194,
+            25319,
+            68,
+            96,
+            (113, 131, 156, 133),
+            (137, 138, 159, 161),
+        ),
+        "termination-through-all": (
+            190,
+            24716,
+            114,
+            142,
+            (167, 180, 173, 158),
+            (160, 181, 174, 162),
+        ),
+    }
+    FaceId, Start, LoopId, PlaneId, Edges, Vertices = Expected.get(
+        Variant, (193, 25150, 67, 95, (112, 130, 155, 132), (136, 137, 158, 160))
+    )
+    Attributes = Support.attributes
+    assert "fusion.history_face_unresolved" not in Attributes, Attributes
+    assert Attributes["fusion.history_face_ordinal"] == FaceId
+    assert Attributes["fusion.history_face_loop_ordinal"] == LoopId
+    assert Attributes["fusion.history_face_surface_ordinal"] == PlaneId
+    assert Attributes["fusion.history_face_edge_ordinals"] == Edges
+    assert Attributes["fusion.history_face_vertex_ordinals"] == Vertices
+    assert Support.provenance is not None
+    assert [
+        (Origin.offset, Origin.length)
+        for Origin in Support.provenance.spans
+        if Origin.stream == Attributes["fusion.history_body_member"]
+        and Origin.record_kind == "face"
+    ] == [(Start, 81)]
+
+
 # the feature must preserve its historical target without adding the extent selector
 @Pytest.mark.parametrize("Variant", KCutVariants)
 def CheckCutTarget(Variant: str) -> None:
@@ -330,9 +372,11 @@ def CheckCutSupport(Variant: str) -> None:
     (Support,) = [
         Value for Value in Document.selections if Value.id == Plane.support_selection_id
     ]
-    assert Plane.attributes["fusion.native_support_resolved"] is False
+    assert Plane.attributes["fusion.native_support_resolved"] is True
     assert "fusion.native_support_object_id" not in Plane.attributes
-    assert Plane.attributes["fusion.native_support_kind"] == "historical_face_recipe"
+    assert (
+        Plane.attributes["fusion.native_support_kind"] == "historical_face_occurrence"
+    )
     assert Support.path == ()
     assert Support.query["kind"] == "historical_face_recipe"
     assert Support.query["role"] == "sketch_support"
@@ -348,6 +392,8 @@ def CheckCutSupport(Variant: str) -> None:
         range(FirstEdge, FirstEdge + 16, 4)
     )
     CheckBodyChart(Variant, Support)
+    CheckFaceChart(Variant, Support)
+    assert "fusion.native_state" not in Document.metadata
 
 
 # dependent dimensions must keep saved argument and dependency orders across the public reading boundary

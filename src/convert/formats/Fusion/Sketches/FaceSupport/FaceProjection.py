@@ -3,6 +3,7 @@ from dataclasses import replace as Replace
 
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Sketches.FaceSupport.FaceAsmSource import BindFaceBody
+from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecipePick
 from convert.formats.Fusion.Sketches.FaceSupport.FaceSelection import MakeFacePick
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
@@ -10,6 +11,7 @@ from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Selection import Selection
 from interchange.geometry.models.SupportPlane import SupportPlane
+from interchange.geometry.models.Transform import Transform
 from interchange.records.RecordDiagnostic import Diagnostic
 
 
@@ -40,13 +42,15 @@ def FaceTargets(
 def AttachFaceBody(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],
-    FacePick: Selection,
+    Recipe: FaceRecipePick,
+    Frame: Transform,
     CutStep: FeatureStep,
     LoadBlob: Callable[[str], bytes],
 ) -> Selection:
     try:
-        return BindFaceBody(BulkData, Owners, FacePick, CutStep, LoadBlob)
+        return BindFaceBody(BulkData, Owners, Recipe, Frame, CutStep, LoadBlob)
     except ValueError as ErrorInfo:
+        FacePick = Recipe.SelectionValue
         return Replace(
             FacePick,
             attributes=FreezeMapping(
@@ -89,7 +93,7 @@ def ProjectFaces(
             continue
         ((BodyPick, CutStep),) = Choices
         try:
-            SelectionValue = MakeFacePick(
+            Recipe = MakeFacePick(
                 BulkData, Owners, int(Sketch.provenance.native_id), BodyPick
             )
         except ValueError as ErrorInfo:
@@ -102,19 +106,26 @@ def ProjectFaces(
                 )
             )
             continue
+        SelectionValue = AttachFaceBody(
+            BulkData, Owners, Recipe, Frame.transform, CutStep, LoadBlob
+        )
+        Resolved = "fusion.history_face_ordinal" in SelectionValue.attributes
         Updated[Frame.id] = Replace(
             Frame,
             support_selection_id=SelectionValue.id,
             attributes=FreezeMapping(
                 {
                     **Frame.attributes,
-                    "fusion.native_support_kind": "historical_face_recipe",
+                    "fusion.native_support_resolved": Resolved,
+                    "fusion.native_support_kind": (
+                        "historical_face_occurrence"
+                        if Resolved
+                        else "historical_face_recipe"
+                    ),
                 }
             ),
         )
-        Selections.append(
-            AttachFaceBody(BulkData, Owners, SelectionValue, CutStep, LoadBlob)
-        )
+        Selections.append(SelectionValue)
     return Replace(
         Document,
         support_planes=tuple(
