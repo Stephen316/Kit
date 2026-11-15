@@ -1,0 +1,145 @@
+{
+  "prefix": {
+    "moPart_c": {
+      "child_slots": ["moNodeName_c", "moVisualProperties_c", "moUnitsTable_c", "moUnitComponent_c", "gcCurvatureObject_c", "moTransRefPlaneData_c"],
+      "runs": {"1": 0, "2": 0, "4": 0},
+      "variable_runs": [
+        {"slot": "lead", "rule": "guard", "at": 0, "predicate_at": 8, "predicate_width": 4, "values": [19000], "tail": 12},
+        {"slot": "0", "rule": "guard", "at": 0, "predicate_at": 4, "predicate_width": 4, "values": [1073741824]},
+        {"slot": "0", "rule": "string", "at": 16, "tail": 4},
+        {"slot": "3", "rule": "guard", "at": 4, "predicate_at": 0, "predicate_width": 4, "values": [0]},
+        {"slot": "3", "rule": "guard", "at": 4, "predicate_at": 0, "predicate_width": 4, "values": [0]},
+        {"slot": "3", "rule": "guard", "at": 1, "predicate_at": 0, "predicate_width": 1, "values": [0]}
+      ]
+    },
+    "moNodeName_c": {
+      "variable_runs": [
+        {"slot": "leaf", "rule": "string", "at": 0}
+      ]
+    },
+    "moVisualProperties_c": {
+      "variable_runs": [
+        {"slot": "leaf", "rule": "string", "at": 12},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "guard", "at": 52, "predicate_at": 48, "predicate_width": 4, "values": [0]},
+        {"slot": "leaf", "rule": "string", "at": 20},
+        {"slot": "leaf", "rule": "guard", "at": 8, "predicate_at": 4, "predicate_width": 4, "values": [1]},
+        {"slot": "leaf", "rule": "string", "at": 8},
+        {"slot": "leaf", "rule": "string", "at": 81},
+        {"slot": "leaf", "rule": "string", "at": 12},
+        {"slot": "leaf", "rule": "string", "at": 76},
+        {"slot": "leaf", "rule": "string", "at": 4},
+        {"slot": "leaf", "rule": "guard", "at": 4, "predicate_at": 0, "predicate_width": 4, "values": [0]},
+        {"slot": "leaf", "rule": "guard", "at": 4, "predicate_at": 0, "predicate_width": 4, "values": [0]},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 8},
+        {"slot": "leaf", "rule": "guard", "at": 24, "predicate_at": 20, "predicate_width": 4, "values": [1]},
+        {"slot": "leaf", "rule": "string", "at": 192},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 4},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 28},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 8},
+        {"slot": "leaf", "rule": "string", "at": 0},
+        {"slot": "leaf", "rule": "string", "at": 0}
+      ]
+    },
+    "moNumberUserUnits_c": {"runs": {"leaf": 62}},
+    "moFloatNumberUserUnits_c": {"runs": {"leaf": 62}},
+    "moSpringConstantUnits_c": {"runs": {"leaf": 62}},
+    "moStressUnits_c": {"runs": {"leaf": 62}},
+    "moGravityUnits_c": {"runs": {"leaf": 62}},
+    "moLinearMotorUnits_c": {"runs": {"leaf": 62}},
+    "moRotaryMotorUnits_c": {"runs": {"leaf": 62}},
+    "moFrequencyUserUnits_c": {"runs": {"leaf": 62}},
+    "moAngleUserUnits_c": {"runs": {"leaf": 64}},
+    "moUnitSysUnits_c": {"runs": {"leaf": 64}},
+    "moForceUnits_c": {"runs": {"leaf": 64}},
+    "moPowerUnits_c": {"runs": {"leaf": 64}},
+    "moEnergyUnits_c": {"runs": {"leaf": 64}},
+    "moTimeUnits_c": {"runs": {"leaf": 64}},
+    "moUnitsTable_c": {"child_slots": ["*", "..."], "runs": {"lead": 2, "0": 0}, "repeat_count": {"run": "lead", "width": 2, "at": 0}},
+    "moLengthUserUnits_c": {"child_slots": ["moLengthUserUnits_c"], "runs": {"lead": 64, "0": 0}},
+    "moDensityUnits_c": {
+      "variable_runs": [
+        {"slot": "leaf", "rule": "guard", "at": 73, "predicate_at": 66, "predicate_width": 1, "values": [0]}
+      ]
+    },
+    "moUnitComponent_c": {
+      "child_slots": ["moPart_c"],
+      "runs": {"lead": 0},
+      "variable_runs": [
+        {"slot": "0", "rule": "guard", "at": 1, "predicate_at": 0, "predicate_width": 1, "values": [0]}
+      ]
+    },
+    "gcCurvatureObject_c": {"runs": {"leaf": 48}},
+    "moTransRefPlaneData_c": {"runs": {"leaf": 24}}
+  },
+  "material": {
+    "gcXhatch_c": {
+      "variable_runs": [
+        {"slot": "leaf", "rule": "string", "at": 0, "tail": 40}
+      ]
+    },
+    "moMaterial_c": {"child_slots": ["moDensityParameter_c"], "runs": {"lead": 0, "0": 0}},
+    "moDensityParameter_c": {
+      "child_slots": ["moNodeName_c", "moNodeName_c"],
+      "runs": {"lead": 0},
+      "variable_runs": [
+        {"slot": "0", "rule": "string", "at": 16},
+        {"slot": "1", "rule": "guard", "at": 9, "predicate_at": 8, "predicate_width": 1, "values": [0]}
+      ]
+    },
+    "uoModelData_c": {"child_slots": ["uoScene"], "runs": {"lead": 0, "0": 4}}
+  },
+  "relations": {
+    "moAtom_c": {
+      "child_slots": ["moNodeName_c", "moVisualProperties_c"],
+      "runs": {"lead": 0, "1": 58},
+      "variable_runs": [
+        {"slot": "0", "rule": "string", "at": 16, "tail": 4}
+      ]
+    },
+    "moRelMgr_c": {
+      "child_slots": ["moRelation_c"],
+      "runs": {},
+      "variable_runs": [
+        {"slot": "lead", "rule": "guard", "predicate_at": 0, "predicate_width": 2, "values": [2], "at": 2}
+      ]
+    },
+    "moRelation_c": {
+      "child_slots": ["moRelEquationSide_c"],
+      "variable_runs": [
+        {"slot": "lead", "rule": "string", "at": 0, "tail": 6}
+      ]
+    },
+    "moRelEquationSide_c": {
+      "child_slots": ["moRelDimension_c"],
+      "runs": {},
+      "variable_runs": [
+        {"slot": "lead", "rule": "guard", "predicate_at": 0, "predicate_width": 2, "values": [1], "at": 2}
+      ]
+    },
+    "moRelDimension_c": {
+      "child_slots": ["*", "moDimRefWrapper_c"],
+      "runs": {"0": 0},
+      "variable_runs": [
+        {"slot": "lead", "rule": "guard", "predicate_at": 0, "predicate_width": 2, "values": [0], "at": 2}
+      ]
+    },
+    "moDimRefWrapper_c": {"child_slots": ["moSkDimHandleValG2_c"], "runs": {"lead": 8}},
+    "moSkDimHandleValG2_c": {
+      "child_slots": ["moUnitComponent_c", "*", "*", "*", "*", "moGFR_c", "*", "sgSketch"],
+      "runs": {"lead": 0, "1": 0, "2": 0, "3": 0, "4": 1, "5": 0},
+      "variable_runs": [
+        {"slot": "0", "rule": "guard", "at": 80, "predicate_at": 76, "predicate_width": 4, "values": [19000]},
+        {"slot": "0", "rule": "guard", "at": 2, "predicate_at": 0, "predicate_width": 2, "values": [0]},
+        {"slot": "6", "rule": "guard", "at": 10, "predicate_at": 4, "predicate_width": 2, "values": [0]}
+      ]
+    }
+  }
+}

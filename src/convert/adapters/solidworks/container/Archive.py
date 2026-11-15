@@ -1,6 +1,6 @@
 from __future__ import annotations as Annotations
 
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass as Dataclass, field as Field
 import json as JsonModule
 from pathlib import Path as PathValue
@@ -2030,6 +2030,24 @@ def OuterName(ClassIndex: int, Layouts: LayoutTable, Frames: Sequence[Frame]) ->
     return DeclaredSlot(Layouts, Frames) or Alias
 
 
+# native contexts need a per walk hook to express their independently verified map ownership
+KTagResolver: TypeAlias = Callable[
+    [
+        TagAction,
+        int,
+        int,
+        LayoutTable,
+        list[Frame],
+        dict[int, str],
+        dict[int, str],
+        str,
+        str,
+        int,
+    ],
+    tuple[int, int, str, int],
+]
+
+
 # this definition exists because focused behavior needs one stable owner
 def SegmentWalkMut(
     BlobValue: bytes,
@@ -2039,6 +2057,7 @@ def SegmentWalkMut(
     Segments: list[StaticSegment],
     Progress: list[int],
     MoVersion: int | None,
+    ResolveValue: KTagResolver | None = None,
 ) -> tuple[StaticSegment, ...]:
     ContentEnd = WalkBounds(BlobValue, BaseValue, HeaderSize)
     Frames: list[Frame] = []
@@ -2046,13 +2065,14 @@ def SegmentWalkMut(
     ObjectOwner: dict[int, str] = {}
     Counter = BaseValue
     Cursor = HeaderSize
+    ResolveHook = ResolveTagMut if ResolveValue is None else ResolveValue
     while True:
         if not Frames and Cursor == ContentEnd:
             break
         Offset, Parent, ParentName, ParentSlot, TagValue = WalkHeaderMut(
             BlobValue, BaseValue, Cursor, Frames, Segments, Progress
         )
-        ClassIndex, ObjectIndex, NameValue, Counter = ResolveTagMut(
+        ClassIndex, ObjectIndex, NameValue, Counter = ResolveHook(
             TagValue,
             Counter,
             BaseValue,
@@ -2581,6 +2601,7 @@ def Segment(
     *,
     HeaderSize: int = KStreamHeaderSize,
     MoVersion: int | None = None,
+    ResolveValue: KTagResolver | None = None,
     **Options: object,
 ) -> tuple[StaticSegment, ...]:
     HeaderSize, MoVersion, _ = ArchiveOptions(
@@ -2592,7 +2613,14 @@ def Segment(
     Reached: list[StaticSegment] = []
     try:
         return SegmentWalkMut(
-            BlobValue, BaseValue, Layouts, HeaderSize, Reached, Progress, MoVersion
+            BlobValue,
+            BaseValue,
+            Layouts,
+            HeaderSize,
+            Reached,
+            Progress,
+            MoVersion,
+            ResolveValue,
         )
     except Segmentation as ErrorInfo:
         if ErrorInfo.progress < 0:
