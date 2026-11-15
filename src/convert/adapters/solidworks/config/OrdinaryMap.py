@@ -12,7 +12,11 @@ from convert.adapters.solidworks.config.RootLayout import (
     LoadPartLayouts,
     PartLayouts,
 )
-from convert.adapters.solidworks.container.Archive import KDefinitionKind, ReadTag
+from convert.adapters.solidworks.container.Archive import (
+    KClassRefKind,
+    KDefinitionKind,
+    ReadTag,
+)
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import (
     ArchiveCursor,
@@ -28,26 +32,38 @@ class ModelMapWalk(TypedDict):
     regions: list[list[KRegionRow]]
 
 
-# the ordinary model may own a single inline atom before its empty relation manager
-def ReadRelEntry(BlobValue: bytes, Stages: PartLayouts) -> tuple[EntryStop, int]:
+# the first atom is a schema definition and the next uses its established class
+def SkipAtomList(BlobValue: bytes, AtomStart: int, Count: int) -> int:
+    StopValue = AtomStart
+    for Index in range(Count):
+        TagValue = ReadTag(BlobValue, StopValue)
+        if Index == 0:
+            RequireArch(
+                (TagValue.kind, TagValue.class_name, TagValue.schema),
+                (KDefinitionKind, "moAtom_c", 1),
+                "typed first configuration atom",
+            )
+        else:
+            RequireArch(TagValue.kind, KClassRefKind, "typed later configuration atom")
+        StopValue = AtomEnd(BlobValue, StopValue + TagValue.size)
+    return StopValue
+
+
+# the split lengths and shared archive map must agree on the relation manager boundary
+def ReadRelEntry(
+    BlobValue: bytes, Stages: PartLayouts, AllowedCounts: tuple[int, ...] = (0, 1)
+) -> tuple[EntryStop, int]:
     Model, Layouts = ReadModelEntry(BlobValue, Stages)
     ModelBody, AtomStart, Count = ModelAtomStart(BlobValue, Model)
-    RequireArch(Count in (0, 1), True, "ordinary configuration atom count")
-    if Count:
-        TagValue = ReadTag(BlobValue, AtomStart)
-        RequireArch(
-            (TagValue.kind, TagValue.class_name, TagValue.schema),
-            (KDefinitionKind, "moAtom_c", 1),
-            "typed ordinary body atom",
-        )
-        AtomStop = AtomEnd(BlobValue, AtomStart + TagValue.size)
-        Relation = EndGhosts(BlobValue, AtomStop + 4)
-        Slots: tuple[str, ...] = ("moAtom_c", "moRelMgr_c")
-        Widths: tuple[int, ...] = (AtomStart - ModelBody, Relation - AtomStop)
-    else:
-        Relation = EndGhosts(BlobValue, AtomStart + 4)
-        Slots = ("moRelMgr_c",)
-        Widths = (Relation - ModelBody,)
+    RequireArch(Count in AllowedCounts, True, "supported configuration atom count")
+    AtomStop = SkipAtomList(BlobValue, AtomStart, Count)
+    Relation = EndGhosts(BlobValue, AtomStop + 4)
+    Slots = ("moAtom_c",) * Count + ("moRelMgr_c",)
+    Widths = (
+        (AtomStart - ModelBody,) + (0,) * (Count - 1) + (Relation - AtomStop,)
+        if Count
+        else (Relation - ModelBody,)
+    )
     Layouts = ExtendRoot(Layouts, Stages.Atoms, Slots, Widths)
     Manager = FindEntry(BlobValue, Layouts, "moRelMgr_c")
     RequireArch(Manager.offset, Relation, "typed relation manager boundary")

@@ -166,6 +166,7 @@ from convert.adapters.solidworks.core.Native import (
     decode_native_model as DecodeNativeModel,
     operation_axis_subelement as OperationAxisSubElem,
 )
+from convert.adapters.solidworks.core.CutEqProjection import ReadCutEqs
 from convert.adapters.solidworks.core.OrdinaryRead import (
     KArchiveSupport,
     ReadRectSupport,
@@ -2043,7 +2044,9 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
     )
     if SelectedStream == KitResolvedStream:
         return Model
-    return ReadRectSupport(Model, ConfigData, Resolved, ContainerMo(Archive.streams))
+    Generation = ContainerMo(Archive.streams)
+    Ordinary = ReadRectSupport(Model, ConfigData, Resolved, Generation)
+    return ReadCutEqs(Ordinary, ConfigData, Resolved, Generation, ConfigStream)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -2204,6 +2207,10 @@ def ApplyNativeMut(
                     Equation.native_offset,
                     Equation.native_length,
                     "equation",
+                ),
+                *(
+                    ProvenanceSpan(Equation.native_stream, Offset, Length, RecordKind)
+                    for Offset, Length, RecordKind in Equation.archive_spans
                 ),
             ),
         )

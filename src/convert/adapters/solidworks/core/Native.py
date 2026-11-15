@@ -1221,6 +1221,7 @@ class NativeEquation:
     native_length: int
     configuration_id: int
     native_stream: str
+    archive_spans: tuple[tuple[int, int, str], ...] = ()
 
 
 # this definition exists because focused behavior needs one stable owner

@@ -29,6 +29,12 @@ from interchange.geometry.models.VectorSpace import SpaceVector
             id="solidworks-p01-p03-resolved-list",
         ),
         Pytest.param(
+            "re/solidworks/archive/ConfigMap.py",
+            (),
+            "d54ce30559d5905d56c290f4dabb3e961861673afeccc3071dc7cac40202853a",
+            id="solidworks-p04-configuration-map",
+        ),
+        Pytest.param(
             "re/solidworks/archive/ResolvedEntry.py",
             ("--through-operation",),
             "9ecde927c05c451e4f703eaf101748d75165d0a80d5f6db5f12a3615a328f257",
@@ -93,7 +99,7 @@ def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -
 
 
 # the four public loop edges must keep their identities and use their actual saved axis relations
-def CheckSwAxes(SketchValue: Sketch, Resolved: bytes) -> None:
+def AssertSwAxes(SketchValue: Sketch, Resolved: bytes) -> None:
     LoopValue = tuple(f"{SketchValue.id}:profile:0:edge:{Index}" for Index in range(4))
     assert SketchValue.closed_profile_entity_ids == (LoopValue,)
     assert len(SketchValue.parameter_ids) == 2
@@ -137,7 +143,7 @@ def CheckSwAxes(SketchValue: Sketch, Resolved: bytes) -> None:
 
 
 # the archived coincidence must connect the original proxy identity to an endpoint of the preserved loop
-def CheckSwOrigin(SketchValue: Sketch, Resolved: bytes) -> None:
+def AssertSwOrigin(SketchValue: Sketch, Resolved: bytes) -> None:
     (Saved,) = [
         RuleValue
         for RuleValue in SketchValue.constraints
@@ -242,8 +248,8 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
     Resolved = Archive.require(SupportSpan.stream)
     Stored = Resolved[SupportSpan.offset : SupportSpan.offset + SupportSpan.length]
     assert int.from_bytes(Stored, "little", signed=True) == DatumId
-    CheckSwAxes(Sketch, Resolved)
-    CheckSwOrigin(Sketch, Resolved)
+    AssertSwAxes(Sketch, Resolved)
+    AssertSwOrigin(Sketch, Resolved)
 
 
 # native depth and signed direction must survive display unit changes and the public projection
@@ -457,6 +463,54 @@ KCutVariants = (
     "plane-yz",
     "termination-through-all",
 )
+
+
+# both editable centering values must retain the particular dimension handles stored in config
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckSwCutEq(Variant: str) -> None:
+    NativePath = (
+        FilePath(__file__).resolve().parents[2]
+        / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
+        / f"P04-solidworks-{Variant}.SLDPRT"
+    )
+    Document = OpenDocument(NativePath)
+    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
+    Stream = Archive.require("Contents/Config-0")
+    Params = {Value.id: Value for Value in Document.parameters}
+    WidthValue = 44 if Variant == "edit-width_mm-44" else 40
+    CutWidth = 12 if Variant == "edit-cut_width_mm-12" else 10
+    HeightValue = 24 if Variant == "edit-height_mm-24" else 20
+    CutHeight = 10 if Variant == "edit-cut_height_mm-10" else 8
+    for Target, OuterName, InnerName, OuterValue, InnerValue, Slots in (
+        ("cut_left_mm", "width_mm", "cut_width_mm", WidthValue, CutWidth, (2, 0, 0)),
+        (
+            "cut_bottom_mm",
+            "height_mm",
+            "cut_height_mm",
+            HeightValue,
+            CutHeight,
+            (3, 1, 1),
+        ),
+    ):
+        TargetValue = Params[f"sldprt:parameter:35:{Target}"]
+        OuterId = f"sldprt:parameter:26:{OuterName}"
+        InnerId = f"sldprt:parameter:35:{InnerName}"
+        assert Params[OuterId].value.value == Pytest.approx(OuterValue)
+        assert Params[InnerId].value.value == Pytest.approx(InnerValue)
+        assert TargetValue.value.value == Pytest.approx((OuterValue - InnerValue) / 2)
+        assert TargetValue.value.unit == "mm" and TargetValue.expression is not None
+        assert TargetValue.expression.parameter_ids == (OuterId, InnerId)
+        assert TargetValue.provenance is not None
+        Spans = {Value.record_kind: Value for Value in TargetValue.provenance.spans}
+        for RecordKind, SlotValue in zip(
+            ("equation-target-slot", "equation-outer-slot", "equation-inner-slot"),
+            Slots,
+            strict=True,
+        ):
+            SpanValue = Spans[RecordKind]
+            assert (SpanValue.stream, SpanValue.length) == ("Contents/Config-0", 4)
+            assert UnpackFrom("<i", Stream, SpanValue.offset) == (SlotValue,)
+
 
 # saved edge allocations vary across edits so each archive supplies its own expected source start
 KSupportEdgeStarts = {
