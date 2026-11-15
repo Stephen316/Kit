@@ -4,6 +4,8 @@ import subprocess
 import sys
 from pathlib import Path
 
+from AdaptiveMetrics import adaptive_metrics
+
 
 def command_output(argv):
     try:
@@ -18,7 +20,7 @@ def command_output(argv):
 def host_resources():
     if sys.platform == "win32":
         from WindowsResources import host_resources as windows_resources
-        return windows_resources()
+        return {**windows_resources(), **adaptive_metrics()}
     cpus = os.cpu_count()
     if cpus is None or cpus < 1:
         raise OSError("logical CPU count unavailable")
@@ -41,7 +43,7 @@ def host_resources():
         source = "macos:vm_stat:free+max(inactive,purgeable)"
     else:
         raise OSError("resource measurement requires Linux or macOS")
-    return {"logical_cpus": cpus, "available_memory_bytes": memory, "memory_source": source}
+    return {"logical_cpus": cpus, "available_memory_bytes": memory, "memory_source": source, **adaptive_metrics()}
 
 
 def group_memory(pids):

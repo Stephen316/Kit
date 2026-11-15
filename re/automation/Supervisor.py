@@ -15,7 +15,7 @@ from ResourceBudget import ResourceBudget
 from Runners import Registry
 from Sessions import Session, read_bounded, write_private
 
-CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds", "max_log_bytes", "reserved_cpus", "reserved_memory_mib"}
+CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds", "max_log_bytes", "reserved_cpus", "reserved_memory_mib", "adaptive_limits"}
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -46,6 +46,9 @@ def read_config(path):
         raise ValueError("stop_grace_seconds must be between 0.1 and 60")
     if type(poll) not in (int, float) or not 0.05 <= poll <= 5:
         raise ValueError("poll_seconds must be between 0.05 and 5")
+    adaptive = config.get("adaptive_limits", True)
+    if type(adaptive) is not bool:
+        raise ValueError("adaptive_limits must be a boolean")
     for key in ("state", "registry"):
         if not isinstance(config[key], str) or not config[key]:
             raise ValueError(f"{key} must be a path")
@@ -64,6 +67,7 @@ def read_config(path):
         "max_log_bytes": bounded(config.get("max_log_bytes", 1048576), 1024, 67108864),
         "reserved_cpus": bounded(config.get("reserved_cpus", 2), 0, 65536),
         "reserved_memory_mib": bounded(config.get("reserved_memory_mib", 4096), 0, 1048576),
+        "adaptive_limits": adaptive,
     }
 
 
@@ -202,7 +206,7 @@ class Supervisor:
                 admission = self.budget.admission(pool, settings, self.running)
                 previous = self.admission.get(pool)
                 self.admission[pool] = admission
-                if previous is None or previous["reason"] != admission["reason"]:
+                if previous is None or previous["reason"] != admission["reason"] or previous["active_limit"] != admission["active_limit"] or previous["adaptive_revision"] != admission["adaptive_revision"] or previous["upward_blocked_reason"] != admission["upward_blocked_reason"]:
                     self.report("admission", None, {"pool": pool, **admission})
                 if admission["additional_sessions"] == 0:
                     break
@@ -239,6 +243,7 @@ class Supervisor:
                     self.report("setup_failed", None, {"session": name, "pool": pool, "job": claim.get("job", {}).get("id"), "error": detail})
                     continue
                 self.running[name] = session
+                self.budget.adaptive.started(pool)
                 self.counts["started"] += 1
                 self.report("started", session, {"pid": session.pid})
         return claimed

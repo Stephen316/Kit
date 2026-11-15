@@ -1,5 +1,6 @@
 import time
 
+from AdaptiveCapacity import AdaptiveCapacity
 from HostResources import group_memory, host_resources
 from MemoryHistory import MemoryHistory
 
@@ -9,6 +10,7 @@ class ResourceBudget:
         self.reserved_cpus = config["reserved_cpus"]
         self.reserved_memory = config["reserved_memory_mib"] * 1048576
         self.registry = registry
+        self.adaptive = AdaptiveCapacity(config["adaptive_limits"])
         self.history = MemoryHistory(config["state"] / "memory-history.json")
         self.history_error = None
         self.host = None
@@ -18,6 +20,10 @@ class ResourceBudget:
         self.next_host = 0
 
     def record(self, specification, session, outcome, stale, receipt, report):
+        if stale is False:
+            change = self.adaptive.finished(self.registry.runners[specification["kind"]]["pool"], outcome, receipt)
+            if change is not None:
+                report("adaptive_backoff", None, {"pool": self.registry.runners[specification["kind"]]["pool"], "job": specification["id"], "session": session, **change})
         if stale is not False or outcome != "completed" or self.history_error is not None:
             return
         try:
@@ -56,5 +62,9 @@ class ResourceBudget:
         cpu_slots = max(0, self.host["logical_cpus"] - self.reserved_cpus - used_cpus) // threads
         memory_slots = max(0, self.host["available_memory_bytes"] - self.reserved_memory - pending_memory) // estimate
         slots = min(settings["max_sessions"] - count, cpu_slots, memory_slots)
+        policy = self.adaptive.limit(pool, max(0, count + slots), self.host, self.reserved_memory, estimate)
+        slots = min(slots, max(0, policy["active_limit"] - count))
         reason = "pool limit" if count >= settings["max_sessions"] else "cpu headroom" if cpu_slots == 0 else "memory headroom" if memory_slots == 0 else None
-        return {"additional_sessions": max(0, slots), "running": count, "reason": reason, "threads_per_session": threads, "estimated_memory_bytes": estimate, "host_measured_at": self.measured_at, "host": self.host, "reserved_cpus": self.reserved_cpus, "reserved_memory_bytes": self.reserved_memory}
+        if reason is None and count >= policy["active_limit"]:
+            reason = "adaptive limit"
+        return {"additional_sessions": max(0, slots), "running": count, "reason": reason, "threads_per_session": threads, "estimated_memory_bytes": estimate, "host_measured_at": self.measured_at, "host": self.host, "reserved_cpus": self.reserved_cpus, "reserved_memory_bytes": self.reserved_memory, **policy}

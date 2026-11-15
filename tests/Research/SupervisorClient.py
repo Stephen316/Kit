@@ -80,6 +80,7 @@ def WriteConfig(
         "poll_seconds": 0.1,
         "reserved_cpus": 0,
         "reserved_memory_mib": 0,
+        "adaptive_limits": False,
     }
     _ = ConfigFile.write_text(JsonCodec.dumps(ConfigInfo), encoding="utf-8")
     return ConfigFile
