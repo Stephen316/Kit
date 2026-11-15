@@ -244,19 +244,42 @@ def supervise(descriptor, repository, root, case, group):
             "adaptive_reason",
             "adaptive_revision",
         )
+        settlement = accepted_settlement(supervisor, store, events, started["session"])
+        reloaded = Supervisor(config, True).budget.history
+        kind, version = "witness.decode", "witness@1"
+        initial = 64 * 1048576
+        estimates = [
+            {key: event[key] for key in (
+                "session", "job", "group_size", "kind", "tool_version",
+                "previous_estimate_bytes", "estimate_bytes", "samples", "source",
+            )}
+            for event in events if event.get("event") == "memory_estimate"
+        ]
+        persisted_estimate = reloaded.estimate(kind, version, initial)
+        if settlement["kernel_oom"] is not None:
+            original = reloaded.path.read_bytes()
+            replayed = reloaded.record_oom(
+                {"kind": kind, "tool_version": version}, settlement["session"], initial
+            )
+            require(
+                replayed is None and reloaded.path.read_bytes() == original,
+                "reloaded memory history applied an accepted OOM session twice",
+            )
         send(
             channel,
             {
                 "action": "result",
-                "settlement": accepted_settlement(
-                    supervisor, store, events, started["session"]
-                ),
+                "settlement": settlement,
                 "started_pid": started["pid"],
                 "group_size": started["group_size"],
                 "initial_capacity": admissions[0]["calculated_capacity"],
                 "initial_limit": admissions[0]["active_limit"],
                 "final_limit": admissions[-1]["active_limit"],
                 "backoffs": [{key: event[key] for key in keys} for event in backoffs],
+                "initial_admission_estimate_bytes": admissions[0]["estimated_memory_bytes"],
+                "final_admission_estimate_bytes": admissions[-1]["estimated_memory_bytes"],
+                "memory_estimates": estimates,
+                "reloaded_memory_estimate": persisted_estimate,
             },
         )
 

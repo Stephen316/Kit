@@ -31,19 +31,20 @@ class ResourceBudget:
             change = self.adaptive.finished(self.registry.runners[specification["kind"]]["pool"], session, outcome, receipt)
             if change is not None:
                 report("adaptive_backoff", None, {"pool": self.registry.runners[specification["kind"]]["pool"], "job": specification["id"], "session": session, **change})
-        if stale is not False or outcome != "completed" or self.history_error is not None:
+        kernel_oom = outcome == "retry" and receipt.get("stop_reason") is None and receipt.get("kernel_oom") is not None
+        if stale is not False or (outcome != "completed" and not kernel_oom) or self.history_error is not None:
             return
+        size = receipt.get("group_size", 1)
+        entry = self.registry.runners[specification["kind"]]
+        initial = entry["initial_peak_memory_mib" if size == 1 else "group_peak_memory_mib"] * 1048576
         try:
-            size = receipt.get("group_size", 1)
             history = self.history if size == 1 else self.group_histories[size]
-            recorded = history.record(specification, session, receipt)
+            recorded = history.record_oom(specification, session, initial) if kernel_oom else history.record(specification, session, receipt)
         except (OSError, ValueError) as error:
             self.history_error = f"{type(error).__name__}: {error}"[:2048]
             report("memory_history_error", None, {"error": self.history_error, "learning_disabled_until_restart": True})
             return
         if recorded is not None:
-            entry = self.registry.runners[specification["kind"]]
-            initial = entry["initial_peak_memory_mib" if size == 1 else "group_peak_memory_mib"] * 1048576
             estimate = history.estimate(specification["kind"], specification["tool_version"], initial)
             if size > 1:
                 estimate["estimate_bytes"] = max(initial, estimate["estimate_bytes"])

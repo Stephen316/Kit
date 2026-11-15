@@ -17,7 +17,7 @@ def CheckBadHistory() -> None:
         StatePath = RootPath / "SupervisorState"
         StatePath.mkdir()
         _ = (StatePath / "memory-history.json").write_text(
-            JsonCodec.dumps({"history_version": 2, "records": []}), encoding="utf-8"
+            JsonCodec.dumps({"history_version": 3, "records": []}), encoding="utf-8"
         )
         _ = Harness.RunCli("run", "--idle-seconds", "1", ExitCode=1)
         Blocked = Harness.ReadJob("history:blocked")

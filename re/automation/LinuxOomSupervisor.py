@@ -175,6 +175,10 @@ def verify_result(observed, result):
             "initial_limit",
             "final_limit",
             "backoffs",
+            "initial_admission_estimate_bytes",
+            "final_admission_estimate_bytes",
+            "memory_estimates",
+            "reloaded_memory_estimate",
         }
         and set(settlement)
         == {
@@ -226,7 +230,8 @@ def verify_result(observed, result):
         and settlement["signal"] == signal.SIGKILL
         and settlement["stop_reason"] is None
         and result["initial_capacity"] == 4
-        and result["initial_limit"] == 2,
+        and result["initial_limit"] == 2
+        and result["initial_admission_estimate_bytes"] == 64 * 1048576,
         "current accepted settlement differs from the measured dispatch",
     )
     messages = observed["kernel_messages"]
@@ -271,14 +276,41 @@ def verify_result(observed, result):
             ],
             "verified OOM did not reduce the adaptive target exactly once",
         )
+        witness.require(
+            result["final_admission_estimate_bytes"] == 128 * 1048576
+            and result["memory_estimates"] == [{
+                "session": settlement["session"],
+                "job": guest.JOB,
+                "group_size": 1,
+                "kind": "witness.decode",
+                "tool_version": "witness@1",
+                "previous_estimate_bytes": 64 * 1048576,
+                "estimate_bytes": 128 * 1048576,
+                "samples": 0,
+                "source": "linux_memcg_oom",
+            }]
+            and result["reloaded_memory_estimate"] == {
+                "estimate_bytes": 128 * 1048576,
+                "samples": 0,
+                "source": "linux_memcg_oom",
+            },
+            "accepted OOM did not double the kind estimate in admission and private history",
+        )
     else:
         witness.require(
             not any(delta.values())
             and not messages
             and settlement["kernel_oom"] is None
             and result["final_limit"] == 2
-            and not result["backoffs"],
-            "ordinary SIGKILL changed counters or reduced the adaptive target",
+            and not result["backoffs"]
+            and result["final_admission_estimate_bytes"] == 64 * 1048576
+            and result["memory_estimates"] == []
+            and result["reloaded_memory_estimate"] == {
+                "estimate_bytes": 64 * 1048576,
+                "samples": 0,
+                "source": "initial",
+            },
+            "ordinary SIGKILL changed counters, adaptive capacity, or memory estimates",
         )
     return {
         **observed,

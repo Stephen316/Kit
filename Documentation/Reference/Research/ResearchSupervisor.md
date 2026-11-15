@@ -223,6 +223,7 @@ The history keeps the last 50 observations per job kind and `tool_version`, with
 Before five observations the registry estimate applies; afterward the nearest-rank 95th percentile receives a 25 percent margin, rounded up to a byte.
 A new tool version starts with its registry estimate.
 Retried, rejected, stale and unmeasured sessions contribute no sample.
+An accepted, verified Linux kernel OOM doubles the applicable reservation estimate and stores it as a separate minimum. [Kernel OOM memory estimate](../../Changes/Research/Supervisor/KernelOomMemoryEstimate.md)
 
 The controller exposes the next job's version only after a claim.
 Pre-claim admission therefore keeps the registry estimate and any higher learned version estimate.
