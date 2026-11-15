@@ -59,6 +59,32 @@ def fusion_body(observation):
     }
 
 
+# the original SOLIDWORKS receipt measures mass and center without face or bounds data
+def compare_mass(left, right, tolerances):
+    for body in (left, right):
+        center = body["center_of_mass_mm"]
+        require(
+            len(center) == 3
+            and all(math.isfinite(number) for number in center)
+            and math.isfinite(body["volume_mm3"])
+            and body["volume_mm3"] > 0,
+            "invalid measured solid volume or center",
+        )
+    center = math.dist(left["center_of_mass_mm"], right["center_of_mass_mm"])
+    volume = abs(left["volume_mm3"] - right["volume_mm3"])
+    volume_limit = max(
+        tolerances["volume_mm3_absolute"],
+        tolerances["volume_relative"] * max(left["volume_mm3"], right["volume_mm3"]),
+    )
+    return {
+        "center_difference_mm": center,
+        "volume_difference_mm3": volume,
+        "within_declared_tolerances": (
+            center <= tolerances["length_mm_absolute"] and volume <= volume_limit
+        ),
+    }
+
+
 # failed correspondence remains visible separately for the measured fields
 def compare(left, right, tolerances):
     for body in (left, right):
@@ -67,14 +93,11 @@ def compare(left, right, tolerances):
             "invalid measured topology counts",
         )
         lower, upper = body["bounds_mm"]
-        center = body["center_of_mass_mm"]
         require(
-            len(lower) == len(upper) == len(center) == 3
-            and all(math.isfinite(number) for number in [*lower, *upper, *center])
-            and all(a < b for a, b in zip(lower, upper, strict=True))
-            and math.isfinite(body["volume_mm3"])
-            and body["volume_mm3"] > 0,
-            "invalid measured solid geometry",
+            len(lower) == len(upper) == 3
+            and all(math.isfinite(number) for number in [*lower, *upper])
+            and all(a < b for a, b in zip(lower, upper, strict=True)),
+            "invalid measured solid bounds",
         )
     bounds = max(
         abs(a - b)
@@ -83,20 +106,14 @@ def compare(left, right, tolerances):
         )
         for a, b in zip(left_bound, right_bound, strict=True)
     )
-    center = math.dist(left["center_of_mass_mm"], right["center_of_mass_mm"])
-    volume = abs(left["volume_mm3"] - right["volume_mm3"])
-    volume_limit = max(
-        tolerances["volume_mm3_absolute"],
-        tolerances["volume_relative"] * max(left["volume_mm3"], right["volume_mm3"]),
-    )
-    length_limit = tolerances["length_mm_absolute"]
+    mass = compare_mass(left, right, tolerances)
     return {
         "counts_exact": left["counts"] == right["counts"],
         "maximum_bound_difference_mm": bounds,
-        "center_difference_mm": center,
-        "volume_difference_mm3": volume,
+        **mass,
         "within_declared_tolerances": (
-            bounds <= length_limit and center <= length_limit and volume <= volume_limit
+            bounds <= tolerances["length_mm_absolute"]
+            and mass["within_declared_tolerances"]
         ),
     }
 

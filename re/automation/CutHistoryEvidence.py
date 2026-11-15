@@ -15,11 +15,18 @@ from CutHistoryGraph import (
     read_history,
     unique,
 )
-from CutHistorySketch import compare_positioning, match_perimeters, measure_profile
+from CutHistorySketch import compare_positioning, measure_profile
 from FusionCutExtentEvidence import REVISION
 from FusionCutSketchEvidence import historical_observations
-from P04FinalBodyEvidence import captures, compare, compare_captures
+from P04FinalBodyEvidence import (
+    captures,
+    compare,
+    compare_captures,
+    compare_mass,
+    fusion_body,
+)
 from PairedCaptureIntake import require, sha256
+from PairedPerimeters import match_perimeters
 
 APPLICATIONS = {
     "fusion": "fusion.f3d",
@@ -52,13 +59,24 @@ def compare_bodies(fusion, solidworks, measured, tolerances):
         "fusion_to_historical": classify_body(
             public["fusion"], measured["fusion_historical_observation"], tolerances
         ),
-        "solidworks_to_reopen": classify_body(
-            public["solidworks"], measured["solidworks_before_rebuild"], tolerances
-        ),
-        "solidworks_to_rebuild": classify_body(
-            public["solidworks"], measured["solidworks_after_rebuild"], tolerances
-        ),
     }
+    if "solidworks_original_reopen" in measured:
+        recorded = measured["solidworks_original_reopen"]
+        mass = compare_mass(public["solidworks"], recorded, tolerances)
+        equal = recorded["body_count"] == 1 and mass["within_declared_tolerances"]
+        comparisons["solidworks_to_original_reopen"] = {
+            "status": "equal" if equal else "different",
+            "solid_count_exact": recorded["body_count"] == 1,
+            **mass,
+        }
+    else:
+        for field, result in (
+            ("solidworks_before_rebuild", "solidworks_to_reopen"),
+            ("solidworks_after_rebuild", "solidworks_to_rebuild"),
+        ):
+            comparisons[result] = classify_body(
+                public["solidworks"], measured[field], tolerances
+            )
     return {
         "status": (
             "equal"
@@ -204,18 +222,29 @@ def controls(pairs, historical, tolerances):
             "status": "unclassified",
             "reason": "body metrics unavailable for termination control",
         }
-    return {
+    results = {
         "public_baseline_solidworks_vs_through_all_fusion": classify_body(
             left["public"]["solidworks"], right["public"]["fusion"], tolerances
-        ),
-        "historical_baseline_solidworks_vs_through_all_fusion": classify_body(
-            historical["baseline-a"]["solidworks_after_rebuild"],
-            historical["termination-through-all"]["fusion_historical_observation"],
-            tolerances,
         ),
         "baseline_and_through_all_cut_extents": [
             item["history"].get("cut_extent") for item in (baseline, through_all)
         ],
+    }
+    if historical is not None:
+        results["historical_baseline_solidworks_vs_through_all_fusion"] = classify_body(
+            historical["baseline-a"]["solidworks_after_rebuild"],
+            historical["termination-through-all"]["fusion_historical_observation"],
+            tolerances,
+        )
+    return results
+
+
+def ambiguous_boundary(document, tolerance):
+    edges = read_history(document).cut.perimeter
+    duplicate = ("duplicated_geometry_control", edges[0][1])
+    return {
+        "control": "one baseline Cut boundary candidate copied to a second identity",
+        **match_perimeters(edges, (edges[0], duplicate, *edges[2:]), tolerance),
     }
 
 
@@ -226,12 +255,12 @@ def receipt_document(git, entry):
     return git.parse_document(contents, path)
 
 
-def report(directory, receipt_digest):
-    context = captures()
-    git, _, fusion, solidworks = context
-    historical = compare_captures(context, directory, receipt_digest)
-    bodies = {row["variant"]: row for row in historical["pairs"]}
-    tolerances = historical["declared_tolerances"]
+def archive_report(context, historical):
+    git, spec, fusion, solidworks = context
+    bodies = (
+        {row["variant"]: row for row in historical["pairs"]} if historical else None
+    )
+    tolerances = spec["comparison_tolerances"]
     fusion_api = historical_observations(
         fusion, receipt_document(git, fusion["measurements"])
     )
@@ -242,10 +271,24 @@ def report(directory, receipt_digest):
     for row in solidworks["native_files"]:
         roster[row["variant"]]["solidworks"] = row
     pairs = {}
+    ambiguous = None
     for variant, rows in roster.items():
-        docs = read_pair(git, rows, bodies[variant])
         phase, measured_fusion = fusion_api[variant]
         measured_sw = sw_api[PurePosixPath(rows["solidworks"]["path"]).name]
+        measured = (
+            bodies[variant]
+            if bodies is not None
+            else {
+                **{f"{name}_sha256": row["sha256"] for name, row in rows.items()},
+                "fusion_historical_observation": fusion_body(measured_fusion),
+                "solidworks_original_reopen": measured_sw,
+            }
+        )
+        docs = read_pair(git, rows, measured)
+        if historical is None and variant == "baseline-a":
+            ambiguous = outcome(
+                ambiguous_boundary, docs["fusion"], tolerances["length_mm_absolute"]
+            )
         pairs[variant] = {
             "sources": {
                 name: {"path": row["path"], "sha256": row["sha256"]}
@@ -256,7 +299,7 @@ def report(directory, receipt_digest):
                 compare_bodies,
                 docs["fusion"],
                 docs["solidworks"],
-                bodies[variant],
+                measured,
                 tolerances,
             ),
             "history": outcome(
@@ -266,9 +309,8 @@ def report(directory, receipt_digest):
                 tolerances,
             ),
         }
-    return {
+    result = {
         "scope": "P04 discovery archives and independent historical measurements",
-        "historical_body_evidence": historical,
         "capture_receipts": {
             name: value["receipt"]
             for name, value in (("fusion", fusion), ("solidworks", solidworks))
@@ -282,14 +324,43 @@ def report(directory, receipt_digest):
         "fresh_native_fusion": "unverified",
         "generic_comparator_qualification": "unverified",
     }
+    if historical is not None:
+        result["historical_body_evidence"] = historical
+    else:
+        result["declared_tolerances"] = tolerances
+        result["capture_revision"] = REVISION
+        result["ambiguous_boundary_control"] = ambiguous
+        result["body_evidence_scope"] = {
+            "fusion_historical": "saved counts, bounds, volume and center",
+            "solidworks_original_reopen": "solid count, volume and center",
+            "solidworks_supplemental_readback": "separate receipt required",
+        }
+    return result
+
+
+def report(directory, receipt_digest):
+    context = captures()
+    return archive_report(context, compare_captures(context, directory, receipt_digest))
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("readback_directory", type=Path)
-    parser.add_argument("--receipt-sha256", required=True)
+    parser.add_argument("readback_directory", type=Path, nargs="?")
+    parser.add_argument("--receipt-sha256")
+    parser.add_argument("--git-only", action="store_true")
     options = parser.parse_args()
-    result = report(options.readback_directory, options.receipt_sha256)
+    if options.git_only:
+        if options.readback_directory is not None or options.receipt_sha256 is not None:
+            parser.error(
+                "--git-only uses the original Git receipts without a readback directory"
+            )
+        result = archive_report(captures(), None)
+    else:
+        if options.readback_directory is None or options.receipt_sha256 is None:
+            parser.error(
+                "a licensed readback directory and --receipt-sha256 are required outside --git-only"
+            )
+        result = report(options.readback_directory, options.receipt_sha256)
     sys.stdout.buffer.write(
         (json.dumps(result, sort_keys=True, indent=2, allow_nan=False) + "\n").encode()
     )
