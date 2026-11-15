@@ -742,12 +742,12 @@ def CheckSwCutOp(Variant: str) -> None:
     Spans = {Value.record_kind: Value for Value in CutStep.provenance.spans}
     (BodySpan,) = Target.provenance.spans
     assert BodySpan == Spans["cut-target-body"] and BodySpan.length > 100
-    AssertSwCutDepth(NativePath, Document, CutStep, Definition, Variant)
+    AssertCutDepth(NativePath, Document, CutStep, Definition, Variant)
     AssertSwCutFace(Variant, Document)
 
 
 # the blind parameter and through all absence must match saved raw bytes
-def AssertSwCutDepth(
+def AssertCutDepth(
     NativePath: FilePath,
     Document: CadDocument,
     CutStep: FeatureStep,
