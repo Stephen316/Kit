@@ -2,6 +2,7 @@ import json
 import os
 import runpy
 import re
+import stat
 import subprocess
 import sys
 import threading
@@ -38,25 +39,50 @@ def allowed_root():
     return Path(config["allowed_root"]).resolve(strict=True)
 
 
+# candidate paths cannot redirect early startup outside the provisioned local volume
+def startup_path(path, *, file=False, single_link=True):
+    path = Path(path)
+    if not path.is_absolute() or path.anchor.startswith("\\\\"):
+        raise ValueError("Windows add-in startup requires absolute local paths")
+    for ancestor in (*reversed(path.parents), path):
+        info = ancestor.lstat()
+        regular = file and ancestor == path
+        expected = stat.S_ISREG(info.st_mode) if regular else stat.S_ISDIR(info.st_mode)
+        if regular and single_link:
+            expected = expected and info.st_nlink == 1
+        if not expected or info.st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT:
+            raise ValueError("Windows add-in startup paths must be regular and free of links")
+    return path
+
+
 # startup needs bounded candidate records before it has an approved record reader
 def startup_record(path):
-    with Path(path).open("rb") as stream:
+    with startup_path(path, file=True).open("rb") as stream:
         raw = stream.read(1024 * 1024 + 1)
     if len(raw) > 1024 * 1024:
         raise ValueError("add-in startup record exceeds 1 MiB")
     return raw
 
 
+# an implicit working directory must never supply executable source authority
+def startup_git():
+    for entry in os.get_exec_path():
+        candidate = Path(entry.strip('"')) / "git.exe"
+        if candidate.is_absolute() and not candidate.anchor.startswith("\\\\") and candidate.is_file():
+            return str(startup_path(candidate, file=True, single_link=False))
+    raise ValueError("Windows add-in startup requires trusted Git on an absolute PATH entry")
+
+
 # the installed addin may only execute helpers from its configured git checkout
 def windows_sources(config, installation):
-    allowed = Path(config["allowed_root"])
-    if not allowed.is_absolute():
-        raise ValueError("add-in capture root must be absolute")
+    allowed = startup_path(config["allowed_root"])
     root = allowed.resolve(strict=True).parents[2]
     revision = installation["source_revision"]
-    if not re.fullmatch("[0-9a-f]{40}", revision) or Path(installation["source_root"]).resolve(strict=True) != root:
+    source_root = startup_path(installation["source_root"])
+    if not re.fullmatch("[0-9a-f]{40}", revision) or source_root.resolve(strict=True) != root:
         raise ValueError("dispatch installation must pin this configured repository")
-    git = ["git", "--no-replace-objects", "-C", str(root)]
+    git_executable = startup_git()
+    git = [git_executable, "--no-replace-objects", "-C", str(root)]
     checkout = subprocess.check_output([*git, "rev-parse", "--show-toplevel"], timeout=15)
     commit = subprocess.check_output([*git, "rev-parse", "--verify", f"{revision}^{{commit}}"], timeout=15)
     if Path(os.fsdecode(checkout.strip())).resolve(strict=True) != root or commit.strip() != revision.encode():
@@ -75,7 +101,7 @@ def windows_sources(config, installation):
         sources[role] = (relative, raw)
     if BOOTSTRAP_SOURCE != sources["bootstrap"][1]:
         raise ValueError("reload the add-in from the trusted installation revision")
-    return root, sources
+    return root, sources, git_executable
 
 
 # the embedded interpreter has no trusted sibling import path for dispatch helpers
@@ -88,7 +114,9 @@ def start_windows_dispatch(config_path, config_bytes):
     installation = json.loads(installation_bytes)
     if installation.get("windows_phase_a") is not True or installation.get("application") != "fusion":
         raise ValueError("Windows Fusion Phase A requires owner opt-in")
-    root, sources = windows_sources(config, installation)
+    startup_path(__file__, file=True)
+    endpoint = startup_path(installation["endpoint"])
+    root, sources, git_executable = windows_sources(config, installation)
     scopes = {}
     for role in ("windows_identity", "windows_records", "protocol"):
         relative, raw = sources[role]
@@ -97,6 +125,7 @@ def start_windows_dispatch(config_path, config_bytes):
         exec(compile(raw, path, "exec"), scope)
         scopes[role] = scope
     protocol = scopes["protocol"]
+    protocol["WINDOWS_GIT"] = git_executable
     protocol["WINDOWS_API"].update({
         "windows_identity": {name: scopes["windows_identity"][name] for name in ("process_start", "peer_matches")},
         "windows_records": {name: scopes["windows_records"][name] for name in ("open_record", "open_owner_lock")},
@@ -107,6 +136,7 @@ def start_windows_dispatch(config_path, config_bytes):
     installation = protocol["validate_configuration"](installation)
     protocol["directory"](config["allowed_root"])
     protocol["directory"](installation["source_root"])
+    protocol["directory"](endpoint)
     if file_bytes(__file__) != BOOTSTRAP_SOURCE:
         raise ValueError("installed add-in changed during dispatch startup")
     for relative, raw in sources.values():
@@ -222,9 +252,6 @@ def poll():
 
 def run(context):
     app = adsk.core.Application.get()
-    state["app"] = app
-    state["main_thread"] = threading.get_ident()
-    QUEUE.mkdir(parents=True, exist_ok=True)
     config_path = HOME / "config.json"
     if sys.platform == "win32":
         config_bytes = startup_record(config_path)
@@ -233,7 +260,9 @@ def run(context):
             start_windows_dispatch(config_path, config_bytes)
         else:
             allowed_root()
+            QUEUE.mkdir(parents=True, exist_ok=True)
     else:
+        QUEUE.mkdir(parents=True, exist_ok=True)
         allowed_root()
         config = json.loads(config_path.read_text(encoding="utf-8"))
     if sys.platform != "win32" and "dispatch" in config:
@@ -266,9 +295,17 @@ def run(context):
             "bootstrap": {"path": protocol["BOOTSTRAP"], "sha256": protocol["sha256"](BOOTSTRAP_SOURCE), "size_bytes": len(BOOTSTRAP_SOURCE), "revision": installation["source_revision"]},
             "protocol": {"path": relative, "sha256": protocol["sha256"](source.stdout), "size_bytes": len(source.stdout), "revision": installation["source_revision"]},
         }
-    event = app.registerCustomEvent(EVENT_ID)
-    handler = JobHandler()
-    event.add(handler)
+    state["app"] = app
+    state["main_thread"] = threading.get_ident()
+    try:
+        event = app.registerCustomEvent(EVENT_ID)
+        handler = JobHandler()
+        event.add(handler)
+    except BaseException:
+        if sys.platform == "win32" and state["dispatch"] is not None:
+            state["dispatch"].close()
+            state["dispatch"] = None
+        raise
     state["event"], state["handlers"] = event, [handler]
     state["stop"].clear()
     state["started_utc"] = time.time()
@@ -279,6 +316,8 @@ def run(context):
 
 
 def stop(context):
+    if sys.platform == "win32" and state["started_utc"] is None:
+        return
     state["stop"].set()
     if state["app"] is not None:
         state["app"].unregisterCustomEvent(EVENT_ID)
@@ -286,3 +325,5 @@ def stop(context):
         state["dispatch"].close()
         state["dispatch"] = None
     write_status("stopped")
+    if sys.platform == "win32":
+        state["started_utc"] = None

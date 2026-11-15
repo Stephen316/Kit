@@ -100,6 +100,24 @@ def AssertWaiting(Harness: SessionHost, Queue: DispatchHost) -> None:
     assert not (Queue.Endpoint / "grant.json").exists()
 
 
+# startup refusals must leave the prior addin status and legacy queue untouched
+def AssertRefusal(Command: list[str], Environment: dict[str, str], Reason: str) -> None:
+    HomePath = FilePath(Environment["APPDATA"]) / "KitCaptureRunner"
+    StatusPath = HomePath / "runner.json"
+    Before = StatusPath.read_bytes()
+    Refused = Subprocess.run(
+        Command,
+        env=Environment,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=30,
+    )
+    assert Refused.returncode != 0 and Reason in Refused.stderr
+    assert StatusPath.read_bytes() == Before
+    assert not (HomePath / "queue").exists()
+
+
 # the hosted boundary must use the actual installed addin and the actual supervisor dispatch
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows Fusion admission")
 def CheckWinFusion(TmpPath: FilePath) -> None:
@@ -136,13 +154,10 @@ def CheckWinFusion(TmpPath: FilePath) -> None:
     assert Child.returncode == 0, Output + Errors
 
     _ = Installed.write_bytes(ExactBootstrap + b"\n")
-    Refused = Subprocess.run(
-        Command,
-        env=Environment,
-        capture_output=True,
-        text=True,
-        check=False,
-        timeout=30,
+    AssertRefusal(
+        Command, Environment, "reload the add-in from the trusted installation revision"
     )
-    assert Refused.returncode != 0
-    assert "reload the add-in from the trusted installation revision" in Refused.stderr
+    Config = JsonCodec.loads(Queue.ConfigFile.read_bytes())
+    del Config["windows_phase_a"]
+    _ = Queue.ConfigFile.write_text(JsonCodec.dumps(Config), encoding="utf-8")
+    AssertRefusal(Command, Environment, "Windows Fusion Phase A requires owner opt-in")

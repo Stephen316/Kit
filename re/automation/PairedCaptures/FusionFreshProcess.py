@@ -21,6 +21,9 @@ CONTROL = Path("re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_con
 RECIPES = ("P01", "P02", "P03", "P04")
 SCHEMA = 1
 
+# queued windows lookups inherit the executable selected by the pinned addin
+WINDOWS_GIT = None
+
 
 def require(condition, message):
     if not condition:
@@ -53,7 +56,8 @@ def write_json(path, value):
 
 
 def git(*arguments):
-    return subprocess.check_output(["git", "-C", str(REPO), *arguments])
+    command = [WINDOWS_GIT, "--no-replace-objects"] if WINDOWS_GIT is not None else ["git"]
+    return subprocess.check_output([*command, "-C", str(REPO), *arguments])
 
 
 def committed_file(revision, relative):

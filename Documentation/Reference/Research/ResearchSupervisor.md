@@ -179,6 +179,7 @@ See [durable worker outputs](../../Changes/Research/Workers/DurableWorkerOutputs
 
 The [local application dispatcher](../../Changes/Research/Workers/LocalApplicationDispatch.md) submits pinned Fusion phases to an owner-controlled add-in queue.
 Its fresh main-thread control probe, restart handoff and private spool protocol remain separate from native qualification.
+Windows ordinary Phase A requires an explicit owner opt-in and a pre-provisioned private endpoint. The hosted case checks the open-document refusal through the real queue. Licensed Windows capture and restart evidence are still pending. [Windows Fusion configuration and limits](../../Changes/Research/Workers/WindowsFusionPhaseA.md)
 Automatic restart and downstream input binding remain open.
 
 `finish.json` becomes the controller result for every finished attempt.

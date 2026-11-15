@@ -26,6 +26,8 @@ def pinned_plan(host, work, body):
                         and len(set(plan["recipes"])) == len(plan["recipes"])
                         and set(plan["recipes"]) <= {"P01", "P02", "P03", "P04"}, "invalid pinned Fusion phase plan")
     tool = protocol["load_pinned"](host.config, protocol["TOOL"])
+    if protocol["windows_phase_a"](host.config):
+        tool["WINDOWS_GIT"] = protocol["windows_git"]()
     names = {"tool": tool["TOOL"], "helper": tool["HELPER"], "bindings": tool["BINDINGS"],
              "specification": tool["SPEC"], "control": tool["CONTROL"]}
     protocol["require"](set(plan["pins"]) == set(names), "Fusion phase pin roster changed")

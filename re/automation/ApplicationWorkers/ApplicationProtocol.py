@@ -39,6 +39,9 @@ WINDOWS_HELPERS = {
 # only embedded windows dispatch supplies helper functions from private pinned namespaces
 WINDOWS_API = {}
 
+# the embedded addin retains the absolute git executable selected before source loading
+WINDOWS_GIT = None
+
 INPUTS = {"re/automation/PairedCaptures/FusionCapture.py", "re/automation/PairedCaptures/FusionBindings.py",
           "re/automation/PairSpecs.json", "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
           "re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py",
@@ -319,6 +322,22 @@ def validate_configuration(value):
     return value
 
 
+# the windows dispatcher must never interpret a session directory as executable authority
+def windows_git():
+    if WINDOWS_GIT is not None:
+        return WINDOWS_GIT
+    for entry in os.get_exec_path():
+        candidate = Path(entry.strip('"')) / "git.exe"
+        if candidate.is_absolute() and not candidate.anchor.startswith("\\\\") and candidate.is_file():
+            directory(candidate.parent)
+            info = candidate.lstat()
+            require(stat.S_ISREG(info.st_mode)
+                    and not info.st_file_attributes & stat.FILE_ATTRIBUTE_REPARSE_POINT,
+                    "Windows dispatch Git executable must be a local regular file")
+            return str(candidate)
+    raise ValueError("Windows dispatch requires trusted Git on an absolute PATH entry")
+
+
 def committed_bytes(config, relative):
     require(
         relative
@@ -327,7 +346,7 @@ def committed_bytes(config, relative):
         "unapproved application source path",
     )
     root = Path(config["source_root"])
-    git = ["git", "--no-replace-objects"] if windows_phase_a(config) else ["git"]
+    git = [windows_git(), "--no-replace-objects"] if windows_phase_a(config) else ["git"]
     source = subprocess.run([*git, "-C", str(root), "show", f"{config['source_revision']}:{relative}"],
                             capture_output=True, check=False, timeout=15)
     require(source.returncode == 0 and 0 < len(source.stdout) <= MAX_BYTES, "pinned application input is unavailable")
@@ -486,7 +505,7 @@ class HostQueue:
     def __init__(self, config, provider=FUSION_PROVIDER):
         self.config = config
         self.provider = provider
-        self.root = directory(config["endpoint"], True)
+        self.root = directory(config["endpoint"], not windows_phase_a(config))
         directory(self.root / "jobs", True)
         self.lock = ExitStack()
         try:
