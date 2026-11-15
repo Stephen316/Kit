@@ -202,6 +202,7 @@ public sealed class P04Readback
             row["resolve_state"] = resolveStatus;
             bool sameFace = Same(face, resolved);
             row["roundtrip_same_face"] = sameFace;
+            row["other_boss_faces"] = OtherBossFaces(document, boss, face);
             bool priorMatches = true;
             if (priorReference != null)
             {
@@ -223,6 +224,38 @@ public sealed class P04Readback
             row["diagnostic"] = Error(error);
         }
         return row;
+    }
+
+    object OtherBossFaces(IModelDoc2 document, IFeature boss, IFace2 support)
+    {
+        try
+        {
+            var extension = document.Extension;
+            var rows = new List<object>();
+            foreach (var candidate in Items(boss.GetFaces()).OfType<IFace2>())
+            {
+                if (Same(support, candidate) || !Same(candidate.GetFeature(), boss)) continue;
+                var reference = extension.GetPersistReference3(candidate) as byte[];
+                var row = Row("normal_world", candidate.Normal, "area_m2", candidate.GetArea());
+                rows.Add(row);
+                if (reference == null || reference.Length == 0)
+                {
+                    row["status"] = "persistent_reference_unavailable";
+                    continue;
+                }
+                int state;
+                var resolved = extension.GetObjectByPersistReference3(reference, out state) as IFace2;
+                row["reference_base64"] = Convert.ToBase64String(reference);
+                row["resolve_state"] = state;
+                row["status"] = state == (int)swPersistReferencedObjectStates_e.swPersistReferencedObject_Ok
+                    && Same(candidate, resolved) && !Same(support, resolved) ? "verified_distinct" : "unresolved";
+            }
+            return Row("status", rows.Count > 0 ? "observed" : "no_distinct_faces", "faces", rows);
+        }
+        catch (COMException error)
+        {
+            return Row("status", "unavailable", "diagnostic", Error(error));
+        }
     }
 
     object ObserveSketch(IFeature feature, ISketch sketch)
