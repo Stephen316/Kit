@@ -9,6 +9,7 @@ from convert.adapters.solidworks.container.Archive import (
     ReadTag,
 )
 from convert.adapters.solidworks.core.Native import IsOrthonormal
+from convert.adapters.solidworks.container.PlaneBasis import MatrixAxes
 from FaceOccurrence import read_local_component, read_transform
 from FileReference import read_file_reference
 from ProfileSupport import read_chain
@@ -93,9 +94,14 @@ def read_principal_support(cursor, planes):
     cursor.null()
     (axis,) = cursor.read("<i")
     Require(axis in (1, 3), True, "witnessed principal support axes")
-    Require(axis, 5 - feature_id, "principal support axis agrees with its plane")
+    plane_data = plane["plane_data"]
+    Require(
+        plane_data["normal_world"][axis - 1],
+        1.0,
+        "principal support axis agrees with its plane",
+    )
     transform = read_transform(cursor)
-    check_principal_frame(transform, plane["plane_data"])
+    check_principal_frame(transform, plane_data)
     return {
         "offset": offset,
         "object_index": index,
@@ -113,9 +119,7 @@ def read_principal_support(cursor, planes):
 # the saved frame can inherit a principal plane only when both placements agree
 def check_principal_frame(transform, plane_data):
     basis = transform["basis"] or (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
-    u_axis = (basis[0], basis[3], basis[6])
-    v_axis = (basis[1], basis[4], basis[7])
-    normal = (basis[2], basis[5], basis[8])
+    u_axis, v_axis, normal = MatrixAxes(basis)
     Require(IsOrthonormal((u_axis, v_axis, normal)), True, "orthonormal sketch frame")
     ux, uy, uz = u_axis
     vx, vy, vz = v_axis

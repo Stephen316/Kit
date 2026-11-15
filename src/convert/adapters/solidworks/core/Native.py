@@ -20,6 +20,7 @@ from interchange import (
 from convert.geometry.Opencascade import decode_ascii_brep as DecodeAsciiBrep
 from convert.adapters.base import ParseUntrusted
 from convert.adapters.solidworks.container.Container import SldprtFormatError
+from convert.adapters.solidworks.container.PlaneBasis import MatrixAxes
 from convert.adapters.solidworks.container.Format import (
     ASSEMBLY_SUFFIX as AsmSuffix,
     CANONICAL_PLANE_FEATURE_TYPE as CanonicalPlaneFeatureType,
@@ -2642,9 +2643,7 @@ def ReadSketchPlane(
     RowsValue = Struct.unpack_from("<9d", DataValue, BasisOffset)
     if not all((MathValue.isfinite(Value) for Value in RowsValue)):
         return None
-    UAxis = (RowsValue[0], RowsValue[3], RowsValue[6])
-    VAxis = (RowsValue[1], RowsValue[4], RowsValue[7])
-    Normal = (RowsValue[2], RowsValue[5], RowsValue[8])
+    UAxis, VAxis, Normal = MatrixAxes(RowsValue)
     if not IsOrthonormal((UAxis, VAxis, Normal)):
         return None
     return NativeSketchA(
