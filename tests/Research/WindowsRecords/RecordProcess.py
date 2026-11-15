@@ -1,3 +1,4 @@
+import errno as ErrorCodes
 import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
@@ -20,3 +21,23 @@ def RunRecord(Operation: str, TargetPath: FilePath) -> dict[str, object]:
     assert Completed.returncode == 0, Completed.stdout + Completed.stderr
     Result: dict[str, object] = JsonCodec.loads(Completed.stdout)
     return Result
+
+
+def CheckBlocked(Outcomes: dict[str, object]) -> None:
+    assert set(Outcomes) == {
+        "write_crt",
+        "write_native",
+        "delete",
+        "rename",
+        "ancestor",
+    }, Outcomes
+    for Action, Details in Outcomes.items():
+        assert isinstance(Details, dict), Outcomes
+        if Action == "write_crt":
+            assert Details["type"] == "builtins.PermissionError", Outcomes
+            assert Details["errno"] == ErrorCodes.EACCES, Outcomes
+            assert Details["winerror"] in {None, 5, 32}, Outcomes
+            continue
+        assert Details["winerror"] in {5, 32}, Outcomes
+        if Action != "write_native":
+            assert Details["errno"] == ErrorCodes.EACCES, Outcomes

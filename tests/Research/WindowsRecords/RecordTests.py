@@ -1,3 +1,4 @@
+import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
 import tempfile as TempFiles
@@ -6,7 +7,11 @@ from pathlib import Path as FilePath
 from pytest import mark as TestMark
 
 from tests.Research.Applications.DispatchWait import DispatchWait
-from tests.Research.WindowsRecords.RecordProcess import KFixture, RunRecord
+from tests.Research.WindowsRecords.RecordProcess import (
+    CheckBlocked,
+    KFixture,
+    RunRecord,
+)
 
 KWindowsOnly = TestMark.skipif(
     System.platform != "win32", reason="Windows file handles"
@@ -58,14 +63,15 @@ def CheckSharing() -> None:
             try:
                 _ = DispatchWait(RootPath).WaitFile("ready")
                 Result = RunRecord("mutations", Target)
-                assert set(Result) == {"write", "delete", "rename", "ancestor"}
-                assert all(Value in {5, 32} for Value in Result.values())
+                print(JsonCodec.dumps(Result, sort_keys=True), flush=True)
+                CheckBlocked(Result)
                 Stdout, Stderr = Reader.communicate("release\n", timeout=15)
                 assert Reader.returncode == 0, Stdout + Stderr
             finally:
                 if Reader.poll() is None:
                     Reader.kill()
                     _ = Reader.communicate(timeout=15)
+        assert RunRecord("unlocked", Target) == dict.fromkeys(Result, True), Result
         assert (
             Target.read_bytes() == b'{"version":1,"immutable":true,"rewritten":true}\n'
         )

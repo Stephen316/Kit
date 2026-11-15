@@ -57,20 +57,44 @@ def hold(target):
     return {"sha256": hashlib.sha256(content).hexdigest()}
 
 
+def native_write(target):
+    handle = win32file.CreateFile(str(target), win32con.GENERIC_WRITE, win32con.FILE_SHARE_READ, None, win32con.OPEN_EXISTING, 0, None)
+    handle.Close()
+
+
 def mutations(target):
     outcomes = {}
-    actions = {"write": lambda: target.write_bytes(b"changed"),
+    actions = {"write_crt": lambda: target.write_bytes(b"changed"),
+               "write_native": lambda: native_write(target),
                "delete": target.unlink,
                "rename": lambda: target.rename(target.with_name("renamed.json")),
                "ancestor": lambda: target.parent.rename(target.parent.with_name("moved"))}
     for name, action in actions.items():
         try:
             action()
-        except OSError as error:
-            outcomes[name] = error.winerror
+        except (OSError, pywintypes.error) as error:
+            outcomes[name] = {"type": f"{type(error).__module__}.{type(error).__name__}",
+                              "errno": getattr(error, "errno", None),
+                              "winerror": getattr(error, "winerror", None),
+                              "message": str(error)}
         else:
             raise AssertionError(f"protected application record allowed {name}")
     return outcomes
+
+
+def unlocked(target):
+    content = target.read_bytes()
+    target.write_bytes(content)
+    native_write(target)
+    renamed = target.with_name("renamed.json")
+    target.rename(renamed)
+    renamed.rename(target)
+    moved = target.parent.with_name("moved")
+    target.parent.rename(moved)
+    moved.rename(target.parent)
+    target.unlink()
+    target.write_bytes(content)
+    return {"write_crt": True, "write_native": True, "delete": True, "rename": True, "ancestor": True}
 
 
 def metadata(target):
@@ -140,6 +164,8 @@ def main():
         result = hold(target)
     elif operation == "mutations":
         result = mutations(target)
+    elif operation == "unlocked":
+        result = unlocked(target)
     elif operation == "metadata":
         result = metadata(target)
     elif operation == "unsafe":
