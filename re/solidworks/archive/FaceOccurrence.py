@@ -11,6 +11,7 @@ from convert.adapters.solidworks.container.Archive import (
     KObjectRefKind,
     ReadTag,
 )
+from convert.adapters.solidworks.container.ArchiveTags import BindMapTagMut, ResolveMapType
 from SketchRoot import KGeneration, Require
 
 
@@ -36,31 +37,12 @@ class FaceCursor:
         tag = ReadTag(self.blob, start)
         Require(tag.kind, kind, f"archive pointer kind at {start}")
         Require(tag.wide, False, f"compact archive pointer at {start}")
-        self.position += tag.size
-        if kind == KNullKind:
-            return 0
-        if kind == KObjectRefKind:
-            Require(self.objects.get(tag.index), name, f"object type at {start}")
-            return tag.index
-        if kind == KDefinitionKind:
-            Require(
-                (tag.schema, tag.class_name), (1, name), f"class definition at {start}"
-            )
-            self.allocate(self.classes, name)
-        else:
-            Require(self.classes.get(tag.index), name, f"class ownership at {start}")
-        return self.allocate(self.objects, name)
-
-    # class definitions and materialized objects advance the same archive counter
-    def allocate(self, table, name):
-        index = self.next_index
-        Require(
-            index not in self.classes and index not in self.objects,
-            True,
-            "unused map index",
+        actual = ResolveMapType(tag, self.classes, self.objects)
+        Require(actual, name, f"archive pointer type at {start}")
+        index, self.next_index = BindMapTagMut(
+            tag, self.next_index, self.classes, self.objects, actual
         )
-        table[index] = name
-        self.next_index += 1
+        self.position += tag.size
         return index
 
     # a null child chooses the witnessed branch without inventing an object map entry

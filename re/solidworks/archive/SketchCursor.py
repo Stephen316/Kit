@@ -7,11 +7,11 @@ from types import SimpleNamespace
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
-    KNullKind,
     KObjectRefKind,
     ReadString,
     ReadTag,
 )
+from convert.adapters.solidworks.container.ArchiveTags import BindMapTagMut, ResolveMapType
 from SketchRoot import KGeneration, Require
 
 # only these value dimension subclasses share the observed distance serializer
@@ -53,7 +53,6 @@ class SketchCursor:
         SelfData.Offset = Start.offset + ReadTag(BlobValue, Start.offset).size
         SelfData.Classes = Start.Classes
         SelfData.Objects = Start.Objects
-        SelfData.Objects[0] = None
         SelfData.NextIndex = Start.Counter
         SelfData.NodeNames = {}
         SelfData.Scalars = {}
@@ -119,25 +118,10 @@ class SketchCursor:
             True,
             f"typed archive pointer at {Offset} ({NameValue})",
         )
-        if TagValue.kind in (KDefinitionKind, KClassRefKind):
-            Width = 2 if TagValue.kind == KDefinitionKind else 1
-            Require(
-                all(
-                    Index not in SelfData.Classes and Index not in SelfData.Objects
-                    for Index in range(Counter, Counter + Width)
-                ),
-                True,
-                f"unused map slots at {Offset}",
-            )
+        ObjectIndex, SelfData.NextIndex = BindMapTagMut(
+            TagValue, Counter, SelfData.Classes, SelfData.Objects, NameValue
+        )
         SelfData.Offset += TagValue.size
-        ObjectIndex = TagValue.index
-        if TagValue.kind == KDefinitionKind:
-            SelfData.Classes[SelfData.NextIndex] = NameValue
-            SelfData.NextIndex += 1
-        if TagValue.kind in (KDefinitionKind, KClassRefKind):
-            ObjectIndex = SelfData.NextIndex
-            SelfData.Objects[ObjectIndex] = NameValue
-            SelfData.NextIndex += 1
         if SelfData.PointerEvents is not None:
             SelfData.PointerEvents.append(
                 (Offset, Counter, TagValue.kind, NameValue, ObjectIndex)
@@ -146,23 +130,8 @@ class SketchCursor:
 
     # reference tokens must resolve the correct kind before a caller can use them
     def FindType(SelfData, TagValue, SchemaValue=1):
-        if TagValue.kind == KDefinitionKind:
-            Require(
-                TagValue.schema, SchemaValue, f"archive schema at {SelfData.Offset}"
-            )
-            return TagValue.class_name
-        if TagValue.kind == KClassRefKind and TagValue.index in SelfData.Classes:
-            return SelfData.Classes[TagValue.index]
-        if (
-            TagValue.kind == KObjectRefKind
-            and TagValue.index in SelfData.Objects
-            and TagValue.index != 0
-        ):
-            return SelfData.Objects[TagValue.index]
-        if TagValue.kind == KNullKind:
-            return None
-        raise ValueError(
-            f"Unallocated {TagValue.kind} {TagValue.index} at {SelfData.Offset}"
+        return ResolveMapType(
+            TagValue, SelfData.Classes, SelfData.Objects, SchemaValue
         )
 
     # typed geometry children need their own guarded layout before cursor advancement
