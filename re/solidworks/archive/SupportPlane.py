@@ -75,10 +75,10 @@ def read_plane_atom(cursor):
 
 
 # the reference point and type precede the owned plane data pointer on this branch
-def read_ref_geometry(cursor):
+def read_ref_geometry(cursor, expected_mode=4):
     point = cursor.vector(3)
     mode, _ = cursor.read("<2i")
-    Require(mode, 4, "component-owned plane geometry mode")
+    Require(mode, expected_mode, "supported plane geometry mode")
     cursor.null()  # moFeatureRefWrapper_c
     Require(cursor.read("<i"), (0,), "guarded plane geometry trailer")
     return point

@@ -34,7 +34,7 @@ CONTROLS = {
 
 
 # the annotations cabinet and ordinary named features share lightweight concept framing
-def read_named_concept(cursor):
+def read_named_concept(cursor, expected_flags):
     from convert.adapters.solidworks.container.Archive import ReadString
     from SketchRoot import Require
     from SupportPlane import read_empty_label
@@ -42,7 +42,9 @@ def read_named_concept(cursor):
     name, length = ReadString(cursor.blob, cursor.position)
     cursor.position += length
     node_state, flags, node_id, node_tail = cursor.read("<iIii")
-    Require((node_state, flags, node_tail), (0, 0x40000000, 0), "ordinary typed node")
+    Require(
+        (node_state, flags, node_tail), (0, expected_flags, 0), "ordinary typed node"
+    )
     read_empty_label(cursor)
     Require(cursor.read("<i"), (0,), "empty lightweight child list")
     cursor.null()  # moVisualProperties_c
@@ -50,11 +52,11 @@ def read_named_concept(cursor):
 
 
 # ordinary features can proceed to their own fields after an empty resolved list
-def read_named_feature(cursor):
+def read_named_feature(cursor, expected_flags=0x40000000):
     from SketchRoot import Require
     from SupportPlane import read_feature_base
 
-    name, node_id = read_named_concept(cursor)
+    name, node_id = read_named_concept(cursor, expected_flags)
     Require(cursor.read("<Hi"), (0, 0), "empty resolved node list and tail")
     read_feature_base(cursor)
     return name, node_id
@@ -110,7 +112,7 @@ def read_detail_cabinet(cursor):
     offset = cursor.position
     cabinet = cursor.pointer(KDefinitionKind, "moDetailCabinet_c")
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, native_id = read_named_concept(cursor)
+    name, native_id = read_named_concept(cursor, 0x40000000)
     Require(cursor.read("<H"), (2,), "two resolved cabinet members")
 
     notes_class = "moNotesAreaFtrFolder_c"
@@ -148,12 +150,143 @@ def read_detail_cabinet(cursor):
     }
 
 
+# the principal plane payload owns the stored world normal and display frame
+def read_default_plane_data(cursor, pointer_kind):
+    from FaceOccurrence import read_transform
+    from SketchRoot import Require
+
+    data = cursor.pointer(pointer_kind, "moDefaultRefPlnData_c")
+    point = cursor.vector(3)
+    normal = cursor.vector(3)
+    transform = read_transform(cursor)
+    cursor.vector(4)
+    cursor.null()  # moCompEdge_c
+    Require(cursor.read("<3iB"), (0, -4, -4, 0), "guarded default plane fields")
+    cursor.vector(3)  # display root
+    Require(cursor.read("<2iH"), (1, 0, 0), "guarded default plane scalar tail")
+    for _ in range(3):
+        cursor.null()  # facet reference, axis and sketch entity
+    return {
+        "object_index": data,
+        "point_metres": point,
+        "normal_world": normal,
+        "transform": transform,
+    }
+
+
+# principal planes use the same model feature and atom as component reference planes
+def read_principal_plane(cursor, pointer_kind):
+    from convert.adapters.solidworks.container.Archive import KClassRefKind
+    from SketchRoot import Require
+    from SupportPlane import read_plane_atom, read_ref_geometry
+
+    offset = cursor.position
+    plane = cursor.pointer(pointer_kind, "moRefPlane_c")
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, feature_id = read_named_feature(cursor, expected_flags=0xC0000000)
+    Require(cursor.read("<i"), (0,), "guarded principal model feature")
+    read_plane_atom(cursor)
+    read_ref_geometry(cursor, expected_mode=5)
+    data = read_default_plane_data(cursor, pointer_kind)
+    return {
+        "name": name,
+        "native_feature_id": feature_id,
+        "offset": offset,
+        "cursor": cursor.position,
+        "object_index": plane,
+        "next_map_index": cursor.next_index,
+        "plane_data": data,
+    }
+
+
+# origin and user profiles both need the same framing for the earlier null pointer
+def read_profile_body_prefix(cursor, expected_flags):
+    from SketchRoot import Require
+
+    name, feature_id = read_named_feature(cursor, expected_flags)
+    cursor.read("<i")  # moModelFeature_c
+    Require(cursor.read("<i"), (0,), "guarded scalar before the early profile pointer")
+    early_pointer = cursor.position
+    cursor.null()
+    Require(cursor.read("<i"), (0,), "guarded scalar after the early profile pointer")
+    return name, feature_id, early_pointer
+
+
+# the origin materializes a resolved only sketch through the retained configuration class
+def read_origin_entry(cursor):
+    from convert.adapters.solidworks.container.Archive import (
+        KClassRefKind,
+        KDefinitionKind,
+    )
+    from SketchRoot import Require
+
+    offset = cursor.position
+    origin = cursor.pointer(KDefinitionKind, "moOriginProfileFeature_c")
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, feature_id, _ = read_profile_body_prefix(cursor, 0xC0000000)
+    Require((name, feature_id), ("Origin", 5), "typed origin profile")
+    sketch_offset = cursor.position
+    sketch = cursor.pointer(KClassRefKind, "sgSketch")
+    geometry = read_origin_geometry(cursor, sketch_offset)
+    return {
+        "name": name,
+        "native_feature_id": feature_id,
+        "offset": offset,
+        "object_index": origin,
+        "sketch_offset": sketch_offset,
+        "sketch_object": sketch,
+        "geometry": geometry,
+        "next_map_index": cursor.next_index,
+    }
+
+
+# the origin relation refers to a point handle within the sole origin point
+def read_origin_geometry(cursor, sketch_offset):
+    from types import SimpleNamespace
+
+    from SketchCursor import SketchCursor
+    from SketchGeom import ReadDims, ReadPointItem
+    from SketchRoot import Require
+
+    entry = SimpleNamespace(
+        offset=sketch_offset,
+        Counter=cursor.next_index,
+        Classes=cursor.classes,
+        Objects=cursor.objects,
+    )
+    sketch = SketchCursor(cursor.blob, entry, None)
+    body = sketch.Offset
+    Require(sketch.ReadCount(), 1, "one origin point")
+    _, _, point = ReadPointItem(sketch)
+    Require(point, (0, 0), "origin point coordinates")
+    Require(sketch.ReadCount(), 0, "empty origin lines")
+    ReadDims(sketch)
+    Require(sketch.Dimensions, [], "empty origin value dimensions")
+    Require(sketch.ReadValue("<3H"), (0, 0, 1), "one origin member relation")
+    _, _, type_code = sketch.ReadDimBase(None)
+    Require(type_code, 17, "witnessed origin relation type")
+    Require(sketch.ReadValue("<2H"), (65534, 0), "guarded origin relation fields")
+    handle = sketch.ReadObject("sgPointHandle")
+    Require(
+        sketch.Handles[handle], (0, -1, 0), "relation targets the local origin point"
+    )
+    cursor.position = sketch.Offset
+    cursor.next_index = sketch.NextIndex
+    return {
+        "body": body,
+        "end": cursor.position,
+        "point_metres": point,
+        "point_relation_type": type_code,
+        "point_handle_object": handle,
+    }
+
+
 # folder suffixes are confined to the ordinary bodies at the start of these captures
 def read_list_prefix(blob, config_map):
     from convert.adapters.solidworks.container.Archive import (
+        KClassRefKind,
         KDefinitionKind,
         KObjectRefKind,
-        ReadTag,
     )
     from FaceOccurrence import FaceCursor
     from SketchRoot import Require
@@ -202,18 +335,33 @@ def read_list_prefix(blob, config_map):
             ),
         ]
     )
-    next_tag = ReadTag(blob, cursor.position)
+    planes = [read_principal_plane(cursor, KDefinitionKind)]
+    planes.extend(read_principal_plane(cursor, KClassRefKind) for _ in range(2))
     Require(
-        (next_tag.kind, next_tag.schema, next_tag.class_name),
-        (KDefinitionKind, 1, "moRefPlane_c"),
-        "typed reference plane entry",
+        [
+            (
+                item["name"],
+                item["native_feature_id"],
+                item["plane_data"]["normal_world"],
+            )
+            for item in planes
+        ],
+        [
+            ("Front Plane", 2, (0, 0, 1)),
+            ("Top Plane", 3, (0, 1, 0)),
+            ("Right Plane", 4, (1, 0, 0)),
+        ],
+        "guarded principal plane identities and orientation",
     )
+    origin = read_origin_entry(cursor)
     return {
         "list_count": count,
         "prior_map_index": base,
         "folders": folders,
         "environment_alias": {"offset": alias_start, "object_index": environment},
-        "next_class": next_tag.class_name,
+        "principal_planes": planes,
+        "origin": origin,
+        "stopped_in": "sgSketch",
         "next_offset": cursor.position,
         "next_map_index": cursor.next_index,
     }
@@ -256,12 +404,7 @@ def read_profile(blob, config_map, start, reference, reference_class, target):
         config_map.Classes,
         config_map.Objects,
     )
-    name, feature_id = read_named_feature(cursor)
-    cursor.read("<i")  # moModelFeature_c
-    Require(cursor.read("<i"), (0,), "guarded scalar before the early profile pointer")
-    early_pointer = cursor.position
-    cursor.null()
-    Require(cursor.read("<i"), (0,), "guarded scalar after the early profile pointer")
+    name, feature_id, early_pointer = read_profile_body_prefix(cursor, 0x40000000)
     Require(cursor.position, reference, "exact recorded sketch slot boundary")
     object_index = cursor.pointer(KObjectRefKind, "sgSketch")
     Require(object_index, target, "witnessed sketch object")

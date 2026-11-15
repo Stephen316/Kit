@@ -1,6 +1,6 @@
 # P04 SOLIDWORKS resolved entry and profile linkage
 
-Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command verifies the exact P04 receipt, native files and both decompressed stream hashes for baseline A and YZ. It replays the resolved entry and the two profile records from their separate checkpoints, then writes a JSON evidence report. The report SHA-256 is `38d5fc18e533b717ec5c4dc9f00e48881ab609c3cf6e9846e31e11e181661d02`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
+Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command verifies the exact P04 receipt, native files and both decompressed stream hashes for baseline A and YZ. It replays the resolved entry and the two profile records from their separate checkpoints, then writes a JSON evidence report. The report SHA-256 is `f870e46bdc3799134951039f6bdc1e7c6e2761e1f7a78a6eea496cb4f244d10e`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
 
 The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949 in YZ. The resolved list load begins at byte 4 with next archive index 279. The offline reader uses the completed Config-0 class and object map to start the list and to resolve the two separately anchored sketch references. The first four resolved bytes corroborate the counter at 279. The short list count at byte 4 is 21, and the first class definition begins at byte 6. [Offline map replay](../../../../re/solidworks/records/P04SketchResidence.md#offline-map-replay)
 
@@ -26,6 +26,18 @@ The `moDetailCabinet_c` resolved node list contains two entries. Its first entry
 
 Both body folders have two null child pointers. The Environment entry at 2,315 is an object reference to the `moEnvFolder_c` already materialized in Config-0. The decoder resolves it against the derived map and leaves the counter unchanged. The last three folders lead to the first schema-1 `moRefPlane_c` declaration at 2,944 with next map index 320. The licensed CutSketch support later references that same class index. [Licensed plane class reference](../../../../re/solidworks/records/P04SketchResidence.md#licensed-cut-sketch-support-owner)
 
+## Principal planes and Origin
+
+Each principal plane uses the shared model-feature and atom fields, reference geometry mode 5, then its typed `moDefaultRefPlnData_c`. The saved plane payload supplies an origin, unit normal and optional local basis. The four typed optional children are empty. The next object tag follows the fourth child directly in both captures. [Default reference plane layout](../../../../re/solidworks/records/VersionedRuns.md#32-modefaultrefplndata_c--confirmed-and-the-one-byte-bug-that-blocked-23-donors)
+
+| Plane | Object slot | Entry | Return | Next map index | World normal |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Front | 321 | 2,944 | 3,483 | 325 | +Z |
+| Top | 325 | 3,483 | 4,049 | 328 | +Y |
+| Right | 328 | 4,049 | 4,619 | 331 | +X |
+
+The typed `moOriginProfileFeature_c` at 4,619 reads the retained `sgSketch` class at 4,824 and allocates object 334 in ResolvedFeatures. It contains one point at `(0,0)`, zero lines and zero value dimensions. Its one logical relation has subtype 17 and points through `sgPointHandle` object 335 to point index zero. The replay stops at byte 5,085 with next map index 336. The remaining Origin presentation fields and the semantics of subtype 17 still need independent evidence.
+
 ## Profile checkpoints
 
 The offline profile read begins at the saved schema-1 `moProfileFeature_c` declaration for RectangleSketch and the corresponding class reference for CutSketch. Each outer frame supplies its own typed name, feature ID and common feature fields. The separate native observation supplies the archive class and object identities across the stream boundary. The three historical profile traces place the early null pointer six bytes before the sketch child. The modern common fields end four bytes before that early pointer in each checked profile. The replay checks the intervening dword, typed null and final dword, then reads the sketch backreference at the exact licensed cursor. [Historical baseline trace](../../../../re/data/segments/Streams/SegmentsBaseline.json), [historical ring trace](../../../../re/data/segments/Streams/SegmentsVendorRing.json)
@@ -37,4 +49,4 @@ The offline profile read begins at the saved schema-1 `moProfileFeature_c` decla
 | Baseline A | CutSketch | 35 | 9,417 | 9,594 | 9,600 | 74 |
 | YZ | CutSketch | 35 | 9,487 | 9,664 | 9,670 | 74 |
 
-The evidence keeps the list stop and both profile anchors distinct. A continuous replay still needs the remaining earlier list allocations before the first anchored profile. The [face-support replay](SolidWorksFaceOccurrence.md) carries the observed CutSketch profile from its sketch pointer through the typed supporting-face return.
+The evidence keeps the Origin presentation stop and both profile anchors distinct. A continuous replay still needs the remainder of Origin before the first anchored profile. The [face-support replay](SolidWorksFaceOccurrence.md) carries the observed CutSketch profile from its sketch pointer through the typed supporting-face return.
