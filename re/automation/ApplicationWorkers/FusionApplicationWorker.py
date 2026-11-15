@@ -143,6 +143,8 @@ def dispatch(session, config):
     client = None
     try:
         load_pinned(config, "re/automation/ApplicationWorkers/ApplicationProtocol.py")
+        if phase == "a":
+            client = QueueClient(config, deadline)
         _, raw = input_file(session, job, "plan", limit=1024 * 1024)
         plan = json.loads(raw)
         require(plan["source_revision"] == config["source_revision"] and plan_scope(plan) == scope,
@@ -152,7 +154,7 @@ def dispatch(session, config):
         if phase == "b":
             accepted = accepted_first(session, job, config, plan_hash, scope)
             wait_for_restart(config, accepted[0]["result"]["records"], plan_hash, deadline)
-        client = QueueClient(config, deadline)
+            client = QueueClient(config, deadline)
         stage_plan(client, session, job, raw, plan, plan_hash, accepted)
         probe = client.call("probe", {"plan_sha256": plan_hash})
         require(probe["proof"]["control"] == "healthy" and probe["proof"]["host"] == probe["host"]
