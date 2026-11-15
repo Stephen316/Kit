@@ -71,3 +71,16 @@ The profile serializer's typed `sgSketch` pointer read at `0x9dbbcf` receives th
 In every measured P04 `Config-0-ResolvedFeatures` stream the class name `moFaceRef_c` appears once. A 52-byte interval beginning 25 bytes after the first byte of that name is also present at the same relative location in the support face's private persistent reference, before and after rebuild. This interval crosses the `moEndFaceSurfIdRep_c` declaration. The first byte of the archived class name is 6,652 in baseline A, 6,880 in baseline B and the parameter and inch variants, 6,722 in YZ and 6,650 in through-all.
 
 The licensed collector verified that the boss's five other faces in each observation resolved to their own distinct objects. The opposite cap shares the same interval in all 22 observations. The four side faces do not share it. The span identifies a cap-family candidate. Resolving the cut sketch's specific reference requires the enclosing typed object reference and an independently verified occurrence discriminator. The collector preserves both cap references with their native normals in the private measurement report.
+
+## Licensed cut-sketch support owner
+
+Two additional owned `34.4.1.1011` sessions bound the support read to the profile that received the `CutSketch` configuration object. The `sgSketch` pointer result at `sldmodu+0x9dbbd4` supplies the profile, archive and exact sketch identity. In that same profile, the call at `0x9dbdc6` reads a support object with selector `1`. Its token `0x8152` selects the live class map entry `moCompRefPlane_c`. The result at `0x9dbdcc` becomes the effective profile support at `0x9dc16a`. The earlier candidate support pointer was empty in both sessions.
+
+| Capture | Support token position | Support object end | Profile continuation | Next map index before and after |
+| --- | ---: | ---: | ---: | --- |
+| Baseline A | 11,531 | 12,588 | 12,658 | 456–475 |
+| YZ | 11,595 | 12,724 | 12,866 | 456–475 |
+
+These positions are relative to the full `ResolvedFeatures` stream. At the support read, the native archive has refilled the buffer and its cursor is buffer-relative. Each session matched a unique 64-byte window ending at the support return to the pinned full stream, then verified the 64-byte window at the resulting support start. Both collectors exited and rechecked the original part hashes. The private normalized witness SHA-256 values are `e3be0391bc0f73aa2683ebcedb393369728314ea9ee2bc14d84a39d589597a38` for baseline A and `8e8207076ceaee731d6c9ed79016e32ebe622a67a8788ade87206ca4a91c7e48` for YZ.
+
+The bounded support object contains declarations for `moFaceRefPlnData_c` and `moCompFace_c`. The earlier `moFaceRef_c` declaration lies outside this object's span. The next step is to trace the inner typed reads and match the exact returned face occurrence to the native persistent-reference controls before using it in conversion.
