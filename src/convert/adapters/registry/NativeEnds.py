@@ -20,9 +20,9 @@ def EndFindings(Document: CadDocument) -> tuple[str, ...]:
         }
         if isinstance(Definition, ExtrudeFeature):
             if Definition.length is None:
+                Detail = f"{Document.source.path}: feature {StepValue.id} length"
                 Findings.append(
-                    f"{Document.source.path}: feature {StepValue.id} length "
-                    "(depthless extrusion reconstruction is unqualified)"
+                    f"{Detail} (depthless extrusion reconstruction is unqualified)"
                 )
             EndValues["second_end_condition"] = Definition.second_end_condition
         for FieldName, EndValue in EndValues.items():

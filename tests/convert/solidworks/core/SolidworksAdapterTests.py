@@ -237,29 +237,22 @@ def TestARFOAD() -> None:
     assert Operations["Boss-Extrude2"].operation == BooleanOperation.JOIN
     assert Operations["Cut-Extrude2"].operation == BooleanOperation.CUT
     assert Operations["Boss-Extrude3"].operation == BooleanOperation.JOIN
-    BossOneDef = Operations["Boss-Extrude1"].definition
-    CutOneDef = Operations["Cut-Extrude1"].definition
-    BossTwoDef = Operations["Boss-Extrude2"].definition
-    CutTwoDef = Operations["Cut-Extrude2"].definition
-    BossThreeDef = Operations["Boss-Extrude3"].definition
+    for FeatureName, LengthValue in (
+        ("Boss-Extrude1", 20.0),
+        ("Cut-Extrude1", 0.25),
+        ("Boss-Extrude2", 0.75),
+        ("Cut-Extrude2", 9.0),
+        ("Boss-Extrude3", 6.0),
+    ):
+        Feature = Operations[FeatureName]
+        Definition = Feature.definition
+        assert isinstance(Definition, ExtrusionFeature)
+        assert Definition.length is not None
+        assert Definition.length.value == LengthValue
+        assert Feature.attributes["length_mm"] == LengthValue
     FilletOneDef = Operations["Fillet1"].definition
-    assert isinstance(BossOneDef, ExtrusionFeature)
-    assert isinstance(CutOneDef, ExtrusionFeature)
-    assert isinstance(BossTwoDef, ExtrusionFeature)
-    assert isinstance(CutTwoDef, ExtrusionFeature)
-    assert isinstance(BossThreeDef, ExtrusionFeature)
     assert isinstance(FilletOneDef, FilletFeature)
-    assert BossOneDef.length.value == 20.0
-    assert CutOneDef.length.value == 0.25
-    assert BossTwoDef.length.value == 0.75
-    assert CutTwoDef.length.value == 9.0
-    assert BossThreeDef.length.value == 6.0
     assert FilletOneDef.radius.value == 0.25
-    assert Operations["Boss-Extrude1"].attributes["length_mm"] == 20.0
-    assert Operations["Cut-Extrude1"].attributes["length_mm"] == 0.25
-    assert Operations["Boss-Extrude2"].attributes["length_mm"] == 0.75
-    assert Operations["Cut-Extrude2"].attributes["length_mm"] == 9.0
-    assert Operations["Boss-Extrude3"].attributes["length_mm"] == 6.0
     assert Operations["Fillet1"].attributes["radius_mm"] == 0.25
     assert Operations["Fillet1"].selection_ids == ("sldprt:selection:116:edge:1",)
     assert Document.parameter("sldprt:parameter:88:D1").value.value == 5.5
