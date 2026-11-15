@@ -9,6 +9,7 @@ from interchange.features.BoundScaleValues import GetScaleValues
 from interchange.features.FeatureBoundPlane import BoundDatum
 from interchange.features.FeatureBoundScale import BoundScale
 from interchange.features.FeatureDistExt import DistanceExtrude
+from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeaturePlaneExt import PlaneExtrude
 from interchange.features.FeaturePlaneRev import PlaneRevolve
 from interchange.features.FeatureStep import FeatureStep
@@ -37,6 +38,12 @@ def GetDefErrors(
         return GetAngleRevErrs(StepValue, Definition, Selections, Params)
     if isinstance(Definition, DistanceExtrude):
         return GetDistExtErrs(StepValue, Definition, IdentitySets["sketches"], Params)
+    if (
+        isinstance(Definition, ExtrudeFeature)
+        and Definition.length is None
+        and Definition.end_condition != ExtrudeEnd.THROUGH_ALL
+    ):
+        return (f"extrusion {StepValue.id} requires a primary length",)
     if isinstance(Definition, BoundDatum):
         try:
             CheckBoundPlane(StepValue, Definition, Params, Frames)

@@ -1,0 +1,9 @@
+# SOLIDWORKS depthless through-all cut projection
+
+The SOLIDWORKS reader projects a verified one-sided through-all cut into typed extrusion history. The neutral definition carries the through-all end condition and a null length. The timeline retains its cut operation, sketch and dependency references, and native termination and direction codes. This preserves the authored termination choice in manual neutral JSON serialization and validated readback. [Neutral feature reference](../../../Reference/Model/Features.md)
+
+Projection uses the supported native cut code, observed direction, and the absence of both authored length fields. Other depthless evidence remains in the native definition. The neutral model requires primary length for finite extrusion definitions and continues to accept recorded explicit lengths, including existing FreeCAD pocket data. [SOLIDWORKS end conditions](https://help.solidworks.com/2026/english/api/swconst/SolidWorks.Interop.swconst~SolidWorks.Interop.swconst.swEndConditions_e.html)
+
+The registered and direct document writers refuse depthless extrusion reconstruction before opening a destination for writing. They also refuse the definition after source relabeling and persistence, including when it appears in suppressed history or an embedded document. The direct neutral model JSON methods retain the typed definition for inspection. [Required native field refusal](NativeFieldWriteRefusal.md)
+
+At census revision `cdf53e1f`, the exact P04 through-all archive had SHA 256 `e1f431f1f21ae294fbd3711503ce386bec4fb4916c3cc83b57c876f1ae283149`. Native decoder evidence recorded code 1, direction 0, profile 35, dependencies 34 and 35, and null length. The updated discovery process gate requires the typed projection and explicit absence of a primary length alongside the ten measured blind controls. The persisted writer cases verify round-trip equality and destination preservation. Remote verification of this change is pending.

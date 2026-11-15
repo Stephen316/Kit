@@ -3509,13 +3509,23 @@ def NativeFallback(
     )
 
 
-# this definition exists because focused behavior needs one stable owner
+# extrusion projection preserves bounded solidworks termination evidence without inventing a depth
 def BuildExtrude(Operation: NativeOperation | None) -> ExtrusionFeature | None:
-    if (
-        Operation is None
-        or Operation.kind not in {"join", "cut", "surface"}
-        or Operation.length_mm is None
-    ):
+    if Operation is None or Operation.kind not in {"join", "cut", "surface"}:
+        return None
+    if Operation.length_mm is None:
+        if (
+            Operation.kind == "cut"
+            and Operation.termination_code == 1
+            and Operation.direction_code == 0
+            and Operation.second_length_mm is None
+            and Operation.profile_id is not None
+        ):
+            return ExtrusionFeature(
+                length=None,
+                end_condition=ExtrusionEndCondition.THROUGH_ALL,
+                reversed=True,
+            )
         return None
     return ExtrusionFeature(
         length=ParamValue(Operation.length_mm, ValueKind.LENGTH, "mm"),

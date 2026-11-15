@@ -43,7 +43,7 @@ class ExtrudeEnd(WireEnum):
 # extrusions retain directional and termination choices needed for reconstruction
 @MakeDataClass(frozen=True, slots=True)
 class ExtrudeFeature(ExtrudeShape, ExtrudeSecond, FeatureDef):
-    length: ParameterValue
+    length: ParameterValue | None
     end_condition: ExtrudeEnd | str = ExtrudeEnd.KBlind
     reversed: bool = False
     symmetric: bool = False

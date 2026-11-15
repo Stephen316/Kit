@@ -15,7 +15,12 @@ from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
 # relabeled and nested evidence must still block each public and direct writer
-def RejectFields(Document: CadDocument, TmpPath: FilePath, IsNested: bool) -> None:
+def RejectFields(
+    Document: CadDocument,
+    TmpPath: FilePath,
+    IsNested: bool,
+    ErrorText: str = "native or unresolved required semantics",
+) -> None:
     Document = ReplaceData(
         Document,
         source=ReplaceData(Document.source, format_id="json", path="relabeled.json"),
@@ -30,7 +35,6 @@ def RejectFields(Document: CadDocument, TmpPath: FilePath, IsNested: bool) -> No
     Document = Restored
     TargetPath = TmpPath / "Target.json"
     _ = TargetPath.write_bytes(b"existing public destination")
-    ErrorText = "native or unresolved required semantics"
     with RaisesError(ValueError, match=ErrorText):
         _ = WriteDocument(Document, TargetPath, overwrite=True, validate=False)
     if Document.validate():

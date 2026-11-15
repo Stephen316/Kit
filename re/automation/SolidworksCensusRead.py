@@ -182,6 +182,7 @@ def neutral_feature(item, names):
 
     definition = item.definition
     extrude = isinstance(definition, ExtrudeFeature)
+    length = definition.length if extrude else None
     return {
         "name": item.name, "id": item.id, "kind": str(item.kind),
         "operation": None if item.operation is None else str(item.operation),
@@ -189,7 +190,8 @@ def neutral_feature(item, names):
         "dependencies": [names.get(key, key) for key in item.input_feature_ids],
         "sketch_id": item.sketch_id,
         "selection_ids": item.selection_ids,
-        "length_mm": definition.length.value if extrude and definition.length.unit == "mm" else None,
+        "length_mm": length.value if length is not None and length.unit == "mm" else None,
+        "has_authored_length": length is not None if extrude else None,
         "reversed": definition.reversed if extrude else None,
         "end_condition": str(definition.end_condition) if extrude else None,
         "native_direction_code": item.attributes.get("direction_code"),

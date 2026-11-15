@@ -110,7 +110,7 @@ The `boundary` field records whether the low-level native model and the process-
 
 The census uses mass and centroid values from the saved independent measurements. For the two Front Plane P03 direction cases, it derives expected Z bounds from the measured centroid and blind-boss depth. It checks both P04 cut-centering equation bindings against each saved part's measured source. Other semantic mismatches and decoder rejections appear as research findings unless they affect a required check. Unverifiable inputs and invalid reader receipts fail the census. Use [the change entry](../../Changes/Research/SolidWorksDiscoveryCensus.md) for scope and evidence.
 
-The P04 termination check uses the same measured receipts. It requires ten matching blind cut depths and one native through-all code with no authored depth. The neutral reader preserves the through-all code on its native fallback. Typed through-all projection remains open.
+The P04 termination check uses the same measured receipts. It requires ten matching blind cut depths and one typed cut with the through-all end condition and an absent length. The source evidence retains native code 1. Destinations require separately qualified reconstruction. [Depthless through-all cut projection](../../Changes/Research/Readers/SolidWorksThroughAllProjection.md)
 
 The inch-length check verifies seven named, feature-owned resolved dimensions and three blind depths in the inch variants. Display metadata identifies the source unit and its native property stream. P04's six sketch dimensions remain outside this check while their configuration-stream ownership is unresolved. [Resolved-feature inch lengths](../../Changes/Research/SolidWorksResolvedInchLengths.md)
 

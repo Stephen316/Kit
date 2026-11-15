@@ -155,21 +155,21 @@ def require_cut_terminations(findings):
             neutral = next(
                 row for row in capture["neutral"]["features"] if row["name"] == name
             )
-            expected_projection = (
-                neutral["end_condition"] == "through_all"
-                or (
-                    neutral["definition"] == "NativeFeatureDefinition"
-                    and neutral["end_condition"] is None
-                )
-            )
             if (
                 native["length_mm"] is not None
                 or neutral["native_termination_code"] != 1
-                or not expected_projection
+                or neutral["has_authored_length"] is not False
+                or neutral["length_mm"] is not None
+                or neutral["sketch_id"] is None
+                or not neutral["reversed"]
             ):
                 raise ValueError(
-                    f"{path}: through-all must preserve its native termination without a native depth"
+                    f"{path}: through-all must preserve its profile and cut direction without an authored depth"
                 )
+            required.extend((
+                f"native.operation.{name}.reverse_code",
+                f"neutral.operation.{name}.end",
+            ))
         else:
             raise ValueError(f"{path}: unexpected measured cut termination {code}")
         mismatches = [field for field in required if fields.get(field, {}).get("status") != "matched"]
@@ -178,7 +178,7 @@ def require_cut_terminations(findings):
         counts[code] += 1
     if counts != {0: 10, 1: 1}:
         raise ValueError(f"P04 termination check requires ten blind cuts and one through-all cut, found {counts}")
-    print("Verified ten blind cut depths and preservation of one depthless through-all termination")
+    print("Verified ten blind cut depths and one typed depthless through-all cut")
 
 
 def compare_operations(measured, native, neutral, tolerance):

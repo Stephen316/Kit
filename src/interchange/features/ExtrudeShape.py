@@ -16,10 +16,10 @@ if IsTypeCheck:
 class ExtrudeShape:
     __slots__: tuple[str, ...] = ()
 
-    # extrusion length defines prism height without evaluating geometry
+    # an absent length preserves an extrusion whose through all intent has no authored distance
     @property
-    def Length(self) -> ParameterValue:
-        return CastValue(ParameterValue, getattr(self, "length"))
+    def Length(self) -> ParameterValue | None:
+        return CastValue(ParameterValue | None, getattr(self, "length"))
 
     # end condition captures blind through all and up to semantics in one field
     @property

@@ -2,7 +2,8 @@ from pathlib import Path as FilePath
 
 from pytest import mark as TestMark
 
-from interchange.features.FeatureExtrude import ExtrudeEnd
+from interchange.document.models.DocumentModel import CadDocument
+from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from tests.convert.solidworks.core.NativeWrites.EndEvidence import EndEvidence
 from tests.convert.solidworks.core.NativeWrites.RejectFields import RejectFields
 
@@ -22,3 +23,19 @@ def TestEndWrite(
     IsSuppressed: bool,
 ) -> None:
     RejectFields(EndEvidence(Family, EndValue, IsSuppressed), TmpPath, IsNested)
+
+
+# depthless through all is valid neutral history while destination reconstruction still needs qualification
+@TestMark.parametrize(("IsNested", "IsSuppressed"), ((False, False), (True, True)))
+def TestDepthless(TmpPath: FilePath, IsNested: bool, IsSuppressed: bool) -> None:
+    Document = EndEvidence("depthless", ExtrudeEnd.THROUGH_ALL, IsSuppressed)
+    Restored = CadDocument.from_json(Document.to_json())
+    assert Restored == Document
+    assert any(
+        isinstance(StepValue.definition, ExtrudeFeature)
+        and StepValue.definition.length is None
+        for StepValue in Restored.feature_timeline
+    )
+    RejectFields(
+        Document, TmpPath, IsNested, "depthless extrusion reconstruction is unqualified"
+    )

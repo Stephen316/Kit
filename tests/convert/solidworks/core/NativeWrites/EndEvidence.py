@@ -20,19 +20,20 @@ def EndEvidence(
     )
     DistanceValue = Original.definition
     assert isinstance(DistanceValue, DistanceExtrude)
+    LengthValue = next(
+        Parameter.value
+        for Parameter in Document.parameters
+        if Parameter.id == DistanceValue.AlongParameterId
+    )
     Definition = ExtrudeFeature(
-        next(
-            Parameter.value
-            for Parameter in Document.parameters
-            if Parameter.id == DistanceValue.AlongParameterId
-        ),
+        LengthValue,
         direction=DistanceValue.Direction,
     )
     if Family == "hole":
         Changed = ReplaceData(
             Original,
             kind=FeatureKind.HOLE,
-            definition=HoleFeature(Definition.length, Definition.length, EndValue),
+            definition=HoleFeature(LengthValue, LengthValue, EndValue),
         )
     elif Family == "second":
         Changed = ReplaceData(
@@ -40,7 +41,12 @@ def EndEvidence(
         )
     else:
         Changed = ReplaceData(
-            Original, definition=ReplaceData(Definition, end_condition=EndValue)
+            Original,
+            definition=ReplaceData(
+                Definition,
+                length=None if Family == "depthless" else LengthValue,
+                end_condition=EndValue,
+            ),
         )
     Changed = ReplaceData(Changed, suppressed=IsSuppressed)
     return ReplaceData(

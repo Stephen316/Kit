@@ -50,6 +50,8 @@ An identifier can remain syntactically valid while referring to the wrong entity
 ## Operation families
 
 Extrusion uses a profile, direction, extent, and end condition.
+A depthless through-all extrusion stores an explicit null length. Other extrusion end conditions require a primary length.
+Existing records can retain an explicit length with through-all, including a length stored in a native FreeCAD pocket.
 Revolution uses a profile, axis, and angle.
 Boolean operations define how geometry combines with existing bodies.
 Other families use their own typed definitions.
