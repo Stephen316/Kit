@@ -1,0 +1,295 @@
+"""Compare saved P04 neutral history and independent historical observations."""
+
+import argparse
+import json
+import math
+import sys
+from pathlib import Path, PurePosixPath
+
+from convert.api.ApiOpen import OpenDocument
+from CutHistoryGraph import (
+    GraphGap,
+    body_metrics,
+    extent,
+    plane_metrics,
+    read_history,
+    unique,
+)
+from CutHistorySketch import compare_positioning, match_perimeters, measure_profile
+from FusionCutExtentEvidence import REVISION
+from FusionCutSketchEvidence import historical_observations
+from P04FinalBodyEvidence import captures, compare, compare_captures
+from PairedCaptureIntake import require, sha256
+
+APPLICATIONS = {
+    "fusion": "fusion.f3d",
+    "solidworks": "solidworks.sldprt",
+}
+
+
+def outcome(reader, *values):
+    try:
+        return reader(*values)
+    except GraphGap as error:
+        return {"status": error.status, "reason": str(error)}
+
+
+def classify_body(first, second, tolerances):
+    compared = compare(first, second, tolerances)
+    equal = compared["counts_exact"] and compared["within_declared_tolerances"]
+    return {"status": "equal" if equal else "different", **compared}
+
+
+def compare_bodies(fusion, solidworks, measured, tolerances):
+    public = {
+        application: body_metrics(unique(document.bodies, "final body"), application)
+        for application, document in (("fusion", fusion), ("solidworks", solidworks))
+    }
+    comparisons = {
+        "between_readers": classify_body(
+            public["fusion"], public["solidworks"], tolerances
+        ),
+        "fusion_to_historical": classify_body(
+            public["fusion"], measured["fusion_historical_observation"], tolerances
+        ),
+        "solidworks_to_reopen": classify_body(
+            public["solidworks"], measured["solidworks_before_rebuild"], tolerances
+        ),
+        "solidworks_to_rebuild": classify_body(
+            public["solidworks"], measured["solidworks_after_rebuild"], tolerances
+        ),
+    }
+    return {
+        "status": (
+            "equal"
+            if all(item["status"] == "equal" for item in comparisons.values())
+            else "different"
+        ),
+        "public": public,
+        "comparisons": comparisons,
+    }
+
+
+def compare_extent(fusion, solidworks, cut, tolerance):
+    left = extent(fusion.cut if cut else fusion.base, fusion.parameters, cut)
+    right = extent(
+        solidworks.cut if cut else solidworks.base, solidworks.parameters, cut
+    )
+    equal = left[0] == right[0] and (
+        (left[1] is None and right[1] is None)
+        or (
+            left[1] is not None
+            and right[1] is not None
+            and abs(left[1] - right[1]) <= tolerance
+        )
+    )
+    return {
+        "status": "equal" if equal else "different",
+        "fusion": left,
+        "solidworks": right,
+    }
+
+
+def compare_plane(fusion, solidworks, tolerances):
+    left, right = plane_metrics(fusion.cut.plane), plane_metrics(solidworks.cut.plane)
+    normals = math.dist(left[0], right[0])
+    offset = abs(left[1] - right[1])
+    equal = (
+        normals <= 2 * math.sin(tolerances["angle_rad_absolute"] / 2)
+        and offset <= tolerances["length_mm_absolute"]
+    )
+    return {
+        "status": "equal" if equal else "different",
+        "fusion_normal_and_offset_mm": left,
+        "solidworks_normal_and_offset_mm": right,
+        "normal_chord_length": normals,
+        "offset_delta_mm": offset,
+    }
+
+
+def summarize_roles(history):
+    output = {}
+    for key, role in (("base_extrusion", history.base), ("cut", history.cut)):
+        output[key] = {
+            "operation": str(role.feature.operation),
+            "feature": role.feature.id,
+            "profile_owner": role.owner.id,
+            "profile_sketch": role.sketch.id,
+            "input_features": role.feature.input_feature_ids,
+        }
+    output["support_selection"] = history.support.id
+    output["target_selection"] = history.target.id
+    output["final_body"] = history.body.id
+    return output
+
+
+def compare_profiles(fusion, solidworks, measured, tolerances):
+    tolerance = tolerances["length_mm_absolute"]
+    fields = {}
+    for role in ("base", "cut"):
+        left, right = getattr(fusion, role), getattr(solidworks, role)
+        independent_fusion, fusion_match = measure_profile(
+            left, measured["fusion"], "fusion", tolerance
+        )
+        independent_sw, sw_match = measure_profile(
+            right, measured["solidworks"], "solidworks", tolerance
+        )
+        fields[role] = {
+            **match_perimeters(left.perimeter, right.perimeter, tolerance),
+            "fusion_to_historical": fusion_match,
+            "solidworks_to_reopen": sw_match,
+        }
+        if role == "cut":
+            if fields["base"]["status"] == fields["cut"]["status"] == "equal":
+                fields["cut_positioning"] = outcome(
+                    compare_positioning,
+                    fusion,
+                    solidworks,
+                    independent_fusion,
+                    independent_sw,
+                    measured["solidworks"],
+                    tolerance,
+                )
+            else:
+                fields["cut_positioning"] = {
+                    "status": "unclassified",
+                    "reason": "requires unique matching base and Cut perimeters",
+                }
+    return fields
+
+
+def compare_history(documents, measured, tolerances):
+    fusion, solidworks = (read_history(documents[name]) for name in APPLICATIONS)
+    length = tolerances["length_mm_absolute"]
+    return {
+        "status": "bounded_role_correspondence",
+        "local_links": {
+            "fusion": summarize_roles(fusion),
+            "solidworks": summarize_roles(solidworks),
+        },
+        "profiles": outcome(compare_profiles, fusion, solidworks, measured, tolerances),
+        "cut_support_plane": outcome(compare_plane, fusion, solidworks, tolerances),
+        "base_extent": outcome(compare_extent, fusion, solidworks, False, length),
+        "cut_extent": outcome(compare_extent, fusion, solidworks, True, length),
+        "unclassified": [
+            "full sketch constraint, operand and expression correspondence",
+            "full authored meaning of the base create versus join operation",
+            "explicit common world extrusion direction and through all selection role",
+            "fresh lifecycle-aligned support-face identity and area",
+        ],
+    }
+
+
+def read_pair(git, rows, measured):
+    documents = {}
+    for application, row in rows.items():
+        content = git.blob(REVISION, row["path"])
+        require(
+            sha256(content) == row["sha256"] == measured[f"{application}_sha256"],
+            "reader payload differs from the preserved native archive",
+        )
+        documents[application] = OpenDocument(
+            content, SourceFormat=APPLICATIONS[application], StrictMode=False
+        )
+    return documents
+
+
+def controls(pairs, historical, tolerances):
+    baseline, through_all = (
+        pairs[key] for key in ("baseline-a", "termination-through-all")
+    )
+    left, right = baseline["body"], through_all["body"]
+    if "public" not in left or "public" not in right:
+        return {
+            "status": "unclassified",
+            "reason": "body metrics unavailable for termination control",
+        }
+    return {
+        "public_baseline_solidworks_vs_through_all_fusion": classify_body(
+            left["public"]["solidworks"], right["public"]["fusion"], tolerances
+        ),
+        "historical_baseline_solidworks_vs_through_all_fusion": classify_body(
+            historical["baseline-a"]["solidworks_after_rebuild"],
+            historical["termination-through-all"]["fusion_historical_observation"],
+            tolerances,
+        ),
+        "baseline_and_through_all_cut_extents": [
+            item["history"].get("cut_extent") for item in (baseline, through_all)
+        ],
+    }
+
+
+def receipt_document(git, entry):
+    path, digest = entry["path"], entry["sha256"]
+    contents = git.blob(REVISION, path)
+    require(sha256(contents) == digest, "historical measurements digest differs")
+    return git.parse_document(contents, path)
+
+
+def report(directory, receipt_digest):
+    context = captures()
+    git, _, fusion, solidworks = context
+    historical = compare_captures(context, directory, receipt_digest)
+    bodies = {row["variant"]: row for row in historical["pairs"]}
+    tolerances = historical["declared_tolerances"]
+    fusion_api = historical_observations(
+        fusion, receipt_document(git, fusion["measurements"])
+    )
+    sw_api = receipt_document(git, solidworks["measurements"])["observations"][
+        "reopened_files"
+    ]
+    roster = {row["variant"]: {"fusion": row} for row in fusion["native_files"]}
+    for row in solidworks["native_files"]:
+        roster[row["variant"]]["solidworks"] = row
+    pairs = {}
+    for variant, rows in roster.items():
+        docs = read_pair(git, rows, bodies[variant])
+        phase, measured_fusion = fusion_api[variant]
+        measured_sw = sw_api[PurePosixPath(rows["solidworks"]["path"]).name]
+        pairs[variant] = {
+            "sources": {
+                name: {"path": row["path"], "sha256": row["sha256"]}
+                for name, row in rows.items()
+            },
+            "fusion_historical_phase": phase,
+            "body": outcome(
+                compare_bodies,
+                docs["fusion"],
+                docs["solidworks"],
+                bodies[variant],
+                tolerances,
+            ),
+            "history": outcome(
+                compare_history,
+                docs,
+                {"fusion": measured_fusion, "solidworks": measured_sw},
+                tolerances,
+            ),
+        }
+    return {
+        "scope": "P04 discovery archives and independent historical measurements",
+        "historical_body_evidence": historical,
+        "capture_receipts": {
+            name: value["receipt"]
+            for name, value in (("fusion", fusion), ("solidworks", solidworks))
+        },
+        "original_measurements": {
+            name: value["measurements"]
+            for name, value in (("fusion", fusion), ("solidworks", solidworks))
+        },
+        "pairs": pairs,
+        "termination_difference_control": controls(pairs, bodies, tolerances),
+        "fresh_native_fusion": "unverified",
+        "generic_comparator_qualification": "unverified",
+    }
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("readback_directory", type=Path)
+    parser.add_argument("--receipt-sha256", required=True)
+    options = parser.parse_args()
+    result = report(options.readback_directory, options.receipt_sha256)
+    sys.stdout.buffer.write(
+        (json.dumps(result, sort_keys=True, indent=2, allow_nan=False) + "\n").encode()
+    )

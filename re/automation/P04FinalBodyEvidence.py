@@ -101,8 +101,8 @@ def compare(left, right, tolerances):
     }
 
 
-# bind every observed native part to the same original recipe and immutable capture roster
-def report(directory, receipt_digest):
+# archive readers share the original application receipts and immutable paired roster
+def captures():
     git, fusion = p04_capture()
     specification = git.document(REVISION, SPECIFICATION)
     recipe = next(item for item in specification["recipes"] if item["id"] == "P04")
@@ -115,6 +115,17 @@ def report(directory, receipt_digest):
         specification,
         SPECIFICATION_SHA256,
     )
+    return git, specification, fusion, solidworks
+
+
+# preserve the standalone final body report while sharing its verified input chain
+def report(directory, receipt_digest):
+    return compare_captures(captures(), directory, receipt_digest)
+
+
+# bind every observed native part to the same original recipe and immutable capture roster
+def compare_captures(capture_values, directory, receipt_digest):
+    git, specification, fusion, solidworks = capture_values
     receipt = document(directory / "receipt.json", receipt_digest)
     plan = document(directory / "plan.json", receipt["plan_sha256"])
     measurements = document(
