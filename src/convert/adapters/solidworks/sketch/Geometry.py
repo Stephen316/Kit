@@ -57,7 +57,7 @@ def BindDimensions(
     Cursor: SketchArchive, Points: list[KPointRow]
 ) -> list[KSketchDistance]:
     Records: list[KSketchDistance] = []
-    for ClassName, Index, NameValue, Value, First, Second in Cursor.Dimensions:
+    for (ClassName, Index, NameValue, Value, First, Second), _ in Cursor.Dimensions:
         Operands: list[KPointId] = []
         for HandleIndex in (First, Second):
             Position, Owner, Flags = Cursor.Handles[HandleIndex]
@@ -136,9 +136,10 @@ def ReadGeoSpansMut(
     )
     ReadDims(Cursor)
     Relations = ReadRelations(Cursor)
+    Distances = tuple(Source for _, Source in Cursor.Dimensions)
     return BindGeometry(
         Cursor, ObjectIndex, Start, Points, Lines, Relations
-    ), MemberSpans(PointSpans, LineSpans)
+    ), MemberSpans(PointSpans, LineSpans, Distances)
 
 
 # research callers can keep their established geometry report shape

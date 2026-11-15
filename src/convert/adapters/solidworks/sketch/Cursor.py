@@ -8,6 +8,7 @@ from convert.adapters.solidworks.sketch.GeometryTypes import (
     KEntityHandle,
     SketchReference,
 )
+from convert.adapters.solidworks.sketch.MemberSpans import DistanceSpan
 from convert.adapters.solidworks.sketch.Objects import ReadSketchMut
 
 
@@ -27,7 +28,7 @@ class SketchArchive(ArchiveCursor):
         self.NodeNames: dict[int, str] = {}
         self.Scalars: dict[int, tuple[str, float]] = {}
         self.ScalarOffsets: dict[int, int] = {}
-        self.Dimensions: list[KDistanceRow] = []
+        self.Dimensions: list[tuple[KDistanceRow, DistanceSpan]] = []
         self.Handles: dict[int, KEntityHandle] = {}
         self.SketchReferences: dict[int, SketchReference] = {}
         self.PointReferences: dict[int, SketchReference] = {}

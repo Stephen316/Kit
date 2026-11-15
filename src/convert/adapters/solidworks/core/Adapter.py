@@ -2568,10 +2568,11 @@ def SketchA(Sketch: NativeSketch, ParamIds: set[str]) -> SketchData:
     MarkerRefsMut(Sketch, MarkerEntities, RefMap)
     Constraints = SketchB(Sketch, RefMap, ParamIds)
     ClosedProfiles = ClosedSketch(Sketch)
+    Entries = ParamEntries(Sketch.object_id, Sketch.dimensions)
     SketchParamIds = tuple(
         (
             ParamId
-            for _, ParamId in ParamEntries(Sketch.object_id, Sketch.dimensions)
+            for _, ParamId in Entries
             if ParamId in ParamIds
         )
     )
@@ -2595,7 +2596,7 @@ def SketchA(Sketch: NativeSketch, ParamIds: set[str]) -> SketchData:
             }
         ),
     )
-    return ProjectRect(Neutral, Sketch.rectangle, Sketch.native_stream)
+    return ProjectRect(Neutral, Sketch.rectangle, Sketch.native_stream, Entries)
 
 
 # this definition exists because point and line markers share coordinate resolution

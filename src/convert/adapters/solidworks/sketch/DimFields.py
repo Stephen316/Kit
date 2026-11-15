@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.sketch.MemberSpans import DistanceSpan, MemberSpan
 
 if TYPE_CHECKING:
     from convert.adapters.solidworks.sketch.Cursor import SketchArchive
@@ -33,7 +34,9 @@ def ReadDimBase(
 
 # the distance and both native operands must belong to the same dimension object
 def ReadDistanceMut(Cursor: SketchArchive, ClassName: str) -> None:
-    DimId, ValueId, _ = ReadDimBase(Cursor, "moLengthParameter_c")
+    Start = Cursor.Offset
+    DimId, ValueId, State = ReadDimFields(Cursor, "moLengthParameter_c")
+    TypeValue, OperandCount, Deleted, Reserved = Cursor.ReadInts("<i3H")
     RequireArch(Cursor.ReadInts("<H"), (0,), "absent sgValGDim transform")
     First = Cursor.ReadObject("sgPointHandle")
     Second = Cursor.ReadObject("sgPointHandle")
@@ -41,4 +44,10 @@ def ReadDistanceMut(Cursor: SketchArchive, ClassName: str) -> None:
     _ = Cursor.ReadObject(None)
     _ = Cursor.ReadPoint(3)
     Label, Metres = Cursor.Scalars[ValueId]
-    Cursor.Dimensions.append((ClassName, DimId, Label, Metres, First, Second))
+    Source = DistanceSpan(
+        MemberSpan(Start, Cursor.Offset),
+        Cursor.ScalarOffsets[ValueId],
+        TypeValue,
+        (State, OperandCount, Deleted, Reserved) == (0, 2, 0, 0),
+    )
+    Cursor.Dimensions.append(((ClassName, DimId, Label, Metres, First, Second), Source))

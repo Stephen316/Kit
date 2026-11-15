@@ -1,6 +1,7 @@
 import hashlib as Hashlib
 import subprocess as Subprocess
 import sys as System
+from math import hypot as Hypot
 from pathlib import Path as FilePath
 from struct import unpack_from as UnpackFrom
 
@@ -14,8 +15,9 @@ from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
 from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Sketch import Sketch
+from interchange.geometry.models.Sketch import Sketch, SketchRelation
 from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.records.RecordParameter import Parameter
 
 
 # each command compares saved archive records with pinned independent application measurements
@@ -186,6 +188,83 @@ def AssertSwOrigin(SketchValue: Sketch, Resolved: bytes) -> None:
     )
 
 
+# the saved operands must refer to the exact authored edge and preserve the sign of their ordering
+def AssertSwDist(
+    RuleValue: SketchRelation,
+    SketchValue: Sketch,
+    ParamValue: Parameter,
+    Resolved: bytes,
+    Variant: str,
+) -> None:
+    assert (
+        RuleValue.kind == "distance" and RuleValue.driving and not RuleValue.suppressed
+    )
+    assert RuleValue.attributes["native_code"] == 1 and RuleValue.provenance is not None
+    BodySpan, Scalar = RuleValue.provenance.spans
+    assert (
+        BodySpan.record_kind == "sketch-distance"
+        and Scalar.record_kind == "dimension-scalar"
+    )
+    assert BodySpan.stream == Scalar.stream == "Contents/Config-0-ResolvedFeatures"
+    assert Scalar.length == 8 and ParamValue.provenance is not None
+    assert ParamValue.provenance.spans == (Scalar,)
+    (Metres,) = UnpackFrom("<d", Resolved, Scalar.offset)
+    assert ParamValue.value.unit == "mm" and ParamValue.value.value == Metres * 1000
+    First, Second = RuleValue.references
+    assert First.entity_id == Second.entity_id and {First.point, Second.point} == {
+        "start",
+        "end",
+    }
+    assert First.entity_id in SketchValue.closed_profile_entity_ids[0]
+    (EdgeValue,) = [
+        Value for Value in SketchValue.entities if Value.id == First.entity_id
+    ]
+    Geometry = EdgeValue.geometry
+    assert isinstance(Geometry, LineGeometry)
+    Start, Finish = (
+        (Geometry.end, Geometry.start)
+        if First.point == "end"
+        else (Geometry.start, Geometry.end)
+    )
+    DeltaX, DeltaY = Finish.x - Start.x, Finish.y - Start.y
+    assert Hypot(DeltaX, DeltaY) == Metres * 1000
+    if Variant == "plane-yz":
+        assert (DeltaX, DeltaY) == (
+            (0.0, 40.0) if ParamValue.name == "width_mm" else (-20.0, 0.0)
+        )
+    if Variant == "units-inch":
+        assert ParamValue.attributes["source_text"] == (
+            "1.57" if ParamValue.name == "width_mm" else "0.79"
+        )
+
+
+# both public driving parameters must own one exact distance in the selected sketch
+def AssertSwDists(
+    SketchValue: Sketch,
+    Parameters: tuple[Parameter, ...],
+    Resolved: bytes,
+    Variant: str,
+) -> None:
+    Owned = {
+        ItemValue.id: ItemValue
+        for ItemValue in Parameters
+        if ItemValue.id in SketchValue.parameter_ids
+    }
+    assert {ItemValue.name for ItemValue in Owned.values()} == {"width_mm", "height_mm"}
+    Count = 0
+    for RuleValue in SketchValue.constraints:
+        if RuleValue.parameter_id is not None:
+            AssertSwDist(
+                RuleValue,
+                SketchValue,
+                Owned.pop(RuleValue.parameter_id),
+                Resolved,
+                Variant,
+            )
+            Count += 1
+    assert not Owned and Count == 2
+
+
 # public support must use the saved reference even when the front plane occurs first
 @Pytest.mark.parametrize(
     ("Family", "Capture", "Variant"),
@@ -250,6 +329,7 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
     assert int.from_bytes(Stored, "little", signed=True) == DatumId
     AssertSwAxes(Sketch, Resolved)
     AssertSwOrigin(Sketch, Resolved)
+    AssertSwDists(Sketch, Document.parameters, Resolved, Variant)
 
 
 # native depth and signed direction must survive display unit changes and the public projection

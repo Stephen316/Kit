@@ -15,11 +15,21 @@ class MemberSpan:
     EndOffset: int
 
 
+# a dimension body keeps the activity and scalar location needed by its neutral relation
+@Dataclass(frozen=True, slots=True)
+class DistanceSpan:
+    Body: MemberSpan
+    ScalarOffset: int
+    TypeCode: int
+    ActivePair: bool
+
+
 # sketch member slots preserve their own record boundaries when decoded together
 @Dataclass(frozen=True, slots=True)
 class MemberSpans:
     Points: tuple[MemberSpan, ...]
     Lines: tuple[MemberSpan, ...]
+    Distances: tuple[DistanceSpan, ...]
 
 
 # source spans must include the framed member type and all its owned fields

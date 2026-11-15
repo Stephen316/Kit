@@ -1,7 +1,9 @@
 from dataclasses import replace as Replace
 
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.core.Native import NativeDimension
 from convert.adapters.solidworks.core.RectBindings import BindRectangle
+from convert.adapters.solidworks.core.RectDistances import ProjectDists
 from convert.adapters.solidworks.core.RectEntities import ProjectRectEdge, ProjectRectPt
 from convert.adapters.solidworks.core.RectOrigin import BindRectOrigin
 from convert.adapters.solidworks.core.RectRelations import ProjectAxes, ProjectOrigin
@@ -11,18 +13,26 @@ from interchange.geometry.models.Sketch import Sketch, SketchEntity
 
 # an ordinary sketch only adopts typed geometry when its existing public identities corroborate
 def ProjectRect(
-    Neutral: Sketch, Parsed: RectanglePart | None, StreamName: str
+    Neutral: Sketch,
+    Parsed: RectanglePart | None,
+    StreamName: str,
+    Entries: tuple[tuple[NativeDimension, str], ...] = (),
 ) -> Sketch:
     if Parsed is None:
         return Neutral
     try:
-        return BuildRect(Neutral, Parsed, StreamName)
+        return BuildRect(Neutral, Parsed, StreamName, Entries)
     except (KeyError, IndexError, ValueError):
         return Neutral
 
 
 # committing one replacement keeps geometry and solver references consistent as a group
-def BuildRect(Neutral: Sketch, Parsed: RectanglePart, StreamName: str) -> Sketch:
+def BuildRect(
+    Neutral: Sketch,
+    Parsed: RectanglePart,
+    StreamName: str,
+    Entries: tuple[tuple[NativeDimension, str], ...],
+) -> Sketch:
     Profile = Parsed.Profile
     RequireArch(Neutral.name, Profile.NameValue, "typed native and public sketch name")
     RequireArch(
@@ -47,6 +57,7 @@ def BuildRect(Neutral: Sketch, Parsed: RectanglePart, StreamName: str) -> Sketch
         "typed members cover the existing rectangle entities",
     )
     Rules = ProjectAxes(Neutral, Profile.Geometry, Binding, StreamName)
+    Rules = ProjectDists(Rules, Profile, Binding, StreamName, Entries)
     Coincidence = ProjectOrigin(Binding, Origin, Profile.FeatureId, StreamName)
     RequireArch(
         Coincidence.id not in {RuleValue.id for RuleValue in Rules},
