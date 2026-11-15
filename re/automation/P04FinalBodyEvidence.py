@@ -122,8 +122,12 @@ def compare(left, right, tolerances):
 def captures():
     git, fusion = p04_capture()
     specification = git.document(REVISION, SPECIFICATION)
+    return git, specification, fusion, solidworks_capture(git, specification)
+
+
+def solidworks_capture(git, specification):
     recipe = next(item for item in specification["recipes"] if item["id"] == "P04")
-    solidworks = inspect_capture(
+    return inspect_capture(
         git,
         REVISION,
         SOLIDWORKS_RECEIPT,
@@ -132,7 +136,6 @@ def captures():
         specification,
         SPECIFICATION_SHA256,
     )
-    return git, specification, fusion, solidworks
 
 
 # preserve the standalone final body report while sharing its verified input chain
@@ -140,9 +143,8 @@ def report(directory, receipt_digest):
     return compare_captures(captures(), directory, receipt_digest)
 
 
-# bind every observed native part to the same original recipe and immutable capture roster
-def compare_captures(capture_values, directory, receipt_digest):
-    git, specification, fusion, solidworks = capture_values
+# bind every observed native part to the original SOLIDWORKS capture and immutable collector source
+def licensed_readback(git, solidworks, directory, receipt_digest):
     receipt = document(directory / "receipt.json", receipt_digest)
     plan = document(directory / "plan.json", receipt["plan_sha256"])
     measurements = document(
@@ -163,8 +165,7 @@ def compare_captures(capture_values, directory, receipt_digest):
         and sha256(git.blob(source, COLLECTOR)) == plan["collector"]["sha256"]
         and plan["existing_receipt"]["sha256"] == solidworks["receipt"]["sha256"]
         and plan["existing_measurements"]["sha256"]
-        == solidworks["measurements"]["sha256"]
-        and solidworks["canonical_recipe_sha256"] == fusion["canonical_recipe_sha256"],
+        == solidworks["measurements"]["sha256"],
         "readback does not match the pinned collector and P04 recipe",
     )
     run = measurements["run"]
@@ -181,33 +182,44 @@ def compare_captures(capture_values, directory, receipt_digest):
         "unexpected SOLIDWORKS build",
     )
     native = {row["file"]: row for row in run["observations"]}
+    roster = {PurePosixPath(row["path"]).name: row for row in solidworks["native_files"]}
+    require(
+        native.keys() == plan["native_files"].keys() == roster.keys()
+        and len(native) == len(run["observations"]) == 11,
+        "readback and SOLIDWORKS archive rosters differ",
+    )
+    for name, pin in roster.items():
+        require(
+            plan["native_files"][name]["sha256"] == pin["sha256"]
+            and native[name]["face_verified_before_and_after_rebuild"] is True,
+            "readback asset digest differs or native observation is incomplete",
+        )
+    return source, receipt["measurements_sha256"], native
+
+
+# compare the same original paired archives only after verifying the fresh SOLIDWORKS receipt
+def compare_captures(capture_values, directory, receipt_digest):
+    git, specification, fusion, solidworks = capture_values
+    source, measurements_digest, native = licensed_readback(
+        git, solidworks, directory, receipt_digest
+    )
+    require(
+        solidworks["canonical_recipe_sha256"] == fusion["canonical_recipe_sha256"],
+        "readback does not match the paired P04 recipe",
+    )
     archived = historical_observations(
         fusion, git.document(REVISION, fusion["measurements"]["path"])
     )
     fusion_files = {row["variant"]: row["sha256"] for row in fusion["native_files"]}
     require(
-        set(native)
-        == set(plan["native_files"])
-        == {PurePosixPath(row["path"]).name for row in solidworks["native_files"]}
-        and set(archived)
-        == set(fusion_files)
-        == {row["variant"] for row in solidworks["native_files"]}
-        and len(native) == len(run["observations"]) == 11,
+        set(archived) == set(fusion_files) == {row["variant"] for row in solidworks["native_files"]},
         "readback and paired archive rosters differ",
     )
     tolerances = specification["comparison_tolerances"]
     pairs = []
     for asset in solidworks["native_files"]:
         name, variant = PurePosixPath(asset["path"]).name, asset["variant"]
-        require(
-            plan["native_files"][name]["sha256"] == asset["sha256"],
-            "readback asset digest differs",
-        )
         observation = native[name]
-        require(
-            observation["face_verified_before_and_after_rebuild"] is True,
-            "incomplete native observation",
-        )
         before = solidworks_body(observation["before_rebuild"])
         after = solidworks_body(observation["after_rebuild"])
         phase, historical = archived[variant]
@@ -232,7 +244,7 @@ def compare_captures(capture_values, directory, receipt_digest):
         "solidworks_build": SOLIDWORKS_BUILD,
         "solidworks_readback_revision": source,
         "solidworks_readback_receipt_sha256": receipt_digest,
-        "solidworks_readback_measurements_sha256": receipt["measurements_sha256"],
+        "solidworks_readback_measurements_sha256": measurements_digest,
         "fusion_measurements_sha256": fusion["measurements"]["sha256"],
         "declared_tolerances": tolerances,
         "topology_count_order": ["faces", "edges", "vertices"],
