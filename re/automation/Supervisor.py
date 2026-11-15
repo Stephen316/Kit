@@ -20,6 +20,7 @@ from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
 from Records import bounded, canonical, digest, label, read_record, reason_text
 from ResourceBudget import ResourceBudget
+from ResourceOccupancy import claim_occupancy
 from Runners import Registry
 from Sessions import Session, read_bounded, write_private
 from SingleClaim import clear_claim_stages
@@ -597,7 +598,8 @@ def main():
     running = commands.add_parser("run")
     running.add_argument("--idle-seconds", type=float)
     running.add_argument("--max-seconds", type=float)
-    commands.add_parser("status")
+    status_command = commands.add_parser("status")
+    status_command.add_argument("--claim-occupancy", nargs=3, metavar=("RESOURCE", "FROM_UNIX", "UNTIL_UNIX"))
     pause = commands.add_parser("pause")
     pause.add_argument("pool")
     pause.add_argument("--reason", required=True)
@@ -618,6 +620,9 @@ def main():
             response = Supervisor(config, True).run(args.idle_seconds, args.max_seconds)
         elif args.command == "status":
             response = status(config)
+            if args.claim_occupancy is not None:
+                resource, start, end = args.claim_occupancy
+                response["claim_occupancy"] = claim_occupancy(config, resource, float(start), float(end))
         elif args.command in ("pause", "resume"):
             response = set_pause(config, args.pool, args.reason if args.command == "pause" else None)
         else:

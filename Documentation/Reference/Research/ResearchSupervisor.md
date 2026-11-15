@@ -61,6 +61,19 @@ This example uses example paths:
 The supervisor sets only the capacity of a configured resource.
 Mark a resource available with the controller command after you verify it.
 
+## Recorded claim occupancy
+
+For an existing capacity-one A03 resource, use a past Unix-time window to inspect which portion of it had a controller claim.
+
+```sh
+python3 re/automation/Supervisor.py --config /absolute/path/Supervisor.json \
+  status --claim-occupancy application:fusion:local 1730000000 1730003600
+```
+
+The report labels its scope as A03 claim occupancy. The union of recorded claim intervals is clipped to the requested window. Closed claims use their immutable attempt receipt and original resource declaration. A current open claim contributes through the requested end of the window. Readback gives the observed resource availability and the number of intersecting closed and open claims. The ordinary status command keeps its existing response.
+
+A controller claim includes worker setup, waiting and settlement while the resource is held. The application busy-time target requires separate native measurements.
+
 ## Runner registry
 
 The registry maps each job kind to one runner.
