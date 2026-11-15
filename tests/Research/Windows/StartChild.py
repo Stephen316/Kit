@@ -1,5 +1,6 @@
 import signal as Signals
 import os as OsLayer
+import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
 import time as TimeClock
@@ -20,7 +21,15 @@ def StartChild(Options: dict[str, str]) -> None:
         creationflags=Subprocess.CREATE_NEW_PROCESS_GROUP,
     )
     UntilTime = TimeClock.monotonic() + 10
-    while not FilePath(Options["pid_file"]).exists():
+    while True:
+        try:
+            ProcessIds = JsonCodec.loads(
+                FilePath(Options["pid_file"]).read_text(encoding="utf-8")
+            )
+            if ProcessIds == [OsLayer.getpid(), ChildProcess.pid]:
+                break
+        except (OSError, ValueError):
+            pass
         if TimeClock.monotonic() >= UntilTime:
             raise RuntimeError("child did not report readiness")
         TimeClock.sleep(0.01)
