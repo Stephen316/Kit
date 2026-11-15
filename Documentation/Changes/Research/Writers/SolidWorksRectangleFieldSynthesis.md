@@ -1,0 +1,5 @@
+# SOLIDWORKS rectangle field synthesis
+
+Run `python re/solidworks/authoring/RectangleFields.py` to compare model-derived field fragments with the six Git-pinned P01 discovery saves. The experiment uses independently observed sketch endpoints, point operands and relation incidences. It compares 12 count fields, 54 incidence fields, 24 local coordinate pairs and 24 directed endpoint pairs, from width, height, plane, units and repeated-save controls. The compact report has SHA-256 `ac9ec93027d38a2ffaa4c7e11619cf0fa80b16907c13d4d8c1ee375f23619ec1` before its trailing newline. [Field boundaries and replay](../../../../re/solidworks/authoring/RectangleFields.md)
+
+The remaining member writer needs the visual record and explicit-width rules, local reference allocation, and the external Origin and structural profile records. SOLIDWORKS remains read-only through the normal registry. Editable native acceptance still requires a fully generated file and fresh application measurements before and after rebuild and a driving-dimension edit. [Required CAD acceptance](../../../Reference/Operations/CadSuccessCriteria.md)

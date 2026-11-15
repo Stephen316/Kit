@@ -54,6 +54,8 @@ audit and the current boundary.
 7. **`measurements/`** — every volume measurement, with its controls. This is the evidence layer for
    every claim above that says "measured".
 
+The [rectangle field synthesis experiment](authoring/RectangleFields.md) records the first generation-19000 sketch-member fields reproduced from the pinned independent P01 measurements.
+
 `GroundTruth.md` (real-world 63-file corpus baseline; the document that proved Kit's feature-flag
 constants missed ~99% of real features) and `ReportResolved.md` (the reader-module fixes that came
 out of it) sit at this level because they cut across all of the above.
