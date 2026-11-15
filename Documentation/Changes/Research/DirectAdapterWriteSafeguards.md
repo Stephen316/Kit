@@ -48,6 +48,7 @@ Public writes that previously selected exact replay or carriers for these graphs
 Copying retained native bytes does not qualify an editable portable graph.
 Native reading and explicit model serialization remain available for inspection.
 The low-level native replay helpers are unchanged.
+Further [native semantic qualification](Readers/NativeSemanticWriteQualification.md) covers bare native kinds, unknown operations, explicit unresolved assembly markers, and FreeCAD required-feature expressibility before output work.
 Existing generic API exact-copy cases now require refusal and destination preservation when the decoded history contains native-only definitions.
 Their original exact-result assertions remain for fully typed inputs.
 

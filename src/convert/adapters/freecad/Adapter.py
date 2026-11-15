@@ -68,6 +68,8 @@ from convert.adapters.freecad.Archive import (
     MANIFEST_ENTRY as ManifestEntry,
     NATIVE_DOCUMENT_SHA256_ATTRIBUTE as KNativeDocHashAttr,
     NativeBrepKey,
+    HasNativeProf,
+    Items,
     ReadZipManifest,
     MAX_ENTRY_SIZE as MaxEntrySize,
     MAX_EXTERNAL_FILES as MaxOuterFiles,
@@ -644,6 +646,22 @@ def FeatureSet(DocValue: CadDocument) -> tuple[FeatureStep, ...]:
     )
 
 
+def HasExtrudeShape(DocValue: CadDocument, Feature: FeatureStep) -> bool:
+    Manifest = DocToManifest(DocValue)
+    Features = [
+        Value
+        for Value in Items(Manifest.get("feature_timeline", ()))
+        if Value.get("id") == Feature.id
+    ]
+    return NativeShapeFeatureCount(
+        {**Manifest, "feature_timeline": Features}
+    ) == 1 and any(
+        HasNativeProf(Sketch)
+        for Sketch in Items(Manifest.get("sketches", ()))
+        if Sketch.get("id") == Feature.sketch_id
+    )
+
+
 # this definition identifies feature kinds that the native writer can reconstruct
 def CanWriteFeature(
     DocValue: CadDocument, Feature: FeatureStep, SketchNative: Mapping[str, bool]
@@ -656,6 +674,7 @@ def CanWriteFeature(
             bool(Feature.SketchId)
             and SketchNative.get(Feature.SketchId or "", False)
             and IsExtrusion(Feature)
+            and HasExtrudeShape(DocValue, Feature)
         )
     if KindValue == FeatureKind.FILLET.value:
         Definition = Feature.Definition
@@ -2626,6 +2645,39 @@ def RebuildResult(
     )
 
 
+def MissingFeatures(
+    DocValue: CadDocument, EditableFeatures: Collection[str]
+) -> tuple[str, ...]:
+    Parts: dict[Capability, list[bool]] = {Value: [] for Value in Capability}
+    Reasons: dict[Capability, set[CarrierReason]] = {
+        Value: set() for Value in Capability
+    }
+    SketchNative, _ = AddSketchMut(DocValue, DocToManifest(DocValue), Parts, Reasons)
+    return tuple(
+        Feature.id
+        for Feature in FeatureSet(DocValue)
+        if Feature.id not in EditableFeatures
+        and not CanWriteFeature(DocValue, Feature, SketchNative)
+    )
+
+
+def CheckFeatures(DocValue: CadDocument) -> None:
+    for Component in DocTree(DocValue):
+        if not MissingFeatures(Component, ()):
+            continue
+        EditableFeatures: set[str] = set()
+        if Component is DocValue and DocValue.assembly is None:
+            _ = BuildFcstdArchive(
+                DocToManifest(Component), editable_features=EditableFeatures
+            )
+        Missing = MissingFeatures(Component, EditableFeatures)
+        if Missing:
+            raise ValueError(
+                "FreeCAD cannot emit editable required features: "
+                + "; ".join(f"{Component.source.path}: {Value}" for Value in Missing)
+            )
+
+
 # this definition selects exact replay or reconstruction for one write request
 def WriteTarget(
     Instance: FreeCadAdapter,
@@ -2638,6 +2690,7 @@ def WriteTarget(
     ShouldOverwrite = Selected.Overwrite if Overwrite is None else Overwrite
     if Selected.Validate:
         DocValue.assert_valid()
+    CheckFeatures(DocValue)
     if not Instance.supports(DocValue, Target):
         raise FreeCadAdapterA(
             f"FreeCAD destination must be a {Suffix} path or writable binary stream"

@@ -1,4 +1,6 @@
 from convert.adapters.registry.NativeEnds import EndFindings
+from convert.adapters.registry.NativeAssembly import AssemblyIssues
+from convert.adapters.registry.NativeFeatures import FeatureFindings
 from convert.adapters.registry.NativeSketch import SketchFindings
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.document.models.DocumentWalk import WalkDocuments
@@ -23,7 +25,12 @@ def CheckNative(Document: CadDocument) -> None:
         {
             Finding
             for PartValue in WalkDocuments(Document)
-            for Finding in (*SketchFindings(PartValue), *EndFindings(PartValue))
+            for Finding in (
+                *SketchFindings(PartValue),
+                *EndFindings(PartValue),
+                *FeatureFindings(PartValue),
+                *AssemblyIssues(PartValue),
+            )
         }
     )
     if Findings:

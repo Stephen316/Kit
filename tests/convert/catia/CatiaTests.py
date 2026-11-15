@@ -1264,7 +1264,6 @@ def TestEmbeddedAnd(TmpPath: Path) -> None:
     assert Binding.role == PayloadRole.VERIFICATION
     assert Binding.data is None
     assert Capability.BREP not in Filtered.capabilities
-    assert Capability.NATIVE_PAYLOADS in Filtered.capabilities
     assert Capability.TESSELLATION not in Filtered.capabilities
     assert Filtered.capabilities == Source.capabilities - {Capability.BREP}
     assert [

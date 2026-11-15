@@ -67,6 +67,11 @@ For other inputs, it constructs native records for implemented features and reta
 Inspect the resulting transfers and usability flags.
 Do not infer losslessness from a generated `Document.xml` file.
 
+Public writes now refuse required features that the active emission path cannot express as editable records.
+This check runs before destination and component files are created, including when carrier output is enabled.
+Standalone edit-plan qualification does not establish the same support for a nested component emission path.
+See [native semantic write qualification](../../Changes/Research/Readers/NativeSemanticWriteQualification.md) for the checks, compatibility restriction, and additional in-memory encoding cost.
+
 The `portable` writer option defaults to true in the inspected adapter revision.
 For assemblies, portable output can include companion component files.
 The final destination identifies the base location for those files.

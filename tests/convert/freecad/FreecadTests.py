@@ -179,7 +179,7 @@ from interchange.features.FeatureExtrude import ExtrudeEnd as ExtrusionEndCondit
 from interchange.features.FeatureExtrude import ExtrudeFeature as ExtrusionFeature
 from interchange.geometry.models.GeometryTypes import KGeometryTypes as GeometryTypes
 from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
-from tests.convert.api.BuildApiSource import BuildApiSource
+from tests.convert.qualification.TypedPart import TypedPart
 from tests.interchange.document.DocumentTests import document as NeutralDoc
 from tests.interchange.brep.BrepTests import triangle_brep as TriangleBrep
 
@@ -2625,26 +2625,25 @@ def TestRadiusRule() -> None:
 
 # this definition exists because focused behavior needs one stable owner
 def TestSolidworksB() -> None:
-    DocValue = NeutralDoc()
-    Output = IoStream.BytesIO()
-    _ = FreeCadAdapter().write(DocValue, Output)
-    with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
-        RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-    DeclValue = RootValue.find("./Objects/Object[@name='Boss1']")
-    assert DeclValue is not None
-    assert DeclValue.get("type") == "Part::Feature"
-    Properties = RootValue.find("./ObjectData/Object[@name='Boss1']/Properties")
-    assert Properties is not None
-    Executable = Properties.find("./Property[@name='NativeExecutable']/Bool")
-    Reason = Properties.find("./Property[@name='NativeExecutionReason']/String")
-    assert Executable is not None and Executable.get("value") == "false"
-    assert Reason is not None and Reason.get("value") == "no_native_closed_profile"
-    assert FreeCadAdapter().read(Output.getvalue()) == DocValue
+    Source = TypedPart()
+    OpenSketch = Replace(
+        Source.sketches[0],
+        entities=NeutralDoc().sketches[0].entities,
+        closed_profile_entity_ids=(),
+    )
+    DocValue = Replace(Source, sketches=(OpenSketch,))
+    assert not OpenSketch.closed_profile_entity_ids
+    Output = IoStream.BytesIO(b"existing destination")
+    with Pytest.raises(
+        ValueError, match="FreeCAD cannot emit editable required features"
+    ):
+        _ = FreeCadAdapter().write(DocValue, Output)
+    assert Output.getvalue() == b"existing destination"
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestSolidworks() -> None:
-    Source = NeutralDoc()
+    Source = TypedPart()
     First = SketchEntity(
         "sketch:1:circle:1", GeomKind.CIRCLE, CircleGeom(VectorTwo(0.0, 0.0), 10.0)
     )
@@ -2660,18 +2659,12 @@ def TestSolidworks() -> None:
         Source,
         sketches=(Sketch,),
     )
-    Output = IoStream.BytesIO()
-    _ = FreeCadAdapter().write(DocValue, Output)
-    with Zipfile.ZipFile(IoStream.BytesIO(Output.getvalue())) as Archive:
-        RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
-    DeclValue = RootValue.find("./Objects/Object[@name='Boss1']")
-    Reason = RootValue.find(
-        "./ObjectData/Object[@name='Boss1']/Properties/Property[@name='NativeExecutionReason']/String"
-    )
-    assert DeclValue is not None and DeclValue.get("type") == "Part::Feature"
-    assert Reason is not None
-    assert Reason.get("value") == "profile_topology_not_statically_sound"
-    assert FreeCadAdapter().read(Output.getvalue()) == DocValue
+    Output = IoStream.BytesIO(b"existing destination")
+    with Pytest.raises(
+        ValueError, match="FreeCAD cannot emit editable required features"
+    ):
+        _ = FreeCadAdapter().write(DocValue, Output)
+    assert Output.getvalue() == b"existing destination"
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -3124,22 +3117,22 @@ def TestFcstdEmits() -> None:
 
 # this definition exists because focused behavior needs one stable owner
 def TestFcstdOutput(TmpPath: FilePath) -> None:
-    Source = BuildApiSource(TmpPath)
+    Source = TypedPart()
     First = TmpPath / "first.FCStd"
     Second = TmpPath / "second.FCStd"
-    _ = Convert(Source, First, allow_carrier=True)
-    _ = Convert(Source, Second, allow_carrier=True)
+    _ = WriteDoc(Source, First, allow_carrier=True)
+    _ = WriteDoc(Source, Second, allow_carrier=True)
     assert First.read_bytes() == Second.read_bytes()
 
 
 # this definition exists because focused behavior needs one stable owner
 def TestFcstdStream(TmpPath: FilePath) -> None:
     Output = TmpPath / "example.FCStd"
-    Result = Convert(BuildApiSource(TmpPath), Output, allow_carrier=True)
+    _ = WriteDoc(TypedPart(), Output, allow_carrier=True)
     Stream = IoStream.BytesIO(Output.read_bytes())
     assert FreeCadAdapter().probe(Stream).confidence == 1.0
     assert Stream.tell() == 0
-    assert OpenDoc(Stream) == Result.document
+    assert OpenDoc(Stream) == TypedPart()
 
 
 # this definition exists because focused behavior needs one stable owner
