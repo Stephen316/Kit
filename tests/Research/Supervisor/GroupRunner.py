@@ -18,9 +18,9 @@ def StartGroup() -> None:
     OsLayer.close(Writer)
     assert OsLayer.read(Reader, 5) == b"ready"
     OsLayer.close(Reader)
-    _ = (FilePath(System.argv[1]) / "work" / "child.pid").write_text(
-        str(ChildId), encoding="ascii"
-    )
+    ChildFile = FilePath(System.argv[1]) / "work" / "child.pid"
+    _ = ChildFile.with_suffix(".pending").write_text(str(ChildId), encoding="ascii")
+    _ = ChildFile.with_suffix(".pending").replace(ChildFile)
     TimeClock.sleep(120)
 
 

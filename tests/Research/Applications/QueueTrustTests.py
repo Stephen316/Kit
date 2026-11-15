@@ -10,7 +10,13 @@ def CheckRevision() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())
         Client = Harness.StartClient("queued", Seconds=30)
-        RequestPath = Harness.WaitRequest()
+        try:
+            RequestPath = Harness.WaitRequest(Client)
+        except BaseException:
+            if Client.poll() is None:
+                Client.kill()
+            _ = Client.communicate(timeout=15)
+            raise
         Request = JsonCodec.loads(RequestPath.read_text(encoding="utf-8"))
         Request["source_revision"] = Subprocess.run(
             ["git", "-C", str(KRepoRoot), "rev-parse", "HEAD^"],

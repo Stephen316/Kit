@@ -138,3 +138,5 @@ See [the pre-acceptance durability gotcha](../../../Gotchas/Research/Workers/Cop
 for the retained-spool recovery boundary.
 
 See the [resource requirement shape gotcha](../../../Gotchas/Research/Workers/ResourceRequirementsAreLabels.md).
+
+The first macOS run passed 28 cases and failed five: the two resource-shape fixtures, two pre-counterpart requests blocked by premature spool enumeration, and an existing PID-file publication race. The [queue admission gotcha](../../../Gotchas/Research/Workers/QueueAdmissionNeedsJobDirectory.md) records the source repair; these branches require reruns.

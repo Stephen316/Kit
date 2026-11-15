@@ -203,7 +203,8 @@ class QueueClient:
             fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             if (self.root / "fence.json").exists():
                 raise WaitingApplication("installation is fenced pending controller acceptance or its external owner's recovery")
-            if any((self.root / "jobs").iterdir()):
+            spools = directory(self.root / "jobs", True)
+            if any(spools.iterdir()):
                 raise WaitingApplication("installation retains an unacknowledged spool; owner acceptance or recovery is required")
             self.job_id = secrets.token_hex(16)
             self.directory = directory(self.root / "jobs" / self.job_id, True)

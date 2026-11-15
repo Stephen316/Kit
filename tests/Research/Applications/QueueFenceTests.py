@@ -9,9 +9,12 @@ def CheckDeadClient() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())
         Client = Harness.StartClient("queued", Seconds=30)
-        RequestPath = Harness.WaitRequest()
-        Client.kill()
-        _ = Client.communicate(timeout=15)
+        try:
+            RequestPath = Harness.WaitRequest(Client)
+        finally:
+            if Client.poll() is None:
+                Client.kill()
+            _ = Client.communicate(timeout=15)
         Server = Harness.StartHost()
         try:
             DonePath = Harness.WaitFile(

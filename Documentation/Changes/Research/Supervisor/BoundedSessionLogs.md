@@ -37,3 +37,5 @@ This change does not complete A08b headroom, memory enforcement, calibration, or
 It does not add Windows support or terminate children that deliberately leave the session's process group.
 
 See the [supervisor guide](../../../Reference/Research/ResearchSupervisor.md) and [step register](../../../Reference/Research/AutomationSteps.md).
+
+The [macOS run at `6fb599a9`](https://github.com/TryUniCAD/Kit/actions/runs/43672428040/job/132685202111) exposed an empty PID file before the restart scenario could run. The fixture now publishes that identity atomically; the [PID publication gotcha](../../../Gotchas/Research/Supervisor/PidFilePublicationRace.md) records the race and unchanged cleanup assertions. Current-head remote verification remains required.
