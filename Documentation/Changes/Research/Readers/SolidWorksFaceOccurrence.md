@@ -27,4 +27,4 @@ The executable pins are for build `34.4.1.1011`. `moFaceRefPlnData_c` at `sldmod
 
 `moEndFaceSurfIdRep_c` reads the signed occurrence and one additional dword at `0xa6af81` and `0xa6af8e`. Each subsequent `moFromSktEntSurfIdRep_c` reads one signed boundary index at `0xa69977`. The primary feature ID, time and occurrence begin at face body +46. The corresponding four edge tuples begin at +70, +90, +110 and +130. The last entity pointer is null before the modern trailer. The separately measured supporting cap has occurrence 1, and the opposing cap has occurrence 0. [All eleven supporting face comparisons](../../../../re/solidworks/records/P04SketchResidence.md#supporting-face-occurrence-control)
 
-This is an offline research replay. Product integration requires deriving the earlier shared map and reaching the typed `sgSketch` slot from the resolved stream entry point.
+The [packaged face support decoder](SolidWorksFaceSupportDecoder.md) supplies the shared cursor traversal for this replay and the continuous resolved report. The earlier profile and destination model integrations are separate steps.

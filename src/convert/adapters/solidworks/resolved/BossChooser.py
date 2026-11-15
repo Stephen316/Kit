@@ -9,17 +9,13 @@ from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.resolved.FaceIdentity import (
     FaceHeader,
+    KCapClass,
+    KEdgeClass,
     ReadFaceHead,
     ReadFaceReturn,
     ReadSurfaceId,
     KSurfaceId,
 )
-
-# both primary and replayed choices carry the saved cap and rectangle edges
-KCapClass = "moEndFaceSurfIdRep_c"
-
-# saved side boundaries have their own typed surface identity
-KEdgeClass = "moFromSktEntSurfIdRep_c"
 
 
 # the chooser checks the actual feature native slot and reached file

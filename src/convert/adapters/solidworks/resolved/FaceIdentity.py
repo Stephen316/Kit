@@ -5,6 +5,12 @@ from convert.adapters.solidworks.container.Archive import KClassRefKind, KObject
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 
+# primary and side surface records share the feature occurrence framing
+KCapClass = "moEndFaceSurfIdRep_c"
+
+# saved side boundaries retain their own typed surface class
+KEdgeClass = "moFromSktEntSurfIdRep_c"
+
 # saved face identities carry their occurrence and the owning feature and document
 KSurfaceId = TypedDict(
     "KSurfaceId",
@@ -20,6 +26,16 @@ KSurfaceId = TypedDict(
         "occurrence": int,
     },
 )
+
+
+# a surface occurrence can be compared without substituting separate archive allocations
+def SurfaceKey(Surface: KSurfaceId) -> tuple[int, int, int, int]:
+    return (
+        Surface["file_ref_object"],
+        Surface["feature_id"],
+        Surface["time_word"],
+        Surface["occurrence"],
+    )
 
 
 # the matching feature reference is inside the typed surface identity

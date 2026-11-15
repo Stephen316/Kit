@@ -43,6 +43,12 @@ from interchange.records.RecordParameter import Parameter
             id="solidworks-p04-resolved-list",
         ),
         Pytest.param(
+            "re/solidworks/archive/FaceEvidence.py",
+            (),
+            "2005a0fb4ea376c4d55ae499a796e239351b6b0ff743f04656f687c41c1a0a98",
+            id="solidworks-p04-face-support-witness",
+        ),
+        Pytest.param(
             "re/solidworks/archive/SketchEvidence.py",
             ("--include-coincidence",),
             "d339efac5b24a262f50fe343d778349627d628cf9d09aa080c12461245bd3677",
