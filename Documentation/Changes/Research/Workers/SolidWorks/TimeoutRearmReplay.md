@@ -15,6 +15,8 @@ A replay after the rearm transaction commits returns the prior archive without c
 A rearm that still awaits a terminal record or dispatch lock polls within the existing bounded wait.
 An unresolved intent remains available for a later supervisor restart.
 
+The [offline evidence verifier](OfflineRearmEvidence.md) checks the archived attempt and native ownership links after the listener exits. Separately pinned history can corroborate replacement recovery and the second attempt's retained quarantine.
+
 The Windows process fixture interrupts the original supervisor after `FinishJob`, keeps the verified listener running and requires a replacement supervisor to issue the same job's next ordinary attempt.
 The exact published `5770f1b3` Windows job passed 50 cases, including both timeout rearm variants. [Windows research job](https://github.com/TryUniCAD/Kit/actions/runs/43706418832/job/132788439885)
 
