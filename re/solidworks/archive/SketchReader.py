@@ -4,7 +4,7 @@ import json as Json
 from pathlib import Path
 from struct import unpack_from as Unpack
 
-from SketchCursor import SketchCursor, SketchEntry
+from SketchCursor import SketchCursor
 from SketchGeom import ReadDims, ReadLineItem, ReadPointItem, ReadRelations
 from SketchRoot import KGeneration, ReadSketchStart, Require
 
@@ -13,7 +13,7 @@ KDisplayEvidence = "d724ad7b0c0d7daed50adf96028c08a3f83e5afde5e841ca25506cd6baf3
 
 
 # presentation records carry pointer allocations needed to reach the next geometry group
-def ReadDisplay(Cursor, BuildName):
+def ReadDisplay(Cursor, BuildName, FrameIndex):
     LayoutPath = Path(__file__).with_name("SketchDisplay.json")
     LayoutData = Json.loads(LayoutPath.read_text(encoding="utf-8"))
     Require(
@@ -21,30 +21,35 @@ def ReadDisplay(Cursor, BuildName):
         (KGeneration, BuildName, KDisplayEvidence),
         "verified research display layout",
     )
-    Require(Cursor.ReadValue("<7H"), (0,) * 7, "empty inline display groups")
-    for Width, KindValue, NameValue, *Count in LayoutData["steps"]:
+    Frame = LayoutData["frames"][FrameIndex]
+    Require(
+        Cursor.ReadValue("<7H"), tuple(Frame["inline_prefix"]), "inline display framing"
+    )
+    for Width, KindValue, NameValue, *Count in Frame["steps"]:
         Cursor.AdvanceBytes(Width)
         Cursor.TakePointer((NameValue,), KindValue)
         if Count:
             (Value,) = Unpack("<H", Cursor.BlobValue, Cursor.Offset)
             Require(Value, Count[0], "witnessed display list count")
-    Cursor.AdvanceBytes(LayoutData["trailer_width"])
+    Cursor.AdvanceBytes(Frame["trailer_width"])
 
 
-# a sketch returned within a relation must resume the owning serializers in order
-def ReadNextSketch(Cursor):
+# the first sketch returns inside active serializers that must finish their fields in order
+def ReadRelationManagerTail(Cursor):
     Cursor.ReadValue("<i")
     Cursor.ReadRefTail()
     Cursor.ReadText()
     Cursor.ReadValue("<4i")
-    Cursor.ReadText()
-    Cursor.ReadValue("<2i")
+    Cursor.ReadEqSideTail()
+    Cursor.ReadObject("moRelEquationSide_c")
+    Cursor.ReadRelationTail()
     Cursor.ReadObject("moRelation_c")
-    try:
-        Cursor.ReadObject("moRelEquationSide_c")
-    except SketchEntry as Entry:
-        return Entry.Index
-    raise ValueError("Relation side did not materialize the next sketch")
+    Require(Cursor.ReadValue("<H"), (0,), "empty relation manager parameter list")
+    Cursor.ReadText()
+    Cursor.ReadValue("<4i")
+    Require(Cursor.ReadValue("<H"), (0,), "empty additional relation manager list")
+    Cursor.ReadValue("<i")
+    Require(Cursor.ReadValue("<i"), (0,), "empty relation manager parameter array")
 
 
 # relation targets need same sketch line identity evidence before downstream comparison
@@ -109,12 +114,22 @@ def ReadGeometry(Cursor, ObjectIndex):
     }
 
 
-# sharing one cursor assures the second sketch was reached by actual typed allocation
+# one cursor can finish nested sketches without losing the enclosing relation frames
 def ReadSketches(BlobValue, BuildName):
     Start = ReadSketchStart(BlobValue)
-    Cursor = SketchCursor(BlobValue, Start)
-    First = ReadGeometry(Cursor, Cursor.NextIndex - 1)
-    ReadDisplay(Cursor, BuildName)
-    First["body_end"] = Cursor.Offset
-    Second = ReadGeometry(Cursor, ReadNextSketch(Cursor))
-    return [First, Second]
+    Sketches = []
+
+    def ReadSketchObject(Cursor, ObjectIndex):
+        FrameIndex = len(Sketches)
+        Require(FrameIndex < 2, True, "supported number of sketch allocations")
+        Sketch = ReadGeometry(Cursor, ObjectIndex)
+        ReadDisplay(Cursor, BuildName, FrameIndex)
+        Sketch["body_end"] = Cursor.Offset
+        Sketch["map_index_after_body"] = Cursor.NextIndex
+        Sketches.append(Sketch)
+
+    Cursor = SketchCursor(BlobValue, Start, ReadSketchObject)
+    ReadSketchObject(Cursor, Cursor.NextIndex - 1)
+    ReadRelationManagerTail(Cursor)
+    Require(len(Sketches), 2, "both expected sketch bodies")
+    return Sketches, {"end": Cursor.Offset, "next_map_index": Cursor.NextIndex}

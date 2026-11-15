@@ -17,19 +17,11 @@ from SketchRoot import KGeneration, Require
 KDistanceTypes = ("sgPntPntDist", "sgPntPntHorDist", "sgPntPntVertDist")
 
 
-# nested relation serializers must pause when they reach the next sketch allocation
-class SketchEntry(Exception):
-
-    # the outer relation walk needs the newly allocated sketch identity
-    def __init__(SelfData, Index):
-        SelfData.Index = Index
-
-
 # inline members and their nested objects must share the restored archive map
 class SketchCursor:
 
     # each sketch begins with the strictly allocated map from its enclosing part archive
-    def __init__(SelfData, BlobValue, Start):
+    def __init__(SelfData, BlobValue, Start, ReadSketchObject):
         SelfData.BlobValue = BlobValue
         SelfData.Offset = Start.offset + ReadTag(BlobValue, Start.offset).size
         SelfData.Classes = Start.Classes
@@ -40,6 +32,7 @@ class SketchCursor:
         SelfData.Scalars = {}
         SelfData.Dimensions = []
         SelfData.Handles = {}
+        SelfData.ReadSketchObject = ReadSketchObject
 
     # all fields must advance the shared cursor before their children are considered
     def ReadValue(SelfData, Format):
@@ -174,9 +167,15 @@ class SketchCursor:
     def ReadRelation(SelfData, NameValue, ObjectIndex):
         if NameValue == "moRelEquationSide_c":
             SelfData.ReadEqSide()
-        elif NameValue == "moRelOperator_c":
+        elif NameValue in ("moRelOperator_c", "moRelValue_c"):
             SelfData.ReadText()
             SelfData.ReadValue("<4i")
+        elif NameValue == "moRelation_c":
+            SelfData.ReadText()
+            SelfData.ReadValue("<Hi")
+            for _ in range(2):
+                SelfData.ReadObject("moRelEquationSide_c")
+            SelfData.ReadRelationTail()
         elif NameValue == "moRelDimension_c":
             Require(SelfData.ReadValue("<H"), (0,), "empty dimension operand list")
             SelfData.ReadObject(None)
@@ -190,7 +189,7 @@ class SketchCursor:
         elif NameValue == "moSkDimHandleValG2_c":
             SelfData.ReadDimHandle()
         elif NameValue == "sgSketch":
-            raise SketchEntry(ObjectIndex)
+            SelfData.ReadSketchObject(SelfData, ObjectIndex)
         else:
             raise ValueError(
                 f"Unsupported materialization of {NameValue} at {SelfData.Offset}"
@@ -205,10 +204,20 @@ class SketchCursor:
             "valid relation operand count",
         )
         for _ in range(OperandCount):
-            SelfData.ReadObject("moRelOperator_c", "moRelDimension_c")
+            SelfData.ReadObject("moRelOperator_c", "moRelDimension_c", "moRelValue_c")
+        SelfData.ReadEqSideTail()
+
+    # the first sketch returns inside an equation side opened by the root walker
+    def ReadEqSideTail(SelfData):
         SelfData.ReadText()
         SelfData.ReadValue("<2i")
         SelfData.ReadObject("moRelation_c")
+
+    # modern relations keep an independently framed name between their scalars
+    def ReadRelationTail(SelfData):
+        SelfData.ReadValue("<2i")
+        SelfData.ReadText()
+        SelfData.ReadValue("<3i")
 
     # both native handles reconstruct the same local part ownership before binding geometry
     def ReadComponent(SelfData):

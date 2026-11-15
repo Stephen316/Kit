@@ -144,12 +144,13 @@ def ReadCapture(RootPath, Asset, Reading):
     Container = SldprtArchive.from_bytes(Native, FileName)
     Require(ContainerMo(Container.streams), KGeneration, "model generation")
     Contents = Container.require("Contents/Config-0")
-    Sketches = ReadSketches(Contents, KApplicationBuild)
+    Sketches, Manager = ReadSketches(Contents, KApplicationBuild)
     CheckLengths(Sketches, Reading)
     return {
         "file": FileName,
         "native_sha256": Digest,
         "config_sha256": Sha256(Contents).hexdigest(),
+        "relation_manager": Manager,
         "sketches": Sketches,
     }
 
