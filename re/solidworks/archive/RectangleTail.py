@@ -1,11 +1,14 @@
 """Read the modern P04 rectangle profile through its principal support and trim cache."""
 
+from math import isclose
+
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     KObjectRefKind,
     ReadTag,
 )
+from convert.adapters.solidworks.core.Native import IsOrthonormal
 from FaceOccurrence import read_local_component, read_transform
 from FileReference import read_file_reference
 from ProfileSupport import read_chain
@@ -90,6 +93,9 @@ def read_principal_support(cursor, planes):
     cursor.null()
     (axis,) = cursor.read("<i")
     Require(axis in (1, 3), True, "witnessed principal support axes")
+    Require(axis, 5 - feature_id, "principal support axis agrees with its plane")
+    transform = read_transform(cursor)
+    check_principal_frame(transform, plane["plane_data"])
     return {
         "offset": offset,
         "object_index": index,
@@ -100,8 +106,36 @@ def read_principal_support(cursor, planes):
         "native_feature_id": feature_id,
         "native_time_word": time_word,
         "axis": axis,
-        "transform": read_transform(cursor),
+        "transform": transform,
     }
+
+
+# the saved frame can inherit a principal plane only when both placements agree
+def check_principal_frame(transform, plane_data):
+    basis = transform["basis"] or (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
+    u_axis = (basis[0], basis[3], basis[6])
+    v_axis = (basis[1], basis[4], basis[7])
+    normal = (basis[2], basis[5], basis[8])
+    Require(IsOrthonormal((u_axis, v_axis, normal)), True, "orthonormal sketch frame")
+    ux, uy, uz = u_axis
+    vx, vy, vz = v_axis
+    cross = (uy * vz - uz * vy, uz * vx - ux * vz, ux * vy - uy * vx)
+    Require(
+        all(
+            isclose(expected, actual, abs_tol=1e-9)
+            for expected, actual in zip(normal, cross, strict=True)
+        ),
+        True,
+        "right-handed sketch frame",
+    )
+    Require(
+        normal, plane_data["normal_world"], "saved sketch normal agrees with its plane"
+    )
+    Require(
+        transform["translation_scale"],
+        (*plane_data["point_metres"], 1.0),
+        "saved sketch origin and scale agree with its plane",
+    )
 
 
 # the empty optional geometry and edge tables precede the typed principal component

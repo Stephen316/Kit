@@ -46,11 +46,6 @@ def read_rectangle_entry(
     Require(cursor.read("<Ii"), (count, count), "witnessed rectangle chain state")
     chain = read_chain(cursor, KDefinitionKind) if has_atom else None
     support = read_principal_profile_support(cursor, prelude["principal_planes"])
-    Require(
-        support["axis"],
-        5 - support["native_feature_id"],
-        "principal support axis agrees with its plane",
-    )
     rectangle = {
         "origin": prelude["origin"],
         "name": name,
