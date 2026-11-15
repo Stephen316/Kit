@@ -1,6 +1,7 @@
 from __future__ import annotations as Annotations
 from convert.adapters.solidworks.core.AxisSketchId import AxisSketchId
 from convert.adapters.solidworks.core.BindInch import BindInch
+from convert.adapters.solidworks.core.IndexInch import IndexInch
 from convert.adapters.solidworks.core.LinearDisplay import LinearDisplay
 from dataclasses import dataclass as Dataclass, field as Field, replace as Replace
 import hashlib as Hashlib
@@ -1492,6 +1493,7 @@ def BuildNativeList(
     dict[int, NativeName],
     dict[int, tuple[NativeScalar, ...]],
     list[NativeFeature],
+    dict[int, dict[str, tuple[NativeScalar, ...]]],
 ]:
     RecordById = FeatureRecords(XmlFeatures, Names)
     OrderedRecords = sorted(
@@ -1507,6 +1509,11 @@ def BuildNativeList(
         for Index, Record in enumerate(OrderedRecords)
     }
     ScalarOwner = ScalarOwners(Scalars, OrderedRecords, EndsValue)
+    InchByOwner = (
+        {OwnerId: IndexInch(Owned) for OwnerId, Owned in ScalarOwner.items()}
+        if Display is not None and Display.UnitName == "in"
+        else {}
+    )
     NativeFeatures: list[NativeFeature] = []
     for Feature in XmlFeatures:
         Record = RecordById.get(Feature.object_id)
@@ -1514,9 +1521,10 @@ def BuildNativeList(
         if not NameValue:
             NameValue = f"{Feature.kind or Feature.xml_tag} {Feature.object_id}"
         Owned = ScalarOwner.get(Feature.object_id, ())
+        NamedScalars = InchByOwner.get(Feature.object_id, {})
         Dimensions = tuple(
             (
-                BindDimension(ItemValue, Owned, Display)
+                BindDimension(ItemValue, Owned, Display, NamedScalars)
                 for ItemValue in Semantic(Feature.kind, tuple(Feature.dimensions))
             )
         )
@@ -1544,13 +1552,14 @@ def BuildNativeList(
                 native_stream=ResolvedStream,
             )
         )
-    return (RecordById, ScalarOwner, NativeFeatures)
+    return (RecordById, ScalarOwner, NativeFeatures, InchByOwner)
 
 
 # dimension rebinding owns child scalar recovery for native features
 def RebindDimsMut(
     NativeFeatures: list[NativeFeature],
     ScalarOwner: dict[int, tuple[NativeScalar, ...]],
+    InchByOwner: Mapping[int, Mapping[str, tuple[NativeScalar, ...]]],
     Display: LinearDisplay | None = None,
 ) -> dict[int, int]:
     FeatureIndexes = {
@@ -1561,10 +1570,11 @@ def RebindDimsMut(
         ChildScalars = ScalarOwner.get(ChildId or -1, ())
         if not ChildScalars:
             continue
+        NamedScalars = InchByOwner.get(ChildId or -1, {})
         Rebound = tuple(
             (
                 (
-                    BindDimension(Dimension, ChildScalars, Display)
+                    BindDimension(Dimension, ChildScalars, Display, NamedScalars)
                     if Dimension.native_offset is None
                     else Dimension
                 )
@@ -1729,10 +1739,10 @@ def DecodeNative(
         RebindIds(XmlFeatures, Names)
     Classes = ParseClasses(Resolved)
     Scalars = ParseScalars(Resolved, Names)
-    RecordById, ScalarOwner, NativeFeatures = BuildNativeList(
+    RecordById, ScalarOwner, NativeFeatures, InchByOwner = BuildNativeList(
         XmlFeatures, Names, Resolved, Classes, Scalars, ResolvedStream, Display
     )
-    FeatureIndexes = RebindDimsMut(NativeFeatures, ScalarOwner, Display)
+    FeatureIndexes = RebindDimsMut(NativeFeatures, ScalarOwner, InchByOwner, Display)
     StateData, Author, Planes, UnframedPlanes = CreateState(
         Resolved,
         ResolvedStream,
@@ -2138,26 +2148,28 @@ def ScalarOwners(
 
 # this definition exists because focused behavior needs one stable owner
 def BindDimension(
-    Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...],
+    Dimension: NativeDimension,
+    Scalars: tuple[NativeScalar, ...],
     Display: LinearDisplay | None = None,
+    NamedScalars: Mapping[str, tuple[NativeScalar, ...]] | None = None,
 ) -> NativeDimension:
     if (
         Display is not None
         and Display.UnitName == "in"
         and Dimension.kind not in {"angle", "instance_count"}
     ):
-        return BindInch(Dimension, Scalars, Display.Decimals)
+        return BindInch(
+            Dimension,
+            NamedScalars if NamedScalars is not None else IndexInch(Scalars),
+            Display.Decimals,
+        )
     Value = Dimension.value_mm
     if Value is None:
         return Dimension
     Target = (
         Value
         if Dimension.kind == "instance_count"
-        else (
-            MathValue.radians(Value)
-            if Dimension.kind == "angle"
-            else Value / 1000.0
-        )
+        else (MathValue.radians(Value) if Dimension.kind == "angle" else Value / 1000.0)
     )
     ValueMatches = [
         Scalar

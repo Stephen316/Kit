@@ -1,7 +1,7 @@
 from __future__ import annotations as Annotations
 
 from dataclasses import replace as Replace
-from typing import TYPE_CHECKING as TypeChecking
+from typing import TYPE_CHECKING as TypeChecking, Mapping
 
 from convert.adapters.solidworks.core.InchDecimal import InchDecimal
 from convert.adapters.solidworks.core.InchScalar import IsRoundedInch
@@ -14,7 +14,9 @@ KUnresolvedInchDimension = "unresolved_inch_dimension"
 
 
 def BindInch(
-    Dimension: NativeDimension, Scalars: tuple[NativeScalar, ...], Decimals: int | None
+    Dimension: NativeDimension,
+    ScalarsByName: Mapping[str, tuple[NativeScalar, ...]],
+    Decimals: int | None,
 ) -> NativeDimension:
     Displayed = InchDecimal(Dimension.source_text)
     Unresolved = Replace(
@@ -22,7 +24,7 @@ def BindInch(
         value_mm=None,
         inch_display_value=Displayed[0] if Displayed is not None else None,
     )
-    Named = [Scalar for Scalar in Scalars if Scalar.name == Dimension.name]
+    Named = ScalarsByName.get(Dimension.name, ())
     if (
         not Dimension.name
         or Decimals is None
