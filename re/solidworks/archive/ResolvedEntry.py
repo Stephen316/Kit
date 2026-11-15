@@ -56,6 +56,7 @@ def read_list_prefix(blob, config_map):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
+        ReadTag,
     )
     from FaceOccurrence import FaceCursor
     from SketchRoot import Require
@@ -71,16 +72,19 @@ def read_list_prefix(blob, config_map):
         config_map.Objects.copy(),
     )
     folders = []
-    for type_name, suffix in (
-        ("moCommentsFolder_c", (0, 0)),
-        ("moFavoriteFolder_c", (1, 0, 0, 1)),
-        ("moHistoryFolder_c", (1,)),
+    for type_name, suffix_format, suffix in (
+        ("moCommentsFolder_c", "<2i", (0, 0)),
+        ("moFavoriteFolder_c", "<4i", (1, 0, 0, 1)),
+        ("moHistoryFolder_c", "<2iH", (1, 0, 0)),
+        ("moSelectionSetFolder_c", "<2i6s", (1, 0, b"\x00\x00\x01\x00\x00\x00")),
+        ("moSensorFolder_c", "<2i", (1, 0)),
+        ("moDocsFolder_c", "<2i", (1, 0)),
     ):
         offset = cursor.position
         object_index = cursor.pointer(KDefinitionKind, type_name)
         cursor.pointer(KClassRefKind, "moNodeName_c")
         name, feature_id = read_named_feature(cursor)
-        Require(cursor.read(f"<{len(suffix)}i"), suffix, f"guarded {type_name} scalars")
+        Require(cursor.read(suffix_format), suffix, f"guarded {type_name} suffix")
         folders.append(
             {
                 "class": type_name,
@@ -92,11 +96,17 @@ def read_list_prefix(blob, config_map):
                 "next_map_index": cursor.next_index,
             }
         )
+    next_tag = ReadTag(blob, cursor.position)
+    Require(
+        (next_tag.kind, next_tag.schema, next_tag.class_name),
+        (KDefinitionKind, 1, "moDetailCabinet_c"),
+        "typed detail cabinet entry",
+    )
     return {
         "list_count": count,
         "prior_map_index": base,
         "folders": folders,
-        "stopped_in": "moHistoryFolder_c",
+        "next_class": next_tag.class_name,
     }
 
 
