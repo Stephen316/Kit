@@ -6,7 +6,7 @@ import signal
 import time
 
 import ApplicationProtocol
-from ApplicationProtocol import HostQueue, QueueClient, WaitingApplication, configuration, load_pinned, pin, record, write_record
+from ApplicationProtocol import HostQueue, QueueClient, WaitingApplication, configuration, file_bytes, load_pinned, pin, record, require, sha256, write_record
 from FusionRestart import wait_for_restart
 
 
@@ -115,19 +115,39 @@ def main():
         run_client(config, args.mode, args.seconds)
 
 
+def supervised_restart(config, session, job, deadline):
+    source = job["inputs"]["prior"]
+    raw = file_bytes(session / source["path"])
+    accepted = json.loads(raw)
+    digest = sha256(raw)
+    previous = job["dependencies"][accepted["receipt"]["job_id"]]
+    require(digest == source["sha256"] == previous["result"]
+            and accepted["result"]["outcome"] == "completed",
+            "fixture restart requires the exact completed controller dependency")
+    write_record(Path(config["endpoint"]) / "restart-wait.json", {"prior_result_sha256": digest})
+    wait_for_restart(config, accepted["result"]["records"], "f" * 64, deadline)
+
+
 def run_supervised(config, session):
     job = record(session / "job.json")
-    client = QueueClient(config, min(time.time() + 20, job["stop_at"] - 1), provider="fixture.transport")
+    mode = job["job"]["options"]["mode"]
+    deadline = min(time.time() + (40 if mode == "after_restart" else 20), job["stop_at"] - 1)
+    if mode == "after_restart":
+        supervised_restart(config, session, job, deadline)
+    client = QueueClient(config, deadline, provider="fixture.transport")
     try:
         client.call("probe", {"mode": "echo"})
-        response = client.call("phase", {"mode": job["job"]["options"]["mode"], "plan_sha256": "f" * 64})
+        response = client.call("phase", {"mode": mode, "plan_sha256": "f" * 64})
         work = session / "work"
         artifacts = client.copy_files(work, response)
         dispatch = work / "dispatch.json"
         write_record(dispatch, response)
         artifacts["dispatch"] = pin(dispatch, "dispatch.json")
+        records = {"claim": "unqualified_dispatch", "native_qualified": False}
+        if mode in ("handoff", "after_restart"):
+            records.update({"host": response["host"], "restart_handoff": response["proof"].get("restart_handoff")})
         write_record(session / "result.json", {"outcome": "completed", "reason": "transport fixture",
-                     "records": {"claim": "unqualified_dispatch", "native_qualified": False}, "artifacts": artifacts})
+                     "records": records, "artifacts": artifacts})
     finally:
         client.close()
 
