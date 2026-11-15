@@ -23,13 +23,13 @@ Black-box experiments recovered the whole system:
 - With c = cos(2π/n), every row has integer coefficients in 1, c, r and 1/(n + 5).
 - r = L / (h + L), where L is the span after the knot at 2h.
 
-| Rows | Count | Content |
-| --- | --- | --- |
-| Hard | per spoke and sector | EP = limit. G1 across each spoke on [0, 2h], weight 2c times a profile (linear, then quadratic, then zero). The spoke is quadratic on [h, 2h]. C2 at 2h on pole rows 2 and 3. |
-| Window | 7 per spoke | Split rule δB(1, i) = δA(i, 1) for i = 2, 3, 4. A sector balance, a spoke balance, and one mirror-even and one mirror-odd relation across the spoke. |
-| Ring | 1 per spoke | Pairs of sector twists and spoke poles, with right side −κ(net S1 − EP) − 9c/(n + 5) · mean, where κ = (n − 4)c/(n + 5). |
-| Tangent | 2 | Fourier modes ±1 of the spoke poles 1 to 3. |
-| Twist | 1 for even n | The alternating twist is 9/(n + 5) times netref's, the Loop–Schaefer mask in that mode. |
+| Rows    | Count                | Content                                                                                                                                                                       |
+| ------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Hard    | per spoke and sector | EP = limit. G1 across each spoke on [0, 2h], weight 2c times a profile (linear, then quadratic, then zero). The spoke is quadratic on [h, 2h]. C2 at 2h on pole rows 2 and 3. |
+| Window  | 7 per spoke          | Split rule δB(1, i) = δA(i, 1) for i = 2, 3, 4. A sector balance, a spoke balance, and one mirror-even and one mirror-odd relation across the spoke.                          |
+| Ring    | 1 per spoke          | Pairs of sector twists and spoke poles, with right side −κ(net S1 − EP) − 9c/(n + 5) · mean, where κ = (n − 4)c/(n + 5).                                                      |
+| Tangent | 2                    | Fourier modes ±1 of the spoke poles 1 to 3.                                                                                                                                   |
+| Twist   | 1 for even n         | The alternating twist is 9/(n + 5) times netref's, the Loop–Schaefer mask in that mode.                                                                                       |
 
 The rows leave no free direction. The research rule and the Kit port agree to 2.7e-13 in grip coefficients.
 
@@ -58,7 +58,7 @@ A crease that ends at a valence-4 vertex is a dart. Fusion caps a dart like an E
 Two details change the answer:
 
 - The knots of each spoke come from the strip of cells beside the spoke, from the EP outward. A knot that another cell adds to the same B-rep face does not enter the solve. Fusion inserts it afterwards. Using the whole face knot list breaks HeldBand67, and clamping at the EP's own cells breaks HeldPrism3.
-- Fusion ignores the TSM header `cap-type` and `star-smoothness` on import. G0, G2, star 1 and star 2 headers convert to the same body.
+- Fusion ignores the TSM header `cap-type` and `star-smoothness` on import for `G0CAPS`, `G1CAPS`, `G2CAPS`, and star values 0, 1, and 2. [The declaration lifecycle acceptance](../../../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json) confirms equal bodies on Box3 and a held-out HeldPrism5 cage. Kit preserves these declarations while using the topology-derived cap solve.
 
 ## Workaround
 

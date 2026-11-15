@@ -38,7 +38,6 @@ from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurf
 from convert.formats.Fusion.TSplineCodec.Validation.CheckSurface import CheckSurface
 
 KRationalForm = "both"
-KCageProfile = (3, "G1CAPS", 0.0, 1.0, "SUBD_CREASES", "NURCCS")
 KPeriodicClosure = 2
 KClosedClosure = 1
 KRowSlack = 1e-12
@@ -167,25 +166,10 @@ def ApplyStencil(
     )
 
 
-def CheckProfile(Surface: TsplineSurface) -> None:
-    Header = Surface.Header
-    Profile = (
-        Header.Degree,
-        Header.CapType,
-        Header.StarSmoothness,
-        Header.UnitScale,
-        Header.EndConditions,
-        Header.StarKnotRule,
-    )
-    if Profile != KCageProfile:
-        raise ValueError("Fusion Form conversion needs the cubic G1 cap profile")
-
-
 def CageParts(
     Surface: TsplineSurface, CapSolver: KCapHook = SolveCaps
 ) -> tuple[CappedShape, CageResult]:
     CheckSurface(Surface)
-    CheckProfile(Surface)
     Shape = CappedLayout(Surface)
     return Shape, ApplyStencil(BuildTable(Surface, CapSolver), Surface, Shape)
 

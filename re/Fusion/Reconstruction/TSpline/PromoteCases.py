@@ -3,6 +3,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[4]
 SOURCE=ROOT/'re/Fusion/LocalOracle/TSpline'
+EXTRA=ROOT/'re/Fusion/LocalOracle/FormDocuments/General/CapAccept'
 OUT=Path(__file__).resolve().parent
 PARSE=runpy.run_path(str(OUT/'InspectControls.py'))['parse']
 
@@ -26,7 +27,7 @@ def typed(model,path):
 
 def main():
  cases=[]
- for path in sorted(SOURCE.glob('*.tsm')):
+ for path in sorted(SOURCE.glob('*.tsm')) + sorted(EXTRA.glob('*.tsm')):
   model=PARSE(path);value=typed(model,path)
   semantic=json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
   cases.append(dict(Name=path.stem,Source=str(path.relative_to(ROOT)),SourceHash=hashlib.sha256(path.read_bytes()).hexdigest(),SemanticHash=hashlib.sha256(semantic).hexdigest(),Faces=len(model['faces']),Vertices=len(model['vertices']),Grips=len(model['grips'])))

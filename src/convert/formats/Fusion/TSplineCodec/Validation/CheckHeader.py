@@ -5,14 +5,16 @@ from convert.formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeade
 def CheckHeader(Header: SurfaceHeader) -> None:
     Profile = (
         Header.Degree,
-        Header.CapType,
-        Header.StarSmoothness,
         Header.UnitScale,
         Header.UnitName,
         Header.EndConditions,
         Header.StarKnotRule,
     )
-    if Profile != (3, "G1CAPS", 0.0, 1.0, "meters", "SUBD_CREASES", "NURCCS"):
+    if (
+        Profile != (3, 1.0, "meters", "SUBD_CREASES", "NURCCS")
+        or Header.CapType not in ("G0CAPS", "G1CAPS", "G2CAPS")
+        or Header.StarSmoothness not in (0.0, 1.0, 2.0)
+    ):
         raise ValueError("Unsupported TSM declaration profile")
     if Header.BehaviorVersion != "14.2.0" or Header.CompatVersion != "13.3.0":
         raise ValueError("Unsupported TSM behavior or compatibility version")

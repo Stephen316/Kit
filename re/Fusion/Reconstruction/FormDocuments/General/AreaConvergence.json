@@ -1,0 +1,42 @@
+{
+ "scope": "Independent numerical convergence and native area-cache precision for Box3 and HeldPrism5",
+ "rule_change": "Eight-point and sixteen-point Gaussian quadrature over the same local B-spline spans",
+ "runs": [
+  {
+   "run": 43583291958,
+   "head": "58f01974e9e5b73f6e632d33c17176bff24a782f",
+   "rule_points_per_direction": 8,
+   "box3_current_writer_area_cm2": 28.196624686525613,
+   "box3_native_cache_area_cm2": 28.197749985492635,
+   "held_prism5_current_writer_area_cm2": 14.69314686718681,
+   "held_prism5_native_cache_area_cm2": 14.693249836881707,
+   "failures": 11
+  },
+  {
+   "run": 43584701390,
+   "head": "1fdf0e0e0d33baa97f9c7bf4c6cb9a874e58b729",
+   "rule_points_per_direction": 16,
+   "box3_current_writer_area_cm2": 28.196624686525713,
+   "box3_native_cache_area_cm2": 28.197749985492838,
+   "held_prism5_current_writer_area_cm2": 14.693146867187131,
+   "held_prism5_native_cache_area_cm2": 14.693249836881707,
+   "failures": 11
+  }
+ ],
+ "observations": {
+  "box3_change_from_resolution_cm2": 1.0e-13,
+  "held_prism5_change_from_resolution_cm2": 3.21e-13,
+  "box3_native_precision_relative_gap": 3.9907402810536285e-05,
+  "held_prism5_native_precision_relative_gap": 7.007959167644797e-06,
+  "conclusion": "Increasing quadrature order does not explain the curved native-cache gap. Preserve exact BRep comparisons and validate raw area with the exact planar fixture instead of loosening a curved comparison tolerance"
+ },
+ "comparison_rule": {
+  "planar_area_relative_tolerance": 1e-8,
+  "planar_area_absolute_tolerance": 1e-8,
+  "all_other_mass_relative_tolerance": 1e-8,
+  "all_other_mass_absolute_tolerance": 1e-8,
+  "brep_geometry_tolerance_cm": 1e-8,
+  "curved_area_rule": "Preserve convergence evidence without asserting cross-kernel equality at a relaxed tolerance"
+ },
+ "notes": "The convergence differences use conservative decimal summaries of the exact values shown in the two remote runs. The relative gaps use the first-run values. The native controls are distinct fresh saves, so their last bits differ. No production fallback, donor value, or per-case fitted table is introduced"
+}

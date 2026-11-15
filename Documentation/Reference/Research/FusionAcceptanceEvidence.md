@@ -114,11 +114,11 @@ Revision `8a6122596348933b846bf8f9a2f27dcfb2272cd3` passed 1,168 remote compatib
 
 [Native acceptance](../../../re/Fusion/LocalOracle/TSplineCodec/NativeAcceptance.json), SHA-256 `c6f6973215fbb0f46cc454f2fc998132d988e2f76fc03ec002981e4c8551964d`, has status `accepted` in Fusion 2706.1.17. Zero documents remained open.
 
-| Production operation           | Construction and observed result                                                                                         | Boundary                                   |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| TSM read and re-emission       | Twelve native plane, box, symmetric box, edited and crease-contrast controls re-emit byte for byte                       | Qualified `#TS0200` profile only           |
-| Native lifecycle of re-emitted | Control and re-emission are equal after form import, conversion, control-point edit, save and reopen                     | Form-graph routing is not part of the test |
-| Source-free closed cage        | 17 × 23 × 31 mm cage with explicit face, edge and vertex roots equals the native box primitive at every stage within 1e-8 | Closed quad cages only                     |
+| Production operation           | Construction and observed result                                                                                            | Boundary                                   |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| TSM read and re-emission       | Twelve native plane, box, symmetric box, edited and crease-contrast controls re-emit byte for byte                          | Qualified `#TS0200` profile only           |
+| Native lifecycle of re-emitted | Control and re-emission are equal after form import, conversion, control-point edit, save and reopen                        | Form-graph routing is not part of the test |
+| Source-free closed cage        | 17 × 23 × 31 mm cage with explicit face, edge and vertex roots equals the native box primitive at every stage within 1e-8   | Closed quad cages only                     |
 | Authored solved body           | Initial area 12.710567668877099 cm². Edited area 12.43421957296201 cm² and volume 3.8361736781260087 cm³, kept after reopen | Default and very-high accuracy agree       |
 
 [Root](../../../re/Fusion/LocalOracle/TSplineCodec/RootVariants/Capture.json) and [edge](../../../re/Fusion/LocalOracle/TSplineCodec/EdgeVariants/Capture.json) variant captures show that the root links are orientation state. See the [T-spline codec entry](../../Changes/Fusion/TSpline/FusionTsplineCodec.md).
@@ -127,14 +127,14 @@ Revision `8a6122596348933b846bf8f9a2f27dcfb2272cd3` passed 1,168 remote compatib
 
 [Native acceptance](../../../re/Fusion/LocalOracle/RoundBodies/NativeAcceptance.json), SHA-256 `7ce52b6fd762408fd9aa0fe98380ad9cd4e223588c26882ef1e285c0c6025b9f`, has status `accepted` in Fusion 2706.1.17. Zero documents remained open.
 
-| Production operation       | Construction and observed result                                                                                          |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| Authored sphere            | Radius 19 mm, volume 28.73091201462985 cm³, area 45.36459791783661 cm², `adsk::core::Sphere`, save and reopen              |
-| Authored torus and tilted torus | 31/9 mm, volume 49.56515330227076 cm³, area 110.14478511615724 cm², `adsk::core::Torus`, save and reopen              |
-| Native carrier re-emission | Sphere, torus, tilted torus and placed torus `.smb` regenerate byte for byte and equal the native control                  |
-| Partial closed pipe        | Every rollback marker, rebuild, `d3` edit to 8 mm, volume 3.46423114478236 → 6.158633146279758 cm³, save and reopen        |
-| Composite circular pipe    | Every rollback marker, rebuild, `d3` edit to 6 mm, volume 1.166559470517908 → 2.6247588086652924 cm³, save and reopen      |
-| Rule-all-rounds fillets    | 454 records, 359 active, four states, `d7` edit to 0.8 mm, volume 37.96633332328521 → 37.97836761590841 cm³, save and reopen |
+| Production operation            | Construction and observed result                                                                                             |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| Authored sphere                 | Radius 19 mm, volume 28.73091201462985 cm³, area 45.36459791783661 cm², `adsk::core::Sphere`, save and reopen                |
+| Authored torus and tilted torus | 31/9 mm, volume 49.56515330227076 cm³, area 110.14478511615724 cm², `adsk::core::Torus`, save and reopen                     |
+| Native carrier re-emission      | Sphere, torus, tilted torus and placed torus `.smb` regenerate byte for byte and equal the native control                    |
+| Partial closed pipe             | Every rollback marker, rebuild, `d3` edit to 8 mm, volume 3.46423114478236 → 6.158633146279758 cm³, save and reopen          |
+| Composite circular pipe         | Every rollback marker, rebuild, `d3` edit to 6 mm, volume 1.166559470517908 → 2.6247588086652924 cm³, save and reopen        |
+| Rule-all-rounds fillets         | 454 records, 359 active, four states, `d7` edit to 0.8 mm, volume 37.96633332328521 → 37.97836761590841 cm³, save and reopen |
 
 Authored round bodies are direct-design bodies. No parametric feature history is synthesized for them. See the [round body entry](../../Changes/Fusion/Geometry/FusionRoundBodies.md).
 
@@ -142,11 +142,11 @@ Authored round bodies are direct-design bodies. No parametric feature history is
 
 Revision `55aeed29b454d084ac23567f75c7b3602a9e5468` ran the extended archive compatibility job in [run 43288977523](https://github.com/TryUniCAD/Kit/actions/runs/43288977523). It passed 1,256 cases, failed three and had one collection error. The earlier history-dispatch failures from run 43256167270 did not recur.
 
-| Remote failure                         | Cause                                                                                   | Repair                                          |
-| -------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| Circle scene, extrusion and frustum    | Extruded scenes consume the sketch profile fill mesh, so only the circle has a `RenderMesh` | Expect the mesh only for the circle document |
-| History guard, body role               | General dispatch now rejects the corrupted body key in the journal allocator check first | Accept either rejection message               |
-| `CheckRotaryBody` collection error     | The `Check*` collection pattern selected a helper function                              | Rename the helper                               |
+| Remote failure                      | Cause                                                                                       | Repair                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| Circle scene, extrusion and frustum | Extruded scenes consume the sketch profile fill mesh, so only the circle has a `RenderMesh` | Expect the mesh only for the circle document |
+| History guard, body role            | General dispatch now rejects the corrupted body key in the journal allocator check first    | Accept either rejection message              |
+| `CheckRotaryBody` collection error  | The `Check*` collection pattern selected a helper function                                  | Rename the helper                            |
 
 Steering also rejected two test names over 15 letters and a four-letter variable. These repairs await subsequent remote CI. Native acceptance does not substitute for that result.
 
@@ -198,8 +198,11 @@ The [first-pass preparation](../../../re/Fusion/LocalOracle/ComplexGeometry/Prep
 | [Stencil swaps](../../../re/Fusion/LocalOracle/FormDocuments/StencilAccept/NativeAcceptance.json)                 | `f7455953a99fb482fa03054aa73e165a40cbf0d683c87a8139f6dae84e25a95d` | 8 of 8 accepted   | `SwapFormCage` into native documents within 1e-8 cm                                                                  |
 | [General conversion](../../../re/Fusion/LocalOracle/FormDocuments/General/Accept/GeneralAcceptance.json)          | `4a8b000974e0c6007c7db4849e27954650fbdced4d00536088a60a4ce6b58a83` | 30 of 30 accepted | `EmitFormDoc` with `ConvertForm` from the general rules: 8 old layouts, 9 probe and 13 held-out cages within 1e-8 cm |
 | [General stencil swaps](../../../re/Fusion/LocalOracle/FormDocuments/StencilAccept/General/NativeAcceptance.json) | `d9efa56868d16dd066c29111803fec97c59f554f5147bec061ce5bdd92431fdf` | 7 of 7 accepted   | `SwapFormCage` with the general rules within 1e-8 cm; Kit refuses the fresh creased plane swap                       |
+| [Cap declarations](../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json)          | `55e37af5b25d4603399b042fc8ae1fb8c1dba9639afae4818b4d08ba43e8f109` | 11 of 11 accepted | Three cap types and three star values on Box3, HeldPrism5, and off-origin Box3 within 1e-8 cm                        |
 
 Every Form report started and ended with zero open documents in Fusion 2706.1.17. The re-emitted controls report has top-level status `completed`, and each of its four cases has status `accepted`. Their edited areas are 3.75882224444742, 3.7597048123427688, 23.229292504382165 and 22.896262895240067 cm². The two boxes have edited volumes 9.339333654763482 and 9.137857029717933 cm³. The grid cases changed area from 3.981294020792737 to 3.9230459543150173 cm² and from 4.005512887961321 to 3.9455217633195576 cm².
+
+The cap declaration run makes 319 comparisons with zero problems and a largest absolute scalar deviation of `2.9103830456733704e-11` across mixed-unit measurements. Every case completes load, recompute, control-point edit, export, and reopen. Every case has `dropped = []`, `vendor_loadable = true`, and `application_usable = true`. Its three measured native cage families retain equal geometry through those stages. The documented process changed from 98846 to 24703, so `fresh_process_verified` is true. The derived caches match the initial center, area, volume, and six-component origin tensor before recompute and every edited measurement afterward. The translated Box3 case proves the coordinate frame, and density normalization separates tensor geometry from the controls' different materials. See the [cap declaration change](../../Changes/Fusion/TSpline/FusionCapDeclarationProfiles.md) and [derived mass-cache change](../../Changes/Fusion/TSpline/FusionFormMassCache.md).
 
 Cage conversion follows general rules computed from the cage topology, with no per-layout table. It covers closed and creased quad cages with extraordinary points of valence 3 to 8. Cage conversion also covers crease ends, darts next to an extraordinary point or crease, weighted grips and one whole-number knot interval. Face line ties, two creases at one extraordinary point, uncovered darts, mixed or fractional intervals in capped cages and folded cages are rejected. See the [data model section](FusionDataModel.md#form-documents).
 
@@ -272,23 +275,24 @@ An object graft keeps the A3 control's header and swaps in the objects a rule ge
 A container graft keeps the control's Fusion-saved DWG and re-emits the F2D with one rule applied.
 Each graft below opened with views of 5, 4 and 4 curves, 1 dimension and a 420 × 297 mm sheet.
 
-| Graft                | Replaced                                                                     | Report |
-| -------------------- | ---------------------------------------------------------------------------- | ------ |
-| `L1Lean` to `L4Core` | Removed save history, Fusion dictionary items and unused standard objects    | [G2](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundG2.json) |
-| `T1Tables`           | Kit's 8 layers, 6 line types, 2 text styles, dimension style, active viewport | [T3](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT3.json) |
-| `T2Standard`         | Also materials, multiline style, view standard, layout plot fields           | [T3](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT3.json) |
-| `T3Sheet`            | Also Kit's border block, title block, inserts and 15 title attributes        | [T4](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT4.json) |
-| `C1NoTemplateThumbs` | No template sheet thumbnails                                                 | [T4](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT4.json) |
-| `C2NeutralCycle`     | Kit's neutral component colour                                               | [T4](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT4.json) |
-| `C3Renumbered`       | The control's design records renumbered without gaps                         | [T5](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT5.json) |
-| `C4KitMembers`       | Every member except the DWG built by Kit, with Kit's record numbering       | [T5](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT5.json) |
-| `D1Vertical` to `D4Diameter` | Kit's dimension of each kind and its block, in place of the plain control dimension | [T6](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT6.json) |
-| `D5Short`, `D6OnLine` | A short aligned dimension with arrows and text outside, with and without extension lines | [T8](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT8.json) |
-| `D7Split`, `D8Flank` | A short aligned dimension with only its text outside, and a short vertical one with only its arrows outside | [T9](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT9.json) |
-| `S1AsmeB` to `S3AsmeA` | `T3Sheet` on ASME B, D and A paper in millimetres with Kit's ASME border   | [T7](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT7.json) |
-| `V1LeftBelow` to `V3AboveBelow` | Kit's left and below, right and back, or above and below projected views | [T10](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT10.json) |
-| `V4KitModel` to `V6RightBackKitModel` | Also Kit's model space places for the views | [T10](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT10.json) |
-| `V7NoEdges` to `V9AboveBelowNoCurves` | Views with no stored edges, as Kit wrote them then, then also no curves | [T10](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT10.json) |
+| Graft                                 | Replaced                                                                                                    | Report                                                                     |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `L1Lean` to `L4Core`                  | Removed save history, Fusion dictionary items and unused standard objects                                   | [G2](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundG2.json)   |
+| `T1Tables`                            | Kit's 8 layers, 6 line types, 2 text styles, dimension style, active viewport                               | [T3](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT3.json)   |
+| `T2Standard`                          | Also materials, multiline style, view standard, layout plot fields                                          | [T3](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT3.json)   |
+| `T3Sheet`                             | Also Kit's border block, title block, inserts and 15 title attributes                                       | [T4](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT4.json)   |
+| `C1NoTemplateThumbs`                  | No template sheet thumbnails                                                                                | [T4](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT4.json)   |
+| `C2NeutralCycle`                      | Kit's neutral component colour                                                                              | [T4](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT4.json)   |
+| `C3Renumbered`                        | The control's design records renumbered without gaps                                                        | [T5](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT5.json)   |
+| `C4KitMembers`                        | Every member except the DWG built by Kit, with Kit's record numbering                                       | [T5](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT5.json)   |
+| `D1Vertical` to `D4Diameter`          | Kit's dimension of each kind and its block, in place of the plain control dimension                         | [T6](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT6.json)   |
+| `D5Short`, `D6OnLine`                 | A short aligned dimension with arrows and text outside, with and without extension lines                    | [T8](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT8.json)   |
+| `D7Split`, `D8Flank`                  | A short aligned dimension with only its text outside, and a short vertical one with only its arrows outside | [T9](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT9.json)   |
+| `S1AsmeB` to `S3AsmeA`                | `T3Sheet` on ASME B, D and A paper in millimetres with Kit's ASME border                                    | [T7](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT7.json)   |
+| `V1LeftBelow` to `V3AboveBelow`       | Kit's left and below, right and back, or above and below projected views                                    | [T10](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT10.json) |
+| `V4KitModel` to `V6RightBackKitModel` | Also Kit's model space places for the views                                                                 | [T10](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT10.json) |
+| `V7NoEdges` to `V9AboveBelowNoCurves` | Views with no stored edges, as Kit wrote them then, then also no curves                                     | [T10](../../../re/Fusion/Reconstruction/Drawings/Rules/GraftRoundT10.json) |
+
 The ASME grafts opened with the same views and dimension on sheets of 431.8 × 279.4, 863.6 × 558.8 and 215.9 × 279.4 mm.
 Fusion took each sheet size from the DWG layout.
 
@@ -304,13 +308,13 @@ Each graft removed every stored edge from the A3 control's views.
 Each run opened the graft, read the curves, halved the base scale and restored it, read again and exported a DWG.
 The export keeps the edge lists Fusion computed in that update.
 
-| Graft | Views | Curves on open | Curves after the update | Fusion's exported edges |
-| ----- | ----- | -------------- | ----------------------- | ----------------------- |
-| `E1HiddenA` | Right and above, hidden style, no edges | 0, 0, 0 | 5, 6, 6 | The training set for the hidden style |
-| `T16VisibleA`, `T16HiddenA` | Right and above, Kit's edges | 5, 4, 4 and 5, 6, 6 | The same, in the same boxes | Equal to Kit's |
-| `T16VisibleLeftBelow`, `T16HiddenLeftBelow` | Left and below, held out | 5, 4, 4 and 5, 6, 6 | The same, in the same boxes | Equal to Kit's |
-| `T16VisibleRightBack`, `T16HiddenRightBack` | Right and back, held out | 5, 4, 5 and 5, 6, 5 | The same, in the same boxes | Equal to Kit's |
-| `T16VisibleAboveBelow`, `T16HiddenAboveBelow` | Above and below, held out | 5, 4, 4 and 5, 6, 6 | The same, in the same boxes | Equal to Kit's |
+| Graft                                         | Views                                   | Curves on open      | Curves after the update     | Fusion's exported edges               |
+| --------------------------------------------- | --------------------------------------- | ------------------- | --------------------------- | ------------------------------------- |
+| `E1HiddenA`                                   | Right and above, hidden style, no edges | 0, 0, 0             | 5, 6, 6                     | The training set for the hidden style |
+| `T16VisibleA`, `T16HiddenA`                   | Right and above, Kit's edges            | 5, 4, 4 and 5, 6, 6 | The same, in the same boxes | Equal to Kit's                        |
+| `T16VisibleLeftBelow`, `T16HiddenLeftBelow`   | Left and below, held out                | 5, 4, 4 and 5, 6, 6 | The same, in the same boxes | Equal to Kit's                        |
+| `T16VisibleRightBack`, `T16HiddenRightBack`   | Right and back, held out                | 5, 4, 5 and 5, 6, 5 | The same, in the same boxes | Equal to Kit's                        |
+| `T16VisibleAboveBelow`, `T16HiddenAboveBelow` | Above and below, held out               | 5, 4, 4 and 5, 6, 6 | The same, in the same boxes | Equal to Kit's                        |
 
 In all 24 T16 views, Fusion's exported rows and drawn entities equal Kit's, apart from handles.
 The layout A boxes equal those Fusion drew in E1 after its own update.
