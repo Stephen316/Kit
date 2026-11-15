@@ -58,7 +58,7 @@ def FailureDetails(
     OutputPath = ReportPath.parent
     return (
         f"Calibration {OutputPath.name} exited {Actual} (0x{Actual & 0xFFFFFFFF:08X}) "
-        f"instead of {ExitCode}; {ReportPath.name} present: {ReportPath.is_file()}"
+        + f"instead of {ExitCode}; {ReportPath.name} present: {ReportPath.is_file()}"
         + TrialMarkers(OutputPath)
         + TrialDetails(ReportPath)
         + f"\nCaptured stderr tail: {Process.stderr[-4096:]!r}"
