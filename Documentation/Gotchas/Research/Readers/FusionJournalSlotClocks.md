@@ -1,0 +1,3 @@
+# Fusion P04 journal slot numbers and reused entries
+
+The P04 Design timeline has four features and the mapped kernel journal has three slots. The first stored state integers change between exports whose feature order is identical. Slot `2` also references the initial result BODY and a timestamp attribute from the earlier boss view on the same pointer side. Derive endpoint actors from a qualified BODY pair, reciprocal timestamp ownership in each respective view, and the feature owner's exact clock copies. Preserve slot numbers, header counters and chain direction as raw structure until corresponding semantics are independently observed. [P04 saved journal actors](../../../Changes/Research/Readers/FusionCutJournalEvidence.md)

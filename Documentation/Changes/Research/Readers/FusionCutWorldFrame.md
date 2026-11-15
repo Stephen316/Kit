@@ -19,4 +19,4 @@ The frame composition uses row-major matrices acting on column vectors. Position
 | YZ | `[10, 0, 0]` | `[1, 0, 0]` | 10 |
 | Through-all | `[0, 0, 10]` | `[0, 0, 1]` | 10 |
 
-The evidence qualifies the saved document-world frame of the cap in the selected literal chart. The comparison uses the original same-process observations, with Baseline B measured before its repeat export. A journal-slot-to-feature chronology, fresh API face identity, participant-body behavior and native editable acceptance remain open.
+The evidence qualifies the saved document-world frame of the cap in the selected literal chart. The comparison uses the original same-process observations, with Baseline B measured before its repeat export. The journal study associates the slot-zero endpoints with their native feature clocks. General journal chronology, fresh API face identity, participant-body behavior and native editable acceptance remain open. [P04 journal actor evidence](FusionCutJournalEvidence.md)

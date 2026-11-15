@@ -31,6 +31,26 @@ VARIANT_CLASSES = {
 SCOPE = 'Observed optional-reference shared feature footers, reciprocal bookkeeping and explicit creation-snapshot occurrence timeline aliases; internal records remain distinct'
 
 
+# bookkeeping references remain useful when unqualified footer fields block the full state decoder
+def decode_feature_bookkeeping(payload, owner, primary):
+    if (payload[:6] != bytes(6) or payload[6] not in (0,1) or payload[7] not in (0,1)
+            or payload[-8:] != bytes(8)):
+        raise ValueError('Unsupported feature footer bookkeeping prefix/trailer')
+    count = struct.unpack_from('<I',payload,8)[0]
+    if count > 100000 or len(payload) != 39+19*count:
+        raise ValueError('Unsupported feature footer bookkeeping counted-reference length')
+    entries = []
+    for i in range(count):
+        identity = reference(payload,12+19*i)
+        if identity not in primary:
+            raise ValueError('Feature footer bookkeeping entry missing or ambiguous')
+        entries.append({'object_id':identity,'stored_u64':struct.unpack_from('<Q',payload,23+19*i)[0]})
+    owner_offset = 12+19*count
+    if reference(payload,owner_offset) != owner:
+        raise ValueError('Feature footer bookkeeping owner backlink disagrees')
+    return entries, struct.unpack_from('<Q',payload,owner_offset+11)[0]
+
+
 def decode_feature_state_footer(data, record, primary_records):
     """Validate one 66/76/86-byte typed footer and return bounded state details.
 
@@ -110,21 +130,7 @@ def decode_feature_state_footer(data, record, primary_records):
             cursor += 3
             bookkeeping_id = reference(tail,cursor)
             bookkeeping = typed(bookkeeping_id,BOOKKEEPING)
-            if (bookkeeping[:6] != bytes(6) or bookkeeping[6] not in (0,1) or bookkeeping[7] not in (0,1)
-                    or bookkeeping[-8:] != bytes(8)):
-                raise ValueError('Unsupported feature footer bookkeeping prefix/trailer')
-            count = struct.unpack_from('<I',bookkeeping,8)[0]
-            if count > 100000 or len(bookkeeping) != 39+19*count:
-                raise ValueError('Unsupported feature footer bookkeeping counted-reference length')
-            entries = []
-            for i in range(count):
-                identity = reference(bookkeeping,12+19*i)
-                if identity not in primary:
-                    raise ValueError('Feature footer bookkeeping entry missing or ambiguous')
-                entries.append({'object_id':identity,'stored_u64':struct.unpack_from('<Q',bookkeeping,23+19*i)[0]})
-            owner_offset = 12+19*count
-            if reference(bookkeeping,owner_offset) != record.object_id:
-                raise ValueError('Feature footer bookkeeping owner backlink disagrees')
+            entries, owner_u64 = decode_feature_bookkeeping(bookkeeping, record.object_id, primary)
             cursor += 11
             related = None
             if tail[cursor] == 0:
@@ -157,7 +163,7 @@ def decode_feature_state_footer(data, record, primary_records):
                 'stored_support_counter':support_counter,'optional_support_object_id':optional_id,
                 'helper_object_id':helper_id,'bookkeeping_object_id':bookkeeping_id,
                 'bookkeeping_reference_entries':entries,
-                'stored_bookkeeping_owner_u64':struct.unpack_from('<Q',bookkeeping,owner_offset+11)[0],
+                'stored_bookkeeping_owner_u64':owner_u64,
                 'stored_integer':stored_index,'uninterpreted_finite_scalar':scalar,
                 'related_feature_reference':related_detail,
                 'raw_state_flags':{'suppression_first':tail[5],'suppression_repeated':int(state['is_suppressed']),
