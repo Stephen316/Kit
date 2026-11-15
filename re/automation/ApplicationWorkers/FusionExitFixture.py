@@ -22,7 +22,12 @@ from MacProcessExit import PeerUnavailable
 FENCE = b"retained disposable restart fence\n"
 
 
-def run_target():
+def run_target(root):
+    peer = process_peer(os.getpid())
+    write_new(
+        root / "target-ready.json",
+        encoded({**peer, "executable": os.fspath(peer["executable"])}),
+    )
     line = sys.stdin.readline()
     if line.strip() == "replace":
         os.execv(sys.executable, [sys.executable, "-B", "-c", "pass"])
@@ -84,22 +89,22 @@ def run_observer(root, seconds):
     print(json.dumps(status))
 
 
-def wait_armed(root, observer):
+def wait_marker(root, name, process, failure):
     deadline = time.monotonic() + 10
     while True:
-        terminated = observer.poll() is not None
+        terminated = process.poll() is not None
         try:
-            return record(root / "armed.json")
+            return record(root / name)
         except FileNotFoundError:
             if terminated or time.monotonic() >= deadline:
                 break
         time.sleep(0.02)
     try:
-        stdout, stderr = observer.communicate(timeout=0.1)
+        stdout, stderr = process.communicate(timeout=0.1)
     except subprocess.TimeoutExpired as error:
         stdout, stderr = error.stdout, error.stderr
     raise AssertionError(
-        f"Fusion exit observer did not arm (return code {observer.returncode!r}, "
+        f"{failure} (return code {process.returncode!r}, "
         f"stdout {(stdout or '')[-2000:]!r}, stderr {(stderr or '')[-2000:]!r})"
     )
 
@@ -137,7 +142,14 @@ def check_receipt(root, result, armed, case):
 
 
 def run_pair(root, target, case):
+    ready = wait_marker(
+        root, "target-ready.json", target, "Fusion exit target did not become ready"
+    )
     peer = process_peer(target.pid)
+    assert ready == {
+        **peer,
+        "executable": os.fspath(peer["executable"]),
+    }, "Fusion exit target readiness differs from its exact kernel identity"
     if case == "mismatched":
         peer["started_unix_microseconds"] += 1
     write_new(
@@ -162,7 +174,13 @@ def run_pair(root, target, case):
         text=True,
     )
     try:
-        armed = None if case in ("gone", "mismatched") else wait_armed(root, observer)
+        armed = (
+            None
+            if case in ("gone", "mismatched")
+            else wait_marker(
+                root, "armed.json", observer, "Fusion exit observer did not arm"
+            )
+        )
         if case == "changed":
             (root / "fence.json").write_bytes(b"changed fixture fence\n")
         if case in ("exit", "replaced", "changed"):
@@ -185,7 +203,10 @@ def run_pair(root, target, case):
 
 def exercise(root, case):
     target = subprocess.Popen(
-        [sys.executable, "-B", __file__, "target"], stdin=subprocess.PIPE, text=True
+        [sys.executable, "-B", __file__, "target", str(root)],
+        stdin=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
     )
     try:
         print(json.dumps(run_pair(root, target, case)))
@@ -197,7 +218,7 @@ def exercise(root, case):
 if __name__ == "__main__":
     mode = sys.argv[1]
     if mode == "target":
-        run_target()
+        run_target(Path(sys.argv[2]))
     elif mode == "observe":
         run_observer(Path(sys.argv[2]), int(sys.argv[3]))
     else:
