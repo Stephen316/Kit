@@ -46,6 +46,10 @@ Its persistent reference checks apply to the exact opened part in this SOLIDWORK
 Source readback does not identify the file stream or offset used to encode that relation.
 The collector provides supplemental observations for adjudication under A02d.
 
-The C# source compiled against the installed SOLIDWORKS 2026 interop declarations.
-Windows PowerShell 5.1 parsed the launcher.
-The collector has not run in SOLIDWORKS.
+On November 15, 2026, the collector at `701582eb` read all eleven P04 captures in a fresh SOLIDWORKS process at build `34.4.1.1011`. The control passed before and after the batch. The run verified the original and scratch file hashes and confirmed that the owned application exited.
+
+Each cut sketch identifies a face on the unsuppressed `BlindBoss`. The native equality check and the persistent reference round trips identify the same support before and after rebuild. The world normal is `(0, 0, 1)` for ten captures and `(1, 0, 0)` for the YZ variant. The cut sketch transform records a local depth translation of −10 mm except for the 12 mm boss edit, which records −12 mm. The YZ sketch has a different rotation from the XY cases. The checks also passed on the through-all save.
+
+Each pass records 66 dimension owners and 132 point attachments. The two offset dimensions in each cut sketch each have one native point outside that sketch. The run also records 165 relations with 242 definition participants per pass. Of those, 33 are points outside the corresponding sketch. Their foreign owner identities and the on-disk encoding of the attachments and relations still need qualification.
+
+The verified receipt SHA-256 is `bc361d29558338240fce751f3d84bc5a691aeef1b8937ecc993e95caac436489`. Its measurements hash is `55ded2d7e511861cdd41100bfdd1dfc17307b3a31ad8c01ceec1defb66d00305`. The raw references are kept with the private run. This evidence supplies a native observation for the SOLIDWORKS side of P04. Paired qualification also needs independent Fusion readback and observation binding.

@@ -128,7 +128,7 @@ Current-head PR readiness and deferred merge-group acceptance remain separate fr
 | -------- | ---------------------------------------------------- | --------------------------------------- | ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | A04a     | Pinned SLDPRT reader and typed neutral serialization | A01, A02a                               | jdharcourt | complete | All 58 pinned parts decoded/reconstructed; strict per-asset success, overwrite and tamper checks passed at `eba0ab48`                                                                                                                                                                           |
 | A04b     | Separate field-path evidence and unresolved census   | A04a                                    | jdharcourt | complete | Remote receipts at `eba0ab48` retain native-only content, bytes, codes, diagnostics and unqualified direction/frame mappings                                                                                                                                                                    |
-| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | active   | [Discovery census](../../Changes/Research/SolidWorksDiscoveryCensus.md) decodes 25 committed files. CI verifies P01 rectangle edges, P03 boss reversal and P04 equation references. YZ support, cross-stream P04 sketch decoding, face identity, through-all termination and full constraint bindings remain open |
+| A04c     | Initial profile and variant semantic qualification   | A04a, A04b; independent source evidence | jdharcourt | active   | [Discovery census](../../Changes/Research/SolidWorksDiscoveryCensus.md) decodes 25 committed files. CI verifies P01 rectangle edges, P03 boss reversal and P04 equation references. Native P04 readback identifies the supporting faces. Production YZ support, cross-stream sketch and face decoding, through-all termination and full constraint bindings remain open |
 
 The [reader guide](SolidworksResearchReader.md) defines the command and its research-only receipt.
 A04a–A04b do not close A04c or qualify native conversion.
@@ -239,7 +239,7 @@ No comparator, schema extension or application worker is established by that int
 Native capture qualification remains blocked separately.
 A04a–A04b passed remote verification. A04c has independent SOLIDWORKS measurements for bounded discovery comparisons.
 At PR head `1bdb6743`, the remote discovery checks decoded all 25 parts. They verified six P01 edge counts and five XY endpoint comparisons, eight P03 boss direction cases, both P03 Front Plane directional Z bounds, both P04 equation bindings in eleven captures, and the resolved inch-length checks. The two expected Z intervals came from the independently measured boss centroids and depths. P01 and P03 YZ variants still fall back to the Front plane. [Discovery checks](https://github.com/TryUniCAD/Kit/actions/runs/43652490420/job/132623817084)
-The [P04 configuration-stream investigation](../../../re/solidworks/records/P04SketchResidence.md) links both sketches to resolved feature records through native object references in all eleven discovery captures. The production reader still needs versioned shared archive-map support. The face occurrence and its support transform need independent evidence.
+The [P04 configuration-stream investigation](../../../re/solidworks/records/P04SketchResidence.md) links both sketches to resolved feature records through native object references in all eleven discovery captures. [Independent SOLIDWORKS readback](../../Changes/Research/Workers/SolidWorksCutFaceReadback.md) verifies the persistent boss face in all eleven and records both sketch transforms. The production reader still needs versioned shared archive-map support and a decode of the supporting face occurrence.
 Later deterministic child steps remain available when their prerequisites pass.
 
 ### Reconciled remote evidence and current limits
@@ -283,12 +283,12 @@ Native execution, automatic application restart, automatic acceptance acknowledg
 Completed and abandoned application spools stay retained until owner verification of actual controller acceptance; the completed-spool bound is 32 files and 520 MiB, not an OS write quota.
 
 A04c records [hashed principal support candidates](../../Changes/Research/PrincipalSupportEvidence.md) for 25 measured identifiers, including three YZ variants.
-Native class ownership and the opaque tag domain remain unqualified; P04 sketch/face ownership, through-all termination and complete constraint bindings remain open.
+Production class ownership, the opaque tag domain, the P04 face reference encoding, through-all termination and complete constraint bindings remain open.
 The [native-field refusal](../../Changes/Research/Readers/NativeFieldWriteRefusal.md) and [writer qualification](../../Changes/Research/Readers/NativeSemanticWriteQualification.md) regressions passed, preserving required-semantic refusal and destinations through real public/direct boundaries.
 The full Fusion run also verifies the corrected explicit/inferred writer-ordering cases.
 None of those refusals supplies the missing positive native qualification.
 
-A02d remains blocked by application access: the documented Fusion bridge refused connections, initial native UI initialization failed, and a later read-only app inventory exposed neither Fusion nor SOLIDWORKS.
+A02d still needs a licensed Fusion run. The documented Fusion bridge refused connections, initial native UI initialization failed, and the available Windows host exposed a working SOLIDWORKS installation. The fresh SOLIDWORKS process corroborated the eleven P04 support observations.
 [Fresh-process readback](../../Changes/Research/FusionFreshProcessEvidence.md) now pins every committed Fusion variant, and [observation-local bindings](../../Changes/Research/FusionSketchBindingCapture.md) are implemented; a native run is still required to close provenance, observation binding and load diagnostics.
 P05 stays reserved for holdout. Zero native pairs are qualified.
 A06 waits for qualified A02d/A04c/A05c evidence; A07/A09 and both native writers retain their declared dependencies.
