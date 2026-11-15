@@ -83,9 +83,25 @@ Add-Type -Path $constants.FullName
 Add-Type -Path $interop.FullName
 Add-Type -Path (Join-Path $repository $collector.path) -ReferencedAssemblies @($interop.FullName, $constants.FullName, 'System.Core.dll', $web)
 
-$authored = [SolidWorksScopeControl]::Author($specificationText, $output, $binary.FullName)
-Write-NewJson (Join-Path $output 'authoring.json') ($authored | ConvertFrom-Json)
-$finished = [SolidWorksScopeControl]::Measure($specificationText, $output, $binary.FullName, $authored) | ConvertFrom-Json
+$phase = 'authoring'
+try {
+    $authored = [SolidWorksScopeControl]::Author($specificationText, $output, $binary.FullName)
+    Write-NewJson (Join-Path $output 'authoring.json') ($authored | ConvertFrom-Json)
+    $phase = 'reopen'
+    $finished = [SolidWorksScopeControl]::Measure($specificationText, $output, $binary.FullName, $authored) | ConvertFrom-Json
+} catch {
+    $failure = $_.Exception.GetBaseException()
+    Write-NewJson (Join-Path $output 'failure.json') ([ordered]@{
+        schema = 1
+        status = 'failed'
+        phase = $phase
+        source_revision = $SourceRevision
+        specification_sha256 = $specification.sha256
+        type = $failure.GetType().Name
+        hresult = $failure.HResult
+    })
+    throw
+}
 foreach ($pin in @($launcher, $collector, $specification)) {
     if ((Get-Pin $pin.path).sha256 -cne $pin.sha256) {
         throw "Pinned source changed during native evidence capture at $($pin.path)."

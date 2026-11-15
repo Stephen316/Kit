@@ -1,0 +1,17 @@
+# Licensed through-all body scope control
+
+The [scope specification](../../../../../re/automation/PairedCaptures/ScopeControl/ScopeControlSpec.json) defines two independent solids and one inward through-all cut. The cut starts on A's upper face, crosses a 5 mm gap, and intersects B without changing either solid's axis bounds. Automatic scope and explicit A+B can therefore agree on all measured geometry. Explicit A should preserve B.
+
+The SOLIDWORKS author selects the sketch and, for each explicit case, appends the native body at the scope selection mark. Before and after save it reads the extrusion definition with selection access. The report keeps the native feature scope flag, automatic-selection flag, resolved scope body references, end condition and raw depth field. The normalized through-all extent has no finite depth. The observed affected bodies come from per-body volume changes. Each solid is identified by its native producer and checked against its specified bounds. [Multibody feature scope](https://help.solidworks.com/2024/english/api/sldworksapiprogguide/Overview/Programming_Multibody_Parts.htm), [native per-body mass properties](https://help.solidworks.com/2024/english/api/sldworksapi/solidworks.interop.sldworks~solidworks.interop.sldworks.ibody2~getmassproperties.html)
+
+Run the author and collector from an exact checkout on the licensed SOLIDWORKS `34.4.1.1011` Windows desktop with the application closed. Choose an unused output directory outside the checkout.
+
+```powershell
+powershell.exe -NoProfile -STA -File re/automation/PairedCaptures/ScopeControl/RunSolidWorksScope.ps1 -OutputDirectory <private-directory> -SourceRevision <full-commit>
+```
+
+The launcher checks its own Git blob, the collector and the specification. It attaches to each directly launched process by PID and observes authoring exit before reopening the exact saved files read-only in a second process. The native archive hashes must agree after rebuild. A failed phase retains its revision, specification digest and native error category in `failure.json`. Keep the report and native archives together in private evidence storage. The discovery witnesses have separate provenance from the frozen P04 captures.
+
+## Observed checkpoint
+
+Build `34.4.1.1011` authored and saved the automatic case in a provisional scratch run. That archive has two saved scope-body entries associated with distinct Boss producers. The explicit selections and fresh three-case reopen still need a complete run. The initial explicit feature creation refused its input. A subsequent startup produced a SOLIDWORKS crash report before the process became available to COM. The provisional archive records the observed list membership. Persisted Auto-select and the full three-case comparison remain unverified. [Comparison and archive scope observations](CutScopeReadback.md)
