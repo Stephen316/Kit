@@ -2,6 +2,7 @@ import json as JsonCodec
 import sqlite3 as SqlCodec
 import subprocess as Subprocess
 import sys as System
+from contextlib import closing as CloseConnection
 from pathlib import Path as FilePath
 
 from tests.Research.SupervisorClient import KRepoRoot, SessionHost
@@ -69,7 +70,7 @@ def VerifyPhaseJobs(Harness: SessionHost, Receipt: dict[str, object]) -> None:
     assert Harness.ReadJob(Names["b"])["state"] == "waiting_evidence"
     assert Harness.StorePath is not None
     DatabasePath = Harness.StorePath / "ledger.sqlite3"
-    with SqlCodec.connect(DatabasePath) as Database:
+    with CloseConnection(SqlCodec.connect(DatabasePath)) as Database:
         assert Database.execute("SELECT name,sha256 FROM bindings").fetchall() == [
             (Binding, Receipt["plan_sha256"])
         ]
