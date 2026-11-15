@@ -67,6 +67,12 @@ from interchange.records.RecordParameter import Parameter
             id="fusion-p03-boss-profile",
         ),
         Pytest.param(
+            "re/automation/RectanglePairEvidence.py",
+            (),
+            "8eb38234c8a909d43bfee6730fdfd672f1ac8787d3b90c51009b70bb19660afc",
+            id="paired-p01-p03-public-history",
+        ),
+        Pytest.param(
             "re/automation/FusionCutProfileEvidence.py",
             (),
             "4ac34b4dbb4b92473aab572336e0ef6402634b0c534f9c6a502b81cc9575b75c",
