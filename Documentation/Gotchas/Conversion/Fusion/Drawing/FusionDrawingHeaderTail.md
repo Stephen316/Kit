@@ -89,11 +89,39 @@ Their bits are evenly spread, and the four values show no relation to each other
 The values therefore behave like a keyed check over the header variables.
 Only Fusion's own code could show the key or the rule, and that code is out of scope.
 
+## What the values are
+
+The four values are one encrypted 8-byte block, not four independent values: a 16-bit checksum of the
+header area, a product code `1`, the writing version code and a zero short, encrypted with Blowfish
+under a 16-byte constant from `libacdb`.
+
+That makes them a vendor integrity check over the header variables.
+The [Fusion donor ban](../../../../../Documentation/Reference/Research/FusionDonorBan.md) forbids
+reproducing a vendor integrity or trust check, and forbids disassembling, debugging or tracing Fusion
+or its libraries, so Kit does not compute them.
+The measured rule and the evidence are recorded in the
+[research record](../../../../../re/Fusion/Reconstruction/Drawings/ThirdParty/HeaderTail/README.md).
+
+The values were reproduced for 54 of the 60 corpus saves, and a drawing that carried them opened in
+local Fusion 2706.1.17 and accepted a scaling edit.
+That work is research only and no longer has a product path:
+
+| Case                              | Result                                       |
+| --------------------------------- | -------------------------------------------- |
+| All 38 `AC1027` saves but one     | header bytes reproduced exactly              |
+| 17 of 22 `AC1032` saves           | header bytes reproduced exactly              |
+| The six remaining saves           | crafted or non-standard tail                 |
+| A drawing with the computed tail  | opened in Fusion and accepted a scaling edit |
+| A Kit-authored DWG                | still stalls, because Kit writes placeholders |
+
 ## What Kit does
 
-Kit cannot write values that Fusion accepts.
-Kit does not copy the values of a Fusion-saved file into an authored file.
-Kit's authored shell writes four full BS values taken from the version GUID of the drawing.
-A zero value becomes `0x5555`.
-The header writer fills the last byte with the low bits of `0x55`, which also writes the BL as zero.
-Fusion 2706.1.17 therefore does not open a DWG that Kit authors, as the [authored shell gotcha](FusionDrawingAuthoredShell.md) records.
+Kit writes the placeholder tail it always wrote: four shorts taken from the drawing's version GUID,
+with the last byte filled from the low bits of `0x55`.
+Kit does not copy the values of a Fusion save into an authored file, and it does not compute them.
+A parsed save keeps its stored values so that reading and re-emitting it stays lossless.
+
+Fusion 2706.1.17 therefore does not open a DWG that Kit authors, as the
+[authored shell gotcha](FusionDrawingAuthoredShell.md) records.
+Closing that gap needs a document-level field that Fusion accepts in place of the check, or an
+explicit decision to lift the prohibition.
