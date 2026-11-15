@@ -112,6 +112,29 @@ def CheckLengths(Sketches, Reading):
     Require(Claimed, set(Measured), "all measured profile length groups")
 
 
+# reopened native relations independently check axis codes and their member targets
+def CheckMemberRelations(Sketches, Reading):
+    from SketchReader import KAxisRelations
+    from SketchRoot import Require
+
+    ByName = {Sketch["name"]: Sketch for Sketch in Reading["sketches"]}
+    for Sketch in Sketches:
+        NameValue = Sketch["measurement_profile"]
+        Measured = []
+        for Relation in ByName[NameValue]["relations"]:
+            if Relation["type"] in KAxisRelations and Relation["entity_types"] == [3]:
+                (Segment,) = Relation["entities"]
+                Require(Segment["segment_type"], 0, "independently measured line")
+                Measured.append((Relation["type"], tuple(Segment["id"])))
+        Decoded = [
+            (Relation["type_code"], (Relation["segment_native_id"],) * 2)
+            for Relation in Sketch["member_relations"]
+        ]
+        Require(
+            sorted(Decoded), sorted(Measured), f"measured line relations for {NameValue}"
+        )
+
+
 # exact native blob checks keep witness based layouts scoped to their discovery inputs
 def ReadCapture(RootPath, Asset, Reading):
     from convert.adapters.solidworks.container.Archive import ContainerMo
@@ -146,6 +169,7 @@ def ReadCapture(RootPath, Asset, Reading):
     Contents = Container.require("Contents/Config-0")
     Sketches, Manager = ReadSketches(Contents, KApplicationBuild)
     CheckLengths(Sketches, Reading)
+    CheckMemberRelations(Sketches, Reading)
     return {
         "file": FileName,
         "native_sha256": Digest,

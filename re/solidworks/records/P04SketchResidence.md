@@ -66,6 +66,17 @@ The `sgSketch::Serialize` entry at `sldmodu+0x144f790` receives the sketch and a
 
 The profile serializer's typed `sgSketch` pointer read at `0x9dbbcf` receives the later archive. The two-byte token selects the same sketch pointer observed in the Config-0 allocation. Immediately after the call at `0x9dbbd4`, the profile member at `[[rdi+0x3d0]+0x80]` contains that exact pointer. Each read consumes two bytes and leaves the allocation counter unchanged. The observed IDs and offsets are regression evidence for a versioned archive walk.
 
+## Native map handoff
+
+Two further owned sessions followed the archive from the [relation manager return](P04SketchGap.md#follow-the-second-sketch-return) through the final Config-0 cursor. The model cache copies the active array at `sldmodu+0xece7ef`. Before `ResolvedFeatures` reads its first list at `0x4489de`, the archive has consumed its four-byte header and restored the same allocation counter and the same two sketch instances. Both full runtime buffers matched the pinned stream hashes, and both scratch parts kept their original hashes after the owned processes exited.
+
+| Capture | Config-0 reads after relation manager | Cursor at cache | Next map index at cache and before resolved list |
+| --- | ---: | ---: | ---: |
+| Baseline A | 94 | 42,879 | 279 |
+| YZ | 96 | 42,949 | 279 |
+
+The private normalized map-handoff witness SHA-256 is `54f90a4fa10312c19bab9422e6a493daa96034187083b4a02203e087080c5bb9` for baseline A and `fd422752ee69e812b6cfc43c18ca2392f859c388a24b429b0ab41ed14d780423` for YZ. The native cursor and counter establish the join target. An offline walk still has to derive the final allocations from the fields following the relation manager and pass that map into the resolved-feature reader.
+
 ## Face reference control
 
 In every measured P04 `Config-0-ResolvedFeatures` stream the class name `moFaceRef_c` appears once. A 52-byte interval beginning 25 bytes after the first byte of that name is also present at the same relative location in the support face's private persistent reference, before and after rebuild. This interval crosses the `moEndFaceSurfIdRep_c` declaration. The first byte of the archived class name is 6,652 in baseline A, 6,880 in baseline B and the parameter and inch variants, 6,722 in YZ and 6,650 in through-all.

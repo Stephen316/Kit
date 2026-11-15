@@ -98,8 +98,8 @@ def ReadRelations(Cursor):
     Relations = []
     for _ in range(Count):
         Start = Cursor.Offset
-        Cursor.ReadDimBase(None)
+        _, _, TypeValue = Cursor.ReadDimBase(None)
         MemberFlags = Cursor.ReadValue("<2H")
         Target = Cursor.ReadObject("sgLineHandle")
-        Relations.append((Start, Cursor.Offset, Target, MemberFlags))
+        Relations.append((Start, Cursor.Offset, Target, TypeValue, MemberFlags))
     return Relations

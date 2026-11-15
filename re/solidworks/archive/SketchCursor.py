@@ -255,7 +255,7 @@ class SketchCursor:
 
     # distance evidence needs the scalar and both point handles from one owner
     def ReadDistance(SelfData, NameValue):
-        DimId, ValueId = SelfData.ReadDimBase("moLengthParameter_c")
+        DimId, ValueId, _ = SelfData.ReadDimBase("moLengthParameter_c")
         Require(SelfData.ReadValue("<H"), (0,), "absent sgValGDim transform")
         First = SelfData.ReadObject("sgPointHandle")
         Second = SelfData.ReadObject("sgPointHandle")
@@ -274,5 +274,5 @@ class SketchCursor:
         SelfData.ReadObject(None)
         SelfData.ReadValue("<H")
         Require(SelfData.ReadValue("<B"), (0,), "absent dimension alternate name")
-        SelfData.ReadValue("<i3H")  # sgDim scalar fields
-        return DimId, ValueId
+        TypeValue, *_ = SelfData.ReadValue("<i3H")  # sgDim type and scalar fields
+        return DimId, ValueId, TypeValue

@@ -30,7 +30,9 @@ Baseline A has four corners at `(15,6)`, `(25,14)`, `(15,14)`, `(25,6)` mm and t
 
 The values come from binary doubles in metres. The inch-display control retained the same physical lengths to the captured floating-point precision.
 
-In all eleven captures the four `sgLogG1Dim` records resolve through typed `sgLineHandle` references to the four perimeter member identities. For each target, its local line endpoints agree with the independently measured SOLIDWORKS relation kind and both components of its segment ID. Baseline A and YZ both give target and measured kind pairs `2` vertical, `1` horizontal, `4` vertical and `3` horizontal. All 44 bindings match. The two trailing u16 fields before the handle are `(65534, 0)` for all 44 relations. The wire-level orientation discriminator remains open. The private comparison SHA-256 is `3476f5de6e594818ff13491b6290311fb028317b8a72d07f483e245b3ca83181`. [Pinned native measurements](../../automation/PairedCaptures/P04/solidworks-c1986308375a/measurements.json)
+In all eleven captures the four `sgLogG1Dim` records in each sketch resolve through typed `sgLineHandle` references to the four perimeter member identities. The `sgDim` serializer's signed dword read at `sldmodu+0x1444b58` populates its type field at `+0x80`. The geometric satisfaction check reads that field at `0x66a08f`. Its dispatch selects the local Y-coordinate difference for code `4` and the local X-coordinate difference for code `5`, giving horizontal and vertical respectively. The following `sgLogDim` short reads at `0x1449829` and `0x1449888` still produce `(65534, 0)` in the observed records.
+
+The offline report checked the typed value and target against the independently reopened SOLIDWORKS relation observations for both sketches. Baseline A and YZ give `2` vertical, `1` horizontal, `4` vertical and `3` horizontal. All 88 axis relation bindings match. Dimensions and other native relation classes still require their own binding evidence. [Pinned native measurements](../../automation/PairedCaptures/P04/solidworks-c1986308375a/measurements.json)
 
 ## Continue the walk
 

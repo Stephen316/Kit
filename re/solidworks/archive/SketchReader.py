@@ -11,6 +11,9 @@ from SketchRoot import KGeneration, ReadSketchStart, Require
 # the portable layout must refer to the exact normalized native pointer witness
 KDisplayEvidence = "d724ad7b0c0d7daed50adf96028c08a3f83e5afde5e841ca25506cd6baf3939a"
 
+# the native one-member relation's geometry check selects these sketch-local axes
+KAxisRelations = {4: "horizontal", 5: "vertical"}
+
 
 # presentation records carry pointer allocations needed to reach the next geometry group
 def ReadDisplay(Cursor, BuildName, FrameIndex):
@@ -59,9 +62,10 @@ def ReportRelations(Cursor, Relations, Lines):
     Require(
         len(Segments), sum(Line[1] >= 0 for Line in Lines), "unique line identities"
     )
-    for Start, StopValue, Target, Flags in Relations:
+    for Start, StopValue, Target, TypeValue, Flags in Relations:
         Handle = Cursor.Handles[Target]
         Require(Handle[1:], (-1, 0), "witnessed local relation handle fields")
+        Require(TypeValue in KAxisRelations, True, "supported one-member relation type")
         Segment = Segments[Handle[0]]
         Records.append(
             {
@@ -70,6 +74,8 @@ def ReportRelations(Cursor, Relations, Lines):
                 "line_handle_object": Target,
                 "line_handle_fields": Handle,
                 "segment_native_id": Segment[1],
+                "type_code": TypeValue,
+                "kind": KAxisRelations[TypeValue],
                 "scalar_fields": Flags,
             }
         )
