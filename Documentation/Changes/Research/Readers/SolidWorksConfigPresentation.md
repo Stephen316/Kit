@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 20,906 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces at least 21,330 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -59,6 +59,14 @@ Two checked zero bytes at the boundary have unassigned ownership. The next typed
 The [environment reader](../../../../re/solidworks/archive/ConfigScene.py) follows the folder serializer at `sldmodu+0xd70af0` into its concept and feature fields. The saved four-entry list carries one ambient light and three directional lights. Each child reads its node name, nullable feature fields and the light body at `0xaca160`. The user name is framed text, the user property count is zero, and directional lights add a vector and a double at `0xac97b2` and `0xac97e9`. The folder resumes its inherited feature fields after the fourth light and ends with its own two integers.
 
 The model's fields after the view loop reach the schema-zero `moFeatColorTab_c` at baseline A offset 41,476. Its serializer at `sldmfcu+0xd21c0` reads the empty color table count. The model reads the following null pointer and three integers, including the zero count for an optional inline node list at `sldmodu+0x10f2d12`. Its next typed object is `moSketchBlockMgr_c` at offset 41,516.
+
+## Saved managers and annotation views
+
+The sketch block manager serializer at `sldmodu+0x17c8d90` reads an inherited feature, a 16-byte GUID, and its inline block settings. The settings load path at `0x17c6991` reads an integer and a reference to the same manager object already allocated at the start of the record. The following block and name tables must be empty.
+
+The annotation view serializer at `0x10d4900` reads the existing inline model view body before its own fields. It reads four nullable references at `0x10d4b8a`, `0x10d4c78`, `0x10d4d43` and `0x10d4de8`, followed by the type's integer tail. The replay preserves the one-view and two-view list paths.
+
+The partition marker at `0x9d9b30` reads one integer. The cosmetic thread manager at `0x1a57d0` reads an empty reference-list count and its trailing integer. The exploded-view manager at `0x52d0b0` uses the inherited feature and two nullable child references before its double and two integers. Parent fields around the marker, between the managers and in the final 38-byte trailer still use bounded advances.
 
 ## Verification
 

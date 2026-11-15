@@ -31,7 +31,7 @@ from ConfigDetail import (
 )
 from ConfigDetailEnd import ReadDetailEnd
 from ConfigLabel import ReadLabelDefs
-from ConfigScene import ReadEnvironment
+from ConfigScene import ReadEnvironment, ReadExplManager, ReadSketchBlock
 from ConfigTable import ReadTableDefs
 from ConfigTol import ReadTolData
 from SketchReader import ReadSketchConfiguration
@@ -58,6 +58,7 @@ def ReadPointer(Cursor, Events, KindValue, NameValue=None, SchemaValue=1):
     Offset, Counter = Cursor.Offset, Cursor.NextIndex
     TagValue, _, Index = Cursor.TakePointer((NameValue,), KindValue, SchemaValue)
     Events.append((Offset, Counter, TagValue.kind, NameValue, Index))
+    return Index
 
 
 # the presence byte selects the nine-double matrix before the translation and scale
@@ -72,7 +73,7 @@ def ReadViewXform(Cursor):
 
 # the three optional view collections have no entries on the witnessed path
 def ReadConfigView(Cursor):
-    Cursor.ReadText()
+    Name = Cursor.ReadText()
     for _ in range(2):
         ReadViewXform(Cursor)
     Cursor.ReadValue("<Hi")
@@ -84,6 +85,7 @@ def ReadConfigView(Cursor):
     Cursor.ReadPoint(1)
     Require(Cursor.ReadCount(), 0, "empty second view list")
     Cursor.ReadValue("<2i")
+    return Name
 
 
 # the style selects an absent or inline dual unit from the actual archive tag
@@ -96,21 +98,17 @@ def ReadLengthLink(Cursor, Events):
     ReadPointer(Cursor, Events, KNullKind)
 
 
-# standard annotation views use the same transform serializer as regular views
+# the annotation subtype reads its inline view base before its nullable references
 def ReadAnnotationView(Cursor, Events, NameValues):
-    Require(Cursor.ReadText() in NameValues, True, "witnessed annotation view name")
-    for _ in range(2):
-        ReadViewXform(Cursor)
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (58, KNullKind, None),
-            (0, KNullKind, None),
-            (12, KNullKind, None),
-            (8, KNullKind, None),
-        ),
-    )
+    Require(ReadConfigView(Cursor) in NameValues, True, "witnessed annotation view name")
+    Cursor.ReadValue("<i")
+    ReadPointer(Cursor, Events, KNullKind)  # moCompRef_c
+    ReadPointer(Cursor, Events, KNullKind)  # first moRefWrapper_c
+    Cursor.ReadValue("<id")
+    ReadPointer(Cursor, Events, KNullKind)  # second moRefWrapper_c
+    Cursor.ReadValue("<2i")
+    ReadPointer(Cursor, Events, KNullKind)  # moFeatComment_c
+    Cursor.ReadValue("<4i")
 
 
 # each inline region carries a count and scalar rows without allocating archive objects
@@ -179,53 +177,39 @@ def ReadModelPresentation(Cursor):
     Cursor.ReadValue("<i")
     Require(Cursor.ReadCount(), 0, "absent inline model node list")
     Cursor.ReadValue("<i")
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (0, KDefinitionKind, "moSketchBlockMgr_c"),
-            (0, KNullKind, None),
-            (24, KNullKind, None),
-            (47, KNullKind, None),
-            (30, KNullKind, None),
-            (56, KObjectRefKind, "moSketchBlockMgr_c"),
-            (8, KClassRefKind, "suObList"),
-        ),
-    )
+    ReadSketchBlock(Cursor, Partial(ReadPointer, Cursor, Events))
+    ReadPointer(Cursor, Events, KClassRefKind, "suObList")
     (AnnotationCount,) = Cursor.ReadValue("<H")
     Require(AnnotationCount in (1, 2), True, "witnessed annotation view count")
     ReadPointer(Cursor, Events, KDefinitionKind, "moAnnotationView_c")
     ReadAnnotationView(Cursor, Events, ("*Front", "*Right"))
     if AnnotationCount == 2:
-        ReadPointers(Cursor, Events, ((16, KClassRefKind, "moAnnotationView_c"),))
+        ReadPointer(Cursor, Events, KClassRefKind, "moAnnotationView_c")
         ReadAnnotationView(Cursor, Events, ("*Top",))
     ReadPointers(
         Cursor,
         Events,
         (
-            (32, KNullKind, None),
+            (16, KNullKind, None),
             (24, KNullKind, None),
             (2, KDefinitionKind, "moPMarkRecord_c"),
-            (48, KClassRefKind, "suObList"),
-            (14, KDefinitionKind, "moCThreadRefMgr_c"),
-            (8, KNullKind, None),
         ),
     )
-    Regions = ReadModelRegions(Cursor)
+    Cursor.ReadValue("<i")  # moPMarkRecord_c
     ReadPointers(
         Cursor,
         Events,
         (
-            (0, KDefinitionKind, "moPrtExplViewManager_c"),
-            (0, KNullKind, None),
-            (24, KNullKind, None),
-            (47, KNullKind, None),
-            (30, KNullKind, None),
-            (36, KNullKind, None),
-            (0, KNullKind, None),
+            (44, KClassRefKind, "suObList"),
+            (14, KDefinitionKind, "moCThreadRefMgr_c"),
         ),
     )
-    Cursor.AdvanceBytes(54)
+    Require(Cursor.ReadCount(), 0, "empty cosmetic thread reference list")
+    Cursor.ReadValue("<i")
+    ReadPointer(Cursor, Events, KNullKind)
+    Regions = ReadModelRegions(Cursor)
+    ReadExplManager(Cursor, Partial(ReadPointer, Cursor, Events))
+    Cursor.AdvanceBytes(38)
     Require(Cursor.Offset, len(Cursor.BlobValue), "complete witnessed Config-0 extent")
     return Events, Regions
 

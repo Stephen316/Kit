@@ -8,6 +8,7 @@ from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     KNullKind,
+    KObjectRefKind,
 )
 
 
@@ -38,14 +39,19 @@ def ReadSceneConcept(Cursor, ReadNull, ExpectedFlags):
     ReadNull()
 
 
+# an ordinary light or manager finishes the concept with an empty child list
+def ReadSceneFeature(Cursor, ReadNull, Flags):
+    ReadSceneConcept(Cursor, ReadNull, Flags)
+    Require(Cursor.ReadValue("<Hi"), (0, 0), "empty scene feature list and trailer")
+    read_feature_base(ConfigFeature(Cursor, ReadNull))
+
+
 # the saved light has a modern model feature base followed by four display settings
 def ReadLight(Cursor, ReadPointer, ReadNull, Kind, Name):
     ReadPointer(Kind, Name)
     ReadPointer(KClassRefKind, "moNodeName_c")
     Cursor.ReadText()
-    ReadSceneConcept(Cursor, ReadNull, 0xC0000000)
-    Require(Cursor.ReadValue("<Hi"), (0, 0), "empty light child list and trailer")
-    read_feature_base(ConfigFeature(Cursor, ReadNull))
+    ReadSceneFeature(Cursor, ReadNull, 0xC0000000)
     Cursor.ReadValue("<i")  # moModelFeature_c
     Cursor.ReadValue("<3dI4i")
     Cursor.ReadText()
@@ -69,3 +75,31 @@ def ReadEnvironment(Cursor, ReadPointer):
     Require(Cursor.ReadValue("<i"), (0,), "environment child list trailer")
     read_feature_base(ConfigFeature(Cursor, ReadNull))
     Cursor.ReadValue("<2i")  # moFolder_c
+
+
+# the inline block settings must refer to their own allocated manager
+def ReadSketchBlock(Cursor, ReadPointer):
+    ReadNull = Partial(ReadPointer, KNullKind)
+    Manager = ReadPointer(KDefinitionKind, "moSketchBlockMgr_c")
+    ReadNull()  # moNodeName_c
+    ReadSceneFeature(Cursor, ReadNull, 0x40000000)
+    Cursor.ReadValue("<16s")  # archive GUID
+    Cursor.ReadValue("<i")
+    Require(
+        ReadPointer(KObjectRefKind, "moSketchBlockMgr_c"),
+        Manager,
+        "block settings reference their own manager",
+    )
+    Require(Cursor.ReadCount(), 0, "empty sketch block table")
+    Require(Cursor.ReadCount(), 0, "empty sketch block name table")
+
+
+# the exploded view manager owns two nullable objects and three scalar fields
+def ReadExplManager(Cursor, ReadPointer):
+    ReadNull = Partial(ReadPointer, KNullKind)
+    ReadPointer(KDefinitionKind, "moPrtExplViewManager_c")
+    ReadNull()  # moNodeName_c
+    ReadSceneFeature(Cursor, ReadNull, 0x40000000)
+    ReadNull()  # suObArray
+    ReadNull()  # selected view
+    Cursor.ReadValue("<d2i")
