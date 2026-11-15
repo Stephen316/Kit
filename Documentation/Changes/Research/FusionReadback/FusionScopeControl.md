@@ -1,0 +1,18 @@
+# Fusion two-body through-all controls
+
+The scope study uses three new XY designs derived from P04. Each has two separate parametric bosses and one through-all Cut supported by A's end cap. Automatic input leaves the participant property unset. Explicit inputs choose A or both A and B. B loses 400 mm³ in the automatic and explicit-both cases and remains intact in explicit-A. Automatic and explicit-both intentionally share a physical result. [Shared specification](../../../../re/automation/PairedCaptures/ScopeControl/ScopeControlSpec.json), [Autodesk participant input](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_ExtrudeFeatureInput_participantBodies.htm)
+
+Prepare a new private output directory on the authorized, signed-in macOS Fusion host. The command pins the committed control specification, runner, model, and reused P04 capture and fresh-process helpers.
+
+```sh
+python3 re/automation/PairedCaptures/ScopeControl/FusionScopeControl.py \
+  --output /absolute/private/path/fusion-scope
+```
+
+1. In an exclusive Fusion process with zero open documents, run `Python.RunScript "/absolute/private/path/fusion-scope/phase-a.py"` through the existing [Fusion host procedure](FusionFreshProcessEvidence.md). Phase A independently authors the three archives and records each verified producer, Cut relationship, and geometry snapshot before export. Its complete receipt binds those observations and the archive hashes.
+2. After Phase A completes, restart Fusion in the same build and run the generated `phase-b.py` through the same host procedure. Phase B requires a different OS process initiated after recorded Phase A completion, with the Phase A process gone. It copies and verifies each sealed Phase A archive, imports the copy, and records body measurements before the first explicit compute or rollback. It separately rolls just before the Cut to inspect its native participants, restores the timeline, and checks that restored solids match the initial measurements. It then calls `computeAll`, takes another snapshot and checks both the original and copied archives after closing the owned document.
+3. Retain both phase directories and `plan.json`. Use `phase-b/report.json` and its sibling native files for the comparison. The matching receipt binds the report hash and the prepared plan. The report retains both process identities, the exact Phase A report digest and independent healthy-control observations. A failed receipt or missing report leaves the study incomplete.
+
+Each stage matches native participant entities to the two boss outputs at the pre-cut marker. Unique entity-token resolution and native object equality associate those producers with the measured final bodies. The report records producer timeline indices and omits raw tokens. Through-all direction comes from the saved extent and the verified support normal. The native participant getter reports the resolved body list, so every Fusion `observed_policy` stays null. Authoring intent is recorded separately. The archive import API has no aggregate loader warning list. [Timeline and import evidence](FusionFreshProcessEvidence.md), [Autodesk participant readback](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_ExtrudeFeature_participantBodies.htm), [Autodesk entity token resolution](https://help.autodesk.com/cloudhelp/ENU/Fusion-360-API/files/fusion_Design_findEntityByToken.htm)
+
+This procedure creates separate discovery controls. The existing P04 captures keep their original pins. Native execution and compatibility observations still require the provisioned Fusion host.
