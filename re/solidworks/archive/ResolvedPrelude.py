@@ -2,22 +2,7 @@
 
 from struct import unpack_from
 
-
-# the annotations cabinet and ordinary named features share lightweight concept framing
-def read_named_concept(cursor, expected_flags):
-    from convert.adapters.solidworks.container.Archive import ReadString
-    from SketchRoot import Require
-    from SupportPlane import read_empty_label
-
-    name, length = ReadString(cursor.blob, cursor.position)
-    cursor.position += length
-    node_state, flags, node_id, node_tail = cursor.read("<iIii")
-    Require((node_state, node_tail), (0, 0), "ordinary typed node")
-    Require(flags in expected_flags, True, "witnessed typed node flags")
-    read_empty_label(cursor)
-    Require(cursor.read("<i"), (0,), "empty lightweight child list")
-    cursor.null()  # moVisualProperties_c
-    return name, node_id
+from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode as read_named_concept
 
 
 # ordinary features can proceed to their own fields after an empty resolved list

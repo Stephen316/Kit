@@ -1,7 +1,11 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.formats.Fusion.Topology.AsmEdge.AsmHistory import AsmHistory
-from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord, AsmTable
+from convert.formats.Fusion.Topology.AsmEdge.AsmTable import (
+    KAsmToken,
+    AsmRecord,
+    AsmTable,
+)
 from convert.formats.Fusion.Topology.AsmEdge.ReadAsmAliases import ReadAsmAliases
 
 
@@ -17,7 +21,7 @@ class AsmRevision:
 def RemapAsmRefs(
     Record: AsmRecord, Aliases: dict[int, int], Dense: dict[int, int]
 ) -> AsmRecord:
-    Tokens = []
+    Tokens: list[KAsmToken] = []
     for TagValue, Value in Record.Tokens:
         if TagValue == 12 and Value != -1:
             if type(Value) is not int:
