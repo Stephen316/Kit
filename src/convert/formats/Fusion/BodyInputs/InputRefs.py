@@ -5,7 +5,7 @@ from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SelectionProxy import ReadSelectList
 from convert.formats.Fusion.Sketches.GeometryAttrs import ReadGeomAttrs
-from convert.formats.Fusion.Topology.BodyPick import KBodyDesc
+from convert.formats.Fusion.Topology.BodyPick import KBodyDesc, KCutTargetMode
 
 # one feature can only address a bounded list of selections
 KMaxBodyInputs = 1024
@@ -55,4 +55,7 @@ def ReadInputPicks(
     if any(Owners[Identity].ClassGuid != KBodyDesc for Identity in Descriptors):
         raise ValueError("Fusion input proxy does not select whole bodies")
     CheckInputProxy(BulkData, Owners, ProxyId, Descriptors, ModeCode)
-    return tuple(BodyInput(RoleValue, ProxyId, Identity) for Identity in Descriptors)
+    return tuple(
+        BodyInput(RoleValue, ProxyId, Identity, CutTarget=ModeCode == KCutTargetMode)
+        for Identity in Descriptors
+    )

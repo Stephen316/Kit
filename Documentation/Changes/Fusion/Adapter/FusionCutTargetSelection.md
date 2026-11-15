@@ -1,0 +1,9 @@
+# Saved Fusion Cut target body selection
+
+The public Fusion partial reader can project the historical target body of the observed one-sided solid Cut. Read the archive with `open_document(path, strict=False)`. The Cut feature links to a `historical_body` selection with role `target`. The selection carries the native body and anchor identities, the earlier creator feature, component scope and history. Its path is empty because the selected historical body may differ from the final document body. [Public Fusion adapter](FusionPublicAdapter.md)
+
+The Cut's counted target list and repeated native dependency pair must agree with its exact proxy and descriptor. Both selector records use mode `8` with the saved `04 01 00 00` trailer markers. The recipe, support and body anchor checks retain their normal prerequisites. The anchor and body must agree on identity, and the anchor's creator must precede the Cut in the same active component scope. The through-all case carries a separate extent proxy. That proxy remains outside the Cut target selection. [Separate saved selectors](../../../Gotchas/Conversion/Fusion/Api/FusionCutTargetModes.md)
+
+Inspection of all eleven pinned P04 Fusion discovery archives verified Cut `446`, target proxy `447`, descriptor `450`, body anchor `315`, historical body `309`, and source boss `277`. Both actor entries are active in component `3`, scope `33`, history `35`. The separate through-all extent proxy is `461`. Hosted public reader scenarios check these identities for all eleven files. [Saved Cut and extent evidence](../../Research/Readers/FusionCutExtentEvidence.md), [Archive integration scenarios](../../../../tests/Research/ArchiveEvidenceTests.py)
+
+The partial document carries the saved Cut operation and target identity. Cut extent, supporting-face projection, final BRep regeneration and strict editable conversion retain separate qualification requirements.

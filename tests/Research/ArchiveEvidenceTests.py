@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from convert.api.ApiOpen import OpenDocument
+from interchange.document.models.DocumentModel import CadDocument
 from interchange.geometry.models.GeometryCurves import PointGeometry
 
 
@@ -210,31 +211,70 @@ def CheckFaceDatum() -> None:
     assert "fusion.native_support_object_id" not in Plane.attributes
 
 
-# dependent dimensions must keep saved argument and dependency orders across the public reading boundary
-@Pytest.mark.parametrize(
-    "Variant",
-    (
-        "baseline-a",
-        "baseline-b",
-        "edit-width_mm-44",
-        "edit-height_mm-24",
-        "edit-depth_mm-12",
-        "edit-cut_width_mm-12",
-        "edit-cut_height_mm-10",
-        "edit-cut_depth_mm-5",
-        "units-inch",
-        "plane-yz",
-        "termination-through-all",
-    ),
+# both public checks must exercise the same saved cut discovery roster
+KCutVariants = (
+    "baseline-a",
+    "baseline-b",
+    "edit-width_mm-44",
+    "edit-height_mm-24",
+    "edit-depth_mm-12",
+    "edit-cut_width_mm-12",
+    "edit-cut_height_mm-10",
+    "edit-cut_depth_mm-5",
+    "units-inch",
+    "plane-yz",
+    "termination-through-all",
 )
-def CheckDimOrder(Variant: str) -> None:
+
+
+# cut archive checks share the normal adapter boundary and exact source location
+def OpenCutArchive(Variant: str) -> CadDocument:
     RootDir = FilePath(__file__).resolve().parents[2]
     Archive = (
         RootDir
         / "re/automation/PairedCaptures/P04/fusion-9cf53a55ea8b"
         / f"P04-fusion-{Variant}.f3d"
     )
-    Document = OpenDocument(Archive, StrictMode=False)
+    return OpenDocument(Archive, StrictMode=False)
+
+
+# the feature must preserve its historical target without adding the extent selector
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckCutTarget(Variant: str) -> None:
+    Document = OpenCutArchive(Variant)
+    Features = {
+        Value.provenance.native_id: Value
+        for Value in Document.feature_timeline
+        if Value.provenance is not None
+    }
+    Cutter, Source = Features["446"], Features["277"]
+    (Target,) = [
+        Value for Value in Document.selections if Value.id in Cutter.selection_ids
+    ]
+    assert Cutter.operation == "cut"
+    assert Cutter.definition is None
+    assert Target.id not in Source.selection_ids
+    assert Target.path == ()
+    assert Target.query["kind"] == "historical_body"
+    assert Target.query["role"] == "target"
+    assert Target.query["native_body_id"] == 309
+    assert Target.query["native_anchor_id"] == 315
+    assert Target.query["native_source_id"] == 277
+    assert Target.query["source_feature_id"] == Source.id
+    assert Target.query["native_component_id"] == 3
+    assert Target.query["native_scope_id"] == 33
+    assert Target.query["native_history_id"] == 35
+    assert Target.attributes["fusion.proxy_object_id"] == 447
+    assert Target.attributes["fusion.descriptor_object_id"] == 450
+    assert Target.attributes["fusion.support_object_id"] == 451
+    assert Target.attributes["fusion.recipe_object_id"] == 453
+    assert Target.attributes["fusion.context_object_ids"] == ()
+
+
+# dependent dimensions must keep saved argument and dependency orders across the public reading boundary
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckDimOrder(Variant: str) -> None:
+    Document = OpenCutArchive(Variant)
     Parameters = {Value.id: Value.name for Value in Document.parameters}
     Dimensions = {
         Parameters[Value.parameter_id]: Value

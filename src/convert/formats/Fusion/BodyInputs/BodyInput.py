@@ -10,6 +10,7 @@ class BodyInput:
     ProxyId: int
     DescriptorId: int
     AssociationId: int | None = None
+    CutTarget: bool = False
 
 
 # combine controls travel alongside operands without inferring output lifecycle

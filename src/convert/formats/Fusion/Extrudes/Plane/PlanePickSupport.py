@@ -2,6 +2,7 @@ from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.SelectionProxy import SelectCursor
+from convert.formats.Fusion.Topology.BodyPick import KCutPickMarker, KCutTargetMode
 from convert.formats.Fusion.Topology.PickSupport import KSupportGuid
 
 # the fixed selection helper separates typed links from an opaque cached scalar
@@ -19,15 +20,16 @@ def ReadPickFooter(
     *,
     ModeCode: int = 5,
 ) -> tuple[int, int]:
+    Marker = KCutPickMarker if ModeCode == KCutTargetMode else b"\1\1\0\0"
     if (
         Cursor.ReadWord() != 0
         or Cursor.ReadWord() != ModeCode
         or Cursor.TakeBytes(10) != bytes(10)
-        or Cursor.TakeBytes(4) != b"\1\1\0\0"
+        or Cursor.TakeBytes(4) != Marker
     ):
         raise ValueError("Unsupported Fusion plane selection trailer")
     _ = Cursor.TakeBytes(8)
-    if Cursor.TakeBytes(4) != b"\1\1\0\0":
+    if Cursor.TakeBytes(4) != Marker:
         raise ValueError("Unsupported Fusion plane selection trailer marker")
     HelperId = ReadNativeRef(Cursor)
     Helper = SelectCursor(BulkData, Owners, HelperId, KPlanePickHelper)

@@ -16,6 +16,12 @@ from convert.formats.Fusion.Topology.PickDescriptor import KPickHelper
 # whole body picks use a descriptor distinct from face and edge selections
 KBodyDesc = "9716F783-676D-42E0-93F9-EBF273E7C035"
 
+# the witnessed cut target uses this mode in both the proxy and descriptor
+KCutTargetMode = 8
+
+# the cut target mode uses distinct markers from the ordinary body pick
+KCutPickMarker = b"\4\1\0\0"
+
 
 # the verified pick identifies a historical body without asserting current lifecycle
 @MakeDataClass(frozen=True, slots=True)
@@ -35,13 +41,18 @@ class BodyPick:
 
 
 # the tail holds explicit helper and support links followed by the owning feature
-def ReadBodyTail(Cursor: MetaCursor, FeatureId: int) -> tuple[int, int]:
-    _ = Cursor.TakeBytes(14)
-    if Cursor.TakeBytes(4) != b"\1\1\0\0" or not IsFinite(
+def ReadBodyTail(
+    Cursor: MetaCursor, FeatureId: int, CutTarget: bool
+) -> tuple[int, int]:
+    Header = Cursor.TakeBytes(14)
+    Marker = KCutPickMarker if CutTarget else b"\1\1\0\0"
+    if CutTarget and Header != bytes((KCutTargetMode,)) + bytes(13):
+        raise ValueError("Unsupported Fusion Cut body pick mode")
+    if Cursor.TakeBytes(4) != Marker or not IsFinite(
         Unpack("<d", Cursor.TakeBytes(8))[0]
     ):
         raise ValueError("Unsupported Fusion body pick trailer")
-    if Cursor.TakeBytes(4) != b"\1\1\0\0":
+    if Cursor.TakeBytes(4) != Marker:
         raise ValueError("Unsupported Fusion body pick helper marker")
     HelperId = ReadNativeRef(Cursor)
     if Cursor.TakeBytes(3) != b"\1\0\0":
@@ -58,7 +69,12 @@ def ReadBodyTail(Cursor: MetaCursor, FeatureId: int) -> tuple[int, int]:
 
 # typed descriptor and support references must agree with the native body anchor
 def ReadBodyPick(
-    BulkData: bytes, Owners: dict[int, RecordSpan], DescriptorId: int, FeatureId: int
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    DescriptorId: int,
+    FeatureId: int,
+    *,
+    CutTarget: bool = False,
 ) -> BodyPick:
     Cursor = SelectCursor(BulkData, Owners, DescriptorId, KBodyDesc)
     if (
@@ -75,11 +91,13 @@ def ReadBodyPick(
     Namespace, EntityGuid = ReadSelectUuid(Cursor), ReadSelectUuid(Cursor)
     if Cursor.ReadLong() != 2:
         raise ValueError("Unsupported Fusion body pick association header")
-    ContextIds = tuple(ReadNativeRef(Cursor) for _ in range(Cursor.ReadCount(1)))
+    ContextIds = tuple(
+        ReadNativeRef(Cursor) for _ in range(Cursor.ReadCount(0 if CutTarget else 1))
+    )
     if Cursor.ReadWord() != 1:
         raise ValueError("Unsupported Fusion body pick anchor count")
     AnchorId = ReadNativeRef(Cursor)
-    HelperId, SupportId = ReadBodyTail(Cursor, FeatureId)
+    HelperId, SupportId = ReadBodyTail(Cursor, FeatureId, CutTarget)
     Helper = SelectCursor(BulkData, Owners, HelperId, KPickHelper)
     if Helper.DataValue != b"\0\1" + bytes(12):
         raise ValueError("Unsupported Fusion body pick helper")

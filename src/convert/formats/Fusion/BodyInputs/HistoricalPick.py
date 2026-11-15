@@ -20,7 +20,13 @@ def MakeHistoryPick(
     Input: BodyInput,
     Ordinal: int,
 ) -> Selection:
-    PickValue = ReadBodyPick(BulkData, Context.Owners, Input.DescriptorId, FeatureId)
+    PickValue = ReadBodyPick(
+        BulkData,
+        Context.Owners,
+        Input.DescriptorId,
+        FeatureId,
+        CutTarget=Input.CutTarget,
+    )
     if (Input.Role == "tool" and len(PickValue.ContextIds) != 1) or (
         Input.Role != "tool" and PickValue.ContextIds
     ):
