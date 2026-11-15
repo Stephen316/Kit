@@ -23,6 +23,7 @@ Publication failures leave scheduling and controller settlement to their existin
 ## Verification
 
 The hosted POSIX pause case compares live status with the actual admission event and checks configuration mismatch, pause, and normal exit.
+It passed in the 59-case Linux and 143-case macOS supervisor suites at PR head `648ddf5c` and tested merge `7d662f29`. [Hosted Linux evidence](https://github.com/TryUniCAD/Kit/actions/runs/43774889237/job/132998931871), [hosted macOS evidence](https://github.com/TryUniCAD/Kit/actions/runs/43774889237/job/132998931836)
 The hosted Windows recovery case checks a live decision and refusal of the retained snapshot after forced owner exit.
 It passed with all 92 Windows supervisor cases at PR head `648ddf5c` and tested merge `7d662f29`. [Hosted Windows evidence](https://github.com/TryUniCAD/Kit/actions/runs/43774889237/job/132998931881)
 
