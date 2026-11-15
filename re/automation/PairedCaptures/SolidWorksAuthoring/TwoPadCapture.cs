@@ -69,11 +69,17 @@ public sealed partial class SolidWorksCapture
         Check(supportKind == (int)swSelectType_e.swSelFACES && face != null
             && app.IsSame(face.GetFeature(), lower) == (int)swObjectEquality.swObjectSame,
             "UpperSketch does not resolve to BaseBoss's native face");
+        var supportOrigin = Scale(Transform(Vector(0, 0, 0), sketch.ModelToSketchTransform.IInverse()), 1000);
+        Check(Math.Abs(supportOrigin[2] - baseMm) <= .00001,
+            "UpperSketch plane did not move with the supporting pad");
         var bound = Dimensions(lower).Single(value => value.Name == "depth_mm");
         var drive = Dimensions(upper).Single(value => value.Name == "upper_depth_mm");
         var operation = (IExtrudeFeatureData2)upper.GetDefinition();
         Check(Math.Abs(bound.SystemValue * 1000 - baseMm) <= .00001
             && Math.Abs(drive.SystemValue * 1000 - upperMm) <= .00001
+            && bound.DrivenState == (int)swDimensionDrivenState_e.swDimensionDriving
+            && drive.DrivenState == (int)swDimensionDrivenState_e.swDimensionDriving
+            && Math.Abs(operation.GetDepth(true) * 1000 - upperMm) <= .00001
             && operation.GetEndCondition(true) == (int)swEndConditions_e.swEndCondBlind && operation.Merge,
             "The two embedded driving lengths and merged blind operation did not survive");
         var body = Array(((IPartDoc)doc).GetBodies2(0, false)).Cast<IBody2>().Single();
@@ -86,7 +92,7 @@ public sealed partial class SolidWorksCapture
         row["expected_volume_mm3"] = volume;
         row["expected_centroid_mm"] = center;
         row["upper_support"] = Row("kind", supportKind, "parent_feature", lower.Name,
-            "normal_world", face.Normal, "area_mm2", face.GetArea() * 1e6,
+            "origin_world_mm", supportOrigin, "normal_world", face.Normal, "area_mm2", face.GetArea() * 1e6,
             "reference", Convert.ToBase64String(reference), "resolve_state", state);
         row["native_body"] = Row("faces", body.GetFaceCount(), "edges", body.GetEdgeCount(), "vertices", body.GetVertexCount());
         return row;
@@ -135,6 +141,18 @@ public sealed partial class SolidWorksCapture
         Check(Hash(path) == (string)save["sha256"], "Reopen modified the saved bytes");
     }
 
+    static void MatchTwoPadControl(Dictionary<string, object> expected, Dictionary<string, object> observed)
+    {
+        double[] expectedCenter = Array(expected["center_of_mass_mm"]).Select(Convert.ToDouble).ToArray();
+        double[] observedCenter = Array(observed["center_of_mass_mm"]).Select(Convert.ToDouble).ToArray();
+        Check((string)expected["native_sha256"] == (string)observed["native_sha256"]
+            && (int)expected["body_count"] == (int)observed["body_count"]
+            && Math.Abs(Convert.ToDouble(expected["volume_mm3"]) - Convert.ToDouble(observed["volume_mm3"])) <= .001
+            && expectedCenter.Length == 3 && observedCenter.Length == 3
+            && expectedCenter.Zip(observedCenter, (left, right) => Math.Abs(left - right)).Max() <= .00001,
+            "Healthy control changed between observations");
+    }
+
     public static string CaptureTwoPad(
         string repository, string directory, string executable, string priorJson)
     {
@@ -149,13 +167,16 @@ public sealed partial class SolidWorksCapture
                 if (String.IsNullOrEmpty(priorJson))
                 {
                     var cases = TwoPadCases.Where(name => name != "baseline-b").Select(capture.SaveTwoPad).ToArray();
+                    var after = capture.Control("after authoring");
+                    MatchTwoPadControl(before, after);
                     return Row("authoring_process", process, "authoring_control_before", before,
-                        "authoring_control_after", capture.Control("after authoring"), "cases", cases);
+                        "authoring_control_after", after, "cases", cases);
                 }
                 var prior = Json.Deserialize<Dictionary<string, object>>(priorJson);
                 var owner = (Dictionary<string, object>)prior["authoring_process"];
                 Check((bool)owner["exited_observed"] && (int)owner["pid"] != (int)process["pid"],
                     "Reopen must use a fresh owned SOLIDWORKS process");
+                MatchTwoPadControl((Dictionary<string, object>)prior["authoring_control_after"], before);
                 var reopened = Array(prior["cases"]).Cast<Dictionary<string, object>>().ToList();
                 Check(reopened.Select(row => (string)row["variant"]).SequenceEqual(TwoPadCases.Where(name => name != "baseline-b")),
                     "Unexpected saved case roster");
@@ -164,7 +185,9 @@ public sealed partial class SolidWorksCapture
                 prior["cases"] = reopened;
                 prior["reopen_process"] = process;
                 prior["reopen_control_before"] = before;
-                prior["reopen_control_after"] = capture.Control("after reopen");
+                var finalControl = capture.Control("after reopen");
+                MatchTwoPadControl(before, finalControl);
+                prior["reopen_control_after"] = finalControl;
                 return prior;
             }
             finally { application.SetUserPreferenceToggle(10, preference); }
