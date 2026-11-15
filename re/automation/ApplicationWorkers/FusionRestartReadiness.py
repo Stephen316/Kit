@@ -71,7 +71,17 @@ def prove_readiness(installation, store, queue, lifecycle):
         )
 
 
-def observe_owner(root, config, install_bytes, installation, store, queue, lifecycle):
+def observe_owner(
+    root,
+    config,
+    install_bytes,
+    installation,
+    store,
+    queue,
+    lifecycle,
+    *,
+    retain_evidence=False,
+):
     proof = observe_restart(installation, store, queue, lifecycle)
     require(
         sha256(install_bytes) == proof["installation_sha256"],
@@ -145,7 +155,7 @@ def observe_owner(root, config, install_bytes, installation, store, queue, lifec
             and file_bytes(root / "fence.json") == fence,
             "Fusion restart readiness was not consumed from the retained fence",
         )
-    return {
+    evidence = {
         "version": 1,
         "status": "restart_readiness_observed",
         "intent_sha256": proof["intent_sha256"],
@@ -160,6 +170,9 @@ def observe_owner(root, config, install_bytes, installation, store, queue, lifec
         "documents": final["documents"],
         "native_lifecycle_performed": False,
     }
+    if retain_evidence:
+        evidence.update(grant=first, consumption=final)
+    return evidence
 
 
 def main():
