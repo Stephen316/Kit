@@ -134,7 +134,7 @@ The [reader guide](SolidworksResearchReader.md) defines the command and its rese
 A04a–A04b do not close A04c or qualify native conversion.
 The reader does not infer missing constraints, repair the SDK mappings, launch applications or execute models.
 A04c needs independent source inventories and distinguishing evidence rather than agreement with the same reader.
-The [configuration replay](../../Changes/Research/Readers/SolidWorksConfigPresentation.md) derives length units, views, dimension styles, table and label settings, and the geometric tolerance frames. The [sketch presentation replay](../../Changes/Research/Readers/SolidWorksSketchRegionRecords.md) follows all 36 sketch bodies through counted displays and the region return. The next configuration boundary starts at the center-mark helper.
+The [configuration replay](../../Changes/Research/Readers/SolidWorksConfigPresentation.md) derives length units, views, dimension styles, table and label settings, and geometric tolerance frames through the start of the environment folder. The [sketch presentation replay](../../Changes/Research/Readers/SolidWorksSketchRegionRecords.md) follows all 36 sketch bodies through counted displays and the region return.
 Its blocked status does not prevent A05 integration or A08a implementation.
 The updated workflow-quality job passed all three reader scenarios in 60.15 seconds with 58 decoded and zero rejected.
 The earlier sequential process harness took 172.97 seconds on `7f8a7425`; these are CI observations, not a universal speed guarantee.
@@ -154,7 +154,7 @@ The [reader guide](FusionResearchReader.md) defines the command, its run summary
 A05a uses the strict SDK reader first and accepts the partial legacy reader only with an explicit option.
 A05a does not close A05b or A05c or qualify native conversion.
 A05c needs independent source inventories and distinguishing evidence rather than agreement with the same reader.
-The public Fusion partial reader now carries the [saved principal-plane identity](../../Changes/Fusion/Adapter/FusionPrincipalSketchSupport.md) and [signed axis-dimension operand order](../../Changes/Fusion/Adapter/FusionAxisDimensionOrder.md) into the neutral document. The hosted public-reader cases are pending.
+The public Fusion partial reader now carries the [saved principal-plane identity](../../Changes/Fusion/Adapter/FusionPrincipalSketchSupport.md) and [signed axis-dimension operand order](../../Changes/Fusion/Adapter/FusionAxisDimensionOrder.md) into the neutral document. The hosted archive step passed all 25 checks at `fa7e92d8`. The partial reader also preserves the [saved point coincidence arguments](../../Changes/Fusion/Adapter/FusionPointCoincidence.md). Its three public-reader cases await hosted verification. [Hosted archive checks](https://github.com/TryUniCAD/Kit/actions/runs/43725708342/job/132847061558)
 See [the change entry](../../Changes/Research/PinnedFusionReader.md).
 
 ## Parallel-session child steps

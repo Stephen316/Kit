@@ -4,7 +4,7 @@ from types import SimpleNamespace
 
 from ProfileSupport import read_chain
 from RectangleTail import read_principal_profile_support, read_rectangle_trim
-from ResolvedEntry import read_profile_body_prefix, read_resolved_prelude
+from ResolvedPrelude import read_profile_body_prefix, read_resolved_prelude
 from SketchCursor import SketchCursor
 from SketchPresentation import ReadPresentation
 from SketchReader import ReadGeometry
