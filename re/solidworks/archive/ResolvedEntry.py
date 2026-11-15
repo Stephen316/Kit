@@ -226,7 +226,8 @@ def read_origin_entry(cursor):
     name, feature_id, _ = read_profile_body_prefix(cursor, (0xC0000000,))
     Require((name, feature_id), ("Origin", 5), "typed origin profile")
     sketch_offset = cursor.position
-    sketch = cursor.pointer(KClassRefKind, "sgSketch")
+    sketch_kind = KClassRefKind if "sgSketch" in cursor.classes.values() else KDefinitionKind
+    sketch = cursor.pointer(sketch_kind, "sgSketch")
     geometry = read_origin_geometry(cursor, sketch_offset)
     presentation = read_presentation(cursor)
     tail = read_feature_tail(cursor)
@@ -347,19 +348,18 @@ def read_boss_entry(cursor, rectangle, file_reference):
 
 
 # folder suffixes are confined to the ordinary bodies at the start of these captures
-def read_list_prefix(blob, config_map):
+def read_resolved_prelude(blob, config_map, expected_count):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
         KObjectRefKind,
     )
     from FaceOccurrence import FaceCursor
-    from RectangleTail import read_rectangle_tail
     from SketchRoot import Require
 
     base, count = unpack_from("<iH", blob)
     Require(base, config_map.NextIndex, "derived configuration map counter")
-    Require(count, 21, "witnessed short resolved list")
+    Require(count, expected_count, "witnessed short resolved list")
     cursor = FaceCursor(
         blob,
         6,
@@ -427,18 +427,29 @@ def read_list_prefix(blob, config_map):
         "origin support resolves the saved front plane",
     )
     origin["support"]["plane_object"] = front["object_index"]
-    rectangle = read_profile_link(cursor)
-    rectangle_tail = read_rectangle_tail(cursor, rectangle, planes)
-    boss = read_boss_entry(
-        cursor, rectangle, rectangle_tail["trim_surface"]["file_reference"]
-    )
-    return {
+    return cursor, {
         "list_count": count,
         "prior_map_index": base,
         "folders": folders,
         "environment_alias": {"offset": alias_start, "object_index": environment},
         "principal_planes": planes,
         "origin": origin,
+    }
+
+
+# P04 continues from the ordinary document prelude through the cut's dependencies
+def read_list_prefix(blob, config_map):
+    from RectangleTail import read_rectangle_tail
+
+    cursor, prelude = read_resolved_prelude(blob, config_map, 21)
+    rectangle = read_profile_link(cursor)
+    planes = prelude["principal_planes"]
+    rectangle_tail = read_rectangle_tail(cursor, rectangle, planes)
+    boss = read_boss_entry(
+        cursor, rectangle, rectangle_tail["trim_surface"]["file_reference"]
+    )
+    return {
+        **prelude,
         "rectangle_link": rectangle,
         "rectangle": rectangle_tail,
         "boss": boss,

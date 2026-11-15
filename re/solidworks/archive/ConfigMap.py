@@ -71,11 +71,11 @@ def ReadModelRegions(Cursor):
     Require(Cursor.ReadCount(), 0, "empty modern model text-pair table")
     Cursor.AdvanceBytes(13)
     Count = Cursor.ReadCount()
-    Require(Count in (1, 2), True, "P04 model region groups")
+    Require(Count in (0, 1, 2), True, "witnessed model region groups")
     Regions = []
     for _ in range(Count):
         ItemCount = Cursor.ReadCount()
-        Require(ItemCount in (0, 1), True, "P04 model region group size")
+        Require(ItemCount in (0, 1), True, "witnessed model region group size")
         Items = []
         for _ in range(ItemCount):
             BodyId, RegionId = Cursor.ReadValue("<2i")
@@ -84,7 +84,7 @@ def ReadModelRegions(Cursor):
         Regions.append(Items)
     if Count == 2:
         Cursor.ReadValue("<i")
-    Cursor.AdvanceBytes(258)
+    Cursor.AdvanceBytes(258 if Count else 4)
     return Regions
 
 
@@ -93,6 +93,12 @@ def ReadConfigMap(BlobValue, BuildName):
     Require(BuildName, KApplicationBuild, "witnessed P04 model build")
     _, Cursor = ReadSketchConfiguration(BlobValue, BuildName)
     Start = (Cursor.Offset, Cursor.NextIndex)
+    Events, Regions = ReadModelPresentation(Cursor)
+    return Cursor, {"start": Start, "regions": Regions, "pointers": Events}
+
+
+# the same model serializer stores the presentation records after either relation path
+def ReadModelPresentation(Cursor):
     Events = []
     ReadPointers(
         Cursor,
@@ -146,17 +152,11 @@ def ReadConfigMap(BlobValue, BuildName):
                 (30, KNullKind, None),
             ),
         )
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (227, KNullKind, None),
-            (30, KNullKind, None),
-            (44, KNullKind, None),
-            (0, KClassRefKind, "suObList"),
-            (2, KDefinitionKind, "moView_c"),
-        ),
-    )
+    ReadPointers(Cursor, Events, ((227, KNullKind, None), (30, KNullKind, None), (44, KNullKind, None)))
+    ListKind = KClassRefKind if "suObList" in Cursor.Classes.values() else KDefinitionKind
+    ReadPointer(Cursor, Events, ListKind, "suObList")
+    Require(Cursor.ReadValue("<H"), (0,), "empty leading view list")
+    ReadPointer(Cursor, Events, KDefinitionKind, "moView_c")
     ReadPointers(
         Cursor,
         Events,
@@ -179,12 +179,15 @@ def ReadConfigMap(BlobValue, BuildName):
             (30, KNullKind, None),
             (56, KObjectRefKind, "moSketchBlockMgr_c"),
             (8, KClassRefKind, "suObList"),
-            (2, KDefinitionKind, "moAnnotationView_c"),
         ),
     )
+    (AnnotationCount,) = Cursor.ReadValue("<H")
+    Require(AnnotationCount in (1, 2), True, "witnessed annotation view count")
+    ReadPointer(Cursor, Events, KDefinitionKind, "moAnnotationView_c")
     ReadAnnotationView(Cursor, Events, ("*Front", "*Right"))
-    ReadPointers(Cursor, Events, ((16, KClassRefKind, "moAnnotationView_c"),))
-    ReadAnnotationView(Cursor, Events, ("*Top",))
+    if AnnotationCount == 2:
+        ReadPointers(Cursor, Events, ((16, KClassRefKind, "moAnnotationView_c"),))
+        ReadAnnotationView(Cursor, Events, ("*Top",))
     ReadPointers(
         Cursor,
         Events,
@@ -212,8 +215,8 @@ def ReadConfigMap(BlobValue, BuildName):
         ),
     )
     Cursor.AdvanceBytes(54)
-    Require(Cursor.Offset, len(BlobValue), "complete witnessed Config-0 extent")
-    return Cursor, {"start": Start, "regions": Regions, "pointers": Events}
+    Require(Cursor.Offset, len(Cursor.BlobValue), "complete witnessed Config-0 extent")
+    return Events, Regions
 
 
 # the saved header can corroborate the derived map but never initializes it

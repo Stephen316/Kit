@@ -107,8 +107,9 @@ def FindEntry(BlobValue, Classes, StopClass):
 
 # the part stores modern inline fields between its transform and material objects
 def FindMaterial(BlobValue, Cursor):
-    Require(Unpack("<B", BlobValue, Cursor)[0], 1, "bounding box presence")
-    Cursor += 81
+    (BoxPresent,) = Unpack("<B", BlobValue, Cursor)
+    Require(BoxPresent in (0, 1), True, "bounding box presence")
+    Cursor += 1 + 80 * BoxPresent
     Fields = Unpack("<6I2dI", BlobValue, Cursor)
     Require(
         (Fields[1], Fields[5], Fields[-1]),
@@ -177,8 +178,8 @@ def EndGhosts(BlobValue, Cursor):
     return Cursor
 
 
-# split lengths independently check the body boundary and permit one shared object map
-def FindRelations(BlobValue, ModelEntry):
+# the two split lengths and the saved atom count frame the common model prefix
+def ModelAtomStart(BlobValue, ModelEntry):
     Cursor = ModelEntry.offset + ReadTag(BlobValue, ModelEntry.offset).size
     Require(ReadTag(BlobValue, Cursor).kind, KNullKind, "absent model scene")
     Cursor += 6
@@ -195,8 +196,13 @@ def FindRelations(BlobValue, ModelEntry):
         "second split end",
     )
     Require(Unpack("<Hi", BlobValue, Split + 4), (0, 0), "empty root feature list")
-    Require(Unpack("<i", BlobValue, Split + 14)[0], 2, "guarded atom count")
-    FirstAtom = Split + 18
+    return Cursor, Split + 18, Unpack("<i", BlobValue, Split + 14)[0]
+
+
+# split lengths independently check the body boundary and permit one shared object map
+def FindRelations(BlobValue, ModelEntry):
+    Cursor, FirstAtom, Count = ModelAtomStart(BlobValue, ModelEntry)
+    Require(Count, 2, "guarded atom count")
     FirstTag = ReadTag(BlobValue, FirstAtom)
     Require(
         (FirstTag.kind, FirstTag.class_name),
@@ -214,8 +220,8 @@ def FindRelations(BlobValue, ModelEntry):
     return FirstAtom - Cursor, Relation - AtomStop
 
 
-# the shared archive engine owns the root pointer traversal and all map allocations
-def ReadSketchStart(BlobValue):
+# the shared archive engine owns the common root and material pointer allocations
+def ReadModelEntry(BlobValue):
     LayoutPath = Path(__file__).with_suffix(".json")
     Stages = Json.loads(LayoutPath.read_text(encoding="utf-8"))
     Classes = Stages["prefix"]
@@ -232,6 +238,14 @@ def ReadSketchStart(BlobValue):
     ]
     Root["runs"].update({"5": MaterialPos - TransformEnd, "6": 0, "7": 0, "8": 0})
     Model = FindEntry(BlobValue, Classes, "uoModelData_c")
+    return Model, Stages
+
+
+# the P04 equations materialize their sketches within the configuration map
+def ReadSketchStart(BlobValue):
+    Model, Stages = ReadModelEntry(BlobValue)
+    Classes = Stages["prefix"]
+    Root = Classes[KRootClass]
     AtomRun, RelationRun = FindRelations(BlobValue, Model)
     Classes.update(Stages["relations"])
     Root["child_slots"] += ["moAtom_c", "moAtom_c", "moRelMgr_c"]
