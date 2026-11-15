@@ -19,4 +19,10 @@ Four additional licensed runs verified the decompressed streams and final config
 | P03 baseline A | 129 | 449 | 111 | `2cda0743fbe1cadeaba28a6fbfc61c526bccc6ee202b795cf629e24b1578ec72` |
 | P03 YZ | 129 | 449 | 111 | `249e1b02307ac25ac3d03a9639d39f6199b7a36df4ef8ccd6110e1efb684f4bf` |
 
+## Profile return
+
+Add `--through-profile` to read each rectangle's contour surface, saved file reference and four typed trim edges. The extended report SHA-256 is `8d3f9d7206e71876b2db8aa933a861029e4d1c6130851a59fb006f8dc8178aeb`. Each trim entry refers to the owning profile and materialized file reference. Its edge ID set matches the four saved lines. The P03 body chain also names those four edges.
+
+All six P01 streams finish at the exact end of the resolved list with next map index 250. All eight P03 streams reach a schema-1 extrusion definition at map index 257. The licensed baseline and YZ controls independently confirm those boundaries and counters. P01 ends at 11,899 bytes in baseline A and 11,971 in YZ. The P03 extrusion starts at 11,996 in baseline A and 12,066 in YZ.
+
 Production integration, P03 boss replay after the sketch, and editable conversion remain open.

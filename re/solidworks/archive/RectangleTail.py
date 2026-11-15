@@ -103,16 +103,13 @@ def read_principal_profile_support(cursor, planes):
     return read_principal_support(cursor, planes)
 
 
-# profile completion must include the counted trim records that build the downstream map
-def read_rectangle_tail(cursor, profile, planes):
-    Require(cursor.read("<Ii"), (1, 1), "one modern profile chain")
-    chain = read_chain(cursor, KDefinitionKind)
-    support = read_principal_profile_support(cursor, planes)
+# profile completion materializes the file and edge references needed by the downstream map
+def read_rectangle_trim(cursor, profile, edge_ids, contour_mode):
     Require(cursor.read("<2H"), (0, 4), "guarded rectangle profile flags")
     cursor.null()
     Require(cursor.read("<2i"), (-1, 0), "guarded rectangle profile state")
     (state_word,) = cursor.read("<I")
-    Require(cursor.read("<H"), (1,), "witnessed rectangle contour mode")
+    Require(cursor.read("<H"), (contour_mode,), "witnessed rectangle contour mode")
     cursor.null()
     Require(cursor.read("<H"), (1,), "one cached trim surface")
     surface = read_trim_surface(cursor, profile)
@@ -120,15 +117,25 @@ def read_rectangle_tail(cursor, profile, planes):
     edges = [read_trim_edge(cursor, profile, surface) for _ in range(4)]
     Require(
         sorted(edge["edge_id"] for edge in edges),
-        sorted(chain["edge_ids"]),
-        "trim cache covers the saved chain edges",
+        sorted(edge_ids),
+        "trim cache covers the saved rectangle edges",
     )
     Require(cursor.read("<i"), (0,), "guarded profile return state")
     return {
-        "chain": chain,
-        "support": support,
         "state_word": state_word,
         "trim_surface": surface,
         "trim_edges": edges,
         "end": cursor.position,
+    }
+
+
+# P04 derives the expected profile contour directly from its saved sketch chain
+def read_rectangle_tail(cursor, profile, planes):
+    Require(cursor.read("<Ii"), (1, 1), "one modern profile chain")
+    chain = read_chain(cursor, KDefinitionKind)
+    support = read_principal_profile_support(cursor, planes)
+    return {
+        "chain": chain,
+        "support": support,
+        **read_rectangle_trim(cursor, profile, chain["edge_ids"], 1),
     }

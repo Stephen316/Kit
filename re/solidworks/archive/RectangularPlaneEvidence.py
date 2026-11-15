@@ -1,26 +1,35 @@
 """Compare resolved P01 and P03 principal rectangles with pinned native readbacks."""
 
+from argparse import ArgumentParser
 import json
 import math
 from pathlib import Path
 import sys
 
-
 REVISION = "89c25945f5833ad9c3a1c6c683df510b5702dd54"
-SPECIFICATION_SHA256 = "3c93e024f9fbdda50e610bda3b363bf30e8e7cdc914ef0728087befe129951bf"
+SPECIFICATION_SHA256 = (
+    "3c93e024f9fbdda50e610bda3b363bf30e8e7cdc914ef0728087befe129951bf"
+)
 CAPTURES = {"P01": ("75b9308cf13e", 6), "P03": ("db1390476325", 8)}
 
 
+# the independent API reports directed lines in world coordinates under saved segment IDs
 def check_rectangle(rectangle, native, tolerance):
     from SketchRoot import Require
 
-    sketch, = [sketch for sketch in native["sketches"] if sketch["name"] == rectangle["name"]]
+    (sketch,) = [
+        sketch for sketch in native["sketches"] if sketch["name"] == rectangle["name"]
+    ]
     support = rectangle["support"]
     Require(support["plane_name"], sketch["support_name"], "measured principal support")
     transform = support["transform"]
     basis = transform["basis"] or (1, 0, 0, 0, 1, 0, 0, 0, 1)
     tx, ty, tz, scale = transform["translation_scale"]
-    Require((*basis, tx, ty, tz, scale), tuple(sketch["model_to_sketch_transform"][:13]), "measured placement")
+    Require(
+        (*basis, tx, ty, tz, scale),
+        tuple(sketch["model_to_sketch_transform"][:13]),
+        "measured placement",
+    )
 
     geometry = rectangle["geometry"]
     points = [
@@ -32,19 +41,36 @@ def check_rectangle(rectangle, native, tolerance):
     ]
     edges = [line for line in geometry["lines"] if line["native_id"] >= 0]
     segments = {tuple(entity["id"]): entity for entity in sketch["entities"]}
-    Require((len(edges), len(segments), len(sketch["entities"])), (4, 4, 4), "four perimeter segments")
+    Require(
+        (len(edges), len(segments), len(sketch["entities"])),
+        (4, 4, 4),
+        "four perimeter segments",
+    )
     world_lines = []
     for edge in edges:
         native_id = edge["native_id"]
         entity = segments.pop((native_id, native_id))
-        Require((entity["type"], entity["construction"]), (0, False), "measured perimeter line")
+        Require(
+            (entity["type"], entity["construction"]),
+            (0, False),
+            "measured perimeter line",
+        )
         start, end = [points[index] for index in edge["point_indices"]]
-        for actual, expected in ((start, entity["start_world_mm"]), (end, entity["end_world_mm"])):
-            Require(math.dist(actual, expected) <= tolerance, True, "measured directed line endpoint")
+        for actual, expected in (
+            (start, entity["start_world_mm"]),
+            (end, entity["end_world_mm"]),
+        ):
+            Require(
+                math.dist(actual, expected) <= tolerance,
+                True,
+                "measured directed line endpoint",
+            )
         world_lines.append({"id": entity["id"], "start": start, "end": end})
 
-    feature, = [
-        row for row in native["feature_tree"] if (row["type"], row["name"]) == ("ProfileFeature", rectangle["name"])
+    (feature,) = [
+        row
+        for row in native["feature_tree"]
+        if (row["type"], row["name"]) == ("ProfileFeature", rectangle["name"])
     ]
     measured = {row["name"]: row["system_value"] for row in feature["dimensions"]}
     saved = {row["name"]: row["metres"] for row in geometry["length_dimensions"]}
@@ -53,8 +79,17 @@ def check_rectangle(rectangle, native, tolerance):
     return world_lines
 
 
-def build_report(root):
-    from PairedCaptureIntake import CAPTURES as CAPTURE_PATH, SPECIFICATIONS, GitSnapshot, inspect_capture, recipe_roster, require, sha256
+# committed source and measurement hashes bind each comparison to the same physical part
+def build_report(root, through_profile=False):
+    from PairedCaptureIntake import (
+        CAPTURES as CAPTURE_PATH,
+        SPECIFICATIONS,
+        GitSnapshot,
+        inspect_capture,
+        recipe_roster,
+        require,
+        sha256,
+    )
     from RectangularConfig import KApplicationBuild, read_rectangle_configuration
     from RectangularResolved import read_resolved_rectangle
     from SketchRoot import KGeneration, Require
@@ -63,7 +98,10 @@ def build_report(root):
 
     snapshot = GitSnapshot(root)
     specifications_bytes = snapshot.blob(REVISION, SPECIFICATIONS)
-    require(sha256(specifications_bytes) == SPECIFICATION_SHA256, "pinned specification digest changed")
+    require(
+        sha256(specifications_bytes) == SPECIFICATION_SHA256,
+        "pinned specification digest changed",
+    )
     specifications = snapshot.parse_document(specifications_bytes, SPECIFICATIONS)
     recipes = recipe_roster(specifications)
     tolerance = specifications["comparison_tolerances"]["length_mm_absolute"]
@@ -77,46 +115,92 @@ def build_report(root):
     for recipe, (capture, count) in CAPTURES.items():
         folder = f"{CAPTURE_PATH}{recipe}/solidworks-{capture}"
         intake = inspect_capture(
-            snapshot, REVISION, f"{folder}/receipt.json", recipes[recipe], "solidworks", specifications, SPECIFICATION_SHA256
+            snapshot,
+            REVISION,
+            f"{folder}/receipt.json",
+            recipes[recipe],
+            "solidworks",
+            specifications,
+            SPECIFICATION_SHA256,
         )
-        Require((intake["split"], intake["executable_file_version"]), ("discovery", "34.4.1.1011"), "pinned discovery build")
+        Require(
+            (intake["split"], intake["executable_file_version"]),
+            ("discovery", "34.4.1.1011"),
+            "pinned discovery build",
+        )
         coverage = intake["recording_coverage"]
         Require(
-            (coverage["readback_count"], coverage["clean_load_diagnostic_count"],
-             coverage["repeat_save_used_fresh_application_process"], len(intake["native_files"])),
+            (
+                coverage["readback_count"],
+                coverage["clean_load_diagnostic_count"],
+                coverage["repeat_save_used_fresh_application_process"],
+                len(intake["native_files"]),
+            ),
             (count, count, True, count),
             "clean measurements from a fresh native process",
         )
-        readbacks = snapshot.document(REVISION, intake["measurements"]["path"])["observations"]["reopened_files"]
+        readbacks = snapshot.document(REVISION, intake["measurements"]["path"])[
+            "observations"
+        ]["reopened_files"]
         cases = []
         for asset in intake["native_files"]:
             name = asset["path"].rsplit("/", 1)[-1]
             part = snapshot.blob(REVISION, asset["path"])
             Require(sha256(part), asset["sha256"], "native part hash")
             archive = SldprtArchive.from_bytes(part, name)
-            Require(ContainerMo(archive.streams), KGeneration, "pinned model generation")
+            Require(
+                ContainerMo(archive.streams), KGeneration, "pinned model generation"
+            )
             config = archive.require("Contents/Config-0")
             resolved = archive.require("Contents/Config-0-ResolvedFeatures")
-            entry, configuration = read_rectangle_configuration(config, KApplicationBuild)
+            entry, configuration = read_rectangle_configuration(
+                config, KApplicationBuild
+            )
             config_index = entry.NextIndex
-            rectangle = read_resolved_rectangle(resolved, entry, KApplicationBuild, configuration["atom_count"])
+            rectangle = read_resolved_rectangle(
+                resolved,
+                entry,
+                KApplicationBuild,
+                configuration["atom_count"],
+                through_profile=through_profile,
+            )
             world_lines = check_rectangle(rectangle, readbacks[name], tolerance)
-            cases.append({
-                "file": name,
-                "native_sha256": asset["sha256"],
-                "config_sha256": sha256(config),
-                "resolved_sha256": sha256(resolved),
-                "config_next_map_index": config_index,
-                "config": configuration,
-                "rectangle": rectangle,
-                "perimeter_world_mm": world_lines,
-            })
-        report["families"].append({"recipe": recipe, "measurements": intake["measurements"], "captures": cases})
+            cases.append(
+                {
+                    "file": name,
+                    "native_sha256": asset["sha256"],
+                    "config_sha256": sha256(config),
+                    "resolved_sha256": sha256(resolved),
+                    "config_next_map_index": config_index,
+                    "config": configuration,
+                    "rectangle": rectangle,
+                    "perimeter_world_mm": world_lines,
+                }
+            )
+        report["families"].append(
+            {
+                "recipe": recipe,
+                "measurements": intake["measurements"],
+                "captures": cases,
+            }
+        )
     return report
 
 
 if __name__ == "__main__":
+    parser = ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--through-profile",
+        action="store_true",
+        help="close the rectangle and check the next list boundary",
+    )
+    arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
     sys.path[:0] = [str(root / "src"), str(root / "re" / "automation")]
-    output = json.dumps(build_report(root), indent=2, sort_keys=True, allow_nan=False)
+    output = json.dumps(
+        build_report(root, arguments.through_profile),
+        indent=2,
+        sort_keys=True,
+        allow_nan=False,
+    )
     sys.stdout.buffer.write((output + "\n").encode("utf-8"))
