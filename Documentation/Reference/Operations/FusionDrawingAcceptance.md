@@ -131,11 +131,15 @@ placeholder values and Fusion refuses the file.
 
 ## C8. Honest attestation
 
-The loadable row above is a failure, not a partial pass. The save-and-reopen leg is also unproven:
+The loadable row above is a failure, not a partial pass. The save-and-reopen leg is proven through a local export rather than a cloud save.
 `DataFile.isReadOnly` is true on this Personal Use license, and `saveAs` returns `True` and produces
-no file for a design (240 s), a drawing (900 s), or a design imported into a new document (300 s).
-The import route was tried to rule out the upload path, and it fails the same way, so the limit is on
-the account.
+no file for a design (240 s), a drawing (900 s), or a design imported into a new document (300 s), so
+the limit is on the account.
+
+Fusion can still export a design to a local F3D with `Design.exportManager`, which is Fusion's own
+writer. Kit's authored cylinder was imported, exported to 54756 bytes, and read back by Kit with
+`kitLength` `40.0 mm`, `d2` `kitLength`, `d3` `0 deg` and the same
+`CylinderBody(Radius=12.5, Height=40.0)`. The parameters and the geometry survive a write by Fusion.
 
 ## C9. Complete implementation
 
