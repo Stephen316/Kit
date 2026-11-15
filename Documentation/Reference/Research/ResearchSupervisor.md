@@ -175,7 +175,15 @@ Pre-claim admission therefore keeps the registry estimate and any higher learned
 It never uses an older version's smaller footprint to admit an unknown version.
 Invalid stored history blocks claims; a history write failure preserves the prior cache and disables learning until restart while leaving the accepted job complete.
 See [versioned memory estimates](../../Changes/Research/Supervisor/VersionedMemoryEstimates.md) and [the version boundary](../../Gotchas/Research/Supervisor/PreclaimVersionsAreUnknown.md).
-Adaptive concurrency ramps, calibration batches and grouped jobs remain unimplemented.
+Adaptive concurrency is enabled by default through the strict boolean `adaptive_limits` field.
+Each pool starts at half its calculated capacity, with a minimum of one when capacity exists.
+After the first actual start, healthy increases are bounded to one slot per 60 seconds and require measured load, available memory and applicable Linux PSI guards.
+Missing metrics block upward increases explicitly; Windows has no load-average equivalent yet.
+Memory-limit stops, two deadline stops within 600 seconds and below-reserve memory episodes reduce the target conservatively.
+Existing sessions drain normally when the target falls.
+Set `adaptive_limits` to `false` to use the measured capacity directly.
+See [adaptive pool limits](../../Changes/Research/Supervisor/AdaptivePoolLimits.md) for evidence events and branch limits.
+Calibration batches, grouped jobs and independently attributed operating-system OOM backoff remain open.
 
 ## Stops, pauses and stale leases
 

@@ -190,7 +190,7 @@ jobs:
       - name: Verify research session supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py -q
+          python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py -q -s
 
   windows-supervisor:
     if: >-
@@ -248,7 +248,7 @@ jobs:
       - name: Verify macOS supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest -q tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Outputs
+          python -m pytest -q -s tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Outputs
 
   zizmor:
     if: >-

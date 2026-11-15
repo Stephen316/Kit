@@ -5,6 +5,9 @@ from tests.Research.SupervisorClient import SessionHost
 
 
 def SetWinRunner(Harness: SessionHost, MemoryLimit: int = 512) -> None:
+    ConfigInfo = JsonCodec.loads(Harness.ConfigFile.read_text(encoding="utf-8"))
+    ConfigInfo["adaptive_limits"] = True
+    _ = Harness.ConfigFile.write_text(JsonCodec.dumps(ConfigInfo), encoding="utf-8")
     RegistryFile = Harness.RootPath / "Runners.json"
     Registry = JsonCodec.loads(RegistryFile.read_text(encoding="utf-8"))
     for EntryInfo in Registry["runners"].values():
