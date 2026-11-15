@@ -70,7 +70,7 @@ class GroupSession(Session):
         records, total = [], 0
         for member in self.members:
             member.stop_reason = self.stop_reason
-            item = member.result_payload({**receipt, "job_id": member.spec["id"], "attempt": member.claim["attempt"]})
+            item = member.result_payload({**receipt, "job_id": member.spec["id"], "attempt": member.claim["attempt"]}, self.directory / "stderr.log")
             result = item[2]["result"]
             if isinstance(result, dict):
                 total += sum(value["size_bytes"] for value in result.get("artifacts", {}).values())

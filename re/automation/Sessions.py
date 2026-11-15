@@ -179,14 +179,14 @@ class Session:
         write_private(self.directory / "receipt.json", receipt)
         return receipt
 
-    def result_payload(self, receipt):
+    def result_payload(self, receipt, stderr_path=None):
         result, error, tail = None, None, None
         if self.stop_reason is not None:
             outcome, reason = "retry", f"session stopped: {self.stop_reason}"
         elif receipt["signal"] is not None:
             outcome, reason = "retry", f"runner ended by signal {receipt['signal']}"
         elif receipt["exit_status"] != 0:
-            tail = stderr_tail(self.directory / "stderr.log")
+            tail = stderr_tail(self.directory / "stderr.log" if stderr_path is None else stderr_path)
             outcome, reason = "retry", f"runner exited with status {receipt['exit_status']}"
         else:
             try:

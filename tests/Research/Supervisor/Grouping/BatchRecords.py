@@ -48,3 +48,22 @@ def ReadSoloMarks(RootPath: FilePath) -> list[tuple[str, int, str]]:
                 "SELECT job_id,generation,fingerprint FROM group_solo ORDER BY job_id"
             )
         )
+
+
+def ReadTryResult(Harness: SessionHost, JobName: str) -> dict[str, object]:
+    assert Harness.StorePath is not None
+    with SqlCodec.connect(Harness.StorePath / "ledger.sqlite3") as Database:
+        AttemptRow = Database.execute(
+            "SELECT receipt FROM attempts WHERE job_id=? AND number=1 ORDER BY id LIMIT 1",
+            (JobName,),
+        ).fetchone()
+    assert AttemptRow is not None
+    ReceiptHash = str(AttemptRow[0])
+    ReceiptPath = Harness.StorePath / "objects" / ReceiptHash[:2] / ReceiptHash
+    ReceiptInfo = JsonCodec.loads(ReceiptPath.read_text(encoding="utf-8"))
+    ResultHash = ReceiptInfo["result_sha256"]
+    ResultPath = Harness.StorePath / "objects" / ResultHash[:2] / ResultHash
+    ResultInfo: dict[str, object] = JsonCodec.loads(
+        ResultPath.read_text(encoding="utf-8")
+    )
+    return ResultInfo

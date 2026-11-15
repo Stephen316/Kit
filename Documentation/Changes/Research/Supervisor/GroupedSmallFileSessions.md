@@ -36,6 +36,8 @@ The finish command reads bounded member records once before publishing outputs a
 Each member's outputs use the existing private-root, file-handle, digest and size verification.
 An invalid member cannot supply another member's accepted output.
 Valid members can finish while an invalid member retries.
+For a shared nonzero process exit, each affected member stores the bounded tail from the physical session’s `stderr.log` before cleanup.
+The [crash-tail gotcha](../../../Gotchas/Research/Supervisor/GroupedCrashTails.md) explains why the source must be shared.
 Lease and execution deadlines still fence slow copies; renewal does not extend the execution deadline.
 
 A crash, stop, stale lease, setup failure or invalid member result retries affected unfinished jobs singly.
@@ -56,7 +58,7 @@ This can reserve more memory than a small group needs.
 Local validation ran source AST parsing, pinned Black, Mypy, Pyright and repository Steering checks.
 No tests or decoder reproductions ran locally.
 The new remote process fixtures drive actual supervisor, controller, SQLite store and runner processes.
-They cover 20-member caps, short leases, per-member accepted files, aggregate size and output limits, version boundaries, resource counts, single-job fallback, invalid capability declarations, stale input fencing, durable crash/restart retries and physical memory/deadline accounting.
+They cover 20-member caps, short leases, per-member accepted files, aggregate size and output limits, version boundaries, resource counts, single-job fallback, invalid capability declarations, stale input fencing, durable crash/restart retries, per-member durable crash stderr and physical memory/deadline accounting.
 Remote results must be recorded on the tested commit before treating these cases as verified.
 
 These are synthetic format/process fixtures.

@@ -7,6 +7,7 @@ from tests.Research.Supervisor.Grouping.BatchRecords import (
     BatchJobs,
     CheckBatchData,
     ReadSoloMarks,
+    ReadTryResult,
 )
 
 
@@ -25,9 +26,13 @@ def CheckBatchCrash() -> None:
         ]
         CheckBatchData(Harness, 4)
         assert len(ReadSoloMarks(RootPath)) == 4
-        assert all(
-            Harness.ReadJob(f"batch:{Index:02d}")["attempts"] == 2 for Index in range(4)
-        )
+        for Index in range(4):
+            JobName = f"batch:{Index:02d}"
+            assert Harness.ReadJob(JobName)["attempts"] == 2
+            assert (
+                ReadTryResult(Harness, JobName)["stderr_tail"]
+                == "batch crash diagnostic: member failure\n"
+            )
 
 
 def CheckBatchFiles() -> None:
