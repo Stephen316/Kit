@@ -23,7 +23,8 @@ from Records import canonical, digest
 from Runners import Registry
 from Sessions import write_private
 
-STEPS = (1, 2, 4, 8)
+STEPS = (1, 2, 4, 8, 16)
+DEFAULT_MAX_CONCURRENCY = 8
 LOG_LIMIT = 4 * 1048576
 
 
@@ -361,7 +362,10 @@ class Calibration:
         if capture.seen > capture.retained:
             raise OSError("private recovery log exceeded its retained limit")
 
-    def run(self, manifest_path, output):
+    def run(self, manifest_path, output, max_concurrency=DEFAULT_MAX_CONCURRENCY):
+        if max_concurrency not in (DEFAULT_MAX_CONCURRENCY, STEPS[-1]):
+            raise ValueError("calibration maximum concurrency must be 8 or 16")
+        steps = tuple(step for step in STEPS if step <= max_concurrency)
         if sys.platform not in ("linux", "darwin", "win32"):
             raise ValueError("offline calibration requires Linux, macOS, or Windows")
         if sys.version_info < (3, 14):
@@ -381,7 +385,7 @@ class Calibration:
         initial_sources = source_identity()
         identity = {"manifest_sha256": manifest_sha, **initial_sources}
         trials, summary, stopped = [], [], None
-        for requested in STEPS:
+        for requested in steps:
             if self.interrupted:
                 stopped = "interrupted"
                 break
@@ -511,9 +515,9 @@ class Calibration:
             **identity,
             "adaptive_limits": False,
             "grouping": False,
-            "requested_steps": list(STEPS),
+            "requested_steps": list(steps),
             "trials": summary,
-            "completed_sweep": len(trials) == len(STEPS) and stopped is None,
+            "completed_sweep": len(trials) == len(steps) and stopped is None,
             "stop_reason": stopped,
             "recommended_concurrency": recommended if stopped is None else None,
             "comparisons": comparisons,
@@ -529,12 +533,16 @@ def main():
     )
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument(
+        "--max-concurrency", type=int, choices=(DEFAULT_MAX_CONCURRENCY, STEPS[-1]),
+        default=DEFAULT_MAX_CONCURRENCY, help="include concurrency 16 in the fixed sweep",
+    )
     args = parser.parse_args()
     calibration = Calibration()
     signal.signal(signal.SIGTERM, calibration.interrupt)
     signal.signal(signal.SIGINT, calibration.interrupt)
     try:
-        report = calibration.run(args.manifest, args.output)
+        report = calibration.run(args.manifest, args.output, args.max_concurrency)
         print(
             canonical(
                 {

@@ -50,11 +50,12 @@ def CheckReserve(TmpPath: FilePath) -> None:
     Manifest["reserved_cpus"] = 65536
     _ = ManifestPath.write_text(JsonCodec.dumps(Manifest), encoding="utf-8")
     OutputPath = TmpPath / "Reserved"
-    Report = RunCalibration(ManifestPath, OutputPath)
+    Report = RunCalibration(ManifestPath, OutputPath, MaxWorkers=16)
     assert (
         Report["completed_sweep"] is True and Report["recommended_concurrency"] is None
     )
-    for Requested in (1, 2, 4, 8):
+    assert Report["requested_steps"] == [1, 2, 4, 8, 16]
+    for Requested in (1, 2, 4, 8, 16):
         TrialPath = OutputPath / f"Trial{Requested}"
         CheckTrial(TrialPath, Requested, TmpPath / "Input.f3d")
         Trial = JsonCodec.loads((TrialPath / "Trial.json").read_text(encoding="utf-8"))

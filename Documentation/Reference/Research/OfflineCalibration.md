@@ -8,6 +8,7 @@ python3 re/automation/Calibration.py --manifest CalibrationManifest.json --outpu
 
 The output directory must not exist.
 The tool creates private per-trial stores and does not attach to a live controller.
+Add `--max-concurrency 16` to append a sixteen-worker trial to the default sweep. Use the same manifest and resource reserves throughout. [Sixteen-worker calibration](../../Changes/Research/Supervisor/SixteenWorkerCalibration.md)
 Use an immutable checkout and inputs for the entire run.
 No native application, external model, arbitrary runner command, or grouped session is allowed.
 
@@ -77,7 +78,7 @@ Keep the operator's actual resource reservations; do not lower them to force a h
 ## Read the output
 
 `Manifest.json` is a read-only canonical snapshot.
-`Trial1`, `Trial2`, `Trial4`, and `Trial8` contain separate controller, artifact, and supervisor state when those steps are attempted.
+`Trial1`, `Trial2`, `Trial4`, `Trial8`, and, when requested, `Trial16` contain separate controller, artifact, and supervisor state.
 Each `Prepared.json` records the actual controller maximum, pool, resources, and job fingerprints.
 `RegistryContract.json` records single-job interpretation and the registry digest.
 `Trial.json` contains worker intervals, physical CPU and RSS observations, throughput, measurement coverage, incomplete reasons, and source identities.
@@ -97,7 +98,7 @@ Worker CPU observations cover that process through result preparation, excluding
 RSS comes from supervisor process receipts and separately labeled sampled group measurements. On Windows, `worker_peak_working_set_bytes` measures the actual decoder interpreter through result preparation. The supervisor receipt may give the virtual environment launcher peak separately. The trial observer sums sampled worker working sets from its owned Job Object, excluding the supervisor launcher and interpreter. Samples can count shared pages more than once.
 Intervals from actual worker measurements establish overlap; scheduler timestamps do not.
 
-The run order is fixed at one, two, four, and eight.
+The run order is one, two, four, and eight, followed by sixteen when requested.
 Filesystem and bytecode caches, processor frequency, background work, and observer overhead can affect results.
 The tool does not clear system caches or isolate the whole machine.
 Package-version inventory and source hashes do not establish native application acceptance.

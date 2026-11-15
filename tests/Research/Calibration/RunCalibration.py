@@ -9,7 +9,10 @@ KRepoRoot = FilePath(__file__).resolve().parents[3]
 
 # calibration checks must verify the actual command exit and durable report together
 def RunCalibration(
-    ManifestPath: FilePath, OutputPath: FilePath, ExitCode: int = 0
+    ManifestPath: FilePath,
+    OutputPath: FilePath,
+    ExitCode: int = 0,
+    MaxWorkers: int | None = None,
 ) -> dict[str, object]:
     Process = Subprocess.run(
         [
@@ -19,7 +22,8 @@ def RunCalibration(
             str(ManifestPath),
             "--output",
             str(OutputPath),
-        ],
+        ]
+        + (["--max-concurrency", str(MaxWorkers)] if MaxWorkers is not None else []),
         capture_output=True,
         text=True,
         check=False,

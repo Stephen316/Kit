@@ -17,6 +17,7 @@ def CheckSweep(TmpPath: FilePath) -> None:
         and Report["native_acceptance"] == "not_established"
     )
     assert Report["recommended_concurrency"] is None
+    assert Report["requested_steps"] == [1, 2, 4, 8]
     assert Report["adaptive_limits"] is False and Report["grouping"] is False
     Inodes: set[int] = set()
     for Requested in (1, 2, 4, 8):
