@@ -5,6 +5,8 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
+from convert.api.ApiOpen import OpenDocument
+
 
 # each command compares saved archive records with pinned independent application measurements
 @Pytest.mark.parametrize(
@@ -78,3 +80,71 @@ def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -
     assert ResultInfo.returncode == 0, ResultInfo.stderr.decode(errors="replace")
     ActualDigest = Hashlib.sha256(ResultInfo.stdout.replace(b"\r\n", b"\n")).hexdigest()
     assert ActualDigest == ReportDigest, (ScriptPath, Options, ActualDigest)
+
+
+# native support identity must survive public discovery without substituting a sketch basis
+@Pytest.mark.parametrize(
+    ("Family", "Capture", "Variant", "Datum", "DatumId", "AxisX"),
+    (
+        ("P01", "5dc3245eb59c", "baseline-a", "XY", 42, (1.0, 0.0, 0.0)),
+        ("P01", "5dc3245eb59c", "plane-yz", "YZ", 44, (0.0, 0.0, -1.0)),
+        ("P03", "8d53584027ff", "baseline-a", "XY", 42, (1.0, 0.0, 0.0)),
+        ("P03", "8d53584027ff", "plane-yz", "YZ", 44, (0.0, 0.0, -1.0)),
+    ),
+)
+def CheckDatum(
+    Family: str,
+    Capture: str,
+    Variant: str,
+    Datum: str,
+    DatumId: int,
+    AxisX: tuple[float, float, float],
+) -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    Archive = (
+        RootDir
+        / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
+        / f"{Family}-fusion-{Variant}.f3d"
+    )
+    Document = OpenDocument(Archive, StrictMode=False)
+    (Sketch,) = [
+        Value for Value in Document.sketches if Value.name == "RectangleSketch"
+    ]
+    (Plane,) = [
+        Value
+        for Value in Document.support_planes
+        if Value.id == Sketch.support_plane_id
+    ]
+    assert Plane.attributes["fusion.native_support_resolved"] is True
+    assert Plane.attributes["fusion.native_support_name"] == Datum
+    assert Plane.attributes["fusion.native_support_object_id"] == DatumId
+    assert (
+        Plane.transform.x_axis.x,
+        Plane.transform.x_axis.y,
+        Plane.transform.x_axis.z,
+    ) == AxisX
+    assert Plane.provenance is not None
+    assert any(
+        Evidence.record_kind == "8D424E29-DE23-4B1F-A3AD-84C52A497D1A"
+        for Evidence in Plane.provenance.spans
+    )
+    assert "fusion.native_state" not in Document.metadata
+
+
+# the saved boss cap would misleadingly look like an origin plane without its selection records
+def CheckFaceDatum() -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    Archive = (
+        RootDir
+        / "re/automation/PairedCaptures/P04/fusion-9cf53a55ea8b"
+        / "P04-fusion-baseline-a.f3d"
+    )
+    Document = OpenDocument(Archive, StrictMode=False)
+    (Sketch,) = [Value for Value in Document.sketches if Value.name == "CutSketch"]
+    (Plane,) = [
+        Value
+        for Value in Document.support_planes
+        if Value.id == Sketch.support_plane_id
+    ]
+    assert Plane.attributes["fusion.native_support_resolved"] is False
+    assert "fusion.native_support_object_id" not in Plane.attributes

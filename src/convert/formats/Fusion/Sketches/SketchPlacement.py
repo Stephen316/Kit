@@ -4,6 +4,7 @@ from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.ParamProjection import ParamOrigin as RecordOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Sketches.PrincipalSupport import AttachPrincipal
 from convert.formats.Fusion.Sketches.SketchFrame import ReadFrame
 from interchange.core.Common import FreezeMapping
 from interchange.geometry.models.SupportPlane import SupportPlane
@@ -72,4 +73,4 @@ def ResolveSketch(
             }
         ),
     )
-    return RootSpan, PlaneValue
+    return RootSpan, AttachPrincipal(BulkData, Owners, Feature, ComponentId, PlaneValue)
