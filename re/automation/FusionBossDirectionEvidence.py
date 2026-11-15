@@ -1,5 +1,6 @@
 import json
 import math
+from pathlib import PurePosixPath
 
 from FusionCutExtentEvidence import (
     EXTRUDE_CLASS,
@@ -26,6 +27,12 @@ RECEIPT = "re/automation/PairedCaptures/P03/fusion-8d53584027ff/receipt.json"
 
 # a fixed receipt digest detects changed provenance even when variant names match
 RECEIPT_SHA256 = "f42a7e81b9ae108ba69d440ff411a8828dbc9ee0bbd54d6242c22370cf6560b8"
+SOLIDWORKS_RECEIPT = (
+    "re/automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json"
+)
+SOLIDWORKS_RECEIPT_SHA256 = (
+    "f2308ae749f3d739746301873a49e997e2cf494f9d459e954403b66b17e22a94"
+)
 
 
 # the separate axis and sign controls distinguish which native field moves the solid
@@ -133,6 +140,58 @@ def inspect_boss(content, variant, recipe, observed):
     }
 
 
+# a rectangular prism's mass center lies halfway from its sketch section to the end
+def compare_solidworks_direction(left, right, measured, tolerances):
+    (boss,) = [
+        feature for feature in left["feature_tree"] if feature["name"] == "BlindBoss"
+    ]
+    (sketch,) = left["sketches"]
+    operation = boss["operation"]
+    require(
+        operation["end_condition"] == 0
+        and operation["both_directions"] is False
+        and type(operation["reverse_direction"]) is bool
+        and boss["suppressed"] is False
+        and sketch["name"] == "RectangleSketch"
+        and left["body_count"] == right["body_count"] == 1,
+        "SOLIDWORKS native P03 blind boss is outside the observed family",
+    )
+    sign = -1 if operation["reverse_direction"] else 1
+    solidworks_depth_mm = sign * 1000 * operation["depth_m"]
+    fusion_depth_mm = 10 * measured["signed_along_distance"]["raw_value_cm"]
+    axis = measured["controls"]["extent"]["stored_direction_vector"]
+    displacement_mm = [
+        2 * (end - start)
+        for end, start in zip(
+            left["center_of_mass_mm"], sketch["section_center_world_mm"], strict=True
+        )
+    ]
+    fusion_displacement = [component * fusion_depth_mm for component in axis]
+    center_error = math.dist(left["center_of_mass_mm"], right["center_of_mass_mm"])
+    volume_error = abs(left["volume_mm3"] - right["volume_mm3"])
+    tolerance = tolerances["length_mm_absolute"]
+    require(
+        abs(solidworks_depth_mm - fusion_depth_mm) <= tolerance
+        and math.dist(displacement_mm, fusion_displacement) <= tolerance
+        and center_error <= tolerance
+        and volume_error
+        <= max(
+            tolerances["volume_mm3_absolute"],
+            tolerances["volume_relative"]
+            * max(left["volume_mm3"], right["volume_mm3"]),
+        ),
+        "P03 historical physical measurements disagree on the saved boss direction",
+    )
+    return {
+        "solidworks_operation": operation,
+        "solidworks_signed_depth_mm": solidworks_depth_mm,
+        "solidworks_displacement_from_section_and_mass_center_mm": displacement_mm,
+        "fusion_displacement_from_saved_axis_and_depth_mm": fusion_displacement,
+        "center_of_mass_difference_mm": center_error,
+        "volume_difference_mm3": volume_error,
+    }
+
+
 # historical observations and saved bytes come from the same verified P03 capture roster
 def report():
     git = GitSnapshot(ROOT)
@@ -151,6 +210,29 @@ def report():
         capture["receipt"]["sha256"] == RECEIPT_SHA256,
         "P03 capture receipt digest differs",
     )
+    solidworks = inspect_capture(
+        git,
+        REVISION,
+        SOLIDWORKS_RECEIPT,
+        recipe,
+        "solidworks",
+        specification,
+        SPECIFICATION_SHA256,
+    )
+    require(
+        solidworks["receipt"]["sha256"] == SOLIDWORKS_RECEIPT_SHA256
+        and solidworks["canonical_recipe_sha256"] == capture["canonical_recipe_sha256"],
+        "P03 SOLIDWORKS capture receipt or recipe digest differs",
+    )
+    solidworks_readback = git.document(REVISION, solidworks["measurements"]["path"])
+    require(
+        solidworks_readback["authoring_process_id"]
+        != solidworks_readback["reopen_process_id"]
+        and not solidworks_readback["errors"],
+        "P03 SOLIDWORKS independent reopen was not measured",
+    )
+    peers = {row["variant"]: row for row in solidworks["native_files"]}
+    reopened = solidworks_readback["observations"]["reopened_files"]
     measurement = capture["measurements"]
     data = git.blob(REVISION, measurement["path"])
     require(sha256(data) == measurement["sha256"], "P03 measurement digest differs")
@@ -172,17 +254,32 @@ def report():
         },
         "unexpected P03 saved variant roster",
     )
+    require(
+        set(peers) == variants and len(peers) == len(solidworks["native_files"]),
+        "P03 paired archive rosters differ",
+    )
     archives = []
     for source in capture["native_files"]:
         variant = source["variant"]
         phase, observed = observations[variant]
+        measured = inspect_boss(
+            git.blob(REVISION, source["path"]), variant, recipe, observed
+        )
+        peer = peers[variant]
+        readback = reopened[PurePosixPath(peer["path"]).name]
+        require(
+            readback["open_status"] == {"errors": 0, "warnings": 0},
+            "P03 SOLIDWORKS reopen warned or failed",
+        )
         archives.append(
             {
                 "source": source,
                 "historical_phase": phase,
-                **inspect_boss(
-                    git.blob(REVISION, source["path"]), variant, recipe, observed
+                "solidworks_source": peer,
+                "paired_direction": compare_solidworks_direction(
+                    readback, observed, measured, specification["comparison_tolerances"]
                 ),
+                **measured,
             }
         )
     return {
@@ -193,6 +290,8 @@ def report():
         "application_build": capture["application_build"],
         "receipt": capture["receipt"],
         "measurements": measurement,
+        "solidworks_receipt": solidworks["receipt"],
+        "solidworks_measurements": solidworks["measurements"],
         "capture_qualification_blockers": capture["qualification_blockers"],
         "archives": archives,
         "scope": "Saved P03 blind-boss direction and historical API bounding box; fresh native qualification remains open",
