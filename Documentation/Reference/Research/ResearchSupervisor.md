@@ -123,6 +123,14 @@ The runner selects `completed`, `rejected`, `waiting_evidence`, `waiting_ci` or 
 | Stopped by the supervisor    | `retry`            | `session stopped: deadline`, for example |
 | Stale lease                  | No finish          | The controller has already requeued it   |
 
+A completed runner may include an optional `artifacts` map from role to relative `work` path, SHA-256 and byte count.
+The A03 adapter accepts up to 64 regular files and 256 MiB in aggregate before session cleanup.
+It rejects traversal, symbolic links, reparse points, hardlinks, duplicate file identities and mismatched bytes.
+Accepted results replace private paths with durable digest/size references.
+The existing controller `artifact` operation retrieves those bytes; status and dependency checks verify them.
+Custom adapters must declare `OutputArtifactsVersion = 1`; otherwise only the existing metadata result protocol is accepted.
+See [durable worker outputs](../../Changes/Research/Workers/DurableWorkerOutputs.md) for the wire format, lease fences and remaining verification limits.
+
 `finish.json` becomes the controller result for every finished attempt.
 After the controller accepts it, the supervisor removes the session directory and the claim file.
 

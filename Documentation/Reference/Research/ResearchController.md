@@ -254,3 +254,9 @@ Worker-reported completion and a valid receipt do not prove the worker's asserti
 Domain verification and native acceptance remain separate later steps.
 
 See [artifact publication across rollbacks](../../Gotchas/Research/ArtifactPublicationOutlivesRollback.md), [the step register](AutomationSteps.md) and [the corpus guide](PinnedCorpus.md).
+
+## Declared worker output files
+
+The supervisor's A03 adapter can submit a completed result with declared files under its private `work` directory. The research `finish --output-root` option derives from the adjacent finish record; it does not create global input bindings. The controller verifies at most 64 files and 256 MiB in aggregate, stages their bytes, rechecks the lease, and records durable output hashes only for an accepted completion. Status and dependency checks verify the accepted output objects. Existing finish calls without outputs keep their protocol.
+
+See [durable worker outputs](../../Changes/Research/Workers/DurableWorkerOutputs.md) for schema, path protections, adapter capability and unverified concurrency cases.
