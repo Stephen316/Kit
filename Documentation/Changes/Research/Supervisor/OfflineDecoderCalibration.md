@@ -39,7 +39,8 @@ No calibration, decoder experiment, collection, or test ran locally for this add
 Static syntax, formatting, and source checks provide local evidence only.
 New remote process/file cases cover private-store isolation, fixed runner interpretation, actual decode counters, resource-limited non-recommendation, refused manifests, a decoder rejection, timeout, interruption, and forced cleanup after stopping the owned supervisor.
 An additional real process case reaps a group leader while retaining its child and requires cleanup refusal without signaling the unverified group.
-Their current-head execution remains required.
+At source checkpoint `2ff967671c20758d56131d37708f9812aabbef40`, the [macOS process gate](https://github.com/TryUniCAD/Kit/actions/runs/43676632437/job/132698100852) passed all 74 selected cases in 501.85 seconds, including these 14 calibration cases.
+Linux and current-head reruns remain required.
 No comparable saturated performance trial has been established by those fixtures.
 
 This is an A08b implementation slice.
