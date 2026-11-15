@@ -112,6 +112,8 @@ The census uses mass and centroid values from the saved independent measurements
 
 The hosted support check also requires all eleven P04 cuts to retain their native face support and expose the expected `BlindBoss` producer in the neutral sketch selection. The [face producer comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksCensusFaceProducer.md) describes the check and the separate licensed readback.
 
+The [timeline comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryTimeline.md) compares the active configuration and the ordered roster of authored sketches and extrusions with the licensed reopen measurements.
+
 The P04 termination check uses the same measured receipts. It requires ten matching blind cut depths and one typed cut with the through-all end condition and an absent length. The source evidence retains native code 1. Destinations require separately qualified reconstruction. [Depthless through-all cut projection](../../Changes/Research/Readers/SolidWorksThroughAllProjection.md)
 
 The inch-length check verifies seven named, feature-owned resolved dimensions and three blind depths in the inch variants. Display metadata identifies the source unit and its native property stream. P04's six sketch dimensions remain outside this check while their configuration-stream ownership is unresolved. [Resolved-feature inch lengths](../../Changes/Research/SolidWorksResolvedInchLengths.md)

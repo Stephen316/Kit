@@ -276,10 +276,27 @@ def compare_boss_bounds(measured, neutral, tolerance):
     return observation(BODY_Z_BOUNDS, expected, actual, matched)
 
 
+def compare_timeline(measured, neutral):
+    licensed_kinds = {"ProfileFeature": "sketch", "Extrusion": "extrusion", "ICE": "extrusion"}
+    expected = [
+        (step["name"], licensed_kinds[step["type"]], step["suppressed"])
+        for step in measured["feature_tree"] if step["type"] in licensed_kinds
+    ]
+    projected = neutral.get("features")
+    actual = None if projected is None else [
+        (step["name"], "sketch" if step["kind"] == "reference" else step["kind"], step["suppressed"])
+        for step in projected
+        if step["kind"] == "extrusion" or (step["kind"] == "reference" and step["sketch_id"] is not None)
+    ]
+    return observation("neutral.authored_sketch_extrusion_timeline", expected, actual)
+
+
 def compare(measured, native, neutral, tolerance, capture_name):
     comparisons = [
         observation("neutral.solid_count", measured["body_count"], neutral.get("solid_count")),
         observation("neutral.source_display_unit", {3: "in", 5: "mm"}[measured["units_code"]], neutral.get("native_display_unit")),
+        observation("neutral.active_configurations", [measured["configuration"]], neutral.get("active_configurations")),
+        compare_timeline(measured, neutral),
         *compare_dimensions(measured, native, neutral, tolerance),
         *compare_equations(measured, native, neutral),
         *compare_operations(measured, native, neutral, tolerance),

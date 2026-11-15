@@ -1,0 +1,5 @@
+# Compare the SOLIDWORKS discovery timeline and active configuration
+
+The SOLIDWORKS discovery census compares the neutral document's active configuration with the licensed reopen. It also compares the ordered names, feature kinds and suppression states of the measured profile sketches and extrusions. The same saved bytes enter the ordinary reader. The expected list comes from the independent application's `feature_tree` observation.
+
+Generate the report with `python re/automation/SolidworksCensus.py --output /private/SolidworksDiscoveryCensus.json`. Look for `neutral.active_configurations` and `neutral.authored_sketch_extrusion_timeline` in each captured file's comparisons. The inventory covers P01, P03 and P04, including the through-all cut. The captures exercise a single active configuration and unsuppressed design features. Multiple configurations, suppressed-feature behavior and broader editable conversion need separate evidence. [Reader guide](../../../../Reference/Research/SolidworksResearchReader.md#discovery-census)

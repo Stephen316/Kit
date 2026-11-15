@@ -154,6 +154,7 @@ def neutral_data(document, receipt):
         "canonical_unit": str(document.units),
         "native_display_unit": document.metadata.get("source_display_units"),
         "solid_count": sum(item.topology.solid_count for item in document.bodies),
+        "active_configurations": [item.name for item in document.configurations if item.active],
         "body_bounding_box_mm": None if bounds is None else (
             vector(bounds.minimum), vector(bounds.maximum)
         ),
@@ -186,6 +187,7 @@ def neutral_feature(item, names):
     return {
         "name": item.name, "id": item.id, "kind": str(item.kind),
         "operation": None if item.operation is None else str(item.operation),
+        "suppressed": item.suppressed,
         "definition": type(definition).__name__ if definition is not None else None,
         "dependencies": [names.get(key, key) for key in item.input_feature_ids],
         "sketch_id": item.sketch_id,
