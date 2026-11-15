@@ -40,7 +40,7 @@ def CheckParking(Application: str) -> None:
         )
         _ = Harness.RunIdle()
         JobStatus = Harness.ReadJob("absent")
-        assert JobStatus["state"] == "waiting_application", JobStatus
+        assert JobStatus["state"] == "waiting_application", JobStatus["reason"]
         assert Harness.ReadJob("dependent")["state"] == "waiting_evidence"
         assert Harness.ReadJob("independent")["state"] == "completed"
         Result = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult("absent")))
