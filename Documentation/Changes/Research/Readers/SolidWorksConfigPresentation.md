@@ -52,7 +52,7 @@ The [detail settings tail](../../../../re/solidworks/archive/ConfigDetailEnd.py)
 | Swift options | `0x11ce81` | 812 |
 | Printer widths and detail tail | `0x12ad10` and `0x13ae54` | 998 |
 
-Two checked zero bytes at the boundary have unassigned ownership. The next typed declaration is `moEnvFolder_c` at offset 37,961.
+The following empty shared-parameter array closes at offset 37,961, where `moEnvFolder_c` begins.
 
 ## Environment lights and model view suffix
 
@@ -66,13 +66,19 @@ The sketch block manager serializer at `sldmodu+0x17c8d90` reads an inherited fe
 
 The annotation view serializer at `0x10d4900` reads the existing inline model view body before its own fields. It reads four nullable references at `0x10d4b8a`, `0x10d4c78`, `0x10d4d43` and `0x10d4de8`, followed by the type's integer tail. The replay preserves the one-view and two-view list paths.
 
-The partition marker at `0x9d9b30` reads one integer. The cosmetic thread manager at `0x1a57d0` reads an empty reference-list count and its trailing integer. The exploded-view manager at `0x52d0b0` uses the inherited feature and two nullable child references before its double and two integers. Region records and the final 38-byte part trailer still use bounded advances.
+The partition marker at `0x9d9b30` reads one integer. The cosmetic thread manager at `0x1a57d0` reads an empty reference-list count and its trailing integer. The exploded-view manager at `0x52d0b0` uses the inherited feature and two nullable child references before its double, two integers and the empty `su_CMapWordToOb` reached at `0x52d228`.
 
 The model constructor puts `moSharedParams_c` in the field read at `0x10f2178`. Its serializer at `0x1413d10` delegates to `suObArray`, whose ordinary archive loader calls `ReadCount` at `swccu+0xd295`. The zero word between the detail settings and environment folder is the array's saved count.
 
 After the last annotation view, the model serializer reads two counted integer key sets around its nullable `moFlatPatternColorTab_c` at `0x10f304f`. Eight empty `suObArray` members follow at `0x10f3286` through `0x10f3986`. The nullable layer manager and inline `moForwardedFeatRefsList_c` follow at `0x10f3a3b` and `0x10f3b7d`. The final list delegates to `suObList` at `0xa1c170`.
 
 The fields after the partition marker carry the atom and dimension maps, solver selector, two dimension-increment array counts, scalar settings and the print-settings selector. The replay requires the empty branches witnessed at `0x10f3e98`, `0x10f3f58`, `0x10f427e`, `0x10f4521`, `0x10f45ca` and `0x10f474f`. The next empty object list at `0x10f47f6` precedes a scalar and two framed names at `0x10f4806`, `0x10f48a9` and `0x10f48b9`, ending at the cosmetic thread reference manager.
+
+## Inline regions and the part return
+
+The [region reader](../../../../re/solidworks/archive/ConfigRegions.py) derives the region count from the part wrapper at `sldmodu+0x10f5514`. The inline serializer at `0xadce00` reads each group's body and region IDs and its double. A populated group then carries its own mass properties through `0xadd2e0`, including finite numeric fields, two framed labels and three axes. The empty group path omits those fields. The wrapper reads an additional integer when two groups are present and reads the separate exploded-view state before its manager pointer.
+
+An independent licensed reopen of pinned P04 baseline A reached the exploded-view return at byte 42,843, supplemental link selector at 42,851, sheet-metal extension array at 42,855 and part object table at 42,859. The archive map stayed at 279 through all four calls. The sheet-metal callback delegates to `sldsmmu+0x3e2030` and the part table to `sldmodu+0x657720`. Both counts are zero in this scope. Four scalar fields end at byte 42,879, including the guarded absent solver table. The private boundary summary SHA-256 is `f986aa2b62017b089ff44f55e65f9079df6a122a92d6b06e11e64c60af6b7164`.
 
 ## Verification
 

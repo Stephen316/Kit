@@ -94,7 +94,7 @@ def ReadSketchBlock(Cursor, ReadPointer):
     Require(Cursor.ReadCount(), 0, "empty sketch block name table")
 
 
-# the exploded view manager owns two nullable objects and three scalar fields
+# the exploded view manager owns two nullable objects and an inline index
 def ReadExplManager(Cursor, ReadPointer):
     ReadNull = Partial(ReadPointer, KNullKind)
     ReadPointer(KDefinitionKind, "moPrtExplViewManager_c")
@@ -103,3 +103,4 @@ def ReadExplManager(Cursor, ReadPointer):
     ReadNull()  # suObArray
     ReadNull()  # selected view
     Cursor.ReadValue("<d2i")
+    Require(Cursor.ReadValue("<H"), (0,), "empty exploded view word-to-object map")

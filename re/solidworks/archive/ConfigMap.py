@@ -32,6 +32,7 @@ from ConfigDetail import (
 from ConfigDetailEnd import ReadDetailEnd
 from ConfigLabel import ReadLabelDefs
 from ConfigModelLists import ReadModelLists
+from ConfigRegions import ReadModelRegions, ReadPartReturn
 from ConfigScene import ReadEnvironment, ReadExplManager, ReadSketchBlock
 from ConfigTable import ReadTableDefs
 from ConfigTol import ReadTolData
@@ -105,28 +106,6 @@ def ReadAnnotationView(Cursor, Events, NameValues):
     Cursor.ReadValue("<4i")
 
 
-# each inline region carries a count and scalar rows without allocating archive objects
-def ReadModelRegions(Cursor):
-    Require(Cursor.ReadCount(), 0, "empty modern model text-pair table")
-    Cursor.AdvanceBytes(13)
-    Count = Cursor.ReadCount()
-    Require(Count in (0, 1, 2), True, "witnessed model region groups")
-    Regions = []
-    for _ in range(Count):
-        ItemCount = Cursor.ReadCount()
-        Require(ItemCount in (0, 1), True, "witnessed model region group size")
-        Items = []
-        for _ in range(ItemCount):
-            BodyId, RegionId = Cursor.ReadValue("<2i")
-            (Scalar,) = Cursor.ReadPoint(1)
-            Items.append((BodyId, RegionId, Scalar))
-        Regions.append(Items)
-    if Count == 2:
-        Cursor.ReadValue("<i")
-    Cursor.AdvanceBytes(258 if Count else 4)
-    return Regions
-
-
 # this research continuation is bounded to the pinned build and witnessed suffix layout
 def ReadConfigMap(BlobValue, BuildName):
     Require(BuildName, KApplicationBuild, "witnessed P04 model build")
@@ -183,7 +162,7 @@ def ReadModelPresentation(Cursor):
     ReadModelLists(Cursor, Partial(ReadPointer, Cursor, Events))
     Regions = ReadModelRegions(Cursor)
     ReadExplManager(Cursor, Partial(ReadPointer, Cursor, Events))
-    Cursor.AdvanceBytes(38)
+    ReadPartReturn(Cursor)
     Require(Cursor.Offset, len(Cursor.BlobValue), "complete witnessed Config-0 extent")
     return Events, Regions
 
