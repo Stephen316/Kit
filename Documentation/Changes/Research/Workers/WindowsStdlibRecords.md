@@ -1,0 +1,9 @@
+# Protected Windows records without site packages
+
+The research application protocol reads Windows records and takes endpoint locks through the existing `WindowsRecords` interfaces. `ctypes` and `msvcrt` supply the native handles. The protected read compares the opened file and an independent open of its pathname by volume and full 128-bit file ID. It compares native creation, last-write and ChangeTime values directly, preserving the metadata check on embedded Python versions with different path timestamp behavior. A filesystem that cannot supply a stable file ID and native ChangeTime fails the read. [Native file identity](https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-file_id_info), [Native file timestamps](https://learn.microsoft.com/en-us/windows/win32/api/winbase/ns-winbase-file_basic_info)
+
+The helper keeps every validated ancestor open while it reads the record or holds the lock. File and ancestor handles preserve the existing restrictive share modes and reparse checks. Locks and records require one link and a regular disk file. The protocol still bounds the read while the handle is open. Windows continues to apply the endpoint's existing owner-private ACL and default security attributes. [Windows file sharing](https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-createfilew), [Existing record contract](WindowsImmutableRecords.md)
+
+The hosted Windows suite has existing rewritten-file, sharing, reparse, hardlink and metadata-only change cases. A new process case calls the actual protocol with site packages disabled through `python -I -S`. It checks binary readback, the byte bound and contention from a second process, then verifies lock acquisition after release. Hosted verification is pending.
+
+This supplies a Windows Fusion Phase A dependency. Pinned helper loading inside the add-in and native admission require separate work.

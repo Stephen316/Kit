@@ -80,3 +80,65 @@ def CheckSharing() -> None:
         assert (
             Target.read_bytes() == b'{"version":1,"immutable":true,"rewritten":true}\n'
         )
+
+
+# the embedded worker needs bounded record and lock custody with site packages disabled
+@KWindowsOnly
+def CheckStdRecord(TmpPath: FilePath) -> None:
+    Completed = Subprocess.run(
+        [
+            System.executable,
+            "-I",
+            "-S",
+            "-c",
+            """from importlib.util import find_spec
+from pathlib import Path
+import subprocess
+import sys
+
+assert find_spec('win32file') is None and find_spec('pywintypes') is None
+sys.path.insert(0, sys.argv[1])
+from ApplicationProtocol import file_bytes, owner_lock
+
+root = Path(sys.argv[2])
+data = b'protected\\r\\nrecord\\0'
+target = root / 'record.json'
+target.write_bytes(data)
+assert file_bytes(target, len(data)) == data
+try:
+    file_bytes(target, len(data) - 1)
+except ValueError as error:
+    assert str(error) == 'application input exceeds its byte limit'
+else:
+    raise AssertionError('protected read accepted an out-of-bound record')
+for missing in (root / 'absent.json', root / 'absent' / 'record.json'):
+    try:
+        file_bytes(missing)
+    except FileNotFoundError:
+        pass
+    else:
+        raise AssertionError('protected read accepted a missing record')
+
+lock = root / 'host.lock'
+with owner_lock(lock):
+    blocked = subprocess.run(
+        [sys.executable, '-I', '-S', '-c',
+         'import sys; sys.path.insert(0, sys.argv[1]); '
+         'from ApplicationProtocol import owner_lock\\n'
+         'with owner_lock(sys.argv[2]):\\n    pass',
+         sys.argv[1], str(lock)],
+        capture_output=True, text=True, timeout=15,
+    )
+    assert blocked.returncode != 0 and 'BlockingIOError' in blocked.stderr, blocked.stderr
+with owner_lock(lock):
+    pass
+""",
+            str(KFixture.parent),
+            str(TmpPath),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=40,
+        check=False,
+    )
+    assert Completed.returncode == 0, Completed.stdout + Completed.stderr
