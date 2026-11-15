@@ -364,20 +364,23 @@ class Ledger:
             if row["attempts"] >= spec["max_attempts"]:
                 self.db.execute("UPDATE jobs SET state='failed',reason=? WHERE id=?", ("attempt budget exhausted", row["id"]))
                 continue
-            now = time.time()
-            token = secrets.token_hex(32)
-            deadline = now + spec["timeout_seconds"]
-            lease_until = min(deadline, now + spec["lease_seconds"])
-            attempt = self.db.execute(
-                "INSERT INTO attempts(job_id,generation,number,fingerprint,worker,started) VALUES (?,?,?,?,?,?)",
-                (row["id"], row["generation"], row["attempts"] + 1, row["fingerprint"], worker, now),
-            ).lastrowid
-            self.db.execute(
-                "UPDATE jobs SET state='running',attempts=attempts+1,worker=?,token_hash=?,lease_until=?,deadline=?,active_attempt=?,reason=NULL,receipt=NULL,result=NULL WHERE id=?",
-                (worker, hashlib.sha256(token.encode()).hexdigest(), lease_until, deadline, attempt, row["id"]),
-            )
-            self.event(row["id"], "claimed", {"attempt": row["attempts"] + 1, "worker": worker})
-            return {"job": spec, "generation": row["generation"], "attempt": row["attempts"] + 1, "fingerprint": row["fingerprint"], "snapshot": json.loads(row["snapshot"]), "lease_token": token, "lease_until": lease_until, "deadline": deadline}
+            return self.issue_claim(row, spec, worker)
+
+    def issue_claim(self, row, spec, worker):
+        now = time.time()
+        token = secrets.token_hex(32)
+        deadline = now + spec["timeout_seconds"]
+        lease_until = min(deadline, now + spec["lease_seconds"])
+        attempt = self.db.execute(
+            "INSERT INTO attempts(job_id,generation,number,fingerprint,worker,started) VALUES (?,?,?,?,?,?)",
+            (row["id"], row["generation"], row["attempts"] + 1, row["fingerprint"], worker, now),
+        ).lastrowid
+        self.db.execute(
+            "UPDATE jobs SET state='running',attempts=attempts+1,worker=?,token_hash=?,lease_until=?,deadline=?,active_attempt=?,reason=NULL,receipt=NULL,result=NULL WHERE id=?",
+            (worker, hashlib.sha256(token.encode()).hexdigest(), lease_until, deadline, attempt, row["id"]),
+        )
+        self.event(row["id"], "claimed", {"attempt": row["attempts"] + 1, "worker": worker})
+        return {"job": spec, "generation": row["generation"], "attempt": row["attempts"] + 1, "fingerprint": row["fingerprint"], "snapshot": json.loads(row["snapshot"]), "lease_token": token, "lease_until": lease_until, "deadline": deadline}
 
     def leased(self, job_id, token, verify_artifacts=True):
         if verify_artifacts:
@@ -405,14 +408,14 @@ class Ledger:
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
         return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches, "artifact_bytes_hashed": self.bytes_hashed}
 
-    def finish(self, job_id, token, outcome, result_path, reason, output_root=None):
+    def finish(self, job_id, token, outcome, result_path, reason, output_root=None, result_record=None):
         row = self.leased(job_id, token)
         spec = json.loads(row["definition"])
         allowed = {"completed", "retry", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
         if outcome not in allowed:
             raise ValueError("unsupported outcome")
         reason = reason_text(reason)
-        result = read_record(result_path)
+        result = read_record(result_path) if result_record is None else result_record
         if output_root is None and ("output_artifacts_version" in result or "output_artifacts" in result or isinstance(result.get("result"), dict) and "artifacts" in result["result"]):
             raise InvalidOutput("declared or accepted output metadata requires explicit output intake")
         if output_root is not None:

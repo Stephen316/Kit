@@ -5,6 +5,8 @@ import sqlite3
 import sys
 from pathlib import Path
 
+from GroupClaims import claim_group, read_group, renew_group, write_group
+from GroupFinish import finish_group
 from Ledger import Ledger
 from OutputManifest import InvalidOutput
 from Records import StaleLease, canonical, read_record
@@ -36,6 +38,16 @@ def main():
     claim.add_argument("--worker", required=True)
     claim.add_argument("--pool")
     claim.add_argument("--claim-file", type=Path, required=True)
+    grouped = commands.add_parser("claim-group")
+    grouped.add_argument("--worker", required=True)
+    grouped.add_argument("--pool", required=True)
+    grouped.add_argument("--registry", type=Path, required=True)
+    grouped.add_argument("--claim-dir", type=Path, required=True)
+    renew = commands.add_parser("heartbeat-group")
+    renew.add_argument("--lease", type=Path, required=True)
+    grouped_finish = commands.add_parser("finish-group")
+    grouped_finish.add_argument("--lease", type=Path, required=True)
+    grouped_finish.add_argument("--result", type=Path, required=True)
     heartbeat = commands.add_parser("heartbeat")
     heartbeat.add_argument("--lease", type=Path, required=True)
     finish = commands.add_parser("finish")
@@ -68,6 +80,20 @@ def main():
                 response = ledger.resource(args.name, True if args.available else False if args.unavailable else None, args.capacity)
             elif args.command == "pool":
                 response = ledger.pool(args.name, args.kind)
+            elif args.command == "claim-group":
+                if args.claim_dir.exists() or args.claim_dir.is_symlink():
+                    raise ValueError("group claim destination already exists")
+                registry = read_record(args.registry)
+                if set(registry) != {"group_registry_version", "kinds"} or type(registry["group_registry_version"]) is not int or registry["group_registry_version"] != 1:
+                    raise ValueError("group registry must use version 1")
+                claims = claim_group(ledger, args.worker, args.pool, registry["kinds"])
+                if claims:
+                    write_group(args.claim_dir, claims)
+                response = {"count": len(claims)}
+            elif args.command == "heartbeat-group":
+                response = renew_group(ledger, read_group(args.lease))
+            elif args.command == "finish-group":
+                response = finish_group(ledger, args.lease, args.result)
             elif args.command == "claim":
                 if args.claim_file.exists() or args.claim_file.is_symlink():
                     raise ValueError("claim destination already exists")

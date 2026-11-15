@@ -67,6 +67,8 @@ class Session:
             digest = safe_name(item["sha256"])
             target = self.directory / "inputs" / digest
             if not target.exists():
+                if hasattr(self, "preparation_heartbeat"):
+                    self.preparation_heartbeat()
                 self.supervisor.adapter.FetchInput(digest, target)
             inputs[role] = {"binding": item["binding"], "sha256": digest, "path": f"inputs/{digest}"}
         write_private(self.directory / "job.json", {
@@ -102,6 +104,7 @@ class Session:
             "attempt": self.claim["attempt"], "pid": self.pid, "process_start": self.process_start,
             "claim_file": str(self.claim_path), "started_at": self.started,
             "job_object": getattr(self.process, "job_name", None),
+            **({"group_session_version": 1, "group_size": len(self.members), "jobs": [member.spec["id"] for member in self.members]} if hasattr(self, "members") else {}),
         })
 
     def begin_stop(self, reason, now):
@@ -132,27 +135,36 @@ class Session:
             self.begin_stop("memory_limit", now)
             return None
         if now >= self.next_renew:
-            try:
-                lease = self.supervisor.adapter.RenewLease(self.claim_path)
-            except Exception as error:
-                self.supervisor.report("renew_error", self, {"error": f"{type(error).__name__}: {error}"[:2048]})
-                self.next_renew = now + min(1, self.renew_every)
-            else:
-                if lease["stale"]:
-                    self.begin_stop("stale_lease", now)
-                    return None
-                self.next_renew = now + self.renew_every
+            self.renew(now)
+            if self.stop_reason is not None:
+                return None
         if now >= self.stop_at:
             self.begin_stop("deadline", now)
         elif self.pool in paused:
             self.begin_stop("pool_paused", now)
         return None
 
-    def complete(self, exit_info):
+    def renew(self, now):
+        try:
+            if hasattr(self, "members"):
+                lease = self.supervisor.adapter.RenewGroup(self.claim_path)
+                members = lease.get("members") if isinstance(lease, dict) else None
+                if not isinstance(members, list) or len(members) != len(self.members) or any(not isinstance(item, dict) or type(item.get("stale")) is not bool for item in members) or type(lease.get("stale")) is not bool or lease["stale"] != any(item["stale"] for item in members):
+                    raise ValueError("group renewal response does not match member lease contract")
+            else:
+                lease = self.supervisor.adapter.RenewLease(self.claim_path)
+        except Exception as error:
+            self.supervisor.report("renew_error", self, {"error": f"{type(error).__name__}: {error}"[:2048]})
+            self.next_renew = now + min(1, self.renew_every)
+        else:
+            if lease["stale"]:
+                self.begin_stop("stale_lease", now)
+            self.next_renew = now + self.renew_every
+
+    def exit_receipt(self, exit_info):
         for capture in self.logs.values():
             capture.close()
         ended = time.time()
-        signaled = exit_info["signal"] is not None
         receipt = {
             "receipt_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
             "kind": self.spec["kind"], "attempt": self.claim["attempt"], "pid": self.pid,
@@ -165,10 +177,13 @@ class Session:
             "memory_limit_bytes": self.memory_limit,
         }
         write_private(self.directory / "receipt.json", receipt)
+        return receipt
+
+    def result_payload(self, receipt):
         result, error, tail = None, None, None
         if self.stop_reason is not None:
             outcome, reason = "retry", f"session stopped: {self.stop_reason}"
-        elif signaled:
+        elif receipt["signal"] is not None:
             outcome, reason = "retry", f"runner ended by signal {receipt['signal']}"
         elif receipt["exit_status"] != 0:
             tail = stderr_tail(self.directory / "stderr.log")
@@ -185,11 +200,15 @@ class Session:
                 outcome, reason = result["outcome"], result["reason"]
             else:
                 outcome, reason, result = "retry", f"invalid result: {error}"[:2048], None
+        return outcome, reason, {"session_version": 1, "receipt": receipt, "result": result, "error": error, "stderr_tail": tail}
+
+    def complete(self, exit_info):
+        outcome, reason, payload = self.result_payload(self.exit_receipt(exit_info))
         try:
-            return self.supervisor.settle(self, outcome, reason, {"session_version": 1, "receipt": receipt, "result": result, "error": error, "stderr_tail": tail})
+            return self.supervisor.settle(self, outcome, reason, payload)
         except InvalidOutput as problem:
             error = f"invalid output artifacts: {problem}"[:2048]
-            return self.supervisor.settle(self, "retry", error, {"session_version": 1, "receipt": receipt, "result": None, "error": error, "stderr_tail": tail})
+            return self.supervisor.settle(self, "retry", error, {**payload, "result": None, "error": error})
 
     def remove(self):
         if sys.platform == "win32" and self.process is not None:
@@ -197,4 +216,7 @@ class Session:
         for capture in self.logs.values():
             capture.close()
         shutil.rmtree(self.directory, ignore_errors=True)
-        Path(self.claim_path).unlink(missing_ok=True)
+        if Path(self.claim_path).is_dir():
+            shutil.rmtree(self.claim_path)
+        else:
+            Path(self.claim_path).unlink(missing_ok=True)

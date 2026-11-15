@@ -7,7 +7,7 @@ from OutputManifest import output_manifest
 SCHEMA_KEYS = {"$schema", "title", "description", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "maxLength", "minimum", "maximum", "minItems", "maxItems"}
 TYPES = {"object", "array", "string", "integer", "number", "boolean", "null"}
 OUTCOMES = {"completed", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
-ENTRY_KEYS = {"pool", "argv", "result_schema", "threads", "initial_peak_memory_mib", "max_memory_mib"}
+ENTRY_KEYS = {"pool", "argv", "result_schema", "threads", "initial_peak_memory_mib", "max_memory_mib", "group_protocol", "group_limit_bytes", "group_peak_memory_mib"}
 
 
 def check_schema(schema, depth=0):
@@ -139,6 +139,17 @@ class Registry:
             schema_path = (schema_path if schema_path.is_absolute() else Path(root) / schema_path).resolve()
             schema = check_schema(read_record(schema_path))
             estimate = bounded(entry.get("initial_peak_memory_mib", 1024), 1, 1048576)
+            group = entry.get("group_protocol")
+            if "group_protocol" in entry and (type(group) is not int or group != 1):
+                raise ValueError("group_protocol must be integer 1 when specified")
+            if group is None and entry.keys() & {"group_limit_bytes", "group_peak_memory_mib"}:
+                raise ValueError("group limits require group_protocol 1")
+            if group is not None and "group_peak_memory_mib" not in entry:
+                raise ValueError("group protocol requires an explicit group_peak_memory_mib floor")
+            floor = bounded(entry.get("group_peak_memory_mib", estimate), 1, 1048576)
+            maximum = bounded(entry.get("max_memory_mib", min(1048576, max(estimate, floor) * 2)), 1, 1048576)
+            if group is not None and floor > maximum:
+                raise ValueError("group memory floor exceeds max_memory_mib")
             self.runners[kind] = {
                 "pool": label(entry["pool"]),
                 "argv": list(argv),
@@ -146,7 +157,10 @@ class Registry:
                 "schema_path": str(schema_path),
                 "threads": bounded(entry.get("threads", 1), 1, 256),
                 "initial_peak_memory_mib": estimate,
-                "max_memory_mib": bounded(entry.get("max_memory_mib", min(1048576, estimate * 2)), 1, 1048576),
+                "max_memory_mib": maximum,
+                "group_protocol": group,
+                "group_limit_bytes": bounded(entry.get("group_limit_bytes", 1048576), 1, 268435456),
+                "group_peak_memory_mib": floor,
             }
 
     def pools(self):

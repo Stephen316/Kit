@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 
 from Adapters import load_adapter
+from GroupSessions import GroupSession, release_group
 from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
 from Records import bounded, canonical, label, read_record, reason_text
 from ResourceBudget import ResourceBudget
@@ -99,6 +100,7 @@ class Supervisor:
         self.max_log_bytes = config["max_log_bytes"]
         self.adapter = load_adapter(config["controller"], ROOT)
         self.registry = Registry(config["registry"], ROOT) if claiming else None
+        self.grouping = getattr(self.adapter, "GroupClaimsVersion", None) == 1
         self.budget = ResourceBudget(config, self.registry) if claiming else None
         self.admission = {}
         self.measurement_error = None
@@ -130,10 +132,17 @@ class Supervisor:
         return record.get("pools", {}) if isinstance(record, dict) else {}
 
     def recover(self):
+        for staged in self.claims.glob(".group-stage-*"):
+            shutil.rmtree(staged)
+        for registry in self.claims.glob("*.registry"):
+            registry.unlink()
         known = set()
         for directory in sorted(self.sessions.iterdir()):
             known.add(directory.name)
             claim_path = self.claims / f"{directory.name}.json"
+            grouped = self.claims / f"{directory.name}.group"
+            if grouped.is_dir():
+                claim_path = grouped
             record = {}
             try:
                 record = read_bounded(directory / "session.json")
@@ -152,8 +161,16 @@ class Supervisor:
             }
             write_private(directory / "receipt.json", receipt)
             self.counts["orphans"] += 1
-            self.release(directory.name, claim_path, receipt, "orphaned by supervisor restart")
+            if claim_path.is_dir():
+                release_group(self, directory.name, claim_path, receipt, "orphaned by supervisor restart", directory)
+            else:
+                self.release(directory.name, claim_path, receipt, "orphaned by supervisor restart")
             shutil.rmtree(directory, ignore_errors=True)
+        for claim_path in sorted(self.claims.glob("*.group")):
+            if claim_path.stem not in known:
+                directory = self.sessions / claim_path.stem
+                release_group(self, claim_path.stem, claim_path, {"receipt_version": 1, "session": claim_path.stem, "orphan": True, "stop_reason": "claimed_before_start"}, "claimed before session start", directory)
+                shutil.rmtree(directory, ignore_errors=True)
         for claim_path in sorted(self.claims.glob("*.json")):
             if claim_path.stem not in known:
                 self.release(claim_path.stem, claim_path, {"receipt_version": 1, "session": claim_path.stem, "orphan": True, "stop_reason": "claimed_before_start"}, "claimed before session start")
@@ -212,7 +229,14 @@ class Supervisor:
                     break
                 name = f"{time.time_ns():x}-{secrets.token_hex(4)}"
                 claim_path = self.claims / f"{name}.json"
-                claim = self.adapter.ClaimJob(pool, self.config["worker"], claim_path)
+                group = None
+                candidates = self.budget.group_candidates(pool, admission) if self.grouping else {}
+                if candidates:
+                    group_path = self.claims / f"{name}.group"
+                    group = self.adapter.ClaimGroup(pool, self.config["worker"], group_path, candidates)
+                    if group:
+                        claim_path = group_path
+                claim = group[0] if group else self.adapter.ClaimJob(pool, self.config["worker"], claim_path)
                 if claim is None:
                     break
                 claimed = True
@@ -220,7 +244,12 @@ class Supervisor:
                 try:
                     if claim["job"]["kind"] not in self.registry.runners or self.registry.runners[claim["job"]["kind"]]["pool"] != pool:
                         raise ValueError("claimed job kind has no runner in this pool")
-                    session = Session(self, pool, claim, claim_path, name)
+                    if group:
+                        if not 2 <= len(group) <= 20 or len({item["job"]["id"] for item in group}) != len(group) or any((item["job"]["kind"], item["job"]["tool_version"], item["job"]["rule_version"]) != (claim["job"]["kind"], claim["job"]["tool_version"], claim["job"]["rule_version"]) for item in group) or claim["job"]["kind"] not in candidates:
+                            raise ValueError("adapter returned an unsupported group")
+                        session = GroupSession(self, pool, group, claim_path, name)
+                    else:
+                        session = Session(self, pool, claim, claim_path, name)
                     session.prepare()
                     session.start()
                 except (OSError, ValueError, KeyError, TypeError) as error:
@@ -235,17 +264,23 @@ class Supervisor:
                     detail = f"session setup failed: {type(error).__name__}: {error}"[:2048]
                     write_private(path, {"session_version": 1, "receipt": None, "result": None, "error": detail, "stderr_tail": None})
                     try:
-                        self.adapter.FinishJob(claim_path, "retry", path, detail)
+                        if group:
+                            release_group(self, name, claim_path, {"receipt_version": 1, "session": name, "stop_reason": "setup_failed", "orphan": False}, detail, self.sessions / name)
+                        else:
+                            self.adapter.FinishJob(claim_path, "retry", path, detail)
                     finally:
                         path.unlink(missing_ok=True)
                         shutil.rmtree(self.sessions / name, ignore_errors=True)
-                        claim_path.unlink(missing_ok=True)
+                        if claim_path.is_dir():
+                            shutil.rmtree(claim_path)
+                        else:
+                            claim_path.unlink(missing_ok=True)
                     self.report("setup_failed", None, {"session": name, "pool": pool, "job": claim.get("job", {}).get("id"), "error": detail})
                     continue
                 self.running[name] = session
                 self.budget.adaptive.started(pool)
                 self.counts["started"] += 1
-                self.report("started", session, {"pid": session.pid})
+                self.report("started", session, {"pid": session.pid, "group_size": len(group) if group else 1})
         return claimed
 
     def shutdown(self, number, frame):

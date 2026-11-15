@@ -6,7 +6,8 @@ import subprocess
 import sys
 from pathlib import Path
 
-from Records import label, read_record
+from GroupClaims import read_group
+from Records import canonical, label, read_record
 from OutputManifest import InvalidOutput
 
 OPERATIONS = ("LockPath", "DefinePool", "DefineResource", "SubmitJobs", "BindInput", "ClaimJob", "RenewLease", "FinishJob", "FetchInput", "ReadStatus")
@@ -36,6 +37,7 @@ def without_token(record):
 
 class A03Adapter:
     OutputArtifactsVersion = 1
+    GroupClaimsVersion = 1
 
     def __init__(self, options):
         if set(options) != {"store"} or not isinstance(options["store"], str):
@@ -73,6 +75,31 @@ class A03Adapter:
         if response["job"] is None:
             return None
         return without_token(json.loads(Path(path).read_text(encoding="utf-8")))
+
+    def ClaimGroup(self, pool, worker, path, kinds):
+        registry = Path(path).with_suffix(".registry")
+        descriptor = os.open(registry, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        try:
+            with os.fdopen(descriptor, "w", encoding="utf-8") as output:
+                output.write(canonical({"group_registry_version": 1, "kinds": kinds}))
+            response = self.Invoke("claim-group", "--worker", worker, "--pool", pool, "--registry", registry, "--claim-dir", path)
+        finally:
+            registry.unlink(missing_ok=True)
+        return [without_token(item) for item in read_group(path)] if response["count"] else None
+
+    def RenewGroup(self, path):
+        response = self.Invoke("heartbeat-group", "--lease", path)
+        members = response.get("members")
+        if not isinstance(members, list) or not 1 <= len(members) <= 20 or any(not isinstance(item, dict) or type(item.get("stale")) is not bool for item in members) or type(response.get("stale")) is not bool or response["stale"] != any(item["stale"] for item in members):
+            raise ValueError("a03 returned an invalid group renewal response")
+        return response
+
+    def FinishGroup(self, path, result):
+        response = self.Invoke("finish-group", "--lease", path, "--result", result)
+        members = response.get("members")
+        if not isinstance(members, list) or len(members) != len(read_group(path)) or any(not isinstance(item, dict) or type(item.get("stale")) is not bool for item in members):
+            raise ValueError("a03 returned an invalid group finish response")
+        return response
 
     def RenewLease(self, path):
         response = self.Invoke("heartbeat", "--lease", path, stale=True)
@@ -115,4 +142,7 @@ def load_adapter(config, root):
     missing = [name for name in OPERATIONS if not callable(getattr(adapter, name, None))]
     if missing:
         raise ValueError(f"controller adapter lacks {', '.join(missing)}")
+    capability = getattr(adapter, "GroupClaimsVersion", None)
+    if capability is not None and (type(capability) is not int or capability != 1 or any(not callable(getattr(adapter, name, None)) for name in ("ClaimGroup", "RenewGroup", "FinishGroup"))):
+        raise ValueError("group-capable adapter must provide protocol 1 ClaimGroup, RenewGroup and FinishGroup")
     return adapter

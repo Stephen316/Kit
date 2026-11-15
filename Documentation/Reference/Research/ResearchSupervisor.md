@@ -93,6 +93,26 @@ The schema checker accepts `type`, `properties`, `required`, `additionalProperti
 It refuses a schema that uses any other keyword.
 Model runners such as Codex and Claude are not registry entries yet; they belong to A10.
 
+## Optional grouped sessions
+
+A runner may opt into [group protocol 1](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md) with `group_protocol: 1` and an explicit `group_peak_memory_mib` floor.
+It must also support the existing single-job contract.
+`group_limit_bytes` defaults to 1 MiB; groups contain 2–20 members with identical kind, tool version and rule version, strictly below the aggregate input footprint limit.
+The supervisor retains single-job fallback when a job cannot group or the group estimate cannot fit.
+
+A grouped worker receives `group.json` with `group_session_version: 1` and ordered member paths such as `jobs/00/job.json`.
+Each member has its own inputs, private `work/` directory and `result.json`.
+Tokens remain outside the worker manifests.
+A03 renews all member leases in one controller invocation and renews remaining members during bounded output intake.
+The controller counts every logical job and resource while CPU and memory count one physical process tree.
+The total declared output limit is 256 MiB for the group.
+
+Failed or invalid members retry singly using durable generation/fingerprint markers.
+Restart recovery preserves this decision.
+Group memory histories are separate by actual member count, and single-job observations cannot reduce the explicit group memory floor.
+See [the accounting gotcha](../../Gotchas/Research/Supervisor/GroupedLeaseAndMemoryAccounting.md) before setting group limits.
+Calibration and native application acceptance remain separate steps.
+
 ## Session contract
 
 The supervisor starts each runner without a shell, in a new process group, with the repository root as its working directory.

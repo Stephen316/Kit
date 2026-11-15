@@ -12,6 +12,8 @@ class ResourceBudget:
         self.registry = registry
         self.adaptive = AdaptiveCapacity(config["adaptive_limits"])
         self.history = MemoryHistory(config["state"] / "memory-history.json")
+        self.recorded_sessions = {}
+        self.group_histories = {size: MemoryHistory(config["state"] / f"group-memory-history-{size:02d}.json") for size in range(2, 21)}
         self.history_error = None
         self.host = None
         self.groups = {}
@@ -20,6 +22,11 @@ class ResourceBudget:
         self.next_host = 0
 
     def record(self, specification, session, outcome, stale, receipt, report):
+        if session in self.recorded_sessions:
+            return
+        self.recorded_sessions[session] = None
+        if len(self.recorded_sessions) > 4096:
+            del self.recorded_sessions[next(iter(self.recorded_sessions))]
         if stale is False:
             change = self.adaptive.finished(self.registry.runners[specification["kind"]]["pool"], outcome, receipt)
             if change is not None:
@@ -27,14 +34,20 @@ class ResourceBudget:
         if stale is not False or outcome != "completed" or self.history_error is not None:
             return
         try:
-            recorded = self.history.record(specification, session, receipt)
+            size = receipt.get("group_size", 1)
+            history = self.history if size == 1 else self.group_histories[size]
+            recorded = history.record(specification, session, receipt)
         except (OSError, ValueError) as error:
             self.history_error = f"{type(error).__name__}: {error}"[:2048]
             report("memory_history_error", None, {"error": self.history_error, "learning_disabled_until_restart": True})
             return
         if recorded is not None:
-            initial = self.registry.runners[specification["kind"]]["initial_peak_memory_mib"] * 1048576
-            report("memory_estimate", None, {"session": session, "job": specification["id"], **recorded, **self.history.estimate(specification["kind"], specification["tool_version"], initial)})
+            entry = self.registry.runners[specification["kind"]]
+            initial = entry["initial_peak_memory_mib" if size == 1 else "group_peak_memory_mib"] * 1048576
+            estimate = history.estimate(specification["kind"], specification["tool_version"], initial)
+            if size > 1:
+                estimate["estimate_bytes"] = max(initial, estimate["estimate_bytes"])
+            report("memory_estimate", None, {"session": session, "job": specification["id"], "group_size": size, **recorded, **estimate})
 
     def refresh(self, running):
         now = time.monotonic()
@@ -56,6 +69,9 @@ class ResourceBudget:
             entry = self.registry.runners[session.spec["kind"]]
             used_cpus += entry["threads"]
             estimate_bytes = self.history.estimate(session.spec["kind"], session.spec["tool_version"], entry["initial_peak_memory_mib"] * 1048576)["estimate_bytes"]
+            if hasattr(session, "members"):
+                floor = entry["group_peak_memory_mib"] * 1048576
+                estimate_bytes = max(floor, self.group_histories[len(session.members)].estimate(session.spec["kind"], session.spec["tool_version"], floor)["estimate_bytes"])
             expected_bytes = max(estimate_bytes, self.groups.get(session.pid, estimate_bytes))
             pending_memory += max(0, expected_bytes - self.host_groups.get(session.pid, 0))
             count += session.pool == pool
@@ -67,4 +83,15 @@ class ResourceBudget:
         reason = "pool limit" if count >= settings["max_sessions"] else "cpu headroom" if cpu_slots == 0 else "memory headroom" if memory_slots == 0 else None
         if reason is None and count >= policy["active_limit"]:
             reason = "adaptive limit"
-        return {"additional_sessions": max(0, slots), "running": count, "reason": reason, "threads_per_session": threads, "estimated_memory_bytes": estimate, "host_measured_at": self.measured_at, "host": self.host, "reserved_cpus": self.reserved_cpus, "reserved_memory_bytes": self.reserved_memory, **policy}
+        return {"additional_sessions": max(0, slots), "running": count, "reason": reason, "threads_per_session": threads, "estimated_memory_bytes": estimate, "host_measured_at": self.measured_at, "host": self.host, "reserved_cpus": self.reserved_cpus, "reserved_memory_bytes": self.reserved_memory, "unreserved_memory_bytes": max(0, self.host["available_memory_bytes"] - self.reserved_memory - pending_memory), **policy}
+
+    def group_candidates(self, pool, admission):
+        candidates = {}
+        for kind, entry in self.registry.runners.items():
+            if entry["pool"] != pool or entry["group_protocol"] != 1:
+                continue
+            floor = entry["group_peak_memory_mib"] * 1048576
+            estimate = max([floor, *(history.admission_estimate(kind, floor) for history in self.group_histories.values())])
+            if estimate <= admission["unreserved_memory_bytes"]:
+                candidates[kind] = entry["group_limit_bytes"]
+        return candidates
