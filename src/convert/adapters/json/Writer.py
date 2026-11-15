@@ -8,6 +8,7 @@ from convert.adapters.json.StreamIo import WriteStream
 from convert.adapters.registry.EquationWrite import CheckEquations
 from convert.adapters.registry.InchWrite import CheckInchWrite
 from convert.adapters.registry.ResearchWrite import CheckResearch
+from convert.adapters.registry.SupportWrite import CheckSupports
 from interchange import CadDocument
 
 
@@ -27,6 +28,7 @@ class JsonWriter:
         CheckResearch(DocValue)
         CheckInchWrite(DocValue)
         CheckEquations(DocValue)
+        CheckSupports(DocValue)
         Settings = Options or WriteOptions()
         if Settings.validate:
             DocValue.assert_valid()

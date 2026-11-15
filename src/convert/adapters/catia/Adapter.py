@@ -24,6 +24,7 @@ from convert.geometry.Parasolid import decode_brep_model as DecodeParasolidBrep
 from convert.adapters.registry.EquationWrite import CheckEquations
 from convert.adapters.registry.InchWrite import CheckInchWrite
 from convert.adapters.registry.ResearchWrite import CheckResearch
+from convert.adapters.registry.SupportWrite import CheckSupports
 from interchange import (
     Body as BodyRecord,
     BrepModel,
@@ -305,6 +306,7 @@ class CatiaWriter(PairProtocol):
         CheckResearch(DocValue)
         CheckInchWrite(DocValue)
         CheckEquations(DocValue)
+        CheckSupports(DocValue)
         Settings = Options or WriteOptions()
         if Settings.validate:
             DocValue.assert_valid()

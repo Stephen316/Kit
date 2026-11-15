@@ -13,6 +13,7 @@ from convert.adapters.staging.PathStaging import WritePathStaged
 from convert.adapters.registry.EquationWrite import CheckEquations
 from convert.adapters.registry.InchWrite import CheckInchWrite
 from convert.adapters.registry.ResearchWrite import CheckResearch
+from convert.adapters.registry.SupportWrite import CheckSupports
 from convert.adapters.registry.RegistryErrors import CapLossError
 from convert.adapters.registry.RegistryErrors import NotFoundError
 from convert.adapters.registry.RegistrySelect import SelectWriter
@@ -118,6 +119,7 @@ class WriteApi(WriteLookup):
         CheckResearch(DocumentData)
         CheckInchWrite(DocumentData)
         CheckEquations(DocumentData)
+        CheckSupports(DocumentData)
         SelectedOpts = OptionsData or WriteOptions()
         if FormatId is not None:
             SelectedOpts = ReplaceValue(SelectedOpts, destination_format=FormatId)

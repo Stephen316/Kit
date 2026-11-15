@@ -9,6 +9,7 @@ from convert.adapters.Fusion.Bridge.WriterInfo import KWriterInfo
 from convert.adapters.registry.EquationWrite import CheckEquations
 from convert.adapters.registry.InchWrite import CheckInchWrite
 from convert.adapters.registry.ResearchWrite import CheckResearch
+from convert.adapters.registry.SupportWrite import CheckSupports
 from interchange.document.models.DocumentCaps import InferCaps
 from interchange.document.models.DocumentModel import CadDocument
 
@@ -39,6 +40,7 @@ class FusionWriter:
         CheckResearch(Document)
         CheckInchWrite(Document)
         CheckEquations(Document)
+        CheckSupports(Document)
         Settings = Options if Options is not None else WriteOptions()
         if (
             Settings.configuration is not None
