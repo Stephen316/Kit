@@ -45,4 +45,6 @@ python3 re/automation/ApplicationWorkers/RetryFusionProbe.py \
 
 The command verifies the current parked attempt and archived bytes under the dispatch lock. It requires an empty application queue, a released fence, remaining retry budget, and an installation resource with no unrelated unfinished jobs. One controller transaction records the archived receipt, reactivates the resource and queues Phase A at its normal retry time. Repeating the same command returns the recorded disposition.
 
+Add `--check` to [observe the archived retry prerequisites](FusionRetryObservation.md) before the owner action. Physical host readiness has its own status.
+
 Phase B still waits for accepted Phase A evidence. The next scheduled Phase A attempt must obtain a new main-thread readiness response from the pinned add-in before any native capture.

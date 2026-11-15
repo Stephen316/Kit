@@ -247,6 +247,7 @@ def VerifyRetry(Harness: SessionHost, ManifestHash: str) -> None:
         "--archive-manifest-sha256",
     ]
     StoreHash = HashBytes(DatabasePath.read_bytes()).hexdigest()
+    VerifyRetryRead(Harness, ArchiveTool, Arguments, ManifestHash)
     _ = RunFusionTool(ArchiveTool, Arguments + ["0" * 64], ExitCode=1)
     assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
     LockPath = Harness.RootPath / "AbsentEndpoint/host.lock"
@@ -258,7 +259,58 @@ def VerifyRetry(Harness: SessionHost, ManifestHash: str) -> None:
     StoreHash = HashBytes(DatabasePath.read_bytes()).hexdigest()
     Replay = JsonCodec.loads(RunFusionTool(ArchiveTool, Arguments + [ManifestHash]))
     assert Replay["status"] == "retry_already_requested"
+    Observed = JsonCodec.loads(
+        RunFusionTool(ArchiveTool, Arguments + [ManifestHash, "--check"])
+    )
+    assert Observed == {
+        "retry_admissibility": "already_requested",
+        "physical_host_readiness": "unverified",
+        "archive_manifest_sha256": ManifestHash,
+    }
     assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
+
+
+# preflight must observe an exact archive without taking ownership or changing retained bytes
+def VerifyRetryRead(
+    Harness: SessionHost, ScriptPath: str, Arguments: list[str], ManifestHash: str
+) -> None:
+    import fcntl as FileLocks
+
+    assert Harness.StorePath is not None
+    Endpoint = Harness.RootPath / "AbsentEndpoint"
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    StoreBefore = DatabasePath.read_bytes()
+    EndpointBefore = ReadEndpoint(Endpoint)
+    with (Endpoint / "dispatch.lock").open("r+b") as LockFile:
+        FileLocks.flock(LockFile.fileno(), FileLocks.LOCK_EX | FileLocks.LOCK_NB)
+        Eligible = JsonCodec.loads(
+            RunFusionTool(ScriptPath, Arguments + [ManifestHash, "--check"])
+        )
+        Blocked = JsonCodec.loads(
+            RunFusionTool(ScriptPath, Arguments + ["0" * 64, "--check"], ExitCode=1)
+        )
+    assert Eligible == {
+        "retry_admissibility": "eligible_at_snapshot",
+        "physical_host_readiness": "unverified",
+        "archive_manifest_sha256": ManifestHash,
+    }
+    assert Blocked == {
+        "retry_admissibility": "blocked_or_unverified",
+        "physical_host_readiness": "unverified",
+        "stage": "archive_and_resource",
+    }
+    assert DatabasePath.read_bytes() == StoreBefore
+    assert ReadEndpoint(Endpoint) == EndpointBefore
+
+
+# the endpoint snapshot detects changes to locks spools archives and their roster
+def ReadEndpoint(Endpoint: FilePath) -> dict[FilePath, bytes | None]:
+    return {
+        EntryPath.relative_to(Endpoint): (
+            EntryPath.read_bytes() if EntryPath.is_file() else None
+        )
+        for EntryPath in Endpoint.rglob("*")
+    }
 
 
 # accepted evidence still gates the repeat phase while the first phase waits for its own retry
