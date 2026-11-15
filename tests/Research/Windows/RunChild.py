@@ -6,6 +6,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# a persistent descendant is needed to verify that custody survives launcher and leader transitions
 def RunChild() -> None:
     if System.platform != "win32":
         raise OSError("Windows child fixture requires a Windows host")

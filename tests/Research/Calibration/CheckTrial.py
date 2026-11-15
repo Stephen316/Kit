@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import IsGoneByTimeout
 
 
+# each requested step requires independent evidence for immutable inputs private stores and complete cleanup
 def CheckTrial(TrialPath: FilePath, Requested: int, SourcePath: FilePath) -> None:
     Prepared = JsonCodec.loads(
         (TrialPath / "Prepared.json").read_text(encoding="utf-8")

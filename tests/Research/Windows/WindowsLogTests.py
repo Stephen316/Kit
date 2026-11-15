@@ -9,6 +9,7 @@ from tests.Research.SupervisorClient import FixtureJob, SessionHost
 from tests.Research.Windows.SetWinRunner import SetWinRunner
 
 
+# the windows supervisor must enforce retention limits without losing output accounting or process identity
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinLogs() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

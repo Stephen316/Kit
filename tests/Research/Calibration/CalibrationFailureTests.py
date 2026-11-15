@@ -7,6 +7,7 @@ from tests.Research.Calibration.CheckTrial import CheckTrial
 from tests.Research.Calibration.RunCalibration import RunCalibration
 
 
+# a reader rejection must end the sweep instead of contaminating later throughput comparisons
 def CheckBadDecode(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath)
     Manifest = JsonCodec.loads(ManifestPath.read_text(encoding="utf-8"))
@@ -26,6 +27,7 @@ def CheckBadDecode(TmpPath: FilePath) -> None:
     assert not (OutputPath / "Trial2").exists()
 
 
+# a trial deadline must stop remaining work before the sweep can recommend a limit
 def CheckTimeout(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath, JobCount=256)
     Manifest = JsonCodec.loads(ManifestPath.read_text(encoding="utf-8"))
@@ -41,6 +43,7 @@ def CheckTimeout(TmpPath: FilePath) -> None:
     assert not (OutputPath / "Trial2").exists()
 
 
+# a reserve beyond available cores must prevent claims while retaining the refusal evidence
 def CheckReserve(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath)
     Manifest = JsonCodec.loads(ManifestPath.read_text(encoding="utf-8"))

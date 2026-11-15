@@ -1,6 +1,7 @@
 import sys as System
 
 
+# windows liveness checks need passive operating system evidence that cannot terminate the target
 def IsProcessAlive(ProcessId: int) -> bool:
     if System.platform != "win32":
         raise OSError("Windows liveness requires a Windows host")

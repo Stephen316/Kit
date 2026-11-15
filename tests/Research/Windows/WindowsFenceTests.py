@@ -10,6 +10,7 @@ from tests.Research.SupervisorClient import SessionHost
 from tests.Research.Windows.IsProcessAlive import IsProcessAlive
 
 
+# stale process metadata must never authorize termination of a live unrelated windows process
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinFence() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

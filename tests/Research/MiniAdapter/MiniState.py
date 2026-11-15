@@ -12,15 +12,20 @@ from tests.Research.MiniAdapter.JobLifecycle import JobLifecycle
 from tests.Research.MiniAdapter.StoreState import StoreState
 
 
+# all fixture operations share one serialized state so separate processes observe consistent leases
 class MiniState(JobLifecycle):
+
+    # the fixture needs an isolated root and durable object location before any controller operation runs
     def __init__(self, Options: dict[str, object]) -> None:
         super().__init__()
         self.RootPath = FilePath(str(Options["root"])).resolve()
         (self.RootPath / "objects").mkdir(parents=True, exist_ok=True, mode=0o700)
 
+    # competing supervisors must share the same adapter lock even when launched by separate clients
     def LockPath(self) -> FilePath:
         return self.RootPath / "supervisor.lock"
 
+    # concurrent adapter processes need a serialized transaction around persisted fixture state
     @ContextManager
     def OpenState(self) -> Generator[StoreState]:
         Handle = OsLayer.open(

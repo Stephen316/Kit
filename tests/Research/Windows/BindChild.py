@@ -1,6 +1,7 @@
 import sys as System
 
 
+# a launcher identifier alone cannot prove the actual interpreter and its descendant share job custody
 def BindChild(
     LauncherPid: int, CallerPid: int, Observation: dict[str, int], JobName: str
 ) -> list[int]:

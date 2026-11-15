@@ -6,12 +6,15 @@ import sys as System
 
 from tests.Research.Calibration.RunCalibration import KRepoRoot
 
+# the cleanup fixture needs a leader and surviving child whose lifetimes can be controlled separately
 KLeaderCode = """
 import subprocess, sys
 child = subprocess.Popen([sys.executable, '-c', 'import time;time.sleep(120)'], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 print(child.pid, flush=True)
 sys.stdin.read()
 """
+
+# the caller needs production identity and liveness evidence without accessing foreign process state directly
 KProbeCode = """
 import json, sys
 sys.path.insert(0, sys.argv[1])
@@ -20,6 +23,7 @@ print(json.dumps({'created': process_start(int(sys.argv[2])), 'running': group_r
 """
 
 
+# a separate probe provides the same process identity evidence that cleanup relies on
 def ProbeProcess(ProcessId: int) -> dict[str, object]:
     ResultInfo = Subprocess.run(
         [
@@ -39,6 +43,7 @@ def ProbeProcess(ProcessId: int) -> dict[str, object]:
     return Record
 
 
+# fixture teardown must avoid signaling an unrelated process if the original identifier was recycled
 def StopChild(ProcessId: int, Created: object) -> None:
     if Created is not None and ProbeProcess(ProcessId)["created"] == Created:
         OsLayer.kill(ProcessId, SignalApi.SIGKILL)

@@ -3,6 +3,7 @@ import json as JsonCodec
 from tests.Research.Applications.DispatchHost import DispatchHost
 
 
+# a replacement host needs to prove it can distinguish retained application custody from a fresh run
 def AssertRetained(Harness: DispatchHost, OldProcessId: int) -> None:
     Second = Harness.StartHost()
     try:

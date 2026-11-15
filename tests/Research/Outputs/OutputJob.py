@@ -5,7 +5,10 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# controller artifact checks need a real private job and working directory fixture
 class OutputJob(JobClient):
+
+    # each output scenario must start from an isolated lease and staged evidence bytes
     def __init__(self, RootPath: FilePath) -> None:
         super().__init__(RootPath)
         self.RootPath = RootPath
@@ -41,6 +44,7 @@ class OutputJob(JobClient):
             "claim", "--worker", "output:fixture", "--claim-file", str(self.LeaseFile)
         )
 
+    # the fixture must exercise artifact publication through the controller command boundary
     def FinishOutputs(
         self, Manifest: dict[str, object], Outcome: str = "completed", ExitCode: int = 4
     ) -> None:

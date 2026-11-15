@@ -7,6 +7,7 @@ from tests.Research.Calibration.CheckTrial import CheckTrial
 from tests.Research.Calibration.RunCalibration import RunCalibration
 
 
+# a constrained sweep must retain physical observations without claiming it reached requested overlap
 def CheckSweep(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath)
     OutputPath = TmpPath / "Sweep"

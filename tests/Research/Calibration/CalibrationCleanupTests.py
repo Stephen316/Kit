@@ -9,6 +9,7 @@ from tests.Research.Calibration.LeaderProcess import (
 from tests.Research.Calibration.RunCalibration import KRepoRoot
 from tests.Research.SupervisorClient import IsGoneByTimeout
 
+# cleanup refusal must be observable across a process boundary with live descendants
 KRetireCode = """
 import sys
 sys.path.insert(0, sys.argv[1])
@@ -17,6 +18,7 @@ stop_groups({int(sys.argv[2]): sys.argv[3]})
 """
 
 
+# a vanished group leader cannot authorize killing descendants whose ownership is no longer provable
 def CheckLostLeader() -> None:
     Leader = Subprocess.Popen(
         [System.executable, "-c", KLeaderCode],
@@ -45,6 +47,7 @@ def CheckLostLeader() -> None:
     assert IsGoneByTimeout(ChildId)
 
 
+# an independently invoked cleanup probe must report refusal without stopping the residual group
 def VerifyRefusal(ProcessId: int, Created: str) -> None:
     ResultInfo = Subprocess.run(
         [

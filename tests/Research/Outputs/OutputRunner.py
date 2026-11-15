@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.Outputs.PrepareOutput import PrepareOutput
 
 
+# output custody checks need result files produced independently of the supervisor process
 def RunOutputs() -> None:
     SessionPath = FilePath(System.argv[1])
     JobInfo = JsonCodec.loads((SessionPath / "job.json").read_text(encoding="utf-8"))

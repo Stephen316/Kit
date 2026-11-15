@@ -7,6 +7,7 @@ from tests.Research.Supervisor.Grouping.BatchHost import MakeBatchHost
 from tests.Research.Supervisor.Grouping.ProtocolConfig import RejectGroupApi
 
 
+# invalid fence advertisements must fail before the supervisor makes ownership claims
 @TestMark.parametrize(
     "Declaration",
     (

@@ -1,6 +1,7 @@
 from dataclasses import dataclass as DataClass
 
 
+# the fixture must persist submission identity lease state and terminal outcomes across process calls
 @DataClass
 class JobEntry:
     RawSpec: dict[str, object]

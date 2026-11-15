@@ -8,6 +8,7 @@ import pytest as Pytest
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# windows resource reserves must block new claims and allow queued work when headroom returns
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinReserve() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

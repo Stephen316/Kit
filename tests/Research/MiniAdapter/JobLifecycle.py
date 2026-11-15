@@ -5,7 +5,10 @@ from tests.Research.MiniAdapter.JobEntry import JobEntry
 from tests.Research.MiniAdapter.StoreState import StoreState
 
 
+# the adapter needs consistent prerequisite evidence before either claim or completion can settle dependencies
 class JobLifecycle:
+
+    # a lease must be bound to the exact prerequisite results it was granted against
     def HashPrereqs(self, Current: StoreState, Entry: JobEntry) -> str:
         DepResults = {
             ItemName: (
@@ -27,6 +30,7 @@ class JobLifecycle:
             }
         )
 
+    # queued fixture jobs must reflect changed prerequisite outcomes before the next claim or status read
     def SettleJobsMut(self, Current: StoreState) -> None:
         Changed = True
         while Changed:

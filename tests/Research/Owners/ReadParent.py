@@ -3,6 +3,7 @@ import sys as System
 from pathlib import Path as FilePath
 
 
+# owner checks need an independent parent observation to associate a gate with the supervisor
 def ReadParent(ProcessId: int) -> int | None:
     Command = (
         [

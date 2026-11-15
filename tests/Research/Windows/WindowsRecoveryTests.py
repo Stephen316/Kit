@@ -10,6 +10,7 @@ from tests.Research.Windows.WaitForExit import WaitForExit
 from tests.Research.Windows.WaitForPids import WaitForPids
 
 
+# windows supervisor restart must retire the exact owned worker tree and settle its abandoned claim
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinRestart() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

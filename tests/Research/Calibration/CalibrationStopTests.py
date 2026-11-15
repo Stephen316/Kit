@@ -14,6 +14,7 @@ from tests.Research.Calibration.WaitSession import WaitSession
 from tests.Research.SupervisorClient import IsGoneByTimeout
 
 
+# an operator interruption must settle the private process tree and suppress recommendations
 def CheckInterrupt(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath, JobCount=256)
     OutputPath = TmpPath / "Interrupted"
@@ -51,6 +52,7 @@ def CheckInterrupt(TmpPath: FilePath) -> None:
             _ = Process.communicate(timeout=60)
 
 
+# a frozen supervisor must not defeat the calibration harness deadline or residual worker cleanup
 def CheckFrozenStop(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath, JobCount=256)
     OutputPath = TmpPath / "Frozen"

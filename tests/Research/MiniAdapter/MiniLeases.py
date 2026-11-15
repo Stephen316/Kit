@@ -8,7 +8,10 @@ from tests.Research.MiniAdapter.MiniObjects import MiniObjects
 from tests.Research.MiniAdapter.StoreState import StoreState
 
 
+# the fixture must exercise lease fencing even when the production controller is replaced
 class MiniLeases(MiniObjects):
+
+    # renewal and completion need a common check that rejects stale or mismatched leases
     def CheckLease(self, Current: StoreState, ClaimPath: FilePath) -> JobEntry | None:
         ClaimInfo = JsonCodec.loads(FilePath(ClaimPath).read_text(encoding="utf-8"))
         Entry = Current.JobMap.get(str(ClaimInfo["job_id"]))
@@ -23,6 +26,7 @@ class MiniLeases(MiniObjects):
             return None
         return Entry
 
+    # active fixtures need a lease extension path so long running work can remain authorized
     def RenewLease(self, ClaimPath: FilePath) -> dict[str, object]:
         with self.OpenState() as Current:
             Entry = self.CheckLease(Current, ClaimPath)
@@ -37,6 +41,7 @@ class MiniLeases(MiniObjects):
                 "deadline": Entry.Deadline,
             }
 
+    # publication by a stale worker must leave the active fixture job outcome untouched
     def FinishJob(
         self, ClaimPath: FilePath, Outcome: str, ResultPath: FilePath, Reason: str
     ) -> dict[str, object]:

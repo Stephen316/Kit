@@ -4,6 +4,7 @@ import sys as System
 from pathlib import Path as FilePath
 
 
+# the runner needs controlled output variants to exercise the real intake boundary
 def PrepareOutput(SessionPath: FilePath, ModeValue: str, Content: bytes) -> str:
     WorkPath = SessionPath / "work"
     OutputPath = WorkPath / "native.bin"

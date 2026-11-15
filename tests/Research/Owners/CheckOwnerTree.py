@@ -2,6 +2,7 @@ from tests.Research.Owners.ReadParent import ReadParent
 from tests.Research.SupervisorClient import SessionHost
 
 
+# recovery must distinguish the old supervisor command tree from its replacement owner
 def CheckOwnerTree(
     Harness: SessionHost, HeldInfo: dict[str, object], OwnerInfo: dict[str, object]
 ) -> None:

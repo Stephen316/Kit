@@ -4,6 +4,7 @@ import time as TimeClock
 from tests.Research.MiniAdapter.JobEntry import JobEntry
 
 
+# a new attempt must carry lease identity and deadlines independently of prior worker attempts
 def StartLeaseMut(Entry: JobEntry, Worker: str, Token: str) -> None:
     Started = TimeClock.time()
     Entry.Attempts += 1

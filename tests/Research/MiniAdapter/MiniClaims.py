@@ -8,7 +8,10 @@ from tests.Research.MiniAdapter.LeaseStart import StartLeaseMut
 from tests.Research.MiniAdapter.MiniState import MiniState
 
 
+# the supervisor claim contract needs a small persistent adapter for controller independent coverage
 class MiniClaims(MiniState):
+
+    # the fixture must give the supervisor one eligible claim with the same fenced protocol
     def ClaimJob(
         self, PoolName: str, Worker: str, ClaimPath: FilePath
     ) -> dict[str, object] | None:
@@ -20,6 +23,8 @@ class MiniClaims(MiniState):
                 for Entry in Current.JobMap.values()
                 if Entry.JobState == "running"
             ]
+
+            # original submission order keeps equivalent claim attempts deterministic across controller processes
             for JobName, Entry in sorted(
                 Current.JobMap.items(), key=lambda JobPair: JobPair[1].Order
             ):

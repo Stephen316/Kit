@@ -11,6 +11,7 @@ from tests.Research.Windows.WaitForExit import WaitForExit
 from tests.Research.Windows.WaitForPids import WaitForPids
 
 
+# normal leader exit must still retire descendants before the session is declared complete
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinTree() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

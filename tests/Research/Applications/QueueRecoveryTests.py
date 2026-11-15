@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 from tests.Research.Applications.DispatchHost import DispatchHost
 
 
+# crashes during result copying must preserve recoverable evidence without making duplicate native work
 def CheckCopyCrash() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())

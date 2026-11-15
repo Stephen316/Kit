@@ -7,6 +7,7 @@ from tests.Research.Applications.DispatchHost import DispatchHost
 from tests.Research.Applications.RetainedRestart import AssertRetained
 
 
+# client process completion must be tied to a response from the sole endpoint owner
 def CheckRound() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())
@@ -37,6 +38,7 @@ def CheckRound() -> None:
             _ = Server.communicate(timeout=15)
 
 
+# persistent ownership after host replacement must stay fenced until the retained application is handled
 def CheckRestart() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())

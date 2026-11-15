@@ -13,11 +13,13 @@ from tests.Research.WindowsRecords.RecordProcess import (
     RunRecord,
 )
 
+# file custody scenarios rely on windows sharing semantics unavailable on other platforms
 KWindowsOnly = TestMark.skipif(
     System.platform != "win32", reason="Windows file handles"
 )
 
 
+# record identity must follow the open handle when the visible path receives different bytes
 @KWindowsOnly
 def CheckRewritten() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
@@ -28,6 +30,7 @@ def CheckRewritten() -> None:
         assert Result["path_ctime_ns"] != Result["handle_ctime_ns"]
 
 
+# unsafe windows record paths must fail before immutable intake accepts their contents
 @KWindowsOnly
 def CheckUnsafe() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
@@ -40,6 +43,7 @@ def CheckUnsafe() -> None:
         }
 
 
+# the intake contract must detect metadata changes even when apparent content identity is stable
 @KWindowsOnly
 def CheckMetadata() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
@@ -48,6 +52,7 @@ def CheckMetadata() -> None:
         assert RunRecord("metadata", Target) == {"change_time_rejected": True}
 
 
+# competing writers and deletion must be refused only while the protected handle remains open
 @KWindowsOnly
 def CheckSharing() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

@@ -7,6 +7,7 @@ from tests.Research.Owners.OwnerBarriers import WaitRecord
 from tests.Research.Owners.ReadParent import ReadParent
 
 
+# fixture teardown must release the command barrier before cleaning up any held processes
 def CloseGate(GateRoot: FilePath) -> None:
     _ = (GateRoot / "Release").write_text("release", encoding="ascii")
     HeldFile = GateRoot / "Held.json"

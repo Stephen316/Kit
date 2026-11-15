@@ -4,6 +4,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import SessionHost
 
 
+# owner replacement checks need to pause exactly the production controller operation being fenced
 def InstallGate(Harness: SessionHost, Operation: str) -> FilePath:
     if Operation == "claim":
         RegistryFile = Harness.RootPath / "Runners.json"

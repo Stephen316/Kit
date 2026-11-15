@@ -13,6 +13,7 @@ from tests.Research.Supervisor.Grouping.BatchHost import MakeBatchHost
 from tests.Research.Supervisor.Grouping.BatchRecords import BatchJobs
 
 
+# a replacement owner must reject publication from the old single or grouped claim command
 @TestMark.parametrize("Operation", ("claim", "claim-group"))
 def CheckOwnerBoot(Operation: str) -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

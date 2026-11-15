@@ -3,9 +3,11 @@ import subprocess as Subprocess
 import sys as System
 from pathlib import Path as FilePath
 
+# the subprocess must use the checked in calibration entry point regardless of the caller directory
 KRepoRoot = FilePath(__file__).resolve().parents[3]
 
 
+# calibration checks must verify the actual command exit and durable report together
 def RunCalibration(
     ManifestPath: FilePath, OutputPath: FilePath, ExitCode: int = 0
 ) -> dict[str, object]:

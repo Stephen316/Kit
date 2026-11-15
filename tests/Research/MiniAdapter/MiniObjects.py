@@ -7,7 +7,10 @@ from shutil import copyfileobj as CopyFileObject
 from tests.Research.MiniAdapter.MiniState import MiniState
 
 
+# the fixture requires immutable content storage so claims and results can be verified independently
 class MiniObjects(MiniState):
+
+    # content identity must be shared across request retries without duplicating stored evidence
     def StoreBytes(self, Content: bytes) -> str:
         Digest = Hashing.sha256(Content).hexdigest()
         TargetPath = self.RootPath / "objects" / Digest
@@ -17,12 +20,14 @@ class MiniObjects(MiniState):
             OsLayer.replace(StagePath, TargetPath)
         return Digest
 
+    # named input bindings must refer to durable content available to later supervisor sessions
     def BindInput(self, BindName: str, InputPath: FilePath) -> dict[str, object]:
         Digest = self.StoreBytes(FilePath(InputPath).read_bytes())
         with self.OpenState() as Current:
             Current.Bindings[BindName] = Digest
         return {"name": BindName, "sha256": Digest}
 
+    # the supervisor must receive only the bytes represented by the claimed immutable digest
     def FetchInput(self, Digest: str, TargetPath: FilePath) -> int:
         SourcePath = self.RootPath / "objects" / Digest
         Content = SourcePath.read_bytes()

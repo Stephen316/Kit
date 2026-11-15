@@ -8,6 +8,7 @@ from tests.Research.Applications.DispatchHost import DispatchHost
 from tests.Research.Applications.PublicationHost import KFixturePath
 
 
+# large repeated transport exchanges must preserve complete records without conferring native qualification
 def CheckRecordFlow() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())

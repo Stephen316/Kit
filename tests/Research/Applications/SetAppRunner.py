@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import KRepoRoot, SessionHost
 
 
+# supervisor coverage needs to dispatch through the real application registry for the selected installation
 def SetAppRunner(Harness: SessionHost, ConfigFile: FilePath) -> None:
     RegistryFile = Harness.RootPath / "Runners.json"
     Registry = JsonCodec.loads(RegistryFile.read_text(encoding="utf-8"))

@@ -2,6 +2,7 @@ from tests.Research.MiniAdapter.JobEntry import JobEntry
 from tests.Research.MiniAdapter.StoreState import StoreState
 
 
+# fixture claims must respect admission dependencies and counted resources as actual supervisor callers expect
 def IsJobReady(
     Entry: JobEntry, Current: StoreState, PoolName: str, Running: list[JobEntry]
 ) -> bool:

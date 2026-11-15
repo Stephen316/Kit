@@ -7,6 +7,7 @@ from tests.Research.Windows.RunChild import RunChild
 from tests.Research.Windows.StartChild import StartChild
 
 
+# process boundary coverage needs a real windows worker with controlled output and descendant behavior
 def RunWindows() -> None:
     if System.argv[1] == "child":
         RunChild()

@@ -10,6 +10,7 @@ from tests.Research.Windows.SetWinRunner import SetWinRunner
 from tests.Research.Windows.WaitForExit import WaitForExit
 
 
+# working set enforcement must surface the configured stop reason and clean up nested workers
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinMemory() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

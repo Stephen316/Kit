@@ -4,12 +4,14 @@ import subprocess as Subprocess
 import sys as System
 from pathlib import Path as FilePath
 
+# file custody checks must invoke the actual windows record fixture from independent processes
 KFixture = (
     FilePath(__file__).resolve().parents[3]
     / "re/automation/ApplicationWorkers/WindowsRecordFixture.py"
 )
 
 
+# windows record assertions require a separate process to observe real file sharing behavior
 def RunRecord(Operation: str, TargetPath: FilePath) -> dict[str, object]:
     Completed = Subprocess.run(
         [System.executable, str(KFixture), Operation, str(TargetPath)],
@@ -23,6 +25,7 @@ def RunRecord(Operation: str, TargetPath: FilePath) -> dict[str, object]:
     return Result
 
 
+# every competing mutation path needs evidence that the open record remained protected
 def CheckBlocked(Outcomes: dict[str, object]) -> None:
     assert set(Outcomes) == {
         "write_crt",

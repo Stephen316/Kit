@@ -2,6 +2,7 @@ from tests.Research.MiniAdapter.JobEntry import JobEntry
 from tests.Research.MiniAdapter.StoreState import StoreState
 
 
+# the supervisor needs an immutable claim snapshot independent of mutable fixture queue state
 def BuildClaim(JobName: str, Entry: JobEntry, Current: StoreState) -> dict[str, object]:
     return {
         "job": dict(

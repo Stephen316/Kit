@@ -3,6 +3,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# interruption tests need proof that a real session is active before sending a stop
 def WaitSession(OutputPath: FilePath) -> dict[str, object]:
     Until = TimeClock.monotonic() + 30
     while TimeClock.monotonic() < Until:

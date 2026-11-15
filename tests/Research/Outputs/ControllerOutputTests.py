@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.Outputs.OutputJob import OutputJob
 
 
+# invalid output manifests must leave both durable artifacts and active job state untouched
 def CheckBounds() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
@@ -36,6 +37,7 @@ def CheckBounds() -> None:
         assert not (RootPath / "State/objects" / Digest[:2] / Digest).exists()
 
 
+# an obsolete lease must not publish output bytes or settle the current job attempt
 def CheckStale() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()

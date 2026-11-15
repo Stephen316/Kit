@@ -4,6 +4,7 @@ import subprocess as Subprocess
 import sys as System
 
 
+# abrupt owner loss must reach the real subprocess across supported host platforms
 def KillOwner(ProcessId: int, Required: bool = True) -> None:
     if System.platform == "win32":
         Result = Subprocess.run(

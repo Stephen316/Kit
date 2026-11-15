@@ -12,6 +12,7 @@ from tests.Research.Applications.PublicationHost import (
 )
 
 
+# simultaneous publishers must leave one coherent winner visible to independent readers
 def CheckRecordRace() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
@@ -42,6 +43,7 @@ def CheckRecordRace() -> None:
             StopPublishers(Processes + [Observer])
 
 
+# publication must preserve bytes already committed at the destination regardless of later contenders
 def CheckRecordKept() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()

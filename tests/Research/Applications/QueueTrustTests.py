@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.Applications.DispatchHost import DispatchHost, KRepoRoot
 
 
+# untrusted request changes must be rejected before the application fixture writes any evidence
 def CheckRevision() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())
@@ -40,6 +41,7 @@ def CheckRevision() -> None:
             _ = Server.communicate(timeout=15)
 
 
+# unexpected request fields must not expand the fixed application dispatch boundary
 def CheckFixedEntry() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())

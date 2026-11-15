@@ -4,6 +4,7 @@ import sys as System
 from tests.Research.SupervisorClient import SessionHost
 
 
+# windows custody coverage requires a job aware runner registered with the actual supervisor
 def SetWinRunner(Harness: SessionHost, MemoryLimit: int = 512) -> None:
     ConfigInfo = JsonCodec.loads(Harness.ConfigFile.read_text(encoding="utf-8"))
     ConfigInfo["adaptive_limits"] = True

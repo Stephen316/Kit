@@ -4,11 +4,15 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# transport checks share readiness barriers because process startup order is nondeterministic
 class DispatchWait:
+
+    # readiness observations must stay bound to the same private endpoint as the application host
     def __init__(self, Endpoint: FilePath) -> None:
         super().__init__()
         self.Endpoint = Endpoint
 
+    # callers need file publication evidence before treating an asynchronous transport phase as reached
     def WaitFile(self, RelativePath: str) -> FilePath:
         TargetPath = self.Endpoint / RelativePath
         Until = TimeClock.monotonic() + 30
@@ -18,6 +22,7 @@ class DispatchWait:
             TimeClock.sleep(0.02)
         raise AssertionError(f"application file did not appear: {RelativePath}")
 
+    # request checks must distinguish unpublished work from a client that already exited
     def WaitRequest(self, Client: Subprocess.Popen[str]) -> FilePath:
         Until = TimeClock.monotonic() + 30
         while TimeClock.monotonic() < Until:
@@ -33,6 +38,7 @@ class DispatchWait:
             TimeClock.sleep(0.02)
         raise AssertionError("application client did not publish a request")
 
+    # readiness from an old host cannot establish that its replacement has acquired the endpoint
     def WaitHost(self, ProcessId: int) -> None:
         Until = TimeClock.monotonic() + 30
         while TimeClock.monotonic() < Until:

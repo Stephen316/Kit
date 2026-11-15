@@ -5,10 +5,14 @@ from pathlib import Path as FilePath
 
 from tests.Research.Applications.DispatchWait import DispatchWait
 
+# isolated application fixtures need a stable checkout anchor when their working directories change
 KRepoRoot = FilePath(__file__).resolve().parents[3]
 
 
+# application transport checks need real client and host processes around one private endpoint
 class DispatchHost(DispatchWait):
+
+    # each transport case needs its own endpoint and installation to prevent cross case interference
     def __init__(self, RootPath: FilePath) -> None:
         super().__init__(RootPath / "Endpoint")
         self.RootPath = RootPath
@@ -39,6 +43,7 @@ class DispatchHost(DispatchWait):
             str(KRepoRoot / "re/automation/ApplicationWorkers/ProtocolFixture.py"),
         ]
 
+    # host startup uses the executable fixture so checks exercise operating system process ownership
     def StartHost(self, Operation: str = "host") -> "Subprocess.Popen[str]":
         return Subprocess.Popen(
             self.Command + [Operation, "--installation", str(self.ConfigFile)],
@@ -47,6 +52,7 @@ class DispatchHost(DispatchWait):
             text=True,
         )
 
+    # client startup remains independent so transport races reflect real concurrent requesters
     def StartClient(
         self, ModeValue: str = "echo", Seconds: int = 15
     ) -> "Subprocess.Popen[str]":

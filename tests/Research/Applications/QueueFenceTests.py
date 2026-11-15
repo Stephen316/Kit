@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.Applications.DispatchHost import DispatchHost
 
 
+# expired callers must not leave completed outputs after their request loses authority
 def CheckDeadClient() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())
@@ -29,6 +30,7 @@ def CheckDeadClient() -> None:
             _ = Server.communicate(timeout=15)
 
 
+# late worker bytes cannot become a valid result after the transport fences the request
 def CheckLateResult() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         Harness = DispatchHost(FilePath(TempPath).resolve())

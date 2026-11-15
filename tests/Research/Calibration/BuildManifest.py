@@ -6,6 +6,7 @@ from convert import write_document as WriteDocument
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# calibration checks share immutable inputs so trial differences can be attributed to execution limits
 def BuildManifest(RootPath: FilePath, JobCount: int = 8) -> FilePath:
     InputPath = RootPath / "Input.f3d"
     _ = WriteDocument(

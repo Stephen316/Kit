@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import SessionHost
 
 
+# restart checks need a fresh durable observation before accepting that an ownership phase has changed
 def WaitRecord(RecordPath: FilePath, OldDigest: str = "") -> dict[str, object]:
     Until = TimeClock.monotonic() + 45
     while TimeClock.monotonic() < Until:
@@ -21,6 +22,7 @@ def WaitRecord(RecordPath: FilePath, OldDigest: str = "") -> dict[str, object]:
     raise AssertionError(f"owner process barrier did not arrive: {RecordPath.name}")
 
 
+# replacement execution must be observed through durable job states before checking the obsolete process
 def WaitCompleted(Harness: SessionHost, JobNames: tuple[str, ...]) -> None:
     Until = TimeClock.monotonic() + 45
     while TimeClock.monotonic() < Until:

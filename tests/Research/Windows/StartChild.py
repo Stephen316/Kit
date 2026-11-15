@@ -9,6 +9,7 @@ from pathlib import Path as FilePath
 from tests.Research.Windows.BindChild import BindChild
 
 
+# tree cleanup checks need a bound descendant that stays alive until the owner retires it
 def StartChild(Options: dict[str, str]) -> None:
     if System.platform != "win32":
         raise OSError("Windows child fixture requires a Windows host")

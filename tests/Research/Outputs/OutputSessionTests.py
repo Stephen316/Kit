@@ -7,6 +7,7 @@ from tests.Research.Outputs.SetOutputRunner import SetOutputRunner
 from tests.Research.SupervisorClient import FixtureJob, InitStore, SessionHost
 
 
+# successful session cleanup must preserve the durable artifact and its exact provenance
 def CheckDurable() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
@@ -36,6 +37,7 @@ def CheckDurable() -> None:
         _ = Harness.RunCli("run", "--idle-seconds", "1", ExitCode=1)
 
 
+# untrusted output paths must fail closed before any worker bytes enter durable storage
 def CheckUnsafe() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()
@@ -76,6 +78,7 @@ def CheckUnsafe() -> None:
         assert not any((RootPath / "SupervisorState/sessions").iterdir())
 
 
+# an adapter without the output contract must reject the artifact instead of silently discarding evidence
 def CheckLegacy() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath).resolve()

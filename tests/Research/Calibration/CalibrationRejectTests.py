@@ -9,6 +9,7 @@ from tests.Research.Calibration.BuildManifest import BuildManifest
 from tests.Research.Calibration.RunCalibration import KRepoRoot
 
 
+# forbidden manifest work must fail before acquiring any private execution state
 @TestMark.parametrize(
     "Invalid",
     ("dependency", "application", "model", "resource", "digest", "group", "reserve"),

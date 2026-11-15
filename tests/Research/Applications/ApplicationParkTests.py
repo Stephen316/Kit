@@ -9,6 +9,7 @@ from tests.Research.Applications.SetAppRunner import SetAppRunner
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# unsupported application work must wait without blocking unrelated jobs or publishing unearned native evidence
 @TestMark.parametrize("Application", ("fusion", "solidworks"))
 def CheckParking(Application: str) -> None:
     with TempFiles.TemporaryDirectory() as TempPath:

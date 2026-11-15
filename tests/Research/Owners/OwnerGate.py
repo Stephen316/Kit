@@ -7,6 +7,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# a suspended controller command exposes the race between ownership replacement and late publication
 def GateCommand() -> int:
     GateRoot = FilePath(System.argv[1])
     OwnerPid = int(System.argv[2])
@@ -55,6 +56,7 @@ def GateCommand() -> int:
     return Result.returncode
 
 
+# independent gate evidence ties command outcomes to the owner whose operation was held
 def RecordResult(
     GateRoot: FilePath,
     OwnerPid: int,

@@ -3,6 +3,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# the test needs an independently recorded roster before it can verify tree cleanup
 def WaitForPids(RecordPath: FilePath) -> list[int]:
     UntilTime = TimeClock.monotonic() + 30
     while TimeClock.monotonic() < UntilTime:
