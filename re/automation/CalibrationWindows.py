@@ -16,6 +16,8 @@ from WindowsApi import creation_time
 from WindowsJobMembers import observed_members
 from WindowsProcess import WindowsProcess
 
+CALIBRATION_MEMBER_LIMIT = 64
+
 
 class CalibrationWindows(WindowsProcess):
     def __init__(self, command, root, directory, environment, stdout, stderr, pool):
@@ -79,6 +81,12 @@ class CalibrationWindows(WindowsProcess):
             "calibration stopped",
         )
 
+    def members(self):
+        members = observed_members(self.job, member_limit=CALIBRATION_MEMBER_LIMIT)
+        if members is None:
+            raise OSError("Windows calibration job membership snapshot is incomplete")
+        return members
+
     def has_members(self):
         try:
             counts = win32job.QueryInformationJobObject(
@@ -132,7 +140,7 @@ class CalibrationWindows(WindowsProcess):
             self.bind_interpreter()
             if self.interpreter is None:
                 return None
-        members = observed_members(self.job, member_limit=64)
+        members = observed_members(self.job, member_limit=CALIBRATION_MEMBER_LIMIT)
         if members is None:
             return None
         return sum(self.member_working_set(pid) for pid in members if pid != self.pid)
