@@ -42,8 +42,8 @@ def ReadRelEntry(BlobValue: bytes, Stages: PartLayouts) -> tuple[EntryStop, int]
         )
         AtomStop = AtomEnd(BlobValue, AtomStart + TagValue.size)
         Relation = EndGhosts(BlobValue, AtomStop + 4)
-        Slots = ("moAtom_c", "moRelMgr_c")
-        Widths = (AtomStart - ModelBody, Relation - AtomStop)
+        Slots: tuple[str, ...] = ("moAtom_c", "moRelMgr_c")
+        Widths: tuple[int, ...] = (AtomStart - ModelBody, Relation - AtomStop)
     else:
         Relation = EndGhosts(BlobValue, AtomStart + 4)
         Slots = ("moRelMgr_c",)
