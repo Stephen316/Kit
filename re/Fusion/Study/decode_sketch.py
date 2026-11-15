@@ -85,7 +85,7 @@ def constraint_prefix(body):
 
 
 # native relationships must remain independent of geometric guesses
-def decode_sketches(data, records, features):
+def decode_sketches(data, records, features, *, allow_reversed_point_dimensions=False):
     from decode_nurbs import decode_splines
 
     sketches = {f["sketch_object_id"]: f for f in features if f["kind"] == "Sketch"}
@@ -507,7 +507,22 @@ def decode_sketches(data, records, features):
                 reference(body, cursor + 15 + index * 11)
                 for index in range(target_count)
             ]
-            if targets != inputs[1:] or any(i not in entities for i in targets):
+            if any(i not in entities for i in targets):
+                continue
+            dependency_targets = inputs[1:]
+            code = struct.unpack_from("<Q", body, cursor - 8)[0]
+            reversed_dependencies = targets != dependency_targets
+            if reversed_dependencies and not (
+                allow_reversed_point_dimensions
+                and record.is_primary
+                and record.class_guid == "8C780195-72C0-4a56-A911-E43AB14357F2"
+                and code in (0x400000, 0x800000)
+                and inputs[0] == 0
+                and body[-1] == 0
+                and target_count == 2
+                and dependency_targets == targets[::-1]
+                and all(entities[identity]["kind"] == "Point" for identity in targets)
+            ):
                 continue
             sketch = sketches[entities[targets[0]]["sketch_object_id"]]
             if any(
@@ -523,7 +538,6 @@ def decode_sketches(data, records, features):
             if len(parameters) != 1:
                 continue
             parameter = parameters[0]
-            code = struct.unpack_from("<Q", body, cursor - 8)[0]
             kind = {
                 0x4000: "Linear",
                 0x8000: "Angle",
@@ -571,6 +585,8 @@ def decode_sketches(data, records, features):
                 "stored_kind_code": code,
                 "driving_status": "Undecoded for this dimension class",
             }
+            if reversed_dependencies:
+                dimension["dependency_entity_ids"] = dependency_targets
             if kind == "Linear":
                 dimension["orientation"] = {
                     0x4000: "Aligned",

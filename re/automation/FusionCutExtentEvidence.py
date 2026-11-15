@@ -264,7 +264,8 @@ def inspect_archive(content):
     }
 
 
-def report():
+# a single intake pin keeps separate archive studies tied to the same captures
+def p04_capture():
     git = GitSnapshot(ROOT)
     content = git.blob(REVISION, SPECIFICATION)
     require(sha256(content) == SPECIFICATION_SHA256, "paired specification digest differs")
@@ -273,6 +274,12 @@ def report():
     require(len(recipes) == 1 and recipes[0]["split"] == "discovery", "unexpected P04 evidence split")
     capture = inspect_capture(git, REVISION, RECEIPT, recipes[0], "fusion", specification, SPECIFICATION_SHA256)
     require(capture["receipt"]["sha256"] == RECEIPT_SHA256, "P04 capture receipt digest differs")
+    return git, capture
+
+
+# extent evidence reports the complete pinned archive roster together
+def report():
+    git, capture = p04_capture()
     return {
         "evidence_version": 1,
         "source_revision": REVISION,

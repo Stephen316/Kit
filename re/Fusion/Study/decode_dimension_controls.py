@@ -49,8 +49,17 @@ def decode_dimension_controls(data, records, features):
                 if props.get("EntityGenesis") != 0:
                     raise ValueError("Only observed ordinary dimension control attributes supported")
                 targets = dimension["entity_ids"]
-                if inputs[1:] != targets or any(target not in geometry for target in targets):
+                dependencies = dimension.get("dependency_entity_ids", targets)
+                if inputs[1:] != dependencies or any(target not in geometry for target in targets):
                     raise ValueError("Dimension input targets disagree with the decoded sketch geometry")
+                if dependencies != targets and (
+                    record.class_guid != LINEAR
+                    or dimension["stored_kind_code"] not in (0x400000, 0x800000)
+                    or inputs[0] != 0
+                    or [geometry[target]["kind"] for target in targets] != ["Point", "Point"]
+                    or dependencies != targets[::-1]
+                ):
+                    raise ValueError("Unsupported reversed dimension dependencies")
                 count = len(targets)
                 binding_position = len(payload)-(16+11*count)
                 binding_id = reference(payload, binding_position)

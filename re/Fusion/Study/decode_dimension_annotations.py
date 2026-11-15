@@ -54,7 +54,8 @@ def decode_dimension_annotations(data,records,features,dimension_controls=None):
                         or a['binding_object_id']!=dim['binding_object_id'] or a['sketch_object_id']!=sketch['sketch_object_id']):
                     raise ValueError('Dimension measurement cache lacks validated annotation/binding/owner/targets')
                 body=data[r.body:r.end];inputs,props,cursor=constraint_prefix(body)
-                if (props!={'EntityGenesis':0} or inputs[0]!=0 or inputs[1:]!=dim['entity_ids']
+                dependencies = dim.get('dependency_entity_ids', dim['entity_ids'])
+                if (props!={'EntityGenesis':0} or inputs[0]!=0 or inputs[1:]!=dependencies
                         or len(set(dim['entity_ids']))!=len(dim['entity_ids'])):
                     raise ValueError('Unobserved dimension measurement dependency framing')
                 if cursor+148>a['value_expression_offset']-r.body or body[cursor+96]!=0 or body[cursor+146:cursor+148]!=b'\1\0':
