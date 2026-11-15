@@ -41,6 +41,17 @@ SDK source changes detected during decoding reject publication.
 Both strict and partial research outputs carry `kit.research_read_status = unqualified` in document metadata. The public reader can open them for inspection. Public writing and conversion reject marked files before staging a destination. Regenerate older research artifacts to attach the marker.
 Structural decoding and partial fallback do not qualify editable cross-format conversion.
 
+## Per-file outcome evidence
+
+The remote corpus process check emits a complete census through `KIT_FUSION_CENSUS`.
+The workflow retains it as `FusionReaderCensus-<attempt>`.
+Each entry binds the source path, Git blob, SHA-256 and exact reader outcome.
+The report also records corpus, SDK, tool and runtime identities.
+Use the [census command](../../Changes/Research/FusionReaderOutcomeCensus.md) to compare two reports without decoding inputs.
+Any changed outcome requires review, including an improved outcome.
+The first retained report must pass remote verification before becoming an enforced baseline.
+Aggregate success counts do not establish a per-file baseline or semantic qualification.
+
 ## Recovery and related information
 
 Fetch missing pinned commits, restore the intended manifest, or choose another output path.

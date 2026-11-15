@@ -14,6 +14,7 @@ REPO = Path(__file__).resolve().parents[3]
 CAPTURES = Path("re/automation/PairedCaptures")
 TOOL = CAPTURES / "FusionFreshProcess.py"
 HELPER = CAPTURES / "FusionCapture.py"
+BINDINGS = CAPTURES / "FusionBindings.py"
 SPEC = Path("re/automation/PairSpecs.json")
 CONTROL = Path("re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d")
 RECIPES = ("P01", "P02", "P03", "P04")
@@ -109,7 +110,7 @@ def prepare(output, recipes, include_existing):
     require(len(set(recipes)) == len(recipes), "Each recipe may be selected only once")
     revision = git("rev-parse", "--verify", "HEAD^{commit}").decode().strip()
     pins = {name: committed_file(revision, relative) for name, relative in
-            (("tool", TOOL), ("helper", HELPER), ("specification", SPEC), ("control", CONTROL))}
+            (("tool", TOOL), ("helper", HELPER), ("bindings", BINDINGS), ("specification", SPEC), ("control", CONTROL))}
     plan = {
         "schema": SCHEMA,
         "source_revision": revision,
@@ -143,11 +144,16 @@ def process_info(pid):
     return {"pid": pid, "start_unix_seconds": int(started.timestamp())}
 
 
-def load_helper(pin):
+def load_helper(pin, binding_pin):
     path = REPO / HELPER
     source = checked_bytes(path, pin)
     scope = {"__name__": "__kit_fusion_capture_primitives__", "__file__": str(path)}
     exec(compile(source, str(path), "exec"), scope)
+    binding_path = REPO / BINDINGS
+    binding_source = checked_bytes(binding_path, binding_pin)
+    binding_scope = {"__name__": "__kit_fusion_binding_capture__", "__file__": str(binding_path)}
+    exec(compile(binding_source, str(binding_path), "exec"), binding_scope)
+    scope["capture_sketch_bindings"] = binding_scope["capture_sketch_bindings"]
     return scope
 
 
@@ -183,6 +189,10 @@ def import_document(app, source, reading, owned):
 def measure(helper, document, label):
     reading = helper["measure"](document, label)
     design = helper["design_of"](document)
+    sketches = design.rootComponent.sketches
+    require(len(reading["sketches"]) == sketches.count, "Sketch collection changed during measurement")
+    for index, snapshot in enumerate(reading["sketches"]):
+        snapshot["bindings"] = helper["capture_sketch_bindings"](sketches.item(index), helper["point_mm"])
     states = {0: "healthy", 1: "warning", 2: "error", 3: "suppressed", 4: "rolled_back", 5: "unknown"}
     for item in reading["feature_tree"]:
         timeline = design.timeline.item(item["index"])
@@ -328,7 +338,7 @@ def run_phase(plan_path, plan_hash, phase):
     pins = plan["pins"]
     spec = json.loads(checked_bytes(REPO / SPEC, pins["specification"]))
     selected = [next(recipe for recipe in spec["recipes"] if recipe["id"] == selected_id) for selected_id in recipes]
-    helper = load_helper(pins["helper"])
+    helper = load_helper(pins["helper"], pins["bindings"])
     app = adsk.core.Application.get()
     require(app is not None and app.documents.count == 0, "Use an exclusive Fusion session with no open documents")
     process = process_info(os.getpid())

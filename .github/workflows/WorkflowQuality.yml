@@ -102,6 +102,11 @@ jobs:
           uv run --frozen python re/automation/SolidworksCensus.py
           --check-rectangle-edges "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
 
+      - name: Check SOLIDWORKS principal support evidence
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --check-support-evidence "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
       - name: Check SOLIDWORKS resolved-feature inch lengths
         run: >-
           uv run --frozen python re/automation/SolidworksCensus.py
@@ -117,15 +122,26 @@ jobs:
       - name: Verify pinned research corpus and command boundaries
         run: |
           uv run python re/automation/Corpus.py check --manifest re/automation/Corpus.json
-          uv run pytest tests/Research/CorpusFlowTests.py -q
+          uv run pytest tests/Research/CorpusFlowTests.py tests/Research/FusionCapturePlanTests.py -q
 
       - name: Verify pinned SOLIDWORKS research reader through process boundaries
         run: uv run --frozen python -m pytest tests/Research/Reader*Tests.py -q -s
 
       - name: Verify pinned Fusion research reader through process boundaries
+        env:
+          KIT_FUSION_CENSUS: ${{ runner.temp }}/FusionReaderCensus.json
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/FusionReader*Tests.py -q -s
+
+      - name: Publish Fusion research reader census
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: FusionReaderCensus-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/FusionReaderCensus.json
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Verify durable research controller through process boundaries
         run: >-
@@ -135,7 +151,7 @@ jobs:
       - name: Verify research session supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest tests/Research/Supervisor*Tests.py -q
+          python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py -q
 
   zizmor:
     if: >-

@@ -49,6 +49,7 @@ This example uses example paths:
 | `resources`          | No       | Counted controller resources and their capacity, 1–64, set at each start |
 | `stop_grace_seconds` | No       | Time between `SIGTERM` and `SIGKILL`, 0.1–60 seconds; default 10         |
 | `poll_seconds`       | No       | Time between supervision passes, 0.05–5 seconds; default 0.2             |
+| `max_log_bytes`      | No       | Retained bytes per output stream, 1 KiB–64 MiB; default 1 MiB            |
 
 The supervisor sets only the capacity of a configured resource.
 Mark a resource available with the controller command after you verify it.
@@ -119,6 +120,12 @@ The runner selects `completed`, `rejected`, `waiting_evidence`, `waiting_ci` or 
 `finish.json` becomes the controller result for every finished attempt.
 After the controller accepts it, the supervisor removes the session directory and the claim file.
 
+Each output stream retains its first `max_log_bytes` bytes.
+The supervisor continues draining additional output so a full log does not block the runner.
+Receipts record each stream's limit, observed bytes, retained bytes and dropped bytes.
+These counters measure drained output, not bytes a killed process never wrote.
+See [bounded session logs](../../Changes/Research/BoundedSessionLogs.md).
+
 ## Stops, pauses and stale leases
 
 The supervisor renews each lease at one third of `lease_seconds`.
@@ -179,8 +186,8 @@ Load only an adapter module that you trust, because the supervisor executes it.
 These limits are intentional for A08a:
 
 - Headroom, adaptive limits, calibration, memory stops and grouped small-file sessions belong to A08b.
-- Log files are not bounded yet; A08b bounds logs and process trees.
-- When a runner's process group leader exits after `SIGTERM`, child processes that ignore `SIGTERM` can remain.
+- Output files are bounded. Adaptive capacity, memory limits and grouped sessions remain A08b work.
+- Restart cleanup checks surviving process-group members after leader termination. Failed cleanup prevents releasing the job.
 - An expired A03 attempt still marks its resources unavailable, also for counted provider resources.
 - Application workers belong to A08c, and model runners belong to A10.
 

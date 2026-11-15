@@ -40,7 +40,7 @@ def CheckOutcomes(CensusPath: FilePath, TempPath: FilePath) -> None:
         else:
             Changed["observation"]["manifest_sha256"] = "0" * 64
         ChangedPath = TempPath / f"{CaseName}.json"
-        ChangedPath.write_text(JsonCodec.dumps(Changed))
+        _ = ChangedPath.write_text(JsonCodec.dumps(Changed))
         ChangedRun = Subprocess.run(
             [*CheckArgs, str(ChangedPath)],
             capture_output=True,

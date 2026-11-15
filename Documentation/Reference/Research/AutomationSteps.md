@@ -4,8 +4,9 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-**Current step: A04c — initial profile semantic qualification (active).**
-A05 — Fusion → neutral reader integration — is active under Stephen316.
+**Current runnable work: A04c semantic research, A05b outcome evidence and A08b worker limits.**
+A05a reader integration and A08a supervisor process gates passed at `c1c3fcce5b8b67373113ec44ad5d122a52bd7260`.
+A05 semantic qualification remains blocked independently.
 The current request authorizes remaining deterministic work in dependency order on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
 A04a–A04b and A03e are verified at code checkpoint `eba0ab488a6a00e2a31fd5ed8ab0bee564b371db`.
 Task branch: `feat/research-plan-followthrough-20261113`.
@@ -44,7 +45,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A05 | Fusion → neutral reader integration                    | A01, A02a                            | Stephen316 | active   | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
 | A06 | Semantic graph comparison                              | A02c, A04, A05                       | Unassigned | planned  | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
 | A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Unassigned | planned  | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
-| A08 | Controlled sample and trace workers                    | A02b, A03                            | Unassigned | planned  | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
+| A08 | Controlled sample and trace workers                    | A02b, A03                            | jdharcourt | active   | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
 | A09 | Scoped field maps and typed codec candidates           | A07                                  | Unassigned | planned  | Solved pad-then-pad family is reproduced without model calls, with independent proof and zero donor blocks                                                                                                                         |
 | A10 | Optional model investigation packets                   | A08a, A07, A09                       | Unassigned | planned  | Models-off operation, fixed two-step escalation, a failure log, repeat-failure start-step routing, validated responses, cost limits and false-proposal rejection verified                                                          |
 | A11 | Portable neutral → Fusion writer                       | A01, A06, A09                        | Unassigned | planned  | Qualified portable graphs generate native files without source replay, proprietary runtime or opaque replacements                                                                                                                  |
@@ -137,16 +138,16 @@ Its blocked status does not prevent A05 integration or A08a implementation.
 The updated workflow-quality job passed all three reader scenarios in 60.15 seconds with 58 decoded and zero rejected.
 The earlier sequential process harness took 172.97 seconds on `7f8a7425`; these are CI observations, not a universal speed guarantee.
 A05 is claimed separately below.
-A08a is active on task branch `feat/a08a-session-supervisor`; see the [supervisor guide](ResearchSupervisor.md).
-Its process gates have no remote CI result yet.
+A08a process gates passed at `c1c3fcce`; see the [supervisor guide](ResearchSupervisor.md).
+A08b bounded logging and restart cleanup now have new process coverage awaiting remote verification.
 
 ## A05 integration and semantic qualification
 
-| Child ID | Deliverable                                                        | Depends on                              | Owner      | Status  | Exit criterion or remaining evidence                                                                         |
-| -------- | ------------------------------------------------------------------ | --------------------------------------- | ---------- | ------- | ------------------------------------------------------------------------------------------------------------ |
-| A05a     | Pinned F3D/F3Z reader, run summary and typed neutral serialization | A01, A02a                               | Stephen316 | active  | Remote flow, pin, selection and 714-file corpus scenarios pass on Python 3.14                                |
-| A05b     | Exact per-file outcome gate                                        | A05a                                    | Stephen316 | planned | Record the remote census as expected outcomes and reject any unexplained change                              |
-| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked | Independently establish required P01–P05 semantics, frames, termination, constraints and dependency bindings |
+| Child ID | Deliverable                                                        | Depends on                              | Owner      | Status   | Exit criterion or remaining evidence                                                                                         |
+| -------- | ------------------------------------------------------------------ | --------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| A05a     | Pinned F3D/F3Z reader, run summary and typed neutral serialization | A01, A02a                               | Stephen316 | complete | Five remote scenarios passed at `c1c3fcce`: 714 inputs, 12 strict, 685 partial and 17 rejected                               |
+| A05b     | Exact per-file outcome gate                                        | A05a                                    | jdharcourt | active   | Collector and strict comparison added. Retain the first full remote report, pin its verified outcomes and enable enforcement |
+| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked  | Independently establish required P01–P05 semantics, frames, termination, constraints and dependency bindings                 |
 
 The [reader guide](FusionResearchReader.md) defines the command, its run summary and its research-only receipts.
 A05a uses the strict SDK reader first and accepts the partial legacy reader only with an explicit option.
@@ -162,8 +163,8 @@ They are not implemented by documenting the rows.
 
 | Child ID | Deliverable                                                                          | Depends on                                           | Owner      | Status   | Exit criterion                                                                                                                                                                |
 | -------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------- | ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A08a     | Supervisor, private session directories, pools, controller interface and A03 adapter | A03 technical substeps                               | Stephen316 | active   | Schema-3-to-4 migration, counted resources, pool-filtered claims, stale outcomes, restart fencing and alternate-adapter process gates                                         |
-| A08b     | Headroom, adaptive limits, calibration and grouped small-file sessions               | A08a                                                 | Unassigned | planned  | CPU/memory reserves, bounded logs/process trees, per-file leases, crash isolation and remote capacity scenarios                                                               |
+| A08a     | Supervisor, private session directories, pools, controller interface and A03 adapter | A03 technical substeps                               | Stephen316 | complete | Six supervisor process scenarios passed at `c1c3fcce`, alongside fifteen controller scenarios covering counted resources and pool claims                                      |
+| A08b     | Headroom, adaptive limits, calibration and grouped small-file sessions               | A08a                                                 | jdharcourt | active   | Bounded logs and restart group cleanup await new remote process evidence. CPU/memory reserves, adaptive capacity and grouped sessions remain open                             |
 | A08c     | Isolated application authoring, trace and acceptance workers                         | A02b, A08a                                           | Unassigned | planned  | Verify agent dispatch, recipe hashes, fresh-process readback and healthy controls. Recover interrupted jobs and park jobs whose worker is unavailable without operator action |
 | A08d     | Installed CLI compatibility, delivered separately in PR #119                         | A03, A04a, A05a, A08a source interfaces              | jdharcourt | checking | Separate CLI process checks against a pinned PR #94 checkout preserve artifacts, statuses, leases, and configured pools                                                       |
 | A08e     | Windows host support for the supervisor and application workers                      | A08a                                                 | Unassigned | planned  | Locks, process-tree stops, peak memory and restart fencing pass on a Windows runner; Linux and macOS behavior is unchanged                                                    |
@@ -240,6 +241,28 @@ A04a–A04b passed remote verification. A04c has independent SOLIDWORKS measurem
 At PR head `1bdb6743`, the remote discovery checks decoded all 25 parts. They verified six P01 edge counts and five XY endpoint comparisons, eight P03 boss direction cases, both P03 Front Plane directional Z bounds, both P04 equation bindings in eleven captures, and the resolved inch-length checks. The two expected Z intervals came from the independently measured boss centroids and depths. P01 and P03 YZ variants still fall back to the Front plane. [Discovery checks](https://github.com/TryUniCAD/Kit/actions/runs/43652490420/job/132623817084)
 The [P04 configuration-stream investigation](../../../re/solidworks/records/P04SketchResidence.md) locates both sketches' marker groups. The resolved feature owners still need a direct native reference.
 Later deterministic child steps remain available when their prerequisites pass.
+
+### Reconciled remote evidence and current limits
+
+[Workflow quality at `c1c3fcce`](https://github.com/TryUniCAD/Kit/actions/runs/43656612973/job/132636421153) passed five Fusion reader, fifteen controller and six supervisor process scenarios.
+The Fusion corpus contained 714 inputs: 12 strict decodes, 685 partial decodes and 17 rejections.
+These results close A05a and A08a's recorded process gates, not semantic qualification.
+A05b's original aggregate log contains no per-file outcome roster.
+Its new collector must retain a full remote report before an exact baseline can be pinned and enforced.
+
+A02d remains blocked: the implementation host refused connections to the documented Fusion bridge, and native UI initialization failed.
+The [fresh capture binding change](../../Changes/Research/FusionSketchBindingCapture.md) adds pinned observation-local constraint and dimension references.
+Its preparation checks run remotely. No native run or new qualified pair is claimed.
+P04 supporting-face identity and unsupported or unresolved bindings remain open.
+
+A04c now records [hashed principal support candidates](../../Changes/Research/PrincipalSupportEvidence.md).
+The new gate requires 25 measured plane identifiers, including three YZ variants.
+The records remain unqualified until native class ownership and the opaque tag domain are established.
+
+A08b adds [bounded logs and restart cleanup](../../Changes/Research/BoundedSessionLogs.md), with current-revision process evidence pending.
+It does not close adaptive capacity, memory enforcement, grouped jobs, application workers or Windows support.
+The two-week A15 pilot has not started and cannot be replaced by a short CI run.
+
 Formatting and source-link review do not replace the remote process checks.
 Remote CI, configured review and merge-group acceptance remain separate publication evidence.
 

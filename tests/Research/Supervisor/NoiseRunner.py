@@ -10,7 +10,7 @@ def WriteNoise() -> None:
         Content = b"x" * 2097152
         while Content:
             Content = Content[OsLayer.write(StreamId, Content) :]
-    ResultInfo = {
+    ResultInfo: dict[str, object] = {
         "outcome": "completed",
         "reason": "noise finished",
         "records": {"count": 1, "inputs": [], "tokenless": True},

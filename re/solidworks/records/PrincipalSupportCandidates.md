@@ -12,23 +12,23 @@ Read-only native container extraction on 2026-11-15 inspected the same 25 commit
 
 Each of the 25 `RectangleSketch` native feature spans contains exactly one candidate with this shape:
 
-| Relative offset | Width | Observed value or meaning | Confidence |
-| --- | --- | --- | --- |
-| +0 | 4 | `u32` generation stamp, 19000 | observed |
-| +4 | 4 | `u32` plane object id, 2 for Front or 4 for Right | candidate |
-| +8 | 4 | opaque `u32` tag, `0x6ad6426c` in these captures | not found |
-| +12 | 2 | null child token | observed |
-| +14 | 4 | `u32` axis code, `5 - plane id` | candidate |
-| +18 | 1 | basis-present flag, 0 or 1 | observed |
-| +19 | 72 when flagged | nine row-major doubles | observed |
+| Relative offset | Width           | Observed value or meaning                         | Confidence |
+| --------------- | --------------- | ------------------------------------------------- | ---------- |
+| +0              | 4               | `u32` generation stamp, 19000                     | observed   |
+| +4              | 4               | `u32` plane object id, 2 for Front or 4 for Right | candidate  |
+| +8              | 4               | opaque `u32` tag, `0x6ad6426c` in these captures  | not found  |
+| +12             | 2               | null child token                                  | observed   |
+| +14             | 4               | `u32` axis code, `5 - plane id`                   | candidate  |
+| +18             | 1               | basis-present flag, 0 or 1                        | observed   |
+| +19             | 72 when flagged | nine row-major doubles                            | observed   |
 
 The [earlier resolved-feature finding](Resolvedfeatures.md#2-mocomprefplane_c-run-1--a-conditional-basis-block-not-an-opaque-run) records the corresponding 18000-generation layout. Its named parent is `moCompRefPlane_c`, whose serializer calls `moCompFeature_c` as a base. The existing [feature-body findings](FeatureBody.md#2-mosketchchain_c--the-lead-run-is-closed) refute attributing the plane-id and basis fields to `moSketchChain_c`.
 
-| Recipe | Candidate stamp offset | Files | Front id / axis / flag | YZ id / axis / flag |
-| --- | ---: | ---: | --- | --- |
-| P01 | 11474 | 6 | 2 / 3 / 0 | 4 / 1 / 1 |
-| P03 | 11573 | 8 | 2 / 3 / 0 | 4 / 1 / 1 |
-| P04 rectangle | 5957 | 11 | 2 / 3 / 0 | 4 / 1 / 1 |
+| Recipe        | Candidate stamp offset | Files | Front id / axis / flag | YZ id / axis / flag |
+| ------------- | ---------------------: | ----: | ---------------------- | ------------------- |
+| P01           |                  11474 |     6 | 2 / 3 / 0              | 4 / 1 / 1           |
+| P03           |                  11573 |     8 | 2 / 3 / 0              | 4 / 1 / 1           |
+| P04 rectangle |                   5957 |    11 | 2 / 3 / 0              | 4 / 1 / 1           |
 
 P04 `CutSketch` has no candidate in its resolved native span. A plane-layout candidate must not replace its independently observed face support.
 
