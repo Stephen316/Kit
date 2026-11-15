@@ -1,7 +1,7 @@
 from dataclasses import replace as ReplaceData
 from pathlib import Path as FilePath
 
-from pytest import raises as RaisesError
+from pytest import mark as TestMark, raises as RaisesError
 
 from convert import convert as ConvertFile
 from convert import open_document as OpenDocument
@@ -47,8 +47,13 @@ def TestBoundWrite(TmpPath: FilePath) -> None:
     assert NeutralPath.read_bytes() == b"existing destination"
 
 
-def TestMissingLink(TmpPath: FilePath) -> None:
+@TestMark.parametrize("RelabelSource", (False, True))
+def TestMissingLink(TmpPath: FilePath, RelabelSource: bool) -> None:
     Original = OpenDocument(KSamplePath)
+    if RelabelSource:
+        Original = ReplaceData(
+            Original, source=ReplaceData(Original.source, format_id="interchange.json")
+        )
     Parameter, *Remaining = Original.parameters
     Marked = ReplaceData(
         Parameter,
@@ -70,8 +75,13 @@ def TestMissingLink(TmpPath: FilePath) -> None:
     assert TargetPath.read_bytes() == b"existing destination"
 
 
-def TestBadTarget(TmpPath: FilePath) -> None:
+@TestMark.parametrize("RelabelSource", (False, True))
+def TestBadTarget(TmpPath: FilePath, RelabelSource: bool) -> None:
     Original = OpenDocument(KSamplePath)
+    if RelabelSource:
+        Original = ReplaceData(
+            Original, source=ReplaceData(Original.source, format_id="interchange.json")
+        )
     Document = ReplaceData(
         Original,
         metadata={

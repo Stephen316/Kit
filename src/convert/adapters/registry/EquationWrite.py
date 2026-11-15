@@ -6,8 +6,6 @@ from interchange.document.models.DocumentWalk import WalkDocuments
 def CheckEquations(Document: CadDocument) -> None:
     Findings: set[str] = set()
     for PartValue in WalkDocuments(Document):
-        if PartValue.source.format_id.casefold() != "solidworks.sldprt":
-            continue
         Targets = PartValue.metadata.get(KUnresolvedEqTargets)
         if isinstance(Targets, tuple) and Targets:
             Findings.add(f"{PartValue.source.path}: {Targets!r}")

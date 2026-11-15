@@ -1,3 +1,4 @@
+from dataclasses import replace as ReplaceData
 from io import BytesIO as ByteStream, StringIO as TextStream
 from pathlib import Path as FilePath
 
@@ -21,10 +22,19 @@ from tests.convert.solidworks.core.NestedDocument import NestedDocument
     ),
 )
 @TestMark.parametrize("IsNested", (False, True))
+@TestMark.parametrize("RelabelSource", (False, True))
 def TestDirectWrite(
-    TmpPath: FilePath, GuardCase: str, ErrorText: str, IsNested: bool
+    TmpPath: FilePath,
+    GuardCase: str,
+    ErrorText: str,
+    IsNested: bool,
+    RelabelSource: bool,
 ) -> None:
     Original = OpenDocument(KSamplePath)
+    if RelabelSource:
+        Original = ReplaceData(
+            Original, source=ReplaceData(Original.source, format_id="interchange.json")
+        )
     Marked = MarkedDocument(Original, GuardCase)
     Document = NestedDocument(Original, Marked) if IsNested else Marked
     SourcePath = TmpPath / "Source.json"

@@ -8,7 +8,6 @@ def CheckInchWrite(Document: CadDocument) -> None:
         {
             f"{PartValue.source.path}: {Parameter.id}"
             for PartValue in WalkDocuments(Document)
-            if PartValue.source.format_id.casefold() == "solidworks.sldprt"
             for Parameter in PartValue.parameters
             if Parameter.attributes.get(KUnresolvedInchDimension) is True
         }

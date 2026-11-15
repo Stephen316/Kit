@@ -139,3 +139,5 @@ Rendered usability and full language conformance remain unverified.
 - [Neutral contract audit](NeutralContractAudit.md)
 - [Pinned corpus](PinnedCorpus.md)
 - [Parallel sessions](ParallelSessions.md)
+
+Unresolved equation and inch-dimension markers block public and direct interchange writes even after the source format is relabeled. See [retained semantic markers](../../Changes/Research/ReidentifiedWriteMarkers.md).
