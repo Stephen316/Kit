@@ -4,7 +4,8 @@ from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefini
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.resolved.ProfileEntry import ReadProfileHead
 from convert.adapters.solidworks.sketch.GeometryTypes import Coincidence, SketchGeometry
-from convert.adapters.solidworks.sketch.InlineSketch import ReadInlineMut
+from convert.adapters.solidworks.sketch.InlineSketch import ParseInlineMut
+from convert.adapters.solidworks.sketch.MemberSpans import MemberSpans
 
 
 # typed inline geometry belongs to the surrounding profile feature rather than the archive counter
@@ -18,6 +19,7 @@ class ProfileSketch:
     SketchIndex: int
     Geometry: SketchGeometry
     Coincidences: list[Coincidence]
+    Members: MemberSpans
 
 
 # the profile owns the inline sketch read from its exact saved class reference
@@ -32,9 +34,7 @@ def ReadProfileBody(Cursor: ArchiveCursor, Generation: int) -> ProfileSketch:
     _, _, SketchIndex = Cursor.TakePointer(
         ("sgSketch",), KClassRefKind, CompactOnly=True
     )
-    Geometry, Coincidences = ReadInlineMut(
-        Cursor, SketchOffset, SketchIndex, Generation
-    )
+    Inline = ParseInlineMut(Cursor, SketchOffset, SketchIndex, Generation)
     return ProfileSketch(
         NameValue,
         FeatureId,
@@ -42,6 +42,7 @@ def ReadProfileBody(Cursor: ArchiveCursor, Generation: int) -> ProfileSketch:
         Offset,
         SketchOffset,
         SketchIndex,
-        Geometry,
-        Coincidences,
+        Inline.Geometry,
+        Inline.Coincidences,
+        Inline.Members,
     )

@@ -166,7 +166,11 @@ from convert.adapters.solidworks.core.Native import (
     decode_native_model as DecodeNativeModel,
     operation_axis_subelement as OperationAxisSubElem,
 )
-from convert.adapters.solidworks.core.OrdinaryRead import KArchiveSupport, ReadRectSupport
+from convert.adapters.solidworks.core.OrdinaryRead import (
+    KArchiveSupport,
+    ReadRectSupport,
+)
+from convert.adapters.solidworks.core.RectProjection import ProjectRect
 from interchange.geometry.models.GeometryTypes import KGeometryTypes
 from convert.adapters.solidworks.container.Parasolid import (
     ParasolidPayload,
@@ -2564,7 +2568,7 @@ def SketchA(Sketch: NativeSketch, ParamIds: set[str]) -> SketchData:
             if ParamId in ParamIds
         )
     )
-    return SketchData(
+    Neutral = SketchData(
         id=SketchId(Sketch.object_id),
         name=Sketch.name,
         support_plane_id=PlaneId(Sketch.support_plane_id),
@@ -2584,6 +2588,7 @@ def SketchA(Sketch: NativeSketch, ParamIds: set[str]) -> SketchData:
             }
         ),
     )
+    return ProjectRect(Neutral, Sketch.rectangle, Sketch.native_stream)
 
 
 # this definition exists because point and line markers share coordinate resolution

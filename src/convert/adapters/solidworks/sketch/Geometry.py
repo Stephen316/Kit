@@ -1,3 +1,5 @@
+from functools import partial as Partial
+
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.sketch.Cursor import SketchArchive
 from convert.adapters.solidworks.sketch.GeometryTypes import (
@@ -10,6 +12,7 @@ from convert.adapters.solidworks.sketch.GeometryTypes import (
     SketchRelation,
 )
 from convert.adapters.solidworks.sketch.Members import ReadLineItem, ReadPointMut
+from convert.adapters.solidworks.sketch.MemberSpans import MemberSpans, ReadMemberRows
 from convert.adapters.solidworks.sketch.Relations import ReadDims, ReadRelations
 
 # the logical relation type selects a sketch local axis only after binding its line
@@ -117,14 +120,28 @@ def BindGeometry(
     }
 
 
-# nested sketches retain the archive allocations while binding only their own operands
-def ReadGeometryMut(Cursor: SketchArchive, ObjectIndex: int) -> SketchGeometry:
+# the member boundaries survive the geometry handoff to the neutral projection
+def ReadGeoSpansMut(
+    Cursor: SketchArchive, ObjectIndex: int
+) -> tuple[SketchGeometry, MemberSpans]:
     Start = Cursor.Offset
     Cursor.Dimensions.clear()
     Cursor.PointReferences.clear()
     PointCount = Cursor.ReadCount()
-    Points = [ReadPointMut(Cursor) for _ in range(PointCount)]
-    Lines = [ReadLineItem(Cursor, PointCount) for _ in range(Cursor.ReadCount())]
+    Points, PointSpans = ReadMemberRows(
+        Cursor, PointCount, Partial(ReadPointMut, Cursor)
+    )
+    Lines, LineSpans = ReadMemberRows(
+        Cursor, Cursor.ReadCount(), Partial(ReadLineItem, Cursor, PointCount)
+    )
     ReadDims(Cursor)
     Relations = ReadRelations(Cursor)
-    return BindGeometry(Cursor, ObjectIndex, Start, Points, Lines, Relations)
+    return BindGeometry(
+        Cursor, ObjectIndex, Start, Points, Lines, Relations
+    ), MemberSpans(PointSpans, LineSpans)
+
+
+# research callers can keep their established geometry report shape
+def ReadGeometryMut(Cursor: SketchArchive, ObjectIndex: int) -> SketchGeometry:
+    Geometry, _ = ReadGeoSpansMut(Cursor, ObjectIndex)
+    return Geometry

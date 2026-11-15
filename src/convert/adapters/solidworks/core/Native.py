@@ -10,7 +10,7 @@ import math as MathValue
 import re as RegexLib
 import struct as Struct
 from types import MappingProxyType
-from typing import Mapping, Sequence
+from typing import TYPE_CHECKING, Mapping, Sequence
 import xml.etree.ElementTree as XmlTree  # noqa: DUO107
 from interchange import (
     BooleanOperation as BoolOperation,
@@ -46,6 +46,9 @@ from convert.adapters.solidworks.resolved.Core import (
     circle_radius_mm as CircleRadiusMm,
     locate_features as LocateFeatures,
 )
+
+if TYPE_CHECKING:
+    from convert.adapters.solidworks.resolved.RectanglePart import RectanglePart
 
 # this binding exists because shared behavior needs one stable value
 KRadiansToDegrees = 180.0 / MathValue.pi
@@ -1110,6 +1113,7 @@ class NativeSketch:
     support_plane: NativeSketchPlane | None = None
     support_source: str = KRefSupportSource
     unframed_support_plane_id: int | None = None
+    rectangle: RectanglePart | None = None
 
 
 # this definition exists because focused behavior needs one stable owner

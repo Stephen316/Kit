@@ -1,3 +1,5 @@
+from dataclasses import dataclass as Dataclass
+
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
@@ -9,9 +11,18 @@ from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.ArchiveTags import ResolveMapType
 from convert.adapters.solidworks.sketch.Cursor import SketchArchive
-from convert.adapters.solidworks.sketch.Geometry import ReadGeometryMut
+from convert.adapters.solidworks.sketch.Geometry import ReadGeoSpansMut
 from convert.adapters.solidworks.sketch.GeometryTypes import Coincidence, SketchGeometry
 from convert.adapters.solidworks.sketch.SketchTail import ReadSketchTail
+from convert.adapters.solidworks.sketch.MemberSpans import MemberSpans
+
+
+# a complete read can carry typed member provenance without changing report schemas
+@Dataclass(frozen=True, slots=True)
+class InlineRead:
+    Geometry: SketchGeometry
+    Coincidences: list[Coincidence]
+    Members: MemberSpans
 
 
 # inline decoding needs the just allocated sketch that actually occupies this body
@@ -35,9 +46,9 @@ def CheckInline(Parent: ArchiveCursor, TagOffset: int, ObjectIndex: int) -> None
 
 
 # a failed body must leave the enclosing archive usable at its original snapshot
-def ReadInlineMut(
+def ParseInlineMut(
     Parent: ArchiveCursor, TagOffset: int, ObjectIndex: int, Generation: int | None
-) -> tuple[SketchGeometry, list[Coincidence]]:
+) -> InlineRead:
     RequireArch(Generation, KConfigGen, "supported inline sketch generation")
     CheckInline(Parent, TagOffset, ObjectIndex)
     Cursor = SketchArchive(
@@ -52,7 +63,7 @@ def ReadInlineMut(
     if Parent.PointerEvents is not None:
         Cursor.PointerEvents = []
     try:
-        Geometry = ReadGeometryMut(Cursor, ObjectIndex)
+        Geometry, Members = ReadGeoSpansMut(Cursor, ObjectIndex)
         Coincidences = ReadSketchTail(Cursor, Geometry)
     except KeyError as Error:
         raise ArchiveError("unbound inline sketch operand") from Error
@@ -61,4 +72,12 @@ def ReadInlineMut(
     Parent.Objects.update(Cursor.Objects)
     if Parent.PointerEvents is not None and Cursor.PointerEvents is not None:
         Parent.PointerEvents.extend(Cursor.PointerEvents)
-    return Geometry, Coincidences
+    return InlineRead(Geometry, Coincidences, Members)
+
+
+# callers needing geometry alone retain their established return fields
+def ReadInlineMut(
+    Parent: ArchiveCursor, TagOffset: int, ObjectIndex: int, Generation: int | None
+) -> tuple[SketchGeometry, list[Coincidence]]:
+    Result = ParseInlineMut(Parent, TagOffset, ObjectIndex, Generation)
+    return Result.Geometry, Result.Coincidences

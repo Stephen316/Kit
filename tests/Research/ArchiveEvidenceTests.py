@@ -12,7 +12,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumDocument import Capability
 from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import PointGeometry
+from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
 from interchange.geometry.models.Selection import Selection
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.VectorSpace import SpaceVector
@@ -92,6 +92,94 @@ def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -
     assert ActualDigest == ReportDigest, (ScriptPath, Options, ActualDigest)
 
 
+# the four public loop edges must keep their identities and use their actual saved axis relations
+def CheckSwAxes(SketchValue: Sketch, Resolved: bytes) -> None:
+    LoopValue = tuple(f"{SketchValue.id}:profile:0:edge:{Index}" for Index in range(4))
+    assert SketchValue.closed_profile_entity_ids == (LoopValue,)
+    assert len(SketchValue.parameter_ids) == 2
+    Entities = {Entity.id: Entity for Entity in SketchValue.entities}
+    AxisRules = [
+        RuleValue
+        for RuleValue in SketchValue.constraints
+        if RuleValue.kind in ("horizontal", "vertical")
+    ]
+    Targets: set[str] = set()
+    for RuleValue in AxisRules:
+        (Target,) = RuleValue.references
+        Targets.add(Target.entity_id)
+        EdgeValue = Entities[Target.entity_id]
+        assert Target.point == "" and isinstance(EdgeValue.geometry, LineGeometry)
+        assert EdgeValue.provenance is not None and RuleValue.provenance is not None
+        (EdgeSpan,) = EdgeValue.provenance.spans
+        (RuleSpan,) = RuleValue.provenance.spans
+        assert EdgeSpan.record_kind == "sketch-profile-line"
+        assert RuleSpan.record_kind == "sketch-axis-relation"
+        assert (
+            EdgeSpan.stream == RuleSpan.stream == "Contents/Config-0-ResolvedFeatures"
+        )
+        NativeEdge = int.from_bytes(
+            Resolved[EdgeSpan.offset + 6 : EdgeSpan.offset + 10], "little", signed=True
+        )
+        NativeCode = int.from_bytes(
+            Resolved[RuleSpan.offset + 29 : RuleSpan.offset + 33], "little", signed=True
+        )
+        assert (
+            NativeEdge
+            == EdgeValue.attributes["native_segment_id"]
+            == RuleValue.attributes["native_segment_id"]
+        )
+        assert (
+            NativeCode
+            == RuleValue.attributes["native_code"]
+            == (4 if RuleValue.kind == "horizontal" else 5)
+        )
+    assert len(AxisRules) == 4 and Targets == set(LoopValue)
+
+
+# the archived coincidence must connect the original proxy identity to an endpoint of the preserved loop
+def CheckSwOrigin(SketchValue: Sketch, Resolved: bytes) -> None:
+    (Saved,) = [
+        RuleValue
+        for RuleValue in SketchValue.constraints
+        if RuleValue.attributes.get("native_code") == 9
+    ]
+    assert Saved.kind == "coincident" and Saved.provenance is not None
+    (RuleSpan,) = Saved.provenance.spans
+    assert RuleSpan.stream == "Contents/Config-0-ResolvedFeatures"
+    assert RuleSpan.record_kind == "sketch-origin-coincidence"
+    assert (
+        int.from_bytes(
+            Resolved[RuleSpan.offset + 31 : RuleSpan.offset + 35], "little", signed=True
+        )
+        == 9
+    )
+    ProxyRef, CornerRef = Saved.references
+    assert ProxyRef.point == "" and CornerRef.point == "start"
+    Entities = {Entity.id: Entity for Entity in SketchValue.entities}
+    Proxy, Corner = Entities[ProxyRef.entity_id], Entities[CornerRef.entity_id]
+    assert (
+        Proxy.fixed and Proxy.construction and isinstance(Proxy.geometry, PointGeometry)
+    )
+    assert (
+        isinstance(Corner.geometry, LineGeometry)
+        and Corner.geometry.start == Proxy.geometry.point
+    )
+    assert (
+        Proxy.attributes["native_origin_feature_id"]
+        == Saved.attributes["native_origin_feature_id"]
+    )
+    assert Proxy.provenance is not None
+    (ProxySpan,) = Proxy.provenance.spans
+    assert (
+        ProxySpan.record_kind == "sketch-point" and ProxySpan.stream == RuleSpan.stream
+    )
+    assert (
+        ProxySpan.offset
+        <= int(Proxy.id.rsplit(":", 1)[-1])
+        < ProxySpan.offset + ProxySpan.length
+    )
+
+
 # public support must use the saved reference even when the front plane occurs first
 @Pytest.mark.parametrize(
     ("Family", "Capture", "Variant"),
@@ -151,10 +239,11 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
         and SupportSpan.length == 4
     )
     Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
-    Stored = Archive.require(SupportSpan.stream)[
-        SupportSpan.offset : SupportSpan.offset + SupportSpan.length
-    ]
+    Resolved = Archive.require(SupportSpan.stream)
+    Stored = Resolved[SupportSpan.offset : SupportSpan.offset + SupportSpan.length]
     assert int.from_bytes(Stored, "little", signed=True) == DatumId
+    CheckSwAxes(Sketch, Resolved)
+    CheckSwOrigin(Sketch, Resolved)
 
 
 # native depth and signed direction must survive display unit changes and the public projection

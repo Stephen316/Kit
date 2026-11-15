@@ -69,6 +69,7 @@ def AttachRectPlane(Model: NativeModel, Parsed: RectanglePart) -> NativeModel:
         support_plane=TypedSupport,
         support_source=KArchiveSupport,
         unframed_support_plane_id=None,
+        rectangle=Parsed,
     )
     Planes = tuple(
         UpdateDatum(Plane, Parsed) if Plane is SavedPlane else Plane
