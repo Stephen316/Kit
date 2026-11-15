@@ -24,6 +24,6 @@ Each body has a framed local component, a face record with flags 512, and five n
 
 The walk uses observed compact slots and earlier class declarations for this exact archive. The full incoming class map and the link from profile slot 350 to the separately named sketch remain unverified. The result records candidate producer ownership and leaves the native Auto-select value empty.
 
-## Control contrast
+## Pinned P04 control
 
 The P04 through-all stream closes with one scoped body and the same saved feature-scope word `1`. Its typed end specification reaches a null depth slot. The provisional automatic archive demonstrates two serialized scope body entries under the same scope word. Interpreting the persistence of Auto-select still requires independently saved automatic and explicit A+B controls observed after reopening.
