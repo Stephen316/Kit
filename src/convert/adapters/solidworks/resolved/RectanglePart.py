@@ -10,7 +10,7 @@ from convert.adapters.solidworks.container.PlaneBasis import (
 )
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
 from convert.adapters.solidworks.resolved.ContourTrim import ReadRectEnd, ReadRectTrim
-from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
+from convert.adapters.solidworks.resolved.OriginProfile import OriginProfile, ReadOrigin
 from convert.adapters.solidworks.resolved.PrincipalDatum import PrincipalDatum
 from convert.adapters.solidworks.resolved.PrincipalRef import PrincipalRef
 from convert.adapters.solidworks.resolved.ProfilePlane import (
@@ -32,6 +32,7 @@ class RectanglePart:
     Datum: PrincipalDatum
     Reference: PrincipalRef
     Directions: KSavedBasis
+    Origin: OriginProfile
 
 
 # the datum identity and frame must both agree with the archived sketch attachment
@@ -86,4 +87,4 @@ def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> Rectang
         int(HasAtom),
     )
     _ = ReadRectEnd(Cursor, HasAtom)
-    return RectanglePart(Profile, Datum, Reference, Directions)
+    return RectanglePart(Profile, Datum, Reference, Directions, Origin)
