@@ -67,17 +67,18 @@ def RecordResult(
 ) -> None:
     if Operation == "rotate-owner" and Result.returncode == 0:
         Owner = Command[Command.index("--new-owner") + 1]
+        OwnerDigest = Hashing.sha256(Owner.encode("ascii")).hexdigest()
         Stage = GateRoot / f".Owner-{OwnerPid}.json"
         _ = Stage.write_text(
             JsonCodec.dumps(
                 {
                     "pid": OwnerPid,
-                    "digest": Hashing.sha256(Owner.encode("ascii")).hexdigest(),
+                    "digest": OwnerDigest,
                 }
             ),
             encoding="utf-8",
         )
-        OsLayer.replace(Stage, GateRoot / "Owner.json")
+        OsLayer.rename(Stage, GateRoot / f"Owner-{OwnerDigest}.json")
     if IsHeld:
         _ = (GateRoot / "Result.json").write_text(
             JsonCodec.dumps(

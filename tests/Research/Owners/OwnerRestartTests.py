@@ -7,7 +7,7 @@ from tests.Research.Owners.InstallGate import InstallGate
 from tests.Research.Owners.CheckOwnerTree import CheckOwnerTree
 from tests.Research.Owners.CloseGate import CloseGate
 from tests.Research.Owners.KillOwner import KillOwner
-from tests.Research.Owners.OwnerBarriers import WaitCompleted, WaitRecord
+from tests.Research.Owners.OwnerBarriers import WaitCompleted, WaitOwner, WaitRecord
 from tests.Research.Owners.OwnerRun import OwnerRun
 from tests.Research.Supervisor.Grouping.BatchHost import MakeBatchHost
 from tests.Research.Supervisor.Grouping.BatchRecords import BatchJobs
@@ -25,14 +25,12 @@ def CheckOwnerBoot(Operation: str) -> None:
             with OwnerRun(Harness) as First:
                 HeldInfo = WaitRecord(GateRoot / "Held.json")
                 First.ProcessId = int(str(HeldInfo["supervisor_pid"]))
-                OldOwner = WaitRecord(GateRoot / "Owner.json")
+                OldOwner = WaitOwner(GateRoot)
                 CheckOwnerTree(Harness, HeldInfo, OldOwner)
                 KillOwner(First.ProcessId)
                 _ = First.Process.communicate(timeout=15)
                 with OwnerRun(Harness) as Second:
-                    NewOwner = WaitRecord(
-                        GateRoot / "Owner.json", str(OldOwner["digest"])
-                    )
+                    NewOwner = WaitOwner(GateRoot, str(OldOwner["digest"]))
                     Second.ProcessId = int(str(NewOwner["pid"]))
                     assert NewOwner["pid"] != OldOwner["pid"]
                     _ = (GateRoot / "Release").write_text("release", encoding="ascii")

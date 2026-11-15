@@ -6,7 +6,7 @@ from tests.Research.SupervisorClient import SessionHost
 
 
 # restart checks need a fresh durable observation before accepting that an ownership phase has changed
-def WaitRecord(RecordPath: FilePath, OldDigest: str = "") -> dict[str, object]:
+def WaitRecord(RecordPath: FilePath) -> dict[str, object]:
     Until = TimeClock.monotonic() + 45
     while TimeClock.monotonic() < Until:
         if RecordPath.is_file():
@@ -16,10 +16,27 @@ def WaitRecord(RecordPath: FilePath, OldDigest: str = "") -> dict[str, object]:
                 )
             except ValueError:
                 continue
-            if not OldDigest or Record.get("digest") != OldDigest:
-                return Record
+            return Record
         TimeClock.sleep(0.02)
     raise AssertionError(f"owner process barrier did not arrive: {RecordPath.name}")
+
+
+# immutable owner publications keep replacement registration independent of the old record reader
+def WaitOwner(GateRoot: FilePath, OldDigest: str = "") -> dict[str, object]:
+    Until = TimeClock.monotonic() + 45
+    while TimeClock.monotonic() < Until:
+        Candidates = [
+            RecordPath
+            for RecordPath in GateRoot.glob("Owner-*.json")
+            if RecordPath.name != f"Owner-{OldDigest}.json"
+        ]
+        if Candidates:
+            (RecordPath,) = Candidates
+            Record: dict[str, object] = JsonCodec.loads(RecordPath.read_bytes())
+            assert RecordPath.name == f"Owner-{Record['digest']}.json"
+            return Record
+        TimeClock.sleep(0.02)
+    raise AssertionError("replacement owner process barrier did not arrive")
 
 
 # replacement execution must be observed through durable job states before checking the obsolete process
