@@ -186,6 +186,7 @@ class Supervisor:
             path = session.directory / "finish.json"
             write_private(path, payload)
             stale = self.adapter.FinishJob(session.claim_path, outcome, path, reason)["stale"]
+            self.budget.record(session.spec, session.name, outcome, stale, payload["receipt"], self.report)
             finished = self.counts["finished"]
             finished[outcome] = finished.get(outcome, 0) + 1
         self.report("finished", session, {"outcome": None if session.stop_reason == "stale_lease" else outcome, "reason": reason, "stale": stale, "receipt": payload["receipt"]})
