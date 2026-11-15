@@ -10,9 +10,6 @@ from convert.Security.PathBoundary import ResolveInput
 KRootInfo = Pathlib.Path(__file__).resolve().parents[4]
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
-KVendored = KRootInfo / "re/binaries/sldmfcu.dll"
-
-# needed to keep reverse engineering responsibilities isolated and maintainable
 KManifest = KRootInfo / "re/binaries/Manifest.json"
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
@@ -41,8 +38,6 @@ KSigStride = 12
 def HostDll(Explicit: str | None) -> Pathlib.Path:
     if Explicit:
         return ResolveInput(Explicit)
-    if KVendored.is_file():
-        return KVendored
     return KInstalled
 
 

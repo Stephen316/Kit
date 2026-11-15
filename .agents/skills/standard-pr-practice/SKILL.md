@@ -109,6 +109,15 @@ Use each configured reviewer's own review and status indicator; do not add a dup
 
 The repository-root `re/` workspace remains exempt from code standards and unit-test requirements. Git isolation and preservation of user-owned work still apply. Prefer Python for backend work and React for frontend work. Preserve the repository MIT notices. New skill frontmatter uses `license: MIT`.
 
+Do not stage, commit, or distribute proprietary vendor software, including
+SOLIDWORKS DLLs, interop assemblies, executables, installers, SDK code, symbols,
+license files, or decompiled vendor listings. Renamed and compressed copies are
+also prohibited. Keep licensed software outside repository checkouts. CAD files,
+documents, independently authored tools, and recorded format knowledge remain
+permitted. The research exemption does not waive this restriction. Read the
+[research artifact policy](../../../Documentation/Reference/Research/ResearchArtifacts.md)
+before adding research inputs. Never force-add an ignored vendor artifact.
+
 ## Maintained documentation
 
 Use [the documentation writing rules](../../../Documentation/Standards/WritingRules.md)

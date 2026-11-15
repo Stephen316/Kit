@@ -13,7 +13,7 @@ notice policy. The pinned Git commit preserves the original files, paths,
 modes, and bytes.
 [Manifest.json](Manifest.json) records the original Git blob, SHA-256, size, and
 current location for every file, pinned to source commit
-`bc47bd1a43916f664a11e3be9698b36ec723d8d2`. Remote CI verifies the complete source
+`d0353a1e1a996522408634edb065c0464680f14f`. Remote CI verifies the complete source
 inventory against that commit and checks the remaining readable copies.
 
 ## Precedence and path resolution

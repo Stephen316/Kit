@@ -5,8 +5,8 @@ expects, the order, type and width of every field, the legal domain of every key
 absent or illegal values, and which fields it recomputes. The loader is the specification; the file
 is only one encoding of it.
 
-**Inputs:** the stream inventory from phase A, the vendor install (or the tracked DLLs in
-`re/binaries/`), REA, Ghidra headless, a debugger.
+**Inputs:** the stream inventory from phase A, an external licensed vendor install,
+REA, Ghidra headless, a debugger.
 **Outputs:** a class → serializer map, a per-key table (type, range, default, validator, fixups,
 version gate), named and annotated analysis databases, and recorded unknowns.
 
@@ -54,7 +54,7 @@ archive module, and one or more model modules.
 ## 2. Open them in REA
 
 ```text
-open_binary { "path": "/abs/re/binaries/sldmodu.dll", "provider_id": "ghidra",
+open_binary { "path": "/abs/install/sldmodu.dll", "provider_id": "ghidra",
               "snapshot_path": "/abs/.rescratch/rea/sldmodu.snap" }
 binary_overview {}
 ```

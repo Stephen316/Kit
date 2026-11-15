@@ -101,4 +101,4 @@ See [release publishing](Documentation/Changes/CommitReleases.md) for the releas
 Kit uses the [MIT License](LICENSE).
 Copyright (c) 2026 Parashell, Odin Glynn-Martin, Stephen Harcourt.
 Third-party materials retain their own licenses.
-See the [vendor binary notice](re/binaries/README.md).
+See the [research artifact policy](Documentation/Reference/Research/ResearchArtifacts.md).

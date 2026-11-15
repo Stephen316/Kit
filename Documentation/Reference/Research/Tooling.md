@@ -13,10 +13,11 @@ They are not production conversion dependencies.
 | `re/tooling/ghidra/`  | Static analysis and decompilation      | Exact binary hash and analysis project |
 | `re/tooling/windbg/`  | Runtime traces                         | Compatible debugger and vendor build   |
 | `re/tooling/harness/` | Vendor measurement and sample creation | Isolated licensed environment          |
-| `re/binaries/`        | Research binary evidence               | License and provenance records         |
+| `re/binaries/`        | External input verification            | Licensed installation and manifest     |
 
 Read each tool's source and setup guide before executing it.
 Do not assume that historical command paths match a new machine.
+Keep vendor software outside repository checkouts under the [research artifact policy](ResearchArtifacts.md).
 
 ## Ghidra workflow
 

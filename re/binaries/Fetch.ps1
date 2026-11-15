@@ -2,6 +2,7 @@
 [CmdletBinding()]
 param(
     [string]$InstallRoot,
+    [string]$DestinationRoot,
     [switch]$VerifyOnly
 )
 
@@ -18,14 +19,33 @@ $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
 
 if (-not $InstallRoot) { $InstallRoot = $manifest.install_root }
 
+if (-not $DestinationRoot) {
+    if (-not $VerifyOnly) {
+        throw "Pass -DestinationRoot outside the repository, or use -VerifyOnly to check the licensed install directly."
+    }
+    $DestinationRoot = $InstallRoot
+}
+
+$repositoryRoot = [System.IO.Path]::GetFullPath((Join-Path $here '..\..')).TrimEnd([char[]]'\/')
+$targetRoot = [System.IO.Path]::GetFullPath($DestinationRoot).TrimEnd([char[]]'\/')
+$repositoryPrefix = $repositoryRoot + [System.IO.Path]::DirectorySeparatorChar
+if ($targetRoot.Equals($repositoryRoot, [System.StringComparison]::OrdinalIgnoreCase) -or
+    $targetRoot.StartsWith($repositoryPrefix, [System.StringComparison]::OrdinalIgnoreCase)) {
+    throw "Vendor software must stay outside repository checkouts."
+}
+
 if (-not $VerifyOnly -and -not (Test-Path -LiteralPath $InstallRoot)) {
     throw "SOLIDWORKS install not found at '$InstallRoot'. Pass -InstallRoot <path> to point at a licensed install."
+}
+
+if (-not $VerifyOnly) {
+    New-Item -ItemType Directory -Path $targetRoot -Force | Out-Null
 }
 
 $failures = 0
 
 foreach ($entry in $manifest.binaries) {
-    $target = Join-Path $here $entry.name
+    $target = Join-Path $targetRoot $entry.name
     $source = Join-Path $InstallRoot $entry.name
 
     if (-not $VerifyOnly) {
