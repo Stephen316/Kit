@@ -35,3 +35,20 @@ The values come from binary doubles in metres. The inch-display control retained
 Seven further empty u16-count groups precede the typed `suObList` read at `sldmodu+0x14611a1`. In baseline A, the list tag starts at byte 6,416. The short `su_CObList` count is four. The first `moDisplayDistanceDim_c` tag starts at byte 6,432. Its matched slot 5 is `0x16eee40`, which first calls the display dimension base at `0x16ea130`. The modern load branches in that base are the next offline boundary. The older wildcard runs in the [layout table](../../data/Layouts/ClassLayouts.json) do not qualify the version-19000 display dimensions. The later sketch fields and traversal into the second sketch remain open in the offline walk.
 
 Reproduce the partial walk with the scratch `P04SketchWalk19000.py` and the prior files described in the [root atom walk](P04AtomWalk.md#reproduce). Start from the first allocated sketch body, replay the matching archive calls above, and keep one typed map when taking each inline or object branch. Confirm all eleven outputs, then continue with the typed list, display-dimension base and remaining sketch groups. Validate the final object boundary and map count against the independent native measurements. The baseline A sketch body ends at byte 12,532 with next map index 147, and YZ ends at 12,530 with the same next index.
+
+## Native object calls in the baseline A sketches
+
+A fresh owned session opened the read-only baseline A capture on build `34.4.1.1011`, closed the capture normally, and exited with its source hash unchanged. The observed `Contents/Config-0` buffer is 42,879 bytes with SHA-256 `e40cdd1e562a9e501a0a29ac252745d5c5cac6a7265ef924ccef4f5d078b34ab`. The matching installed image pins are in the [root map inputs](P04ArchiveWalk.md#inputs).
+
+The two `sgSketch` serializer hooks at `sldmodu+0x144f790` and `0x1457e80` match the archive buffer and sketch object identity at entry and exit. Entry verifies that the native load map's most recent slot holds the same object pointer passed to the serializer. Between those hooks, the breakpoint at the ordinary `su_CArchive::ReadObject` entry `swccu+0xa550` records only calls on the selected archive object and same buffer within the active sketch span. The object hook is disabled between sketches. All hooks are disabled at the second exit.
+
+| Sketch object | Body interval | Next map index at entry and exit | Null reads | Class definitions | Class references | Existing object references |
+| ---: | --- | --- | ---: | ---: | ---: | ---: |
+| 74 | `[3786,12532)` | 75 to 147 | 153 | 14 | 44 | 5 |
+| 155 | `[12923,18277)` | 156 to 200 | 102 | 0 | 44 | 3 |
+
+All 365 object call positions match the observed buffer tags. The offline prefix predicts all 92 positions in the first sketch before the display list. A class definition advances the map by two, and an existing class reference advances it by one. Null and existing-object references leave the counter unchanged. Each transition agrees with the next native call and the final map count. In the first sketch's remaining span, the new definitions are `suObList` at byte 6,416 (class/object 123/124), `moDisplayDistanceDim_c` at 6,432 (125/126), `moFavoriteHandle_c` at 7,463 (128/129), and `moSketchRegion_c` at 12,428 (140/141).
+
+The interval `[12532,12923)` lies outside the recorded sketch windows. The native index advances from 147 to 156 across that interval, with the final allocation materializing the second sketch at index 155. Eight preceding map slots still require an intervening source walk. The nested calls witness positions and allocations. The offline reader still needs the versioned scalar, string, and array framing between them.
+
+The scratch verifier rejects a mismatched full archive digest, unexpected span or map boundaries, and object tokens that differ from the observed buffer. Its normalized `SketchObjectsSummary.json` records the capture hash, object call offsets, map counters, token words and module-relative caller offsets. The verified normalized file in the baseline A scratch trace has SHA-256 `d724ad7b0c0d7daed50adf96028c08a3f83e5afde5e841ca25506cd6baf3939a`.
