@@ -11,6 +11,9 @@ KPlanePickHelper = "5FBE538E-139B-46D4-BCAF-CC796D1E1F78"
 # bounded secondary proxy records share the same type across selection roles
 KProxySecondary = "2DF7DA30-A4E4-4260-AFD1-D9C7154CB44B"
 
+# the bounded sketch face support selects four contexts through this proxy mode
+KSketchFaceMode = 129
+
 
 # identical trailer framing preserves exact reciprocal links in both selector roles
 def ReadPickFooter(
@@ -20,7 +23,9 @@ def ReadPickFooter(
     *,
     ModeCode: int = 5,
 ) -> tuple[int, int]:
-    Marker = KCutPickMarker if ModeCode == KCutTargetMode else b"\1\1\0\0"
+    Marker = (
+        KCutPickMarker if ModeCode in (KCutTargetMode, KSketchFaceMode) else b"\1\1\0\0"
+    )
     if (
         Cursor.ReadWord() != 0
         or Cursor.ReadWord() != ModeCode

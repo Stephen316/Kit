@@ -226,6 +226,21 @@ KCutVariants = (
     "termination-through-all",
 )
 
+# saved edge allocations vary across edits so each archive supplies its own expected source start
+KSupportEdgeStarts = {
+    "baseline-a": 504,
+    "baseline-b": 552,
+    "edit-width_mm-44": 627,
+    "edit-height_mm-24": 777,
+    "edit-depth_mm-12": 924,
+    "edit-cut_width_mm-12": 1043,
+    "edit-cut_height_mm-10": 1137,
+    "edit-cut_depth_mm-5": 1229,
+    "units-inch": 1318,
+    "plane-yz": 504,
+    "termination-through-all": 512,
+}
+
 
 # cut archive checks share the normal adapter boundary and exact source location
 def OpenCutArchive(Variant: str) -> CadDocument:
@@ -269,6 +284,38 @@ def CheckCutTarget(Variant: str) -> None:
     assert Target.attributes["fusion.support_object_id"] == 451
     assert Target.attributes["fusion.recipe_object_id"] == 453
     assert Target.attributes["fusion.context_object_ids"] == ()
+
+
+# a coincident cached frame must still carry the separately authored face recipe instead of a datum
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckCutSupport(Variant: str) -> None:
+    Document = OpenCutArchive(Variant)
+    (Sketch,) = [Value for Value in Document.sketches if Value.name == "CutSketch"]
+    (Plane,) = [
+        Value
+        for Value in Document.support_planes
+        if Value.id == Sketch.support_plane_id
+    ]
+    (Support,) = [
+        Value for Value in Document.selections if Value.id == Plane.support_selection_id
+    ]
+    assert Plane.attributes["fusion.native_support_resolved"] is False
+    assert "fusion.native_support_object_id" not in Plane.attributes
+    assert Plane.attributes["fusion.native_support_kind"] == "historical_face_recipe"
+    assert Support.path == ()
+    assert Support.query["kind"] == "historical_face_recipe"
+    assert Support.query["role"] == "sketch_support"
+    assert Support.query["native_body_id"] == 309
+    assert Support.query["native_anchor_id"] == 315
+    assert Support.query["native_source_id"] == 277
+    assert Support.query["native_face_name"] == "2"
+    assert Support.attributes["fusion.proxy_object_id"] == 347
+    assert Support.attributes["fusion.descriptor_object_id"] == 350
+    assert Support.attributes["fusion.recipe_object_id"] == 353
+    FirstEdge = KSupportEdgeStarts[Variant]
+    assert Support.attributes["fusion.edge_recipe_object_ids"] == tuple(
+        range(FirstEdge, FirstEdge + 16, 4)
+    )
 
 
 # dependent dimensions must keep saved argument and dependency orders across the public reading boundary

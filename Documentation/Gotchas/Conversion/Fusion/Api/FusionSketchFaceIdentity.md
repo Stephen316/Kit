@@ -1,0 +1,3 @@
+# Fusion sketch face recipes and occurrence identity
+
+The saved CutSketch frame describes a plane and its in-plane axes. Its supporting face is selected by a separate typed recipe that points to the earlier boss body. Resolve its anchor and repeated edge names before recording the attachment. Keep the face recipe distinct from the principal datum and the final body's similarly named faces. Materializing an ASM face requires the correct historical body view and boundary incidence. [Typed sketch support provenance](../../../../Changes/Fusion/Adapter/FusionSketchFaceProvenance.md), [Historical ASM face match](../../../../Changes/Research/Readers/FusionCutFaceEvidence.md)
