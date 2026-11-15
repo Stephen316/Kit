@@ -68,4 +68,6 @@ The first macOS run at `6e2da255` stopped before process execution because the n
 
 The macOS gate at `3327f7fe` passed all fifty cases in 382.80 seconds, including fourteen grouped cases. [Hosted macOS gate](https://github.com/TryUniCAD/Kit/actions/runs/43673846094/job/132689552836)
 
-The Windows process job selects the existing group-cap and group-crash cases. They verify the 20-member ceiling, separate accepted files and receipts, a real worker crash, and exactly one singleton retry per affected member. The fixture writes the same crash diagnostic bytes on each host. Windows execution of these cases is pending.
+The Windows process job selects the existing group-cap and group-crash cases. They verify the 20-member ceiling, separate accepted files and receipts, a real worker crash, and exactly one singleton retry per affected member. The fixture writes the same crash diagnostic bytes on each host.
+
+At `edd09981`, the Windows job passed 54 cases, including the group-cap case. The group-crash case reached temporary-directory cleanup, where an open SQLite fixture reader prevented Windows from deleting the private ledger. The diagnostic readers now close their connections explicitly. Hosted verification of the corrected cleanup is pending. [Fixture gotcha](../../../Gotchas/Research/Supervisor/SqliteContextLeavesHandle.md) [Hosted job](https://github.com/TryUniCAD/Kit/actions/runs/43715564751/job/132816225586)
