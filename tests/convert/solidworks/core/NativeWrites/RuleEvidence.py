@@ -8,6 +8,7 @@ from tests.convert.api.ApiTestPaths import KSamplePath
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# constraint fixtures separate missing entities from missing or unsupported driving parameters
 def RuleEvidence(
     ModeValue: str, IsSuppressed: bool, DimensionKind: str = "distance_y"
 ) -> CadDocument:

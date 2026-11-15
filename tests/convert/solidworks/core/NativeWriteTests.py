@@ -13,6 +13,7 @@ from tests.convert.solidworks.core.NestedDocument import NestedDocument
 from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
+# native history must stay blocked in nested and suppressed feature scenarios
 @TestMark.parametrize("IsNested", (False, True))
 @TestMark.parametrize("IsSuppressed", (False, True))
 def TestNativeWrite(TmpPath: FilePath, IsNested: bool, IsSuppressed: bool) -> None:

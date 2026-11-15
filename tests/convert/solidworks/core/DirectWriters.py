@@ -9,6 +9,7 @@ from convert.adapters.freecad.Adapter import FreeCadAdapter
 from convert.adapters.json.Adapter import JsonAdapter
 from interchange.document.models.DocumentModel import CadDocument
 
+# adapter coverage must exercise each public and direct json write entry point
 KDirectWriters: tuple[
     tuple[str, Callable[[CadDocument, KTargetType, WriteOptions], WriteResult]], ...
 ] = (

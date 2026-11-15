@@ -6,6 +6,7 @@ from convert.adapters.solidworks.core.EquationTarget import KUnresolvedEqTargets
 from interchange.document.models.DocumentModel import CadDocument
 
 
+# focused fixtures isolate each persistent refusal marker from unrelated document failures
 def MarkedDocument(Original: CadDocument, GuardCase: str) -> CadDocument:
     if GuardCase == "research":
         return ReplaceData(

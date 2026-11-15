@@ -3,9 +3,11 @@ from typing import Mapping
 from convert.adapters.solidworks.core.Native import NativeEquation
 from interchange import frozen_mapping as FrozenMapping
 
+# target resolution failures need a durable interchange key for write policy
 KUnresolvedEqTargets = "solidworks.unresolvedEquationReferences"
 
 
+# equation targets must identify an authored dimension before the expression can drive it
 def ResolveTarget(
     Equation: NativeEquation,
     DimensionIds: Mapping[tuple[str, str], str],

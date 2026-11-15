@@ -10,6 +10,7 @@ from interchange.records.RecordParameter import ParameterValue
 from tests.interchange.fixtures.DocumentFixture import BuildDocument
 
 
+# a portable standalone sketch gives freecad coverage independent of foreign source payloads
 def TypedPart() -> CadDocument:
     Document = BuildDocument()
     Circle = SketchEntity(

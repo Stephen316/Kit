@@ -7,6 +7,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
+# assembly refusal scenarios share the same independently captured unresolved component evidence
 @CacheValue
 def ReadAssembly() -> CadDocument:
     NativePath = (
@@ -27,6 +28,7 @@ def ReadAssembly() -> CadDocument:
     return Document
 
 
+# isolated placement evidence must preserve refusal under both source identities
 def AssemblyCase(ModeValue: str, RelabelSource: bool) -> CadDocument:
     Document = ReadAssembly()
     Assembly = Document.assembly

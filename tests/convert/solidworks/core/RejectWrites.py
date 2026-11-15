@@ -8,6 +8,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from tests.convert.solidworks.core.DirectWriters import KDirectWriters
 
 
+# each writer refusal must preserve an existing destination and skip new output
 def RejectWrites(Document: CadDocument, TmpPath: FilePath, ErrorText: str) -> None:
     for WriteName, WriteAction in KDirectWriters:
         DirectPath = TmpPath / f"{WriteName}.json"

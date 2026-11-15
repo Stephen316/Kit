@@ -8,6 +8,7 @@ from tests.convert.api.ApiTestPaths import KSamplePath
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# a captured native definition preserves evidence the writer cannot reconstruct
 def NativeHistory(IsSuppressed: bool) -> CadDocument:
     Original = OpenDocument(KSamplePath)
     NativeStep = next(

@@ -6,6 +6,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# a complete typed roundtrip verifies semantic checks allow editable native output
 def TestTypedWrite(TmpPath: FilePath) -> None:
     Document = CadDocument.from_json(AdapterCase("cuboid").to_json())
     assert Document.sketches[0].constraints

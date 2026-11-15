@@ -2,11 +2,13 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeatureKinds import HoleFeature
 
+# portable end modes give writers a shared boundary for reconstructing termination
 KPortableEnds = frozenset(
     EndValue.value for EndValue in ExtrudeEnd if EndValue != ExtrudeEnd.NATIVE
 )
 
 
+# native termination evidence must prevent an export from inventing an extent
 def EndFindings(Document: CadDocument) -> tuple[str, ...]:
     Findings: list[str] = []
     for StepValue in Document.feature_timeline:

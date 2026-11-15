@@ -16,6 +16,7 @@ from tests.convert.solidworks.core.NestedDocument import NestedDocument
 from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
+# captured plane variants exercise unresolved native support at public write boundaries
 @TestMark.parametrize(
     "NativePath",
     (

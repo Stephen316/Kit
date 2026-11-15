@@ -2,6 +2,7 @@ from tests.convert.solidworks.core.InchIndex.OwnerFrame import OwnerFrame
 from tests.convert.solidworks.core.InchIndex.ScalarFrame import ScalarFrame
 
 
+# a scalable synthetic roster isolates feature ownership and exact scalar handling
 def InchRoster(Count: int) -> tuple[bytes, bytes]:
     Dimensions = "".join(
         f'<Dimension Name="Span{Index}">{(Index + 1) * 0.001 / 0.0254:.2f}</Dimension>'

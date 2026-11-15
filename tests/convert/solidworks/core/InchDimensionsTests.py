@@ -2,6 +2,7 @@ from convert import open_document as OpenDocument
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
+# the captured inch diameter preserves an independently measured physical length
 def TestInchDia() -> None:
     SourcePath = (
         KRootPath

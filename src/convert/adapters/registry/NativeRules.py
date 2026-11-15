@@ -2,16 +2,20 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumGeometry import ConstraintKind
 from interchange.geometry.models.Sketch import Sketch
 
+# constraint export needs a common vocabulary with understood portable semantics
 KPortableRules = frozenset(
     KindValue.value
     for KindValue in ConstraintKind
     if KindValue != ConstraintKind.NATIVE
 )
+
+# geometric dimension rules require driving links to preserve edit behavior
 KDimensionRules = frozenset(
     {"distance", "distance_x", "distance_y", "angle", "radius", "diameter"}
 )
 
 
+# constraints must retain editable references and bindings across serialization and conversion
 def RuleFindings(
     Document: CadDocument, SketchValue: Sketch, ParamIds: frozenset[str]
 ) -> tuple[str, ...]:

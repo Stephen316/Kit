@@ -11,6 +11,7 @@ from interchange.document.models.DocumentModel import (
 )
 
 
+# an embedded marked component exercises the recursive guard without changing outer evidence
 def NestedDocument(Original: CadDocument, Marked: CadDocument) -> CadDocument:
     Nested = ReplaceData(
         Original,

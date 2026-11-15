@@ -14,6 +14,7 @@ from tests.convert.solidworks.core.NestedDocument import NestedDocument
 from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
+# relabeled and nested evidence must still block each public and direct writer
 def RejectFields(Document: CadDocument, TmpPath: FilePath, IsNested: bool) -> None:
     Document = ReplaceData(
         Document,

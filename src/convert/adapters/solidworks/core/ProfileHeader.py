@@ -6,6 +6,7 @@ if TypeChecking:
     from convert.adapters.solidworks.core.Native import NativeMarker
 
 
+# rectangle ownership evidence distinguishes the profile header from actual shape entities
 def ProfileHeader(
     Edges: Sequence[NativeMarker],
     Markers: Sequence[NativeMarker],

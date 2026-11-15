@@ -6,9 +6,11 @@ from convert.adapters.solidworks.core.Native import (
     KCurrentMarker,
 )
 
+# traversal fixtures share one record size so expected offsets remain comparable
 KMarkerSize = 92
 
 
+# generated marker records expose profile graph boundaries without duplicating saved geometry
 def MarkerFrame(
     KindValue: int,
     PointValue: tuple[float, float] | None = None,

@@ -10,6 +10,7 @@ from convert.adapters.registry.ResearchWrite import KResearchReadStatus
 from tests.convert.api.ApiTestPaths import KSamplePath
 
 
+# research output must remain inspectable while public reexport stays blocked
 def TestResearch(TmpPath: FilePath) -> None:
     Original = OpenDocument(KSamplePath)
     Document = ReplaceData(

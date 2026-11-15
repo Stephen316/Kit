@@ -8,6 +8,7 @@ from interchange.features.FeatureStep import FeatureStep
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# distinct feature evidence isolates unresolved history from unrelated source capabilities
 def FeatureEvidence(ModeValue: str) -> CadDocument:
     Document = AdapterCase("rectangle")
     StepValue = FeatureStep(

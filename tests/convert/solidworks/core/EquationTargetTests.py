@@ -11,17 +11,27 @@ from convert.adapters.solidworks.container.Container import (
 )
 from convert.adapters.solidworks.core.EquationTarget import KUnresolvedEqTargets
 
+# a measured cut provides two equation targets with verified ownership
 KEquationPart = (
     FilePath(__file__).parents[4]
     / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
     / "P04-solidworks-baseline-a.SLDPRT"
 )
+
+# equation fixture edits need the native stream that owns relation records
 KConfigStream = "Contents/Config-0"
+
+# dimension fixture edits need the native stream that owns feature parameter names
 KKeywordStream = "swXmlContents/KeyWords"
+
+# target mutations need a stable qualified name to isolate one authored dimension
 KTargetName = "cut_left_mm@CutSketch"
+
+# the missing target fixture must exercise unresolved names independently of operand links
 KMissingName = "bad_left_mm@CutSketch"
 
 
+# target variants preserve the original part structure while changing binding evidence
 def TargetFixture(ModeValue: str) -> bytes:
     PartBytes = KEquationPart.read_bytes()
     Archive = SldprtArchive.from_bytes(PartBytes)
@@ -45,6 +55,7 @@ def TargetFixture(ModeValue: str) -> bytes:
     )
 
 
+# public inspection must distinguish missing targets from duplicate owned dimensions
 @TestMark.parametrize(
     ("ModeValue", "ExpectedName", "ExpectedReason", "ExpectedCount"),
     (

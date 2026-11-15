@@ -6,6 +6,7 @@ from tests.convert.solidworks.core.NativeWrites.RejectFields import RejectFields
 from tests.convert.solidworks.core.NativeWrites.SketchEvidence import SketchEvidence
 
 
+# native entities must remain guarded under nesting and feature suppression changes
 @TestMark.parametrize("ModeValue", ("payload", "kind", "unknown"))
 @TestMark.parametrize("IsNested", (False, True))
 @TestMark.parametrize("IsSuppressed", (False, True))

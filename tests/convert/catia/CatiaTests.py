@@ -1154,6 +1154,7 @@ def TestEnforceDoc(TmpPath: Path) -> None:
     )
 
 
+# catia target selection must preserve the typed distinction between parts and assemblies
 def TestTypedKind(TmpPath: Path) -> None:
     PartValue = OpenDoc(BuildApiSource(TmpPath))
     for Document, SuffixText, ErrorText in (

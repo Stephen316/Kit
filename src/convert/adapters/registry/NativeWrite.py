@@ -7,6 +7,7 @@ from interchange.document.models.DocumentWalk import WalkDocuments
 from interchange.features.FeatureKinds import NativeFeature
 
 
+# shared conversion boundaries must reject incomplete native history even after source relabeling
 def CheckNative(Document: CadDocument) -> None:
     Findings = sorted(
         {

@@ -9,6 +9,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
+# interchange roundtripping must preserve refusal before the destination is changed
 def RejectPublic(Document: CadDocument, TmpPath: FilePath) -> None:
     SourcePath = TmpPath / "Source.json"
     _ = SourcePath.write_text(Document.to_json(), encoding="utf-8")

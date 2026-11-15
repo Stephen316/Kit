@@ -4,6 +4,7 @@ import sys as System
 from pathlib import Path as FilePath
 
 
+# process coverage needs isolated files for reproducible native scalar scenarios
 def DecodeInchCase(RootPath: FilePath, Keywords: bytes, Resolved: bytes) -> str:
     KeywordFile = RootPath / "Keywords.xml"
     ResolvedFile = RootPath / "Resolved.bin"

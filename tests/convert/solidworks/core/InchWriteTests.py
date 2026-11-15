@@ -10,6 +10,7 @@ from convert.adapters.solidworks.core.BindInch import KUnresolvedInchDimension
 from tests.convert.api.ApiTestPaths import KRootPath
 
 
+# unbound inch display lengths must prevent writes before the destination changes
 def TestInchWrite(TmpPath: FilePath) -> None:
     SourcePath = (
         KRootPath
@@ -38,6 +39,7 @@ def TestInchWrite(TmpPath: FilePath) -> None:
     assert TargetPath.read_bytes() == b"existing destination"
 
 
+# serialized inch uncertainty must stay actionable after the source format is relabeled
 def TestRelabelInch(TmpPath: FilePath) -> None:
     Original = OpenDocument(
         KRootPath

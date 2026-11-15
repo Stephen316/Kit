@@ -1,6 +1,7 @@
 from interchange.document.models.DocumentModel import CadDocument
 
 
+# assembly exports require qualified placements and constraints throughout the component tree
 def AssemblyIssues(Document: CadDocument) -> tuple[str, ...]:
     Assembly = Document.assembly
     if Assembly is None:

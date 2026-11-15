@@ -3799,6 +3799,7 @@ def CircleDimension(Value: float | None, Radius: float) -> tuple[str, float] | N
     return None
 
 
+# circle recovery needs a stable dimension link when the scalar identifies one geometry
 def MatchCircleMut(
     Dimensions: tuple[NativeDimension, ...],
     Radius: float,

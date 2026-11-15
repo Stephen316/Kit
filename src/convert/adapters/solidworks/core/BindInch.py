@@ -10,9 +10,11 @@ from interchange.features.DistanceParam import KLengthFactors
 if TypeChecking:
     from convert.adapters.solidworks.core.Native import NativeDimension, NativeScalar
 
+# unbound display dimensions need a persistent refusal marker at export boundaries
 KUnresolvedInchDimension = "unresolved_inch_dimension"
 
 
+# binary scalars preserve authored lengths when the display number is rounded
 def BindInch(
     Dimension: NativeDimension,
     ScalarsByName: Mapping[str, tuple[NativeScalar, ...]],

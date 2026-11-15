@@ -3390,6 +3390,7 @@ def FinalBodyId(
     return Timeline[-1].id if Timeline else ""
 
 
+# typed history and projected bounds need the same qualified boss direction
 def IsBossReversed(Operation: NativeOperation) -> bool:
     return (
         Operation.kind == "join"

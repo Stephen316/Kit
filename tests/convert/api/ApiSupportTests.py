@@ -8,6 +8,7 @@ from convert import write_document as WriteDocument
 from tests.convert.api.ApiTestPaths import KSamplePath
 
 
+# public conversion must preserve unresolved native sketch support as a refusal
 def CheckSupport(TmpPath: FilePath) -> None:
     Document = OpenDocument(KSamplePath)
     Document.assert_valid()

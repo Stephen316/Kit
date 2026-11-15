@@ -12,6 +12,7 @@ from tests.convert.solidworks.core.BuildProfiles import BuildProfiles
 from tests.convert.solidworks.core.ProfileFrames import KPolyPoints
 
 
+# scaling contour counts preserves graph ownership across paths with optional headers
 @TestMark.parametrize("Count", (1, 64))
 @TestMark.parametrize("Headers", (False, True))
 def TestNativeGraph(Count: int, Headers: bool) -> None:

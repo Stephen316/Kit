@@ -7,6 +7,7 @@ from tests.convert.solidworks.core.InchIndex.DecodeInchCase import DecodeInchCas
 from tests.convert.solidworks.core.InchIndex.InchRoster import InchRoster
 
 
+# small and large rosters check consistent ownership without depending on decoding order
 @TestMark.parametrize("Count", (1, 256))
 def TestOwnedInches(TmpPath: FilePath, Count: int) -> None:
     Model = JsonCodec.loads(DecodeInchCase(TmpPath, *InchRoster(Count)))

@@ -646,6 +646,7 @@ def FeatureSet(DocValue: CadDocument) -> tuple[FeatureStep, ...]:
     )
 
 
+# native extrusion requires both a portable operation and an editable source profile
 def HasExtrudeShape(DocValue: CadDocument, Feature: FeatureStep) -> bool:
     Manifest = DocToManifest(DocValue)
     Features = [
@@ -2645,6 +2646,7 @@ def RebuildResult(
     )
 
 
+# required features need individual accounting before freecad can promise editable output
 def MissingFeatures(
     DocValue: CadDocument, EditableFeatures: Collection[str]
 ) -> tuple[str, ...]:
@@ -2661,6 +2663,7 @@ def MissingFeatures(
     )
 
 
+# an archive carrier cannot satisfy the editable history requirement for any component
 def CheckFeatures(DocValue: CadDocument) -> None:
     for Component in DocTree(DocValue):
         if not MissingFeatures(Component, ()):

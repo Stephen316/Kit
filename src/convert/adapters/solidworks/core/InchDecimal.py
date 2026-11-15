@@ -2,6 +2,7 @@ from math import isfinite as IsFinite
 from re import fullmatch as FullMatch
 
 
+# native diameter and radius display syntax needs precise numeric interpretation
 def InchDecimal(TextValue: str) -> tuple[float, int] | None:
     Match = FullMatch(
         r"(?:<MOD-DIAM>|R)?\s*([+-]?(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+))",

@@ -8,6 +8,7 @@ from interchange.features.FeatureKinds import HoleFeature
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# termination fixtures isolate unsupported end modes from other semantic evidence
 def EndEvidence(
     Family: str, EndValue: ExtrudeEnd | str, IsSuppressed: bool
 ) -> CadDocument:

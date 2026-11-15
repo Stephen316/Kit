@@ -10,6 +10,7 @@ from convert.adapters.solidworks.core.EquationTarget import KUnresolvedEqTargets
 from tests.convert.api.ApiTestPaths import KRootPath, KSamplePath
 
 
+# resolved equation dependencies should not hide the separate sketch support refusal
 def TestBoundWrite(TmpPath: FilePath) -> None:
     SourcePath = (
         KRootPath
@@ -47,6 +48,7 @@ def TestBoundWrite(TmpPath: FilePath) -> None:
     assert NeutralPath.read_bytes() == b"existing destination"
 
 
+# unresolved equation operands must stay blocked when the source format is relabeled
 @TestMark.parametrize("RelabelSource", (False, True))
 def TestMissingLink(TmpPath: FilePath, RelabelSource: bool) -> None:
     Original = OpenDocument(KSamplePath)
@@ -75,6 +77,7 @@ def TestMissingLink(TmpPath: FilePath, RelabelSource: bool) -> None:
     assert TargetPath.read_bytes() == b"existing destination"
 
 
+# unresolved equation targets must stay blocked when the source format is relabeled
 @TestMark.parametrize("RelabelSource", (False, True))
 def TestBadTarget(TmpPath: FilePath, RelabelSource: bool) -> None:
     Original = OpenDocument(KSamplePath)

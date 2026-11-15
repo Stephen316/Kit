@@ -2,6 +2,7 @@ from tests.convert.solidworks.core.InchIndex.OwnerFrame import OwnerFrame
 from tests.convert.solidworks.core.InchIndex.ScalarFrame import ScalarFrame
 
 
+# duplicate and incomplete scalar evidence distinguishes ambiguous bindings from exact lengths
 def InchAmbiguity() -> tuple[bytes, bytes]:
     Scalars = (
         ("Duplicate", 0.001, 1000, 0),

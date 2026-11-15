@@ -6,6 +6,7 @@ from convert.adapters.solidworks.container.Format import (
 )
 
 
+# synthetic scalar records isolate identity and role requirements at the decoder boundary
 def ScalarFrame(
     NameValue: str, NativeValue: float, ObjectId: int | None, RoleValue: int
 ) -> bytes:

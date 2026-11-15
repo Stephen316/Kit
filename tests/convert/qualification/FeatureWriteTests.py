@@ -8,6 +8,7 @@ from tests.convert.qualification.RejectPublic import RejectPublic
 from tests.convert.solidworks.core.NestedDocument import NestedDocument
 
 
+# unresolved feature semantics must remain disqualifying at each assembly nesting level
 @TestMark.parametrize("ModeValue", ("native", "kind", "operation", "combine"))
 @TestMark.parametrize("IsNested", (False, True))
 def TestFeatureGate(TmpPath: FilePath, ModeValue: str, IsNested: bool) -> None:

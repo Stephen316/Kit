@@ -3,6 +3,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.document.models.DocumentWalk import WalkDocuments
 
 
+# display precision alone cannot justify exporting an exact driving length
 def CheckInchWrite(Document: CadDocument) -> None:
     Findings = sorted(
         {

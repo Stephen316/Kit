@@ -4,6 +4,7 @@ from convert.adapters.solidworks.core.Native import NativeEquation
 from interchange.records.RecordParameter import Expression
 
 
+# equation projection needs editable links alongside the original expression text
 def EquationData(
     Equation: NativeEquation,
     GlobalIds: Mapping[str, str],
@@ -22,6 +23,7 @@ def EquationData(
     return Expression(Equation.rhs, BoundIds, "solidworks"), Evidence
 
 
+# ambiguous or missing dependencies must remain visible to the export guard
 def EquationLinks(
     References: tuple[str, ...],
     GlobalIds: Mapping[str, str],

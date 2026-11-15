@@ -3,6 +3,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.document.models.DocumentWalk import WalkDocuments
 
 
+# retained equation failures must survive public conversion and nested assembly exports
 def CheckEquations(Document: CadDocument) -> None:
     Findings: set[str] = set()
     for PartValue in WalkDocuments(Document):

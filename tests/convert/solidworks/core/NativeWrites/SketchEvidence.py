@@ -8,6 +8,7 @@ from tests.convert.api.ApiTestPaths import KSamplePath
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# sketch fixtures isolate native payloads and unsupported entity kinds from valid profiles
 def SketchEvidence(ModeValue: str, IsSuppressed: bool) -> CadDocument:
     Document = AdapterCase("rectangle")
     SketchValue = Document.sketches[0]

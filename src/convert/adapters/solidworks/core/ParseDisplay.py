@@ -3,15 +3,23 @@ from xml.etree.ElementTree import ParseError  # noqa: DUO107
 from convert.adapters.base import ParseUntrusted
 from convert.adapters.solidworks.core.LinearDisplay import LinearDisplay
 
+# source display metadata lives outside the feature and geometry streams
 KInformationStream = "docProps/ISolidWorksInformation.xml"
+
+# typed unit codes require the variant property namespace to establish their meaning
 KIntegerTag = "{http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes}i4"
+
+# source display metadata must come from the expected property document
 KInformationTag = (
     "{http://schemas.openxmlformats.org/officeDocument/2006/"
     "SolidworksInformation-properties}Properties"
 )
+
+# confirmed source display codes give lengths a reliable unit context
 KLinearUnits = {"0": "mm", "3": "in"}
 
 
+# canonical projection needs source display precision to qualify exact inch scalars
 def ParseDisplay(Content: bytes) -> LinearDisplay | None:
     if not Content:
         return None

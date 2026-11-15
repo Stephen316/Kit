@@ -3,6 +3,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from interchange.document.models.DocumentWalk import WalkDocuments
 
 
+# ambiguous support evidence cannot choose an editable sketch plane for the target
 def CheckSupports(Document: CadDocument) -> None:
     Findings = sorted(
         {

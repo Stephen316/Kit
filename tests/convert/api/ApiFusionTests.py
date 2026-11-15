@@ -81,6 +81,7 @@ def CheckFusStream() -> None:
     )
 
 
+# public fusion export must refuse incomplete history before writer selection
 def CheckFusWriter(TmpPath: FilePath) -> None:
     Document = OpenDocument(HistoryArchive(), SourceFormat="f3d", StrictMode=False)
     assert any(
@@ -97,6 +98,7 @@ def CheckFusWriter(TmpPath: FilePath) -> None:
     assert tuple(TmpPath.iterdir()) == ()
 
 
+# public fusion authoring must fail when its required portable contract is absent
 def CheckFusMissing(TmpPath: FilePath) -> None:
     Document = ReplaceData(AdapterCase("cuboid"), metadata={})
     TargetPath = TmpPath / "blocked.f3d"

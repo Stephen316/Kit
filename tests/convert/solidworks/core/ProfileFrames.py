@@ -1,9 +1,13 @@
 from tests.convert.solidworks.core.MarkerFrame import KMarkerSize, MarkerFrame
 
+# a closed rectangle anchors the expected four edge traversal
 KRectPoints = ((0.0, 0.0), (2.0, 0.0), (2.0, 2.0), (0.0, 2.0))
+
+# a distinct polygon checks that adjacent contours retain separate identities
 KPolyPoints = ((0.0, 0.0), (2.0, 0.0), (3.0, 1.0), (2.0, 2.0), (0.0, 2.0), (-1.0, 1.0))
 
 
+# independent frames give traversal assertions expected owned edges and rejected headers
 def ProfileFrames(
     BaseIndex: int, InsertAt: int, Count: int, Headers: bool
 ) -> tuple[bytes, set[int], set[int], set[int]]:

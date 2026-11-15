@@ -7,6 +7,7 @@ from convert.adapters.json.Adapter import JsonAdapter
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# resolved portable support should preserve ordinary native writing and interchange serialization
 def TestSafeSupport(TmpPath: FilePath) -> None:
     Original = AdapterCase("rectangle")
     NativePath = TmpPath / "Rectangle.f3d"

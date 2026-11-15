@@ -15,6 +15,7 @@ from tests.convert.api.Fusion.AdapterCases import AdapterCase
 from tests.interchange.fixtures.AssemblyFixture import BuildAssembly
 
 
+# freecad must reject required features it cannot reconstruct as editable models
 @TestMark.parametrize("ModeValue", ("missing", "generic", "suppressed"))
 @TestMark.parametrize("IsNested", (False, True))
 def TestFreecadGate(TmpPath: FilePath, ModeValue: str, IsNested: bool) -> None:
@@ -47,6 +48,7 @@ def TestFreecadGate(TmpPath: FilePath, ModeValue: str, IsNested: bool) -> None:
     assert not (TmpPath / "Target").exists()
 
 
+# fully typed part evidence ensures the freecad guard accepts supported native geometry
 def TestTypedPart(TmpPath: FilePath) -> None:
     Document = TypedPart()
     TargetPath = TmpPath / "Typed.FCStd"
@@ -54,6 +56,7 @@ def TestTypedPart(TmpPath: FilePath) -> None:
     assert OpenDocument(TargetPath).feature_timeline == Document.feature_timeline
 
 
+# qualified nested documents must remain eligible for editable freecad assembly output
 def TestTypedAsm(TmpPath: FilePath) -> None:
     Document = BuildAssembly()
     Assembly = Document.assembly

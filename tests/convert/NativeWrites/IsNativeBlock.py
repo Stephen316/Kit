@@ -13,6 +13,7 @@ from interchange.document.models.DocumentWalk import WalkDocuments
 from interchange.features.FeatureKinds import NativeFeature
 
 
+# native refusal scenarios need consistent checks across public and adapter write routes
 def IsNativeBlock(
     Document: CadDocument,
     WriteAction: Callable[[CadDocument, KTargetType, WriteOptions], WriteResult],

@@ -8,6 +8,7 @@ from convert import write_document as WriteDocument
 from tests.convert.api.ApiTestPaths import KSamplePath
 
 
+# missing and unframed support evidence need separate export refusal scenarios
 @TestMark.parametrize("SourceCase", ("missing", "unknown", "unframed"))
 def TestSupportData(TmpPath: FilePath, SourceCase: str) -> None:
     Original = OpenDocument(KSamplePath)

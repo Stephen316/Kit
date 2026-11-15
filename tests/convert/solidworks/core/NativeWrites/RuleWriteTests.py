@@ -6,6 +6,7 @@ from tests.convert.solidworks.core.NativeWrites.RejectFields import RejectFields
 from tests.convert.solidworks.core.NativeWrites.RuleEvidence import RuleEvidence
 
 
+# writers must preserve refusal when sketch relation identities or semantics are incomplete
 @TestMark.parametrize(
     "ModeValue",
     (
@@ -27,6 +28,7 @@ def TestRuleWrite(
     RejectFields(RuleEvidence(ModeValue, IsSuppressed), TmpPath, IsNested)
 
 
+# dimension rules must carry parameter bindings for the target to remain editable
 @TestMark.parametrize(
     "DimensionKind",
     ("distance", "distance_x", "distance_y", "angle", "radius", "diameter"),

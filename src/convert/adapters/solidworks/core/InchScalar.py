@@ -4,6 +4,7 @@ from math import nextafter as NextAfter
 from interchange.features.DistanceParam import KLengthFactors
 
 
+# rounded display values may corroborate exact binary lengths at a rounding boundary
 def IsRoundedInch(Displayed: float, NativeValue: float, Decimals: int) -> bool:
     if not IsFinite(NativeValue * KLengthFactors["m"]):
         return False

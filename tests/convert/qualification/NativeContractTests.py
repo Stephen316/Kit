@@ -19,6 +19,7 @@ from tests.convert.formats.FusionCodec.Documents.PartFeatures.FamilyCases import
 from tests.convert.qualification.RejectPublic import RejectPublic
 
 
+# writer contracts must reject unqualified history without blocking confirmed authoring
 def TestContract(TmpPath: FilePath) -> None:
     Document = AdapterCase("cuboid")
     assert all(
@@ -35,6 +36,7 @@ def TestContract(TmpPath: FilePath) -> None:
     assert len(ReadDocument(FusionPath.read_bytes()).Bodies) == 1
 
 
+# portable graph mismatches must be diagnosed before native writing changes the destination
 @TestMark.parametrize("ModeValue", ("graph", "version"))
 def TestBadContract(TmpPath: FilePath, ModeValue: str) -> None:
     Document = AdapterCase("cuboid")
@@ -66,6 +68,7 @@ def TestBadContract(TmpPath: FilePath, ModeValue: str) -> None:
     RejectPublic(Document, TmpPath)
 
 
+# native fusion readback needs enough feature state for public writing to assess completeness
 def TestPartState(TmpPath: FilePath) -> None:
     Specification = FamilySpec((KBlock, MoveSpec((5.0, 5.0, 2.0), "Body turn", 30.0)))
     TargetPath = TmpPath / "CodecFamily.f3d"

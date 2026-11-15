@@ -7,6 +7,7 @@ from convert.adapters.solidworks.core.LinearDisplay import LinearDisplay
 from convert.adapters.solidworks.core.Native import DecodeNative
 
 
+# process isolation exercises the native reader independently of fixture construction
 def ParseRoster() -> None:
     Model = DecodeNative(
         FilePath(System.argv[1]).read_bytes(),

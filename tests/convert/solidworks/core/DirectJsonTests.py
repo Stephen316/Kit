@@ -11,6 +11,7 @@ from tests.convert.api.ApiTestPaths import KSamplePath
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# direct json writing must preserve an ordinary typed fusion source
 def TestDirectJson(TmpPath: FilePath) -> None:
     NativePath = TmpPath / "Source.f3d"
     _ = WriteDocument(
@@ -26,6 +27,7 @@ def TestDirectJson(TmpPath: FilePath) -> None:
     assert OpenDocument(TargetPath) == Original
 
 
+# legacy json inspection needs an escape for complete serialization of retained evidence
 def TestLegacyJson(TmpPath: FilePath) -> None:
     Original = OpenDocument(KSamplePath)
     assert Original.sketches

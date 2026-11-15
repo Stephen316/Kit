@@ -12,6 +12,7 @@ from tests.convert.solidworks.core.MarkedDocument import MarkedDocument
 from tests.convert.solidworks.core.NestedDocument import NestedDocument
 
 
+# direct adapter calls must enforce the same unresolved evidence refusals
 @TestMark.parametrize(
     ("GuardCase", "ErrorText"),
     (

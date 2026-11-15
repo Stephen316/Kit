@@ -5,6 +5,7 @@ from interchange.enums.EnumFeatures import FeatureKind
 from tests.convert.qualification.TypedPart import TypedPart
 
 
+# independent freecad scenarios isolate the editable feature gap from source identity
 def FreecadEvidence(ModeValue: str) -> CadDocument:
     Document = TypedPart()
     Feature = Document.feature_timeline[0]

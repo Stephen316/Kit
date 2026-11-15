@@ -4,6 +4,7 @@ from convert import write_document as WriteDocument
 from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 
+# format boundary coverage needs an independently written source with editable features
 def BuildApiSource(TmpPath: FilePath) -> FilePath:
     SourcePath = TmpPath / "Source.f3d"
     _ = WriteDocument(

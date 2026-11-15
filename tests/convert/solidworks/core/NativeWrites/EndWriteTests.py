@@ -7,6 +7,7 @@ from tests.convert.solidworks.core.NativeWrites.EndEvidence import EndEvidence
 from tests.convert.solidworks.core.NativeWrites.RejectFields import RejectFields
 
 
+# unknown end modes must fail consistently for both nesting and suppression states
 @TestMark.parametrize("Family", ("extrude", "second", "hole"))
 @TestMark.parametrize(
     "EndValue", (ExtrudeEnd.NATIVE, "native:32767", "future:termination")

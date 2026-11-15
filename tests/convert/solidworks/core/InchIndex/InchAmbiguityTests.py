@@ -5,6 +5,7 @@ from tests.convert.solidworks.core.InchIndex.DecodeInchCase import DecodeInchCas
 from tests.convert.solidworks.core.InchIndex.InchAmbiguity import InchAmbiguity
 
 
+# the reader must decline inch bindings without unique qualified field evidence
 def TestInchProofs(TmpPath: FilePath) -> None:
     Model = JsonCodec.loads(DecodeInchCase(TmpPath, *InchAmbiguity()))
     Dimensions = {
