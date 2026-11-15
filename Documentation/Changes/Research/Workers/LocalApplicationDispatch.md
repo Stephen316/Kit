@@ -117,6 +117,12 @@ SOLIDWORKS configurations return `waiting_application`. Missing, busy or fenced
 hosts also park the application job. Independent jobs continue; dependent jobs
 wait under the existing controller rules.
 
+## Record publication
+
+Requests, responses and ordinary result records use [atomic application publication](AtomicApplicationPublication.md).
+The final name appears after the file bytes are complete and synced, and exclusive publication preserves a pre-existing destination.
+Read [the publication gotcha](../../../Gotchas/Research/Workers/ExclusiveCreateIsNotPublication.md) for single-link and directory-sync limits.
+
 ## Verification
 
 `tests/Research/Applications` adds real process/file protocol cases for queue

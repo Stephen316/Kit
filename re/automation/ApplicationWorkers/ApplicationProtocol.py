@@ -1,3 +1,5 @@
+import ctypes
+import errno
 import hashlib
 import json
 import os
@@ -6,6 +8,7 @@ import re
 import secrets
 import stat
 import subprocess
+import sys
 import time
 
 MAX_BYTES = 256 * 1024 * 1024
@@ -83,12 +86,68 @@ def encoded(value):
     return content
 
 
+def stage_bytes(path, content):
+    path = Path(path)
+    require(isinstance(content, bytes) and len(content) <= MAX_BYTES, "application publication exceeds its byte limit")
+    temporary = path.with_name(f".{path.name}.{secrets.token_hex(16)}")
+    descriptor = os.open(temporary, os.O_CREAT | os.O_EXCL | os.O_WRONLY | getattr(os, "O_NOFOLLOW", 0), 0o600)
+    try:
+        with os.fdopen(descriptor, "wb") as target:
+            target.write(content)
+            target.flush()
+            os.fsync(target.fileno())
+            info = os.fstat(target.fileno())
+            require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1, "application publication must remain singly linked")
+        return temporary
+    except BaseException:
+        temporary.unlink(missing_ok=True)
+        raise
+
+
+def exclusive_rename(source, destination):
+    if os.name == "nt":
+        os.rename(source, destination)
+        return
+    library = ctypes.CDLL(None, use_errno=True)
+    if sys.platform.startswith("linux"):
+        rename = getattr(library, "renameat2", None)
+        require(rename is not None, "atomic application publication requires libc renameat2")
+        rename.argtypes = [ctypes.c_int, ctypes.c_char_p, ctypes.c_int, ctypes.c_char_p, ctypes.c_uint]
+        rename.restype = ctypes.c_int
+        result = rename(-100, os.fsencode(source), -100, os.fsencode(destination), 1)
+    elif sys.platform == "darwin":
+        rename = getattr(library, "renamex_np", None)
+        require(rename is not None, "atomic application publication requires libc renamex_np")
+        rename.argtypes = [ctypes.c_char_p, ctypes.c_char_p, ctypes.c_uint]
+        rename.restype = ctypes.c_int
+        result = rename(os.fsencode(source), os.fsencode(destination), 4)
+    else:
+        raise OSError(errno.ENOTSUP, "atomic exclusive application publication is unsupported on this platform")
+    if result != 0:
+        code = ctypes.get_errno()
+        if code in {errno.ENOSYS, errno.EINVAL, errno.ENOTSUP}:
+            raise OSError(code, "filesystem or kernel does not support atomic exclusive application publication", str(destination))
+        raise OSError(code, os.strerror(code), str(destination))
+
+
+def sync_directory(path):
+    if os.name != "posix":
+        return
+    descriptor = os.open(path, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+    try:
+        os.fsync(descriptor)
+    finally:
+        os.close(descriptor)
+
+
 def write_new(path, content):
-    descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-    with os.fdopen(descriptor, "wb") as target:
-        target.write(content)
-        target.flush()
-        os.fsync(target.fileno())
+    path = Path(path)
+    temporary = stage_bytes(path, content)
+    try:
+        exclusive_rename(temporary, path)
+        sync_directory(path.parent)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def write_record(path, value, replace=False):
@@ -96,10 +155,10 @@ def write_record(path, value, replace=False):
     if not replace:
         write_new(path, encoded(value))
         return
-    temporary = path.with_name(f".{path.name}.{secrets.token_hex(8)}")
+    temporary = stage_bytes(path, encoded(value))
     try:
-        write_new(temporary, encoded(value))
         os.replace(temporary, path)
+        sync_directory(path.parent)
     finally:
         temporary.unlink(missing_ok=True)
 
