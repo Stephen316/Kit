@@ -18,6 +18,11 @@ WORKER = "re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py"
 LAUNCHER = "re/automation/PairedCaptures/SolidWorksAuthoring/ReadP04SolidWorks.ps1"
 PROVIDER = "dassault.solidworks.com"
 OPERATION = "p04-readback"
+PRINCIPAL = "p01-p03-readback"
+READBACK_SCOPES = {
+    OPERATION: ("P04", "supporting_faces_verified", 11),
+    PRINCIPAL: ("P01-P03", "principal_profiles_observed", 14),
+}
 BUILD = "34.4.1.1011"
 OUTPUTS = {
     "readback.plan": "readback/plan.json",
@@ -27,12 +32,20 @@ OUTPUTS = {
 
 
 class ReadbackQueue(HostQueue):
+    def __init__(self, config, provider=PROVIDER, operation=OPERATION):
+        self.readback_operation = operation
+        super().__init__(config, provider)
+
     def fenced(self):
         return os.path.lexists(self.root / "fence.json") or os.path.lexists(self.root / ACKNOWLEDGEMENT)
 
 
-def plan_hash(config):
-    return sha256(encoded({"operation": OPERATION, "source_revision": config["source_revision"]}))
+def plan_hash(config, operation=OPERATION):
+    return sha256(encoded({"operation": operation, "source_revision": config["source_revision"]}))
+
+
+def phase_request(config, operation):
+    return {"phase": operation, "plan_sha256": plan_hash(config, operation)}
 
 
 def verify_sources(config):
@@ -42,18 +55,23 @@ def verify_sources(config):
                 "running SolidWorks worker source differs from its installed revision")
 
 
-def native_result(work, config):
-    plan = file_bytes(work / OUTPUTS["readback.plan"])
+def native_result(work, config, operation=OPERATION):
+    scope, count_field, count = READBACK_SCOPES[operation]
+    plan_bytes = file_bytes(work / OUTPUTS["readback.plan"])
+    plan = json.loads(plan_bytes)
     measurements = file_bytes(work / OUTPUTS["readback.measurements"], MAX_BYTES)
     receipt = record(work / OUTPUTS["readback.receipt"])
-    plan_sha256 = sha256(plan)
+    plan_sha256 = sha256(plan_bytes)
     report = json.loads(measurements)
     run = report["run"]
     application = run["application"]
     owner = run["native_owner"]
-    require(json.loads(plan)["source_revision"] == config["source_revision"]
+    require(plan["source_revision"] == config["source_revision"] and plan["recipe"] == scope
             and receipt["schema"] == 1 and receipt["status"] == "observed"
-            and receipt["observed_files"] == receipt["supporting_faces_verified"] == 11
+            and receipt["observed_files"] == receipt[count_field] == count
+            and len(run["observations"]) == count
+            and set(plan["native_files"]) == {item["file"] for item in run["observations"]}
+            and all(item["status"] == "observed" for item in run["observations"])
             and receipt["plan_sha256"] == report["plan_sha256"] == plan_sha256
             and receipt["measurements_sha256"] == sha256(measurements)
             and report["source_bytes_verified_after_readback"] is True
@@ -61,7 +79,7 @@ def native_result(work, config):
             and run["control_before"]["status"] == run["control_after"]["status"] == "observed"
             and application["build"] == owner["build"] == BUILD
             and owner["source_revision"] == config["source_revision"] and owner["initial_documents"] == 0,
-            "SOLIDWORKS readback lacks complete source, control, face or process-exit evidence")
+            "SOLIDWORKS readback lacks complete source, control, profile or process-exit evidence")
     return {"readback_plan_sha256": plan_sha256, "solidworks_build": application["build"],
             "native_owner_sha256": sha256(encoded(owner))}
 
@@ -232,9 +250,11 @@ def record_collector_failure(work, request, listener, collector, handle, launch)
 
 
 def run_collector(host, request, work, interop, staged, recovery_enabled, recover_failure):
-    expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
+    operation = host.readback_operation
+    scope, _, _ = READBACK_SCOPES[operation]
+    expected = phase_request(host.config, operation)
     require(request["operation"] == "phase" and request["body"] == expected,
-            "installation only accepts the pinned P04 readback phase")
+            "installation only accepts its pinned SOLIDWORKS readback phase")
     import win32event
 
     output = work / "readback"
@@ -249,7 +269,7 @@ def run_collector(host, request, work, interop, staged, recovery_enabled, recove
             [str(powershell), "-NoProfile", "-NonInteractive", "-STA", "-ExecutionPolicy", "Bypass", "-File", str(staged),
              "-OutputDirectory", str(output), "-InteropAssembly", str(interop),
              "-SourceRoot", host.config["source_root"], "-SourceRevision", host.config["source_revision"],
-             "-QueuedRequestSha256", request_pin["request_sha256"]],
+             "-QueuedRequestSha256", request_pin["request_sha256"], "-ReadbackScope", scope],
             stdout=subprocess.DEVNULL, stderr=errors, env=process_environment, creationflags=subprocess.CREATE_NO_WINDOW,
         )
         handle, launch = None, None
@@ -295,23 +315,24 @@ def run_collector(host, request, work, interop, staged, recovery_enabled, recove
 
 
 def perform_readback(host, request, work, interop, launcher, recovery_enabled, recover_failure):
-    expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
+    operation = host.readback_operation
+    expected = phase_request(host.config, operation)
     staged = work / Path(LAUNCHER).name
     write_new(staged, launcher)
     owner_hash = run_collector(host, request, work, interop, staged, recovery_enabled, recover_failure)
-    proof = native_result(work, host.config)
+    proof = native_result(work, host.config, operation)
     require(proof["native_owner_sha256"] == owner_hash, "SOLIDWORKS measurements do not preserve the verified ownership ticket")
     files = {role: pin(work / relative, relative) for role, relative in OUTPUTS.items()}
-    return "completed", "licensed P04 readback observed all eleven captures", {
+    return "completed", f"licensed {READBACK_SCOPES[operation][0]} readback observed all pinned captures", {
         **expected, **proof, "claim": "unqualified_application_observation",
     }, files
 
 
-def listen(config, interop, recovery_enabled, recover_failure):
+def listen(config, interop, recovery_enabled, recover_failure, operation=OPERATION):
     require(os.name == "nt" and config["application"] == "solidworks", "SOLIDWORKS readback host requires Windows")
     verify_sources(config)
     launcher = committed_bytes(config, LAUNCHER)
-    host = ReadbackQueue(config, PROVIDER)
+    host = ReadbackQueue(config, PROVIDER, operation)
     try:
         while True:
             request = host.next_path()
@@ -325,10 +346,13 @@ def listen(config, interop, recovery_enabled, recover_failure):
         host.close()
 
 
-def dispatch(session, config):
+def dispatch(session, config, operation=OPERATION):
     job = record(session / "job.json")
+    options = {"source_revision": config["source_revision"]}
+    if operation == PRINCIPAL:
+        options["readback_operation"] = PRINCIPAL
     require(job["session_version"] == 1 and job["inputs"] == {}
-            and job["job"]["options"] == {"source_revision": config["source_revision"]},
+            and job["job"]["options"] == options,
             "SOLIDWORKS readback requires the installed revision and no caller-selected inputs")
     records = {"installation": config["installation"], "application": config["application"],
                "claim": "unqualified_dispatch", "native_qualified": False}
@@ -340,7 +364,7 @@ def dispatch(session, config):
     client = None
     try:
         client = QueueClient(config, deadline, PROVIDER)
-        request = {"phase": OPERATION, "plan_sha256": plan_hash(config)}
+        request = phase_request(config, operation)
         response = client.call("phase", request)
         proof = response["proof"]
         require(proof["claim"] == "unqualified_application_observation"
@@ -348,7 +372,7 @@ def dispatch(session, config):
                 and {role: item["path"] for role, item in response["files"].items()} == OUTPUTS,
                 "SOLIDWORKS phase proof or output roster differs from this request")
         artifacts = client.copy_files(session / "work", response)
-        require(all(proof[key] == value for key, value in native_result(session / "work", config).items()),
+        require(all(proof[key] == value for key, value in native_result(session / "work", config, operation).items()),
                 "copied SOLIDWORKS evidence differs from the phase proof")
         write_record(session / "work/dispatch.json", response)
         artifacts["dispatch"] = pin(session / "work/dispatch.json", "dispatch.json")
@@ -374,8 +398,9 @@ def dispatch(session, config):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Queue pinned SOLIDWORKS P04 readback on Windows")
+    parser = argparse.ArgumentParser(description="Queue pinned SOLIDWORKS discovery readback on Windows")
     parser.add_argument("--installation", type=Path, required=True)
+    parser.add_argument("--readback-operation", choices=tuple(READBACK_SCOPES), default=OPERATION)
     commands = parser.add_subparsers(dest="command", required=True)
     listener = commands.add_parser("listen")
     listener.add_argument("--interop", type=Path, required=True)
@@ -386,13 +411,13 @@ def main():
     if args.command == "listen":
         try:
             listen(configuration(args.installation), args.interop.resolve(strict=True),
-                   args.recover_owned_timeout, args.recover_owned_failure)
+                   args.recover_owned_timeout, args.recover_owned_failure, args.readback_operation)
         except KeyboardInterrupt:
             return 0
     else:
         session = args.session.resolve(strict=True)
         try:
-            result = dispatch(session, configuration(args.installation))
+            result = dispatch(session, configuration(args.installation), args.readback_operation)
         except (OSError, ValueError, KeyError, TypeError) as error:
             result = {"outcome": "rejected", "reason": f"{type(error).__name__}: {error}"[:2048],
                       "records": {"claim": "unqualified_dispatch", "native_qualified": False}}

@@ -7,7 +7,9 @@ param(
     [string]$SourceRoot,
     [string]$SourceRevision,
     [ValidatePattern('^[a-f0-9]{64}$')]
-    [string]$QueuedRequestSha256
+    [string]$QueuedRequestSha256,
+    [ValidateSet('P04', 'P01-P03')]
+    [string]$ReadbackScope = 'P04'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -87,18 +89,19 @@ function Write-NewJson([string]$Path, $Value) {
     }
 }
 
-$captureRoot = 're/automation/PairedCaptures/P04/solidworks-c1986308375a'
 $authoringRoot = 're/automation/PairedCaptures/SolidWorksAuthoring'
-$receipt = Get-Pin "$captureRoot/receipt.json"
-if ($receipt.sha256 -cne '7fd2fffa3c690998753a80cab81da2f1c2446c9fcec39574e3983a7f4345cae5') {
-    throw 'The recorded P04 receipt differs from its audited identity.'
-}
-$existing = Get-Content -LiteralPath (Join-Path $repository $receipt.path) -Raw | ConvertFrom-Json
-$measurements = Get-Pin "$captureRoot/measurements.json"
-if ($existing.recipe_id -cne 'P04' -or $existing.measurements -cne 'measurements.json' -or
-    $existing.errors -ne 0 -or $existing.measurement_receipt_sha256 -cne $measurements.sha256 -or
-    $existing.native_files.Count -ne 11) {
-    throw 'The recorded P04 receipt and measurements do not agree.'
+if ($ReadbackScope -eq 'P04') {
+    $captureSets = @(
+        @{ recipe = 'P04'; capture = 'c1986308375a'; count = 11;
+           sha256 = '7fd2fffa3c690998753a80cab81da2f1c2446c9fcec39574e3983a7f4345cae5' }
+    )
+} else {
+    $captureSets = @(
+        @{ recipe = 'P01'; capture = '75b9308cf13e'; count = 6;
+           sha256 = '3c389fe4069bece7ecf64f0294d111ce7f44131b2fc576d3f2ac4291e0fec7bf' },
+        @{ recipe = 'P03'; capture = 'db1390476325'; count = 8;
+           sha256 = 'f2308ae749f3d739746301873a49e997e2cf494f9d459e954403b66b17e22a94' }
+    )
 }
 $spec = Get-Pin 're/automation/PairSpecs.json'
 $control = Get-Pin 're/solidworks/examples/.SLDPRT/example.SLDPRT'
@@ -110,18 +113,35 @@ $collector = Get-Pin "$authoringRoot/P04Readback.cs"
 $launcher = Get-Pin "$authoringRoot/ReadP04SolidWorks.ps1"
 Assert-Bytes $PSCommandPath $launcher
 $files = [ordered]@{}
-foreach ($reported in $existing.native_files) {
-    if ($reported.file -cnotmatch '^P04-solidworks-[A-Za-z0-9_-]+\.SLDPRT$' -or
-        $files.Contains($reported.file) -or $reported.save_errors -ne 0 -or $reported.save_warnings -ne 0) {
-        throw 'The P04 receipt contains an unexpected file entry.'
+$capturePins = [ordered]@{}
+foreach ($capture in $captureSets) {
+    $recipe = $capture.recipe
+    $captureRoot = "re/automation/PairedCaptures/$recipe/solidworks-$($capture.capture)"
+    $receipt = Get-Pin "$captureRoot/receipt.json"
+    if ($receipt.sha256 -cne $capture.sha256) {
+        throw "The recorded $recipe receipt differs from its audited identity."
     }
-    $pin = Get-Pin "$captureRoot/$($reported.file)"
-    if ($pin.sha256 -cne $reported.sha256 -or $pin.size_bytes -ne $reported.size_bytes) {
-        throw "A native file differs from its audited receipt at $($pin.path)"
+    $existing = Get-Content -LiteralPath (Join-Path $repository $receipt.path) -Raw | ConvertFrom-Json
+    $measurements = Get-Pin "$captureRoot/measurements.json"
+    if ($existing.recipe_id -cne $recipe -or $existing.measurements -cne 'measurements.json' -or
+        $existing.errors -ne 0 -or $existing.measurement_receipt_sha256 -cne $measurements.sha256 -or
+        $existing.native_files.Count -ne $capture.count) {
+        throw "The recorded $recipe receipt and measurements do not agree."
     }
-    $files.Add($reported.file, $pin)
+    $capturePins.Add($recipe, [ordered]@{ receipt = $receipt; measurements = $measurements })
+    foreach ($reported in $existing.native_files) {
+        if ($reported.file -cnotmatch ('^{0}-solidworks-[A-Za-z0-9_-]+\.SLDPRT$' -f $recipe) -or
+            $files.Contains($reported.file) -or $reported.save_errors -ne 0 -or $reported.save_warnings -ne 0) {
+            throw "The $recipe receipt contains an unexpected file entry."
+        }
+        $pin = Get-Pin "$captureRoot/$($reported.file)"
+        if ($pin.sha256 -cne $reported.sha256 -or $pin.size_bytes -ne $reported.size_bytes) {
+            throw "A native file differs from its audited receipt at $($pin.path)"
+        }
+        $files.Add($reported.file, $pin)
+    }
+    Assert-Bytes (Join-Path $repository $receipt.path) $receipt
 }
-Assert-Bytes (Join-Path $repository $receipt.path) $receipt
 
 $registration = (Get-Item -LiteralPath 'Registry::HKEY_CLASSES_ROOT\SldWorks.Application\CLSID').GetValue('')
 $server = Get-Item -LiteralPath "Registry::HKEY_CLASSES_ROOT\CLSID\$registration\LocalServer32"
@@ -164,9 +184,7 @@ $collectorCopy = Join-Path $output 'P04Readback.cs'
 Copy-Pinned $collector $collectorCopy
 $provenance = [ordered]@{
     source_revision = $revision
-    recipe = 'P04'
-    existing_receipt = $receipt
-    existing_measurements = $measurements
+    recipe = $ReadbackScope
     specification = $spec
     launcher = $launcher
     collector = $collector
@@ -175,6 +193,12 @@ $provenance = [ordered]@{
     installed_executable_sha256 = (Get-FileHash -LiteralPath $binary.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
     installed_interop_sha256 = (Get-FileHash -LiteralPath $interop.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
     installed_constants_sha256 = (Get-FileHash -LiteralPath $constants.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+}
+if ($ReadbackScope -eq 'P04') {
+    $provenance.Add('existing_receipt', $capturePins['P04'].receipt)
+    $provenance.Add('existing_measurements', $capturePins['P04'].measurements)
+} else {
+    $provenance.Add('existing_captures', $capturePins)
 }
 $provenancePath = Join-Path $output 'plan.json'
 Write-NewJson $provenancePath $provenance
@@ -218,8 +242,10 @@ foreach ($name in $files.Keys) {
 }
 Assert-Bytes $controlCopy $control
 Assert-Bytes (Join-Path $repository $control.path) $control
-Assert-Bytes (Join-Path $repository $receipt.path) $receipt
-Assert-Bytes (Join-Path $repository $measurements.path) $measurements
+foreach ($capture in $capturePins.Values) {
+    Assert-Bytes (Join-Path $repository $capture.receipt.path) $capture.receipt
+    Assert-Bytes (Join-Path $repository $capture.measurements.path) $capture.measurements
+}
 Assert-Bytes $collectorCopy $collector
 Assert-Bytes $provenancePath $planPin
 
@@ -231,20 +257,27 @@ Write-NewJson $reportPath ([ordered]@{
     source_bytes_verified_after_readback = $true
     run = $run
 })
-$verified = @($run.observations | Where-Object { $_.face_verified_before_and_after_rebuild })
+$observed = @($run.observations | Where-Object { $_.status -ceq 'observed' })
+$verified = if ($ReadbackScope -eq 'P04') {
+    @($observed | Where-Object { $_.face_verified_before_and_after_rebuild })
+} else {
+    @($observed)
+}
 $status = $run.status
-if ($status -ceq 'observed' -and $verified.Count -ne $files.Count) {
+if ($status -ceq 'observed' -and @($verified).Count -ne $files.Count) {
     $status = 'incomplete'
 }
-Write-NewJson (Join-Path $output 'receipt.json') ([ordered]@{
+$receiptValue = [ordered]@{
     schema = 1
     status = $status
     plan_sha256 = $planPin.sha256
     measurements_sha256 = (Get-FileHash -LiteralPath $reportPath -Algorithm SHA256).Hash.ToLowerInvariant()
-    observed_files = @($run.observations | Where-Object { $_.status -ceq 'observed' }).Count
-    supporting_faces_verified = $verified.Count
-})
+    observed_files = $observed.Count
+}
+$countField = if ($ReadbackScope -eq 'P04') { 'supporting_faces_verified' } else { 'principal_profiles_observed' }
+$receiptValue.Add($countField, @($verified).Count)
+Write-NewJson (Join-Path $output 'receipt.json') $receiptValue
 if ($status -cne 'observed') {
-    throw "Readback or face identity verification is incomplete. Inspect $reportPath"
+    throw "Readback verification is incomplete. Inspect $reportPath"
 }
 Write-Output $output

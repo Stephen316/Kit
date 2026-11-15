@@ -299,16 +299,16 @@ public sealed class P04Readback
     static object FinalBody(IModelDoc2 document)
     {
         var bodies = Items(((IPartDoc)document).GetBodies2((int)swBodyType_e.swSolidBody, false));
-        Require(bodies.Length == 1, "P04 final topology requires one solid body");
+        Require(bodies.Length == 1, "Readback topology requires one solid body");
         var body = (IBody2)bodies[0];
         var lower = BodyExtent(body, -1);
         var upper = BodyExtent(body, 1);
         Require(lower.Zip(upper, (minimum, maximum) => minimum < maximum).All(ordered => ordered),
             "The solid body reported invalid extent bounds");
         var mass = document.Extension.CreateMassProperty2() as IMassProperty2;
-        Require(mass != null, "P04 final mass properties are unavailable");
+        Require(mass != null, "Readback mass properties are unavailable");
         mass.UseSystemUnits = true;
-        Require(mass.Recalculate(), "P04 final mass calculation failed");
+        Require(mass.Recalculate(), "Readback mass calculation failed");
         return Row("solid_body_count", bodies.Length, "face_count", body.GetFaceCount(),
             "edge_count", body.GetEdgeCount(), "vertex_count", body.GetVertexCount(),
             "bounds_min_m", lower, "bounds_max_m", upper, "volume_m3", mass.Volume,
@@ -338,6 +338,70 @@ public sealed class P04Readback
             "origin_points", originSketch == null ? null : Items(originSketch.GetSketchPoints2())
                 .Select(point => Participant(point, originSketch, sketchOwners)).ToArray(),
             "sketches", new[] { ObserveSketch(profile, profileSketch, sketchOwners), ObserveSketch(cut, cutSketch, sketchOwners) });
+    }
+
+    double[] WorldPoint(double[] local, MathTransform inverse)
+    {
+        var utility = (IMathUtility)app.GetMathUtility();
+        var point = (IMathPoint)utility.CreatePoint(local);
+        return (double[])point.IMultiplyTransform(inverse).ArrayData;
+    }
+
+    object PrincipalPerimeter(ISketch sketch)
+    {
+        var segments = Items(sketch.GetSketchSegments()).Cast<ISketchSegment>().ToArray();
+        Require(segments.Length == 4 && segments.All(segment => !segment.ConstructionGeometry && segment is ISketchLine),
+            "The principal profile does not contain four authored straight edges");
+        var inverse = sketch.ModelToSketchTransform.IInverse();
+        return segments.Select(segment =>
+        {
+            var line = (ISketchLine)segment;
+            var start = line.IGetStartPoint2();
+            var end = line.IGetEndPoint2();
+            return Row("id", segment.GetID(),
+                "start_world_m", WorldPoint(new[] { start.X, start.Y, start.Z }, inverse),
+                "end_world_m", WorldPoint(new[] { end.X, end.Y, end.Z }, inverse));
+        }).ToArray();
+    }
+
+    object PrincipalBoss(IModelDoc2 document, IFeature profile)
+    {
+        var boss = NamedFeature(document, "BlindBoss", "Extrusion");
+        var profiles = Items(boss.GetParents()).OfType<IFeature>()
+            .Where(parent => parent.GetTypeName2() == "ProfileFeature").ToArray();
+        Require(profiles.Length == 1 && Same(profiles[0], profile),
+            "The native Boss does not own the observed rectangle");
+        var extrusion = boss.GetDefinition() as IExtrudeFeatureData2;
+        Require(extrusion != null && extrusion.GetEndCondition(true) == (int)swEndConditions_e.swEndCondBlind
+            && !extrusion.BothDirections && extrusion.GetDepth(true) > 0,
+            "The native Boss does not have one blind extent");
+        return Row("feature", Feature(boss), "profile", Feature(profiles[0]),
+            "end_condition", extrusion.GetEndCondition(true), "depth_m", extrusion.GetDepth(true),
+            "reverse_direction", extrusion.ReverseDirection, "both_directions", extrusion.BothDirections);
+    }
+
+    object ObservePrincipal(IModelDoc2 document, bool includesBoss)
+    {
+        var profile = NamedFeature(document, "RectangleSketch", "ProfileFeature");
+        var sketch = (ISketch)profile.GetSpecificFeature2();
+        var origin = ((IPartDoc)document).FeatureByName("Origin") as IFeature;
+        var originSketch = origin == null ? null : origin.GetSpecificFeature2() as ISketch;
+        var owners = new Dictionary<string, ISketch> { { profile.Name, sketch } };
+        if (originSketch != null) owners.Add(origin.Name, originSketch);
+        int supportType = 0;
+        var support = sketch.GetReferenceEntity(ref supportType) as IFeature;
+        Require(support != null && support.GetTypeName2() == "RefPlane"
+            && sketch.GetConstrainedStatus() == 3 && sketch.GetSketchRegionCount() == 1,
+            "The saved rectangle did not reopen on a plane as one fully constrained region");
+        var bodies = Items(((IPartDoc)document).GetBodies2((int)swBodyType_e.swSolidBody, false));
+        Require(bodies.Length == (includesBoss ? 1 : 0), "The principal part has an unexpected solid count");
+        return Row("configuration", document.IGetActiveConfiguration().Name,
+            "units_code", document.Extension.GetUserPreferenceInteger(263, 0),
+            "support", Feature(support), "support_type", supportType, "region_count", sketch.GetSketchRegionCount(),
+            "constraint_status", sketch.GetConstrainedStatus(), "perimeter", PrincipalPerimeter(sketch),
+            "sketch", Sketch(profile, sketch, owners), "origin_feature", Feature(origin),
+            "boss", includesBoss ? PrincipalBoss(document, profile) : null,
+            "solid_body_count", bodies.Length, "final_body", includesBoss ? FinalBody(document) : null);
     }
 
     Dictionary<string, object> Read(string path, bool control)
@@ -370,6 +434,14 @@ public sealed class P04Readback
                 row["center_of_mass_m"] = mass.CenterOfMass;
                 Require(bodies.Length == 1 && Math.Abs(mass.Volume * 1e9 - 881814.3482038013) <= .001,
                     "Control geometry differs from its pinned observation");
+            }
+            else if (row["file"].ToString().StartsWith("P01-", StringComparison.Ordinal) ||
+                     row["file"].ToString().StartsWith("P03-", StringComparison.Ordinal))
+            {
+                bool includesBoss = row["file"].ToString().StartsWith("P03-", StringComparison.Ordinal);
+                row["before_rebuild"] = ObservePrincipal(document, includesBoss);
+                Require(document.ForceRebuild3(false), "Principal profile rebuild failed");
+                row["after_rebuild"] = ObservePrincipal(document, includesBoss);
             }
             else
             {
@@ -514,7 +586,7 @@ public sealed class P04Readback
             {
                 var reading = worker.Read(Path.Combine(workspace, file), false);
                 observations.Add(reading);
-                Require(!reading.ContainsKey("cleanup_diagnostic"), "P04 cleanup did not leave an empty session");
+                Require(!reading.ContainsKey("cleanup_diagnostic"), "Readback cleanup did not leave an empty session");
             }
             var after = worker.Read(Path.Combine(workspace, "control.SLDPRT"), true);
             result["control_after"] = after;
