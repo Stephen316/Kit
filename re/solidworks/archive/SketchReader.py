@@ -91,7 +91,7 @@ def ReportDimensions(Cursor, Points):
             Position, Owner, Flags = Cursor.Handles[HandleIndex]
             Require((Owner, Flags), (-1, 0), "witnessed local dimension handle fields")
             Require(0 <= Position < len(Points), True, "dimension point in its sketch")
-            Identity, _ = Points[Position]
+            Identity, _, _ = Points[Position]
             Operands.append((Position, Identity))
         Records.append(
             {
@@ -120,7 +120,11 @@ def ReadGeometry(Cursor, ObjectIndex):
         "body_start": Start,
         "geometry_end": Cursor.Offset,
         "next_map_index": Cursor.NextIndex,
-        "points_metres": [Coords for _, Coords in Points],
+        "points_metres": [Coords for _, _, Coords in Points],
+        "point_relation_tallies": [
+            {"id": (Position, Identity), "tally": Tally}
+            for Position, (Identity, Tally, _) in enumerate(Points)
+        ],
         "lines": [
             {
                 "member_index": Index,

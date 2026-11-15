@@ -149,7 +149,13 @@ def CheckDimensionOperands(Sketches, Reading):
         NameValue = Sketch["measurement_profile"]
         Points = Sketch["points_metres"]
         Expected = Counter()
+        MeasuredTallies = Counter()
         for Relation in ByName[NameValue]["relations"]:
+            for Entity, TypeValue in zip(
+                Relation["entities"], Relation["entity_types"], strict=True
+            ):
+                if TypeValue == 2:
+                    MeasuredTallies[tuple(Entity["id"])] += 1
             if Relation["type"] != 1:
                 continue
             Require(Relation["entity_types"], [2, 2], "native distance point operands")
@@ -166,9 +172,11 @@ def CheckDimensionOperands(Sketches, Reading):
                     "native distance operand coordinates",
                 )
         Actual = Counter()
+        DistanceTallies = Counter()
         for Dim in Sketch["length_dimensions"]:
             Operands = tuple(Dim["point_native_ids"])
             Actual[Operands] += 1
+            DistanceTallies.update(Operands)
             Start, End = (Points[Index] for Index, _ in Operands)
             Delta = tuple(abs(A - B) for A, B in zip(Start, End, strict=True))
             Axis = AxisClasses.get(Dim["class"])
@@ -179,6 +187,18 @@ def CheckDimensionOperands(Sketches, Reading):
         Require(
             Actual, Expected, f"measured ordered dimension bindings for {NameValue}"
         )
+        SavedTallies = Counter(
+            {Row["id"]: Row["tally"] for Row in Sketch["point_relation_tallies"]}
+        )
+        Require(
+            SavedTallies,
+            MeasuredTallies,
+            f"measured point incidence counts for {NameValue}",
+        )
+        Sketch["unmapped_point_relation_tallies"] = [
+            {"id": Identity, "tally": Tally}
+            for Identity, Tally in sorted((SavedTallies - DistanceTallies).items())
+        ]
 
 
 # exact native blob checks keep witness based layouts scoped to their discovery inputs
