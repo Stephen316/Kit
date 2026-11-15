@@ -63,7 +63,7 @@ def measured_support(phase):
     }
 
 
-def report(directory, receipt_digest):
+def licensed_cases(directory, receipt_digest):
     head = run_git(ROOT, "rev-parse", "HEAD").decode().strip()
     require(
         not run_git(ROOT, "status", "--porcelain", "--", "src", "re/automation"),
@@ -77,16 +77,32 @@ def report(directory, receipt_digest):
     source, measurements_digest, observations = licensed_readback(
         snapshot, capture, directory, receipt_digest
     )
-    tolerances = specification["comparison_tolerances"]
-    rows = []
+    provenance = {
+        "reader_revision": head,
+        "solidworks_build": SOLIDWORKS_BUILD,
+        "licensed_receipt_sha256": receipt_digest,
+        "licensed_measurements_sha256": measurements_digest,
+        "licensed_collector_revision": source,
+        "capture_revision": REVISION,
+    }
+    return provenance, specification["comparison_tolerances"], saved_cases(snapshot, capture, observations)
+
+
+def saved_cases(snapshot, capture, observations):
     for asset in capture["native_files"]:
         raw = snapshot.blob(REVISION, asset["path"])
-        require(sha256(raw) == asset["sha256"], "saved support archive digest differs")
+        require(sha256(raw) == asset["sha256"], "saved P04 archive digest differs")
         graph = read_history(OpenDocument(raw, SourceFormat="solidworks.sldprt", StrictMode=False))
+        yield asset, graph, observations[PurePosixPath(asset["path"]).name]
+
+
+def report(directory, receipt_digest):
+    provenance, tolerances, cases = licensed_cases(directory, receipt_digest)
+    rows = []
+    for asset, graph, native in cases:
         normal, offset = plane_metrics(graph.cut.plane)
         area = perimeter_area(graph.base.perimeter, normal) - perimeter_area(graph.cut.perimeter, normal)
         require(area > 0, "the upper face must remain after the cut")
-        native = observations[PurePosixPath(asset["path"]).name]
         phases = {}
         for label in ("before_rebuild", "after_rebuild"):
             face = measured_support(native[label])
@@ -108,12 +124,7 @@ def report(directory, receipt_digest):
         })
     return {
         "scope": "solidworks_a04c_saved_support_vs_licensed_measurement",
-        "reader_revision": head,
-        "solidworks_build": SOLIDWORKS_BUILD,
-        "licensed_receipt_sha256": receipt_digest,
-        "licensed_measurements_sha256": measurements_digest,
-        "licensed_collector_revision": source,
-        "capture_revision": REVISION,
+        **provenance,
         "area_tolerance_mm2": AREA_TOLERANCE_MM2,
         "cases": rows,
     }
