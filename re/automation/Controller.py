@@ -5,6 +5,7 @@ import sqlite3
 import sys
 from pathlib import Path
 
+from EventHistory import event_window
 from GroupClaims import claim_group, read_group, renew_group, write_group
 from GroupFinish import finish_group
 from Ledger import Ledger
@@ -63,14 +64,19 @@ def main():
     status = commands.add_parser("status")
     status.add_argument("--job")
     status.add_argument("--after")
-    commands.add_parser("events")
+    events = commands.add_parser("events")
+    events.add_argument("--after", type=int)
+    events.add_argument("--through", type=int)
     artifact = commands.add_parser("artifact")
     artifact.add_argument("sha256")
     args = parser.parse_args()
     try:
+        if args.command == "events" and (args.after is not None or args.through is not None):
+            print(canonical(event_window(args.store, args.owner, args.after, args.through)))
+            return 0
         with Ledger(args.store, args.command == "init", getattr(args, "max_running", 4)) as ledger:
             if args.command != "rotate-owner":
-                check_owner(ledger, args.owner)
+                check_owner(ledger.db, args.owner)
             if args.command == "rotate-owner":
                 if args.owner is not None:
                     raise ValueError("owner rotation must not reuse a supervised invocation")

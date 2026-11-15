@@ -132,6 +132,9 @@ The `/tmp/KitResearchState` path below is an example and can be removed by opera
    Use `status --job <job-label>` for one job.
    Each status record includes the job `kind`.
    Status pages contain at most 100 jobs; supply the returned `next_after` label through `--after` to read the next page.
+   Use `events --after 0` to capture committed event history in ascending pages.
+   For subsequent pages, use the returned `next_after` as `--after` and retain the first page's `through` as `--through`.
+   A null continuation marks the end of the window. [Controller event windows](../../Changes/Research/Controller/ControllerEventWindows.md)
    `artifact <sha256>` verifies an object and reports its path and byte count.
    Replace angle-bracket values with actual labels or hashes.
 

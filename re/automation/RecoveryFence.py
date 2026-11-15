@@ -24,12 +24,12 @@ def rotate_owner(ledger, owner):
     return {"recovery_fence_version": 1}
 
 
-def check_owner(ledger, owner):
+def check_owner(db, owner):
     if owner is None:
         return
     digest = owner_digest(owner)
-    if ledger.db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='supervisor_owner'").fetchone() is None:
+    if db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='supervisor_owner'").fetchone() is None:
         raise StaleOwner("supervisor owner has not been installed")
-    row = ledger.db.execute("SELECT version,token_hash FROM supervisor_owner WHERE id=1").fetchone()
+    row = db.execute("SELECT version,token_hash FROM supervisor_owner WHERE id=1").fetchone()
     if row is None or row["version"] != 1 or not hmac.compare_digest(row["token_hash"], digest):
         raise StaleOwner("supervisor owner was replaced during recovery")
