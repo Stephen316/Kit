@@ -51,6 +51,21 @@ The matching loader confirms the map handoff to the resolved-feature read. Licen
 
 The resolved stream identifies `CutSketch` as face-supported. [Licensed native readback](../../../Documentation/Changes/Research/Workers/SolidWorksCutFaceReadback.md) independently identifies the same persistent boss-face support before and after rebuild in all eleven files and records the support transforms. Mapping that face occurrence to its archive encoding remains open.
 
+## Licensed sketch boundaries and resolved references
+
+Four separate SOLIDWORKS `34.4.1.1011` sessions read the pinned P04 baseline A and YZ captures. Two sessions traced sketch serializer entry and exit. Two traced the subsequent resolved-feature sketch reads. Each compared the complete runtime archive buffer with the decompressed capture SHA-256. The cross-stream sessions verified both full buffers. All scratch part hashes stayed unchanged after the owned processes exited. [Capture and executable pins](P04ArchiveWalk.md#inputs)
+
+The `sgSketch::Serialize` entry at `sldmodu+0x144f790` receives the sketch and archive in `rcx` and `rdx`. The matching exit at `0x1457e80` uses `rsi` and `r14`. At entry, the archive counter minus one selects the slot whose value equals the receiving sketch pointer. The exit observation pairs the same sketch, archive and buffer and records the final cursor and allocation counter. Both entries use generation 19000, context mask zero and the load branch with an empty embedded profile field.
+
+| Capture | Resolved feature | Config-0 object slot | Config-0 body and end | Allocation counter | ResolvedFeatures reference |
+| --- | --- | ---: | --- | --- | ---: |
+| Baseline A | `CutSketch` | 74 | 3,786–12,532 | 75–147 | 9,600 |
+| Baseline A | `RectangleSketch` | 155 | 12,923–18,277 | 156–200 | 5,742 |
+| YZ | `CutSketch` | 74 | 3,784–12,530 | 75–147 | 9,670 |
+| YZ | `RectangleSketch` | 155 | 12,921–18,275 | 156–200 | 5,742 |
+
+The profile serializer's typed `sgSketch` pointer read at `0x9dbbcf` receives the later archive. The two-byte token selects the same sketch pointer observed in the Config-0 allocation. Immediately after the call at `0x9dbbd4`, the profile member at `[[rdi+0x3d0]+0x80]` contains that exact pointer. Each read consumes two bytes and leaves the allocation counter unchanged. The observed IDs and offsets are regression evidence for a versioned archive walk.
+
 ## Face reference control
 
 In every measured P04 `Config-0-ResolvedFeatures` stream the class name `moFaceRef_c` appears once. A 52-byte interval beginning 25 bytes after the first byte of that name is also present at the same relative location in the support face's private persistent reference, before and after rebuild. This interval crosses the `moEndFaceSurfIdRep_c` declaration. The first byte of the archived class name is 6,652 in baseline A, 6,880 in baseline B and the parameter and inch variants, 6,722 in YZ and 6,650 in through-all.

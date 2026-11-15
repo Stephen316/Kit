@@ -42,4 +42,7 @@ The selector creates no global name and uses no additional binding command.
 
 The Fusion runner still validates the accepted result, files, plan and installation and requires the old native process to exit.
 The remote process cases cover exact staging, repeat submission, changing the parent generation, a missing output and an undeclared dependency.
-Licensed execution and remote verification remain pending for this change.
+
+A Windows consumer at `7e4c604b60568666287b61ce843eb5ac5ef10ce7` used a private copy of the completed [licensed SOLIDWORKS store](../Workers/SolidWorksQueuedReadback.md#licensed-job-evidence). It selected the accepted result plus its `readback.receipt` and `readback.measurements` artifacts. The supervisor staged those three exact digests even with a separate global `readback.measurements` binding present. The consumer verified the receipt and all eleven supporting-face observations. The original store digest and the completed parent record stayed unchanged.
+
+The accepted parent result SHA-256 is `6fb3373a27b793ebdc5f66056a4cff93761ac31d77d522d7dc0b93e963fdc059`. The measurement artifact SHA-256 is `68a072c111f9a2e5d3334766fdaac7b3a0a3d1e43477f37325177bbeffc0e55c`. The accepted consumer result SHA-256 is `664523368640d00fbc1808589a57298ccd8af6a66e3e39c2fabaf51c1c683df5`. The licensed Fusion sequence and remote process verification remain pending.
