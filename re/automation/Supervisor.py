@@ -12,11 +12,11 @@ import time
 from pathlib import Path
 
 from Adapters import load_adapter
-from ApplicationAckIntent import current_completion, intent_digest, make_intent, read_intent
+from ApplicationAckIntent import current_completion, make_intent, read_intent
 from GroupSessions import GroupSession, release_group
 from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
-from Records import bounded, canonical, label, read_record, reason_text
+from Records import bounded, canonical, digest, label, read_record, reason_text
 from ResourceBudget import ResourceBudget
 from Runners import Registry
 from Sessions import Session, read_bounded, write_private
@@ -94,12 +94,14 @@ def lock(path):
     return descriptor
 
 
-def acknowledge_application(installation, store, owner, intent):
+def acknowledge_application(installation, adapter, intent, recovered):
+    if recovered and not current_completion(adapter, intent):
+        return {"status": "not_accepted"}
     command = Path(__file__).with_name("ApplicationWorkers") / "AcknowledgeApplication.py"
     identity = {key: intent[key] for key in ("generation", "fingerprint", "attempts", "session", "installation_sha256")}
-    identity.update({"owner": owner, "intent_sha256": intent_digest(intent)})
+    identity.update({"owner": adapter.owner, "intent_sha256": digest(intent)})
     result = subprocess.run(
-        [sys.executable, "-E", str(command), "--installation", str(installation), "--store", str(store),
+        [sys.executable, "-E", str(command), "--installation", str(installation), "--store", str(adapter.store),
          "--job", intent["job"], "--supervisor-claim-stdin"],
         input=canonical(identity), capture_output=True, text=True, timeout=180, check=False,
     )
@@ -254,7 +256,7 @@ class Supervisor:
                     intent_error = f"{type(error).__name__}: {error}"[:2048]
                 else:
                     intent = candidate
-                    payload = {**payload, "application_acknowledgement_sha256": intent_digest(intent)}
+                    payload = {**payload, "application_acknowledgement_sha256": digest(intent)}
             path = session.directory / "finish.json"
             write_private(path, payload)
             try:
@@ -290,7 +292,7 @@ class Supervisor:
         detail = self.acknowledgement_detail(intent, recovered)
         try:
             future = self.acknowledger.submit(
-                acknowledge_application, self.installations[intent["kind"]], self.adapter.store, self.adapter.owner, intent,
+                acknowledge_application, self.installations[intent["kind"]], self.adapter, intent, recovered,
             )
         except (OSError, RuntimeError) as error:
             self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
@@ -307,13 +309,7 @@ class Supervisor:
                         or self.registry.runners[intent["kind"]]["pool"] != intent["pool"]
                         or str(self.adapter.store) != intent["store"]):
                     raise ValueError("application acknowledgement intent has no matching owner configuration")
-                if current_completion(self.adapter, intent):
-                    self.queue_application_ack(path, intent, True)
-                else:
-                    self.remove_acknowledgement_intent(path, detail)
-                    self.report("application_acknowledgement_not_accepted", None, detail)
-            except subprocess.SubprocessError:
-                self.report("application_acknowledgement_failed", None, {**detail, "error": "controller check did not finish"})
+                self.queue_application_ack(path, intent, True)
             except (OSError, ValueError, KeyError, TypeError, RecursionError) as error:
                 self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
 
@@ -332,7 +328,10 @@ class Supervisor:
                 self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
             else:
                 self.remove_acknowledgement_intent(path, detail)
-                self.report("application_acknowledgement", None, {**detail, **response})
+                if response["status"] == "not_accepted":
+                    self.report("application_acknowledgement_not_accepted", None, detail)
+                else:
+                    self.report("application_acknowledgement", None, {**detail, **response})
 
     def fill(self, paused):
         claimed = False
@@ -420,8 +419,8 @@ class Supervisor:
         signal.signal(signal.SIGINT, self.shutdown)
         self.acquire()
         self.recover()
-        self.recover_application_acks()
         self.synchronize()
+        self.recover_application_acks()
         self.budget.refresh(self.running)
         started = time.monotonic()
         last_work = started

@@ -7,6 +7,8 @@ A03 still checks the active lease and current supervisor owner when it accepts t
 
 When the supervisor starts again, it acquires its locks, installs a new controller owner and recovers abandoned sessions.
 It then checks outstanding intents against A03 and requeues acknowledgement for a corresponding completed claim.
+These checks run alongside normal supervision and retry one failed controller status request.
+A rejected supervisor owner stops the check immediately.
 The acknowledgement checks the content-addressed result and its supervisor session against the intent before changing the retained application spool.
 It uses the current owner and the installation selected by the registry.
 The intent contains neither the lease token nor the old owner's credential.
@@ -19,5 +21,6 @@ The application endpoint journal still protects interrupted spool deletion, and 
 This change covers supervisor process interruption and subsequent restart.
 
 Remote process cases interrupt the supervisor before A03 finish and after its durable response.
-They also check that tampered intent bytes and changed installation configuration preserve accepted controller evidence and the original application fence.
+They verify the digest in the accepted result and recovery after spool cleanup, as well as a transient controller status failure.
+Tampered intent bytes, changed installation bytes and a removed registry binding preserve accepted controller evidence and the original application fence.
 Remote results and licensed application execution remain pending.

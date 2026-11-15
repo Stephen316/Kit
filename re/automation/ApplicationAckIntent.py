@@ -3,9 +3,12 @@ import os
 import re
 import secrets
 import stat
+import subprocess
+import time
 from pathlib import Path
 
-from Records import canonical, label, read_record
+from Records import label, read_record
+from RecoveryFence import StaleOwner
 
 
 def installation_sha256(path):
@@ -22,10 +25,6 @@ def installation_sha256(path):
     if len(content) > 1024 * 1024:
         raise ValueError("application installation exceeds its record limit")
     return hashlib.sha256(content).hexdigest()
-
-
-def intent_digest(intent):
-    return hashlib.sha256(canonical(intent).encode("utf-8")).hexdigest()
 
 
 def make_intent(session, installation, store):
@@ -55,7 +54,14 @@ def read_intent(path):
 
 
 def current_completion(adapter, intent):
-    rows = adapter.ReadStatus(intent["job"])["jobs"]
+    try:
+        status = adapter.ReadStatus(intent["job"])
+    except StaleOwner:
+        raise
+    except (OSError, subprocess.SubprocessError, ValueError):
+        time.sleep(0.25)
+        status = adapter.ReadStatus(intent["job"])
+    rows = status["jobs"]
     return len(rows) == 1 and rows[0]["state"] == "completed" and all(
         rows[0][key] == intent[key] for key in ("kind", "generation", "fingerprint", "attempts")
     )
