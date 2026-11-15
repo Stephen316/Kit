@@ -18,7 +18,7 @@ for the pinned CPython and Windows API sources and actual failing Windows job.
 New real-process cases live in `tests/Research/WindowsRecords`; the rewritten-file
 case exercises both application reads and output intake. Existing output-intake
 and application parking process cases must also pass on the repaired head.
-Static checks run locally; actual Windows results remain pending remote CI.
+Static checks ran locally; Windows process evidence is recorded below.
 
 The [pywin32 timestamp precision gotcha](../../../Gotchas/Research/Workers/PythonWinBasicTimePrecision.md)
 explains the exact-second fixture baseline needed to prove a change-time-only
@@ -31,4 +31,13 @@ One sharing-fixture assertion failed because it required native error codes from
 every Python file API. The [CRT sharing error gotcha](../../../Gotchas/Research/Workers/WindowsCrtSharingErrors.md)
 records the pinned source distinction. The revised case logs each refusal, adds a
 native write probe, and requires successful same-path controls after releasing
-the protected reader. Its remote verification remains pending.
+the protected reader.
+
+At source checkpoint `7e6243b28ea5d84de2c8aea7577221c24b13ceb0`, the
+[Windows gate](https://github.com/TryUniCAD/Kit/actions/runs/43677583943/job/132701013861)
+passed all twenty-two cases in 64.92 seconds, including all four immutable-record
+cases, both parking cases, output intake and owner recovery.
+The sharing case proved the required refusal error domains and all five successful
+post-release operations. Individual numeric error values were suppressed by
+successful pytest capture. No native application ran; native dispatch and semantic
+qualification remain open.

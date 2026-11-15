@@ -87,9 +87,13 @@ def CheckFusWriter(TmpPath: FilePath) -> None:
         StepValue.kind == FeatureKind.NATIVE for StepValue in Document.feature_timeline
     )
     TargetPath = TmpPath / "blocked.f3d"
-    for FormatId in ("fusion.f3d", "f3d", None):
+    for FormatId in ("fusion.f3d", "f3d"):
         with Pytest.raises(ValueError, match="native or unresolved required semantics"):
             _ = WriteDocument(Document, TargetPath, destination_format=FormatId)
+    with Pytest.raises(AdapterNotFoundError, match="no writer supports"):
+        _ = WriteDocument(Document, TargetPath)
+    with Pytest.raises(ValueError, match="native or unresolved required semantics"):
+        _ = WriteDocument(Document, TmpPath / "blocked.json")
     assert tuple(TmpPath.iterdir()) == ()
 
 
