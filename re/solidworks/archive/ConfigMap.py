@@ -19,6 +19,7 @@ from SketchEvidence import (
 if __name__ == "__main__":
     ImportPaths.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
+from ConfigDetail import ReadDetailStart, ReadLengthCode
 from SketchReader import ReadSketchConfiguration
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
@@ -72,14 +73,7 @@ def ReadConfigView(Cursor):
 
 # dimension styles store the scalar unit base and a length code before their child
 def ReadLengthUnit(Cursor, Events):
-    Cursor.ReadValue("<2i")
-    Cursor.ReadPoint(1)
-    Cursor.ReadValue("<2i")
-    Cursor.ReadPoint(1)
-    Cursor.ReadValue("<4i")
-    Cursor.ReadPoint(1)
-    _, _, UnitCode = Cursor.ReadValue("<HiH")
-    Require(UnitCode <= 10, True, "length unit code")
+    ReadLengthCode(Cursor)
     ReadPointer(Cursor, Events, KNullKind)
 
 
@@ -134,7 +128,7 @@ def ReadConfigMap(BlobValue, BuildName):
 # the same model serializer stores the presentation records after either relation path
 def ReadModelPresentation(Cursor):
     Events = []
-    Cursor.AdvanceBytes(1183)
+    ReadDetailStart(Cursor)
     ReadPointer(Cursor, Events, KClassRefKind, "moLengthUserUnits_c")
     ReadLengthUnit(Cursor, Events)
     Cursor.AdvanceBytes(442)
