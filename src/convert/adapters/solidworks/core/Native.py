@@ -990,6 +990,7 @@ class NativeDimension:
     native_role: str | None = None
     operands: tuple[NativeOperand, ...] = ()
     inch_display_value: float | None = None
+    native_stream: str | None = None
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -1115,6 +1116,7 @@ class NativeSketch:
     support_source: str = KRefSupportSource
     unframed_support_plane_id: int | None = None
     rectangle: RectanglePart | None = None
+    rectangle_geometry_stream: str | None = None
 
 
 # this definition exists because focused behavior needs one stable owner

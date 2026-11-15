@@ -10,6 +10,7 @@ from convert.adapters.solidworks.container.PlaneBasis import (
     MatrixAxes,
 )
 from convert.adapters.solidworks.resolved.BossEntry import (
+    BossOperation,
     RectangleBoss,
     ReadRectBoss,
 )
@@ -38,7 +39,7 @@ class RectanglePart:
     Reference: PrincipalRef
     Directions: KSavedBasis
     Origin: OriginProfile
-    Boss: RectangleBoss | None
+    Boss: BossOperation | None
 
 
 # the datum identity and frame must both agree with the archived sketch attachment

@@ -168,6 +168,8 @@ from convert.adapters.solidworks.core.Native import (
 )
 from convert.adapters.solidworks.core.cut.CutDocument import ProjectCutDoc
 from convert.adapters.solidworks.core.cut.CutEqProjection import ReadCutArchive
+from convert.adapters.solidworks.core.partition.ActivePartition import ReadActivePart
+from convert.adapters.solidworks.core.partition.PartTopology import PartTopology
 from convert.adapters.solidworks.core.OrdinaryRead import (
     KArchiveSupport,
     ReadRectSupport,
@@ -331,7 +333,9 @@ def ReadNativePart(
     SelectValues = Selections(Model)
     TimeValues = Timeline(Model, SelectValues)
     Payloads, PayloadDiags = BrepPayloads(Archive, Settings)
-    BrepValue = TypedBrep(Payloads)
+    BodyId = "sldprt:body:1"
+    ActivePart = ReadActivePart(Payloads, Model.active_configuration_id, BodyId)
+    BrepValue = ActivePart.ModelValue if ActivePart is not None else TypedBrep(Payloads)
     SolidOpIds = frozenset(
         (
             FeatureId(Operation.object_id)
@@ -343,11 +347,13 @@ def ReadNativePart(
     BodyFeature = SolidBody(Model.features)
     Bodies = (
         BodyValue(
-            id="sldprt:body:1",
+            id=BodyId,
             name=BodyFeature.name if BodyFeature is not None else "Body 1",
             final_feature_id=FinalFeature,
-            topology=TopologySummary(
-                solid_count=1 if SolidOpIds else 0, bounding_box=BoundingBoxA(Model)
+            topology=PartTopology(
+                ActivePart.ModelValue if ActivePart is not None else None,
+                BodyId,
+                TopologySummary(solid_count=1 if SolidOpIds else 0, bounding_box=BoundingBoxA(Model)),
             ),
             provenance=FeatureA(BodyFeature) if BodyFeature is not None else None,
             attributes=FrozenMapping(
@@ -357,6 +363,10 @@ def ReadNativePart(
                     ),
                     "parasolid_payload_ids": tuple(
                         (Payload.id for Payload in Payloads)
+                    ),
+                    **(
+                        {"parasolid_active_payload_id": ActivePart.PayloadId}
+                        if ActivePart is not None and ActivePart.ModelValue is not None else {}
                     ),
                 }
             ),
@@ -2120,7 +2130,7 @@ def Parameters(
                             Dimension.native_offset,
                             8,
                             "dimension-scalar",
-                            Stream=Feature.native_stream,
+                            Stream=Dimension.native_stream or Feature.native_stream,
                         )
                         if Dimension.native_offset is not None
                         else FeatureA(Feature)
@@ -2598,7 +2608,10 @@ def SketchA(Sketch: NativeSketch, ParamIds: set[str]) -> SketchData:
             }
         ),
     )
-    return ProjectRect(Neutral, Sketch.rectangle, Sketch.native_stream, Entries)
+    return ProjectRect(
+        Neutral, Sketch.rectangle, Sketch.rectangle_geometry_stream or Sketch.native_stream,
+        Entries, SeedEmpty=Sketch.rectangle_geometry_stream is not None,
+    )
 
 
 # this definition exists because point and line markers share coordinate resolution

@@ -841,6 +841,190 @@ def AssertSwCutLoop(SketchValue: Sketch) -> None:
     ]
 
 
+# the earlier rectangle must preserve separate configuration geometry and resolved datum sources
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckSwOuter(Variant: str) -> None:
+    NativePath = (
+        FilePath(__file__).resolve().parents[3]
+        / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
+        / f"P04-solidworks-{Variant}.SLDPRT"
+    )
+    Document = OpenDocument(NativePath)
+    (SketchValue,) = tuple(
+        Value for Value in Document.sketches if Value.id == "sldprt:sketch:26"
+    )
+    (Frame,) = tuple(
+        Value
+        for Value in Document.support_planes
+        if Value.id == SketchValue.support_plane_id
+    )
+    DatumId = 4 if Variant == "plane-yz" else 2
+    assert Frame.name == ("Right Plane" if DatumId == 4 else "Front Plane")
+    assert SketchValue.attributes["support_plane_source"] == "typed-archive-reference"
+    assert Frame.transform.z_axis == SpaceVector(
+        *((1, 0, 0) if DatumId == 4 else (0, 0, 1))
+    )
+    assert SketchValue.provenance is not None
+    Support = next(
+        Value
+        for Value in SketchValue.provenance.spans
+        if Value.record_kind == "sketch-support-reference"
+    )
+    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
+    assert (
+        Support.stream == "Contents/Config-0-ResolvedFeatures" and Support.length == 4
+    )
+    assert UnpackFrom("<i", Archive.require(Support.stream), Support.offset) == (
+        DatumId,
+    )
+    AssertOuterLoop(SketchValue)
+    AssertOuterDims(Document, SketchValue, Archive, Variant)
+    AssertOuterBoss(Document, Variant)
+
+
+# the configured loop must expose the authored axes and projected origin binding
+def AssertOuterLoop(SketchValue: Sketch) -> None:
+    (LoopValue,) = SketchValue.closed_profile_entity_ids
+    Lines = [Value for Value in SketchValue.entities if Value.id in LoopValue]
+    assert len(Lines) == 4
+    assert tuple(Value.attributes["native_segment_id"] for Value in Lines) == (
+        1,
+        4,
+        3,
+        2,
+    )
+    for LineValue in Lines:
+        assert LineValue.provenance is not None and isinstance(
+            LineValue.geometry, LineGeometry
+        )
+        (Source,) = LineValue.provenance.spans
+        assert (Source.stream, Source.record_kind) == (
+            "Contents/Config-0",
+            "sketch-profile-line",
+        )
+    AxisRules = [
+        Value
+        for Value in SketchValue.constraints
+        if Value.kind in ("horizontal", "vertical")
+    ]
+    assert len(AxisRules) == 4 and {
+        Value.references[0].entity_id for Value in AxisRules
+    } == set(LoopValue)
+    (Origin,) = tuple(
+        Value for Value in SketchValue.constraints if Value.kind == "coincident"
+    )
+    assert Origin.provenance is not None
+    assert Origin.references[1].entity_id in LoopValue
+    (Proxy,) = tuple(
+        Value
+        for Value in SketchValue.entities
+        if Value.id == Origin.references[0].entity_id
+    )
+    assert (
+        Proxy.construction and Proxy.fixed and isinstance(Proxy.geometry, PointGeometry)
+    )
+
+
+# the two width and height values must read the exact configured scalars and endpoint operands
+def AssertOuterDims(
+    Document: CadDocument, SketchValue: Sketch, Archive: SldprtArchive, Variant: str
+) -> None:
+    Parameters = {
+        Value.name: Value
+        for Value in Document.parameters
+        if Value.id in SketchValue.parameter_ids
+    }
+    assert set(Parameters) == {"width_mm", "height_mm"}
+    for NameValue, Millimetres in (
+        ("width_mm", 44 if Variant == "edit-width_mm-44" else 40),
+        ("height_mm", 24 if Variant == "edit-height_mm-24" else 20),
+    ):
+        Parameter = Parameters[NameValue]
+        assert Parameter.value.unit == "mm" and Parameter.value.value == Pytest.approx(
+            Millimetres
+        )
+        (RuleValue,) = tuple(
+            Value
+            for Value in SketchValue.constraints
+            if Value.parameter_id == Parameter.id
+        )
+        assert RuleValue.driving and len(RuleValue.references) == 2
+        assert Parameter.provenance is not None and RuleValue.provenance is not None
+        (Scalar,) = Parameter.provenance.spans
+        assert Scalar.stream == "Contents/Config-0" and Scalar.length == 8
+        assert Scalar in RuleValue.provenance.spans
+        assert UnpackFrom("<d", Archive.require(Scalar.stream), Scalar.offset) == (
+            Millimetres / 1000,
+        )
+
+
+# the earlier body must keep the saved rectangle owner and its authored length
+def AssertOuterBoss(Document: CadDocument, Variant: str) -> None:
+    (BossStep,) = tuple(
+        Value for Value in Document.feature_timeline if Value.name == "BlindBoss"
+    )
+    assert BossStep.sketch_id == "sldprt:sketch:26"
+    Definition = BossStep.definition
+    assert isinstance(Definition, ExtrudeFeature) and not Definition.reversed
+    assert Definition.length is not None
+    assert (Definition.length.value, Definition.length.unit) == (
+        12 if Variant == "edit-depth_mm-12" else 10,
+        "mm",
+    )
+    assert BossStep.provenance is not None
+    assert {Value.record_kind for Value in BossStep.provenance.spans} >= {
+        "operation-profile-reference",
+        "extrusion-end-spec",
+        "extrusion-depth-scalar",
+    }
+
+
+# the active partition owns the saved body even when a profile packet also decodes
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckSwPart(Variant: str) -> None:
+    NativePath = (
+        FilePath(__file__).resolve().parents[3]
+        / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
+        / f"P04-solidworks-{Variant}.SLDPRT"
+    )
+    Document = OpenDocument(NativePath)
+    assert Document.brep is not None and not Document.brep.validate()
+    (BodyValue,) = Document.bodies
+    (Stored,) = Document.brep.bodies
+    assert Stored.design_body_id == BodyValue.id
+    Summary = BodyValue.topology
+    assert Summary is not None and Summary.bounding_box is not None
+    Count = 10 if Variant == "termination-through-all" else 11
+    assert (Summary.solid_count, Summary.shell_count, Summary.face_count) == (
+        1,
+        1,
+        Count,
+    )
+    assert (Summary.edge_count, Summary.vertex_count) == (24, 16)
+    PayloadId = BodyValue.attributes["parasolid_active_payload_id"]
+    (Payload,) = tuple(
+        Value for Value in Document.brep_payloads if Value.id == PayloadId
+    )
+    assert (Payload.source_stream, Payload.kind) == (
+        "Contents/Config-0-Partition",
+        "partition",
+    )
+    assert any(
+        Value.source_stream == "Contents/Config-0-ResolvedFeatures"
+        for Value in Document.brep_payloads
+    )
+    WidthValue = 44 if Variant == "edit-width_mm-44" else 40
+    HeightValue = 24 if Variant == "edit-height_mm-24" else 20
+    DepthValue = 12 if Variant == "edit-depth_mm-12" else 10
+    Maximum = (
+        (DepthValue, WidthValue, HeightValue)
+        if Variant == "plane-yz"
+        else (WidthValue, HeightValue, DepthValue)
+    )
+    assert Summary.bounding_box.minimum == SpaceVector(0, 0, 0)
+    assert Summary.bounding_box.maximum == SpaceVector(*Maximum)
+
+
 # saved edge allocations vary across edits so each archive supplies its own expected source start
 KSupportEdgeStarts = {
     "baseline-a": 504,

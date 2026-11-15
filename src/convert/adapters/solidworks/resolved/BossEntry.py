@@ -39,8 +39,13 @@ class BossHead(OpNode):
     end_specification: BlindEnd
 
 
-# the closed operation records its source end and terminal object map
-class RectangleBoss(BossHead, BossClose):
+# a reached blind boss keeps both its initial owners and its completed end specification
+class BossOperation(BossHead, BossClose):
+    pass
+
+
+# a terminal boss additionally records the return of the whole resolved list
+class RectangleBoss(BossOperation):
     stream_end: int
     next_map_index: int
 

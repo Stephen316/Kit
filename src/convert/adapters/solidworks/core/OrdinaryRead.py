@@ -37,7 +37,9 @@ def UpdateDatum(Plane: NativePlane, Parsed: RectanglePart) -> NativePlane:
 
 
 # native feature identity must agree before the typed support can update an existing sketch
-def AttachRectPlane(Model: NativeModel, Parsed: RectanglePart) -> NativeModel:
+def AttachRectPlane(
+    Model: NativeModel, Parsed: RectanglePart, GeometryStream: str | None = None
+) -> NativeModel:
     Profile, Datum = Parsed.Profile, Parsed.Datum
     Sketches = tuple(
         Sketch
@@ -70,6 +72,7 @@ def AttachRectPlane(Model: NativeModel, Parsed: RectanglePart) -> NativeModel:
         support_source=KArchiveSupport,
         unframed_support_plane_id=None,
         rectangle=Parsed,
+        rectangle_geometry_stream=GeometryStream,
     )
     Planes = tuple(
         UpdateDatum(Plane, Parsed) if Plane is SavedPlane else Plane

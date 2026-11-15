@@ -5,6 +5,8 @@ from convert.adapters.solidworks.config.CutConfig import CutConfig, ReadCutConfi
 from convert.adapters.solidworks.config.CutEquation import CutEquation, EquationDim
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
 from convert.adapters.solidworks.container.Archive import ArchiveError
+from convert.adapters.solidworks.core.BossProjection import AttachRectBoss
+from convert.adapters.solidworks.core.OrdinaryRead import AttachRectPlane
 from convert.adapters.solidworks.core.cut.CutOpProjection import AttachCutOp
 from convert.adapters.solidworks.core.cut.CutSource import CutSource
 from convert.adapters.solidworks.core.Native import NativeEquation, NativeFeature, NativeModel
@@ -36,7 +38,7 @@ def BuildCutEq(Equation: CutEquation, StreamName: str, ConfigId: int) -> NativeE
 # authored length values retain the established parameter ids through the native feature
 def UpdateEqOwner(
     Features: tuple[NativeFeature, ...], Profile: LinkedProfile,
-    Terms: tuple[EquationDim, ...],
+    Terms: tuple[EquationDim, ...], Config: CutConfig, StreamName: str,
 ) -> tuple[NativeFeature, NativeFeature] | None:
     Matches = tuple(
         Feature
@@ -46,7 +48,13 @@ def UpdateEqOwner(
     if len(Matches) != 1:
         return None
     (Owner,) = Matches
-    Values = {TermValue.ParamName: TermValue.Metres for TermValue in Terms}
+    Values = {
+        TermValue.ParamName: (
+            TermValue.Metres,
+            Config.Sketches[TermValue.SketchIndex].SketchData.Members.Distances[TermValue.DimensionSlot].ScalarOffset,
+        )
+        for TermValue in Terms
+    }
     Dimensions = tuple(
         Dimension for Dimension in Owner.dimensions if Dimension.name in Values
     )
@@ -57,7 +65,14 @@ def UpdateEqOwner(
     Updated = Replace(
         Owner,
         dimensions=tuple(
-            Replace(Dimension, value_mm=Values[Dimension.name] * 1000, native_value=Values[Dimension.name])
+            Replace(
+                Dimension,
+                value_mm=Values[Dimension.name][0] * 1000,
+                native_value=Values[Dimension.name][0],
+                native_offset=Values[Dimension.name][1],
+                native_stream=StreamName,
+                native_role="native",
+            )
             if Dimension.name in Values else Dimension
             for Dimension in Owner.dimensions
         ),
@@ -71,11 +86,11 @@ def AttachCutEqs(
 ) -> NativeModel:
     First, Second = Config.Equations
     Outer = UpdateEqOwner(
-        Model.features, Links.Rectangle, (First.OuterTerm, Second.OuterTerm)
+        Model.features, Links.Rectangle, (First.OuterTerm, Second.OuterTerm), Config, StreamName,
     )
     Inner = UpdateEqOwner(
         Model.features, Links.CutProfile,
-        (First.Target, First.InnerTerm, Second.Target, Second.InnerTerm),
+        (First.Target, First.InnerTerm, Second.Target, Second.InnerTerm), Config, StreamName,
     )
     if Outer is None or Inner is None or Model.active_configuration_id is None:
         return Model
@@ -87,6 +102,10 @@ def AttachCutEqs(
     return Replace(
         Model,
         features=tuple(Owners.get(Feature.object_id, Feature) for Feature in Model.features),
+        sketches=tuple(
+            Replace(Sketch, dimensions=Owners[Sketch.object_id].dimensions)
+            if Sketch.object_id in Owners else Sketch for Sketch in Model.sketches
+        ),
         equations=Equations,
     )
 
@@ -103,7 +122,9 @@ def ReadCutArchive(
         Links = ReadCutLinks(Resolved, Config)
     except (ArchiveError, StructError):
         return Model
-    Result = AttachCutEqs(Model, Config, Links, StreamName)
+    EquationModel = AttachCutEqs(Model, Config, Links, StreamName)
+    RectModel = AttachRectPlane(EquationModel, Links.RectPart, StreamName)
+    Result = AttachRectBoss(RectModel, Links.RectPart)
     try:
         Proof = ReadCutProof(Links, Config)
     except (ArchiveError, StructError):
@@ -117,5 +138,6 @@ def ReadCutArchive(
         cut_source=CutSource(
             Proof.Support, SketchValue.SketchData, Links.CutProfile.FeatureId,
             Links.BossValue["native_feature_id"], StreamName, ResolvedStream,
+            Links.RectPart.Origin, Links.Rectangle.FeatureId, Config.Equations,
         ),
     )

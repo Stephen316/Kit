@@ -1,5 +1,7 @@
 from dataclasses import dataclass as Dataclass
 
+from convert.adapters.solidworks.config.CutEquation import CutEquation
+from convert.adapters.solidworks.resolved.OriginProfile import OriginProfile
 from convert.adapters.solidworks.resolved.support.SupportPlane import SupportPlane
 from convert.adapters.solidworks.sketch.InlineSketch import InlineRead
 
@@ -13,3 +15,6 @@ class CutSource:
     BossId: int
     ConfigStream: str
     ResolvedStream: str
+    Origin: OriginProfile
+    OuterProfileId: int
+    Equations: tuple[CutEquation, CutEquation]

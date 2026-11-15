@@ -1,4 +1,4 @@
-from dataclasses import dataclass as Dataclass
+from dataclasses import dataclass as Dataclass, replace as Replace
 
 from convert.adapters.solidworks.config.CutConfig import CutConfig
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
@@ -12,6 +12,7 @@ from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.resolved.BossEnd import BossClose, ReadBossClose
 from convert.adapters.solidworks.resolved.BossEntry import (
     BossHead,
+    BossOperation,
     ReadBossHead,
     ReadOpNode,
 )
@@ -21,10 +22,14 @@ from convert.adapters.solidworks.resolved.cut.LinkedProfile import (
     LinkedProfile,
     ReadLinkedProf,
 )
-from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
+from convert.adapters.solidworks.resolved.OriginProfile import OriginProfile, ReadOrigin
 from convert.adapters.solidworks.resolved.PrincipalDatum import PrincipalDatum
 from convert.adapters.solidworks.resolved.ProfilePlane import ReadProfileRef
-from convert.adapters.solidworks.resolved.RectanglePart import ResolveDatum
+from convert.adapters.solidworks.resolved.ProfileSketch import ProfileSketch
+from convert.adapters.solidworks.resolved.RectanglePart import (
+    RectanglePart,
+    ResolveDatum,
+)
 from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
 
@@ -40,15 +45,17 @@ class CutLinks:
     BossValue: BossHead
     BossEnd: BossClose
     CutProfile: LinkedProfile
+    RectPart: RectanglePart
 
 
 # the first profile chain must cover the configuration rectangle and its saved principal support
-def ReadLinkTrim(
+def ReadLinkedRect(
     Cursor: ArchiveCursor,
     Config: CutConfig,
     Profile: LinkedProfile,
     Planes: tuple[PrincipalDatum, ...],
-) -> int:
+    Origin: OriginProfile,
+) -> tuple[RectanglePart, int]:
     Sketch = Config.Sketches.get(Profile.SketchIndex)
     if Sketch is None:
         raise ArchiveError("missing rectangle configuration sketch")
@@ -59,14 +66,27 @@ def ReadLinkTrim(
     )
     _ = ReadChainState(Cursor, True, Edges)
     Reference = ReadProfileRef(Cursor, KConfigGen)
-    _ = ResolveDatum(Reference, Planes)
+    Datum, Directions = ResolveDatum(Reference, Planes)
     TrimValue = ReadRectTrim(
         Cursor,
         {"profile_object": Profile.ObjectIndex, "native_feature_id": Profile.FeatureId},
         Edges,
         1,
     )
-    return TrimValue["trim_surface"]["file_reference"]["object_index"]
+    SketchData = Sketch.SketchData
+    Saved = ProfileSketch(
+        Profile.NameValue,
+        Profile.FeatureId,
+        Profile.ObjectIndex,
+        Profile.Offset,
+        Profile.SketchOffset,
+        Profile.SketchIndex,
+        SketchData.Geometry,
+        SketchData.Coincidences,
+        SketchData.Members,
+    )
+    RectPart = RectanglePart(Saved, Datum, Reference, Directions, Origin, None)
+    return RectPart, TrimValue["trim_surface"]["file_reference"]["object_index"]
 
 
 # both resolved names must corroborate the configured equation owners
@@ -97,7 +117,9 @@ def ReadCutLinks(BlobValue: bytes, Config: CutConfig) -> CutLinks:
         "origin resolves first principal plane",
     )
     Rectangle = ReadLinkedProf(Cursor, KDefinitionKind)
-    FileObject = ReadLinkTrim(Cursor, Config, Rectangle, System.Planes)
+    RectPart, FileObject = ReadLinkedRect(
+        Cursor, Config, Rectangle, System.Planes, Origin
+    )
     NodeValue = ReadOpNode(
         Cursor,
         "moExtrusion_c",
@@ -112,6 +134,19 @@ def ReadCutLinks(BlobValue: bytes, Config: CutConfig) -> CutLinks:
         "earlier configured boss atom reference",
     )
     BossEnd = ReadBossClose(Cursor)
+    RequireArch(
+        BossEnd["depth_display"]["dimension"]["metres"] > 0,
+        True,
+        "positive depth for the earlier saved boss",
+    )
     CutProfile = ReadLinkedProf(Cursor, KClassRefKind)
     CheckCutLinks(Config, Rectangle, CutProfile)
-    return CutLinks(Cursor, Rectangle, BossValue, BossEnd, CutProfile)
+    LinkedBoss: BossOperation = {**BossValue, **BossEnd}
+    return CutLinks(
+        Cursor,
+        Rectangle,
+        BossValue,
+        BossEnd,
+        CutProfile,
+        Replace(RectPart, Boss=LinkedBoss),
+    )

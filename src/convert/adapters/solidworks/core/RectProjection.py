@@ -1,6 +1,7 @@
 from dataclasses import replace as Replace
 
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.core.cut.LinkedRectangle import SeedLinkedRect
 from convert.adapters.solidworks.core.Native import NativeDimension
 from convert.adapters.solidworks.core.RectBindings import BindRectangle
 from convert.adapters.solidworks.core.RectDistances import ProjectDists
@@ -17,11 +18,14 @@ def ProjectRect(
     Parsed: RectanglePart | None,
     StreamName: str,
     Entries: tuple[tuple[NativeDimension, str], ...] = (),
+    *,
+    SeedEmpty: bool = False,
 ) -> Sketch:
     if Parsed is None:
         return Neutral
     try:
-        return BuildRect(Neutral, Parsed, StreamName, Entries)
+        Source = SeedLinkedRect(Neutral, Parsed.Profile, StreamName) if SeedEmpty else Neutral
+        return BuildRect(Source, Parsed, StreamName, Entries)
     except (KeyError, IndexError, ValueError):
         return Neutral
 
