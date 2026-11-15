@@ -239,6 +239,39 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+      - name: Observe kernel OOM through the research supervisor
+        shell: bash
+        env:
+          WITNESS_REVISION: ${{ github.sha }}
+          WITNESS_REPORT: ${{ runner.temp }}/LinuxSupervisorOomWitness.json
+        run: |
+          test "$(git rev-parse HEAD)" = "$WITNESS_REVISION"
+          test -z "$(git status --porcelain --untracked-files=all -- re/automation)"
+          stage="$(sudo -n -- /usr/bin/mktemp -d /tmp/kit-supervisor-oom.XXXXXXXX)"
+          trap 'sudo -n -- /usr/bin/rm -f -- "$stage/LinuxOomGuest.py" "$stage/LinuxOomSupervisor.py" "$stage/LinuxOomWitness.py"; sudo -n -- /usr/bin/rmdir -- "$stage"' EXIT
+          sudo -n -- /usr/bin/chmod 0755 "$stage"
+          sources=()
+          for file in LinuxOomGuest.py LinuxOomSupervisor.py LinuxOomWitness.py; do
+            blob="$(git rev-parse "$WITNESS_REVISION:re/automation/$file")"
+            digest="$(git cat-file blob "$blob" | sha256sum)"
+            git cat-file blob "$blob" | sudo -n -- /usr/bin/tee "$stage/$file" > /dev/null
+            sudo -n -- /usr/bin/chmod 0444 "$stage/$file"
+            actual="$(sha256sum "$stage/$file")"
+            test "${digest%% *}" = "${actual%% *}"
+            sources+=(--source "$file:$blob:${digest%% *}")
+          done
+          sudo -n -- /usr/bin/env -i SUDO_UID="$(id -u)" SUDO_GID="$(id -g)" \
+            /usr/bin/python3 -B -I -S "$stage/LinuxOomSupervisor.py" --repository "$(pwd -P)" \
+            --revision "$WITNESS_REVISION" --output "$WITNESS_REPORT" "${sources[@]}"
+
+      - name: Publish sanitized supervisor OOM evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: LinuxSupervisorOomWitness-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/LinuxSupervisorOomWitness.json
+          if-no-files-found: error
+          retention-days: 14
+
   windows-supervisor:
     if: >-
       always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))

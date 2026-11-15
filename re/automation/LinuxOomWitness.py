@@ -73,15 +73,20 @@ def identity(pid):
     return {"pid": pid, "uid": int(uid[1]), "proc_start_ticks": int(fields[19])}
 
 
-def worker(group_name):
+def check_worker_identity(group_name):
     require(GROUP_NAME.fullmatch(group_name), "invalid private group name")
     require(os.geteuid() != 0 and os.getegid() != 0, "worker must be unprivileged")
-    if sys.stdin.buffer.read(1) != b"A":
-        return 71
+
+
+def check_worker_group(group_name):
+    check_worker_identity(group_name)
     group = ROOT / group_name
     require(memberships("self") == "/" + group_name, "worker is outside the chosen group")
     check_limits(group)
     require(read(group / "cgroup.procs").split() == [str(os.getpid())], "worker group is not a singleton")
+
+
+def allocate_pages():
     page = os.sysconf("SC_PAGE_SIZE")
     blocks = []
     for _ in range(MAX_BLOCKS):
@@ -89,6 +94,14 @@ def worker(group_name):
         for offset in range(0, len(block), page):
             block[offset] = 1
         blocks.append(block)
+
+
+def worker(group_name):
+    check_worker_identity(group_name)
+    if sys.stdin.buffer.read(1) != b"A":
+        return 71
+    check_worker_group(group_name)
+    allocate_pages()
     return 72
 
 
