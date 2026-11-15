@@ -32,6 +32,8 @@ class SketchCursor:
         SelfData.Scalars = {}
         SelfData.Dimensions = []
         SelfData.Handles = {}
+        SelfData.SketchReferences = {}
+        SelfData.PointReferences = {}
         SelfData.ReadSketchObject = ReadSketchObject
 
     # all fields must advance the shared cursor before their children are considered
@@ -102,7 +104,9 @@ class SketchCursor:
     # reference tokens must resolve the correct kind before a caller can use them
     def FindType(SelfData, TagValue, SchemaValue=1):
         if TagValue.kind == KDefinitionKind:
-            Require(TagValue.schema, SchemaValue, f"archive schema at {SelfData.Offset}")
+            Require(
+                TagValue.schema, SchemaValue, f"archive schema at {SelfData.Offset}"
+            )
             return TagValue.class_name
         if TagValue.kind == KClassRefKind and TagValue.index in SelfData.Classes:
             return SelfData.Classes[TagValue.index]
@@ -125,21 +129,31 @@ class SketchCursor:
             Require(Index < 0x777F, True, "short sketch handle index width")
             SelfData.Handles[ObjectIndex] = Index, *SelfData.ReadValue("<2i")
         elif NameValue == "sgExtEnt_c":
-            SelfData.ReadObject("moSketchExtRef_w")
+            Wrapper = SelfData.ReadObject("moSketchExtRef_w")
+            SelfData.SketchReferences[ObjectIndex] = SelfData.SketchReferences[Wrapper]
             for _ in range(3):
                 SelfData.ReadObject(None)
             SelfData.ReadText()
         elif NameValue == "moSketchExtRef_w":
-            SelfData.ReadObject("moCompSketchEntHandle_c")
+            Component = SelfData.ReadObject("moCompSketchEntHandle_c")
+            SelfData.SketchReferences[ObjectIndex] = SelfData.SketchReferences[
+                Component
+            ]
             SelfData.ReadRefTail()
             (Flags,) = SelfData.ReadValue("<h")
             Require(-2 <= Flags <= 0, True, "valid external reference mode")
             SelfData.ReadObject(None, "moPointBackedUpData_c")
         elif NameValue == "moCompSketchEntHandle_c":
             SelfData.ReadComponent()
-            _, TimeWord = SelfData.ReadValue("<iI")
+            FeatureId, TimeWord = SelfData.ReadValue("<iI")
             Require(TimeWord < 0xFFFFFFFF, True, "compact feature reference time")
-            SelfData.ReadObject("sgPointHandle", "sgLineHandle")
+            Entity = SelfData.ReadObject("sgPointHandle", "sgLineHandle")
+            SelfData.SketchReferences[ObjectIndex] = {
+                "feature_id": FeatureId,
+                "feature_time": TimeWord,
+                "handle_class": SelfData.Objects[Entity],
+                "handle_fields": SelfData.Handles[Entity],
+            }
             SelfData.ReadValue("<I")
         elif NameValue == "moUnitComponent_c":
             SelfData.ReadObject("moPart_c")

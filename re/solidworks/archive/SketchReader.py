@@ -110,6 +110,7 @@ def ReportDimensions(Cursor, Points):
 def ReadGeometry(Cursor, ObjectIndex):
     Start = Cursor.Offset
     Cursor.Dimensions.clear()
+    Cursor.PointReferences.clear()
     PointCount = Cursor.ReadCount()
     Points = [ReadPointItem(Cursor) for _ in range(PointCount)]
     Lines = [ReadLineItem(Cursor, PointCount) for _ in range(Cursor.ReadCount())]
@@ -124,6 +125,11 @@ def ReadGeometry(Cursor, ObjectIndex):
         "point_relation_tallies": [
             {"id": (Position, Identity), "tally": Tally}
             for Position, (Identity, Tally, _) in enumerate(Points)
+        ],
+        "external_point_references": [
+            {"local_id": (Position, Identity), **Cursor.PointReferences[Identity]}
+            for Position, (Identity, _, _) in enumerate(Points)
+            if Identity in Cursor.PointReferences
         ],
         "lines": [
             {

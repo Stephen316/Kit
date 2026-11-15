@@ -13,20 +13,22 @@ def ReadMember(Cursor):
     RelationTally, Compact = Cursor.ReadValue("<iH")
     if not Compact:
         Cursor.ReadValue("<3Hhf")  # 0x1441ddf through 0x1441e24
-    Cursor.ReadObject(None, "sgExtEnt_c")
+    External = Cursor.ReadObject(None, "sgExtEnt_c")
     Flags, FlagsTwo, _ = Cursor.ReadValue("<2Hi")
     if not Compact:
         Cursor.ReadObject(None)  # moGroup
     Require(Cursor.ReadValue("<B"), (0,), "absent member name")
     Cursor.ReadValue("<d2I")
-    return Index, Identity, Flags, FlagsTwo, RelationTally
+    return Index, Identity, Flags, FlagsTwo, RelationTally, External
 
 
 # measured sketch points retain their actual local coordinates
 def ReadPointItem(Cursor):
     (Subtype,) = Cursor.ReadValue("<H")
     Require(Subtype in (0, 1), True, "supported sketch point subtype")
-    _, Identity, _, _, RelationTally = ReadMember(Cursor)
+    _, Identity, _, _, RelationTally, External = ReadMember(Cursor)
+    if External:
+        Cursor.PointReferences[Identity] = Cursor.SketchReferences[External]
     (Flags,) = Cursor.ReadValue("<H")
     Require(bool(Flags & 0x10), True, "2D sketch point")
     Coords = Cursor.ReadPoint(2)
@@ -48,7 +50,7 @@ def ReadPointItem(Cursor):
 def ReadLineItem(Cursor, PointCount):
     (ModeValue,) = Cursor.ReadValue("<H")
     Require(ModeValue, 0, "supported inline line mode")
-    Index, Identity, Flags, FlagsTwo, _ = ReadMember(Cursor)
+    Index, Identity, Flags, FlagsTwo, _, _ = ReadMember(Cursor)
     (FirstPoint,) = Cursor.ReadValue("<H")
     if FirstPoint == 0xFFFF:
         (FirstPoint,) = Cursor.ReadValue("<i")
