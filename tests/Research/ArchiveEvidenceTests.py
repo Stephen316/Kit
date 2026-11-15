@@ -58,9 +58,15 @@ import pytest as Pytest
             "4710c3797a353177650acff289019173ad1d3a450d8eff49c54872aa6e5c6256",
             id="fusion-p04-cut-center",
         ),
+        Pytest.param(
+            "re/automation/FusionP04RelationEvidence.py",
+            (),
+            "8a5ea4dfb4ee3e6dcd8b38e13a5b2049693bb799c50e955e49983aa64a7649d3",
+            id="fusion-p04-sketch-relations",
+        ),
     ),
 )
-def CheckDiscoveryArchiveReport(
+def CheckArchive(
     ScriptPath: str, Options: tuple[str, ...], ReportDigest: str
 ) -> None:
     RepoPath = FilePath(__file__).resolve().parents[2]
