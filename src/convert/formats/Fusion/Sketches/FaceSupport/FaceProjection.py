@@ -104,12 +104,12 @@ def ProjectFaces(
     RevisedSketches: dict[str, Sketch] = {}
     Selections: list[Selection] = []
     Issues: list[Diagnostic] = []
-    for Sketch in Document.sketches:
-        Choices = Targets.get(Sketch.id, [])
-        Frame = ByFrame[Sketch.support_plane_id]
+    for SketchValue in Document.sketches:
+        Choices = Targets.get(SketchValue.id, [])
+        Frame = ByFrame[SketchValue.support_plane_id]
         if (
             len(Choices) != 1
-            or Sketch.provenance is None
+            or SketchValue.provenance is None
             or Frame.support_selection_id
             or Frame.attributes.get("fusion.native_support_resolved")
             or Choices[0][0].query.get("native_component_id")
@@ -119,15 +119,15 @@ def ProjectFaces(
         ((BodyPick, CutStep),) = Choices
         try:
             Recipe = MakeFacePick(
-                BulkData, Owners, int(Sketch.provenance.native_id), BodyPick
+                BulkData, Owners, int(SketchValue.provenance.native_id), BodyPick
             )
         except ValueError as ErrorInfo:
             Issues.append(
                 Diagnostic(
                     code="fusion.sketch.face_support.unsupported",
                     message=str(ErrorInfo),
-                    entity_id=Sketch.id,
-                    provenance=Sketch.provenance,
+                    entity_id=SketchValue.id,
+                    provenance=SketchValue.provenance,
                 )
             )
             continue
@@ -136,9 +136,9 @@ def ProjectFaces(
         )
         Resolved = Proof is not None
         Revised, Issue = KeepFaceRim(
-            BulkData, Owners, Sketch, Recipe, Proof, Frame.transform
+            BulkData, Owners, SketchValue, Recipe, Proof, Frame.transform
         )
-        RevisedSketches[Sketch.id] = Revised
+        RevisedSketches[SketchValue.id] = Revised
         if Issue is not None:
             Issues.append(Issue)
         Updated[Frame.id] = Replace(

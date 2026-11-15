@@ -20,9 +20,12 @@ def CheckCapLine(
     ):
         raise ValueError("Fusion cap projection lacks a native line cache")
     PointIds = Entity.attributes.get("fusion.line_native_point_ids")
-    if not isinstance(PointIds, tuple) or len(PointIds) != 2:
+    if not isinstance(PointIds, tuple):
         raise ValueError("Fusion cap projection cache endpoints are unbound")
-    Start, Finish = CastValue(tuple[object, object], PointIds)
+    Values = CastValue(tuple[object, ...], PointIds)
+    if len(Values) != 2:
+        raise ValueError("Fusion cap projection has an invalid cache endpoint count")
+    Start, Finish = Values
     if type(Start) is not int or type(Finish) is not int or Start == Finish:
         raise ValueError("Fusion cap projection cache endpoints are ambiguous")
     for Point, Native in zip((Geometry.start, Geometry.end), Expected, strict=True):
