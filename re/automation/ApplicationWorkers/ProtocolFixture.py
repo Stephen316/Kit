@@ -38,7 +38,7 @@ def run_host(config, use_counterpart=False):
     signal.signal(signal.SIGTERM, stop)
     write_record(host.root / "ready.json", {"host": host.host}, replace=True)
     try:
-        while not stopped:
+        while not stopped and not (host.root / "stop-fixture").exists():
             path = host.next_path()
             if path is None:
                 time.sleep(0.02)

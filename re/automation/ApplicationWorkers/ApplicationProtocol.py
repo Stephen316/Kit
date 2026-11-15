@@ -1,4 +1,5 @@
 import ctypes
+from contextlib import ExitStack, contextmanager
 import errno
 import hashlib
 import json
@@ -200,14 +201,37 @@ def check_spool(root, reserve_bytes=0, reserve_files=0):
 
 
 def identity(pid):
-    require(os.name == "posix", "application process identity currently requires a POSIX host")
     require(type(pid) is int and pid > 0, "invalid application process id")
+    if os.name == "nt":
+        from WindowsIdentity import process_start
+
+        started = process_start(pid)
+        return None if started is None else {"pid": pid, "started": started}
+    require(os.name == "posix", "application process identity requires Windows or POSIX")
     result = subprocess.run(["ps", "-p", str(pid), "-o", "lstart="], capture_output=True, text=True,
                             check=False, timeout=5, env=dict(os.environ, LC_ALL="C", TZ="UTC"))
     if result.returncode == 1 and not result.stdout.strip() and not result.stderr.strip():
         return None
     require(result.returncode == 0 and result.stdout.strip(), "application process identity unavailable")
     return {"pid": pid, "started": result.stdout.strip()}
+
+
+@contextmanager
+def owner_lock(path):
+    if os.name == "nt":
+        from WindowsRecords import open_owner_lock
+
+        with open_owner_lock(path):
+            yield
+        return
+    import fcntl
+
+    descriptor = os.open(path, os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        yield
+    finally:
+        os.close(descriptor)
 
 
 def configuration(path):
@@ -257,15 +281,13 @@ def validate_request(value, config, job_id, operation):
 
 class QueueClient:
     def __init__(self, config, deadline, provider="autodesk.fusion.addin"):
-        import fcntl
-
         self.config = config
         self.deadline = deadline
         self.provider = provider
         self.root = directory(config["endpoint"])
-        self.lock = os.open(self.root / "dispatch.lock", os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+        self.lock = ExitStack()
         try:
-            fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            self.lock.enter_context(owner_lock(self.root / "dispatch.lock"))
             if (self.root / "fence.json").exists():
                 raise WaitingApplication("installation is fenced pending controller acceptance or its external owner's recovery")
             spools = directory(self.root / "jobs", True)
@@ -275,7 +297,7 @@ class QueueClient:
             self.directory = directory(self.root / "jobs" / self.job_id, True)
             self.client = identity(os.getpid())
         except BaseException:
-            os.close(self.lock)
+            self.lock.close()
             raise
         self.host = None
         self.pending = False
@@ -285,7 +307,7 @@ class QueueClient:
             if self.pending:
                 self.cancel("requesting worker stopped before application completion")
         finally:
-            os.close(self.lock)
+            self.lock.close()
 
     def cancel(self, reason):
         write_record(self.directory / "cancel.json", {"reason": reason[:2048], "at": time.time()}, replace=True)
@@ -345,28 +367,22 @@ class QueueClient:
 
 class HostQueue:
     def __init__(self, config, provider="autodesk.fusion.addin"):
-        import fcntl
-
         self.config = config
         self.provider = provider
         self.root = directory(config["endpoint"], True)
         directory(self.root / "jobs", True)
-        self.lock = os.open(self.root / "host.lock", os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
+        self.lock = ExitStack()
         try:
-            fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        except BaseException:
-            os.close(self.lock)
-            raise
-        try:
+            self.lock.enter_context(owner_lock(self.root / "host.lock"))
             self.host = identity(os.getpid())
             self.loaded_sources = {}
             self.fenced()
         except BaseException:
-            os.close(self.lock)
+            self.lock.close()
             raise
 
     def close(self):
-        os.close(self.lock)
+        self.lock.close()
 
     def fenced(self):
         path = self.root / "fence.json"

@@ -11,28 +11,11 @@ import win32event
 import win32job
 import win32process
 
-from WindowsApi import KERNEL, create_suspended, creation_time
+from ApplicationWorkers.WindowsIdentity import creation_time, process_start
+from WindowsApi import KERNEL, create_suspended
 
 
 JOBS = {}
-
-
-def process_start(pid):
-    try:
-        handle = win32api.OpenProcess(win32con.PROCESS_QUERY_LIMITED_INFORMATION | win32con.SYNCHRONIZE, False, pid)
-    except pywintypes.error as error:
-        if error.winerror == 87:
-            return None
-        raise OSError(f"process identity measurement failed: {error.winerror}") from error
-    try:
-        status = win32event.WaitForSingleObject(handle, 0)
-        if status == win32event.WAIT_OBJECT_0:
-            return None
-        if status != win32event.WAIT_TIMEOUT:
-            raise OSError("process identity wait failed")
-        return creation_time(int(handle))
-    finally:
-        handle.Close()
 
 
 class WindowsProcess:

@@ -5,6 +5,8 @@ import shutil
 import subprocess
 from ctypes import wintypes
 
+from ApplicationWorkers.WindowsIdentity import creation_time
+
 
 KERNEL = ctypes.WinDLL("kernel32", use_last_error=True)
 POINTER = ctypes.c_void_p
@@ -38,8 +40,6 @@ KERNEL.DeleteProcThreadAttributeList.argtypes = [POINTER]
 KERNEL.DeleteProcThreadAttributeList.restype = None
 KERNEL.CreateProcessW.argtypes = [wintypes.LPCWSTR, wintypes.LPWSTR, POINTER, POINTER, wintypes.BOOL, wintypes.DWORD, POINTER, wintypes.LPCWSTR, POINTER, ctypes.POINTER(ProcessInfo)]
 KERNEL.CreateProcessW.restype = wintypes.BOOL
-KERNEL.GetProcessTimes.argtypes = [wintypes.HANDLE, POINTER, POINTER, POINTER, POINTER]
-KERNEL.GetProcessTimes.restype = wintypes.BOOL
 KERNEL.CloseHandle.argtypes = [wintypes.HANDLE]
 KERNEL.CloseHandle.restype = wintypes.BOOL
 
@@ -48,12 +48,6 @@ def require_success(result):
     if not result:
         raise ctypes.WinError(ctypes.get_last_error())
     return result
-
-
-def creation_time(handle):
-    times = [ctypes.c_ulonglong() for _ in range(4)]
-    require_success(KERNEL.GetProcessTimes(handle, *[ctypes.byref(value) for value in times]))
-    return f"windows:{times[0].value}"
 
 
 def create_suspended(argv, root, environment, stdout, stderr, job):

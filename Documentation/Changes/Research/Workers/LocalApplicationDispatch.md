@@ -154,4 +154,6 @@ Windows installation and job records now use
 [path/handle timestamp gotcha](../../../Gotchas/Research/Workers/WindowsPathAndHandleTimes.md)
 explains the CPython compatibility difference and the retained mutation guards.
 
+Windows endpoint locking and live process identities are documented separately. Native Windows dispatch continues to park. [Windows queue transport](WindowsApplicationTransport.md)
+
 At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all twelve transport/publication cases passed within the [Linux](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) and [macOS](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) selections. The [Windows selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622723) passed both application parking cases and all four immutable-record cases. These fixtures did not call CAD APIs. Licensed native dispatch, automatic restart/acknowledgement and unattended acceptance remain open.
