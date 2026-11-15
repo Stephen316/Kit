@@ -9,6 +9,7 @@ import win32event
 import win32job
 import win32process
 
+from CalibrationWindowsJob import observed_members
 from Processes import KILL_SIGNAL
 from Sessions import read_bounded
 from Supervisor import set_pause
@@ -78,11 +79,12 @@ class CalibrationWindows(WindowsProcess):
             "calibration stopped",
         )
 
-    def members(self):
+    def has_members(self):
         try:
-            return win32job.QueryInformationJobObject(
-                self.job, win32job.JobObjectBasicProcessIdList
+            counts = win32job.QueryInformationJobObject(
+                self.job, win32job.JobObjectBasicAccountingInformation
             )
+            return counts["ActiveProcesses"] != 0
         except pywintypes.error as error:
             raise OSError("Windows calibration job membership unavailable") from error
 
@@ -130,9 +132,9 @@ class CalibrationWindows(WindowsProcess):
             self.bind_interpreter()
             if self.interpreter is None:
                 return None
-        members = self.members()
-        if len(members) > 64:
-            raise OSError("offline calibration process tree exceeds its declared limit")
+        members = observed_members(self.job)
+        if members is None:
+            return None
         return sum(self.member_working_set(pid) for pid in members if pid != self.pid)
 
     def member_working_set(self, pid):
@@ -170,7 +172,7 @@ class CalibrationWindows(WindowsProcess):
         except pywintypes.error as error:
             raise OSError("Windows calibration job could not be stopped") from error
         deadline = time.monotonic() + 5
-        while self.poll() is None or self.members():
+        while self.poll() is None or self.has_members():
             if time.monotonic() >= deadline:
                 raise OSError("Windows calibration job members did not terminate")
             time.sleep(0.01)
@@ -185,7 +187,7 @@ class CalibrationWindows(WindowsProcess):
 
     def retire(self):
         try:
-            if self.poll() is None or self.members():
+            if self.poll() is None or self.has_members():
                 return self.force_stop()
             return []
         finally:
