@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 
 from LogCapture import LogCapture
+from LinuxOomProof import verified_oom
 from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, finish_process, process_start, signal_group, start_process, stderr_tail
 from Records import canonical
@@ -58,6 +59,7 @@ class Session:
         self.logs = {}
         self.memory_peak = 0
         self.memory_limit = supervisor.registry.runners[self.spec["kind"]]["max_memory_mib"] * 1048576
+        self.oom_window = None
 
     def prepare(self):
         self.directory.mkdir(mode=0o700)
@@ -97,6 +99,11 @@ class Session:
             self.process_start = self.process.identity if os.name == "nt" else process_start(self.pid)
             if self.process_start is None:
                 raise OSError("process identity unavailable before runner release")
+            observer = self.supervisor.linux_oom_observer
+            if release is not None and observer is not None and not hasattr(self, "members"):
+                self.oom_window = observer.arm(self.name, self.pid, self.process_start)
+                if self.oom_window is None:
+                    raise OSError("kernel OOM observer did not arm the held worker")
             write_private(self.directory / "session.json", {
                 "session_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
                 "attempt": self.claim["attempt"], "pid": self.pid, "process_start": self.process_start,
@@ -122,11 +129,14 @@ class Session:
                 if os.write(release, b"x") != 1:
                     raise OSError("runner launch gate did not receive its release byte")
         except BaseException:
-            if release is not None:
-                os.close(release)
-                release = None
-                signal_group(self.process.pid, KILL_SIGNAL)
-                self.process.wait()
+            try:
+                if release is not None:
+                    os.close(release)
+                    release = None
+                    signal_group(self.process.pid, KILL_SIGNAL)
+                    self.process.wait()
+            finally:
+                self.close_oom_window()
             raise
         finally:
             if release is not None:
@@ -206,8 +216,28 @@ class Session:
             "sampled_group_peak_memory_bytes": self.memory_peak,
             "memory_limit_bytes": self.memory_limit,
         }
+        oom = self.close_oom_window(receipt)
+        if oom is not None:
+            receipt["kernel_oom"] = oom
         write_private(self.directory / "receipt.json", receipt)
         return receipt
+
+    def close_oom_window(self, receipt=None):
+        window, self.oom_window = self.oom_window, None
+        if window is None:
+            return None
+        try:
+            try:
+                observation = window.finish(receipt) if receipt is not None else None
+            finally:
+                window.close()
+            return verified_oom(observation, receipt) if receipt is not None else None
+        except (OSError, ValueError, TypeError, KeyError, RuntimeError) as error:
+            self.supervisor.report(
+                "kernel_oom_observation_failed", self,
+                {"error": f"{type(error).__name__}: {error}"[:2048]},
+            )
+            return None
 
     def result_payload(self, receipt, stderr_path=None):
         result, error, tail = None, None, None

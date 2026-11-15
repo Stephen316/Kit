@@ -80,9 +80,44 @@ def pipe_signal(root):
         process.wait(timeout=10)
 
 
+class UnattributedWindow:
+    def __init__(self, session, pid, start):
+        self.session = session
+        self.pid = pid
+        self.start = start
+
+    def finish(self, receipt):
+        assert receipt["session"] == self.session
+        assert receipt["pid"] == self.pid and receipt["process_start"] == self.start
+        assert process_start(self.pid) != self.start
+        assert receipt["signal"] == signal.SIGKILL and receipt["stop_reason"] is None
+        print(json.dumps({"event": "kernel_observer_reaped", "session": self.session}), flush=True)
+        return None
+
+    def close(self):
+        print(json.dumps({"event": "kernel_observer_closed", "session": self.session}), flush=True)
+
+
+class UnattributedObserver:
+    def __init__(self, state):
+        self.state = state
+
+    def arm(self, session, pid, start):
+        assert process_start(pid) == start
+        assert not (self.state / "sessions" / session / "session.json").exists()
+        print(json.dumps({"event": "kernel_observer_armed", "session": session}), flush=True)
+        return UnattributedWindow(session, pid, start)
+
+
+def observe_signal(root):
+    config = read_config(root / "Supervisor.json")
+    supervisor = Supervisor(config, True, linux_oom_observer=UnattributedObserver(config["state"]))
+    print(json.dumps(supervisor.run(1, 20)), flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Real-process fixture for the POSIX worker launch gate")
-    parser.add_argument("operation", choices=("launch", "worker", "supervised", "metadata-failure", "pipe-signal"))
+    parser.add_argument("operation", choices=("launch", "worker", "supervised", "metadata-failure", "pipe-signal", "observe-signal", "ordinary-sigkill"))
     parser.add_argument("--root", type=Path, required=True)
     args = parser.parse_args()
     if args.operation == "launch":
@@ -93,6 +128,10 @@ def main():
         supervised(args.root)
     elif args.operation == "metadata-failure":
         metadata_failure(args.root)
+    elif args.operation == "observe-signal":
+        observe_signal(args.root)
+    elif args.operation == "ordinary-sigkill":
+        os.kill(os.getpid(), signal.SIGKILL)
     else:
         pipe_signal(args.root)
 

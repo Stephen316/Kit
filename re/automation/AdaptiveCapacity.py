@@ -38,6 +38,8 @@ class AdaptiveCapacity:
             state["next_increase"] = now + 60
         if reason == "memory_limit":
             return self.backoff(state, "memory_limit", now)
+        if reason is None and receipt.get("kernel_oom") is not None:
+            return self.backoff(state, "linux_memcg_oom", now)
         if reason != "deadline":
             return None
         state["deadlines"] = [stamp for stamp in state["deadlines"] if now - stamp <= 600]

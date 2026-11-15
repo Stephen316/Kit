@@ -1,0 +1,7 @@
+# Linux supervisor OOM evidence
+
+A trusted Linux research harness can pass a kernel observer to the supervisor constructor. The observer arms a single worker while the POSIX launch gate holds its verified PID and process start time. Its observation window closes after the supervisor reaps the child or during cleanup if launch fails. The standard CLI retains its existing execution path.
+
+The supervisor preserves the operating system wait status and its own stop reason. A reaped `SIGKILL` can carry a separate `kernel_oom` receipt when the observer supplies matching worker identity, the same private cgroup before and after the run, one kernel-originated memory-cgroup victim, and corroborating local memory event counts. Supervisor-directed stops, missing evidence and failed observations leave attribution unresolved. Each verified kernel OOM for a current accepted attempt uses the existing adaptive reduction rule under reason `linux_memcg_oom`. [Supervisor resource policy](../../../Reference/Research/ResearchSupervisor.md)
+
+The Linux process case exercises the real supervisor with an ordinary `SIGKILL` and an observer window that supplies no OOM evidence. It checks arm, reap and close ordering, the durable signal receipt and the absence of adaptive backoff. Remote execution is pending. The [hosted standalone witness](BoundedLinuxOomWitness.md) independently verifies the kernel memory-cgroup record. A supervised hosted OOM is the next evidence boundary for numeric pool reduction.

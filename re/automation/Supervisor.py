@@ -135,8 +135,11 @@ def rearm_application(installation, adapter, claim, session):
 
 
 class Supervisor:
-    def __init__(self, config, claiming):
+    def __init__(self, config, claiming, *, linux_oom_observer=None):
+        if linux_oom_observer is not None and (sys.platform != "linux" or not claiming):
+            raise ValueError("kernel OOM observation requires an active Linux supervisor")
         self.config = config
+        self.linux_oom_observer = linux_oom_observer
         self.root = ROOT
         self.state = config["state"]
         self.sessions = self.state / "sessions"
