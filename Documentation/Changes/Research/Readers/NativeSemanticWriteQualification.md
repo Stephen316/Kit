@@ -62,6 +62,10 @@ The shared checks cover explicit unqualified tags, operations, and markers; they
 In particular, a known non-native kind with no definition can remain serializable as interchange JSON while FreeCAD refuses to claim an editable representation for it.
 This remaining qualification scope is not native conversion acceptance.
 
+The first installed-wheel gate at `6fb599a9` exposed a shared-guard/Fusion-package import cycle.
+The contract encoder now loads only when the existing Fusion authoring contract is evaluated, after package initialization.
+The [import-cycle gotcha](../../../Gotchas/Conversion/Qualification/FeatureGuardImportCycle.md) links the actual fresh-interpreter failure.
+
 No local tests, decoding, collection, or application runs verified this change.
 Remote integration and current-head review remain required.
 Encoding, model equality, and archive readback do not establish native application loadability, editable acceptance, or completion of A11–A15.

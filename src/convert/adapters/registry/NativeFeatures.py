@@ -1,4 +1,3 @@
-from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
 from interchange.features.FeatureKinds import CombineFeature
@@ -12,6 +11,8 @@ KOperations = frozenset(Value.value for Value in BooleanOp)
 def HasContract(Document: CadDocument) -> bool:
     if set(Document.metadata) != {"fusion.authoring"}:
         return False
+    from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
+
     try:
         _ = EncodeDocument(Document)
     except (TypeError, ValueError):
