@@ -1,6 +1,7 @@
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Sketches.Dimensional.DimAttach import AttachDimRule
+from convert.formats.Fusion.Sketches.Dimensional.DimRanks import ReadDimRanks
 from convert.formats.Fusion.Sketches.Dimensional.DimScope import ReadDimScope
 from convert.formats.Fusion.Sketches.SketchRuleIds import ReadSketchRules
 from convert.formats.Fusion.Sketches.SketchRuleScope import ReadSketchRoot
@@ -18,7 +19,7 @@ def ProjectSketch(
 ) -> tuple[tuple[SketchRelation, ...], tuple[Diagnostic, ...]]:
     try:
         RootSpan = ReadSketchRoot(SketchValue, Owners)
-        _, Members = ReadSketchRules(BulkData, RootSpan)
+        Geometric, Members = ReadSketchRules(BulkData, RootSpan)
         if not Members:
             return (), ()
         Scope = ReadDimScope(BulkData, Owners, Parameters, RootSpan, SketchValue)
@@ -31,6 +32,10 @@ def ProjectSketch(
                 provenance=SketchValue.provenance,
             ),
         )
+    try:
+        Ranks = ReadDimRanks(BulkData, Owners, RootSpan, Scope, Geometric, Members)
+    except ValueError:
+        Ranks = {}
     Relations: list[SketchRelation] = []
     Diagnostics: list[Diagnostic] = []
     for Identity in Members:
@@ -38,7 +43,9 @@ def ProjectSketch(
         try:
             if SpanValue is None:
                 raise ValueError("Fusion sketch dimension record is missing")
-            Relations.append(AttachDimRule(BulkData, SpanValue, Owners, Scope))
+            Relations.append(
+                AttachDimRule(BulkData, SpanValue, Owners, Scope, Ranks.get(Identity))
+            )
         except ValueError as ErrorInfo:
             Diagnostics.append(
                 Diagnostic(

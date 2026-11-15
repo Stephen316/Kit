@@ -1,0 +1,3 @@
+# Fusion axis dimensions contain two operand orders
+
+A saved axis dimension can list the same two point IDs in opposite orders. The prefix lists dependency IDs with their slots. For the P01, P03 and P04 discovery rectangles, those slots equal the number of earlier uses of each ID in the owned geometric and dimension lists. The tail lists the dimension's ordered argument IDs. Reversing the order changes the sign computed from the saved geometry while the bound scalar remains unsigned. Preserve both orders, check each slot against the owned lists, and keep the original sign with the reported scalar. [Saved operand-order projection](../../../../Changes/Fusion/Adapter/FusionAxisDimensionOrder.md)

@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.HistoryRef import ReadNativeRef
 from convert.formats.Fusion.MetaCursor import MetaCursor
 from convert.formats.Fusion.RecordSpan import RecordSpan
+from convert.formats.Fusion.Sketches.Dimensional.DimSpec import KLinearDimension
 from convert.formats.Fusion.Sketches.RulePrefix import ReadRulePrefix
 
 
@@ -11,6 +12,8 @@ from convert.formats.Fusion.Sketches.RulePrefix import ReadRulePrefix
 class NativeDimension:
     Code: int
     TargetIds: tuple[int, ...]
+    DependencyIds: tuple[int, ...]
+    DependencySlots: tuple[int, ...]
     BindingId: int
     PrefixSlot: int
     PrefixEnd: int
@@ -26,14 +29,13 @@ def DimRecordBody(BulkData: bytes, SpanValue: RecordSpan) -> bytes:
 
 
 # repeated target copies establish the dimension operands without geometric inference
-def ReadDimRecord(BodyValue: bytes) -> NativeDimension:
+def ReadDimRecord(BodyValue: bytes, ClassGuid: str) -> NativeDimension:
     Cursor = MetaCursor(BodyValue)
     Inputs, Slots, Attributes = ReadRulePrefix(Cursor)
     if (
         not 2 <= len(Inputs) <= 3
         or Inputs[0] != 0
         or Slots[0] == 0
-        or any(Slots[1:])
         or set(Attributes) != {"EntityGenesis"}
         or type(Attributes["EntityGenesis"]) is not int
         or Attributes["EntityGenesis"] != 0
@@ -41,24 +43,39 @@ def ReadDimRecord(BodyValue: bytes) -> NativeDimension:
         raise ValueError(
             "Unsupported Fusion dimensional dependency or attribute layout"
         )
-    Targets = Inputs[1:]
-    if 0 in Targets or len(set(Targets)) != len(Targets):
+    Dependencies = Inputs[1:]
+    if 0 in Dependencies or len(set(Dependencies)) != len(Dependencies):
         raise ValueError("Fusion dimensional operands are missing or ambiguous")
     PrefixEnd = Cursor.Offset
-    BindingOffset = len(BodyValue) - (16 + 11 * len(Targets))
+    BindingOffset = len(BodyValue) - (16 + 11 * len(Dependencies))
     if BindingOffset - 8 < PrefixEnd:
         raise ValueError("Fusion dimensional tail overlaps its prefix")
     Cursor.Offset = BindingOffset - 8
     CodeValue = Cursor.ReadLong()
     BindingId = ReadNativeRef(Cursor)
-    if (
-        BindingId == 0
-        or Cursor.ReadWord() != len(Targets)
-        or tuple(ReadNativeRef(Cursor) for _ in Targets) != Targets
-    ):
+    if BindingId == 0 or Cursor.ReadWord() != len(Dependencies):
+        raise ValueError("Fusion dimensional binding or repeated operands disagree")
+    Targets = tuple(ReadNativeRef(Cursor) for _ in Dependencies)
+    AxisPair = (
+        ClassGuid == KLinearDimension
+        and CodeValue in (0x400000, 0x800000)
+        and len(Dependencies) == 2
+    )
+    if not AxisPair and any(Slots[1:]):
+        raise ValueError(
+            "Unsupported Fusion dimensional dependency or attribute layout"
+        )
+    if Targets != Dependencies and not (AxisPair and Targets == Dependencies[::-1]):
         raise ValueError("Fusion dimensional binding or repeated operands disagree")
     if Cursor.TakeBytes(1) != b"\0" or Cursor.Offset != len(BodyValue):
         raise ValueError("Unsupported Fusion dimensional record trailer")
     return NativeDimension(
-        CodeValue, Targets, BindingId, Slots[0], PrefixEnd, BindingOffset
+        CodeValue,
+        Targets,
+        Dependencies,
+        Slots[1:],
+        BindingId,
+        Slots[0],
+        PrefixEnd,
+        BindingOffset,
     )

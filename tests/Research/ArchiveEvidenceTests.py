@@ -148,3 +148,69 @@ def CheckFaceDatum() -> None:
     ]
     assert Plane.attributes["fusion.native_support_resolved"] is False
     assert "fusion.native_support_object_id" not in Plane.attributes
+
+
+# dependent dimensions must keep saved argument and dependency orders across the public reading boundary
+@Pytest.mark.parametrize(
+    "Variant",
+    (
+        "baseline-a",
+        "baseline-b",
+        "edit-width_mm-44",
+        "edit-height_mm-24",
+        "edit-depth_mm-12",
+        "edit-cut_width_mm-12",
+        "edit-cut_height_mm-10",
+        "edit-cut_depth_mm-5",
+        "units-inch",
+        "plane-yz",
+        "termination-through-all",
+    ),
+)
+def CheckDimOrder(Variant: str) -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    Archive = (
+        RootDir
+        / "re/automation/PairedCaptures/P04/fusion-9cf53a55ea8b"
+        / f"P04-fusion-{Variant}.f3d"
+    )
+    Document = OpenDocument(Archive, StrictMode=False)
+    Parameters = {Value.id: Value.name for Value in Document.parameters}
+    Dimensions = {
+        Parameters[Value.parameter_id]: Value
+        for Sketch in Document.sketches
+        for Value in Sketch.constraints
+        if Value.parameter_id is not None
+    }
+    Expected = {
+        "width_mm": ((228, 230), (228, 230), (1, 0), 1),
+        "height_mm": ((242, 228), (228, 242), (2, 0), -1),
+        "cut_width_mm": ((389, 391), (389, 391), (0, 0), 1),
+        "cut_height_mm": ((397, 389), (389, 397), (1, 0), -1),
+        "cut_center_u_mm": ((428, 406), (406, 428), (1, 0), 1),
+        "cut_center_v_mm": ((428, 406), (406, 428), (2, 1), 1),
+    }
+    assert set(Dimensions) == set(Expected)
+    for NameValue, (Operands, Dependencies, Slots, AxisSign) in Expected.items():
+        Dimension = Dimensions[NameValue]
+        Attrs = Dimension.attributes
+        assert tuple(Value.entity_id for Value in Dimension.references) == tuple(
+            f"fusion-sketch-entity-{Identity}" for Identity in Operands
+        )
+        assert tuple(Value.point for Value in Dimension.references) == (
+            "start",
+            "start",
+        )
+        assert Dimension.driving
+        if Slots != (0, 0):
+            assert Attrs["fusion.dimension_dependency_object_ids"] == Dependencies
+            assert Attrs["fusion.dimension_dependency_slots"] == Slots
+        else:
+            assert "fusion.dimension_dependency_slots" not in Attrs
+        if Variant == "plane-yz" and NameValue in (
+            "height_mm",
+            "cut_height_mm",
+            "cut_center_v_mm",
+        ):
+            AxisSign = -AxisSign
+        assert Attrs["fusion.signed_distance_multiplier"] == AxisSign

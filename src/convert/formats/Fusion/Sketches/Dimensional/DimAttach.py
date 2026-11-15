@@ -5,6 +5,7 @@ from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Sketches.Dimensional.DimBinding import ReadDimParam
 from convert.formats.Fusion.Sketches.Dimensional.DimControls import ReadDimControls
 from convert.formats.Fusion.Sketches.Dimensional.DimMeasure import CheckDimMeasure
+from convert.formats.Fusion.Sketches.Dimensional.DimRanks import DimRankAttrs
 from convert.formats.Fusion.Sketches.Dimensional.DimRecord import (
     DimRecordBody,
     ReadDimRecord,
@@ -25,11 +26,12 @@ def AttachDimRule(
     SpanValue: RecordSpan,
     Owners: dict[int, RecordSpan],
     Scope: DimensionScope,
+    MemberRanks: tuple[int, ...] | None,
 ) -> SketchRelation:
     if SpanValue.ClassGuid not in KDimensionClasses:
         raise ValueError("Unsupported Fusion sketch dimension class")
     BodyValue = DimRecordBody(BulkData, SpanValue)
-    Native = ReadDimRecord(BodyValue)
+    Native = ReadDimRecord(BodyValue, SpanValue.ClassGuid)
     SpecValue = KDimensionSpecs.get(Native.Code)
     if SpecValue is None or SpecValue.ClassGuid != SpanValue.ClassGuid:
         raise ValueError(f"Unsupported Fusion sketch dimension code {Native.Code:#x}")
@@ -38,6 +40,7 @@ def AttachDimRule(
     Entities = tuple(Scope.Entities[Identity] for Identity in Native.TargetIds)
     if tuple(Value.kind for Value in Entities) != SpecValue.Targets:
         raise ValueError("Unsupported Fusion sketch dimension operand types")
+    RankAttrs = DimRankAttrs(Native, MemberRanks)
     ParamMatches = Scope.Bindings.get(Native.BindingId, ())
     if len(ParamMatches) != 1:
         raise ValueError(
@@ -57,6 +60,7 @@ def AttachDimRule(
         "fusion.binding_id": Native.BindingId,
         "fusion.dimension_prefix_slot": Native.PrefixSlot,
         "fusion.annotation_position_mm": TextPosition,
+        **RankAttrs,
     }
     if SpecValue.KindValue in (ConstraintKind.KDistanceX, ConstraintKind.KDistanceY):
         Attributes["fusion.signed_distance_multiplier"] = SignValue
