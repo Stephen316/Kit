@@ -1,21 +1,46 @@
 {
   "type": "object",
-  "required": ["calibration_version", "job_id", "kind", "input_sha256", "decode_started_ns", "decode_ended_ns", "decode_wall_seconds", "decode_cpu_seconds", "process_user_cpu_seconds", "process_system_cpu_seconds", "neutral_sha256", "counts", "measurement_scope", "native_acceptance"],
+  "required": [
+    "calibration_version",
+    "job_id",
+    "kind",
+    "input_sha256",
+    "decode_started_ns",
+    "decode_ended_ns",
+    "decode_wall_seconds",
+    "decode_cpu_seconds",
+    "process_user_cpu_seconds",
+    "process_system_cpu_seconds",
+    "neutral_sha256",
+    "counts",
+    "measurement_scope",
+    "native_acceptance"
+  ],
   "additionalProperties": false,
   "properties": {
-    "calibration_version": {"type": "integer", "const": 1},
-    "job_id": {"type": "string", "minLength": 1, "maxLength": 128},
-    "kind": {"type": "string", "enum": ["decode.solidworks", "decode.fusion"]},
-    "input_sha256": {"type": "string", "minLength": 64, "maxLength": 64},
-    "decode_started_ns": {"type": "integer", "minimum": 1},
-    "decode_ended_ns": {"type": "integer", "minimum": 1},
-    "decode_wall_seconds": {"type": "number", "minimum": 0},
-    "decode_cpu_seconds": {"type": "number", "minimum": 0},
-    "process_user_cpu_seconds": {"type": "number", "minimum": 0},
-    "process_system_cpu_seconds": {"type": "number", "minimum": 0},
-    "neutral_sha256": {"type": ["string", "null"], "minLength": 64, "maxLength": 64},
-    "counts": {"type": ["object", "null"]},
-    "measurement_scope": {"type": "string", "const": "offline_reader_import_decode_validation_serialization"},
-    "native_acceptance": {"type": "string", "const": "not_established"}
+    "calibration_version": { "type": "integer", "const": 1 },
+    "job_id": { "type": "string", "minLength": 1, "maxLength": 128 },
+    "kind": {
+      "type": "string",
+      "enum": ["decode.solidworks", "decode.fusion"]
+    },
+    "input_sha256": { "type": "string", "minLength": 64, "maxLength": 64 },
+    "decode_started_ns": { "type": "integer", "minimum": 1 },
+    "decode_ended_ns": { "type": "integer", "minimum": 1 },
+    "decode_wall_seconds": { "type": "number", "minimum": 0 },
+    "decode_cpu_seconds": { "type": "number", "minimum": 0 },
+    "process_user_cpu_seconds": { "type": "number", "minimum": 0 },
+    "process_system_cpu_seconds": { "type": "number", "minimum": 0 },
+    "neutral_sha256": {
+      "type": ["string", "null"],
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "counts": { "type": ["object", "null"] },
+    "measurement_scope": {
+      "type": "string",
+      "const": "offline_reader_import_decode_validation_serialization"
+    },
+    "native_acceptance": { "type": "string", "const": "not_established" }
   }
 }

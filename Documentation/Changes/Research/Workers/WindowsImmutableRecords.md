@@ -20,6 +20,6 @@ case exercises both application reads and output intake. Existing output-intake
 and application parking process cases must also pass on the repaired head.
 Static checks run locally; actual Windows results remain pending remote CI.
 
-The [pywin32 timestamp precision gotcha](../../../Gotchas/Research/Workers/Pywin32BasicTimePrecision.md)
+The [pywin32 timestamp precision gotcha](../../../Gotchas/Research/Workers/PythonWinBasicTimePrecision.md)
 explains the exact-second fixture baseline needed to prove a change-time-only
 mutation independently of modification-time checks.

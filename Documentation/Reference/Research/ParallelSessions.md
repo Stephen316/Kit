@@ -237,12 +237,14 @@ The active limit never exceeds the calculated capacity.
 
 ### Calibration
 
-Use `supervisor calibrate --kind <kind> --samples <count>` to measure a new job kind.
-The command runs the selected sample jobs at 1, 2, 4 and 8 concurrent sessions.
-It records completed jobs per minute and peak memory at each step.
-It recommends the step after which throughput increases by less than 10%.
-It stops a step early when memory headroom falls below the reserve.
-Calibration results are local measurements, not test evidence.
+Use the standalone [offline calibration tool](OfflineCalibration.md) with an explicit immutable manifest of independent offline decode jobs.
+Run `uv run --frozen --no-default-groups --extra dev --python 3.14 python re/automation/Calibration.py --manifest <manifest> --output <unused-directory>`.
+It measures requested concurrency 1, 2, 4 and 8 in private stores while preserving job inputs, options, counted resources and positive CPU/memory reserves.
+Adaptive pool limits and grouped sessions are disabled.
+Requested concurrency remains separate from measured worker overlap and physical CPU/RSS.
+Only complete adjacent comparable trials with a real declared overlap plateau can recommend the previous measured step when throughput gains less than 10%.
+Constrained, interrupted or failed trials remain incomplete; no saturated recommendation is established by fixtures.
+This adds no installed CLI command; CLI delivery remains separate in PR #119.
 
 ### Example for one machine
 
@@ -268,7 +270,7 @@ The application pool keeps each installation busy while runnable application job
 
 Run the controller, the supervisor, SOLIDWORKS and Fusion on one Windows machine.
 Then the application pool needs no network job transport.
-The supervisor does not support Windows yet; A08e adds that support.
+The supervisor uses Windows Job Objects for process containment. Native Windows application dispatch remains A08c/A08e work; see the [supervisor guide](ResearchSupervisor.md) for the implemented process contract.
 Until A08e passes, Fusion can run queued capture scripts through the `KitCaptureRunner` add-in.
 
 ### Continuous claims

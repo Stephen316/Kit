@@ -191,7 +191,7 @@ jobs:
       - name: Verify research session supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Supervisor/Grouping tests/Research/Supervisor/Launch tests/Research/Owners -q -s
+          python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Supervisor/Grouping tests/Research/Supervisor/Launch tests/Research/Owners tests/Research/Calibration -q -s
 
   windows-supervisor:
     if: >-
@@ -220,7 +220,7 @@ jobs:
       - name: Verify Windows supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest -q tests/Research/Windows tests/Research/Outputs tests/Research/Applications/ApplicationParkTests.py tests/Research/Owners
+          python -m pytest -q tests/Research/Windows tests/Research/Outputs tests/Research/Applications/ApplicationParkTests.py tests/Research/Owners tests/Research/WindowsRecords
 
   macos-supervisor:
     if: >-
@@ -249,7 +249,7 @@ jobs:
       - name: Verify macOS supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest -q -s tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Outputs tests/Research/Applications tests/Research/Supervisor/Grouping tests/Research/Supervisor/Launch tests/Research/Owners
+          python -m pytest -q -s tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Outputs tests/Research/Applications tests/Research/Supervisor/Grouping tests/Research/Supervisor/Launch tests/Research/Owners tests/Research/Calibration
 
   zizmor:
     if: >-

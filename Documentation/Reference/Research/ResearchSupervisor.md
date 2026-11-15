@@ -279,7 +279,7 @@ Load only an adapter module that you trust, because the supervisor executes it.
 
 These limits are intentional for A08a:
 
-- Adaptive limits, calibration and grouped small-file sessions remain A08b work.
+- A08b adds adaptive pool limits, optional grouped sessions and [standalone offline calibration](OfflineCalibration.md). Their tested checkpoints and remaining qualification belong in the [step register](AutomationSteps.md).
 - Output files are bounded. Memory stops use sampled process-group RSS and cannot contain children that leave the group.
 - Restart cleanup checks surviving process-group members after leader termination. Failed cleanup prevents releasing the job.
 - An expired A03 attempt still marks its resources unavailable, also for counted provider resources.

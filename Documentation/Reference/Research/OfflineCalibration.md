@@ -15,18 +15,18 @@ No native application, external model, arbitrary runner command, or grouped sess
 
 The version-one JSON object has exactly these fields:
 
-| Field | Required value |
-| --- | --- |
-| `calibration_version` | Integer `1` |
-| `kind` | `decode.solidworks` or `decode.fusion` |
-| `pool` | One controller pool label |
-| `runner` | `threads`, `initial_peak_memory_mib`, and `max_memory_mib` |
-| `bindings` | Binding labels mapped to existing file `path`, `sha256`, and `size_bytes` |
-| `resources` | Resource labels mapped to their actual `capacity` and boolean `available` |
-| `jobs` | Eight through 256 explicit controller job specifications |
-| `reserved_cpus` | Positive integer reserve |
-| `reserved_memory_mib` | Positive integer reserve |
-| `max_seconds` | Per-trial supervisor limit, five through 3600 seconds |
+| Field                 | Required value                                                            |
+| --------------------- | ------------------------------------------------------------------------- |
+| `calibration_version` | Integer `1`                                                               |
+| `kind`                | `decode.solidworks` or `decode.fusion`                                    |
+| `pool`                | One controller pool label                                                 |
+| `runner`              | `threads`, `initial_peak_memory_mib`, and `max_memory_mib`                |
+| `bindings`            | Binding labels mapped to existing file `path`, `sha256`, and `size_bytes` |
+| `resources`           | Resource labels mapped to their actual `capacity` and boolean `available` |
+| `jobs`                | Eight through 256 explicit controller job specifications                  |
+| `reserved_cpus`       | Positive integer reserve                                                  |
+| `reserved_memory_mib` | Positive integer reserve                                                  |
+| `max_seconds`         | Per-trial supervisor limit, five through 3600 seconds                     |
 
 Each job uses the selected kind, exactly one `source` input binding, no dependencies, and only declared resources.
 SOLIDWORKS options support `configuration`; Fusion options support boolean `allow_partial`.
