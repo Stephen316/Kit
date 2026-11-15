@@ -13,7 +13,7 @@ The original native files, receipts and measurements remain unchanged.
 P05 remains reserved and unavailable to this command.
 
 Use the [fresh-process procedure](FusionFreshProcessEvidence.md) with `--read-existing` and selected P01–P04 recipes.
-The plan also pins [observation-local bindings](FusionSketchBindingCapture.md).
+The plan also pins [observation-local bindings](../FusionSketchBindingCapture.md).
 Preparation rejects duplicate archive names, path traversal and mismatched receipt identities.
 
 ## Verification

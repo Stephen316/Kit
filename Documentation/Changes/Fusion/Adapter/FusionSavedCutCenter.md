@@ -1,6 +1,6 @@
 # Saved Fusion CutSketch center links
 
-The partial F3D reader retains the CutSketch projected origin after checking both native source leaves, the output entry, the reciprocal component origin and the projected point in the verified support frame. The point carries its saved projection provenance and native source object ID. In P04 it is point `428`, whose source is component origin `38`. [Archived origin and center evidence](../../Research/Readers/FusionCutCenterEvidence.md)
+The partial F3D reader retains the CutSketch projected origin after checking both native source leaves, the output entry, the reciprocal component origin and the projected point in the verified support frame. The point carries its saved projection provenance and native source object ID. In P04 it is point `428`, whose source is component origin `38`. [Archived origin and center evidence](../../Research/Readers/FusionCutSketch/FusionCutCenterEvidence.md)
 
 The two driving center dimensions must use that exact point and the measured construction midpoint. Each expression names an earlier driving boss dimension of the same axis through the reciprocal parameter registry. The reader checks that half the boss dimension matches the saved value before linking the existing expression to the driver parameter ID. Both links are attached together. If expression verification fails, any independently verified origin provenance is retained. [Saved sketch operands](../../Research/Readers/FusionCutSketchEvidence.md)
 

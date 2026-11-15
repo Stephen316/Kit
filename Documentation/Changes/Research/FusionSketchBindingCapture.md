@@ -10,7 +10,7 @@ Linear and diameter dimensions record their native targets and parameter names.
 Unsupported types, missing targets and ambiguous matches remain explicit unresolved evidence.
 Shared curve endpoints retain their point references without inventing an additional constraint.
 
-Use the [fresh-process capture procedure](FusionFreshProcessEvidence.md) to prepare a new run.
+Use the [fresh-process capture procedure](FusionReadback/FusionFreshProcessEvidence.md) to prepare a new run.
 Previously committed measurements remain unchanged.
 The new records do not establish supporting-face identity or qualify a captured pair.
 Qualification still requires native observations, readback diagnostics and independent semantic adjudication.

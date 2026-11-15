@@ -1,0 +1,5 @@
+# Fusion P04 document graph and expression operands
+
+The P04 document dependency graph contains edges from sketch features to dimension binding records. The four literal and two expression-driven sketch dimensions share this graph pattern across all eleven discovery archives. None of the six numeric parameter objects participates in the decoded reciprocal graph. Keep saved arithmetic name resolution and historical API dependency getters as separate evidence. The archive scan leaves other encodings and loader reconstruction unverified. [P04 graph witness](../../../Changes/Research/Readers/FusionCutSketch/FusionCutRelationEvidence.md)
+
+P04's width and height edits retain the cut-center expression text and dependency names, so they test value propagation. A dedicated P04 capture could keep the same bound center dimension and cached value while changing its expression between equal-length literal and parameter-reference forms, recording both dependency getters and exporting from the same document. The repository's separate user-parameter identity contrast demonstrates that experimental design. [Parameter study](../../../../re/Fusion/Notes/Parameters.md)
