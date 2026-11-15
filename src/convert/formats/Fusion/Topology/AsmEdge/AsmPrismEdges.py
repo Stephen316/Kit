@@ -52,21 +52,28 @@ def ReadAsmEdge(
 def ReadAsmEdges(
     Table: AsmTable, Prism: AsmPrism, Sides: int
 ) -> dict[int, AsmPrismEdge]:
+    return ReadRingEdges(Table, tuple(Prism.Rings.values()), 3 * Sides)
+
+
+# bounded loop inventories share reciprocal edge and vertex checks even when a face has holes
+def ReadRingEdges(
+    Table: AsmTable, Rings: tuple[tuple[AsmUse, ...], ...], EdgeCount: int
+) -> dict[int, AsmPrismEdge]:
     ByEdge: dict[int, list[AsmUse]] = {}
     UseIds: set[int] = set()
-    for RingValue in Prism.Rings.values():
+    for RingValue in Rings:
         for UseValue in RingValue:
             if UseValue.Identity in UseIds:
                 raise ValueError("Fusion ASM coedge appears in multiple face rings")
             UseIds.add(UseValue.Identity)
             ByEdge.setdefault(UseValue.EdgeId, []).append(UseValue)
-    if len(ByEdge) != 3 * Sides or len(UseIds) != 6 * Sides:
-        raise ValueError("Fusion ASM source edge inventory is not a prism")
+    if len(ByEdge) != EdgeCount or len(UseIds) != 2 * EdgeCount:
+        raise ValueError("Fusion ASM edge and coedge inventory disagrees")
     Edges = {
         Identity: ReadAsmEdge(Table, Identity, UseValues)
         for Identity, UseValues in ByEdge.items()
     }
-    for RingValue in Prism.Rings.values():
+    for RingValue in Rings:
         Ordered = tuple(
             (
                 Edges[UseValue.EdgeId].Vertices[::-1]

@@ -1,0 +1,7 @@
+# Saved Fusion Cut result body
+
+The partial F3D reader links the current native body to the terminal Cut by its mapped `.smbh` member, root handle and Cut actor clock. The exact member digest must agree with the history already checked for the earlier source body. The current component inventory must independently identify the same single body. The neutral body records the saved-result lineage and the earlier support selection ID. [Saved support body revision](FusionHistoricalBodyRead.md)
+
+This projection checks one owned connected shell, each face's bounded loop list, reciprocal coedge pairs, the vertex inventory, and the saved straight and planar carriers. Counts and the component-millimeter bounds come from that verified result chart. Blind results have 11 faces, and through-all has 10. Both have 24 edges and 16 vertices. The outer bounds track the saved boss edits and the YZ basis. [Historical result measurements](../../Research/Readers/P04HistoricalBodyEvidence.md)
+
+The eleven pinned archive results match the historical Fusion and licensed SOLIDWORKS count and bounds observations. The partial reader exposes body structure and retains the native archive payload. Complete B-rep evaluation, physical property publication, fresh Fusion readback and editable acceptance remain open. [Archive integration scenarios](../../../../tests/Research/ArchiveEvidenceTests.py)

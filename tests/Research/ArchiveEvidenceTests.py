@@ -9,6 +9,7 @@ import pytest as Pytest
 from convert.adapters.solidworks.container.Container import SldprtArchive
 from convert.api.ApiOpen import OpenDocument
 from interchange.document.models.DocumentModel import CadDocument
+from interchange.enums.EnumDocument import Capability
 from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import PointGeometry
@@ -526,6 +527,36 @@ def CheckCutTarget(Variant: str) -> None:
     assert Target.attributes["fusion.recipe_object_id"] == 453
     assert Target.attributes["fusion.context_object_ids"] == ()
     AssertCutEnding(Variant, Cutter, Document)
+    AssertCutBody(Variant, Cutter, Document)
+
+
+# final saved topology must follow the cut actor and the visible native body rather than its prior boss chart
+def AssertCutBody(Variant: str, Cutter: FeatureStep, Document: CadDocument) -> None:
+    assert len(Document.bodies) == 1, Document.diagnostics
+    (BodyValue,) = Document.bodies
+    assert BodyValue.final_feature_id == Cutter.id
+    assert BodyValue.provenance is not None and BodyValue.provenance.native_id == "309"
+    assert BodyValue.attributes["fusion.geometry_source"] == "saved_cut_result_topology"
+    assert BodyValue.attributes["fusion.history_body_result_ordinal"] == 1
+    assert BodyValue.attributes["fusion.native_body_collection_id"] == 7
+    assert BodyValue.topology.solid_count == BodyValue.topology.shell_count == 1
+    assert BodyValue.topology.face_count == (
+        10 if Variant == "termination-through-all" else 11
+    )
+    assert BodyValue.topology.edge_count == 24 and BodyValue.topology.vertex_count == 16
+    Bounds = BodyValue.topology.bounding_box
+    assert Bounds is not None and Bounds.minimum == SpaceVector(0.0, 0.0, 0.0)
+    Expected = {
+        "edit-width_mm-44": (44.0, 20.0, 10.0),
+        "edit-height_mm-24": (40.0, 24.0, 10.0),
+        "edit-depth_mm-12": (40.0, 20.0, 12.0),
+        "plane-yz": (10.0, 40.0, 20.0),
+    }.get(Variant, (40.0, 20.0, 10.0))
+    assert (Bounds.maximum.x, Bounds.maximum.y, Bounds.maximum.z) == Pytest.approx(
+        Expected
+    )
+    assert Capability.KBodyStructure in Document.capabilities
+    assert Document.brep is None and Capability.KBrep not in Document.capabilities
 
 
 # through all must retain its authored selector without synthesizing a dimension

@@ -29,16 +29,23 @@ def AsmPointMm(Value: SpaceVector) -> SpaceVector:
     return SpaceVector(10.0 * Value.x, 10.0 * Value.y, 10.0 * Value.z)
 
 
-# vertex ownership is validated against the graph before reading its stored point
+# prism callers retain their source profile cardinality contract
 def ReadAsmPoints(
     Table: AsmTable, Edges: dict[int, AsmPrismEdge], Sides: int
+) -> dict[int, SpaceVector]:
+    return ReadAsmVerts(Table, Edges, 2 * Sides)
+
+
+# vertex ownership is validated against the graph before reading its stored point
+def ReadAsmVerts(
+    Table: AsmTable, Edges: dict[int, AsmPrismEdge], VertexCount: int
 ) -> dict[int, SpaceVector]:
     Incident: dict[int, set[int]] = {}
     for EdgeValue in Edges.values():
         for Identity in EdgeValue.Vertices:
             Incident.setdefault(Identity, set()).add(EdgeValue.Identity)
-    if len(Incident) != 2 * Sides:
-        raise ValueError("Fusion ASM source vertex inventory is not a prism")
+    if len(Incident) != VertexCount:
+        raise ValueError("Fusion ASM vertex inventory disagrees")
     Points: dict[int, SpaceVector] = {}
     for Identity, EdgesAt in Incident.items():
         Value = RequireAsm(Table, Identity, "vertex", 6)

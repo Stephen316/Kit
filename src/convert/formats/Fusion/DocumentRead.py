@@ -26,6 +26,7 @@ from convert.formats.Fusion.Sketches.SketchRules import AttachRules
 from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.formats.Fusion.SourceBytes import LoadFusionBytes
 from convert.formats.Fusion.Topology.BodyProjection import ProjectBodyList
+from convert.formats.Fusion.Topology.CutResult.ProjectCutBody import ProjectCutBody
 from convert.formats.Fusion.ZipHistory import ReadBulkHistory
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
@@ -228,6 +229,7 @@ def FinishFusionDoc(
     Document = ProjectCutEnds(Document, BulkData, Spans)
     Document = ProjectFaces(Document, BulkData, Spans, LoadBlob)
     Document = ProjectCutCent(Document, BulkData, Spans, History)
+    Document = ProjectCutBody(Document, BulkData, Spans, LoadBlob)
     Document = ProjectScale(Document, BulkData, Spans, History, LoadBlob)
     Document.AssertValid()
     return Document

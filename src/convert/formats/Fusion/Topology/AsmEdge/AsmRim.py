@@ -21,12 +21,14 @@ class AsmUse:
     ProfileTag: int | None
 
 
-# each planar source face owns exactly one reciprocal bounded coedge ring
+# reciprocal ring ownership supports source profiles and separately scoped result loops
 def ReadAsmRim(
-    Table: AsmTable, FaceId: int, LoopId: int, Maximum: int
+    Table: AsmTable, FaceId: int, LoopId: int, Maximum: int, *, ResultLoop: bool = False
 ) -> tuple[AsmUse, ...]:
     LoopValue = RequireAsm(Table, LoopId, "loop", 6)
-    if ReadAsmPtr(LoopValue, 3) != -1 or ReadAsmPtr(LoopValue, 5) != FaceId:
+    if (not ResultLoop and ReadAsmPtr(LoopValue, 3) != -1) or ReadAsmPtr(
+        LoopValue, 5
+    ) != FaceId:
         raise ValueError("Fusion ASM prism loop owner disagrees")
     First = ReadAsmPtr(LoopValue, 4)
     Current = First
@@ -49,7 +51,7 @@ def ReadAsmRim(
                 ReadAsmPtr(Value, 5),
                 ReadAsmPtr(Value, 4),
                 IsAsmFlag(Value, 7),
-                ReadCoedgeTag(Table, Current, Value),
+                None if ResultLoop else ReadCoedgeTag(Table, Current, Value),
             )
         )
         Current = ReadAsmPtr(Value, 3)
