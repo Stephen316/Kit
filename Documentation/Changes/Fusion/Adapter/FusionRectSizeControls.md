@@ -1,0 +1,7 @@
+# Saved Fusion selected rectangle controls
+
+The partial F3D reader links the P04 boss and Cut size dimensions to the exact sides of their authored selected profiles. It resolves the owned loop and requires four distinct native point identities to form the perimeter. Each side has one typed horizontal or vertical rule. A size dimension uses a side's ordered endpoints and that same axis. The shared sized corner is corroborated by the boss's separate coincident origin or the Cut's construction-diagonal midpoint relation. [Archived relation evidence](../../Research/Readers/FusionP04RelationEvidence.md), [Saved profile evidence](../../Research/Readers/FusionCutProfileEvidence.md)
+
+The reciprocal Design graph must show exactly the six native sketch-feature-to-dimension-binding edges incident to the participating dimension records. Size relations retain the selected side, matching axis rule, loop identity, original binding edge and corresponding provenance. The original point operands, dependency slots and stored profile member order remain available. The center expressions retain their separate expression-derived links. [Saved center links](FusionSavedCutCenter.md)
+
+All eleven P04 controls corroborate the side joins, including the YZ axis swap and the distinct through-all profile member order. Fresh Fusion participant readback and editable acceptance remain open. [Archive integration scenarios](../../../../tests/Research/ArchiveEvidenceTests.py)

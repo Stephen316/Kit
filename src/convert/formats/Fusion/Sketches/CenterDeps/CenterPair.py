@@ -3,6 +3,7 @@ from dataclasses import dataclass as MakeDataClass
 from convert.formats.Fusion.Sketches.FaceSupport.FaceProjection import FaceTargets
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
 
@@ -15,6 +16,8 @@ class CenterPair:
     Frame: SupportPlane
     BodyId: int
     ComponentId: int
+    CutterStep: FeatureStep
+    BossStep: FeatureStep
 
 
 # a saved historical target chooses the driver sketch independently of parameter names
@@ -54,4 +57,4 @@ def FindCenterPair(Document: CadDocument) -> CenterPair | None:
         != ComponentId
     ):
         return None
-    return CenterPair(CutSketch, BossSketch, Frame, BodyId, ComponentId)
+    return CenterPair(CutSketch, BossSketch, Frame, BodyId, ComponentId, Cutter, Source)

@@ -16,6 +16,7 @@ from convert.formats.Fusion.FormulaDeps.FormulaLink import LinkFormulaDeps
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.PlaneProjection import ProjectPlanes
 from convert.formats.Fusion.Profiles.ProfileProjection import ProjectProfiles
+from convert.formats.Fusion.Profiles.RectControls.ProjectRectCtrl import ProjectRectCtrl
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.RevolveBody import ProjectRevBody
 from convert.formats.Fusion.Revolves.RevolveProject import ProjectRevolves
@@ -229,6 +230,7 @@ def FinishFusionDoc(
     Document = ProjectCutEnds(Document, BulkData, Spans)
     Document = ProjectFaces(Document, BulkData, Spans, LoadBlob)
     Document = ProjectCutCent(Document, BulkData, Spans, History)
+    Document = ProjectRectCtrl(Document, BulkData, Spans, History)
     Document = ProjectCutBody(Document, BulkData, Spans, LoadBlob)
     Document = ProjectScale(Document, BulkData, Spans, History, LoadBlob)
     Document.AssertValid()

@@ -849,6 +849,84 @@ def CheckDimOrder(Variant: str) -> None:
             AxisSign = -AxisSign
         assert Attrs["fusion.signed_distance_multiplier"] == AxisSign
     AssertCenters(Document)
+    AssertRectCtrl(Variant, Document)
+
+
+# saved member order and native bound side identity are independent controls
+def AssertRectCtrl(Variant: str, Document: CadDocument) -> None:
+    Params = {Value.id: Value.name for Value in Document.parameters}
+    Features = {
+        Value.provenance.native_id: Value
+        for Value in Document.feature_timeline
+        if Value.provenance is not None
+    }
+    Orders = {
+        "plane-yz": ((248, 232, 238, 244), (400, 399, 393, 396)),
+        "termination-through-all": ((248, 244, 238, 232), (400, 399, 396, 393)),
+    }
+    BossOrder, CutOrder = Orders.get(
+        Variant, ((232, 248, 238, 244), (400, 396, 393, 399))
+    )
+    Sketches = {Value.id: Value for Value in Document.sketches}
+    for FeatureId, MemberOrder, LoopId, CornerId in (
+        ("277", BossOrder, 284, 228),
+        ("446", CutOrder, 460, 389),
+    ):
+        StepValue = Features[FeatureId]
+        assert StepValue.attributes["fusion.profile_native_members"] == tuple(
+            f"fusion-sketch-entity-{Identity}" for Identity in MemberOrder
+        )
+        SketchValue = Sketches[StepValue.sketch_id or ""]
+        assert (
+            SketchValue.attributes.get("fusion.selected_profile_size_corner_object_id")
+            == CornerId
+        ), Document.diagnostics
+        AssertRectAxes(SketchValue, LoopId, MemberOrder)
+        AssertRectDims(SketchValue, Params, LoopId)
+
+
+# each axis relation retains the exact selected side from its original operand
+def AssertRectAxes(
+    SketchValue: Sketch, LoopId: int, MemberOrder: tuple[int, ...]
+) -> None:
+    AxisSides = {
+        Value.references[0].entity_id
+        for Value in SketchValue.constraints
+        if Value.kind in ("horizontal", "vertical")
+        and Value.attributes.get("fusion.selected_profile_side_id")
+        == Value.references[0].entity_id
+        and Value.attributes.get("fusion.selected_profile_loop_object_id") == LoopId
+    }
+    assert AxisSides == {f"fusion-sketch-entity-{Identity}" for Identity in MemberOrder}
+
+
+# size dimensions preserve their literal graph links and center dimensions retain independent operands
+def AssertRectDims(SketchValue: Sketch, Params: dict[str, str], LoopId: int) -> None:
+    Expected = {
+        "width_mm": (232, 252, (207, 259, 1)),
+        "height_mm": (248, 255, (207, 269, 1)),
+        "cut_width_mm": (393, 401, (334, 432, 1)),
+        "cut_height_mm": (400, 404, (334, 436, 1)),
+    }
+    for Relation in SketchValue.constraints:
+        if Relation.parameter_id is None:
+            continue
+        Control = Expected.get(Params[Relation.parameter_id])
+        Attributes = Relation.attributes
+        if Control is None:
+            assert "fusion.selected_profile_side_id" not in Attributes
+            continue
+        SideId, RuleId, Binding = Control
+        assert (
+            Attributes["fusion.selected_profile_side_id"]
+            == f"fusion-sketch-entity-{SideId}"
+        )
+        assert (
+            Attributes["fusion.selected_profile_axis_relation_id"]
+            == f"fusion-sketch-relation-{RuleId}"
+        )
+        assert Attributes["fusion.selected_profile_loop_object_id"] == LoopId
+        assert Attributes["fusion.selected_profile_binding_edge"] == Binding
 
 
 # the center link must follow the authored origin and exact earlier named dimension

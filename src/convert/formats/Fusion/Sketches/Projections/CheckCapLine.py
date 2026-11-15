@@ -1,5 +1,4 @@
-from typing import cast as CastValue
-
+from convert.formats.Fusion.Sketches.LinePointIds import ReadLineEnds
 from convert.formats.Fusion.Topology.AsmEdge.AsmPoints import IsAsmNear
 from convert.geometry.Revolve.SweepVector import OffsetVector
 from interchange.geometry.models.GeometryCurves import LineGeometry
@@ -19,15 +18,7 @@ def CheckCapLine(
         or Entity.attributes.get("fusion.entity_genesis") != 0
     ):
         raise ValueError("Fusion cap projection lacks a native line cache")
-    PointIds = Entity.attributes.get("fusion.line_native_point_ids")
-    if not isinstance(PointIds, tuple):
-        raise ValueError("Fusion cap projection cache endpoints are unbound")
-    Values = CastValue(tuple[object, ...], PointIds)
-    if len(Values) != 2:
-        raise ValueError("Fusion cap projection has an invalid cache endpoint count")
-    Start, Finish = Values
-    if type(Start) is not int or type(Finish) is not int or Start == Finish:
-        raise ValueError("Fusion cap projection cache endpoints are ambiguous")
+    Start, Finish = ReadLineEnds(Entity)
     for Point, Native in zip((Geometry.start, Geometry.end), Expected, strict=True):
         Projected = OffsetVector(
             OffsetVector(Frame.origin, Frame.x_axis, Point.x),
