@@ -275,6 +275,8 @@ The Linux log explicitly records a measured healthy-minute increase to two sessi
 Both POSIX selections include all fourteen calibration cases; no saturated throughput recommendation is established.
 The Windows calibration completed 100 decodes. The eight-worker trial fell short of the sustained-overlap threshold. Independently attributed OOM backoff remains open.
 The corrected `cdf53e1f` Windows and macOS research suites passed 29 and 74 cases respectively. [Windows run](https://github.com/TryUniCAD/Kit/actions/runs/43693322495/job/132748412625), [macOS run](https://github.com/TryUniCAD/Kit/actions/runs/43693322495/job/132748412270)
+
+At `69b9b773`, Windows passed 42 research cases and macOS passed 90, including the recovery and dependency-input process cases. [Windows run](https://github.com/TryUniCAD/Kit/actions/runs/43701120684/job/132772337494), [macOS run](https://github.com/TryUniCAD/Kit/actions/runs/43701120684/job/132772337490)
 Legacy no-owner controller calls and custom adapters without the fence capability remain explicitly unfenced.
 
 A08c's five [durable-output intake](../../Changes/Research/Workers/DurableWorkerOutputs.md) cases passed on all three platforms.

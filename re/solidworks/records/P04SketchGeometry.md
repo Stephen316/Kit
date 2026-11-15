@@ -28,7 +28,9 @@ Baseline A has four corners at `(15,6)`, `(25,14)`, `(15,14)`, `(25,6)` mm and t
 | 39 | `cut_left_mm` | 15 | 17 in the boss-width edit and 14 in the cut-width edit |
 | 40 | `cut_bottom_mm` | 6 | 8 in the boss-height edit and 5 in the cut-height edit |
 
-The values come from binary doubles in metres. The inch-display control retained the same physical lengths to the captured floating-point precision. Baseline A's short line-handle indices for the four logical relations are `2`, `1`, `4`, and `3`. Their full relation semantics are still open.
+The values come from binary doubles in metres. The inch-display control retained the same physical lengths to the captured floating-point precision.
+
+In all eleven captures the four `sgLogG1Dim` records resolve through typed `sgLineHandle` references to the four perimeter member identities. For each target, its local line endpoints agree with the independently measured SOLIDWORKS relation kind and both components of its segment ID. Baseline A and YZ both give target and measured kind pairs `2` vertical, `1` horizontal, `4` vertical and `3` horizontal. All 44 bindings match. The two trailing u16 fields before the handle are `(65534, 0)` for all 44 relations. The wire-level orientation discriminator remains open. The private comparison SHA-256 is `3476f5de6e594818ff13491b6290311fb028317b8a72d07f483e245b3ca83181`. [Pinned native measurements](../../automation/PairedCaptures/P04/solidworks-c1986308375a/measurements.json)
 
 ## Continue the walk
 
