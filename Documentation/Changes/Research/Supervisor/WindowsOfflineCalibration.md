@@ -10,6 +10,8 @@ On stop, calibration pauses admission in the trial's private pool and lets the s
 
 The Windows process selection covers the real fixed offline reader sweep, a decoder rejection, explicit termination of a nested worker tree, and abrupt observer exit with a held worker and descendant. The Windows research job passed all 29 selected process cases at `cdf53e1f`. [Windows research job](https://github.com/TryUniCAD/Kit/actions/runs/43693322495/job/132748412625)
 
+The Windows success fixture allows 45 seconds for each trial's eight serialized decoder sessions. The previous 30-second limit required more than 16 decodes per minute, while the matched Windows Fusion calibration measured 15.26 at one worker. The hosted process check hit `trial_timeout` under the old limit. Each worker still has a 30-second deadline. Unexpected process exits now include trial timing and completion counts when the calibration report is available. [Hosted failure](https://github.com/TryUniCAD/Kit/actions/runs/43703554435/job/132779686613), [matched Windows run](WindowsArtifactStaging.md#matched-windows-calibration)
+
 ## First Windows discovery sweep
 
 On November 15, 2026, the calibration implementation at `b0f223ef` ran on Windows with Python 3.14.6 and pywin32 312. It read 25 receipt-pinned SOLIDWORKS discovery captures at each of four requested concurrency levels. The manifest covers P01, P03 and P04. P02 qualification and P05 holdout inputs were excluded. The worker used one thread per job with a 120-second deadline and the observer reserved two CPUs and 4 GiB of memory.

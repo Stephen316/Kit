@@ -7,6 +7,28 @@ from pathlib import Path as FilePath
 KRepoRoot = FilePath(__file__).resolve().parents[3]
 
 
+# failed sweeps need the stopped trial and completed count in remote process logs
+def TrialDetails(ReportPath: FilePath) -> str:
+    try:
+        Report = JsonCodec.loads(ReportPath.read_text(encoding="utf-8"))
+        Details = [
+            {
+                KeyName: Trial[KeyName]
+                for KeyName in (
+                    "requested_concurrency",
+                    "completed_jobs",
+                    "expected_jobs",
+                    "wall_seconds",
+                    "incomplete_reasons",
+                )
+            }
+            for Trial in Report["trials"]
+        ]
+    except (OSError, ValueError, KeyError, TypeError):
+        return ""
+    return "\nTrial details: " + JsonCodec.dumps(Details)[:2048]
+
+
 # calibration checks must verify the actual command exit and durable report together
 def RunCalibration(
     ManifestPath: FilePath,
@@ -29,8 +51,9 @@ def RunCalibration(
         check=False,
         timeout=240,
     )
-    assert Process.returncode == ExitCode, Process.stderr + Process.stdout
-    Report: dict[str, object] = JsonCodec.loads(
-        (OutputPath / "Calibration.json").read_text(encoding="utf-8")
+    ReportPath = OutputPath / "Calibration.json"
+    assert Process.returncode == ExitCode, (
+        Process.stderr + Process.stdout + TrialDetails(ReportPath)
     )
+    Report: dict[str, object] = JsonCodec.loads(ReportPath.read_text(encoding="utf-8"))
     return Report
