@@ -107,6 +107,8 @@ and old application process identity. The add-in then refuses more work in that
 process. The external owner must exit and restart Fusion. Phase B checks a new
 process identity and the actual old process exit; the existing fresh-process
 helper also enforces its capture-specific restart checks.
+The new add-in must finish verified startup before its queue can retire the old
+restart fence. [Replacement startup evidence](FusionRestartStartup.md)
 
 The dispatcher never quits or kills externally owned CAD. Unknown-owner
 quarantines require explicit owner recovery. A known old-process quarantine fence

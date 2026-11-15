@@ -92,6 +92,41 @@ def CheckFreshWait(TmpPath: FilePath) -> None:
         StopProcess(First)
 
 
+# replacement ownership alone cannot retire a restart fence after an unsuccessful bootstrap
+def CheckNativeGate(TmpPath: FilePath) -> None:
+    Harness = DispatchHost(TmpPath.resolve())
+    First = Harness.StartHost()
+    try:
+        _ = WriteHandoff(Harness, First.pid)
+        FencePath = Harness.Endpoint / "fence.json"
+        Before = FencePath.read_bytes()
+    finally:
+        StopProcess(First)
+    for StageName in ("startup-unverified", "startup-stale"):
+        assert ObserveStartup(Harness, StageName) == {"before": True, "after": True}
+        assert FencePath.read_bytes() == Before
+        assert list((Harness.Endpoint / "jobs").iterdir()) == []
+    assert ObserveStartup(Harness, "startup-verified") == {
+        "before": True,
+        "after": False,
+    }
+    assert not FencePath.exists()
+
+
+# each startup observation needs a separate real process and the production native provider
+def ObserveStartup(Harness: DispatchHost, StageName: str) -> dict[str, bool]:
+    Terminal = Subprocess.run(
+        Harness.Command + [StageName, "--installation", str(Harness.ConfigFile)],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=30,
+    )
+    assert Terminal.returncode == 0, Terminal.stderr
+    StatusInfo: dict[str, bool] = JsonCodec.loads(Terminal.stdout)
+    return StatusInfo
+
+
 # deadline and invalid restart states must prevent admission
 def CheckParkWait(TmpPath: FilePath) -> None:
     Harness = DispatchHost(TmpPath.resolve())

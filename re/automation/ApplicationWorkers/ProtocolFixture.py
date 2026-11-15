@@ -96,9 +96,29 @@ def run_restart(config, input_file, seconds):
     print(json.dumps(result), flush=True)
 
 
+def run_native_startup(config, stage):
+    host = HostQueue(config)
+    try:
+        before = host.fenced()
+        if stage != "startup-unverified":
+            for role, relative in (("bootstrap", ApplicationProtocol.BOOTSTRAP),
+                                   ("protocol", ApplicationProtocol.PROTOCOL)):
+                raw = ApplicationProtocol.committed_bytes(config, relative)
+                host.loaded_sources[role] = {
+                    "path": relative, "sha256": sha256(raw), "size_bytes": len(raw),
+                    "revision": config["source_revision"],
+                }
+        if stage == "startup-stale":
+            host.loaded_sources["bootstrap"]["revision"] = "0" * 40
+        print(json.dumps({"before": before, "after": host.fenced()}), flush=True)
+    finally:
+        host.close()
+
+
 def main():
     parser = argparse.ArgumentParser(description="Real-process fixture for the local application transport; no CAD claims")
-    parser.add_argument("operation", choices=("host", "client", "counterpart", "supervised", "restart"))
+    parser.add_argument("operation", choices=("host", "client", "counterpart", "supervised", "restart",
+                                              "startup-unverified", "startup-stale", "startup-verified"))
     parser.add_argument("--installation", type=Path, required=True)
     parser.add_argument("--mode", choices=("echo", "handoff", "wait", "queued", "copied"), default="echo")
     parser.add_argument("--seconds", type=float, default=15)
@@ -111,6 +131,8 @@ def main():
         run_supervised(config, args.session)
     elif args.operation == "restart":
         run_restart(config, args.session, args.seconds)
+    elif args.operation.startswith("startup-"):
+        run_native_startup(config, args.operation)
     else:
         run_client(config, args.mode, args.seconds)
 

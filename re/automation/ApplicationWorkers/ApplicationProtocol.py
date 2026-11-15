@@ -16,6 +16,7 @@ MAX_BYTES = 256 * 1024 * 1024
 MAX_SPOOL_BYTES = 520 * 1024 * 1024
 MAX_SPOOL_FILES = 32
 ACKNOWLEDGEMENT = "acceptance-journal.json"
+FUSION_PROVIDER = "autodesk.fusion.addin"
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
@@ -295,7 +296,7 @@ def validate_request(value, config, job_id, operation):
 
 
 class QueueClient:
-    def __init__(self, config, deadline, provider="autodesk.fusion.addin"):
+    def __init__(self, config, deadline, provider=FUSION_PROVIDER):
         self.config = config
         self.deadline = deadline
         self.provider = provider
@@ -380,8 +381,19 @@ class QueueClient:
         raise ApplicationTimeout(request)
 
 
+def fusion_startup_loaded(config, sources):
+    for role, path in (("bootstrap", BOOTSTRAP), ("protocol", PROTOCOL)):
+        pin = sources.get(role)
+        if not (isinstance(pin, dict) and set(pin) == {"path", "revision", "sha256", "size_bytes"}
+                and pin["path"] == path and pin["revision"] == config["source_revision"]
+                and isinstance(pin["sha256"], str) and re.fullmatch("[0-9a-f]{64}", pin["sha256"])
+                and type(pin["size_bytes"]) is int and pin["size_bytes"] > 0):
+            return False
+    return True
+
+
 class HostQueue:
-    def __init__(self, config, provider="autodesk.fusion.addin"):
+    def __init__(self, config, provider=FUSION_PROVIDER):
         self.config = config
         self.provider = provider
         self.root = directory(config["endpoint"], True)
@@ -409,6 +421,10 @@ class HostQueue:
             return False
         if value.get("reason") == "acceptance_required":
             return True
+        if value.get("reason") == "restart_required" and self.provider == FUSION_PROVIDER:
+            if (value.get("installation") != self.config["installation"]
+                    or not fusion_startup_loaded(self.config, self.loaded_sources)):
+                return True
         old = value.get("host")
         if isinstance(old, dict) and old != self.host and identity(old["pid"]) is None:
             path.unlink()
