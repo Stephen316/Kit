@@ -4,30 +4,15 @@ from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     KObjectRefKind,
-    ReadString,
 )
+from convert.adapters.solidworks.resolved.ContourChain import ReadChain
 from FaceOccurrence import read_surface_id
 from SketchRoot import KGeneration, Require
 
 
-# the saved contour chain supplies the edge list through its typed instance
+# the cut profile reaches the same contour format through a different class kind
 def read_chain(cursor, pointer_kind=KClassRefKind):
-    index = cursor.pointer(pointer_kind, "moSketchChain_c")
-    Require(cursor.read("<H"), (4,), "four profile chain edges")
-    edge_ids = cursor.read("<4I")
-    Require(cursor.read("<H"), (1,), "one secondary chain id")
-    cursor.read("<I")
-    cursor.read("<6i")
-    text, width = ReadString(cursor.blob, cursor.position)
-    Require(text, "", "empty chain label")
-    cursor.position += width
-    Require(cursor.read("<H"), (0,), "absent chain handles")
-    _, pairs = cursor.read("<2I")
-    Require(pairs, 0, "empty chain pair map")
-    cursor.null()
-    cursor.null()
-    Require(cursor.read("<3i"), (0, 0, 0), "guarded modern chain trailer")
-    return {"object_index": index, "edge_ids": edge_ids, "end": cursor.position}
+    return ReadChain(cursor, pointer_kind)
 
 
 # the embedded kernel packet has its own length and independent object storage

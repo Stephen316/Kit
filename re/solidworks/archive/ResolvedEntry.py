@@ -6,6 +6,9 @@ import json
 from pathlib import Path
 import sys
 
+if __name__ == "__main__":
+    sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
+
 from FaceEvidence import WINDOWS
 from ResolvedPrelude import (
     read_named_concept,
@@ -433,7 +436,6 @@ def main():
     )
     arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
-    sys.path.insert(0, str(root / "src"))
     receipt, measured = ReadReceipts(root)
     evidence = {
         "scope": "p04_resolved_entry_research",

@@ -1,15 +1,15 @@
 """Follow ordinary resolved rectangles through their saved principal support."""
 
 from ArchiveVersion import KApplicationBuild
-from ProfileSupport import read_chain
-from RectangleTail import read_principal_profile_support, read_rectangle_trim
+from RectangleTail import read_principal_profile_support
 from ResolvedPrelude import read_profile_body_prefix, read_resolved_prelude
 from SketchRoot import KGeneration, Require
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
-    ReadTag,
 )
+from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
+from convert.adapters.solidworks.resolved.ContourTrim import ReadRectEnd, ReadRectTrim
 from convert.adapters.solidworks.sketch.InlineSketch import ReadInlineMut
 
 
@@ -35,9 +35,8 @@ def read_rectangle_entry(
     if previous_events is not None:
         previous_events.extend(events)
     display = [event for event in events if event[0] >= geometry["geometry_end"]]
-    count = int(has_atom)
-    Require(cursor.read("<Ii"), (count, count), "witnessed rectangle chain state")
-    chain = read_chain(cursor, KDefinitionKind) if has_atom else None
+    edge_ids = [line["native_id"] for line in geometry["lines"] if line["native_id"] >= 0]
+    chain = ReadChainState(cursor, bool(has_atom), edge_ids)
     support = read_principal_profile_support(cursor, prelude["principal_planes"])
     rectangle = {
         "origin": prelude["origin"],
@@ -83,31 +82,12 @@ def close_rectangle(cursor, rectangle, contour_mode):
     edge_ids = [
         line["native_id"] for line in geometry["lines"] if line["native_id"] >= 0
     ]
-    if contour_mode:
-        Require(
-            sorted(rectangle["chain"]["edge_ids"]),
-            sorted(edge_ids),
-            "body chain covers the sketch perimeter",
-        )
     profile = {
         "profile_object": rectangle["profile_object"],
         "native_feature_id": rectangle["feature_id"],
     }
-    rectangle["trim"] = read_rectangle_trim(cursor, profile, edge_ids, contour_mode)
-    if contour_mode:
-        tag = ReadTag(cursor.blob, cursor.position)
-        Require(
-            (tag.kind, tag.class_name, tag.schema),
-            (KDefinitionKind, "moExtrusion_c", 1),
-            "next typed extrusion",
-        )
-        following = "moExtrusion_c"
-    else:
-        Require(cursor.read("<i"), (0,), "witnessed resolved list footer")
-        Require(
-            cursor.position, len(cursor.blob), "complete single-profile resolved stream"
-        )
-        following = "resolved_list_end"
+    rectangle["trim"] = ReadRectTrim(cursor, profile, edge_ids, contour_mode)
+    following = ReadRectEnd(cursor, bool(contour_mode))
     rectangle["profile_return"] = {
         "offset": cursor.position,
         "next_map_index": cursor.next_index,
