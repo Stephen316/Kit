@@ -4,6 +4,7 @@ import argparse
 import math
 import re
 import sys
+from collections import defaultdict
 from pathlib import Path
 
 from P04LicensedSupport import licensed_cases
@@ -26,6 +27,10 @@ def paired_operands(role, constraint, measured, native, tolerance):
         and measured["attachment_count"] == len(attachments) == len(constraint.references) == 2,
         "expected two observed dimension attachments",
     )
+    return paired_definition(role, constraint, attachments, native, tolerance)
+
+
+def paired_definition(role, constraint, attachments, native, tolerance):
     entities = {item.id: item for item in role.sketch.entities}
     operands = []
     sources = constraint.attributes["native_point_ids"]
@@ -80,6 +85,72 @@ def paired_operands(role, constraint, measured, native, tolerance):
     return operands
 
 
+def paired_relation(role, constraint, relation, native, tolerance):
+    current = relation["entities"]
+    definition = relation["definition_entities"]
+    require(
+        relation["entity_types"] == [2, 2] and len(current) == len(definition) == 2,
+        "licensed point relation lacks two ordered operands",
+    )
+    operands = paired_definition(role, constraint, definition, native, tolerance)
+    for measured, authored, operand in zip(current, definition, operands, strict=True):
+        require(
+            measured["kind"] == "sketch_point"
+            and measured["same_sketch"] is True
+            and measured["native_sketch_available"] is True
+            and measured["native_sketch_owner"] == role.sketch.name
+            and math.dist(
+                [1000 * value for value in measured["local_m"]], operand["saved_local_mm"]
+            ) <= tolerance
+            and (not authored["same_sketch"] or measured == authored),
+            "licensed current point differs from the saved local relation operand",
+        )
+        operand["current_point_id"] = measured["id"]
+    return operands
+
+
+def consume_relation(measured, code, point_ids):
+    pending = measured[(code, point_ids)]
+    require(pending, f"missing licensed relation {code} with ordered IDs {point_ids}")
+    return pending.pop()
+
+
+def paired_relations(role, sketch, native, tolerance):
+    measured = defaultdict(list)
+    for relation in sketch["relations"]:
+        key = relation["type"], tuple(tuple(entity["id"]) for entity in relation["entities"])
+        measured[key].append(relation)
+    entities = {item.id: item for item in role.sketch.entities}
+    matched = []
+    for constraint in role.sketch.constraints:
+        code = constraint.attributes["native_code"]
+        if code in (4, 5):
+            segment_id = constraint.attributes["native_segment_id"]
+            (reference,) = constraint.references
+            entity = entities[reference.entity_id]
+            require(
+                isinstance(entity.geometry, LineGeometry) and not entity.construction
+                and reference.point == "" and entity.attributes["native_segment_id"] == segment_id,
+                "saved axis relation must target the native perimeter member",
+            )
+            relation = consume_relation(measured, code, ((segment_id, segment_id),))
+            require(
+                relation["entity_types"] == [3]
+                and relation["entities"] == relation["definition_entities"] == [
+                    {"kind": "sketch_segment", "id": [segment_id, segment_id], "type": 0, "same_sketch": True}
+                ],
+                "licensed current and definition axis operands differ from the saved member",
+            )
+            operands = [{"entity_id": entity.id, "segment_id": segment_id}]
+        else:
+            point_ids = constraint.attributes["native_point_ids"]
+            relation = consume_relation(measured, code, point_ids)
+            operands = paired_relation(role, constraint, relation, native, tolerance)
+        matched.append({"constraint_id": constraint.id, "native_code": code, "ordered_operands": operands})
+    require(not any(measured.values()), "a licensed relation is missing from the saved sketch")
+    return matched
+
+
 def paired_dimensions(history, role, native, tolerance):
     observed = unique(
         (sketch for sketch in native["sketches"] if sketch["feature"]["name"] == role.sketch.name),
@@ -117,7 +188,7 @@ def paired_dimensions(history, role, native, tolerance):
             "ordered_operands": paired_operands(role, constraint, expected, native, tolerance),
         }
     require(not measured and matched, "a licensed dimension is missing from the saved sketch")
-    return matched
+    return matched, paired_relations(role, observed, native, tolerance)
 
 
 def paired_equations(history, native, dimensions, tolerance):
@@ -158,12 +229,15 @@ def report(directory, receipt_digest):
         bindings = {}
         for phase in PHASES:
             observed = native[phase]
-            dimensions = {
-                **paired_dimensions(history, history.base, observed, tolerance),
-                **paired_dimensions(history, history.cut, observed, tolerance),
-            }
+            base_dimensions, base_relations = paired_dimensions(history, history.base, observed, tolerance)
+            cut_dimensions, cut_relations = paired_dimensions(history, history.cut, observed, tolerance)
+            dimensions = {**base_dimensions, **cut_dimensions}
             equations = paired_equations(history, observed, dimensions, tolerance)
-            bindings[phase] = {"dimensions": dimensions, "equations": equations}
+            bindings[phase] = {
+                "dimensions": dimensions,
+                "equations": equations,
+                "relations": {history.base.sketch.name: base_relations, history.cut.sketch.name: cut_relations},
+            }
         rows.append({"variant": asset["variant"], "sha256": asset["sha256"], "native": bindings})
     return {
         "scope": "solidworks_a04c_saved_sketch_bindings_vs_licensed_measurement",
