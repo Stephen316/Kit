@@ -144,7 +144,7 @@ class ReplyFixture:
         return self.archive + b"changed" if self.case == "corrupt" else self.archive
 
 
-def fixture(root, case):
+def write_roster(root):
     body = {
         "manifest_version": 1,
         "scope": "pending_ci_roster",
@@ -170,6 +170,11 @@ def fixture(root, case):
     roster.write_text(
         json.dumps({**body, "payload_sha256": checksum}), encoding="utf-8"
     )
+    return roster, checksum
+
+
+def fixture(root, case):
+    roster, checksum = write_roster(root)
     expected = "0" * 64 if case == "wrong_roster" else checksum
     return main(
         [

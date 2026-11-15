@@ -172,9 +172,9 @@ def run_identity(api, run_id, pull):
     }
 
 
-def latest_run(api, pull, workflow, run_id):
+def latest_run(api, pull, workflow, run_id, event="pull_request_target"):
     listing = api.record(
-        f"actions/workflows/{workflow}/runs?head_sha={pull['head_sha']}&event=pull_request_target&per_page=100"
+        f"actions/workflows/{workflow}/runs?head_sha={pull['head_sha']}&event={event}&per_page=100"
     )
     require(
         listing["total_count"] == len(listing["workflow_runs"]),
@@ -184,7 +184,7 @@ def latest_run(api, pull, workflow, run_id):
         value["id"]
         for value in listing["workflow_runs"]
         if value["head_sha"] == pull["head_sha"]
-        and value["event"] == "pull_request_target"
+        and value["event"] == event
         and value["workflow_id"] == workflow
         and (
             not value.get("pull_requests")
@@ -218,7 +218,14 @@ def aggregate_job(api, run_id, attempt, head, conclusion):
     return job
 
 
-def artifact_receipt(api, run_id, attempt, pull):
+def artifact_receipt(
+    api,
+    run_id,
+    attempt,
+    pull,
+    artifact_name="PrCiEvidence",
+    member_name="Evidence.json",
+):
     listed = api.record(f"actions/runs/{run_id}/artifacts?per_page=100")
     require(
         listed["total_count"] == len(listed["artifacts"]),
@@ -227,11 +234,11 @@ def artifact_receipt(api, run_id, attempt, pull):
     artifacts = [
         value
         for value in listed["artifacts"]
-        if value["name"] == f"PrCiEvidence-{attempt}"
+        if value["name"] == f"{artifact_name}-{attempt}"
     ]
     require(
         len(artifacts) == 1,
-        "expected the aggregate attempt's immutable evidence artifact",
+        "expected the run attempt's immutable CI evidence artifact",
     )
     artifact = artifacts[0]
     identity = artifact["workflow_run"]
@@ -252,21 +259,21 @@ def artifact_receipt(api, run_id, attempt, pull):
     require(
         len(content) <= MAX_BYTES
         and checksum == "sha256:" + hashlib.sha256(content).hexdigest(),
-        "aggregate evidence download failed its authenticated digest",
+        "CI evidence download failed its authenticated digest",
     )
     with zipfile.ZipFile(io.BytesIO(content)) as archive:
         entries = archive.infolist()
         require(
             len(entries) == 1
-            and entries[0].filename == "Evidence.json"
+            and entries[0].filename == member_name
             and entries[0].file_size <= 65536,
-            "unexpected aggregate evidence archive contents",
+            "unexpected CI evidence archive contents",
         )
         with archive.open(entries[0]) as source:
             raw = source.read(65537)
-    require(len(raw) <= 65536, "aggregate evidence JSON exceeds its byte limit")
+    require(len(raw) <= 65536, "CI evidence JSON exceeds its byte limit")
     evidence = json.loads(raw)
-    require(isinstance(evidence, dict), "expected an aggregate evidence object")
+    require(isinstance(evidence, dict), "expected a CI evidence object")
     return artifact["id"], checksum, evidence
 
 

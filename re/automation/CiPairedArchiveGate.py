@@ -7,9 +7,7 @@ import re
 from pathlib import Path
 
 from Corpus import git
-from P04FinalBodyEvidence import captures as cut_captures
 from PairedCaptureIntake import canonical_digest, recipe_roster, require
-from RectanglePairEvidence import REVISION, SPECIFICATION_SHA256, capture
 
 ROOT = Path(__file__).resolve().parents[2]
 WORKFLOW = ".github/workflows/WorkflowQuality.yml"
@@ -146,6 +144,9 @@ def passed_checks(path):
 
 
 def archive_roster():
+    from P04FinalBodyEvidence import captures as cut_captures
+    from RectanglePairEvidence import REVISION, SPECIFICATION_SHA256, capture
+
     snapshot, specification, fusion, solidworks = cut_captures()
     recipes = recipe_roster(specification)
     receipts, saves = {}, {}
