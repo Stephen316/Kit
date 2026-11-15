@@ -103,6 +103,10 @@ def observations(plan):
         provenance = provenance_inputs.get(identity)
         if not isinstance(provenance, dict):
             raise ValueError("inference observation lacks source provenance")
+        if provenance.get("archive_sha256") != observation["sha256"]:
+            raise ValueError(
+                "inference observation differs from its source archive pin"
+            )
         checksum(provenance["stream_sha256"])
         identities.add(identity)
     if set(provenance_inputs) != identities:
