@@ -30,10 +30,16 @@ def run_host(config, use_counterpart=False):
         proof = {"claim": "transport_fixture", "native_qualified": False}
         if value["operation"] == "probe":
             return "completed", "fixture challenge", proof, {}
-        (work / "fixture.bin").write_bytes(b"real filesystem transport bytes")
+        relative = "nested/fixture.bin" if mode == "resume" else "fixture.bin"
+        output = work / relative
+        if mode == "resume":
+            output.parent.mkdir(mode=0o700)
+        output.write_bytes(b"real filesystem transport bytes")
+        if "plan_sha256" in value["body"]:
+            proof["plan_sha256"] = value["body"]["plan_sha256"]
         if mode == "handoff":
             proof["restart_handoff"] = host.restart_handoff(value, "f" * 64)
-        return "completed", "fixture transport only", proof, {"fixture": pin(work / "fixture.bin", "fixture.bin")}
+        return "completed", "fixture transport only", proof, {"fixture": pin(output, relative)}
 
     signal.signal(signal.SIGTERM, stop)
     write_record(host.root / "ready.json", {"host": host.host}, replace=True)
@@ -78,16 +84,36 @@ def run_client(config, mode, seconds):
 
 def main():
     parser = argparse.ArgumentParser(description="Real-process fixture for the local application transport; no CAD claims")
-    parser.add_argument("operation", choices=("host", "client", "counterpart"))
+    parser.add_argument("operation", choices=("host", "client", "counterpart", "supervised"))
     parser.add_argument("--installation", type=Path, required=True)
     parser.add_argument("--mode", choices=("echo", "handoff", "wait", "queued", "copied"), default="echo")
     parser.add_argument("--seconds", type=float, default=15)
+    parser.add_argument("--session", type=Path)
     args = parser.parse_args()
     config = configuration(args.installation)
     if args.operation in ("host", "counterpart"):
         run_host(config, args.operation == "counterpart")
+    elif args.operation == "supervised":
+        run_supervised(config, args.session)
     else:
         run_client(config, args.mode, args.seconds)
+
+
+def run_supervised(config, session):
+    job = record(session / "job.json")
+    client = QueueClient(config, min(time.time() + 20, job["stop_at"] - 1), provider="fixture.transport")
+    try:
+        client.call("probe", {"mode": "echo"})
+        response = client.call("phase", {"mode": job["job"]["options"]["mode"], "plan_sha256": "f" * 64})
+        work = session / "work"
+        artifacts = client.copy_files(work, response)
+        dispatch = work / "dispatch.json"
+        write_record(dispatch, response)
+        artifacts["dispatch"] = pin(dispatch, "dispatch.json")
+        write_record(session / "result.json", {"outcome": "completed", "reason": "transport fixture",
+                     "records": {"claim": "unqualified_dispatch", "native_qualified": False}, "artifacts": artifacts})
+    finally:
+        client.close()
 
 
 if __name__ == "__main__":

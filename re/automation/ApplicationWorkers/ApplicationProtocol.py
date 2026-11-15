@@ -15,6 +15,7 @@ import time
 MAX_BYTES = 256 * 1024 * 1024
 MAX_SPOOL_BYTES = 520 * 1024 * 1024
 MAX_SPOOL_FILES = 32
+ACKNOWLEDGEMENT = "acceptance-journal.json"
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
@@ -288,7 +289,7 @@ class QueueClient:
         self.lock = ExitStack()
         try:
             self.lock.enter_context(owner_lock(self.root / "dispatch.lock"))
-            if (self.root / "fence.json").exists():
+            if os.path.lexists(self.root / "fence.json") or os.path.lexists(self.root / ACKNOWLEDGEMENT):
                 raise WaitingApplication("installation is fenced pending controller acceptance or its external owner's recovery")
             spools = directory(self.root / "jobs", True)
             if any(spools.iterdir()):
@@ -385,10 +386,13 @@ class HostQueue:
         self.lock.close()
 
     def fenced(self):
+        if os.path.lexists(self.root / ACKNOWLEDGEMENT):
+            return True
         path = self.root / "fence.json"
-        if not path.exists():
+        try:
+            value = record(path)
+        except FileNotFoundError:
             return False
-        value = record(path)
         if value.get("reason") == "acceptance_required":
             return True
         old = value.get("host")
@@ -452,7 +456,7 @@ class HostQueue:
                             "reason": "acceptance_required", "host": self.host, "at": time.time(),
                             "files": files or {}, "plan_sha256": value["body"].get("plan_sha256"),
                             "restart_handoff": proof.get("restart_handoff") if isinstance(proof, dict) else None,
-                            "owner": "external_application_owner", "acknowledgement": "not_implemented"}
+                            "owner": "external_application_owner", "acknowledgement": "pending_controller_acceptance"}
                 write_record(running.parent / "pending-acceptance.json", retained)
                 write_record(self.root / "fence.json", retained, replace=True)
             except (OSError, ValueError) as error:

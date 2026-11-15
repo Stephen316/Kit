@@ -79,8 +79,8 @@ Application output stays in a private installation spool while the request runs.
 Completed files copy into the session's private `work` directory with verified
 size/hash pins, then use durable output intake. Copying does not acknowledge
 controller acceptance. The completed spool remains behind an acceptance-required
-fence, including after application restart. There is no automatic acceptance
-acknowledgement or cleanup operation in this protocol.
+fence, including after application restart. The owner can verify acceptance and
+retire one spool with the [acknowledgement command](ApplicationAcceptance.md).
 
 Admit at most one outstanding request spool per installation. Reject a completed
 spool larger than 32 files or 520 MiB, reserving space for response and copy
@@ -90,11 +90,11 @@ disk quota on externally owned CAD. An active or unresponsive application can
 exceed the limit before the dispatcher observes its files; owner recovery and OS
 disk controls remain open requirements.
 
-The external owner must verify actual controller completion and the accepted
-output manifest against the retained file hashes before manually removing a
-completed spool and its acceptance fence. If acceptance is absent, stale or
-failed, preserve the spool for recovery or an explicit owner disposition. Removing
-only the fence does not free the occupied spool slot. Cancellation and timeout
+The acknowledgement command verifies actual controller completion and the
+accepted output manifest against the retained hashes before it removes a spool.
+If acceptance is absent, stale or failed, it preserves the spool for recovery or
+an explicit owner disposition. Removing only the fence does not free the occupied
+spool slot. Cancellation and timeout
 also retain their spools; late results expose no accepted output references.
 
 Phase A emits a restart-required handoff containing the installation, plan hash
@@ -108,8 +108,8 @@ quarantines require explicit owner recovery. A known old-process quarantine fenc
 can clear when a new counterpart starts after that old process exits. An acceptance
 fence does not clear on restart, and a retained spool still blocks new admission.
 Automatic recovery,
-50-job resets, native-process memory limits, 20-job batch invalidation, spool
-acceptance acknowledgement, retention policy and unattended pilot evidence remain
+50-job resets, native-process memory limits, 20-job batch invalidation, automatic
+invocation of acknowledgement, retention policy and unattended pilot evidence remain
 open A08c work.
 
 The native operation currently supports macOS Fusion. Windows Fusion and

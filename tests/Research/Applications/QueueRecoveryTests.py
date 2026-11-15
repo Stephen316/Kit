@@ -35,7 +35,7 @@ def CheckCopyCrash() -> None:
             Pending = JsonCodec.loads(
                 (SpoolPath / "pending-acceptance.json").read_text(encoding="utf-8")
             )
-            assert Pending["acknowledgement"] == "not_implemented"
+            assert Pending["acknowledgement"] == "pending_controller_acceptance"
             assert Pending["files"]["fixture"]["sha256"] == Digest
             Blocked = Harness.StartClient()
             Output, ErrorText = Blocked.communicate(timeout=15)

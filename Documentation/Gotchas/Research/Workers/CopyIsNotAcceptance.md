@@ -17,19 +17,18 @@ controller storage.
 ## Workaround
 
 Retain the original spool until actual controller acceptance is verified. The
-current local dispatch protocol has no acceptance acknowledgement, so it retains
-one outstanding spool and fences the installation for owner verification or
-recovery. An application restart does not remove an acceptance fence. A copy
-journal records the copied hashes but explicitly remains pending acceptance.
+local dispatch protocol retains one outstanding spool and fences the installation
+for owner verification or recovery. An application restart does not remove an
+acceptance fence. A copy journal records the copied hashes as pending acceptance.
 
-Before manual cleanup, verify the controller's completed job and accepted output
-manifest against the retained files. If the attempt is stale or incomplete,
-preserve the evidence for recovery or explicit owner disposition. Do not create a
-synthetic acknowledgement based on the worker's exit status or copy journal.
+Use the [owner command](../../../Changes/Research/Workers/ApplicationAcceptance.md)
+to verify the controller's completed job and accepted output manifest against
+the retained files. The command leaves a stale or incomplete attempt fenced.
+The worker exit status and copy journal are insufficient for acknowledgement.
 
 Completed spools have a 32-file, 520-MiB check. That is not a disk quota while an
-externally owned CAD process writes. Native process limits and automated
-acceptance acknowledgement remain open work.
+externally owned CAD process writes. Native process limits and automatic
+invocation of acknowledgement remain open work.
 
 `QueueRecoveryTests.py` adds a real client interruption after verified copying,
 then removes the session copy and checks retained bytes, the acceptance record
