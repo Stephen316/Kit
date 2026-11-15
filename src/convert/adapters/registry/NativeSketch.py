@@ -10,6 +10,7 @@ KPortableKinds = frozenset(
 
 def SketchFindings(Document: CadDocument) -> tuple[str, ...]:
     Findings: list[str] = []
+    ParamIds = frozenset(ParamValue.id for ParamValue in Document.parameters)
     for SketchValue in Document.sketches:
         for EntityValue in SketchValue.entities:
             if (
@@ -19,5 +20,5 @@ def SketchFindings(Document: CadDocument) -> tuple[str, ...]:
                 Findings.append(
                     f"{Document.source.path}: sketch {SketchValue.id} entity {EntityValue.id} ({EntityValue.kind})"
                 )
-        Findings.extend(RuleFindings(Document, SketchValue))
+        Findings.extend(RuleFindings(Document, SketchValue, ParamIds))
     return tuple(Findings)

@@ -12,10 +12,11 @@ KDimensionRules = frozenset(
 )
 
 
-def RuleFindings(Document: CadDocument, SketchValue: Sketch) -> tuple[str, ...]:
+def RuleFindings(
+    Document: CadDocument, SketchValue: Sketch, ParamIds: frozenset[str]
+) -> tuple[str, ...]:
     Findings: list[str] = []
     EntityIds = {EntityValue.id for EntityValue in SketchValue.entities}
-    ParamIds = {ParamValue.id for ParamValue in Document.parameters}
     if any(ParamId not in ParamIds for ParamId in SketchValue.parameter_ids):
         Findings.append(
             f"{Document.source.path}: sketch {SketchValue.id} has missing parameter bindings"
