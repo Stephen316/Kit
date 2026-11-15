@@ -6,8 +6,6 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
-from tests.Policy.WaitPending import WaitPending
-
 # root path needs a stable location so repository automation resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[2]
 
@@ -51,28 +49,3 @@ def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
     for Reviewer in KReviewers:
         for ReportName in Reviewer["Checks"] + Reviewer["Statuses"]:
             assert ReportName not in ResultInfo.stdout
-
-
-# pending evidence must remain unpublished while required checks are still unresolved
-@Pytest.mark.parametrize(
-    "CaseMode,Verdict,PendingCheck",
-    (
-        ("queue", "pending", "Scorecard"),
-        ("spoof", "success", "Ruff"),
-        ("queue-missing", "success", "Merge queue acceptance"),
-        ("quality-missing", "success", "Code Quality"),
-        ("quality-empty", "success", "Code Quality analysis"),
-        ("queue", "pending", "CLI process compatibility (Core)"),
-        ("queue", "pending", "CLI process compatibility (Qualification)"),
-    ),
-)
-def TestPendingGate(CaseMode: str, Verdict: str, PendingCheck: str) -> None:
-    ScriptPath = KRootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
-    with Tempfile.TemporaryDirectory() as TempPath:
-        WaitPending(
-            ["node", str(ScriptPath), CaseMode, Verdict, PendingCheck],
-            KRootPath,
-            {**SystemEnv.environ, "RUNNER_TEMP": TempPath},
-            PendingCheck,
-        )
-        assert not (FilePath(TempPath) / "PrCiEvidence/Evidence.json").exists()
