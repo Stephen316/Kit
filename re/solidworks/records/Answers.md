@@ -342,16 +342,16 @@ array offsets, is written to `re/data/Serialization/SignatureTable.json`.
 ### How the table is stored and regenerated
 
 Because the relation is irreducible, the 16,000 bytes have to be carried as data. They are _not_
-hand-written source. `re/tooling/ghidra/Generation/GenSignatureTable.py` reads the tracked vendor DLL
-`re/binaries/sldmfcu.dll`, checks its SHA-256 against `re/binaries/Manifest.json`, extracts the two
+hand-written source. `re/tooling/ghidra/Generation/GenSignatureTable.py` reads an external licensed
+`sldmfcu.dll`, checks its SHA-256 against `re/binaries/Manifest.json`, extracts the two
 parallel arrays at file offsets `0x566C40` and `0x567BE0`, and writes both the shipped resource
 `src/convert/adapters/solidworks/data/sldprt_signature_table.bin` and the human-readable
 provenance record `re/data/Serialization/SignatureTable.json`. `Container.py` loads that resource through
 `importlib.resources`; it holds no signature bytes of its own.
 
-`GenSignatureTable.py --check` re-extracts from the DLL and compares against the shipped resource
-byte for byte. `tests/convert/solidworks/container/SolidworksSignatureTableTests.py` performs the same reproduction as
-a test, so the resource cannot drift from the DLL it came from.
+`GenSignatureTable.py --check` re-extracts from an external licensed module.
+`tests/convert/solidworks/container/SolidworksSignatureTableTests.py` compares the CAD corpus with recorded table rows.
+Set `KIT_SOLIDWORKS_DLL` to additionally compare every table row with the matching external module.
 
 ### What this changes
 

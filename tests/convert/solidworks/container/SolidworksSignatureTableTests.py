@@ -2,8 +2,8 @@ from __future__ import annotations
 import hashlib as Hashlib
 import json as JsonLib
 from pathlib import Path as FilePath
+from os import environ as HostEnv
 from typing import TypeGuard
-import pytest as PytestLib
 from convert.adapters.solidworks.container.Container import (
     Container as ContainerSignatures,
     DEFAULT_FILE_ID as IdInfo,
@@ -25,9 +25,6 @@ KRootInfo = FilePath(__file__).resolve().parents[4]
 KExamples = KRootInfo / "re" / "solidworks" / "examples"
 
 # centralizes shared evidence so every related assertion uses one value
-KDllInfo = KRootInfo / "re" / "binaries" / "sldmfcu.dll"
-
-# centralizes shared evidence so every related assertion uses one value
 KManifest = KRootInfo / "re" / "binaries" / "Manifest.json"
 
 # centralizes shared evidence so every related assertion uses one value
@@ -47,13 +44,14 @@ KIndex = 711
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
-def LoadHostDll() -> bytes:
-    assert KDllInfo.is_file(), KDllInfo
-    HostData = KDllInfo.read_bytes()
-    if HostData.startswith(b"version https://git-lfs.github.com/spec/v1\n"):
-        PytestLib.skip(
-            "sldmfcu.dll content is unavailable because Git LFS is not hydrated"
-        )
+def LoadHostDll() -> bytes | None:
+    InputPath = HostEnv.get("KIT_SOLIDWORKS_DLL")
+    if InputPath is None:
+        return None
+    assert InputPath, "KIT_SOLIDWORKS_DLL must name an external licensed module"
+    TargetPath = FilePath(InputPath).expanduser().resolve(strict=True)
+    assert not TargetPath.is_relative_to(KRootInfo), TargetPath
+    HostData = TargetPath.read_bytes()
     assert Hashlib.sha256(HostData).hexdigest() == RecordedHD()
     return HostData
 
@@ -91,6 +89,17 @@ def HostRows(BlobInfo: bytes) -> list[tuple[int, tuple[str, str, str]]]:
         )
         RowsInfo.append((FileId, Magics))
     return RowsInfo
+
+
+def RecordedRows() -> list[tuple[int, tuple[str, str, str]]]:
+    RecordInfo = JsonLib.loads(KProvenance.read_text(encoding="utf-8"))
+    return [
+        (
+            int(Entry["file_id"], 16),
+            (Entry["local"], Entry["central"], Entry["end"]),
+        )
+        for Entry in RecordInfo["entries"]
+    ]
 
 
 # keeps external data bounded before content assertions
@@ -133,8 +142,10 @@ def TestOOSRICIS() -> None:
 
 # keeps this focused behavior isolated so regressions remain immediately visible
 def TestTCRIAGROTVT() -> None:
+    RowsInfo = RecordedRows()
     HostInfo = LoadHostDll()
-    RowsInfo = HostRows(HostInfo)
+    if HostInfo is not None:
+        assert HostRows(HostInfo) == RowsInfo
     assert len(RowsInfo) == KEntries
     assert len({FileId for FileId, _ in RowsInfo}) == KEntries
     assert RowsInfo[KIndex] == (IdInfo, KRowInfo)
@@ -180,7 +191,7 @@ def TestGCUTCR() -> None:
 def TestEDPTOIWTOS() -> None:
     Documents = ExampleD()
     assert Documents
-    HostRowsA = dict(HostRows(LoadHostDll()))
+    HostRowsA = dict(RecordedRows())
     Covered = 0
     for TargetPath in Documents:
         BlobInfo = TargetPath.read_bytes()

@@ -16,24 +16,12 @@ notes.
 differ, the playbook wins. The existing SOLIDWORKS directories provide the worked example both were
 distilled from. `Fusion/` preserves a separate native-file study and its original commit history.
 
-## Size
+## Research inputs
 
-| part                                             | size           |
-| ------------------------------------------------ | -------------- |
-| Existing SOLIDWORKS workspace excluding binaries | **~7.3 MiB**   |
-| The four vendor DLLs in `re/binaries/`           | **~51.9 MiB**  |
-| Imported Fusion study and evidence               | **~278.1 MiB** |
-| `re/` total, including the Fusion import         | **~337.3 MiB** |
-
-The DLLs are **tracked**, deliberately, so that a cloud agent with no SOLIDWORKS install can run
-Ghidra against them. Read `binaries/README.md` for the licensing position before this repository is
-shared with anyone outside Parashell — they are unmodified proprietary Dassault Systèmes binaries
-from a licensed local install, and `binaries/Fetch.ps1` reproduces them from that install if you
-would rather not carry them.
-
-Within the SOLIDWORKS workspace, the bulk of the tracked bytes is machine-readable evidence: `re/data/` (~4.6 MB, dominated by the
-static container census and the traced object segmentations) and `re/solidworks/measurements/`
-(~1.1 MB of volume measurements). The prose is about 380 KB.
+Keep vendor software outside repository checkouts.
+CAD files, documents, independently authored tools, and recorded format knowledge belong in this workspace.
+Follow the [research artifact policy](../Documentation/Reference/Research/ResearchArtifacts.md).
+The [external input guide](binaries/README.md) describes licensed installation verification.
 
 ## Layout
 
@@ -42,7 +30,7 @@ static container census and the traced object segmentations) and `re/solidworks/
 | `Playbook/`   | The reverse-engineering instruction book: file anatomy, loader analysis with REA, generative corpora, corpus correlation, writer models, toolchain, techniques, shape catalogue, evidence rules, orchestration, vendor notes and checklists. Read `Playbook/README.md` first.                                                                                                                                                                                                                            |
 | `Fusion/`     | Imported experimental Fusion native-file decoder, capture tools, saved examples and audit reports; original source history and evidence bytes preserved. `examples/` holds the sample `.f3d` and `.f3z` files.                                                                                                                                                                                                                                                                                           |
 | `catia/`      | `examples/` holds the CATIA V5 `.CATPart` and `.CATProduct` samples. The two directories stay siblings so product reads find their parts.                                                                                                                                                                                                                                                                                                                                                                |
-| `binaries/`   | the four SOLIDWORKS DLLs every finding was derived from, plus `Manifest.json` (SHA-256 and version of each) and `Fetch.ps1` (re-copies them from a local install). Tracked. Read `binaries/README.md` first.                                                                                                                                                                                                                                                                                             |
+| `binaries/` | External installation manifest and verification helper. See `binaries/README.md`. |
 | `solidworks/` | the findings. Layered: `container/` (file framing + the signature table), `archive/` (the `su_CArchive` grammar, the reader's identity, object segmentation), `records/` (per-class field layouts), `features/` (extrude, revolve, sketch, arc, bodies), `corpus/` (what corpora exist and what each proves), `measurements/` (every volume measurement, with controls), `examples/` (the sample part, the V8 corpus and the gitignored `Random/` corpus), `Fixtures/donors/` (extracted donor streams). |
 | `tooling/`    | how the work was done and how to redo it: `ghidra/` (headless decompilation), `windbg/` (the cdb runtime trace), `harness/` (the COM measurement loop).                                                                                                                                                                                                                                                                                                                                                  |
 | `data/`       | the extracted tables and traced artefacts the findings cite: the 1000-entry signature table, the 2607-class `Serialize` map, the object segmentations, the class vocabulary.                                                                                                                                                                                                                                                                                                                             |
@@ -82,13 +70,13 @@ Everything here was produced on Windows with PowerShell, `uv` for Python, a lice
 install, Ghidra 12.1.2 headless, and `cdbX64.exe` from the WinDbg MSIX package.
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File re\binaries\Fetch.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File re\binaries\Fetch.ps1 -VerifyOnly
 uv run python re\tooling\ghidra\Sigtable.py
 uv run python re\tooling\ghidra\Generation\SerializeMap.py
 uv run python re\tooling\ghidra\Validation\VerifyLayout.py
 ```
 
-The first re-fetches and verifies the binaries. The other three re-derive `data/SignatureTable.json`,
+The first verifies the external licensed installation. The other three re-derive `data/SignatureTable.json`,
 `data/SerializeMap.json` and `data/VerifyLayout.json` from the binaries plus the traced
 segmentations, and they rewrite those files in place — a clean `git diff` after running them is the
 cheapest end-to-end check that the recorded tables really do come out of the recorded bytes.

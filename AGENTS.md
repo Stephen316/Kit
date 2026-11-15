@@ -97,6 +97,15 @@ splitting, architecture, and directory density. This applies only to `re/` and
 its descendants; code promoted into other directories follows their normal
 rules. Git isolation and preservation of user-owned work still apply.
 
+Do not stage, commit, or distribute proprietary vendor software, including
+SOLIDWORKS DLLs, interop assemblies, executables, installers, SDK code, symbols,
+license files, or decompiled vendor listings. This includes renamed and compressed
+copies. Keep licensed software outside repository checkouts. The `re/` exemption
+does not waive this restriction. CAD files, documents, independently authored
+research tools, and recorded format knowledge remain permitted. Follow the
+[research artifact policy](Documentation/Reference/Research/ResearchArtifacts.md).
+Never force-add an ignored vendor artifact.
+
 The research exemption does not waive product acceptance. Code or artifacts
 shipped in production, and outputs claimed to be production-ready, must satisfy
 no-CAD-runtime, no-donor-block, lossless-conversion, parametric feature/history,
