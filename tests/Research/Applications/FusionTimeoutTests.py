@@ -5,45 +5,73 @@ from pathlib import Path as FilePath
 
 from pytest import mark as TestMark
 
-from tests.Research.Applications.DispatchHost import DispatchHost
-from tests.Research.Applications.SetAppRunner import SetAppRunner
-from tests.Research.SupervisorClient import FixtureJob, SessionHost
+from tests.Research.Applications.FusionPhaseQueueTests import (
+    MakeQueueHost,
+    RunFusionTool,
+)
+from tests.Research.SupervisorClient import SessionHost
+
+
+# a real queued pair provides the phase identity pins used by the recovery audit
+def PrepareTimeout(RootPath: FilePath) -> tuple[SessionHost, dict[str, object]]:
+    PlanRoot = RootPath / "Prepared"
+    Planned = JsonCodec.loads(
+        RunFusionTool(
+            "re/automation/PairedCaptures/FusionFreshProcess.py",
+            ["--output", str(PlanRoot), "--recipe", "P01", "--read-existing"],
+        )
+    )
+    Harness = MakeQueueHost(RootPath, Planned["source_revision"])
+    (RootPath / "AbsentEndpoint").mkdir(mode=0o700)
+    assert Harness.StorePath is not None
+    _ = RunFusionTool(
+        "re/automation/Controller.py",
+        [
+            "--store",
+            str(Harness.StorePath),
+            "resource",
+            "application:fusion:local",
+            "--capacity",
+            "1",
+            "--available",
+        ],
+    )
+    Queued: dict[str, object] = JsonCodec.loads(
+        RunFusionTool(
+            "re/automation/ApplicationWorkers/QueueFusionPhases.py",
+            [
+                "--config",
+                str(Harness.ConfigFile),
+                "--plan",
+                str(PlanRoot / "plan.json"),
+                "--resource",
+                "application:fusion:local",
+            ],
+        )
+    )
+    return Harness, Queued
 
 
 # a real macos request timeout must preserve exact custody without starting a cad host
 @TestMark.skipif(System.platform != "darwin", reason="Fusion worker host boundary")
 def CheckFusionWait(TmpPath: FilePath) -> None:
-    Queue = DispatchHost(TmpPath.resolve())
-    Harness = SessionHost(Queue.RootPath, {"apps": 1}, {"fixture.app": "apps"})
-    SetAppRunner(Harness, Queue.ConfigFile)
-    Installation = JsonCodec.loads(Queue.ConfigFile.read_bytes())
-    PlanBytes = JsonCodec.dumps(
-        {"source_revision": Installation["source_revision"]}
-    ).encode("utf-8")
-    Harness.BindBytes("fixture:plan", PlanBytes)
-    Harness.SubmitJobs(
-        [
-            FixtureJob(
-                "unanswered",
-                "fixture.app",
-                timeout_seconds=15,
-                lease_seconds=6,
-                resources=["application:missing"],
-                options={"phase": "a"},
-                inputs={"plan": "fixture:plan"},
-            )
-        ]
-    )
-    _ = Harness.RunIdle(IdleSeconds=1, MaxSeconds=45)
-    Status = Harness.ReadJob("unanswered")
+    RootPath = TmpPath.resolve()
+    Harness, Queued = PrepareTimeout(RootPath)
+    Names = JsonCodec.loads(JsonCodec.dumps(Queued["jobs"]))
+    _ = Harness.RunIdle(IdleSeconds=1, MaxSeconds=60)
+    Status = Harness.ReadJob(Names["a"])
     assert Status["state"] == "waiting_application", Status
-    VerifyTimeout(Queue.Endpoint, Harness.ReadResult("unanswered"), PlanBytes)
+    assert Harness.ReadJob(Names["b"])["state"] == "waiting_evidence"
+    Endpoint = RootPath / "AbsentEndpoint"
+    Accepted = Harness.ReadResult(Names["a"])
+    RequestPath = VerifyTimeout(Endpoint, Accepted, Queued["plan_sha256"])
+    VerifyAudit(Harness, Queued, RequestPath)
 
 
 # only the existing owned request can explain the terminal parked attempt
 def VerifyTimeout(
-    Endpoint: FilePath, Accepted: dict[str, object], PlanBytes: bytes
-) -> None:
+    Endpoint: FilePath, Accepted: dict[str, object], PlanHash: object
+) -> FilePath:
     (RequestPath,) = Endpoint.glob("jobs/*/probe.request")
     RequestBytes = RequestPath.read_bytes()
     Request = JsonCodec.loads(RequestBytes)
@@ -55,7 +83,7 @@ def VerifyTimeout(
         "request_sha256": HashBytes(RequestBytes).hexdigest(),
         "source_revision": Request["source_revision"],
         "operation": "probe",
-        "plan_sha256": HashBytes(PlanBytes).hexdigest(),
+        "plan_sha256": PlanHash,
     }
     Fence = JsonCodec.loads((Endpoint / "fence.json").read_bytes())
     assert Fence["job_id"] == RequestPath.parent.name
@@ -64,3 +92,35 @@ def VerifyTimeout(
     assert Records["native_qualified"] is False
     assert "output_artifacts" not in Accepted
     assert "application_rearm_intent_sha256" not in Accepted
+    return RequestPath
+
+
+# the read only audit must bind the parked result and the original spool bytes
+def VerifyAudit(
+    Harness: SessionHost, Queued: dict[str, object], RequestPath: FilePath
+) -> None:
+    assert Harness.StorePath is not None
+    QueuePath = Harness.RootPath / "TimedQueue.json"
+    _ = QueuePath.write_text(JsonCodec.dumps(Queued), encoding="utf-8")
+    ScriptPath = "re/automation/ApplicationWorkers/AuditFusionPhases.py"
+    Arguments = [
+        "--store",
+        str(Harness.StorePath),
+        "--queue-receipt",
+        str(QueuePath),
+        "--installation",
+        str(Harness.RootPath / "Installation.json"),
+    ]
+    Report = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
+    Phase = Report["phases"]["a"]
+    assert Report["status"] == "pending" and Report["resource_available"] is False
+    assert Phase["spool_observation"] == {
+        "status": "request",
+        "fence_status": "quarantined",
+    }
+    RequestBytes = RequestPath.read_bytes()
+    assert (
+        Phase["queue_timeout"]["request_sha256"] == HashBytes(RequestBytes).hexdigest()
+    )
+    _ = RequestPath.write_bytes(RequestBytes + b" ")
+    _ = RunFusionTool(ScriptPath, Arguments, ExitCode=1)

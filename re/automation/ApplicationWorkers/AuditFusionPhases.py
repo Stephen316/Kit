@@ -10,8 +10,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from AcknowledgeApplication import accepted_output, stored_bytes
 from Adapters import copy_verified
-from ApplicationProtocol import record, require, sha256
+from ApplicationProtocol import configuration, record, require, sha256
 from Artifacts import Artifacts
+from FusionTimeoutAudit import inspect_spool, parked_timeout
 from OutputManifest import output_manifest
 from Records import canonical, digest, label, specification
 from StoreRead import read_store
@@ -231,7 +232,14 @@ def phase_evidence(owner, queue, phase, scratch):
     }
 
 
-def audit(store, queue):
+def audit(store, queue, installation=None):
+    if installation is not None:
+        require(
+            installation["application"] == "fusion"
+            and installation["installation"] == queue["installation"]
+            and installation["source_revision"] == queue["source_revision"],
+            "owner installation differs from the queued Fusion plan",
+        )
     database = store / "ledger.sqlite3"
     require(
         database.is_file() and not database.is_symlink(),
@@ -257,7 +265,17 @@ def audit(store, queue):
             }
             if row["state"] == "completed":
                 item["evidence"] = phase_evidence(owner, queue, phase, scratch / phase)
+            elif row["state"] == "waiting_application" and row["result"] is not None:
+                timeout = parked_timeout(owner, row, queue, phase, scratch / phase)
+                if timeout is not None:
+                    item["queue_timeout"] = timeout
             phases[phase] = item
+    if installation is not None:
+        for phase, item in phases.items():
+            if "queue_timeout" in item:
+                item["spool_observation"] = inspect_spool(
+                    installation, item["queue_timeout"], phase
+                )
     require(phases["a"]["kind"] == phases["b"]["kind"], "queued phase job kinds differ")
     if phases["b"]["state"] == "completed":
         require(
@@ -306,9 +324,13 @@ def main():
     )
     parser.add_argument("--store", type=Path, required=True)
     parser.add_argument("--queue-receipt", type=Path, required=True)
+    parser.add_argument("--installation", type=Path)
     args = parser.parse_args()
     try:
-        result = audit(args.store, read_queue(args.queue_receipt))
+        installation = (
+            configuration(args.installation) if args.installation is not None else None
+        )
+        result = audit(args.store, read_queue(args.queue_receipt), installation)
     except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as error:
         print(
             f"Fusion phase audit: {type(error).__name__}: {error}"[:2048],
