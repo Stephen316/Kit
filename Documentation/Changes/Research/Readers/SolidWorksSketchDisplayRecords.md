@@ -12,4 +12,4 @@ python re/solidworks/archive/SketchEvidence.py --include-coincidence
 python re/solidworks/archive/ResolvedEntry.py --through-operation
 ```
 
-All three reports retain their prior digests. The annotation and sketch-region fields outside the distance displays still use the bounded [research presentation layout](../../../../re/solidworks/archive/SketchDisplay.json). [Native pointer trace](../../../../re/solidworks/records/P04SketchGeometry.md#native-object-calls-in-the-baseline-a-sketches)
+All three reports retain their prior digests. The [region walk](SolidWorksSketchRegionRecords.md) verifies the fields after the displays and the boundary's typed line handles. [Native pointer trace](../../../../re/solidworks/records/P04SketchGeometry.md#native-object-calls-in-the-baseline-a-sketches)

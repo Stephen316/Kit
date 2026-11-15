@@ -109,8 +109,7 @@ def ReadRelations(Cursor):
 
 # the second logical group represents the saved two-point coincidence and its state
 def ReadPointCoincidence(Cursor, PointIds):
-    Start = Cursor.Offset
-    Require(Cursor.ReadValue("<H"), (1,), "one witnessed two-point relation")
+    Start = Cursor.Offset - 2
     DimensionId, _, Suppressed = Cursor.ReadDimBaseFields(None)
     TypeValue, Operands, Deleted, Reserved = Cursor.ReadValue("<i3H")
     Require(
@@ -130,7 +129,7 @@ def ReadPointCoincidence(Cursor, PointIds):
         Index, Owner, Flags = Cursor.Handles[Handle]
         Require((Owner, Flags), (-1, 0), "local coincidence handle")
         Indices.append(Index)
-    Require(Cursor.ReadValue("<i"), (0,), "guarded two-point relation trailer")
+    Require(Cursor.ReadValue("<2H"), (0, 0), "guarded two-point relation flags")
     Participants = []
     if not Deleted:
         Require(

@@ -1,116 +1,12 @@
 """Read the two supported geometry groups from the native configuration map."""
 
-import json as Json
-from pathlib import Path
-from struct import unpack_from as Unpack
-
-from DepthDisplay import read_sketch_display_close, read_sketch_display_open
 from SketchCursor import SketchCursor
-from SketchGeom import (
-    ReadDims,
-    ReadLineItem,
-    ReadPointCoincidence,
-    ReadPointItem,
-    ReadRelations,
-)
-from SketchRoot import KGeneration, ReadSketchStart, Require
-from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefinitionKind
-
-# the portable layout must refer to the exact normalized native pointer witness
-KDisplayEvidence = "d724ad7b0c0d7daed50adf96028c08a3f83e5afde5e841ca25506cd6baf3939a"
+from SketchGeom import ReadDims, ReadLineItem, ReadPointItem, ReadRelations
+from SketchPresentation import ReadPresentation
+from SketchRoot import ReadSketchStart, Require
 
 # the native one-member relation's geometry check selects these sketch-local axes
 KAxisRelations = {4: "horizontal", 5: "vertical"}
-
-# the configuration map may allocate these names before the resolved sketch reuses them
-KDisplayClasses = (
-    "moDisplayDistanceDim_c",
-    "moSkDimHandleValG2_c",
-    "moFavoriteHandle_c",
-    "moSketchRegion_c",
-)
-
-
-# the display layout is shared by rectangles in either archive stream
-def ReadDisplayFrame(BuildName, FrameIndex):
-    LayoutPath = Path(__file__).with_name("SketchDisplay.json")
-    LayoutData = Json.loads(LayoutPath.read_text(encoding="utf-8"))
-    Require(
-        (LayoutData["generation"], LayoutData["build"], LayoutData["evidence_sha256"]),
-        (KGeneration, BuildName, KDisplayEvidence),
-        "verified research display layout",
-    )
-    return LayoutData["frames"][FrameIndex]
-
-
-# resolved sketches can allocate names already present in the equivalent configuration frame
-def DisplayKind(Cursor, KindValue, ClassName, Resolved):
-    if (
-        Resolved
-        and ClassName in KDisplayClasses
-        and ClassName not in Cursor.Classes.values()
-    ):
-        return KDefinitionKind
-    return KindValue
-
-
-# each saved display handle owns one slot of the same decoded sketch's dimension group
-def ReadDisplaySteps(Cursor, Steps, SketchObject, DimensionLengths, *, Resolved=False):
-    SlotCount = 0
-    for Width, KindValue, NameValue, *Count in Steps:
-        Cursor.AdvanceBytes(Width)
-        Cursor.TakePointer(
-            (NameValue,), DisplayKind(Cursor, KindValue, NameValue, Resolved)
-        )
-        if Count:
-            (Value,) = Unpack("<H", Cursor.BlobValue, Cursor.Offset)
-            Require(Value, Count[0], "witnessed display list count")
-        if NameValue == "moDisplayDistanceDim_c":
-            read_sketch_display_open(Cursor)
-            HandleClass = "moSkDimHandleValG2_c"
-            Cursor.TakePointer(
-                (HandleClass,),
-                DisplayKind(Cursor, KClassRefKind, HandleClass, Resolved),
-            )
-            Slot = Cursor.ReadDimHandle(SketchObject)
-            Require(
-                Slot == SlotCount < len(DimensionLengths),
-                True,
-                "ordered sketch dimension slot",
-            )
-            FavoriteClass = "moFavoriteHandle_c"
-            FavoriteKind = (
-                KClassRefKind
-                if FavoriteClass in Cursor.Classes.values()
-                else KDefinitionKind
-            )
-            read_sketch_display_close(Cursor, DimensionLengths[Slot], FavoriteKind)
-            SlotCount += 1
-    Require(
-        SlotCount,
-        len(DimensionLengths),
-        "display owns the ordered sketch dimension slots",
-    )
-
-
-# presentation records carry pointer allocations needed to reach the next geometry group
-def ReadDisplay(
-    Cursor, BuildName, FrameIndex, PointIds, SketchObject, DimensionLengths
-):
-    Frame = ReadDisplayFrame(BuildName, FrameIndex)
-    Steps = Frame["steps"]
-    Coincidences = []
-    if FrameIndex == 0:
-        Require(
-            Cursor.ReadValue("<7H"),
-            tuple(Frame["inline_prefix"]),
-            "inline display framing",
-        )
-    else:
-        Coincidences.append(ReadPointCoincidence(Cursor, PointIds))
-    ReadDisplaySteps(Cursor, Steps, SketchObject, DimensionLengths)
-    Cursor.AdvanceBytes(Frame["trailer_width"])
-    return Coincidences
 
 
 # the first sketch returns inside active serializers that must finish their fields in order
@@ -236,15 +132,7 @@ def ReadSketchConfiguration(BlobValue, BuildName, IncludeCoincidence=False):
         FrameIndex = len(Sketches)
         Require(FrameIndex < 2, True, "supported number of sketch allocations")
         Sketch = ReadGeometry(Cursor, ObjectIndex)
-        PointIds = [Point["id"] for Point in Sketch["point_relation_tallies"]]
-        Coincidences = ReadDisplay(
-            Cursor,
-            BuildName,
-            FrameIndex,
-            PointIds,
-            ObjectIndex,
-            [Dimension["metres"] for Dimension in Sketch["length_dimensions"]],
-        )
+        Coincidences = ReadPresentation(Cursor, BuildName, Sketch)
         if IncludeCoincidence:
             Sketch["point_coincidences"] = Coincidences
         Sketch["body_end"] = Cursor.Offset

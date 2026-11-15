@@ -63,7 +63,7 @@ The second logical group follows the four axis records. The native reader loads 
 
 On the pinned SOLIDWORKS `34.4.1.1011` installation, two repeated saves of a scratch baseline retained the active type-9 entry. Setting `ISketchRelation.Suppressed` changed one u16 before the alternate-name byte. Deleting the same relation through `ISketchRelationManager.DeleteRelation` retained the record with a different u16 after the operand count and removed its proxy point. A separate owned process reopened all four variants with passing healthy controls. Its native API reported the same two ordered operands in both active files and the suppressed file, with the expected suppression state, and no type-9 relation in the deleted file. All sessions exited normally and the committed source and healthy control hashes were preserved.
 
-| Variant | Saved entry span | Suppression word | Deletion word | Reopened type-9 relation |
+| Variant | Saved entry prefix | Suppression word | Deletion word | Reopened type-9 relation |
 | --- | ---: | ---: | ---: | --- |
 | Active A and B | 15,012–15,085 | 0 | 0 | Active |
 | Suppressed | 15,012–15,085 | 1 | 0 | Suppressed |

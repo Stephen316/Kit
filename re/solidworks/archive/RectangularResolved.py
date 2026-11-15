@@ -6,25 +6,14 @@ from ProfileSupport import read_chain
 from RectangleTail import read_principal_profile_support, read_rectangle_trim
 from ResolvedEntry import read_profile_body_prefix, read_resolved_prelude
 from SketchCursor import SketchCursor
-from SketchGeom import ReadPointCoincidence
-from SketchReader import ReadDisplayFrame, ReadDisplaySteps, ReadGeometry
+from SketchPresentation import ReadPresentation
+from SketchReader import ReadGeometry
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     ReadTag,
 )
-
-
-# the resolved rectangle declares display classes its archive map has yet to allocate
-def read_resolved_display(cursor, build, sketch_object, point_ids, dimension_lengths):
-    frame = ReadDisplayFrame(build, 1)
-    coincidence = ReadPointCoincidence(cursor, point_ids)
-    ReadDisplaySteps(
-        cursor, frame["steps"], sketch_object, dimension_lengths, Resolved=True
-    )
-    cursor.AdvanceBytes(frame["trailer_width"])
-    return coincidence
 
 
 # transfer the same map through the inline sketch and back to its containing feature
@@ -51,14 +40,7 @@ def read_rectangle_entry(
     geometry = ReadGeometry(archive, sketch_object)
     display = []
     archive.PointerEvents = display
-    point_ids = [point["id"] for point in geometry["point_relation_tallies"]]
-    coincidence = read_resolved_display(
-        archive,
-        build,
-        sketch_object,
-        point_ids,
-        [dimension["metres"] for dimension in geometry["length_dimensions"]],
-    )
+    (coincidence,) = ReadPresentation(archive, build, geometry)
     cursor.position, cursor.next_index = archive.Offset, archive.NextIndex
     count = int(has_atom)
     Require(cursor.read("<Ii"), (count, count), "witnessed rectangle chain state")
