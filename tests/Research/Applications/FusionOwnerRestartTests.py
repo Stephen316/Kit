@@ -115,12 +115,12 @@ def CheckIntent(TmpPath: FilePath) -> None:
             Arguments[:-2] + ["--job", PhaseName],
         )
         assert JsonCodec.loads(AckText)["restart_retained"] is True
-        ExerciseRetained(Dispatch, Arguments, JobInfo, OldOwner)
+        VerifyRetained(Dispatch, Arguments, JobInfo, OldOwner)
     _ = InvokeRestart(Arguments + ["--check"], "prior Fusion process is no longer live")
 
 
 # passive verification must leave each retained byte stable and refuse a changed fence or intent
-def ExerciseRetained(
+def VerifyRetained(
     Dispatch: DispatchHost,
     Arguments: list[str],
     JobInfo: dict[str, object],

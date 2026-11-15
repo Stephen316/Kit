@@ -222,51 +222,58 @@ def WriteSchedule(
     return ScheduleFile
 
 
+# grid scenarios need an oversubscribed application queue with a blocked decode dependency
+def PrepareGrid(
+    Client: JobClient, RootPath: FilePath, InstallName: str
+) -> tuple[list[dict[str, object]], list[dict[str, object]], FilePath]:
+    AppKind = "fixture.grid"
+    _ = Client.RunCli("resource", InstallName, "--available", "--capacity", "1")
+    _ = Client.RunCli("pool", "application", "--kind", AppKind)
+    _ = Client.RunCli("pool", "decode", "--kind", "fixture.decode")
+    GridNames = ["grid:request-a", "grid:request-b"]
+    GridNames.extend(f"grid:standard-{Index:02d}" for Index in range(11))
+    GridSpecs = [
+        PoolJob(GridName, AppKind, resources=[InstallName]) for GridName in GridNames
+    ]
+    GridRanks: list[dict[str, object]] = [
+        {
+            "id": GridName,
+            "family": "rectangle",
+            "documents": ["reference"],
+            "distinguishing_evidence": ["direction"],
+            "grid": "requested" if Index < 2 else "standard",
+            "installation": InstallName,
+        }
+        for Index, GridName in enumerate(GridNames)
+    ]
+    GridRanks[1]["documents"] = ["one", "two", "three"]
+    DecodeSpec = PoolJob(
+        "decode:after-grid",
+        "fixture.decode",
+        depends_on=["grid:request-a"],
+        inputs={"grid": {"dependency": "grid:request-a"}},
+    )
+    DecodeRank: dict[str, object] = {
+        "id": "decode:after-grid",
+        "family": "rectangle",
+        "documents": ["reference"],
+        "distinguishing_evidence": [],
+    }
+    PlanFile = WriteSchedule(
+        RootPath / "Schedule.json",
+        GridSpecs + [DecodeSpec],
+        GridRanks + [DecodeRank],
+    )
+    return GridSpecs, GridRanks, PlanFile
+
+
 # grid admission must replenish standard work and preserve live claims and decode prerequisites
 def CheckGridQueue() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
         Client = JobClient(RootPath, 4)
         InstallName = "application:fixture"
-        AppKind = "fixture.grid"
-        _ = Client.RunCli("resource", InstallName, "--available", "--capacity", "1")
-        _ = Client.RunCli("pool", "application", "--kind", AppKind)
-        _ = Client.RunCli("pool", "decode", "--kind", "fixture.decode")
-        GridNames = ["grid:request-a", "grid:request-b"]
-        GridNames.extend(f"grid:standard-{Index:02d}" for Index in range(11))
-        GridSpecs = [
-            PoolJob(GridName, AppKind, resources=[InstallName])
-            for GridName in GridNames
-        ]
-        GridRanks: list[dict[str, object]] = [
-            {
-                "id": GridName,
-                "family": "rectangle",
-                "documents": ["reference"],
-                "distinguishing_evidence": ["direction"],
-                "grid": "requested" if Index < 2 else "standard",
-                "installation": InstallName,
-            }
-            for Index, GridName in enumerate(GridNames)
-        ]
-        GridRanks[1]["documents"] = ["one", "two", "three"]
-        DecodeSpec = PoolJob(
-            "decode:after-grid",
-            "fixture.decode",
-            depends_on=["grid:request-a"],
-            inputs={"grid": {"dependency": "grid:request-a"}},
-        )
-        DecodeRank: dict[str, object] = {
-            "id": "decode:after-grid",
-            "family": "rectangle",
-            "documents": ["reference"],
-            "distinguishing_evidence": [],
-        }
-        PlanFile = WriteSchedule(
-            RootPath / "Schedule.json",
-            GridSpecs + [DecodeSpec],
-            GridRanks + [DecodeRank],
-        )
+        GridSpecs, GridRanks, PlanFile = PrepareGrid(Client, RootPath, InstallName)
         Initial = JsonCodec.loads(Client.RunCli("schedule", str(PlanFile)))
         assert Initial["queued_by_installation"] == {InstallName: 10}
         assert Initial["deferred_standard"] == 3
