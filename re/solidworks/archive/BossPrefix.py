@@ -68,3 +68,24 @@ def read_boss_prefix(cursor, boss):
         "atom_end": atom_end,
         "end_specification": specification,
     }
+
+
+# the nested depth display and from end record must both return before the next feature
+def read_boss_close(cursor):
+    from DepthDisplay import read_depth_display
+
+    depth = read_depth_display(cursor)
+    cursor.null()
+    Require(
+        cursor.read("<BHBHd6i"),
+        (1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0),
+        "guarded empty end surface and draft fields",
+    )
+    cursor.null()
+    cursor.null()
+    Require(cursor.read("<4i2H3i"), (0,) * 9, "guarded blind end feature fields")
+    origin = cursor.pointer(KDefinitionKind, "moFromEndSpec_c")
+    Require(cursor.read("<i"), (0,), "blind boss starts from its sketch plane")
+    cursor.read("<5i")
+    Require(cursor.read("<di"), (0, -1), "guarded extrusion return state")
+    return {"depth_display": depth, "from_end_object": origin, "end": cursor.position}

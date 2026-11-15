@@ -76,7 +76,7 @@ The extrusion allocates object 368 and reads the saved name `BlindBoss` and feat
 
 The first chooser materializes two cap references with occurrence codes 0 and 1. Each cap and four boundary segments carry the same derived file reference, feature ID and time. They allocate the previously witnessed face class slots 372, 374 and 377. The repeated chooser reads the same cap and boundary objects using shared-map backreferences. Its bounding centre and scale are identical to the first chooser's fields. For baseline A, the boss's occurrence 1 carries ordered boundary IDs `[4, 1, 2, 3]`. For YZ, it carries `[4, 3, 2, 1]`. Both the feature and time tuple and the boundary order match the separately licensed CutSketch support observations. The preserved [face-support replay](SolidWorksFaceOccurrence.md) starts independently at the CutSketch sketch pointer.
 
-The partition marker and guarded atom fields lead to the body feature's optional assembly and component references, its empty array and its final dword. The `moEndSpec_c` loader at `sldmodu+0x9cf540` reads the null direction pointer, the single-end, flip and reverse fields and the null keep-piece pointer before the two termination codes. All eleven independently measured boss operations agree with the resulting forward single-direction blind specification. The typed depth-dimension token at the next cursor matches the `moDisplayDim_c` read at `0x9cfa51`, resolves the Config-0 `moDisplayDistanceDim_c` class and leaves next map index 406. The depth dimension's body and the remaining end-specification fields are the next boundary for a continuous replay to CutSketch. [End specification field definitions](../../../../re/solidworks/records/Serialize.md#1-moendspec_c--confirmed)
+The partition marker and guarded atom fields lead to the body feature's optional assembly and component references, its empty array and its final dword. The `moEndSpec_c` loader at `sldmodu+0x9cf540` reads the null direction pointer, the single-end, flip and reverse fields and the null keep-piece pointer before the two termination codes. All eleven independently measured boss operations agree with the resulting forward single-direction blind specification. The typed depth-dimension token at the next cursor matches the `moDisplayDim_c` read at `0x9cfa51`, resolves the Config-0 `moDisplayDistanceDim_c` class and leaves next map index 406. The default command stops at this token. [End specification field definitions](../../../../re/solidworks/records/Serialize.md#1-moendspec_c--confirmed)
 
 | Capture | Boss entry | Atom end | End specification | Depth dimension token |
 | --- | ---: | ---: | ---: | ---: |
@@ -84,3 +84,20 @@ The partition marker and guarded atom fields lead to the body feature's optional
 | YZ | 6,450 | 7,496 | 7,506 | 7,547 |
 | Through-all | 6,378 | 7,424 | 7,434 | 7,475 |
 | Baseline B, six parameter edits and inch display | 6,608 | 7,654 | 7,664 | 7,705 |
+
+## Continuous CutSketch link
+
+Run `python re/solidworks/archive/ResolvedEntry.py --through-cut` to extend the same replay through the boss depth parameter and the CutSketch link. The JSON report SHA-256 is `13d9dc98c2ea59bc4436b1fb99a28b9daa92a3d255786bf3379d4323b7e3cd36`.
+
+The depth display at slot 406 allocates a `moFeatureDimHandle_c` at 408 and a `ParallelPlaneDistanceDim_c` at 410. The dimension uses the existing `moLengthParameter_c` class and allocates parameter object 411. The authored length is `depth_mm` and equals 0.010 m in ten captures and 0.012 m in the depth edit. Both saved display copies agree with the parameter. The replay also checks the name, system value and extrusion depth against independent SOLIDWORKS measurements for every capture.
+
+The historical native field trace at `2cb8eb9ad078f9afb5fa8386f00513e7c3674a73` in `programs/resolved/default/Methods` accounts for the scalar types, strings and pointer order. The historical handle body and modern body use the same field sequence with the appropriate generation word. In the modern stream the length parameter and favorite handle use retained class references, and the parameter name is longer. The typed walks reconcile those changes before reading the parallel-plane points, transforms and annotation fields. The exact receipt and checked generation scope this presentation shape. Some appearance and trailer fields have measured widths and unassigned meanings. [Historical pointer trace](../../../../re/data/segments/Streams/SegmentsBaseline.json), [typed handle and display layouts](../../../../re/solidworks/records/FeatureBody.md#6-mofeaturedimhandle_c--eight-children-with-a-closed-generation-gate)
+
+After the display returns, `moFromEndSpec_c` at slot 415 records type 0 for the sketch-plane start. The enclosing boss returns at the next earlier-profile class reference. The walk allocates CutSketch at 416, reads its own feature ID and resolves its sketch pointer to Config-0 object 74. The cursor preserves next map index 418. Baseline A and YZ match their independent licensed profile anchors exactly. The replay stops immediately after the CutSketch sketch pointer. [Independent support body replay](SolidWorksFaceOccurrence.md)
+
+| Capture | Depth display return | CutSketch entry | Config-0 sketch backreference | Cursor after link |
+| --- | ---: | ---: | ---: | ---: |
+| Baseline A | 9,284 | 9,417 | 9,600 | 9,602 |
+| YZ | 9,354 | 9,487 | 9,670 | 9,672 |
+| Through-all | 9,282 | 9,415 | 9,598 | 9,600 |
+| Baseline B, six parameter edits and inch display | 9,512 | 9,645 | 9,828 | 9,830 |

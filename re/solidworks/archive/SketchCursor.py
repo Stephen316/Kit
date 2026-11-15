@@ -279,8 +279,8 @@ class SketchCursor:
         Label, Value = SelfData.Scalars[ValueId]
         SelfData.Dimensions.append((NameValue, DimId, Label, Value, First, Second))
 
-    # logical and value dimension layouts share one base parameter reference
-    def ReadDimBase(SelfData, ExpectedParam):
+    # feature and sketch dimensions share the parameter reference and its enclosing name fields
+    def ReadDimBasePrefix(SelfData, ExpectedParam):
         SelfData.ReadValue("<i")
         ValueId = SelfData.ReadObject(ExpectedParam)
         SelfData.ReadObject(None)  # tolerance
@@ -288,5 +288,10 @@ class SketchCursor:
         SelfData.ReadObject(None)
         SelfData.ReadValue("<H")
         Require(SelfData.ReadValue("<B"), (0,), "absent dimension alternate name")
+        return DimId, ValueId
+
+    # sketch dimensions append their scalar type after the shared parameter fields
+    def ReadDimBase(SelfData, ExpectedParam):
+        DimId, ValueId = SelfData.ReadDimBasePrefix(ExpectedParam)
         TypeValue, *_ = SelfData.ReadValue("<i3H")  # sgDim type and scalar fields
         return DimId, ValueId, TypeValue
