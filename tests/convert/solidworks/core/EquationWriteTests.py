@@ -7,13 +7,44 @@ from convert import convert as ConvertFile
 from convert import open_document as OpenDocument
 from convert import write_document as WriteDocument
 from convert.adapters.solidworks.core.EquationTarget import KUnresolvedEqTargets
-from tests.convert.api.ApiTestPaths import KSamplePath
+from tests.convert.api.ApiTestPaths import KRootPath, KSamplePath
 
 
 def TestBoundWrite(TmpPath: FilePath) -> None:
+    SourcePath = (
+        KRootPath
+        / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
+        / "P04-solidworks-baseline-a.SLDPRT"
+    )
+    Document = OpenDocument(SourcePath)
+    Parameters = {Parameter.id: Parameter for Parameter in Document.parameters}
+    for TargetName, SourceNames in (
+        ("cut_left_mm", ("width_mm", "cut_width_mm")),
+        ("cut_bottom_mm", ("height_mm", "cut_height_mm")),
+    ):
+        Target = next(
+            Value for Value in Document.parameters if Value.name == TargetName
+        )
+        assert Target.expression is not None
+        assert Target.expression.language == "solidworks"
+        assert Target.expression.source.replace(" ", "") == (
+            f'("{SourceNames[0]}@RectangleSketch"-"{SourceNames[1]}@CutSketch")/2'
+        )
+        assert (
+            tuple(
+                Parameters[ParamId].name for ParamId in Target.expression.parameter_ids
+            )
+            == SourceNames
+        )
+        assert not Target.attributes.get("unresolved_equation_references")
+    assert not Document.metadata.get(KUnresolvedEqTargets)
     NeutralPath = TmpPath / "Neutral.json"
-    Result = ConvertFile(KSamplePath, NeutralPath)
-    assert OpenDocument(NeutralPath) == Result.document
+    _ = NeutralPath.write_bytes(b"existing destination")
+    with RaisesError(ValueError, match="unqualified SOLIDWORKS sketch support"):
+        _ = WriteDocument(Document, NeutralPath, overwrite=True)
+    with RaisesError(ValueError, match="unqualified SOLIDWORKS sketch support"):
+        _ = ConvertFile(SourcePath, NeutralPath, overwrite=True)
+    assert NeutralPath.read_bytes() == b"existing destination"
 
 
 def TestMissingLink(TmpPath: FilePath) -> None:

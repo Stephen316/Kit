@@ -28,7 +28,9 @@ Source inspection confirmed that the registry checked these conditions while the
 New integration cases read the bundled native SOLIDWORKS part, persist marked neutral documents, and reopen those exact files.
 They cover root and nested component markers across seven direct method spellings.
 They require preservation of existing files, binary streams, text streams, and absent destination directories with validation disabled.
-A separate valid-document case requires direct JSON writing and reopening to preserve the original native-derived document.
+A separate valid-document case requires direct JSON writing and reopening to preserve an independently authored Fusion document.
+The bundled SOLIDWORKS example is a refusal case because its support references remain unqualified.
+See [the fixture evidence](../../Gotchas/Conversion/SolidWorksBundledExampleSupports.md).
 
 Formatting and source checks provide local evidence only. No local tests, decoding, or CAD application runs verified this repair.
 Remote integration results and current-head review remain required.

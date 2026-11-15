@@ -34,9 +34,16 @@ They cover root and nested documents, persisted JSON, retained native attributes
 All seven direct writer method spellings must reject before file or stream mutation, including when validation is disabled.
 Additional cases require rejection of missing, unknown, and contradictory unframed evidence after JSON readback.
 
-The existing native-derived direct JSON case now requires explicit support references before its successful write and reopen.
-An independent Fusion rectangle passes through native file creation, public reading, direct JSON writing, and public JSON writing.
+The [first remote run](https://github.com/TryUniCAD/Kit/actions/runs/43665357887/job/132663393914) exposed an invalid positive fixture at `3a432ea0d732186f6df4ae074f0fc7d91765faa9`.
+The bundled `example.SLDPRT` retains unqualified support evidence for `sldprt:sketch:40` and cannot establish a successful export case.
+Its direct JSON case now requires refusal with destination preservation.
+The P04 baseline case separately proves both cut-centering formula texts and their exact parameter dependencies before requiring support-based export refusal.
+Resolved equations do not qualify the remaining sketch history.
+
+An independently authored Fusion rectangle supplies the positive direct JSON write and reopen case.
+It also passes through native file creation, public reading, and public JSON writing.
 That positive case retains no SOLIDWORKS support attributes.
+No support attribute is relabeled to make a positive fixture pass.
 
 No local tests, decoding, or CAD application experiments verified this change.
 Remote integration results and current-head review remain required.
