@@ -2,6 +2,8 @@
 
 The SOLIDWORKS `34.4.1.1011` loader copies the archive map from the configuration read into the resolved-feature read. A guarded offline walk of all eleven P04 `_MO_VERSION_19000` captures reaches the unit component. Licensed baseline A and YZ traces identify its first child as a reference to the part document loaded at archive slot 2. The [sketch ownership evidence](P04SketchResidence.md) records the independent cross-stream references and geometry inventory.
 
+The [context and material walk](P04ContextWalk.md) continues the verified seed through the model-data record in all eleven captures, using the archive-context result witnessed in baseline A and YZ.
+
 ## Inputs
 
 The capture files are pinned at Git revision `466dcb172dfa3803463e07ccde963ba01671d200`. Each native file matched its SHA-256 in the committed receipt, whose own SHA-256 is `7fd2fffa3c690998753a80cab81da2f1c2446c9fcec39574e3983a7f4345cae5`. The walker source checkpoint was `dcfb17f495d2bc441d5eb36cdbd13ea443ba8e22`. The analysis used captured streams and offline disassembly of the matching installed build. [Capture receipt](../../automation/PairedCaptures/P04/solidworks-c1986308375a/receipt.json)
