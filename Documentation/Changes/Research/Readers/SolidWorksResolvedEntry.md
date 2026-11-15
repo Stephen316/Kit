@@ -1,6 +1,6 @@
 # P04 SOLIDWORKS resolved entry and profile linkage
 
-Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command verifies the exact P04 receipt, native files and both decompressed stream hashes for baseline A and YZ. It replays the resolved entry and the two profile records from their separate checkpoints, then writes a JSON evidence report. The report SHA-256 is `b11bdfefb1407e923e25529eb76e151d0257a49b89a5b9af117eb23b84dbbea0`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
+Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command verifies the exact P04 receipt, native files and both decompressed stream hashes for baseline A and YZ. It replays the resolved entry and the two profile records from their separate checkpoints, then writes a JSON evidence report. The report SHA-256 is `38d5fc18e533b717ec5c4dc9f00e48881ab609c3cf6e9846e31e11e181661d02`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
 
 The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949 in YZ. The resolved list load begins at byte 4 with next archive index 279. The offline reader uses the completed Config-0 class and object map to start the list and to resolve the two separately anchored sketch references. The first four resolved bytes corroborate the counter at 279. The short list count at byte 4 is 21, and the first class definition begins at byte 6. [Offline map replay](../../../../re/solidworks/records/P04SketchResidence.md#offline-map-replay)
 
@@ -12,8 +12,19 @@ The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949
 | Selection Sets | 25 | 289 | 606 | 825 | 291 |
 | Sensors | 22 | 292 | 825 | 1,018 | 294 |
 | Design Binder | 7 | 295 | 1,018 | 1,221 | 297 |
+| Annotations | 1 | 298 | 1,221 | 1,873 | 305 |
+| Surface Bodies | 10 | 306 | 1,873 | 2,097 | 308 |
+| Solid Bodies | 9 | 309 | 2,097 | 2,315 | 311 |
+| Environment alias | — | 240 | 2,315 | 2,317 | 311 |
+| Markups | 21 | 312 | 2,317 | 2,513 | 314 |
+| Equations | 16 | 315 | 2,513 | 2,707 | 317 |
+| Material | 11 | 318 | 2,707 | 2,944 | 320 |
 
-The History variant ends after two guarded folder scalars and the empty history-item count. The short count at byte 604 is the same archive field identified by the historical measured nonempty arrays. The Selection Sets body adds six guarded bytes to the common folder suffix, matching its historical post-comment width. Sensors and Design Binder use the ordinary folder suffix. The cursor reaches the next schema-1 `moDetailCabinet_c` declaration at 1,221. With the typed name seed applied, the historical generic table places a child at byte 56 inside the Comments node flags in these captures. [History array count](../../../../re/solidworks/archive/Segmentation.md#the-mohistoryfeatitemdata_c-array-count), [node field order](../../../../re/solidworks/records/Feature.md), [historical folder and profile layout](../../../../re/data/Layouts/ClassLayouts.json)
+The History variant ends after two guarded folder scalars and the empty history-item count. The short count at byte 604 is the same archive field identified by the historical measured nonempty arrays. The Selection Sets body adds six guarded bytes to the common folder suffix, matching its historical post-comment width. Sensors and Design Binder use the ordinary folder suffix. With the typed name seed applied, the historical generic table places a child at byte 56 inside the Comments node flags in these captures. [History array count](../../../../re/solidworks/archive/Segmentation.md#the-mohistoryfeatitemdata_c-array-count), [node field order](../../../../re/solidworks/records/Feature.md), [historical folder and profile layout](../../../../re/data/Layouts/ClassLayouts.json)
+
+The `moDetailCabinet_c` resolved node list contains two entries. Its first entry allocates Notes at slot 301 and the nested Notes end marker at slot 303. The end marker refers back to Notes. The second list entry refers to the same end marker at slot 303. The reader checks the four-dword trailers of both Notes records. The cabinet then continues through its feature fields and a guarded 32-byte scalar trailer whose field meanings remain open. Its width matches the historical 68-byte post-comment run after accounting for the 36 bytes of common feature fields. [Notes folder trailer layout](../../../../re/solidworks/records/VersionedRuns.md#31-monotesareaftrfolder_c-run-4--16--confirmed)
+
+Both body folders have two null child pointers. The Environment entry at 2,315 is an object reference to the `moEnvFolder_c` already materialized in Config-0. The decoder resolves it against the derived map and leaves the counter unchanged. The last three folders lead to the first schema-1 `moRefPlane_c` declaration at 2,944 with next map index 320. The licensed CutSketch support later references that same class index. [Licensed plane class reference](../../../../re/solidworks/records/P04SketchResidence.md#licensed-cut-sketch-support-owner)
 
 ## Profile checkpoints
 

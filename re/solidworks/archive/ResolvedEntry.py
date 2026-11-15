@@ -33,11 +33,11 @@ CONTROLS = {
 }
 
 
-# both named record types inherit the guarded modern node concept and feature fields
-def read_named_feature(cursor):
+# the annotations cabinet and ordinary named features share lightweight concept framing
+def read_named_concept(cursor):
     from convert.adapters.solidworks.container.Archive import ReadString
     from SketchRoot import Require
-    from SupportPlane import read_empty_label, read_feature_base
+    from SupportPlane import read_empty_label
 
     name, length = ReadString(cursor.blob, cursor.position)
     cursor.position += length
@@ -46,16 +46,113 @@ def read_named_feature(cursor):
     read_empty_label(cursor)
     Require(cursor.read("<i"), (0,), "empty lightweight child list")
     cursor.null()  # moVisualProperties_c
+    return name, node_id
+
+
+# ordinary features can proceed to their own fields after an empty resolved list
+def read_named_feature(cursor):
+    from SketchRoot import Require
+    from SupportPlane import read_feature_base
+
+    name, node_id = read_named_concept(cursor)
     Require(cursor.read("<Hi"), (0, 0), "empty resolved node list and tail")
     read_feature_base(cursor)
     return name, node_id
 
 
-# folder suffixes are confined to the ordinary bodies at the start of these captures
-def read_list_prefix(blob, config_map):
+# folder subclasses share a named feature base and keep their own guarded suffixes
+def read_folder(cursor, type_name, suffix_format, suffix, null_children=0):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
+    )
+    from SketchRoot import Require
+
+    offset = cursor.position
+    object_index = cursor.pointer(KDefinitionKind, type_name)
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, feature_id = read_named_feature(cursor)
+    Require(cursor.read(suffix_format), suffix, f"guarded {type_name} suffix")
+    for _ in range(null_children):
+        cursor.null()
+    return {
+        "class": type_name,
+        "name": name,
+        "native_feature_id": feature_id,
+        "object_index": object_index,
+        "offset": offset,
+        "cursor": cursor.position,
+        "next_map_index": cursor.next_index,
+    }
+
+
+# the notes start and end tag use the same inherited folder framing
+def read_notes_base(cursor):
+    from convert.adapters.solidworks.container.Archive import KClassRefKind
+    from SketchRoot import Require
+
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, native_id = read_named_feature(cursor)
+    Require(cursor.read("<2i"), (1, 0), "guarded notes folder base")
+    return {"name": name, "native_feature_id": native_id}
+
+
+# cabinet membership includes a backreference to the already allocated end tag
+def read_detail_cabinet(cursor):
+    from convert.adapters.solidworks.container.Archive import (
+        KClassRefKind,
+        KDefinitionKind,
+        KObjectRefKind,
+    )
+    from SketchRoot import Require
+    from SupportPlane import read_feature_base
+
+    offset = cursor.position
+    cabinet = cursor.pointer(KDefinitionKind, "moDetailCabinet_c")
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, native_id = read_named_concept(cursor)
+    Require(cursor.read("<H"), (2,), "two resolved cabinet members")
+
+    notes_class = "moNotesAreaFtrFolder_c"
+    notes = cursor.pointer(KDefinitionKind, notes_class)
+    notes_fields = read_notes_base(cursor)
+    end_tag = cursor.pointer(KClassRefKind, notes_class)
+    end_fields = read_notes_base(cursor)
+    Require(
+        cursor.pointer(KObjectRefKind, notes_class),
+        notes,
+        "end tag points to notes owner",
+    )
+    Require(cursor.read("<4i"), (0, 0, 1, 1), "guarded end tag trailer")
+    Require(cursor.read("<4i"), (1, 0, 1, 1), "guarded notes trailer")
+
+    Require(
+        cursor.pointer(KObjectRefKind, notes_class),
+        end_tag,
+        "second cabinet member is the same end tag",
+    )
+    Require(cursor.read("<i"), (0,), "guarded cabinet list trailer")
+    read_feature_base(cursor)
+    tail = bytes(12) + b"\xf0\x3f" + bytes(6) + b"\xf0\x3f" + bytes(10)
+    Require(cursor.read("<32s"), (tail,), "guarded cabinet scalar tail")
+    return {
+        "class": "moDetailCabinet_c",
+        "name": name,
+        "native_feature_id": native_id,
+        "object_index": cabinet,
+        "offset": offset,
+        "cursor": cursor.position,
+        "next_map_index": cursor.next_index,
+        "notes": {**notes_fields, "object_index": notes},
+        "end_tag": {**end_fields, "object_index": end_tag},
+    }
+
+
+# folder suffixes are confined to the ordinary bodies at the start of these captures
+def read_list_prefix(blob, config_map):
+    from convert.adapters.solidworks.container.Archive import (
+        KDefinitionKind,
+        KObjectRefKind,
         ReadTag,
     )
     from FaceOccurrence import FaceCursor
@@ -71,42 +168,54 @@ def read_list_prefix(blob, config_map):
         config_map.Classes.copy(),
         config_map.Objects.copy(),
     )
-    folders = []
-    for type_name, suffix_format, suffix in (
-        ("moCommentsFolder_c", "<2i", (0, 0)),
-        ("moFavoriteFolder_c", "<4i", (1, 0, 0, 1)),
-        ("moHistoryFolder_c", "<2iH", (1, 0, 0)),
-        ("moSelectionSetFolder_c", "<2i6s", (1, 0, b"\x00\x00\x01\x00\x00\x00")),
-        ("moSensorFolder_c", "<2i", (1, 0)),
-        ("moDocsFolder_c", "<2i", (1, 0)),
-    ):
-        offset = cursor.position
-        object_index = cursor.pointer(KDefinitionKind, type_name)
-        cursor.pointer(KClassRefKind, "moNodeName_c")
-        name, feature_id = read_named_feature(cursor)
-        Require(cursor.read(suffix_format), suffix, f"guarded {type_name} suffix")
-        folders.append(
-            {
-                "class": type_name,
-                "name": name,
-                "native_feature_id": feature_id,
-                "object_index": object_index,
-                "offset": offset,
-                "cursor": cursor.position,
-                "next_map_index": cursor.next_index,
-            }
-        )
+    folders = [
+        read_folder(cursor, "moCommentsFolder_c", "<2i", (0, 0)),
+        read_folder(cursor, "moFavoriteFolder_c", "<4i", (1, 0, 0, 1)),
+        read_folder(cursor, "moHistoryFolder_c", "<2iH", (1, 0, 0)),
+        read_folder(
+            cursor,
+            "moSelectionSetFolder_c",
+            "<2i6s",
+            (1, 0, b"\x00\x00\x01\x00\x00\x00"),
+        ),
+        read_folder(cursor, "moSensorFolder_c", "<2i", (1, 0)),
+        read_folder(cursor, "moDocsFolder_c", "<2i", (1, 0)),
+        read_detail_cabinet(cursor),
+        read_folder(
+            cursor, "moSurfaceBodyFolder_c", "<4i", (1, 0, 0, 0), null_children=2
+        ),
+        read_folder(
+            cursor, "moSolidBodyFolder_c", "<4i", (1, 0, 0, 0), null_children=2
+        ),
+    ]
+    alias_start = cursor.position
+    environment = cursor.pointer(KObjectRefKind, "moEnvFolder_c")
+    folders.extend(
+        [
+            read_folder(cursor, "moInkMarkupFolder_c", "<2i", (1, 0)),
+            read_folder(cursor, "moEqnFolder_c", "<2i", (1, 0)),
+            read_folder(
+                cursor,
+                "moMaterialFolder_c",
+                "<2i8s",
+                (1, 0, b"\xff\xfe\xff\x00\x00\x00\x00\x80"),
+            ),
+        ]
+    )
     next_tag = ReadTag(blob, cursor.position)
     Require(
         (next_tag.kind, next_tag.schema, next_tag.class_name),
-        (KDefinitionKind, 1, "moDetailCabinet_c"),
-        "typed detail cabinet entry",
+        (KDefinitionKind, 1, "moRefPlane_c"),
+        "typed reference plane entry",
     )
     return {
         "list_count": count,
         "prior_map_index": base,
         "folders": folders,
+        "environment_alias": {"offset": alias_start, "object_index": environment},
         "next_class": next_tag.class_name,
+        "next_offset": cursor.position,
+        "next_map_index": cursor.next_index,
     }
 
 
