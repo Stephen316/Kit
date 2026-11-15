@@ -48,6 +48,7 @@ Unknown top-level fields are rejected.
 Dependencies and resources are arrays of labels; `options` is a JSON object.
 An input selector identifies a job in `depends_on` and can select its accepted result or a named artifact.
 The controller resolves the full input set in the same snapshot transaction that checks the dependencies.
+Use [a candidate fingerprint selector](../../Changes/Research/Controller/PendingCandidateDependencies.md) for research jobs that can run while a selected candidate is awaiting CI.
 See [accepted dependency inputs](../../Changes/Research/Controller/DependencyOutputInputs.md) for the syntax and the Phase B example.
 Forward dependencies are allowed, but cycles roll back the submission.
 Use `submit-batch <file>` with a JSON object containing only `jobs`, an array of job records, to submit a group atomically.

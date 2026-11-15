@@ -37,6 +37,7 @@ def activity_tally():
         "settled_outcomes": dict.fromkeys(OUTCOMES, 0),
         "resource_transitions": {"available": 0, "unavailable": 0},
         "exhausted_settlement_retries": 0,
+        "provisional_completions": 0,
         "other_events": 0,
     }
 
@@ -51,6 +52,8 @@ def tally_event(activity, event):
         if outcome not in OUTCOMES:
             raise ValueError("a settlement event has an unsupported outcome")
         activity["settled_outcomes"][outcome] += 1
+        if outcome == "completed" and detail.get("waiting_ci_inputs"):
+            activity["provisional_completions"] += 1
         activity["exhausted_settlement_retries"] += (
             outcome == "retry" and detail["state"] == "failed"
         )

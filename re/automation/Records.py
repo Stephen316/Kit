@@ -49,11 +49,17 @@ def bounded(value, lower, upper):
 def input_binding(value, dependencies):
     if isinstance(value, str):
         return label(value)
-    if not isinstance(value, dict) or set(value) not in ({"dependency"}, {"dependency", "artifact"}):
-        raise ValueError("input must name a binding or select a dependency result or artifact")
+    if not isinstance(value, dict) or set(value) not in (
+        {"dependency"}, {"dependency", "artifact"}, {"dependency", "candidate_fingerprint"}
+    ):
+        raise ValueError("input must name a binding or select a dependency result, artifact or candidate fingerprint")
     dependency = label(value["dependency"])
     if dependency not in dependencies:
         raise ValueError("input selector must refer to a declared dependency")
+    if "candidate_fingerprint" in value:
+        if value["candidate_fingerprint"] is not True:
+            raise ValueError("candidate_fingerprint must be true")
+        return {"dependency": dependency, "candidate_fingerprint": True}
     return {"dependency": dependency, "artifact": label(value["artifact"])} if "artifact" in value else {"dependency": dependency}
 
 

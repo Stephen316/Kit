@@ -18,6 +18,14 @@ def named_inputs(spec):
     return {binding for binding in spec["inputs"].values() if isinstance(binding, str)}
 
 
+def pending_ci_inputs(snapshot):
+    return {
+        name: item["pending_ci_fingerprint"]
+        for name, item in snapshot["dependencies"].items()
+        if "pending_ci_fingerprint" in item
+    }
+
+
 class Ledger:
     def __init__(self, root, create=False, max_running=4):
         root = Path(root).resolve()
@@ -235,20 +243,44 @@ class Ledger:
             if verify_artifacts:
                 self.verify_object(row[0])
             inputs[role] = {"binding": name, "sha256": row[0]}
-        dependencies = {}
+        selectors = [value for value in spec["inputs"].values() if isinstance(value, dict)]
+        candidate_inputs = {value["dependency"] for value in selectors if value.get("candidate_fingerprint")}
+        ordinary_inputs = {value["dependency"] for value in selectors if not value.get("candidate_fingerprint")}
+        candidate_fingerprints, dependencies = {}, {}
         for name in spec["depends_on"]:
-            row = self.db.execute("SELECT state,receipt,result FROM jobs WHERE id=?", (name,)).fetchone()
-            if row is None or row["state"] != "completed":
+            row = self.db.execute(
+                "SELECT state,receipt,result,parked,fingerprint,snapshot FROM jobs WHERE id=?", (name,)
+            ).fetchone()
+            if row is None:
+                return None
+            pending = (
+                row["state"] == "waiting_ci"
+                and row["parked"] == 1
+                and name in candidate_inputs
+                and name not in ordinary_inputs
+            )
+            if not pending and row["state"] != "completed":
+                return None
+            if pending_ci_inputs(json.loads(row["snapshot"])):
                 return None
             if verify_artifacts:
                 self.verify_object(row["receipt"])
                 self.verify_result(row["result"])
             dependencies[name] = {"receipt": row["receipt"], "result": row["result"]}
+            if name in candidate_inputs:
+                if verify_artifacts:
+                    self.verify_object(row["fingerprint"])
+                candidate_fingerprints[name] = row["fingerprint"]
+            if pending:
+                dependencies[name]["pending_ci_fingerprint"] = row["fingerprint"]
         manifests = {}
         for role, selector in spec["inputs"].items():
             if isinstance(selector, str):
                 continue
-            sha256 = self.dependency_input(selector, dependencies, manifests)
+            if selector.get("candidate_fingerprint"):
+                sha256 = candidate_fingerprints[selector["dependency"]]
+            else:
+                sha256 = self.dependency_input(selector, dependencies, manifests)
             if sha256 is None:
                 return None
             inputs[role] = {"binding": selector, "sha256": sha256}
@@ -307,7 +339,7 @@ class Ledger:
         self.reconciled += 1
         name = row["id"]
         spec = json.loads(row["definition"])
-        before = (row["receipt"], row["result"]) if row["state"] == "completed" else None
+        before = (row["receipt"], row["result"]) if row["state"] in {"completed", "waiting_ci"} else None
         snapshot = self.snapshot(spec)
         fingerprint = digest(snapshot) if snapshot is not None else None
         if fingerprint is not None and row["fingerprint"] == fingerprint:
@@ -338,7 +370,7 @@ class Ledger:
             state = "waiting_evidence" if snapshot is None else "waiting_application" if unavailable else "queued"
             self.db.execute("UPDATE jobs SET state=? WHERE id=?", (state, name))
         after = self.db.execute("SELECT state,receipt,result FROM jobs WHERE id=?", (name,)).fetchone()
-        after = (after["receipt"], after["result"]) if after["state"] == "completed" else None
+        after = (after["receipt"], after["result"]) if after["state"] in {"completed", "waiting_ci"} else None
         if before != after:
             self.enqueue_children(name)
 
@@ -495,7 +527,11 @@ class Ledger:
             (state, receipt, result_hash, reason, int(state.startswith("waiting_") or state == "rejected"), time.time() + delay, job_id),
         )
         self.enqueue_children(job_id)
-        self.event(job_id, "finished", {"outcome": outcome, "state": state, "receipt": receipt})
+        detail = {"outcome": outcome, "state": state, "receipt": receipt}
+        pending = pending_ci_inputs(json.loads(row["snapshot"]))
+        if pending:
+            detail["waiting_ci_inputs"] = pending
+        self.event(job_id, "finished", detail)
         if outcome == "waiting_application":
             save_application_hold(self, row, spec, result, owner_pin, receipt, result_hash)
         self.refresh()
@@ -514,7 +550,14 @@ class Ledger:
         for row in rows[:100]:
             self.verify_job(row)
         fields = ("id", "kind", "state", "generation", "fingerprint", "attempts", "receipt", "result", "reason", "lease_until", "deadline")
-        return {"jobs": [{key: row[key] for key in fields} for row in rows[:100]], "next_after": rows[99]["id"] if len(rows) > 100 else None, "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches}
+        jobs = []
+        for row in rows[:100]:
+            job = {key: row[key] for key in fields}
+            pending = pending_ci_inputs(json.loads(row["snapshot"])) if row["snapshot"] else {}
+            if pending:
+                job["waiting_ci_inputs"] = pending
+            jobs.append(job)
+        return {"jobs": jobs, "next_after": rows[99]["id"] if len(rows) > 100 else None, "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches}
 
     def events(self):
         return {"events": [dict(row) for row in self.db.execute("SELECT * FROM events ORDER BY id DESC LIMIT 100").fetchall()]}

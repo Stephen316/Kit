@@ -302,7 +302,7 @@ A candidate that passes it finishes with the existing `waiting_ci` outcome.
 A candidate that fails it is rejected with its counterexample.
 
 Later work may use a `waiting_ci` candidate.
-Each job that uses it binds the candidate fingerprint as an input.
+Each job that uses it binds the candidate fingerprint as an input through a [candidate dependency selector](../../Changes/Research/Controller/PendingCandidateDependencies.md).
 Reports show these candidates as pending CI, never as verified.
 
 The coordinating agent records each batch as an artifact after CI returns its results.
