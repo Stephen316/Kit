@@ -1,0 +1,3 @@
+# P01 Fusion endpoint measurements use sketch coordinates
+
+The standalone P01 capture reads `SketchPoint.geometry` for `entities[*].start_mm` and `end_mm`. These points use the sketch frame. XY happens to align with the document axes, so the difference first appears in the YZ control. Compose the original measured `origin_mm`, `x_direction` and `y_direction` with each local endpoint before comparing it in world coordinates. The selected origin plane and its supported sketch can use different in-plane axes even when their plane normals agree. Preserve both frames in the evidence. [P01 saved rectangle plane and sketch bindings](../../../Changes/Research/Readers/FusionRectangleSketchEvidence.md)

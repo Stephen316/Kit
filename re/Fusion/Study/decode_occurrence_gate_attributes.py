@@ -26,7 +26,7 @@ def occurrence_with_gate_attributes(payload, identity, *, allow_root_identity_ma
 
     Try the standard parser first. The extension admits only the captured root,
     ordered three-attribute/false-empty-false form with an identity root transform.
-    The pinned P04 report opts into the observed extra marker before the first
+    The pinned sketch and source-face reports opt into the extra marker before the first
     UUID, with either the same attributes or a counted empty table.
     Both layouts delegate a read-only normalized payload to the existing parser.
     """
@@ -93,5 +93,5 @@ def occurrence_with_gate_attributes(payload, identity, *, allow_root_identity_ma
         result.update(stored_attribute_count=count,
                       stored_pre_uuid_marker=1,
                       stored_pre_uuid_marker_payload_offset=chunk_start+cursor+6,
-                      occurrence_schema_status='Pinned P04 identity root with counted attributes and an additional literal before its first UUID')
+                      occurrence_schema_status='Observed identity root with counted attributes and an additional literal before its first UUID')
     return result

@@ -26,7 +26,10 @@ def historical_observations(capture, measurements):
         "baseline-a": ("same_process_reopen", observed["fresh_reopen"]),
         "baseline-b": ("before_repeat_export", observed["unchanged_rebuild"]),
     }
-    for row in [*observed["edits"], *observed["variants"]]:
+    variants = observed.get("variants")
+    if variants is None:
+        variants = [observed["units_inch"], observed["plane_yz"]]
+    for row in [*observed["edits"], *variants]:
         variant = by_name[row["export"]]
         require(variant not in observations, "duplicate historical Fusion observation")
         observations[variant] = ("same_process_reopen", row["reopened"])
@@ -56,7 +59,7 @@ def match_lines(lines, observed):
         ]
         require(
             line["start_cm"][2] == line["end_cm"][2] == 0,
-            "nonplanar saved P04 sketch line",
+            "nonplanar saved Fusion sketch line",
         )
         candidates = [
             curve
@@ -67,18 +70,18 @@ def match_lines(lines, observed):
         ]
         require(
             len(candidates) == 1,
-            "P04 saved line lacks a unique historical geometry match",
+            "saved Fusion line lacks a unique historical geometry match",
         )
         candidate = candidates[0]
         if "is_construction" in line:
             require(
                 line["is_construction"] == candidate["construction"],
-                "P04 construction state differs",
+                "saved Fusion construction state differs",
             )
         matched[line["object_id"]] = candidate["index"]
     require(
         len(set(matched.values())) == len(observed["curves"]) == len(lines),
-        "P04 saved and historical line rosters differ",
+        "saved and historical Fusion line rosters differ",
     )
     return matched
 

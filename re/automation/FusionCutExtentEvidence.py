@@ -82,7 +82,7 @@ def along_binding(data, parameter):
 # counted framing keeps adjacent markers from becoming independent selections
 def counted_references(payload, offset, expected_count):
     require(struct.unpack_from("<I", payload, offset)[0] == expected_count,
-            "unexpected P04 reference count")
+            "unexpected indexed reference count")
     return [reference(payload, offset + 4 + 11 * index) for index in range(expected_count)]
 
 
