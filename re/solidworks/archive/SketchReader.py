@@ -82,6 +82,30 @@ def ReportRelations(Cursor, Relations, Lines):
     return Records
 
 
+# distance parameter instances resolve their point handles within the enclosing sketch
+def ReportDimensions(Cursor, Points):
+    Records = []
+    for ClassName, Index, NameValue, Value, First, Second in Cursor.Dimensions:
+        Operands = []
+        for HandleIndex in (First, Second):
+            Position, Owner, Flags = Cursor.Handles[HandleIndex]
+            Require((Owner, Flags), (-1, 0), "witnessed local dimension handle fields")
+            Require(0 <= Position < len(Points), True, "dimension point in its sketch")
+            Identity, _ = Points[Position]
+            Operands.append((Position, Identity))
+        Records.append(
+            {
+                "class": ClassName,
+                "native_id": Index,
+                "name": NameValue,
+                "metres": Value,
+                "point_handle_objects": [First, Second],
+                "point_native_ids": Operands,
+            }
+        )
+    return Records
+
+
 # one geometry reader serves both native sketches across the supported controlled captures
 def ReadGeometry(Cursor, ObjectIndex):
     Start = Cursor.Offset
@@ -96,7 +120,7 @@ def ReadGeometry(Cursor, ObjectIndex):
         "body_start": Start,
         "geometry_end": Cursor.Offset,
         "next_map_index": Cursor.NextIndex,
-        "points_metres": Points,
+        "points_metres": [Coords for _, Coords in Points],
         "lines": [
             {
                 "member_index": Index,
@@ -106,16 +130,7 @@ def ReadGeometry(Cursor, ObjectIndex):
             }
             for Index, Identity, Flags, First, Second in Lines
         ],
-        "length_dimensions": [
-            {
-                "class": ClassName,
-                "native_id": Index,
-                "name": NameValue,
-                "metres": Value,
-                "point_handle_objects": [First, Second],
-            }
-            for ClassName, Index, NameValue, Value, First, Second in Cursor.Dimensions
-        ],
+        "length_dimensions": ReportDimensions(Cursor, Points),
         "member_relations": ReportRelations(Cursor, Relations, Lines),
     }
 

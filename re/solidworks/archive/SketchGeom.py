@@ -26,7 +26,7 @@ def ReadMember(Cursor):
 def ReadPointItem(Cursor):
     (Subtype,) = Cursor.ReadValue("<H")
     Require(Subtype in (0, 1), True, "supported sketch point subtype")
-    ReadMember(Cursor)
+    _, Identity, _, _ = ReadMember(Cursor)
     (Flags,) = Cursor.ReadValue("<H")
     Require(bool(Flags & 0x10), True, "2D sketch point")
     Coords = Cursor.ReadPoint(2)
@@ -41,7 +41,7 @@ def ReadPointItem(Cursor):
         Cursor.ReadPoint(2)
     Require(Cursor.ReadValue("<H"), (0,), "absent point jet")
     Cursor.ReadValue("<H")
-    return Coords
+    return Identity, Coords
 
 
 # line connectivity must use serialized point identities within the same sketch

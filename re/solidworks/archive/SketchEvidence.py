@@ -1,8 +1,10 @@
 """Report typed sketch geometry from the eleven pinned P04 discovery captures."""
 
 from argparse import ArgumentParser
+from collections import Counter
 from hashlib import sha256 as Sha256
 import json as Json
+from math import hypot as Hypot
 from pathlib import Path
 import re as Regex
 from subprocess import check_output as CheckOutput
@@ -131,7 +133,51 @@ def CheckMemberRelations(Sketches, Reading):
             for Relation in Sketch["member_relations"]
         ]
         Require(
-            sorted(Decoded), sorted(Measured), f"measured line relations for {NameValue}"
+            sorted(Decoded),
+            sorted(Measured),
+            f"measured line relations for {NameValue}",
+        )
+
+
+# scalar lengths and preserved operand identities must both agree with native reopening
+def CheckDimensionOperands(Sketches, Reading):
+    from SketchRoot import Require
+
+    ByName = {Sketch["name"]: Sketch for Sketch in Reading["sketches"]}
+    AxisClasses = {"sgPntPntHorDist": 0, "sgPntPntVertDist": 1}
+    for Sketch in Sketches:
+        NameValue = Sketch["measurement_profile"]
+        Points = Sketch["points_metres"]
+        Expected = Counter()
+        for Relation in ByName[NameValue]["relations"]:
+            if Relation["type"] != 1:
+                continue
+            Require(Relation["entity_types"], [2, 2], "native distance point operands")
+            Expected[tuple(tuple(Point["id"]) for Point in Relation["entities"])] += 1
+            for Point in Relation["entities"]:
+                Index, _ = Point["id"]
+                Native = tuple(
+                    float(Coordinate) / 1000 for Coordinate in Point["point_local_mm"]
+                )
+                Local = (*Points[Index], 0.0)
+                Require(
+                    all(abs(A - B) <= 1e-9 for A, B in zip(Local, Native, strict=True)),
+                    True,
+                    "native distance operand coordinates",
+                )
+        Actual = Counter()
+        for Dim in Sketch["length_dimensions"]:
+            Operands = tuple(Dim["point_native_ids"])
+            Actual[Operands] += 1
+            Start, End = (Points[Index] for Index, _ in Operands)
+            Delta = tuple(abs(A - B) for A, B in zip(Start, End, strict=True))
+            Axis = AxisClasses.get(Dim["class"])
+            Distance = Hypot(*Delta) if Axis is None else Delta[Axis]
+            Require(
+                abs(Distance - Dim["metres"]) <= 1e-9, True, "decoded operand distance"
+            )
+        Require(
+            Actual, Expected, f"measured ordered dimension bindings for {NameValue}"
         )
 
 
@@ -170,6 +216,7 @@ def ReadCapture(RootPath, Asset, Reading):
     Sketches, Manager = ReadSketches(Contents, KApplicationBuild)
     CheckLengths(Sketches, Reading)
     CheckMemberRelations(Sketches, Reading)
+    CheckDimensionOperands(Sketches, Reading)
     return {
         "file": FileName,
         "native_sha256": Digest,
