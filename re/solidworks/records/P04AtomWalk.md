@@ -29,13 +29,19 @@ The relation manager at `sldmodu+0x11f7f70` opens the relation list at `0x11f7f8
 
 The dimension handle at `0x16f4da0` calls its base at `0x16e8570`. The component-reference loader at `0xa66160` reads the unit component at `0xa665af`. That class reference creates object 72 and its child resolves to the existing part at slot 2. The modern scalar run after the unit component is 20 dwords, ending with the MO generation read at `0xa66eda`. The optional payload flags are clear. The loaded handle then reads an absent transform u16, four null pointers, a byte, two null pointers, a dword, another absent transform u16 and a final dword. The ordinary local-sketch branch reads the next pointer at `0x16f50b3` and explicitly checks `sgSketch` at `0x16f50b9`. The sketch's class definition allocates indices 73 and 74.
 
-| P04 discovery group | Second split length field | First atom | Relation manager | First sketch | First missing layout |
+| P04 discovery group | Second split length field | First atom | Relation manager | First sketch | Sketch tail guard |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Baseline A | 3,054 | 3,072 | 3,336 | 3,772 | 4,537 |
-| Baseline B, six edits and inch display | 3,092 | 3,110 | 3,374 | 3,810 | 4,575 |
-| YZ and through-all | 3,052 | 3,070 | 3,334 | 3,770 | 4,535 |
+| Baseline A | 3,054 | 3,072 | 3,336 | 3,772 | 5,241 |
+| Baseline B, six edits and inch display | 3,092 | 3,110 | 3,374 | 3,810 | 5,279 |
+| YZ and through-all | 3,052 | 3,070 | 3,334 | 3,770 | 5,239 |
 
-The walk reaches 77 typed rows in each capture. The current table stops at `moCompSketchEntHandle_c` slot 0 inside the first sketch, with no run defined for MO 19000. Its position in the sketch follows four lines and the first sketch relation. The source-derived allocation verifies the first sketch's identity. The complete first sketch span, second sketch allocation and complete resolved profile traversal still need typed coverage.
+## First sketch continuation
+
+The existing table emits 77 rows through the first `moCompSketchEntHandle_c` component. Its matched slot 5 at `sldmodu+0xa67490` calls `moCompFeature_c` at `0xa65530`. The base component reference reads the same guarded 20-dword run as the first dimension handle. The following `moFRData_c` call at `0xa658ca` reads a signed feature ID and a `su_CTime` value. All eleven accept the four-byte time form. The entity pointer read at `0xa67536` materializes an `sgPointHandle`, and the dword read at `0xa6756c` closes the component entity handle. Baseline A creates the point handle at byte 4,659 as class 91 and object 92.
+
+The enclosing `moSketchExtRef_w` at `0x11369c0` calls the base wrapper at `0x1134b50`. The base reads a u16 and a second, null pointer after the component entity handle. Its MO 19000 path reads 56 additional scalar bytes on the local no-transform branch. The wrapper reads one more u16 at `0x1136a87` and then the backed-up data pointer at `0x1136ad5`. Baseline A materializes `moPointBackedUpData_c` at byte 4,754 as class 93 and object 94.
+
+With those two guarded layouts, the existing sketch groups emit 88 rows and the terminal `NextParentToken` predicate rejects `0xbf80` at the offsets above. The listed guard offsets are its live offline cursor values. The rejection leaves the modern sketch's full contents unresolved. Continue from the matching `sgSketch::Serialize` at `0x144f790` and reconcile its remaining count-driven groups before closing the sketch or continuing the map to the second sketch and resolved profiles.
 
 ## Reproduce
 
