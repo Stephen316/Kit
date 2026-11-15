@@ -6,6 +6,7 @@ import tempfile as TempFiles
 import time as TimeClock
 from pathlib import Path as FilePath
 
+from tests.Research.Supervisor.WaitWorkerEntry import WaitWorkerEntry
 from tests.Research.SupervisorClient import (
     FixtureJob,
     IsGoneByTimeout,
@@ -132,6 +133,7 @@ def CheckRestart() -> None:
         try:
             SessionInfo = Harness.WaitSession("restart:first")
             OrphanId = int(str(SessionInfo["pid"]))
+            WaitWorkerEntry(RootPath, str(SessionInfo["session"]), OrphanId)
             First.send_signal(Signals.SIGKILL)
             _ = First.communicate(timeout=30)
             assert not IsProcessGone(OrphanId)

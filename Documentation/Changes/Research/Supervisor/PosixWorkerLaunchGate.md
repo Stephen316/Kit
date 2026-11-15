@@ -35,5 +35,9 @@ No clock replacements or production timing hooks are used.
 
 Local verification is limited to source AST checks, pinned Black, Mypy, Pyright, repository Steering, and documentation links.
 No local tests or reproductions ran.
-Remote Linux/macOS process results and existing Windows compatibility gates must be recorded on the tested revision.
+The [Linux supervisor stage](https://github.com/TryUniCAD/Kit/actions/runs/43674626489/job/132692018859) at `95b3f2e478742e3b166aef5ba13b495f2ff6434e` passed 42 cases, including the new launch cases.
+Its existing live-orphan restart case failed because it killed the supervisor on metadata visibility, before worker entry was guaranteed.
+That fixture now waits for an atomically published worker-entry marker and retains every identity, stopped-process and fake-PID protection assertion.
+See [the fixture gotcha](../../../Gotchas/Research/Supervisor/SessionMetadataIsNotWorkerEntry.md).
+The repaired restart case, macOS process results and existing Windows compatibility gates still require evidence on the tested revision.
 The [startup gotcha](../../../Gotchas/Research/Supervisor/WorkersCanStartBeforeMetadata.md) describes the original recovery gap.

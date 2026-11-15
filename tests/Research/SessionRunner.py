@@ -1,5 +1,6 @@
 import hashlib as Hashing
 import json as JsonCodec
+import os as OsLayer
 import signal as Signals
 import sys as System
 import time as TimeClock
@@ -38,6 +39,23 @@ def HasHoldInput(SessionPath: FilePath) -> bool:
     )
 
 
+def WriteSleep(SessionPath: FilePath) -> None:
+    StagePath = SessionPath / ".sleep-first.entered.tmp"
+    Handle = OsLayer.open(
+        StagePath, OsLayer.O_CREAT | OsLayer.O_EXCL | OsLayer.O_WRONLY, 0o600
+    )
+    try:
+        with OsLayer.fdopen(Handle, "w", encoding="utf-8") as Writer:
+            _ = Writer.write(
+                JsonCodec.dumps({"pid": OsLayer.getpid(), "phase": "sleep-first"})
+            )
+            Writer.flush()
+            OsLayer.fsync(Writer.fileno())
+        OsLayer.replace(StagePath, SessionPath / "sleep-first.entered.json")
+    finally:
+        StagePath.unlink(missing_ok=True)
+
+
 def RunFixture() -> int:
     SessionPath = FilePath(System.argv[1])
     Session = JsonCodec.loads((SessionPath / "job.json").read_text(encoding="utf-8"))
@@ -57,6 +75,7 @@ def RunFixture() -> int:
         TimeClock.sleep(120)
         return 0
     if ModeName == "sleep-first" and int(Session["attempt"]) == 1:
+        WriteSleep(SessionPath)
         TimeClock.sleep(120)
     if ModeName == "hold" and HasHoldInput(SessionPath):
         TimeClock.sleep(120)
