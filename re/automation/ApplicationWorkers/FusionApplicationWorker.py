@@ -11,6 +11,7 @@ from ApplicationProtocol import (
     ApplicationTimeout, QueueClient, WaitingApplication, configuration,
     file_bytes, load_pinned, pin, record, request_link, require, sha256, write_new, write_record,
 )
+from FusionPhasePlan import check_scope_archives, check_scope_report, phase_options, phase_paths, plan_scope
 from FusionRestart import wait_for_restart
 
 
@@ -25,7 +26,7 @@ def input_file(session, job, role, limit=256 * 1024 * 1024):
     return source, raw
 
 
-def accepted_first(session, job, config, plan_hash):
+def accepted_first(session, job, config, plan_hash, scope):
     _, raw = input_file(session, job, "phase-a.accepted", limit=1024 * 1024)
     accepted = json.loads(raw)
     result_sha256 = sha256(raw)
@@ -35,54 +36,88 @@ def accepted_first(session, job, config, plan_hash):
     result = accepted["result"]
     records = result["records"]
     require(accepted["output_artifacts_version"] == 1 and result["outcome"] == "completed" and records["plan_sha256"] == plan_hash
-            and records["phase"] == "a" and records["installation"] == config["installation"],
+            and records["phase"] == "a" and records["installation"] == config["installation"]
+            and records.get("scope") == scope,
             "accepted phase A provenance does not match this installation and plan")
-    return accepted
+    return accepted, raw
 
 
 def stage_plan(client, session, job, raw, plan, plan_hash, accepted):
     write_new(client.directory / "plan.json", raw)
     if accepted is not None:
+        result, result_bytes = accepted
+        scope = plan_scope(plan)
         prior = client.directory / "phase-a"
         prior.mkdir(mode=0o700)
-        names = {"phase-a.receipt": "receipt.json", "phase-a.measurements": "measurements.json"}
-        names.update({f"phase-a.{recipe}": f"{recipe}-fusion-fresh-baseline-a.f3d" for recipe in plan["recipes"]})
-        prior_bytes = 0
+        names = phase_paths(plan, "a")
+        if scope is not None:
+            require(set(result["output_artifacts"]) == set(names) | {"dispatch"},
+                    "accepted scope phase A output roles changed")
+            write_new(prior / "accepted.json", result_bytes)
+        prior_bytes = len(result_bytes) if scope is not None else 0
         for role, name in names.items():
-            source, raw = input_file(session, job, role)
-            expected = accepted["output_artifacts"][role]
-            require(sha256(raw) == expected["sha256"] and len(raw) == expected["size_bytes"],
+            _, data = input_file(session, job, role)
+            expected = result["output_artifacts"][role]
+            require(sha256(data) == expected["sha256"] and len(data) == expected["size_bytes"],
                     "phase A input differs from the accepted controller artifact")
-            prior_bytes += len(raw)
+            prior_bytes += len(data)
             require(prior_bytes <= 256 * 1024 * 1024, "prior phase A inputs exceed 256 MiB")
-            write_new(prior / name, raw)
+            write_new(client.directory / name, data)
         receipt = record(prior / "receipt.json")
-        measurements = record(prior / "measurements.json")
-        require(receipt["status"] == "complete" and receipt["phase"] == "a"
-                and receipt["plan_sha256"] == plan_hash
-                and receipt["measurements_sha256"] == sha256(file_bytes(prior / "measurements.json"))
-                and measurements["status"] == "complete", "phase A inputs are incomplete or belong to a different plan")
+        if scope is None:
+            data = file_bytes(prior / "measurements.json")
+            require(receipt["status"] == "complete" and receipt["phase"] == "a"
+                    and receipt["plan_sha256"] == plan_hash
+                    and receipt["measurements_sha256"] == sha256(data)
+                    and json.loads(data)["status"] == "complete", "phase A inputs are incomplete or belong to a different plan")
+        else:
+            data = file_bytes(prior / "report.json")
+            report = json.loads(data)
+            check_scope_report(receipt, report, data, plan_hash, "a")
+            check_scope_archives(report, result["output_artifacts"], "a")
 
 
-def collect(session, client, response, plan_hash, phase):
+def collect(session, client, response, plan, plan_hash, phase):
     from ApplicationProtocol import identity
 
+    scope = plan_scope(plan)
     require(response["proof"]["claim"] == "unqualified_application_observation"
+            and response["proof"].get("scope") == scope
             and response["proof"]["phase"] == phase and response["proof"]["plan_sha256"] == plan_hash,
             "application phase proof differs from this request")
     files = response["files"]
     require(isinstance(files, dict) and len(files) <= 63
             and sum(item["size_bytes"] for item in files.values()) <= 256 * 1024 * 1024, "invalid application output roster")
+    report = None
+    if scope is not None:
+        require({role: item["path"] for role, item in files.items()} == phase_paths(plan, phase),
+                "Fusion scope response did not contain its exact output roster")
     for item in files.values():
         relative = item["path"]
         require(relative.startswith(f"phase-{phase}/") and len(Path(relative).parts) == 2
                 and Path(relative).name not in ("", ".", "..") and "\\" not in relative,
                 "application output escapes its phase directory")
     artifacts = client.copy_files(session / "work", response)
+    report_name = "measurements.json" if scope is None else "report.json"
+    if scope is not None:
+        directory = session / "work" / f"phase-{phase}"
+        data = file_bytes(directory / report_name)
+        report = json.loads(data)
+        check_scope_report(record(directory / "receipt.json"), report, data, plan_hash, phase)
+        check_scope_archives(report, artifacts, phase)
+        require(report["source_revision"] == client.config["source_revision"]
+                and report["process"]["pid"] == response["host"]["pid"]
+                and report["application_build"] == response["proof"]["fusion_version"],
+                "Fusion scope report belongs to a different installed process")
     if phase == "b":
-        previous = record(client.directory / "phase-a/measurements.json")["process"]
+        prior_raw = file_bytes(client.directory / "phase-a" / report_name)
+        previous = json.loads(prior_raw)["process"]
         require(previous["pid"] != response["host"]["pid"] and identity(previous["pid"]) is None,
                 "phase B requires the old Fusion process to have exited")
+        if report is not None:
+            require(report["previous_phase_report_sha256"] == sha256(prior_raw)
+                    and report["previous_process"] == previous,
+                    "Fusion scope report does not bind the staged Phase A report and process")
     write_record(session / "work/dispatch.json", response)
     artifacts["dispatch"] = pin(session / "work/dispatch.json", "dispatch.json")
     require(sum(item["size_bytes"] for item in artifacts.values()) <= 256 * 1024 * 1024,
@@ -92,11 +127,15 @@ def collect(session, client, response, plan_hash, phase):
 
 def dispatch(session, config):
     job = record(session / "job.json")
-    require(job["session_version"] == 1 and set(job["job"]["options"]) == {"phase"}, "application job takes only a phase option")
-    phase = job["job"]["options"]["phase"]
-    require(phase in ("a", "b"), "application job phase must be a or b")
+    options = job["job"]["options"]
+    scope = plan_scope(options)
+    phase = options.get("phase")
+    require(job["session_version"] == 1 and phase in ("a", "b")
+            and options == phase_options(scope, phase), "application job requires a phase and optional fixed scope")
     records = {"installation": config["installation"], "application": config["application"],
                "phase": phase, "claim": "unqualified_dispatch", "native_qualified": False}
+    if scope is not None:
+        records["scope"] = scope
     if config["application"] != "fusion" or sys.platform != "darwin":
         return {"outcome": "waiting_application", "reason": "this installation has no qualified Fusion fresh-phase counterpart on this platform", "records": records}
     deadline = min(job["stop_at"] - 1, time.time() + 300)
@@ -104,25 +143,25 @@ def dispatch(session, config):
     client = None
     try:
         load_pinned(config, "re/automation/ApplicationWorkers/ApplicationProtocol.py")
-        if phase == "a":
-            client = QueueClient(config, deadline)
         _, raw = input_file(session, job, "plan", limit=1024 * 1024)
         plan = json.loads(raw)
-        require(plan["source_revision"] == config["source_revision"], "plan and installation source revisions differ")
+        require(plan["source_revision"] == config["source_revision"] and plan_scope(plan) == scope,
+                "plan and installation revision or declared scope differ")
         plan_hash = sha256(raw)
         accepted = None
         if phase == "b":
-            accepted = accepted_first(session, job, config, plan_hash)
-            wait_for_restart(config, accepted["result"]["records"], plan_hash, deadline)
-            client = QueueClient(config, deadline)
+            accepted = accepted_first(session, job, config, plan_hash, scope)
+            wait_for_restart(config, accepted[0]["result"]["records"], plan_hash, deadline)
+        client = QueueClient(config, deadline)
         stage_plan(client, session, job, raw, plan, plan_hash, accepted)
         probe = client.call("probe", {"plan_sha256": plan_hash})
         require(probe["proof"]["control"] == "healthy" and probe["proof"]["host"] == probe["host"]
                 and probe["proof"]["plan_sha256"] == plan_hash and probe["proof"]["documents_after"] == 0
+                and probe["proof"].get("scope") == scope
                 and 0 <= time.time() - probe["proof"]["measured_at"] <= 60, "application readiness lacks fresh pinned control evidence")
         response = client.call("phase", {"phase": phase, "plan_sha256": plan_hash,
                                          "probe_sha256": sha256(file_bytes(client.directory / "probe.done"))})
-        artifacts = collect(session, client, response, plan_hash, phase)
+        artifacts = collect(session, client, response, plan, plan_hash, phase)
         records.update({"plan_sha256": plan_hash, "host": response["host"], "fusion_version": response["proof"]["fusion_version"],
                         "restart_handoff": response["proof"].get("restart_handoff")})
         return {"outcome": "completed", "reason": response["reason"], "records": records, "artifacts": artifacts}

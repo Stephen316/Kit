@@ -63,6 +63,7 @@ def parked_timeout(owner, row, queue, phase, scratch):
         and records["native_qualified"] is False
         and records["phase"] == phase
         and records["installation"] == queue["installation"]
+        and records.get("scope") == queue.get("scope")
         and isinstance(timeout, dict)
         and set(timeout)
         == {

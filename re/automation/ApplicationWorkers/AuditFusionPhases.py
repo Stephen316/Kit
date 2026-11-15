@@ -12,6 +12,9 @@ from AcknowledgeApplication import accepted_output, stored_bytes
 from Adapters import copy_verified
 from ApplicationProtocol import configuration, record, require, sha256
 from Artifacts import Artifacts
+from FusionPhasePlan import (
+    CASES, check_scope_archives, check_scope_report, phase_identity, phase_options, phase_paths, phase_rule, plan_scope,
+)
 from FusionTimeoutAudit import inspect_spool, parked_timeout
 from OutputManifest import output_manifest
 from Records import canonical, digest, label, specification
@@ -37,17 +40,22 @@ class StoreSnapshot:
 
 def read_queue(path):
     queue = record(path)
-    recipes = queue.get("recipes")
-    require(
-        isinstance(recipes, list)
-        and 1 <= len(recipes) <= 4
-        and all(
-            isinstance(recipe, str) and recipe in {"P01", "P02", "P03", "P04"}
-            for recipe in recipes
+    scope = plan_scope(queue)
+    if scope is None:
+        recipes = queue.get("recipes")
+        require(
+            isinstance(recipes, list)
+            and 1 <= len(recipes) <= 4
+            and all(
+                isinstance(recipe, str) and recipe in {"P01", "P02", "P03", "P04"}
+                for recipe in recipes
+            )
+            and len(set(recipes)) == len(recipes),
+            "expected a queued discovery recipe roster",
         )
-        and len(set(recipes)) == len(recipes),
-        "expected a queued discovery recipe roster",
-    )
+    else:
+        require(queue.get("cases") == list(CASES) and "recipes" not in queue,
+                "expected the fixed Fusion scope control roster")
     require(
         isinstance(queue.get("jobs"), dict)
         and set(queue["jobs"]) == {"a", "b"}
@@ -82,20 +90,17 @@ def phase_row(owner, queue, phase):
     spec = specification(json.loads(row["definition"]))
     parent = queue["jobs"]["a"]
     inputs = {"plan": queue["plan_binding"]}
+    scope = plan_scope(queue)
     if phase == "b":
         inputs["phase-a.accepted"] = {"dependency": parent}
-        for role in (
-            "phase-a.receipt",
-            "phase-a.measurements",
-            *(f"phase-a.{recipe}" for recipe in queue["recipes"]),
-        ):
+        for role in phase_paths(queue, "a"):
             inputs[role] = {"dependency": parent, "artifact": role}
     require(
         row["definition_hash"] == digest(spec)
         and spec["id"] == job
         and spec["kind"] == row["kind"]
-        and spec["options"] == {"phase": phase}
-        and spec["rule_version"] == "fresh-fusion@1"
+        and spec["options"] == phase_options(scope, phase)
+        and spec["rule_version"] == phase_rule(scope)
         and spec["tool_version"] == queue["source_revision"]
         and spec["resources"] == [queue["resource"]]
         and spec["inputs"] == inputs
@@ -116,7 +121,8 @@ def verify_binding(owner, queue, scratch):
     )
     plan = json.loads(stored_bytes(owner, row["sha256"], scratch / "plan.json"))
     require(
-        plan["recipes"] == queue["recipes"]
+        plan_scope(plan) == plan_scope(queue)
+        and all(queue[key] == value for key, value in phase_identity(plan).items())
         and plan["source_revision"] == queue["source_revision"],
         "stored plan differs from the queue receipt",
     )
@@ -129,16 +135,18 @@ def phase_evidence(owner, queue, phase, scratch):
     )
     dispatch = json.loads(raw_dispatch)
     proof = dispatch["proof"]
-    expected_roles = {
-        f"phase-{phase}.{role}"
-        for role in ("receipt", "measurements", *queue["recipes"])
-    }
+    scope = plan_scope(queue)
+    expected_paths = phase_paths(queue, phase)
+    expected_roles = set(expected_paths)
     require(
         set(manifest) == expected_roles | {"dispatch"}
         and set(dispatch["files"]) == expected_roles,
         "accepted Fusion phase output role set differs",
     )
     files = output_manifest(dispatch["files"])
+    if scope is not None:
+        require({role: item["path"] for role, item in files.items()} == expected_paths,
+                "accepted Fusion scope archive paths differ from their roles")
     require(
         all(
             manifest[role]
@@ -155,6 +163,7 @@ def phase_evidence(owner, queue, phase, scratch):
         and dispatch["installation"] == queue["installation"]
         and proof["phase"] == phase
         and proof["plan_sha256"] == queue["plan_sha256"]
+        and proof.get("scope") == scope
         and proof["claim"] == "unqualified_application_observation"
         and dispatch["host"] == proof["host"],
         "accepted Fusion dispatch does not bind this phase, plan and installation",
@@ -193,20 +202,27 @@ def phase_evidence(owner, queue, phase, scratch):
             scratch / "phase-receipt.json",
         )
     )
+    name = "measurements" if scope is None else "report"
+    previous_key = "previous_measurements_sha256" if scope is None else "previous_phase_report_sha256"
+    digest_key = f"{name}_sha256"
     measurements = stored_bytes(
         owner,
-        manifest[f"phase-{phase}.measurements"]["sha256"],
-        scratch / "measurements.json",
+        manifest[f"phase-{phase}.{name}"]["sha256"],
+        scratch / f"{name}.json",
     )
     observed = json.loads(measurements)
+    if scope is not None:
+        check_scope_report(receipt, observed, measurements, queue["plan_sha256"], phase)
+        check_scope_archives(observed, files, phase)
+    version = observed["fusion_version"] if scope is None else observed["application_build"]
     require(
         receipt["schema"] == observed["schema"] == 1
         and receipt["status"] == observed["status"] == "complete"
         and receipt["phase"] == observed["phase"] == phase
         and receipt["plan_sha256"] == observed["plan_sha256"] == queue["plan_sha256"]
-        and receipt["measurements_sha256"] == sha256(measurements)
+        and receipt[digest_key] == sha256(measurements)
         and observed["source_revision"] == queue["source_revision"]
-        and observed["fusion_version"] == proof["fusion_version"]
+        and version == proof["fusion_version"]
         and observed["errors"] == [],
         "accepted Fusion measurements do not match the phase receipt",
     )
@@ -219,20 +235,24 @@ def phase_evidence(owner, queue, phase, scratch):
         and process["start_unix_seconds"] > 0,
         "accepted Fusion process identity differs",
     )
-    return {
+    output = {
         "receipt_sha256": row["receipt"],
         "result_sha256": row["result"],
-        "measurements_sha256": receipt["measurements_sha256"],
-        "fusion_version": observed["fusion_version"],
+        digest_key: receipt[digest_key],
+        "fusion_version": version,
         "process": process,
         "ended_unix_seconds": observed["ended_unix_seconds"],
-        "previous_measurements_sha256": observed["previous_measurements_sha256"],
+        previous_key: observed[previous_key] if scope is None else observed.get(previous_key),
         "artifacts": manifest,
         "dependencies": snapshot["dependencies"],
     }
+    if scope is not None:
+        output["previous_process"] = observed.get("previous_process")
+    return output
 
 
 def audit(store, queue, installation=None):
+    scope = plan_scope(queue)
     if installation is not None:
         require(
             installation["application"] == "fusion"
@@ -283,9 +303,15 @@ def audit(store, queue, installation=None):
             "completed repeat phase lacks its current completed first phase",
         )
         first, second = (phases[phase]["evidence"] for phase in ("a", "b"))
+        digest_key = "measurements_sha256" if scope is None else "report_sha256"
+        previous_key = "previous_measurements_sha256" if scope is None else "previous_phase_report_sha256"
+        if scope is not None:
+            require(first["previous_process"] is None and second["previous_process"] == first["process"]
+                    and second["process"]["start_unix_seconds"] > first["ended_unix_seconds"],
+                    "accepted scope report does not bind the exact prior process and its end")
         require(
             first["dependencies"] == {}
-            and first["previous_measurements_sha256"] is None
+            and first[previous_key] is None
             and second["dependencies"]
             == {
                 queue["jobs"]["a"]: {
@@ -293,7 +319,7 @@ def audit(store, queue, installation=None):
                     "result": first["result_sha256"],
                 }
             }
-            and second["previous_measurements_sha256"] == first["measurements_sha256"]
+            and second[previous_key] == first[digest_key]
             and second["fusion_version"] == first["fusion_version"]
             and second["process"]["pid"] != first["process"]["pid"]
             and second["process"]["start_unix_seconds"]
@@ -305,7 +331,7 @@ def audit(store, queue, installation=None):
     status = "verified_pair" if phases["b"]["state"] == "completed" else "pending"
     if any(item["state"] in {"failed", "rejected"} for item in phases.values()):
         status = "failed"
-    return {
+    output = {
         "status": status,
         "native_qualified": False,
         "launched_application": False,
@@ -316,6 +342,9 @@ def audit(store, queue, installation=None):
         "resource": queue["resource"],
         "resource_available": bool(resource is not None and resource["available"]),
     }
+    if scope is not None:
+        output["scope"] = scope
+    return output
 
 
 def main():

@@ -5,8 +5,14 @@ import subprocess as Subprocess
 import sys as System
 from contextlib import closing as CloseConnection
 from pathlib import Path as FilePath
+from typing import cast as CastValue
+
+import pytest as Pytest
 
 from tests.Research.SupervisorClient import KRepoRoot, SessionHost
+
+# the separate scope study uses a closed case roster in both controller jobs
+KScope = "two-body-through-all-discovery"
 
 
 # separate process invocation checks the actual queue and plan command boundaries
@@ -84,15 +90,39 @@ def VerifyPhaseJobs(Harness: SessionHost, Receipt: dict[str, object]) -> None:
         "plan": Binding,
         "phase-a.accepted": {"dependency": PhaseA["id"]},
     }
-    for RoleName in (
-        "phase-a.receipt",
-        "phase-a.measurements",
-        "phase-a.P01",
-        "phase-a.P04",
-    ):
+    for RoleName in ScopeRoles(Receipt, PhaseA, PhaseB):
         Expected[RoleName] = {"dependency": PhaseA["id"], "artifact": RoleName}
     assert PhaseB["inputs"] == Expected
     assert PhaseA["resources"] == PhaseB["resources"] == ["application:fusion:local"]
+
+
+# the fixed job envelope identifies the scope case set without changing legacy jobs
+def ScopeRoles(
+    Receipt: dict[str, object],
+    PhaseA: dict[str, object],
+    PhaseB: dict[str, object],
+) -> tuple[str, ...]:
+    if Receipt.get("scope") == KScope:
+        assert Receipt["cases"] == ["automatic", "explicit_a", "explicit_ab"]
+        assert "recipes" not in Receipt
+        assert PhaseA["options"] == {"phase": "a", "scope": KScope}
+        assert PhaseB["options"] == {"phase": "b", "scope": KScope}
+        assert (
+            PhaseA["rule_version"]
+            == PhaseB["rule_version"]
+            == "fusion-through-all-scope@1"
+        )
+        return (
+            "phase-a.receipt",
+            "phase-a.report",
+            "phase-a.automatic",
+            "phase-a.explicit_a",
+            "phase-a.explicit_ab",
+        )
+    assert Receipt["recipes"] == ["P01", "P04"]
+    assert PhaseA["options"] == {"phase": "a"}
+    assert PhaseB["options"] == {"phase": "b"}
+    return "phase-a.receipt", "phase-a.measurements", "phase-a.P01", "phase-a.P04"
 
 
 # a pending evidence audit must leave the queue and unavailable application resource intact
@@ -109,6 +139,7 @@ def VerifyAudit(Harness: SessionHost, Receipt: dict[str, object]) -> None:
         )
     )
     assert Audit["status"] == "pending"
+    assert Audit.get("scope") == Receipt.get("scope")
     assert Audit["launched_application"] is Audit["native_qualified"] is False
     assert Audit["resource_available"] is False
     assert Audit["phases"]["a"]["state"] == "waiting_application"
@@ -117,22 +148,10 @@ def VerifyAudit(Harness: SessionHost, Receipt: dict[str, object]) -> None:
 
 
 # repeated submission preserves one exact pair and rejects incorrect control provenance
-def CheckFusionPair(TmpPath: FilePath) -> None:
+@Pytest.mark.parametrize("ScopeRun", (False, True), ids=("discovery", "scope"))
+def CheckFusionPair(TmpPath: FilePath, ScopeRun: bool) -> None:
     OutputPath = TmpPath / "Prepared"
-    PlanReceipt = JsonCodec.loads(
-        RunFusionTool(
-            "re/automation/PairedCaptures/FusionFreshProcess.py",
-            [
-                "--output",
-                str(OutputPath),
-                "--recipe",
-                "P01",
-                "--recipe",
-                "P04",
-                "--read-existing",
-            ],
-        )
-    )
+    PlanReceipt = PreparePair(OutputPath, ScopeRun)
     Harness = MakeQueueHost(TmpPath, PlanReceipt["source_revision"])
     PlanPath = OutputPath / "plan.json"
     Arguments = [
@@ -159,3 +178,17 @@ def CheckFusionPair(TmpPath: FilePath) -> None:
     VerifyPhaseJobs(Harness, Receipt)
     VerifyAudit(Harness, Receipt)
     assert not (TmpPath / "AbsentEndpoint").exists()
+
+
+# preparation binds the actual recipe or scope program without opening the application
+def PreparePair(OutputPath: FilePath, ScopeRun: bool) -> dict[str, str]:
+    Arguments = ["--output", str(OutputPath)]
+    RootPath = "re/automation/PairedCaptures"
+    if ScopeRun:
+        ScriptPath = f"{RootPath}/ScopeControl/FusionScopeControl.py"
+    else:
+        ScriptPath = f"{RootPath}/FusionFreshProcess.py"
+        Arguments.extend(("--recipe", "P01", "--recipe", "P04", "--read-existing"))
+    return CastValue(
+        dict[str, str], JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
+    )

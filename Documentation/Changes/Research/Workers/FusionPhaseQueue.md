@@ -13,6 +13,8 @@ The command uses the built-in A03 store and the registered `capture.fusion` runn
 
 The receipt prints the installation, exact revision, plan digest and phase job IDs. Repeat the command to recover the same IDs without creating a second pair. Set `--run` to a new label to schedule a separate capture from the same plan. An existing job with a conflicting definition or a changed content-addressed binding causes the transaction to fail.
 
+The [two-body through-all plan](../FusionReadback/FusionScopeControl.md) uses the same queue command and signed-in add-in. Its receipt identifies the fixed automatic, explicit-A and explicit-A+B cases. Phase B stages Phase A's accepted A03 result and its exact report, receipt and three archives. The native worker checks the accepted artifacts before it runs the next phase. The [read-only audit](FusionPhaseAudit.md) checks the linked reports and process identities under their scope receipt.
+
 Save that receipt to [check both phases and their accepted output evidence](FusionPhaseAudit.md) from the private controller store.
 
 Native execution uses the signed-in macOS Fusion installation and its existing `KitCaptureRunner` endpoint. The add-in supplies a fresh main-thread control. Phase A hands off to the host owner for normal exit and restart of the same Fusion build. After A03 acknowledges Phase A, Phase B can hold its normal claim and counted resource slot while the exact restart fence is present. The wait fits within the existing dispatch deadline and leaves the application spool, acknowledgement state and fence untouched. Once the new add-in clears that fence and the original process has exited, Phase B runs the existing live readiness control and retains the capture-specific restart checks.

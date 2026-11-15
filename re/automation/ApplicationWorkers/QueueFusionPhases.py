@@ -18,6 +18,7 @@ from ApplicationProtocol import (
     sha256,
     write_new,
 )
+from FusionPhasePlan import phase_identity, phase_options, phase_paths, phase_rule, plan_scope
 from Ledger import Ledger
 from Records import canonical, digest, label, specification
 from Runners import Registry
@@ -78,6 +79,7 @@ def check_plan(installation, directory, plan_hash):
 
 
 def phase_jobs(installation, kind, resource, run, plan, plan_hash):
+    scope = plan_scope(plan)
     binding = f"fusion-plan:{plan_hash}"
     run_hash = sha256(
         canonical(
@@ -91,29 +93,25 @@ def phase_jobs(installation, kind, resource, run, plan, plan_hash):
         ).encode("utf-8")
     )
     phase_a, phase_b = (f"fusion-phase:{run_hash}:{phase}" for phase in ("a", "b"))
-    roles = (
-        "phase-a.receipt",
-        "phase-a.measurements",
-        *(f"phase-a.{recipe}" for recipe in plan["recipes"]),
-    )
+    roles = phase_paths(plan, "a")
     follow_inputs = {role: {"dependency": phase_a, "artifact": role} for role in roles}
     common = {
         "kind": kind,
         "resources": [resource],
-        "rule_version": "fresh-fusion@1",
+        "rule_version": phase_rule(scope),
         "tool_version": installation["source_revision"],
     }
     jobs = [
         {
             **common,
             "id": phase_a,
-            "options": {"phase": "a"},
+            "options": phase_options(scope, "a"),
             "inputs": {"plan": binding},
         },
         {
             **common,
             "id": phase_b,
-            "options": {"phase": "b"},
+            "options": phase_options(scope, "b"),
             "depends_on": [phase_a],
             "inputs": {
                 "plan": binding,
@@ -165,7 +163,7 @@ def queue_phases(config, source_plan, kind, resource, run):
         "installation": installation["installation"],
         "resource": resource,
         "source_revision": installation["source_revision"],
-        "recipes": plan["recipes"],
+        **phase_identity(plan),
         "plan_sha256": plan_hash,
         "plan_binding": binding,
         "jobs": {job["options"]["phase"]: job["id"] for job in jobs},
