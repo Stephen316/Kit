@@ -14,7 +14,7 @@ def CheckBatch(TmpPath: FilePath) -> None:
     FirstName, NextName = "candidate:first", "candidate:next"
     _ = StageWaiting(Client, TmpPath, FirstName)
     PendingPath = StageWaiting(Client, TmpPath, NextName)
-    Revision = CheckoutHead()
+    Revision = ReadCommit()
     Report = ReadRoster(TmpPath, Revision, (NextName, FirstName))
     assert ReadRoster(TmpPath, Revision, (FirstName, NextName)) == Report
     VerifyRoster(Client, Report, Revision, (FirstName, NextName))
@@ -61,7 +61,7 @@ def StageWaiting(Client: JobClient, RootPath: FilePath, JobName: str) -> FilePat
 
 
 # the batch revision must identify the actual checkout used by the hosted candidate
-def CheckoutHead() -> str:
+def ReadCommit() -> str:
     Response = Subprocess.run(
         ["git", "-C", str(KRepoRoot), "rev-parse", "--verify", "HEAD"],
         capture_output=True,
