@@ -19,4 +19,10 @@ The dedicated Workflow Quality job checks out the exact GitHub candidate with re
 
 The preflight checks the existing controllers, private leaf controls and kernel-log permissions before starting a workload. An unsupported prerequisite produces an explicit `unmeasured` receipt and a successful job. After preflight, a failed observation, identity check or cleanup fails Workflow Quality and its aggregate. Merge groups retain the workflow's existing exact-input PR CI reuse rules.
 
-Static source and workflow checks ran on Windows. The hosted Linux observation is pending. Supervisor integration and numeric adaptive backoff remain separate evidence requirements.
+## First hosted observation
+
+GitHub Actions run `43704325182` verified the witness on PR head `b79de39ab9793072579f3951ed22835a045ccd2f`. The candidate checkout `afb1ee61992b76709647c5a8f4197f3869d46372` combined that head and base `4b730a8ff92f2a63dfdf3c16566d835b79c04835`. The observed source Git blob is `7ace4fe8c0bad896fd60c1ada482810eefddd583` and its SHA-256 is `4c223a791c8abd7fb725ae12142484b799716b8e02c601899f18903d3dfa84b2`. [Linux kernel OOM witness job](https://github.com/TryUniCAD/Kit/actions/runs/43704325182/job/132782127680)
+
+On kernel `7.0.0-1014-aws`, the private memory-capped child reached exactly 64 MiB. Its local `max` counter increased by 35, `oom` by one, and `oom_kill` by one. A kernel-originated `CONSTRAINT_MEMCG` record named the exact victim PID, UID and both cgroup paths. Both cases ended in `SIGKILL`. The ordinary-signal case produced zero local memory event changes and zero matching OOM records. Both groups were empty after reaping and were removed. The lowest available host memory measured at the observation boundaries was 15,062,376,448 bytes.
+
+The workflow published artifact `14158420015`. The downloaded archive matched the GitHub SHA-256 `6ded4d47e4aac7e511063c7ea07e943167859a04b315607e2b7083f6a2b39a7c`. Its only member, the sanitized witness JSON, has SHA-256 `4166b30117b856c08e6c861aa723f2e08764e853a64903c7bc8366336e39a7d5`. That report binds the source and each victim to the recorded cgroup evidence. Supervisor dispatch and numeric adaptive backoff remain separate evidence requirements. [Sanitized witness artifact](https://github.com/TryUniCAD/Kit/actions/runs/43704325182/artifacts/14158420015)
