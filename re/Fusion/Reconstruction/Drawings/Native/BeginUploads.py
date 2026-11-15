@@ -14,7 +14,7 @@ import adsk.core
 app = common.app
 store = common.state()
 variants = common.SCRATCH / 'Variants'
-PLAN_FILES = ('Plan.json', 'Plan2.json', 'Plan3.json', 'Plan4.json', 'Plan5.json', 'Plan6.json', 'Plan7.json', 'Plan8.json', 'Plan9.json', 'Plan10.json', 'Plan11.json', 'PlanFresh.json', 'PlanAuthored.json', 'PlanBisect.json', 'PlanGrafts.json', 'PlanTransplant.json', 'PlanContainer.json', 'PlanDims.json', 'PlanAsme.json', 'PlanChildren.json', 'PlanEdges.json', 'PlanUnknowns.json', 'PlanArbitrary.json', 'PlanZeroChecksum.json', 'PlanIsolate.json')
+PLAN_FILES = ('Plan.json', 'Plan2.json', 'Plan3.json', 'Plan4.json', 'Plan5.json', 'Plan6.json', 'Plan7.json', 'Plan8.json', 'Plan9.json', 'Plan10.json', 'Plan11.json', 'PlanFresh.json', 'PlanAuthored.json', 'PlanBisect.json', 'PlanGrafts.json', 'PlanTransplant.json', 'PlanContainer.json', 'PlanDims.json', 'PlanAsme.json', 'PlanChildren.json', 'PlanEdges.json', 'PlanUnknowns.json', 'PlanArbitrary.json', 'PlanZeroChecksum.json', 'PlanIsolate.json', 'PlanMove.json')
 report = {'fusion_version': app.version, 'documents_before': app.documents.count, 'stage': 'starting', 'uploads': {}}
 
 
