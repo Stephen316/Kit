@@ -1,0 +1,25 @@
+# P04 allocation of the second configuration sketch
+
+A single read-only baseline A session on build `34.4.1.1011` observes how the configuration load map reaches the second `sgSketch`. The `Contents/Config-0` buffer matches the pinned baseline A SHA-256 `e40cdd1e562a9e501a0a29ac252745d5c5cac6a7265ef924ccef4f5d078b34ab`. The owned process closes normally with the source capture hash unchanged. [Capture and image pins](P04ArchiveWalk.md#inputs), [native sketch windows](P04SketchGeometry.md#native-object-calls-in-the-baseline-a-sketches)
+
+The first `sgSketch` entry at `sldmodu+0x144f790` verifies that load map slot 74 holds the serializer's object. Its matching return at `0x1457e80` sees byte 12,532 and next map index 147 on the same archive object and buffer. At that point the `swccu+0xa550` object hook enables for the interval `[12532,12923)` on that archive and buffer alone. On the second `sgSketch` entry at byte 12,923, slot 155 holds the incoming serializer object and the next map index is 156. The second entry disables all three hooks.
+
+| Config-0 byte | Native read or allocation | Map result |
+| ---: | --- | --- |
+| 12,538 | Enclosing reference wrapper's null child | Unchanged |
+| 12,720 | First `moRelEquationSide_c`'s parent reference read, returning to `0x11f7b9c` | Existing `moRelation_c` object 63 |
+| 12,722 | Following `moRelEquationSide_c` class reference | Class 64, object 147 |
+| 12,726 | First entry in the following side's operand list | `moRelOperator_c` class 148, object 149 |
+| 12,769 | Second operand | Operator class 148, object 150 |
+| 12,793 | Third operand | `moRelDimension_c` class 66, object 151 |
+| 12,799 | Dimension reference wrapper | `moDimRefWrapper_c` class 68, object 152 |
+| 12,809 | Wrapper's sketch-dimension handle | `moSkDimHandleValG2_c` class 70, object 153 |
+| 12,811 | Handle's unit component | `moUnitComponent_c` class 43, object 154 |
+| 12,813 | Unit component's root part reference | Existing `moPart_c` object 2 |
+| 12,921 | Local sketch pointer read | `sgSketch` class 73, object 155 |
+
+All 18 native object reads match archive tags and map transitions. The eight null pointer reads leave the map unchanged. The following side has short count eight, so its third operand opens the second sketch while five operands remain. The first side's interval preceding its parent read at 12,720 still needs an offline layout for the intervening scalar and string fields. The live map witness supplies an independent checkpoint for that walk.
+
+Starting at the measured second entry, the same guarded offline geometry parser reads five points, five lines, two length dimensions, and four logical member relations. Its 74 pointer call positions match the separate native sketch-body trace. The group ends are 13,954, 14,418, 14,776 and 15,002 respectively, with next map index 184. The points outline a rectangle from `(0,0)` to `(40,20)` mm. The two distance dimensions are `width_mm` ID 27 at 40 mm and `height_mm` ID 28 at 20 mm. The first sketch's dimension names and geometry identify its different cut rectangle. [First sketch geometry](P04SketchGeometry.md#geometry-and-dimension-fields)
+
+Reproduce with `SketchGapBaseline.cdb` and `VerifySketchGap.py` in the scratch trace directory, using the same owned read-only launch and source hash checks as the [root archive witness](P04ArchiveWalk.md#native-root-map). Verify the module and buffer identities before accepting the call positions. The normalized `SketchGapSummary.json` records the 18 offsets, read kinds, map counters and module-relative callers with SHA-256 `06759925a980ee620c905ee8712518a7e2fb68d1e4c7aeccb3c69823b100de5b`. The scratch `P04SketchReplay.py` checks the second geometry prefix against the native entry and pointer trace. The offline walk still stops within the display-dimension body when started from the root.
