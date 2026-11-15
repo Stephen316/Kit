@@ -11,8 +11,17 @@ KILL_SIGNAL = getattr(signal, "SIGKILL", 9)
 def start_process(argv, root, environment, stdout, stderr):
     if sys.platform == "win32":
         from WindowsProcess import WindowsProcess
-        return WindowsProcess(argv, root, environment, stdout, stderr)
-    return subprocess.Popen(argv, cwd=root, env=environment, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True, close_fds=True)
+        return WindowsProcess(argv, root, environment, stdout, stderr), None
+    reader, writer = os.pipe()
+    try:
+        command = [sys.executable, "-I", "-S", str(Path(__file__).with_name("LaunchGate.py")), str(reader), *argv]
+        process = subprocess.Popen(command, cwd=root, env=environment, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True, close_fds=True, pass_fds=(reader,))
+    except BaseException:
+        os.close(writer)
+        raise
+    finally:
+        os.close(reader)
+    return process, writer
 
 
 def finish_process(process):

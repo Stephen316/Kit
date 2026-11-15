@@ -1,4 +1,5 @@
 import json
+import math
 import os
 import secrets
 import shutil
@@ -87,25 +88,54 @@ class Session:
         if sys.platform == "win32":
             environment.update({name: os.environ[name] for name in ("SystemRoot", "WINDIR", "PATHEXT") if name in os.environ})
             environment.update({"USERPROFILE": work, "TEMP": work, "TMP": work})
+        release = None
         try:
             for name in ("stdout", "stderr"):
                 self.logs[name] = LogCapture(self.directory / f"{name}.log", self.supervisor.max_log_bytes)
-            self.process = start_process(argv, self.supervisor.root, environment, self.logs["stdout"].writer, self.logs["stderr"].writer)
+            self.process, release = start_process(argv, self.supervisor.root, environment, self.logs["stdout"].writer, self.logs["stderr"].writer)
+            self.pid = self.process.pid
+            self.process_start = self.process.identity if os.name == "nt" else process_start(self.pid)
+            if self.process_start is None:
+                raise OSError("process identity unavailable before runner release")
+            write_private(self.directory / "session.json", {
+                "session_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
+                "attempt": self.claim["attempt"], "pid": self.pid, "process_start": self.process_start,
+                "claim_file": str(self.claim_path), "started_at": self.started,
+                "job_object": getattr(self.process, "job_name", None),
+                **({"group_session_version": 1, "group_size": len(self.members), "jobs": [member.spec["id"] for member in self.members]} if hasattr(self, "members") else {}),
+            })
+            if release is not None:
+                metadata = os.open(self.directory, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
+                try:
+                    os.fsync(metadata)
+                finally:
+                    os.close(metadata)
+                lease = self.supervisor.adapter.RenewGroup(self.claim_path) if hasattr(self, "members") else self.supervisor.adapter.RenewLease(self.claim_path)
+                now = time.time()
+                members = lease.get("members") if hasattr(self, "members") and isinstance(lease, dict) else [lease]
+                expected = len(self.members) if hasattr(self, "members") else 1
+                if not isinstance(lease, dict) or type(lease.get("stale")) is not bool or lease["stale"] or not isinstance(members, list) or len(members) != expected:
+                    raise OSError("invalid or stale lease response before runner release")
+                if any(not isinstance(item, dict) or type(item.get("stale")) is not bool or item["stale"] or any(type(item.get(key)) not in (int, float) or not math.isfinite(item[key]) or item[key] <= now for key in ("deadline", "lease_until")) for item in members) or now >= self.stop_at:
+                    raise OSError("lease or execution deadline expired before runner release")
+                self.next_renew = now + self.renew_every
+                if os.write(release, b"x") != 1:
+                    raise OSError("runner launch gate did not receive its release byte")
+        except BaseException:
+            if release is not None:
+                os.close(release)
+                release = None
+                signal_group(self.process.pid, KILL_SIGNAL)
+                self.process.wait()
+            raise
         finally:
+            if release is not None:
+                os.close(release)
             for capture in self.logs.values():
                 if self.process is None:
                     capture.close()
                 else:
                     capture.close_writer()
-        self.pid = self.process.pid
-        self.process_start = self.process.identity if os.name == "nt" else process_start(self.pid)
-        write_private(self.directory / "session.json", {
-            "session_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
-            "attempt": self.claim["attempt"], "pid": self.pid, "process_start": self.process_start,
-            "claim_file": str(self.claim_path), "started_at": self.started,
-            "job_object": getattr(self.process, "job_name", None),
-            **({"group_session_version": 1, "group_size": len(self.members), "jobs": [member.spec["id"] for member in self.members]} if hasattr(self, "members") else {}),
-        })
 
     def begin_stop(self, reason, now):
         if self.stop_reason is not None:

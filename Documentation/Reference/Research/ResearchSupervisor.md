@@ -118,6 +118,10 @@ Calibration and native application acceptance remain separate steps.
 The supervisor starts each runner without a shell, in a new process group, with the repository root as its working directory.
 The environment contains only `PATH`, the locale variables, `TZ`, `KIT_SESSION`, and `HOME` and `TMPDIR` set to `work/`.
 
+On POSIX, an isolated bootstrap waits for the supervisor to write and sync process recovery metadata before it executes the configured worker.
+The parent releases it through a private pipe; parent death before release exits the bootstrap without running the worker.
+See [the launch-gate contract](../../Changes/Research/Supervisor/PosixWorkerLaunchGate.md) for identity, timeout and verification limits.
+
 | Path           | Writer     | Content                                                                |
 | -------------- | ---------- | ---------------------------------------------------------------------- |
 | `job.json`     | Supervisor | Job definition, attempt, generation, fingerprint, inputs and `stop_at` |
