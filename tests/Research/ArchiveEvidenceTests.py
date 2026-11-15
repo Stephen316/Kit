@@ -513,6 +513,114 @@ def CheckDatum(
     assert "fusion.native_state" not in Document.metadata
 
 
+# sketch only and boss archives use different native addresses for the same witnessed size roles
+@Pytest.mark.parametrize(
+    ("Family", "Capture", "Variant"),
+    (
+        ("P01", "5dc3245eb59c", "baseline-a"),
+        ("P01", "5dc3245eb59c", "baseline-b"),
+        ("P01", "5dc3245eb59c", "edit-width_mm-41"),
+        ("P01", "5dc3245eb59c", "edit-height_mm-23"),
+        ("P01", "5dc3245eb59c", "plane-yz"),
+        ("P01", "5dc3245eb59c", "units-inch"),
+        ("P03", "8d53584027ff", "baseline-a"),
+        ("P03", "8d53584027ff", "baseline-b"),
+        ("P03", "8d53584027ff", "edit-width_mm-41"),
+        ("P03", "8d53584027ff", "edit-height_mm-23"),
+        ("P03", "8d53584027ff", "edit-depth_mm-12"),
+        ("P03", "8d53584027ff", "plane-yz"),
+        ("P03", "8d53584027ff", "direction-negative"),
+        ("P03", "8d53584027ff", "units-inch"),
+    ),
+)
+def CheckPartRect(Family: str, Capture: str, Variant: str) -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    Archive = (
+        RootDir
+        / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
+        / f"{Family}-fusion-{Variant}.f3d"
+    )
+    Document = OpenDocument(Archive, StrictMode=False)
+    (SketchValue,) = Document.sketches
+    Selected = Family == "P03"
+    Prefix = "fusion.selected_profile" if Selected else "fusion.authored_contour"
+    assert (
+        SketchValue.attributes.get(f"{Prefix}_size_corner_object_id") == 228
+    ), Document.diagnostics
+    Entities = {f"fusion-sketch-entity-{Identity}" for Identity in (232, 238, 244, 248)}
+    if Selected:
+        AssertBossOrder(Document, Variant)
+        (LoopValue,) = SketchValue.closed_profile_entity_ids
+        assert set(LoopValue) == Entities
+    else:
+        assert SketchValue.closed_profile_entity_ids == ()
+        assert SketchValue.attributes["fusion.authored_contour_entity_ids"] == tuple(
+            f"fusion-sketch-entity-{Identity}" for Identity in (232, 238, 244, 248)
+        )
+        assert not any(
+            KeyValue.startswith("fusion.selected_profile")
+            for Relation in SketchValue.constraints
+            for KeyValue in Relation.attributes
+        )
+    AssertPartDims(Document, SketchValue, Prefix, Selected, Variant)
+
+
+# signed extrude direction and rotated sketch frames retain distinct saved membership orders
+def AssertBossOrder(Document: CadDocument, Variant: str) -> None:
+    Feature = Document.feature_timeline[-1]
+    assert Feature.attributes["fusion.profile_selection_proxy_id"] == 278
+    assert Feature.attributes["fusion.profile_descriptor_id"] == 281
+    Order = {
+        "plane-yz": (248, 232, 238, 244),
+        "direction-negative": (232, 248, 238, 244),
+    }.get(Variant, (248, 238, 244, 232))
+    assert Feature.attributes["fusion.profile_native_members"] == tuple(
+        f"fusion-sketch-entity-{Identity}" for Identity in Order
+    )
+
+
+# saved width and height point order identifies the real axis rule and graph row
+def AssertPartDims(
+    Document: CadDocument,
+    SketchValue: Sketch,
+    Prefix: str,
+    Selected: bool,
+    Variant: str,
+) -> None:
+    Names = {Value.id: Value.name for Value in Document.parameters}
+    Dimensions = {
+        Names[Value.parameter_id]: Value
+        for Value in SketchValue.constraints
+        if Value.parameter_id is not None
+    }
+    AxisRules = {
+        Value.id: Value
+        for Value in SketchValue.constraints
+        if Value.kind in ("horizontal", "vertical")
+    }
+    assert len(AxisRules) == 4 and set(Dimensions) == {"width_mm", "height_mm"}
+    assert {Value.attributes[f"{Prefix}_side_id"] for Value in AxisRules.values()} == {
+        f"fusion-sketch-entity-{Identity}" for Identity in (232, 238, 244, 248)
+    }
+    KindKey = "loop" if Selected else "sketch"
+    for NameValue, SideId, BindId, EndIds in (
+        ("width_mm", 232, 259, (228, 230)),
+        ("height_mm", 248, 269 if Selected else 266, (242, 228)),
+    ):
+        Relation = Dimensions[NameValue]
+        Attributes = Relation.attributes
+        assert Attributes[f"{Prefix}_side_id"] == f"fusion-sketch-entity-{SideId}"
+        assert Attributes[f"{Prefix}_{KindKey}_object_id"] == (284 if Selected else 202)
+        assert Attributes[f"{Prefix}_binding_edge"] == (207, BindId, 1)
+        assert tuple(Value.entity_id for Value in Relation.references) == tuple(
+            f"fusion-sketch-entity-{Identity}" for Identity in EndIds
+        )
+        AxisId = Attributes[f"{Prefix}_axis_relation_id"]
+        assert isinstance(AxisId, str)
+        Horizontal = (NameValue == "width_mm") != (Variant == "plane-yz")
+        assert AxisRules[AxisId].kind == ("horizontal" if Horizontal else "vertical")
+
+
 # the saved boss cap would misleadingly look like an origin plane without its selection records
 def CheckFaceDatum() -> None:
     RootDir = FilePath(__file__).resolve().parents[2]

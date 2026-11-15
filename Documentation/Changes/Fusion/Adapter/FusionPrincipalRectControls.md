@@ -1,0 +1,7 @@
+# Saved Fusion principal rectangle controls
+
+The partial F3D reader links native rectangle axis rules and both driving size dimensions to their exact authored side and point identities. It checks all four sides, the separate coincident origin anchor, both ordered dimensions, and the two reciprocal sketch-feature-to-binding edges. The supported principal rectangles use the saved XY or YZ datum. [Saved P01 rectangle evidence](../../Research/Readers/FusionRectangleSketchEvidence.md)
+
+P01 records these associations under the authored contour of native sketch `202`. Its height binding is `266`. P03 resolves the Boss's owned profile through proxy `278`, descriptor `281` and loop `284`, and records its size associations against that selected loop. Its height binding is `269`. Each retains its real binding edge and side provenance. [Saved P03 boss profile evidence](../../Research/Readers/FusionBossProfileEvidence.md)
+
+The six P01 and eight P03 discovery exports corroborate the shared sides and separate record identities. The YZ variants swap the saved width and height axes. The P03 negative-direction variant retains its distinct loop member order. The edited-height annotation caches remain a separate measurement check. Fresh participant readback and editable acceptance remain open. [Annotation cache evidence](../../../Gotchas/Research/Readers/FusionDimensionAnchorCopies.md), [Archive integration scenarios](../../../../tests/Research/ArchiveEvidenceTests.py)

@@ -3,6 +3,7 @@ from dataclasses import replace as Replace
 from convert.formats.Fusion.HistoryPart import HistoryPart
 from convert.formats.Fusion.Profiles.RectControls.AttachRectCtrl import AttachRectCtrl
 from convert.formats.Fusion.Profiles.RectControls.CheckRectGraph import CheckRectGraph
+from convert.formats.Fusion.Profiles.RectControls.ProjectPartRect import ProjectPartRect
 from convert.formats.Fusion.Profiles.RectControls.SketchDimRows import ReadSketchDims
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Sketches.CenterDeps.CenterPair import FindCenterPair
@@ -19,7 +20,7 @@ def ProjectRectCtrl(
 ) -> CadDocument:
     PairValue = FindCenterPair(Document)
     if PairValue is None:
-        return Document
+        return ProjectPartRect(Document, BulkData, Spans, History)
     Owners = {Value.ObjectId: Value for Value in Spans if Value.IsPrimary}
     Params = {Value.id: Value for Value in Document.parameters}
     try:

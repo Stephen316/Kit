@@ -2,8 +2,10 @@ from dataclasses import replace as Replace
 
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.Profiles.RectControls.CheckRectCorner import CheckRectCorner
+from convert.formats.Fusion.Profiles.RectControls.ReadAuthored import ReadAuthored
 from convert.formats.Fusion.Profiles.RectControls.ReadRectAxes import ReadRectAxes
 from convert.formats.Fusion.Profiles.RectControls.ReadRectSizes import ReadRectSizes
+from convert.formats.Fusion.Profiles.RectControls.RectSideOrigin import RectSideOrigin
 from convert.formats.Fusion.Profiles.RectControls.RetainRectSize import RetainRectSize
 from convert.formats.Fusion.Profiles.RectControls.SelectedSides import ReadRectSides
 from convert.formats.Fusion.Profiles.RectControls.SketchDimRows import SketchDimRow
@@ -18,21 +20,23 @@ def AttachRectCtrl(
     BulkData: bytes,
     Owners: dict[int, RecordSpan],
     SketchValue: Sketch,
-    Feature: FeatureStep,
+    Feature: FeatureStep | None,
     DimRows: tuple[SketchDimRow, ...],
     GraphSpan: RecordSpan,
 ) -> Sketch:
-    LoopId, Sides = ReadRectSides(BulkData, Owners, SketchValue, Feature)
-    LoopSpan = Owners[LoopId]
+    if Feature is None:
+        Source, Sides = ReadAuthored(BulkData, Owners, SketchValue)
+    else:
+        LoopId, Sides = ReadRectSides(BulkData, Owners, SketchValue, Feature)
+        Source = Owners[LoopId]
+    Scope = RectSideOrigin(Source)
     Geometric = SketchValue.constraints[:5]
     AxisRules = ReadRectAxes(Sides, Geometric)
     CornerId, Sizes = ReadRectSizes(Sides, DimRows, AxisRules)
     CheckRectCorner(SketchValue, Sides, Geometric, CornerId, len(DimRows) == 4)
     Updated = {
         Value.id: Value
-        for Value in (
-            RetainRectSize(RowValue, LoopSpan, GraphSpan) for RowValue in Sizes
-        )
+        for Value in (RetainRectSize(RowValue, Scope, GraphSpan) for RowValue in Sizes)
     }
     for Identity, AxisRule in AxisRules.items():
         Origin = AxisRule.provenance
@@ -40,26 +44,27 @@ def AttachRectCtrl(
             raise ValueError("Fusion rectangle axis lacks native provenance")
         Updated[AxisRule.id] = Replace(
             AxisRule,
-            provenance=Replace(
-                Origin, spans=Origin.spans + ParamOrigin(LoopSpan).spans
-            ),
+            provenance=Replace(Origin, spans=Origin.spans + ParamOrigin(Source).spans),
             attributes=FreezeMapping(
                 {
                     **AxisRule.attributes,
-                    "fusion.selected_profile_side_id": Identity,
-                    "fusion.selected_profile_loop_object_id": LoopId,
+                    f"{Scope.Prefix}_side_id": Identity,
+                    Scope.IdentityKey: Source.ObjectId,
                 }
             ),
+        )
+    Attributes = {
+        **SketchValue.attributes,
+        f"{Scope.Prefix}_size_corner_object_id": CornerId,
+    }
+    if Feature is None:
+        Attributes["fusion.authored_contour_entity_ids"] = tuple(
+            Value.Entity.id for Value in Sides
         )
     return Replace(
         SketchValue,
         constraints=tuple(
             Updated.get(Value.id, Value) for Value in SketchValue.constraints
         ),
-        attributes=FreezeMapping(
-            {
-                **SketchValue.attributes,
-                "fusion.selected_profile_size_corner_object_id": CornerId,
-            }
-        ),
+        attributes=FreezeMapping(Attributes),
     )

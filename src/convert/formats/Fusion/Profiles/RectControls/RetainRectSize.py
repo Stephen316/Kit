@@ -2,6 +2,7 @@ from dataclasses import replace as Replace
 
 from convert.formats.Fusion.ParamProjection import ParamOrigin
 from convert.formats.Fusion.Profiles.RectControls.ReadRectSizes import ChosenSize
+from convert.formats.Fusion.Profiles.RectControls.RectSideOrigin import RectSideOrigin
 from convert.formats.Fusion.RecordSpan import RecordSpan
 from interchange.core.Common import FreezeMapping
 from interchange.geometry.models.Sketch import SketchRelation
@@ -10,7 +11,7 @@ from interchange.geometry.models.Sketch import SketchRelation
 # size provenance appends the exact side and reciprocal owner edge beside the original ordered point operands
 def RetainRectSize(
     Chosen: ChosenSize,
-    LoopSpan: RecordSpan,
+    Scope: RectSideOrigin,
     GraphSpan: RecordSpan,
 ) -> SketchRelation:
     RowValue = Chosen.SizeRow
@@ -28,10 +29,10 @@ def RetainRectSize(
         attributes=FreezeMapping(
             {
                 **Relation.attributes,
-                "fusion.selected_profile_side_id": SideValue.id,
-                "fusion.selected_profile_loop_object_id": LoopSpan.ObjectId,
-                "fusion.selected_profile_axis_relation_id": Chosen.AxisRule.id,
-                "fusion.selected_profile_binding_edge": (
+                f"{Scope.Prefix}_side_id": SideValue.id,
+                Scope.IdentityKey: Scope.Record.ObjectId,
+                f"{Scope.Prefix}_axis_relation_id": Chosen.AxisRule.id,
+                f"{Scope.Prefix}_binding_edge": (
                     RowValue.OwnerId,
                     RowValue.BindId,
                     1,
@@ -41,7 +42,7 @@ def RetainRectSize(
         provenance=Replace(
             Origin,
             spans=Origin.spans
-            + ParamOrigin(LoopSpan).spans
+            + ParamOrigin(Scope.Record).spans
             + SideValue.provenance.spans
             + Chosen.AxisRule.provenance.spans
             + ParamOrigin(GraphSpan).spans,

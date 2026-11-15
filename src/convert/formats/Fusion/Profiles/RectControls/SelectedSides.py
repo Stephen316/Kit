@@ -56,7 +56,19 @@ def ReadRectSides(
         or frozenset(NativeOrder) != frozenset(SketchValue.closed_profile_entity_ids[0])
     ):
         raise ValueError("Fusion rectangle selected loop membership disagrees")
+    return LoopId, ReadRectEnds(BulkData, Owners, SketchValue, SketchId, Members)
+
+
+# both profile and sketch only contours need the same owned native endpoint cycle
+def ReadRectEnds(
+    BulkData: bytes,
+    Owners: dict[int, RecordSpan],
+    SketchValue: Sketch,
+    SketchId: int,
+    Members: tuple[SketchEntity, ...],
+) -> tuple[SelectedSide, ...]:
     Entities = IndexRuleEnts(BulkData, Owners, SketchValue, SketchId)
+    Owned = {Value.id for Value in Entities.values()}
     Sides = tuple(SelectedSide(Entity, *ReadLineEnds(Entity)) for Entity in Members)
     Points = Counter(
         Identity
@@ -64,7 +76,9 @@ def ReadRectSides(
         for Identity in (SideValue.StartId, SideValue.FinishId)
     )
     if (
-        len(Points) != 4
+        len(Sides) != 4
+        or any(Value.Entity.id not in Owned for Value in Sides)
+        or len(Points) != 4
         or any(Count != 2 for Count in Points.values())
         or len(
             {frozenset((SideValue.StartId, SideValue.FinishId)) for SideValue in Sides}
@@ -85,4 +99,4 @@ def ReadRectSides(
         raise ValueError(
             "Fusion rectangle has no complete authored point identity cycle"
         )
-    return LoopId, Sides
+    return Sides
