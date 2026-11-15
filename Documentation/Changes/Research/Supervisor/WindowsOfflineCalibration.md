@@ -41,3 +41,20 @@ All 100 jobs supplied CPU and working-set telemetry. Each trial returned decoded
 The one-to-two and two-to-four comparisons met the existing criteria and improved measured throughput by 83.9% and 60.1%. The eight-worker request held eight active supervisor sessions, but its decoder intervals peaked at seven for 0.149 seconds. The four-to-eight comparison is noncomparable because the trial never reached the eight-way decode overlap required for the one-second window. The sweep returned no concurrency recommendation. Sustained eight-way decoding and independently attributed operating-system OOM backoff remain open.
 
 The calibration source digest is `ff601a0e22e2eb674d5fd84eda80ff3eb9db36b335beaaead838e3c940d327c0`. The canonical manifest SHA-256 is `56236c41ee096c69abc644144a12dd38322a94e4860d068bf18ae9724bb124bc`. The private calibration report SHA-256 is `3d1e6a73af30decb315c4601cb1a0c69811123ef750685eaaee024b59cd770ff`.
+
+## Larger historical Fusion discovery sweep
+
+A follow-up used the fixed Fusion reader at `c266e1bae49ddc665d241ceeecd3f30506bd5186` and 32 distinct archives from the historical corpus at `74a0bc353421c25f7a6c539897baadf593a05766`. The selection spans 11 operation groups and 149,803 to 560,158 archive bytes. Each archive is explicitly in the discovery split and has a matching partial decode in the [pinned Fusion outcome census](../FusionReaderOutcomeCensus.md) by path, Git blob and SHA-256. Three current paths differ from their historical pins, so the calibration used the verified historical bytes. The eligibility check reserved the paired qualification and P05 holdout objects, historical nondiscovery objects, and independently declared feature-study holdouts and their byte aliases. The runner and host limits matched the previous Fusion sweep.
+
+| Requested workers | Decodes completed | Decodes per minute | Peak simultaneous decodes | Requested overlap in seconds | Trial meets overlap and measurement criteria |
+| ---: | ---: | ---: | ---: | ---: | --- |
+| 1 | 32 | 15.48 | 1 | 6.943 | Yes |
+| 2 | 32 | 32.52 | 2 | 2.610 | Yes |
+| 4 | 32 | 53.81 | 4 | 1.716 | Yes |
+| 8 | 32 | 68.22 | 8 | 0.554 | No |
+
+All 128 jobs returned complete CPU and RSS measurements. All trial digests matched `1bc8359b01309cadfe2728918bfa620de051765a9e0a8707778ea7b6bed38621`. Every trial verified empty Job Objects, claims and sessions after ordinary shutdown. The host retained at least 14.49 GiB of available physical memory. The eight-worker trial's sampled aggregate worker working set peaked at 410 MiB. The one-to-two and two-to-four comparisons met the existing criteria. The four-to-eight comparison remains noncomparable because the measured eight-way overlap fell short of one second. The sweep produced no recommendation. Independent OOM backoff remains open.
+
+The first eight supervisor start records span 3.084 seconds. The corresponding decoder start timestamps span 3.138 seconds and their intersection is the observed 0.554-second peak. The eight-worker trial's median session receipt duration exceeded its worker-reported decode interval by 0.929 seconds. Claim, staging, process launch and exit timings remain unmeasured as individual stages.
+
+The historical corpus manifest SHA-256 is `4cc8fb707641ecde29a04b5dafa1ecbf7e706a839550a4af3b8807d19b64d4e2`. The exact outcome roster SHA-256 is `bb1169ae1d7278535d63650f932f8071ae4976c069076a5a298cf40db046b7d0`. The calibration source digest is `0f584b82b4893bf884c831206a4edcd90b92144e4296e4253f8bcdfee7c695b2`, the canonical calibration manifest SHA-256 is `a86e1ecfa76b5ce8c9a5698dd0e034378644105695b6c594bc8369ba00591620`, and the private calibration report SHA-256 is `ec551713564f25b3a94ec3e2b8913ed1c758f851df43e5e61423e4816624e29d`.
