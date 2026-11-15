@@ -7,6 +7,7 @@ from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecip
 from convert.formats.Fusion.Sketches.FaceSupport.FaceSelection import MakeFacePick
 from convert.formats.Fusion.Sketches.FaceSupport.SavedFaceProof import SavedFaceProof
 from convert.formats.Fusion.Sketches.Projections.AttachCapRim import AttachCapRim
+from convert.formats.Fusion.Sketches.Projections.CapDiagnostics import FilterCapIssues
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
@@ -166,5 +167,8 @@ def ProjectFaces(
         sketches=tuple(
             RevisedSketches.get(Value.id, Value) for Value in Document.sketches
         ),
-        diagnostics=Document.diagnostics + tuple(Issues),
+        diagnostics=FilterCapIssues(
+            Document.diagnostics, tuple(RevisedSketches.values())
+        )
+        + tuple(Issues),
     )

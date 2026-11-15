@@ -629,6 +629,8 @@ def AssertCapRim(Variant: str, SketchValue: Sketch, Support: Selection) -> None:
         (381, 384, 387, 388), Edges, Vertices, Vertices[1:] + Vertices[:1], strict=True
     ):
         LineValue = Lines[f"fusion-sketch-entity-{Identity}"]
+        assert LineValue.attributes["fusion.cap_curve_state"] == (0x10000, 0)
+        assert not LineValue.fixed and not LineValue.construction
         assert LineValue.attributes["fusion.projection_source_edge_ordinal"] == EdgeId
         assert LineValue.attributes["fusion.projection_source_vertex_ordinals"] == (
             Start,

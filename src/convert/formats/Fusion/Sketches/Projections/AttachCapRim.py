@@ -7,6 +7,7 @@ from convert.formats.Fusion.Sketches.FaceSupport.FaceRecipePick import FaceRecip
 from convert.formats.Fusion.Sketches.FaceSupport.SavedFaceProof import SavedFaceProof
 from convert.formats.Fusion.Sketches.Projections.CapSource import IndexCapNames
 from convert.formats.Fusion.Sketches.Projections.CheckCapLine import CheckCapLine
+from convert.formats.Fusion.Sketches.Projections.ReadCapCache import ReadCapCache
 from convert.formats.Fusion.Sketches.Projections.ReadCapRim import ReadCapRim
 from convert.formats.Fusion.Sketches.Projections.RetainCapLine import RetainCapLine
 from convert.formats.Fusion.Sketches.SketchRuleScope import (
@@ -14,6 +15,7 @@ from convert.formats.Fusion.Sketches.SketchRuleScope import (
     ReadSketchRoot,
 )
 from convert.formats.Fusion.Topology.RecipeRead import KRecipeGuid
+from interchange.geometry.models.GeometryCurves import PointGeometry
 from interchange.geometry.models.Sketch import Sketch, SketchEntity
 from interchange.geometry.models.Transform import Transform
 
@@ -33,6 +35,11 @@ def AttachCapRim(
     )
     Sources = IndexCapNames(BulkData, Owners, Recipe)
     Entities = IndexRuleEnts(BulkData, Owners, SketchValue, RootSpan.ObjectId)
+    Points = {
+        Identity: Value.geometry.point
+        for Identity, Value in Entities.items()
+        if isinstance(Value.geometry, PointGeometry)
+    }
     Revised: dict[str, SketchEntity] = {}
     Starts: list[int] = []
     Finishes: list[int] = []
@@ -41,10 +48,14 @@ def AttachCapRim(
             BulkData, Owners, Value.RecipeId, KRecipeGuid
         ).DataValue
         Context = Sources.pop(RecipeBytes, None)
-        Entity = Entities.get(Value.EntityId)
-        if Context is None or Entity is None:
+        if Context is None:
             raise ValueError(
                 "Fusion cap projection output lacks one unique named source"
+            )
+        Entity = Entities.get(Value.EntityId)
+        if Entity is None:
+            Entity = ReadCapCache(
+                BulkData, Owners, Value.EntityId, RootSpan.ObjectId, Points
             )
         Match = Proof.FaceEvidence.Edges[Context.Operands]
         First, Second = Match[1]
@@ -73,7 +84,11 @@ def AttachCapRim(
         raise ValueError(
             "Fusion cap projection inventory or directed cache cycle disagrees"
         )
+    ExistingIds = {Value.id for Value in SketchValue.entities}
     return Replace(
         SketchValue,
-        entities=tuple(Revised.get(Value.id, Value) for Value in SketchValue.entities),
+        entities=tuple(Revised.get(Value.id, Value) for Value in SketchValue.entities)
+        + tuple(
+            Value for Identity, Value in Revised.items() if Identity not in ExistingIds
+        ),
     )
