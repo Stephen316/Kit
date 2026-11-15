@@ -26,6 +26,16 @@ func digest(_ file: URL, maximum: Int) -> String? {
     return boundedBytes(file, maximum: maximum).map(digest)
 }
 
+func matchesPhysicalPath(_ observed: String?, _ expected: String) -> Bool {
+    guard let observed, observed.hasPrefix("/"), !observed.utf8.contains(0),
+          let resolved = observed.withCString({ Darwin.realpath($0, nil) }) else {
+        return false
+    }
+    defer { Darwin.free(resolved) }
+    let path = UnsafeRawBufferPointer(start: resolved, count: Darwin.strlen(resolved))
+    return path.elementsEqual(expected.utf8)
+}
+
 let arguments = CommandLine.arguments
 guard arguments.count == 9,
       arguments[1].hasPrefix("/"),
@@ -38,23 +48,26 @@ let path = arguments[1]
 let executable = arguments[2]
 let identifier = arguments[3]
 let target = URL(fileURLWithPath: path, isDirectory: true)
-let info = target.appendingPathComponent("Contents/Info.plist")
-guard target.resolvingSymlinksInPath().path == path,
+let infoPath = path + "/Contents/Info.plist"
+let info = URL(fileURLWithPath: infoPath)
+guard matchesPhysicalPath(path, path),
+      matchesPhysicalPath(executable, executable),
+      matchesPhysicalPath(infoPath, infoPath),
       let application = Bundle(url: target),
       application.bundleIdentifier == identifier,
       let entry = application.executableURL,
-      entry.resolvingSymlinksInPath().path == executable,
-      info.resolvingSymlinksInPath().path == info.path,
+      matchesPhysicalPath(entry.path, executable),
       digest(info, maximum: 1_048_576) == arguments[4],
       digest(entry, maximum: 268_435_456) == arguments[5] else {
     refuse(5, "Application bundle does not match the reviewed launch profile")
 }
 
-let request = URL(fileURLWithPath: arguments[7])
-let fence = request.deletingLastPathComponent().appendingPathComponent("fence.json")
-guard arguments[7].hasPrefix("/"),
-      request.resolvingSymlinksInPath().path == arguments[7],
-      fence.resolvingSymlinksInPath().path == fence.path,
+let requestPath = arguments[7]
+let fencePath = (requestPath as NSString).deletingLastPathComponent + "/fence.json"
+let request = URL(fileURLWithPath: requestPath)
+let fence = URL(fileURLWithPath: fencePath)
+guard matchesPhysicalPath(requestPath, requestPath),
+      matchesPhysicalPath(fencePath, fencePath),
       let requestData = boundedBytes(request, maximum: 1_048_576),
       digest(requestData) == arguments[8],
       let decoded = try? JSONSerialization.jsonObject(with: requestData),
@@ -66,7 +79,7 @@ guard arguments[7].hasPrefix("/"),
 let workspace = NSWorkspace.shared
 if workspace.runningApplications.contains(where: {
     !$0.isTerminated && ($0.bundleIdentifier == identifier ||
-        $0.bundleURL?.resolvingSymlinksInPath().path == path)
+        matchesPhysicalPath($0.bundleURL?.path, path))
 }) {
     refuse(2, "An application counterpart is already running")
 }
@@ -90,16 +103,15 @@ workspace.openApplication(at: target, configuration: configuration) { app, error
     guard let app, !app.isTerminated,
           app.processIdentifier > 0,
           app.bundleIdentifier == identifier,
-          app.bundleURL?.resolvingSymlinksInPath().path == path,
-          let observedExecutable = app.executableURL?.resolvingSymlinksInPath().path,
-          observedExecutable == executable else {
+          matchesPhysicalPath(app.bundleURL?.path, path),
+          matchesPhysicalPath(app.executableURL?.path, executable) else {
         refuse(3, "LaunchServices did not return the exact requested application")
     }
     let result: [String: Any] = [
         "pid": app.processIdentifier,
         "bundle": path,
         "bundle_identifier": identifier,
-        "executable": observedExecutable,
+        "executable": executable,
         "dispatched_at": dispatched,
     ]
     guard let response = try? JSONSerialization.data(withJSONObject: result, options: [.sortedKeys]) else {

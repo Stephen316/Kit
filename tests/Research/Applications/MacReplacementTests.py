@@ -25,5 +25,6 @@ def CheckMacLaunch(TmpPath: FilePath) -> None:
     Evidence = JsonCodec.loads(RunResult.stdout)
     assert Evidence["peer"]["pid"] > 0
     assert Evidence["source_pin_refused"] is True
+    assert Evidence["symlink_refused"] is True
     assert Evidence["fence_change_refused"] is True
     assert Evidence["duplicate_refused"] is True

@@ -113,7 +113,10 @@ def exercise(root):
     request = root / "LaunchRequest.json"
     request_bytes = json.dumps({"fence_sha256": sha256(fence)}).encode()
     request.write_bytes(request_bytes)
-    custody = (request, sha256(request_bytes))
+    request_link = root / "LinkedLaunchRequest.json"
+    request_link.symlink_to(request)
+    request_sha256 = sha256(request_bytes)
+    custody = (request, request_sha256)
     observed = None
     try:
         try:
@@ -133,6 +136,14 @@ def exercise(root):
             )
         else:
             raise AssertionError("AppKit helper accepted changed bundle bytes")
+        try:
+            launch_bundle(
+                source, bundle, time.time(), old, 30, request_link, request_sha256
+            )
+        except MacLaunchError as error:
+            require_refusal(error, 6, "Exact launch request custody is unavailable")
+        else:
+            raise AssertionError("AppKit helper accepted a linked launch request")
         fence_path.write_bytes(b"changed disposable fence\n")
         try:
             launch_bundle(source, bundle, time.time(), old, 30, *custody)
@@ -159,6 +170,7 @@ def exercise(root):
                 {
                     "peer": observed["peer"],
                     "source_pin_refused": True,
+                    "symlink_refused": True,
                     "fence_change_refused": True,
                     "duplicate_refused": True,
                 }
