@@ -202,6 +202,7 @@ def VerifyArchive(Harness: SessionHost, RequestPath: FilePath) -> None:
     VerifyReplay(ArchivePath, Arguments, FencePath, FenceBytes)
     VerifyReadback(Harness, SavedPath, HashBytes(Manifest.read_bytes()).hexdigest())
     assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
+    VerifyRetry(Harness, HashBytes(Manifest.read_bytes()).hexdigest())
 
 
 # a listener may hold its lock while the owner reads only the archived receipt and pins
@@ -227,3 +228,43 @@ def VerifyReadback(
         _ = RequestPath.write_bytes(Retained + b" ")
         _ = RunFusionTool(ScriptPath, Arguments, ExitCode=1)
         _ = RequestPath.write_bytes(Retained)
+
+
+# the owner retry changes only phase admissions after matching the exact archived bytes
+def VerifyRetry(Harness: SessionHost, ManifestHash: str) -> None:
+    import fcntl as FileLocks
+
+    assert Harness.StorePath is not None
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    QueuePath = Harness.RootPath / "TimedQueue.json"
+    Queue = JsonCodec.loads(QueuePath.read_bytes())
+    ArchiveTool = "re/automation/ApplicationWorkers/RetryFusionProbe.py"
+    Arguments = [
+        "--config",
+        str(Harness.ConfigFile),
+        "--queue-receipt",
+        str(QueuePath),
+        "--archive-manifest-sha256",
+    ]
+    StoreHash = HashBytes(DatabasePath.read_bytes()).hexdigest()
+    _ = RunFusionTool(ArchiveTool, Arguments + ["0" * 64], ExitCode=1)
+    assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
+    LockPath = Harness.RootPath / "AbsentEndpoint/host.lock"
+    with LockPath.open("ab") as LockFile:
+        FileLocks.flock(LockFile.fileno(), FileLocks.LOCK_EX | FileLocks.LOCK_NB)
+        Result = JsonCodec.loads(RunFusionTool(ArchiveTool, Arguments + [ManifestHash]))
+    assert Result == {"status": "retry_queued", "archive_manifest_sha256": ManifestHash}
+    VerifyQueued(Harness, Queue["jobs"])
+    StoreHash = HashBytes(DatabasePath.read_bytes()).hexdigest()
+    Replay = JsonCodec.loads(RunFusionTool(ArchiveTool, Arguments + [ManifestHash]))
+    assert Replay["status"] == "retry_already_requested"
+    assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
+
+
+# accepted evidence still gates the repeat phase while the first phase waits for its own retry
+def VerifyQueued(Harness: SessionHost, Names: dict[str, str]) -> None:
+    First = Harness.ReadJob(Names["a"])
+    Second = Harness.ReadJob(Names["b"])
+    assert First["state"] == "queued" and First["attempts"] == 1
+    assert Second["state"] == "waiting_evidence" and Second["attempts"] == 0
+    assert First["result"] is not None and Second["result"] is None

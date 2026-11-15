@@ -31,3 +31,18 @@ The command acquires the installation's dispatch and host locks. It verifies the
 An active host, a pending acknowledgement, an acceptance-required fence, any phase output or changes to the recorded request cause a refusal. The archive report contains its manifest SHA-256 and the timed-out request SHA-256. The A03 resource stays parked until the installation owner separately verifies readiness and marks it available.
 
 After archival, the same audit with `--installation` verifies the archive manifest and retained file digests. It reports `archived`, the manifest SHA-256 and current fence status. It can read that evidence while the host lock is occupied. The owner still uses the normal host verification and resource reactivation procedure before another attempt.
+
+## Request the exact archived probe retry
+
+After verifying the macOS installation through its normal owner procedure, use the manifest SHA-256 reported by the audit to permit the original Phase A job to retry.
+
+```sh
+python3 re/automation/ApplicationWorkers/RetryFusionProbe.py \
+  --config /absolute/path/Supervisor.json \
+  --queue-receipt /absolute/path/QueueReceipt.json \
+  --archive-manifest-sha256 <sha256>
+```
+
+The command verifies the current parked attempt and archived bytes under the dispatch lock. It requires an empty application queue, a released fence, remaining retry budget, and an installation resource with no unrelated unfinished jobs. One controller transaction records the archived receipt, reactivates the resource and queues Phase A at its normal retry time. Repeating the same command returns the recorded disposition.
+
+Phase B still waits for accepted Phase A evidence. The next scheduled Phase A attempt must obtain a new main-thread readiness response from the pinned add-in before any native capture.
