@@ -16,7 +16,7 @@ python re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py --installati
 
 Give the installation a counted controller resource with capacity one. Once the listener owns the endpoint, mark the resource available with the controller's `resource <name> --available` command. The listener and native collector still verify each request and application session. [Resource availability](../../../Reference/Research/ResearchController.md)
 
-The listener stages the launcher from Git-verified bytes. The launcher verifies its own copy and the collector, specification, control and P04 archive bytes against the pinned checkout. The job supplies no executable path, CAD path or case selector. SOLIDWORKS startup identifies the process by canonical executable, Windows desktop session and creation time. The collector closes the owned process before the host returns a successful phase.
+The listener stages the launcher from Git-verified bytes. The launcher verifies its own copy and the collector, specification, control and P04 archive bytes against the pinned checkout. The job supplies no executable path, CAD path or case selector. The [direct launch](SolidWorks/OwnedReadback.md) binds the collector's COM session to the process created by the listener. The collector closes that process before the host returns a successful phase.
 
 An unavailable listener, stuck COM call or failed native control parks the job behind the application fence. Inspect the retained spool and have the installation owner recover the app process before retrying. On success the supervisor can acknowledge the exact accepted attempt using its configured installation. [Controller acceptance](SupervisedApplicationAcceptance.md)
 

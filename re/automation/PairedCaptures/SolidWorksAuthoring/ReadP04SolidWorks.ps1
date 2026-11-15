@@ -5,7 +5,9 @@ param(
     [Parameter(Mandatory)]
     [string]$InteropAssembly,
     [string]$SourceRoot,
-    [string]$SourceRevision
+    [string]$SourceRevision,
+    [ValidatePattern('^[a-f0-9]{64}$')]
+    [string]$QueuedRequestSha256
 )
 
 $ErrorActionPreference = 'Stop'
@@ -17,6 +19,9 @@ if ($PSVersionTable.PSEdition -ne 'Desktop' -or
 
 if ([bool]$SourceRoot -ne [bool]$SourceRevision) {
     throw 'Provide both pinned source arguments for a staged launcher.'
+}
+if ($QueuedRequestSha256 -and -not $SourceRevision) {
+    throw 'Queued launch requires a pinned source revision.'
 }
 $repository = if ($SourceRoot) {
     (Resolve-Path -LiteralPath $SourceRoot).Path
@@ -67,12 +72,18 @@ function Assert-Bytes([string]$Path, $Pin) {
 
 function Write-NewJson([string]$Path, $Value) {
     $content = [Text.Encoding]::UTF8.GetBytes(($Value | ConvertTo-Json -Depth 48) + "`n")
-    $file = [IO.File]::Open($Path, [IO.FileMode]::CreateNew)
+    $stage = "$Path.$([Guid]::NewGuid().ToString('N'))"
     try {
-        $file.Write($content, 0, $content.Length)
-        $file.Flush($true)
+        $file = [IO.File]::Open($stage, [IO.FileMode]::CreateNew)
+        try {
+            $file.Write($content, 0, $content.Length)
+            $file.Flush($true)
+        } finally {
+            $file.Dispose()
+        }
+        [IO.File]::Move($stage, $Path)
     } finally {
-        $file.Dispose()
+        [IO.File]::Delete($stage)
     }
 }
 
@@ -176,7 +187,31 @@ $webExtensions = Join-Path ([Runtime.InteropServices.RuntimeEnvironment]::GetRun
 Add-Type -Path $constants.FullName
 Add-Type -Path $interop.FullName
 Add-Type -Path $collectorCopy -ReferencedAssemblies @($interop.FullName, $constants.FullName, 'System.Core.dll', $webExtensions)
-$run = [P04Readback]::Run($inputs, [string[]]@($files.Keys), $binary.FullName) | ConvertFrom-Json
+if ($QueuedRequestSha256) {
+    Write-NewJson (Join-Path $output 'native-ready.json') ([ordered]@{
+        version = 1
+        request_sha256 = $QueuedRequestSha256
+        source_revision = $revision
+        executable = $binary.FullName
+        executable_sha256 = $provenance.installed_executable_sha256
+    })
+    $launchPath = Join-Path $output 'native-launch.json'
+    $clock = [Diagnostics.Stopwatch]::StartNew()
+    while (-not (Test-Path -LiteralPath $launchPath -PathType Leaf)) {
+        if ($clock.Elapsed.TotalSeconds -ge 60) {
+            throw 'The queue listener did not publish a direct launch.'
+        }
+        Start-Sleep -Milliseconds 100
+    }
+    $launch = Get-Content -LiteralPath $launchPath -Raw | ConvertFrom-Json
+    if ($launch.request_sha256 -cne $QueuedRequestSha256 -or $launch.source_revision -cne $revision) {
+        throw 'Direct launch belongs to another queued operation.'
+    }
+    $run = [P04Readback]::RunOwned($inputs, [string[]]@($files.Keys), $binary.FullName, $launchPath,
+        (Join-Path $output 'native-owner.json')) | ConvertFrom-Json
+} else {
+    $run = [P04Readback]::Run($inputs, [string[]]@($files.Keys), $binary.FullName) | ConvertFrom-Json
+}
 foreach ($name in $files.Keys) {
     Assert-Bytes (Join-Path $inputs $name) $files[$name]
     Assert-Bytes (Join-Path $repository $files[$name].path) $files[$name]

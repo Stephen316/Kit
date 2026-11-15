@@ -1,9 +1,12 @@
 import argparse
+import ctypes
+from ctypes import wintypes
 import json
 import os
 from pathlib import Path
 import subprocess
 import sys
+from tempfile import TemporaryFile
 import time
 
 from ApplicationProtocol import (
@@ -15,6 +18,7 @@ WORKER = "re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py"
 LAUNCHER = "re/automation/PairedCaptures/SolidWorksAuthoring/ReadP04SolidWorks.ps1"
 PROVIDER = "dassault.solidworks.com"
 OPERATION = "p04-readback"
+BUILD = "34.4.1.1011"
 OUTPUTS = {
     "readback.plan": "readback/plan.json",
     "readback.measurements": "readback/measurements.json",
@@ -49,29 +53,152 @@ def native_result(work, config):
             and report["source_bytes_verified_after_readback"] is True
             and run["status"] == "observed" and run["owned_process_exit_observed"] is True
             and run["control_before"]["status"] == run["control_after"]["status"] == "observed"
-            and application["build"] == "34.4.1.1011",
+            and application["build"] == BUILD,
             "SOLIDWORKS readback lacks complete source, control, face or process-exit evidence")
     return {"readback_plan_sha256": plan_sha256, "solidworks_build": application["build"]}
 
 
-def perform_readback(host, request, work, interop, launcher):
+def session_id(pid):
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    query = kernel.ProcessIdToSessionId
+    query.argtypes = [wintypes.DWORD, ctypes.POINTER(wintypes.DWORD)]
+    query.restype = wintypes.BOOL
+    result = wintypes.DWORD()
+    if not query(pid, ctypes.byref(result)):
+        raise ctypes.WinError(ctypes.get_last_error())
+    return result.value
+
+
+def native_identity(handle):
+    from WindowsIdentity import creation_time
+
+    kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    get_pid = kernel.GetProcessId
+    get_pid.argtypes = [wintypes.HANDLE]
+    get_pid.restype = wintypes.DWORD
+    pid = get_pid(int(handle))
+    if not pid:
+        raise ctypes.WinError(ctypes.get_last_error())
+    image_query = kernel.QueryFullProcessImageNameW
+    image_query.argtypes = [wintypes.HANDLE, wintypes.DWORD, wintypes.LPWSTR, ctypes.POINTER(wintypes.DWORD)]
+    image_query.restype = wintypes.BOOL
+    buffer = ctypes.create_unicode_buffer(32768)
+    size = wintypes.DWORD(len(buffer))
+    if not image_query(int(handle), 0, buffer, ctypes.byref(size)):
+        raise ctypes.WinError(ctypes.get_last_error())
+    return {"pid": pid, "created": creation_time(int(handle)), "session": session_id(pid),
+            "image": str(Path(buffer.value).resolve(strict=True))}
+
+
+def registered_executable():
+    from winreg import HKEY_CLASSES_ROOT, KEY_READ, KEY_WOW64_64KEY, OpenKey, QueryValue
+
+    access = KEY_READ | KEY_WOW64_64KEY
+    with OpenKey(HKEY_CLASSES_ROOT, r"SldWorks.Application\CLSID", 0, access) as registration:
+        clsid = QueryValue(registration, None)
+    with OpenKey(HKEY_CLASSES_ROOT, fr"CLSID\{clsid}\LocalServer32", 0, access) as server:
+        return Path(QueryValue(server, None)).resolve(strict=True)
+
+
+def launch_solidworks(executable):
+    import win32process
+
+    startup = win32process.STARTUPINFO()
+    startup.dwFlags = subprocess.STARTF_USESHOWWINDOW
+    startup.wShowWindow = subprocess.SW_HIDE
+    handle, thread, _, _ = win32process.CreateProcess(
+        str(executable), subprocess.list2cmdline([str(executable)]), None, None, False, 0,
+        None, str(executable.parent), startup,
+    )
+    thread.Close()
+    return handle
+
+
+def launch_readiness(path, collector, deadline):
+    while time.time() < deadline:
+        try:
+            return record(path)
+        except FileNotFoundError:
+            if collector.poll() is not None:
+                return None
+            time.sleep(0.05)
+    raise subprocess.TimeoutExpired("SOLIDWORKS launcher preflight", 0)
+
+
+def ready_executable(ready, request_pin):
+    require(set(ready) == {*request_pin, "executable", "executable_sha256"}
+            and all(ready[key] == value for key, value in request_pin.items())
+            and isinstance(ready["executable"], str), "SOLIDWORKS preflight differs from the queued request")
+    executable = registered_executable()
+    require(executable.name.casefold() == "sldworks.exe" and Path(ready["executable"]).resolve(strict=True) == executable
+            and sha256(file_bytes(executable, MAX_BYTES)) == ready["executable_sha256"],
+            "SOLIDWORKS preflight differs from the installed executable")
+    return executable
+
+
+def verify_native_ticket(path, launch):
+    expected = {**launch, "build": BUILD, "initial_documents": 0}
+    require(encoded(record(path)) == encoded(expected),
+            "SOLIDWORKS collector did not ticket the exact owned scratch installation")
+
+
+def run_collector(host, request, work, interop, staged):
     expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
     require(request["operation"] == "phase" and request["body"] == expected,
             "installation only accepts the pinned P04 readback phase")
-    staged = work / Path(LAUNCHER).name
-    write_new(staged, launcher)
+    import win32event
+
+    output = work / "readback"
+    request_pin = {"version": 1, "request_sha256": sha256(encoded(request)),
+                   "source_revision": host.config["source_revision"]}
     powershell = Path(os.environ["SystemRoot"]) / "System32/WindowsPowerShell/v1.0/powershell.exe"
     process_environment = {key: value for key, value in os.environ.items() if key.casefold() != "psmodulepath"}
-    remaining = request["deadline"] - time.time()
-    require(remaining > 0, "readback request expired before native startup")
-    result = subprocess.run(
-        [str(powershell), "-NoProfile", "-NonInteractive", "-STA", "-ExecutionPolicy", "Bypass", "-File", str(staged),
-         "-OutputDirectory", str(work / "readback"), "-InteropAssembly", str(interop),
-         "-SourceRoot", host.config["source_root"], "-SourceRevision", host.config["source_revision"]],
-        capture_output=True, env=process_environment, timeout=remaining, check=False,
-        creationflags=subprocess.CREATE_NO_WINDOW,
-    )
-    require(result.returncode == 0, result.stderr.decode(errors="replace")[-2048:] or "SOLIDWORKS readback did not finish")
+    deadline = request["deadline"]
+    require(deadline > time.time(), "readback request expired before collector startup")
+    with TemporaryFile() as errors:
+        collector = subprocess.Popen(
+            [str(powershell), "-NoProfile", "-NonInteractive", "-STA", "-ExecutionPolicy", "Bypass", "-File", str(staged),
+             "-OutputDirectory", str(output), "-InteropAssembly", str(interop),
+             "-SourceRoot", host.config["source_root"], "-SourceRevision", host.config["source_revision"],
+             "-QueuedRequestSha256", request_pin["request_sha256"]],
+            stdout=subprocess.DEVNULL, stderr=errors, env=process_environment, creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+        handle = None
+        try:
+            ready = launch_readiness(output / "native-ready.json", collector, deadline)
+            if ready is not None:
+                executable = ready_executable(ready, request_pin)
+                require(time.time() < deadline and collector.poll() is None and not os.path.lexists(work / "cancel.json"),
+                        "readback request expired before native startup")
+                handle = launch_solidworks(executable)
+                identity = native_identity(handle)
+                require(Path(identity["image"]) == executable and identity["session"] == session_id(os.getpid()),
+                        "direct launch did not enter the registered installation and desktop session")
+                launch = {**request_pin, **identity}
+                write_record(output / "native-launch.json", launch)
+            status = collector.wait(timeout=max(0, deadline - time.time()))
+            errors.seek(0, os.SEEK_END)
+            errors.seek(max(0, errors.tell() - 2048))
+            require(status == 0, errors.read().decode(errors="replace") or "SOLIDWORKS readback did not finish")
+            require(handle is not None, "SOLIDWORKS collector completed without a directly owned process")
+            verify_native_ticket(output / "native-owner.json", launch)
+            require(win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_OBJECT_0,
+                    "SOLIDWORKS collector did not close the directly owned process")
+        finally:
+            try:
+                if collector.poll() is None:
+                    collector.kill()
+                    collector.wait(timeout=5)
+            finally:
+                if handle is not None:
+                    handle.Close()
+
+
+def perform_readback(host, request, work, interop, launcher):
+    expected = {"phase": OPERATION, "plan_sha256": plan_hash(host.config)}
+    staged = work / Path(LAUNCHER).name
+    write_new(staged, launcher)
+    run_collector(host, request, work, interop, staged)
     proof = native_result(work, host.config)
     files = {role: pin(work / relative, relative) for role, relative in OUTPUTS.items()}
     return "completed", "licensed P04 readback observed all eleven captures", {

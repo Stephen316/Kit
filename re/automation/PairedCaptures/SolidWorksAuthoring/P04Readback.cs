@@ -3,10 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Web.Script.Serialization;
 using Microsoft.Win32.SafeHandles;
 using SolidWorks.Interop.sldworks;
@@ -353,6 +355,50 @@ public sealed class P04Readback
 
     public static string Run(string workspace, string[] files, string expectedExecutable)
     {
+        return Run(workspace, files, expectedExecutable, null, null);
+    }
+
+    public static string RunOwned(string workspace, string[] files, string expectedExecutable, string launchPath, string ticketPath)
+    {
+        var launch = Json.Deserialize<Dictionary<string, object>>(File.ReadAllText(launchPath, Encoding.UTF8));
+        Require(launch != null && (int)launch["version"] == 1
+            && ResolveExecutablePath((string)launch["image"]).Equals(ResolveExecutablePath(expectedExecutable), StringComparison.OrdinalIgnoreCase),
+            "Queued launch does not identify the registered installation");
+        return Run(workspace, files, expectedExecutable, launch, ticketPath);
+    }
+
+    static ISldWorks Attach()
+    {
+        var clock = Stopwatch.StartNew();
+        while (true)
+        {
+            try { return (ISldWorks)Marshal.GetActiveObject("SldWorks.Application"); }
+            catch (COMException error)
+            {
+                if (error.ErrorCode != unchecked((int)0x800401E3) || clock.Elapsed.TotalSeconds >= 60) throw;
+                Thread.Sleep(250);
+            }
+        }
+    }
+
+    static void PublishTicket(string path, object value)
+    {
+        string staged = path + "." + Guid.NewGuid().ToString("N");
+        try
+        {
+            using (var target = new FileStream(staged, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(Json.Serialize(value));
+                target.Write(bytes, 0, bytes.Length);
+                target.Flush(true);
+            }
+            File.Move(staged, path);
+        }
+        finally { File.Delete(staged); }
+    }
+
+    static string Run(string workspace, string[] files, string expectedExecutable, Dictionary<string, object> launch, string ticketPath)
+    {
         var observations = new List<object>();
         var result = Row("status", "failed", "observations", observations);
         ISldWorks application = null;
@@ -360,12 +406,15 @@ public sealed class P04Readback
         bool owned = false;
         try
         {
-            Require(Process.GetProcessesByName("SLDWORKS").Length == 0, "Use a dedicated session with SOLIDWORKS stopped");
+            if (launch == null)
+                Require(Process.GetProcessesByName("SLDWORKS").Length == 0, "Use a dedicated session with SOLIDWORKS stopped");
             string expectedPath = ResolveExecutablePath(expectedExecutable);
             int desktopSession;
             using (var caller = Process.GetCurrentProcess()) desktopSession = caller.SessionId;
             var requestedAt = DateTime.UtcNow;
-            application = (ISldWorks)Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application", true));
+            application = launch == null
+                ? (ISldWorks)Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application", true))
+                : Attach();
             process = Process.GetProcessById(application.GetProcessID());
             var startedAt = process.StartTime.ToUniversalTime();
             var module = process.MainModule;
@@ -374,14 +423,32 @@ public sealed class P04Readback
             result["application"] = observedApplication;
             string runningPath = ResolveExecutablePath(module.FileName);
             observedApplication["resolved_executable"] = runningPath;
-            owned = startedAt >= requestedAt && process.SessionId == desktopSession
+            string created = "windows:" + startedAt.ToFileTimeUtc().ToString(CultureInfo.InvariantCulture);
+            bool expectedProcess = process.SessionId == desktopSession
                 && string.Equals(runningPath, expectedPath, StringComparison.OrdinalIgnoreCase);
-            Require(owned, "COM did not start the expected SOLIDWORKS installation");
+            if (launch == null)
+            {
+                owned = expectedProcess && startedAt >= requestedAt;
+                Require(owned, "COM did not start the expected SOLIDWORKS installation");
+            }
+            else
+            {
+                Require(expectedProcess && process.Id == (int)launch["pid"] && process.SessionId == (int)launch["session"]
+                    && created == (string)launch["created"], "Passive COM did not attach to the exact directly launched SOLIDWORKS process");
+            }
             string revision = application.RevisionNumber();
             string fileVersion = module.FileVersionInfo.FileVersion;
             observedApplication["build"] = fileVersion;
             observedApplication["revision"] = revision;
             Require(fileVersion == Build && revision == "34.4.1", "Unexpected SOLIDWORKS application build");
+            if (launch != null)
+            {
+                Require(application.GetDocumentCount() == 0, "The directly launched SOLIDWORKS process did not start empty");
+                PublishTicket(ticketPath, Row("version", 1, "request_sha256", launch["request_sha256"],
+                    "source_revision", launch["source_revision"], "pid", process.Id, "created", created,
+                    "session", process.SessionId, "image", launch["image"], "build", fileVersion, "initial_documents", 0));
+                owned = true;
+            }
             var worker = new P04Readback(application);
             var before = worker.Read(Path.Combine(workspace, "control.SLDPRT"), true);
             result["control_before"] = before;
