@@ -4,4 +4,4 @@ The partial F3D reader links the P04 boss and Cut size dimensions to the exact s
 
 The reciprocal Design graph must show exactly the six native sketch-feature-to-dimension-binding edges incident to the participating dimension records. Size relations retain the selected side, matching axis rule, loop identity, original binding edge and corresponding provenance. The original point operands, dependency slots and stored profile member order remain available. The center expressions retain their separate expression-derived links. [Saved center links](FusionSavedCutCenter.md)
 
-All eleven P04 controls corroborate the side joins, including the YZ axis swap and the distinct through-all profile member order. Fresh Fusion participant readback and editable acceptance remain open. [Archive integration scenarios](../../../../tests/Research/ArchiveEvidenceTests.py)
+All eleven P04 controls corroborate the side joins, including the YZ axis swap and the distinct through-all profile member order. Fresh Fusion participant readback and editable acceptance remain open. [Archive integration scenarios](../../../../tests/Research/Archives/ArchiveEvidenceTests.py)
