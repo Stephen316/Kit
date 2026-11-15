@@ -13,6 +13,8 @@ The command uses the built-in A03 store and the registered `capture.fusion` runn
 
 The receipt prints the installation, exact revision, plan digest and phase job IDs. Repeat the command to recover the same IDs without creating a second pair. Set `--run` to a new label to schedule a separate capture from the same plan. An existing job with a conflicting definition or a changed content-addressed binding causes the transaction to fail.
 
+Save that receipt to [check both phases and their accepted output evidence](FusionPhaseAudit.md) from the private controller store.
+
 Native execution uses the signed-in macOS Fusion installation and its existing `KitCaptureRunner` endpoint. The add-in supplies a fresh main-thread control. Phase A hands off to the host owner for normal exit and restart of the same Fusion build. Phase B verifies the new process and the old process exit. A phase that parks while the host is unavailable requires the installation's existing resource reactivation. The queue command leaves that resource's availability under the host owner's control. [Local dispatch and host setup](LocalApplicationDispatch.md) [Fresh-process procedure](../FusionFreshProcessEvidence.md)
 
 The hosted process case checks exact pairing, repeat submission, preserved resource availability and rejection of an altered control pin with an absent endpoint. Hosted case execution is pending. The licensed two-process Fusion run still requires a provisioned macOS host.

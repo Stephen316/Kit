@@ -1,3 +1,4 @@
+import hashlib as HashLib
 import json as JsonCodec
 import sqlite3 as SqlCodec
 import subprocess as Subprocess
@@ -94,6 +95,27 @@ def VerifyPhaseJobs(Harness: SessionHost, Receipt: dict[str, object]) -> None:
     assert PhaseA["resources"] == PhaseB["resources"] == ["application:fusion:local"]
 
 
+# a pending evidence audit must leave the queue and unavailable application resource intact
+def VerifyAudit(Harness: SessionHost, Receipt: dict[str, object]) -> None:
+    assert Harness.StorePath is not None
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    DigestBefore = HashLib.sha256(DatabasePath.read_bytes()).hexdigest()
+    ReceiptPath = Harness.RootPath / "QueueReceipt.json"
+    _ = ReceiptPath.write_text(JsonCodec.dumps(Receipt), encoding="utf-8")
+    Audit = JsonCodec.loads(
+        RunFusionTool(
+            "re/automation/ApplicationWorkers/AuditFusionPhases.py",
+            ["--store", str(Harness.StorePath), "--queue-receipt", str(ReceiptPath)],
+        )
+    )
+    assert Audit["status"] == "pending"
+    assert Audit["launched_application"] is Audit["native_qualified"] is False
+    assert Audit["resource_available"] is False
+    assert Audit["phases"]["a"]["state"] == "waiting_application"
+    assert Audit["phases"]["b"]["state"] == "waiting_evidence"
+    assert HashLib.sha256(DatabasePath.read_bytes()).hexdigest() == DigestBefore
+
+
 # repeated submission preserves one exact pair and rejects incorrect control provenance
 def CheckFusionPair(TmpPath: FilePath) -> None:
     OutputPath = TmpPath / "Prepared"
@@ -135,4 +157,5 @@ def CheckFusionPair(TmpPath: FilePath) -> None:
     _ = BadPath.write_text(JsonCodec.dumps(BadPlan), encoding="utf-8")
     _ = RunFusionTool(QueuePath, Arguments + ["--plan", str(BadPath)], ExitCode=1)
     VerifyPhaseJobs(Harness, Receipt)
+    VerifyAudit(Harness, Receipt)
     assert not (TmpPath / "AbsentEndpoint").exists()
