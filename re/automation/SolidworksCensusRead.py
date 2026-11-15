@@ -4,6 +4,8 @@ import subprocess
 import sys
 from collections import Counter
 
+from SolidworksSupportEvidence import support_candidates
+
 
 def native_read(content, path):
     from convert.adapters.solidworks.container.Container import SldprtArchive
@@ -60,6 +62,9 @@ def native_sketch(item, archive):
     return {
         "name": item.name, "id": item.object_id, "support_kind": item.support_kind,
         "support_source": item.support_source, "support_plane_id": item.support_plane_id,
+        "support_evidence": support_candidates(
+            archive.require(item.native_stream), item.native_offset, item.native_end, item.native_stream,
+        ),
         "profiles": len(item.profiles), "constraint_count": len(item.constraints),
         "stream_span": {
             "stream": item.native_stream, "offset": item.native_offset,
