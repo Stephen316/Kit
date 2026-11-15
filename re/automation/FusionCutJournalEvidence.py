@@ -181,6 +181,67 @@ def archive_context(content, parse_manifest, blob_member, kernel_text, actor_val
     }
 
 
+# exact typed aliases can identify a one sided inventory without inventing a transition
+def qualify_slot_two_inventory(history, literal, slot, boss_actor, boss_clock):
+    geometry = {
+        row["geometry_entity_ordinal"]: row for row in history["geometry_entities"]
+    }
+    aliases = {
+        row["side1_entity_ordinal"]: row for row in literal["literal_pair_aliases"]
+    }
+    covered = []
+    substitutions = []
+    for entry in slot["entries"]:
+        left, right = entry["pointer_sides"]
+        require(
+            left["stored_geometry_entity_ordinal"] == -1,
+            "P04 source chart inventory must have only a stored right side",
+        )
+        ordinal = right["stored_geometry_entity_ordinal"]
+        require(
+            ordinal in geometry, "P04 source chart inventory has a missing right side"
+        )
+        source_ordinal = ordinal
+        if ordinal in aliases:
+            alias = aliases[ordinal]
+            source_ordinal = alias["side0_entity_ordinal"]
+            require(
+                geometry[ordinal]["kind"]
+                == alias["kind"]
+                == geometry[source_ordinal]["kind"],
+                "P04 source chart alias changes its typed entity kind",
+            )
+            substitutions.append(
+                {
+                    "entry_ordinal": entry["entry_ordinal"],
+                    "stored_right_geometry_ordinal": ordinal,
+                    "aliased_source_geometry_ordinal": source_ordinal,
+                    "kind": alias["kind"],
+                }
+            )
+        covered.append(source_ordinal)
+
+    chart = set(literal["selected_geometry_entity_ordinals"])
+    missing = chart - set(covered)
+    require(
+        missing == {0}
+        and geometry[0]["kind"] == "asmheader"
+        and geometry[0]["section"] == "geometry"
+        and len(set(covered)) == len(covered) == len(chart) - 1
+        and set(covered) <= chart,
+        "P04 slot two does not exhaust the qualified non-header boss source chart",
+    )
+    return {
+        "matched_source_chart_actor": boss_actor,
+        "matched_source_chart_clock": boss_clock,
+        "observed_right_entries": len(covered),
+        "matched_non_header_entity_count": len(covered),
+        "omitted_header": geometry[0],
+        "kind_preserving_slot_zero_alias_substitutions": substitutions,
+        "scope": "Exact one-sided inventory matches the clock-bound boss chart; journal transition operation and unique event actor unresolved",
+    }
+
+
 # only the slot with both qualified endpoint actors receives a chronological comparison
 def kernel_actor_join(blob, cap, native):
     parsed = inspect_asm(blob)
@@ -246,7 +307,10 @@ def kernel_actor_join(blob, cap, native):
         "slot_zero_unique_event_actor": None,
         "slot_one_actor": None,
         "slot_two_actor": None,
-        "scope": "Slot zero endpoint actor clocks establish P04 source then result order; journal traversal and state ids remain uninterpreted",
+        "slot_two_source_chart_inventory": qualify_slot_two_inventory(
+            history, literal, slot_two, actors[left_clock], left_clock
+        ),
+        "scope": "Slot zero endpoints and slot two source inventory tied to exact P04 actor clocks; journal traversal and state ids remain uninterpreted",
     }
 
 
