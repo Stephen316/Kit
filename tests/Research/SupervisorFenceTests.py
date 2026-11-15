@@ -15,6 +15,7 @@ from tests.Research.SupervisorClient import (
 )
 
 
+# event assertions need the actual supervisor event records rather than relying on plain process output
 def ParseEvents(Output: str) -> list[dict[str, object]]:
     Events: list[dict[str, object]] = [
         JsonCodec.loads(LineText) for LineText in Output.splitlines() if LineText
@@ -22,6 +23,7 @@ def ParseEvents(Output: str) -> list[dict[str, object]]:
     return Events
 
 
+# an expired claimant must lose authority to publish even if its worker remains alive
 def CheckStaleLease() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -57,6 +59,7 @@ def CheckStaleLease() -> None:
         AssertStaleRun(Output, Harness, SessionInfo)
 
 
+# fencing a stale job must leave both the process and its result in the expected state
 def AssertStaleRun(
     Output: str, Harness: SessionHost, SessionInfo: dict[str, object]
 ) -> None:
@@ -79,6 +82,7 @@ def AssertStaleRun(
     assert Released["attempts"] == 1
 
 
+# recovery must distinguish reused identifiers from processes the earlier supervisor actually owned
 def WriteFakeReuse(RootPath: FilePath, ProcessId: int) -> None:
     FakePath = RootPath / "SupervisorState" / "sessions" / "fake-reuse"
     FakePath.mkdir(mode=0o700)
@@ -98,6 +102,7 @@ def WriteFakeReuse(RootPath: FilePath, ProcessId: int) -> None:
     )
 
 
+# restart recovery must clean genuine abandoned sessions while preserving unrelated processes
 def AssertRecovery(
     Events: list[dict[str, object]], Harness: SessionHost, RootPath: FilePath
 ) -> None:
@@ -123,6 +128,7 @@ def AssertRecovery(
     assert not any((RootPath / "SupervisorState" / "sessions").iterdir())
 
 
+# a new supervisor must recover work left behind when its predecessor exits abruptly
 def CheckRestart() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -167,6 +173,7 @@ def CheckRestart() -> None:
         AssertRecovery(Events, Harness, RootPath)
 
 
+# controller adapters must preserve the same lifecycle contract as the built in implementation
 def CheckAdapter() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -221,6 +228,7 @@ def CheckAdapter() -> None:
         AssertAdapter(Harness)
 
 
+# the adapter must report publication and rejection through the same protocol as the standard controller
 def AssertAdapter(Harness: SessionHost) -> None:
     Complete = Harness.ReadJob("mini:complete")
     assert Complete["state"] == "completed"

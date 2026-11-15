@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# a controller must refuse state that no longer matches its stored integrity records
 def CheckStoreGuard() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

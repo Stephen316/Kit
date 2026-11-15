@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# lease fencing must protect work from a claimant whose ownership has already changed
 def CheckLeases() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

@@ -5,6 +5,7 @@ import tempfile as TempFiles
 from pathlib import Path as FilePath
 
 
+# accepting unsupported provenance would undermine comparisons against trusted solidworks capture bytes
 def CheckReadPins() -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     Manifest = JsonCodec.loads((RootPath / "re/automation/Corpus.json").read_text())

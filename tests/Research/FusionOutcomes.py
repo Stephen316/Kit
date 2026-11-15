@@ -4,6 +4,7 @@ import sys as System
 from pathlib import Path as FilePath
 
 
+# inventory coverage needs explicit outcome verification so partial discovery cannot appear complete
 def CheckOutcomes(CensusPath: FilePath, TempPath: FilePath) -> None:
     Report = JsonCodec.loads(CensusPath.read_text())
     assert len(Report["assets"]) == 714

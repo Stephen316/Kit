@@ -5,7 +5,10 @@ import sys as System
 import time as TimeClock
 from pathlib import Path as FilePath
 
+# child processes need stable repository paths regardless of the fixture working directory
 KRepoRoot = FilePath(__file__).resolve().parents[2]
+
+# a single strict schema gives every fixture runner the same result validation boundary
 KResultSchema = {
     "type": "object",
     "required": ["count", "inputs", "tokenless"],
@@ -18,6 +21,7 @@ KResultSchema = {
 }
 
 
+# supervisor fixtures need a real runner registry associated with each tested pool
 def WriteRegistry(RootPath: FilePath, KindPools: dict[str, str]) -> FilePath:
     SchemaFile = RootPath / "ResultSchema.json"
     _ = SchemaFile.write_text(JsonCodec.dumps(KResultSchema), encoding="utf-8")
@@ -41,6 +45,7 @@ def WriteRegistry(RootPath: FilePath, KindPools: dict[str, str]) -> FilePath:
     return RegistryFile
 
 
+# session checks must initialize a durable temporary store through its public entry point
 def InitStore(StorePath: FilePath) -> dict[str, object]:
     ResultInfo = Subprocess.run(
         [
@@ -61,6 +66,7 @@ def InitStore(StorePath: FilePath) -> dict[str, object]:
     return {"adapter": "a03", "store": str(StorePath)}
 
 
+# scenarios share production configuration shape while choosing independent pool capacities
 def WriteConfig(
     RootPath: FilePath,
     RegistryFile: FilePath,
@@ -86,7 +92,10 @@ def WriteConfig(
     return ConfigFile
 
 
+# run lifecycle scenarios need one client for the real supervisor invocation and its output
 class SessionCommand:
+
+    # storing the command once keeps transient and asynchronous supervisor invocations pointed at the same configuration
     def __init__(self, ConfigFile: FilePath) -> None:
         super().__init__()
         self.ConfigFile = ConfigFile
@@ -104,6 +113,7 @@ class SessionCommand:
             else str(KRepoRoot)
         )
 
+    # a failing subprocess should surface diagnostic output with the assertion that spotted it
     def RunCli(self, *ArgItems: str, ExitCode: int = 0, Timeout: int = 60) -> str:
         ResultInfo = Subprocess.run(
             self.Command + list(ArgItems),
@@ -116,6 +126,7 @@ class SessionCommand:
         assert ResultInfo.returncode == ExitCode, ResultInfo.stderr
         return ResultInfo.stdout
 
+    # restart and fencing checks must interact with an independently running supervisor process
     def StartRun(self, *ArgItems: str) -> "Subprocess.Popen[str]":
         return Subprocess.Popen(
             self.Command + ["run", *ArgItems],
@@ -125,6 +136,7 @@ class SessionCommand:
             env=self.Environment,
         )
 
+    # bounded runs keep no work intervals observable without leaving a fixture supervisor alive
     def RunIdle(self, IdleSeconds: float = 3, MaxSeconds: float = 60) -> list[object]:
         Output = self.RunCli(
             "run",
@@ -137,7 +149,10 @@ class SessionCommand:
         return [JsonCodec.loads(LineText) for LineText in Output.splitlines()]
 
 
+# lifecycle assertions need common access to durable job and result evidence across controller backends
 class SessionRecords(SessionCommand):
+
+    # locating session resources here keeps tests independent of differences in controller storage layout
     def __init__(
         self, RootPath: FilePath, StorePath: FilePath | None, ConfigFile: FilePath
     ) -> None:
@@ -145,22 +160,26 @@ class SessionRecords(SessionCommand):
         self.RootPath = RootPath
         self.StorePath = StorePath
 
+    # fixtures must enter through real batch intake so validation and queue order remain in scope
     def SubmitJobs(self, JobList: list[dict[str, object]]) -> None:
         BatchFile = self.RootPath / "Batch.json"
         _ = BatchFile.write_text(JsonCodec.dumps({"jobs": JobList}), encoding="utf-8")
         _ = self.RunCli("submit", str(BatchFile))
 
+    # binary inputs must use normal binding so worker output reflects actual staged content
     def BindBytes(self, BindName: str, Content: bytes) -> None:
         InputFile = self.RootPath / "Input.bin"
         _ = InputFile.write_bytes(Content)
         _ = self.RunCli("bind", BindName, str(InputFile))
 
+    # focused job queries avoid assertions that depend on incidental ordering in the wider queue
     def ReadJob(self, JobName: str) -> dict[str, object]:
         JobInfo: dict[str, object] = JsonCodec.loads(
             self.RunCli("jobs", "--job", JobName)
         )["jobs"][0]
         return JobInfo
 
+    # outcome checks need the durable result rather than relying on a parent process message
     def ReadResult(self, JobName: str) -> dict[str, object]:
         ResultHash = str(self.ReadJob(JobName)["result"])
         if self.StorePath is not None:
@@ -173,7 +192,10 @@ class SessionRecords(SessionCommand):
         return ResultInfo
 
 
+# process scenarios need a complete isolated supervisor and controller fixture
 class SessionHost(SessionRecords):
+
+    # setting up shared session state here keeps resource settings consistent across the scenario lifecycle
     def __init__(
         self,
         RootPath: FilePath,
@@ -189,6 +211,7 @@ class SessionHost(SessionRecords):
         ConfigFile = WriteConfig(RootPath, RegistryFile, PoolLimits, Controller)
         super().__init__(RootPath, StorePath, ConfigFile)
 
+    # asynchronous failure paths must reach the expected recorded cause before timing dependent assertions
     def WaitReason(self, JobName: str, Reason: str, Timeout: float = 30) -> None:
         Until = TimeClock.monotonic() + Timeout
         while TimeClock.monotonic() < Until:
@@ -197,6 +220,7 @@ class SessionHost(SessionRecords):
             TimeClock.sleep(0.1)
         raise AssertionError(f"{JobName} never reported {Reason}")
 
+    # the test must wait until a child records ownership before attempting to interrupt it
     def WaitSession(
         self, JobName: str | None = None, Timeout: float = 30
     ) -> dict[str, object]:
@@ -216,6 +240,7 @@ class SessionHost(SessionRecords):
         raise AssertionError("no supervised session started")
 
 
+# recovery checks need evidence that a recorded worker stopped before its lease is reused
 def IsProcessGone(ProcessId: int) -> bool:
     try:
         OsLayer.kill(ProcessId, 0)
@@ -229,6 +254,7 @@ def IsProcessGone(ProcessId: int) -> bool:
     return StatText[StatText.rindex(")") + 2] == "Z"
 
 
+# cleanup assertions allow time for process teardown while keeping leaked processes observable
 def IsGoneByTimeout(ProcessId: int, Timeout: float = 15) -> bool:
     Until = TimeClock.monotonic() + Timeout
     while TimeClock.monotonic() < Until:
@@ -238,6 +264,7 @@ def IsGoneByTimeout(ProcessId: int, Timeout: float = 15) -> bool:
     return IsProcessGone(ProcessId)
 
 
+# common fixture defaults let each test expose only the job options relevant to its scenario
 def FixtureJob(JobName: str, KindName: str, **Settings: object) -> dict[str, object]:
     JobInfo: dict[str, object] = {
         "id": JobName,

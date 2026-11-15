@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# completed work must be reconsidered when the rule revision changes its evidence requirements
 def CheckRuleChange() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

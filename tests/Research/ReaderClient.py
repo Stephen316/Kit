@@ -4,7 +4,10 @@ import sys as System
 from pathlib import Path as FilePath
 
 
+# solidworks corpus checks need uniform subprocess custody for outcomes across many individual assets
 class ReaderClient:
+
+    # a shared destination keeps per asset reports within the private corpus run
     def __init__(self, TargetPath: FilePath) -> None:
         super().__init__()
         self.TargetPath = TargetPath
@@ -13,6 +16,7 @@ class ReaderClient:
             / "re/automation/SolidworksReader.py"
         )
 
+    # distinct destinations prevent similarly named native files from overwriting each others evidence
     def ReadAsset(self, AssetPath: str) -> tuple[str, Subprocess.CompletedProcess[str]]:
         OutputPath = self.TargetPath / Hashlib.sha256(AssetPath.encode()).hexdigest()
         return AssetPath, Subprocess.run(

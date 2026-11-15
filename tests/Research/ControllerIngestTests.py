@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# existing jobs must survive a later submission to the same controller store
 def CheckAppendJobs() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

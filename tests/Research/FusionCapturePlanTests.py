@@ -8,6 +8,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 
+# authoring and holdout plans must resolve the same immutable provenance pins through normal generation
 @Pytest.mark.parametrize("RecipeId", ("P01", "P05"))
 def CheckPlanPins(RecipeId: str) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]

@@ -7,12 +7,14 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# pool scenarios exercise batch intake through the same file contract as production
 def WriteJobs(RootPath: FilePath, JobList: list[dict[str, object]]) -> FilePath:
     BatchFile = RootPath / "Batch.json"
     _ = BatchFile.write_text(JsonCodec.dumps({"jobs": JobList}), encoding="utf-8")
     return BatchFile
 
 
+# shared fixture defaults let each capacity case identify only the scheduling fields it varies
 def PoolJob(JobName: str, KindName: str, **Settings: object) -> dict[str, object]:
     JobInfo: dict[str, object] = {
         "id": JobName,
@@ -25,6 +27,7 @@ def PoolJob(JobName: str, KindName: str, **Settings: object) -> dict[str, object
     return JobInfo
 
 
+# tests compare claimed work across selectors without depending on unrelated lease metadata
 def ClaimName(Client: JobClient, ClaimFile: FilePath, *ArgItems: str) -> object:
     return JsonCodec.loads(
         Client.RunCli(
@@ -38,6 +41,7 @@ def ClaimName(Client: JobClient, ClaimFile: FilePath, *ArgItems: str) -> object:
     )["job"]
 
 
+# admitting work must respect each configured pool capacity during concurrent operation
 def CheckCapacity() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -92,6 +96,7 @@ def CheckCapacity() -> None:
         _ = Client.RunCli("resource", "provider:fixture", ExitCode=1)
 
 
+# selectors must keep workers from consuming jobs assigned to other pools
 def CheckPoolClaims() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -140,6 +145,7 @@ def CheckPoolClaims() -> None:
         }
 
 
+# a stale pool claimant must remain fenced even when another worker can claim the same job
 def CheckFencing() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

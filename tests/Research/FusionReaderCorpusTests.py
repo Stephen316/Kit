@@ -9,6 +9,7 @@ from tests.Research.CollectFusion import CollectFusion
 from tests.Research.FusionOutcomes import CheckOutcomes
 
 
+# a single valid part cannot establish coverage of the pinned fusion source inventory
 def CheckFusionSet() -> None:
     AssetMap = {str(Asset["path"]): Asset for Asset in FusionAssets()}
     assert len(AssetMap) == 714

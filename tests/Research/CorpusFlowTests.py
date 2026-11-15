@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 
+# custody checks must distinguish intact input from altered bytes before a capture enters research
 @Pytest.mark.parametrize("CaseMode", ("intact", "tampered", "pairs-required"))
 def CheckCorpusFlow(CaseMode: str) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
@@ -48,6 +49,7 @@ def CheckCorpusFlow(CaseMode: str) -> None:
     assert ExpectedMessage in Checked.stderr, Checked.stderr
 
 
+# intake must account for both application sides when paired evidence is explicitly required
 @Pytest.mark.parametrize("RequirePairs", (False, True))
 def CheckPairIntake(RequirePairs: bool) -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
@@ -84,6 +86,7 @@ def CheckPairIntake(RequirePairs: bool) -> None:
     AssertPairRules(Report)
 
 
+# the intake report must expose an independent lineage for each recipe and application
 def AssertPairRules(Report: dict[str, object]) -> None:
     Captures = JsonCodec.loads(JsonCodec.dumps(Report["captures"]))
     assert len({(Entry["recipe_id"], Entry["application"]) for Entry in Captures}) == 10

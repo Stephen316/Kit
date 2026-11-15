@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 
+# real workers must produce distinct durable outcomes for success and each supported failure case
 def CheckOutcomes() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -57,6 +58,7 @@ def CheckOutcomes() -> None:
         assert not any((StatePath / "claims").iterdir())
 
 
+# a completion only counts when the controller retains the worker result and its evidence
 def AssertReceipt(Harness: SessionHost) -> None:
     Complete = Harness.ReadJob("outcome:complete")
     assert Complete["state"] == "completed", Complete
@@ -71,6 +73,7 @@ def AssertReceipt(Harness: SessionHost) -> None:
     assert Stored["receipt"]["peak_memory_bytes"] > 0
 
 
+# rejected input and invalid output must remain distinguishable for downstream recovery
 def AssertFailures(Harness: SessionHost) -> None:
     assert Harness.ReadJob("outcome:rejected")["state"] == "rejected"
     Invalid = Harness.ReadJob("outcome:invalid")
@@ -90,6 +93,7 @@ def AssertFailures(Harness: SessionHost) -> None:
     assert Unpooled["attempts"] == 0
 
 
+# deadline handling must reclaim worker capacity after a session runs past its allowance
 def CheckDeadline() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
@@ -117,6 +121,7 @@ def CheckDeadline() -> None:
         assert 3 <= Receipt["duration_seconds"] < 6
 
 
+# pausing dispatch must keep existing ownership and prevent another supervisor from taking the same state
 def CheckPauseLock() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

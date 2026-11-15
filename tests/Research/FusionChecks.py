@@ -7,6 +7,7 @@ from interchange.document.models.DocumentModel import CadDocument
 from tests.Research.FusionClient import KControlAsset
 
 
+# the control establishes that discovery output preserves the known rectangle before broad coverage is counted
 def VerifyControl(TargetPath: FilePath, Entry: dict[str, str]) -> None:
     AssetPath = TargetPath / Entry["directory"]
     DocBytes = (AssetPath / "document.json").read_bytes()
@@ -32,6 +33,7 @@ def VerifyControl(TargetPath: FilePath, Entry: dict[str, str]) -> None:
     assert all(Record["status"] != "qualified" for Record in Receipt["records"])
 
 
+# a decode can count toward coverage only when its receipt binds the expected native bytes
 def VerifyDecoded(
     TargetPath: FilePath,
     Entry: dict[str, str],
@@ -50,6 +52,7 @@ def VerifyDecoded(
         assert Receipt["strict_rejection"]
 
 
+# each bounded invocation must account for every input before the census aggregates its claims
 def VerifyChunk(
     TargetPath: FilePath, AssetMap: dict[str, dict[str, str | int]]
 ) -> list[dict[str, str]]:
@@ -65,6 +68,7 @@ def VerifyChunk(
     return Entries
 
 
+# a decoder change can shift coverage or rejection reasons even when the total asset count is stable
 def ReportCensus(Entries: list[dict[str, str]]) -> None:
     Outcomes = Counter(Entry.get("reader_mode", Entry["outcome"]) for Entry in Entries)
     Reasons = Counter(

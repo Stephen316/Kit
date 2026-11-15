@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# unavailable resources must park dependent work until the owning provider can serve it
 def CheckResources() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

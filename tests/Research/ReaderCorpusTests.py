@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.ReaderClient import ReaderClient
 
 
+# the solidworks reader must account for the complete declared inventory beyond the ordinary control
 def CheckReadCorpus() -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     Manifest = JsonCodec.loads((RootPath / "re/automation/Corpus.json").read_text())

@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# repeated worker failure must park exhausted jobs while eligible work continues
 def CheckRetryPark() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

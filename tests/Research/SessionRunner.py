@@ -7,6 +7,7 @@ import time as TimeClock
 from pathlib import Path as FilePath
 
 
+# published records need repeatable fixture content that lets tests detect crossed session inputs
 def WriteResult(SessionPath: FilePath, JobInfo: dict[str, object]) -> int:
     JobText = (SessionPath / "job.json").read_text(encoding="utf-8")
     Session = JsonCodec.loads(JobText)
@@ -31,6 +32,7 @@ def WriteResult(SessionPath: FilePath, JobInfo: dict[str, object]) -> int:
     return 0
 
 
+# lifecycle scenarios need a deterministic way to hold a real worker until the owning test intervenes
 def HasHoldInput(SessionPath: FilePath) -> bool:
     Session = JsonCodec.loads((SessionPath / "job.json").read_text(encoding="utf-8"))
     return any(
@@ -39,6 +41,7 @@ def HasHoldInput(SessionPath: FilePath) -> bool:
     )
 
 
+# process timing assertions need an atomic signal that the worker reached a particular phase
 def WritePhase(SessionPath: FilePath, PhaseName: str) -> None:
     StagePath = SessionPath / f".{PhaseName}.entered.tmp"
     Handle = OsLayer.open(
@@ -56,6 +59,7 @@ def WritePhase(SessionPath: FilePath, PhaseName: str) -> None:
         StagePath.unlink(missing_ok=True)
 
 
+# supervisor scenarios need a controllable child that still honors the real session output contract
 def RunFixture() -> int:
     SessionPath = FilePath(System.argv[1])
     Session = JsonCodec.loads((SessionPath / "job.json").read_text(encoding="utf-8"))

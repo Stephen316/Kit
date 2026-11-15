@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# expired application leases must stop reserving capacity after their owner disappears
 def CheckAppExpiry() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

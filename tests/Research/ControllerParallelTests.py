@@ -6,6 +6,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# simultaneous claimants must never start two copies of the same job
 def CheckClaims() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

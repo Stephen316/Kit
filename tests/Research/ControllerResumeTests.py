@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# an interrupted controller must resume durable work through its normal entry point
 def CheckJobResume() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)

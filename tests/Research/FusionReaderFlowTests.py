@@ -6,6 +6,7 @@ from tests.Research.FusionChecks import VerifyControl
 from tests.Research.FusionClient import KArchiveAsset, KControlAsset, RunFusionReader
 
 
+# the normal reader invocation must produce a reproducible result for the pinned control
 def CheckFusionFlow() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         TargetPath = FilePath(TempPath) / "Decoded"
@@ -29,6 +30,7 @@ def CheckFusionFlow() -> None:
         assert (TargetPath / "summary.json").read_bytes() == PriorData
 
 
+# assembly archives must fail explicitly because they lie outside the part reader contract
 def CheckArchive() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         TargetPath = FilePath(TempPath) / "Rejected"

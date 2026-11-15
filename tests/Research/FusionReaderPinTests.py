@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 from tests.Research.FusionClient import KControlAsset, KManifestPath, RunFusionReader
 
 
+# changing source bytes or revision pins must invalidate an otherwise recognizable fusion asset
 def CheckFusionPins() -> None:
     Manifest = JsonCodec.loads(KManifestPath.read_text(encoding="utf-8"))
     with TempFiles.TemporaryDirectory() as TempPath:
@@ -38,6 +39,7 @@ def CheckFusionPins() -> None:
             assert JsonCodec.loads(ResultInfo.stderr)["portable_complete"] is False
 
 
+# ambiguous selection must fail before unrelated files enter the native reader
 def CheckSelection() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         TargetPath = FilePath(TempPath)

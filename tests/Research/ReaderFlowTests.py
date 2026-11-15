@@ -8,6 +8,7 @@ from pathlib import Path as FilePath
 from interchange.document.models.DocumentModel import CadDocument
 
 
+# a known good part establishes whether native reading and publication work through the cli together
 def CheckReadFlow() -> None:
     RootPath = FilePath(__file__).resolve().parents[2]
     with TempFiles.TemporaryDirectory() as TempPath:

@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 from tests.Research.JobClient import JobClient
 
 
+# migration needs an ordinary queued job to prove that upgraded records remain usable
 def SubmitMigration(Client: JobClient, JobFile: FilePath, JobName: str) -> None:
     _ = JobFile.write_text(
         JsonCodec.dumps(
@@ -23,6 +24,7 @@ def SubmitMigration(Client: JobClient, JobFile: FilePath, JobName: str) -> None:
     _ = Client.RunCli("submit", str(JobFile))
 
 
+# historical schema behavior needs reproducible sqlite fixtures even after newer stores become the default
 def DowngradeStore(Database: FilePath, Version: int, *Statements: str) -> None:
     with Closing(Sqlite.connect(Database)) as SchemaDb:
         for Statement in Statements:
@@ -31,6 +33,7 @@ def DowngradeStore(Database: FilePath, Version: int, *Statements: str) -> None:
         SchemaDb.commit()
 
 
+# a successful schema upgrade must support the normal lifecycle of new work
 def FinishMigration(Client: JobClient, RootPath: FilePath, JobFile: FilePath) -> None:
     SubmitMigration(Client, JobFile, "migrated")
     LeaseFile = RootPath / "Lease.json"
@@ -50,6 +53,7 @@ def FinishMigration(Client: JobClient, RootPath: FilePath, JobFile: FilePath) ->
     )
 
 
+# the earliest supported schema needs its own check because it predates the accounting records
 def AssertEarlyDb(Client: JobClient, Database: FilePath) -> None:
     CountsSql = "DELETE FROM settings WHERE key IN ('job_count','definition_bytes')"
     DowngradeStore(
@@ -73,6 +77,7 @@ def AssertEarlyDb(Client: JobClient, Database: FilePath) -> None:
     assert JsonCodec.loads(Client.RunCli("init"))["store_version"] == 4
 
 
+# existing provider state must survive upgrading from the older pool schema
 def AssertPoolStore(Client: JobClient, RootPath: FilePath, Database: FilePath) -> None:
     _ = Client.RunCli("resource", "provider:migrated", "--available")
     DowngradeStore(
@@ -108,6 +113,7 @@ def AssertPoolStore(Client: JobClient, RootPath: FilePath, Database: FilePath) -
     assert Migrated["jobs"][0]["kind"] == "fixture.inspect"
 
 
+# users with old research stores need to resume work after upgrading the controller
 def CheckStoreMove() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
