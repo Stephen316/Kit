@@ -4,7 +4,7 @@ The historical [two-pad experiments](../../../../re/solidworks/corpus/CorpusTwo.
 
 The lower pad is 40 × 20 mm and the upper pad is 10 × 10 mm. The upper sketch selects the lower boss's native top face. The grid contains two independently authored 10 mm + 5 mm baselines, upper depths of 3 and 8 mm, and a base depth of 11 mm. The upper boss merges into one solid.
 
-Run this from the pinned checkout with SOLIDWORKS stopped and an unused private output directory outside the repository.
+The compiled draft is preserved at `df3ee5c511bc2b710424a6c0a2ae75c2f6007d7c`. The active paired corpus retains the original audited authoring harness. When A09 opens, keep the two-pad collector separate from that harness and run it with SOLIDWORKS stopped and an unused private output directory outside the repository.
 
 ```powershell
 powershell.exe -NoProfile -STA -File re/automation/PairedCaptures/SolidWorksAuthoring/RunTwoPad.ps1 -OutputDirectory PATH -SourceRevision FULL_GIT_SHA
@@ -14,4 +14,4 @@ The collector measures healthy controls around both phases. It records saved has
 
 The capture provides discovery inputs and preserves the measured application scope. Reproducing the complete two-pad part without donor data, and validating the generated part in the licensed application, are separate requirements.
 
-The collector compiled against the installed build `34.4.1.1011`. The first launch attempt stopped at the process ownership check because the desktop already had two SOLIDWORKS processes. No fresh saves or measurements were recorded.
+The draft collector compiled against the installed build `34.4.1.1011`. The first capture attempt stopped at the process ownership check because the desktop already had two SOLIDWORKS processes. Fresh saves and measurements remain pending. [Audited harness bytes](../../../Gotchas/Research/Workers/PairedHarnessAuditPin.md)
