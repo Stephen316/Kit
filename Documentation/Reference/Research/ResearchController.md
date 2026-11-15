@@ -216,6 +216,7 @@ New prerequisites reset the per-generation attempt budget; unchanged prerequisit
 Explicit waits and rejections do not spin.
 They resume when a relevant fingerprint changes.
 An unavailable-to-available resource transition can also resume a parked application job that requires that resource.
+For a bound SOLIDWORKS timeout, a fresh resource decision advances the [application hold epoch](../../Changes/Research/Controller/ApplicationHoldEpoch.md).
 CI semantics are supplied by later workers and evidence bindings; A03 does not poll GitHub or treat arbitrary JSON as a passed CI result.
 
 ## Leases, retries and resource recovery

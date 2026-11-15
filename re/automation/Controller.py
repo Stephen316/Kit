@@ -11,7 +11,7 @@ from GroupFinish import finish_group
 from Ledger import Ledger
 from OutputManifest import InvalidOutput
 from Records import StaleLease, canonical, read_record
-from RecoveryFence import StaleOwner, check_owner, rotate_owner
+from RecoveryFence import StaleOwner, check_owner, owner_digest, rotate_owner
 
 
 def main():
@@ -131,7 +131,9 @@ def main():
                 if args.command == "heartbeat":
                     response = ledger.heartbeat(job_id, token)
                 else:
-                    response = ledger.finish(job_id, token, args.outcome, args.result, args.reason, args.output_root)
+                    owner_pin = owner_digest(args.owner) if args.owner is not None else None
+                    response = ledger.finish(job_id, token, args.outcome, args.result, args.reason, args.output_root,
+                                             owner_pin=owner_pin)
             elif args.command == "status":
                 response = ledger.status(args.job, args.after)
             elif args.command == "events":

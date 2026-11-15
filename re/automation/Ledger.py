@@ -7,6 +7,7 @@ import sqlite3
 import time
 from pathlib import Path
 
+from ApplicationHolds import invalidate_application_hold, save_application_hold
 from Artifacts import Artifacts
 from OutputIntake import OutputIntake
 from OutputManifest import InvalidOutput, output_manifest
@@ -118,6 +119,7 @@ class Ledger:
         self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM dependencies WHERE dependency=?", (job_id,))
 
     def change_resource(self, name, available):
+        invalidate_application_hold(self, name)
         previous = self.db.execute("SELECT available FROM resources WHERE name=?", (name,)).fetchone()
         if previous is not None and previous[0] == int(available):
             return
@@ -150,6 +152,7 @@ class Ledger:
             elif previous[0] != capacity:
                 self.db.execute("UPDATE resources SET capacity=? WHERE name=?", (capacity, name))
             if previous is None or previous[0] != capacity:
+                invalidate_application_hold(self, name)
                 self.event(None, "resource_capacity", {"name": name, "capacity": capacity})
         if available is not None:
             self.change_resource(name, available)
@@ -436,7 +439,7 @@ class Ledger:
         self.db.execute("UPDATE jobs SET lease_until=? WHERE id=?", (lease_until, job_id))
         return {"job_id": job_id, "lease_until": lease_until, "deadline": row["deadline"], "reconciled_jobs": self.reconciled, "cycle_searches": self.cycle_searches, "artifact_bytes_hashed": self.bytes_hashed}
 
-    def finish(self, job_id, token, outcome, result_path, reason, output_root=None, result_record=None):
+    def finish(self, job_id, token, outcome, result_path, reason, output_root=None, result_record=None, owner_pin=None):
         row = self.leased(job_id, token)
         spec = json.loads(row["definition"])
         allowed = {"completed", "retry", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
@@ -493,6 +496,8 @@ class Ledger:
         )
         self.enqueue_children(job_id)
         self.event(job_id, "finished", {"outcome": outcome, "state": state, "receipt": receipt})
+        if outcome == "waiting_application":
+            save_application_hold(self, row, spec, result, owner_pin, receipt, result_hash)
         self.refresh()
         return self.status(job_id)
 
