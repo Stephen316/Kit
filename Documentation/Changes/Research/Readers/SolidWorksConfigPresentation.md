@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 14,953 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces 17,106 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -34,7 +34,11 @@ In baseline A, the [table settings](../../../../re/solidworks/archive/ConfigTabl
 
 The [label settings](../../../../re/solidworks/archive/ConfigLabel.py) follow from offsets 29,834 to 33,404. The `moLabelDefs_c` serializer at `0x13e7d0` visits five label members identified by the constructor at `0x127480`, with a separate inline font after the auxiliary member. The shared loader at `0x14d8c0` reads the guarded absent layer, two framed strings, six character formats and two line widths. The orthographic and miscellaneous vtables both select the serializer at `0x14dd50`.
 
-The remaining 1,821-byte interval begins with the surface-finish data helper at `0x13a489` and continues to the next traced null pointer. Both completed sections are inline and preserve the archive map.
+## Annotation helpers and geometric tolerance frames
+
+The [annotation helpers](../../../../re/solidworks/archive/ConfigAnnoData.py) continue from baseline A offset 33,404 to 35,177. The current surface finish, note and weld loaders begin at `sldmfcu+0x13fd00`, `0x13eb50` and `0x140670`. Their shared annotation helper at `0x1359e0` reads a font and two leader groups. The note loader has a separately counted 64-bit map which must be empty. The weld loader reads two additional character formats and calls the surface finish loader twice at `0x140cec` and `0x140cfc`.
+
+The [tolerance helper](../../../../re/solidworks/archive/ConfigTol.py) reads the inline frame count at `sldmfcu+0x13ccf3`. Each `moGTolDlgDataFrame_c` load path at `0x13d259` reads five strings, two byte fields, six counted string arrays, and scalar fields. The two calls at `0x13d480` and `0x13d48c` read typed tolerance pointers which are null in this discovery scope. Datum and indicator collections must be empty. Baseline A reaches the recorded pointer pairs at offsets 35,225 and 35,227, then 35,277 and 35,279. The helper closes at 35,565. The remaining 2,396 bytes reach the `moEnvFolder_c` definition and begin at the center mark helper.
 
 ## Verification
 

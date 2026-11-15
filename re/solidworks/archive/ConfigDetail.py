@@ -28,6 +28,13 @@ def ReadDetailNames(Cursor, Count):
         Cursor.ReadText()
 
 
+# the witnessed string arrays use the archive's short count form
+def ReadShortNames(Cursor):
+    (Count,) = Cursor.ReadValue("<H")
+    Require(Count != 0xFFFF, True, "short detail string array count")
+    ReadDetailNames(Cursor, Count)
+
+
 # modern detail definitions store exclusions before two groups of fixed scalar rows
 def ReadDetailHead(Cursor):
     Cursor.ReadValue("<i")
@@ -46,9 +53,7 @@ def ReadDetailHead(Cursor):
     Cursor.ReadValue("<3i")
     for _ in range(6):
         Cursor.ReadValue("<8i")
-    (LabelCount,) = Cursor.ReadValue("<H")
-    Require(LabelCount != 0xFFFF, True, "short priority label count")
-    ReadDetailNames(Cursor, LabelCount)
+    ReadShortNames(Cursor)
 
 
 # inline character formatting starts with the framed font name

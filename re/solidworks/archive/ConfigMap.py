@@ -1,6 +1,7 @@
 """Replay the witnessed P04 presentation suffix on the shared Config-0 map."""
 
 from argparse import ArgumentParser
+from functools import partial as Partial
 from hashlib import sha256 as Sha256
 import json as Json
 from pathlib import Path
@@ -19,6 +20,7 @@ from SketchEvidence import (
 if __name__ == "__main__":
     ImportPaths.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
+from ConfigAnnoData import ReadFinishData, ReadNoteData, ReadWeldData
 from ConfigAnnot import ReadAnnotDefs
 from ConfigDetail import (
     KStyleTails,
@@ -29,6 +31,7 @@ from ConfigDetail import (
 )
 from ConfigLabel import ReadLabelDefs
 from ConfigTable import ReadTableDefs
+from ConfigTol import ReadTolData
 from SketchReader import ReadSketchConfiguration
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
@@ -151,15 +154,15 @@ def ReadModelPresentation(Cursor):
     ReadAnnotDefs(Cursor)
     ReadTableDefs(Cursor)
     ReadLabelDefs(Cursor)
+    ReadFinishData(Cursor)
+    ReadNoteData(Cursor)
+    ReadWeldData(Cursor)
+    ReadTolData(Cursor, Partial(ReadPointer, Cursor, Events, KNullKind))
     ReadPointers(
         Cursor,
         Events,
         (
-            (1821, KNullKind, None),
-            (0, KNullKind, None),
-            (48, KNullKind, None),
-            (0, KNullKind, None),
-            (2680, KDefinitionKind, "moEnvFolder_c"),
+            (2396, KDefinitionKind, "moEnvFolder_c"),
             (0, KClassRefKind, "moNodeName_c"),
             (64, KNullKind, None),
             (2, KDefinitionKind, "moAmbientLight_c"),
