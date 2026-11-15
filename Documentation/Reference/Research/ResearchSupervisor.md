@@ -128,6 +128,7 @@ The total declared output limit is 256 MiB for the group.
 
 Failed or invalid members retry singly using durable generation/fingerprint markers.
 Restart recovery preserves this decision.
+At least one current member must settle before the group can affect adaptive capacity. [Group settlement and adaptive capacity](../../Changes/Research/Supervisor/GroupedAdaptiveSettlement.md)
 Group memory histories are separate by actual member count, and single-job observations cannot reduce the explicit group memory floor.
 See [the accounting gotcha](../../Gotchas/Research/Supervisor/GroupedLeaseAndMemoryAccounting.md) before setting group limits.
 Calibration and native application acceptance remain separate steps.

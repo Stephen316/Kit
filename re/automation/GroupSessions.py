@@ -95,6 +95,7 @@ class GroupSession(Session):
                 finished[result["outcome"]] = finished.get(result["outcome"], 0) + 1
             accepted.append(not result["stale"] and result["outcome"] == "completed")
             self.supervisor.report("finished", member, {**result, "receipt": {**receipt, "job_id": member.spec["id"], "attempt": member.claim["attempt"]}})
-        self.supervisor.budget.record(self.spec, self.name, "completed" if all(accepted) else "retry", False, receipt, self.supervisor.report)
+        all_stale = all(result["stale"] for result in results)
+        self.supervisor.budget.record(self.spec, self.name, "completed" if all(accepted) else "retry", all_stale, receipt, self.supervisor.report)
         self.remove()
         return True
