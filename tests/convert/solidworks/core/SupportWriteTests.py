@@ -13,7 +13,7 @@ from convert.adapters.solidworks.core.Native import (
 )
 from tests.convert.api.ApiTestPaths import KRootPath, KSamplePath
 from tests.convert.solidworks.core.NestedDocument import NestedDocument
-from tests.convert.solidworks.core.RejectSupports import RejectSupports
+from tests.convert.solidworks.core.RejectWrites import RejectWrites
 
 
 @TestMark.parametrize(
@@ -55,4 +55,4 @@ def TestSupportGate(
     with RaisesError(ValueError, match="unqualified SOLIDWORKS sketch support"):
         _ = ConvertFile(SourcePath, TargetPath, overwrite=True)
     assert TargetPath.read_bytes() == b"existing public destination"
-    RejectSupports(Document, TmpPath)
+    RejectWrites(Document, TmpPath, "unqualified SOLIDWORKS sketch support")

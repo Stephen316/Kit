@@ -12,6 +12,8 @@ from convert import write_document as WriteLegacy
 from convert.adapters import AdapterRegistry
 from convert.adapters.base.AdapterProtocols import CadReaderAdapter, CadWriterAdapter
 from interchange import Capability
+from interchange.document.models.DocumentWalk import WalkDocuments
+from interchange.features.FeatureKinds import NativeFeature
 from tests.convert.api.ApiTestPaths import KCatPartPath
 from tests.convert.api.ApiTestPaths import KFcstdPath
 from tests.convert.api.BuildApiSource import BuildApiSource
@@ -62,6 +64,17 @@ def CheckExactSwap(
     if not SourcePath.is_file():
         Pytest.skip(f"bundled exact replay fixture is unavailable: {SourcePath.name}")
     TargetPath = TmpPath / FileName
+    DocumentData = OpenLegacy(SourcePath)
+    if any(
+        isinstance(StepValue.definition, NativeFeature)
+        for PartValue in WalkDocuments(DocumentData)
+        for StepValue in PartValue.feature_timeline
+    ):
+        _ = TargetPath.write_bytes(b"existing destination")
+        with Pytest.raises(ValueError, match="native-only feature definitions"):
+            _ = ConvertLegacy(SourcePath, TargetPath, overwrite=True)
+        assert TargetPath.read_bytes() == b"existing destination"
+        return
     ResultData = ConvertLegacy(SourcePath, TargetPath)
     assert ResultData.application_usable is True
     assert ResultData.vendor_loadable is True

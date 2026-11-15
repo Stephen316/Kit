@@ -10,6 +10,7 @@ from convert.adapters.registry.EquationWrite import CheckEquations
 from convert.adapters.registry.InchWrite import CheckInchWrite
 from convert.adapters.registry.ResearchWrite import CheckResearch
 from convert.adapters.registry.SupportWrite import CheckSupports
+from convert.adapters.registry.NativeWrite import CheckNative
 from interchange.document.models.DocumentCaps import InferCaps
 from interchange.document.models.DocumentModel import CadDocument
 
@@ -41,6 +42,7 @@ class FusionWriter:
         CheckInchWrite(Document)
         CheckEquations(Document)
         CheckSupports(Document)
+        CheckNative(Document)
         Settings = Options if Options is not None else WriteOptions()
         if (
             Settings.configuration is not None

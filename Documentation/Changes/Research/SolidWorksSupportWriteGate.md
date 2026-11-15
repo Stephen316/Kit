@@ -51,6 +51,8 @@ Registry cases restore its typed neutral serialization before exercising their r
 The transfer, usability, strict carrier refusal, and rollback assertions remain in place.
 Dedicated native API coverage preserves inspection and requires refusal without changing an existing destination.
 The public API and task guides now state that a successful read does not qualify an export.
+The separate native-definition safeguard also refuses retained `NativeFeatureDefinition` history after support checks.
+Explicit support references therefore do not permit unresolved native-only feature semantics to pass output qualification.
 
 No local tests, decoding, or CAD application experiments verified this change.
 Remote integration results and current-head review remain required.

@@ -3,10 +3,14 @@
 The JSON, Fusion, CATIA, and FreeCAD adapters now apply the existing document write safeguards before output work.
 Direct adapter calls reject unqualified research documents, unresolved SOLIDWORKS inch dimensions, and unresolved SOLIDWORKS equation references or targets.
 The safeguards inspect embedded component documents as well as the root document.
+They also reject history containing `NativeFeatureDefinition`, including suppressed steps and reference-kind nodes.
+Native-only definitions retain format-specific data without establishing editable portable semantics.
 
 The existing checks remain in the registry for registered third-party writers.
 Concrete writers call those same checks directly. No second marker format or policy implementation is introduced.
 The rejection applies when `WriteOptions(validate=False)` is selected.
+The native-definition check follows the existing research, inch, equation, and support checks to preserve their diagnostic priority.
+It applies to every source format and survives interchange serialization.
 
 Affected public entry points include `JsonAdapter.write`, `JsonAdapter.Write`, `JsonWriter.EmitTarget`, `FusionWriter.write`, and `FusionWriter.Write`.
 They also include `CatiaAdapter.write`, `FreeCadAdapter.write`, and the existing FreeCAD convenience function that calls that adapter.
@@ -31,6 +35,21 @@ They require preservation of existing files, binary streams, text streams, and a
 A separate valid-document case requires direct JSON writing and reopening to preserve an independently authored Fusion document.
 The bundled SOLIDWORKS example is a refusal case because its support references remain unqualified.
 See [the fixture evidence](../../Gotchas/Conversion/SolidWorksBundledExampleSupports.md).
+
+The [native-definition review](https://github.com/TryUniCAD/Kit/pull/94#discussion_r4576647550) identified a separate history qualification gap.
+The new boundary cases read an actual SOLIDWORKS definition with retained native record bytes.
+They place that unchanged definition in an independent typed graph to isolate its refusal from unrelated native sketch support gaps.
+The saved interchange input must reopen for inspection and then fail every registry and direct writer boundary without output mutation.
+Root, nested, active, and suppressed histories receive the same refusal.
+This negative fixture does not qualify the retained definition or relabel its source semantics.
+
+CATIA native feature graphs and unsupported FreeCAD feature types also use `NativeFeatureDefinition`.
+Public writes that previously selected exact replay or carriers for these graphs now fail at this shared boundary.
+Copying retained native bytes does not qualify an editable portable graph.
+Native reading and explicit model serialization remain available for inspection.
+The low-level native replay helpers are unchanged.
+Existing generic API exact-copy cases now require refusal and destination preservation when the decoded history contains native-only definitions.
+Their original exact-result assertions remain for fully typed inputs.
 
 Formatting and source checks provide local evidence only. No local tests, decoding, or CAD application runs verified this repair.
 Remote integration results and current-head review remain required.
