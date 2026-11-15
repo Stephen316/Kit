@@ -8,6 +8,20 @@ func refuse(_ code: Int32, _ reason: String) -> Never {
     exit(code)
 }
 
+func physicalPath(_ file: URL?) -> String? {
+    guard let file, file.isFileURL, !file.path.utf8.contains(0) else {
+        return nil
+    }
+    return file.withUnsafeFileSystemRepresentation { bytes -> String? in
+        guard let bytes, String(validatingCString: bytes) != nil,
+              let resolved = Darwin.realpath(bytes, nil) else {
+            return nil
+        }
+        defer { free(resolved) }
+        return String(validatingCString: resolved)
+    }
+}
+
 func boundedBytes(_ file: URL, maximum: Int) -> Data? {
     guard let size = try? file.resourceValues(forKeys: [.fileSizeKey]).fileSize,
           size > 0, size <= maximum,
@@ -39,12 +53,12 @@ let executable = arguments[2]
 let identifier = arguments[3]
 let target = URL(fileURLWithPath: path, isDirectory: true)
 let info = target.appendingPathComponent("Contents/Info.plist")
-guard target.resolvingSymlinksInPath().path == path,
+guard physicalPath(target) == path,
       let application = Bundle(url: target),
       application.bundleIdentifier == identifier,
       let entry = application.executableURL,
-      entry.resolvingSymlinksInPath().path == executable,
-      info.resolvingSymlinksInPath().path == info.path,
+      physicalPath(entry) == executable,
+      physicalPath(info) == info.path,
       digest(info, maximum: 1_048_576) == arguments[4],
       digest(entry, maximum: 268_435_456) == arguments[5] else {
     refuse(5, "Application bundle does not match the reviewed launch profile")
@@ -53,8 +67,8 @@ guard target.resolvingSymlinksInPath().path == path,
 let request = URL(fileURLWithPath: arguments[7])
 let fence = request.deletingLastPathComponent().appendingPathComponent("fence.json")
 guard arguments[7].hasPrefix("/"),
-      request.resolvingSymlinksInPath().path == arguments[7],
-      fence.resolvingSymlinksInPath().path == fence.path,
+      physicalPath(request) == arguments[7],
+      physicalPath(fence) == fence.path,
       let requestData = boundedBytes(request, maximum: 1_048_576),
       digest(requestData) == arguments[8],
       let decoded = try? JSONSerialization.jsonObject(with: requestData),
@@ -66,7 +80,7 @@ guard arguments[7].hasPrefix("/"),
 let workspace = NSWorkspace.shared
 if workspace.runningApplications.contains(where: {
     !$0.isTerminated && ($0.bundleIdentifier == identifier ||
-        $0.bundleURL?.resolvingSymlinksInPath().path == path)
+        physicalPath($0.bundleURL) == path)
 }) {
     refuse(2, "An application counterpart is already running")
 }
@@ -90,8 +104,8 @@ workspace.openApplication(at: target, configuration: configuration) { app, error
     guard let app, !app.isTerminated,
           app.processIdentifier > 0,
           app.bundleIdentifier == identifier,
-          app.bundleURL?.resolvingSymlinksInPath().path == path,
-          let observedExecutable = app.executableURL?.resolvingSymlinksInPath().path,
+          physicalPath(app.bundleURL) == path,
+          let observedExecutable = physicalPath(app.executableURL),
           observedExecutable == executable else {
         refuse(3, "LaunchServices did not return the exact requested application")
     }
