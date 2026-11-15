@@ -51,3 +51,21 @@ At `fca003a46fcb2def5a22c38942598ebd98cac99a`, two fresh Windows A03 stores used
 The direct adapter call took a median 187.689 ms, including a 182.073 ms controller round trip. The instrumented path measured a 194.212 ms median round trip, with 11.587 ms of paired median adapter overhead. Parent invocation to the first child Python marker and controller source load/imports together took a paired median 134.391 ms, with a median share of 70.74% of the instrumented round trip. Argument processing took a median 26.670 ms. Combined ledger initialization, transaction opening, owner check, claim, publication and commit took a median 16.700 ms. The largest observed claim-file sync cost was 135.400 ms and the largest transaction exit was 144.080 ms. These component timings describe the isolated claim path on this host.
 
 The private timing report SHA-256 is `d571aac7ba69b073399a3fc5e419800b33b404b9b72a62e8b488a0d7c849ecb2` and its source digest is `c4cd772472d9bb3f57fa55c0581593175bc53c146aea8433022fd4536d069238`. The parent instrumentation SHA-256 is `6083558aa1f230b4e69d8513e05103337aa608f2f653de462238cc507adeab96` and the child instrumentation SHA-256 is `b999657803a392f8d6700f8c933732c614a14c049e1c2997d8a86125bc579ffa`.
+
+### Windows sweep with the warm claim helper
+
+The `b323938d0645bcded260e206e5fe3d164aed2252` sweep used the same 64 archived inputs, manifest, Python version, and reserve settings. The decoder, locked dependencies, calibration metrics and Windows resource observer were unchanged between source revisions. The built-in Windows supervisor used its [warm claim helper](WindowsWarmClaim.md) in all five trials.
+
+| Requested workers | Decodes per minute | Peak simultaneous decodes | Longest requested overlap in seconds |
+| ---: | ---: | ---: | ---: |
+| 1 | 17.79 | 1 | 6.648 |
+| 2 | 33.28 | 2 | 3.020 |
+| 4 | 48.58 | 4 | 3.832 |
+| 8 | 64.48 | 8 | 4.442 |
+| 16 | 77.51 | 16 | 5.681 |
+
+All 320 jobs completed once. All trials produced the same decoded-output digest as before, with complete CPU and working-set telemetry and clean supervisor, claim, session and Job Object shutdown receipts. The sixteen-worker trial observed at least 13,933,875,200 bytes of host memory available and a peak sampled aggregate working set of 1,139,089,408 bytes.
+
+All four adjacent comparisons meet the overlap and telemetry rules. Gains are 87.11%, 45.97%, 32.73%, and 20.20%. The sweep completed without a plateau or recommendation. Absolute throughput at four, eight, and sixteen workers was lower than the preceding run. The elapsed-rate comparison remains descriptive across the two source revisions. [Isolated Windows claim latency](WindowsWarmClaim.md)
+
+The output digest is `32a804539e3f50992b21f4ed576fb45979dd778696aea399761e3649d409f865`. The warm calibration source digest is `f29da3ed89020a9e096a81b496243f98a2742d533b63344e43bc642af1570335`, and the private report SHA-256 is `8f117d25b59642473d529167957e68fe4f390c5856592a6a7dbc976c931a895d`.
