@@ -279,6 +279,42 @@ public sealed class P04Readback
         }
     }
 
+    static double[] BodyExtent(IBody2 body, double sign)
+    {
+        var coordinates = new double[3];
+        for (int axis = 0; axis < coordinates.Length; axis++)
+        {
+            var direction = new double[3];
+            direction[axis] = sign;
+            double x, y, z;
+            Require(body.GetExtremePoint(direction[0], direction[1], direction[2], out x, out y, out z),
+                "The solid body did not report an axis extremum");
+            coordinates[axis] = new[] { x, y, z }[axis];
+            Require(!double.IsNaN(coordinates[axis]) && !double.IsInfinity(coordinates[axis]),
+                "The solid body reported a nonfinite axis extremum");
+        }
+        return coordinates;
+    }
+
+    static object FinalBody(IModelDoc2 document)
+    {
+        var bodies = Items(((IPartDoc)document).GetBodies2((int)swBodyType_e.swSolidBody, false));
+        Require(bodies.Length == 1, "P04 final topology requires one solid body");
+        var body = (IBody2)bodies[0];
+        var lower = BodyExtent(body, -1);
+        var upper = BodyExtent(body, 1);
+        Require(lower.Zip(upper, (minimum, maximum) => minimum < maximum).All(ordered => ordered),
+            "The solid body reported invalid extent bounds");
+        var mass = document.Extension.CreateMassProperty2() as IMassProperty2;
+        Require(mass != null, "P04 final mass properties are unavailable");
+        mass.UseSystemUnits = true;
+        Require(mass.Recalculate(), "P04 final mass calculation failed");
+        return Row("solid_body_count", bodies.Length, "face_count", body.GetFaceCount(),
+            "edge_count", body.GetEdgeCount(), "vertex_count", body.GetVertexCount(),
+            "bounds_min_m", lower, "bounds_max_m", upper, "volume_m3", mass.Volume,
+            "center_of_mass_m", mass.CenterOfMass);
+    }
+
     Dictionary<string, object> Observe(IModelDoc2 document, byte[] priorReference)
     {
         var boss = NamedFeature(document, "BlindBoss", "Extrusion");
@@ -296,6 +332,7 @@ public sealed class P04Readback
         var support = Support(document, cutSketch, boss, priorReference);
         var equations = document.GetEquationMgr();
         return Row("configuration", document.IGetActiveConfiguration().Name, "support", support,
+            "final_body", FinalBody(document),
             "equations", Enumerable.Range(0, equations.GetCount()).Select(index => equations.Equation[index]).ToArray(),
             "origin_feature", Feature(origin), "origin_returns_sketch", originSketch != null,
             "origin_points", originSketch == null ? null : Items(originSketch.GetSketchPoints2())
