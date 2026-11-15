@@ -1,0 +1,3 @@
+# Fusion P04 roots carry a literal before the occurrence UUIDs
+
+The P04 `rootInstance` framing contains an extra `01` before the first UUID. An empty attribute table still carries that byte. Following the ordinary suffix offsets from the table reads an invalid string or shifts the instance number. Use the narrow root reader for the pinned archives, require the framed mark and canonical identity-root suffix, and preserve the mark as a literal. The three typed gate attributes already observed in this reader also occur with the extra byte in eight of the captures. [P04 document-world frame evidence](../../../Changes/Research/Readers/FusionCutWorldFrame.md)

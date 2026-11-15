@@ -2,6 +2,7 @@ import io
 import json
 import math
 import zipfile
+from functools import partial
 
 from FusionCutExtentEvidence import (
     DESIGN,
@@ -17,17 +18,23 @@ from PairedCaptureIntake import require, sha256
 
 from asm_records import inspect_asm, inspect_asm_members
 from decode_asm_recipe_tags import decode_asm_generic_tags, match_recipe_tag_names
-from decode_assembly import decode_assembly
-from decode_basics import named_features
+from decode_assembly import OCCURRENCE_GUID, decode_assembly
+from decode_basics import attach_parameters, named_features
 from decode_body_asm_identifiers import decode_body_asm_identifiers
 from decode_body_bindings import decode_body_bindings
 from decode_body_property_variants import decode_body_collection_attribute_variants
 from decode_brep import decode_topology
 from decode_occurrence_gate_attributes import occurrence_with_gate_attributes
-from decode_placement import decode_placement, transform_point, transform_vector
+from decode_parameters import decode_stream
+from decode_placement import (
+    IDENTITY,
+    decode_placement,
+    transform_point,
+    transform_vector,
+)
 from decode_recipe_components import decode_counted_recipe
 from decode_shell_reconstruction import resolve_bounded_face_operands
-from decode_sketch import same
+from decode_sketch import decode_sketches, reference, same
 from fusion_metadata import design_records
 from materialize_asm_literal_view import materialize_asm_literal_view
 
@@ -60,9 +67,7 @@ def body_members(content):
 
 
 # the common component frame lets independent geometry corroborate the recipe selected occurrence
-def compare_plane(
-    face_id, graph, nodes, plane_matrix, profile_matrix, depth, historical
-):
+def compare_plane(face_id, graph, nodes, plane_matrix, profile_matrix, depth):
     face = nodes[face_id]
     surface = nodes[face["surface_index"]]["analytic_surface"]
     require(
@@ -71,16 +76,11 @@ def compare_plane(
     )
     origin = transform_point(plane_matrix, (0, 0, 0))
     x_axis = transform_vector(plane_matrix, (1, 0, 0))
-    y_axis = transform_vector(plane_matrix, (0, 1, 0))
     normal = transform_vector(plane_matrix, (0, 0, 1))
     require(
-        historical["support"] == "BRepFace"
-        and same(surface["normal"], normal)
-        and same(surface["stored_reference_axis"], x_axis)
-        and same(historical["x_direction"], x_axis)
-        and same(historical["y_direction"], y_axis)
-        and same(historical["origin_world_mm"], [10 * value for value in origin]),
-        "P04 recipe selected plane, sketch matrix and historical frame disagree",
+        same(surface["normal"], normal)
+        and same(surface["stored_reference_axis"], x_axis),
+        "P04 recipe selected plane and sketch matrix disagree",
     )
     offset = math.sumprod(normal, origin)
     require(
@@ -170,6 +170,107 @@ def reject_initial_result(blob, parsed, recipe, body_index):
     )
 
 
+# world placement needs both the typed occurrence and each independently observed sketch frame
+def verify_document_frames(
+    data, primary, assembly, features, collection, geometry, historical
+):
+    require(
+        not assembly["unresolved"] and not assembly["occurrence_paths"],
+        "P04 document root or occurrence path is unresolved",
+    )
+    (root,) = assembly["native_occurrences"]
+    root_record = primary[root["object_id"]]
+    component = collection["component_object_id"]
+    component_record = primary[component]
+    require(
+        root_record.class_guid == OCCURRENCE_GUID
+        and root_record.payload_start is not None
+        and component_record.class_guid == "E03784ED-5E19-4E14-B9F2-3B07017018CD"
+        and root["component_object_id"] == component
+        and root["local_transform"] == IDENTITY
+        and root["parent_collection_object_id"] is None
+        and root["stored_pre_uuid_marker"] == 1,
+        "P04 root does not match the typed body and sketch component",
+    )
+    observed = {sketch["name"]: sketch for sketch in historical["sketches"]}
+    world_sketches = {
+        sketch["sketch_object_id"]: sketch for sketch in assembly["root_sketches"]
+    }
+    require(
+        len(world_sketches) == len(assembly["root_sketches"]) == len(features) == 2,
+        "P04 root does not own both source sketch frames",
+    )
+    frames = {}
+    for feature in features:
+        placement = feature["placement"]
+        transform = primary[placement["transform_object_id"]]
+        require(
+            transform.class_guid == "F47A46FB-DA27-4AFA-8A72-1B38FA596E23"
+            and transform.start == placement["record_offset"]
+            and reference(data, transform.end - 11) == component,
+            "P04 sketch transform does not explicitly name its component",
+        )
+        matrix = world_sketches[feature["sketch_object_id"]]["sketch_to_world_matrix"]
+        origin = [10 * value for value in transform_point(matrix, (0, 0, 0))]
+        x_axis = transform_vector(matrix, (1, 0, 0))
+        y_axis = transform_vector(matrix, (0, 1, 0))
+        z_axis = transform_vector(matrix, (0, 0, 1))
+        prior = observed[feature["name"]]
+        require(
+            same(prior["origin_world_mm"], origin)
+            and same(prior["x_direction"], x_axis)
+            and same(prior["y_direction"], y_axis),
+            "P04 saved and historical world sketch frames disagree",
+        )
+        frames[feature["name"]] = {
+            "sketch_to_world_matrix": matrix,
+            "matrix_translation_units": "cm",
+            "origin_world_mm": origin,
+            "world_x_axis": x_axis,
+            "world_y_axis": y_axis,
+            "world_z_axis": z_axis,
+            "historical_origin_world_mm": prior["origin_world_mm"],
+            "historical_x_direction": prior["x_direction"],
+            "historical_y_direction": prior["y_direction"],
+            "native_transform": record_site(data, transform),
+        }
+    surface = geometry["selected_surface"]
+    face_origin = [
+        10 * value
+        for value in transform_point(root["local_transform"], surface["raw_origin"])
+    ]
+    face_normal = transform_vector(root["local_transform"], surface["normal"])
+    face_reference_axis = transform_vector(
+        root["local_transform"], surface["stored_reference_axis"]
+    )
+    cut = frames["CutSketch"]
+    require(
+        observed["CutSketch"]["support"] == "BRepFace"
+        and same(face_normal, cut["world_z_axis"])
+        and same(face_reference_axis, cut["world_x_axis"])
+        and math.isclose(
+            math.sumprod(face_origin, face_normal),
+            math.sumprod(cut["origin_world_mm"], face_normal),
+            abs_tol=1e-8,
+        ),
+        "P04 selected cap and historical sketch do not share the world plane",
+    )
+    return {
+        "root_occurrence": root,
+        "root_native_record": record_site(data, root_record),
+        "root_payload_offset": root_record.payload_start,
+        "root_pre_uuid_marker_offset": root_record.payload_start
+        + root["stored_pre_uuid_marker_payload_offset"],
+        "root_component_record": record_site(data, component_record),
+        "sketch_frames": frames,
+        "selected_cap_world_origin_mm": face_origin,
+        "selected_cap_world_normal": face_normal,
+        "selected_cap_world_reference_axis": face_reference_axis,
+        "selected_cap_signed_world_offset_mm": math.sumprod(face_origin, face_normal),
+        "scope": "Identity ASM BODY cache and typed root occurrence; historical API axes and origins compared in world millimeters",
+    }
+
+
 # source face identity starts at the owned recipe and ends in one typed literal body view
 def inspect_face(content, historical):
     extent = inspect_archive(content)
@@ -238,7 +339,12 @@ def inspect_face(content, historical):
 
     features = named_p04_sketches(data, records)
     assembly = decode_assembly(
-        data, records, features, occurrence_decoder=occurrence_with_gate_attributes
+        data,
+        records,
+        features,
+        occurrence_decoder=partial(
+            occurrence_with_gate_attributes, allow_root_identity_marker=True
+        ),
     )
     properties = decode_body_collection_attribute_variants(data, records, assembly)
     (collection,) = [
@@ -271,7 +377,9 @@ def inspect_face(content, historical):
         cut["placement"]["sketch_to_component_matrix"],
         profile["placement"]["sketch_to_component_matrix"],
         boss["extent"]["side_one"]["distance_cm"],
-        historical,
+    )
+    document_frames = verify_document_frames(
+        data, primary, assembly, features, collection, geometry, historical
     )
     (alternate,) = [value for path, value in members.items() if path.endswith(".smb")]
     alternate_parsed = inspect_asm(alternate)
@@ -304,6 +412,7 @@ def inspect_face(content, historical):
             feature["name"]: feature["placement"] for feature in features
         },
         "document_occurrence_diagnostics": assembly["unresolved"],
+        "document_frames": document_frames,
         "literal_body_alias": alias,
         "literal_body_origin": body_origin,
         "literal_face_origin": {
@@ -327,11 +436,15 @@ def inspect_face(content, historical):
 
 # the named pair gives the independent support and boss profile frames
 def named_p04_sketches(data, records):
-    features = [row for row in named_features(data, records) if row["kind"] == "Sketch"]
+    named = named_features(data, records)
+    parameters, _ = decode_stream(data, records)
+    attach_parameters(data, records, named, parameters)
+    features = [row for row in named if row["kind"] == "Sketch"]
     require(
         [row["name"] for row in features] == ["RectangleSketch", "CutSketch"],
         "unexpected P04 sketch roster",
     )
+    decode_sketches(data, records, features, allow_reversed_point_dimensions=True)
     placement = decode_placement(data, records, features)
     require(
         not placement["unresolved_sketches"], "P04 saved sketch placement unresolved"
@@ -354,14 +467,11 @@ def report():
     archives = []
     for source in capture["native_files"]:
         phase, observation = historical[source["variant"]]
-        (sketch,) = [
-            row for row in observation["sketches"] if row["name"] == "CutSketch"
-        ]
         archives.append(
             {
                 "source": source,
                 "observation": phase,
-                **inspect_face(git.blob(REVISION, source["path"]), sketch),
+                **inspect_face(git.blob(REVISION, source["path"]), observation),
             }
         )
     return {
@@ -373,7 +483,7 @@ def report():
         "receipt": capture["receipt"],
         "measurements": capture["measurements"],
         "archives": archives,
-        "scope": "Named saved literal source-cap occurrence and component frame; native chronology and API identity remain open",
+        "scope": "Named saved literal source-cap occurrence and document-world frame; native chronology and API identity remain open",
     }
 
 
