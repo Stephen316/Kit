@@ -5,8 +5,8 @@ from convert.adapters.solidworks.container.Archive import (
     KDefinitionKind,
     ReadString,
 )
-from FaceOccurrence import read_local_component, read_transform
-from SketchRoot import Require
+from convert.adapters.solidworks.resolved.PrincipalRef import ReadPlaneRef
+from SketchRoot import KGeneration, Require
 
 
 # the origin uses empty presentation lists but still allocates both objects
@@ -43,15 +43,10 @@ def read_presentation(cursor):
 # the origin points to a local principal feature instead of embedding its own plane
 def read_feature_tail(cursor):
     cursor.null()
-    support_offset = cursor.position
-    support = cursor.pointer(KDefinitionKind, "moCompRefPlane_c")
-    unit, part = read_local_component(cursor)
-    feature_id, time_word = cursor.read("<iI")
-    cursor.null()
-    Require(cursor.read("<i"), (3,), "guarded origin plane direction state")
-    transform = read_transform(cursor)
+    support = ReadPlaneRef(cursor, KGeneration, KDefinitionKind)
+    Require(support.AxisCode, 3, "guarded origin plane direction state")
     Require(
-        (transform["basis"], transform["translation_scale"]),
+        (support.BasisValue, support.ShiftScale),
         (None, (0, 0, 0, 1)),
         "origin identity placement",
     )
@@ -63,12 +58,12 @@ def read_feature_tail(cursor):
     Require(cursor.read("<2Hi"), (0, 0, 0), "empty origin final groups")
     return {
         "support": {
-            "offset": support_offset,
-            "object_index": support,
-            "unit_component": unit,
-            "part_object": part,
-            "native_feature_id": feature_id,
-            "native_time_word": time_word,
+            "offset": support.Offset,
+            "object_index": support.ObjectIndex,
+            "unit_component": support.UnitIndex,
+            "part_object": support.PartIndex,
+            "native_feature_id": support.FeatureId,
+            "native_time_word": support.TimeValue,
         },
         "feature_state_word": state_word,
     }

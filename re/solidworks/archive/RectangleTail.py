@@ -10,10 +10,10 @@ from convert.adapters.solidworks.container.Archive import (
 )
 from convert.adapters.solidworks.core.Native import IsOrthonormal
 from convert.adapters.solidworks.container.PlaneBasis import MatrixAxes
-from FaceOccurrence import read_local_component, read_transform
+from convert.adapters.solidworks.resolved.PrincipalRef import ReadPlaneRef
 from FileReference import read_file_reference
 from ProfileSupport import read_chain
-from SketchRoot import Require
+from SketchRoot import KGeneration, Require
 
 
 # the modern surface and boundary records must both refer to the owning profile
@@ -83,16 +83,13 @@ def read_trim_edge(cursor, profile, surface):
 
 # ordinary sketch profiles can resolve their principal support without embedded face data
 def read_principal_support(cursor, planes):
-    offset = cursor.position
-    index = cursor.pointer(KClassRefKind, "moCompRefPlane_c")
-    unit, part = read_local_component(cursor)
-    feature_id, time_word = cursor.read("<iI")
+    reference = ReadPlaneRef(cursor, KGeneration, KClassRefKind)
     plane = next(
-        (item for item in planes if item["native_feature_id"] == feature_id), None
+        (item for item in planes if item["native_feature_id"] == reference.FeatureId),
+        None,
     )
     Require(plane is not None, True, "support resolves an earlier principal plane")
-    cursor.null()
-    (axis,) = cursor.read("<i")
+    axis = reference.AxisCode
     Require(axis in (1, 3), True, "witnessed principal support axes")
     plane_data = plane["plane_data"]
     Require(
@@ -100,17 +97,20 @@ def read_principal_support(cursor, planes):
         1.0,
         "principal support axis agrees with its plane",
     )
-    transform = read_transform(cursor)
+    transform = {
+        "basis": reference.BasisValue,
+        "translation_scale": reference.ShiftScale,
+    }
     check_principal_frame(transform, plane_data)
     return {
-        "offset": offset,
-        "object_index": index,
-        "unit_component": unit,
-        "part_object": part,
+        "offset": reference.Offset,
+        "object_index": reference.ObjectIndex,
+        "unit_component": reference.UnitIndex,
+        "part_object": reference.PartIndex,
         "plane_name": plane["name"],
         "plane_object": plane["object_index"],
-        "native_feature_id": feature_id,
-        "native_time_word": time_word,
+        "native_feature_id": reference.FeatureId,
+        "native_time_word": reference.TimeValue,
         "axis": axis,
         "transform": transform,
     }

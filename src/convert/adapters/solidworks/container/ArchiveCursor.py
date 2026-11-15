@@ -91,9 +91,13 @@ class ArchiveCursor(FieldCursor):
         Expected: tuple[str | None, ...],
         KindValue: str | None = None,
         SchemaValue: int = 1,
+        *,
+        CompactOnly: bool = False,
     ) -> tuple[TagAction, str | None, int]:
         Offset, Counter = self.Offset, self.NextIndex
         TagValue = ReadTag(self.BlobValue, Offset)
+        if CompactOnly:
+            RequireArch(TagValue.wide, False, f"compact archive pointer at {Offset}")
         if KindValue is not None:
             RequireArch(TagValue.kind, KindValue, f"archive tag kind at {Offset}")
         NameValue = ResolveMapType(TagValue, self.Classes, self.Objects, SchemaValue)

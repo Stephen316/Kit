@@ -1,17 +1,14 @@
 """Read bounded sketch geometry with the native object map preserved."""
 
-import math as Math
-import struct as Struct
 from types import SimpleNamespace
 
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     KObjectRefKind,
-    ReadString,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveTags import BindMapTagMut, ResolveMapType
+from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from SketchRoot import KGeneration, Require
 
 # only these value dimension subclasses share the observed distance serializer
@@ -22,7 +19,7 @@ KEmptyDimensionComponent = (0,) * 10 + (-1,) * 4 + (0,) * 5 + (KGeneration,)
 
 
 # inline members and their nested objects must share the restored archive map
-class SketchCursor:
+class SketchCursor(ArchiveCursor):
 
     # only a just-allocated inline sketch may take over the enclosing archive map
     @classmethod
@@ -49,11 +46,13 @@ class SketchCursor:
 
     # each sketch begins with the strictly allocated map from its enclosing part archive
     def __init__(SelfData, BlobValue, Start, ReadSketchObject):
-        SelfData.BlobValue = BlobValue
-        SelfData.Offset = Start.offset + ReadTag(BlobValue, Start.offset).size
-        SelfData.Classes = Start.Classes
-        SelfData.Objects = Start.Objects
-        SelfData.NextIndex = Start.Counter
+        super().__init__(
+            BlobValue,
+            Start.offset + ReadTag(BlobValue, Start.offset).size,
+            Start.Counter,
+            Start.Classes,
+            Start.Objects,
+        )
         SelfData.NodeNames = {}
         SelfData.Scalars = {}
         SelfData.Dimensions = []
@@ -61,13 +60,6 @@ class SketchCursor:
         SelfData.SketchReferences = {}
         SelfData.PointReferences = {}
         SelfData.ReadSketchObject = ReadSketchObject
-        SelfData.PointerEvents = None
-
-    # all fields must advance the shared cursor before their children are considered
-    def ReadValue(SelfData, Format):
-        Value = Struct.unpack_from(Format, SelfData.BlobValue, SelfData.Offset)
-        SelfData.Offset += Struct.calcsize(Format)
-        return Value
 
     # opaque presentation runs still need bounded lengths before the next pointer
     def AdvanceBytes(SelfData, Width):
@@ -78,61 +70,12 @@ class SketchCursor:
         )
         SelfData.Offset += Width
 
-    # untrusted counts must fit before an array traversal starts
-    def ReadCount(SelfData):
-        (Count,) = SelfData.ReadValue("<i")
-        if Count < 0 or Count > (len(SelfData.BlobValue) - SelfData.Offset) // 2:
-            raise ValueError(f"Invalid count {Count} before {SelfData.Offset}")
-        return Count
-
-    # parameter names use the same string framing as the ordinary archive reader
-    def ReadText(SelfData):
-        Value, Width = ReadString(SelfData.BlobValue, SelfData.Offset)
-        SelfData.Offset += Width
-        return Value
-
-    # nonfinite geometry must never qualify as measured research evidence
-    def ReadPoint(SelfData, Dimension):
-        Coords = SelfData.ReadValue("<" + "d" * Dimension)
-        if not all(map(Math.isfinite, Coords)):
-            raise ValueError(f"Nonfinite point coordinate before {SelfData.Offset}")
-        return Coords
-
     # independent type checks prevent ambiguous archive ownership from yielding geometry
     def ReadObject(SelfData, *Expected):
         TagValue, NameValue, ObjectIndex = SelfData.TakePointer(Expected)
         if TagValue.kind in (KDefinitionKind, KClassRefKind):
             SelfData.ReadPayload(NameValue, ObjectIndex)
         return ObjectIndex
-
-    # display evidence and geometry must use one allocation rule for the same archive
-    def TakePointer(SelfData, Expected, KindValue=None, SchemaValue=1):
-        Offset = SelfData.Offset
-        Counter = SelfData.NextIndex
-        TagValue = ReadTag(SelfData.BlobValue, Offset)
-        if KindValue is not None:
-            Require(TagValue.kind, KindValue, f"archive tag kind at {Offset}")
-        NameValue = SelfData.FindType(TagValue, SchemaValue)
-        Require(
-            NameValue in Expected,
-            True,
-            f"typed archive pointer at {Offset} ({NameValue})",
-        )
-        ObjectIndex, SelfData.NextIndex = BindMapTagMut(
-            TagValue, Counter, SelfData.Classes, SelfData.Objects, NameValue
-        )
-        SelfData.Offset += TagValue.size
-        if SelfData.PointerEvents is not None:
-            SelfData.PointerEvents.append(
-                (Offset, Counter, TagValue.kind, NameValue, ObjectIndex)
-            )
-        return TagValue, NameValue, ObjectIndex
-
-    # reference tokens must resolve the correct kind before a caller can use them
-    def FindType(SelfData, TagValue, SchemaValue=1):
-        return ResolveMapType(
-            TagValue, SelfData.Classes, SelfData.Objects, SchemaValue
-        )
 
     # typed geometry children need their own guarded layout before cursor advancement
     def ReadPayload(SelfData, NameValue, ObjectIndex):

@@ -1,48 +1,58 @@
 """Read the witnessed modern face occurrence and its enclosing reference plane."""
 
-from dataclasses import dataclass
-from math import isclose, isfinite
-from struct import calcsize, unpack_from
+from math import isclose
 
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     KNullKind,
     KObjectRefKind,
-    ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveTags import BindMapTagMut, ResolveMapType
+from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart, ReadLocalPose
 from SketchRoot import KGeneration, Require
 
 
 # the witnessed chain begins with already established archive class and object ownership
-@dataclass
-class FaceCursor:
-    blob: bytes
-    position: int
-    next_index: int
-    classes: dict[int, str]
-    objects: dict[int, str]
-    null_events: list | None = None
+class FaceCursor(ArchiveCursor):
+    def __init__(self, blob, position, next_index, classes, objects, null_events=None):
+        super().__init__(blob, position, next_index, classes, objects)
+        self.null_events = null_events
 
-    # compact native fields advance one shared cursor through enclosing object scopes
-    def read(self, format):
-        fields = unpack_from(format, self.blob, self.position)
-        self.position += calcsize(format)
-        return fields
+    @property
+    def blob(self):
+        return self.BlobValue
 
-    # same kind lookups rule out resolving class tokens against unrelated objects
+    @property
+    def position(self):
+        return self.Offset
+
+    @position.setter
+    def position(self, value):
+        self.Offset = value
+
+    @property
+    def next_index(self):
+        return self.NextIndex
+
+    @next_index.setter
+    def next_index(self, value):
+        self.NextIndex = value
+
+    @property
+    def classes(self):
+        return self.Classes
+
+    @property
+    def objects(self):
+        return self.Objects
+
+    read = ArchiveCursor.ReadValue
+    vector = ArchiveCursor.ReadPoint
+
+    # face and resolved records use the witnessed compact tag branch
     def pointer(self, kind, name=None):
-        start = self.position
-        tag = ReadTag(self.blob, start)
-        Require(tag.kind, kind, f"archive pointer kind at {start}")
-        Require(tag.wide, False, f"compact archive pointer at {start}")
-        actual = ResolveMapType(tag, self.classes, self.objects)
-        Require(actual, name, f"archive pointer type at {start}")
-        index, self.next_index = BindMapTagMut(
-            tag, self.next_index, self.classes, self.objects, actual
-        )
-        self.position += tag.size
+        _, _, index = self.TakePointer((name,), kind, CompactOnly=True)
         return index
 
     # a null child chooses the witnessed branch without inventing an object map entry
@@ -52,13 +62,6 @@ class FaceCursor:
                 (self.position, self.next_index, KNullKind, None, 0)
             )
         self.pointer(KNullKind)
-
-    # all vector results must be finite before they can be compared to observed geometry
-    def vector(self, count):
-        values = self.read(f"<{count}d")
-        Require(all(map(isfinite, values)), True, "finite geometry")
-        return values
-
 
 # a surface identifier is usable only when its typed feature reference resolves ownership
 def read_surface_id(cursor, kind, cap=False, pointer_kind=KClassRefKind):
@@ -133,11 +136,7 @@ def read_face_occurrence(cursor):
 
 # the archive stores the optional basis independently of the point and unit normal
 def read_transform(cursor):
-    (flag,) = cursor.read("<B")
-    Require(flag in (0, 1), True, "transform basis selector")
-    basis = cursor.vector(9) if flag else None
-    translation_scale = cursor.vector(4)
-    Require(cursor.read("<B"), (0,), "absent nested transform")
+    basis, translation_scale = ReadLocalPose(cursor)
     return {"basis": basis, "translation_scale": translation_scale}
 
 
@@ -165,17 +164,7 @@ def read_plane_data(cursor):
 
 # both local support components must establish the same containing part ownership
 def read_local_component(cursor):
-    unit = cursor.pointer(KClassRefKind, "moUnitComponent_c")
-    part = cursor.pointer(KObjectRefKind, "moPart_c")
-    Require(cursor.read("<B"), (0,), "absent external unit component")
-    words = cursor.read("<20I")
-    Require(words[-1], KGeneration, "modern component reference generation")
-    Require(
-        tuple(words[index] for index in (6, 14, 15, 16, 17, 18)),
-        (0,) * 6,
-        "absent component extras",
-    )
-    return unit, part
+    return ReadLocalPart(cursor, KGeneration)
 
 
 # the nested local component must point to the archived part before its entity reference
