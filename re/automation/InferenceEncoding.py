@@ -11,7 +11,7 @@ import struct
 from dataclasses import dataclass
 from fractions import Fraction
 
-import numpy
+from FloatPatterns import adjacent_finite
 
 FORMATS = {
     "u8": "B",
@@ -153,12 +153,7 @@ class Expected:
     def patterns(self, encoding):
         yield self.exact
         if encoding.floating:
-            dtype = numpy.float32 if encoding.kind == "f32" else numpy.float64
-            rounded = dtype(encoding.codec.unpack(self.exact)[0])
-            with numpy.errstate(over="ignore", under="ignore"):
-                for direction in (dtype(-numpy.inf), dtype(numpy.inf)):
-                    neighbor = float(numpy.nextafter(rounded, direction))
-                    if math.isfinite(neighbor):
-                        encoded = encoding.codec.pack(neighbor)
-                        if self.matches(encoded, neighbor):
-                            yield encoded
+            codec = encoding.codec
+            for encoded in adjacent_finite(codec, self.exact):
+                if self.matches(encoded, codec.unpack(encoded)[0]):
+                    yield encoded

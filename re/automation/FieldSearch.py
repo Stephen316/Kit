@@ -6,6 +6,8 @@ from itertools import product
 from math import isfinite
 import struct
 
+from FloatPatterns import adjacent_finite
+
 
 @dataclass(frozen=True)
 class Sample:
@@ -52,26 +54,19 @@ def patterns(encoding, millimetres):
     scaled = Fraction(str(millimetres)) * UNITS[encoding.unit]
     if encoding.sign == "magnitude":
         scaled = abs(scaled)
+    codec = struct.Struct(encoding.format)
     try:
         if encoding.kind.startswith("i"):
-            return {struct.pack(encoding.format, int(scaled))} if scaled.denominator == 1 else set()
-        raw = struct.pack(encoding.format, float(scaled))
+            return {codec.pack(int(scaled))} if scaled.denominator == 1 else set()
+        raw = codec.pack(float(scaled))
     except (OverflowError, struct.error):
         return set()
-    if not isfinite(struct.unpack(encoding.format, raw)[0]):
+    value = codec.unpack(raw)[0]
+    if not isfinite(value):
         return set()
-    code = int.from_bytes(raw, encoding.order)
-    limit = 1 << (encoding.width * 8)
-    neighbours = (code - 1, code, code + 1)
-    if struct.unpack(encoding.format, raw)[0] == 0:
-        sign = limit // 2
-        neighbours = (0, 1, sign, sign + 1)
-    values = set()
-    for candidate in neighbours:
-        if 0 <= candidate < limit:
-            encoded = candidate.to_bytes(encoding.width, encoding.order)
-            if isfinite(struct.unpack(encoding.format, encoded)[0]):
-                values.add(encoded)
+    values = {raw, *adjacent_finite(codec, raw)}
+    if value == 0:
+        values.update((codec.pack(0.0), codec.pack(-0.0)))
     return values
 
 
