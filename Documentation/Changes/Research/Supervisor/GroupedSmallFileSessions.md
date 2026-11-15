@@ -61,10 +61,11 @@ The new remote process fixtures drive actual supervisor, controller, SQLite stor
 They cover 20-member caps, short leases, per-member accepted files, aggregate size and output limits, version boundaries, resource counts, single-job fallback, invalid capability declarations, stale input fencing, durable crash/restart retries, per-member durable crash stderr and physical memory/deadline accounting.
 Remote results must be recorded on the tested commit before treating these cases as verified.
 
-These are synthetic format/process fixtures.
-They do not qualify native CAD applications, conversion acceptance or Windows grouped execution.
+These fixtures use synthetic input bytes and verify the supervisor, controller and artifact intake through real process boundaries.
 Calibration and the unattended pilot remain separate work.
 
 The first macOS run at `6e2da255` stopped before process execution because the new fence module collided with an existing unpackaged pytest module. The new module is renamed to `GroupedFenceTests.py`; [the basename gotcha](../../../Gotchas/Ci/Collection/PytestBasenameCollision.md) links the failure. Both case selections and their assertions remain enabled.
 
-The [macOS gate at `3327f7fe`](https://github.com/TryUniCAD/Kit/actions/runs/43673846094/job/132689552836) passed all fifty cases in 382.80 seconds, including fourteen grouped cases. This is checkpoint evidence; later owner/launch changes and Linux/Windows grouped execution remain unverified.
+The macOS gate at `3327f7fe` passed all fifty cases in 382.80 seconds, including fourteen grouped cases. [Hosted macOS gate](https://github.com/TryUniCAD/Kit/actions/runs/43673846094/job/132689552836)
+
+The Windows process job selects the existing group-cap and group-crash cases. They verify the 20-member ceiling, separate accepted files and receipts, a real worker crash, and exactly one singleton retry per affected member. The fixture writes the same crash diagnostic bytes on each host. Windows execution of these cases is pending.

@@ -61,8 +61,8 @@ def RunBatch(SessionRoot: FilePath) -> None:
         assert GroupInfo["group_session_version"] == 1
         assert "lease_token" not in JsonCodec.dumps(GroupInfo)
         if any(JobInfo["job"]["options"].get("crash_group") for JobInfo in JobRecords):
-            _ = System.stderr.write("batch crash diagnostic: member failure\n")
-            _ = System.stderr.flush()
+            _ = System.stderr.buffer.write(b"batch crash diagnostic: member failure\n")
+            _ = System.stderr.buffer.flush()
             System.exit(7)
         StartedFile = JobRecords[0]["job"]["options"].get("started_file")
         if StartedFile:
