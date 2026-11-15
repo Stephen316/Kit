@@ -9,4 +9,5 @@ from convert.adapters.solidworks.resolved.support.SupportPlane import SupportPla
 class CutSource:
     Support: SupportPlane
     BossId: int
+    CutId: int
     Rules: CutRuleSource

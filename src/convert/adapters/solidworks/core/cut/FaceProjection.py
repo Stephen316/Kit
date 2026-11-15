@@ -18,11 +18,13 @@ from convert.adapters.solidworks.resolved.support.SupportPlane import (
 from interchange.core.Common import FreezeMapping
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.features.FeatureExtrude import ExtrudeFeature
 from interchange.features.FeatureStep import FeatureStep
 from interchange.geometry.models.GeometryCurves import LineGeometry
 from interchange.geometry.models.Selection import Selection
 from interchange.geometry.models.Sketch import Sketch
 from interchange.geometry.models.SupportPlane import SupportPlane
+from interchange.geometry.models.VectorSpace import SpaceVector
 
 # the typed historical face remains distinct from a qualified editable export plane
 KFaceSupportSource = "typed-archive-face"
@@ -116,6 +118,25 @@ def CheckCutPlane(
     )
 
 
+# only the cut that completed the saved target walk can use this cap normal
+def BindCutAxis(
+    StepValue: FeatureStep, CutId: int, SketchId: str, Normal: SpaceVector
+) -> FeatureStep:
+    Definition = StepValue.definition
+    if (
+        StepValue.id == f"sldprt:feature:{CutId}"
+        and StepValue.sketch_id == SketchId
+        and StepValue.operation == BooleanOp.KCutOperation
+        and StepValue.kind == FeatureKind.KExtrusion
+        and not StepValue.suppressed
+        and isinstance(Definition, ExtrudeFeature)
+        and Definition.reversed
+        and Definition.direction is None
+    ):
+        return Replace(StepValue, definition=Replace(Definition, direction=Normal))
+    return StepValue
+
+
 # neutral history and the new frame must point to the same persistent historical selection
 def AttachCutFrame(
     Document: CadDocument,
@@ -124,6 +145,7 @@ def AttachCutFrame(
     BossStep: FeatureStep,
     PlaneValue: SupportPlane,
     FacePick: Selection,
+    CutId: int,
 ) -> CadDocument:
     Bound = Replace(
         SketchValue,
@@ -150,7 +172,13 @@ def AttachCutFrame(
             Bound if Value is SketchValue else Value for Value in Document.sketches
         ),
         feature_timeline=tuple(
-            Profile if Value is ProfileStep else Value
+            (
+                Profile
+                if Value is ProfileStep
+                else BindCutAxis(
+                    Value, CutId, SketchValue.id, PlaneValue.transform.z_axis
+                )
+            )
             for Value in Document.feature_timeline
         ),
     )
@@ -162,6 +190,7 @@ def ProjectCutFace(
     Support: SavedSupport,
     ProfileId: int,
     BossId: int,
+    CutId: int,
     StreamName: str,
 ) -> CadDocument:
     try:
@@ -195,5 +224,5 @@ def ProjectCutFace(
         provenance=Source,
     )
     return AttachCutFrame(
-        Document, SketchValue, ProfileStep, BossStep, PlaneValue, FacePick
+        Document, SketchValue, ProfileStep, BossStep, PlaneValue, FacePick, CutId
     )

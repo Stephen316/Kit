@@ -16,6 +16,11 @@ def ProjectCutDoc(Document: CadDocument, Source: CutSource | None) -> CadDocumen
     if Profile is Document:
         return Document
     Placed = ProjectCutFace(
-        Profile, Source.Support, Rules.ProfileId, Source.BossId, Rules.ResolvedStream
+        Profile,
+        Source.Support,
+        Rules.ProfileId,
+        Source.BossId,
+        Source.CutId,
+        Rules.ResolvedStream,
     )
     return Document if Placed is Profile else ProjectCutRules(Placed, Rules)

@@ -344,6 +344,15 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
     AssertSwDists(Sketch, Document.parameters, Resolved, Variant)
 
 
+# a rotated archive uses the reached sketch axis before the saved operation reversal
+def AssertSwAxis(Definition: ExtrudeFeature, Variant: str) -> None:
+    assert Definition.direction == (
+        SpaceVector(1.0, 0.0, 0.0)
+        if Variant == "plane-yz"
+        else SpaceVector(0.0, 0.0, 1.0)
+    )
+
+
 # native depth and signed direction must survive display unit changes and the public projection
 @Pytest.mark.parametrize(
     "Variant",
@@ -377,6 +386,7 @@ def CheckSwBoss(Variant: str) -> None:
     assert (Definition.length.value, Definition.length.unit) == (Depth, "mm")
     assert Definition.end_condition == ExtrudeEnd.BLIND
     assert Definition.reversed == (Variant == "direction-negative")
+    AssertSwAxis(Definition, Variant)
     (SketchValue,) = tuple(
         ItemValue
         for ItemValue in Document.sketches
@@ -753,6 +763,7 @@ def CheckSwCutOp(Variant: str) -> None:
     Definition = CutStep.definition
     assert isinstance(Definition, ExtrudeFeature)
     assert Definition.reversed
+    AssertSwAxis(Definition, Variant)
     assert Definition.end_condition == (
         ExtrudeEnd.THROUGH_ALL if Through else ExtrudeEnd.BLIND
     )
@@ -1000,6 +1011,7 @@ def AssertOuterBoss(Document: CadDocument, Variant: str) -> None:
     assert BossStep.sketch_id == "sldprt:sketch:26"
     Definition = BossStep.definition
     assert isinstance(Definition, ExtrudeFeature) and not Definition.reversed
+    AssertSwAxis(Definition, Variant)
     assert Definition.length is not None
     assert (Definition.length.value, Definition.length.unit) == (
         12 if Variant == "edit-depth_mm-12" else 10,

@@ -1,7 +1,40 @@
 from dataclasses import replace as Replace
+from typing import Mapping as TypeMap
 
-from convert.adapters.solidworks.core.Native import NativeModel
+from convert.adapters.solidworks.core.Native import (
+    NativeModel,
+    NativeOperation,
+    NativeSketch,
+)
 from convert.adapters.solidworks.resolved.RectanglePart import RectanglePart
+from interchange.features.FeatureExtrude import ExtrudeFeature
+from interchange.geometry.models.VectorSpace import SpaceVector
+
+
+# the typed boss uses its verified sketch normal before applying the saved reverse flag
+def BindBossAxis(
+    Definition: ExtrudeFeature,
+    Operation: NativeOperation | None,
+    Sketches: TypeMap[int, NativeSketch],
+) -> ExtrudeFeature:
+    if (
+        Operation is None
+        or Operation.kind != "join"
+        or Operation.profile_id is None
+        or Definition.direction is not None
+        or not any(
+            KindValue == "extrusion-end-spec"
+            for _, _, KindValue in Operation.archive_spans
+        )
+    ):
+        return Definition
+    SketchValue = Sketches.get(Operation.profile_id)
+    if SketchValue is None or SketchValue.rectangle is None:
+        return Definition
+    Parsed = SketchValue.rectangle
+    if Parsed.Boss is None or Parsed.Boss["native_feature_id"] != Operation.object_id:
+        return Definition
+    return Replace(Definition, direction=SpaceVector(*Parsed.Directions[2]))
 
 
 # the typed history replaces sampled direction and the displayed length after identity joins

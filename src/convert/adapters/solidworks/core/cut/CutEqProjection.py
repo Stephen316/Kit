@@ -140,5 +140,10 @@ def ReadCutArchive(
     )
     return Replace(
         Operation,
-        cut_source=CutSource(Proof.Support, Links.BossValue["native_feature_id"], Rules),
+        cut_source=CutSource(
+            Proof.Support,
+            Links.BossValue["native_feature_id"],
+            Proof.Operation["native_feature_id"],
+            Rules,
+        ),
     )

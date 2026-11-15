@@ -143,6 +143,7 @@ from convert.adapters.solidworks.core.EquationTarget import (
     ResolveTarget,
 )
 from convert.adapters.solidworks.core.BindInch import KUnresolvedInchDimension
+from convert.adapters.solidworks.core.BossProjection import BindBossAxis
 from convert.adapters.solidworks.core.ParseDisplay import (
     KInformationStream,
     ParseDisplay,
@@ -3671,7 +3672,7 @@ def BuildFeature(
 ):
     Extrusion = BuildExtrude(Operation)
     if Extrusion is not None:
-        return Extrusion
+        return BindBossAxis(Extrusion, Operation, Sketches)
     Revolution = BuildRevolve(Operation, Sketches)
     if Revolution is not None:
         return Revolution

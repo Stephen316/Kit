@@ -4,4 +4,6 @@ The public part reader follows the P04 configuration and its two profile referen
 
 The cut feature reads its distinct configuration transfer and its earlier Boss transfer, target body, saved result face identifiers and aliases, then its end specification and the resolved stream footer. The neutral cut target references the historical Boss feature and its saved body identifier. Blind cuts retain the authored scalar and through-all has no depth parameter. Both carry the saved profile, target and end spans through the normal public reader. [Public archive checks](../../../../../tests/Research/Archives/ArchiveEvidenceTests.py)
 
+The verified cap normal supplies the typed world axis of the Cut. The existing reverse flag makes its effective direction inward along −Z or −X for YZ. The through-all case retains the proven historical target body, with its persisted selection policy still unresolved.
+
 All eleven pinned P04 captures corroborate this path, including the YZ rotation, the 5 mm cut-depth edit and the through-all variant. Full sketch reconstruction, regeneration and editable acceptance have separate evidence requirements.
