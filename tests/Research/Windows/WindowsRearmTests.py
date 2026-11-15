@@ -54,9 +54,17 @@ def fixture(value, work):
             time.sleep(0.05)
         win32process.TerminateProcess(child, 0)
         assert win32event.WaitForSingleObject(child, 5000) == win32event.WAIT_OBJECT_0
-        with subprocess.Popen(args('exit 0'), creationflags=subprocess.CREATE_NO_WINDOW) as collector:
+        collector = subprocess.Popen(
+            [sys._base_executable, '-I', '-S', '-c', 'raise SystemExit(0)'],
+            creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+        try:
             assert collector.wait(timeout=10) == 0
             record_timeout(work, value, host.host, collector, child, launch, True)
+        finally:
+            if collector.poll() is None:
+                collector.kill()
+                collector.wait(timeout=5)
         return 'waiting_application', 'fixture application deadline', None, None
     finally:
         if win32event.WaitForSingleObject(child, 0) == win32event.WAIT_TIMEOUT:
