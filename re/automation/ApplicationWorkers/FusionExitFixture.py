@@ -22,10 +22,30 @@ from MacProcessExit import PeerUnavailable
 FENCE = b"retained disposable restart fence\n"
 
 
-def run_target():
+def run_target(root):
+    write_new(root / "target-ready.json", encoded({"pid": os.getpid()}))
     line = sys.stdin.readline()
     if line.strip() == "replace":
         os.execv(sys.executable, [sys.executable, "-B", "-c", "pass"])
+
+
+def wait_target_ready(root, target):
+    deadline = time.monotonic() + 10
+    while time.monotonic() < deadline:
+        if target.poll() is not None:
+            raise AssertionError(
+                f"Exit fixture target ended before readiness (code {target.returncode})"
+            )
+        try:
+            ready = record(root / "target-ready.json")
+        except FileNotFoundError:
+            time.sleep(0.02)
+        else:
+            assert ready == {"pid": target.pid}, "Exit fixture readiness PID differs"
+            return
+    raise AssertionError(
+        "Exit fixture target did not report readiness within 10 seconds"
+    )
 
 
 def ready_grant(peer):
@@ -180,24 +200,32 @@ def run_pair(root, target, case):
         return result
     finally:
         if observer.poll() is None:
-            observer.communicate(timeout=12)
+            observer.kill()
+            observer.communicate(timeout=2)
 
 
 def exercise(root, case):
     target = subprocess.Popen(
-        [sys.executable, "-B", __file__, "target"], stdin=subprocess.PIPE, text=True
+        [sys.executable, "-B", __file__, "target", str(root)],
+        stdin=subprocess.PIPE,
+        text=True,
     )
     try:
+        wait_target_ready(root, target)
         print(json.dumps(run_pair(root, target, case)))
     finally:
-        if target.poll() is None:
-            target.communicate("exit\n", timeout=10)
+        target.stdin.close()
+        try:
+            target.wait(timeout=2)
+        except subprocess.TimeoutExpired:
+            target.kill()
+            target.wait(timeout=2)
 
 
 if __name__ == "__main__":
     mode = sys.argv[1]
     if mode == "target":
-        run_target()
+        run_target(Path(sys.argv[2]))
     elif mode == "observe":
         run_observer(Path(sys.argv[2]), int(sys.argv[3]))
     else:
