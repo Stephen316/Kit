@@ -6,4 +6,6 @@ The helper keeps every validated ancestor open while it reads the record or hold
 
 The hosted Windows suite has existing rewritten-file, sharing, reparse, hardlink and metadata-only change cases. A new process case calls the actual protocol with site packages disabled through `python -I -S`. It checks binary readback, the byte bound and contention from a second process, then verifies lock acquisition after release. Hosted verification is pending.
 
+The normal offline rearm command at `29daa000` reopened the retained licensed P04 restart from `5770f1b3` through the standard-library record path. It reproduced the verified replacement-supervisor result and JSON SHA-256 `45824832149971816a362c0b1ca3620555691dfcd19d705bb1fc8015b2be852d`. [Licensed archived restart evidence](SolidWorks/OfflineRearmEvidence.md)
+
 This supplies a Windows Fusion Phase A dependency. Pinned helper loading inside the add-in and native admission require separate work.
