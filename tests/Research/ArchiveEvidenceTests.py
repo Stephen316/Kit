@@ -83,6 +83,65 @@ def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -
     assert ActualDigest == ReportDigest, (ScriptPath, Options, ActualDigest)
 
 
+# the feature selected profile must carry the exact proxy and authored perimeter across the registry
+@Pytest.mark.parametrize(
+    ("Family", "Capture", "Variant", "FeatureId", "ProxyId", "DescriptorId", "Edges"),
+    (
+        (
+            "P03",
+            "8d53584027ff",
+            "direction-negative",
+            "277",
+            278,
+            281,
+            (232, 238, 244, 248),
+        ),
+        ("P04", "9cf53a55ea8b", "baseline-a", "446", 454, 457, (393, 396, 399, 400)),
+        ("P04", "9cf53a55ea8b", "plane-yz", "446", 454, 457, (393, 396, 399, 400)),
+        (
+            "P04",
+            "9cf53a55ea8b",
+            "termination-through-all",
+            "446",
+            454,
+            457,
+            (393, 396, 399, 400),
+        ),
+    ),
+)
+def CheckOwnedPick(
+    Family: str,
+    Capture: str,
+    Variant: str,
+    FeatureId: str,
+    ProxyId: int,
+    DescriptorId: int,
+    Edges: tuple[int, ...],
+) -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    Archive = (
+        RootDir
+        / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
+        / f"{Family}-fusion-{Variant}.f3d"
+    )
+    Document = OpenDocument(Archive, StrictMode=False)
+    (Feature,) = [
+        Value
+        for Value in Document.feature_timeline
+        if Value.provenance is not None and Value.provenance.native_id == FeatureId
+    ]
+    assert Feature.attributes["fusion.profile_selection_proxy_id"] == ProxyId
+    assert Feature.attributes["fusion.profile_descriptor_id"] == DescriptorId
+    assert Feature.provenance is not None
+    assert any(
+        Evidence.record_kind == "2CA5A1CD-C99B-4C9B-91AF-57989148E841"
+        for Evidence in Feature.provenance.spans
+    )
+    (Sketch,) = [Value for Value in Document.sketches if Value.id == Feature.sketch_id]
+    (Perimeter,) = Sketch.closed_profile_entity_ids
+    assert set(Perimeter) == {f"fusion-sketch-entity-{Identity}" for Identity in Edges}
+
+
 # native support identity must survive public discovery without substituting a sketch basis
 @Pytest.mark.parametrize(
     ("Family", "Capture", "Variant", "Datum", "DatumId", "AxisX"),

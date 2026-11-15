@@ -1,0 +1,3 @@
+# Fusion extrusion profile selection copies
+
+A saved profile descriptor points back to its extrusion. The extrusion independently names the selected proxy, and its dependency list repeats the proxy and descriptor. Cut records place a body-selection pair before the profile pair. Their through-all variant adds an extent selection while keeping the profile pair in the same position. Follow the feature's exact profile proxy and compare its repeated dependency pair before using the descriptor to choose a contour. [Saved profile ownership](../../../../Changes/Fusion/Adapter/FusionOwnedProfileSelection.md)
