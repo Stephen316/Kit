@@ -41,7 +41,7 @@ The existing table emits 77 rows through the first `moCompSketchEntHandle_c` com
 
 The enclosing `moSketchExtRef_w` at `0x11369c0` calls the base wrapper at `0x1134b50`. The base reads a u16 and a second, null pointer after the component entity handle. Its MO 19000 path reads 56 additional scalar bytes on the local no-transform branch. The wrapper reads one more u16 at `0x1136a87` and then the backed-up data pointer at `0x1136ad5`. Baseline A materializes `moPointBackedUpData_c` at byte 4,754 as class 93 and object 94.
 
-With those two guarded layouts, the existing sketch groups emit 88 rows and the terminal `NextParentToken` predicate rejects `0xbf80` at the offsets above. The listed guard offsets are its live offline cursor values. The rejection leaves the modern sketch's full contents unresolved. Continue from the matching `sgSketch::Serialize` at `0x144f790` and reconcile its remaining count-driven groups before closing the sketch or continuing the map to the second sketch and resolved profiles.
+With those two guarded layouts, the existing sketch groups emit 88 rows and the terminal `NextParentToken` predicate rejects `0xbf80` at the offsets above. The listed guard offsets are its live offline cursor values. The [generation-19000 geometry walk](P04SketchGeometry.md) derives the inline member and dimension groups beyond this guard using the matching sketch loader.
 
 ## Reproduce
 
