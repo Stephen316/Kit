@@ -9,7 +9,8 @@ import time
 
 from ApplicationProtocol import (
     ApplicationTimeout, QueueClient, WaitingApplication, configuration,
-    file_bytes, load_pinned, pin, record, request_link, require, sha256, write_new, write_record,
+    file_bytes, load_pinned, pin, record, request_link, require, require_win_sources,
+    sha256, windows_phase_a, windows_process, write_new, write_record,
 )
 from FusionPhasePlan import check_scope_archives, check_scope_report, phase_options, phase_paths, plan_scope
 from FusionRestart import wait_for_restart
@@ -77,6 +78,38 @@ def stage_plan(client, session, job, raw, plan, plan_hash, accepted):
             check_scope_archives(report, result["output_artifacts"], "a")
 
 
+# windows evidence must bind the exact admitted process and successful native controls
+def check_windows_phase(client, response, plan, plan_hash, directory, artifacts):
+    proof = response["proof"]
+    raw = file_bytes(directory / "measurements.json")
+    report = json.loads(raw)
+    sealed = record(directory / "receipt.json")
+    require(sealed == {"schema": 1, "phase": "a", "status": "complete", "plan_sha256": plan_hash,
+                       "measurements_sha256": sha256(raw)}
+            and report["schema"] == 1 and report["phase"] == "a" and report["status"] == "complete"
+            and report["plan_sha256"] == plan_hash and report["pins"] == plan["pins"]
+            and report["source_revision"] == client.config["source_revision"]
+            and proof["host"] == response["host"] and report["process"] == windows_process(response["host"])
+            and report["fusion_version"] == proof["fusion_version"] and report["errors"] == []
+            and set(report["captures"]) == set(plan["recipes"]),
+            "Windows Fusion phase report does not match its receipt, plan and admitted process")
+    require(all(report[label]["compute_all_return"] is True
+                and report[label]["native_input"] == plan["pins"]["control"]
+                for label in ("healthy_control_before", "healthy_control_after")),
+            "Windows Fusion phase is missing its pinned controls")
+    handoff = proof["restart_handoff"]
+    require(handoff == {"installation": client.config["installation"], "job_id": client.job_id,
+                        "reason": "restart_required", "host": response["host"], "plan_sha256": plan_hash,
+                        "at": handoff["at"], "owner": "external_application_owner"}
+            and report["ended_unix_seconds"] <= handoff["at"] <= response["finished_at"],
+            "Windows Fusion restart fence does not match the admitted Phase A")
+    for recipe, capture in report["captures"].items():
+        saved = artifacts[f"phase-a.{recipe}"]
+        require(capture["save_a"] == {"file": Path(saved["path"]).name, "sha256": saved["sha256"],
+                                      "size_bytes": saved["size_bytes"]},
+                "Windows Fusion native archive differs from its sealed report")
+
+
 def collect(session, client, response, plan, plan_hash, phase):
     from ApplicationProtocol import identity
 
@@ -86,18 +119,23 @@ def collect(session, client, response, plan, plan_hash, phase):
             and response["proof"]["phase"] == phase and response["proof"]["plan_sha256"] == plan_hash,
             "application phase proof differs from this request")
     files = response["files"]
+    windows = windows_phase_a(client.config)
     require(isinstance(files, dict) and len(files) <= 63
             and sum(item["size_bytes"] for item in files.values()) <= 256 * 1024 * 1024, "invalid application output roster")
     report = None
-    if scope is not None:
+    if scope is not None or windows:
+        label = "Windows Fusion" if windows else "Fusion scope"
         require({role: item["path"] for role, item in files.items()} == phase_paths(plan, phase),
-                "Fusion scope response did not contain its exact output roster")
+                f"{label} response did not contain its exact output roster")
     for item in files.values():
         relative = item["path"]
         require(relative.startswith(f"phase-{phase}/") and len(Path(relative).parts) == 2
                 and Path(relative).name not in ("", ".", "..") and "\\" not in relative,
                 "application output escapes its phase directory")
     artifacts = client.copy_files(session / "work", response)
+    if windows:
+        require_win_sources(client.config, response["proof"]["loaded_sources"])
+        check_windows_phase(client, response, plan, plan_hash, session / "work/phase-a", artifacts)
     report_name = "measurements.json" if scope is None else "report.json"
     if scope is not None:
         directory = session / "work" / f"phase-{phase}"
@@ -136,7 +174,10 @@ def dispatch(session, config):
                "phase": phase, "claim": "unqualified_dispatch", "native_qualified": False}
     if scope is not None:
         records["scope"] = scope
-    if config["application"] != "fusion" or sys.platform != "darwin":
+    windows = windows_phase_a(config)
+    if windows and (phase != "a" or scope is not None):
+        return {"outcome": "waiting_application", "reason": "Windows Fusion only admits ordinary Phase A", "records": records}
+    if config["application"] != "fusion" or (sys.platform != "darwin" and not windows):
         return {"outcome": "waiting_application", "reason": "this installation has no qualified Fusion fresh-phase counterpart on this platform", "records": records}
     deadline = min(job["stop_at"] - 1, time.time() + 300)
     require(deadline > time.time(), "application session has no remaining dispatch budget")
@@ -161,8 +202,20 @@ def dispatch(session, config):
                 and probe["proof"]["plan_sha256"] == plan_hash and probe["proof"]["documents_after"] == 0
                 and probe["proof"].get("scope") == scope
                 and 0 <= time.time() - probe["proof"]["measured_at"] <= 60, "application readiness lacks fresh pinned control evidence")
+        if windows:
+            proof = probe["proof"]
+            require_win_sources(config, proof["loaded_sources"])
+            require(proof["input_pins"] == plan["pins"]
+                    and proof["readings"]["healthy_control"]["compute_all_return"] is True
+                    and proof["readings"]["healthy_control"]["native_input"] == plan["pins"]["control"],
+                    "Windows Fusion readiness does not bind the exact pinned control")
+        probe_hash = sha256(file_bytes(client.directory / "probe.done"))
         response = client.call("phase", {"phase": phase, "plan_sha256": plan_hash,
-                                         "probe_sha256": sha256(file_bytes(client.directory / "probe.done"))})
+                                         "probe_sha256": probe_hash})
+        if windows:
+            require(response["proof"]["probe_sha256"] == probe_hash
+                    and response["proof"]["fusion_version"] == probe["proof"]["fusion_version"],
+                    "Windows Fusion phase proof differs from the admitted probe")
         artifacts = collect(session, client, response, plan, plan_hash, phase)
         records.update({"plan_sha256": plan_hash, "host": response["host"], "fusion_version": response["proof"]["fusion_version"],
                         "restart_handoff": response["proof"].get("restart_handoff")})

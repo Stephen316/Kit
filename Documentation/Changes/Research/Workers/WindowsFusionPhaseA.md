@@ -1,0 +1,13 @@
+# Windows Fusion Phase A admission
+
+An owner can enable ordinary Fusion Phase A on Windows by adding `"windows_phase_a": true` to the existing local installation record. A record without that field keeps Windows Fusion parked. Phase B and the two-body scope workflow still require their existing macOS counterpart. The Windows add-in uses its pinned queue and keeps the legacy script queue idle while a dispatch installation is active.
+
+The add-in reads the owner configuration from `%APPDATA%/KitCaptureRunner/config.json`, checks its configured checkout and full Git commit, and compiles the stdlib record and process helpers from that revision in private namespaces. It then uses protected reads to reconcile the exact installation, add-in, protocol, and helper bytes before opening the queue. The worker independently checks loaded source hashes and sizes before requesting a capture or accepting returned evidence.
+
+Both peers verify the other process's exact creation FILETIME, live process handle, Windows user SID, and session ID. The SID and session come from the Windows token. The owner supplies the private DACLs for the installation, configuration, checkout, and endpoint. Session equality establishes shared Windows session identity. The licensed sign-in and interactive desktop are deployment requirements. [Windows token information](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ne-winnt-token_information_class)
+
+The add-in runs its ordinary probe on the application main thread. The probe requires an empty document set and a fresh pinned control. A completed Phase A result binds its exact process creation time, native archive roster, measurements, controls, and receipt. Existing controller acknowledgement retains the restart handoff as a fence for owner recovery.
+
+The hosted Windows process case uses the real add-in bootstrap, supervisor, A03 store, queue, and pinned probe. Its disposable event stub reports one open document and exposes no native CAD methods. The case expects admission to reach the open-document refusal, with no grant or accepted artifacts. It also checks that Phase B and altered installed add-in bytes are refused. The process identity case covers a live disposable peer with the wrong FILETIME.
+
+A licensed run still requires a supported Fusion installation in the dedicated signed-in owner session, trusted Git available to that session, the exact installed add-in, the owner-private endpoint, and verification of the embedded Python dependencies. The hosted boundary supplies no native capture, semantic qualification, or Windows restart witness.

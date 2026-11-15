@@ -443,10 +443,11 @@ def capture_repeat(helper, app, recipes, output, owned, report, first, existing)
                 helper["close"](document, owned)
 
 
-def run_phase(plan_path, plan_hash, phase):
+def run_phase(plan_path, plan_hash, phase, *, windows_process=None):
     import adsk.core
 
-    require(sys.platform == "darwin", "Fresh-process evidence currently requires the macOS Fusion host")
+    windows = sys.platform == "win32" and phase == "a" and windows_process is not None
+    require(sys.platform == "darwin" or windows, "Fresh-process evidence requires an admitted Fusion host")
     require(phase in ("a", "b"), "Invalid capture phase")
     raw = plan_path.read_bytes()
     require(digest(raw) == plan_hash, "Prepared plan changed")
@@ -461,8 +462,8 @@ def run_phase(plan_path, plan_hash, phase):
     helper = load_helper(pins["helper"], pins["bindings"])
     app = adsk.core.Application.get()
     require(app is not None and app.documents.count == 0, "Use an exclusive Fusion session with no open documents")
-    process = process_info(os.getpid())
-    require(process is not None, "Fusion process identity could not be measured")
+    process = windows_process if windows else process_info(os.getpid())
+    require(process is not None and process["pid"] == os.getpid(), "Fusion process identity could not be measured")
     first = first_hash = None
     if phase == "b":
         first, first_hash = prior_capture(plan_path.parent, plan_hash, process)

@@ -38,6 +38,88 @@ def allowed_root():
     return Path(config["allowed_root"]).resolve(strict=True)
 
 
+# startup needs bounded candidate records before it has an approved record reader
+def startup_record(path):
+    with Path(path).open("rb") as stream:
+        raw = stream.read(1024 * 1024 + 1)
+    if len(raw) > 1024 * 1024:
+        raise ValueError("add-in startup record exceeds 1 MiB")
+    return raw
+
+
+# the installed addin may only execute helpers from its configured git checkout
+def windows_sources(config, installation):
+    allowed = Path(config["allowed_root"])
+    if not allowed.is_absolute():
+        raise ValueError("add-in capture root must be absolute")
+    root = allowed.resolve(strict=True).parents[2]
+    revision = installation["source_revision"]
+    if not re.fullmatch("[0-9a-f]{40}", revision) or Path(installation["source_root"]).resolve(strict=True) != root:
+        raise ValueError("dispatch installation must pin this configured repository")
+    git = ["git", "--no-replace-objects", "-C", str(root)]
+    checkout = subprocess.check_output([*git, "rev-parse", "--show-toplevel"], timeout=15)
+    commit = subprocess.check_output([*git, "rev-parse", "--verify", f"{revision}^{{commit}}"], timeout=15)
+    if Path(os.fsdecode(checkout.strip())).resolve(strict=True) != root or commit.strip() != revision.encode():
+        raise ValueError("dispatch installation must pin a commit in this configured checkout")
+    paths = {
+        "bootstrap": "re/automation/PairedCaptures/Runner/KitCaptureRunner/KitCaptureRunner.py",
+        "protocol": "re/automation/ApplicationWorkers/ApplicationProtocol.py",
+        "windows_identity": "re/automation/ApplicationWorkers/WindowsIdentity.py",
+        "windows_records": "re/automation/ApplicationWorkers/WindowsRecords.py",
+    }
+    sources = {}
+    for role, relative in paths.items():
+        raw = subprocess.check_output([*git, "show", f"{revision}:{relative}"], timeout=15)
+        if not 0 < len(raw) <= 1024 * 1024:
+            raise ValueError("pinned add-in source is outside its byte limit")
+        sources[role] = (relative, raw)
+    if BOOTSTRAP_SOURCE != sources["bootstrap"][1]:
+        raise ValueError("reload the add-in from the trusted installation revision")
+    return root, sources
+
+
+# the embedded interpreter has no trusted sibling import path for dispatch helpers
+def start_windows_dispatch(config_path, config_bytes):
+    config = json.loads(config_bytes)
+    installation_path = Path(config["dispatch"])
+    if not installation_path.is_absolute():
+        raise ValueError("dispatch installation path must be absolute")
+    installation_bytes = startup_record(installation_path)
+    installation = json.loads(installation_bytes)
+    if installation.get("windows_phase_a") is not True or installation.get("application") != "fusion":
+        raise ValueError("Windows Fusion Phase A requires owner opt-in")
+    root, sources = windows_sources(config, installation)
+    scopes = {}
+    for role in ("windows_identity", "windows_records", "protocol"):
+        relative, raw = sources[role]
+        path = str(root / relative)
+        scope = {"__name__": f"__kit_pinned_{role}__", "__file__": path}
+        exec(compile(raw, path, "exec"), scope)
+        scopes[role] = scope
+    protocol = scopes["protocol"]
+    protocol["WINDOWS_API"].update({
+        "windows_identity": {name: scopes["windows_identity"][name] for name in ("process_start", "peer_matches")},
+        "windows_records": {name: scopes["windows_records"][name] for name in ("open_record", "open_owner_lock")},
+    })
+    file_bytes = protocol["file_bytes"]
+    if file_bytes(config_path) != config_bytes or file_bytes(installation_path) != installation_bytes:
+        raise ValueError("dispatch startup records changed during add-in loading")
+    installation = protocol["validate_configuration"](installation)
+    protocol["directory"](config["allowed_root"])
+    protocol["directory"](installation["source_root"])
+    if file_bytes(__file__) != BOOTSTRAP_SOURCE:
+        raise ValueError("installed add-in changed during dispatch startup")
+    for relative, raw in sources.values():
+        if file_bytes(root / relative) != raw:
+            raise ValueError(f"application source differs from its pinned revision: {relative}")
+    host = protocol["HostQueue"](installation)
+    host.loaded_sources = {
+        role: protocol["source_pin"](installation, relative, raw)
+        for role, (relative, raw) in sources.items()
+    }
+    state.update(dispatch=host, dispatch_protocol=protocol, restart_grant=None)
+
+
 def write_json(path, value):
     temporary = path.with_name(path.name + ".tmp")
     temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n", encoding="utf-8")
@@ -58,6 +140,8 @@ def run_job(job_path):
     if job_path.suffix == ".request":
         protocol = state["dispatch_protocol"]
         host = state["dispatch"]
+        if protocol["windows_phase_a"](host.config) and threading.get_ident() != state["main_thread"]:
+            raise ValueError("Windows Fusion capture requires the add-in main thread")
         counterpart = protocol["load_pinned"](host.config, protocol["COUNTERPART"])
         counterpart["protocol"] = protocol
         counterpart["serve"](host, job_path, state["app"])
@@ -114,12 +198,16 @@ def poll():
     while not stop.is_set():
         host = state["dispatch"]
         grant = state["restart_grant"]
-        readiness = grant["pending_request"](state["dispatch_protocol"], host) if host is not None else None
+        readiness = grant["pending_request"](state["dispatch_protocol"], host) if grant is not None and host is not None else None
         if readiness is not None:
             request = {"restart": str(readiness)}
         else:
             request_path = host.next_path() if host is not None else None
-            jobs = [request_path] if request_path is not None else sorted(QUEUE.glob("*.json")) if host is None or host.legacy_available() else []
+            if request_path is not None:
+                jobs = [request_path]
+            else:
+                legacy = host is None or (sys.platform != "win32" and host.legacy_available())
+                jobs = sorted(QUEUE.glob("*.json")) if legacy else []
             if not jobs:
                 stop.wait(IDLE_SECONDS)
                 continue
@@ -137,9 +225,18 @@ def run(context):
     state["app"] = app
     state["main_thread"] = threading.get_ident()
     QUEUE.mkdir(parents=True, exist_ok=True)
-    allowed_root()
-    config = json.loads((HOME / "config.json").read_text(encoding="utf-8"))
-    if "dispatch" in config:
+    config_path = HOME / "config.json"
+    if sys.platform == "win32":
+        config_bytes = startup_record(config_path)
+        config = json.loads(config_bytes)
+        if "dispatch" in config:
+            start_windows_dispatch(config_path, config_bytes)
+        else:
+            allowed_root()
+    else:
+        allowed_root()
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+    if sys.platform != "win32" and "dispatch" in config:
         installation = json.loads(Path(config["dispatch"]).read_bytes())
         root = allowed_root().parents[2]
         if not re.fullmatch("[0-9a-f]{40}", installation["source_revision"]) or Path(installation["source_root"]).resolve() != root:
