@@ -195,9 +195,31 @@ def require_cut_terminations(findings):
     print("Verified ten blind cut depths and one typed depthless through-all cut")
 
 
-def compare_operations(measured, native, neutral, tolerance):
+def compare_operation_axis(step, projected, measured_sketches, projected_sketch_names, tolerance):
+    name = step["name"]
+    op = step["operation"]
+    sketch_name = {"BlindBoss": "RectangleSketch", "BlindCut": "CutSketch", "ThroughAllCut": "CutSketch"}[name]
+    transform = measured_sketches[sketch_name]["model_to_sketch_transform"]
+    scale = -1 if (step["type"] == "ICE") != op["reverse_direction"] else 1
+    expected = [scale * transform[index] for index in (2, 5, 8)]
+    if op["both_directions"] or not math.isclose(math.hypot(*expected), 1, rel_tol=0, abs_tol=1e-9):
+        raise ValueError(f"{name}: expected a measured single-ended unit direction")
+    direction = projected.get("effective_direction_world")
+    chord_tolerance = 2 * math.sin(tolerance / 2)
+    return (
+        observation(f"neutral.operation.{name}.profile", sketch_name,
+                    projected_sketch_names.get(projected.get("sketch_id"))),
+        observation(f"neutral.operation.{name}.effective_direction_world", expected, direction,
+                    direction is not None and math.dist(expected, direction) <= chord_tolerance),
+    )
+
+
+def compare_operations(measured, native, neutral, tolerances):
     native_ops = {item["name"]: item for item in native.get("operations", ())}
     neutral_ops = {item["name"]: item for item in neutral.get("features", ())}
+    measured_sketches = {item["name"]: item for item in measured["sketches"]}
+    projected_sketch_names = {item["id"]: item["name"] for item in neutral.get("sketches", ())}
+    tolerance = tolerances["length_mm_absolute"]
     comparisons = []
     for step in measured["feature_tree"]:
         op = step["operation"]
@@ -214,6 +236,9 @@ def compare_operations(measured, native, neutral, tolerance):
             observation(f"native.operation.{name}.end_code", code, extracted.get("termination_code")),
             observation(f"neutral.operation.{name}.end", {0: "blind", 1: "through_all"}[code], projected.get("end_condition")),
             observation(f"neutral.operation.{name}.operation", "cut" if name.endswith("Cut") else "join", projected.get("operation")),
+        ))
+        comparisons.extend(compare_operation_axis(
+            step, projected, measured_sketches, projected_sketch_names, tolerances["angle_rad_absolute"]
         ))
         if length is not None:
             native_length = extracted.get("length_mm")
@@ -385,7 +410,7 @@ def compare(measured, native, neutral, tolerances, capture_name):
         compare_timeline(measured, neutral),
         *compare_dimensions(measured, native, neutral, tolerance),
         *compare_equations(measured, native, neutral),
-        *compare_operations(measured, native, neutral, tolerance),
+        *compare_operations(measured, native, neutral, tolerances),
         *compare_sketches(measured, native, neutral, tolerance),
         *compare_body_measurements(measured, neutral, tolerances),
     ]

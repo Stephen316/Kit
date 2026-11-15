@@ -114,6 +114,8 @@ The hosted support check also requires all eleven P04 cuts to retain their nativ
 
 The [timeline comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryTimeline.md) compares the active configuration and the ordered roster of authored sketches and extrusions with the licensed reopen measurements.
 
+The [extrusion direction comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryOperationAxes.md) compares each one-sided P03 and P04 extrusion's signed world direction with the licensed sketch pose and reversal flag. It also follows the neutral sketch identifier to the profile specified by the capture recipe.
+
 The [profile section comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryProfileSections.md) compares the saved closed loop's area and world-space centroid with the licensed section measurements.
 
 The [body measurements comparison](../../Changes/Research/Readers/SolidWorks/SolidWorksDiscoveryBodyMeasurements.md) compares the typed single-solid volume and centroid with the licensed body measurements.

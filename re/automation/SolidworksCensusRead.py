@@ -188,6 +188,10 @@ def neutral_feature(item, names):
     definition = item.definition
     extrude = isinstance(definition, ExtrudeFeature)
     length = definition.length if extrude else None
+    effective_direction = None
+    if extrude and definition.direction is not None:
+        sign = -1 if definition.reversed else 1
+        effective_direction = tuple(sign * value for value in vector(definition.direction))
     return {
         "name": item.name, "id": item.id, "kind": str(item.kind),
         "operation": None if item.operation is None else str(item.operation),
@@ -199,6 +203,7 @@ def neutral_feature(item, names):
         "length_mm": length.value if length is not None and length.unit == "mm" else None,
         "has_authored_length": length is not None if extrude else None,
         "reversed": definition.reversed if extrude else None,
+        "effective_direction_world": effective_direction,
         "end_condition": str(definition.end_condition) if extrude else None,
         "native_direction_code": item.attributes.get("direction_code"),
         "native_termination_code": item.attributes.get("termination_code"),

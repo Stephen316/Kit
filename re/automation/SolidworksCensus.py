@@ -80,6 +80,7 @@ def run(root, output):
         "scope": "SOLIDWORKS P01/P03/P04 discovery only",
         "manifest_sha256": manifest_sha,
         "length_comparison_tolerance_mm": tolerances["length_mm_absolute"],
+        "direction_comparison_tolerance_rad": tolerances["angle_rad_absolute"],
         "volume_comparison_tolerances": {
             "absolute_mm3": tolerances["volume_mm3_absolute"],
             "relative": tolerances["volume_relative"],
