@@ -1,8 +1,73 @@
 import os
 import signal
 import subprocess
+import sys
 
+from HostResources import group_memory
 from Processes import group_running, process_start, stop_orphan
+from Sessions import read_bounded
+
+ENVIRONMENT = ("PATH", "LANG", "LC_ALL", "LC_CTYPE", "TZ")
+
+
+def start_supervisor(command, root, directory, stdout, stderr, pool):
+    environment = {name: os.environ[name] for name in ENVIRONMENT if name in os.environ}
+    environment.update({"HOME": str(directory), "TMPDIR": str(directory)})
+    if sys.platform == "win32":
+        from CalibrationWindows import CalibrationWindows
+
+        process = CalibrationWindows(
+            command, root, directory, environment, stdout, stderr, pool
+        )
+        return process, process.identity
+    process = subprocess.Popen(
+        command,
+        cwd=root,
+        env=environment,
+        stdin=subprocess.DEVNULL,
+        stdout=stdout,
+        stderr=subprocess.STDOUT if stderr is None else stderr,
+        start_new_session=True,
+        close_fds=True,
+    )
+    return process, process_start(process.pid)
+
+
+def sample_workers(process, directory):
+    if sys.platform == "win32":
+        return process.sample_workers()
+    leaders = set()
+    for path in (directory / "State" / "sessions").glob("*/session.json"):
+        try:
+            record = read_bounded(path)
+        except FileNotFoundError:
+            continue
+        if type(record.get("pid")) is int and process_start(
+            record["pid"]
+        ) == record.get("process_start"):
+            leaders.add(record["pid"])
+    return sum(group_memory(leaders).values())
+
+
+def settle_supervisor(process, identity, stopping=False):
+    if sys.platform == "win32":
+        try:
+            if process.poll() is None:
+                if not stopping:
+                    process.terminate()
+                process.wait(timeout=10)
+        except (OSError, subprocess.TimeoutExpired):
+            pass
+        finally:
+            forced = process.retire()
+        return forced
+    if process.poll() is None:
+        process.terminate()
+        try:
+            process.wait(timeout=10)
+        except subprocess.TimeoutExpired:
+            return force_stop(process, identity)
+    return []
 
 
 def descendant_groups(pid):
@@ -54,6 +119,8 @@ def stop_groups(groups):
 
 
 def force_stop(process, identity):
+    if sys.platform == "win32":
+        return process.force_stop()
     if process.poll() is not None:
         return []
     if identity is None or process_start(process.pid) != identity:

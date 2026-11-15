@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import sys
 import time
 from pathlib import Path
@@ -31,10 +32,6 @@ def decode(content, kind, options):
 
 
 def run(session):
-    if sys.platform not in ("linux", "darwin"):
-        raise ValueError("offline calibration CPU measurements require Linux or macOS")
-    import resource
-
     session = Path(session).resolve()
     packet = read_bounded(session / "job.json")
     job = packet["job"]
@@ -70,7 +67,7 @@ def run(session):
         neutral, counts = None, None
     ended = time.monotonic_ns()
     cpu_ended = time.process_time_ns()
-    usage = resource.getrusage(resource.RUSAGE_SELF)
+    user_seconds, system_seconds = process_cpu_seconds()
     records = {
         "calibration_version": 1,
         "job_id": job["id"],
@@ -80,17 +77,33 @@ def run(session):
         "decode_ended_ns": ended,
         "decode_wall_seconds": (ended - started) / 1e9,
         "decode_cpu_seconds": (cpu_ended - cpu_started) / 1e9,
-        "process_user_cpu_seconds": usage.ru_utime,
-        "process_system_cpu_seconds": usage.ru_stime,
+        "process_user_cpu_seconds": user_seconds,
+        "process_system_cpu_seconds": system_seconds,
         "neutral_sha256": neutral,
         "counts": counts,
         "measurement_scope": "offline_reader_import_decode_validation_serialization",
         "native_acceptance": "not_established",
     }
+    if sys.platform == "win32":
+        from CalibrationWindowsMemory import worker_peak_working_set
+
+        records["worker_peak_working_set_bytes"] = worker_peak_working_set()
     write_private(
         session / "result.json",
         {"outcome": outcome, "reason": reason, "records": records},
     )
+
+
+def process_cpu_seconds():
+    if sys.platform == "win32":
+        usage = os.times()
+        return usage.user, usage.system
+    if sys.platform not in ("linux", "darwin"):
+        raise ValueError("offline calibration CPU measurements are unavailable")
+    import resource
+
+    usage = resource.getrusage(resource.RUSAGE_SELF)
+    return usage.ru_utime, usage.ru_stime
 
 
 if __name__ == "__main__":

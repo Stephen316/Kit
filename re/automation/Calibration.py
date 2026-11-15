@@ -1,8 +1,6 @@
 import argparse
 import json
-import os
 import signal
-import subprocess
 import sys
 import time
 from pathlib import Path
@@ -11,18 +9,21 @@ from Adapters import A03Adapter
 from CalibrationManifest import ROOT, file_identity, load_manifest, source_identity
 from CalibrationMetrics import jobs as measured_jobs
 from CalibrationMetrics import recommendation, summarize
-from CalibrationProcesses import force_stop
-from HostResources import group_memory, host_resources
+from CalibrationProcesses import (
+    force_stop,
+    sample_workers,
+    settle_supervisor,
+    start_supervisor,
+)
+from HostResources import host_resources
 from Ledger import Ledger
 from LogCapture import LogCapture
 from Records import canonical, digest
-from Processes import process_start
 from Runners import Registry
-from Sessions import read_bounded, write_private
+from Sessions import write_private
 
 STEPS = (1, 2, 4, 8)
 LOG_LIMIT = 4 * 1048576
-ENVIRONMENT = ("PATH", "LANG", "LC_ALL", "LC_CTYPE", "TZ")
 
 
 class Calibration:
@@ -157,48 +158,37 @@ class Calibration:
         }
         process, reason, limited, observations = None, None, set(), []
         samples, minimum_memory, peak_groups = 0, None, 0
+        group_samples = 0
         observed_cpus = set()
         identity, forced = None, []
         started, offset, pending = time.monotonic(), 0, b""
         stop_at = None
-        environment = {
-            name: os.environ[name] for name in ENVIRONMENT if name in os.environ
-        }
-        environment.update({"HOME": str(directory), "TMPDIR": str(directory)})
         try:
-            process = subprocess.Popen(
+            process, identity = start_supervisor(
                 command,
-                cwd=ROOT,
-                env=environment,
-                stdin=subprocess.DEVNULL,
-                stdout=logs["stdout"].writer,
-                stderr=logs["stderr"].writer,
-                start_new_session=True,
-                close_fds=True,
+                ROOT,
+                directory,
+                logs["stdout"].writer,
+                logs["stderr"].writer,
+                manifest["pool"],
             )
-            identity = process_start(process.pid)
             for capture in logs.values():
                 capture.close_writer()
+            owner = {"pid": process.pid, "process_start": identity}
+            if sys.platform == "win32":
+                owner["job_object"] = process.job_name
             write_private(
                 directory / "SupervisorProcess.json",
-                {"pid": process.pid, "process_start": identity},
+                owner,
             )
             while process.poll() is None:
                 for capture in logs.values():
                     capture.drain()
                 host = host_resources()
-                leaders = set()
-                for path in (directory / "State" / "sessions").glob("*/session.json"):
-                    try:
-                        record = read_bounded(path)
-                    except FileNotFoundError:
-                        continue
-                    if type(record.get("pid")) is int and process_start(
-                        record["pid"]
-                    ) == record.get("process_start"):
-                        leaders.add(record["pid"])
-                current_groups = sum(group_memory(leaders).values())
-                peak_groups = max(peak_groups, current_groups)
+                current_groups = sample_workers(process, directory)
+                if current_groups is not None:
+                    group_samples += 1
+                    peak_groups = max(peak_groups, current_groups)
                 observation = {
                     "at_monotonic_ns": time.monotonic_ns(),
                     "active_group_rss_bytes": current_groups,
@@ -265,28 +255,40 @@ class Calibration:
                 reason or f"measurement_or_supervision_error:{type(error).__name__}"
             )
         finally:
-            if process is not None and process.poll() is None:
-                process.terminate()
-                try:
-                    process.wait(timeout=10)
-                except subprocess.TimeoutExpired:
-                    forced = force_stop(process, identity)
-            for capture in logs.values():
-                capture.close()
+            try:
+                if process is not None:
+                    forced.extend(
+                        settle_supervisor(process, identity, stop_at is not None)
+                    )
+            finally:
+                for capture in logs.values():
+                    capture.close()
         if process is None or process.returncode != 0:
             reason = reason or "supervisor_nonzero_exit"
+        if forced and sys.platform == "win32":
+            reason = reason or "supervisor_forced_cleanup"
+        if group_samples == 0 and sys.platform == "win32":
+            reason = reason or "worker_memory_observation_unavailable"
         if any(value.seen > value.retained for value in logs.values()):
             reason = reason or "supervisor_log_truncated_or_invalid"
         if process is not None and process.returncode != 0:
-            self.recover(directory)
+            self.recover(directory, manifest["pool"])
         sessions = directory / "State" / "sessions"
         claims = directory / "State" / "claims"
         if (sessions.is_dir() and any(sessions.iterdir())) or (
             claims.is_dir() and any(claims.iterdir())
         ):
-            self.recover(directory)
+            self.recover(directory, manifest["pool"])
             if any(sessions.iterdir()) or any(claims.iterdir()):
                 raise OSError("private calibration session cleanup is incomplete")
+        job_custody = {}
+        measurement_source = {}
+        if sys.platform == "win32" and process is not None:
+            job_custody = {"job_object": process.job_name, "job_members_empty": True}
+            measurement_source = {
+                "active_group_rss_source": "windows:nested_job:WorkingSetSize",
+                "active_group_samples": group_samples,
+            }
         write_private(
             directory / "Cleanup.json",
             {
@@ -295,6 +297,7 @@ class Calibration:
                 "forced_groups": forced,
                 "sessions_empty": not sessions.is_dir() or not any(sessions.iterdir()),
                 "claims_empty": not claims.is_dir() or not any(claims.iterdir()),
+                **job_custody,
             },
         )
         return (
@@ -307,11 +310,12 @@ class Calibration:
                 "minimum_available_memory_bytes": minimum_memory,
                 "peak_sampled_active_group_rss_bytes": peak_groups,
                 "logical_cpu_counts_observed": sorted(observed_cpus),
+                **measurement_source,
             },
             {name: value.receipt() for name, value in logs.items()},
         )
 
-    def recover(self, directory):
+    def recover(self, directory, pool):
         command = [
             sys.executable,
             str(Path(__file__).with_name("Supervisor.py")),
@@ -321,24 +325,17 @@ class Calibration:
             "--max-seconds",
             "0",
         ]
-        environment = {
-            name: os.environ[name] for name in ENVIRONMENT if name in os.environ
-        }
-        environment.update({"HOME": str(directory), "TMPDIR": str(directory)})
         capture = LogCapture(directory / "Recovery.log", LOG_LIMIT)
         process, identity = None, None
         try:
-            process = subprocess.Popen(
+            process, identity = start_supervisor(
                 command,
-                cwd=ROOT,
-                env=environment,
-                stdin=subprocess.DEVNULL,
-                stdout=capture.writer,
-                stderr=subprocess.STDOUT,
-                start_new_session=True,
-                close_fds=True,
+                ROOT,
+                directory,
+                capture.writer,
+                None,
+                pool,
             )
-            identity = process_start(process.pid)
             capture.close_writer()
             until = time.monotonic() + 30
             while process.poll() is None:
@@ -348,28 +345,30 @@ class Calibration:
                     raise OSError("private supervisor recovery timed out")
                 time.sleep(0.05)
         finally:
-            if process is not None and process.poll() is None:
-                process.terminate()
-                try:
-                    process.wait(timeout=10)
-                except subprocess.TimeoutExpired:
-                    _ = force_stop(process, identity)
-            capture.close()
-            write_private(directory / "RecoveryReceipt.json", capture.receipt())
+            try:
+                if process is not None:
+                    forced = settle_supervisor(process, identity)
+                    if forced and sys.platform == "win32":
+                        raise OSError(
+                            "private Windows supervisor recovery required forced cleanup"
+                        )
+            finally:
+                capture.close()
+                write_private(directory / "RecoveryReceipt.json", capture.receipt())
         if process is None or process.returncode != 0:
             raise OSError("private supervisor recovery failed")
         if capture.seen > capture.retained:
             raise OSError("private recovery log exceeded its retained limit")
 
     def run(self, manifest_path, output):
-        if sys.platform not in ("linux", "darwin"):
-            raise ValueError(
-                "offline calibration currently requires Linux or macOS; Windows measurements are unavailable"
-            )
+        if sys.platform not in ("linux", "darwin", "win32"):
+            raise ValueError("offline calibration requires Linux, macOS, or Windows")
         if sys.version_info < (3, 14):
             raise ValueError(
                 "offline calibration uses the Python 3.14 SDK reader contract"
             )
+        if sys.platform == "win32" and sys.getwindowsversion().major < 10:
+            raise ValueError("offline calibration requires Windows 10 or newer")
         manifest, specifications, bindings, manifest_sha = load_manifest(manifest_path)
         output = Path(output).absolute()
         if output.exists() or output.is_symlink():

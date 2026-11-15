@@ -1,6 +1,6 @@
 # Measure an offline decoder workload
 
-Use this research tool on Linux or macOS with Python 3.14 or newer:
+Use this research tool with Python 3.14 or newer on Linux, macOS, or Windows 10 and newer. On Windows, use the repository's locked development environment for the Win32 dependency and use `python` as the interpreter command.
 
 ```sh
 python3 re/automation/Calibration.py --manifest CalibrationManifest.json --output .rescratch/CalibrationRun
@@ -93,8 +93,8 @@ A failure report with `cleanup_verified=False` must not be treated as evidence t
 The one-second sustained-overlap threshold is an explicit concurrency policy.
 It does not substitute for CPU utilization, held-out workload coverage, or target-application measurements.
 Trial wall time includes supervisor and controller overhead but excludes store preparation and input copying.
-Worker CPU observations cover that process through result preparation, excluding final result publication and interpreter exit; decoder CPU and wall counters cover reader import, decode, model validation, and serialization.
-RSS comes from supervisor process receipts and separately labeled sampled group measurements.
+Worker CPU observations cover that process through result preparation, excluding final result publication and interpreter exit. Decoder CPU and wall counters cover reader import, decode, model validation, and serialization.
+RSS comes from supervisor process receipts and separately labeled sampled group measurements. On Windows, `worker_peak_working_set_bytes` measures the actual decoder interpreter through result preparation. The supervisor receipt may give the virtual environment launcher peak separately. The trial observer sums sampled worker working sets from its owned Job Object, excluding the supervisor launcher and interpreter. Samples can count shared pages more than once.
 Intervals from actual worker measurements establish overlap; scheduler timestamps do not.
 
 The run order is fixed at one, two, four, and eight.
@@ -103,4 +103,4 @@ The tool does not clear system caches or isolate the whole machine.
 Package-version inventory and source hashes do not establish native application acceptance.
 Review those conditions before using a local recommendation elsewhere.
 
-See [offline decoder calibration](../../Changes/Research/Supervisor/OfflineDecoderCalibration.md).
+See [offline decoder calibration](../../Changes/Research/Supervisor/OfflineDecoderCalibration.md) and [Windows offline calibration](../../Changes/Research/Supervisor/WindowsOfflineCalibration.md).

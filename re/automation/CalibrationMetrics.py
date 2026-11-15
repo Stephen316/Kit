@@ -75,14 +75,23 @@ def jobs(adapter, store, expected):
 def summarize(requested, manifest, expected, records, wall, reason, limited, identity):
     intervals, decoded, memory, cpu = [], {}, [], 0.0
     cpu_count, rss_count = 0, 0
+    windows = (
+        identity.get("host_topology", {})
+        .get("memory_source", "")
+        .startswith("windows:")
+    )
     for entry in records:
-        if type(entry["peak_memory_bytes"]) is int and entry["peak_memory_bytes"] > 0:
+        measurement = entry["measurement"]
+        worker_peak = (
+            (measurement or {}).get("worker_peak_working_set_bytes")
+            if windows
+            else entry["peak_memory_bytes"]
+        )
+        if type(worker_peak) is int and worker_peak > 0:
             rss_count += 1
-        for key in ("peak_memory_bytes", "sampled_group_peak_memory_bytes"):
-            value = entry[key]
+        for value in (worker_peak, entry["sampled_group_peak_memory_bytes"]):
             if type(value) is int and value >= 0:
                 memory.append(value)
-        measurement = entry["measurement"]
         if measurement is None:
             continue
         job = next(value for value in expected if value["id"] == entry["id"])

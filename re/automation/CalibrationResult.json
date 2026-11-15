@@ -31,6 +31,7 @@
     "decode_cpu_seconds": { "type": "number", "minimum": 0 },
     "process_user_cpu_seconds": { "type": "number", "minimum": 0 },
     "process_system_cpu_seconds": { "type": "number", "minimum": 0 },
+    "worker_peak_working_set_bytes": { "type": "integer", "minimum": 1 },
     "neutral_sha256": {
       "type": ["string", "null"],
       "minLength": 64,

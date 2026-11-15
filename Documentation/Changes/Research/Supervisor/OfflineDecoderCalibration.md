@@ -2,7 +2,7 @@
 
 The standalone research command `python3 re/automation/Calibration.py --manifest <file> --output <unused-directory>` measures one explicit offline decode workload at requested concurrency 1, 2, 4, and 8.
 It does not add an installed CLI command or a supervisor subcommand.
-Linux and macOS require Python 3.14 or newer. Windows calibration is unavailable.
+This initial implementation targets Linux and macOS with Python 3.14 or newer. Windows support is documented separately. [Windows offline calibration](WindowsOfflineCalibration.md)
 
 The immutable manifest selects the fixed SOLIDWORKS or Fusion offline reader, lists every independent job and input digest, and declares its resources and positive CPU and memory reserves.
 Dependencies, application or model kinds, arbitrary commands, grouping options, missing resources, and mismatched input hashes are rejected.
@@ -47,4 +47,4 @@ This is an A08b implementation slice.
 It does not qualify captured native pairs, reader semantics, conversion, native application loadability, grouped runtime behavior, or Windows measurement support.
 See [the operator guide](../../../Reference/Research/OfflineCalibration.md) and [the measurement gotcha](../../../Gotchas/Research/CalibrationConcurrency.md).
 
-At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all fourteen calibration cases passed within the [57-case Linux selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) in 393.51 seconds and [74-case macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) in 514.07 seconds. These are full-selection durations. The fixtures establish refusal, constrained reporting and cleanup; they do not establish a comparable saturated throughput recommendation. Windows calibration remains unavailable.
+At source checkpoint `22a59e68c839354f3e6672eec6f67aa647aa1dce`, all fourteen calibration cases passed within the [57-case Linux selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622509) in 393.51 seconds and [74-case macOS selection](https://github.com/TryUniCAD/Kit/actions/runs/43678423785/job/132703622604) in 514.07 seconds. These are full-selection durations. The fixtures establish refusal, constrained reporting and cleanup. A comparable saturated throughput recommendation and Windows calibration were still open at that checkpoint.
