@@ -22,4 +22,9 @@ Other explicitly parked attempts retain their park flags.
 
 The remote Windows fixture runs the real queue, supervisor and controller with a disposable Windows process.
 It checks one successful rearm, exhaustion on the next attempt, retention of the first failed evidence and preservation of the second quarantine.
-Remote and licensed verification remain pending for this revision.
+
+## Licensed two-attempt witness
+
+Published revision `41c963c57489de030766be33c5e91fa061ad6861` ran the normal Windows controller, supervisor and licensed SOLIDWORKS listener against the pinned eleven-file P04 workload. The job used a 25-second deadline and two attempts. Attempt one timed out, the listener confirmed termination through its retained native handle, and A03 accepted the waiting-application receipt `5e794ed859dbc32c9cdd1119bd6bb64dd6b7eade008daf0448dab4c4075cb8bb`. The listener's owner-ticket SHA-256 was `67bde8a1a3a702708c4aef51d85037c8cf7519e6b790f64b236b78f46cb0dd7b`.
+
+The ordinary supervisor recorded one rearm with archive manifest `b32df62f40e91985f9fb5864ae47ab9056565e6a094a546d5665ee833a4eb7be`. All 22 archive files matched the recorded digests and sizes. A03 recorded its second claim, and the same listener accepted a new request with a distinct job ID and request hash. Attempt two also hit the short deadline. Its separate quarantine remained in place because the attempt budget was exhausted. The final A03 waiting-application receipt was `4c94c65bd70790a022a5a0fc8ecc7318f1725ae9d4fdaf6a5488c5f7bf41a052`. The two-attempt witness covers rearm and budget exhaustion on the live Windows application path. [Replacement-supervisor replay](TimeoutRearmReplay.md) has a separate verification requirement.
