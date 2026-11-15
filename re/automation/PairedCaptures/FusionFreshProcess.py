@@ -302,6 +302,9 @@ def cut_reference_evidence(helper, document):
     if sketch is None or boss is None or len(cuts) != 1 or timeline.markerPosition != timeline.count:
         return {"status": "unresolved", "reason": "expected P04 actors at the end of the timeline"}
     (cut,) = cuts
+    operations = helper["adsk"].fusion.FeatureOperations
+    if boss.operation != operations.NewBodyFeatureOperation or cut.operation != operations.CutFeatureOperation:
+        return {"status": "unresolved", "reason": "unexpected P04 feature operations"}
     if not boss.timelineObject.index < sketch.timelineObject.index < cut.timelineObject.index:
         return {"status": "unresolved", "reason": "unexpected P04 feature order"}
     return {
