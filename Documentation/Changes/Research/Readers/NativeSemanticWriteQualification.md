@@ -72,3 +72,5 @@ Remote integration and current-head review remain required.
 Encoding, model equality, and archive readback do not establish native application loadability, editable acceptance, or completion of A11–A15.
 
 See the [FreeCAD guide](../../../Reference/Adapters/Freecad.md), the [assembly marker gotcha](../../../Gotchas/Conversion/Qualification/NativeAssemblyMarkers.md), and the [FreeCAD default-geometry gotcha](../../../Gotchas/Conversion/Qualification/FreecadDefaultGeometry.md).
+
+The broader Fusion run at `95b3f2e4` passed 2,958 cases and exposed one caller expecting writer lookup before native-tag refusal. The repaired cases preserve the actual partial-history refusal and independent typed missing-writer behavior; [the ordering gotcha](../../../Gotchas/Conversion/Qualification/SemanticGuardPrecedesWriterLookup.md) links the failure.
