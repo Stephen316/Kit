@@ -31,6 +31,7 @@ from ConfigDetail import (
 )
 from ConfigDetailEnd import ReadDetailEnd
 from ConfigLabel import ReadLabelDefs
+from ConfigModelLists import ReadModelLists
 from ConfigScene import ReadEnvironment, ReadExplManager, ReadSketchBlock
 from ConfigTable import ReadTableDefs
 from ConfigTol import ReadTolData
@@ -44,13 +45,6 @@ from convert.adapters.solidworks.container.Archive import (
     ReadTag,
 )
 from convert.adapters.solidworks.container.Container import SldprtArchive
-
-
-# fixed presentation spans come from successive typed calls in the P04 map witness
-def ReadPointers(Cursor, Events, Steps):
-    for Width, KindValue, NameValue in Steps:
-        Cursor.AdvanceBytes(Width)
-        ReadPointer(Cursor, Events, KindValue, NameValue)
 
 
 # capture the order and counter that native ReadObject observes before each token
@@ -159,7 +153,7 @@ def ReadModelPresentation(Cursor):
     ReadWeldData(Cursor)
     ReadTolData(Cursor, Partial(ReadPointer, Cursor, Events, KNullKind))
     ReadDetailEnd(Cursor)
-    Require(Cursor.ReadValue("<H"), (0,), "post-detail boundary word")
+    Require(Cursor.ReadValue("<H"), (0,), "empty shared parameter array")
     ReadEnvironment(Cursor, Partial(ReadPointer, Cursor, Events))
     ReadPointer(Cursor, Events, KNullKind)
     ListKind = KClassRefKind if "suObList" in Cursor.Classes.values() else KDefinitionKind
@@ -186,27 +180,7 @@ def ReadModelPresentation(Cursor):
     if AnnotationCount == 2:
         ReadPointer(Cursor, Events, KClassRefKind, "moAnnotationView_c")
         ReadAnnotationView(Cursor, Events, ("*Top",))
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (16, KNullKind, None),
-            (24, KNullKind, None),
-            (2, KDefinitionKind, "moPMarkRecord_c"),
-        ),
-    )
-    Cursor.ReadValue("<i")  # moPMarkRecord_c
-    ReadPointers(
-        Cursor,
-        Events,
-        (
-            (44, KClassRefKind, "suObList"),
-            (14, KDefinitionKind, "moCThreadRefMgr_c"),
-        ),
-    )
-    Require(Cursor.ReadCount(), 0, "empty cosmetic thread reference list")
-    Cursor.ReadValue("<i")
-    ReadPointer(Cursor, Events, KNullKind)
+    ReadModelLists(Cursor, Partial(ReadPointer, Cursor, Events))
     Regions = ReadModelRegions(Cursor)
     ReadExplManager(Cursor, Partial(ReadPointer, Cursor, Events))
     Cursor.AdvanceBytes(38)

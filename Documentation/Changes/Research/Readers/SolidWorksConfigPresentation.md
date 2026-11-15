@@ -1,6 +1,6 @@
 # SOLIDWORKS configuration presentation records
 
-The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces at least 21,330 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
+The [configuration map replay](../../../../re/solidworks/archive/ConfigMap.py) replaces at least 21,430 bytes of fixed advances per discovery capture with field reads. The build and capture receipt still scope the whole presentation walk.
 
 | Record | Layout in build 34.4.1.1011 |
 | --- | --- |
@@ -66,7 +66,13 @@ The sketch block manager serializer at `sldmodu+0x17c8d90` reads an inherited fe
 
 The annotation view serializer at `0x10d4900` reads the existing inline model view body before its own fields. It reads four nullable references at `0x10d4b8a`, `0x10d4c78`, `0x10d4d43` and `0x10d4de8`, followed by the type's integer tail. The replay preserves the one-view and two-view list paths.
 
-The partition marker at `0x9d9b30` reads one integer. The cosmetic thread manager at `0x1a57d0` reads an empty reference-list count and its trailing integer. The exploded-view manager at `0x52d0b0` uses the inherited feature and two nullable child references before its double and two integers. Parent fields around the marker, between the managers and in the final 38-byte trailer still use bounded advances.
+The partition marker at `0x9d9b30` reads one integer. The cosmetic thread manager at `0x1a57d0` reads an empty reference-list count and its trailing integer. The exploded-view manager at `0x52d0b0` uses the inherited feature and two nullable child references before its double and two integers. Region records and the final 38-byte part trailer still use bounded advances.
+
+The model constructor puts `moSharedParams_c` in the field read at `0x10f2178`. Its serializer at `0x1413d10` delegates to `suObArray`, whose ordinary archive loader calls `ReadCount` at `swccu+0xd295`. The zero word between the detail settings and environment folder is the array's saved count.
+
+After the last annotation view, the model serializer reads two counted integer key sets around its nullable `moFlatPatternColorTab_c` at `0x10f304f`. Eight empty `suObArray` members follow at `0x10f3286` through `0x10f3986`. The nullable layer manager and inline `moForwardedFeatRefsList_c` follow at `0x10f3a3b` and `0x10f3b7d`. The final list delegates to `suObList` at `0xa1c170`.
+
+The fields after the partition marker carry the atom and dimension maps, solver selector, two dimension-increment array counts, scalar settings and the print-settings selector. The replay requires the empty branches witnessed at `0x10f3e98`, `0x10f3f58`, `0x10f427e`, `0x10f4521`, `0x10f45ca` and `0x10f474f`. The next empty object list at `0x10f47f6` precedes a scalar and two framed names at `0x10f4806`, `0x10f48a9` and `0x10f48b9`, ending at the cosmetic thread reference manager.
 
 ## Verification
 
