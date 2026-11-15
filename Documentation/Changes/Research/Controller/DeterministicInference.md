@@ -100,8 +100,15 @@ and a repeated-lineage refusal. P03 and P04 remain discovery evidence. P05
 remains reserved. Full milestone acceptance requires qualified A06 paired
 evidence and fresh licensed Fusion readback.
 
-The [initial hosted replay](https://github.com/TryUniCAD/Kit/actions/runs/43763344440/job/132962903548)
-verified both P03 assessments, unchanged receipt reuse and scoped rescans.
+The [hosted A07 job](https://github.com/TryUniCAD/Kit/actions/runs/43763760551/job/132964230460)
+passed both the archive and scheduler verification at `ebe6130c`. It recorded
+16 P03 rescans and four P04 termination rescans. An unchanged replay reused
+all 18 P03 assessment and rescan receipts. A rule change reran nine jobs in one
+scope. The P04 body-selection request parked with two dependent archives.
+The synthetic holdout supported and contradicted the same frozen hypothesis
+in separate runs, and the worker refused the repeated lineage.
+[Hosted evidence artifact](https://github.com/TryUniCAD/Kit/actions/runs/43763760551/artifacts/14181740600)
+
 The [standalone Fusion search](../Inference/FusionSignedDepthSearch.md) also
 records the second signed-depth copy.
 

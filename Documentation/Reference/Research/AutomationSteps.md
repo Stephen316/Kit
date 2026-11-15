@@ -44,7 +44,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A04 | SOLIDWORKS → neutral reader integration                | A01, A02a                            | jdharcourt | active   | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
 | A05 | Fusion → neutral reader integration                    | A01, A02a                            | Stephen316 | active   | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
 | A06 | Semantic graph comparison                              | A02c, A04, A05                       | Unassigned | planned  | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
-| A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Codex A07  | checking | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
+| A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Codex A07  | blocked  | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
 | A08 | Controlled sample and trace workers                    | A02b, A03                            | jdharcourt | active   | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
 | A09 | Scoped field maps and typed codec candidates           | A07                                  | Unassigned | planned  | Solved pad-then-pad family is reproduced without model calls, with independent proof and zero donor blocks                                                                                                                         |
 | A10 | Optional model investigation packets                   | A08a, A07, A09                       | Unassigned | planned  | Models-off operation, fixed two-step escalation, a failure log, repeat-failure start-step routing, validated responses, cost limits and false-proposal rejection verified                                                          |
@@ -67,8 +67,9 @@ A13 requires actual application evidence and cannot pass in offline-only mode.
 A16 is an expansion milestone, not a promise of universal support.
 
 A07's [deterministic inference and queue implementation](../../Changes/Research/Controller/DeterministicInference.md)
-uses the saved discovery archives for hosted process verification. Qualified
-A06 paired evidence remains required for full acceptance.
+passed [hosted process verification](https://github.com/TryUniCAD/Kit/actions/runs/43763760551/job/132964230460)
+on saved discovery archives at `ebe6130c`. Qualified A06 paired evidence
+remains required for full acceptance.
 
 ## A02 implementation and remaining evidence
 
