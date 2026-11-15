@@ -334,9 +334,9 @@ The [kernel OOM estimate](../../Changes/Research/Supervisor/KernelOomMemoryEstim
 
 The [A08e archive verifier](../../Changes/Research/Workers/SolidWorks/OfflineRearmEvidence.md) checked 94 retained objects across four licensed Windows runs after their listeners exited. The P04 run at `5770f1b3` also proved replacement-supervisor recovery from separately pinned event and spool records.
 
-The [Windows owner fixture](../../Gotchas/Research/Workers/WindowsOwnerFixtureCollector.md) now uses an isolated Python collector to supply its exit code. At `786736c55`, the disposable PowerShell collector timed out before one recovery case reached the missing-ticket check. The other 89 cases passed. Hosted verification of the fixture change is pending.
+The [Windows owner fixture](../../Gotchas/Research/Workers/WindowsOwnerFixtureCollector.md) now uses an isolated Python collector to supply its exit code. At `47de6ad0`, the updated owner and rearm cases passed in the 91-case Windows job. [Hosted Windows evidence](https://github.com/TryUniCAD/Kit/actions/runs/43772995626/job/132992935662)
 
-The [Windows process identity helper](../../Changes/Research/Workers/WindowsStdlibIdentity.md) reads the exact FILETIME through Python's standard library. Hosted process verification is pending. Windows Fusion Phase A also requires pinned peer helper loading, protected records and locks, and SID and desktop-session admission.
+The [Windows process identity helper](../../Changes/Research/Workers/WindowsStdlibIdentity.md) reads the exact FILETIME through Python's standard library. Its isolated process case passed in the hosted run at `47de6ad0`. Windows Fusion Phase A also requires pinned peer helper loading, protected records and locks, and SID and desktop-session admission.
 
 The [hosted archive producer](../../Changes/Research/Controller/HostedPairedArchiveMergeParents.md) used the actual tested merge's first parent and checked the event base ancestry. At `41084574` it passed both archive checks, and the downloaded receipt matched the authenticated artifact digest. The separate consumer and batch release retain their pending evidence requirements.
 
