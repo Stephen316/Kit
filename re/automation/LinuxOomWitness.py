@@ -25,6 +25,10 @@ LIMITS = {
 }
 
 
+class UnsupportedHost(RuntimeError):
+    pass
+
+
 def require(condition, message):
     if not condition:
         raise ValueError(message)
@@ -100,20 +104,20 @@ def kernel_mount():
 
 @contextlib.contextmanager
 def private_group():
-    available_memory()
-    kernel_mount()
-    require(read("/proc/sys/vm/panic_on_oom").strip() == "0",
-            "kernel must already be configured to handle OOM without a panic")
-    require({"memory", "pids"} <= set(read(ROOT / "cgroup.subtree_control").split()),
-            "memory and pids controllers must already be enabled")
     group = ROOT / ("kit-a08b-oom-" + secrets.token_hex(8))
-    group.mkdir(mode=0o755)
     try:
-        group.chmod(0o755)
-        for field, value in LIMITS.items():
-            (group / field).write_text(value + "\n", encoding="ascii")
-        check_limits(group)
-        require(not read(group / "cgroup.procs").split(), "new private group has members")
+        group.mkdir(mode=0o755)
+    except OSError as error:
+        raise UnsupportedHost("cgroup_child_creation_unavailable") from error
+    try:
+        try:
+            group.chmod(0o755)
+            for field, value in LIMITS.items():
+                (group / field).write_text(value + "\n", encoding="ascii")
+            check_limits(group)
+            require(not read(group / "cgroup.procs").split(), "new private group has members")
+        except (OSError, ValueError) as error:
+            raise UnsupportedHost("cgroup_leaf_controls_unavailable") from error
         yield group
     finally:
         group.rmdir()
@@ -142,15 +146,58 @@ def observation(group, expected_pid):
 
 @contextlib.contextmanager
 def kernel_log():
-    descriptor = os.open("/dev/kmsg", os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+    try:
+        descriptor = os.open("/dev/kmsg", os.O_RDONLY | os.O_NONBLOCK | os.O_NOFOLLOW)
+    except OSError as error:
+        raise UnsupportedHost("kernel_log_open_unavailable") from error
     try:
         info = os.fstat(descriptor)
-        require(stat.S_ISCHR(info.st_mode) and (os.major(info.st_rdev), os.minor(info.st_rdev)) == (1, 11),
-                "expected the kernel message device")
-        os.lseek(descriptor, 0, os.SEEK_END)
+        if not stat.S_ISCHR(info.st_mode) or (os.major(info.st_rdev), os.minor(info.st_rdev)) != (1, 11):
+            raise UnsupportedHost("kernel_log_device_unavailable")
+        try:
+            os.lseek(descriptor, 0, os.SEEK_END)
+        except OSError as error:
+            raise UnsupportedHost("kernel_log_cursor_unavailable") from error
         yield descriptor
     finally:
         os.close(descriptor)
+
+
+def preflight():
+    try:
+        kernel_mount()
+        controllers = set(read(ROOT / "cgroup.subtree_control").split())
+    except (OSError, ValueError) as error:
+        raise UnsupportedHost("host_root_cgroup_unavailable") from error
+    if not {"memory", "pids"} <= controllers:
+        raise UnsupportedHost("root_memory_or_pid_controller_unavailable")
+    try:
+        available_memory()
+        require(read("/proc/sys/vm/panic_on_oom").strip() == "0", "expected panic_on_oom=0")
+    except (OSError, ValueError) as error:
+        raise UnsupportedHost("host_memory_safety_prerequisites_unavailable") from error
+    try:
+        os.close(os.pidfd_open(os.getpid()))
+    except (AttributeError, OSError) as error:
+        raise UnsupportedHost("pidfd_unavailable") from error
+    if not hasattr(signal, "pidfd_send_signal"):
+        raise UnsupportedHost("pidfd_unavailable")
+    try:
+        identity(os.getpid())
+    except (OSError, ValueError) as error:
+        raise UnsupportedHost("host_process_identity_unavailable") from error
+    with kernel_log() as descriptor:
+        try:
+            os.read(descriptor, 16384)
+        except BlockingIOError:
+            pass
+        except OSError as error:
+            raise UnsupportedHost("kernel_log_read_unavailable") from error
+    with private_group() as group:
+        try:
+            observation(group, None)
+        except (OSError, ValueError) as error:
+            raise UnsupportedHost("cgroup_local_observation_unavailable") from error
 
 
 def kernel_hits(log, pid, group_name):
@@ -200,6 +247,7 @@ def observe(group, case, uid, gid):
                 before = observation(group, pid)
                 require(identity(pid) == expected, "worker identity changed before release")
                 if case == "memory_cap":
+                    require(read("/proc/sys/vm/panic_on_oom").strip() == "0", "panic_on_oom changed before release")
                     process.stdin.write(b"A")
                     process.stdin.flush()
                 else:
@@ -236,7 +284,7 @@ def observe(group, case, uid, gid):
     }
 
 
-def run(output, source_revision):
+def run(output, source_revision, source_blob, source_sha256):
     require(sys.platform == "linux" and os.geteuid() == 0, "observer needs a disposable Linux VM with sudo")
     require(re.fullmatch(r"[0-9a-f]{40}", source_revision), "an exact source revision is required")
     uid, gid = int(os.environ["SUDO_UID"]), int(os.environ["SUDO_GID"])
@@ -244,18 +292,27 @@ def run(output, source_revision):
     require(not output.exists() and not output.is_symlink(), "select a new evidence path")
     start_boot = read("/proc/sys/kernel/random/boot_id")
     source = Path(__file__).read_bytes()
-    observations = []
-    for case in ("ordinary_sigkill", "memory_cap"):
-        with private_group() as group:
-            observations.append(observe(group, case, uid, gid))
-        require(not group.exists(), "private cgroup cleanup failed")
+    git_header = f"blob {len(source)}\0".encode("ascii")
+    require(hashlib.sha1(git_header + source, usedforsecurity=False).hexdigest() == source_blob
+            and hashlib.sha256(source).hexdigest() == source_sha256, "witness source identity differs")
+    try:
+        preflight()
+    except UnsupportedHost as error:
+        result = {"status": "unmeasured", "reason": str(error)}
+    else:
+        observations = []
+        for case in ("ordinary_sigkill", "memory_cap"):
+            with private_group() as group:
+                observations.append(observe(group, case, uid, gid))
+            require(not group.exists(), "private cgroup cleanup failed")
+        result = {"status": "observed", "cases": observations, "verified_limits": LIMITS, "cleanup_verified": True}
     require(start_boot == read("/proc/sys/kernel/random/boot_id"), "kernel boot identity changed")
     require(Path(__file__).read_bytes() == source, "witness source changed during observation")
     evidence = {
         "evidence_version": 1, "kernel": os.uname().release, "boot_id": start_boot.strip(),
-        "source_revision": source_revision, "observer_sha256": hashlib.sha256(source).hexdigest(),
-        "verified_limits": LIMITS, "maximum_allocation_blocks": MAX_BLOCKS,
-        "cases": observations, "cleanup_verified": True,
+        "source_revision": source_revision, "source_git_blob": source_blob, "observer_sha256": source_sha256,
+        "requested_limits": LIMITS, "maximum_allocation_blocks": MAX_BLOCKS,
+        **result,
     }
     descriptor = os.open(output, os.O_CREAT | os.O_EXCL | os.O_WRONLY | os.O_NOFOLLOW, 0o600)
     with os.fdopen(descriptor, "w", encoding="utf-8") as file:
@@ -264,6 +321,7 @@ def run(output, source_revision):
         file.write("\n")
         file.flush()
         os.fsync(file.fileno())
+    print(json.dumps({key: result[key] for key in ("status", "reason") if key in result}))
 
 
 if __name__ == "__main__":
@@ -272,5 +330,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Observe one bounded kernel cgroup OOM and one ordinary signal")
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--source-revision", required=True)
+    parser.add_argument("--source-blob", required=True)
+    parser.add_argument("--source-sha256", required=True)
     arguments = parser.parse_args()
-    run(arguments.output, arguments.source_revision)
+    run(arguments.output, arguments.source_revision, arguments.source_blob, arguments.source_sha256)

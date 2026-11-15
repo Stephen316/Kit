@@ -63,6 +63,7 @@ const StaticChecks = {
       "Zizmor",
       "actionlint",
       "Verify CI policy and pytest compatibility",
+      "Linux kernel OOM witness",
       "Windows research supervisor",
       "macOS research supervisor",
     ],

@@ -198,6 +198,47 @@ jobs:
           uv run --frozen --no-default-groups --extra dev --python 3.14
           python -m pytest tests/Research/Supervisor*Tests.py tests/Research/Supervisor/Supervisor*Tests.py tests/Research/Supervisor/Grouping tests/Research/Supervisor/Launch tests/Research/Owners tests/Research/Calibration -q -s
 
+  linux-oom-witness:
+    if: >-
+      always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
+    needs: pr-ci-reuse
+    name: Linux kernel OOM witness
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Observe the bounded Linux kernel memory failure
+        shell: bash
+        env:
+          WITNESS_REVISION: ${{ github.sha }}
+          WITNESS_REPORT: ${{ runner.temp }}/LinuxOomWitness.json
+        run: |
+          test "$(git rev-parse HEAD)" = "$WITNESS_REVISION"
+          source_blob="$(git rev-parse "$WITNESS_REVISION:re/automation/LinuxOomWitness.py")"
+          witness="$(mktemp -d "$RUNNER_TEMP/kit-oom-witness.XXXXXXXX")/LinuxOomWitness.py"
+          git cat-file blob "$source_blob" > "$witness"
+          source_sha="$(sha256sum "$witness")"
+          chmod 0400 "$witness"
+          sudo -n -- /usr/bin/env -i SUDO_UID="$(id -u)" SUDO_GID="$(id -g)" \
+            /usr/bin/python3 -I -S "$witness" --source-revision "$WITNESS_REVISION" \
+            --source-blob "$source_blob" --source-sha256 "${source_sha%% *}" \
+            --output "$WITNESS_REPORT"
+
+      - name: Publish sanitized kernel evidence
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: LinuxOomWitness-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/LinuxOomWitness.json
+          if-no-files-found: error
+          retention-days: 14
+
   windows-supervisor:
     if: >-
       always() && !cancelled() && (github.event_name != 'merge_group' || (needs.pr-ci-reuse.result == 'success' && needs.pr-ci-reuse.outputs.reuse != 'true'))
