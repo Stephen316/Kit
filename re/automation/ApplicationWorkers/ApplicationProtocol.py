@@ -21,6 +21,11 @@ FUSION_PROVIDER = "autodesk.fusion.addin"
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
+SCOPE_TOOL = "re/automation/PairedCaptures/ScopeControl/FusionScopeControl.py"
+SCOPE_INPUTS = {
+    "re/automation/PairedCaptures/ScopeControl/FusionScopeModel.py",
+    "re/automation/PairedCaptures/ScopeControl/ScopeControlSpec.json",
+}
 BOOTSTRAP = "re/automation/PairedCaptures/Runner/KitCaptureRunner/KitCaptureRunner.py"
 INPUTS = {"re/automation/PairedCaptures/FusionCapture.py", "re/automation/PairedCaptures/FusionBindings.py",
           "re/automation/PairSpecs.json", "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
@@ -263,7 +268,11 @@ def configuration(path):
 
 
 def committed_bytes(config, relative):
-    require(relative in {PROTOCOL, COUNTERPART, TOOL, BOOTSTRAP, *INPUTS}, "unapproved application source path")
+    require(
+        relative
+        in {PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, BOOTSTRAP, *INPUTS, *SCOPE_INPUTS},
+        "unapproved application source path",
+    )
     root = Path(config["source_root"])
     source = subprocess.run(["git", "-C", str(root), "show", f"{config['source_revision']}:{relative}"],
                             capture_output=True, check=False, timeout=15)
@@ -273,7 +282,10 @@ def committed_bytes(config, relative):
 
 
 def load_pinned(config, relative):
-    require(relative in (PROTOCOL, COUNTERPART, TOOL), "unapproved application helper")
+    require(
+        relative in (PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL),
+        "unapproved application helper",
+    )
     root = Path(config["source_root"])
     source = committed_bytes(config, relative)
     require(len(source) <= 1024 * 1024, "application executable source exceeds 1 MiB")
