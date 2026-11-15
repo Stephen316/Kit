@@ -29,6 +29,7 @@ def prepare(root):
     source.write_bytes(b'{"version":1,"immutable":true,"rewritten":true}\n')
     target = root / "record.json"
     os.replace(source, target)
+    os.utime(target, ns=(946684860000000000, 946684860000000000))
     return target
 
 
