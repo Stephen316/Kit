@@ -14,10 +14,42 @@ The restriction also covers renamed files and compressed copies.
 Keep licensed installations and analysis inputs outside repository checkouts.
 Record versions, hashes, addresses, and format conclusions without including vendor code.
 
-The [research ignore rules](../../../re/.gitignore) cover common executable, library, symbol, and installer extensions, including mixed-case names.
+The [repository ignore rules](../../../.gitignore) exclude DLL and DMG filenames everywhere, including mixed-case extensions.
+The [research ignore rules](../../../re/.gitignore) also cover other common executable, library, symbol, and installer extensions.
 They do not identify every proprietary file.
 Inspect archive members and file contents before staging research inputs.
 Never use `git add -f` to include an ignored vendor artifact.
+
+## Repository guard
+
+The `Verify path policies` CI job rejects every tracked DLL or DMG path, including files added with ignored-file overrides.
+It scans the complete Git index on pull requests, merge-group candidates, and pushes to `main`.
+It also checks paths introduced by incoming commits, including binaries removed before the final revision.
+The existing CI allowlist includes this job for pull requests and the merge queue.
+The guard runs on each candidate without reusing a PR report.
+
+From a repository checkout with Bash and Git available, inspect the current index:
+
+```sh
+bash .github/scripts/CheckBinaries.sh
+```
+
+An optional directory argument selects another checkout or a directory inside it.
+Pass a base and head revision after the directory to also inspect incoming commits:
+
+```sh
+bash .github/scripts/CheckBinaries.sh . origin/main HEAD
+```
+
+Exit code zero means no prohibited paths are tracked.
+Exit code one reports prohibited paths with shell-escaped filenames.
+Exit code two means the arguments or Git input are invalid.
+Remove each reported path from the index and keep authorized software outside repository checkouts.
+
+The guard checks filenames, including mixed-case extensions.
+It does not inspect archive members, detect renamed vendor software, rewrite existing history, or stop local commits before CI runs.
+The vendor software restriction still covers those cases.
+See [the guard change](../../Changes/Git/VendorBinaryGuard.md) and [the ignore-rule limitation](../../Gotchas/Git/IgnoreRulesDoNotBlockTrackedFiles.md).
 
 ## External inputs
 
