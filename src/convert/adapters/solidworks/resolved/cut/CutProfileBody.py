@@ -4,7 +4,7 @@ from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefini
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.resolved.ContourChain import ProfileChain, ReadChain
-from convert.adapters.solidworks.resolved.CutEdgeRef import CutEdgeRef, ReadCutEdge
+from convert.adapters.solidworks.resolved.cut.CutEdgeRef import CutEdgeRef, ReadCutEdge
 
 
 # the opaque kernel payload is reached and bounded before the archive map resumes

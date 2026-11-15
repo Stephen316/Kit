@@ -93,7 +93,7 @@ from interchange.records.RecordParameter import Parameter
     ),
 )
 def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -> None:
-    RepoPath = FilePath(__file__).resolve().parents[2]
+    RepoPath = FilePath(__file__).resolve().parents[3]
     ResultInfo = Subprocess.run(
         [System.executable, "-B", ScriptPath, *Options],
         cwd=RepoPath,
@@ -292,7 +292,7 @@ def AssertSwDists(
     ),
 )
 def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     NativePath = (
         RootDir
         / "re/automation/PairedCaptures"
@@ -354,7 +354,7 @@ def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
 )
 def CheckSwBoss(Variant: str) -> None:
     NativePath = (
-        FilePath(__file__).resolve().parents[2]
+        FilePath(__file__).resolve().parents[3]
         / "re/automation/PairedCaptures/P03/solidworks-db1390476325"
         / f"P03-solidworks-{Variant}.SLDPRT"
     )
@@ -440,7 +440,7 @@ def CheckOwnedPick(
     DescriptorId: int,
     Edges: tuple[int, ...],
 ) -> None:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     Archive = (
         RootDir
         / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
@@ -482,7 +482,7 @@ def CheckDatum(
     DatumId: int,
     AxisX: tuple[float, float, float],
 ) -> None:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     Archive = (
         RootDir
         / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
@@ -534,7 +534,7 @@ def CheckDatum(
     ),
 )
 def CheckPartRect(Family: str, Capture: str, Variant: str) -> None:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     Archive = (
         RootDir
         / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"
@@ -623,7 +623,7 @@ def AssertPartDims(
 
 # the saved boss cap would misleadingly look like an origin plane without its selection records
 def CheckFaceDatum() -> None:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     Archive = (
         RootDir
         / "re/automation/PairedCaptures/P04/fusion-9cf53a55ea8b"
@@ -663,7 +663,7 @@ KCutVariants = (
 @Pytest.mark.parametrize("Variant", KCutVariants)
 def CheckSwCutEq(Variant: str) -> None:
     NativePath = (
-        FilePath(__file__).resolve().parents[2]
+        FilePath(__file__).resolve().parents[3]
         / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
         / f"P04-solidworks-{Variant}.SLDPRT"
     )
@@ -706,6 +706,61 @@ def CheckSwCutEq(Variant: str) -> None:
             assert UnpackFrom("<i", Stream, SpanValue.offset) == (SlotValue,)
 
 
+# blind and through all trims must expose their exact target and distinct length framing
+@Pytest.mark.parametrize("Variant", KCutVariants)
+def CheckSwCutOp(Variant: str) -> None:
+    NativePath = (
+        FilePath(__file__).resolve().parents[3]
+        / "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
+        / f"P04-solidworks-{Variant}.SLDPRT"
+    )
+    Document = OpenDocument(NativePath)
+    Through = Variant == "termination-through-all"
+    (CutStep,) = tuple(
+        Value
+        for Value in Document.feature_timeline
+        if Value.name == ("ThroughAllCut" if Through else "BlindCut")
+    )
+    Definition = CutStep.definition
+    assert isinstance(Definition, ExtrudeFeature)
+    assert Definition.reversed
+    assert Definition.end_condition == (
+        ExtrudeEnd.THROUGH_ALL if Through else ExtrudeEnd.BLIND
+    )
+    assert CutStep.sketch_id == "sldprt:sketch:35"
+    assert CutStep.input_feature_ids == ("sldprt:feature:34", "sldprt:feature:35")
+    (Target,) = tuple(
+        Value for Value in Document.selections if Value.id in CutStep.selection_ids
+    )
+    (BodyPath,) = Target.path
+    assert (BodyPath.entity_id, BodyPath.subelement) == (
+        "sldprt:feature:34",
+        "body:101",
+    )
+    assert Target.query["topology_role"] == "historical_cut_target"
+    assert Target.provenance is not None and CutStep.provenance is not None
+    Spans = {Value.record_kind: Value for Value in CutStep.provenance.spans}
+    (BodySpan,) = Target.provenance.spans
+    assert BodySpan == Spans["cut-target-body"] and BodySpan.length > 100
+    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
+    if Through:
+        assert Definition.length is None and not CutStep.parameter_ids
+        Unset = Spans["extrusion-depth-absent"]
+        assert UnpackFrom("<H", Archive.require(Unset.stream), Unset.offset) == (0,)
+    else:
+        DepthValue = 5 if Variant == "edit-cut_depth_mm-5" else 4
+        assert Definition.length is not None
+        assert (Definition.length.value, Definition.length.unit) == (DepthValue, "mm")
+        (ParamValue,) = tuple(
+            Value for Value in Document.parameters if Value.id in CutStep.parameter_ids
+        )
+        assert ParamValue.name == "cut_depth_mm"
+        Scalar = Spans["extrusion-depth-scalar"]
+        assert UnpackFrom("<d", Archive.require(Scalar.stream), Scalar.offset) == (
+            DepthValue / 1000,
+        )
+
+
 # saved edge allocations vary across edits so each archive supplies its own expected source start
 KSupportEdgeStarts = {
     "baseline-a": 504,
@@ -724,7 +779,7 @@ KSupportEdgeStarts = {
 
 # cut archive checks share the normal adapter boundary and exact source location
 def OpenCutArchive(Variant: str) -> CadDocument:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     Archive = (
         RootDir
         / "re/automation/PairedCaptures/P04/fusion-9cf53a55ea8b"
@@ -1165,7 +1220,7 @@ def AssertCenters(Document: CadDocument) -> None:
     ),
 )
 def CheckCoincident(Family: str, Capture: str, Variant: str) -> None:
-    RootDir = FilePath(__file__).resolve().parents[2]
+    RootDir = FilePath(__file__).resolve().parents[3]
     Archive = (
         RootDir
         / f"re/automation/PairedCaptures/{Family}/fusion-{Capture}"

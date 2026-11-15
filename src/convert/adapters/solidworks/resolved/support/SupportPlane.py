@@ -8,7 +8,10 @@ from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart
 from convert.adapters.solidworks.resolved.BossChooser import SavedCap
 from convert.adapters.solidworks.resolved.FaceIdentity import SurfaceKey
-from convert.adapters.solidworks.resolved.FaceSupport import FacePlaneData, ReadFaceData
+from convert.adapters.solidworks.resolved.support.FaceSupport import (
+    FacePlaneData,
+    ReadFaceData,
+)
 from convert.adapters.solidworks.resolved.PlaneAtom import ReadPlaneAtom
 from convert.adapters.solidworks.resolved.PlaneGeom import ReadRefGeom
 

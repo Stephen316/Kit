@@ -11,11 +11,12 @@ from convert.adapters.solidworks.container.Archive import (
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart
-from convert.adapters.solidworks.resolved.BossChooser import KCapClass, KEdgeClass
 from convert.adapters.solidworks.resolved.BossEntry import BossHead, OpNode
-from convert.adapters.solidworks.resolved.CutEdgeRef import SurfaceOwner
+from convert.adapters.solidworks.resolved.cut.CutEdgeRef import SurfaceOwner
 from convert.adapters.solidworks.resolved.FaceIdentity import (
     FaceHeader,
+    KCapClass,
+    KEdgeClass,
     KSurfaceId,
     ReadFaceHead,
     ReadFaceReturn,

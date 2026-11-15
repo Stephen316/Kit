@@ -120,7 +120,7 @@ jobs:
       - name: Verify saved discovery evidence through both native archive readers
         run: >-
           uv run --isolated --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest tests/Research/ArchiveEvidenceTests.py -q
+          python -m pytest tests/Research/Archives/ArchiveEvidenceTests.py -q
 
       - name: Exercise native file reading and writing
         run: >-

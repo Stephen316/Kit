@@ -5,9 +5,12 @@ from convert.adapters.solidworks.config.CutConfig import CutConfig, ReadCutConfi
 from convert.adapters.solidworks.config.CutEquation import CutEquation, EquationDim
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
 from convert.adapters.solidworks.container.Archive import ArchiveError
+from convert.adapters.solidworks.core.cut.CutOpProjection import AttachCutOp
+from convert.adapters.solidworks.core.cut.CutSource import CutSource
 from convert.adapters.solidworks.core.Native import NativeEquation, NativeFeature, NativeModel
-from convert.adapters.solidworks.resolved.CutLinks import KCutListCount, CutLinks, ReadCutLinks
-from convert.adapters.solidworks.resolved.LinkedProfile import LinkedProfile
+from convert.adapters.solidworks.resolved.cut.CutLinks import KCutListCount, CutLinks, ReadCutLinks
+from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
+from convert.adapters.solidworks.resolved.cut.LinkedProfile import LinkedProfile
 
 
 # equation provenance keeps the exact stored slot of each ordered term
@@ -91,7 +94,7 @@ def AttachCutEqs(
 # other schema families keep their existing equation reader when this archive shape fails
 def ReadCutEqs(
     Model: NativeModel, ConfigBlob: bytes, Resolved: bytes,
-    Generation: int | None, StreamName: str,
+    Generation: int | None, StreamName: str, ResolvedStream: str,
 ) -> NativeModel:
     if Generation != KConfigGen or int.from_bytes(Resolved[4:6], "little") != KCutListCount:
         return Model
@@ -100,4 +103,19 @@ def ReadCutEqs(
         Links = ReadCutLinks(Resolved, Config)
     except (ArchiveError, StructError):
         return Model
-    return AttachCutEqs(Model, Config, Links, StreamName)
+    Result = AttachCutEqs(Model, Config, Links, StreamName)
+    try:
+        Proof = ReadCutProof(Links, Config)
+    except (ArchiveError, StructError):
+        return Result
+    Operation = AttachCutOp(Result, Proof)
+    SketchValue = Config.Sketches.get(Links.CutProfile.SketchIndex)
+    if Operation is Result or SketchValue is None:
+        return Operation
+    return Replace(
+        Operation,
+        cut_source=CutSource(
+            Proof.Support, SketchValue.SketchData, Links.CutProfile.FeatureId,
+            Links.BossValue["native_feature_id"], StreamName, ResolvedStream,
+        ),
+    )

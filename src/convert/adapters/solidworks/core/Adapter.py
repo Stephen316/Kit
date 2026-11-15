@@ -166,7 +166,7 @@ from convert.adapters.solidworks.core.Native import (
     decode_native_model as DecodeNativeModel,
     operation_axis_subelement as OperationAxisSubElem,
 )
-from convert.adapters.solidworks.core.CutEqProjection import ReadCutEqs
+from convert.adapters.solidworks.core.cut.CutEqProjection import ReadCutEqs
 from convert.adapters.solidworks.core.OrdinaryRead import (
     KArchiveSupport,
     ReadRectSupport,
@@ -2046,7 +2046,7 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
         return Model
     Generation = ContainerMo(Archive.streams)
     Ordinary = ReadRectSupport(Model, ConfigData, Resolved, Generation)
-    return ReadCutEqs(Ordinary, ConfigData, Resolved, Generation, ConfigStream)
+    return ReadCutEqs(Ordinary, ConfigData, Resolved, Generation, ConfigStream, SelectedStream)
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -3110,6 +3110,21 @@ def SketchB(
     return (*ExplicitRules, *ProfileRules(Sketch))
 
 
+# the occupied cut target has an exact archive span unlike the generic selection route
+def SelectSpans(
+    Operation: NativeOperation, Offsets: tuple[int, ...]
+) -> tuple[ProvenanceSpan, ...]:
+    Saved = tuple(
+        ProvenanceSpan(Operation.native_stream, Offset, Length, RecordKind)
+        for Offset, Length, RecordKind in Operation.archive_spans
+        if RecordKind == "cut-target-body" and Offset in Offsets
+    )
+    return Saved or tuple(
+        ProvenanceSpan(Operation.native_stream, Offset, 38, f"{Operation.selection_kind}-selection")
+        for Offset in Offsets
+    )
+
+
 # this definition exists because focused behavior needs one stable owner
 def Selections(Model: NativeModel) -> tuple[Selection, ...]:
     Result: list[Selection] = []
@@ -3119,6 +3134,8 @@ def Selections(Model: NativeModel) -> tuple[Selection, ...]:
         for Producer, LocalId, Offsets in OperationA(Operation):
             SelectionId = OperationId(Operation, Producer, LocalId)
             KindValue = Operation.selection_kind
+            Spans = SelectSpans(Operation, Offsets)
+            HasTarget = any(Value.record_kind == "cut-target-body" for Value in Spans)
             Result.append(
                 Selection(
                     id=SelectionId,
@@ -3134,28 +3151,22 @@ def Selections(Model: NativeModel) -> tuple[Selection, ...]:
                         {
                             "native_producer_id": Producer,
                             "native_local_id": LocalId,
-                            "native_identity": "7dc39425ad49b2547dc39425ad49b254",
-                            "topology_role": (
-                                "extrusion_terminal_profile_boundary"
-                                if Operation.kind == "fillet"
-                                else f"native_{KindValue}"
+                            **(
+                                {"topology_role": "historical_cut_target"}
+                                if HasTarget else {
+                                    "native_identity": "7dc39425ad49b2547dc39425ad49b254",
+                                    "topology_role": (
+                                        "extrusion_terminal_profile_boundary"
+                                        if Operation.kind == "fillet" else f"native_{KindValue}"
+                                    ),
+                                }
                             ),
                         }
                     ),
                     provenance=Provenance(
                         adapter=KFormatId,
                         native_id=f"{Operation.object_id}:{KindValue}:{LocalId}",
-                        spans=tuple(
-                            (
-                                ProvenanceSpan(
-                                    Operation.native_stream,
-                                    Offset,
-                                    38,
-                                    f"{KindValue}-selection",
-                                )
-                                for Offset in Offsets
-                            )
-                        ),
+                        spans=Spans,
                     ),
                 )
             )

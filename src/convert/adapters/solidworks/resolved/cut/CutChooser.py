@@ -9,7 +9,7 @@ from convert.adapters.solidworks.resolved.BossChooser import (
     ReadChoiceTail,
 )
 from convert.adapters.solidworks.resolved.BossEntry import BossHead, OpNode
-from convert.adapters.solidworks.resolved.CutResultFace import (
+from convert.adapters.solidworks.resolved.cut.CutResultFace import (
     CutResultAlias,
     CutResultFace,
     ReadResultAlias,

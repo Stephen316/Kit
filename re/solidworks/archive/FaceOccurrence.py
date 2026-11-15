@@ -6,7 +6,7 @@ from convert.adapters.solidworks.container.Archive import (
 )
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart
-from convert.adapters.solidworks.resolved.FaceFrame import ReadFacePose as read_transform
+from convert.adapters.solidworks.resolved.support.FaceFrame import ReadFacePose as read_transform
 from convert.adapters.solidworks.resolved.FaceIdentity import (
     ReadFaceHead as read_face_header,
     ReadFaceReturn as read_face_tail,

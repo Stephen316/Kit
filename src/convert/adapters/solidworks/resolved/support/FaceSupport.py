@@ -4,7 +4,7 @@ from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefini
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart
-from convert.adapters.solidworks.resolved.FaceFrame import (
+from convert.adapters.solidworks.resolved.support.FaceFrame import (
     CloseFaceFrame,
     FaceFrame,
     ReadFaceFrame,

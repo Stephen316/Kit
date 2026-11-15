@@ -1,7 +1,7 @@
 """Adapt the packaged support decoder to the established research report."""
 
 from convert.adapters.solidworks.resolved.PlaneAtom import ReadAtomMaps as read_partition_tail
-from convert.adapters.solidworks.resolved.SupportPlane import ReadFaceSupport
+from convert.adapters.solidworks.resolved.support.SupportPlane import ReadFaceSupport
 from FeatureBase import read_feature_base
 from SketchRoot import KGeneration
 

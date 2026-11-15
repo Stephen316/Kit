@@ -2,7 +2,6 @@ from typing import TypedDict
 
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.LocalFrame import ReadLocalPose
 from convert.adapters.solidworks.resolved.ContourSurf import (
     KContourEdge,
     ProfileOwner,
@@ -11,28 +10,21 @@ from convert.adapters.solidworks.resolved.ContourSurf import (
     TrimSurface,
 )
 
-
-# saved placement keeps the explicitly serialized basis separate from its shift
-class CutPlacement(TypedDict):
-    basis: tuple[float, ...] | None
-    translation_scale: tuple[float, ...]
+from convert.adapters.solidworks.resolved.support.FaceFrame import (
+    FacePose,
+    ReadFacePose,
+)
 
 
 # the terminal profile cache retains its actual authored placement and contour boundaries
 class CutProfileSeal(TypedDict):
-    placement: CutPlacement
-    auxiliary_placement: CutPlacement
+    placement: FacePose
+    auxiliary_placement: FacePose
     state_word: int
     trim_surface: TrimSurface
     trim_edges: list[KContourEdge]
     end: int
     next_map_index: int
-
-
-# both placements use the same native transform fields
-def ReadCutPose(Cursor: ArchiveCursor) -> CutPlacement:
-    BasisValue, ShiftValue = ReadLocalPose(Cursor)
-    return {"basis": BasisValue, "translation_scale": ShiftValue}
 
 
 # the cut profile reuses the earlier part reference after both placements
@@ -41,9 +33,9 @@ def ReadCutSeal(
     Profile: ProfileOwner,
     FileObject: int,
 ) -> CutProfileSeal:
-    Placement = ReadCutPose(Cursor)
+    Placement = ReadFacePose(Cursor)
     RequireArch(Cursor.ReadInts("<H"), (1,), "present cut auxiliary transform")
-    Auxiliary = ReadCutPose(Cursor)
+    Auxiliary = ReadFacePose(Cursor)
     RequireArch(
         (Auxiliary["basis"], Auxiliary["translation_scale"]),
         (None, (0, 0, 0, 1)),

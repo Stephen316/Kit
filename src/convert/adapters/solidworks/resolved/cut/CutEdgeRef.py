@@ -3,12 +3,14 @@ from typing import TypedDict
 from convert.adapters.solidworks.config.RootLayout import KConfigGen
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.resolved.BossChooser import (
+from convert.adapters.solidworks.resolved.BossChooser import SavedCap
+from convert.adapters.solidworks.resolved.FaceIdentity import (
     KCapClass,
     KEdgeClass,
-    SavedCap,
+    KSurfaceId,
+    ReadSurfaceId,
+    SurfaceKey,
 )
-from convert.adapters.solidworks.resolved.FaceIdentity import KSurfaceId, ReadSurfaceId
 
 
 # the reached profile edge retains its boss cap and ordered boundary occurrences
@@ -22,7 +24,7 @@ class CutEdgeRef(TypedDict):
 
 # file and feature clock bind geometry references to their archived owner
 def SurfaceOwner(Surface: KSurfaceId) -> tuple[int, int, int]:
-    return Surface["file_ref_object"], Surface["feature_id"], Surface["time_word"]
+    return SurfaceKey(Surface)[:3]
 
 
 # each projected boundary begins with a primary cap reference and owns three edge refs

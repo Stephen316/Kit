@@ -2,7 +2,7 @@
 
 from convert.adapters.solidworks.container.PlaneBasis import KUnitRows
 from convert.adapters.solidworks.resolved.FaceIdentity import SurfaceKey
-from convert.adapters.solidworks.resolved.SupportPlane import (
+from convert.adapters.solidworks.resolved.support.SupportPlane import (
     ReadFaceSupport,
     RequireFaceCap,
 )

@@ -48,6 +48,7 @@ from convert.adapters.solidworks.resolved.Core import (
 )
 
 if TYPE_CHECKING:
+    from convert.adapters.solidworks.core.cut.CutSource import CutSource
     from convert.adapters.solidworks.resolved.RectanglePart import RectanglePart
 
 # this binding exists because shared behavior needs one stable value
@@ -1240,6 +1241,7 @@ class NativeModel:
     active_configuration_id: int | None = None
     bounding_box: NativeBoundingBox | None = None
     linear_display: LinearDisplay | None = None
+    cut_source: CutSource | None = None
 
 
 # this definition exists because focused behavior needs one stable owner

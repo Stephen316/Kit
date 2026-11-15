@@ -17,7 +17,7 @@ from convert.adapters.solidworks.resolved.BossEntry import (
 )
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
 from convert.adapters.solidworks.resolved.ContourTrim import ReadRectTrim
-from convert.adapters.solidworks.resolved.LinkedProfile import (
+from convert.adapters.solidworks.resolved.cut.LinkedProfile import (
     LinkedProfile,
     ReadLinkedProf,
 )

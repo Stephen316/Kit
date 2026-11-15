@@ -13,8 +13,14 @@ from convert.adapters.solidworks.resolved.BossEntry import (
     OpNode,
     ReadBodyReturn,
 )
-from convert.adapters.solidworks.resolved.CutChooser import CutChoices, ReadCutChoices
-from convert.adapters.solidworks.resolved.CutResultFace import CutSolid, ReadCutSolid
+from convert.adapters.solidworks.resolved.cut.CutChooser import (
+    CutChoices,
+    ReadCutChoices,
+)
+from convert.adapters.solidworks.resolved.cut.CutResultFace import (
+    CutSolid,
+    ReadCutSolid,
+)
 from convert.adapters.solidworks.resolved.PlaneAtom import ReadAtomMaps
 
 
