@@ -12,4 +12,4 @@ No process cases ran in that job; source type checks did not exercise collection
 ## Workaround
 
 Give the new grouped fence module the unique basename `GroupedFenceTests.py`. Keep both test selections and every existing fence assertion.
-The [grouped-session change](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md) records the current remote verification requirement.
+The [grouped-session change](../../../Changes/Research/Supervisor/GroupedSmallFileSessions.md) records the current remote verification requirement.
