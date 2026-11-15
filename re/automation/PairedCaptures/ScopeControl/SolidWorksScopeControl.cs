@@ -378,7 +378,8 @@ public sealed class SolidWorksScopeControl
         throw new InvalidOperationException("The directly launched SOLIDWORKS process did not expose its COM object");
     }
 
-    static string Phase(string specification, string directory, string executable, string priorJson)
+    internal static string WithOwnedProcess(
+        string executable, Func<ISldWorks, Dictionary<string, object>, Dictionary<string, object>> collect)
     {
         Check(Process.GetProcessesByName("SLDWORKS").Length == 0, "Use an isolated desktop with SOLIDWORKS stopped");
         var launch = new ProcessStartInfo(executable)
@@ -403,9 +404,8 @@ public sealed class SolidWorksScopeControl
             {
                 Check(application.GetDocumentCount() == 0 && application.RevisionNumber() == "34.4.1"
                     && module.FileVersionInfo.FileVersion == Build, "The expected licensed SOLIDWORKS build did not start empty");
-                var worker = new SolidWorksScopeControl(application, ObjectValue(Json.DeserializeObject(specification)));
-                output = worker.Collect(directory, priorJson, processRow);
-                Check(application.GetDocumentCount() == 0, "The scope worker left an open document");
+                output = collect(application, processRow);
+                Check(application.GetDocumentCount() == 0, "The capture worker left an open document");
             }
             finally
             {
@@ -418,6 +418,15 @@ public sealed class SolidWorksScopeControl
             processRow["exited_observed"] = true;
             return Json.Serialize(output);
         }
+    }
+
+    static string Phase(string specification, string directory, string executable, string priorJson)
+    {
+        return WithOwnedProcess(executable, (application, process) =>
+        {
+            var worker = new SolidWorksScopeControl(application, ObjectValue(Json.DeserializeObject(specification)));
+            return worker.Collect(directory, priorJson, process);
+        });
     }
 
     Dictionary<string, object> Collect(string directory, string priorJson, Dictionary<string, object> process)

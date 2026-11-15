@@ -7,17 +7,23 @@ using System.Text;
 using System.Web.Script.Serialization;
 using SolidWorks.Interop.sldworks;
 
-public sealed class SolidWorksCapture
+public sealed partial class SolidWorksCapture
 {
     static readonly JavaScriptSerializer Json = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
     static readonly UTF8Encoding Utf8 = new UTF8Encoding(false);
-    readonly ISldWorks app = (ISldWorks)Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application"));
+    readonly ISldWorks app;
     readonly string repo, output, template;
     readonly Dictionary<string, object>[] recipes;
     readonly string spec;
 
     SolidWorksCapture(string repo, string output)
+        : this(repo, output, (ISldWorks)Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application")))
     {
+    }
+
+    SolidWorksCapture(string repo, string output, ISldWorks application)
+    {
+        app = application;
         this.repo = repo;
         this.output = output;
         template = app.GetDocumentTemplate(1, "", 0, 0, 0);
