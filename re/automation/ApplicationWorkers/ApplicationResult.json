@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "required": ["claim", "native_qualified"],
+  "additionalProperties": true,
+  "properties": {
+    "claim": {"type": "string", "const": "unqualified_dispatch"},
+    "native_qualified": {"type": "boolean", "const": false}
+  }
+}

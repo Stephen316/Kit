@@ -1,6 +1,8 @@
 import json
 import os
 import runpy
+import re
+import subprocess
 import sys
 import threading
 import time
@@ -17,6 +19,7 @@ def runner_home():
 
 
 HOME = runner_home()
+BOOTSTRAP_SOURCE = Path(__file__).read_bytes()
 QUEUE = HOME / "queue"
 EVENT_ID = "KitCaptureRunnerJob"
 SCRIPT_NAME = "GenerateFusion.py"
@@ -25,6 +28,7 @@ IDLE_SECONDS = 2.0
 state = {
     "app": None, "event": None, "handlers": [], "stop": threading.Event(), "finished": threading.Event(),
     "thread": None, "started_utc": None, "busy_seconds": 0.0, "jobs": 0, "failed": 0,
+    "dispatch": None, "dispatch_protocol": None,
 }
 
 
@@ -50,6 +54,13 @@ def write_status(status):
 
 
 def run_job(job_path):
+    if job_path.suffix == ".request":
+        protocol = state["dispatch_protocol"]
+        host = state["dispatch"]
+        counterpart = protocol["load_pinned"](host.config, protocol["COUNTERPART"])
+        counterpart["protocol"] = protocol
+        counterpart["serve"](host, job_path, state["app"])
+        return
     running = job_path.with_suffix(".running")
     os.replace(job_path, running)
     started = time.time()
@@ -88,7 +99,9 @@ class JobHandler(adsk.core.CustomEventHandler):
 def poll():
     stop = state["stop"]
     while not stop.is_set():
-        jobs = sorted(QUEUE.glob("*.json"))
+        host = state["dispatch"]
+        request_path = host.next_path() if host is not None else None
+        jobs = [request_path] if request_path is not None else sorted(QUEUE.glob("*.json")) if host is None or host.legacy_available() else []
         if not jobs:
             stop.wait(IDLE_SECONDS)
             continue
@@ -103,6 +116,33 @@ def run(context):
     state["app"] = app
     QUEUE.mkdir(parents=True, exist_ok=True)
     allowed_root()
+    config = json.loads((HOME / "config.json").read_text(encoding="utf-8"))
+    if "dispatch" in config:
+        installation = json.loads(Path(config["dispatch"]).read_bytes())
+        root = allowed_root().parents[2]
+        if not re.fullmatch("[0-9a-f]{40}", installation["source_revision"]) or Path(installation["source_root"]).resolve() != root:
+            raise ValueError("dispatch installation must pin this configured repository")
+        relative = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
+        path = root / relative
+        source = subprocess.run(["git", "-C", str(root), "show", f"{installation['source_revision']}:{relative}"], capture_output=True, check=False, timeout=15)
+        if source.returncode != 0 or path.is_symlink() or path.read_bytes() != source.stdout or len(source.stdout) > 1024 * 1024:
+            raise ValueError("application protocol differs from its pinned revision")
+        protocol = {"__name__": "__kit_pinned_queue__", "__file__": str(path)}
+        exec(compile(source.stdout, str(path), "exec"), protocol)
+        installation = protocol["configuration"](config["dispatch"])
+        if sys.platform != "darwin" or installation["application"] != "fusion":
+            raise ValueError("fresh-phase dispatch currently requires a macOS Fusion host")
+        state["dispatch_protocol"] = protocol
+        state["dispatch"] = protocol["HostQueue"](installation)
+        trusted_bootstrap = protocol["committed_bytes"](installation, protocol["BOOTSTRAP"])
+        if BOOTSTRAP_SOURCE != trusted_bootstrap:
+            state["dispatch"].close()
+            state["dispatch"] = None
+            raise ValueError("reload the add-in from the trusted installation revision")
+        state["dispatch"].loaded_sources = {
+            "bootstrap": {"path": protocol["BOOTSTRAP"], "sha256": protocol["sha256"](BOOTSTRAP_SOURCE), "size_bytes": len(BOOTSTRAP_SOURCE), "revision": installation["source_revision"]},
+            "protocol": {"path": relative, "sha256": protocol["sha256"](source.stdout), "size_bytes": len(source.stdout), "revision": installation["source_revision"]},
+        }
     event = app.registerCustomEvent(EVENT_ID)
     handler = JobHandler()
     event.add(handler)
@@ -119,4 +159,7 @@ def stop(context):
     state["stop"].set()
     if state["app"] is not None:
         state["app"].unregisterCustomEvent(EVENT_ID)
+    if state["dispatch"] is not None:
+        state["dispatch"].close()
+        state["dispatch"] = None
     write_status("stopped")
