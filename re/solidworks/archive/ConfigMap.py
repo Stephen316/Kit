@@ -19,18 +19,20 @@ from SketchEvidence import (
 if __name__ == "__main__":
     ImportPaths.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
-from ConfigPresentation import ReadModelPresentation
 from SketchReader import ReadSketchConfiguration
 from SketchRoot import Require
+from convert.adapters.solidworks.config.Presentation import ReadModelTail
+from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.container.Container import SldprtArchive
 
 
 # this research continuation is bounded to the pinned build and witnessed suffix layout
 def ReadConfigMap(BlobValue, BuildName):
     Require(BuildName, KApplicationBuild, "witnessed P04 model build")
-    _, Cursor = ReadSketchConfiguration(BlobValue, BuildName)
+    _, Sketch = ReadSketchConfiguration(BlobValue, BuildName)
+    Cursor = ArchiveCursor(BlobValue, Sketch.Offset, Sketch.NextIndex, Sketch.Classes, Sketch.Objects)
     Start = (Cursor.Offset, Cursor.NextIndex)
-    Events, Regions = ReadModelPresentation(Cursor)
+    Events, Regions = ReadModelTail(Cursor)
     return Cursor, {"start": Start, "regions": Regions, "pointers": Events}
 
 
