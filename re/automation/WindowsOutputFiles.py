@@ -8,6 +8,7 @@ import win32con
 import win32file
 
 from OutputFiles import identity, regular
+from ApplicationWorkers.WindowsRecords import shared_identity
 
 
 @contextmanager
@@ -40,10 +41,16 @@ def open_output(root, relative):
             source = stack.enter_context(os.fdopen(descriptor, "rb"))
             opened = os.fstat(source.fileno())
             regular(opened)
-            if identity(opened) != identity(path.stat(follow_symlinks=False)):
+            before = path.stat(follow_symlinks=False)
+            regular(before)
+            if shared_identity(opened) != shared_identity(before):
                 raise ValueError("output changed while it was opened")
             yield source
-            if identity(opened) != identity(os.fstat(source.fileno())) or identity(opened) != identity(path.stat(follow_symlinks=False)):
+            after = os.fstat(source.fileno())
+            final = path.stat(follow_symlinks=False)
+            regular(after)
+            regular(final)
+            if identity(opened) != identity(after) or shared_identity(opened) != shared_identity(final):
                 raise ValueError("output changed during intake")
     except pywintypes.error as error:
         raise OSError(f"Windows output intake failed: {error.winerror}") from error

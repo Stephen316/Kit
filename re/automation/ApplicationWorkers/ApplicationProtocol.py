@@ -49,6 +49,13 @@ def directory(path, create=False):
 
 def file_bytes(path, limit=1024 * 1024):
     path = Path(path)
+    if os.name == "nt":
+        from WindowsRecords import open_record
+
+        with open_record(path) as source:
+            content = source.read(limit + 1)
+            require(len(content) <= limit, "application input exceeds its byte limit")
+        return content
     before = path.lstat()
     require(stat.S_ISREG(before.st_mode) and before.st_nlink == 1
             and not getattr(before, "st_file_attributes", 0) & 0x400,
@@ -62,11 +69,10 @@ def file_bytes(path, limit=1024 * 1024):
         content = source.read(limit + 1)
         after = os.fstat(source.fileno())
     require(len(content) <= limit, "application input exceeds its byte limit")
+    final = path.stat(follow_symlinks=False)
     require((opened.st_dev, opened.st_ino, opened.st_size, opened.st_mtime_ns, opened.st_ctime_ns, opened.st_nlink)
             == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns, after.st_nlink)
-            == (path.stat(follow_symlinks=False).st_dev, path.stat(follow_symlinks=False).st_ino,
-                path.stat(follow_symlinks=False).st_size, path.stat(follow_symlinks=False).st_mtime_ns,
-                path.stat(follow_symlinks=False).st_ctime_ns, path.stat(follow_symlinks=False).st_nlink),
+            == (final.st_dev, final.st_ino, final.st_size, final.st_mtime_ns, final.st_ctime_ns, final.st_nlink),
             "application input changed while reading")
     return content
 
