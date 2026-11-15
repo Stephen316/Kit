@@ -9,13 +9,12 @@ import sys
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+from CiBatchRelease import KIND, SCOPE, pending_input, resumed_member
 from Corpus import git
 from Records import canonical, digest
 from Sessions import read_bounded, write_private
 
 ROOT = Path(__file__).resolve().parents[2]
-KIND = "candidate.paired-discovery"
-SCOPE = "p01-p03-p04-paired-reader-discovery"
 RECEIPTS = {
     "principal": {
         "principal-dispatch": "dispatch.json",
@@ -237,45 +236,45 @@ def run(session):
         )
     revision = job["options"]["candidate_revision"]
     pinned_checkout(revision)
-    pending = {
-        "schema": 1,
-        "status": "pending",
-        "candidate_revision": revision,
-        "scope": SCOPE,
-    }
-    if canonical(json.loads(input_bytes(session, inputs["ci"], 4096))) != canonical(
-        pending
-    ):
-        raise ValueError(
-            "stage 11 requires the exact pending CI input for this candidate"
-        )
+    ci = json.loads(input_bytes(session, inputs["ci"], 65536))
+    resumed = canonical(ci) != canonical(pending_input(revision))
+    if resumed:
+        resumed_member(packet, ci)
     with TemporaryDirectory(prefix="stage-eleven-", dir=session) as directory:
         reports, counterexamples = observations(Path(directory), inputs, session)
     saves = assess(reports, counterexamples)
     pinned_checkout(revision)
-    accepted = not counterexamples
+    records = {
+        "schema": 1,
+        "scope": SCOPE,
+        "candidate_revision": revision,
+        "native_qualified": False,
+        "fresh_native_fusion": "unverified",
+        "evidence_sha256": {name: digest(report) for name, report in reports.items()},
+        "saves": saves,
+        "counterexamples": counterexamples,
+    }
+    if resumed:
+        if not counterexamples and (
+            digest(records) != ci["stage_record_sha256"]
+            or digest(saves) != ci["saves_sha256"]
+        ):
+            counterexamples.append({"check": "replay differs from the exact parked evidence"})
+        records["ci"] = {
+            key: ci[key] for key in ("roster_sha256", "observation_sha256", "verification")
+        }
+    if counterexamples:
+        outcome = "rejected"
+        reason = "paired discovery grid contains counterexamples or missing comparisons"
+    elif resumed:
+        outcome = "completed"
+        reason = "exact paired research replay and hosted archive compatibility verified"
+    else:
+        outcome = "waiting_ci"
+        reason = "paired discovery grid and repeat saves agreed with independent observations"
     write_private(
         session / "result.json",
-        {
-            "outcome": "waiting_ci" if accepted else "rejected",
-            "reason": (
-                "paired discovery grid and repeat saves agreed with independent observations"
-                if accepted
-                else "paired discovery grid contains counterexamples or missing comparisons"
-            ),
-            "records": {
-                "schema": 1,
-                "scope": SCOPE,
-                "candidate_revision": revision,
-                "native_qualified": False,
-                "fresh_native_fusion": "unverified",
-                "evidence_sha256": {
-                    name: digest(report) for name, report in reports.items()
-                },
-                "saves": saves,
-                "counterexamples": counterexamples,
-            },
-        },
+        {"outcome": outcome, "reason": reason, "records": records},
     )
 
 

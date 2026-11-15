@@ -87,7 +87,12 @@ class GitHubRead:
 
 
 def load_roster(path, expected):
-    value = read_record(path)
+    value = checked_roster(read_record(path), expected)
+    return value["batch_revision"], value["payload_sha256"]
+
+
+def checked_roster(record, expected):
+    value = dict(record)
     checksum = value.pop("payload_sha256", None)
     require(
         sha(expected, 64)
@@ -105,7 +110,7 @@ def load_roster(path, expected):
     label(value["ci_role"])
     names = [member_name(member) for member in value["members"]]
     require(names == sorted(set(names)), "expected a unique canonical CI roster")
-    return value["batch_revision"], checksum
+    return {**value, "payload_sha256": checksum}
 
 
 def member_name(member):

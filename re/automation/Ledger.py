@@ -140,13 +140,17 @@ class Ledger:
     def bind(self, name, path):
         name = label(name)
         sha256 = self.objects.put_file(path)
+        self.set_binding(name, sha256)
+        self.refresh()
+        return {"name": name, "sha256": sha256}
+
+    def set_binding(self, name, sha256):
+        name = label(name)
         previous = self.db.execute("SELECT sha256 FROM bindings WHERE name=?", (name,)).fetchone()
         self.db.execute("INSERT INTO bindings VALUES (?,?) ON CONFLICT(name) DO UPDATE SET sha256=excluded.sha256", (name, sha256))
         if previous is None or previous[0] != sha256:
             self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM job_inputs WHERE binding=?", (name,))
         self.event(None, "binding", {"name": name, "sha256": sha256})
-        self.refresh()
-        return {"name": name, "sha256": sha256}
 
     def resource(self, name, available=None, capacity=None):
         name = label(name)

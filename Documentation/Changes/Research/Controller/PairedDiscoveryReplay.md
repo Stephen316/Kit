@@ -25,6 +25,6 @@ Give each candidate job its own `ci` binding with a pending input like this.
 
 When all 25 pairs and the comparison controls pass, A03 records `waiting_ci`. The result keeps the save pins and the comparison report digests. On a discrepancy it records `rejected` with the affected checks. The runner uses historical Fusion measurements and leaves fresh licensed Fusion acceptance open. P05 remains reserved for frozen-rule evaluation.
 
-Freeze a [pending CI roster](PendingCiRoster.md) from the parked attempt. Use the [hosted archive gate receipt](HostedPairedArchiveGate.md) to identify the corresponding public archive checks and save pins. Applying a terminal CI result to resume members is a separate controller step.
+Freeze a [pending CI roster](PendingCiRoster.md) from the parked attempt. Apply the exact successful hosted evidence with the [batch release command](PairedCiBatchRelease.md).
 
 The Windows supervisor ran the pinned candidate at `356e695144471ac45e9e6a5939d4f9ce7efd9d03` and parked attempt one in `waiting_ci` after 16.4 seconds. A03 recorded six P01, eight P03 and eleven P04 pairs with zero counterexamples. The pending roster included the exact attempt and result. Its payload digest is `c1fbeeaf238e0918d27f69eb4eb10ae4640905b0d39d1081877560c115daabd5`.

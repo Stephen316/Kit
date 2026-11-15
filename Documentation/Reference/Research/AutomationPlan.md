@@ -318,7 +318,7 @@ Start with one batch for each working day or for each 10–20 candidates.
 Use the pilot measurements to change that size.
 
 The A03 controller already supplies the `waiting_ci` state, fingerprint resumption and dependent invalidation.
-The [paired discovery runner](../../Changes/Research/Controller/PairedDiscoveryReplay.md) implements stage 11 for P01, P03 and P04. The [pending CI roster](../../Changes/Research/Controller/PendingCiRoster.md) freezes parked attempts and their immutable evidence. Candidate-family coverage and controller release from terminal receipts remain open.
+The [paired discovery runner](../../Changes/Research/Controller/PairedDiscoveryReplay.md) implements stage 11 for P01, P03 and P04. The [pending CI roster](../../Changes/Research/Controller/PendingCiRoster.md) freezes parked attempts and their immutable evidence. The [paired batch release](../../Changes/Research/Controller/PairedCiBatchRelease.md) applies exact authenticated hosted evidence and resumes the same discoveries. Broader candidate-family coverage, per-member failures and failure isolation remain open.
 
 
 ### Proposed fast local checks
