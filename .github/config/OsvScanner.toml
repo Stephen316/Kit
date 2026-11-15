@@ -4,7 +4,3 @@
 [[IgnoredVulns]]
 id = "GHSA-wj6h-64fc-37mp"
 reason = "PYSEC-2026-1325 in ecdsa is dev-only, has no fixed release, and checkov requires ecdsa>=0.19,<1.0"
-
-[[IgnoredVulns]]
-id = "GHSA-vfmq-68hx-4jfw"
-reason = "PYSEC-2026-87 in lxml is dev-only, and cyclonedx-python-lib 7.6.2 (latest release) caps lxml<6, so 6.1.0 is unreachable"
