@@ -19,6 +19,7 @@ from StoreRead import read_store
 
 OPERATIONS = ("LockPath", "DefinePool", "DefineResource", "SubmitJobs", "BindInput", "ClaimJob", "RenewLease", "FinishJob", "FetchInput", "ReadStatus")
 CONTROLLER_TIMEOUT = 120
+A03_CAPACITY_REFUSAL = "concurrency limit"
 
 
 def copy_verified(source, destination, sha256):
@@ -57,6 +58,7 @@ class A03Adapter:
         self.local_staging = local_staging
         self.warm_claims = False
         self.claim_helper = None
+        self.last_claim_refusal = None
 
     def Invoke(self, *items, stale=False):
         ownership = ["--owner", self.owner] if self.owner is not None else []
@@ -97,10 +99,12 @@ class A03Adapter:
         return self.Invoke("bind", name, path)
 
     def ClaimJob(self, pool, worker, path):
+        self.last_claim_refusal = None
         if self.warm_claims and self.owner is not None:
             return self.warm_claim(pool, worker, Path(path))
         response = self.Invoke("claim", "--worker", worker, "--pool", pool, "--claim-file", path)
         if response["job"] is None:
+            self.observe_claim_refusal(response)
             return None
         return without_token(json.loads(Path(path).read_text(encoding="utf-8")))
 
@@ -116,6 +120,7 @@ class A03Adapter:
                 if (set(response) != {"job", "reason"} or not isinstance(response["reason"], str)
                         or path.exists() or path.is_symlink()):
                     raise ClaimExchangeLost("Windows claim helper returned an inconsistent refusal")
+                self.observe_claim_refusal(response)
                 return None
             claim = json.loads(path.read_text(encoding="utf-8"))
             if (set(response) != {"job", "attempt", "claim_file"} or response["claim_file"] != str(path)
@@ -129,6 +134,10 @@ class A03Adapter:
         except (OSError, ValueError, KeyError, TypeError, subprocess.TimeoutExpired) as error:
             self.CloseClaimHelper(terminate=True)
             raise ClaimExchangeLost("Windows claim helper outcome remains unresolved") from error
+
+    def observe_claim_refusal(self, response):
+        if response == {"job": None, "reason": A03_CAPACITY_REFUSAL}:
+            self.last_claim_refusal = response["reason"]
 
     def CloseClaimHelper(self, *, terminate=False):
         helper, self.claim_helper = self.claim_helper, None

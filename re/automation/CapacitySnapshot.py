@@ -8,6 +8,7 @@ import sys
 import time
 from pathlib import Path
 
+from Adapters import A03_CAPACITY_REFUSAL
 from Processes import process_start
 from Records import bounded, canonical, digest, label, read_record
 
@@ -90,13 +91,16 @@ class CapacitySnapshot:
         except OSError:
             self.pause_revision = []
 
-    def observe(self, pool, admission, host_sample):
+    def observe(self, pool, admission, host_sample, controller_refusal=None):
+        decision = {key: admission[key] for key in DECISION_FIELDS}
+        if controller_refusal is not None:
+            decision["controller_refusal"] = {"adapter": "a03", "reason": controller_refusal}
         self.pools[pool] = {
             "state": "evaluated",
             "evaluated": time.monotonic(),
             "host_sample": host_sample,
             "pause_revision": self.pause_revision,
-            "decision": {key: admission[key] for key in DECISION_FIELDS},
+            "decision": decision,
         }
         self.publish()
 
@@ -154,8 +158,10 @@ class CapacitySnapshot:
 
 
 def decision_fields(record, settings, kinds):
-    if set(record) != set(DECISION_FIELDS):
+    if set(record) - {"controller_refusal"} != set(DECISION_FIELDS):
         raise ValueError("capacity decision fields are invalid")
+    if "controller_refusal" in record and record["controller_refusal"] != {"adapter": "a03", "reason": A03_CAPACITY_REFUSAL}:
+        raise ValueError("controller capacity refusal is invalid")
     bounded(record["active_limit"], 0, bounded(record["calculated_capacity"], 0, settings["max_sessions"]))
     bounded(record["adaptive_revision"], 0, (1 << 63) - 1)
     for key in ("reason", "adaptive_reason", "upward_blocked_reason"):
