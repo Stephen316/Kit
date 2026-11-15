@@ -12,6 +12,7 @@ from tests.Research.Windows.SetWinRunner import SetWinRunner
 from tests.Research.Windows.WaitForExit import WaitForExit
 
 
+# nested workers must leave custody when the observer exits abruptly or requests explicit termination
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 @Pytest.mark.parametrize("ModeName", ["forced", "abrupt"])
 def CheckCalOwner(TmpPath: FilePath, ModeName: str) -> None:

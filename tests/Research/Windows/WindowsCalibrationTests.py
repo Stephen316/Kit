@@ -10,6 +10,7 @@ from tests.Research.Calibration.RunCalibration import RunCalibration
 from tests.Research.Windows.VerifyCalTrial import VerifyCalTrial
 
 
+# a fixed workload is necessary to verify that windows reports decoder measurements without recommending restricted concurrency
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinSweep(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath)
@@ -23,6 +24,7 @@ def CheckWinSweep(TmpPath: FilePath) -> None:
         VerifyCalTrial(OutputPath / f"Trial{Requested}", InputHash)
 
 
+# a rejected decoder must stop the private sweep and release its claims without forcing termination
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinReject(TmpPath: FilePath) -> None:
     ManifestPath = BuildManifest(TmpPath)

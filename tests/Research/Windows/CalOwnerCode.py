@@ -1,3 +1,4 @@
+# a separate observer process is necessary to exercise kernel cleanup when its only owning handle disappears
 KCalOwnerCode = """
 import json
 import os

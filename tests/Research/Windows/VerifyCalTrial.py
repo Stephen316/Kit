@@ -4,6 +4,7 @@ from pathlib import Path as FilePath
 from tests.Research.Windows.WaitForExit import WaitForExit
 
 
+# each sweep step must independently tie physical observations and process cleanup to the immutable workload
 def VerifyCalTrial(TrialPath: FilePath, InputHash: str) -> None:
     Trial = JsonCodec.loads((TrialPath / "Trial.json").read_text(encoding="utf-8"))
     Cleanup = JsonCodec.loads((TrialPath / "Cleanup.json").read_text(encoding="utf-8"))
