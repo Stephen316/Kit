@@ -147,7 +147,7 @@ A08b bounded logging, restart cleanup and resource controls passed eleven Linux 
 | -------- | ------------------------------------------------------------------ | --------------------------------------- | ---------- | -------- | -------------------------------------------------------------------------------------------------------------- |
 | A05a     | Pinned F3D/F3Z reader, run summary and typed neutral serialization | A01, A02a                               | Stephen316 | complete | Five remote scenarios passed at `c1c3fcce`: 714 inputs, 12 strict, 685 partial and 17 rejected                 |
 | A05b     | Exact per-file outcome gate                                        | A05a                                    | jdharcourt | complete | Full report pinned at `480d9d3a`; exact 714-file baseline passed all five reader scenarios again at `22a59e68` |
-| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked  | Independently establish required P01–P05 semantics, frames, termination, constraints and dependency bindings   |
+| A05c     | Initial profile and variant semantic qualification                 | A05a, A05b; independent source evidence | Stephen316 | blocked  | [P04 archive evidence](../../Changes/Research/Readers/FusionCutExtentEvidence.md) distinguishes ten blind cuts with authored depth from one through-all cut with no depth binding. Fresh native readback, supporting-face identity, body scope and constraint bindings remain open |
 
 The [reader guide](FusionResearchReader.md) defines the command, its run summary and its research-only receipts.
 A05a uses the strict SDK reader first and accepts the partial legacy reader only with an explicit option.

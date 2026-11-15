@@ -283,9 +283,11 @@ too — see `E3` in `results.md`, which is the result report 2 §5.5 predicted w
 
 ### 5.4 Sketch support plane — CONFIRMED
 
-Inside `moSketchChain_c`: a `u32` plane object id (2 = Front, 3 = Top, 4 = Right) with the
-`u32` axis code `5 − id` exactly 10 bytes later. The pair must be located by that relation,
-not at a fixed offset (marker+209 in the rectangle layout, marker+197 in the circle layout).
+The historical rectangle and circle captures contain a feature ID (2 = Front, 3 = Top, 4 = Right)
+with the `u32` axis code `5 − id` ten bytes later. In four modern licensed traces the enclosing
+archive class is `moCompRefPlane_c`, resolved by the live class map. The profile's transform reader
+owns the adjacent matrix-present flag. The older observations below give capture-relative offsets.
+[Licensed class and transform evidence](../records/PrincipalSupportCandidates.md#licensed-loader-observations)
 
 A 9-double row-major orthonormal basis follows at `moSketchChain_c + 224` for Top and Right and
 is **omitted entirely for Front** (Front is the identity). Both are **AUTHORED**.
