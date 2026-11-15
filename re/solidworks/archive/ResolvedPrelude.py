@@ -5,99 +5,37 @@ from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode as read
 from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
 
 
-# folder subclasses share a named feature base and keep their own guarded suffixes
-def read_folder(cursor, type_name, suffix_format, suffix, null_children=0):
-    from convert.adapters.solidworks.container.Archive import (
-        KClassRefKind,
-        KDefinitionKind,
-    )
-    from SketchRoot import Require
-
-    offset = cursor.position
-    object_index = cursor.pointer(KDefinitionKind, type_name)
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = ReadNamedFeat(cursor)
-    Require(cursor.read(suffix_format), suffix, f"guarded {type_name} suffix")
-    for _ in range(null_children):
-        cursor.null()
+# report the folder and its allocation without changing the reader's typed data
+def report_folder(folder):
     return {
-        "class": type_name,
-        "name": name,
-        "native_feature_id": feature_id,
-        "object_index": object_index,
-        "offset": offset,
-        "cursor": cursor.position,
-        "next_map_index": cursor.next_index,
+        "class": folder.ClassName,
+        "name": folder.NameValue,
+        "native_feature_id": folder.FeatureId,
+        "object_index": folder.ObjectIndex,
+        "offset": folder.Offset,
+        "cursor": folder.EndOffset,
+        "next_map_index": folder.NextIndex,
     }
 
 
-# the notes start and end tag use the same inherited folder framing
-def read_notes_base(cursor):
-    from convert.adapters.solidworks.container.Archive import KClassRefKind
-    from SketchRoot import Require
-
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, native_id = ReadNamedFeat(cursor)
-    Require(cursor.read("<2i"), (1, 0), "guarded notes folder base")
-    return {"name": name, "native_feature_id": native_id}
-
-
-# cabinet membership includes a backreference to the already allocated end tag
-def read_detail_cabinet(cursor):
-    from convert.adapters.solidworks.container.Archive import (
-        KClassRefKind,
-        KDefinitionKind,
-        KObjectRefKind,
-    )
-    from SketchRoot import Require
-    from SupportPlane import read_feature_base
-
-    offset = cursor.position
-    cabinet = cursor.pointer(KDefinitionKind, "moDetailCabinet_c")
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, native_id = read_named_concept(cursor, (0x40000000,))
-    Require(cursor.read("<H"), (2,), "two resolved cabinet members")
-
-    notes_class = "moNotesAreaFtrFolder_c"
-    notes = cursor.pointer(KDefinitionKind, notes_class)
-    notes_fields = read_notes_base(cursor)
-    end_tag = cursor.pointer(KClassRefKind, notes_class)
-    end_fields = read_notes_base(cursor)
-    Require(
-        cursor.pointer(KObjectRefKind, notes_class),
-        notes,
-        "end tag points to notes owner",
-    )
-    Require(cursor.read("<4i"), (0, 0, 1, 1), "guarded end tag trailer")
-    Require(cursor.read("<4i"), (1, 0, 1, 1), "guarded notes trailer")
-
-    Require(
-        cursor.pointer(KObjectRefKind, notes_class),
-        end_tag,
-        "second cabinet member is the same end tag",
-    )
-    Require(cursor.read("<i"), (0,), "guarded cabinet list trailer")
-    read_feature_base(cursor)
-    tail = bytes(12) + b"\xf0\x3f" + bytes(6) + b"\xf0\x3f" + bytes(10)
-    Require(cursor.read("<32s"), (tail,), "guarded cabinet scalar tail")
+def report_note(note):
     return {
-        "class": "moDetailCabinet_c",
-        "name": name,
-        "native_feature_id": native_id,
-        "object_index": cabinet,
-        "offset": offset,
-        "cursor": cursor.position,
-        "next_map_index": cursor.next_index,
-        "notes": {**notes_fields, "object_index": notes},
-        "end_tag": {**end_fields, "object_index": end_tag},
+        "name": note.NameValue,
+        "native_feature_id": note.FeatureId,
+        "object_index": note.ObjectIndex,
+    }
+
+
+def report_cabinet(details):
+    return {
+        **report_folder(details.Cabinet),
+        "notes": report_note(details.Notes),
+        "end_tag": report_note(details.EndTag),
     }
 
 
 # the research report keeps the stored principal identity and all native spans
-def read_principal_plane(cursor, pointer_kind):
-    from convert.adapters.solidworks.resolved.PrincipalDatum import ReadPrincipal
-
-    datum = ReadPrincipal(cursor, pointer_kind)
+def report_principal(datum):
     geometry = datum.Geometry
     return {
         "name": datum.NameValue,
@@ -203,11 +141,7 @@ def read_origin_geometry(cursor, sketch_offset, sketch_object):
 
 # folder suffixes are confined to the ordinary bodies at the start of these captures
 def read_resolved_prelude(blob, config_map, expected_count):
-    from convert.adapters.solidworks.container.Archive import (
-        KClassRefKind,
-        KDefinitionKind,
-        KObjectRefKind,
-    )
+    from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
     from FaceOccurrence import FaceCursor
     from SketchRoot import Require
 
@@ -219,58 +153,11 @@ def read_resolved_prelude(blob, config_map, expected_count):
         entry.Classes,
         entry.Objects,
     )
-    folders = [
-        read_folder(cursor, "moCommentsFolder_c", "<2i", (0, 0)),
-        read_folder(cursor, "moFavoriteFolder_c", "<4i", (1, 0, 0, 1)),
-        read_folder(cursor, "moHistoryFolder_c", "<2iH", (1, 0, 0)),
-        read_folder(
-            cursor,
-            "moSelectionSetFolder_c",
-            "<2i6s",
-            (1, 0, b"\x00\x00\x01\x00\x00\x00"),
-        ),
-        read_folder(cursor, "moSensorFolder_c", "<2i", (1, 0)),
-        read_folder(cursor, "moDocsFolder_c", "<2i", (1, 0)),
-        read_detail_cabinet(cursor),
-        read_folder(
-            cursor, "moSurfaceBodyFolder_c", "<4i", (1, 0, 0, 0), null_children=2
-        ),
-        read_folder(
-            cursor, "moSolidBodyFolder_c", "<4i", (1, 0, 0, 0), null_children=2
-        ),
-    ]
-    alias_start = cursor.position
-    environment = cursor.pointer(KObjectRefKind, "moEnvFolder_c")
-    folders.extend(
-        [
-            read_folder(cursor, "moInkMarkupFolder_c", "<2i", (1, 0)),
-            read_folder(cursor, "moEqnFolder_c", "<2i", (1, 0)),
-            read_folder(
-                cursor,
-                "moMaterialFolder_c",
-                "<2i8s",
-                (1, 0, b"\xff\xfe\xff\x00\x00\x00\x00\x80"),
-            ),
-        ]
-    )
-    planes = [read_principal_plane(cursor, KDefinitionKind)]
-    planes.extend(read_principal_plane(cursor, KClassRefKind) for _ in range(2))
-    Require(
-        [
-            (
-                item["name"],
-                item["native_feature_id"],
-                item["plane_data"]["normal_world"],
-            )
-            for item in planes
-        ],
-        [
-            ("Front Plane", 2, (0, 0, 1)),
-            ("Top Plane", 3, (0, 1, 0)),
-            ("Right Plane", 4, (1, 0, 0)),
-        ],
-        "guarded principal plane identities and orientation",
-    )
+    system = ReadSysPrefix(cursor)
+    folders = [report_folder(folder) for folder in system.FirstFolders]
+    folders.append(report_cabinet(system.Details))
+    folders.extend(report_folder(folder) for folder in system.LaterFolders)
+    planes = [report_principal(plane) for plane in system.Planes]
     origin = read_origin_entry(cursor)
     front, *_ = planes
     Require(
@@ -283,7 +170,7 @@ def read_resolved_prelude(blob, config_map, expected_count):
         "list_count": expected_count,
         "prior_map_index": config_map.NextIndex,
         "folders": folders,
-        "environment_alias": {"offset": alias_start, "object_index": environment},
+        "environment_alias": {"offset": system.EnvOffset, "object_index": system.Environment},
         "principal_planes": planes,
         "origin": origin,
     }
