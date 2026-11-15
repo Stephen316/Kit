@@ -12,6 +12,7 @@ class StubFusion:
 
     # an open document stops the real counterpart before it can call any cad method
     def __init__(self) -> None:
+        super().__init__()
         self.version = "fixture.no-native-runtime"
         self.documents = SimpleNamespace(count=1)
         self.Events: EventQueue.Queue[str] = EventQueue.Queue()
