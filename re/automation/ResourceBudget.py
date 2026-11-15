@@ -33,7 +33,9 @@ class ResourceBudget:
         for session in running.values():
             entry = self.registry.runners[session.spec["kind"]]
             used_cpus += entry["threads"]
-            pending_memory += max(0, entry["initial_peak_memory_mib"] * 1048576 - self.host_groups.get(session.pid, 0))
+            estimate_bytes = entry["initial_peak_memory_mib"] * 1048576
+            expected_bytes = max(estimate_bytes, self.groups.get(session.pid, estimate_bytes))
+            pending_memory += max(0, expected_bytes - self.host_groups.get(session.pid, 0))
             count += session.pool == pool
         cpu_slots = max(0, self.host["logical_cpus"] - self.reserved_cpus - used_cpus) // threads
         memory_slots = max(0, self.host["available_memory_bytes"] - self.reserved_memory - pending_memory) // estimate

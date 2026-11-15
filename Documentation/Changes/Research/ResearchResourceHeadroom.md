@@ -7,7 +7,8 @@ The supervisor configuration accepts `reserved_cpus` from 0 to 65,536, with a de
 It accepts `reserved_memory_mib` from 0 to 1,048,576, with a default of 4,096 MiB.
 The host measurement refreshes every five seconds.
 Running sessions reserve their configured thread counts across all pools.
-Their expected growth reserves the difference between each estimate and resident memory at the latest host measurement.
+Their growth reservation uses the larger of each initial estimate and its currently observed resident memory.
+It subtracts only the resident memory already reflected in the latest host measurement.
 New sessions reserve their full estimate until that host measurement refreshes.
 New sessions require the configured CPU and memory reserves to remain available.
 The controller continues to enforce its concurrency limit and counted resources.
