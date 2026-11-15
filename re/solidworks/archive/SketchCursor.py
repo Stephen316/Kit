@@ -16,6 +16,9 @@ from SketchRoot import KGeneration, Require
 # only these value dimension subclasses share the observed distance serializer
 KDistanceTypes = ("sgPntPntDist", "sgPntPntHorDist", "sgPntPntVertDist")
 
+# local display handles share a serialized empty component with feature dimension handles
+KEmptyDimensionComponent = (0,) * 10 + (-1,) * 4 + (0,) * 5 + (KGeneration,)
+
 
 # inline members and their nested objects must share the restored archive map
 class SketchCursor:
@@ -251,19 +254,33 @@ class SketchCursor:
         )
 
     # the next sketch allocation lives inside the active local dimension handle
-    def ReadDimHandle(SelfData):
-        SelfData.ReadComponent()
+    def ReadDimHandle(SelfData, SketchObject=None):
+        if SketchObject is None:
+            SelfData.ReadComponent()
+        else:
+            SelfData.ReadObject(None)
+            Require(
+                SelfData.ReadValue("<20i"),
+                KEmptyDimensionComponent,
+                "empty display handle component",
+            )
         Require(SelfData.ReadValue("<H"), (0,), "absent dimension transform")
         for _ in range(4):
             SelfData.ReadObject(None)
-        SelfData.ReadValue("<B")
+        (Selector,) = SelfData.ReadValue("<B")
         SelfData.ReadObject(None)
         SelfData.ReadObject(None)
-        SelfData.ReadValue("<i")
+        (State,) = SelfData.ReadValue("<i")
         Require(SelfData.ReadValue("<H"), (0,), "absent second dimension transform")
-        SelfData.ReadValue("<i")
-        SelfData.ReadObject("sgSketch")
-        SelfData.ReadValue("<i")
+        (Flags,) = SelfData.ReadValue("<i")
+        if SketchObject is None:
+            SelfData.ReadObject("sgSketch")
+        else:
+            Require((Selector, State, Flags), (0, -1, 0), "local display handle state")
+            _, _, Owner = SelfData.TakePointer(("sgSketch",), KObjectRefKind)
+            Require(Owner, SketchObject, "display handle owns its sketch")
+        (DimensionSlot,) = SelfData.ReadValue("<i")
+        return DimensionSlot
 
     # the same wrapper branch surrounds both sketch dimension and entity handles
     def ReadRefTail(SelfData):

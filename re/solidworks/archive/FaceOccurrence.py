@@ -22,6 +22,7 @@ class FaceCursor:
     next_index: int
     classes: dict[int, str]
     objects: dict[int, str]
+    null_events: list | None = None
 
     # compact native fields advance one shared cursor through enclosing object scopes
     def read(self, format):
@@ -64,6 +65,10 @@ class FaceCursor:
 
     # a null child chooses the witnessed branch without inventing an object map entry
     def null(self):
+        if self.null_events is not None:
+            self.null_events.append(
+                (self.position, self.next_index, KNullKind, None, 0)
+            )
         self.pointer(KNullKind)
 
     # all vector results must be finite before they can be compared to observed geometry

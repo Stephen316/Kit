@@ -1,6 +1,5 @@
 """Follow ordinary resolved rectangles through their saved principal support."""
 
-from struct import unpack_from
 from types import SimpleNamespace
 
 from ProfileSupport import read_chain
@@ -8,40 +7,22 @@ from RectangleTail import read_principal_profile_support, read_rectangle_trim
 from ResolvedEntry import read_profile_body_prefix, read_resolved_prelude
 from SketchCursor import SketchCursor
 from SketchGeom import ReadPointCoincidence
-from SketchReader import ReadDisplayFrame, ReadGeometry
+from SketchReader import ReadDisplayFrame, ReadDisplaySteps, ReadGeometry
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
-    KNullKind,
-    KObjectRefKind,
     ReadTag,
-)
-
-DISPLAY_CLASSES = (
-    "moDisplayDistanceDim_c",
-    "moSkDimHandleValG2_c",
-    "moFavoriteHandle_c",
-    "moSketchRegion_c",
 )
 
 
 # the resolved rectangle declares display classes its archive map has yet to allocate
-def read_resolved_display(cursor, build, sketch_object, point_ids):
+def read_resolved_display(cursor, build, sketch_object, point_ids, dimension_lengths):
     frame = ReadDisplayFrame(build, 1)
-    steps = frame["steps"]
     coincidence = ReadPointCoincidence(cursor, point_ids)
-    Require(steps[3], [14, KNullKind, None], "witnessed pointer after coincidence")
-    for width, kind, name, *count in ([0, KNullKind, None], *steps[4:]):
-        cursor.AdvanceBytes(width)
-        if name in DISPLAY_CLASSES and name not in cursor.Classes.values():
-            kind = KDefinitionKind
-        _, _, index = cursor.TakePointer((name,), kind)
-        if count:
-            (observed,) = unpack_from("<H", cursor.BlobValue, cursor.Offset)
-            Require(observed, count[0], "witnessed display list count")
-        if kind == KObjectRefKind and name == "sgSketch":
-            Require(index, sketch_object, "display handle owns the resolved sketch")
+    ReadDisplaySteps(
+        cursor, frame["steps"], sketch_object, dimension_lengths, Resolved=True
+    )
     cursor.AdvanceBytes(frame["trailer_width"])
     return coincidence
 
@@ -71,7 +52,13 @@ def read_rectangle_entry(
     display = []
     archive.PointerEvents = display
     point_ids = [point["id"] for point in geometry["point_relation_tallies"]]
-    coincidence = read_resolved_display(archive, build, sketch_object, point_ids)
+    coincidence = read_resolved_display(
+        archive,
+        build,
+        sketch_object,
+        point_ids,
+        [dimension["metres"] for dimension in geometry["length_dimensions"]],
+    )
     cursor.position, cursor.next_index = archive.Offset, archive.NextIndex
     count = int(has_atom)
     Require(cursor.read("<Ii"), (count, count), "witnessed rectangle chain state")
