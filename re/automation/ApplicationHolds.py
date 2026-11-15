@@ -100,7 +100,7 @@ def rearm_history(ledger, claim):
     ).fetchone()
 
 
-def parked_timeout(ledger, claim, owner):
+def parked_timeout(ledger, claim):
     if not holds_installed(ledger):
         raise ValueError("controller has no application timeout hold")
     job_id = label(claim["job_id"])
@@ -111,6 +111,7 @@ def parked_timeout(ledger, claim, owner):
             or row["fingerprint"] != claim["fingerprint"] or row["attempts"] != claim["attempt"]):
         raise ValueError("controller no longer has the exact parked application attempt")
     hold = holds[0]
+    owner = claim["original_owner_sha256"]
     if hold["owner"] != owner or hold["receipt"] != row["receipt"] or hold["result"] != row["result"]:
         raise ValueError("application timeout hold no longer belongs to this owner and result")
     ledger.verify_job(row)
@@ -134,18 +135,22 @@ def parked_timeout(ledger, claim, owner):
             or execution["fingerprint"] != claim["fingerprint"] or execution["number"] != claim["attempt"]):
         raise ValueError("immutable receipt and attempt do not match the parked application")
     held_attempt = {**dict(row), "active_attempt": receipt["execution_id"]}
-    if not matched_timeout(held_attempt, spec, result, owner) or result["receipt"]["session"] != claim["session"]:
+    if (not matched_timeout(held_attempt, spec, result, owner) or result["receipt"]["session"] != claim["session"]
+            or result.get("application_rearm_intent_sha256") != digest(claim) or spec["kind"] != claim["kind"]):
         raise ValueError("controller result no longer binds the exact supervisor timeout")
-    return hold, receipt, spec, result["result"]["records"]["queue_timeout"]
+    timeout = result["result"]["records"]["queue_timeout"]
+    if digest(timeout) != claim["queue_timeout_sha256"]:
+        raise ValueError("controller result no longer binds the exact queue timeout")
+    return hold, receipt, spec, timeout
 
 
-def commit_rearm(ledger, claim, owner, hold, receipt, spec, archive):
+def commit_rearm(ledger, claim, hold, receipt, spec, archive):
     ledger.change_resource(hold["resource"], True, unpark_waiters=False)
     due = max(time.time(), receipt["finished_at"] + retry_delay(spec, claim["attempt"]))
     ledger.db.execute("UPDATE jobs SET parked=0,next_run=? WHERE id=?", (due, claim["job_id"]))
     ledger.db.execute(
         "INSERT INTO application_rearms VALUES (?,?,?,?,?)",
-        (claim["job_id"], claim["generation"], claim["attempt"], digest({"claim": claim, "owner": owner}), archive),
+        (claim["job_id"], claim["generation"], claim["attempt"], digest(claim), archive),
     )
     ledger.event(claim["job_id"], "application_timeout_rearmed", {
         "receipt": hold["receipt"], "result": hold["result"], "epoch": hold["epoch"],

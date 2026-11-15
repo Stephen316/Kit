@@ -2,38 +2,36 @@ import argparse
 import json
 import os
 from pathlib import Path
-import re
 import sys
+from tempfile import TemporaryDirectory
 import time
 
+from AcknowledgeApplication import installation_configuration
 from ApplicationProtocol import (
-    ACKNOWLEDGEMENT, check_spool, committed_bytes, configuration, directory, encoded, file_bytes, identity,
+    ACKNOWLEDGEMENT, check_spool, committed_bytes, directory, encoded, file_bytes, identity,
     owner_lock, pin, record, request_link, require, sync_directory, validate_request,
 )
 from SolidWorksReadbackWorker import OPERATION, PROVIDER, plan_hash, verify_native_ticket, verify_sources
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from ApplicationHolds import commit_rearm, parked_timeout, rearm_history
+from ApplicationRearmIntent import validate_rearm_intent
 from Artifacts import Artifacts
 from Ledger import Ledger
-from Records import digest, label
-from RecoveryFence import check_owner, owner_digest
+from Records import digest
+from RecoveryFence import check_owner
 
 
 REARM = "re/automation/ApplicationWorkers/RearmSolidWorks.py"
 
 
 def claim_from_stdin():
-    content = sys.stdin.buffer.read(2049)
-    require(len(content) <= 2048, "application rearm request exceeds its byte limit")
+    content = sys.stdin.buffer.read(16385)
+    require(len(content) <= 16384, "application rearm request exceeds its byte limit")
     value = json.loads(content)
-    require(isinstance(value, dict) and set(value) == {"owner", "job_id", "generation", "fingerprint", "attempt", "session"}
-            and all(type(value[key]) is int and value[key] > 0 for key in ("generation", "attempt"))
-            and isinstance(value["fingerprint"], str) and re.fullmatch("[0-9a-f]{64}", value["fingerprint"])
-            and isinstance(value["session"], str) and re.fullmatch("[0-9a-f]+-[0-9a-f]{8}", value["session"]),
-            "invalid application rearm claim")
-    label(value["job_id"])
-    return value
+    require(isinstance(value, dict) and set(value) == {"owner", "intent"} and isinstance(value["owner"], str),
+            "invalid application rearm request")
+    return validate_rearm_intent(value["intent"]), value["owner"]
 
 
 def terminal_timeout(spool, config, timeout):
@@ -85,25 +83,23 @@ def stage_spool(store, spool):
     return files
 
 
-def read_hold(store, claim, owner, owner_pin):
+def read_hold(store, claim, owner):
     with Ledger(store) as ledger:
         check_owner(ledger.db, owner)
         prior = rearm_history(ledger, claim)
         if prior is not None:
-            require(prior["claim_hash"] == digest({"claim": claim, "owner": owner_pin}),
-                    "recorded rearm belongs to a different supervisor owner or attempt")
+            require(prior["claim_hash"] == digest(claim), "recorded rearm belongs to another intent")
             ledger.verify_object(prior["archive"])
             return {"status": "already_rearmed", "archive": prior["archive"]}
         ledger.refresh()
-        hold, _, _, timeout = parked_timeout(ledger, claim, owner_pin)
+        hold, _, _, timeout = parked_timeout(ledger, claim)
         return {"hold": dict(hold), "timeout": timeout}
 
 
 def rearm(config, store, claim, owner):
     root = directory(config["endpoint"])
-    owner_pin = owner_digest(owner)
     with owner_lock(root / "dispatch.lock"):
-        parked = read_hold(store, claim, owner, owner_pin)
+        parked = read_hold(store, claim, owner)
         if "status" in parked:
             return parked
         timeout = parked["timeout"]
@@ -136,7 +132,7 @@ def rearm(config, store, claim, owner):
         with Ledger(store) as ledger:
             check_owner(ledger.db, owner)
             ledger.refresh()
-            hold, receipt, spec, current = parked_timeout(ledger, claim, owner_pin)
+            hold, receipt, spec, current = parked_timeout(ledger, claim)
             require(dict(hold) == parked["hold"] and current == timeout,
                     "controller hold changed while the failed spool was staged")
             require(terminal_timeout(spool, config, timeout) == listener,
@@ -155,7 +151,7 @@ def rearm(config, store, claim, owner):
                 "epoch": hold["epoch"], "request_sha256": timeout["request_sha256"], "queue_job_id": queue_job_id,
                 "fence": fence, "files": files,
             })
-            commit_rearm(ledger, claim, owner_pin, hold, receipt, spec, archive_sha256)
+            commit_rearm(ledger, claim, hold, receipt, spec, archive_sha256)
             require(identity(listener["pid"]) == listener and not any(jobs.iterdir()),
                     "application listener or queue changed during archival")
             if fence is not None:
@@ -172,17 +168,24 @@ def main():
     args = parser.parse_args()
     try:
         require(os.name == "nt", "SOLIDWORKS rearm requires Windows")
-        claim = claim_from_stdin()
-        owner = claim.pop("owner")
-        config = configuration(directory(args.installation.parent) / args.installation.name)
+        claim, owner = claim_from_stdin()
+        installation = directory(args.installation.parent) / args.installation.name
+        with TemporaryDirectory() as scratch:
+            config = installation_configuration(installation, claim, Path(scratch))
         require(config["application"] == "solidworks", "installation does not own SOLIDWORKS")
         verify_sources(config)
         require(file_bytes(Path(__file__)) == committed_bytes(config, REARM),
                 "running rearm source differs from the installed revision")
         store = directory(args.store)
+        require(store == Path(claim["store"]), "rearm intent belongs to a different controller store")
         deadline = time.monotonic() + 15
         while True:
-            response = rearm(config, store, claim, owner)
+            try:
+                response = rearm(config, store, claim, owner)
+            except BlockingIOError:
+                require(time.monotonic() < deadline, "application dispatch lock stayed busy during rearm")
+                time.sleep(0.15)
+                continue
             if response["status"] != "pending_terminal":
                 break
             require(time.monotonic() < deadline, "listener did not finalize the failed SOLIDWORKS request")

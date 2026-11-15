@@ -90,7 +90,8 @@ finally:
 
 # the real supervisor must consume the original attempt budget and retain both failed spools
 @TestMark.skipif(OsLayer.name != "nt", reason="requires Windows application transport")
-def CheckRearm() -> None:
+@TestMark.parametrize("Restart", (False, True))
+def CheckRearm(Restart: bool) -> None:
     with TempFiles.TemporaryDirectory() as TempName:
         RootPath = FilePath(TempName).resolve()
         Queue = DispatchHost(RootPath)
@@ -108,7 +109,7 @@ def CheckRearm() -> None:
         Listener = RearmListener(Queue)
         try:
             _ = Queue.WaitFile("ready.json")
-            RunRetries(Harness, str(Config["source_revision"]))
+            RunRetries(Harness, str(Config["source_revision"]), Restart)
             AssertSpools(Queue)
         finally:
             (Queue.Endpoint / "stop-fixture").touch()
@@ -117,7 +118,7 @@ def CheckRearm() -> None:
 
 
 # a successful rearm must issue only the next configured attempt without erasing the first result
-def RunRetries(Harness: SessionHost, Revision: str) -> None:
+def RunRetries(Harness: SessionHost, Revision: str, Restart: bool) -> None:
     Harness.SubmitJobs(
         [
             FixtureJob(
@@ -132,6 +133,8 @@ def RunRetries(Harness: SessionHost, Revision: str) -> None:
             )
         ]
     )
+    if Restart:
+        CrashAfterPark(Harness)
     Events = [
         CastValue(dict[str, object], Event)
         for Event in Harness.RunIdle(IdleSeconds=3, MaxSeconds=65)
@@ -140,6 +143,7 @@ def RunRetries(Harness: SessionHost, Revision: str) -> None:
         Event for Event in Events if Event.get("event") == "application_rearm"
     )
     assert Rearmed["attempt"] == 1 and Rearmed["status"] == "rearmed"
+    assert Rearmed["recovered"] is Restart
     (Refused,) = tuple(
         Event for Event in Events if Event.get("event") == "application_rearm_failed"
     )
@@ -153,6 +157,54 @@ def RunRetries(Harness: SessionHost, Revision: str) -> None:
     )
     assert Manifest["claim"]["attempt"] == 1 and Manifest["receipt"] != Final["receipt"]
     assert "native-recovery.json" in Manifest["files"]
+
+
+# the replacement owner must see the real accepted failure after the old process dies
+def CrashAfterPark(Harness: SessionHost) -> None:
+    Wrapper = Harness.RootPath / "CrashAfterPark.py"
+    _ = Wrapper.write_text(
+        """import os
+import sys
+sys.path.insert(0, sys.argv.pop(1))
+from Adapters import A03Adapter
+from Supervisor import main
+
+finish = A03Adapter.FinishJob
+def interrupt(self, path, outcome, result, reason):
+    response = finish(self, path, outcome, result, reason)
+    if outcome == 'waiting_application' and response['stale'] is False:
+        os._exit(71)
+    return response
+
+A03Adapter.FinishJob = interrupt
+sys.exit(main())
+""",
+        encoding="utf-8",
+    )
+    Original = Subprocess.run(
+        [
+            System.executable,
+            str(Wrapper),
+            str(KRepoRoot / "re/automation"),
+            "--config",
+            str(Harness.ConfigFile),
+            "run",
+            "--idle-seconds",
+            "3",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+    assert Original.returncode == 71, Original.stdout + Original.stderr
+    JobInfo = Harness.ReadJob("fixture:rearm")
+    assert JobInfo["state"] == "waiting_application" and JobInfo["attempts"] == 1
+    (IntentPath,) = (Harness.RootPath / "SupervisorState/application-rearms").glob(
+        "*.json"
+    )
+    assert IntentPath.is_file()
+    assert "application_rearm_intent_sha256" in Harness.ReadResult("fixture:rearm")
 
 
 # confirmed cleanup must preserve the archived first spool and the exhausted attempt quarantine

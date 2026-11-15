@@ -13,6 +13,7 @@ from pathlib import Path
 
 from Adapters import load_adapter
 from ApplicationAckIntent import current_completion, make_intent, read_intent
+from ApplicationRearmIntent import make_rearm_intent, read_rearm_intent, rearm_runner_digest, rearm_timeout
 from GroupSessions import GroupSession, release_group
 from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
@@ -117,13 +118,11 @@ def acknowledge_application(installation, adapter, intent, recovered):
     return response
 
 
-def rearm_application(installation, adapter, claim, session):
+def rearm_application(installation, adapter, intent):
     command = Path(__file__).with_name("ApplicationWorkers") / "RearmSolidWorks.py"
-    identity = {key: claim[key] for key in ("generation", "fingerprint", "attempt")}
-    identity.update({"job_id": claim["job"]["id"], "session": session, "owner": adapter.owner})
     result = subprocess.run(
         [sys.executable, "-E", str(command), "--installation", str(installation), "--store", str(adapter.store)],
-        input=canonical(identity), capture_output=True, text=True, timeout=120, check=False,
+        input=canonical({"owner": adapter.owner, "intent": intent}), capture_output=True, text=True, timeout=120, check=False,
     )
     if result.returncode != 0:
         raise ValueError(result.stderr.strip()[-2048:] or f"application rearm exited with status {result.returncode}")
@@ -145,6 +144,7 @@ class Supervisor:
         self.sessions = self.state / "sessions"
         self.claims = self.state / "claims"
         self.acknowledgement_intents = self.state / "application-acknowledgements"
+        self.rearm_intents = self.state / "application-rearms"
         self.grace = config["grace"]
         self.max_log_bytes = config["max_log_bytes"]
         self.adapter = load_adapter(config["controller"], ROOT)
@@ -263,6 +263,7 @@ class Supervisor:
         stale = None
         intent = None
         intent_error = None
+        rearm_path, rearm_intent, rearm_error = None, None, None
         intent_path = self.acknowledgement_intents / f"{session.name}.json"
         if session.stop_reason == "stale_lease":
             self.counts["stale"] += 1
@@ -277,16 +278,24 @@ class Supervisor:
                 else:
                     intent = candidate
                     payload = {**payload, "application_acknowledgement_sha256": digest(intent)}
+            if outcome == "waiting_application" and session.spec["kind"] in self.installations:
+                rearm_path, rearm_intent, rearm_error = self.prepare_application_rearm(session, payload)
+                if rearm_intent is not None:
+                    payload = {**payload, "application_rearm_intent_sha256": digest(rearm_intent)}
             path = session.directory / "finish.json"
             write_private(path, payload)
             try:
                 stale = self.adapter.FinishJob(session.claim_path, outcome, path, reason)["stale"]
             except InvalidOutput:
                 if intent is not None:
-                    self.remove_acknowledgement_intent(intent_path, self.acknowledgement_detail(intent, False))
+                    self.remove_application_intent(intent_path, self.acknowledgement_detail(intent, False))
+                if rearm_intent is not None:
+                    self.remove_application_intent(rearm_path, self.rearm_detail(rearm_intent, False), "rearm")
                 raise
             if stale is True and intent is not None:
-                self.remove_acknowledgement_intent(intent_path, self.acknowledgement_detail(intent, False))
+                self.remove_application_intent(intent_path, self.acknowledgement_detail(intent, False))
+            if stale is True and rearm_intent is not None:
+                self.remove_application_intent(rearm_path, self.rearm_detail(rearm_intent, False), "rearm")
             self.budget.record(session.spec, session.name, outcome, stale, payload["receipt"], self.report)
             finished = self.counts["finished"]
             finished[outcome] = finished.get(outcome, 0) + 1
@@ -295,11 +304,10 @@ class Supervisor:
             self.queue_application_ack(intent_path, intent, False)
         elif stale is False and intent_error is not None:
             self.report("application_acknowledgement_failed", session, {"error": intent_error})
-        if stale is False and outcome == "waiting_application" and session.spec["kind"] in self.installations:
-            result = payload["result"]
-            records = result["records"] if isinstance(result, dict) else None
-            if isinstance(records, dict) and records.get("application") == "solidworks" and "queue_timeout" in records:
-                self.queue_application_rearm(session)
+        if stale is False and rearm_intent is not None:
+            self.queue_application_rearm(rearm_path, rearm_intent, False)
+        elif stale is False and rearm_error is not None:
+            self.report("application_rearm_failed", session, {"error": rearm_error})
         session.remove()
         return True
 
@@ -307,11 +315,11 @@ class Supervisor:
         return {"session": intent["session"], "pool": intent["pool"], "job": intent["job"],
                 "attempt": intent["attempts"], "recovered": recovered}
 
-    def remove_acknowledgement_intent(self, path, detail):
+    def remove_application_intent(self, path, detail, operation="acknowledgement"):
         try:
             path.unlink(missing_ok=True)
         except OSError as error:
-            self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+            self.report(f"application_{operation}_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
 
     def queue_application_ack(self, path, intent, recovered):
         detail = self.acknowledgement_detail(intent, recovered)
@@ -324,16 +332,51 @@ class Supervisor:
         else:
             self.application_acks[future] = (path, detail)
 
-    def queue_application_rearm(self, session):
-        detail = {"session": session.name, "pool": session.pool, "job": session.spec["id"], "attempt": session.claim["attempt"]}
+    def prepare_application_rearm(self, session, payload):
+        timeout = rearm_timeout(payload.get("result"))
+        if timeout is None:
+            return None, None, None
+        if session.claim["attempt"] >= session.spec["max_attempts"]:
+            return None, None, "application job has no retry budget"
+        path = self.rearm_intents / f"{session.name}.json"
+        try:
+            intent = make_rearm_intent(
+                session, self.registry.runners[session.spec["kind"]], self.adapter, timeout,
+            )
+            self.rearm_intents.mkdir(mode=0o700, exist_ok=True)
+            write_private(path, intent)
+        except (OSError, ValueError, TypeError) as error:
+            return None, None, f"{type(error).__name__}: {error}"[:2048]
+        return path, intent, None
+
+    def rearm_detail(self, intent, recovered):
+        return {"session": intent["session"], "pool": intent["pool"], "job": intent["job_id"],
+                "attempt": intent["attempt"], "recovered": recovered}
+
+    def queue_application_rearm(self, path, intent, recovered):
+        detail = self.rearm_detail(intent, recovered)
         try:
             future = self.acknowledger.submit(
-                rearm_application, self.installations[session.spec["kind"]], self.adapter, session.claim, session.name,
+                rearm_application, self.installations[intent["kind"]], self.adapter, intent,
             )
         except (OSError, RuntimeError) as error:
             self.report("application_rearm_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
         else:
-            self.application_acks[future] = (None, detail)
+            self.application_acks[future] = (path, detail)
+
+    def recover_application_rearms(self):
+        for path in sorted(self.rearm_intents.glob("*.json")):
+            detail = {"session": path.stem, "recovered": True}
+            try:
+                intent = read_rearm_intent(path)
+                detail = self.rearm_detail(intent, True)
+                if (intent["kind"] not in self.installations
+                        or rearm_runner_digest(self.registry.runners[intent["kind"]]) != intent["runner_sha256"]
+                        or str(self.adapter.store) != intent["store"]):
+                    raise ValueError("application rearm intent has no matching owner configuration")
+                self.queue_application_rearm(path, intent, True)
+            except (OSError, ValueError, KeyError, TypeError, RecursionError) as error:
+                self.report("application_rearm_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
 
     def recover_application_acks(self):
         for path in sorted(self.acknowledgement_intents.glob("*.json")):
@@ -354,7 +397,7 @@ class Supervisor:
             if not future.done():
                 continue
             del self.application_acks[future]
-            operation = "rearm" if path is None else "acknowledgement"
+            operation = "rearm" if path.parent == self.rearm_intents else "acknowledgement"
             action = f"application_{operation}"
             try:
                 response = future.result()
@@ -365,8 +408,7 @@ class Supervisor:
             except (OSError, ValueError, KeyError, TypeError) as error:
                 self.report(f"{action}_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
             else:
-                if path is not None:
-                    self.remove_acknowledgement_intent(path, detail)
+                self.remove_application_intent(path, detail, operation)
                 if response["status"] == "not_accepted":
                     self.report("application_acknowledgement_not_accepted", None, detail)
                 else:
@@ -460,6 +502,7 @@ class Supervisor:
         self.recover()
         self.synchronize()
         self.recover_application_acks()
+        self.recover_application_rearms()
         self.budget.refresh(self.running)
         started = time.monotonic()
         last_work = started
