@@ -6,9 +6,11 @@ import secrets
 import sqlite3
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 from Artifacts import Artifacts
+from ClaimWire import ClaimExchangeLost
 from GroupClaims import read_group
 from Records import canonical, label, read_record
 from OutputManifest import InvalidOutput
@@ -16,6 +18,7 @@ from RecoveryFence import StaleOwner
 from StoreRead import read_store
 
 OPERATIONS = ("LockPath", "DefinePool", "DefineResource", "SubmitJobs", "BindInput", "ClaimJob", "RenewLease", "FinishJob", "FetchInput", "ReadStatus")
+CONTROLLER_TIMEOUT = 120
 
 
 def copy_verified(source, destination, sha256):
@@ -52,10 +55,12 @@ class A03Adapter:
         self.command = [sys.executable, str(Path(__file__).with_name("Controller.py")), "--store", str(self.store)]
         self.owner = None
         self.local_staging = local_staging
+        self.warm_claims = False
+        self.claim_helper = None
 
     def Invoke(self, *items, stale=False):
         ownership = ["--owner", self.owner] if self.owner is not None else []
-        result = subprocess.run(self.command + ownership + [str(item) for item in items], capture_output=True, text=True, timeout=120, check=False)
+        result = subprocess.run(self.command + ownership + [str(item) for item in items], capture_output=True, text=True, timeout=CONTROLLER_TIMEOUT, check=False)
         if result.returncode == 5:
             raise StaleOwner("a03 rejected the replaced supervisor owner")
         if stale and result.returncode == 3:
@@ -92,10 +97,43 @@ class A03Adapter:
         return self.Invoke("bind", name, path)
 
     def ClaimJob(self, pool, worker, path):
+        if self.warm_claims and self.owner is not None:
+            return self.warm_claim(pool, worker, Path(path))
         response = self.Invoke("claim", "--worker", worker, "--pool", pool, "--claim-file", path)
         if response["job"] is None:
             return None
         return without_token(json.loads(Path(path).read_text(encoding="utf-8")))
+
+    def warm_claim(self, pool, worker, path):
+        from WindowsClaimTransport import WindowsClaimTransport
+
+        deadline = time.monotonic() + CONTROLLER_TIMEOUT
+        try:
+            if self.claim_helper is None:
+                self.claim_helper = WindowsClaimTransport(self.store, path.parent)
+            response = self.claim_helper.claim(self.owner, worker, pool, path, deadline)
+            if response["job"] is None:
+                if (set(response) != {"job", "reason"} or not isinstance(response["reason"], str)
+                        or path.exists() or path.is_symlink()):
+                    raise ClaimExchangeLost("Windows claim helper returned an inconsistent refusal")
+                return None
+            claim = json.loads(path.read_text(encoding="utf-8"))
+            if (set(response) != {"job", "attempt", "claim_file"} or response["claim_file"] != str(path)
+                    or response["job"] != claim["job"]["id"] or type(response["attempt"]) is not int
+                    or response["attempt"] != claim["attempt"]):
+                raise ClaimExchangeLost("Windows claim helper acknowledgement differs from the durable claim")
+            return without_token(claim)
+        except (ClaimExchangeLost, StaleOwner):
+            self.CloseClaimHelper(terminate=True)
+            raise
+        except (OSError, ValueError, KeyError, TypeError, subprocess.TimeoutExpired) as error:
+            self.CloseClaimHelper(terminate=True)
+            raise ClaimExchangeLost("Windows claim helper outcome remains unresolved") from error
+
+    def CloseClaimHelper(self, *, terminate=False):
+        helper, self.claim_helper = self.claim_helper, None
+        if helper is not None:
+            helper.close(terminate=terminate)
 
     def ClaimGroup(self, pool, worker, path, kinds):
         registry = Path(path).with_suffix(".registry")

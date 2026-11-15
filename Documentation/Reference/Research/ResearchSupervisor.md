@@ -17,6 +17,7 @@ Production conversion must not import this research code.
 You need Python 3.11 or later on Linux or macOS.
 Windows requires Windows 10 or newer, Python 3.14 and the existing locked `pywin32` development extra.
 The Windows path uses private Job Objects, restricted handle inheritance and process creation-time fencing.
+An owned built-in A03 supervisor reuses one bounded Windows helper for single-job claims. [Warm Windows claim helper](../../Changes/Research/Supervisor/WindowsWarmClaim.md)
 Linux and macOS retain their process-group and `wait4` paths.
 The hosted Linux research fixture observes a bounded cgroup OOM through the normal supervisor settlement path. [Hosted Linux supervisor witness](../../Changes/Research/Supervisor/HostedSupervisorOom.md)
 See [Windows supervision](../../Changes/Research/Supervisor/WindowsResearchSupervisor.md) for the exact process contract and verification limits.

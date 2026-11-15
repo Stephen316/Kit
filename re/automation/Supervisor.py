@@ -13,6 +13,7 @@ from pathlib import Path
 
 from Adapters import load_adapter
 from ApplicationAckIntent import current_completion, make_intent, read_intent
+from ClaimWire import ClaimExchangeLost
 from ApplicationRearmIntent import make_rearm_intent, read_rearm_intent, rearm_runner_digest, rearm_timeout
 from GroupSessions import GroupSession, release_group
 from OutputManifest import InvalidOutput
@@ -21,6 +22,7 @@ from Records import bounded, canonical, digest, label, read_record, reason_text
 from ResourceBudget import ResourceBudget
 from Runners import Registry
 from Sessions import Session, read_bounded, write_private
+from SingleClaim import clear_claim_stages
 
 CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds", "max_log_bytes", "reserved_cpus", "reserved_memory_mib", "adaptive_limits"}
 ROOT = Path(__file__).resolve().parents[2]
@@ -139,6 +141,8 @@ class Supervisor:
             raise ValueError("kernel OOM observation requires an active Linux supervisor")
         self.config = config
         self.linux_oom_observer = linux_oom_observer
+        self.windows_claims = claiming and sys.platform == "win32" and config["controller"].get("adapter") == "a03"
+        self.claim_error = None
         self.root = ROOT
         self.state = config["state"]
         self.sessions = self.state / "sessions"
@@ -192,6 +196,8 @@ class Supervisor:
         return record.get("pools", {}) if isinstance(record, dict) else {}
 
     def recover(self):
+        if self.windows_claims:
+            clear_claim_stages(self.claims)
         for staged in self.claims.glob(".group-stage-*"):
             shutil.rmtree(staged)
         for registry in self.claims.glob("*.registry"):
@@ -437,7 +443,13 @@ class Supervisor:
                     group = self.adapter.ClaimGroup(pool, self.config["worker"], group_path, candidates)
                     if group:
                         claim_path = group_path
-                claim = group[0] if group else self.adapter.ClaimJob(pool, self.config["worker"], claim_path)
+                try:
+                    claim = group[0] if group else self.adapter.ClaimJob(pool, self.config["worker"], claim_path)
+                except ClaimExchangeLost as error:
+                    self.claim_error = error
+                    self.stopping = True
+                    self.report("claim_transport_failed", None, {"error": str(error)})
+                    return claimed
                 if claim is None:
                     break
                 claimed = True
@@ -489,11 +501,17 @@ class Supervisor:
 
     def run(self, idle_seconds, max_seconds):
         self.acknowledger = ThreadPoolExecutor(max_workers=1)
+        if self.windows_claims:
+            self.adapter.warm_claims = True
         try:
             return self.run_sessions(idle_seconds, max_seconds)
         finally:
-            self.acknowledger.shutdown(cancel_futures=True)
-            self.report_application_acks()
+            try:
+                if self.windows_claims:
+                    self.adapter.CloseClaimHelper()
+            finally:
+                self.acknowledger.shutdown(cancel_futures=True)
+                self.report_application_acks()
 
     def run_sessions(self, idle_seconds, max_seconds):
         signal.signal(signal.SIGTERM, self.shutdown)
@@ -538,6 +556,8 @@ class Supervisor:
             time.sleep(0.05)
         if self.measurement_error is not None:
             raise OSError(self.measurement_error)
+        if self.claim_error is not None:
+            raise self.claim_error
         return {"summary": self.counts}
 
 

@@ -1,6 +1,5 @@
 import argparse
 import json
-import os
 import sqlite3
 import sys
 from pathlib import Path
@@ -12,6 +11,7 @@ from Ledger import Ledger
 from OutputManifest import InvalidOutput
 from Records import StaleLease, canonical, read_record
 from RecoveryFence import StaleOwner, check_owner, owner_digest, rotate_owner
+from SingleClaim import claim_to_file
 
 
 def main():
@@ -111,19 +111,7 @@ def main():
             elif args.command == "finish-group":
                 response = finish_group(ledger, args.lease, args.result)
             elif args.command == "claim":
-                if args.claim_file.exists() or args.claim_file.is_symlink():
-                    raise ValueError("claim destination already exists")
-                leased = ledger.claim(args.worker, args.pool)
-                if leased["job"] is not None:
-                    content = canonical(leased) + "\n"
-                    descriptor = os.open(args.claim_file, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-                    with os.fdopen(descriptor, "w", encoding="utf-8") as output:
-                        output.write(content)
-                        output.flush()
-                        os.fsync(output.fileno())
-                    response = {"job": leased["job"]["id"], "attempt": leased["attempt"], "claim_file": str(args.claim_file)}
-                else:
-                    response = leased
+                response = claim_to_file(ledger, args.worker, args.pool, args.claim_file)
             elif args.command in ("heartbeat", "finish"):
                 lease = read_record(args.lease)
                 job_id = lease["job"]["id"]

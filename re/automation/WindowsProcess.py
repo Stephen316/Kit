@@ -19,7 +19,7 @@ JOBS = {}
 
 
 class WindowsProcess:
-    def __init__(self, argv, root, environment, stdout, stderr):
+    def __init__(self, argv, root, environment, stdout, stderr, *, stdin=None):
         self.handle = None
         self.job = None
         self.pid = None
@@ -36,7 +36,7 @@ class WindowsProcess:
             limits = win32job.QueryInformationJobObject(self.job, win32job.JobObjectExtendedLimitInformation)
             limits["BasicLimitInformation"]["LimitFlags"] = win32job.JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE
             win32job.SetInformationJobObject(self.job, win32job.JobObjectExtendedLimitInformation, limits)
-            info = create_suspended(argv, root, environment, stdout, stderr, int(self.job))
+            info = create_suspended(argv, root, environment, stdout, stderr, int(self.job), stdin=stdin)
             self.handle = info.process
             self.pid = int(info.pid)
             self.identity = creation_time(self.handle)

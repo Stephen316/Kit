@@ -50,7 +50,7 @@ def require_success(result):
     return result
 
 
-def create_suspended(argv, root, environment, stdout, stderr, job):
+def create_suspended(argv, root, environment, stdout, stderr, job, *, stdin=None):
     executable = shutil.which(argv[0], path=environment.get("PATH"))
     if executable is None:
         raise FileNotFoundError(f"runner executable is unavailable: {argv[0]}")
@@ -65,7 +65,7 @@ def create_suspended(argv, root, environment, stdout, stderr, job):
     attributes = ctypes.create_string_buffer(attribute_size.value)
     require_success(KERNEL.InitializeProcThreadAttributeList(attributes, 2, 0, ctypes.byref(attribute_size)))
     startup.lpAttributeList = ctypes.cast(attributes, POINTER)
-    source = os.open(os.devnull, os.O_RDONLY)
+    source = os.open(os.devnull, os.O_RDONLY) if stdin is None else stdin
     handles = [msvcrt.get_osfhandle(source), msvcrt.get_osfhandle(stdout), msvcrt.get_osfhandle(stderr)]
     previous = [os.get_handle_inheritable(handle) for handle in handles]
     try:
@@ -83,5 +83,6 @@ def create_suspended(argv, root, environment, stdout, stderr, job):
     finally:
         for handle, inheritable in zip(handles, previous, strict=True):
             os.set_handle_inheritable(handle, inheritable)
-        os.close(source)
+        if stdin is None:
+            os.close(source)
         KERNEL.DeleteProcThreadAttributeList(startup.lpAttributeList)
