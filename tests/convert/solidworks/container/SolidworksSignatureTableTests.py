@@ -1,9 +1,14 @@
 from __future__ import annotations
 import hashlib as Hashlib
 import json as JsonLib
+import subprocess as Subprocess
+import sys as System
+import tempfile as Tempfile
 from pathlib import Path as FilePath
 from os import environ as HostEnv
 from typing import TypeGuard
+import pytest as Pytest
+from convert.Security.PathBoundary import ResolveTemp
 from convert.adapters.solidworks.container.Container import (
     Container as ContainerSignatures,
     DEFAULT_FILE_ID as IdInfo,
@@ -43,17 +48,56 @@ KRowInfo = ("64d80045", "ae0d4ef6", "54ce179a")
 KIndex = 711
 
 
-# keeps this focused behavior isolated so regressions remain immediately visible
+# licensed oracle bytes stay outside the checkout and inside the temporary filesystem boundary
 def LoadHostDll() -> bytes | None:
     InputPath = HostEnv.get("KIT_SOLIDWORKS_DLL")
     if InputPath is None:
         return None
     assert InputPath, "KIT_SOLIDWORKS_DLL must name an external licensed module"
-    TargetPath = FilePath(InputPath).expanduser().resolve(strict=True)
+    TargetPath = ResolveTemp(InputPath).resolve(strict=True)
     assert not TargetPath.is_relative_to(KRootInfo), TargetPath
     HostData = TargetPath.read_bytes()
     assert Hashlib.sha256(HostData).hexdigest() == RecordedHD()
     return HostData
+
+
+# compatibility subprocesses prove oracle inputs respect containment before validating their identity
+@Pytest.mark.parametrize("ProbeKind", ["outside", "symlink", "digest"])
+def TestOraclePaths(TmpPath: FilePath, ProbeKind: str) -> None:
+    OutsidePath = (
+        FilePath(FilePath(Tempfile.gettempdir()).anchor) / "KitOracleOutside.dll"
+    )
+    InputPath = OutsidePath
+    ExpectedText = "path escapes trusted root"
+    if ProbeKind == "symlink":
+        InputPath = TmpPath / "LinkedOracle.dll"
+        InputPath.symlink_to(OutsidePath)
+    elif ProbeKind == "digest":
+        InputPath = TmpPath / "UnlicensedOracle.dll"
+        _ = InputPath.write_bytes(b"kit oracle input boundary fixture\n")
+        ExpectedText = "assert Hashlib.sha256(HostData).hexdigest() == RecordedHD()"
+    EnvValues = dict(HostEnv)
+    _ = EnvValues.pop("PYTEST_ADDOPTS", None)
+    EnvValues["KIT_SOLIDWORKS_DLL"] = str(InputPath)
+    ResultInfo = Subprocess.run(
+        [
+            System.executable,
+            "-m",
+            "pytest",
+            "-q",
+            "-p",
+            "no:cacheprovider",
+            f"{__file__}::TestTCRIAGROTVT",
+        ],
+        cwd=KRootInfo,
+        capture_output=True,
+        text=True,
+        check=False,
+        env=EnvValues,
+        timeout=60,
+    )
+    assert ResultInfo.returncode == 1, ResultInfo.stdout + ResultInfo.stderr
+    assert ExpectedText in ResultInfo.stdout, ResultInfo.stdout + ResultInfo.stderr
 
 
 # keeps this focused behavior isolated so regressions remain immediately visible
