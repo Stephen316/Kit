@@ -259,7 +259,7 @@ A04c now records [hashed principal support candidates](../../Changes/Research/Pr
 The new gate requires 25 measured plane identifiers, including three YZ variants.
 The records remain unqualified until native class ownership and the opaque tag domain are established.
 
-A08b adds [bounded logs and restart cleanup](../../Changes/Research/BoundedSessionLogs.md), with eight supervisor scenarios passed at `480d9d3a`.
+A08b adds [bounded logs and restart cleanup](../../Changes/Research/Supervisor/BoundedSessionLogs.md), with eight supervisor scenarios passed at `480d9d3a`.
 CPU/memory admission and sampled group-memory stops passed all eleven Linux supervisor scenarios at `b86f30c7`.
 It does not close adaptive capacity, calibration, grouped jobs, application workers or Windows support.
 A08e Windows Job Object supervision now has six process scenarios awaiting real Windows CI.

@@ -36,4 +36,4 @@ Later resource-control changes require their own current-revision evidence.
 This change does not complete A08b headroom, memory enforcement, calibration, or grouped sessions.
 It does not add Windows support or terminate children that deliberately leave the session's process group.
 
-See the [supervisor guide](../../Reference/Research/ResearchSupervisor.md) and [step register](../../Reference/Research/AutomationSteps.md).
+See the [supervisor guide](../../../Reference/Research/ResearchSupervisor.md) and [step register](../../../Reference/Research/AutomationSteps.md).

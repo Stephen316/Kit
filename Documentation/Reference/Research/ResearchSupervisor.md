@@ -18,7 +18,7 @@ You need Python 3.11 or later on Linux or macOS.
 Windows requires Windows 10 or newer, Python 3.14 and the existing locked `pywin32` development extra.
 The Windows path uses private Job Objects, restricted handle inheritance and process creation-time fencing.
 Linux and macOS retain their process-group and `wait4` paths.
-See [Windows supervision](../../Changes/Research/WindowsResearchSupervisor.md) for the exact process contract and verification limits.
+See [Windows supervision](../../Changes/Research/Supervisor/WindowsResearchSupervisor.md) for the exact process contract and verification limits.
 Actual application authoring workers remain A08c work.
 Initialize an [A03 controller store](ResearchController.md#commands), or supply another adapter.
 Choose a private state directory on a local disk.
@@ -130,7 +130,7 @@ Each output stream retains its first `max_log_bytes` bytes.
 The supervisor continues draining additional output so a full log does not block the runner.
 Receipts record each stream's limit, observed bytes, retained bytes and dropped bytes.
 These counters measure drained output, not bytes a killed process never wrote.
-See [bounded session logs](../../Changes/Research/BoundedSessionLogs.md).
+See [bounded session logs](../../Changes/Research/Supervisor/BoundedSessionLogs.md).
 
 ## Resource admission and memory stops
 
@@ -151,7 +151,7 @@ An exceeded `max_memory_mib` stops that group with reason `memory_limit` through
 Receipts retain `sampled_group_peak_memory_bytes` and `memory_limit_bytes`.
 This sampled threshold is not an operating-system allocation limit.
 A missing required measurement stops active sessions and exits after cleanup.
-See [resource headroom](../../Changes/Research/ResearchResourceHeadroom.md) for bounds and remaining limits.
+See [resource headroom](../../Changes/Research/Supervisor/ResearchResourceHeadroom.md) for bounds and remaining limits.
 
 ## Stops, pauses and stale leases
 

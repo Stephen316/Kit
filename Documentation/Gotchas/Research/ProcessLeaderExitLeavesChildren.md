@@ -20,4 +20,4 @@ Send `SIGKILL` to surviving members before recording cleanup success.
 Keep the session and its lease evidence when cleanup cannot establish success.
 Children that create another process group need a separate containment mechanism.
 
-See [the change entry](../../Changes/Research/BoundedSessionLogs.md).
+See [the change entry](../../Changes/Research/Supervisor/BoundedSessionLogs.md).
