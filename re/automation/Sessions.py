@@ -3,12 +3,12 @@ import os
 import secrets
 import shutil
 import signal
-import subprocess
+import sys
 import time
 from pathlib import Path
 
 from LogCapture import LogCapture
-from Processes import peak_bytes, process_start, signal_group, stderr_tail
+from Processes import KILL_SIGNAL, finish_process, process_start, signal_group, start_process, stderr_tail
 from Records import canonical
 from Runners import result_error, safe_name
 
@@ -81,10 +81,13 @@ class Session:
         work = str(self.directory / "work")
         environment = {name: os.environ[name] for name in ENVIRONMENT if name in os.environ}
         environment.update({"HOME": work, "TMPDIR": work, "KIT_SESSION": str(self.directory)})
+        if sys.platform == "win32":
+            environment.update({name: os.environ[name] for name in ("SystemRoot", "WINDIR", "PATHEXT") if name in os.environ})
+            environment.update({"USERPROFILE": work, "TEMP": work, "TMP": work})
         try:
             for name in ("stdout", "stderr"):
                 self.logs[name] = LogCapture(self.directory / f"{name}.log", self.supervisor.max_log_bytes)
-            self.process = subprocess.Popen(argv, cwd=self.supervisor.root, env=environment, stdin=subprocess.DEVNULL, stdout=self.logs["stdout"].writer, stderr=self.logs["stderr"].writer, start_new_session=True, close_fds=True)
+            self.process = start_process(argv, self.supervisor.root, environment, self.logs["stdout"].writer, self.logs["stderr"].writer)
         finally:
             for capture in self.logs.values():
                 if self.process is None:
@@ -97,6 +100,7 @@ class Session:
             "session_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
             "attempt": self.claim["attempt"], "pid": self.pid, "process_start": self.process_start,
             "claim_file": str(self.claim_path), "started_at": self.started,
+            "job_object": getattr(self.process, "job_name", None),
         })
 
     def begin_stop(self, reason, now):
@@ -112,14 +116,12 @@ class Session:
         memory = self.supervisor.budget.groups.get(self.pid)
         if memory is not None:
             self.memory_peak = max(self.memory_peak, memory)
-        if os.waitid(os.P_PID, self.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT) is not None:
-            signal_group(self.pid, signal.SIGKILL)
-            reaped, status, usage = os.wait4(self.pid, 0)
-            self.process.returncode = os.waitstatus_to_exitcode(status)
-            return self.complete(status, usage)
+        finished = finish_process(self.process)
+        if finished is not None:
+            return self.complete(finished)
         if self.stop_reason is not None:
             if not self.killed and now >= self.kill_at:
-                signal_group(self.pid, signal.SIGKILL)
+                signal_group(self.pid, KILL_SIGNAL)
                 self.killed = True
             return None
         if memory is None:
@@ -145,18 +147,18 @@ class Session:
             self.begin_stop("pool_paused", now)
         return None
 
-    def complete(self, status, usage):
+    def complete(self, exit_info):
         for capture in self.logs.values():
             capture.close()
         ended = time.time()
-        signaled = os.WIFSIGNALED(status)
+        signaled = exit_info["signal"] is not None
         receipt = {
             "receipt_version": 1, "session": self.name, "pool": self.pool, "job_id": self.spec["id"],
             "kind": self.spec["kind"], "attempt": self.claim["attempt"], "pid": self.pid,
-            "process_start": self.process_start, "exit_status": None if signaled else os.WEXITSTATUS(status),
-            "signal": os.WTERMSIG(status) if signaled else None, "stop_reason": self.stop_reason,
+            "process_start": self.process_start, "exit_status": exit_info["exit_status"],
+            "signal": exit_info["signal"], "stop_reason": self.stop_reason,
             "started_at": self.started, "ended_at": ended, "duration_seconds": ended - self.started,
-            "peak_memory_bytes": peak_bytes(usage), "orphan": False,
+            "peak_memory_bytes": exit_info["peak_memory_bytes"], "orphan": False,
             "logs": {name: capture.receipt() for name, capture in self.logs.items()},
             "sampled_group_peak_memory_bytes": self.memory_peak,
             "memory_limit_bytes": self.memory_limit,
@@ -183,6 +185,8 @@ class Session:
         return self.supervisor.settle(self, outcome, reason, {"session_version": 1, "receipt": receipt, "result": result, "error": error, "stderr_tail": tail})
 
     def remove(self):
+        if sys.platform == "win32" and self.process is not None:
+            self.process.close()
         for capture in self.logs.values():
             capture.close()
         shutil.rmtree(self.directory, ignore_errors=True)

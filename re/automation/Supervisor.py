@@ -1,5 +1,5 @@
 import argparse
-import fcntl
+import errno
 import os
 import secrets
 import shutil
@@ -9,7 +9,7 @@ import time
 from pathlib import Path
 
 from Adapters import load_adapter
-from Processes import process_start, signal_group, stop_orphan
+from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
 from Records import bounded, canonical, label, read_record, reason_text
 from ResourceBudget import ResourceBudget
 from Runners import Registry
@@ -68,10 +68,17 @@ def read_config(path):
 def lock(path):
     descriptor = os.open(path, os.O_CREAT | os.O_RDWR, 0o600)
     try:
-        fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError:
+        if sys.platform == "win32":
+            import msvcrt
+            msvcrt.locking(descriptor, msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(descriptor, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError as error:
         os.close(descriptor)
-        raise Busy(f"another supervisor holds {path}") from None
+        if isinstance(error, BlockingIOError) or (sys.platform == "win32" and error.errno in (errno.EACCES, errno.EDEADLK)):
+            raise Busy(f"another supervisor holds {path}") from None
+        raise
     return descriptor
 
 
@@ -129,7 +136,7 @@ class Supervisor:
             pid = record.get("pid")
             recorded = record.get("process_start")
             matched = type(pid) is int and isinstance(recorded, str) and process_start(pid) == recorded
-            stopped = stop_orphan(pid, recorded, self.grace) if matched else False
+            stopped = stop_orphan(pid, recorded, self.grace, record.get("job_object")) if matched else False
             if matched and not stopped:
                 raise OSError(f"session process group could not be stopped: {directory.name}")
             receipt = {
@@ -211,10 +218,12 @@ class Supervisor:
                     session.start()
                 except (OSError, ValueError, KeyError, TypeError) as error:
                     if session is not None and session.process is not None:
-                        signal_group(session.pid, signal.SIGKILL)
+                        signal_group(session.process.pid, KILL_SIGNAL)
                         session.process.wait()
                         for capture in session.logs.values():
                             capture.close()
+                        if sys.platform == "win32":
+                            session.process.close()
                     path = self.state / f".setup-{name}.json"
                     detail = f"session setup failed: {type(error).__name__}: {error}"[:2048]
                     write_private(path, {"session_version": 1, "receipt": None, "result": None, "error": detail, "stderr_tail": None})

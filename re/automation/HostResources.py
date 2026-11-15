@@ -16,6 +16,9 @@ def command_output(argv):
 
 
 def host_resources():
+    if sys.platform == "win32":
+        from WindowsResources import host_resources as windows_resources
+        return windows_resources()
     cpus = os.cpu_count()
     if cpus is None or cpus < 1:
         raise OSError("logical CPU count unavailable")
@@ -44,6 +47,9 @@ def host_resources():
 def group_memory(pids):
     if not pids:
         return {}
+    if sys.platform == "win32":
+        from WindowsResources import group_memory as windows_memory
+        return windows_memory(pids)
     content = command_output(["/bin/ps", "-axo", "pid=,pgid=,rss=,stat="])
     groups = {}
     for line in content.splitlines():
