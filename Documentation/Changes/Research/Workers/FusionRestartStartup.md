@@ -4,4 +4,6 @@ The native Fusion endpoint can acquire its lock before its add-in verifies the i
 
 Configure the installation to pin the updated queue protocol and checkout revision using the existing add-in bootstrap. A replacement crash after its startup check can still interrupt the request. The fresh main-thread challenge and the existing deadline continue to govern that attempt.
 
+The installation owner can record and check the [accepted restart intent](FusionOwnerRestart.md) while the prior process is still live.
+
 Hosted startup fixtures use separate disposable provider processes. They verify byte-identical fence retention after unverified and stale-source startup, then verify release after the trusted pins are loaded. Hosted verification of this change is pending.

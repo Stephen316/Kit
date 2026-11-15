@@ -13,7 +13,7 @@ from ApplicationProtocol import (
 )
 
 
-def wait_for_restart(config, records, plan_hash, deadline):
+def accepted_handoff(config, records, plan_hash):
     handoff = records.get("restart_handoff")
     host = records.get("host")
     require(
@@ -37,6 +37,12 @@ def wait_for_restart(config, records, plan_hash, deadline):
         and handoff["host"] == host,
         "accepted Fusion phase A has no valid restart handoff for this installation and plan",
     )
+    return handoff
+
+
+def wait_for_restart(config, records, plan_hash, deadline):
+    handoff = accepted_handoff(config, records, plan_hash)
+    host = handoff["host"]
     root = directory(config["endpoint"])
     while time.time() < deadline:
         if os.path.lexists(root / ACKNOWLEDGEMENT):

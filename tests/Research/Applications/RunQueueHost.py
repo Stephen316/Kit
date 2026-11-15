@@ -7,12 +7,14 @@ from tests.Research.Applications.DispatchHost import DispatchHost
 
 # the fixture must expose and stop the serving interpreter when its launcher has a different identity
 @ContextManager
-def RunQueueHost(Harness: DispatchHost) -> IterItems[dict[str, object]]:
+def RunQueueHost(
+    Harness: DispatchHost, Operation: str = "host"
+) -> IterItems[dict[str, object]]:
     StopFile = Harness.Endpoint / "stop-fixture"
     ReadyFile = Harness.Endpoint / "ready.json"
     StopFile.unlink(missing_ok=True)
     ReadyFile.unlink(missing_ok=True)
-    Process = Harness.StartHost()
+    Process = Harness.StartHost(Operation)
     try:
         _ = Harness.WaitFile("ready.json")
         RecordInfo: dict[str, dict[str, object]] = JsonCodec.loads(

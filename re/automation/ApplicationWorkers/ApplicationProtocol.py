@@ -257,7 +257,11 @@ def owner_lock(path):
 
 
 def configuration(path):
-    value = record(path)
+    return validate_configuration(record(path))
+
+
+def validate_configuration(value):
+    require(isinstance(value, dict), "invalid application installation configuration")
     require(set(value) == {"version", "installation", "application", "endpoint", "source_root", "source_revision"}
             and value["version"] == 1, "invalid application installation configuration")
     require(isinstance(value["installation"], str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:-]{0,127}", value["installation"]), "invalid installation identity")

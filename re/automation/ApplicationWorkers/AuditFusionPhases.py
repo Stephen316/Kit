@@ -39,7 +39,10 @@ class StoreSnapshot:
 
 
 def read_queue(path):
-    queue = record(path)
+    return validate_queue(record(path))
+
+
+def validate_queue(queue):
     scope = plan_scope(queue)
     if scope is None:
         recipes = queue.get("recipes")
