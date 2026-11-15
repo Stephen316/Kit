@@ -7,10 +7,10 @@ from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 from convert.formats.Fusion.Sketches.SketchRuleIds import KSketchRoot
 
 
-# the saved sketch root must own the body link and the feature that selected the face
-def ReadFaceOwner(
+# sketch support and projection records must come from one reciprocal dependency roster
+def ReadFaceDeps(
     BulkData: bytes, Owners: dict[int, RecordSpan], SketchId: int, BodyId: int
-) -> tuple[int, int, int]:
+) -> tuple[int, tuple[int, ...]]:
     Sketch = SelectCursor(BulkData, Owners, SketchId, KSketchRoot)
     if len(Sketch.DataValue) != 231:
         raise ValueError("Unsupported Fusion body supported sketch root")
@@ -30,6 +30,14 @@ def ReadFaceOwner(
         Identity not in Owners for Identity in Dependencies
     ):
         raise ValueError("Fusion sketch face support dependencies are unresolved")
+    return FeatureId, Dependencies
+
+
+# the saved sketch root must own the body link and the feature that selected the face
+def ReadFaceOwner(
+    BulkData: bytes, Owners: dict[int, RecordSpan], SketchId: int, BodyId: int
+) -> tuple[int, int, int]:
+    FeatureId, Dependencies = ReadFaceDeps(BulkData, Owners, SketchId, BodyId)
     ProxyId, DescriptorId = Dependencies[2:4]
     Picks, Attributes = ReadSelectIds(BulkData, Owners, ProxyId, FeatureId, 1)
     if Picks != (DescriptorId,) or Attributes:

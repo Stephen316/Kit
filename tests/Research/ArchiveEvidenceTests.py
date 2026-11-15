@@ -565,6 +565,39 @@ def CheckDimOrder(Variant: str) -> None:
         ):
             AxisSign = -AxisSign
         assert Attrs["fusion.signed_distance_multiplier"] == AxisSign
+    AssertCenters(Document)
+
+
+# the center link must follow the authored origin and exact earlier named dimension
+def AssertCenters(Document: CadDocument) -> None:
+    Params = {Value.name: Value for Value in Document.parameters}
+    (Sketch,) = [Value for Value in Document.sketches if Value.name == "CutSketch"]
+    (Origin,) = [
+        Value
+        for Value in Sketch.entities
+        if Value.attributes.get("fusion.projection_mode") == "origin_project"
+    ]
+    assert Origin.id == "fusion-sketch-entity-428"
+    assert Origin.attributes["fusion.projection_source_object_id"] == 38
+    assert Origin.provenance is not None
+    assert any(
+        Evidence.record_kind == "F1451EC8-11A4-4952-84ED-5AB7C13E2E83"
+        for Evidence in Origin.provenance.spans
+    )
+    for NameValue, DriverName in (
+        ("cut_center_u_mm", "width_mm"),
+        ("cut_center_v_mm", "height_mm"),
+    ):
+        Center = Params[NameValue]
+        assert Center.expression is not None
+        assert Center.expression.source == f"{DriverName} / 2"
+        assert Center.expression.parameter_ids == (
+            Params[DriverName].id,
+        ), Document.diagnostics
+        assert (
+            Center.attributes["fusion.expression_binding"]
+            == "scoped_dimension_registry"
+        )
 
 
 # the saved corner anchor must survive the public registry with both distinct native identities

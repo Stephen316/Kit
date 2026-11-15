@@ -20,6 +20,7 @@ from convert.formats.Fusion.RecordSpan import RecordSpan
 from convert.formats.Fusion.Revolves.RevolveBody import ProjectRevBody
 from convert.formats.Fusion.Revolves.RevolveProject import ProjectRevolves
 from convert.formats.Fusion.Scales.ScaleProject import ProjectScale
+from convert.formats.Fusion.Sketches.CenterDeps.ProjectCutCent import ProjectCutCent
 from convert.formats.Fusion.Sketches.FaceSupport.FaceProjection import ProjectFaces
 from convert.formats.Fusion.Sketches.SketchRules import AttachRules
 from convert.formats.Fusion.Sketches.SketchProjection import ProjectSketches
@@ -226,6 +227,7 @@ def FinishFusionDoc(
     Document = ProjectPicks(Document, BulkData, Spans, History)
     Document = ProjectCutEnds(Document, BulkData, Spans)
     Document = ProjectFaces(Document, BulkData, Spans, LoadBlob)
+    Document = ProjectCutCent(Document, BulkData, Spans, History)
     Document = ProjectScale(Document, BulkData, Spans, History, LoadBlob)
     Document.AssertValid()
     return Document
