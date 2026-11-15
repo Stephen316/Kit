@@ -6,6 +6,8 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
+from tests.Policy.WaitPending import WaitPending
+
 # root path needs a stable location so repository automation resolves inputs independently of the caller working directory
 KRootPath = FilePath(__file__).resolve().parents[2]
 
@@ -51,7 +53,7 @@ def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
             assert ReportName not in ResultInfo.stdout
 
 
-# the pending gate contract needs boundary coverage so the real command boundary enforces repository contracts
+# pending evidence must remain unpublished while required checks are still unresolved
 @Pytest.mark.parametrize(
     "CaseMode,Verdict,PendingCheck",
     (
@@ -65,15 +67,10 @@ def TestReviewSkip(Verdict: str, CaseMode: str) -> None:
 def TestPendingGate(CaseMode: str, Verdict: str, PendingCheck: str) -> None:
     ScriptPath = KRootPath / "tests/Policy/CiAggregation/RunAggregate.cjs"
     with Tempfile.TemporaryDirectory() as TempPath:
-        with Pytest.raises(Subprocess.TimeoutExpired) as ErrorInfo:
-            ResultInfo = Subprocess.run(
-                ["node", str(ScriptPath), CaseMode, Verdict, PendingCheck],
-                cwd=KRootPath,
-                env={**SystemEnv.environ, "RUNNER_TEMP": TempPath},
-                capture_output=True,
-                check=False,
-                timeout=2,
-            )
-            Pytest.fail(f"CI aggregate exited early with {ResultInfo.returncode}")
-        assert f"Waiting for {PendingCheck}".encode() in (ErrorInfo.value.stdout or b"")
+        WaitPending(
+            ["node", str(ScriptPath), CaseMode, Verdict, PendingCheck],
+            KRootPath,
+            {**SystemEnv.environ, "RUNNER_TEMP": TempPath},
+            PendingCheck,
+        )
         assert not (FilePath(TempPath) / "PrCiEvidence/Evidence.json").exists()

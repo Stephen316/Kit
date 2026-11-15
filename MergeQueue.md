@@ -12,6 +12,13 @@ checked-in desired ruleset and live rules separately.
 
 ## Validation phases
 
+The [post-merge rationale audit](Documentation/Changes/Ci/PostMergeQueueAudit.md)
+runs the complete queue job set on the immutable PR #127 merge revision and any explicitly recorded repair revision.
+Only pushes to `codex/rationale-merged-audit` trigger that audit phase.
+Its source checkouts use `AuditSha`, and every test module runs without result reuse.
+Repair audits select the triggering push's full commit SHA so the harness is included in their input.
+This audit evidence is separate from native merge-queue acceptance.
+
 PRs run Python lint, formatting, types, steering, import, path, skill, and
 workflow policies, including actionlint and Zizmor. Existing metadata labeling
 continues. Load every entry in `Reviewers` from
