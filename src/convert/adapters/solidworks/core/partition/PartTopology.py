@@ -48,13 +48,14 @@ def PartTopology(
     )
 
 
-# typed cut history and an active planar solid must agree before publishing measures
-def CutPartMass(
-    ModelValue: BrepModel | None, Summary: TopologySummary, IsCut: bool
+# the linked active body must be a closed planar solid before publishing measures
+def ActivePartMass(
+    ModelValue: BrepModel | None, Summary: TopologySummary, BodyId: str
 ) -> tuple[TopologySummary, PartMass | None]:
     if (
-        not IsCut or ModelValue is None or Summary.bounding_box is None
+        ModelValue is None or Summary.bounding_box is None
         or len(ModelValue.bodies) != 1
+        or ModelValue.bodies[0].design_body_id != BodyId
         or ModelValue.bodies[0].transform != KTransformIdentity
     ):
         return Summary, None

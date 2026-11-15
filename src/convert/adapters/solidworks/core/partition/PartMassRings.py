@@ -17,11 +17,11 @@ class MassRingMap:
     Faces: dict[str, BrepFace]
 
 
-# only one complete solid shell belongs to the supported saved cut result
+# the saved planar result must contain one complete solid shell
 def CheckMassShell(ModelValue: BrepModel) -> None:
     RequireArch(
         (len(ModelValue.regions), len(ModelValue.shells), len(ModelValue.shell_uses)),
-        (1, 1, 1), "one region and shell for saved planar cut",
+        (1, 1, 1), "one region and shell for the saved planar result",
     )
     (Region,), (Shell,), (ShellUse,) = (
         ModelValue.regions, ModelValue.shells, ModelValue.shell_uses

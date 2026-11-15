@@ -169,7 +169,7 @@ from convert.adapters.solidworks.core.Native import (
 from convert.adapters.solidworks.core.cut.CutDocument import ProjectCutDoc
 from convert.adapters.solidworks.core.cut.CutEqProjection import ReadCutArchive
 from convert.adapters.solidworks.core.partition.ActivePartition import ReadActivePart
-from convert.adapters.solidworks.core.partition.PartTopology import CutPartMass, PartTopology
+from convert.adapters.solidworks.core.partition.PartTopology import ActivePartMass, PartTopology
 from convert.adapters.solidworks.core.OrdinaryRead import (
     KArchiveSupport,
     ReadRectSupport,
@@ -334,7 +334,17 @@ def ReadNativePart(
     TimeValues = Timeline(Model, SelectValues)
     Payloads, PayloadDiags = BrepPayloads(Archive, Settings)
     BodyId = "sldprt:body:1"
-    ActivePart = ReadActivePart(Payloads, Model.active_configuration_id, BodyId)
+    HasTypedSolid = Model.cut_source is not None or (
+        len(Model.operations) == 1
+        and Model.operations[0].kind == "join"
+        and bool(Model.operations[0].archive_spans)
+    )
+    ActivePart = ReadActivePart(
+        Payloads,
+        Model.active_configuration_id,
+        BodyId if HasTypedSolid else None,
+        (Record.name for Record in Archive.records),
+    )
     BrepValue = ActivePart.ModelValue if ActivePart is not None else TypedBrep(Payloads)
     SolidOpIds = frozenset(
         (
@@ -348,7 +358,7 @@ def ReadNativePart(
     SavedPart = ActivePart.ModelValue if ActivePart is not None else None
     Fallback = TopologySummary(solid_count=1 if SolidOpIds else 0, bounding_box=BoundingBoxA(Model))
     Topology = PartTopology(SavedPart, BodyId, Fallback)
-    Summary, Measures = CutPartMass(SavedPart, Topology, Model.cut_source is not None)
+    Summary, Measures = ActivePartMass(SavedPart, Topology, BodyId)
     Bodies = (
         BodyValue(
             id=BodyId,

@@ -403,6 +403,29 @@ def CheckSwBoss(Variant: str) -> None:
     assert [
         (SpanValue.offset, SpanValue.length) for SpanValue in Parameter.provenance.spans
     ] == [(Scalar.offset, 8)]
+    AssertBossBody(
+        Document, BossStep, Variant, -Depth if Definition.reversed else Depth
+    )
+
+
+# saved boss volume and centroid follow the independent edits and signed extent
+def AssertBossBody(
+    Document: CadDocument, BossStep: FeatureStep, Variant: str, EndDepth: int
+) -> None:
+    (BodyValue,) = Document.bodies
+    assert BodyValue.final_feature_id == BossStep.id
+    assert Document.brep is not None
+    assert not Document.brep.validate(frozenset((BodyValue.id,)))
+    assert Document.brep.bodies[0].design_body_id == BodyValue.id
+    WidthValue = 41 if Variant == "edit-width_mm-41" else 40
+    HeightValue = 23 if Variant == "edit-height_mm-23" else 20
+    Centre = (WidthValue / 2, HeightValue / 2, EndDepth / 2)
+    if Variant == "plane-yz":
+        Centre = Centre[2], Centre[0], Centre[1]
+    Summary = BodyValue.topology
+    assert Summary.solid_count == 1
+    assert Summary.volume == Pytest.approx(WidthValue * HeightValue * abs(EndDepth))
+    assert BodyValue.attributes["solidworks.body_centroid_mm"] == Pytest.approx(Centre)
 
 
 # the feature selected profile must carry the exact proxy and authored perimeter across the registry
