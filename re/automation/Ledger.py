@@ -7,7 +7,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-from ApplicationHolds import invalidate_application_hold, save_application_hold
+from ApplicationHolds import invalidate_application_hold, retry_delay, save_application_hold
 from Artifacts import Artifacts
 from OutputIntake import OutputIntake
 from OutputManifest import InvalidOutput, output_manifest
@@ -118,13 +118,13 @@ class Ledger:
     def enqueue_children(self, job_id):
         self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM dependencies WHERE dependency=?", (job_id,))
 
-    def change_resource(self, name, available):
+    def change_resource(self, name, available, unpark_waiters=True):
         invalidate_application_hold(self, name)
         previous = self.db.execute("SELECT available FROM resources WHERE name=?", (name,)).fetchone()
         if previous is not None and previous[0] == int(available):
             return
         self.db.execute("INSERT INTO resources(name,available) VALUES (?,?) ON CONFLICT(name) DO UPDATE SET available=excluded.available", (name, int(available)))
-        if available:
+        if available and unpark_waiters:
             self.db.execute("UPDATE jobs SET parked=0 WHERE state='waiting_application' AND parked=1 AND id IN (SELECT job_id FROM job_resources WHERE resource=?)", (name,))
         self.db.execute("INSERT OR IGNORE INTO dirty SELECT job_id FROM job_resources WHERE resource=?", (name,))
         self.event(None, "resource", {"name": name, "available": bool(available)})
@@ -367,7 +367,7 @@ class Ledger:
             self.change_resource(resource, False)
             self.event(None, "resource_recovery_required", {"name": resource})
         state = "failed" if row["attempts"] >= spec["max_attempts"] else "queued"
-        delay = min(300, spec["retry_base_seconds"] * 2 ** (row["attempts"] - 1))
+        delay = retry_delay(spec, row["attempts"])
         self.db.execute("UPDATE jobs SET state=?,next_run=?,receipt=?,result=NULL,reason=? WHERE id=?", (state, time.time() + delay, receipt, "lease or execution timeout expired", row["id"]))
         self.event(row["id"], "expired", {"attempt": row["attempts"], "state": state})
 
@@ -486,7 +486,7 @@ class Ledger:
             for resource in spec["resources"]:
                 self.change_resource(resource, False)
                 self.event(None, "resource_recovery_required", {"name": resource})
-        delay = min(300, spec["retry_base_seconds"] * 2 ** (row["attempts"] - 1)) if outcome == "retry" else 0
+        delay = retry_delay(spec, row["attempts"]) if outcome == "retry" else 0
         self.leased(job_id, token, verify_artifacts=False)
         self.db.execute("UPDATE attempts SET ended=?,outcome=?,receipt=? WHERE id=?", (time.time(), outcome, receipt, row["active_attempt"]))
         self.revoke(row, outcome)

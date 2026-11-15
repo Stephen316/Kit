@@ -117,6 +117,23 @@ def acknowledge_application(installation, adapter, intent, recovered):
     return response
 
 
+def rearm_application(installation, adapter, claim, session):
+    command = Path(__file__).with_name("ApplicationWorkers") / "RearmSolidWorks.py"
+    identity = {key: claim[key] for key in ("generation", "fingerprint", "attempt")}
+    identity.update({"job_id": claim["job"]["id"], "session": session, "owner": adapter.owner})
+    result = subprocess.run(
+        [sys.executable, "-E", str(command), "--installation", str(installation), "--store", str(adapter.store)],
+        input=canonical(identity), capture_output=True, text=True, timeout=120, check=False,
+    )
+    if result.returncode != 0:
+        raise ValueError(result.stderr.strip()[-2048:] or f"application rearm exited with status {result.returncode}")
+    response = json.loads(result.stdout)
+    if (not isinstance(response, dict) or set(response) != {"status", "archive"}
+            or response["status"] not in ("rearmed", "already_rearmed")):
+        raise ValueError("application rearm returned an invalid disposition")
+    return response
+
+
 class Supervisor:
     def __init__(self, config, claiming):
         self.config = config
@@ -275,6 +292,11 @@ class Supervisor:
             self.queue_application_ack(intent_path, intent, False)
         elif stale is False and intent_error is not None:
             self.report("application_acknowledgement_failed", session, {"error": intent_error})
+        if stale is False and outcome == "waiting_application" and session.spec["kind"] in self.installations:
+            result = payload["result"]
+            records = result["records"] if isinstance(result, dict) else None
+            if isinstance(records, dict) and records.get("application") == "solidworks" and "queue_timeout" in records:
+                self.queue_application_rearm(session)
         session.remove()
         return True
 
@@ -299,6 +321,17 @@ class Supervisor:
         else:
             self.application_acks[future] = (path, detail)
 
+    def queue_application_rearm(self, session):
+        detail = {"session": session.name, "pool": session.pool, "job": session.spec["id"], "attempt": session.claim["attempt"]}
+        try:
+            future = self.acknowledger.submit(
+                rearm_application, self.installations[session.spec["kind"]], self.adapter, session.claim, session.name,
+            )
+        except (OSError, RuntimeError) as error:
+            self.report("application_rearm_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+        else:
+            self.application_acks[future] = (None, detail)
+
     def recover_application_acks(self):
         for path in sorted(self.acknowledgement_intents.glob("*.json")):
             detail = {"session": path.stem, "recovered": True}
@@ -318,20 +351,23 @@ class Supervisor:
             if not future.done():
                 continue
             del self.application_acks[future]
+            operation = "rearm" if path is None else "acknowledgement"
+            action = f"application_{operation}"
             try:
                 response = future.result()
             except CancelledError:
-                self.report("application_acknowledgement_failed", None, {**detail, "error": "supervisor stopped before acknowledgement started"})
+                self.report(f"{action}_failed", None, {**detail, "error": f"supervisor stopped before {operation} started"})
             except subprocess.TimeoutExpired:
-                self.report("application_acknowledgement_failed", None, {**detail, "error": "application acknowledgement timed out"})
+                self.report(f"{action}_failed", None, {**detail, "error": f"application {operation} timed out"})
             except (OSError, ValueError, KeyError, TypeError) as error:
-                self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+                self.report(f"{action}_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
             else:
-                self.remove_acknowledgement_intent(path, detail)
+                if path is not None:
+                    self.remove_acknowledgement_intent(path, detail)
                 if response["status"] == "not_accepted":
                     self.report("application_acknowledgement_not_accepted", None, detail)
                 else:
-                    self.report("application_acknowledgement", None, {**detail, **response})
+                    self.report(action, None, {**detail, **response})
 
     def fill(self, paused):
         claimed = False

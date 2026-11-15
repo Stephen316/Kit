@@ -23,6 +23,7 @@ BOOTSTRAP = "re/automation/PairedCaptures/Runner/KitCaptureRunner/KitCaptureRunn
 INPUTS = {"re/automation/PairedCaptures/FusionCapture.py", "re/automation/PairedCaptures/FusionBindings.py",
           "re/automation/PairSpecs.json", "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
           "re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py",
+          "re/automation/ApplicationWorkers/RearmSolidWorks.py",
           "re/automation/PairedCaptures/SolidWorksAuthoring/ReadP04SolidWorks.ps1"}
 
 

@@ -10,6 +10,6 @@ A resource capacity change or another application failure also fences the earlie
 This lets a later recovery check distinguish the original timeout from a new decision to keep the resource unavailable.
 Existing resource command responses and job admission rules retain their meaning.
 
-This change does not release any resource or unpark a job.
-The future rearm must match the current epoch, the exact failed attempt and verified archived spool evidence.
+The hold is a prerequisite for [supervised rearm](../Workers/SolidWorks/TimeoutRearm.md).
+Rearm must match the current epoch, the exact failed attempt and verified archived spool evidence.
 Remote Windows process verification covers the source timeout, durable hold and an explicit reaffirmation of unavailability.
