@@ -28,7 +28,8 @@ IDLE_SECONDS = 2.0
 state = {
     "app": None, "event": None, "handlers": [], "stop": threading.Event(), "finished": threading.Event(),
     "thread": None, "started_utc": None, "busy_seconds": 0.0, "jobs": 0, "failed": 0,
-    "dispatch": None, "dispatch_protocol": None,
+    "dispatch": None, "dispatch_protocol": None, "restart_grant": None,
+    "main_thread": None, "active_callback": False,
 }
 
 
@@ -88,11 +89,23 @@ def run_job(job_path):
 
 class JobHandler(adsk.core.CustomEventHandler):
     def notify(self, args):
+        if state["active_callback"]:
+            return
+        state["active_callback"] = True
         try:
-            run_job(Path(json.loads(args.additionalInfo)["job"]))
+            request = json.loads(args.additionalInfo)
+            if set(request) == {"restart"}:
+                grant = state["restart_grant"]
+                grant["serve"](
+                    state["dispatch_protocol"], grant["_source_pin"], state["dispatch"],
+                    Path(request["restart"]), state["app"], state["main_thread"],
+                )
+            else:
+                run_job(Path(request["job"]))
         except Exception:
             write_json(HOME / "runner-error.json", {"error": traceback.format_exc(), "time_utc": time.time()})
         finally:
+            state["active_callback"] = False
             state["finished"].set()
 
 
@@ -100,13 +113,21 @@ def poll():
     stop = state["stop"]
     while not stop.is_set():
         host = state["dispatch"]
-        request_path = host.next_path() if host is not None else None
-        jobs = [request_path] if request_path is not None else sorted(QUEUE.glob("*.json")) if host is None or host.legacy_available() else []
-        if not jobs:
+        grant = state["restart_grant"]
+        readiness = grant["pending_request"](state["dispatch_protocol"], host) if host is not None else None
+        if readiness is not None:
+            request = {"restart": str(readiness)}
+        else:
+            request_path = host.next_path() if host is not None else None
+            jobs = [request_path] if request_path is not None else sorted(QUEUE.glob("*.json")) if host is None or host.legacy_available() else []
+            if not jobs:
+                stop.wait(IDLE_SECONDS)
+                continue
+            request = {"job": str(jobs[0])}
+        state["finished"].clear()
+        if not state["app"].fireCustomEvent(EVENT_ID, json.dumps(request)):
             stop.wait(IDLE_SECONDS)
             continue
-        state["finished"].clear()
-        state["app"].fireCustomEvent(EVENT_ID, json.dumps({"job": str(jobs[0])}))
         while not stop.is_set() and not state["finished"].wait(0.5):
             pass
 
@@ -114,6 +135,7 @@ def poll():
 def run(context):
     app = adsk.core.Application.get()
     state["app"] = app
+    state["main_thread"] = threading.get_ident()
     QUEUE.mkdir(parents=True, exist_ok=True)
     allowed_root()
     config = json.loads((HOME / "config.json").read_text(encoding="utf-8"))
@@ -129,16 +151,20 @@ def run(context):
             raise ValueError("application protocol differs from its pinned revision")
         protocol = {"__name__": "__kit_pinned_queue__", "__file__": str(path)}
         exec(compile(source.stdout, str(path), "exec"), protocol)
-        installation = protocol["configuration"](config["dispatch"])
+        installation_bytes = protocol["file_bytes"](config["dispatch"])
+        checked_installation = protocol["validate_configuration"](json.loads(installation_bytes))
+        if checked_installation != installation:
+            raise ValueError("dispatch installation changed during add-in startup")
+        installation = checked_installation
         if sys.platform != "darwin" or installation["application"] != "fusion":
             raise ValueError("fresh-phase dispatch currently requires a macOS Fusion host")
-        state["dispatch_protocol"] = protocol
-        state["dispatch"] = protocol["HostQueue"](installation)
         trusted_bootstrap = protocol["committed_bytes"](installation, protocol["BOOTSTRAP"])
         if BOOTSTRAP_SOURCE != trusted_bootstrap:
-            state["dispatch"].close()
-            state["dispatch"] = None
             raise ValueError("reload the add-in from the trusted installation revision")
+        state["restart_grant"] = protocol["load_pinned"](installation, protocol["RESTART_GRANT"])
+        state["dispatch_protocol"] = protocol
+        state["dispatch"] = protocol["HostQueue"](installation)
+        state["dispatch"].installation_sha256 = protocol["sha256"](installation_bytes)
         state["dispatch"].loaded_sources = {
             "bootstrap": {"path": protocol["BOOTSTRAP"], "sha256": protocol["sha256"](BOOTSTRAP_SOURCE), "size_bytes": len(BOOTSTRAP_SOURCE), "revision": installation["source_revision"]},
             "protocol": {"path": relative, "sha256": protocol["sha256"](source.stdout), "size_bytes": len(source.stdout), "revision": installation["source_revision"]},
