@@ -31,7 +31,18 @@ def CheckWinTree() -> None:
         JobInfo = Harness.ReadJob("windows:tree")
         if JobInfo["state"] != "completed":
             print(
-                JsonCodec.dumps({"job": JobInfo, "events": Events}, sort_keys=True),
+                JsonCodec.dumps(
+                    {
+                        "job": JobInfo,
+                        "events": Events,
+                        "result": (
+                            Harness.ReadResult("windows:tree")
+                            if JobInfo.get("result")
+                            else None
+                        ),
+                    },
+                    sort_keys=True,
+                ),
                 flush=True,
             )
         assert JobInfo["state"] == "completed", {"job": JobInfo, "events": Events}

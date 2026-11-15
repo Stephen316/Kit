@@ -10,7 +10,11 @@ def WaitForPids(RecordPath: FilePath) -> list[int]:
             ProcessIds: list[int] = JsonCodec.loads(
                 RecordPath.read_text(encoding="utf-8")
             )
-            assert len(ProcessIds) == 2
+            assert len(ProcessIds) in (2, 3)
+            assert len(set(ProcessIds)) == len(ProcessIds)
+            assert all(
+                type(ProcessId) is int and ProcessId > 1 for ProcessId in ProcessIds
+            )
             return ProcessIds
         except (OSError, ValueError):
             TimeClock.sleep(0.05)

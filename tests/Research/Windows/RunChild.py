@@ -12,6 +12,13 @@ def RunChild() -> None:
     _ = Signals.signal(int(getattr(Signals, "SIGBREAK")), Signals.SIG_IGN)
     RecordPath = FilePath(System.argv[2])
     _ = RecordPath.write_text(
-        JsonCodec.dumps([int(System.argv[3]), OsLayer.getpid()]), encoding="utf-8"
+        JsonCodec.dumps(
+            {
+                "caller_pid": int(System.argv[3]),
+                "application_pid": OsLayer.getpid(),
+                "parent_pid": OsLayer.getppid(),
+            }
+        ),
+        encoding="utf-8",
     )
     TimeClock.sleep(120)

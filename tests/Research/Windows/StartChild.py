@@ -6,6 +6,8 @@ import sys as System
 import time as TimeClock
 from pathlib import Path as FilePath
 
+from tests.Research.Windows.BindChild import BindChild
+
 
 def StartChild(Options: dict[str, str]) -> None:
     if System.platform != "win32":
@@ -17,7 +19,7 @@ def StartChild(Options: dict[str, str]) -> None:
             "-m",
             "tests.Research.Windows.WindowsRunner",
             "child",
-            Options["pid_file"],
+            Options["pid_file"] + ".ready",
             str(OsLayer.getpid()),
         ],
         creationflags=int(getattr(Subprocess, "CREATE_NEW_PROCESS_GROUP")),
@@ -25,16 +27,26 @@ def StartChild(Options: dict[str, str]) -> None:
     UntilTime = TimeClock.monotonic() + 10
     while True:
         try:
-            ProcessIds = JsonCodec.loads(
-                FilePath(Options["pid_file"]).read_text(encoding="utf-8")
+            Observation = JsonCodec.loads(
+                FilePath(Options["pid_file"] + ".ready").read_text(encoding="utf-8")
             )
-            if ProcessIds == [OsLayer.getpid(), ChildProcess.pid]:
-                break
+            SessionInfo = JsonCodec.loads(
+                (FilePath(OsLayer.environ["KIT_SESSION"]) / "session.json").read_text(
+                    encoding="utf-8"
+                )
+            )
+            break
         except (OSError, ValueError):
             pass
         if TimeClock.monotonic() >= UntilTime:
             raise RuntimeError("child did not report readiness")
         TimeClock.sleep(0.01)
     assert ChildProcess.poll() is None
+    ProcessIds = BindChild(
+        ChildProcess.pid, OsLayer.getpid(), Observation, SessionInfo["job_object"]
+    )
+    _ = FilePath(Options["pid_file"]).write_text(
+        JsonCodec.dumps(ProcessIds), encoding="utf-8"
+    )
     if Options["mode"] == "hold":
         TimeClock.sleep(120)
