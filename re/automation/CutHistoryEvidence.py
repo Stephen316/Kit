@@ -10,6 +10,7 @@ from convert.api.ApiOpen import OpenDocument
 from CutHistoryGraph import (
     GraphGap,
     body_metrics,
+    effective_axis,
     extent,
     plane_metrics,
     read_history,
@@ -125,6 +126,18 @@ def compare_plane(fusion, solidworks, tolerances):
     }
 
 
+def compare_axes(fusion, solidworks, role, tolerance):
+    left = effective_axis(getattr(fusion, role), fusion.parameters)
+    right = effective_axis(getattr(solidworks, role), solidworks.parameters)
+    delta = math.dist(left, right)
+    return {
+        "status": "equal" if delta <= 2 * math.sin(tolerance / 2) else "different",
+        "fusion": left,
+        "solidworks": right,
+        "direction_chord_length": delta,
+    }
+
+
 def summarize_roles(history):
     output = {}
     for key, role in (("base_extrusion", history.base), ("cut", history.cut)):
@@ -189,10 +202,16 @@ def compare_history(documents, measured, tolerances):
         "cut_support_plane": outcome(compare_plane, fusion, solidworks, tolerances),
         "base_extent": outcome(compare_extent, fusion, solidworks, False, length),
         "cut_extent": outcome(compare_extent, fusion, solidworks, True, length),
+        "base_direction": outcome(
+            compare_axes, fusion, solidworks, "base", tolerances["angle_rad_absolute"]
+        ),
+        "cut_direction": outcome(
+            compare_axes, fusion, solidworks, "cut", tolerances["angle_rad_absolute"]
+        ),
         "unclassified": [
             "full sketch constraint, operand and expression correspondence",
             "full authored meaning of the base create versus join operation",
-            "explicit common world extrusion direction and through all selection role",
+            "SOLIDWORKS persisted through-all body-selection policy",
             "fresh lifecycle-aligned support-face identity and area",
         ],
     }

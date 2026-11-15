@@ -200,20 +200,22 @@ def length_mm(value):
     return value.value * scales[value.unit]
 
 
+def linked_distance(role, parameters, definition):
+    parameter = ref(parameters, definition.AlongParameterId, "base extent parameter")
+    check(
+        definition.SideMode == "one_sided"
+        and definition.StartOffsetId is None
+        and parameter.owner_id == role.feature.id
+        and parameter.id in role.feature.parameter_ids,
+        "base extent lacks its single owned profile plane distance",
+    )
+    return length_mm(parameter.value)
+
+
 def extent(role, parameters, cut):
     definition = role.feature.definition
     if not cut and isinstance(definition, DistanceExtrude):
-        parameter = ref(
-            parameters, definition.AlongParameterId, "base extent parameter"
-        )
-        check(
-            definition.SideMode == "one_sided"
-            and definition.StartOffsetId is None
-            and parameter.owner_id == role.feature.id
-            and parameter.id in role.feature.parameter_ids,
-            "base extent lacks its single owned profile plane distance",
-        )
-        return "blind", abs(length_mm(parameter.value))
+        return "blind", abs(linked_distance(role, parameters, definition))
     check(isinstance(definition, ExtrudeFeature), "unsupported extrusion definition")
     condition = definition.end_condition
     if cut and condition == ExtrudeEnd.KThroughAll:
@@ -223,6 +225,25 @@ def extent(role, parameters, cut):
         return "through_all", None
     check(condition == ExtrudeEnd.KBlind, "unsupported end condition")
     return "blind", abs(length_mm(definition.length))
+
+
+def effective_axis(role, parameters):
+    definition = role.feature.definition
+    if isinstance(definition, DistanceExtrude):
+        distance = linked_distance(role, parameters, definition)
+        check(
+            distance != 0, "zero distance leaves linked extrusion direction unresolved"
+        )
+        axis, sign = definition.Direction, -1 if distance < 0 else 1
+    elif isinstance(definition, ExtrudeFeature) and definition.direction is not None:
+        axis, sign = definition.direction, -1 if definition.reversed else 1
+    else:
+        raise GraphGap("extrusion is missing its saved world axis")
+    check(
+        math.isclose(math.hypot(*xyz(axis)), 1.0, abs_tol=1e-9, rel_tol=0.0),
+        "saved extrusion axis is not a unit vector",
+    )
+    return tuple(sign * component for component in xyz(axis))
 
 
 def plane_metrics(plane):

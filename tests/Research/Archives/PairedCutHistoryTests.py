@@ -37,6 +37,20 @@ def AssertCutPairs(Pairs: dict[str, object]) -> None:
         assert ReportObject(History["cut_support_plane"])["status"] == "equal", Variant
         Extent = ReportObject(History["cut_extent"])
         assert Extent["status"] == "equal", (Variant, Extent)
+        AssertCutAxes(History, Variant)
+
+
+# the verified cap direction is inward even when both applications report the same depth
+def AssertCutAxes(History: dict[str, object], Variant: str) -> None:
+    BaseAxis = [1.0, 0.0, 0.0] if Variant == "plane-yz" else [0.0, 0.0, 1.0]
+    CutAxis = [-Component for Component in BaseAxis]
+    for Field, AxisValue in (("base_direction", BaseAxis), ("cut_direction", CutAxis)):
+        Direction = ReportObject(History[Field])
+        assert Direction["status"] == "equal", (Variant, Direction)
+        assert Direction["fusion"] == Direction["solidworks"] == AxisValue
+    Issues = History["unclassified"]
+    assert isinstance(Issues, list)
+    assert "SOLIDWORKS persisted through-all body-selection policy" in Issues
 
 
 # the actual through all control changes solid geometry despite identical axis bounds
