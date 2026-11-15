@@ -1,4 +1,4 @@
-"""Replay the P04 resolved-list entry through its first sketch backreference."""
+"""Replay the P04 resolved-list entry through the blind boss end-specification prefix."""
 
 from argparse import ArgumentParser
 from hashlib import sha256
@@ -315,13 +315,43 @@ def read_profile_link(cursor):
     }
 
 
+# the boss must reference the rectangle profile already allocated by this walk
+def read_boss_entry(cursor, rectangle, file_reference):
+    from BossPrefix import read_boss_prefix
+    from convert.adapters.solidworks.container.Archive import (
+        KClassRefKind,
+        KDefinitionKind,
+        KObjectRefKind,
+    )
+    from SketchRoot import Require
+
+    start = cursor.position
+    index = cursor.pointer(KDefinitionKind, "moExtrusion_c")
+    cursor.pointer(KClassRefKind, "moNodeName_c")
+    name, feature_id = read_named_concept(cursor, (0x40000140, 0xC0000140))
+    Require(cursor.read("<H"), (1,), "one resolved boss profile")
+    profile = cursor.pointer(KObjectRefKind, "moProfileFeature_c")
+    Require(profile, rectangle["profile_object"], "boss owns the reached rectangle")
+    Require(cursor.read("<i"), (0,), "guarded boss node trailer")
+    return read_boss_prefix(
+        cursor,
+        {
+            "offset": start,
+            "object_index": index,
+            "name": name,
+            "native_feature_id": feature_id,
+            "profile_object": profile,
+            "file_ref_object": file_reference["object_index"],
+        },
+    )
+
+
 # folder suffixes are confined to the ordinary bodies at the start of these captures
 def read_list_prefix(blob, config_map):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
         KObjectRefKind,
-        ReadTag,
     )
     from FaceOccurrence import FaceCursor
     from RectangleTail import read_rectangle_tail
@@ -399,11 +429,8 @@ def read_list_prefix(blob, config_map):
     origin["support"]["plane_object"] = front["object_index"]
     rectangle = read_profile_link(cursor)
     rectangle_tail = read_rectangle_tail(cursor, rectangle, planes)
-    next_tag = ReadTag(blob, cursor.position)
-    Require(
-        (next_tag.kind, next_tag.schema, next_tag.class_name),
-        (KDefinitionKind, 1, "moExtrusion_c"),
-        "next resolved feature after rectangle",
+    boss = read_boss_entry(
+        cursor, rectangle, rectangle_tail["trim_surface"]["file_reference"]
     )
     return {
         "list_count": count,
@@ -414,7 +441,8 @@ def read_list_prefix(blob, config_map):
         "origin": origin,
         "rectangle_link": rectangle,
         "rectangle": rectangle_tail,
-        "next_class": next_tag.class_name,
+        "boss": boss,
+        "next_class": "moDisplayDistanceDim_c",
         "next_offset": cursor.position,
         "next_map_index": cursor.next_index,
     }
@@ -509,6 +537,19 @@ def compare_profile_witness(name, resolved, config_map, report, control):
         (350, 353),
         "reached file reference agrees with licensed map",
     )
+    boss = report["list_prefix"]["boss"]
+    positive = boss["choosers"]["caps"][1]
+    primary = positive["primary"]
+    Require(
+        (primary["feature_id"], primary["time_word"], primary["occurrence"]),
+        (34, resolved_pin["time_word"], 1),
+        "reached boss cap agrees with licensed cut support",
+    )
+    Require(
+        [edge["occurrence"] for edge in positive["edges"]],
+        resolved_pin["ordered_edges"],
+        "reached boss cap has the licensed ordered boundaries",
+    )
     report.update(
         native_handoff_witness_sha256=control["handoff_sha256"],
         native_profile_witness_sha256=control["link_sha256"],
@@ -555,6 +596,24 @@ def read_capture(root, asset, measured):
         (*basis, *transform["translation_scale"]),
         tuple(sketches[0]["model_to_sketch_transform"][:13]),
         "measured rectangle placement",
+    )
+    boss = prefix["boss"]
+    operations = [
+        feature["operation"]
+        for feature in measured["feature_tree"]
+        if (feature["type"], feature["name"]) == ("Extrusion", boss["name"])
+    ]
+    Require(len(operations), 1, "one independently measured boss")
+    spec = boss["end_specification"]
+    operation = operations[0]
+    Require(
+        (spec["single_end"] == 0, spec["direction"] != 0, spec["conditions"][0]),
+        (
+            operation["both_directions"],
+            operation["reverse_direction"],
+            operation["end_condition"],
+        ),
+        "measured boss direction and termination",
     )
     report = {
         "file": name,

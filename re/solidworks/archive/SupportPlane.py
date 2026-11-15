@@ -61,6 +61,12 @@ def read_plane_atom(cursor):
 
     Require(cursor.read("<i"), (1,), "saved local partition record")
     cursor.null()  # moPMarkRecord_c
+    read_partition_tail(cursor)
+    return arrays_offset, flags
+
+
+# the later atom fields share the same guarded empty branches after the partition pointer
+def read_partition_tail(cursor):
     Require(cursor.read("<3i"), (0, 0, 0), "empty local partition fields")
     cursor.read("<i")
     Require(cursor.read("<3i"), (0, 0, 0), "empty atom maps")
@@ -71,7 +77,6 @@ def read_plane_atom(cursor):
         "absent visual map animation and face labels",
     )
     cursor.read("<i")
-    return arrays_offset, flags
 
 
 # the reference point and type precede the owned plane data pointer on this branch

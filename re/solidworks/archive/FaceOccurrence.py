@@ -74,9 +74,9 @@ class FaceCursor:
 
 
 # a surface identifier is usable only when its typed feature reference resolves ownership
-def read_surface_id(cursor, kind, cap=False):
+def read_surface_id(cursor, kind, cap=False, pointer_kind=KClassRefKind):
     offset = cursor.position
-    index = cursor.pointer(KClassRefKind, kind)
+    index = cursor.pointer(pointer_kind, kind)
     cursor.null()
     feature_ref = cursor.pointer(KClassRefKind, "moFR_c")
     file_ref = cursor.pointer(KObjectRefKind, "moExtObject_c")
@@ -98,34 +98,47 @@ def read_surface_id(cursor, kind, cap=False):
     }
 
 
-# the bounded local face branch preserves its primary cap and ordered sketch edge identities
-def read_face_occurrence(cursor):
+# body chooser and component faces share the same checked entity envelope
+def read_face_header(cursor, pointer_kind, expected_flags):
     offset = cursor.position
-    index = cursor.pointer(KClassRefKind, "moFaceRef_c")
+    index = cursor.pointer(pointer_kind, "moFaceRef_c")
     body = cursor.position
     first, second, count = cursor.read("<3I")
     Require((first, second, count), (1, 0, 6), "witnessed face kind and entity count")
     flags, classifier = cursor.read("<iI")
-    Require(flags, 512, "witnessed face reference flags")
+    Require(flags, expected_flags, "witnessed face reference flags")
     cursor.vector(2)
     cursor.null()  # moVertexRef_c
-    cap = read_surface_id(cursor, "moEndFaceSurfIdRep_c", cap=True)
-    edges = [
-        read_surface_id(cursor, "moFromSktEntSurfIdRep_c") for _ in range(count - 2)
-    ]
+    return {
+        "offset": offset,
+        "body": body,
+        "object_index": index,
+        "classifier": classifier,
+    }, count - 2
+
+
+# the trailing endpoint remains typed even when its optional reference is empty
+def read_face_tail(cursor):
     cursor.null()  # final empty entity identity
     Require(
         cursor.read("<5I"), (0, 0, KGeneration, 0, 0), "modern face reference trailer"
     )
+
+
+# the bounded local face branch preserves its primary cap and ordered sketch edge identities
+def read_face_occurrence(cursor):
+    header, edge_count = read_face_header(cursor, KClassRefKind, 512)
+    cap = read_surface_id(cursor, "moEndFaceSurfIdRep_c", cap=True)
+    edges = [
+        read_surface_id(cursor, "moFromSktEntSurfIdRep_c") for _ in range(edge_count)
+    ]
+    read_face_tail(cursor)
     for edge in edges:
         for key in ("feature_id", "time_word", "file_ref_object"):
             Require(edge[key], cap[key], f"same face source {key}")
     return {
-        "offset": offset,
-        "body": body,
+        **header,
         "end": cursor.position,
-        "object_index": index,
-        "classifier": classifier,
         "primary": cap,
         "ordered_edges": edges,
     }

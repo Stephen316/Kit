@@ -1,6 +1,6 @@
 # P04 SOLIDWORKS resolved entry and profile linkage
 
-Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command checks the exact P04 receipt, independent measurements and native file digests. It walks from the resolved list header to the extrusion declaration after RectangleSketch for all eleven captures. For baseline A and YZ it also verifies both decompressed stream hashes and compares the separately witnessed profile links and file reference allocations. The JSON report SHA-256 is `c4d178436ecf117d1590062044989186e6dcb2122583c99c1f78aa75f5f1f67d`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
+Run `python re/solidworks/archive/ResolvedEntry.py` from the repository root. The command checks the exact P04 receipt, independent measurements and native file digests. It walks from the resolved list header through the typed opening of BlindBoss's end specification for all eleven captures. For baseline A and YZ it also verifies both decompressed stream hashes and compares the separately witnessed profile links, file reference allocations and CutSketch support cap. The JSON report SHA-256 is `68fad1603a89ea124b4bfd9ef9b4c8f920e4bbd229e1feda48e05b4ab5b3b721`. [Licensed sketch and resolved owner evidence](../../../../re/solidworks/records/P04SketchResidence.md)
 
 The matched native handoff reaches Config-0 byte 42,879 in baseline A and 42,949 in YZ. The resolved list load begins at byte 4 with next archive index 279. The offline reader uses the completed Config-0 class and object map to start the list and to resolve the two separately anchored sketch references. The first four resolved bytes corroborate the counter at 279. The short list count at byte 4 is 21, and the first class definition begins at byte 6. [Offline map replay](../../../../re/solidworks/records/P04SketchResidence.md#offline-map-replay)
 
@@ -70,4 +70,17 @@ The file reference loader at `sldarchiveu+0xd8e0` uses the shared file fields at
 | Through-all | 6,072–6,205 | 6,378 |
 | Baseline B, six parameter edits and inch display | 6,072–6,435 | 6,608 |
 
-The intervening extrusion still separates the sequential replay from CutSketch. The [face-support replay](SolidWorksFaceOccurrence.md) carries the separately anchored CutSketch profile from its sketch pointer through the typed supporting-face return.
+## BlindBoss ownership and end-specification boundary
+
+The extrusion allocates object 368 and reads the saved name `BlindBoss` and feature ID 34. Its one-entry resolved node list points back to RectangleSketch object 342. The atom reader's first transfer array at `sldmodu+0x9ca56b` resolves an existing Config-0 `moAtom_c` at slot 58 or 59. Its second array is empty. The first inline chooser enters at `0x9cac72`, the empty second at `0x9cada3` and the repeated chooser at `0x9caec6`. Each chooser references the current boss through the typed owner load at `0x112b3a1`.
+
+The first chooser materializes two cap references with occurrence codes 0 and 1. Each cap and four boundary segments carry the same derived file reference, feature ID and time. They allocate the previously witnessed face class slots 372, 374 and 377. The repeated chooser reads the same cap and boundary objects using shared-map backreferences. Its bounding centre and scale are identical to the first chooser's fields. For baseline A, the boss's occurrence 1 carries ordered boundary IDs `[4, 1, 2, 3]`. For YZ, it carries `[4, 3, 2, 1]`. Both the feature and time tuple and the boundary order match the separately licensed CutSketch support observations. The preserved [face-support replay](SolidWorksFaceOccurrence.md) starts independently at the CutSketch sketch pointer.
+
+The partition marker and guarded atom fields lead to the body feature's optional assembly and component references, its empty array and its final dword. The `moEndSpec_c` loader at `sldmodu+0x9cf540` reads the null direction pointer, the single-end, flip and reverse fields and the null keep-piece pointer before the two termination codes. All eleven independently measured boss operations agree with the resulting forward single-direction blind specification. The typed depth-dimension token at the next cursor matches the `moDisplayDim_c` read at `0x9cfa51`, resolves the Config-0 `moDisplayDistanceDim_c` class and leaves next map index 406. The depth dimension's body and the remaining end-specification fields are the next boundary for a continuous replay to CutSketch. [End specification field definitions](../../../../re/solidworks/records/Serialize.md#1-moendspec_c--confirmed)
+
+| Capture | Boss entry | Atom end | End specification | Depth dimension token |
+| --- | ---: | ---: | ---: | ---: |
+| Baseline A | 6,380 | 7,426 | 7,436 | 7,477 |
+| YZ | 6,450 | 7,496 | 7,506 | 7,547 |
+| Through-all | 6,378 | 7,424 | 7,434 | 7,475 |
+| Baseline B, six parameter edits and inch display | 6,608 | 7,654 | 7,664 | 7,705 |
