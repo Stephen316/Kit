@@ -82,7 +82,7 @@ They do not claim native CAD application support for JSON.
 | Existing destination            | `FileExistsError` unless replacement is permitted |
 | Missing or ambiguous adapter    | Registry selection error                          |
 | Invalid input or model          | Reader or model validation error                  |
-| Unqualified source evidence     | `ValueError` before destination mutation           |
+| Unqualified source evidence     | `ValueError` before destination mutation          |
 | Dropped capability              | Capability-loss error                             |
 | Unacceptable output attestation | `ApplicationUsabilityError`                       |
 | Incorrect returned stream count | `OSError` with partial stream effects possible    |

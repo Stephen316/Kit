@@ -55,3 +55,11 @@ Windows execution and Linux/macOS regression evidence remain pending remote CI.
 
 The implementation follows [job-object containment](https://learn.microsoft.com/en-us/windows/win32/procthread/job-objects), [atomic job and handle assignment](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-updateprocthreadattribute), [creation-time measurement](https://learn.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getprocesstimes) and [physical-memory measurement](https://learn.microsoft.com/en-us/windows/win32/api/sysinfoapi/nf-sysinfoapi-globalmemorystatusex).
 The [Python subprocess reference](https://docs.python.org/3.14/library/subprocess.html) defines the Windows environment and handle-inheritance requirements.
+
+The first Windows job at `3a432ea0` passed five cases and left the descendant
+cleanup case queued rather than completed. The assertion now retains the job
+reason, attempts and event history for the next remote run; that diagnostic
+change does not establish a repaired lifecycle. Windows fixture liveness uses
+the typed Win32 process-handle API. Windows-only signal and subprocess flags
+are converted at the runtime attribute boundary so Linux static analysis can
+check the fixtures without suppressions.

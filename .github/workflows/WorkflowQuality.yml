@@ -117,6 +117,9 @@ jobs:
           uv run pytest
           tests/convert/solidworks
           tests/convert/formats/ParasolidTests.py
+          tests/convert/api/ApiTests.py
+          tests/convert/api/ApiSupportTests.py
+          tests/convert/registry
           tests/steering/RationaleCommentsTests.py
 
       - name: Verify pinned research corpus and command boundaries

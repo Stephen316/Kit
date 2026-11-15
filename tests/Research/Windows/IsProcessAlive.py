@@ -1,34 +1,28 @@
-import ctypes as CtypesApi
 import sys as System
-from ctypes import wintypes as WinTypes
 
 
 def IsProcessAlive(ProcessId: int) -> bool:
     if System.platform != "win32":
         raise OSError("Windows liveness requires a Windows host")
-    KernelApi = CtypesApi.WinDLL("kernel32", use_last_error=True)
-    setattr(
-        KernelApi.OpenProcess,
-        "argtypes",
-        [WinTypes.DWORD, WinTypes.BOOL, WinTypes.DWORD],
-    )
-    setattr(KernelApi.OpenProcess, "restype", WinTypes.HANDLE)
-    setattr(
-        KernelApi.WaitForSingleObject, "argtypes", [WinTypes.HANDLE, WinTypes.DWORD]
-    )
-    setattr(KernelApi.WaitForSingleObject, "restype", WinTypes.DWORD)
-    setattr(KernelApi.CloseHandle, "argtypes", [WinTypes.HANDLE])
-    setattr(KernelApi.CloseHandle, "restype", WinTypes.BOOL)
-    HandleValue = KernelApi.OpenProcess(0x1000 | 0x100000, False, ProcessId)
-    if not HandleValue:
-        ErrorCode = CtypesApi.get_last_error()
-        if ErrorCode == 87:
-            return False
-        raise OSError(ErrorCode, "process liveness query failed")
+    import pywintypes as WinErrors
+    import win32api as WinApi
+    import win32con as WinCodes
+    import win32event as WinEvents
+
     try:
-        WaitValue = KernelApi.WaitForSingleObject(HandleValue, 0)
-        if WaitValue not in (0, 258):
-            raise OSError(CtypesApi.get_last_error(), "process liveness wait failed")
-        return WaitValue == 258
+        HandleValue = WinApi.OpenProcess(
+            WinCodes.PROCESS_QUERY_LIMITED_INFORMATION | WinCodes.SYNCHRONIZE,
+            False,
+            ProcessId,
+        )
+    except WinErrors.error as Failure:
+        if Failure.winerror == 87:
+            return False
+        raise OSError(Failure.winerror, "process liveness query failed") from Failure
+    try:
+        WaitValue = WinEvents.WaitForSingleObject(HandleValue, 0)
+        if WaitValue not in (WinEvents.WAIT_OBJECT_0, WinEvents.WAIT_TIMEOUT):
+            raise OSError("process liveness wait failed")
+        return WaitValue == WinEvents.WAIT_TIMEOUT
     finally:
-        _ = KernelApi.CloseHandle(HandleValue)
+        WinApi.CloseHandle(HandleValue)
