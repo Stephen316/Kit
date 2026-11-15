@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
+using System.Threading;
 using System.Web.Script.Serialization;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
@@ -356,17 +357,45 @@ public sealed class SolidWorksScopeControl
         Check(Hash(path) == (string)archive["sha256"], "The scope control bytes changed during native readback");
     }
 
+    static ISldWorks AttachOwned(Process process)
+    {
+        var elapsed = Stopwatch.StartNew();
+        while (!process.HasExited && elapsed.Elapsed.TotalSeconds < 60)
+        {
+            try
+            {
+                var application = (ISldWorks)Marshal.GetActiveObject("SldWorks.Application");
+                Check(application.GetProcessID() == process.Id, "COM attached to a different SOLIDWORKS process");
+                return application;
+            }
+            catch (COMException error)
+            {
+                if (error.ErrorCode != unchecked((int)0x800401E3) &&
+                    error.ErrorCode != unchecked((int)0x80010001)) throw;
+                Thread.Sleep(250);
+            }
+        }
+        throw new InvalidOperationException("The directly launched SOLIDWORKS process did not expose its COM object");
+    }
+
     static string Phase(string specification, string directory, string executable, string priorJson)
     {
         Check(Process.GetProcessesByName("SLDWORKS").Length == 0, "Use an isolated desktop with SOLIDWORKS stopped");
-        var requested = DateTime.UtcNow;
-        var application = (ISldWorks)Activator.CreateInstance(Type.GetTypeFromProgID("SldWorks.Application", true));
-        using (var process = Process.GetProcessById(application.GetProcessID()))
+        var launch = new ProcessStartInfo(executable)
+        {
+            UseShellExecute = false,
+            CreateNoWindow = true,
+            WorkingDirectory = Path.GetDirectoryName(executable),
+        };
+        using (var process = Process.Start(launch))
         using (var caller = Process.GetCurrentProcess())
         {
+            Check(process != null && process.SessionId == caller.SessionId,
+                "The registered SOLIDWORKS image did not start in the current licensed desktop");
             var started = process.StartTime.ToUniversalTime();
+            var application = AttachOwned(process);
             var module = process.MainModule;
-            Check(started >= requested && process.SessionId == caller.SessionId && Hash(module.FileName) == Hash(executable),
+            Check(Hash(module.FileName) == Hash(executable),
                 "Activation did not establish a fresh process for the registered SOLIDWORKS image");
             var processRow = Row("pid", process.Id, "started_utc", started.ToString("O"));
             Dictionary<string, object> output;
@@ -380,7 +409,7 @@ public sealed class SolidWorksScopeControl
             }
             finally
             {
-                if (application.GetDocumentCount() == 0) application.ExitApp();
+                if (!process.HasExited && application.GetDocumentCount() == 0) application.ExitApp();
                 Marshal.FinalReleaseComObject(application);
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
