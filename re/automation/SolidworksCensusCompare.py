@@ -153,8 +153,12 @@ def require_cut_terminations(findings):
         name = cuts[0]
         code = fields[f"native.operation.{name}.end_code"]["expected"]
         required = [
+            "neutral.operation.BlindBoss.profile",
+            "neutral.operation.BlindBoss.effective_direction_world",
             f"neutral.operation.{name}.operation",
             f"native.operation.{name}.end_code",
+            f"neutral.operation.{name}.profile",
+            f"neutral.operation.{name}.effective_direction_world",
         ]
         if code == 0:
             required.extend((
@@ -188,11 +192,11 @@ def require_cut_terminations(findings):
             raise ValueError(f"{path}: unexpected measured cut termination {code}")
         mismatches = [field for field in required if fields.get(field, {}).get("status") != "matched"]
         if mismatches:
-            raise ValueError(f"{path}: cut termination mismatch in {', '.join(mismatches)}")
+            raise ValueError(f"{path}: P04 extrusion comparison mismatch in {', '.join(mismatches)}")
         counts[code] += 1
     if counts != {0: 10, 1: 1}:
         raise ValueError(f"P04 termination check requires ten blind cuts and one through-all cut, found {counts}")
-    print("Verified ten blind cut depths and one typed depthless through-all cut")
+    print("Verified P04 profiles and directions, ten blind cut depths and one typed depthless through-all cut")
 
 
 def compare_operation_axis(step, projected, measured_sketches, projected_sketch_names, tolerance):
@@ -427,6 +431,8 @@ def require_boss_directions(findings):
         "native.operation.BlindBoss.reverse_code",
         "neutral.operation.BlindBoss.reversed",
         "neutral.operation.BlindBoss.direction_multiplier",
+        "neutral.operation.BlindBoss.profile",
+        "neutral.operation.BlindBoss.effective_direction_world",
     }
     for entry in cases:
         path = entry["asset"]["path"]
