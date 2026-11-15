@@ -8,7 +8,8 @@ from tempfile import TemporaryDirectory
 
 from Corpus import git
 from SolidworksCensusCompare import (
-    compare, require_boss_directions, require_equation_bindings, require_rectangle_edges,
+    compare, require_boss_directions, require_cut_terminations, require_equation_bindings,
+    require_rectangle_edges,
 )
 from SolidworksCensusInputs import capture_inputs, digest
 from SolidworksCensusLengths import require_resolved_lengths
@@ -97,28 +98,29 @@ def main():
     outputs.add_argument("--output", type=Path)
     outputs.add_argument("--check-directions", type=Path)
     outputs.add_argument("--check-equations", type=Path)
+    outputs.add_argument("--check-cut-terminations", type=Path)
     outputs.add_argument("--check-rectangle-edges", type=Path)
     outputs.add_argument("--check-resolved-lengths", type=Path)
     outputs.add_argument("--check-support-evidence", type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
-    check_report = args.check_equations or args.check_directions or args.check_rectangle_edges or args.check_resolved_lengths or args.check_support_evidence
-    if check_report is not None:
-        report = json.loads(check_report.read_bytes())
-        revision = git(root, "rev-parse", "HEAD").decode().strip()
-        if report["revision"] != revision:
-            raise ValueError("discovery check requires a census from this revision")
-        checks = (
-            (args.check_equations, require_equation_bindings),
-            (args.check_directions, require_boss_directions),
-            (args.check_rectangle_edges, require_rectangle_edges),
-            (args.check_resolved_lengths, require_resolved_lengths),
-            (args.check_support_evidence, require_support_candidates),
-        )
-        check = next(check for option, check in checks if option is not None)
-        check(report["captures"])
-    else:
+    checks = (
+        (args.check_equations, require_equation_bindings),
+        (args.check_cut_terminations, require_cut_terminations),
+        (args.check_directions, require_boss_directions),
+        (args.check_rectangle_edges, require_rectangle_edges),
+        (args.check_resolved_lengths, require_resolved_lengths),
+        (args.check_support_evidence, require_support_candidates),
+    )
+    if args.output is not None:
         run(root, args.output.resolve())
+        return
+    path, check = next((path, check) for path, check in checks if path is not None)
+    report = json.loads(path.read_bytes())
+    revision = git(root, "rev-parse", "HEAD").decode().strip()
+    if report["revision"] != revision:
+        raise ValueError("discovery check requires a census from this revision")
+    check(report["captures"])
 
 
 if __name__ == "__main__":

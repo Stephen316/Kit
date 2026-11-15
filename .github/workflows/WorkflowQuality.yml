@@ -92,6 +92,11 @@ jobs:
           uv run --frozen python re/automation/SolidworksCensus.py
           --check-equations "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
 
+      - name: Check SOLIDWORKS cut termination evidence
+        run: >-
+          uv run --frozen python re/automation/SolidworksCensus.py
+          --check-cut-terminations "${RUNNER_TEMP}/SolidworksDiscoveryCensus.json"
+
       - name: Check SOLIDWORKS blind boss direction
         run: >-
           uv run --frozen python re/automation/SolidworksCensus.py

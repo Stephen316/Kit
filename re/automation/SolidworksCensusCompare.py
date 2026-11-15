@@ -120,6 +120,67 @@ def require_equation_bindings(findings):
     print(f"Verified both P04 equation bindings in {checked} captures")
 
 
+def require_cut_terminations(findings):
+    counts = Counter()
+    for capture in findings:
+        if capture["recipe_id"] != "P04":
+            continue
+        path = capture["asset"]["path"]
+        fields = {row["field"]: row for row in capture["comparisons"]}
+        cuts = [
+            field.removeprefix("neutral.operation.").removesuffix(".operation")
+            for field, row in fields.items()
+            if field.startswith("neutral.operation.")
+            and field.endswith(".operation")
+            and row["expected"] == "cut"
+        ]
+        if len(cuts) != 1:
+            raise ValueError(f"{path}: expected one measured cut")
+        name = cuts[0]
+        code = fields[f"native.operation.{name}.end_code"]["expected"]
+        required = [
+            f"neutral.operation.{name}.operation",
+            f"native.operation.{name}.end_code",
+        ]
+        if code == 0:
+            required.extend((
+                f"neutral.operation.{name}.end",
+                f"native.operation.{name}.depth_mm",
+                f"neutral.operation.{name}.depth_mm",
+            ))
+        elif code == 1:
+            native = next(
+                row for row in capture["native"]["operations"] if row["name"] == name
+            )
+            neutral = next(
+                row for row in capture["neutral"]["features"] if row["name"] == name
+            )
+            expected_projection = (
+                neutral["end_condition"] == "through_all"
+                or (
+                    neutral["definition"] == "NativeFeatureDefinition"
+                    and neutral["end_condition"] is None
+                )
+            )
+            if (
+                native["length_mm"] is not None
+                or neutral["native_termination_code"] != 1
+                or not expected_projection
+            ):
+                raise ValueError(
+                    f"{path}: through-all must preserve its native termination without a native depth"
+                )
+        else:
+            raise ValueError(f"{path}: unexpected measured cut termination {code}")
+        mismatches = [field for field in required if fields.get(field, {}).get("status") != "matched"]
+        if mismatches:
+            raise ValueError(f"{path}: cut termination mismatch in {', '.join(mismatches)}")
+        counts[code] += 1
+    if counts != {0: 10, 1: 1}:
+        raise ValueError(f"P04 termination check requires ten blind cuts and one through-all cut, found {counts}")
+    print("Verified ten blind cut depths and preservation of one depthless through-all termination")
+
+
 def compare_operations(measured, native, neutral, tolerance):
     native_ops = {item["name"]: item for item in native.get("operations", ())}
     neutral_ops = {item["name"]: item for item in neutral.get("features", ())}
