@@ -28,6 +28,12 @@ For this discovery set, add `--readback-operation p01-p03-readback` before `list
 
 The licensed job at `e73200e83bf1456767595a8a92910fee5f21f9bc` used build `34.4.1.1011`. It observed all fourteen profiles, passed both healthy controls, and verified unchanged input bytes and owned process exit. A03 accepted the job on its first attempt and acknowledged its spool. The accepted result SHA-256 is `ee200894ec059271e434f1a99f059d6d84067bf1dc2b6bb4567fef5247415e91`. The readback receipt SHA-256 is `54a4a653c457ea2a749c37aec07de9ab6cbfcafbbbd379cd18f721cc7612e1bb`. The paired qualification still needs a fresh Fusion process.
 
+The same revision also completed the default P04 job. It observed all eleven support faces before and after rebuild and acknowledged the owned spool. The accepted result SHA-256 is `8d5f91a81ce96de4008f62dd76d25e71c6e102749d9f5b8057c576787f7b5df8`.
+
+The principal rerun at `0d527bb9ec59f7728545cd6aacfa98eb5951549b` tied every P03 blind depth to its owned driving display dimension before and after rebuild. The observed values were 10 mm and the 12 mm edit, including 10 mm in the inch-display and reversed variants. The accepted result SHA-256 is `389b6ab976b47c5f10f36e867844b65244d701526b4db993b524c60ffc00b230`. The readback receipt SHA-256 is `4ecb6df6818c6d3d194c326e0bb10ddfc7cdf0947f975a2749444eb44e249ffe`.
+
+At that revision a separate 25-second deadline run verified principal-scope timeout recovery. The worker confirmed exit on the first owned process handle, A03 archived the failed request, and the supervisor issued exactly one further attempt. The second deadline exhausted the retry budget and preserved the quarantine. The first archive manifest SHA-256 is `c86b44fe62a4e68f94cd828c99e3517a30c34610e732c6198de11f4f0adb5025`.
+
 ## Licensed job evidence
 
 Two Windows runs used source revision `195d45c7a6a0660dbd633e85872988171f32fd8d` and licensed SOLIDWORKS `34.4.1.1011`. Each run verified both healthy controls, unchanged source bytes and supporting-face identity before and after rebuild for all eleven discovery captures. Each observed its owned SOLIDWORKS process exit. A03 accepted all four output roles and the verification driver read every artifact back from the controller by SHA-256 and size.

@@ -16,7 +16,7 @@ Missing ownership proof leaves the run failed and its spool fenced.
 ## Bound timeout recovery
 
 On a dedicated unattended scratch desktop, start the listener with `--recover-owned-timeout` to enable a bounded forced exit after a collector timeout.
-Use this only for a session reserved for the P04 worker and its read-only scratch documents.
+Use this only for a session reserved for the readback worker and its read-only scratch documents.
 The listener first stops its timed-out collector, then checks the complete request ticket and remeasures the creation time, image and session on the still-held Windows process handle.
 It acts only on that handle and waits at most five seconds for it to signal.
 The listener never reopens a process by PID for timeout recovery.
