@@ -52,8 +52,11 @@ The scenarios cover bounded output, private paths, leader exit, descendant clean
 Source inspection and AST syntax checks ran locally.
 No local tests, Windows emulation or CAD process ran.
 The macOS gate at `35080cec` passed eleven POSIX process cases in 75.81 seconds.
+At `91d90628`, the expanded macOS gate passed fourteen cases in 132.47 seconds, including versioned memory learning.
 The Windows gate at `30707236` passed five cases and retried descendant completion after an exit status of 1.
-The source-proven launcher fixture repair below still requires exact-head Windows execution.
+The source-proven launcher fixture repair passed all six Windows cases at `91d90628` in 20.22 seconds.
+See [the exact-head Windows job](https://github.com/TryUniCAD/Kit/actions/runs/43667302609/job/132669500211).
+Application-worker execution remains open independently.
 Linux resource controls passed eleven supervisor scenarios at `b86f30c7`; current-head regression remains separate.
 
 The child fixture also handles the separate launcher PID used by Windows virtual environments.

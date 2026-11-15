@@ -47,7 +47,8 @@ A 55-session scenario checks the retained 50-observation window and its percenti
 An invalid-format scenario verifies failure before a queued job consumes an attempt.
 Local work used source inspection, syntax parsing, formatting, and whitespace checks only.
 No local tests, reproductions, native applications, or model calls ran.
-Exact-revision remote execution remains pending when this entry is introduced.
+The [macOS process gate at `91d90628`](https://github.com/TryUniCAD/Kit/actions/runs/43667302609/job/132669499511) passed all fourteen cases in 132.47 seconds, including these three new scenarios.
+Linux current-head verification remains in progress; prior source evidence does not establish final-head readiness.
 
 This substep does not implement adaptive concurrency ramps, calibration batches, or grouped jobs.
 It supplies measured estimates for those later steps.
