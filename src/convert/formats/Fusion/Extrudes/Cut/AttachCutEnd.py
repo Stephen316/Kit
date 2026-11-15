@@ -64,7 +64,12 @@ def AttachCutEnd(
         end_condition=Fields.EndValue,
         direction=CutDirection(Fields, Frame),
     )
-    Evidence = (ProfileProxy, ProfileId, Fields.TaperId, Fields.CacheId)
+    Evidence: tuple[int, ...] = (
+        ProfileProxy,
+        ProfileId,
+        Fields.TaperId,
+        Fields.CacheId,
+    )
     if Fields.AlongId is not None:
         Evidence += (Fields.AlongId,)
     Spans = tuple(ParamOrigin(Owners[Identity]).spans[0] for Identity in Evidence)

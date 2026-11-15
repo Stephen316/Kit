@@ -2,15 +2,11 @@
 
 from ArchiveVersion import KApplicationBuild
 from RectangleTail import read_principal_profile_support
-from ResolvedPrelude import read_profile_body_prefix, read_resolved_prelude
+from ResolvedPrelude import read_resolved_prelude
 from SketchRoot import KGeneration, Require
-from convert.adapters.solidworks.container.Archive import (
-    KClassRefKind,
-    KDefinitionKind,
-)
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
 from convert.adapters.solidworks.resolved.ContourTrim import ReadRectEnd, ReadRectTrim
-from convert.adapters.solidworks.sketch.InlineSketch import ReadInlineMut
+from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
 
 
 # transfer the same map through the inline sketch and back to its containing feature
@@ -18,34 +14,30 @@ def read_rectangle_entry(
     blob, config_map, build, has_atom, *, include_coincidence=False
 ):
     cursor, prelude = read_resolved_prelude(blob, config_map, 19 if has_atom else 18)
-    start = cursor.position
-    profile = cursor.pointer(KDefinitionKind, "moProfileFeature_c")
-    cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id, _ = read_profile_body_prefix(cursor, (0x40000000, 0xC0000000))
-    offset = cursor.position
-    sketch_object = cursor.pointer(KClassRefKind, "sgSketch")
     Require(build, KApplicationBuild, "witnessed sketch presentation build")
     previous_events = cursor.PointerEvents
     events = []
     cursor.PointerEvents = events
     try:
-        geometry, (coincidence,) = ReadInlineMut(cursor, offset, sketch_object, KGeneration)
+        profile = ReadProfileBody(cursor, KGeneration)
     finally:
         cursor.PointerEvents = previous_events
     if previous_events is not None:
         previous_events.extend(events)
+    geometry = profile.Geometry
+    (coincidence,) = profile.Coincidences
     display = [event for event in events if event[0] >= geometry["geometry_end"]]
     edge_ids = [line["native_id"] for line in geometry["lines"] if line["native_id"] >= 0]
     chain = ReadChainState(cursor, bool(has_atom), edge_ids)
     support = read_principal_profile_support(cursor, prelude["principal_planes"])
     rectangle = {
         "origin": prelude["origin"],
-        "name": name,
-        "feature_id": feature_id,
-        "profile_offset": start,
-        "profile_object": profile,
-        "sketch_offset": offset,
-        "sketch_object": sketch_object,
+        "name": profile.NameValue,
+        "feature_id": profile.FeatureId,
+        "profile_offset": profile.Offset,
+        "profile_object": profile.ObjectIndex,
+        "sketch_offset": profile.SketchOffset,
+        "sketch_object": profile.SketchIndex,
         "geometry": geometry,
         "display_pointers": display,
         "chain": chain,

@@ -29,6 +29,19 @@ def ReadProfileBody(Cursor: ArchiveCursor, Generation: int) -> ProfileSketch:
     _ = Cursor.TakePointer(("moNodeName_c",), KClassRefKind, CompactOnly=True)
     NameValue, FeatureId, _ = ReadProfileHead(Cursor, (0x40000000, 0xC0000000))
     SketchOffset = Cursor.Offset
-    _, _, SketchIndex = Cursor.TakePointer(("sgSketch",), KClassRefKind, CompactOnly=True)
-    Geometry, Coincidences = ReadInlineMut(Cursor, SketchOffset, SketchIndex, Generation)
-    return ProfileSketch(NameValue, FeatureId, ObjectIndex, Offset, SketchOffset, SketchIndex, Geometry, Coincidences)
+    _, _, SketchIndex = Cursor.TakePointer(
+        ("sgSketch",), KClassRefKind, CompactOnly=True
+    )
+    Geometry, Coincidences = ReadInlineMut(
+        Cursor, SketchOffset, SketchIndex, Generation
+    )
+    return ProfileSketch(
+        NameValue,
+        FeatureId,
+        ObjectIndex,
+        Offset,
+        SketchOffset,
+        SketchIndex,
+        Geometry,
+        Coincidences,
+    )

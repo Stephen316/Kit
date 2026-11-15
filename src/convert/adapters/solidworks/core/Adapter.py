@@ -110,6 +110,7 @@ from convert.adapters.solidworks.assembly.Assembly import (
     decode_mate_list as DecodeMateList,
     decode_native_assembly as DecodeNativeAsm,
 )
+from convert.adapters.solidworks.container.Archive import ContainerMo
 from convert.adapters.solidworks.container.Container import (
     SldprtArchive,
     SldprtFormatError,
@@ -165,6 +166,7 @@ from convert.adapters.solidworks.core.Native import (
     decode_native_model as DecodeNativeModel,
     operation_axis_subelement as OperationAxisSubElem,
 )
+from convert.adapters.solidworks.core.OrdinaryRead import KArchiveSupport, ReadRectSupport
 from interchange.geometry.models.GeometryTypes import KGeometryTypes
 from convert.adapters.solidworks.container.Parasolid import (
     ParasolidPayload,
@@ -2024,15 +2026,20 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
         )
     SelectedStream = ResolvedStream(Archive.streams, Lanes[SelectedId])
     ConfigStream = f"Contents/Config-{SelectedId}"
-    return DecodeNativeModel(
+    Resolved = Archive.require(SelectedStream)
+    ConfigData = Archive.get(ConfigStream) or b""
+    Model = DecodeNativeModel(
         Keywords,
-        Archive.require(SelectedStream),
-        Archive.get(ConfigStream) or b"",
+        Resolved,
+        ConfigData,
         configuration_id=SelectedId,
         resolved_stream=SelectedStream,
         configuration_stream=ConfigStream,
         Display=ParseDisplay(Archive.get(KInformationStream) or b""),
     )
+    if SelectedStream == KitResolvedStream:
+        return Model
+    return ReadRectSupport(Model, ConfigData, Resolved, ContainerMo(Archive.streams))
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -3837,13 +3844,18 @@ def FeatureA(Feature: NativeFeature) -> Provenance:
 
 # this definition exists because focused behavior needs one stable owner
 def FeatureSpan(Sketch: NativeSketch) -> Provenance:
-    return ProvenanceA(
+    Origin = ProvenanceA(
         str(Sketch.object_id),
         Sketch.native_offset,
         Sketch.native_end - Sketch.native_offset,
         "sketch-record",
         Stream=Sketch.native_stream,
     )
+    Reference = Sketch.support_plane
+    if Reference is None or Sketch.support_source != KArchiveSupport:
+        return Origin
+    SupportSpan = ProvenanceSpan(Sketch.native_stream, Reference.offset, 4, "sketch-support-reference")
+    return Replace(Origin, spans=Origin.spans + (SupportSpan,))
 
 
 # this definition exists because focused behavior needs one stable owner

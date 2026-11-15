@@ -5,6 +5,7 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
+from convert.adapters.solidworks.container.Container import SldprtArchive
 from convert.api.ApiOpen import OpenDocument
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
@@ -86,6 +87,71 @@ def CheckArchive(ScriptPath: str, Options: tuple[str, ...], ReportDigest: str) -
     assert ResultInfo.returncode == 0, ResultInfo.stderr.decode(errors="replace")
     ActualDigest = Hashlib.sha256(ResultInfo.stdout.replace(b"\r\n", b"\n")).hexdigest()
     assert ActualDigest == ReportDigest, (ScriptPath, Options, ActualDigest)
+
+
+# public support must use the saved reference even when the front plane occurs first
+@Pytest.mark.parametrize(
+    ("Family", "Capture", "Variant"),
+    (
+        ("P01", "75b9308cf13e", "baseline-a"),
+        ("P01", "75b9308cf13e", "baseline-b"),
+        ("P01", "75b9308cf13e", "edit-height_mm-23"),
+        ("P01", "75b9308cf13e", "edit-width_mm-41"),
+        ("P01", "75b9308cf13e", "plane-yz"),
+        ("P01", "75b9308cf13e", "units-inch"),
+        ("P03", "db1390476325", "baseline-a"),
+        ("P03", "db1390476325", "baseline-b"),
+        ("P03", "db1390476325", "direction-negative"),
+        ("P03", "db1390476325", "edit-depth_mm-12"),
+        ("P03", "db1390476325", "edit-height_mm-23"),
+        ("P03", "db1390476325", "edit-width_mm-41"),
+        ("P03", "db1390476325", "plane-yz"),
+        ("P03", "db1390476325", "units-inch"),
+    ),
+)
+def CheckSwSupport(Family: str, Capture: str, Variant: str) -> None:
+    RootDir = FilePath(__file__).resolve().parents[2]
+    NativePath = (
+        RootDir
+        / "re/automation/PairedCaptures"
+        / Family
+        / f"solidworks-{Capture}"
+        / f"{Family}-solidworks-{Variant}.SLDPRT"
+    )
+    Document = OpenDocument(NativePath)
+    (Sketch,) = tuple(
+        Value
+        for Value in Document.sketches
+        if Value.attributes.get("support_plane_source") == "typed-archive-reference"
+    )
+    (Frame,) = tuple(
+        Value
+        for Value in Document.support_planes
+        if Value.id == Sketch.support_plane_id
+    )
+    DatumId = 4 if Variant == "plane-yz" else 2
+    Normal = (1, 0, 0) if DatumId == 4 else (0, 0, 1)
+    AxisX = (0, 0, -1) if DatumId == 4 else (1, 0, 0)
+    assert Frame.name == ("Right Plane" if DatumId == 4 else "Front Plane")
+    assert Sketch.attributes["support_plane_native_id"] == DatumId
+    assert Frame.transform.origin == SpaceVector(0, 0, 0)
+    assert Frame.transform.z_axis == SpaceVector(*Normal)
+    assert Frame.transform.x_axis == SpaceVector(*AxisX)
+    assert Sketch.provenance is not None
+    (SupportSpan,) = tuple(
+        Value
+        for Value in Sketch.provenance.spans
+        if Value.record_kind == "sketch-support-reference"
+    )
+    assert (
+        SupportSpan.stream == "Contents/Config-0-ResolvedFeatures"
+        and SupportSpan.length == 4
+    )
+    Archive = SldprtArchive.from_bytes(NativePath.read_bytes())
+    Stored = Archive.require(SupportSpan.stream)[
+        SupportSpan.offset : SupportSpan.offset + SupportSpan.length
+    ]
+    assert int.from_bytes(Stored, "little", signed=True) == DatumId
 
 
 # the feature selected profile must carry the exact proxy and authored perimeter across the registry
@@ -361,11 +427,11 @@ def CheckCutTarget(Variant: str) -> None:
     assert Target.attributes["fusion.support_object_id"] == 451
     assert Target.attributes["fusion.recipe_object_id"] == 453
     assert Target.attributes["fusion.context_object_ids"] == ()
-    CheckCutEnding(Variant, Cutter, Document)
+    AssertCutEnding(Variant, Cutter, Document)
 
 
 # through all must retain its authored selector without synthesizing a dimension
-def CheckCutAll(
+def AssertCutAll(
     Cutter: FeatureStep, Definition: ExtrudeFeature, Document: CadDocument
 ) -> None:
     assert Definition.end_condition == ExtrudeEnd.KThroughAll
@@ -389,7 +455,7 @@ def CheckCutAll(
 
 
 # the edited value and the rotated basis distinguish genuine saved direction and depth
-def CheckCutEnding(Variant: str, Cutter: FeatureStep, Document: CadDocument) -> None:
+def AssertCutEnding(Variant: str, Cutter: FeatureStep, Document: CadDocument) -> None:
     Definition = Cutter.definition
     assert isinstance(Definition, ExtrudeFeature), Document.diagnostics
     assert Definition.direction == (
@@ -398,7 +464,7 @@ def CheckCutEnding(Variant: str, Cutter: FeatureStep, Document: CadDocument) -> 
         else SpaceVector(0.0, 0.0, -1.0)
     )
     if Variant == "termination-through-all":
-        CheckCutAll(Cutter, Definition, Document)
+        AssertCutAll(Cutter, Definition, Document)
         return
     assert Definition.end_condition == ExtrudeEnd.KBlind
     assert Cutter.attributes["fusion.extrude.end_flags"] == 0
