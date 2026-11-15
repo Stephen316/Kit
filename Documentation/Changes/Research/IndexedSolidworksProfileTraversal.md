@@ -27,4 +27,4 @@ Pyright also reported three unsupported settings already present in the reposito
 Runtime regression results remain a separate remote CI boundary.
 No native conversion or application acceptance is claimed.
 
-See [the repeated-scan gotcha](../../Gotchas/Conversion/SolidworksProfileTraversal.md), [the formatter exclusion gotcha](../../Gotchas/Ci/BlackResearchExclusion.md), and [the reader guide](../../Reference/Research/SolidworksResearchReader.md).
+See [the repeated-scan gotcha](../../Gotchas/Conversion/SolidworksProfileTraversal.md), [the formatter exclusion gotcha](../../Gotchas/Ci/Policy/BlackResearchExclusion.md), and [the reader guide](../../Reference/Research/SolidworksResearchReader.md).
