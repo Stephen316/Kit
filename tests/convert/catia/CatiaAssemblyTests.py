@@ -1,12 +1,13 @@
 from __future__ import annotations as Annotations
-from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
-from convert.adapters.freecad.Adapter import FreeCadAdapter
+
 from dataclasses import replace as Replace
 import io as IoStream
 from pathlib import Path as FilePath
 import xml.etree.ElementTree as XmlTree
 import zipfile as Zipfile
+
 import pytest as Pytest
+
 from convert import (
     ApplicationUsabilityError as AppUsabilityError,
     convert as Convert,
@@ -24,12 +25,14 @@ from convert.adapters.freecad import (
     read_freecad as ReadFreecad,
     write_freecad as WriteFreecad,
 )
+from convert.adapters.freecad.Adapter import FreeCadAdapter
 from interchange import (
     ComponentKind,
     Matrix4 as MatrixFour,
     frozen_mapping as FrozenMapping,
 )
 from interchange.document.models.DocumentModel import CadDocument
+from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
 from tests.convert.catia.MetadataAccess import GetObjectRows, GetString
 
 # this binding exists because shared behavior needs one stable value

@@ -1,8 +1,5 @@
 from __future__ import annotations as Annotations
-from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
-from tests.convert.api.BuildApiSource import BuildApiSource
-from tests.interchange.fixtures.AssemblyFixture import BuildAssembly
-from convert.adapters.freecad.Adapter import FreeCadAdapter
+
 from dataclasses import replace as Replace
 import hashlib as Hashlib
 from io import BytesIO as BytesIo, StringIO as StringIo
@@ -12,7 +9,9 @@ import struct as Struct
 from xml.etree import ElementTree as XmlTree
 import zipfile as Zipfile
 import zlib as ZlibValue
+
 import pytest as Pytest
+
 from convert import (
     ApplicationUsabilityError as AppUsabilityError,
     convert as Convert,
@@ -46,6 +45,7 @@ from convert.adapters.catia.Format import (
     PRODUCT_DOCUMENT_TYPE as ProductDocType,
     SUFFIX_BY_DOCUMENT_TYPE as SuffixByDocType,
 )
+from convert.adapters.freecad.Adapter import FreeCadAdapter
 from convert.adapters.freecad.Brep import brep_model_brep as BrepModelBrep
 from convert.adapters.solidworks import (
     read_sldprt as ReadSldprt,
@@ -63,7 +63,10 @@ from interchange import (
 )
 from interchange.document.models.DocumentModel import CadDocument
 from interchange.payloads.PayloadRecord import BrepPayload
+from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
+from tests.convert.api.BuildApiSource import BuildApiSource
 from tests.convert.catia.MetadataAccess import GetObjectRows, GetStringTuple
+from tests.interchange.fixtures.AssemblyFixture import BuildAssembly
 from tests.interchange.document.DocumentTests import document as DocValue
 from tests.interchange.brep.BrepTests import triangle_brep as TriangleBrep
 

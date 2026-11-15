@@ -1,6 +1,5 @@
 from __future__ import annotations as Annotations
-from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
-from tests.convert.api.BuildApiSource import BuildApiSource
+
 import base64 as BaseSixFour
 from collections.abc import Callable as FuncCall, Mapping, Sequence
 from dataclasses import replace as Replace
@@ -15,7 +14,9 @@ from typing import TypeGuard, TypedDict as TypeDict
 import xml.etree.ElementTree as XmlTree
 import zipfile as Zipfile
 import zlib as ZlibValue
+
 import pytest as Pytest
+
 from convert import (
     ApplicationUsabilityError as AppUsabilityError,
     convert as Convert,
@@ -177,6 +178,8 @@ from interchange.enums.EnumValues import ValueKind
 from interchange.features.FeatureExtrude import ExtrudeEnd as ExtrusionEndCondition
 from interchange.features.FeatureExtrude import ExtrudeFeature as ExtrusionFeature
 from interchange.geometry.models.GeometryTypes import KGeometryTypes as GeometryTypes
+from tests.convert.NativeWrites.IsNativeBlock import IsNativeBlock
+from tests.convert.api.BuildApiSource import BuildApiSource
 from tests.interchange.document.DocumentTests import document as NeutralDoc
 from tests.interchange.brep.BrepTests import triangle_brep as TriangleBrep
 
