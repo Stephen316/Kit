@@ -215,7 +215,7 @@ Memory-limit stops, two deadline stops within 600 seconds and below-reserve memo
 Existing sessions drain normally when the target falls.
 Set `adaptive_limits` to `false` to use the measured capacity directly.
 See [adaptive pool limits](../../Changes/Research/Supervisor/AdaptivePoolLimits.md) for evidence events and branch limits.
-Calibration batches, grouped jobs and independently attributed operating-system OOM backoff remain open.
+[Offline calibration](OfflineCalibration.md) and [grouped small-file sessions](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md) have process evidence. A saturated calibration recommendation and independently attributed operating-system OOM backoff remain open.
 
 ## Stops, pauses and stale leases
 

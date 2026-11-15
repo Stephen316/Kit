@@ -271,7 +271,7 @@ These results verify reader integration and outcome stability, not geometry, con
 A08b now has passing process evidence for [bounded logs and cleanup](../../Changes/Research/Supervisor/BoundedSessionLogs.md), [version-scoped memory estimates](../../Changes/Research/Supervisor/VersionedMemoryEstimates.md), [adaptive limits](../../Changes/Research/Supervisor/AdaptivePoolLimits.md), [grouped sessions](../../Changes/Research/Supervisor/GroupedSmallFileSessions.md), [owner-epoch fencing](../../Changes/Research/Workers/SupervisorOwnerEpoch.md), [POSIX launch gating](../../Changes/Research/Supervisor/PosixWorkerLaunchGate.md) and [offline calibration](../../Changes/Research/Supervisor/OfflineDecoderCalibration.md).
 The Linux log explicitly records a measured healthy-minute increase to two sessions and deadline-pair backoff from two to one.
 Both POSIX selections include all fourteen calibration cases; no saturated throughput recommendation is established.
-Windows calibration and independently attributed OOM backoff remain open.
+The Windows calibration completed 100 decodes. The eight-worker trial fell short of the sustained-overlap threshold. Independently attributed OOM backoff remains open.
 Legacy no-owner controller calls and custom adapters without the fence capability remain explicitly unfenced.
 
 A08c's five [durable-output intake](../../Changes/Research/Workers/DurableWorkerOutputs.md) cases passed on all three platforms.
@@ -283,7 +283,7 @@ Native execution, automatic application restart, automatic acceptance acknowledg
 Completed and abandoned application spools stay retained until owner verification of actual controller acceptance; the completed-spool bound is 32 files and 520 MiB, not an OS write quota.
 
 A04c records [hashed principal support candidates](../../Changes/Research/PrincipalSupportEvidence.md) for 25 measured identifiers, including three YZ variants.
-Production class ownership, the opaque tag domain, the P04 face reference encoding, through-all termination and complete constraint bindings remain open.
+The [matching loader](../../../re/solidworks/records/PrincipalSupportCandidates.md#feature-reference-timestamp) identifies the principal-plane candidate's reference timestamp. Production class ownership, the P04 face reference encoding, through-all termination and complete constraint bindings remain open.
 The [native-field refusal](../../Changes/Research/Readers/NativeFieldWriteRefusal.md) and [writer qualification](../../Changes/Research/Readers/NativeSemanticWriteQualification.md) regressions passed, preserving required-semantic refusal and destinations through real public/direct boundaries.
 The full Fusion run also verifies the corrected explicit/inferred writer-ordering cases.
 None of those refusals supplies the missing positive native qualification.
