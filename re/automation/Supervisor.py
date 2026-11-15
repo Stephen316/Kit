@@ -11,10 +11,11 @@ from pathlib import Path
 from Adapters import load_adapter
 from Processes import process_start, signal_group, stop_orphan
 from Records import bounded, canonical, label, read_record, reason_text
+from ResourceBudget import ResourceBudget
 from Runners import Registry
 from Sessions import Session, read_bounded, write_private
 
-CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds", "max_log_bytes"}
+CONFIG_KEYS = {"state", "controller", "registry", "worker", "pools", "resources", "stop_grace_seconds", "poll_seconds", "max_log_bytes", "reserved_cpus", "reserved_memory_mib"}
 ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -59,6 +60,8 @@ def read_config(path):
         "resources": {label(name): bounded(capacity, 1, 64) for name, capacity in resources.items()},
         "grace": float(grace), "poll": float(poll),
         "max_log_bytes": bounded(config.get("max_log_bytes", 1048576), 1024, 67108864),
+        "reserved_cpus": bounded(config.get("reserved_cpus", 2), 0, 65536),
+        "reserved_memory_mib": bounded(config.get("reserved_memory_mib", 4096), 0, 1048576),
     }
 
 
@@ -83,6 +86,9 @@ class Supervisor:
         self.max_log_bytes = config["max_log_bytes"]
         self.adapter = load_adapter(config["controller"], ROOT)
         self.registry = Registry(config["registry"], ROOT) if claiming else None
+        self.budget = ResourceBudget(config, self.registry) if claiming else None
+        self.admission = {}
+        self.measurement_error = None
         self.running = {}
         self.locks = []
         self.counts = {"started": 0, "stale": 0, "orphans": 0, "finished": {}}
@@ -183,6 +189,13 @@ class Supervisor:
             if pool in paused:
                 continue
             while sum(1 for session in self.running.values() if session.pool == pool) < settings["max_sessions"]:
+                admission = self.budget.admission(pool, settings, self.running)
+                previous = self.admission.get(pool)
+                self.admission[pool] = admission
+                if previous is None or previous["reason"] != admission["reason"]:
+                    self.report("admission", None, {"pool": pool, **admission})
+                if admission["additional_sessions"] == 0:
+                    break
                 name = f"{time.time_ns():x}-{secrets.token_hex(4)}"
                 claim_path = self.claims / f"{name}.json"
                 claim = self.adapter.ClaimJob(pool, self.config["worker"], claim_path)
@@ -227,11 +240,20 @@ class Supervisor:
         self.acquire()
         self.recover()
         self.synchronize()
+        self.budget.refresh(self.running)
         started = time.monotonic()
         last_work = started
         while True:
             now = time.time()
             paused = self.pauses()
+            try:
+                self.budget.refresh(self.running)
+            except (OSError, ValueError) as error:
+                self.measurement_error = str(error)[:2048]
+                self.report("resource_measurement_error", None, {"error": self.measurement_error})
+                for session in self.running.values():
+                    session.begin_stop("resource_measurement_unavailable", now)
+                self.stopping = True
             for name, session in list(self.running.items()):
                 if session.tend(now, paused):
                     del self.running[name]
@@ -250,6 +272,8 @@ class Supervisor:
                 if session.tend(now, {}):
                     del self.running[name]
             time.sleep(0.05)
+        if self.measurement_error is not None:
+            raise OSError(self.measurement_error)
         return {"summary": self.counts}
 
 

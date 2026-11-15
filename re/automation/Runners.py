@@ -6,7 +6,7 @@ from Records import bounded, label, read_record
 SCHEMA_KEYS = {"$schema", "title", "description", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "maxLength", "minimum", "maximum", "minItems", "maxItems"}
 TYPES = {"object", "array", "string", "integer", "number", "boolean", "null"}
 OUTCOMES = {"completed", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
-ENTRY_KEYS = {"pool", "argv", "result_schema", "threads", "initial_peak_memory_mib"}
+ENTRY_KEYS = {"pool", "argv", "result_schema", "threads", "initial_peak_memory_mib", "max_memory_mib"}
 
 
 def check_schema(schema, depth=0):
@@ -130,13 +130,15 @@ class Registry:
             schema_path = Path(entry["result_schema"])
             schema_path = (schema_path if schema_path.is_absolute() else Path(root) / schema_path).resolve()
             schema = check_schema(read_record(schema_path))
+            estimate = bounded(entry.get("initial_peak_memory_mib", 1024), 1, 1048576)
             self.runners[kind] = {
                 "pool": label(entry["pool"]),
                 "argv": list(argv),
                 "schema": schema,
                 "schema_path": str(schema_path),
                 "threads": bounded(entry.get("threads", 1), 1, 256),
-                "initial_peak_memory_mib": bounded(entry.get("initial_peak_memory_mib", 1024), 1, 1048576),
+                "initial_peak_memory_mib": estimate,
+                "max_memory_mib": bounded(entry.get("max_memory_mib", min(1048576, estimate * 2)), 1, 1048576),
             }
 
     def pools(self):

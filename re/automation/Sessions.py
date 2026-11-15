@@ -54,6 +54,8 @@ class Session:
         self.kill_at = None
         self.killed = False
         self.logs = {}
+        self.memory_peak = 0
+        self.memory_limit = supervisor.registry.runners[self.spec["kind"]]["max_memory_mib"] * 1048576
 
     def prepare(self):
         self.directory.mkdir(mode=0o700)
@@ -107,6 +109,9 @@ class Session:
     def tend(self, now, paused):
         for capture in self.logs.values():
             capture.drain()
+        memory = self.supervisor.budget.groups.get(self.pid)
+        if memory is not None:
+            self.memory_peak = max(self.memory_peak, memory)
         if os.waitid(os.P_PID, self.pid, os.WEXITED | os.WNOHANG | os.WNOWAIT) is not None:
             signal_group(self.pid, signal.SIGKILL)
             reaped, status, usage = os.wait4(self.pid, 0)
@@ -116,6 +121,12 @@ class Session:
             if not self.killed and now >= self.kill_at:
                 signal_group(self.pid, signal.SIGKILL)
                 self.killed = True
+            return None
+        if memory is None:
+            self.begin_stop("resource_measurement_unavailable", now)
+            return None
+        if memory > self.memory_limit:
+            self.begin_stop("memory_limit", now)
             return None
         if now >= self.next_renew:
             try:
@@ -147,6 +158,8 @@ class Session:
             "started_at": self.started, "ended_at": ended, "duration_seconds": ended - self.started,
             "peak_memory_bytes": peak_bytes(usage), "orphan": False,
             "logs": {name: capture.receipt() for name, capture in self.logs.items()},
+            "sampled_group_peak_memory_bytes": self.memory_peak,
+            "memory_limit_bytes": self.memory_limit,
         }
         write_private(self.directory / "receipt.json", receipt)
         result, error, tail = None, None, None
