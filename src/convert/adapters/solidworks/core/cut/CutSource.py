@@ -1,20 +1,12 @@
 from dataclasses import dataclass as Dataclass
 
-from convert.adapters.solidworks.config.CutEquation import CutEquation
-from convert.adapters.solidworks.resolved.OriginProfile import OriginProfile
+from convert.adapters.solidworks.core.cut.CutRuleSource import CutRuleSource
 from convert.adapters.solidworks.resolved.support.SupportPlane import SupportPlane
-from convert.adapters.solidworks.sketch.InlineSketch import InlineRead
 
 
-# the neutral cut needs exact provenance from two separate selected archive streams
+# the cut owns both its active frame and the rule sources from the selected configuration
 @Dataclass(frozen=True, slots=True)
 class CutSource:
     Support: SupportPlane
-    SketchData: InlineRead
-    ProfileId: int
     BossId: int
-    ConfigStream: str
-    ResolvedStream: str
-    Origin: OriginProfile
-    OuterProfileId: int
-    Equations: tuple[CutEquation, CutEquation]
+    Rules: CutRuleSource

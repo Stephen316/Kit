@@ -169,7 +169,7 @@ from convert.adapters.solidworks.core.Native import (
 from convert.adapters.solidworks.core.cut.CutDocument import ProjectCutDoc
 from convert.adapters.solidworks.core.cut.CutEqProjection import ReadCutArchive
 from convert.adapters.solidworks.core.partition.ActivePartition import ReadActivePart
-from convert.adapters.solidworks.core.partition.PartTopology import PartTopology
+from convert.adapters.solidworks.core.partition.PartTopology import CutPartMass, PartTopology
 from convert.adapters.solidworks.core.OrdinaryRead import (
     KArchiveSupport,
     ReadRectSupport,
@@ -345,16 +345,16 @@ def ReadNativePart(
     )
     FinalFeature = FinalBodyId(TimeValues, SolidOpIds)
     BodyFeature = SolidBody(Model.features)
+    SavedPart = ActivePart.ModelValue if ActivePart is not None else None
+    Fallback = TopologySummary(solid_count=1 if SolidOpIds else 0, bounding_box=BoundingBoxA(Model))
+    Topology = PartTopology(SavedPart, BodyId, Fallback)
+    Summary, Measures = CutPartMass(SavedPart, Topology, Model.cut_source is not None)
     Bodies = (
         BodyValue(
             id=BodyId,
             name=BodyFeature.name if BodyFeature is not None else "Body 1",
             final_feature_id=FinalFeature,
-            topology=PartTopology(
-                ActivePart.ModelValue if ActivePart is not None else None,
-                BodyId,
-                TopologySummary(solid_count=1 if SolidOpIds else 0, bounding_box=BoundingBoxA(Model)),
-            ),
+            topology=Summary,
             provenance=FeatureA(BodyFeature) if BodyFeature is not None else None,
             attributes=FrozenMapping(
                 {
@@ -368,6 +368,7 @@ def ReadNativePart(
                         {"parasolid_active_payload_id": ActivePart.PayloadId}
                         if ActivePart is not None and ActivePart.ModelValue is not None else {}
                     ),
+                    **({"solidworks.body_centroid_mm": Measures.Centroid} if Measures is not None else {}),
                 }
             ),
         ),

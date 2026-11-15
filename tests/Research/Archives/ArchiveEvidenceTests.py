@@ -994,7 +994,9 @@ def CheckSwPart(Variant: str) -> None:
     )
     Document = OpenDocument(NativePath)
     (BodyValue,) = Document.bodies
-    assert Document.brep is not None and not Document.brep.validate(frozenset((BodyValue.id,)))
+    assert Document.brep is not None and not Document.brep.validate(
+        frozenset((BodyValue.id,))
+    )
     (Stored,) = Document.brep.bodies
     assert Stored.design_body_id == BodyValue.id
     Summary = BodyValue.topology
@@ -1028,6 +1030,36 @@ def CheckSwPart(Variant: str) -> None:
     )
     assert Summary.bounding_box.minimum == SpaceVector(0, 0, 0)
     assert Summary.bounding_box.maximum == SpaceVector(*Maximum)
+    AssertSwMass(Document, Variant, (WidthValue, HeightValue, DepthValue))
+
+
+# the saved solid measures must agree with the independently specified rectangle and cut sizes
+def AssertSwMass(
+    Document: CadDocument, Variant: str, OuterSize: tuple[int, int, int]
+) -> None:
+    WidthValue, HeightValue, DepthValue = OuterSize
+    CutWidth = 12 if Variant == "edit-cut_width_mm-12" else 10
+    CutHeight = 10 if Variant == "edit-cut_height_mm-10" else 8
+    CutDepth = {
+        "edit-cut_depth_mm-5": 5,
+        "termination-through-all": DepthValue,
+    }.get(Variant, 4)
+    Gross = WidthValue * HeightValue * DepthValue
+    Removed = CutWidth * CutHeight * CutDepth
+    Volume = Gross - Removed
+    Centre = (
+        WidthValue / 2,
+        HeightValue / 2,
+        (Gross * DepthValue / 2 - Removed * (DepthValue - CutDepth / 2)) / Volume,
+    )
+    if Variant == "plane-yz":
+        Centre = Centre[2], Centre[0], Centre[1]
+    (BodyValue,) = Document.bodies
+    assert (
+        BodyValue.topology is not None
+        and BodyValue.topology.volume == Pytest.approx(Volume)
+    )
+    assert BodyValue.attributes["solidworks.body_centroid_mm"] == Pytest.approx(Centre)
 
 
 # the archived origin proxy must keep both its local point and earlier feature ownership

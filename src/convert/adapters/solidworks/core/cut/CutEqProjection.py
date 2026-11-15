@@ -8,6 +8,7 @@ from convert.adapters.solidworks.container.Archive import ArchiveError
 from convert.adapters.solidworks.core.BossProjection import AttachRectBoss
 from convert.adapters.solidworks.core.OrdinaryRead import AttachRectPlane
 from convert.adapters.solidworks.core.cut.CutOpProjection import AttachCutOp
+from convert.adapters.solidworks.core.cut.CutRuleSource import CutRuleSource
 from convert.adapters.solidworks.core.cut.CutSource import CutSource
 from convert.adapters.solidworks.core.Native import NativeEquation, NativeFeature, NativeModel
 from convert.adapters.solidworks.resolved.cut.CutLinks import KCutListCount, CutLinks, ReadCutLinks
@@ -133,11 +134,11 @@ def ReadCutArchive(
     SketchValue = Config.Sketches.get(Links.CutProfile.SketchIndex)
     if Operation is Result or SketchValue is None:
         return Operation
+    Rules = CutRuleSource(
+        SketchValue.SketchData, Links.CutProfile.FeatureId, Links.RectPart.Origin,
+        Config.Equations, Links.Rectangle.FeatureId, StreamName, ResolvedStream,
+    )
     return Replace(
         Operation,
-        cut_source=CutSource(
-            Proof.Support, SketchValue.SketchData, Links.CutProfile.FeatureId,
-            Links.BossValue["native_feature_id"], StreamName, ResolvedStream,
-            Links.RectPart.Origin, Links.Rectangle.FeatureId, Config.Equations,
-        ),
+        cut_source=CutSource(Proof.Support, Links.BossValue["native_feature_id"], Rules),
     )

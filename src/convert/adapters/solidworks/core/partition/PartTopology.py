@@ -1,3 +1,6 @@
+from dataclasses import replace as Replace
+
+from convert.adapters.solidworks.core.partition.PartMass import PartMass, ReadPartMass
 from interchange import TopologySummary
 from interchange.brep.curves.BrepCurves import LineCurve
 from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
@@ -43,3 +46,20 @@ def PartTopology(
         vertex_count=len(ModelValue.vertices),
         bounding_box=Bounds if Bounds is not None else Fallback.bounding_box,
     )
+
+
+# typed cut history and an active planar solid must agree before publishing measures
+def CutPartMass(
+    ModelValue: BrepModel | None, Summary: TopologySummary, IsCut: bool
+) -> tuple[TopologySummary, PartMass | None]:
+    if (
+        not IsCut or ModelValue is None or Summary.bounding_box is None
+        or len(ModelValue.bodies) != 1
+        or ModelValue.bodies[0].transform != KTransformIdentity
+    ):
+        return Summary, None
+    Bounds = LinearPartBox(ModelValue)
+    if Bounds is None or Bounds != Summary.bounding_box:
+        return Summary, None
+    Proof = ReadPartMass(ModelValue, Bounds)
+    return (Summary, None) if Proof is None else (Replace(Summary, volume=Proof.Volume), Proof)
