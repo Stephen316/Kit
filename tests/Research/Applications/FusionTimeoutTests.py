@@ -96,6 +96,19 @@ def VerifyTimeout(
     return RequestPath
 
 
+# the same queue receipt must select the parked and archived phase observations
+def AuditArgs(Harness: SessionHost) -> list[str]:
+    assert Harness.StorePath is not None
+    return [
+        "--store",
+        str(Harness.StorePath),
+        "--queue-receipt",
+        str(Harness.RootPath / "TimedQueue.json"),
+        "--installation",
+        str(Harness.RootPath / "Installation.json"),
+    ]
+
+
 # the read only audit must bind the parked result and the original spool bytes
 def VerifyAudit(
     Harness: SessionHost, Queued: dict[str, object], RequestPath: FilePath
@@ -104,14 +117,7 @@ def VerifyAudit(
     QueuePath = Harness.RootPath / "TimedQueue.json"
     _ = QueuePath.write_text(JsonCodec.dumps(Queued), encoding="utf-8")
     ScriptPath = "re/automation/ApplicationWorkers/AuditFusionPhases.py"
-    Arguments = [
-        "--store",
-        str(Harness.StorePath),
-        "--queue-receipt",
-        str(QueuePath),
-        "--installation",
-        str(Harness.RootPath / "Installation.json"),
-    ]
+    Arguments = AuditArgs(Harness)
     Report = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
     Phase = Report["phases"]["a"]
     assert Report["status"] == "pending" and Report["resource_available"] is False
@@ -194,4 +200,30 @@ def VerifyArchive(Harness: SessionHost, RequestPath: FilePath) -> None:
         == Result["archive_manifest_sha256"]
     )
     VerifyReplay(ArchivePath, Arguments, FencePath, FenceBytes)
+    VerifyReadback(Harness, SavedPath, HashBytes(Manifest.read_bytes()).hexdigest())
     assert HashBytes(DatabasePath.read_bytes()).hexdigest() == StoreHash
+
+
+# a listener may hold its lock while the owner reads only the archived receipt and pins
+def VerifyReadback(
+    Harness: SessionHost, SavedPath: FilePath, ManifestHash: str
+) -> None:
+    import fcntl as FileLocks
+
+    ScriptPath = "re/automation/ApplicationWorkers/AuditFusionPhases.py"
+    Arguments = AuditArgs(Harness)
+    Endpoint = Harness.RootPath / "AbsentEndpoint"
+    with (Endpoint / "host.lock").open("ab") as LockFile:
+        FileLocks.flock(LockFile.fileno(), FileLocks.LOCK_EX | FileLocks.LOCK_NB)
+        Report = JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
+        assert Report["resource_available"] is False
+        assert Report["phases"]["a"]["spool_observation"] == {
+            "status": "archived",
+            "archive_manifest_sha256": ManifestHash,
+            "fence_status": "absent",
+        }
+        RequestPath = SavedPath / "probe.request"
+        Retained = RequestPath.read_bytes()
+        _ = RequestPath.write_bytes(Retained + b" ")
+        _ = RunFusionTool(ScriptPath, Arguments, ExitCode=1)
+        _ = RequestPath.write_bytes(Retained)

@@ -3,33 +3,29 @@ import os
 import sqlite3
 import subprocess
 import sys
-import time
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from AuditFusionPhases import StoreSnapshot, phase_row, read_queue, verify_binding
 from ApplicationProtocol import (
     ACKNOWLEDGEMENT,
-    check_spool,
     directory,
+    encoded,
     exclusive_rename,
     file_bytes,
     identity,
     owner_lock,
-    pin,
     record,
     require,
     sha256,
     sync_directory,
     write_record,
 )
-from FusionTimeoutAudit import match_request, parked_timeout
+from FusionRequestEvidence import ARCHIVE_RECORD, probe_archive_record
+from FusionTimeoutAudit import parked_timeout
 from QueueFusionPhases import queue_configuration
 from Records import canonical
 from StoreRead import read_store
-
-ARCHIVE_RECORD = "ProbeArchive.json"
-PROBE_FILES = {"cancel.json", "plan.json", "probe.request"}
 
 
 def current_probe(connection, store, queue, kind, scratch):
@@ -70,48 +66,6 @@ def current_probe(connection, store, queue, kind, scratch):
     return timeout
 
 
-def archive_record(spool, config, timeout, fence):
-    check_spool(spool)
-    found = {path.name for path in spool.iterdir()}
-    require(
-        found in (PROBE_FILES, PROBE_FILES | {ARCHIVE_RECORD}),
-        "Fusion spool must contain only the untouched Phase A probe and its cancellation",
-    )
-    request = match_request(file_bytes(spool / "probe.request"), config, timeout, "a")
-    cancel = record(spool / "cancel.json")
-    require(
-        request["body"] == {"plan_sha256": timeout["plan_sha256"]}
-        and sha256(file_bytes(spool / "plan.json")) == timeout["plan_sha256"],
-        "Fusion probe does not retain the exact queued plan",
-    )
-    require(
-        set(fence) == {"installation", "job_id", "reason", "host", "at"}
-        and fence["installation"] == config["installation"]
-        and fence["job_id"] == timeout["queue_job_id"]
-        and fence["reason"] == "quarantined"
-        and fence["host"] is None
-        and set(cancel) == {"reason", "at"}
-        and cancel["reason"]
-        == "requesting worker stopped before application completion"
-        and type(cancel["at"]) in (int, float)
-        and type(fence["at"]) in (int, float)
-        and request["deadline"] <= cancel["at"] <= fence["at"] <= time.time(),
-        "Fusion probe lacks its exact hostless quarantine and expired cancellation",
-    )
-    require(
-        identity(request["client"]["pid"]) != request["client"],
-        "the timed out Fusion request process is still present",
-    )
-    return {
-        "archive_version": 1,
-        "installation": config["installation"],
-        "phase": "a",
-        "timeout": timeout,
-        "fence": fence,
-        "files": {name: pin(spool / name, name) for name in sorted(PROBE_FILES)},
-    }
-
-
 def optional_record(path):
     try:
         return record(path)
@@ -144,8 +98,12 @@ def relocate(root, config, timeout):
         fence is not None or (already_moved and prior is not None),
         "Fusion installation has no matching quarantine to archive",
     )
-    expected = archive_record(
+    expected, client = probe_archive_record(
         spool, config, timeout, fence if fence is not None else prior["fence"]
+    )
+    require(
+        identity(client["pid"]) != client,
+        "the timed out Fusion request process is still present",
     )
     if prior is None:
         require(
@@ -162,11 +120,12 @@ def relocate(root, config, timeout):
         exclusive_rename(spool, archived)
     sync_directory(jobs)
     sync_directory(failed)
+    manifest = file_bytes(archived / ARCHIVE_RECORD)
     require(
-        record(archived / ARCHIVE_RECORD) == expected,
+        manifest == encoded(expected),
         "Fusion archive manifest changed during publication",
     )
-    manifest_sha256 = pin(archived / ARCHIVE_RECORD, ARCHIVE_RECORD)["sha256"]
+    manifest_sha256 = sha256(manifest)
     status = "already_archived"
     if fence is not None:
         require(

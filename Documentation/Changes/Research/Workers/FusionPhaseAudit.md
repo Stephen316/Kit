@@ -29,3 +29,5 @@ python3 re/automation/ApplicationWorkers/ArchiveFusionProbe.py \
 The command acquires the installation's dispatch and host locks. It verifies the still-parked A03 Phase A receipt and the untouched plan, request and cancellation bytes. It moves those files with an immutable manifest to the installation's private `failed-spools` directory, then releases that quarantine. An interrupted release can be retried with the same configuration and receipt.
 
 An active host, a pending acknowledgement, an acceptance-required fence, any phase output or changes to the recorded request cause a refusal. The archive report contains its manifest SHA-256 and the timed-out request SHA-256. The A03 resource stays parked until the installation owner separately verifies readiness and marks it available.
+
+After archival, the same audit with `--installation` verifies the archive manifest and retained file digests. It reports `archived`, the manifest SHA-256 and current fence status. It can read that evidence while the host lock is occupied. The owner still uses the normal host verification and resource reactivation procedure before another attempt.

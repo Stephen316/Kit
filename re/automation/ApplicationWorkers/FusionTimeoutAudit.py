@@ -4,12 +4,13 @@ import re
 from AcknowledgeApplication import stored_bytes
 from ApplicationProtocol import (
     directory,
+    encoded,
     file_bytes,
     record,
     require,
     sha256,
-    validate_request,
 )
+from FusionRequestEvidence import ARCHIVE_RECORD, match_request, probe_archive_record
 from Records import digest
 
 
@@ -106,26 +107,18 @@ def inspect_response(response, timeout, config):
     }
 
 
-def match_request(raw, config, timeout, phase):
-    queued = json.loads(raw)
-    operation = timeout["operation"]
-    validate_request(queued, config, timeout["queue_job_id"], operation)
-    require(
-        sha256(raw) == timeout["request_sha256"]
-        and queued["body"]["plan_sha256"] == timeout["plan_sha256"]
-        and (operation == "probe" or queued["body"]["phase"] == phase),
-        "retained Fusion request bytes do not match the parked request",
-    )
-    return queued
-
-
 def inspect_spool(config, timeout, phase):
     queue_job_id = timeout["queue_job_id"]
     operation = timeout["operation"]
     try:
         root = directory(config["endpoint"])
+    except FileNotFoundError:
+        return {"status": "spool_unavailable"}
+    try:
         spool = directory(root / "jobs" / queue_job_id)
     except FileNotFoundError:
+        if phase == "a" and operation == "probe":
+            return inspect_archive(root, config, timeout)
         return {"status": "spool_unavailable"}
     observations = []
     for suffix in ("request", "running", "done"):
@@ -141,19 +134,52 @@ def inspect_spool(config, timeout, phase):
         observations.append({"status": suffix, **extra})
     if len(observations) != 1:
         return {"status": "spool_transition_or_no_record"}
-    observed = observations[0]
+    return {**observations[0], "fence_status": fence_status(root, config, timeout)}
+
+
+def inspect_archive(root, config, timeout):
+    try:
+        spool = directory(root / "failed-spools" / timeout["queue_job_id"])
+    except FileNotFoundError:
+        return {"status": "spool_unavailable"}
+    except OSError as error:
+        raise ValueError("archived Fusion probe evidence is unavailable") from error
+    try:
+        raw = file_bytes(spool / ARCHIVE_RECORD)
+        manifest = json.loads(raw)
+        require(
+            isinstance(manifest, dict), "archived Fusion probe manifest is not a record"
+        )
+        expected, _ = probe_archive_record(spool, config, timeout, manifest["fence"])
+        require(
+            raw == encoded(expected),
+            "archived Fusion probe manifest or pinned bytes changed",
+        )
+        observed_fence = fence_status(root, config, timeout)
+    except (OSError, ValueError, KeyError, TypeError, RecursionError) as error:
+        raise ValueError(
+            "archived Fusion probe evidence does not match its retained manifest"
+        ) from error
+    return {
+        "status": "archived",
+        "archive_manifest_sha256": sha256(raw),
+        "fence_status": observed_fence,
+    }
+
+
+def fence_status(root, config, timeout):
     try:
         fence = record(root / "fence.json")
     except FileNotFoundError:
-        return {**observed, "fence_status": "absent"}
+        return "absent"
     matched = (
-        fence.get("job_id") == queue_job_id
+        fence.get("job_id") == timeout["queue_job_id"]
         and fence.get("installation") == config["installation"]
     )
     if not matched:
-        return {**observed, "fence_status": "other_request"}
+        return "other_request"
     require(
         fence["reason"] in ("quarantined", "acceptance_required", "restart_required"),
         "retained Fusion fence has an unknown disposition",
     )
-    return {**observed, "fence_status": fence["reason"]}
+    return fence["reason"]
