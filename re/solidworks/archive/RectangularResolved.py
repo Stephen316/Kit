@@ -3,11 +3,11 @@
 from struct import unpack_from
 from types import SimpleNamespace
 
-from ConfigMap import ReadPointer
 from ProfileSupport import read_chain
 from RectangleTail import read_principal_profile_support, read_rectangle_trim
 from ResolvedEntry import read_profile_body_prefix, read_resolved_prelude
 from SketchCursor import SketchCursor
+from SketchGeom import ReadPointCoincidence
 from SketchReader import ReadDisplayFrame, ReadGeometry
 from SketchRoot import Require
 from convert.adapters.solidworks.container.Archive import (
@@ -27,32 +27,29 @@ DISPLAY_CLASSES = (
 
 
 # the resolved rectangle declares display classes its archive map has yet to allocate
-def read_resolved_display(cursor, build, sketch_object):
+def read_resolved_display(cursor, build, sketch_object, point_ids):
     frame = ReadDisplayFrame(build, 1)
-    prefix = frame["inline_prefix"]
-    Require(cursor.ReadValue("<3H"), tuple(prefix[:3]), "inline relation presentation")
-    events = []
-    ReadPointer(cursor, events, KNullKind)
-    ReadPointer(cursor, events, KNullKind)
-    Require(cursor.ReadValue("<2H"), tuple(prefix[5:]), "inline relation trailer")
-    for width, kind, name, *count in frame["steps"]:
+    steps = frame["steps"]
+    coincidence = ReadPointCoincidence(cursor, point_ids)
+    Require(steps[3], [14, KNullKind, None], "witnessed pointer after coincidence")
+    for width, kind, name, *count in ([0, KNullKind, None], *steps[4:]):
         cursor.AdvanceBytes(width)
         if name in DISPLAY_CLASSES and name not in cursor.Classes.values():
             kind = KDefinitionKind
-        ReadPointer(cursor, events, kind, name)
+        _, _, index = cursor.TakePointer((name,), kind)
         if count:
             (observed,) = unpack_from("<H", cursor.BlobValue, cursor.Offset)
             Require(observed, count[0], "witnessed display list count")
         if kind == KObjectRefKind and name == "sgSketch":
-            Require(
-                events[-1][-1], sketch_object, "display handle owns the resolved sketch"
-            )
+            Require(index, sketch_object, "display handle owns the resolved sketch")
     cursor.AdvanceBytes(frame["trailer_width"])
-    return events
+    return coincidence
 
 
 # transfer the same map through the inline sketch and back to its containing feature
-def read_rectangle_entry(blob, config_map, build, has_atom):
+def read_rectangle_entry(
+    blob, config_map, build, has_atom, *, include_coincidence=False
+):
     cursor, prelude = read_resolved_prelude(blob, config_map, 19 if has_atom else 18)
     start = cursor.position
     profile = cursor.pointer(KDefinitionKind, "moProfileFeature_c")
@@ -71,7 +68,10 @@ def read_rectangle_entry(blob, config_map, build, has_atom):
         None,
     )
     geometry = ReadGeometry(archive, sketch_object)
-    display = read_resolved_display(archive, build, sketch_object)
+    display = []
+    archive.PointerEvents = display
+    point_ids = [point["id"] for point in geometry["point_relation_tallies"]]
+    coincidence = read_resolved_display(archive, build, sketch_object, point_ids)
     cursor.position, cursor.next_index = archive.Offset, archive.NextIndex
     count = int(has_atom)
     Require(cursor.read("<Ii"), (count, count), "witnessed rectangle chain state")
@@ -97,14 +97,24 @@ def read_rectangle_entry(blob, config_map, build, has_atom):
         "end": cursor.position,
         "next_map_index": cursor.next_index,
     }
+    if include_coincidence:
+        rectangle["point_coincidence"] = coincidence
     return cursor, rectangle
 
 
 # the standalone profile modes preserve their established report boundaries
 def read_resolved_rectangle(
-    blob, config_map, build, has_atom, *, through_profile=False
+    blob,
+    config_map,
+    build,
+    has_atom,
+    *,
+    through_profile=False,
+    include_coincidence=False,
 ):
-    cursor, rectangle = read_rectangle_entry(blob, config_map, build, has_atom)
+    cursor, rectangle = read_rectangle_entry(
+        blob, config_map, build, has_atom, include_coincidence=include_coincidence
+    )
     if through_profile:
         close_rectangle(cursor, rectangle, int(has_atom))
     return rectangle

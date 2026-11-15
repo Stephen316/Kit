@@ -35,6 +35,7 @@ class SketchCursor:
         SelfData.SketchReferences = {}
         SelfData.PointReferences = {}
         SelfData.ReadSketchObject = ReadSketchObject
+        SelfData.PointerEvents = None
 
     # all fields must advance the shared cursor before their children are considered
     def ReadValue(SelfData, Format):
@@ -81,6 +82,7 @@ class SketchCursor:
     # display evidence and geometry must use one allocation rule for the same archive
     def TakePointer(SelfData, Expected, KindValue=None, SchemaValue=1):
         Offset = SelfData.Offset
+        Counter = SelfData.NextIndex
         TagValue = ReadTag(SelfData.BlobValue, Offset)
         if KindValue is not None:
             Require(TagValue.kind, KindValue, f"archive tag kind at {Offset}")
@@ -99,6 +101,10 @@ class SketchCursor:
             ObjectIndex = SelfData.NextIndex
             SelfData.Objects[ObjectIndex] = NameValue
             SelfData.NextIndex += 1
+        if SelfData.PointerEvents is not None:
+            SelfData.PointerEvents.append(
+                (Offset, Counter, TagValue.kind, NameValue, ObjectIndex)
+            )
         return TagValue, NameValue, ObjectIndex
 
     # reference tokens must resolve the correct kind before a caller can use them

@@ -79,8 +79,42 @@ def check_rectangle(rectangle, native, tolerance):
     return world_lines
 
 
+# the saved relation targets must match the independent readback and the typed origin
+def check_rectangle_constraints(rectangle, native):
+    from SketchEvidence import (
+        CheckCoincidence,
+        CheckDimensionOperands,
+        CheckMemberRelations,
+    )
+    from SketchRoot import Require
+
+    relation = rectangle["point_coincidence"]
+    geometry = {
+        **rectangle["geometry"],
+        "measurement_profile": rectangle["name"],
+        "point_coincidences": [relation],
+    }
+    CheckMemberRelations([geometry], native)
+    CheckDimensionOperands([geometry], native)
+    CheckCoincidence([geometry], native)
+    origin = rectangle["origin"]
+    (proxy,) = rectangle["geometry"]["external_point_references"]
+    Require(
+        (proxy["feature_id"], proxy["handle_class"], proxy["handle_fields"]),
+        (origin["native_feature_id"], "sgPointHandle", (0, -1, 0)),
+        "typed origin point reference",
+    )
+    Require(
+        proxy["local_id"] in relation["point_native_ids"],
+        True,
+        "coincidence uses its external origin proxy",
+    )
+
+
 # committed source and measurement hashes bind each comparison to the same physical part
-def build_report(root, through_profile=False, through_operation=False):
+def build_report(
+    root, through_profile=False, through_operation=False, include_coincidence=False
+):
     from PairedCaptureIntake import (
         CAPTURES as CAPTURE_PATH,
         SPECIFICATIONS,
@@ -169,7 +203,11 @@ def build_report(root, through_profile=False, through_operation=False):
             read_boss = through_operation and recipe == "P03"
             if read_boss:
                 cursor, rectangle = read_rectangle_entry(
-                    resolved, entry, KApplicationBuild, configuration["atom_count"]
+                    resolved,
+                    entry,
+                    KApplicationBuild,
+                    configuration["atom_count"],
+                    include_coincidence=include_coincidence,
                 )
                 close_rectangle(cursor, rectangle, configuration["atom_count"])
             else:
@@ -179,8 +217,11 @@ def build_report(root, through_profile=False, through_operation=False):
                     KApplicationBuild,
                     configuration["atom_count"],
                     through_profile=through_profile or through_operation,
+                    include_coincidence=include_coincidence,
                 )
             world_lines = check_rectangle(rectangle, readbacks[name], tolerance)
+            if include_coincidence:
+                check_rectangle_constraints(rectangle, readbacks[name])
             case = {
                 "file": name,
                 "native_sha256": asset["sha256"],
@@ -225,11 +266,21 @@ if __name__ == "__main__":
         action="store_true",
         help="replay the P03 boss through the resolved stream footer",
     )
+    parser.add_argument(
+        "--include-coincidence",
+        action="store_true",
+        help="verify the saved coincidence, axis and dimension operands",
+    )
     arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
     sys.path[:0] = [str(root / "src"), str(root / "re" / "automation")]
     output = json.dumps(
-        build_report(root, arguments.through_profile, arguments.through_operation),
+        build_report(
+            root,
+            arguments.through_profile,
+            arguments.through_operation,
+            arguments.include_coincidence,
+        ),
         indent=2,
         sort_keys=True,
         allow_nan=False,
