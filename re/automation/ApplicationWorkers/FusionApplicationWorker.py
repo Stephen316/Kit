@@ -7,7 +7,8 @@ import signal
 import sys
 import time
 
-from ApplicationProtocol import QueueClient, WaitingApplication, configuration, copy_pin, file_bytes, load_pinned, pin, record, require, sha256, write_new, write_record
+from ApplicationProtocol import QueueClient, WaitingApplication, configuration, file_bytes, load_pinned, pin, record, require, sha256, write_new, write_record
+from FusionRestart import wait_for_restart
 
 
 def input_file(session, job, role, limit=256 * 1024 * 1024):
@@ -21,21 +22,24 @@ def input_file(session, job, role, limit=256 * 1024 * 1024):
     return source, raw
 
 
-def stage_plan(client, session, job, config, phase):
-    source, raw = input_file(session, job, "plan", limit=1024 * 1024)
-    plan = json.loads(raw)
-    require(plan["source_revision"] == config["source_revision"], "plan and installation source revisions differ")
+def accepted_first(session, job, config, plan_hash):
+    _, raw = input_file(session, job, "phase-a.accepted", limit=1024 * 1024)
+    accepted = json.loads(raw)
+    result_sha256 = sha256(raw)
+    dependency = job["dependencies"].get(accepted["receipt"]["job_id"])
+    require(dependency is not None and dependency["result"] == result_sha256,
+            "phase B requires the accepted phase A result as a completed controller dependency")
+    result = accepted["result"]
+    records = result["records"]
+    require(accepted["output_artifacts_version"] == 1 and result["outcome"] == "completed" and records["plan_sha256"] == plan_hash
+            and records["phase"] == "a" and records["installation"] == config["installation"],
+            "accepted phase A provenance does not match this installation and plan")
+    return accepted
+
+
+def stage_plan(client, session, job, raw, plan, plan_hash, accepted):
     write_new(client.directory / "plan.json", raw)
-    if phase == "b":
-        accepted_source, accepted_raw = input_file(session, job, "phase-a.accepted", limit=1024 * 1024)
-        accepted = json.loads(accepted_raw)
-        require(any(item["result"] == sha256(accepted_raw) for item in job["dependencies"].values()),
-                "phase B requires the accepted phase A result as a completed controller dependency")
-        require(accepted["output_artifacts_version"] == 1
-                and accepted["result"]["records"]["plan_sha256"] == sha256(file_bytes(client.directory / "plan.json"))
-                and accepted["result"]["records"]["phase"] == "a"
-                and accepted["result"]["records"]["installation"] == config["installation"],
-                "accepted phase A provenance does not match this installation and plan")
+    if accepted is not None:
         prior = client.directory / "phase-a"
         prior.mkdir(mode=0o700)
         names = {"phase-a.receipt": "receipt.json", "phase-a.measurements": "measurements.json"}
@@ -52,10 +56,9 @@ def stage_plan(client, session, job, config, phase):
         receipt = record(prior / "receipt.json")
         measurements = record(prior / "measurements.json")
         require(receipt["status"] == "complete" and receipt["phase"] == "a"
-                and receipt["plan_sha256"] == sha256(file_bytes(client.directory / "plan.json"))
+                and receipt["plan_sha256"] == plan_hash
                 and receipt["measurements_sha256"] == sha256(file_bytes(prior / "measurements.json"))
                 and measurements["status"] == "complete", "phase A inputs are incomplete or belong to a different plan")
-    return sha256(file_bytes(client.directory / "plan.json"))
 
 
 def collect(session, client, response, plan_hash, phase):
@@ -98,8 +101,16 @@ def dispatch(session, config):
     client = None
     try:
         load_pinned(config, "re/automation/ApplicationWorkers/ApplicationProtocol.py")
+        _, raw = input_file(session, job, "plan", limit=1024 * 1024)
+        plan = json.loads(raw)
+        require(plan["source_revision"] == config["source_revision"], "plan and installation source revisions differ")
+        plan_hash = sha256(raw)
+        accepted = None
+        if phase == "b":
+            accepted = accepted_first(session, job, config, plan_hash)
+            wait_for_restart(config, accepted["result"]["records"], plan_hash, deadline)
         client = QueueClient(config, deadline)
-        plan_hash = stage_plan(client, session, job, config, phase)
+        stage_plan(client, session, job, raw, plan, plan_hash, accepted)
         probe = client.call("probe", {"plan_sha256": plan_hash})
         require(probe["proof"]["control"] == "healthy" and probe["proof"]["host"] == probe["host"]
                 and probe["proof"]["plan_sha256"] == plan_hash and probe["proof"]["documents_after"] == 0

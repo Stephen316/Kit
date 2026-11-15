@@ -7,6 +7,7 @@ import time
 
 import ApplicationProtocol
 from ApplicationProtocol import HostQueue, QueueClient, WaitingApplication, configuration, load_pinned, pin, record, write_record
+from FusionRestart import wait_for_restart
 
 
 def run_host(config, use_counterpart=False):
@@ -82,9 +83,22 @@ def run_client(config, mode, seconds):
             client.close()
 
 
+def run_restart(config, input_file, seconds):
+    value = record(input_file)
+    write_record(Path(config["endpoint"]) / "restart-wait.json", {"entered": True}, replace=True)
+    try:
+        wait_for_restart(config, value["records"], value["plan_sha256"], time.time() + seconds)
+        result = {"status": "ready"}
+    except WaitingApplication as error:
+        result = {"status": "waiting_application", "reason": str(error)}
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        result = {"status": "rejected", "reason": str(error)}
+    print(json.dumps(result), flush=True)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Real-process fixture for the local application transport; no CAD claims")
-    parser.add_argument("operation", choices=("host", "client", "counterpart", "supervised"))
+    parser.add_argument("operation", choices=("host", "client", "counterpart", "supervised", "restart"))
     parser.add_argument("--installation", type=Path, required=True)
     parser.add_argument("--mode", choices=("echo", "handoff", "wait", "queued", "copied"), default="echo")
     parser.add_argument("--seconds", type=float, default=15)
@@ -95,6 +109,8 @@ def main():
         run_host(config, args.operation == "counterpart")
     elif args.operation == "supervised":
         run_supervised(config, args.session)
+    elif args.operation == "restart":
+        run_restart(config, args.session, args.seconds)
     else:
         run_client(config, args.mode, args.seconds)
 

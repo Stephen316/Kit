@@ -215,7 +215,7 @@ def check_spool(root, reserve_bytes=0, reserve_files=0):
     return {"files": count, "size_bytes": total}
 
 
-def identity(pid):
+def identity(pid, *, timeout=5):
     require(type(pid) is int and pid > 0, "invalid application process id")
     if os.name == "nt":
         from WindowsIdentity import process_start
@@ -224,7 +224,7 @@ def identity(pid):
         return None if started is None else {"pid": pid, "started": started}
     require(os.name == "posix", "application process identity requires Windows or POSIX")
     result = subprocess.run(["ps", "-p", str(pid), "-o", "lstart="], capture_output=True, text=True,
-                            check=False, timeout=5, env=dict(os.environ, LC_ALL="C", TZ="UTC"))
+                            check=False, timeout=timeout, env=dict(os.environ, LC_ALL="C", TZ="UTC"))
     if result.returncode == 1 and not result.stdout.strip() and not result.stderr.strip():
         return None
     require(result.returncode == 0 and result.stdout.strip(), "application process identity unavailable")
