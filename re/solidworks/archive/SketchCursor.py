@@ -279,15 +279,20 @@ class SketchCursor:
         Label, Value = SelfData.Scalars[ValueId]
         SelfData.Dimensions.append((NameValue, DimId, Label, Value, First, Second))
 
-    # feature and sketch dimensions share the parameter reference and its enclosing name fields
-    def ReadDimBasePrefix(SelfData, ExpectedParam):
+    # the stored flag precedes the alternate name in feature and sketch dimensions
+    def ReadDimBaseFields(SelfData, ExpectedParam):
         SelfData.ReadValue("<i")
         ValueId = SelfData.ReadObject(ExpectedParam)
         SelfData.ReadObject(None)  # tolerance
         DimId, _, _, _ = SelfData.ReadValue("<4i")
         SelfData.ReadObject(None)
-        SelfData.ReadValue("<H")
+        (State,) = SelfData.ReadValue("<H")
         Require(SelfData.ReadValue("<B"), (0,), "absent dimension alternate name")
+        return DimId, ValueId, State
+
+    # scalar callers need only the common dimension identity and parameter reference
+    def ReadDimBasePrefix(SelfData, ExpectedParam):
+        DimId, ValueId, _ = SelfData.ReadDimBaseFields(ExpectedParam)
         return DimId, ValueId
 
     # sketch dimensions append their scalar type after the shared parameter fields

@@ -201,8 +201,45 @@ def CheckDimensionOperands(Sketches, Reading):
         ]
 
 
+# point incidence counts agree with the saved, ordered two-member relations
+def CheckCoincidence(Sketches, Reading):
+    from SketchRoot import Require
+
+    ByName = {Sketch["name"]: Sketch for Sketch in Reading["sketches"]}
+    for Sketch in Sketches:
+        NameValue = Sketch["measurement_profile"]
+        Expected = []
+        for Relation in ByName[NameValue]["relations"]:
+            if Relation["type"] == 9:
+                Require(
+                    Relation["entity_types"],
+                    [2, 2],
+                    "native coincidence point operands",
+                )
+                Expected.append([tuple(Point["id"]) for Point in Relation["entities"]])
+        Actual = [
+            Row["point_native_ids"]
+            for Row in Sketch["point_coincidences"]
+            if not Row["suppressed"] and not Row["deleted"]
+        ]
+        Require(
+            Actual, Expected, f"measured ordered coincidence operands for {NameValue}"
+        )
+        Require(
+            Counter(Point for Operands in Actual for Point in Operands),
+            Counter(
+                {
+                    Row["id"]: Row["tally"]
+                    for Row in Sketch["unmapped_point_relation_tallies"]
+                }
+            ),
+            f"coincidence accounts for point incidences in {NameValue}",
+        )
+        Sketch["unmapped_point_relation_tallies"] = []
+
+
 # exact native blob checks keep witness based layouts scoped to their discovery inputs
-def ReadCapture(RootPath, Asset, Reading):
+def ReadCapture(RootPath, Asset, Reading, IncludeCoincidence=False):
     from convert.adapters.solidworks.container.Archive import ContainerMo
     from convert.adapters.solidworks.container.Container import SldprtArchive
     from SketchReader import ReadSketches
@@ -233,10 +270,12 @@ def ReadCapture(RootPath, Asset, Reading):
     Container = SldprtArchive.from_bytes(Native, FileName)
     Require(ContainerMo(Container.streams), KGeneration, "model generation")
     Contents = Container.require("Contents/Config-0")
-    Sketches, Manager = ReadSketches(Contents, KApplicationBuild)
+    Sketches, Manager = ReadSketches(Contents, KApplicationBuild, IncludeCoincidence)
     CheckLengths(Sketches, Reading)
     CheckMemberRelations(Sketches, Reading)
     CheckDimensionOperands(Sketches, Reading)
+    if IncludeCoincidence:
+        CheckCoincidence(Sketches, Reading)
     return {
         "file": FileName,
         "native_sha256": Digest,
@@ -249,12 +288,19 @@ def ReadCapture(RootPath, Asset, Reading):
 # stdout is an interoperable evidence receipt for downstream comparison tooling
 def MainEntry():
     Parser = ArgumentParser(description=__doc__)
-    Parser.parse_args()
+    Parser.add_argument(
+        "--include-coincidence",
+        action="store_true",
+        help="verify saved two-point relations",
+    )
+    Arguments = Parser.parse_args()
     RootPath = Path(__file__).resolve().parents[3]
     ImportPaths.insert(0, str(RootPath / "src"))
     Receipt, Reopened = ReadReceipts(RootPath)
     Captures = [
-        ReadCapture(RootPath, Asset, Reopened[Asset["file"]])
+        ReadCapture(
+            RootPath, Asset, Reopened[Asset["file"]], Arguments.include_coincidence
+        )
         for Asset in Receipt["native_files"]
     ]
     Evidence = {

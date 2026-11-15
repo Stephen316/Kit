@@ -56,3 +56,17 @@ All 365 object call positions match the observed buffer tags. The offline prefix
 The interval `[12532,12923)` lies outside the recorded sketch windows. The native index advances from 147 to 156 across that interval, with the final allocation materializing the second sketch at index 155. Eight preceding map slots still require an intervening source walk. The nested calls witness positions and allocations. The offline reader still needs the versioned scalar, string, and array framing between them.
 
 The scratch verifier rejects a mismatched full archive digest, unexpected span or map boundaries, and object tokens that differ from the observed buffer. Its normalized `SketchObjectsSummary.json` records the capture hash, object call offsets, map counters, token words and module-relative caller offsets. The verified normalized file in the baseline A scratch trace has SHA-256 `d724ad7b0c0d7daed50adf96028c08a3f83e5afde5e841ca25506cd6baf3939a`.
+
+## Two-point coincidence
+
+The second logical group follows the four axis records. The native reader loads its u16 count at `sldmodu+0x1460298` and calls the inline entry at `0x14603aa`. The witnessed entry reuses the dimension base with null parameter and tolerance, type 9 and declared operand count 2. Its two typed `sgPointHandle` loads return at `0x144a013` and `0x144a04f`. In the committed baseline they allocate objects 184 and 185 and resolve to local indices 4 and 0. Across the eleven parts the rectangle's ordered IDs are `[4, 5]` and `[0, 1]`, matching the external origin proxy and first rectangle corner in the native reopen. The cut's second logical group is empty.
+
+On the pinned SOLIDWORKS `34.4.1.1011` installation, two repeated saves of a scratch baseline retained the active type-9 entry. Setting `ISketchRelation.Suppressed` changed one u16 before the alternate-name byte. Deleting the same relation through `ISketchRelationManager.DeleteRelation` retained the record with a different u16 after the operand count and removed its proxy point. A separate owned process reopened all four variants with passing healthy controls. Its native API reported the same two ordered operands in both active files and the suppressed file, with the expected suppression state, and no type-9 relation in the deleted file. All sessions exited normally and the committed source and healthy control hashes were preserved.
+
+| Variant | Saved entry span | Suppression word | Deletion word | Reopened type-9 relation |
+| --- | ---: | ---: | ---: | --- |
+| Active A and B | 15,012–15,085 | 0 | 0 | Active |
+| Suppressed | 15,012–15,085 | 1 | 0 | Suppressed |
+| Deleted | 14,601–14,674 | 0 | 1 | Absent |
+
+The deleted record keeps the original handles. Its first point index no longer exists, so the replay preserves the indices and omits participant resolution for that record. In the regenerated scratch parts the normalized comparison has SHA-256 `67bcacfb048d710f7823e8d9629d881defd1475310cfcd7b52c703298874845d`. The versioned evidence command verifies the eleven original discovery captures. [Sketch evidence command](../../../Documentation/Changes/Research/Readers/SolidWorksSketchGeometry.md)

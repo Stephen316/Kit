@@ -105,3 +105,47 @@ def ReadRelations(Cursor):
         Target = Cursor.ReadObject("sgLineHandle")
         Relations.append((Start, Cursor.Offset, Target, TypeValue, MemberFlags))
     return Relations
+
+
+# the second logical group represents the saved two-point coincidence and its state
+def ReadPointCoincidence(Cursor, PointIds):
+    Start = Cursor.Offset
+    Require(Cursor.ReadValue("<H"), (1,), "one witnessed two-point relation")
+    DimensionId, _, Suppressed = Cursor.ReadDimBaseFields(None)
+    TypeValue, Operands, Deleted, Reserved = Cursor.ReadValue("<i3H")
+    Require(
+        (DimensionId, TypeValue, Operands, Reserved),
+        (-1, 9, 2, 0),
+        "two-point coincidence",
+    )
+    Require(
+        (Suppressed, Deleted) in ((0, 0), (1, 0), (0, 1)),
+        True,
+        "witnessed coincidence state",
+    )
+    Require(Cursor.ReadValue("<2H"), (65534, 0), "witnessed logical relation flags")
+    Handles = [Cursor.ReadObject("sgPointHandle") for _ in range(2)]
+    Indices = []
+    for Handle in Handles:
+        Index, Owner, Flags = Cursor.Handles[Handle]
+        Require((Owner, Flags), (-1, 0), "local coincidence handle")
+        Indices.append(Index)
+    Require(Cursor.ReadValue("<i"), (0,), "guarded two-point relation trailer")
+    Participants = []
+    if not Deleted:
+        Require(
+            len(set(Indices)) == 2 and all(Index < len(PointIds) for Index in Indices),
+            True,
+            "distinct local coincidence points",
+        )
+        Participants = [PointIds[Index] for Index in Indices]
+    return {
+        "offset": Start,
+        "end": Cursor.Offset,
+        "type_code": TypeValue,
+        "suppressed": bool(Suppressed),
+        "deleted": bool(Deleted),
+        "point_handle_objects": Handles,
+        "point_indices": Indices,
+        "point_native_ids": Participants,
+    }

@@ -5,7 +5,13 @@ from pathlib import Path
 from struct import unpack_from as Unpack
 
 from SketchCursor import SketchCursor
-from SketchGeom import ReadDims, ReadLineItem, ReadPointItem, ReadRelations
+from SketchGeom import (
+    ReadDims,
+    ReadLineItem,
+    ReadPointCoincidence,
+    ReadPointItem,
+    ReadRelations,
+)
 from SketchRoot import KGeneration, ReadSketchStart, Require
 
 # the portable layout must refer to the exact normalized native pointer witness
@@ -28,18 +34,33 @@ def ReadDisplayFrame(BuildName, FrameIndex):
 
 
 # presentation records carry pointer allocations needed to reach the next geometry group
-def ReadDisplay(Cursor, BuildName, FrameIndex):
+def ReadDisplay(Cursor, BuildName, FrameIndex, PointIds):
     Frame = ReadDisplayFrame(BuildName, FrameIndex)
-    Require(
-        Cursor.ReadValue("<7H"), tuple(Frame["inline_prefix"]), "inline display framing"
-    )
-    for Width, KindValue, NameValue, *Count in Frame["steps"]:
+    Steps = Frame["steps"]
+    Coincidences = []
+    if FrameIndex == 0:
+        Require(
+            Cursor.ReadValue("<7H"),
+            tuple(Frame["inline_prefix"]),
+            "inline display framing",
+        )
+    else:
+        Coincidences.append(ReadPointCoincidence(Cursor, PointIds))
+        # the shared layout includes the now decoded relation's three internal pointers
+        Require(
+            Steps[3],
+            [14, "null", None],
+            "witnessed pointer after the second coincidence handle",
+        )
+        Steps = [[0, "null", None], *Steps[4:]]
+    for Width, KindValue, NameValue, *Count in Steps:
         Cursor.AdvanceBytes(Width)
         Cursor.TakePointer((NameValue,), KindValue)
         if Count:
             (Value,) = Unpack("<H", Cursor.BlobValue, Cursor.Offset)
             Require(Value, Count[0], "witnessed display list count")
     Cursor.AdvanceBytes(Frame["trailer_width"])
+    return Coincidences
 
 
 # the first sketch returns inside active serializers that must finish their fields in order
@@ -151,13 +172,13 @@ def ReadGeometry(Cursor, ObjectIndex):
 
 
 # one cursor can finish nested sketches without losing the enclosing relation frames
-def ReadSketches(BlobValue, BuildName):
-    Sketches, Cursor = ReadSketchConfiguration(BlobValue, BuildName)
+def ReadSketches(BlobValue, BuildName, IncludeCoincidence=False):
+    Sketches, Cursor = ReadSketchConfiguration(BlobValue, BuildName, IncludeCoincidence)
     return Sketches, {"end": Cursor.Offset, "next_map_index": Cursor.NextIndex}
 
 
 # the config tail needs the allocated map as well as the measured sketch summary
-def ReadSketchConfiguration(BlobValue, BuildName):
+def ReadSketchConfiguration(BlobValue, BuildName, IncludeCoincidence=False):
     Start = ReadSketchStart(BlobValue)
     Sketches = []
 
@@ -165,7 +186,10 @@ def ReadSketchConfiguration(BlobValue, BuildName):
         FrameIndex = len(Sketches)
         Require(FrameIndex < 2, True, "supported number of sketch allocations")
         Sketch = ReadGeometry(Cursor, ObjectIndex)
-        ReadDisplay(Cursor, BuildName, FrameIndex)
+        PointIds = [Point["id"] for Point in Sketch["point_relation_tallies"]]
+        Coincidences = ReadDisplay(Cursor, BuildName, FrameIndex, PointIds)
+        if IncludeCoincidence:
+            Sketch["point_coincidences"] = Coincidences
         Sketch["body_end"] = Cursor.Offset
         Sketch["map_index_after_body"] = Cursor.NextIndex
         Sketches.append(Sketch)
