@@ -79,14 +79,20 @@ public sealed class P04Readback
         return feature;
     }
 
-    object Participant(object entity, ISketch expectedSketch)
+    object Participant(object entity, ISketch expectedSketch, Dictionary<string, ISketch> sketchOwners)
     {
         try
         {
             var point = entity as ISketchPoint;
             if (point != null)
+            {
+                var sketch = point.GetSketch();
+                // Compare native objects because sketch point IDs repeat across owners.
+                string owner = sketchOwners.FirstOrDefault(candidate => Same(sketch, candidate.Value)).Key;
                 return Row("kind", "sketch_point", "id", point.GetID(),
-                    "same_sketch", Same(point.GetSketch(), expectedSketch), "local_m", new[] { point.X, point.Y, point.Z });
+                    "same_sketch", Same(sketch, expectedSketch), "local_m", new[] { point.X, point.Y, point.Z },
+                    "native_sketch_owner", owner, "native_sketch_available", sketch != null);
+            }
             var segment = entity as ISketchSegment;
             if (segment != null)
                 return Row("kind", "sketch_segment", "type", segment.GetType(),
@@ -99,15 +105,15 @@ public sealed class P04Readback
         }
     }
 
-    object Relation(ISketchRelation relation, ISketch sketch)
+    object Relation(ISketchRelation relation, ISketch sketch, Dictionary<string, ISketch> sketchOwners)
     {
         var row = Row("type", relation.GetRelationType());
         try
         {
             row["entity_types"] = relation.GetEntitiesType();
-            row["entities"] = Items(relation.GetEntities()).Select(entity => Participant(entity, sketch)).ToArray();
+            row["entities"] = Items(relation.GetEntities()).Select(entity => Participant(entity, sketch, sketchOwners)).ToArray();
             row["definition_entities"] = Items(relation.GetDefinitionEntities2())
-                .Select(entity => Participant(entity, sketch)).ToArray();
+                .Select(entity => Participant(entity, sketch, sketchOwners)).ToArray();
         }
         catch (COMException error)
         {
@@ -116,7 +122,8 @@ public sealed class P04Readback
         return row;
     }
 
-    object Dimension(IDisplayDimension display, IDimension dimension, IFeature feature, ISketch sketch)
+    object Dimension(IDisplayDimension display, IDimension dimension, IFeature feature, ISketch sketch,
+        Dictionary<string, ISketch> sketchOwners)
     {
         var row = Row("name", dimension.Name, "full_name", dimension.FullName, "type", display.Type2,
             "system_value", dimension.SystemValue, "driven_state", dimension.DrivenState);
@@ -135,7 +142,7 @@ public sealed class P04Readback
             row["attachment_count"] = annotation.GetAttachedEntityCount3();
             row["attachment_types"] = annotation.GetAttachedEntityTypes();
             var attachments = Items(annotation.GetAttachedEntities3());
-            row["attachments"] = attachments.Select(entity => Participant(entity, sketch)).ToArray();
+            row["attachments"] = attachments.Select(entity => Participant(entity, sketch, sketchOwners)).ToArray();
             row["attachment_status"] = attachments.Length != (int)row["attachment_count"]
                 ? "count_mismatch" : attachments.Length == 0 ? "empty" : "observed_slots";
         }
@@ -147,7 +154,7 @@ public sealed class P04Readback
         return row;
     }
 
-    object Sketch(IFeature feature, ISketch sketch)
+    object Sketch(IFeature feature, ISketch sketch, Dictionary<string, ISketch> sketchOwners)
     {
         var dimensions = new List<object>();
         for (object current = feature.GetFirstDisplayDimension(); current != null;
@@ -156,21 +163,21 @@ public sealed class P04Readback
             var display = (IDisplayDimension)current;
             var dimension = display.GetDimension2(0) as IDimension;
             if (dimension != null && dimension.FullName.Split('@').Skip(1).FirstOrDefault() == feature.Name)
-                dimensions.Add(Dimension(display, dimension, feature, sketch));
+                dimensions.Add(Dimension(display, dimension, feature, sketch, sketchOwners));
         }
         var segments = new List<object>();
         foreach (var segment in Items(sketch.GetSketchSegments()).Cast<ISketchSegment>())
         {
             var line = segment as ISketchLine;
-            segments.Add(Row("entity", Participant(segment, sketch), "construction", segment.ConstructionGeometry,
-                "start", line == null ? null : Participant(line.IGetStartPoint2(), sketch),
-                "end", line == null ? null : Participant(line.IGetEndPoint2(), sketch)));
+            segments.Add(Row("entity", Participant(segment, sketch, sketchOwners), "construction", segment.ConstructionGeometry,
+                "start", line == null ? null : Participant(line.IGetStartPoint2(), sketch, sketchOwners),
+                "end", line == null ? null : Participant(line.IGetEndPoint2(), sketch, sketchOwners)));
         }
         return Row("feature", Feature(feature), "model_to_sketch_transform", sketch.ModelToSketchTransform.ArrayData,
-            "points", Items(sketch.GetSketchPoints2()).Select(point => Participant(point, sketch)).ToArray(),
+            "points", Items(sketch.GetSketchPoints2()).Select(point => Participant(point, sketch, sketchOwners)).ToArray(),
             "segments", segments, "dimensions", dimensions,
             "relations", Items(sketch.RelationManager.GetRelations(0)).Cast<ISketchRelation>()
-                .Select(relation => Relation(relation, sketch)).ToArray());
+                .Select(relation => Relation(relation, sketch, sketchOwners)).ToArray());
     }
 
     Dictionary<string, object> Support(IModelDoc2 document, ISketch sketch, IFeature boss, byte[] priorReference)
@@ -260,11 +267,11 @@ public sealed class P04Readback
         }
     }
 
-    object ObserveSketch(IFeature feature, ISketch sketch)
+    object ObserveSketch(IFeature feature, ISketch sketch, Dictionary<string, ISketch> sketchOwners)
     {
         try
         {
-            return Sketch(feature, sketch);
+            return Sketch(feature, sketch, sketchOwners);
         }
         catch (COMException error)
         {
@@ -277,12 +284,23 @@ public sealed class P04Readback
         var boss = NamedFeature(document, "BlindBoss", "Extrusion");
         var profile = NamedFeature(document, "RectangleSketch", "ProfileFeature");
         var cut = NamedFeature(document, "CutSketch", "ProfileFeature");
+        var origin = ((IPartDoc)document).FeatureByName("Origin") as IFeature;
+        var originSketch = origin == null ? null : origin.GetSpecificFeature2() as ISketch;
+        var profileSketch = (ISketch)profile.GetSpecificFeature2();
         var cutSketch = (ISketch)cut.GetSpecificFeature2();
+        var sketchOwners = new Dictionary<string, ISketch>
+        {
+            { profile.Name, profileSketch }, { cut.Name, cutSketch }
+        };
+        if (originSketch != null) sketchOwners.Add(origin.Name, originSketch);
         var support = Support(document, cutSketch, boss, priorReference);
         var equations = document.GetEquationMgr();
         return Row("configuration", document.IGetActiveConfiguration().Name, "support", support,
             "equations", Enumerable.Range(0, equations.GetCount()).Select(index => equations.Equation[index]).ToArray(),
-            "sketches", new[] { ObserveSketch(profile, (ISketch)profile.GetSpecificFeature2()), ObserveSketch(cut, cutSketch) });
+            "origin_feature", Feature(origin), "origin_returns_sketch", originSketch != null,
+            "origin_points", originSketch == null ? null : Items(originSketch.GetSketchPoints2())
+                .Select(point => Participant(point, originSketch, sketchOwners)).ToArray(),
+            "sketches", new[] { ObserveSketch(profile, profileSketch, sketchOwners), ObserveSketch(cut, cutSketch, sketchOwners) });
     }
 
     Dictionary<string, object> Read(string path, bool control)
