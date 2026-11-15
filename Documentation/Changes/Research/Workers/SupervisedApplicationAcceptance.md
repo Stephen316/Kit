@@ -20,7 +20,8 @@ Check the reported cause and use the owner command to resume any interrupted cle
 The acknowledgement journal and retained records protect pending cleanup across interruption.
 
 See [interrupted acknowledgement recovery](ApplicationAckRecovery.md) for restart behavior.
-Licensed application startup and restart and downstream input binding remain open.
+Phase B can select [accepted dependency inputs](../Controller/DependencyOutputInputs.md) from Phase A.
+Licensed application startup and restart remain open.
 The process cases exercise the supervisor, A03, and fixture application transport for accepted output, a mismatched installation binding, and a stale owner or attempt.
 They are selected by remote Linux, macOS and Windows research CI.
 Remote verification is pending.

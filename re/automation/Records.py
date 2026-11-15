@@ -46,15 +46,25 @@ def bounded(value, lower, upper):
     return value
 
 
+def input_binding(value, dependencies):
+    if isinstance(value, str):
+        return label(value)
+    if not isinstance(value, dict) or set(value) not in ({"dependency"}, {"dependency", "artifact"}):
+        raise ValueError("input must name a binding or select a dependency result or artifact")
+    dependency = label(value["dependency"])
+    if dependency not in dependencies:
+        raise ValueError("input selector must refer to a declared dependency")
+    return {"dependency": dependency, "artifact": label(value["artifact"])} if "artifact" in value else {"dependency": dependency}
+
+
 def specification(value):
     required = {"id", "kind", "inputs", "rule_version", "tool_version"}
     optional = {"depends_on", "resources", "options", "max_attempts", "lease_seconds", "timeout_seconds", "retry_base_seconds"}
     if not isinstance(value, dict) or not required <= value.keys() or value.keys() - required - optional:
         raise ValueError("job fields do not match the version 1 contract")
     if not isinstance(value["inputs"], dict) or len(value["inputs"]) > 64:
-        raise ValueError("inputs must map at most 64 roles to named evidence bindings")
+        raise ValueError("inputs must map at most 64 roles to bindings or dependency selectors")
     result = {key: label(value[key]) for key in ("id", "kind", "rule_version", "tool_version")}
-    result["inputs"] = {label(role): label(name) for role, name in value["inputs"].items()}
     for key in ("depends_on", "resources"):
         items = value.get(key, [])
         if not isinstance(items, list) or len(items) > 64:
@@ -62,6 +72,7 @@ def specification(value):
         result[key] = sorted({label(item) for item in items})
     if result["id"] in result["depends_on"]:
         raise ValueError("job cannot depend on itself")
+    result["inputs"] = {label(role): input_binding(binding, result["depends_on"]) for role, binding in value["inputs"].items()}
     options = value.get("options", {})
     if not isinstance(options, dict):
         raise ValueError("options must be a JSON object")

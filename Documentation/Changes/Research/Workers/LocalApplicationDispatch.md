@@ -57,8 +57,11 @@ artifacts:
 - `phase-a.P01`, `phase-a.P02`, `phase-a.P03` or `phase-a.P04`, for each selected
   recipe's saved baseline A archive.
 
-The existing artifact and binding operations can prepare those inputs. Automatic
-publication of downstream input bindings is not implemented by this slice.
+Configure [accepted dependency inputs](../Controller/DependencyOutputInputs.md)
+for Phase B to receive the complete input set when A03 accepts Phase A.
+Keep both jobs in the same application runner pool and use the same installation
+and plan. The supervisor defers new claims for that pool while it acknowledges
+Phase A. The native restart requirement still governs Phase B admission.
 
 The worker submits a fresh random challenge. The add-in services it on Fusion's
 main thread, opens and recomputes the pinned healthy control, and closes only its
@@ -107,10 +110,10 @@ The dispatcher never quits or kills externally owned CAD. Unknown-owner
 quarantines require explicit owner recovery. A known old-process quarantine fence
 can clear when a new counterpart starts after that old process exits. An acceptance
 fence does not clear on restart, and a retained spool still blocks new admission.
-Automatic recovery,
-50-job resets, native-process memory limits, 20-job batch invalidation, automatic
-invocation of acknowledgement, retention policy and unattended pilot evidence remain
-open A08c work.
+[Supervised acknowledgement](SupervisedApplicationAcceptance.md) can verify and
+release accepted output. Automatic CAD startup and restart, 50-job resets,
+native-process memory limits, 20-job batch invalidation, retention policy and
+unattended pilot evidence remain open A08c work.
 
 The native operation currently supports macOS Fusion. Windows Fusion and
 SOLIDWORKS configurations return `waiting_application`. Missing, busy or fenced

@@ -39,13 +39,16 @@ Each submitted record must contain these fields:
 | -------------- | ----------------------------------------------------------------------------------- |
 | `id`           | Stable job label; submitting changed content updates that job's definition          |
 | `kind`         | Worker operation identifier; the controller does not execute this string            |
-| `inputs`       | Object mapping semantic roles to named evidence bindings                            |
+| `inputs`       | Object mapping semantic roles to named evidence bindings or accepted dependency output selectors |
 | `rule_version` | Explicit rule version; actual integrations must use an immutable version identifier |
 | `tool_version` | Explicit worker build/version identifier                                            |
 
 Optional fields are `depends_on`, `resources`, `options`, `max_attempts`, `lease_seconds`, `timeout_seconds` and `retry_base_seconds`.
 Unknown top-level fields are rejected.
 Dependencies and resources are arrays of labels; `options` is a JSON object.
+An input selector identifies a job in `depends_on` and can select its accepted result or a named artifact.
+The controller resolves the full input set in the same snapshot transaction that checks the dependencies.
+See [accepted dependency inputs](../../Changes/Research/Controller/DependencyOutputInputs.md) for the syntax and the Phase B example.
 Forward dependencies are allowed, but cycles roll back the submission.
 Use `submit-batch <file>` with a JSON object containing only `jobs`, an array of job records, to submit a group atomically.
 Duplicate identifiers within a batch are rejected.

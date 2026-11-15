@@ -13,6 +13,10 @@ from OutputManifest import InvalidOutput, output_manifest
 from Records import StaleLease, bounded, canonical, digest, label, read_record, reason_text, specification
 
 
+def named_inputs(spec):
+    return {binding for binding in spec["inputs"].values() if isinstance(binding, str)}
+
+
 class Ledger:
     def __init__(self, root, create=False, max_running=4):
         root = Path(root).resolve()
@@ -47,7 +51,7 @@ class Ledger:
                         self.db.execute(statement)
                 for row in self.db.execute("SELECT id,definition FROM jobs").fetchall():
                     spec = specification(json.loads(row["definition"]))
-                    self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(row["id"], name) for name in set(spec["inputs"].values())])
+                    self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(row["id"], name) for name in named_inputs(spec)])
                     self.db.executemany("INSERT INTO job_resources VALUES (?,?)", [(row["id"], name) for name in spec["resources"]])
                 self.db.execute("INSERT INTO dirty SELECT id FROM jobs")
             if version in (0, 1, 2):
@@ -185,7 +189,7 @@ class Ledger:
         self.db.executemany("INSERT INTO dependencies VALUES (?,?)", [(spec["id"], item) for item in spec["depends_on"]])
         self.event(spec["id"], "submitted", {"definition_hash": digest(spec)})
         self.db.execute("DELETE FROM job_inputs WHERE job_id=?", (spec["id"],))
-        self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(spec["id"], name) for name in set(spec["inputs"].values())])
+        self.db.executemany("INSERT INTO job_inputs VALUES (?,?)", [(spec["id"], name) for name in named_inputs(spec)])
         self.db.execute("DELETE FROM job_resources WHERE job_id=?", (spec["id"],))
         self.db.executemany("INSERT INTO job_resources VALUES (?,?)", [(spec["id"], name) for name in spec["resources"]])
         self.db.execute("INSERT OR IGNORE INTO dirty VALUES (?)", (spec["id"],))
@@ -220,6 +224,8 @@ class Ledger:
             self.verify_object(digest(spec))
         inputs = {}
         for role, name in spec["inputs"].items():
+            if not isinstance(name, str):
+                continue
             row = self.db.execute("SELECT sha256 FROM bindings WHERE name=?", (name,)).fetchone()
             if row is None:
                 return None
@@ -235,7 +241,29 @@ class Ledger:
                 self.verify_object(row["receipt"])
                 self.verify_result(row["result"])
             dependencies[name] = {"receipt": row["receipt"], "result": row["result"]}
+        manifests = {}
+        for role, selector in spec["inputs"].items():
+            if isinstance(selector, str):
+                continue
+            sha256 = self.dependency_input(selector, dependencies, manifests)
+            if sha256 is None:
+                return None
+            inputs[role] = {"binding": selector, "sha256": sha256}
         return {"definition_hash": digest(spec), "inputs": inputs, "dependencies": dependencies}
+
+    def dependency_input(self, selector, dependencies, manifests):
+        result_hash = dependencies[selector["dependency"]]["result"]
+        if "artifact" not in selector:
+            return result_hash
+        if result_hash not in manifests:
+            result = read_record(self.objects.path(result_hash))
+            if digest(result) != result_hash:
+                raise ValueError("dependency result integrity mismatch")
+            manifests[result_hash] = (
+                output_manifest(result["output_artifacts"], paths=False) if result.get("output_artifacts_version") == 1 else {}
+            )
+        artifact = manifests[result_hash].get(selector["artifact"])
+        return artifact["sha256"] if artifact is not None else None
 
     def revoke(self, row, reason):
         receipt = None

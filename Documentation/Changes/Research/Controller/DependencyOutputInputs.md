@@ -1,0 +1,45 @@
+# Use accepted dependency outputs as job inputs
+
+In an A03 job definition, an `inputs` entry can name a global evidence binding or select bytes from a job in its explicit `depends_on` list.
+Use `{"dependency": "job:id"}` for the accepted A03 result record or add `"artifact": "role"` for a named entry in that result's accepted output manifest.
+Use the same submit and supervisor commands as other jobs.
+
+For example, submit Phase A as `capture:fusion:p01:a`, then submit this Phase B job with the runner and resource configured for the same [Fusion installation](../Workers/LocalApplicationDispatch.md).
+Both jobs use the same `capture:plan:p01` binding.
+
+```json
+{
+  "id": "capture:fusion:p01:b",
+  "kind": "capture.fusion",
+  "inputs": {
+    "plan": "capture:plan:p01",
+    "phase-a.accepted": { "dependency": "capture:fusion:p01:a" },
+    "phase-a.receipt": {
+      "dependency": "capture:fusion:p01:a", "artifact": "phase-a.receipt"
+    },
+    "phase-a.measurements": {
+      "dependency": "capture:fusion:p01:a", "artifact": "phase-a.measurements"
+    },
+    "phase-a.P01": {
+      "dependency": "capture:fusion:p01:a", "artifact": "phase-a.P01"
+    }
+  },
+  "depends_on": ["capture:fusion:p01:a"],
+  "resources": ["application:fusion:local"],
+  "options": { "phase": "b" },
+  "rule_version": "fresh-fusion@1",
+  "tool_version": "fusion-dispatch@1"
+}
+```
+
+Use the receipt and measurement roles and one baseline archive role for each recipe in the pinned plan.
+A03 resolves the full input set and its dependency receipts in one controller transaction.
+The claim's input descriptor retains the selector alongside the verified digest. The supervisor stages each digest as a private session file.
+An incomplete dependency or a missing named output leaves the child waiting for evidence. Corrupted accepted bytes fail verification.
+The child can reuse its completed result when the job definition and prerequisites remain identical.
+A replacement or invalidated parent changes the child's prerequisite fingerprint and fences an active child lease.
+The selector creates no global name and uses no additional binding command.
+
+The Fusion runner still validates the accepted result, files, plan and installation and requires the old native process to exit.
+The remote process cases cover exact staging, repeat submission, changing the parent generation, a missing output and an undeclared dependency.
+Licensed execution and remote verification remain pending for this change.
