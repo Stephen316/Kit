@@ -43,7 +43,9 @@ claim; it does not establish application health.
 ## Submit a phase
 
 Prepare a plan with the existing `FusionFreshProcess.py` tool at the same trusted
-revision. Bind `plan.json` as the input role `plan`. The job takes exactly one
+revision. The [phase queue command](FusionPhaseQueue.md) binds the plan and submits
+both jobs in one A03 transaction. For manually prepared jobs, bind `plan.json`
+as the input role `plan`. The job takes exactly one
 option, `phase`, whose value is `a` or `b`. Recipe selection is pinned inside the
 prepared plan.
 
