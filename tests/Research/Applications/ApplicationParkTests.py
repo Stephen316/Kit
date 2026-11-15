@@ -38,14 +38,15 @@ def CheckParking(Application: str) -> None:
                     options={"phase": "a"},
                 ),
                 FixtureJob("dependent", "fixture.decode", depends_on=["absent"]),
-                FixtureJob("independent", "fixture.decode"),
+                FixtureJob("independent", "fixture.decode", lease_seconds=30),
             ]
         )
-        _ = Harness.RunIdle()
+        Events = Harness.RunIdle()
         JobStatus = Harness.ReadJob("absent")
         assert JobStatus["state"] == "waiting_application", JobStatus["reason"]
         assert Harness.ReadJob("dependent")["state"] == "waiting_evidence"
-        assert Harness.ReadJob("independent")["state"] == "completed"
+        Independent = Harness.ReadJob("independent")
+        assert Independent["state"] == "completed", (Independent, Events)
         Result = JsonCodec.loads(JsonCodec.dumps(Harness.ReadResult("absent")))
         assert Result["result"]["records"]["native_qualified"] is False
         assert "output_artifacts" not in Result
