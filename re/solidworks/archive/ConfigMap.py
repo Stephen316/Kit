@@ -19,6 +19,7 @@ from SketchEvidence import (
 if __name__ == "__main__":
     ImportPaths.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
+from ConfigAnnot import ReadAnnotDefs
 from ConfigDetail import (
     KStyleTails,
     ReadDetailStart,
@@ -145,11 +146,12 @@ def ReadModelPresentation(Cursor):
         ReadLengthCode(Cursor)
         ReadLengthLink(Cursor, Events)
         ReadStyleTail(Cursor, Format)
+    ReadAnnotDefs(Cursor)
     ReadPointers(
         Cursor,
         Events,
         (
-            (8813, KNullKind, None),
+            (6857, KNullKind, None),
             (0, KNullKind, None),
             (48, KNullKind, None),
             (0, KNullKind, None),

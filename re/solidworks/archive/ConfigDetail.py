@@ -85,10 +85,16 @@ def ReadLengthCode(Cursor):
     Require(UnitCode <= 10, True, "length unit code")
 
 
-# the two line fonts inline a modern short and float width before the style code
+# line widths store a mode short and the width in single precision
+def ReadLineWidth(Cursor):
+    Cursor.ReadValue("<hf")
+
+
+# the two line fonts inline a modern width before the style code
 def ReadLineFont(Cursor):
     Cursor.ReadText()
-    Cursor.ReadValue("<hfh")
+    ReadLineWidth(Cursor)
+    Cursor.ReadValue("<h")
 
 
 # angle units and appearance fields follow the optional length unit in each style
