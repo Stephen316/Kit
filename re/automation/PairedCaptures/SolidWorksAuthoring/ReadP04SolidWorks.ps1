@@ -3,7 +3,9 @@ param(
     [Parameter(Mandatory)]
     [string]$OutputDirectory,
     [Parameter(Mandatory)]
-    [string]$InteropAssembly
+    [string]$InteropAssembly,
+    [string]$SourceRoot,
+    [string]$SourceRevision
 )
 
 $ErrorActionPreference = 'Stop'
@@ -13,10 +15,20 @@ if ($PSVersionTable.PSEdition -ne 'Desktop' -or
     throw 'Run with 64-bit Windows PowerShell 5.1 in STA mode.'
 }
 
-$repository = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../../..')).Path
+if ([bool]$SourceRoot -ne [bool]$SourceRevision) {
+    throw 'Provide both pinned source arguments for a staged launcher.'
+}
+$repository = if ($SourceRoot) {
+    (Resolve-Path -LiteralPath $SourceRoot).Path
+} else {
+    (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '../../../..')).Path
+}
 $revision = git -C $repository rev-parse --verify 'HEAD^{commit}'
 if ($LASTEXITCODE -ne 0 -or $revision -cnotmatch '^[a-f0-9]{40}$') {
     throw 'A complete Git checkout is required.'
+}
+if ($SourceRevision -and $SourceRevision -cne $revision) {
+    throw 'The checkout revision differs from the staged launcher source pin.'
 }
 
 function Get-Pin([string]$RelativePath) {
@@ -85,6 +97,7 @@ if ($spec.sha256 -cne '3c93e024f9fbdda50e610bda3b363bf30e8e7cdc914ef0728087befe1
 }
 $collector = Get-Pin "$authoringRoot/P04Readback.cs"
 $launcher = Get-Pin "$authoringRoot/ReadP04SolidWorks.ps1"
+Assert-Bytes $PSCommandPath $launcher
 $files = [ordered]@{}
 foreach ($reported in $existing.native_files) {
     if ($reported.file -cnotmatch '^P04-solidworks-[A-Za-z0-9_-]+\.SLDPRT$' -or

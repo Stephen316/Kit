@@ -21,7 +21,9 @@ COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
 BOOTSTRAP = "re/automation/PairedCaptures/Runner/KitCaptureRunner/KitCaptureRunner.py"
 INPUTS = {"re/automation/PairedCaptures/FusionCapture.py", "re/automation/PairedCaptures/FusionBindings.py",
-          "re/automation/PairSpecs.json", "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d"}
+          "re/automation/PairSpecs.json", "re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d",
+          "re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py",
+          "re/automation/PairedCaptures/SolidWorksAuthoring/ReadP04SolidWorks.ps1"}
 
 
 class WaitingApplication(ValueError):
