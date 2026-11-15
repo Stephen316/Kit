@@ -483,9 +483,9 @@
    "Class": "ACDBASSOCINVENTORPERSSUBENTIDMANAGER",
    "Part": "Data",
    "Field": "ManagerFlag",
-   "Value": 1,
-   "Basis": "tested",
-   "Note": "Inventor subentity manager bit. Fusion opens the drawing with 0 (Z1Flag), 1 (Y0Base). Kit writes 1, the value of every Fusion save",
+   "Value": 0,
+   "Basis": "schema",
+   "Note": "Inventor subentity manager bit. Fusion opens the drawing with 0 (Z1Flag) and with 1 (Y0Base), so Kit writes the schema zero rather than the value every save happens to carry",
    "Instances": 6,
    "Equal": 6,
    "Drawings": 1

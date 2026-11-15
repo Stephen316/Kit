@@ -1,3 +1,4 @@
+from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgFile import DwgFile
 from convert.formats.Fusion.DrawingCodec.Manifest.DrawingAsset import DrawingAsset
 from convert.formats.Fusion.DrawingCodec.Manifest.DrawingRoot import DrawingRoot
 from convert.formats.Fusion.DrawingCodec.Manifest.ManifestRules import (
@@ -27,6 +28,6 @@ def CheckJoins(
     if Database is not None and (
         "/" in Database.FileName
         or not Database.FileName.endswith(".dwg")
-        or type(Database.Content) is not bytes
+        or type(Database.Model) is not DwgFile
     ):
         raise ValueError("Invalid Fusion drawing database member")

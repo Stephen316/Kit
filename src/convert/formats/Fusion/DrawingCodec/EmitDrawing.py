@@ -1,6 +1,7 @@
 from collections.abc import Callable
 from typing import cast as CastValue
 
+from convert.formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile
 from convert.formats.Fusion.DrawingCodec.Manifest.EmitAsset import EmitAsset
 from convert.formats.Fusion.DrawingCodec.Manifest.EmitRoot import EmitRoot
 from convert.formats.Fusion.DrawingCodec.Model.CheckDatabase import CheckDatabase
@@ -18,6 +19,7 @@ from convert.formats.Fusion.DrawingCodec.Model.DrawingNames import (
     KRootManifest,
     KSheetName,
 )
+from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import CheckLoadable
 from convert.formats.Fusion.DrawingCodec.Model.FusionDrawing import FusionDrawing
 from convert.formats.Fusion.DrawingCodec.Package.DrawingPackage import DrawingPackage
 from convert.formats.Fusion.DrawingCodec.Package.EmitPackage import EmitPackage
@@ -49,6 +51,7 @@ def EmitDrawing(
         Entries.append(PackageEntry(SlotValue.Name, Payload, SlotValue.Layout))
     if Payloads:
         raise ValueError("Fusion drawing layout omits typed members")
+    CheckLoadable(Value.Database) if Value.Database is not None else None
     return EmitPackage(DrawingPackage(tuple(Entries)), CompressZstd)
 
 
@@ -60,7 +63,9 @@ def DrawingPayloads(Value: FusionDrawing) -> dict[str, bytes]:
         EmitSegments(Value.Asset, DrawingFolders(Value.Asset.Segments), Value.Segments)
     )
     if Value.Database is not None:
-        Active[KDatabaseFolder + Value.Database.FileName] = Value.Database.Content
+        Active[KDatabaseFolder + Value.Database.FileName] = EmitDwgFile(
+            Value.Database.Model
+        )
     if Value.Sheet is not None:
         Active[KSheetName] = EmitSheet(Value.Sheet)
     Parts = [
