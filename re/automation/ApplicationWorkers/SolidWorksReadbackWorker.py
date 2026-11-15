@@ -10,8 +10,8 @@ from tempfile import TemporaryFile
 import time
 
 from ApplicationProtocol import (
-    ACKNOWLEDGEMENT, HostQueue, MAX_BYTES, PROTOCOL, QueueClient, WaitingApplication, committed_bytes, configuration,
-    encoded, file_bytes, pin, record, require, sha256, write_new, write_record,
+    ACKNOWLEDGEMENT, ApplicationTimeout, HostQueue, MAX_BYTES, PROTOCOL, QueueClient, WaitingApplication,
+    committed_bytes, configuration, encoded, file_bytes, pin, record, request_link, require, sha256, write_new, write_record,
 )
 
 WORKER = "re/automation/ApplicationWorkers/SolidWorksReadbackWorker.py"
@@ -162,10 +162,10 @@ def recover_owned_process(handle, launch, ticket):
     import win32event
     import win32process
 
-    verify_native_ticket(ticket, launch)
+    ticket_hash = verify_native_ticket(ticket, launch)
     status = win32event.WaitForSingleObject(handle, 0)
     if status == win32event.WAIT_OBJECT_0:
-        return "already_exited"
+        return "already_exited", ticket_hash
     require(status == win32event.WAIT_TIMEOUT, "owned process wait did not report a live identity")
     expected = {key: launch[key] for key in ("pid", "created", "session", "image")}
     require(native_identity(handle) == expected and expected["session"] == session_id(os.getpid()),
@@ -174,15 +174,18 @@ def recover_owned_process(handle, launch, ticket):
         win32process.TerminateProcess(handle, 1)
     except pywintypes.error:
         if win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_OBJECT_0:
-            return "already_exited"
+            return "already_exited", ticket_hash
         raise
     require(win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0,
             "termination did not signal the held SOLIDWORKS process")
-    return "terminated_owned_process"
+    return "terminated_owned_process", ticket_hash
 
 
-def record_timeout(work, request_pin, collector, handle, launch, recovery_enabled):
-    recovery = {**request_pin, "trigger": "collector_timeout", "status": "quarantined"}
+def record_timeout(work, request, listener, collector, handle, launch, recovery_enabled):
+    recovery = {
+        "version": 2, "installation": request["installation"], "source_revision": request["source_revision"],
+        **request_link(request), "listener": listener, "trigger": "collector_timeout", "status": "quarantined",
+    }
     try:
         stop_collector(collector)
         if not recovery_enabled:
@@ -190,11 +193,17 @@ def record_timeout(work, request_pin, collector, handle, launch, recovery_enable
         elif handle is None or launch is None:
             recovery["reason"] = "no retained direct launch identity"
         else:
-            recovery["status"] = recover_owned_process(handle, launch, work / "readback/native-owner.json")
+            require(launch["request_sha256"] == recovery["request_sha256"]
+                    and launch["source_revision"] == recovery["source_revision"],
+                    "held SOLIDWORKS launch belongs to a different timeout request")
+            recovery["status"], recovery["owner_ticket_sha256"] = recover_owned_process(
+                handle, launch, work / "readback/native-owner.json",
+            )
             recovery["pid"] = launch["pid"]
             recovery["created"] = launch["created"]
     except Exception as error:
         recovery["reason"] = f"{type(error).__name__}: {error}"[:2048]
+    write_record(work / "native-timeout-request.json", request)
     write_record(work / "native-recovery.json", recovery)
 
 
@@ -242,7 +251,7 @@ def run_collector(host, request, work, interop, staged, recovery_enabled):
                     "SOLIDWORKS collector did not close the directly owned process")
             return owner_hash
         except subprocess.TimeoutExpired:
-            record_timeout(work, request_pin, collector, handle, launch, recovery_enabled)
+            record_timeout(work, request, host.host, collector, handle, launch, recovery_enabled)
             raise
         finally:
             try:
@@ -313,6 +322,15 @@ def dispatch(session, config):
         records.update({**request, "host": response["host"], "solidworks_build": proof["solidworks_build"],
                         "readback_plan_sha256": proof["readback_plan_sha256"]})
         return {"outcome": "completed", "reason": response["reason"], "records": records, "artifacts": artifacts}
+    except ApplicationTimeout as error:
+        records["queue_timeout"] = {
+            "version": 1, **request_link(error.request), "installation": config["installation"],
+            "source_revision": config["source_revision"],
+            "job_id": job["job"]["id"], "kind": job["job"]["kind"], "resources": job["job"]["resources"],
+            "session": job["session"], "generation": job["generation"], "fingerprint": job["fingerprint"],
+            "attempt": job["attempt"],
+        }
+        return {"outcome": "waiting_application", "reason": str(error)[:2048], "records": records}
     except (WaitingApplication, FileNotFoundError, BlockingIOError) as error:
         return {"outcome": "waiting_application", "reason": str(error)[:2048], "records": records}
     finally:

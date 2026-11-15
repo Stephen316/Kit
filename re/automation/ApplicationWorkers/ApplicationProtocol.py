@@ -30,6 +30,12 @@ class WaitingApplication(ValueError):
     pass
 
 
+class ApplicationTimeout(WaitingApplication):
+    def __init__(self, request):
+        super().__init__("application did not answer before its bounded deadline; installation quarantined")
+        self.request = request
+
+
 def require(value, reason):
     if not value:
         raise ValueError(reason)
@@ -175,6 +181,11 @@ def write_record(path, value, replace=False):
 
 def sha256(content):
     return hashlib.sha256(content).hexdigest()
+
+
+def request_link(value):
+    return {"queue_job_id": value["job_id"], "request_sha256": sha256(encoded(value)),
+            "nonce": value["nonce"], "client": value["client"]}
 
 
 def pin(path, relative):
@@ -365,7 +376,7 @@ class QueueClient:
                 return response
             time.sleep(0.05)
         self.cancel("application challenge or operation exceeded its request deadline")
-        raise WaitingApplication("application did not answer before its bounded deadline; installation quarantined")
+        raise ApplicationTimeout(request)
 
 
 class HostQueue:

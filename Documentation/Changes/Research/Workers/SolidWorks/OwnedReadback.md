@@ -25,6 +25,7 @@ The listener never reopens a process by PID for timeout recovery.
 A missing or mismatched ticket or handle stays quarantined.
 The failed result, spool and quarantine remain available for disposition even after a confirmed exit.
 Starting a new listener does not clear a SOLIDWORKS fence.
+The [timeout provenance](TimeoutProvenance.md) links a dispatched timeout and a confirmed exit to their exact request and controller attempt.
 
 A separate licensed probe verified direct launch, passive COM identity, read-only healthy control rebuild and normal exit via the held handle.
 The Windows process checks use a disposable operating-system child to exercise missing tickets, changed tickets and mismatched handle identity.

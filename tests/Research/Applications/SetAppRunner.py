@@ -7,16 +7,22 @@ from tests.Research.SupervisorClient import KRepoRoot, SessionHost
 
 
 # supervisor coverage needs to dispatch through the real application registry for the selected installation
-def SetAppRunner(Harness: SessionHost, ConfigFile: FilePath) -> None:
+def SetAppRunner(
+    Harness: SessionHost, ConfigFile: FilePath, Readback: bool = False
+) -> None:
     RegistryFile = Harness.RootPath / "Runners.json"
     Registry = JsonCodec.loads(RegistryFile.read_text(encoding="utf-8"))
-    Registry["runners"]["fixture.app"]["argv"] = [
-        System.executable,
-        str(KRepoRoot / "re/automation/ApplicationWorkers/FusionApplicationWorker.py"),
-        "--installation",
-        str(ConfigFile),
-        "{session}",
-    ]
+    Worker = "SolidWorksReadbackWorker.py" if Readback else "FusionApplicationWorker.py"
+    Registry["runners"]["fixture.app"]["argv"] = (
+        [
+            System.executable,
+            str(KRepoRoot / "re/automation/ApplicationWorkers" / Worker),
+            "--installation",
+            str(ConfigFile),
+        ]
+        + (["dispatch"] if Readback else [])
+        + ["{session}"]
+    )
     Registry["runners"]["fixture.app"]["result_schema"] = str(
         KRepoRoot / "re/automation/ApplicationWorkers/ApplicationResult.json"
     )

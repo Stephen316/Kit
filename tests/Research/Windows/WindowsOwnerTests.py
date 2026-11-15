@@ -9,9 +9,9 @@ from pytest import mark as TestMark
 from tests.Research.SupervisorClient import KRepoRoot
 
 
-# refusal needs a real owned windows handle while leaving the licensed application untouched
+# cleanup evidence needs a real owned windows handle while leaving the licensed application untouched
 @TestMark.skipif(OsLayer.name != "nt", reason="requires Windows process identity")
-@TestMark.parametrize("FaultName", ("missing", "ticket", "identity"))
+@TestMark.parametrize("FaultName", ("missing", "ticket", "identity", "exited"))
 def CheckOwnerGuard(FaultName: str) -> None:
     with TempFiles.TemporaryDirectory() as TempName:
         RootPath = FilePath(TempName).resolve()
@@ -25,7 +25,7 @@ import win32event
 import win32process
 
 sys.path.insert(0, sys.argv[1])
-from ApplicationProtocol import record, write_record
+from ApplicationProtocol import encoded, identity, record, sha256, write_record
 from SolidWorksReadbackWorker import BUILD, native_identity, record_timeout
 
 root = Path(__file__).parent
@@ -42,23 +42,37 @@ handle, thread, _, _ = win32process.CreateProcess(
 )
 thread.Close()
 try:
-    request = {'version': 1, 'request_sha256': 'a' * 64, 'source_revision': 'b' * 40}
-    launch = {**request, **native_identity(handle)}
+    listener = identity(os.getpid())
+    request = {'version': 1, 'job_id': 'a' * 32, 'source_revision': 'b' * 40,
+               'nonce': 'c' * 48, 'client': listener, 'installation': 'fixture:readback'}
+    launch = {'version': 1, 'request_sha256': sha256(encoded(request)),
+              'source_revision': request['source_revision'], **native_identity(handle)}
     fault = sys.argv[2]
     if fault == 'identity':
         launch['created'] = 'windows:1'
     if fault != 'missing':
         ticket = {**launch, 'build': BUILD, 'initial_documents': 0}
         if fault == 'ticket':
-            ticket['request_sha256'] = 'c' * 64
+            ticket['request_sha256'] = 'd' * 64
         write_record(output / 'native-owner.json', ticket)
+    if fault == 'exited':
+        win32process.TerminateProcess(handle, 0)
+        assert win32event.WaitForSingleObject(handle, 5000) == win32event.WAIT_OBJECT_0
     with subprocess.Popen(arguments('exit 0'), creationflags=subprocess.CREATE_NO_WINDOW) as collector:
         assert collector.wait(timeout=10) == 0
-        record_timeout(root, request, collector, handle, launch, True)
+        record_timeout(root, request, listener, collector, handle, launch, True)
     result = record(root / 'native-recovery.json')
-    expected = {'missing': 'FileNotFoundError', 'ticket': 'did not ticket', 'identity': 'identity changed'}
-    assert result['status'] == 'quarantined' and expected[fault] in result['reason'], result
-    assert win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_TIMEOUT
+    assert (root / 'native-timeout-request.json').read_bytes() == encoded(request)
+    assert result['request_sha256'] == sha256(encoded(request)) and result['nonce'] == request['nonce']
+    assert result['queue_job_id'] == request['job_id'] and result['listener'] == listener
+    if fault == 'exited':
+        assert result['status'] == 'already_exited'
+        assert result['owner_ticket_sha256'] == sha256(encoded(ticket))
+    else:
+        expected = {'missing': 'FileNotFoundError', 'ticket': 'did not ticket', 'identity': 'identity changed'}
+        assert result['status'] == 'quarantined' and expected[fault] in result['reason'], result
+        assert 'owner_ticket_sha256' not in result
+        assert win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_TIMEOUT
 finally:
     if win32event.WaitForSingleObject(handle, 0) == win32event.WAIT_TIMEOUT:
         win32process.TerminateProcess(handle, 1)
