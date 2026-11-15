@@ -1,3 +1,4 @@
+import errno
 import os
 import stat
 from contextlib import ExitStack, contextmanager
@@ -7,6 +8,7 @@ import msvcrt
 import pywintypes
 import win32con
 import win32file
+from winerror import ERROR_FILE_NOT_FOUND, ERROR_PATH_NOT_FOUND
 
 
 def shared_identity(info):
@@ -66,9 +68,11 @@ def open_owner_lock(path):
 @contextmanager
 def open_record(path):
     path = Path(os.path.abspath(path))
+    handle_opened = False
     try:
         with hold_directory(path.parent):
             handle = win32file.CreateFile(str(path), win32con.GENERIC_READ, win32con.FILE_SHARE_READ, None, win32con.OPEN_EXISTING, win32file.FILE_FLAG_OPEN_REPARSE_POINT, None)
+            handle_opened = True
             try:
                 attributes = win32file.GetFileInformationByHandle(handle)[0]
                 if attributes & (win32con.FILE_ATTRIBUTE_DIRECTORY | win32con.FILE_ATTRIBUTE_REPARSE_POINT) or win32file.GetFileType(handle) != win32file.FILE_TYPE_DISK:
@@ -94,4 +98,6 @@ def open_record(path):
                 if handle_identity(opened) != handle_identity(after) or shared_identity(opened) != shared_identity(final):
                     raise ValueError("application input changed while reading")
     except pywintypes.error as error:
+        if not handle_opened and error.winerror in (ERROR_FILE_NOT_FOUND, ERROR_PATH_NOT_FOUND):
+            raise FileNotFoundError(errno.ENOENT, "Windows application record not found", str(path), error.winerror) from error
         raise OSError(f"Windows application record failed: {error.winerror}") from error
