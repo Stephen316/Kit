@@ -1,3 +1,4 @@
+import hashlib as Hashing
 import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
@@ -26,6 +27,12 @@ def CheckAppKitQuit(TmpPath: FilePath, CaseName: str) -> None:
     Evidence = JsonCodec.loads(RunResult.stdout)
     assert Evidence == JsonCodec.loads((TmpPath / "ExitObservation.json").read_bytes())
     assert Evidence["case"] == CaseName
+    BridgePath = ScriptPath.with_name("MacCocoaQuit.py")
+    assert (
+        Evidence["bridge_sha256"] == Hashing.sha256(BridgePath.read_bytes()).hexdigest()
+    )
+    assert Evidence["missing_application_refused"] is True
+    assert Evidence["non_main_thread_refused"] is True
     Accepts = CaseName == "accept"
     assert Evidence["delegate_decision"] == ("accept" if Accepts else "cancel")
     assert (Evidence["kernel_exit"] is not None) is Accepts
