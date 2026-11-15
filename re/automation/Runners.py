@@ -7,7 +7,7 @@ from OutputManifest import output_manifest
 SCHEMA_KEYS = {"$schema", "title", "description", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "maxLength", "minimum", "maximum", "minItems", "maxItems"}
 TYPES = {"object", "array", "string", "integer", "number", "boolean", "null"}
 OUTCOMES = {"completed", "rejected", "waiting_evidence", "waiting_ci", "waiting_application"}
-ENTRY_KEYS = {"pool", "argv", "result_schema", "threads", "initial_peak_memory_mib", "max_memory_mib", "group_protocol", "group_limit_bytes", "group_peak_memory_mib"}
+ENTRY_KEYS = {"pool", "argv", "result_schema", "threads", "initial_peak_memory_mib", "max_memory_mib", "group_protocol", "group_limit_bytes", "group_peak_memory_mib", "application_installation"}
 
 
 def check_schema(schema, depth=0):
@@ -150,6 +150,12 @@ class Registry:
             maximum = bounded(entry.get("max_memory_mib", min(1048576, max(estimate, floor) * 2)), 1, 1048576)
             if group is not None and floor > maximum:
                 raise ValueError("group memory floor exceeds max_memory_mib")
+            installation = None
+            if "application_installation" in entry:
+                value = entry["application_installation"]
+                if group is not None or not isinstance(value, str) or not value or "\0" in value:
+                    raise ValueError(f"runner {kind} needs a valid application installation path and single-job dispatch")
+                installation = path.parent / value
             self.runners[kind] = {
                 "pool": label(entry["pool"]),
                 "argv": list(argv),
@@ -161,6 +167,7 @@ class Registry:
                 "group_protocol": group,
                 "group_limit_bytes": bounded(entry.get("group_limit_bytes", 1048576), 1, 268435456),
                 "group_peak_memory_mib": floor,
+                "application_installation": installation,
             }
 
     def pools(self):

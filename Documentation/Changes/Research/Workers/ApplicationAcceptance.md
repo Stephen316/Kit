@@ -29,9 +29,9 @@ If the accepted phase requires a restart, the command restores the old-process r
 A new application process must still verify the previous process exited.
 The command does not launch or stop a CAD application.
 
-Automatic invocation after supervisor settlement and downstream input binding remain open.
-An agent can invoke this command with the existing trusted configuration.
-This slice does not change controller, native capture, or source-validation contracts.
+After a supervisor crash or acknowledgement refusal, an agent can invoke the owner command with the existing trusted configuration.
+See [supervised application acceptance](SupervisedApplicationAcceptance.md) for optional automatic invocation after the controller finishes an attempt.
+Downstream input binding remains open.
 
 The remote application process selection includes checks for completed acceptance, stale and tampered output, repeated acknowledgement, retained restart ownership, and recovery after a filesystem refusal.
 The cases call the real supervisor, controller, and application transport with a fixed fixture.

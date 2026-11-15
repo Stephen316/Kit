@@ -26,9 +26,10 @@ to verify the controller's completed job and accepted output manifest against
 the retained files. The command leaves a stale or incomplete attempt fenced.
 The worker exit status and copy journal are insufficient for acknowledgement.
 
-Completed spools have a 32-file, 520-MiB check. That is not a disk quota while an
-externally owned CAD process writes. Native process limits and automatic
-invocation of acknowledgement remain open work.
+The transport checks completed spools against limits of 32 files and 520 MiB.
+Writes from the externally owned CAD process still need a disk quota.
+Use the [supervisor binding](../../../Changes/Research/Workers/SupervisedApplicationAcceptance.md)
+to invoke acknowledgement automatically after successful controller settlement.
 
 `QueueRecoveryTests.py` adds a real client interruption after verified copying,
 then removes the session copy and checks retained bytes, the acceptance record

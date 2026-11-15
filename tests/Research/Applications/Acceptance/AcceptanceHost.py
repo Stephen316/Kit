@@ -2,6 +2,7 @@ import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
 from pathlib import Path as FilePath
+from typing import cast as CastValue
 
 from tests.Research.Applications.DispatchHost import DispatchHost, KRepoRoot
 from tests.Research.SupervisorClient import FixtureJob, SessionHost
@@ -41,7 +42,7 @@ class AcceptanceHost:
         self.Supervisor.BindBytes("source", b"fixture inputs")
 
     # a completed controller attempt must outlive the supervisor process before reconciliation
-    def Accept(self) -> FilePath:
+    def Run(self) -> list[dict[str, object]]:
         self.Supervisor.SubmitJobs(
             [
                 FixtureJob(
@@ -53,13 +54,22 @@ class AcceptanceHost:
                 ),
             ]
         )
-        _ = self.Supervisor.RunIdle()
+        Events = [
+            CastValue(dict[str, object], Event) for Event in self.Supervisor.RunIdle()
+        ]
         assert self.Supervisor.ReadJob(self.JobName)["state"] == "completed"
+        return Events
+
+    # manual owner cases need the retained evidence after durable settlement
+    def Accept(self) -> FilePath:
+        _ = self.Run()
         (Spool,) = (self.Dispatch.Endpoint / "jobs").iterdir()
         return Spool
 
     # the owner command must query the real controller rather than accepting a supplied receipt
-    def Reconcile(self, ExitCode: int = 0) -> dict[str, object]:
+    def Reconcile(
+        self, ExitCode: int = 0, ClaimInfo: dict[str, object] | None = None
+    ) -> dict[str, object]:
         Result = Subprocess.run(
             [
                 System.executable,
@@ -73,7 +83,9 @@ class AcceptanceHost:
                 str(self.Supervisor.StorePath),
                 "--job",
                 self.JobName,
-            ],
+            ]
+            + (["--supervisor-claim-stdin"] if ClaimInfo is not None else []),
+            input=JsonCodec.dumps(ClaimInfo) if ClaimInfo is not None else None,
             capture_output=True,
             text=True,
             check=False,

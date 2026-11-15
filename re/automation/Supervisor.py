@@ -1,9 +1,12 @@
 import argparse
+from concurrent.futures import CancelledError, ThreadPoolExecutor
 import errno
+import json
 import os
 import secrets
 import shutil
 import signal
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -89,6 +92,26 @@ def lock(path):
     return descriptor
 
 
+def acknowledge_application(installation, store, owner, claim):
+    command = Path(__file__).with_name("ApplicationWorkers") / "AcknowledgeApplication.py"
+    identity = {"owner": owner, "generation": claim["generation"], "fingerprint": claim["fingerprint"], "attempts": claim["attempt"]}
+    result = subprocess.run(
+        [sys.executable, "-E", str(command), "--installation", str(installation), "--store", str(store),
+         "--job", claim["job"]["id"], "--supervisor-claim-stdin"],
+        input=canonical(identity), capture_output=True, text=True, timeout=180, check=False,
+    )
+    if result.returncode != 0:
+        raise ValueError(result.stderr.strip()[-2048:] or f"acknowledgement exited with status {result.returncode}")
+    response = json.loads(result.stdout)
+    if not isinstance(response, dict) or (
+        response != {"status": "no_pending_acceptance"}
+        and (set(response) != {"status", "restart_retained"} or response["status"] != "acknowledged"
+             or type(response["restart_retained"]) is not bool)
+    ):
+        raise ValueError("application acknowledgement returned an invalid status")
+    return response
+
+
 class Supervisor:
     def __init__(self, config, claiming):
         self.config = config
@@ -100,6 +123,13 @@ class Supervisor:
         self.max_log_bytes = config["max_log_bytes"]
         self.adapter = load_adapter(config["controller"], ROOT)
         self.registry = Registry(config["registry"], ROOT) if claiming else None
+        self.installations = {
+            kind: entry["application_installation"] for kind, entry in self.registry.runners.items()
+            if entry["application_installation"] is not None
+        } if claiming else {}
+        if self.installations and config["controller"].get("adapter") != "a03":
+            raise ValueError("application acknowledgement requires the built-in a03 controller adapter")
+        self.application_acks = {}
         self.grouping = getattr(self.adapter, "GroupClaimsVersion", None) == 1
         self.budget = ResourceBudget(config, self.registry) if claiming else None
         self.admission = {}
@@ -215,13 +245,40 @@ class Supervisor:
             finished = self.counts["finished"]
             finished[outcome] = finished.get(outcome, 0) + 1
         self.report("finished", session, {"outcome": None if session.stop_reason == "stale_lease" else outcome, "reason": reason, "stale": stale, "receipt": payload["receipt"]})
+        if stale is False and outcome == "completed" and session.spec["kind"] in self.installations:
+            try:
+                installation = self.installations[session.spec["kind"]]
+                future = self.acknowledger.submit(
+                    acknowledge_application, installation, self.adapter.store, self.adapter.owner, session.claim,
+                )
+            except (OSError, RuntimeError) as error:
+                self.report("application_acknowledgement_failed", session, {"error": f"{type(error).__name__}: {error}"[:2048]})
+            else:
+                self.application_acks[future] = session
         session.remove()
         return True
 
+    def report_application_acks(self):
+        for future, session in list(self.application_acks.items()):
+            if not future.done():
+                continue
+            del self.application_acks[future]
+            try:
+                response = future.result()
+            except CancelledError:
+                self.report("application_acknowledgement_failed", session, {"error": "supervisor stopped before acknowledgement started"})
+            except subprocess.TimeoutExpired:
+                self.report("application_acknowledgement_failed", session, {"error": "application acknowledgement timed out"})
+            except (OSError, ValueError, KeyError, TypeError) as error:
+                self.report("application_acknowledgement_failed", session, {"error": f"{type(error).__name__}: {error}"[:2048]})
+            else:
+                self.report("application_acknowledgement", session, response)
+
     def fill(self, paused):
         claimed = False
+        pending = {session.pool for session in self.application_acks.values()}
         for pool, settings in sorted(self.config["pools"].items()):
-            if pool in paused:
+            if pool in paused or pool in pending:
                 continue
             while sum(1 for session in self.running.values() if session.pool == pool) < settings["max_sessions"]:
                 admission = self.budget.admission(pool, settings, self.running)
@@ -291,6 +348,14 @@ class Supervisor:
         self.stopping = True
 
     def run(self, idle_seconds, max_seconds):
+        self.acknowledger = ThreadPoolExecutor(max_workers=1)
+        try:
+            return self.run_sessions(idle_seconds, max_seconds)
+        finally:
+            self.acknowledger.shutdown(cancel_futures=True)
+            self.report_application_acks()
+
+    def run_sessions(self, idle_seconds, max_seconds):
         signal.signal(signal.SIGTERM, self.shutdown)
         signal.signal(signal.SIGINT, self.shutdown)
         self.acquire()
@@ -313,9 +378,10 @@ class Supervisor:
             for name, session in list(self.running.items()):
                 if session.tend(now, paused):
                     del self.running[name]
+            self.report_application_acks()
             if self.stopping or (max_seconds is not None and time.monotonic() - started >= max_seconds):
                 break
-            if self.fill(paused) or self.running:
+            if self.fill(paused) or self.running or self.application_acks:
                 last_work = time.monotonic()
             elif idle_seconds is not None and time.monotonic() - last_work >= idle_seconds:
                 break

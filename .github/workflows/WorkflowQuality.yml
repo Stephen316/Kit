@@ -225,7 +225,10 @@ jobs:
       - name: Verify Windows supervisor through process boundaries
         run: >-
           uv run --frozen --no-default-groups --extra dev --python 3.14
-          python -m pytest -q tests/Research/Windows tests/Research/Outputs tests/Research/Applications/ApplicationParkTests.py tests/Research/Owners tests/Research/WindowsRecords
+          python -m pytest -q tests/Research/Windows tests/Research/Outputs
+          tests/Research/Applications/ApplicationParkTests.py
+          tests/Research/Applications/Acceptance/AcceptanceSupervisorTests.py
+          tests/Research/Owners tests/Research/WindowsRecords
 
   macos-supervisor:
     if: >-

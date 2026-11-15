@@ -88,10 +88,13 @@ The repository does not ship a registry, because no production runner exists yet
 | `threads`                 | No       | Threads per session, 1–256; recorded for A08b capacity limits                                                   |
 | `max_memory_mib`          | No       | Sampled group-memory stop threshold, 1–1,048,576 MiB; default twice the initial estimate, capped at the maximum |
 | `initial_peak_memory_mib` | No       | First memory estimate, 1–1,048,576 MiB; recorded for A08b capacity limits                                       |
+| `application_installation` | No     | Owner-controlled application installation for [acknowledging accepted output](../../Changes/Research/Workers/SupervisedApplicationAcceptance.md). Relative paths resolve from the registry directory. Requires the built-in A03 adapter and a single-job runner. |
 
 The schema checker accepts `type`, `properties`, `required`, `additionalProperties`, `items`, `enum`, `const`, `minLength`, `maxLength`, `minimum`, `maximum`, `minItems` and `maxItems`.
 It refuses a schema that uses any other keyword.
 Model runners such as Codex and Claude are not registry entries yet; they belong to A10.
+An application runner's configured installation must match the installation it uses for dispatch.
+Keep the installation file in a private directory controlled by the supervisor owner.
 
 ## Optional grouped sessions
 

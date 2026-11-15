@@ -3,12 +3,13 @@ import json
 from pathlib import Path
 import re
 import shutil
+import subprocess
 import sys
 from tempfile import TemporaryDirectory
 
 from ApplicationProtocol import (
-    ACKNOWLEDGEMENT, PROTOCOL, check_spool, configuration, directory, file_bytes,
-    load_pinned, owner_lock, pin, record, require, sha256, sync_directory, write_record,
+    ACKNOWLEDGEMENT, PROTOCOL, check_spool, committed_bytes, configuration, directory, file_bytes,
+    owner_lock, pin, record, require, sha256, sync_directory, write_record,
 )
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -22,15 +23,19 @@ def stored_bytes(adapter, digest, target):
     return file_bytes(target)
 
 
-def completed_job(adapter, job):
+def completed_job(adapter, job, expected=None):
     rows = adapter.ReadStatus(job)["jobs"]
     require(len(rows) == 1 and rows[0]["id"] == job and rows[0]["state"] == "completed",
             "controller has no current completed attempt for this job")
-    return rows[0]
+    row = rows[0]
+    if expected is not None:
+        require(all(row[key] == value for key, value in expected.items()),
+                "controller completion does not match the supervisor claim")
+    return row
 
 
-def accepted_output(adapter, job, scratch):
-    row = completed_job(adapter, job)
+def accepted_output(adapter, job, scratch, expected):
+    row = completed_job(adapter, job, expected)
     receipt = json.loads(stored_bytes(adapter, row["receipt"], scratch / "receipt.json"))
     result = json.loads(stored_bytes(adapter, row["result"], scratch / "result.json"))
     require(receipt["receipt_version"] == 1 and receipt["job_id"] == job and receipt["outcome"] == "completed"
@@ -128,7 +133,7 @@ def finish_acknowledgement(root, fence_path, journal_path, spool, fence, state):
     return {**state, "status": "acknowledged", "restart_retained": restart is not None}
 
 
-def reconcile(config, adapter, job, scratch):
+def reconcile(config, adapter, job, scratch, expected=None):
     root = directory(config["endpoint"])
     fence_path = root / "fence.json"
     journal_path = root / ACKNOWLEDGEMENT
@@ -136,25 +141,29 @@ def reconcile(config, adapter, job, scratch):
         previous = read_optional(journal_path)
         fence = read_optional(fence_path)
         if fence is None or fence["reason"] != "acceptance_required":
+            row = completed_job(adapter, job, expected) if expected is not None else None
             if previous is not None:
                 saved = previous["fence"]
                 require(previous["controller_job"] == job and saved["installation"] == config["installation"]
                         and re.fullmatch("[0-9a-f]{32}", saved["job_id"])
                         and (fence is None or fence == saved["restart_handoff"]),
                         "another acknowledgement or application recovery is pending")
+                if row is not None:
+                    require(previous["receipt_sha256"] == row["receipt"] and previous["result_sha256"] == row["result"],
+                            "interrupted acknowledgement belongs to another accepted attempt")
                 old_spool = root / "jobs" / saved["job_id"]
                 require(not old_spool.exists() and not old_spool.is_symlink(), "acknowledged spool still needs recovery")
                 journal_path.unlink()
                 sync_directory(root)
             return {"status": "no_pending_acceptance"}
-        row, manifest, dispatch = accepted_output(adapter, job, scratch)
+        row, manifest, dispatch = accepted_output(adapter, job, scratch, expected)
         files = retained_files(config, fence, manifest, dispatch)
         spool = root / "jobs" / fence["job_id"]
         identity = spool_identity(spool, fence, files, dispatch, previous)
         state = {"version": 1, "controller_job": job, "result_sha256": row["result"],
                  "receipt_sha256": row["receipt"], "fence": fence, "dispatch_sha256": sha256(dispatch),
                  "spool_identity": identity if previous is None else previous["spool_identity"]}
-        require(completed_job(adapter, job) == row and record(fence_path) == fence,
+        require(completed_job(adapter, job, expected) == row and record(fence_path) == fence,
                 "controller acceptance or the application fence changed during verification")
         if previous is None:
             write_record(journal_path, state)
@@ -163,23 +172,47 @@ def reconcile(config, adapter, job, scratch):
         return finish_acknowledgement(root, fence_path, journal_path, spool, fence, state)
 
 
+def supervisor_claim(adapter):
+    content = sys.stdin.buffer.read(1025)
+    require(len(content) <= 1024, "supervisor acknowledgement claim exceeds its byte limit")
+    claim = json.loads(content)
+    require(isinstance(claim, dict) and set(claim) == {"owner", "generation", "fingerprint", "attempts"},
+            "invalid supervisor acknowledgement claim")
+    owner = claim.pop("owner")
+    require(isinstance(owner, str) and re.fullmatch("[0-9a-f]{64}", owner)
+            and isinstance(claim["fingerprint"], str) and re.fullmatch("[0-9a-f]{64}", claim["fingerprint"])
+            and all(type(claim[key]) is int and claim[key] > 0 for key in ("generation", "attempts")),
+            "invalid supervisor acknowledgement identity")
+    adapter.owner = owner
+    return claim
+
+
 def main():
     parser = argparse.ArgumentParser(description="Acknowledge one application spool after verified A03 acceptance")
     parser.add_argument("--installation", type=Path, required=True)
     parser.add_argument("--store", type=Path, required=True)
     parser.add_argument("--job", required=True)
+    parser.add_argument("--supervisor-claim-stdin", action="store_true")
     args = parser.parse_args()
     try:
-        config = configuration(args.installation)
-        protocol_pin = load_pinned(config, PROTOCOL)["_source_pin"]
+        installation = args.installation
+        if args.supervisor_claim_stdin:
+            installation = directory(installation.parent) / installation.name
+        config = configuration(installation)
         installed_protocol = Path(__file__).with_name("ApplicationProtocol.py")
-        require(sha256(file_bytes(installed_protocol)) == protocol_pin["sha256"],
+        require(file_bytes(installed_protocol) == committed_bytes(config, PROTOCOL),
                 "acknowledgement protocol differs from the trusted installation")
         adapter = A03Adapter({"store": str(directory(args.store))})
+        expected = supervisor_claim(adapter) if args.supervisor_claim_stdin else None
         with TemporaryDirectory() as scratch:
-            response = reconcile(config, adapter, args.job, Path(scratch))
+            response = reconcile(config, adapter, args.job, Path(scratch), expected)
+        if expected is not None:
+            response = {key: response[key] for key in ("status", "restart_retained") if key in response}
         print(json.dumps(response, sort_keys=True))
         return 0
+    except subprocess.SubprocessError:
+        print("application acknowledgement refused: controller or source check did not finish", file=sys.stderr)
+        return 1
     except (OSError, ValueError, KeyError, TypeError, RecursionError) as error:
         print(f"application acknowledgement refused: {type(error).__name__}: {error}"[:2048], file=sys.stderr)
         return 1
