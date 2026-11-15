@@ -94,15 +94,20 @@ def read_principal_support(cursor, planes):
     }
 
 
-# profile completion must include the counted trim records that build the downstream map
-def read_rectangle_tail(cursor, profile, planes):
-    Require(cursor.read("<Ii"), (1, 1), "one modern profile chain")
-    chain = read_chain(cursor, KDefinitionKind)
+# the empty optional geometry and edge tables precede the typed principal component
+def read_principal_profile_support(cursor, planes):
     Require(cursor.read("<iB"), (3, 1), "absent rectangle kernel packet")
     Require(cursor.read("<iHI"), (0, 0, 0), "empty rectangle edge tables")
     Require(cursor.read("<IH"), (100000, 0), "empty rectangle contour map")
     cursor.null()
-    support = read_principal_support(cursor, planes)
+    return read_principal_support(cursor, planes)
+
+
+# profile completion must include the counted trim records that build the downstream map
+def read_rectangle_tail(cursor, profile, planes):
+    Require(cursor.read("<Ii"), (1, 1), "one modern profile chain")
+    chain = read_chain(cursor, KDefinitionKind)
+    support = read_principal_profile_support(cursor, planes)
     Require(cursor.read("<2H"), (0, 4), "guarded rectangle profile flags")
     cursor.null()
     Require(cursor.read("<2i"), (-1, 0), "guarded rectangle profile state")

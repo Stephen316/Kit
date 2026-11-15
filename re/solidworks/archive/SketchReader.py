@@ -15,8 +15,8 @@ KDisplayEvidence = "d724ad7b0c0d7daed50adf96028c08a3f83e5afde5e841ca25506cd6baf3
 KAxisRelations = {4: "horizontal", 5: "vertical"}
 
 
-# presentation records carry pointer allocations needed to reach the next geometry group
-def ReadDisplay(Cursor, BuildName, FrameIndex):
+# the display layout is shared by rectangles in either archive stream
+def ReadDisplayFrame(BuildName, FrameIndex):
     LayoutPath = Path(__file__).with_name("SketchDisplay.json")
     LayoutData = Json.loads(LayoutPath.read_text(encoding="utf-8"))
     Require(
@@ -24,7 +24,12 @@ def ReadDisplay(Cursor, BuildName, FrameIndex):
         (KGeneration, BuildName, KDisplayEvidence),
         "verified research display layout",
     )
-    Frame = LayoutData["frames"][FrameIndex]
+    return LayoutData["frames"][FrameIndex]
+
+
+# presentation records carry pointer allocations needed to reach the next geometry group
+def ReadDisplay(Cursor, BuildName, FrameIndex):
+    Frame = ReadDisplayFrame(BuildName, FrameIndex)
     Require(
         Cursor.ReadValue("<7H"), tuple(Frame["inline_prefix"]), "inline display framing"
     )
