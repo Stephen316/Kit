@@ -5,10 +5,10 @@ from FaceOccurrence import read_face_data, read_local_component
 from SketchRoot import Require
 
 
-# empty labels keep this branch restricted to the embedded reference plane
+# empty labels keep the replay on the witnessed ordinary feature layout
 def read_empty_label(cursor):
     name, width = ReadString(cursor.blob, cursor.position)
-    Require(name, "", "embedded plane label")
+    Require(name, "", "empty feature label")
     cursor.position += width
 
 
@@ -22,10 +22,10 @@ def read_plane_concept(cursor):
     Require(cursor.read("<Hi"), (0, 0), "empty resolved node list")
 
 
-# the feature base includes modern display fields before its guarded model trailer
-def read_plane_feature(cursor):
+# both embedded planes and named nodes need the same modern feature base framing
+def read_feature_base(cursor):
     mode, _, _ = cursor.read("<2iI")
-    Require(mode, 0, "ordinary plane feature mode")
+    Require(mode, 0, "ordinary feature mode")
     Require(cursor.read("<B"), (0,), "absent alternate feature label")
     cursor.read("<4i")
     cursor.vector(1)
@@ -38,7 +38,6 @@ def read_plane_feature(cursor):
     cursor.null()  # moFeatComment_c
     cursor.read("<IBB")
     cursor.read("<5iH2i")  # includes the modern feature field at sldmodu+0x9d1bc4
-    cursor.read("<i")  # moModelFeature_c
 
 
 # the local atom branch owns the temporary surface arrays and rollback state
@@ -94,7 +93,8 @@ def read_reference_plane(cursor, context):
     Require(feature_id, -1, "embedded plane carries its own geometry")
     plane_object = cursor.pointer(KClassRefKind, "moRefPlane_c")
     read_plane_concept(cursor)
-    read_plane_feature(cursor)
+    read_feature_base(cursor)
+    cursor.read("<i")  # moModelFeature_c
     atom_start = cursor.position
     arrays_offset, atom_flags = read_plane_atom(cursor)
     atom_end = cursor.position
