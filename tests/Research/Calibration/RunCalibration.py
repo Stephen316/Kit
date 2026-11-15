@@ -43,8 +43,16 @@ def TrialMarkers(OutputPath: FilePath) -> str:
         "Trial.json",
     )
     Evidence: dict[str, list[str]] = {}
-    for Count in (1, 2, 4, 8, 16):
-        TrialPath = OutputPath / f"Trial{Count}"
+    for NameText in (
+        "Trial1",
+        "Trial2",
+        "Trial4",
+        "Trial8",
+        "Trial16",
+        "Singleton",
+        "Grouped",
+    ):
+        TrialPath = OutputPath / NameText
         if TrialPath.is_dir():
             Evidence[TrialPath.name] = [
                 FileName for FileName in FileNames if (TrialPath / FileName).is_file()
@@ -154,8 +162,16 @@ def TerminalEvents(TrialPath: FilePath) -> list[dict[str, object]]:
 # fixed trial names keep process diagnostics within the private fixture directory
 def TrialFailures(OutputPath: FilePath) -> str:
     Details: dict[str, object] = {}
-    for Count in (1, 2, 4, 8, 16):
-        TrialPath = OutputPath / f"Trial{Count}"
+    for NameText in (
+        "Trial1",
+        "Trial2",
+        "Trial4",
+        "Trial8",
+        "Trial16",
+        "Singleton",
+        "Grouped",
+    ):
+        TrialPath = OutputPath / NameText
         JobsInfo = TerminalJobs(TrialPath)
         Events = TerminalEvents(TrialPath)
         if JobsInfo or Events:
@@ -184,9 +200,13 @@ def FailureDetails(
 def RunCalibration(
     ManifestPath: FilePath,
     OutputPath: FilePath,
-    ExitCode: int = 0,
+    ExitCode: int | None = 0,
     MaxWorkers: int | None = None,
+    CompareGrouped: bool = False,
 ) -> dict[str, object]:
+    ModeItems = ["--compare-grouped"] if CompareGrouped else []
+    if MaxWorkers is not None:
+        ModeItems.extend(("--max-concurrency", str(MaxWorkers)))
     Process = Subprocess.run(
         [
             System.executable,
@@ -198,13 +218,16 @@ def RunCalibration(
             "--output",
             str(OutputPath),
         ]
-        + (["--max-concurrency", str(MaxWorkers)] if MaxWorkers is not None else []),
+        + ModeItems,
         capture_output=True,
         text=True,
         check=False,
         timeout=240,
     )
     ReportPath = OutputPath / "Calibration.json"
-    assert Process.returncode == ExitCode, FailureDetails(Process, ExitCode, ReportPath)
+    Expected = ExitCode
+    if Expected is None:
+        Expected = 0 if ReadEvidence(ReportPath).get("completed_sweep") is True else 2
+    assert Process.returncode == Expected, FailureDetails(Process, Expected, ReportPath)
     Report: dict[str, object] = JsonCodec.loads(ReportPath.read_text(encoding="utf-8"))
     return Report

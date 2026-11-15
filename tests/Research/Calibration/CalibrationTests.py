@@ -44,3 +44,36 @@ def CheckSweep(TmpPath: FilePath) -> None:
         Entry["comparable"]
         for Entry in CastValue(list[dict[str, object]], Report["comparisons"])
     )
+
+
+# real archive compatibility requires accepted member results in the grouped arm and identical singleton outputs
+def CheckGrouped(TmpPath: FilePath) -> None:
+    ManifestPath = BuildManifest(TmpPath, MaxSeconds=60)
+    Manifest = JsonCodec.loads(ManifestPath.read_text(encoding="utf-8"))
+    Manifest["resources"]["offline:slot"]["capacity"] = 20
+    for Member in Manifest["jobs"]:
+        Member["lease_seconds"] = 30
+        Member["timeout_seconds"] = 60
+    _ = ManifestPath.write_text(JsonCodec.dumps(Manifest), encoding="utf-8")
+    Report = JsonCodec.loads(
+        JsonCodec.dumps(
+            RunCalibration(
+                ManifestPath, TmpPath / "Paired", ExitCode=None, CompareGrouped=True
+            )
+        )
+    )
+    assert Report["scope"] == "paired-single-slot-grouped-offline"
+    Singleton, Grouped = Report["trials"]
+    for ArmInfo in (Singleton, Grouped):
+        assert ArmInfo["execution_completed"] and ArmInfo["completed_jobs"] == 8
+        assert ArmInfo["group_receipts_verified"] is True
+        assert ArmInfo["cpu_measurements"] == ArmInfo["physical_sessions"]
+    assert Singleton["physical_sessions"] == 8
+    assert Singleton["multi_member_sessions"] == 0
+    assert 1 <= Grouped["physical_sessions"] < 8
+    assert Grouped["multi_member_sessions"] >= 1
+    assert Singleton["decoded_outputs_sha256"] == Grouped["decoded_outputs_sha256"]
+    (Comparison,) = Report["comparisons"]
+    assert Report["completed_sweep"] is Comparison["comparable"]
+    if not Comparison["comparable"]:
+        assert Report["stop_reason"] == Comparison["reason"] == "paired_arm_incomplete"

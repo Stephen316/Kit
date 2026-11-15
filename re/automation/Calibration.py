@@ -571,9 +571,12 @@ class Calibration:
                 break
         if self.interrupted:
             stopped = stopped or "interrupted"
-        recommended, comparisons = (
-            (None, [compare(trials)]) if compare_grouped else recommendation(trials)
-        )
+        if compare_grouped:
+            comparison = compare(trials)
+            stopped = stopped or comparison["reason"]
+            recommended, comparisons = None, [comparison]
+        else:
+            recommended, comparisons = recommendation(trials)
         report = {
             "calibration_version": 1,
             **identity,

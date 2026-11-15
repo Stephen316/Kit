@@ -204,21 +204,26 @@ def compare(trials):
         "gain": None,
     }
     if len(trials) != 2:
-        return result
+        return {**result, "reason": "paired_arm_missing"}
     singleton, grouped = trials
+    if not singleton["execution_completed"] or not grouped["execution_completed"]:
+        return {**result, "reason": "paired_arm_incomplete"}
     left, right = (trial["source_identity"] for trial in trials)
-    comparable = (
-        singleton["complete"]
-        and grouped["complete"]
-        and {key: value for key, value in left.items() if key != "registry_sha256"}
-        == {key: value for key, value in right.items() if key != "registry_sha256"}
-        and singleton["decoded_outputs_sha256"] == grouped["decoded_outputs_sha256"]
-    )
-    if comparable:
-        result["comparable"] = True
-        result["gain"] = (
+    if {key: value for key, value in left.items() if key != "registry_sha256"} != {
+        key: value for key, value in right.items() if key != "registry_sha256"
+    }:
+        return {**result, "reason": "paired_identity_mismatch"}
+    if singleton["decoded_outputs_sha256"] != grouped["decoded_outputs_sha256"]:
+        return {**result, "reason": "paired_decoded_output_mismatch"}
+    if not singleton["complete"] or not grouped["complete"]:
+        return {**result, "reason": "paired_arm_incomplete"}
+    return {
+        **result,
+        "comparable": True,
+        "gain": (
             grouped["completed_jobs_per_minute"]
             / singleton["completed_jobs_per_minute"]
             - 1
-        )
-    return result
+        ),
+        "reason": None,
+    }
