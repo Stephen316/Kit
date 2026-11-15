@@ -11,16 +11,29 @@ from SketchRoot import Require
 from SupportPlane import read_feature_base, read_partition_tail
 
 
-# the optional end objects must be absent to read the witnessed blind controls
-def read_blind_end_prefix(cursor):
+# the optional direction and keep piece objects must be absent on the supported branch
+def read_end_prefix(cursor, pointer_kind):
     offset = cursor.position
-    spec = cursor.pointer(KDefinitionKind, "moEndSpec_c")
+    spec = cursor.pointer(pointer_kind, "moEndSpec_c")
     cursor.null()
     single_end, flip, direction = cursor.read("<3i")
-    Require((single_end, flip, direction), (1, 0, 0), "witnessed boss direction")
+    Require((single_end, flip, direction), (1, 0, 0), "witnessed extrusion direction")
     cursor.null()
     conditions = cursor.read("<2i")
-    Require(conditions, (0, 0), "witnessed blind end conditions")
+    return {
+        "offset": offset,
+        "object_index": spec,
+        "single_end": single_end,
+        "flip": flip,
+        "direction": direction,
+        "conditions": conditions,
+    }
+
+
+# the blind boss retains the existing depth display class before its own continuation
+def read_blind_end_prefix(cursor):
+    spec = read_end_prefix(cursor, KDefinitionKind)
+    Require(spec["conditions"], (0, 0), "witnessed blind end conditions")
     display = ReadTag(cursor.blob, cursor.position)
     Require(display.kind, KClassRefKind, "existing depth dimension class")
     Require(
@@ -29,12 +42,7 @@ def read_blind_end_prefix(cursor):
         "typed depth dimension boundary",
     )
     return {
-        "offset": offset,
-        "object_index": spec,
-        "single_end": single_end,
-        "flip": flip,
-        "direction": direction,
-        "conditions": conditions,
+        **spec,
         "depth_dimension_offset": cursor.position,
         "depth_dimension_class": display.index,
     }
@@ -55,9 +63,7 @@ def read_boss_prefix(cursor, boss):
     (marker_state,) = cursor.read("<i")
     read_partition_tail(cursor)
     atom_end = cursor.position
-    cursor.null()
-    cursor.null()
-    Require(cursor.read("<Hi"), (0, 0), "empty modern body feature tail")
+    read_body_feature_tail(cursor)
     specification = read_blind_end_prefix(cursor)
     return {
         **boss,
@@ -70,11 +76,15 @@ def read_boss_prefix(cursor, boss):
     }
 
 
-# the nested depth display and from end record must both return before the next feature
-def read_boss_close(cursor):
-    from DepthDisplay import read_depth_display
+# these optional body feature members must be absent before the end specification
+def read_body_feature_tail(cursor):
+    cursor.null()
+    cursor.null()
+    Require(cursor.read("<Hi"), (0, 0), "empty modern body feature tail")
 
-    depth = read_depth_display(cursor)
+
+# the end specification closes once the optional references and start type are known
+def read_end_tail(cursor, pointer_kind, state_word):
     cursor.null()
     Require(
         cursor.read("<BHBHd6i"),
@@ -83,9 +93,22 @@ def read_boss_close(cursor):
     )
     cursor.null()
     cursor.null()
-    Require(cursor.read("<4i2H3i"), (0,) * 9, "guarded blind end feature fields")
-    origin = cursor.pointer(KDefinitionKind, "moFromEndSpec_c")
-    Require(cursor.read("<i"), (0,), "blind boss starts from its sketch plane")
+    Require(
+        cursor.read("<4i2H3i"),
+        (0,) * 6 + (state_word, 0, 0),
+        "guarded end feature fields",
+    )
+    origin = cursor.pointer(pointer_kind, "moFromEndSpec_c")
+    Require(cursor.read("<i"), (0,), "extrusion starts from its sketch plane")
     cursor.read("<5i")
+    return origin
+
+
+# the nested depth display and from end record must both return before the next feature
+def read_boss_close(cursor):
+    from DepthDisplay import read_depth_display
+
+    depth = read_depth_display(cursor)
+    origin = read_end_tail(cursor, KDefinitionKind, 0)
     Require(cursor.read("<di"), (0, -1), "guarded extrusion return state")
     return {"depth_display": depth, "from_end_object": origin, "end": cursor.position}

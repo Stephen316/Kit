@@ -49,19 +49,21 @@ def read_cap_alias(cursor, target):
 
 
 # the chooser centre and counted arrays close the record with an exact map counter
-def read_chooser_tail(cursor, pointer_kind):
+def read_chooser_tail(cursor, pointer_kind, body_ids=(0,)):
     Require(cursor.read("<2H"), (0, 1), "empty secondary chooser and one centre")
     centre_object = cursor.pointer(pointer_kind, "moBBoxCenterData_c")
     Require(cursor.read("<i"), (1,), "witnessed bounding centre type")
     centre = cursor.vector(4)
-    Require(cursor.read("<2iHIi"), (0, 0, 1, 0, 0), "guarded body chooser state")
+    Require(cursor.read("<2iH"), (0, 0, len(body_ids)), "guarded body chooser state")
+    Require(cursor.read(f"<{len(body_ids)}I"), body_ids, "witnessed chooser body ids")
+    Require(cursor.read("<i"), (0,), "guarded body chooser return")
     return {"centre_object": centre_object, "centre_and_scale": centre}
 
 
 # each inline chooser refers back to the extrusion that allocated it
-def require_chooser_owner(cursor, boss):
-    index = cursor.pointer(KObjectRefKind, "moExtrusion_c")
-    Require(index, boss["object_index"], "chooser owner is the current boss")
+def require_chooser_owner(cursor, feature, name="moExtrusion_c"):
+    index = cursor.pointer(KObjectRefKind, name)
+    Require(index, feature["object_index"], "chooser owner is the current feature")
 
 
 # materialization and replay of the same cap identities establish chooser ownership

@@ -323,9 +323,8 @@ def read_profile_link(cursor, pointer_kind):
     }
 
 
-# the boss must reference the rectangle profile already allocated by this walk
-def read_boss_entry(cursor, rectangle, file_reference):
-    from BossPrefix import read_boss_prefix
+# an extrusion node must select the profile already allocated by this walk
+def read_operation_node(cursor, class_name, flags, expected_profile, file_reference):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
@@ -334,24 +333,39 @@ def read_boss_entry(cursor, rectangle, file_reference):
     from SketchRoot import Require
 
     start = cursor.position
-    index = cursor.pointer(KDefinitionKind, "moExtrusion_c")
+    index = cursor.pointer(KDefinitionKind, class_name)
     cursor.pointer(KClassRefKind, "moNodeName_c")
-    name, feature_id = read_named_concept(cursor, (0x40000140, 0xC0000140))
-    Require(cursor.read("<H"), (1,), "one resolved boss profile")
+    name, feature_id = read_named_concept(cursor, flags)
+    Require(cursor.read("<H"), (1,), "one resolved operation profile")
     profile = cursor.pointer(KObjectRefKind, "moProfileFeature_c")
-    Require(profile, rectangle["profile_object"], "boss owns the reached rectangle")
-    Require(cursor.read("<i"), (0,), "guarded boss node trailer")
-    return read_boss_prefix(
-        cursor,
-        {
-            "offset": start,
-            "object_index": index,
-            "name": name,
-            "native_feature_id": feature_id,
-            "profile_object": profile,
-            "file_ref_object": file_reference["object_index"],
-        },
+    Require(
+        profile,
+        expected_profile["profile_object"],
+        "operation owns the reached profile",
     )
+    Require(cursor.read("<i"), (0,), "guarded operation node trailer")
+    return {
+        "offset": start,
+        "object_index": index,
+        "name": name,
+        "native_feature_id": feature_id,
+        "profile_object": profile,
+        "file_ref_object": file_reference,
+    }
+
+
+# the boss selects the rectangle profile and the file allocated by its contour
+def read_boss_entry(cursor, rectangle, file_reference):
+    from BossPrefix import read_boss_prefix
+
+    boss = read_operation_node(
+        cursor,
+        "moExtrusion_c",
+        (0x40000140, 0xC0000140),
+        rectangle,
+        file_reference["object_index"],
+    )
+    return read_boss_prefix(cursor, boss)
 
 
 # folder suffixes are confined to the ordinary bodies at the start of these captures
@@ -445,7 +459,9 @@ def read_resolved_prelude(blob, config_map, expected_count):
 
 
 # P04 continues from the ordinary document prelude through the cut's dependencies
-def read_list_prefix(blob, config_map, through_cut=False, through_support=False):
+def read_list_prefix(
+    blob, config_map, through_cut=False, through_support=False, through_operation=False
+):
     from convert.adapters.solidworks.container.Archive import (
         KClassRefKind,
         KDefinitionKind,
@@ -469,7 +485,7 @@ def read_list_prefix(blob, config_map, through_cut=False, through_support=False)
         "next_offset": cursor.position,
         "next_map_index": cursor.next_index,
     }
-    if through_cut or through_support:
+    if through_cut or through_support or through_operation:
         from BossPrefix import read_boss_close
 
         boss.update(read_boss_close(cursor))
@@ -489,12 +505,30 @@ def read_list_prefix(blob, config_map, through_cut=False, through_support=False)
             next_offset=cursor.position,
             next_map_index=cursor.next_index,
         )
-    if through_support:
+    if through_support or through_operation:
         from CutSupport import read_cut_support
 
         result = read_cut_support(cursor, report["cut_link"], boss)
         report.update(
             cut_support=result,
+            next_offset=cursor.position,
+            next_map_index=cursor.next_index,
+        )
+    if through_operation:
+        from CutOperation import read_cut_operation
+        from CutProfileTail import read_cut_profile_tail
+
+        cut = report["cut_link"]
+        tail = read_cut_profile_tail(cursor, cut, boss)
+        node = read_operation_node(
+            cursor, "moICE_c", (0x400201CA, 0xC00201CA), cut, boss["file_ref_object"]
+        )
+        operation = read_cut_operation(cursor, node, boss)
+        del report["stopped_in"]
+        report.update(
+            cut_profile=tail,
+            cut_operation=operation,
+            list_complete=True,
             next_offset=cursor.position,
             next_map_index=cursor.next_index,
         )
@@ -623,7 +657,14 @@ def compare_profile_witness(name, resolved, config_map, report, control):
 
 
 # exact blob pinning binds every sequential replay to its measured discovery case
-def read_capture(root, asset, measured, through_cut=False, through_support=False):
+def read_capture(
+    root,
+    asset,
+    measured,
+    through_cut=False,
+    through_support=False,
+    through_operation=False,
+):
     from ConfigMap import ReadConfigMap
     from convert.adapters.solidworks.container.Archive import ContainerMo
     from convert.adapters.solidworks.container.Container import SldprtArchive
@@ -638,7 +679,9 @@ def read_capture(root, asset, measured, through_cut=False, through_support=False
     config = container.require("Contents/Config-0")
     resolved = container.require("Contents/Config-0-ResolvedFeatures")
     config_map, _ = ReadConfigMap(config, KApplicationBuild)
-    prefix = read_list_prefix(resolved, config_map, through_cut, through_support)
+    prefix = read_list_prefix(
+        resolved, config_map, through_cut, through_support, through_operation
+    )
     profiles = [
         feature["name"]
         for feature in measured["feature_tree"]
@@ -680,7 +723,7 @@ def read_capture(root, asset, measured, through_cut=False, through_support=False
         ),
         "measured boss direction and termination",
     )
-    if through_cut or through_support:
+    if through_cut or through_support or through_operation:
         cut = prefix["cut_link"]
         Require(profiles[1:2], [cut["name"]], "second measured user profile")
         depth = boss["depth_display"]["dimension"]
@@ -691,13 +734,17 @@ def read_capture(root, asset, measured, through_cut=False, through_support=False
             if item["name"] == depth["parameter_name"]
         ]
         Require(dimensions, [depth["metres"]], "measured named boss depth dimension")
-    if through_support:
+    if through_support or through_operation:
         from CutSupport import check_cut_normal
 
         cut = prefix["cut_link"]
         cuts = [item for item in measured["sketches"] if item["name"] == cut["name"]]
         Require(len(cuts), 1, "one measured cut sketch")
         check_cut_normal(prefix["cut_support"], cuts[0])
+    if through_operation:
+        from CutOperation import check_cut_operation
+
+        check_cut_operation(prefix, measured, cuts[0])
     report = {
         "file": name,
         "native_sha256": digest,
@@ -721,6 +768,11 @@ def main():
         action="store_true",
         help="walk through the CutSketch support",
     )
+    parser.add_argument(
+        "--through-operation",
+        action="store_true",
+        help="walk through the cut operation to the resolved list footer",
+    )
     arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[3]
     sys.path.insert(0, str(root / "src"))
@@ -737,6 +789,7 @@ def main():
                 measured[asset["file"]],
                 arguments.through_cut,
                 arguments.through_support,
+                arguments.through_operation,
             )
             for asset in receipt["native_files"]
         ],

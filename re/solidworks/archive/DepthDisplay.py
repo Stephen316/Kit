@@ -60,9 +60,9 @@ def read_display_open(cursor):
 
 
 # the feature handle uses an empty component before the typed dimension object
-def read_handle(cursor):
+def read_handle(cursor, pointer_kind):
     offset = cursor.position
-    handle = cursor.pointer(KDefinitionKind, "moFeatureDimHandle_c")
+    handle = cursor.pointer(pointer_kind, "moFeatureDimHandle_c")
     cursor.null()
     Require(
         cursor.read("<20i"),
@@ -78,9 +78,9 @@ def read_handle(cursor):
 
 
 # the model dimension owns the depth value before its display geometry fields
-def read_parallel_depth(cursor):
+def read_parallel_depth(cursor, pointer_kind):
     offset = cursor.position
-    index = cursor.pointer(KDefinitionKind, "ParallelPlaneDistanceDim_c")
+    index = cursor.pointer(pointer_kind, "ParallelPlaneDistanceDim_c")
     frame = SimpleNamespace(
         offset=offset,
         Counter=cursor.next_index,
@@ -114,12 +114,12 @@ def read_parallel_depth(cursor):
 
 
 # saved display copies corroborate the authored parameter before reading the favorite settings
-def read_depth_display(cursor):
+def read_depth_display(cursor, pointer_kind=KDefinitionKind):
     offset = cursor.position
     index = cursor.pointer(KClassRefKind, "moDisplayDistanceDim_c")
     read_display_open(cursor)
-    handle = read_handle(cursor)
-    depth = read_parallel_depth(cursor)
+    handle = read_handle(cursor, pointer_kind)
+    depth = read_parallel_depth(cursor, pointer_kind)
     read_nulls(cursor, 2)
     post = cursor.read("<2d2i2HI2i")
     Require(post[-2:], (0, 0), "empty post dimension object arrays")

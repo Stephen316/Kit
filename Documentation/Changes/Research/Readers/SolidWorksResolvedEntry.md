@@ -108,9 +108,25 @@ Run `python re/solidworks/archive/ResolvedEntry.py --through-support` to carry t
 
 The sequential reader continues from the resolved CutSketch pointer into the chain, framed kernel packet, four typed profile edges and embedded supporting plane. These fields use the classes and object references materialized by the preceding walk. The loaded support cap and four profile face references carry the same file object, feature ID, timestamp and positive occurrence as the earlier BlindBoss cap. The ordered support boundary IDs also match the boss cap. This comparison holds for all eleven captures. Independent reopen measurements identify face support in every capture. The decoded world normal agrees with the measured sketch transform in each case, with +X for YZ and +Z for the remaining ten.
 
-Baseline A and YZ match the independently licensed kernel packet, reference plane, nested face, map and support return boundaries. Baseline A also matches the licensed atom span. The replay reaches map index 475 after the qualifying support in every capture. The enclosing CutSketch feature trailer and later resolved-list entries remain outside this replay.
+Baseline A and YZ match the independently licensed kernel packet, reference plane, nested face, map and support return boundaries. Baseline A also matches the licensed atom span. This invocation stops after the support at map index 475 in every capture.
 
 | Capture | Support entry | Support return | Ordered cap boundaries |
 | --- | ---: | ---: | --- |
 | Baseline A | 11,531 | 12,588 | `[4, 1, 2, 3]` |
 | YZ | 11,595 | 12,724 | `[4, 3, 2, 1]` |
+
+## Complete cut operation and resolved list
+
+Run `python re/solidworks/archive/ResolvedEntry.py --through-operation` to read the rest of CutSketch and the final cut feature in all eleven pinned captures. The report SHA-256 is `9ecde927c05c451e4f703eaf101748d75165d0a80d5f6db5f12a3615a328f257`. The earlier command variants retain their recorded digests.
+
+CutSketch's remaining placement matches all thirteen measured placement values, including the local translation of −0.012 m in the boss depth edit and −0.010 m in the other saves. The auxiliary transform is the identity. The one cached trim surface and twelve segments refer to the reached CutSketch, share its feature reference and reuse the previously allocated file object. At the CutSketch return the next allocation is class 501, `moICE_c`. The cut object 502 selects CutSketch object 416 and carries its own transfer object as well as a reference to the earlier boss transfer.
+
+The `moCompSolidBody_c` branch at `sldmodu+0xa63620` loads the prior boss face and counted body identifier. The cut chooser records keep the same-document references to the boss and cut. The two three-integer surface types share the base dispatch at `0xa63480`, with separate three-dword continuations at `0xa6abb0` and `0xa6a840`. The repeated chooser reads the identical materialized surface objects in order. The atom tail and body feature fields lead to the retained `moEndSpec_c` class, consistent with the common extrusion loader at `0x9d0930`. [Result body layout](../../../../re/solidworks/records/FeatureBody.md)
+
+Ten cuts use one forward blind direction. Their typed depth display and named `cut_depth_mm` parameter read 0.004 m, or 0.005 m in the cut-depth edit. The through-all capture has end condition 1 and a null depth pointer. Both terminations start from the profile plane, as recorded by the retained `moFromEndSpec_c` type 0. The replay compares the operation name, direction, end condition and named depth to independent reopen measurements, then consumes the four-byte stream footer and checks the exact end of the data. The bounded kernel payload and unnamed presentation fields remain research evidence under the pinned build and receipt. [End specification fields](../../../../re/solidworks/records/Serialize.md#1-moendspec_c--confirmed)
+
+| Capture | CutSketch return | Cut end-spec entry | Cut return | Resolved extent | Next map index |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Baseline A | 12,994 | 14,351 | 16,252 | 16,256 | 557 |
+| YZ | 13,202 | 14,559 | 16,460 | 16,464 | 557 |
+| Through-all | 12,993 | 14,320 | 14,462 | 14,466 | 550 |

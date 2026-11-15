@@ -19,12 +19,22 @@ def require_profile_owner(cursor, profile):
 
 
 # the contour surface is the first owner to materialize the saved document reference
-def read_trim_surface(cursor, profile):
-    index = cursor.pointer(KDefinitionKind, "moSimpleSurfIdRep_c")
+def read_trim_surface(cursor, profile, existing_file=None):
+    kind = KDefinitionKind if existing_file is None else KClassRefKind
+    index = cursor.pointer(kind, "moSimpleSurfIdRep_c")
     require_profile_owner(cursor, profile)
-    feature_ref_class = cursor.next_index
-    feature_ref = cursor.pointer(KDefinitionKind, "moFR_c")
-    file_ref = read_file_reference(cursor)
+    feature_ref_class = (
+        cursor.next_index
+        if kind == KDefinitionKind
+        else ReadTag(cursor.blob, cursor.position).index
+    )
+    feature_ref = cursor.pointer(kind, "moFR_c")
+    if existing_file is None:
+        file_ref = read_file_reference(cursor)
+    else:
+        object_index = cursor.pointer(KObjectRefKind, "moExtObject_c")
+        Require(object_index, existing_file, "contour uses the reached file reference")
+        file_ref = {"object_index": object_index}
     feature_id, time_word, occurrence = cursor.read("<iIi")
     Require(feature_id, profile["native_feature_id"], "contour feature ownership")
     Require(occurrence, 0, "witnessed first contour occurrence")
