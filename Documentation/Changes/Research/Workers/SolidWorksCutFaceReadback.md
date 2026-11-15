@@ -50,6 +50,10 @@ On November 15, 2026, the collector at `701582eb` read all eleven P04 captures i
 
 Each cut sketch identifies a face on the unsuppressed `BlindBoss`. The native equality check and the persistent reference round trips identify the same support before and after rebuild. The world normal is `(0, 0, 1)` for ten captures and `(1, 0, 0)` for the YZ variant. The cut sketch transform records a local depth translation of −10 mm except for the 12 mm boss edit, which records −12 mm. The YZ sketch has a different rotation from the XY cases. The checks also passed on the through-all save.
 
+The repeat at `4d645329` also recorded five other faces on the boss for each observation. Each of the 110 control references resolved to its own distinct face. In all 22 observations, the 52-byte span after the `moFaceRef_c` name matched both the cut sketch's supporting face and the opposite cap. It matched none of the 88 side faces. This span helps locate a cap reference but cannot establish the support occurrence. [Archive correlation](../../../../re/solidworks/records/P04SketchResidence.md#face-reference-control)
+
 Each pass records 66 dimension owners and 132 point attachments. The two offset dimensions in each cut sketch each have one native point outside that sketch. The run also records 165 relations with 242 definition participants per pass. Of those, 33 are points outside the corresponding sketch. Their foreign owner identities and the on-disk encoding of the attachments and relations still need qualification.
 
 The verified receipt SHA-256 is `bc361d29558338240fce751f3d84bc5a691aeef1b8937ecc993e95caac436489`. Its measurements hash is `55ded2d7e511861cdd41100bfdd1dfc17307b3a31ad8c01ceec1defb66d00305`. The raw references are kept with the private run. This evidence supplies a native observation for the SOLIDWORKS side of P04. Paired qualification also needs independent Fusion readback and observation binding.
+
+The repeat receipt SHA-256 is `e9b4966838beb30f078d5b902177d0b80fa07731ca5402f87590d69d1d4f01ce`. Its measurements hash is `b0abfb17f2365d2b6290593b7bfd6782e14d64c92b5993c521c2d11a530afeb4`.
