@@ -7,7 +7,7 @@ from tests.Research.SupervisorClient import KRepoRoot
 
 
 # frozen batches must publish all exact successor bindings or leave the ledger untouched
-def CheckBatchRelease(TmpPath: FilePath) -> None:
+def CheckRelease(TmpPath: FilePath) -> None:
     Program = KRepoRoot / "re/automation/CiBatchReleaseFixture.py"
     Response = Subprocess.run(
         [System.executable, str(Program), str(TmpPath)],
