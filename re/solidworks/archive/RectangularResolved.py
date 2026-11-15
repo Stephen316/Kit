@@ -1,17 +1,16 @@
 """Follow ordinary resolved rectangles through their saved principal support."""
 
+from ArchiveVersion import KApplicationBuild
 from ProfileSupport import read_chain
 from RectangleTail import read_principal_profile_support, read_rectangle_trim
 from ResolvedPrelude import read_profile_body_prefix, read_resolved_prelude
-from SketchCursor import SketchCursor
-from SketchPresentation import ReadPresentation
-from SketchReader import ReadGeometry
-from SketchRoot import Require
+from SketchRoot import KGeneration, Require
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     ReadTag,
 )
+from convert.adapters.solidworks.sketch.InlineSketch import ReadInlineMut
 
 
 # transfer the same map through the inline sketch and back to its containing feature
@@ -25,12 +24,17 @@ def read_rectangle_entry(
     name, feature_id, _ = read_profile_body_prefix(cursor, (0x40000000, 0xC0000000))
     offset = cursor.position
     sketch_object = cursor.pointer(KClassRefKind, "sgSketch")
-    archive = SketchCursor.FromEnclosing(cursor, offset, sketch_object)
-    geometry = ReadGeometry(archive, sketch_object)
-    display = []
-    archive.PointerEvents = display
-    (coincidence,) = ReadPresentation(archive, build, geometry)
-    cursor.position, cursor.next_index = archive.Offset, archive.NextIndex
+    Require(build, KApplicationBuild, "witnessed sketch presentation build")
+    previous_events = cursor.PointerEvents
+    events = []
+    cursor.PointerEvents = events
+    try:
+        geometry, (coincidence,) = ReadInlineMut(cursor, offset, sketch_object, KGeneration)
+    finally:
+        cursor.PointerEvents = previous_events
+    if previous_events is not None:
+        previous_events.extend(events)
+    display = [event for event in events if event[0] >= geometry["geometry_end"]]
     count = int(has_atom)
     Require(cursor.read("<Ii"), (count, count), "witnessed rectangle chain state")
     chain = read_chain(cursor, KDefinitionKind) if has_atom else None
