@@ -59,7 +59,16 @@ def run_client(config, mode, seconds):
             client.call("phase", {"mode": "echo"})
         else:
             client.call("probe", {"mode": "echo"})
-            print(json.dumps(client.call("phase", {"mode": mode})), flush=True)
+            response = client.call("phase", {"mode": mode})
+            if mode == "copied":
+                work = Path(config["endpoint"]).parent / "Session/work"
+                work.mkdir(mode=0o700, parents=True)
+                artifacts = client.copy_files(work, response)
+                write_record(Path(config["endpoint"]) / "copied.json", {"work": str(work), "spool": str(client.directory), "artifacts": artifacts})
+                until = time.monotonic() + 30
+                while not (Path(config["endpoint"]) / "release-client.json").exists() and time.monotonic() < until:
+                    time.sleep(0.02)
+            print(json.dumps(response), flush=True)
     except WaitingApplication as error:
         print(json.dumps({"outcome": "waiting_application", "reason": str(error), "native_qualified": False}), flush=True)
     finally:
@@ -71,7 +80,7 @@ def main():
     parser = argparse.ArgumentParser(description="Real-process fixture for the local application transport; no CAD claims")
     parser.add_argument("operation", choices=("host", "client", "counterpart"))
     parser.add_argument("--installation", type=Path, required=True)
-    parser.add_argument("--mode", choices=("echo", "handoff", "wait", "queued"), default="echo")
+    parser.add_argument("--mode", choices=("echo", "handoff", "wait", "queued", "copied"), default="echo")
     parser.add_argument("--seconds", type=float, default=15)
     args = parser.parse_args()
     config = configuration(args.installation)

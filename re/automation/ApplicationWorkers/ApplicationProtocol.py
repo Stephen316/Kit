@@ -4,12 +4,13 @@ import os
 from pathlib import Path
 import re
 import secrets
-import shutil
 import stat
 import subprocess
 import time
 
 MAX_BYTES = 256 * 1024 * 1024
+MAX_SPOOL_BYTES = 520 * 1024 * 1024
+MAX_SPOOL_FILES = 32
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
@@ -118,6 +119,21 @@ def copy_pin(source, destination, expected):
     write_new(destination, content)
 
 
+def check_spool(root, reserve_bytes=0, reserve_files=0):
+    total, count = reserve_bytes, reserve_files
+    for path in Path(root).rglob("*"):
+        info = path.lstat()
+        require(not stat.S_ISLNK(info.st_mode) and not getattr(info, "st_file_attributes", 0) & 0x400,
+                "application spool cannot contain links or reparse points")
+        if stat.S_ISDIR(info.st_mode):
+            continue
+        require(stat.S_ISREG(info.st_mode) and info.st_nlink == 1, "application spool contains a non-regular or multiply linked file")
+        count += 1
+        total += info.st_size
+        require(count <= MAX_SPOOL_FILES and total <= MAX_SPOOL_BYTES, "application spool exceeds 32 files or 520 MiB")
+    return {"files": count, "size_bytes": total}
+
+
 def identity(pid):
     require(os.name == "posix", "application process identity currently requires a POSIX host")
     require(type(pid) is int and pid > 0, "invalid application process id")
@@ -186,7 +202,9 @@ class QueueClient:
         try:
             fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
             if (self.root / "fence.json").exists():
-                raise WaitingApplication("installation is fenced pending its external owner's restart or recovery")
+                raise WaitingApplication("installation is fenced pending controller acceptance or its external owner's recovery")
+            if any((self.root / "jobs").iterdir()):
+                raise WaitingApplication("installation retains an unacknowledged spool; owner acceptance or recovery is required")
             self.job_id = secrets.token_hex(16)
             self.directory = directory(self.root / "jobs" / self.job_id, True)
             self.client = identity(os.getpid())
@@ -197,20 +215,36 @@ class QueueClient:
         self.pending = False
 
     def close(self):
-        if self.pending:
-            self.cancel("requesting worker stopped before application completion")
-        os.close(self.lock)
+        try:
+            if self.pending:
+                self.cancel("requesting worker stopped before application completion")
+        finally:
+            os.close(self.lock)
 
     def cancel(self, reason):
         write_record(self.directory / "cancel.json", {"reason": reason[:2048], "at": time.time()}, replace=True)
+        fence = self.root / "fence.json"
+        if fence.exists() and record(fence).get("reason") == "acceptance_required":
+            return
         write_record(self.root / "fence.json", {"installation": self.config["installation"], "job_id": self.job_id,
                      "reason": "quarantined", "host": self.host, "at": time.time()}, replace=True)
 
-    def remove_completed(self):
-        require(not self.pending and record(self.directory / "phase.done")["status"] == "completed",
-                "only a completed dispatch spool may be removed")
-        directory(self.directory)
-        shutil.rmtree(self.directory)
+    def copy_files(self, destination, response):
+        files = response["files"]
+        require(isinstance(files, dict) and len(files) <= 63
+                and sum(item["size_bytes"] for item in files.values()) <= MAX_BYTES, "invalid application output roster")
+        artifacts = {}
+        for role, item in files.items():
+            relative = item["path"]
+            require(isinstance(relative, str) and 1 <= len(relative) <= 4096 and not any(char in relative for char in "\\:\0")
+                    and all(part and part not in (".", "..") for part in relative.split("/")), "application output escapes its spool")
+            target = Path(destination) / relative
+            target.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+            copy_pin(self.directory / relative, target, item)
+            artifacts[role] = pin(target, relative)
+        write_record(self.directory / "copied.json", {"status": "copied_pending_controller_acceptance", "artifacts": artifacts})
+        check_spool(self.directory)
+        return artifacts
 
     def call(self, operation, body):
         deadline = min(self.deadline, time.time() + 30) if operation == "probe" else self.deadline
@@ -273,6 +307,8 @@ class HostQueue:
         if not path.exists():
             return False
         value = record(path)
+        if value.get("reason") == "acceptance_required":
+            return True
         old = value.get("host")
         if isinstance(old, dict) and old != self.host and identity(old["pid"]) is None:
             path.unlink()
@@ -327,6 +363,20 @@ class HostQueue:
             status, reason, proof, files = "expired", "request expired or its process exited", None, None
             write_record(self.root / "fence.json", {"installation": self.config["installation"], "job_id": value["job_id"],
                          "reason": "quarantined", "host": self.host, "at": time.time()}, replace=True)
+        if status == "completed" and value["operation"] == "phase":
+            try:
+                check_spool(running.parent, reserve_bytes=3 * 1024 * 1024, reserve_files=3)
+                retained = {"installation": self.config["installation"], "job_id": value["job_id"],
+                            "reason": "acceptance_required", "host": self.host, "at": time.time(),
+                            "files": files or {}, "plan_sha256": value["body"].get("plan_sha256"),
+                            "restart_handoff": proof.get("restart_handoff") if isinstance(proof, dict) else None,
+                            "owner": "external_application_owner", "acknowledgement": "not_implemented"}
+                write_record(running.parent / "pending-acceptance.json", retained)
+                write_record(self.root / "fence.json", retained, replace=True)
+            except (OSError, ValueError) as error:
+                status, reason, proof, files = "waiting_application", str(error), None, None
+                write_record(self.root / "fence.json", {"installation": self.config["installation"], "job_id": value["job_id"],
+                             "reason": "quarantined", "host": self.host, "at": time.time()}, replace=True)
         response = {"version": 1, "installation": self.config["installation"], "source_revision": self.config["source_revision"],
                     "provider": self.provider, "host": self.host, "request_sha256": sha256(encoded(value)), "nonce": value["nonce"],
                     "status": status, "reason": reason[:2048], "proof": proof, "files": files or {}, "finished_at": time.time()}

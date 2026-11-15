@@ -77,10 +77,25 @@ records loaded source hashes. Requests cannot supply script, code or module path
 
 Application output stays in a private installation spool while the request runs.
 Completed files copy into the session's private `work` directory with verified
-size/hash pins, then use durable output intake. Only a completed, copied spool is
-removed. Cancellation and timeout quarantine the installation; late results expose
-no accepted output references. Active or quarantined spool files survive session
-cleanup for the external application owner's investigation.
+size/hash pins, then use durable output intake. Copying does not acknowledge
+controller acceptance. The completed spool remains behind an acceptance-required
+fence, including after application restart. There is no automatic acceptance
+acknowledgement or cleanup operation in this protocol.
+
+Admit at most one outstanding request spool per installation. Reject a completed
+spool larger than 32 files or 520 MiB, reserving space for response and copy
+journals. That bound permits up to 256 MiB of prior phase A data, 256 MiB of output
+and 8 MiB of metadata. These are admission and completed-file checks, not an OS
+disk quota on externally owned CAD. An active or unresponsive application can
+exceed the limit before the dispatcher observes its files; owner recovery and OS
+disk controls remain open requirements.
+
+The external owner must verify actual controller completion and the accepted
+output manifest against the retained file hashes before manually removing a
+completed spool and its acceptance fence. If acceptance is absent, stale or
+failed, preserve the spool for recovery or an explicit owner disposition. Removing
+only the fence does not free the occupied spool slot. Cancellation and timeout
+also retain their spools; late results expose no accepted output references.
 
 Phase A emits a restart-required handoff containing the installation, plan hash
 and old application process identity. The add-in then refuses more work in that
@@ -89,10 +104,13 @@ process identity and the actual old process exit; the existing fresh-process
 helper also enforces its capture-specific restart checks.
 
 The dispatcher never quits or kills externally owned CAD. Unknown-owner
-quarantines require explicit owner recovery. A known old-process fence can clear
-when a new counterpart starts after that old process exits. Automatic recovery,
+quarantines require explicit owner recovery. A known old-process quarantine fence
+can clear when a new counterpart starts after that old process exits. An acceptance
+fence does not clear on restart, and a retained spool still blocks new admission.
+Automatic recovery,
 50-job resets, native-process memory limits, 20-job batch invalidation, spool
-retention policy and unattended pilot evidence remain open A08c work.
+acceptance acknowledgement, retention policy and unattended pilot evidence remain
+open A08c work.
 
 The native operation currently supports macOS Fusion. Windows Fusion and
 SOLIDWORKS configurations return `waiting_application`. Missing, busy or fenced
@@ -104,6 +122,8 @@ wait under the existing controller rules.
 `tests/Research/Applications` adds real process/file protocol cases for queue
 exchange, exclusive counterparts, process-owned restart fences, dead clients,
 late output, untrusted revisions, fixed entry points and independent-job progress.
+An interruption case kills a real client after the shared copy operation, removes
+the session copy, and checks that the original bytes and acceptance fence remain.
 The protocol fixture identifies itself as `fixture.transport`, emits
 `native_qualified: false` and does not call CAD APIs. It cannot qualify native
 application behavior. Windows exercises the absent/unsupported-host cases only.
@@ -113,3 +133,5 @@ whitespace checks. Remote process execution and licensed native-host execution
 remain pending. No captured native pair is qualified by this implementation.
 
 See [the main-thread availability gotcha](../../../Gotchas/Research/Workers/FusionMainThreadAvailability.md).
+See [the pre-acceptance durability gotcha](../../../Gotchas/Research/Workers/CopyIsNotAcceptance.md)
+for the retained-spool recovery boundary.

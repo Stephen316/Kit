@@ -4,6 +4,7 @@ import tempfile as TempFiles
 from pathlib import Path as FilePath
 
 from tests.Research.Applications.DispatchHost import DispatchHost
+from tests.Research.Applications.RetainedRestart import AssertRetained
 
 
 def CheckRound() -> None:
@@ -55,14 +56,4 @@ def CheckRestart() -> None:
         finally:
             First.terminate()
             _ = First.communicate(timeout=15)
-        Second = Harness.StartHost()
-        try:
-            Harness.WaitHost(Second.pid)
-            Client = Harness.StartClient()
-            Output, ErrorText = Client.communicate(timeout=30)
-            assert Client.returncode == 0, ErrorText
-            assert JsonCodec.loads(Output)["host"]["pid"] == Second.pid
-            assert Second.pid != Handoff["host"]["pid"]
-        finally:
-            Second.terminate()
-            _ = Second.communicate(timeout=15)
+        AssertRetained(Harness, First.pid)
