@@ -13,6 +13,7 @@ from pathlib import Path
 
 from Adapters import load_adapter
 from ApplicationAckIntent import current_completion, make_intent, read_intent
+from CapacitySnapshot import CapacitySnapshot, capacity_status
 from ClaimWire import ClaimExchangeLost
 from ApplicationRearmIntent import make_rearm_intent, read_rearm_intent, rearm_runner_digest, rearm_timeout
 from GroupSessions import GroupSession, release_group
@@ -164,6 +165,7 @@ class Supervisor:
         self.grouping = getattr(self.adapter, "GroupClaimsVersion", None) == 1
         self.budget = ResourceBudget(config, self.registry) if claiming else None
         self.admission = {}
+        self.capacity = None
         self.measurement_error = None
         self.running = {}
         self.locks = []
@@ -425,14 +427,20 @@ class Supervisor:
         claimed = False
         pending = {detail["pool"] for _, detail in self.application_acks.values()}
         for pool, settings in sorted(self.config["pools"].items()):
-            if pool in paused or pool in pending:
+            if pool in paused:
+                self.capacity.block(pool, "paused")
+                continue
+            if pool in pending:
+                self.capacity.block(pool, "settlement_pending")
                 continue
             while sum(1 for session in self.running.values() if session.pool == pool) < settings["max_sessions"]:
                 admission = self.budget.admission(pool, settings, self.running)
                 previous = self.admission.get(pool)
                 self.admission[pool] = admission
+                self.capacity.observe(pool, admission, self.budget.host_sample_monotonic)
                 if previous is None or previous["reason"] != admission["reason"] or previous["active_limit"] != admission["active_limit"] or previous["adaptive_revision"] != admission["adaptive_revision"] or previous["upward_blocked_reason"] != admission["upward_blocked_reason"]:
-                    self.report("admission", None, {"pool": pool, **admission})
+                    event = {key: value for key, value in admission.items() if key not in {"limiting_factors", "memory_estimate_bytes_by_kind"}}
+                    self.report("admission", None, {"pool": pool, **event})
                 if admission["additional_sessions"] == 0:
                     break
                 name = f"{time.time_ns():x}-{secrets.token_hex(4)}"
@@ -495,6 +503,9 @@ class Supervisor:
                 self.budget.adaptive.started(pool)
                 self.counts["started"] += 1
                 self.report("started", session, {"pid": session.pid, "group_size": len(group) if group else 1})
+            else:
+                self.capacity.block(pool, "pool_full")
+        self.capacity.publish()
         return claimed
 
     def shutdown(self, number, frame):
@@ -507,6 +518,8 @@ class Supervisor:
         try:
             return self.run_sessions(idle_seconds, max_seconds)
         finally:
+            if self.capacity is not None:
+                self.capacity.retire()
             try:
                 if self.windows_claims:
                     self.adapter.CloseClaimHelper()
@@ -518,6 +531,7 @@ class Supervisor:
         signal.signal(signal.SIGTERM, self.shutdown)
         signal.signal(signal.SIGINT, self.shutdown)
         self.acquire()
+        self.capacity = CapacitySnapshot(self.config, self.registry.configuration_sha256)
         self.recover()
         self.synchronize()
         self.recover_application_acks()
@@ -527,6 +541,7 @@ class Supervisor:
         last_work = started
         while True:
             now = time.time()
+            self.capacity.begin_pass()
             paused = self.pauses()
             try:
                 self.budget.refresh(self.running)
@@ -547,6 +562,7 @@ class Supervisor:
             elif idle_seconds is not None and time.monotonic() - last_work >= idle_seconds:
                 break
             time.sleep(self.config["poll"])
+        self.capacity.retire()
         for session in self.running.values():
             session.begin_stop("supervisor_shutdown", time.time())
         while self.running:
@@ -574,7 +590,17 @@ def status(config):
             running.setdefault(record.get("pool"), []).append({key: record.get(key) for key in ("session", "job_id", "attempt", "pid", "started_at")})
     path = config["state"] / "pauses.json"
     pauses = read_bounded(path).get("pools", {}) if path.is_file() else {}
-    return {"pools": {name: {"max_sessions": settings["max_sessions"], "running": sorted(running.get(name, []), key=lambda item: item["session"]), "paused": pauses.get(name)} for name, settings in sorted(config["pools"].items())}}
+    capacities = capacity_status(config)
+    return {"pools": {
+        name: {
+            "max_sessions": settings["max_sessions"],
+            "running": sorted(running.get(name, []), key=lambda item: item["session"]),
+            "paused": pauses.get(name),
+            "capacity": {"state": "paused", "decision": None} if name in pauses
+            else capacities.get(name, {"state": "unavailable", "decision": None}),
+        }
+        for name, settings in sorted(config["pools"].items())
+    }}
 
 
 def set_pause(config, pool, reason):

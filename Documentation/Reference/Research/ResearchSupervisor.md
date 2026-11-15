@@ -286,6 +286,7 @@ python3 re/automation/Supervisor.py --config Supervisor.json jobs --job example
 ```
 
 `run` prints one JSON event per line and a final `summary`.
+`status` shows the live owner's last eligible local admission decision for each pool in `capacity`. [Capacity status and freshness](../../Changes/Research/Supervisor/LiveSupervisorCapacity.md)
 Without `--idle-seconds` or `--max-seconds`, it runs until it receives `SIGTERM` or `SIGINT`.
 At shutdown it stops its sessions and finishes them with `retry`.
 `submit`, `bind` and `jobs` go through the configured adapter, so they work with any adapter.

@@ -1,7 +1,7 @@
 import re
 from pathlib import Path
 
-from Records import bounded, label, read_record
+from Records import bounded, digest, label, read_record
 from OutputManifest import output_manifest
 
 SCHEMA_KEYS = {"$schema", "title", "description", "type", "properties", "required", "additionalProperties", "items", "enum", "const", "minLength", "maxLength", "minimum", "maximum", "minItems", "maxItems"}
@@ -125,6 +125,7 @@ class Registry:
         record = read_record(path)
         if set(record) != {"runners"} or not isinstance(record["runners"], dict) or not 1 <= len(record["runners"]) <= 256:
             raise ValueError("runner registry must contain only 1–256 runners")
+        self.configuration_sha256 = digest(record)
         self.runners = {}
         for kind, entry in record["runners"].items():
             label(kind)

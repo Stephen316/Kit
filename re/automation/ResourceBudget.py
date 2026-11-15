@@ -19,6 +19,7 @@ class ResourceBudget:
         self.groups = {}
         self.host_groups = {}
         self.measured_at = None
+        self.host_sample_monotonic = None
         self.next_host = 0
 
     def record(self, specification, session, outcome, stale, receipt, report):
@@ -57,12 +58,17 @@ class ResourceBudget:
             self.host = host_resources()
             self.host_groups = dict(self.groups)
             self.measured_at = time.time()
+            self.host_sample_monotonic = time.monotonic()
             self.next_host = now + 5
 
     def admission(self, pool, settings, running):
         entries = [entry for entry in self.registry.runners.values() if entry["pool"] == pool]
         threads = max(entry["threads"] for entry in entries)
-        estimate = max(self.history.admission_estimate(kind, entry["initial_peak_memory_mib"] * 1048576) for kind, entry in self.registry.runners.items() if entry["pool"] == pool)
+        estimates = {
+            kind: self.history.admission_estimate(kind, entry["initial_peak_memory_mib"] * 1048576)
+            for kind, entry in self.registry.runners.items() if entry["pool"] == pool
+        }
+        estimate = max(estimates.values())
         used_cpus = 0
         pending_memory = 0
         count = 0
@@ -78,13 +84,16 @@ class ResourceBudget:
             count += session.pool == pool
         cpu_slots = max(0, self.host["logical_cpus"] - self.reserved_cpus - used_cpus) // threads
         memory_slots = max(0, self.host["available_memory_bytes"] - self.reserved_memory - pending_memory) // estimate
-        slots = min(settings["max_sessions"] - count, cpu_slots, memory_slots)
+        limits = {"configured": settings["max_sessions"] - count, "cpu": cpu_slots, "memory": memory_slots}
+        slots = min(limits.values())
         policy = self.adaptive.limit(pool, max(0, count + slots), self.host, self.reserved_memory, estimate)
         slots = min(slots, max(0, policy["active_limit"] - count))
+        if policy["active_limit"] < policy["calculated_capacity"]:
+            limits["adaptive"] = max(0, policy["active_limit"] - count)
         reason = "pool limit" if count >= settings["max_sessions"] else "cpu headroom" if cpu_slots == 0 else "memory headroom" if memory_slots == 0 else None
         if reason is None and count >= policy["active_limit"]:
             reason = "adaptive limit"
-        return {"additional_sessions": max(0, slots), "running": count, "reason": reason, "threads_per_session": threads, "estimated_memory_bytes": estimate, "host_measured_at": self.measured_at, "host": self.host, "reserved_cpus": self.reserved_cpus, "reserved_memory_bytes": self.reserved_memory, "unreserved_memory_bytes": max(0, self.host["available_memory_bytes"] - self.reserved_memory - pending_memory), **policy}
+        return {"additional_sessions": max(0, slots), "running": count, "reason": reason, "threads_per_session": threads, "estimated_memory_bytes": estimate, "host_measured_at": self.measured_at, "host": self.host, "reserved_cpus": self.reserved_cpus, "reserved_memory_bytes": self.reserved_memory, "unreserved_memory_bytes": max(0, self.host["available_memory_bytes"] - self.reserved_memory - pending_memory), "limiting_factors": [factor for factor, limit in limits.items() if limit == slots], "memory_estimate_bytes_by_kind": estimates, **policy}
 
     def group_candidates(self, pool, admission):
         candidates = {}

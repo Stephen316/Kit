@@ -36,7 +36,7 @@ def finish_process(process):
     return {"exit_status": None if signaled else os.WEXITSTATUS(status), "signal": os.WTERMSIG(status) if signaled else None, "peak_memory_bytes": peak_bytes(usage)}
 
 
-def process_start(pid):
+def process_start(pid, *, live=False):
     if type(pid) is not int or pid <= 1:
         return None
     if sys.platform == "win32":
@@ -48,12 +48,22 @@ def process_start(pid):
         except (OSError, UnicodeDecodeError):
             return None
         fields = content[content.rindex(")") + 2:].split()
-        return f"linux:{fields[19]}" if len(fields) > 19 else None
+        if len(fields) <= 19 or (live and fields[0] in {"Z", "X", "x"}):
+            return None
+        return f"linux:{fields[19]}"
+    command = ["/bin/ps", "-o", "lstart="]
+    if live:
+        command.extend(("-o", "stat="))
+    command.extend(("-p", str(pid)))
     try:
-        result = subprocess.run(["/bin/ps", "-o", "lstart=", "-p", str(pid)], capture_output=True, text=True, timeout=10, check=False, env={"LC_ALL": "C", "PATH": "/bin:/usr/bin"})
+        result = subprocess.run(command, capture_output=True, text=True, timeout=10, check=False, env={"LC_ALL": "C", "PATH": "/bin:/usr/bin"})
     except (OSError, subprocess.SubprocessError):
         return None
     text = " ".join(result.stdout.split())
+    if live:
+        text, _, state = text.rpartition(" ")
+        if not state or state.startswith("Z"):
+            return None
     return f"ps:{text}" if result.returncode == 0 and text else None
 
 

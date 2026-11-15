@@ -3,7 +3,7 @@ import json as JsonCodec
 import tempfile as TempFiles
 from pathlib import Path as FilePath
 
-from tests.Research.SupervisorClient import FixtureJob, SessionHost
+from tests.Research.SupervisorClient import FixtureJob, SessionCommand, SessionHost
 
 
 # real workers must produce distinct durable outcomes for success and each supported failure case
@@ -121,6 +121,47 @@ def CheckDeadline() -> None:
         assert 3 <= Receipt["duration_seconds"] < 6
 
 
+# live status must retain the active decision only for the configuration the supervisor actually loaded
+def ReadLiveCap(Harness: SessionHost) -> tuple[int, int, int]:
+    PoolInfo = JsonCodec.loads(Harness.RunCli("status"))["pools"]["decode"]
+    assert [SessionRow["job_id"] for SessionRow in PoolInfo["running"]] == ["busy:hold"]
+    assert PoolInfo["max_sessions"] == 1 and PoolInfo["paused"] is None
+    Decision = PoolInfo["capacity"]["decision"]
+    assert Decision["active_limit"] == Decision["calculated_capacity"] == 1
+    assert "configured" in Decision["limiting_factors"]
+    Estimates = Decision["memory_estimate_bytes_by_kind"]
+    assert Estimates == {"fixture.decode": 1024 * 1048576}
+    ConfigInfo = JsonCodec.loads(Harness.ConfigFile.read_text(encoding="utf-8"))
+    ConfigInfo["reserved_cpus"] = 1
+    Different = Harness.RootPath / "DifferentConfig.json"
+    _ = Different.write_text(JsonCodec.dumps(ConfigInfo), encoding="utf-8")
+    Mismatched = JsonCodec.loads(SessionCommand(Different).RunCli("status"))
+    assert Mismatched["pools"]["decode"]["capacity"] == {
+        "state": "unavailable",
+        "decision": None,
+    }
+    return (
+        Decision["active_limit"],
+        Decision["calculated_capacity"],
+        max(Estimates.values()),
+    )
+
+
+# archived admission and shutdown evidence must validate the numbers seen in a previously live view
+def VerifyCapExit(
+    Harness: SessionHost, Output: str, LiveValues: tuple[int, int, int]
+) -> None:
+    Events = [JsonCodec.loads(LineText) for LineText in Output.splitlines()]
+    Admission = next(Event for Event in Events if Event["event"] == "admission")
+    assert LiveValues == (
+        Admission["active_limit"],
+        Admission["calculated_capacity"],
+        Admission["estimated_memory_bytes"],
+    )
+    Retired = JsonCodec.loads(Harness.RunCli("status"))["pools"]["decode"]
+    assert Retired["capacity"] == {"state": "unavailable", "decision": None}
+
+
 # pausing dispatch must keep existing ownership and prevent another supervisor from taking the same state
 def CheckPauseLock() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
@@ -133,20 +174,20 @@ def CheckPauseLock() -> None:
         try:
             _ = Harness.WaitSession("busy:hold")
             _ = Harness.RunCli("run", "--idle-seconds", "1", ExitCode=4)
-            StatusInfo = JsonCodec.loads(Harness.RunCli("status"))
-            Running = StatusInfo["pools"]["decode"]["running"]
-            assert [SessionRow["job_id"] for SessionRow in Running] == ["busy:hold"]
+            LiveValues = ReadLiveCap(Harness)
             _ = Harness.RunCli("pause", "decode", "--reason", "operator hold")
             Harness.WaitReason("busy:hold", "session stopped: pool_paused")
             Paused = JsonCodec.loads(Harness.RunCli("status"))["pools"]["decode"]
             assert Paused["paused"]["reason"] == "operator hold"
+            assert Paused["capacity"] == {"state": "paused", "decision": None}
             assert Harness.ReadJob("busy:hold")["attempts"] == 1
             _ = Harness.RunCli("resume", "decode")
-            _ = First.communicate(timeout=60)
+            Output, _ = First.communicate(timeout=60)
         finally:
             First.kill()
             _ = First.wait()
         assert First.returncode == 0
+        VerifyCapExit(Harness, Output, LiveValues)
         Resumed = Harness.ReadJob("busy:hold")
         assert Resumed["state"] == "completed", Resumed
         assert Resumed["attempts"] == 2
