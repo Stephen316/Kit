@@ -334,7 +334,9 @@ The [A08b grouped settlement change](../../Changes/Research/Supervisor/GroupedAd
 
 The [kernel OOM estimate](../../Changes/Research/Supervisor/KernelOomMemoryEstimate.md) doubles the persisted reservation floor for the affected kind, tool version and group size after one accepted, verified Linux kernel OOM. At hosted merge `b008c6a8`, the cgroup OOM increased the reservation from 64 to 128 MiB, the ordinary `SIGKILL` control stayed at 64 MiB, and both runs cleaned up successfully.
 
-The [A08b capacity status](../../Changes/Research/Supervisor/LiveSupervisorCapacity.md) reports the running supervisor's last admission decision and per-kind reservations. It validates owner identity, configuration, pause generation and freshness before returning the observations. Hosted verification is pending.
+The [A08b capacity status](../../Changes/Research/Supervisor/LiveSupervisorCapacity.md) reports the running supervisor's last admission decision and per-kind reservations. It validates owner identity, configuration, pause generation and freshness before returning the observations. The hosted Windows recovery case passed at `648ddf5c`. The hosted Linux status case is pending.
+
+The [A08b grouped offline calibration](../../Changes/Research/Supervisor/GroupedOfflineCalibration.md) accepted the same 64 pinned Fusion discovery archives once per arm and produced the same neutral output digest at `50a4892b`. One Windows physical slot used 64 singleton sessions in 245.914 seconds and ten verified group sessions in 66.792 seconds. The new hosted archive-process check and Linux and macOS throughput remain open.
 
 The [A08e archive verifier](../../Changes/Research/Workers/SolidWorks/OfflineRearmEvidence.md) checked 94 retained objects across four licensed Windows runs after their listeners exited. The P04 run at `5770f1b3` also proved replacement-supervisor recovery from separately pinned event and spool records.
 
