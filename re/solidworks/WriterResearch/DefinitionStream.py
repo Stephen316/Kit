@@ -5,9 +5,11 @@ from convert.adapters.solidworks.container.Archive import KLongStringLimit
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.Definition import (
     KJournalClass,
+    KLineFontBindings,
     KViewBlockDoubles,
     ArchiveWriter,
     EncodePreamble,
+    LineFontBinding,
     ViewRecord,
     WriteBomManager,
     WriteDrafting,
@@ -54,8 +56,14 @@ def EncodeModernPartDefinition(
     Attachment: JournalAttach,
     AppearanceCounter: int,
     TerminalValue: float,
+    Bindings: tuple[LineFontBinding, ...] = KLineFontBindings,
 ) -> bytes:
     RequireViews(Views)
+    RequireArch(
+        (len(Bindings), set(Bindings)),
+        (len(KLineFontBindings), set(KLineFontBindings)),
+        "Definition line font bindings",
+    )
     RequireArch(
         all(
             len(Text.encode("utf-16-le")) // 2 < KLongStringLimit
@@ -67,7 +75,7 @@ def EncodeModernPartDefinition(
     Writer = ArchiveWriter()
     WriteDrafting(Writer, "moBS_c")
     WriteLineStyles(Writer)
-    WriteLineFonts(Writer)
+    WriteLineFonts(Writer, Bindings=Bindings)
     WriteUserModel(
         Writer,
         UserName,

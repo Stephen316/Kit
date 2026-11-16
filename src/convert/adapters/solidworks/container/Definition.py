@@ -482,10 +482,14 @@ def WriteLineStyles(Writer: ArchiveWriter) -> None:
 
 
 # this definition exists because focused behavior needs one stable owner
-def WriteLineFonts(Writer: ArchiveWriter) -> None:
+def WriteLineFonts(
+    Writer: ArchiveWriter,
+    *,
+    Bindings: tuple[LineFontBinding, ...] = KLineFontBindings,
+) -> None:
     Writer.begin_object(KLineFontManagerClass, KLineFontManagerSchema)
-    Writer.u16(len(KLineFontBindings))
-    for Binding in KLineFontBindings:
+    Writer.u16(len(Bindings))
+    for Binding in Bindings:
         Writer.string(Binding.annotation)
         Writer.begin_object(KLineFontConfigClass, KLineFontConfigSchema)
         Writer.string(Binding.font)
