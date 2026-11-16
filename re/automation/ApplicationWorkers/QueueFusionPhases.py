@@ -38,7 +38,7 @@ from FusionQueueReceipt import (
     verify_committed,
 )
 from Ledger import Ledger
-from Records import canonical, label
+from Records import canonical, digest, label, specification
 from Runners import Registry
 from Supervisor import ROOT, read_config
 
@@ -162,11 +162,22 @@ def prepare_pair(installation, acknowledgement, kind, resource, run, staged, raw
 def submit_pair(store, staged, receipt, jobs, *, durable):
     binding, plan_hash = receipt["plan_binding"], receipt["plan_sha256"]
     with Ledger(store) as ledger:
-        existing = exact_jobs(ledger.db, jobs)
-        require(
-            not durable or len(existing) in (0, 2),
-            "existing Fusion submission contains only one phase",
-        )
+        existing = exact_jobs(ledger.db, jobs) if durable else []
+        if durable:
+            require(
+                len(existing) in (0, 2),
+                "existing Fusion submission contains only one phase",
+            )
+        else:
+            for job in jobs:
+                current = ledger.db.execute(
+                    "SELECT definition_hash FROM jobs WHERE id=?", (job["id"],)
+                ).fetchone()
+                require(
+                    current is None
+                    or current["definition_hash"] == digest(specification(job)),
+                    "existing generated phase job has a different definition",
+                )
         old = ledger.db.execute(
             "SELECT sha256 FROM bindings WHERE name=?", (binding,)
         ).fetchone()
