@@ -7,6 +7,7 @@ from tokenize import COMMENT, generate_tokens as GenerateTokens
 from tools.Steering.SteeringCompliance import (
     BuildParents,
     Finding,
+    GetLicenseLines,
     GetReasonLines,
     IsPragmaComment,
 )
@@ -21,11 +22,12 @@ def AddedComments(SourcePath: FilePath, BaseText: str, HeadText: str) -> list[Fi
     )
     SyntaxTree = AstLib.parse(HeadText, filename=SourcePath.as_posix())
     ReasonLines = GetReasonLines(SyntaxTree, BuildParents(SyntaxTree))
+    LicenseLines = GetLicenseLines(HeadText)
     Findings: list[Finding] = []
     for TokenInfo in GenerateTokens(StringIO(HeadText).readline):
         if TokenInfo.type != COMMENT:
             continue
-        if IsPragmaComment(TokenInfo):
+        if TokenInfo.start[0] in LicenseLines or IsPragmaComment(TokenInfo):
             continue
         if Prior[TokenInfo.string] > 0:
             Prior[TokenInfo.string] -= 1

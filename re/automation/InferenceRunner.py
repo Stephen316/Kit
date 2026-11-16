@@ -154,13 +154,28 @@ def run(session):
     if job["kind"] == FIELD_KIND and set(options) == {"scope"}:
         records = evaluate(*read_plan(session, inputs, scope))
         reason = "recorded the frozen discovery hypotheses and distinguishing evidence"
-    elif (
-        job["kind"] == GAP_KIND
-        and set(options) == {"scope"}
-        and set(inputs) == {"plan"}
-    ):
+    elif job["kind"] == GAP_KIND:
+        from InferenceGrid.Evidence import KScopeGap, ObserveGrid
+
+        attached = scope == KScopeGap and set(options) == {"scope", "grid_from_receipt"}
+        if not attached and (set(options) != {"scope"} or set(inputs) != {"plan"}):
+            raise ValueError("paired gap inputs do not match the assessment mode")
         report = read_json_input(session, inputs["plan"])
+        if scope == KScopeGap and (
+            report.get("status") != "needs-distinguishing-evidence"
+            or "native_grid" in report
+        ):
+            raise ValueError(
+                "the scope hypothesis requires authenticated grid evidence"
+            )
         outcome, reason, records = evaluate_gap(scope, report, inputs["plan"]["sha256"])
+        if attached:
+            records["assessment"] = {
+                **report,
+                "native_grid": ObserveGrid(session, packet, report),
+                "continued_from_receipt": checksum(options["grid_from_receipt"]),
+            }
+            reason = "verified Fusion scope observations and still needs saved target policy evidence"
     elif (
         job["kind"] == RESCAN_KIND
         and set(options) == {"scope", "source_format", "source_sha256"}

@@ -121,6 +121,17 @@ KPragmaPrefixes = (
     "type:",
 )
 
+# the complete notice stays exact because individual license fragments cannot authorize other comments
+KLicenseLines = (
+    "# SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0",
+    "# SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin",
+    "#",
+    "# This SPDX license identifier and copyright notice must not be",
+    "# removed, altered, or obscured. Doing so is a material breach of",
+    "# the PolyForm Strict License 1.0.0 and voids all licenses granted",
+    "# to you under it immediately and permanently.",
+)
+
 # type alias wrappers stay explicit because boolean contracts may retain metadata without changing their result
 KBoolTypeWraps = frozenset({"Annotated", "Final", "Required", "NotRequired"})
 
@@ -820,6 +831,19 @@ def IsPragmaComment(TokenInfo: Tokenize.TokenInfo) -> bool:
     return any(CommentText.startswith(PrefixText) for PrefixText in KPragmaPrefixes)
 
 
+# only the exact leading notice is exempt so misplaced fragments remain ordinary comments
+def GetLicenseLines(SourceText: str) -> range:
+    TopLines = SourceText.split("\n", len(KLicenseLines) + 1)
+    FirstLine = int(TopLines[0].startswith("#!"))
+    AfterLine = FirstLine + len(KLicenseLines)
+    Notice = tuple(
+        LineText.removesuffix("\r") for LineText in TopLines[FirstLine:AfterLine]
+    )
+    if Notice != KLicenseLines:
+        return range(0)
+    return range(FirstLine + 1, AfterLine + 1)
+
+
 # rationale positions identify the single comments that may explain required declarations
 def GetReasonLines(
     SyntaxTree: AstLib.Module, ParentMap: dict[AstLib.AST, AstLib.AST]
@@ -840,12 +864,17 @@ def CheckComments(
 ) -> list[Finding]:
     TokenList = list(Tokenize.generate_tokens(IoStream.StringIO(SourceText).readline))
     ReasonLines = GetReasonLines(SyntaxTree, ParentMap)
+    LicenseLines = GetLicenseLines(SourceText)
     FindingList: list[Finding] = []
     for TokenInfo in TokenList:
         if TokenInfo.type != Tokenize.COMMENT:
             continue
         TokenPos = (TokenInfo.start[0], TokenInfo.start[1])
-        if TokenPos in ReasonLines or IsPragmaComment(TokenInfo):
+        if (
+            TokenPos in ReasonLines
+            or TokenPos[0] in LicenseLines
+            or IsPragmaComment(TokenInfo)
+        ):
             continue
         MsgText = "code comment is not an allowed rationale or type pragma"
         FindingList.append(
