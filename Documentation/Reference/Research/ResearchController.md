@@ -142,7 +142,9 @@ The `/tmp/KitResearchState` path below is an example and can be removed by opera
    `artifact <sha256>` verifies an object and reports its path and byte count.
    Replace angle-bracket values with actual labels or hashes.
 
-Commands emit bounded JSON and return `0` on success.
+Commands emit bounded canonical UTF-8 JSON followed by LF and return `0` on success.
+Controller diagnostics also use UTF-8; subprocess clients must decode both output streams explicitly as UTF-8.
+The [transport repair](../../Changes/Research/Controller/ControllerUtfEightTransport.md) preserves Unicode paths and reasons under restrictive host encodings without changing record hashes or transaction semantics.
 Invalid records, unavailable stores and corrupted evidence return `1`.
 A stale lease from `heartbeat` or `finish` returns `3` with a `controller stale lease` message.
 A lease is stale when it was replaced, revoked or finished, when it expired, or when its inputs changed.
