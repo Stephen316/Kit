@@ -66,12 +66,12 @@ PRIOR_REPORT = {
     "inch_refusal": "Unsupported native Fusion UnitSystemChoiceById.unitString",
 }
 
-# The alternate datum still identifies the original strict schema boundary.
-REFUSED = {
-    "plane-yz": (
-        "c14b8c4a791415c5eb356d4c1e4143cb4b76ab856e0f84357c08b4f4da125b3a",
-        "Unsupported native Fusion FusionSketchLinearDim.constraintType",
-    ),
+# Pin the independently measured origin YZ save and its previous strict report.
+YZ_SHA256 = "c14b8c4a791415c5eb356d4c1e4143cb4b76ab856e0f84357c08b4f4da125b3a"
+PRIOR_YZ_REPORT = {
+    "revision": "9b648ea17ce750c4c556b8f653c2c800adff365a",
+    "sha256": "7c2bac73e8a3b6241ccddf0da5bbad20b8d4383fdfb9f43e7e091c438a82cef1",
+    "yz_refusal": "Unsupported native Fusion FusionSketchLinearDim.constraintType",
 }
 
 # Exact native and neutral fingerprints freeze the unrelated writer and vendor read paths.
@@ -130,7 +130,7 @@ def source_bytes(snapshot, asset, digest):
 
 
 # Verify named driving parameters, literal expressions and their exact neutral feature owners.
-def owned_drivers(document, observed):
+def owned_drivers(document, observed, direction=(0.0, 0.0, 1.0)):
     sketch_feature, boss = document.feature_timeline
     width, height, depth, taper = document.parameters
     roster = ("width_mm", "height_mm", "depth_mm", "d4")
@@ -175,7 +175,7 @@ def owned_drivers(document, observed):
             boss.definition.Direction.y,
             boss.definition.Direction.z,
         )
-        == (0.0, 0.0, 1.0)
+        == direction
         and boss.definition.AlongParameterId == depth.id
         and boss.definition.TaperParameterId == taper.id
         and taper.value.value == 0.0,
@@ -492,7 +492,7 @@ def legacy_controls(snapshot):
 
 
 # Run the full reader and independent body, constraint and parameter checks on each admitted save.
-def admitted_case(raw, digest, witnesses, *, display=None):
+def admitted_case(raw, digest, witnesses, *, display=None, direction=(0.0, 0.0, 1.0)):
     document = open_document(raw, strict=True)
     model = ReadDocument(raw)
     graph = BuildGraph(model)
@@ -500,7 +500,7 @@ def admitted_case(raw, digest, witnesses, *, display=None):
     result = {
         "archive_sha256": digest,
         "phases": {app: witness[0] for app, witness in witnesses.items()},
-        "parameters": owned_drivers(document, witnesses["fusion"][1]),
+        "parameters": owned_drivers(document, witnesses["fusion"][1], direction),
         "sketch": sketch_relations(document, graph, context),
         "body": body_match(
             document, context, {app: witness[1] for app, witness in witnesses.items()}
@@ -635,6 +635,43 @@ def reverse_case(snapshot, captures):
     return {**result, "surface_area_mm2": body.topology.surface_area}
 
 
+# The alternate datum retains the actual local axes and positive world normal.
+def yz_case(snapshot, captures):
+    variant = "plane-yz"
+    raw = source_bytes(snapshot, captures["fusion"][1][variant], YZ_SHA256)
+    witnesses = {app: entry[2][variant] for app, entry in captures.items()}
+    result, document, _, _ = admitted_case(
+        raw, YZ_SHA256, witnesses, direction=(1.0, 0.0, 0.0)
+    )
+    (plane,) = document.support_planes
+    frame = plane.transform
+    axes = tuple(
+        (axis.x, axis.y, axis.z) for axis in (frame.x_axis, frame.y_axis, frame.z_axis)
+    )
+    dimensions = {
+        relation.parameter_id: relation.kind.value
+        for relation in document.sketches[0].constraints
+        if relation.parameter_id is not None
+    }
+    require(
+        plane.name == "YZ"
+        and axes == ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0), (1.0, 0.0, 0.0))
+        and dimensions
+        == {
+            result["parameters"]["width_mm"]["id"]: "distance_y",
+            result["parameters"]["height_mm"]["id"]: "distance_x",
+        }
+        and result["body"]["bounds_mm"] == [[0.0, 0.0, 0.0], [10.0, 40.0, 20.0]],
+        "Strict YZ plane, local driving axes or physical bounds differ",
+    )
+    return {
+        **result,
+        "plane": plane.name,
+        "world_axes": axes,
+        "local_dimension_kinds": dimensions,
+    }
+
+
 # Replay public entry points from immutable discovery receipts in the repository.
 def report():
     snapshot = GitSnapshot(ROOT)
@@ -654,14 +691,6 @@ def report():
         raw = source_bytes(snapshot, assets[variant], digest)
         witnesses = {app: captures[app][2][variant] for app in applications}
         accepted[variant], _, _, _ = admitted_case(raw, digest, witnesses)
-    adjacent = {}
-    for variant, (digest, expected) in REFUSED.items():
-        raw = source_bytes(snapshot, assets[variant], digest)
-        require(bool(ReadDocument(raw).Segments), f"{variant} wire decode failed")
-        adjacent[variant] = {
-            "archive_sha256": digest,
-            "refusal": refusal(lambda: open_document(raw, strict=True), expected),
-        }
     baseline = ReadDocument(
         source_bytes(snapshot, assets["baseline-a"], POSITIVE["baseline-a"])
     )
@@ -686,8 +715,9 @@ def report():
         "admitted": accepted,
         "inch_display": inch_case(snapshot, captures),
         "metric_reverse_depth": reverse_case(snapshot, captures),
+        "metric_yz": yz_case(snapshot, captures),
         "historical_metric_report": PRIOR_REPORT,
-        "adjacent_refusals": adjacent,
+        "historical_yz_refusal": PRIOR_YZ_REPORT,
         "valid_native_mutation_refusals": field_mutations(
             baseline, graph, SelectExtrusion(graph)
         ),

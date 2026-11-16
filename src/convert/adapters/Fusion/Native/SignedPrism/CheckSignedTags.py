@@ -8,6 +8,8 @@
 
 from collections import Counter as CountLabels
 
+from convert.adapters.Fusion.Native.DatumPrism.ReadDatumFrame import LocalDatum
+
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.GraphValues import NumberValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
@@ -38,6 +40,7 @@ from convert.Formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.RegionF
     RegionFrame,
 )
 from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from interchange.geometry.Models.Transform import Transform
 
 # selected design lines determine the expected physical endpoints for each native tag
 KCurveMap = dict[int, frozenset[tuple[float, float]]]
@@ -157,12 +160,19 @@ def CheckFaceTags(
 
 # source links must point to the actual live edge or coedge of their physical curve
 def CheckEdgeTags(
-    Table: LiveTable, Curves: KCurveMap, Extent: float, Count: int
+    Table: LiveTable,
+    Curves: KCurveMap,
+    Extent: float,
+    Count: int,
+    FrameValue: Transform | None = None,
+    SectionIds: frozenset[int] | None = None,
 ) -> None:
     Labels: CountLabels[int] = CountLabels()
     for SlotValue in Table.LiveSlots:
         Value = Table.Entities[SlotValue]
-        if not isinstance(Value, SketchAttrib):
+        if not isinstance(Value, SketchAttrib) or (
+            SectionIds is not None and SlotValue in SectionIds
+        ):
             continue
         Owner = StableRef(Table, Value.Links.OwnerRef)
         Coedge = Table.Entities[Owner]
@@ -176,6 +186,10 @@ def CheckEdgeTags(
             ReadVertexPoint(Table, StableRef(Table, Index))
             for Index in (EdgeValue.StartVertex, EdgeValue.EndVertex)
         )
+        if FrameValue is not None:
+            Start, Finish = LocalDatum(FrameValue, Start), LocalDatum(
+                FrameValue, Finish
+            )
         LinkValue = Value.SourceLink
         if (
             LinkValue.PrimaryId not in Curves

@@ -1,3 +1,8 @@
+from convert.adapters.Fusion.Native.DatumPrism.ReadDatumBody import ReadDatumBody
+from convert.adapters.Fusion.Native.DatumPrism.ReadDatumFrame import (
+    KYzMatrix,
+    ReadDatumFrame,
+)
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.GraphValues import NumberValue
 from convert.adapters.Fusion.Native.Parameters.ReadParameters import ReadParameters
@@ -41,7 +46,7 @@ from interchange.Features.DistanceValues import GetDistValues
 from interchange.Features.FeatureDistExt import DistanceExtrude
 from interchange.Features.FeatureStep import FeatureStep
 from interchange.geometry.Models.SupportPlane import SupportPlane
-from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.Transform import KTransformIdentity, Transform
 from interchange.Records.RecordConfig import Configuration
 from interchange.Records.RecordSource import CadSource
 from interchange.Records.RecordParameter import Parameter
@@ -52,33 +57,23 @@ def ProjectPrism(
     Model: DocumentModel, Source: CadSource, Graph: NativeGraph
 ) -> CadDocument:
     Context = SelectExtrusion(Graph)
-    History = Model.Bodies[0].History if len(Model.Bodies) == 1 else None
-    Snapshot = Model.Snapshots[0].Snapshot if len(Model.Snapshots) == 1 else None
-    Reverse = (
-        isinstance(History, JournalModel)
-        and isinstance(Snapshot, GeometryState)
-        and NumberValue(Context.Along.Fields["value"]) < 0.0
-    )
-    Rectangle = ReadRectRules(Graph, Context, Reverse)
-    CheckGraph(Graph, Context, Rectangle)
+    Station = GenericStation(Model, Context)
+    Reverse = Station < 0.0
+    YzDatum = Station > 0.0 and Context.Plane.Fields["transform"] == KYzMatrix
+    Rectangle = ReadRectRules(Graph, Context, Reverse, YzDatum)
+    CheckGraph(Graph, Context, Rectangle, YzDatum)
     CheckScopes(Graph, Context, Model.Asset.AssetId)
+    FrameValue = ReadDatumFrame(Graph, Context) if YzDatum else KTransformIdentity
     Shape = ReadRectangle(Graph, Context, Rectangle)
     Parameters = ReadParameters(Graph, Context, Rectangle=Rectangle, Reverse=Reverse)
     CheckRegion(Graph, Context, Shape.LineNodes, Model.Asset.AssetId)
-    if (
-        Reverse
-        and isinstance(History, JournalModel)
-        and isinstance(Snapshot, GeometryState)
-    ):
-        SavedBody = ReadSignedBody(Context, Shape, History, Snapshot)
-        CheckSignedTags(Graph, Context, Model, Shape, History, SavedBody)
-        CheckSceneRefs(Graph, Model.Graphics)
-    else:
-        CheckRegular(Graph, Context, Model, Shape)
+    CheckPrismBody(Graph, Context, Model, Shape, FrameValue, Reverse, YzDatum)
     Material = ReadMaterial(Graph, Context, Model)
-    Features = ProjectFeatures(Graph, Context, Rectangle)
+    Features = ProjectFeatures(Graph, Context, Rectangle, FrameValue.z_axis)
     DepthSpan = ReadSignedSpan(Features[-1], Parameters) if Reverse else None
-    Geometry, BodyValue = ProjectBody(Context, Shape, Material.id, DepthSpan)
+    Geometry, BodyValue = ProjectBody(
+        Context, Shape, Material.id, DepthSpan, FrameValue
+    )
     Title = dict(Model.Asset.Properties).get("documentName", "")
     Metadata: dict[str, object] = {
         "fusion.native_state": {"version": 2, "model": EncodeState(Model)}
@@ -91,7 +86,7 @@ def ProjectPrism(
         Source,
         (Configuration("default", Title, True),),
         Parameters,
-        (SupportPlane(Context.Plane.Identity, "XY", Transform()),),
+        (SupportPlane(Context.Plane.Identity, "YZ" if YzDatum else "XY", FrameValue),),
         (ProjectSketch(Context, Shape, Rectangle),),
         (),
         Features,
@@ -102,6 +97,43 @@ def ProjectPrism(
     )
     Document.AssertValid()
     return Document
+
+
+# generic datum and reverse candidates must carry both independently typed geometry roles
+def GenericStation(Model: DocumentModel, Context: ExtrudeContext) -> float:
+    if (
+        len(Model.Bodies) == 1
+        and len(Model.Snapshots) == 1
+        and isinstance(Model.Bodies[0].History, JournalModel)
+        and isinstance(Model.Snapshots[0].Snapshot, GeometryState)
+    ):
+        return NumberValue(Context.Along.Fields["value"])
+    return 0.0
+
+
+# scoped generic and original rectangular body validation use their own stored geometry roles
+def CheckPrismBody(
+    Graph: NativeGraph,
+    Context: ExtrudeContext,
+    Model: DocumentModel,
+    Shape: RectGeometry,
+    FrameValue: Transform,
+    Reverse: bool,
+    YzDatum: bool,
+) -> None:
+    if not (Reverse or YzDatum):
+        CheckRegular(Graph, Context, Model, Shape)
+        return
+    History = Model.Bodies[0].History
+    Snapshot = Model.Snapshots[0].Snapshot
+    if not isinstance(History, JournalModel) or not isinstance(Snapshot, GeometryState):
+        raise ValueError("Native generic prism requires its typed history and snapshot")
+    if YzDatum:
+        ReadDatumBody(Graph, Context, Model, Shape, History, Snapshot, FrameValue)
+    else:
+        SavedBody = ReadSignedBody(Context, Shape, History, Snapshot)
+        CheckSignedTags(Graph, Context, Model, Shape, History, SavedBody)
+    CheckSceneRefs(Graph, Model.Graphics)
 
 
 # older typed rectangular history keeps its established semantics and attachment checks

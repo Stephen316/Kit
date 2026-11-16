@@ -10,7 +10,9 @@ from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 
 
 # invalid extrusion input must fail here so public document claims remain grounded in native records
-def CheckExtrusion(Graph: NativeGraph, Context: ExtrudeContext) -> None:
+def CheckExtrusion(
+    Graph: NativeGraph, Context: ExtrudeContext, YzDatum: bool = False
+) -> None:
     Feature = Context.Extrude
     RequireFields(
         Feature,
@@ -60,7 +62,10 @@ def CheckExtrusion(Graph: NativeGraph, Context: ExtrudeContext) -> None:
         },
     )
     EmptyFields(Feature, ("cachedDcBodies", "removedBodies", "targetDataRefs"))
-    SameNumbers(PointCoords(Feature.Fields["profileNormal"]), (0.0, 0.0, 1.0))
+    SameNumbers(
+        PointCoords(Feature.Fields["profileNormal"]),
+        (1.0, 0.0, 0.0) if YzDatum else (0.0, 0.0, 1.0),
+    )
     ToolBody = ResolveField(Graph, Feature, "rExtrudeToolBody", "DcExtrudeToolBody")
     if Graph.Resolve(ToolBody.Fields["rExtrudeFeature"]) != Feature:
         raise ValueError("Native extrusion tool references another feature")

@@ -18,9 +18,9 @@ sys.path.insert(0, str(ROOT / "re/automation"))
 
 from FusionConstrainedPrismEvidence import (
     POSITIVE,
-    REFUSED,
     REVERSE_SHA256,
     REVISION,
+    YZ_SHA256,
     refusal,
 )
 from PairedCaptureIntake import GitSnapshot, require, sha256
@@ -220,8 +220,15 @@ def report():
     positive = open_document(
         pinned_source(snapshot, "baseline-a", POSITIVE["baseline-a"]), strict=True
     )
-    yz_digest, yz_refusal = REFUSED["plane-yz"]
-    yz = pinned_source(snapshot, "plane-yz", yz_digest)
+    yz = pinned_source(snapshot, "plane-yz", YZ_SHA256)
+    yz_document = open_document(yz, strict=True)
+    require(
+        yz_document.metadata["fusion.read_only"] is True
+        and CheckContract(yz_document.metadata["fusion.native_state"], "model", 2)
+        == ReadDocument(yz)
+        and yz_document.support_planes[0].name == "YZ",
+        "Strict YZ document lost its own complete native state",
+    )
     return {
         "schema": 1,
         "source_revision": REVISION,
@@ -240,9 +247,11 @@ def report():
             "positive_body_count": len(positive.bodies),
             "negative_body_count": len(negative.bodies),
             "negative_read_only": negative.metadata["fusion.read_only"],
-            "alternate_datum": refusal(
-                lambda: open_document(yz, strict=True), yz_refusal
-            ),
+            "alternate_datum": {
+                "plane": yz_document.support_planes[0].name,
+                "body_count": len(yz_document.bodies),
+                "read_only": yz_document.metadata["fusion.read_only"],
+            },
         },
         "writer_refusals": writer_refusals(negative, contract, model),
     }

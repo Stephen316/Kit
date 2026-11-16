@@ -12,6 +12,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
     PointCoords,
 )
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
+from convert.adapters.Fusion.Native.DatumPrism.ReadDatumFrame import KYzMatrix
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 from convert.adapters.Fusion.Native.Rectangle.RectSketchProof import RectSketchProof
@@ -23,6 +24,7 @@ def CheckPlacement(
     Context: KSketchContexts,
     Dimension: NativeNode | None = None,
     Rectangle: RectSketchProof | None = None,
+    YzDatum: bool = False,
 ) -> None:
     Instance = Graph.OneClass("ComponentInstance")
     if Graph.Resolve(Instance.Fields["rTargetComponent"]) != Context.Component:
@@ -42,7 +44,10 @@ def CheckPlacement(
             "subType": 0,
         },
     )
-    CheckIdentity(Context.Plane.Fields["transform"])
+    if YzDatum:
+        RequireFields(Context.Plane, {"transform": KYzMatrix})
+    else:
+        CheckIdentity(Context.Plane.Fields["transform"])
     CheckIdentity(Context.Sketch.Fields["occurrenceTransform"])
     RequireFields(
         Context.Sketch,
@@ -65,7 +70,7 @@ def CheckPlacement(
     )
     if Graph.Resolve(Context.Sketch.Fields["rDcNode"]) != Context.SketchFeature:
         raise ValueError("Native sketch feature link is not reciprocal")
-    CheckMatrix(Graph, Context)
+    CheckMatrix(Graph, Context, YzDatum)
 
 
 # the constrained rectangle may carry only the rules and bindings already proved against its geometry
@@ -90,11 +95,16 @@ def CheckSketchRefs(
 
 
 # the native sketch matrix and its unique plane recipe must agree with the xy frame
-def CheckMatrix(Graph: NativeGraph, Context: KSketchContexts) -> None:
+def CheckMatrix(
+    Graph: NativeGraph, Context: KSketchContexts, YzDatum: bool = False
+) -> None:
     Matrix = ResolveField(
         Graph, Context.SketchFeature, "rSketchPlaneMatrix", "DRMatrix"
     )
-    CheckIdentity(Matrix.Fields["matrix3d"])
+    if YzDatum:
+        RequireFields(Matrix, {"matrix3d": KYzMatrix})
+    else:
+        CheckIdentity(Matrix.Fields["matrix3d"])
     RequireFields(
         Matrix,
         {
@@ -122,5 +132,11 @@ def CheckMatrix(Graph: NativeGraph, Context: KSketchContexts) -> None:
     PlaneNode = Graph.ResolveId(Recipe.Fields["m_entityId"])
     PlaneFields = ObjectFields(PlaneNode.Fields["plane"])
     SameNumbers(PointCoords(PlaneFields["origin"]), (0.0, 0.0, 0.0))
-    SameNumbers(PointCoords(PlaneFields["uAxis"]), (1.0, 0.0, 0.0))
-    SameNumbers(PointCoords(PlaneFields["vAxis"]), (0.0, 1.0, 0.0))
+    SameNumbers(
+        PointCoords(PlaneFields["uAxis"]),
+        (0.0, 1.0, 0.0) if YzDatum else (1.0, 0.0, 0.0),
+    )
+    SameNumbers(
+        PointCoords(PlaneFields["vAxis"]),
+        (0.0, 0.0, 1.0) if YzDatum else (0.0, 1.0, 0.0),
+    )
