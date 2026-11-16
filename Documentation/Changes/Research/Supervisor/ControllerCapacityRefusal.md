@@ -17,6 +17,6 @@ The hosted process case holds the controller's only logical slot in one pool whi
 It checks the actual refusal event and live status while the second job remains queued with zero attempts.
 After a pause releases the held slot, the second job completes once and status clears the refusal.
 Linux and macOS use the direct adapter and Windows uses the warm claim helper.
-The process case passed on Windows and macOS at PR head `b9efdb5e` and tested merge `e60486e0`. The Windows job failed its separate SOLIDWORKS P01/P03 rearm case. [Hosted Windows job](https://github.com/TryUniCAD/Kit/actions/runs/43779565898/job/133013444004), [hosted macOS job](https://github.com/TryUniCAD/Kit/actions/runs/43779565898/job/133013443832)
+The process case passed on Linux, Windows and macOS at PR head `b9efdb5e` and tested merge `e60486e0`. The Windows job failed its separate SOLIDWORKS P01/P03 rearm case. [Hosted Linux job](https://github.com/TryUniCAD/Kit/actions/runs/43779565898/job/133013443928), [hosted Windows job](https://github.com/TryUniCAD/Kit/actions/runs/43779565898/job/133013444004), [hosted macOS job](https://github.com/TryUniCAD/Kit/actions/runs/43779565898/job/133013443832)
 
 See [supervisor commands](../../../Reference/Research/ResearchSupervisor.md#commands) and [controller slot reporting](../../../Gotchas/Research/Supervisor/LocalCapacityAndControllerSlots.md).
