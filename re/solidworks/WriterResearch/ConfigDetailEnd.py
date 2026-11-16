@@ -63,18 +63,27 @@ def WriteSavedDetailEnd(Writer: ArchiveWriter, Generation: int, State: SavedDeta
     RequireArch(Generation, 19000, "generation 19000 saved detail return")
     Descriptions = State.Descriptions
     RequireArch(
-        type(Descriptions.SolidBodies) is tuple
-        and len(Descriptions.SolidBodies) == 4
-        and type(Descriptions.CutListTemplates) is tuple
-        and len(Descriptions.CutListTemplates) == 3
-        and all(
-            isinstance(TextValue, str) and "\x00" not in TextValue
-            for TextValue in (
-                *Descriptions.SolidBodies,
-                Descriptions.SheetMetal,
-                *Descriptions.CutListTemplates,
-            )
-        ),
+        (type(Descriptions.SolidBodies), type(Descriptions.CutListTemplates)),
+        (tuple, tuple),
+        "immutable native description collections",
+    )
+    RequireArch(
+        (len(Descriptions.SolidBodies), len(Descriptions.CutListTemplates)),
+        (4, 3),
+        "complete native description collections",
+    )
+    Texts = (
+        *Descriptions.SolidBodies,
+        Descriptions.SheetMetal,
+        *Descriptions.CutListTemplates,
+    )
+    RequireArch(
+        all(isinstance(TextValue, str) for TextValue in Texts),
+        True,
+        "native descriptions are strings",
+    )
+    RequireArch(
+        all("\x00" not in TextValue for TextValue in Texts),
         True,
         "complete native cut list and solid body descriptions",
     )
