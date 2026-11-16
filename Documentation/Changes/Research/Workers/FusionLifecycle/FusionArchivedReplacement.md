@@ -33,5 +33,7 @@ the next observation on this exact startup peer.
 The hosted case uses a disposable AppKit app and the actual pinned
 bootstrap callback while exercising the existing A03 archive. It checks the
 fresh replacement process, the bound startup response and recovery when the
-process receipt is withheld. Hosted execution and a signed-in Fusion
-replacement with a real healthy control remain pending.
+process receipt is withheld. The run passed 166 cases with two skips at PR
+head `2fc4acbd` and tested merge `4bb26097306a78aad1d1b0218ad5e77453821228`.
+A signed-in Fusion replacement with a real healthy control remains pending.
+[Hosted macOS verification](https://github.com/TryUniCAD/Kit/actions/runs/43806206876/job/133097509508)

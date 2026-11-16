@@ -17,6 +17,7 @@ replacement and its main-thread healthy control before a second attempt.
 The hosted disposable AppKit and real A03 timeout case checks the retained
 preflight, refuses a changed challenge, and invalidates the original
 generation through the normal controller. It also checks refusal after a
-change to the private commissioning record. Hosted verification is pending.
+change to the private commissioning record. The fixture passed at PR head
+`2fc4acbd`. [Hosted macOS verification](https://github.com/TryUniCAD/Kit/actions/runs/43806206876/job/133097509508)
 
 [Archive replacement launch and bootstrap](FusionArchivedReplacement.md)
