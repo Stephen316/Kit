@@ -129,6 +129,10 @@ class Registry:
         self.runners = {}
         for kind, entry in record["runners"].items():
             label(kind)
+            if kind.startswith("model."):
+                raise ValueError(
+                    f"runner {kind} is reserved for disabled model investigations"
+                )
             if not isinstance(entry, dict) or not {"pool", "argv", "result_schema"} <= entry.keys() or entry.keys() - ENTRY_KEYS:
                 raise ValueError(f"runner {kind} fields do not match the version 1 registry")
             argv = entry["argv"]

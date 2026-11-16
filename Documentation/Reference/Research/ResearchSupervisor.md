@@ -107,7 +107,8 @@ The repository does not ship a registry, because no production runner exists yet
 
 The schema checker accepts `type`, `properties`, `required`, `additionalProperties`, `items`, `enum`, `const`, `minLength`, `maxLength`, `minimum`, `maximum`, `minItems` and `maxItems`.
 It refuses a schema that uses any other keyword.
-Model runners such as Codex and Claude are not registry entries yet; they belong to A10.
+The registry rejects `model.*` runner declarations while A10 execution is disabled.
+An A03 job of that kind can remain queued while a supervisor with a deterministic registry runs its configured pools. Model execution requires separate A10 authorization.
 An application runner's configured installation must match the installation it uses for dispatch.
 Keep the installation file in a private directory controlled by the supervisor owner.
 Preserve the supervisor state directory and original installation bytes for [acknowledgement recovery](../../Changes/Research/Workers/ApplicationAckRecovery.md) across process restart.
