@@ -45,7 +45,33 @@ The installed appearance conversion can construct the populated record from the 
 - The shader lookup loads `data/dspbr/shaderToDspbr.dat` through the branch at `0x3c78a865..0x3c78a8c8`. Its `defaultplastic` entry resolves to `color`. The mapped branch at `0x3c78a2b8..0x3c78a331` appends the native data root, the DSPBR directory, the mapped name and `.dspbr`, then checks the path. The converter calls exported `readDSPBRfile` at `0x3c78612a`. The shader table SHA-256 is `c2d0b4f43a9cf9e02a9fd1c16008240f2b27d8082bb756a9fd83f58a4095cd69`. The selected `data/dspbr/color.dspbr` SHA-256 is `08ae163e93f9dd806d3ec37b0f04a101a05b4a2f86aa7a43adf55ef363484632`. Its declared subtype, version, metallic and roughness match the stored `basic`, `2025x`, `0.0` and float32 `0.2`.
 - Exported `getColorForm` selects mode `1` at `0x3c78619c..0x3c7861a9`. In all 25 inputs the archived color form is `1` at offset `477`. This branch calls `moVisualProperties_c::getColor` at `0x3c7861ba`, then sends the packed color to `setAlbedo` and `setAttenuationColor` at `0x3c7861c6` and `0x3c7861d0`. Both setters use `0x3c789c70` to multiply each color byte by float32 `1/255` with bits `0x3b808081`. The source color word is `0x00e4e4e4` at stream offset `278` in all 25 inputs. The resulting channel bits are `0x3f64e4e6` in both saved triples, starting at offsets `795` and `951`. The installed material file specifies albedo `0.898039` and white attenuation. These differing source values independently distinguish the conversion overrides from direct file values.
 
-These branches support a bounded construction rule for the observed color choice and RGB channels. The remaining DSPBR defaults still need attribution to the material fields, constructor or conversion operations before independently constructing the complete record.
+### Saved field attribution
+
+`readDSPBRfile` initializes 52 named property descriptors from `0x3c788800` through `0x3c7894a6`. Each text key enters the first matching descriptor in the loop at `0x3c7894c1..0x3c78951d`. The call at `0x3c789501` reaches the selected callable through its vtable `+0x10` entry. Following that entry through its thunks identifies the destination member. For example, the roughness descriptor at `0x3c788951` reaches `0x3c784d10` and then `0x3c783730`, which passes member `+0x2c` to the scalar float parser. `0x3c78b013` stores that member. The [installed asset](#color-appearance-initialization) supplies 44 of the 52 recognized keys.
+
+The following order joins those setter destinations to the store calls. RGB entries occupy three float32 values, other numeric material fields are float32, and names and textures are wide CStrings. Emission mode, emission energy normalization and the flags word are signed 32-bit fields.
+
+| Save order | Fields |
+| --- | --- |
+| Common numeric prefix | Albedo, metallic, roughness, anisotropy, anisotropy rotation, transparency, cutout opacity, displacement, flip-flop, IOR, IOR-derived float, specular, specular tint, sheen roughness, sheen color, subsurface anisotropy, emission color, emission value, emission energy normalization, clearcoat, clearcoat roughness, flip-flop color, flake coverage, flake size, flake roughness, flake color, attenuation distance, attenuation color, subsurface color, flags, translucency, Abbe number. |
+| Common string suffix | Albedo texture, normal, roughness texture, cutout opacity texture, material subtype, then the float32 RealView-to-DSPBR texture scale. |
+| Added at version 18101 | Version, clearcoat normal, emission mode, thin film, thin-film thickness, thin-film IOR, translucency color, displacement texture, thin-film thickness texture. |
+| Added at version 18802 | Normal strength, clearcoat normal strength, metallic texture, transparency texture, emission color texture. |
+
+The nontrivial defaults and transformations have separate source evidence.
+
+- The asset's `displacement ""` key reaches the float parser through member `+0x48`. The `%f` conversion at `0x3c78adca` consumes no value for that argument. The constructor zero at `0x3c78227e` remains in effect, matching the float at stream offset `831`.
+- The asset omits the texture scale, both normal strengths, displacement texture, and the metallic, transparency, and emission color textures. The constructor at `0x3c782210` initializes the three numeric members to `1.0` at `0x3c7823b6`, `0x3c782408` and `0x3c782412`, and the four CStrings empty through the calls at `0x3c7823a1`, `0x3c7823e5`, `0x3c7823f3` and `0x3c782401`. The measured material also has no legacy texture object. Its absence bypasses the legacy texture transfer branches.
+- The reader starts the flags word at zero through the constructor's write at `0x3c78232a`. The `thinWalled` setter parses the asset's `1` into the temporary at `0x3c788fd3`. The post-read calls at `0x3c789526` and `0x3c789542` assign bit 0 from that temporary and bit 1 from transparency at least `1e-8`. The asset omits `normalMap`, whose setter would update bit 2. The measured word at stream offset `975` is `1`.
+- The post-reader at `0x3c789547..0x3c789572` derives member `+0x12c` by subtracting and adding one to IOR in float32, dividing in float32, squaring in float64 and narrowing to float32. The asset IOR `1.5` gives bits `0x3d23d70b` at stream offset `843`. The saved cutout opacity is also explained by the conversion branch at `0x3c7861e8..0x3c786201`, which computes `1.0` minus zero legacy transparency for this profile.
+
+The read-only archive comparison used all 52 setter routes, the installed asset values, the explicit constructors and the three archive store blocks. It checked the 70 serialized fields independently in each of the 25 saves. All 1,750 comparisons matched, with float32 values equal bit-for-bit and both nonempty CString values preserved. This completes the observed DSPBR body mapping. Other material assets, textured appearances and application acceptance require separate evidence.
+
+## Research encoder
+
+[`EncodeColorDspbr`](ColorAppearance.py) constructs only the generation-19000 DSPBR body for the untextured `defaultplastic` color profile, with mode 1 and zero legacy transparency. Supply the 24-bit packed visual color from the enclosing visual-properties owner. Both color triples are derived from it. The constructor and asset values are encoded using the existing wide CString and little-endian scalar rules. Generation, color and all material assumptions are bounded to this shape.
+
+The encoder requires no installed files or saved archive bytes. The enclosing visual presence word, manager allocation and remaining CMgr records are outside its output. A static comparison verified the 300-byte layout, order, and source-derived values against every measured body without invoking the encoder. Encoder replay and native open, rebuild, edit and save acceptance remain pending.
 
 ## Inputs and reproduction
 
