@@ -48,6 +48,7 @@ def CheckCmgr() -> None:
     AssertEmptyMass(Report, Digests)
     AssertPartEnd(Report, Digests)
     AssertBossMass(Report, Digests)
+    AssertAtomLinks(Report, Digests)
 
 
 # the empty cache must cover the complete sketch only discovery lane
@@ -83,4 +84,16 @@ def AssertBossMass(Report: dict[str, object], Captures: dict[str, str]) -> None:
     assert len(Digests) == 8 and Digests.keys() <= Captures.keys()
     assert set(Digests.values()) == {
         "2e3fc40724bbb867dc41e0340f0b792b83d8b5cdb7254e221473c3ae1d9c73e3"
+    }
+
+
+# the two supported histories need distinct link maps and exact hosted coverage
+def AssertAtomLinks(Report: dict[str, object], Captures: dict[str, str]) -> None:
+    Links = Report["linked_atom_records"]
+    assert isinstance(Links, dict)
+    Digests = CastValue(dict[str, str], Links)
+    assert Digests.keys() <= Captures.keys()
+    assert dict(CountItems(Digests.values())) == {
+        "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119": 6,
+        "22f5e73e80dea9ff154f1cb37127fc677648b8796824d1c6d17ddd711a5ac4fb": 8,
     }

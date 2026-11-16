@@ -24,6 +24,10 @@ In the [pinned `sldmodu.dll`](CmgrTail.md#root-and-feature-stamps), the base con
 | P03, 8 saves | 1662–1724 | Key and atom ID 101. First array contains feature ID 34, second array and four maps empty. Class 9, object 10. Next index is 11. |
 | P04, 11 saves | 1678–1798 | Key and atom ID 101 has feature ID 34. Maps 2 and 4 each contain key 102 with a null pointer. Atom 102 has feature ID 46. Maps 1 and 3 each contain key 101 with a null pointer. Both second arrays and other maps empty. Class 9, objects 10 and 11. Next index is 12. |
 
+The store rebuilds its two DWORD arrays before invoking their serializers. At `0x4b567d9c` and `0x4b567dad` it clears the arrays. The loops at `0x4b567dbd..0x4b567df8` and `0x4b567e04..0x4b567e42` read each feature reference's saved data and append its first DWORD. The first array has one owner for the ordinary rectangular boss. The separately checked Config-0 atom and ResolvedFeatures owner agree on that feature ID. A sketch-only configuration has an empty map. [Feature and atom provenance](ConfigAtoms.md#feature-ownership-across-streams)
+
+[`WriteCmgrLinks`](CmgrLinks.py) emits an empty map or one independent atom link from a caller-supplied pair of positive atom and feature IDs. It allocates a schema-1 link node through the caller's compact archive namespace. The second feature array and all four relation maps are empty for this scope. Connected histories and a pre-existing link class require separate encoding. [Coverage and hosted verification](../../../Documentation/Changes/Research/Writers/SolidWorksCmgrAtomLinks.md)
+
 The base configuration then writes three signed zeros and a counted signed pair map through `0x4c21894d`. Only P04 populates that map, with the pair `(102,101)`. Three following signed words are `(2,0,0)`. The typed `moEnvelopePublisher_c` pointer at `0x4c218ab3` is null. The ordinary standalone part has archive condition 1 clear, so it skips the conditional signed word at `0x4c218dd0`. It then writes the empty signed vector count at `0x4c218e9b` and returns at 1692, 1758 and 1840 for P01, P03 and P04.
 
 ## Inline part configuration object

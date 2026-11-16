@@ -103,6 +103,7 @@ def verify_color():
     masses = {}
     boss_masses = {}
     parts = {}
+    links = {}
     for recipe, item, data, _, measurement in rows:
         archive = SldprtArchive.from_bytes(data, item["path"])
         generation = ContainerMo(archive.streams)
@@ -119,9 +120,12 @@ def verify_color():
         )
         captures[item["sha256"]] = sha256(saved).hexdigest()
         tails[item["sha256"]] = verify_tail(stream, TREE_IDS[recipe], item["path"])
-        parts[item["sha256"]] = verify_part_end(
+        part_digest, link_digest = verify_part_end(
             cursor, recipe, TREE_IDS[recipe], item["path"]
         )
+        parts[item["sha256"]] = part_digest
+        if link_digest is not None:
+            links[item["sha256"]] = link_digest
         if recipe == "P01":
             masses[item["sha256"]] = verify_empty_mass(
                 stream, end, measurement["body_count"], item["path"]
@@ -139,6 +143,7 @@ def verify_color():
         "empty_mass_records": masses,
         "boss_mass_wrappers": boss_masses,
         "part_return_records": parts,
+        "linked_atom_records": links,
     }
 
 
