@@ -33,4 +33,4 @@ PYTHONPATH=src:re/automation uv run --frozen --python 3.14 python -B \
 
 A locked Python 3.14 Windows replay at `90bdd0e8` generated and checked all four candidates. Its sealed output manifest SHA-256 is `b030dc8cf99425abd3b523058c2c58ab767ff9096e56d6718966b7504656d5f8`.
 
-The candidate uses the constructor's default material. Physical density and mass parity remain unqualified. Licensed acceptance still requires a native readback of the selected profile identity, the three independently effective driving edits, restoration and rebuild, and fresh-process reopen with healthy controls.
+The candidate uses the constructor's default material. Physical density and mass parity remain unqualified. Licensed acceptance still requires a native readback of the selected profile identity, the three independently effective driving edits, restoration and rebuild, and fresh-process reopen with healthy controls. [Licensed P03 witness procedure](FusionSourceBossWitness.md)
