@@ -39,9 +39,10 @@ to the pinned add-in. The result attests to owner startup and initial
 admission. Licensed Fusion startup, capture, and native acceptance still
 require a signed-in host witness.
 
-The hosted case uses a disposable AppKit bundle, the actual pinned
-bootstrap, and A03. It checks interrupted owner launch, missing launch
-evidence, observed-peer resume, and an older competing Phase A. Hosted
-execution is pending.
+At PR head `2bde5f07` and tested merge `5d90a4ab`, the macOS suite passed
+162 cases with two platform skips. The cold-start case used a disposable
+AppKit bundle, the pinned bootstrap, and A03. It verified interrupted launch,
+missing launch evidence, observed-peer resume, and admission of the selected
+Phase A ahead of an older contender. [Hosted macOS evidence](https://github.com/TryUniCAD/Kit/actions/runs/43791586077/job/133051099510)
 
 The [continuous owner commissioning command](FusionOwnerCommissioning.md) can perform this same initial launch and then advance later queue phases in the same owner process.
