@@ -70,7 +70,7 @@ def FormatSummaryTime(Seconds: int) -> str:
 
 def MakeCoreProperties(State: CoreProperties) -> Element:
     Author = State.LastModifiedBy
-    if not isinstance(Author, str) or not Author or INVALID_NAME_TEXT.search(Author):
+    if not issubclass(type(Author), str) or not Author or INVALID_NAME_TEXT.search(Author):
         raise ValueError("core property last modifier must be valid XML identity text")
     Root = Element(
         "cp:coreProperties",
