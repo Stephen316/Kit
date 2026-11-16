@@ -25,7 +25,7 @@ The remote Windows fixture runs the real queue, supervisor and controller with a
 The listener waits for the exact queue client's exit and timeout cancellation before closing the owned fixture process and publishing terminal evidence.
 The case checks one successful rearm, exhaustion on the next attempt, cleanup evidence for both retained spools and the final controller result's binding to the second quarantine.
 
-All three rearm cases passed at PR head `3cd136ad` and tested merge `e1fa7f1d`. That job also reported a collection error for the new timeout assertion helper and a separate calibration failure. The helper rename at `7bd2ae21c` keeps it outside pytest's selection while retaining the rearm assertions. [Hosted Windows job](https://github.com/TryUniCAD/Kit/actions/runs/43781577583/job/133019771915)
+All three rearm cases passed at PR head `3cd136ad` and tested merge `e1fa7f1d`. That job also reported a collection error for the new timeout assertion helper and a separate calibration failure. The helper rename at `d7a2f3ce` keeps it outside pytest's selection while retaining the rearm assertions. [Hosted Windows job](https://github.com/TryUniCAD/Kit/actions/runs/43781577583/job/133019771915)
 
 ## Licensed two-attempt witness
 

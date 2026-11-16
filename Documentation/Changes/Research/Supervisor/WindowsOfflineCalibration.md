@@ -12,7 +12,7 @@ The Windows process selection covers the real fixed offline reader sweep, a deco
 
 The Windows success fixture allows 45 seconds for each trial's eight serialized decoder sessions. The previous 30-second limit required more than 16 decodes per minute, while the matched Windows Fusion calibration measured 15.26 at one worker. The hosted process check hit `trial_timeout` under the old limit. Each worker still has a 30-second deadline. Unexpected process exits now include trial timing and completion counts when the calibration report is available. [Hosted failure](https://github.com/TryUniCAD/Kit/actions/runs/43703554435/job/132779686613), [matched Windows run](WindowsArtifactStaging.md#matched-windows-calibration)
 
-The Windows success fixture uses a 15-second lease to give controller heartbeats time to renew under hosted load. The job and trial deadlines still bound the workload. [Windows calibration lease timing](../../../Gotchas/Research/Supervisor/WindowsCalibrationLease.md)
+The Windows success fixture uses a 12-second lease to give controller heartbeats time to renew under hosted load. The job and trial deadlines still bound the workload. [Windows calibration lease timing](../../../Gotchas/Research/Supervisor/WindowsCalibrationLease.md)
 
 ## First Windows discovery sweep
 
