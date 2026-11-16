@@ -14,6 +14,7 @@ A pool with local headroom can therefore receive a `concurrency limit` response 
 
 Use the observed controller refusal to explain the latest deferred claim.
 Read local capacity separately to diagnose CPU, memory and adaptive limits.
+When a current sample is visible, use its available logical jobs as a shared upper bound on additional physical sessions. Each member of a proposed group needs one free logical slot.
 The next controller transaction decides whether a logical slot is available.
 
-See [controller refusal evidence](../../../Changes/Research/Supervisor/ControllerCapacityRefusal.md).
+See [controller refusal evidence](../../../Changes/Research/Supervisor/ControllerCapacityRefusal.md) and [numeric controller capacity](../../../Changes/Research/Supervisor/ControllerCapacitySnapshot.md).

@@ -5,10 +5,10 @@ from RecoveryFence import check_owner
 
 
 @contextmanager
-def read_store(database, owner, versions):
+def read_store(database, owner, versions, *, timeout=30):
     with closing(
         sqlite3.connect(
-            database.as_uri() + "?mode=ro", uri=True, timeout=30, isolation_level=None
+            database.as_uri() + "?mode=ro", uri=True, timeout=timeout, isolation_level=None
         )
     ) as db:
         db.row_factory = sqlite3.Row

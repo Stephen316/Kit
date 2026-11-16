@@ -1,6 +1,7 @@
 import hashlib
 import importlib.util
 import json
+import math
 import os
 import secrets
 import sqlite3
@@ -12,7 +13,7 @@ from pathlib import Path
 from Artifacts import Artifacts
 from ClaimWire import ClaimExchangeLost
 from GroupClaims import read_group
-from Records import canonical, label, read_record
+from Records import bounded, canonical, label, read_record
 from OutputManifest import InvalidOutput
 from RecoveryFence import StaleOwner
 from StoreRead import read_store
@@ -205,6 +206,32 @@ class A03Adapter:
         if after is not None:
             items += ["--after", label(after)]
         return self.Invoke(*items)
+
+    def ReadCapacity(self):
+        database = self.store / "ledger.sqlite3"
+        try:
+            if self.owner is None or database.is_symlink() or not database.is_file():
+                return None
+            with read_store(database, self.owner, (4,), timeout=0.05) as db:
+                measured = time.monotonic()
+                maximum, dirty = db.execute(
+                    "SELECT (SELECT value FROM settings WHERE key='max_running'),"
+                    " EXISTS(SELECT 1 FROM dirty)"
+                ).fetchone()
+                running, leases, deadlines, next_lease, next_deadline = db.execute(
+                    "SELECT COUNT(*), COUNT(lease_until), COUNT(deadline),"
+                    " MIN(lease_until), MIN(deadline) FROM jobs WHERE state='running'"
+                ).fetchone()
+                bounded(running, 0, bounded(maximum, 1, 64))
+                if dirty or leases != running or deadlines != running:
+                    return None
+                expires = min(next_lease, next_deadline) if running else None
+                if expires is not None and (not math.isfinite(expires) or expires <= time.time()):
+                    return None
+                return {"measured": measured, "expires": expires,
+                        "maximum": maximum, "running": running}
+        except (OSError, ValueError, TypeError, sqlite3.Error):
+            return None
 
 
 def load_adapter(config, root):
