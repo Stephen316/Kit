@@ -637,7 +637,7 @@ def CheckSimpleProps() -> None:
     )
 
 
-# the empty sections retain the native dictionary, code page and summary state
+# empty section streams must retain native dictionaries and typed property values
 def CheckPropSections() -> None:
     Report = LoadReport("VerifySectionProperties.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
