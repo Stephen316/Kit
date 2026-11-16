@@ -52,6 +52,9 @@ starting any subsequent restart. A registered installation also waits for
 `--once` performs one reconciliation and emits an
 evidence status suitable for checking a parked owner.
 
+Use [the read-only completion report](FusionLifecycle/FusionResetEvidence.md)
+to inspect confirmed work in the exact current Fusion process lifetime.
+
 Hosted fixtures cover real A03 settling and acknowledgement, a disposable
 Darwin exit, expired admission, and owner subprocess interruption around
 sealed actions and final evidence. The fixture uses disposable providers for
