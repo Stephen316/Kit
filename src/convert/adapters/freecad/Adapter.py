@@ -2400,6 +2400,7 @@ def ReadEmbedded(
     DocValue = ManifestDoc(Value)
     from convert.adapters.freecad.EditDatum.ReconcileDatum import ReconcileDatum
     from convert.adapters.freecad.EditScale.ScaleReadGuard import ReconcileScale
+    from convert.adapters.freecad.InlineRead.CheckInline import GuardInline
 
     DocValue = ReconcileDatum(DocValue, Value, RootValue, Archive, Members)
     DocValue = ReconcileScale(DocValue, Value, RootValue, Archive, Members)
@@ -2408,6 +2409,7 @@ def ReadEmbedded(
     DocValue = ReconcilePlane(DocValue, RootValue, Archive, Members)
     DocValue = ReconcileSheet(DocValue, Value, RootValue)
     DocValue = ReconcileSketch(DocValue, Value, RootValue, Archive, Members)
+    GuardInline(DocValue, Value, RootValue)
     return DocValue
 
 
