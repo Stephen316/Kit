@@ -21,6 +21,8 @@ The camera has five observed four-tuples across the 25 saves. Reproducing a reco
 
 The typed read matched drafting state 7, all seven line styles and all forty annotation-to-font bindings against the existing field tables in every save. The line font manager ended with word 1. The user environment parsed as one user string, eight session words, three view records and the documented environment tail. The observed session words were `(1, 1, 792, 10, 1520, 10, 0, 0)`, and the environment build stamp was `90165`. The reserved spans, capacity 96, two `-1` words and final flag 0 agreed across the files. The BOM block contained count 0 and the typed fields `(1, 38284, 0, 0, 515, 0)`. The typed read reached the journal class at byte 3392 in the five short-view files and byte 3536 in the twenty full-view files.
 
+All 25 saves used the existing line-style order. The same forty line-font bindings appear in two orders. Eight saves used the order in `KLineFontBindings` and seventeen used the second order. The [research constructor](../WriterResearch/DefinitionStream.py) emits the first witnessed order for its supported profile. Exact readback of a generated stream is still pending.
+
 ## 1. Corpus
 
 673 CAD files under `re/solidworks/examples/`, `.rescratch/**`, `files/` and `tests/fixtures/solidworks/` carry
