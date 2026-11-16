@@ -258,6 +258,16 @@ def CheckGhostRel() -> None:
     )
 
 
+# the composed prefix must carry the first split's map through saved detail entry
+def CheckCfgHistory() -> None:
+    Report = LoadReport("VerifyConfigHistory.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "37aaf6279b6d66aee9e03cfad8e35346caeeb98739573d03384938827619eb91"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")

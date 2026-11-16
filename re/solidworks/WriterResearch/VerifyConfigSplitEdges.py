@@ -1,4 +1,4 @@
-from dataclasses import replace
+from dataclasses import dataclass, replace
 from hashlib import sha256
 import json
 from struct import unpack_from
@@ -7,7 +7,7 @@ from ConfigMaterial import ReadConfigMaterial
 from ConfigModelBody import ReadModelBody
 from ConfigModelView import ReadModelView
 from ConfigResolvedFraming import BeginConfigArchive, WriteConfigSplit
-from ConfigRoot import WriteConfigRoot
+from ConfigRoot import ConfigRootState, WriteConfigRoot
 from ConfigSplitEdges import (
     ConfigFirstSplitBody,
     ReadFirstSplitEnd,
@@ -17,7 +17,7 @@ from ConfigSplitEdges import (
 )
 from ConfigUnits import ReadConfigUnits
 from HeaderTail import FrameValues, KFrameTolerance
-from PartArchive import PartArchiveWriter
+from PartArchive import PartArchiveState, PartArchiveWriter
 from VerifyConfigResolvedFraming import allocation_state
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyConfigVisual import read_visual
@@ -52,8 +52,21 @@ def compare_first(config, split, emitted, bound_start, bounds):
     )
 
 
-def inspect_splits(config, generation, layouts, measurements):
-    begin, split, root, visual, cursor, _, _ = read_visual(config, generation, layouts.Prefix)
+@dataclass(frozen=True, slots=True)
+class SavedFirstSplit:
+    Begin: int
+    End: int
+    ModelStart: int
+    BoundsOffset: int
+    Root: ConfigRootState
+    Body: ConfigFirstSplitBody
+    Map: PartArchiveState
+
+
+def read_first_split(config, generation, layouts, measurements):
+    begin, split, root, visual, cursor, _, _ = read_visual(
+        config, generation, layouts.Prefix
+    )
     units = ReadConfigUnits(cursor, generation)
     view = ReadModelView(cursor, generation)
     bounds_offset = cursor.Offset + 1
@@ -81,29 +94,50 @@ def inspect_splits(config, generation, layouts, measurements):
         ),
         "independent model data entry and first split ownership",
     )
-    state = allocation_state(cursor)
+    bounds = measured_bounds(measurements) if measurements["body_count"] else None
+    require((model.Bounds is None) == (bounds is None), "model bounds ownership")
+    body = ConfigFirstSplitBody(
+        visual, units, view, replace(model, Bounds=bounds), material
+    )
+    return (
+        SavedFirstSplit(
+            begin,
+            split,
+            model_start,
+            bounds_offset,
+            root,
+            body,
+            allocation_state(cursor),
+        ),
+        expected_model,
+    )
+
+
+def inspect_splits(config, generation, layouts, measurements):
+    saved, expected_model = read_first_split(config, generation, layouts, measurements)
+    split = saved.End
+    state = saved.Map
+    cursor = state.Cursor(config, split)
     cursor.Offset += 4
     atom_ids = ReadSecondSplitStart(cursor, generation)
     _, atom_offset, atom_count = ModelAtomStart(config, expected_model)
-    require((cursor.Offset, len(atom_ids)) == (atom_offset, atom_count), "typed atom start")
+    require(
+        (cursor.Offset, len(atom_ids)) == (atom_offset, atom_count), "typed atom start"
+    )
     if atom_ids:
         body = atom_offset + ReadTag(config, atom_offset).size
         (first_atom_id,) = unpack_from("<i", config, body + 34)
         require(atom_ids == (first_atom_id,), "manager counter and filed atom identity")
 
-    bounds = measured_bounds(measurements) if measurements["body_count"] else None
-    require((model.Bounds is None) == (bounds is None), "model bounds ownership")
-    body_state = ConfigFirstSplitBody(
-        visual, units, view, replace(model, Bounds=bounds), material
-    )
-
     def write_first(writer: PartArchiveWriter) -> None:
-        WriteConfigRoot(writer, generation, root)
-        WriteFirstSplitBody(writer, generation, body_state)
+        WriteConfigRoot(writer, generation, saved.Root)
+        WriteFirstSplitBody(writer, generation, saved.Body)
 
     writer = BeginConfigArchive()
     WriteConfigSplit(writer, write_first)
-    compare_first(config, split, writer.build(), bounds_offset, bounds)
+    compare_first(
+        config, split, writer.build(), saved.BoundsOffset, saved.Body.Model.Bounds
+    )
     require(writer.Snapshot() == state, "generated Config-0 first split archive map")
 
     opening = PartArchiveWriter(writer.Snapshot())
@@ -112,10 +146,17 @@ def inspect_splits(config, generation, layouts, measurements):
         "typed second split atom allocation",
     )
     require(
-        opening.build() == config[split + 4 : atom_offset] and opening.Snapshot() == state,
+        opening.build() == config[split + 4 : atom_offset]
+        and opening.Snapshot() == state,
         "generated second split opening and unchanged archive map",
     )
-    return [split - begin, model_start, state.NextIndex, atom_offset, list(atom_ids)]
+    return [
+        split - saved.Begin,
+        saved.ModelStart,
+        state.NextIndex,
+        atom_offset,
+        list(atom_ids),
+    ]
 
 
 def report():
