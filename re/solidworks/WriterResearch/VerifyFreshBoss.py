@@ -151,6 +151,9 @@ USER = "Independent part fixture"
 FILETIME_EPOCH = datetime(1601, 1, 1, tzinfo=timezone.utc)
 IDENTITY_ROWS = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
 
+# the compatibility member requires its witnessed nonempty labels for unassigned material
+KUnassignedContent = ("Material <not specified>", "Steel")
+
 
 # the container and compatibility streams share the caller's package identities
 @Dataclass(frozen=True, slots=True, kw_only=True)
@@ -1112,8 +1115,8 @@ def CheckPortableContext(
     )
     RequireArch(
         (Package.Content.MaterialName, Package.Content.MaterialId),
-        ("", ""),
-        "portable candidate has no mapped physical material",
+        KUnassignedContent,
+        "portable candidate requires the unassigned compatibility material labels",
     )
     RequireArch(
         DisplayScale(InformationUnits(Context.Preferences.Units.Display)),
