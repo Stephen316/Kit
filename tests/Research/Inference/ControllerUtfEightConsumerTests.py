@@ -24,7 +24,7 @@ from tests.Research.Archives.Controller.ControllerUtfEightTests import (
 )
 
 # the archive gate must execute the same controller implementation as the committed checkout
-KRepoRoot = FilePath(__file__).resolve().parents[4]
+KRepoRoot = FilePath(__file__).resolve().parents[3]
 
 
 # the actual archive consumer must open artifact paths rather than observing decoded strings alone
@@ -108,7 +108,7 @@ def CheckConsumer(TmpPath: FilePath) -> None:
             System.executable,
             "-B",
             "-m",
-            "tests.Research.Archives.Controller.ControllerUtfEightConsumerTests",
+            "tests.Research.Inference.ControllerUtfEightConsumerTests",
             str(TmpPath),
         ],
         cwd=KRepoRoot,

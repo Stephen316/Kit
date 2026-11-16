@@ -266,6 +266,7 @@ jobs:
         run: >-
           uv run --frozen --extra dev --group dev --python 3.14
           python -m pytest tests/Research/ControllerPoolTests.py::CheckGridQueue
+          tests/Research/Inference/ControllerUtfEightConsumerTests.py
           tests/Research/ControllerParallelTests.py::CheckTurnOrder -q
 
   linux-oom-witness:
