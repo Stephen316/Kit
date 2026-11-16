@@ -85,7 +85,13 @@ def ReadOrdinaryMap(
     BlobValue: bytes, Generation: int | None, *, Scoped: bool = False
 ) -> tuple[ArchiveCursor, ModelMapWalk]:
     RequireArch(Generation, KConfigGen, "supported configuration generation")
-    AllowedCounts = (3, 4) if Scoped else (0, 1)
+    return ReadEmptyMap(BlobValue, (3, 4) if Scoped else (0, 1), Scoped=Scoped)
+
+
+# the caller selects its atom count while the empty equation layout stays checked
+def ReadEmptyMap(
+    BlobValue: bytes, AllowedCounts: tuple[int, ...], *, Scoped: bool = False
+) -> tuple[ArchiveCursor, ModelMapWalk]:
     Manager, Count = ReadRelEntry(BlobValue, LoadPartLayouts(), AllowedCounts)
     BodyStart = Manager.offset + ReadTag(BlobValue, Manager.offset).size
     Cursor = ArchiveCursor(
