@@ -10,4 +10,6 @@ The add-in runs its ordinary probe on the application main thread. The probe req
 
 The hosted Windows process case uses the real add-in bootstrap, supervisor, A03 store, queue, and pinned probe. Its disposable event stub reports one open document and exposes no native CAD methods. The case expects admission to reach the open-document refusal, with no grant or accepted artifacts. It also checks that Phase B and altered installed add-in bytes are refused. The process identity case covers a live disposable peer with the wrong FILETIME.
 
+All 93 Windows process cases passed at PR head `f3e6b6cd` and tested merge `5d02823f07aea167812cc1ec6668b2694366ae9b`, including the Phase A open-document refusal and the missing opt-in and altered-bootstrap startup checks. [Hosted Windows job](https://github.com/TryUniCAD/Kit/actions/runs/43777547783/job/133007249020)
+
 A licensed run still requires a supported Fusion installation in the dedicated signed-in owner session, trusted Git available to that session, the exact installed add-in, the owner-private endpoint, and verification of the embedded Python dependencies. The hosted boundary supplies no native capture, semantic qualification, or Windows restart witness.
