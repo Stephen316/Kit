@@ -301,18 +301,22 @@ public sealed class SolidWorksScopeControl
         bool automatic = recovery || control["input_body_ids"] == null;
         var selectedIds = automatic ? new string[0] : intended;
         if (!automatic) bodies = Bodies(doc);
+        doc.ClearSelection2(true);
         Check(doc.Extension.SelectByID2(sketch.Name, "SKETCH", 0, 0, 0, false, 0, null, 0),
             "Could not select the through-all sketch");
         foreach (string id in selectedIds)
             Check(doc.Extension.SelectByID2(bodies[id].Name, "SOLIDBODY", 0, 0, 0, true, 1, null, 0),
                 "Could not append scoped solid " + id);
         var selection = doc.ISelectionManager;
-        var selectedSketch = selection.GetSelectedObject6(1, 0);
-        Check(selection.GetSelectedObjectCount2(0) == 1
-            && (Same(selectedSketch, sketch) || Same(selectedSketch, sketch.GetSpecificFeature2()))
-            && selection.GetSelectedObjectCount2(1) == selectedIds.Length
-            && selection.GetSelectedObjectCount2(-1) == selectedIds.Length + 1,
-            "The Cut scope selections do not match the requested roster");
+        int sketchCount = selection.GetSelectedObjectCount2(0);
+        int scopeCount = selection.GetSelectedObjectCount2(1);
+        int totalCount = selection.GetSelectedObjectCount2(-1);
+        var selectedSketch = sketchCount == 1 ? selection.GetSelectedObject6(1, 0) : null;
+        bool sameSketch = Same(selectedSketch, sketch) || Same(selectedSketch, sketch.GetSpecificFeature2());
+        Check(sketchCount == 1 && sameSketch && scopeCount == selectedIds.Length
+            && totalCount == selectedIds.Length + 1,
+            "The Cut scope selections do not match the requested roster (sketch count: " + sketchCount
+            + ", same sketch: " + sameSketch + ", scope count: " + scopeCount + ", total count: " + totalCount + ")");
         for (int index = 0; index < selectedIds.Length; index++)
             Check(Same(selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
                 "The Cut scope selection did not resolve to the intended native body");
