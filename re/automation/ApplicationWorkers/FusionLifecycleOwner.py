@@ -75,6 +75,7 @@ class Owner:
         )
         self.supervisor_bytes = file_bytes(args.config)
         supervisor = read_config(args.config)
+        self.supervisor_state = supervisor["state"]
         controller = supervisor["controller"]
         require(
             controller.get("adapter") == "a03"
@@ -312,9 +313,21 @@ class Owner:
         final_path = (
             self.root / f"fusion-lifecycle-{active['restart_intent_sha256']}.json"
         )
-        release(
-            self.store, queue, self.config, active, final_path, receipt_bytes(final)
-        )
+        try:
+            released = release(
+                self.store,
+                queue,
+                self.config,
+                active,
+                final_path,
+                receipt_bytes(final),
+                supervisor_state=self.supervisor_state,
+                final=final,
+            )
+        except BlockingIOError:
+            released = False
+        if not released:
+            return status("waiting_for_phase_b_acknowledgement")
         marker.unlink()
         sync_directory(marker.parent)
         return status("lifecycle_verified", **final)

@@ -47,7 +47,9 @@ receipt, and the presence of a process does not establish an authorized
 replacement receipt. After the exact Phase B settlement, the read-only
 replacement verifier checks the accepted output, new peer, and startup probe.
 The owner persists the final evidence before clearing the active record and
-starting any subsequent restart. `--once` performs one reconciliation and emits an
+starting any subsequent restart. A registered installation also waits for
+[Phase B acknowledgement to drain](FusionLifecycle/FusionPhaseBAcknowledgement.md).
+`--once` performs one reconciliation and emits an
 evidence status suitable for checking a parked owner.
 
 Hosted fixtures cover real A03 settling and acknowledgement, a disposable

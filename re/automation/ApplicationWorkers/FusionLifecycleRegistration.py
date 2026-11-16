@@ -6,9 +6,11 @@ from ApplicationProtocol import (
     encoded,
     file_bytes,
     macos_automatic_quit,
+    owner_lock,
     require,
     sha256,
 )
+from FusionPhaseBAcknowledgement import acknowledgement_drained
 from FusionRestartPairs import bound_pair, open_pair, pair_for, release_pair
 from Ledger import Ledger
 from StoreRead import read_store
@@ -16,7 +18,9 @@ from StoreRead import read_store
 ROOT = Path(__file__).resolve().parents[3]
 POLICY_FILES = (
     "Adapters.py",
+    "ApplicationAckIntent.py",
     "Controller.py",
+    "FusionAcknowledgementRetry.py",
     "FusionRestartPairs.py",
     "GroupClaims.py",
     "Ledger.py",
@@ -26,6 +30,7 @@ POLICY_FILES = (
     "Supervisor.py",
     "ApplicationWorkers/FusionLifecycleRegistration.py",
     "ApplicationWorkers/FusionLifecycleOwner.py",
+    "ApplicationWorkers/FusionPhaseBAcknowledgement.py",
     "ApplicationWorkers/QueueFusionPhases.py",
 )
 
@@ -91,13 +96,23 @@ def admit(store, queue, config, active):
         open_pair(ledger, queue, installation_pin(config), active)
 
 
-def release(store, queue, config, active, final_path, final_bytes):
+def release(
+    store, queue, config, active, final_path, final_bytes, *, supervisor_state, final
+):
     with read_store(store / "ledger.sqlite3", None, (4,)) as database:
         if pair_for(SimpleNamespace(db=database), queue["jobs"]["a"]) is None:
-            return
-    with Ledger(store) as ledger:
-        require(
-            file_bytes(final_path) == final_bytes,
-            "final Fusion lifecycle receipt changed",
-        )
-        release_pair(ledger, queue, installation_pin(config), active, final_bytes)
+            return True
+    with owner_lock(final_path.parent / "dispatch.lock"):
+        with Ledger(store) as ledger:
+            require(
+                file_bytes(final_path) == final_bytes,
+                "final Fusion lifecycle receipt changed",
+            )
+            pin = installation_pin(config)
+            pair = bound_pair(ledger, queue, pin, active)
+            if pair["final_evidence"] is None and not acknowledgement_drained(
+                final_path.parent, supervisor_state, ledger, pair, final["phase_b"]
+            ):
+                return False
+            release_pair(ledger, queue, pin, active, final_bytes)
+    return True
