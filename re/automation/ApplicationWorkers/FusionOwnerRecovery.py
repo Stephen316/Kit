@@ -7,6 +7,7 @@ from FusionLifecyclePair import pairs
 from FusionProbeArchiveCustody import authorize_archive
 from FusionQueueReceipt import owned_bytes, receipt_bytes
 from FusionRecoveryBasis import retain_basis
+from FusionReplacementPreflight import stage_preflight
 from FusionRestartPairs import installed
 from QueueFusionPhases import recover_receipt
 from StoreRead import read_store
@@ -45,7 +46,7 @@ def archive_timeout(owner, fence):
         kind,
         authorize=partial(authorize_archive, owner, path, queue, raw),
         retain=(
-            partial(retain_basis, owner, queue, raw)
+            partial(retain_recovery, owner, queue, raw)
             if owner.exit_watch is not None and owner.exit_watch.epoch is not None
             else None
         ),
@@ -58,9 +59,22 @@ def archive_timeout(owner, fence):
         **{
             key: value
             for key, value in saved.items()
-            if key.startswith("recovery_basis_")
+            if key.startswith(("recovery_basis_", "replacement_preflight_"))
         },
     }
+
+
+# the archive locks and parked snapshot cover both the joined basis and replacement preflight
+def retain_recovery(owner, queue, raw, database, config, timeout, archive):
+    basis = retain_basis(owner, queue, raw, database, config, timeout, archive)
+    checksum = basis.get("recovery_basis_sha256")
+    if checksum is not None:
+        basis.update(
+            stage_preflight(
+                owner, queue, database, archive["archive_manifest_sha256"], checksum
+            )
+        )
+    return basis
 
 
 # candidates are read from one parked controller snapshot before archive acquires custody
