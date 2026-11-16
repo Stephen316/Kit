@@ -63,9 +63,9 @@ def EncodeRectPlacement(
         (0, 2, 2),
         "witnessed local dimension precision and arrows",
     )
+    RequireArch(len(Pose.TextWorld), 3, "annotation placement coordinates")
     RequireArch(
-        len(Pose.TextWorld) == 3
-        and all(map(IsFinite, (*Pose.TextWorld, Pose.TextRatio, Pose.WitnessMetres))),
+        all(map(IsFinite, (*Pose.TextWorld, Pose.TextRatio, Pose.WitnessMetres))),
         True,
         "finite independent annotation placement",
     )
