@@ -6,6 +6,7 @@ from BossRules import BoundSize, DrivingLength, ReadDrivingLength, ReadRectRules
 from RectangleCorners import CornerPoint
 from convert.Commands.CheckFeatures import CheckFeatures
 from convert.Commands.CheckRetained import CheckRetained
+from convert.adapters.registry.SupportWrite import CheckSupports
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
 from interchange.Enums.EnumUnits import UnitSystem
@@ -50,7 +51,7 @@ class LogicalBoss:
         )
 
 
-# shared portable guards cover retained payloads and dependency semantics
+# shared portable guards cover retained payloads, qualified support, and dependency semantics
 def CheckBossGraph(Document: CadDocument) -> None:
     CheckRetained(Document)
     RequireArch(
@@ -80,6 +81,7 @@ def CheckBossGraph(Document: CadDocument) -> None:
         (1, 1, 1, 2, 1, 3),
         "one configuration, datum, profile, solid and three driving lengths",
     )
+    CheckSupports(Document)
     CheckFeatures(Document)
 
 

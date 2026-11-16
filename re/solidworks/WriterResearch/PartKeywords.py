@@ -8,22 +8,27 @@
 
 """Construct the ordinary sketch and optional Boss keyword inventory."""
 
+from collections.abc import Callable
 from decimal import Decimal
+from typing import cast
 
+from HeaderLogs import KDefaultIds, KMaxTreeId
 from PartFeatureIndex import KConfiguration, KDeclaration, PartIndex
 from PartManifests import EncodeXml
 
 KKeywordsXml = "swXmlContents/KeyWords"
 KKeywordPrefix = bytes((0x86,))
 KMaterial = "Material <not specified>"
-KSketchId = "26"
-KBossId = "34"
+# the exploded view and presentation reserve the two unlogged system slots
+KReservedIds = frozenset((*KDefaultIds, 19, 20))
 KWidth = "width_mm"
 KHeight = "height_mm"
 KDepth = "depth_mm"
 
 DimensionNode = tuple[str, dict[str, str], str]
 KeywordNode = tuple[str, dict[str, str], tuple[DimensionNode, ...] | None]
+KeywordDrivers = tuple[tuple[str, Decimal], tuple[str, Decimal]]
+KeywordBoss = tuple[str, Decimal]
 
 # declared native feature names and types follow lexical order of their saved ids
 KBuiltinEntries = (
@@ -67,9 +72,22 @@ def DisplayDimension(Name: str, Value: Decimal) -> DimensionNode:
 def EncodeKeywords(
     Part: PartIndex,
     SketchName: str,
-    SketchValues: tuple[tuple[str, Decimal], tuple[str, Decimal]],
-    Boss: tuple[str, Decimal] | None,
+    SketchValues: KeywordDrivers,
+    Boss: KeywordBoss | None,
+    *,
+    SketchTreeId: int,
+    BossTreeId: int | None,
 ) -> bytes:
+    Ids = (SketchTreeId,) if BossTreeId is None else (SketchTreeId, BossTreeId)
+    if (
+        (Boss is None) != (BossTreeId is None)
+        or SketchTreeId == BossTreeId
+        or any(
+            type(Id) is not int or not 0 < Id <= KMaxTreeId or Id in KReservedIds
+            for Id in Ids
+        )
+    ):
+        raise ValueError("keyword features require distinct allocated tree IDs")
     if not SketchName or {Name for Name, _ in SketchValues} != {KWidth, KHeight}:
         raise ValueError("keyword rectangle needs its named width and height")
     Configuration = (
@@ -83,7 +101,7 @@ def EncodeKeywords(
         None,
     )
     Entries: list[KeywordNode] = [Configuration]
-    SketchFields = {"id": KSketchId, "Name": SketchName, "Dissectable": "true"}
+    SketchFields = {"id": str(SketchTreeId), "Name": SketchName, "Dissectable": "true"}
     if Boss is None:
         SketchFields["DissectableRoot"] = "true"
     else:
@@ -93,7 +111,7 @@ def EncodeKeywords(
         Entries.append(
             (
                 "Extrusion",
-                {"id": KBossId, "Name": BossName, "Type": "Boss-Extrude"},
+                {"id": str(BossTreeId), "Name": BossName, "Type": "Boss-Extrude"},
                 (DisplayDimension(KDepth, Depth),),
             )
         )
@@ -111,7 +129,10 @@ def EncodeKeywords(
             ("Sketch", {"id": "5", "Name": "Origin", "Type": "Origin"}, None),
         )
     )
-    return KKeywordPrefix + EncodeXml(
+    EncodeKeywordXml = cast(
+        Callable[[str, str, dict[str, str], list[KeywordNode]], bytes], EncodeXml
+    )
+    return KKeywordPrefix + EncodeKeywordXml(
         KDeclaration,
         "Keywords",
         {"id": str(Part.CreatedSeconds), "Name": Part.DocumentReference},

@@ -2,6 +2,11 @@ from dataclasses import replace
 
 from BossInput import ProjectBoss
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Core.Native import (
+    KRefSupportSource,
+    KStreamOrderSupportSource,
+    KUnresolvedSupportSource,
+)
 from interchange.document.Models.DocumentModel import CadDocument
 from interchange.Enums.EnumValues import ValueKind
 from interchange.Features.FeatureBody import DesignBody
@@ -24,7 +29,9 @@ from interchange.Records.RecordSource import CadSource
 
 
 # construct a fresh neutral example using independent authored dimensions and arbitrary IDs
-def authored_case(right: bool, width: float, height: float, depth: float) -> CadDocument:
+def authored_case(
+    right: bool, width: float, height: float, depth: float
+) -> CadDocument:
     x, y = (-height, width) if right else (width, height)
     origin, bottom, far, left = (
         PlaneVector(0.0, 0.0),
@@ -157,6 +164,19 @@ def rules_case(document: CadDocument, rules: tuple[SketchRelation, ...]) -> CadD
     return replace(document, sketches=(replace(sketch, constraints=rules),))
 
 
+# the same geometric plane can carry qualified or unresolved native support evidence
+def support_case(
+    document: CadDocument, kind: str, unframed: int | None = None
+) -> CadDocument:
+    (sketch,) = document.sketches
+    attributes = {
+        "support_plane_native_id": 2,
+        "support_plane_source": kind,
+        "unframed_support_plane_native_id": unframed,
+    }
+    return replace(document, sketches=(replace(sketch, attributes=attributes),))
+
+
 def expect_refused(document: CadDocument, reason: str) -> None:
     try:
         ProjectBoss(document)
@@ -223,4 +243,22 @@ def hosted_cases() -> list[tuple[int, float, float, float]]:
         (authored_case(False, 19.0, 19.0, 8.0), "distinct supported side lengths"),
     ):
         expect_refused(case, reason)
+    native_seed = replace(
+        seed, source=replace(seed.source, format_id="solidworks.sldprt")
+    )
+    RequireArch(
+        ProjectBoss(support_case(native_seed, KRefSupportSource)),
+        ProjectBoss(seed),
+        "qualified native support resolves the same Front datum",
+    )
+    for kind, unframed in (
+        (KStreamOrderSupportSource, None),
+        (KUnresolvedSupportSource, 19),
+        (KRefSupportSource, 19),
+    ):
+        case = support_case(native_seed, kind, unframed)
+        for candidate in (case, replace(case, source=seed.source)):
+            expect_refused(
+                candidate, "unqualified SOLIDWORKS sketch support references"
+            )
     return results

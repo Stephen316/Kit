@@ -14,6 +14,7 @@ from decimal import ROUND_HALF_UP, Decimal
 from pathlib import PureWindowsPath
 
 from BossResolve import ResolvedBossState
+from ConfigAtomManager import ConfigAtomBinding
 from OrdinaryProfile import OrdinaryProfile
 from PartFeatureIndex import EncodeFeatures, KConfiguration, KFeaturesXml, PartIndex
 from PartInformation import EncodeInformation, KInfoXml, KMassName
@@ -67,6 +68,8 @@ def EncodePackageIndices(
     State: PackageXmlState,
     Profile: OrdinaryProfile,
     Boss: ResolvedBossState | None,
+    *,
+    Atom: ConfigAtomBinding | None,
 ) -> dict[str, bytes]:
     Information = State.Information
     RequireArch(
@@ -86,6 +89,7 @@ def EncodePackageIndices(
         ),
         "shared ordinary document metadata and body state",
     )
+    RequireArch(Atom is None, Boss is None, "keyword boss owns its generated atom")
     Scale = DisplayScale(Information)
     Width, Height = Profile.Lengths
     DisplayWidth = (Width.Name, DisplaySize(Width.Millimetres, Scale))
@@ -103,7 +107,12 @@ def EncodePackageIndices(
         KInfoXml: EncodeInformation(Generation, Information),
         KFeaturesXml: EncodeFeatures(Generation, Identity),
         KKeywordsXml: EncodeKeywords(
-            Identity, Profile.Feature.Name, Drivers, DisplayBoss
+            Identity,
+            Profile.Feature.Name,
+            Drivers,
+            DisplayBoss,
+            SketchTreeId=Profile.Feature.TreeId,
+            BossTreeId=None if Atom is None else Atom.Body.FeatureId,
         ),
     }
 
