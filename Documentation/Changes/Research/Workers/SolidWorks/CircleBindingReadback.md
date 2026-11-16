@@ -41,3 +41,21 @@ All ten observations before and after rebuild identify one fully defined circle 
 | YZ sketch     | Right Plane    | MMGS         |            10 |           5 |   78.53981633974484 |
 
 The private plan SHA-256 is `c2ca2b9a526b3a00ddd24a76081b0cf945c1e367f4c2f264ff070a0167e12e49`, the measurements SHA-256 is `114ac4b28716d43930cb33796420301d53eb4baff394064c86e597003a36ec42`, and the receipt SHA-256 is `0e6229e3f4df23e9d3c3ee6d1d0dc628cc6b699d29b75092ee76009365dbadb5`. The receipt reports five verified circle bindings. The original [authoring measurements](../../../../../re/automation/PairedCaptures/P02/solidworks-4a9e35f34a39/measurements.json) preserve the driving edit and restoration. This readback keeps the archive bytes unchanged. P05 remains reserved for the frozen-rule holdout.
+
+## Verify the retained readback
+
+Run the [offline verifier](../../../../../re/automation/CircleReadbackEvidence.py) with the private readback directory and the independently recorded receipt and revision pins.
+
+```shell
+python re/automation/CircleReadbackEvidence.py /path/to/Readback \
+  --receipt-sha256 0e6229e3f4df23e9d3c3ee6d1d0dc628cc6b699d29b75092ee76009365dbadb5 \
+  --source-revision 76f2b6195d51fda108f0767807b1390fd89d99d1
+```
+
+The command checks the Git objects for all five original archives, both native collector sources, the capture receipt, the original measurements, the specification and the control. It checks the application build, controls, owned process exit and zero-load-error diagnostics. It checks the measured support, geometry, units and relation operands in both phases against the saved source evidence. Its JSON result contains five bounded observations for paired intake.
+
+The CLI accepted the licensed receipt and rejected nine altered inputs. The rejected cases changed the receipt digest, source archive, collector identity, control volume, annotation target, coincidence participants, document units, owned process exit and observation roster.
+
+## Frozen reader check
+
+An offline SDK replay at PR checkpoint `ce538c42b9ae0535d40e70ec64ac7a097411ee3e` used Python 3.14.6 and the five original archives from each vendor. The SOLIDWORKS public reader in both modes returned one neutral body record, two circle entities and one native entity per sketch. It emitted the diameter constraint, omitted the origin coincidence and returned the same support identity for the Front and YZ files. The licensed SOLIDWORKS observations above provide the independent comparison. The strict Fusion reader rejected all five archives with `Unknown native Fusion entity class`. The partial Fusion reader returned zero bodies with typed diameter and coincidence and retained its partial geometry marker on each sketch. This check does not release P02 qualification or change the P05 holdout.
