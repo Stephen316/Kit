@@ -74,6 +74,7 @@ python -B re/solidworks/WriterResearch/TwoPadMass/VerifyCmgrTwoPadMass.py   --ru
 
 The five source and generated record rows have aggregate SHA-256
 `321a02c2c891e1f6c86b2a355ebddad086fda84866dc516b077779d2b52a94c8`.
-Two-pad part construction, the upper sketch's type-14 relation,
-A07 admission and licensed generated-part acceptance remain open.
+Two-pad part construction, A07 admission and licensed generated-part
+acceptance remain open. The [upper sketch relation audit](../SolidWorksTwoPadDiscovery.md#project-the-upper-sketchs-same-length-relation)
+records the separate typed projection.
 [Automation register](../../../../../Reference/Research/AutomationSteps.md)

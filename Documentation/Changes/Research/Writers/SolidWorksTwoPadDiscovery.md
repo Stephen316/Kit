@@ -29,9 +29,17 @@ The native report SHA-256 is `bf0d74c06878c6c5063e4b9a55c61c2ef258bdc24323adbfb8
 
 The strict SDK read at `4e52bd27` recovered the upper boss depth, its four-sided profile and its ownership of the final solid on all five saves. The upper sketch projected onto the principal plane at Z=0 with no face selection. The licensed readback resolved its support to the base boss at Z=10 or Z=11 mm. The scoped discrepancy report SHA-256 is `5466359de266aaa4291d76d8df87a071f11088d3cd178ce539095542273d8453`.
 
-The continuous typed replay reaches the resolved stream footer in all five cases. The upper sketch resolves the same base cap and four ordered boundaries as the native persistent reference. Its saved pose matches the model-to-sketch transform measured before save and on independent reopen. The strict SDK now binds the directed upper profile and its world frame to the earlier base boss at Z=10 or Z=11 mm. Type 14 stays as native relation provenance with two resolved line identities. Eleven individual archive mutations withheld this typed attachment, and the SDK kept its legacy read behavior for those inputs. Two P01 controls and the P03 and P04 baselines retained identical neutral output digests. The continuous archive proof SHA-256 is `180fa32ff4f7687479fc84d7f787e9b3973c4d42bac2dea02a93bb5e37ba6048`, with independent native reference comparisons at `a75e915f185990ca45958e3cae2c2796e57d34a0f76ade734a8875e4ebca71da`.
+The continuous typed replay reaches the resolved stream footer in all five cases. The upper sketch resolves the same base cap and four ordered boundaries as the native persistent reference. Its saved pose matches the model-to-sketch transform measured before save and on independent reopen. The strict SDK now binds the directed upper profile and its world frame to the earlier base boss at Z=10 or Z=11 mm. The original typed replay retains the type-14 span and its two native line identities. Eleven individual archive mutations withheld this typed attachment, and the SDK kept its legacy read behavior for those inputs. Two P01 controls and the P03 and P04 baselines retained identical neutral output digests. The continuous archive proof SHA-256 is `180fa32ff4f7687479fc84d7f787e9b3973c4d42bac2dea02a93bb5e37ba6048`, with independent native reference comparisons at `a75e915f185990ca45958e3cae2c2796e57d34a0f76ade734a8875e4ebca71da`.
 
 A09 still needs donor-free reproduction and licensed validation of the generated part.
+
+## Project the upper sketch's same-length relation
+
+The sealed native report records the upper sketch relation as type 14 with two line operands, in the order `[2,2]` and `[1,1]`. The same record appears in all 18 authored, reopened, edited and restored observations. The installed SOLIDWORKS 34.4.1.1011 constants assembly identifies the enum as `swConstraintType_SAMELENGTH`. Its SHA-256 `b15e28ed5b2e8332d409ca79635f933a60e8cc0d9bd5ec980e2a2301220e7741` matches the licensed capture's constants pin.
+
+The compact archive relation reaches the same ordered local line IDs `(2, 1)` through two `sgLineHandle` owners. The typed reader matches the directed perimeter to the existing neutral loop and emits the `equal` constraint on the corresponding whole edges. The original archive span and both identifiers remain in provenance. The replay checks the native record in all five saved cases and independently resolves the projected references from the saved line endpoints.
+
+The current strict SDK audit SHA-256 is `a8280be81991c7fff5ff046ea75926487747c3b33e5d78ee65881ba4c7f1cb9c`. The prior digest below records the original face-support projection. The added relation changes its semantic seal. Native validation of a generated two-pad part remains open.
 
 ## Replay the retained evidence offline
 
@@ -49,4 +57,4 @@ uv run --offline --frozen python -B re/automation/TwoPad/VerifyDiscovery.py `
 
 The verifier binds both native exits to their phase files and checks the source bytes, four stock copies, and all five case archives. The second process independently authored baseline B before reopening the five saves. The audit recomputes the stacked-prism measurements and matches the typed saved cap and sketch pose to the native observations. The optional strict SDK check also verifies the public face selection and its neutral JSON round trip. The command emits a discovery result as JSON and reads the retained files in place.
 
-The retained run reproduced the offline audit SHA-256 `366ed4f4ee4da3878d2e94ff8a1a13a39ca7e869af27961da60601e58df3d81e` and the strict SDK audit SHA-256 `7aece59d018282b7316086c3cf1dec5a22afd1e9bf3dc00da698e23c2d8da7a8`.
+The retained run reproduced the offline audit SHA-256 `366ed4f4ee4da3878d2e94ff8a1a13a39ca7e869af27961da60601e58df3d81e` and the earlier strict SDK audit SHA-256 `7aece59d018282b7316086c3cf1dec5a22afd1e9bf3dc00da698e23c2d8da7a8`.
