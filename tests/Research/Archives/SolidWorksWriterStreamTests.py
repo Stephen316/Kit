@@ -160,6 +160,10 @@ def CheckCfgViews() -> None:
     Report = LoadReport("VerifyConfigSavedViews.py", 14)
     assert Report["constructed"] is True
     assert (
+        Report["environment_sha256"]
+        == "c4acd833de3c4ad561983b6f6896e22a311ca0827e29311f8a0b6bf49536d1d8"
+    )
+    assert (
         Report["replay_sha256"]
         == "56fbc3f5a09c81918a8702d5598172b3c4650aba233901e3ddf293073abee395"
     )

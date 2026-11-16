@@ -4,6 +4,11 @@ from hashlib import sha256
 import json
 
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
+from ConfigEnvironment import (
+    KEnvironment,
+    ReadConfigEnvironment,
+    WriteConfigEnvironment,
+)
 from ConfigSavedViews import ReadSavedViewBases, WriteSavedViews
 from PartArchive import PartArchiveWriter
 from VerifyResolvedPlanes import map_state
@@ -44,10 +49,24 @@ def inspect_views(archive, construct):
     take = partial(ReadModelTagMut, cursor, events)
     ReadEmptyRel(cursor)
     ReadSavedDetail(cursor, take)
-    ReadEnvironment(cursor, take)
+    scene_start = cursor.Offset
+    scene_before = map_state(cursor)
+    comparison = scene_before.Cursor(blob, scene_start)
+    events.clear()
+    ReadEnvironment(comparison, partial(ReadModelTagMut, comparison, events))
+    environment, environment_index = ReadConfigEnvironment(cursor, generation)
+    require(
+        cursor.Offset == comparison.Offset
+        and map_state(cursor) == map_state(comparison),
+        "same environment return and complete archive map",
+    )
+    require(
+        [index for _, _, _, name, index in events if name == KEnvironment]
+        == [environment_index],
+        "same environment object available for the resolved alias",
+    )
     start = cursor.Offset
     before = map_state(cursor)
-    comparison = before.Cursor(blob, start)
     ReadNormalViews(comparison, partial(ReadModelTagMut, comparison, []))
     ranges = tuple(
         (first - start, last - start)
@@ -63,10 +82,18 @@ def inspect_views(archive, construct):
         "typed sketch block follows saved views",
     )
     saved = blob[start : cursor.Offset]
+    saved_scene = blob[scene_start:start]
     if construct:
-        writer = PartArchiveWriter(before)
+        writer = PartArchiveWriter(scene_before)
+        require(
+            WriteConfigEnvironment(writer, generation, environment)
+            == environment_index,
+            "generated environment object for the resolved alias",
+        )
+        require(writer.build() == saved_scene, "exact environment folder and lights")
+        require(writer.Snapshot() == before, "generated environment map")
         WriteSavedViews(writer, generation)
-        data = writer.build()
+        data = writer.build()[len(saved_scene) :]
         written = before.Cursor(data, 0)
         require(
             ReadSavedViewBases(written, generation) == ranges,
@@ -78,19 +105,27 @@ def inspect_views(archive, construct):
             "constructed saved view archive map",
         )
         verify_fields(data, saved, ranges)
-    return sha256(saved).hexdigest()
+    return sha256(saved).hexdigest(), sha256(saved_scene).hexdigest()
 
 
 # Evidence binds each reconstructed model view range to its pinned archive digest.
 def report(construct):
     captures = {}
+    environment_records = {}
     for _, asset, data, _, _ in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        captures[asset["sha256"]] = inspect_views(archive, construct)
+        views, environment = inspect_views(archive, construct)
+        captures[asset["sha256"]] = views
+        environment_records[asset["sha256"]] = environment
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
         "constructed": construct,
+        "environment_sha256": sha256(
+            json.dumps(
+                environment_records, sort_keys=True, separators=(",", ":")
+            ).encode("ascii")
+        ).hexdigest(),
         "replay_sha256": sha256(
             json.dumps(captures, sort_keys=True, separators=(",", ":")).encode("ascii")
         ).hexdigest(),
