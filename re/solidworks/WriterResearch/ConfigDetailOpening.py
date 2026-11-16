@@ -32,10 +32,17 @@ class DetailOpening:
 
 def ValidatePrecision(Value: DetailPrecision) -> None:
     RequireArch(
-        type(Value.Digits) is tuple
-        and type(Value.Tolerances) is tuple
-        and len(Value.Digits) == len(Value.Tolerances) == 3
-        and all(type(Digits) is int and 0 <= Digits <= 0xFFFFFFFF for Digits in Value.Digits)
+        (type(Value.Digits), type(Value.Tolerances)),
+        (tuple, tuple),
+        "saved detail precision groups are tuples",
+    )
+    RequireArch(
+        (len(Value.Digits), len(Value.Tolerances)),
+        (3, 3),
+        "three saved entries per detail precision group",
+    )
+    RequireArch(
+        all(type(Digits) is int and 0 <= Digits <= 0xFFFFFFFF for Digits in Value.Digits)
         and all(IsFinite(Tolerance) and Tolerance >= 0 for Tolerance in Value.Tolerances),
         True,
         "three detail precisions and their nonnegative tolerances",
