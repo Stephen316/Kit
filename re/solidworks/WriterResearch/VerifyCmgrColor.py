@@ -14,6 +14,7 @@ from CmgrOpening import ReadCmgrFeature
 from CmgrTail import ReadCmgrTail, WriteCmgrTail
 from ColorAppearance import EncodeColorDspbr
 from SolidworksCensusInputs import capture_inputs
+from VerifyCmgrPart import verify_part_end
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     ArchiveError,
@@ -96,12 +97,14 @@ def verify_color():
     captures = {}
     tails = {}
     masses = {}
+    parts = {}
     for recipe, item, data, _, measurement in rows:
         archive = SldprtArchive.from_bytes(data, item["path"])
         generation = ContainerMo(archive.streams)
         RequireArch(generation, 19000, "CMgr verification generation")
         stream = archive.require("Contents/CMgr")
-        color, start, end = ReadColorSpan(stream, 19000)
+        color, start, cursor = ReadColorSpan(stream, generation)
+        end = cursor.Offset
         saved = stream[start:end]
         RequireArch(end - start, 300, "CMgr default DSPBR body width")
         RequireArch(
@@ -111,6 +114,9 @@ def verify_color():
         )
         captures[item["sha256"]] = sha256(saved).hexdigest()
         tails[item["sha256"]] = verify_tail(stream, TREE_IDS[recipe], item["path"])
+        parts[item["sha256"]] = verify_part_end(
+            cursor, recipe, TREE_IDS[recipe], item["path"]
+        )
         if recipe == "P01":
             masses[item["sha256"]] = verify_empty_mass(
                 stream, end, measurement["body_count"], item["path"]
@@ -121,6 +127,7 @@ def verify_color():
         "captures": captures,
         "terminal_records": tails,
         "empty_mass_records": masses,
+        "part_return_records": parts,
     }
 
 
