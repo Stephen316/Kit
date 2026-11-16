@@ -192,6 +192,7 @@ The [source-bound private P03 controller observation](../../Changes/Research/Rea
 All five completed on their first attempts; the operator reopened and hash-checked five result/receipt pairs and eight artifacts.
 The reports remained `different` and `ambiguous`, with semantics unverified and native acceptance unestablished.
 This observation does not replace current-head hosted A06c/A06d checks or A06b qualification.
+The subsequent [fresh P03 replay at `880bf0be`](../../Changes/Research/Readers/Comparison/SemanticSketchReferences.md#verification-evidence) removed only the false sketch-definition finding in both reader inventories and dependent comparisons, retaining `different` and `ambiguous` results and preserving the original `7317092e` run.
 A07 acceptance and A09 continue to depend on A06b.
 
 ## A09 scoped codec research
