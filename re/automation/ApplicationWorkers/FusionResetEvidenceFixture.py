@@ -253,6 +253,7 @@ def check_custody(inputs, installation, store):
                 "id": "fixture:active",
                 "kind": "fixture.control",
                 "resources": [RESOURCE],
+                "inputs": {},
                 "rule_version": "fixture@1",
                 "tool_version": "fixture@1",
             }
