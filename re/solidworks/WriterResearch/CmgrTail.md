@@ -30,6 +30,8 @@ The following fields finish the external object and resume the manager. All rows
 
 Starting after the title, the external object returns 71 bytes later and the first `suObList` begins 12 bytes after that. This walk reaches the already checked first list in all 25 discovery saves and the historical comparison. The [part return and manager aliases](CmgrAtoms.md#part-return-and-manager-aliases) establish the preceding pointer and the archive map at the external object boundary.
 
+The generation-19000 constructor takes the live allocator, file metadata and referenced configuration as inputs. It allocates the external object and two distinct CString handles before passing the same writer to the terminal lists. [External file codec and pinned evidence](../../../Documentation/Changes/Research/Writers/SolidWorksCmgrExternalFile.md)
+
 ## Root and feature stamps
 
 The exact installed SOLIDWORKS 2026 build is `34.4.1.1011`. In `sldmodu.dll` SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`, `moExtObjHelper_c::loadConfigurationMgrFromFile` opens `CMgr`, reads a single manager at `0x4be9139c` and closes the archive. The manager's primary archive slot is `0x4c21c740`. Its calls at `0x4c21cbfa` and `0x4c21cf5b` write the two `suObList` pointers. The class's serializer at `0x3c8dd4d0` in [`sldmfcu.dll`](CmgrVisual.md#version-and-ownership) delegates to `su_CObList::Serialize` at `0x31a56530` in `swccu.dll` SHA-256 `7254b30f4eb77fd5b49fdbb0a7ab499ba3bf1d39a3f8f18d72090c2568967b49`. The `WriteCount` call at `0x31a56662` encodes the empty list in one 16-bit word.

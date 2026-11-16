@@ -1,0 +1,7 @@
+# SOLIDWORKS configuration manager external file
+
+The A12 [research codec](../../../../re/solidworks/WriterResearch/CmgrExternal.py) reads and constructs the first external file and the enclosing manager continuation in generation-19000 `Contents/CMgr`. The caller supplies the saved path, title, shared file time, flags, referenced configuration name and archive map after the part aliases. The supported standalone form uses one referenced configuration, empty optional external fields and an empty manager map. The observed flag values are 0 for an empty path and 8 for a prior path. [Native field ownership](../../../../re/solidworks/WriterResearch/CmgrTail.md#external-file-and-referenced-configuration)
+
+The independent read-only walk reached the first terminal list in 25 receipt-pinned saves at `466dcb172dfa3803463e07ccde963ba01671d200`. Eight saves have empty paths and 145- or 147-byte spans. Seventeen carry a prior path and have 375-byte spans. Every record allocates five slots for two class definitions and three objects. The canonical digest of the sorted archive-to-span SHA-256 map is `821c4d8dfda184b6641892ff54b6133a39a536f62aef3022f8097a05be033654`.
+
+Hosted `CheckCmgr` is wired to compare the generated external bytes and class allocator at the first list, then continue writing and reading both terminal lists through EOF. Hosted execution of that comparison and complete native authoring acceptance remain pending.

@@ -2,6 +2,7 @@ import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
 from collections import Counter as CountItems
+from hashlib import sha256 as DigestBytes
 from pathlib import Path as FilePath
 from typing import cast as CastValue
 
@@ -45,10 +46,24 @@ def CheckCmgr() -> None:
     Terminals = Report["terminal_records"]
     assert isinstance(Terminals, dict)
     assert CastValue(dict[str, str], Terminals).keys() == Digests.keys()
+    AssertExtFile(Report, Digests)
     AssertEmptyMass(Report, Digests)
     AssertPartEnd(Report, Digests)
     AssertBossMass(Report, Digests)
     AssertAtomLinks(Report, Digests)
+
+
+# the standalone and prior-path forms must preserve their per-file saved metadata
+def AssertExtFile(Report: dict[str, object], Captures: dict[str, str]) -> None:
+    Records = Report["external_file_records"]
+    assert isinstance(Records, dict)
+    Digests = CastValue(dict[str, str], Records)
+    assert Digests.keys() == Captures.keys()
+    Encoded = JsonCodec.dumps(Digests, sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "821c4d8dfda184b6641892ff54b6133a39a536f62aef3022f8097a05be033654"
+    )
 
 
 # the empty cache must cover the complete sketch only discovery lane
