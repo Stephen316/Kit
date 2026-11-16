@@ -29,7 +29,7 @@ def CheckOwnerBoot(Operation: str) -> None:
                 CheckOwnerTree(Harness, HeldInfo, OldOwner)
                 KillOwner(First.ProcessId)
                 _ = First.Process.communicate(timeout=15)
-                with OwnerRun(Harness) as Second:
+                with OwnerRun(Harness, IdleSeconds=2) as Second:
                     NewOwner = WaitOwner(GateRoot, str(OldOwner["digest"]))
                     Second.ProcessId = int(str(NewOwner["pid"]))
                     assert NewOwner["pid"] != OldOwner["pid"]
@@ -39,5 +39,7 @@ def CheckOwnerBoot(Operation: str) -> None:
                     assert "stale supervisor owner" in str(LateInfo["stderr"])
                     assert not FilePath(str(HeldInfo["destination"])).exists()
                     WaitCompleted(Harness, ("batch:00", "batch:01"))
+                    _, ErrorText = Second.Process.communicate(timeout=20)
+                    assert Second.Process.returncode == 0, ErrorText
         finally:
             CloseGate(GateRoot)

@@ -10,10 +10,12 @@ from tests.Research.SupervisorClient import SessionHost
 class OwnerRun:
 
     # restart tests need a known supervisor and gate location before waiting on ownership evidence
-    def __init__(self, Harness: SessionHost) -> None:
+    def __init__(self, Harness: SessionHost, IdleSeconds: int = 30) -> None:
         super().__init__()
         self.GateRoot = Harness.RootPath / "Gate"
-        self.Process = Harness.StartRun("--idle-seconds", "30", "--max-seconds", "60")
+        self.Process = Harness.StartRun(
+            "--idle-seconds", str(IdleSeconds), "--max-seconds", "60"
+        )
         self.ProcessId: int | None = None
 
     # callers need the scoped fixture while cleanup remains attached to the process lifetime
