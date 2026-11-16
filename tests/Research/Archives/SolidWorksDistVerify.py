@@ -75,7 +75,7 @@ def ReadGenerated(
         HandleBytes + DistanceBytes + OuterDisplay,
         0,
         KHandleSlot,
-        {Slot: ClassName for ClassName, Slot in KParentClasses.items()},
+        {ClassSlot: ClassName for ClassName, ClassSlot in KParentClasses.items()},
         {},
     )
     Handle = ReadFeatHandle(Cursor, KDefinitionKind)

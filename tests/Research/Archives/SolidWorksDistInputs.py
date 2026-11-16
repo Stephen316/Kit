@@ -74,7 +74,9 @@ def ReadDistInputs(Measurements: bytes, Variant: str) -> DistInputs:
         Sketch for Sketch in Reopened["sketches"] if Sketch["name"] == "RectangleSketch"
     )
     (BossValue,) = (
-        Boss for Boss in Reopened["feature_tree"] if Boss["name"] == "BlindBoss"
+        Feature
+        for Feature in Reopened["feature_tree"]
+        if Feature["name"] == "BlindBoss"
     )
     (Parameter,) = (
         Value for Value in BossValue["dimensions"] if Value["name"] == "depth_mm"

@@ -187,11 +187,9 @@ def ReadStyleBounds(Variant: str) -> tuple[bytes, int, int, int, DepthDisplay, b
 
 # the generated fragment must end at the adjacent native positions and directions
 @Pytest.mark.parametrize(("Variant", "NativeStyleOffset"), KStyleCases)
-def CheckBossStyle(
-    Variant: str, NativeStyleOffset: int, monkeypatch: Pytest.MonkeyPatch
-) -> None:
-    Resolved, StyleOffset, Generation, HandleOffset, Depth, Measurements = ReadStyleBounds(
-        Variant
+def CheckBossStyle(Variant: str, NativeStyleOffset: int) -> None:
+    Resolved, StyleOffset, Generation, HandleOffset, Depth, Measurements = (
+        ReadStyleBounds(Variant)
     )
     assert StyleOffset == NativeStyleOffset
     Codec = LoadStyleCodec()
@@ -229,7 +227,8 @@ def CheckBossStyle(
         1,
         "moFeatureDimHandle_c",
     )
-    VerifyDistChild(monkeypatch, Variant, Resolved, Generation, Depth, Measurements)
+    with Pytest.MonkeyPatch.context() as PatchValue:
+        VerifyDistChild(PatchValue, Variant, Resolved, Generation, Depth, Measurements)
 
 
 # a nonempty map count at the witnessed boundary cannot reuse the empty default layout
