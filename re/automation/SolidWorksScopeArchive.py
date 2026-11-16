@@ -1,4 +1,4 @@
-"""Replay the bounded scope array in one exact provisional SOLIDWORKS archive."""
+"""Replay the bounded scope array in exact provisional SOLIDWORKS archives."""
 
 from argparse import ArgumentParser
 import json
@@ -41,6 +41,14 @@ SOURCE_SHA256 = {
 PROVISIONAL_SIZE = 59790
 PROVISIONAL_SHA256 = "82141d768d1190bbc0193c0e30fdc06049a93ffdda88866b514c8d504213adfe"
 PROVISIONAL_STREAM = "fb38482b123c2ffcf28e5dfdfb2691ce03822dd4049e71f3719ef102fa48949a"
+REPEAT_REVISION = "12e4936ed6db1fb935249ba53c5c311fdc65fa66"
+REPEAT_SIZE = 60152
+REPEAT_SHA256 = "9a40bae98367deb569d0cf2662cadb8421807dee49470af12233390b8f6bfdd6"
+REPEAT_STREAM = "1e67e1aeccdb7a856f65175486d42c062100ad147c2a6c18108b7a138df04a46"
+REPEAT_SOURCE_SHA256 = {
+    **SOURCE_SHA256,
+    "SolidWorksScopeControl.cs": "04e6dbc92277c3121157a19f0db225f3162b6e6f16c92e2e4721cea33aaf15da",
+}
 CONTROL_REVISION = "466dcb172dfa3803463e07ccde963ba01671d200"
 CONTROL_FOLDER = "re/automation/PairedCaptures/P04/solidworks-c1986308375a"
 CONTROL_FILE = "P04-solidworks-termination-through-all.SLDPRT"
@@ -205,11 +213,11 @@ def read_scope_body(cursor, first):
     }
 
 
-def read_provisional(data, spec):
+def read_provisional(data, spec, stream_sha256):
     archive = SldprtArchive.from_bytes(data, "provisional-automatic.SLDPRT")
     blob = archive.require(RESOLVED)
     require(
-        ContainerMo(archive.streams) == GENERATION and sha256(blob) == PROVISIONAL_STREAM,
+        ContainerMo(archive.streams) == GENERATION and sha256(blob) == stream_sha256,
         "provisional ResolvedFeatures stream differs from its pin",
     )
     producers = {
@@ -279,7 +287,7 @@ def read_provisional(data, spec):
         "subsequent chooser lead disagrees with the scope-array return",
     )
     return {
-        "stream_sha256": PROVISIONAL_STREAM,
+        "stream_sha256": stream_sha256,
         "stream_size_bytes": len(blob),
         "cut": cut,
         "named_profile_candidate": profile,
@@ -349,62 +357,97 @@ def read_control(snapshot):
     }
 
 
-def report(path):
+def read_sample(path, snapshot, revision, source_sha256, size, archive_sha256, stream_sha256):
     with path.open("rb") as stream:
-        data = stream.read(PROVISIONAL_SIZE + 1)
+        data = stream.read(size + 1)
     require(
-        len(data) == PROVISIONAL_SIZE and sha256(data) == PROVISIONAL_SHA256,
+        len(data) == size and sha256(data) == archive_sha256,
         "provisional input must match the exact retained automatic archive",
     )
-    snapshot = GitSnapshot(ROOT)
     sources = {}
     spec = None
-    for name, digest in SOURCE_SHA256.items():
+    for name, digest in source_sha256.items():
         relative = f"{SOURCE_FOLDER}/{name}"
-        raw = snapshot.blob(SOURCE_REVISION, relative)
+        raw = snapshot.blob(revision, relative)
         require(sha256(raw) == digest, f"committed authoring source differs for {name}")
         sources[name] = {
             "path": relative,
             "sha256": digest,
             "size_bytes": len(raw),
-            "git_blob": snapshot.tree(SOURCE_REVISION)[relative],
+            "git_blob": snapshot.tree(revision)[relative],
         }
         if name == "ScopeControlSpec.json":
             spec = snapshot.parse_document(raw, name)
     require(spec is not None, "scope-control specification is missing")
-    compare = read_provisional(data, spec)
+    return {
+        "archive_sha256": archive_sha256,
+        "size_bytes": size,
+        "source_revision": revision,
+        "source_pins": sources,
+        "input_case": "automatic",
+        "campaign_completed": False,
+        "full_incoming_class_map_verified": False,
+        **read_provisional(data, spec, stream_sha256),
+    }
+
+
+def compare_repeats(primary, repeat):
+    fields = ("cut", "boss_producers", "atom_ids", "atom_body_type", "scope_array_count", "scope_word")
+    require(
+        all(primary[field] == repeat[field] for field in fields),
+        "the two retained saves disagree on their cut or scope inventory",
+    )
+    body_fields = ("body_id", "feature_id", "recent_atom_id", "face_node_id", "producer_candidate")
+    bodies = []
+    for first, second in zip(primary["scope_bodies"], repeat["scope_bodies"], strict=True):
+        identity = {key: first[key] for key in body_fields}
+        require(identity == {key: second[key] for key in body_fields}, "scope body identity differs across saves")
+        bodies.append({
+            **identity,
+            "surface_clock_words": [
+                sorted({surface["clock_word"] for surface in row["face"]["surfaces"]})
+                for row in (first, second)
+            ],
+        })
+    return {"matched_scope_fields": list(fields), "matched_bodies": bodies}
+
+
+def report(path, repeat_path=None):
+    snapshot = GitSnapshot(ROOT)
+    primary = read_sample(
+        path, snapshot, SOURCE_REVISION, SOURCE_SHA256, PROVISIONAL_SIZE, PROVISIONAL_SHA256, PROVISIONAL_STREAM,
+    )
     control = read_control(snapshot)
     require(
-        compare["scope_word"] == control["scope_word"]
-        and compare["scope_array_count"] > control["scope_array_count"],
+        primary["scope_word"] == control["scope_word"]
+        and primary["scope_array_count"] > control["scope_array_count"],
         "pinned body contrast does not preserve its scope word",
     )
-    return {
+    result = {
         "schema": 1,
         "claim": "provisional_archive_scope_body_candidates",
         "qualification": False,
         "application_build": BUILD,
         "model_generation": GENERATION,
-        "provisional": {
-            "archive_sha256": PROVISIONAL_SHA256,
-            "size_bytes": len(data),
-            "source_revision": SOURCE_REVISION,
-            "source_pins": sources,
-            "input_case": "automatic",
-            "campaign_completed": False,
-            "full_incoming_class_map_verified": False,
-            **compare,
-        },
+        "provisional": primary,
         "discovery_control": control,
     }
+    if repeat_path is not None:
+        repeat = read_sample(
+            repeat_path, snapshot, REPEAT_REVISION, REPEAT_SOURCE_SHA256, REPEAT_SIZE, REPEAT_SHA256, REPEAT_STREAM,
+        )
+        result["repeat"] = repeat
+        result["repeat_comparison"] = compare_repeats(primary, repeat)
+    return result
 
 
 def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("archive", type=Path)
+    parser.add_argument("--compare-repeat", type=Path)
     arguments = parser.parse_args()
     try:
-        value = report(arguments.archive)
+        value = report(arguments.archive, arguments.compare_repeat)
     except (ArchiveError, LookupError, OSError, ValueError) as error:
         parser.exit(1, f"scope archive refused: {error}\n")
     sys.stdout.buffer.write(
