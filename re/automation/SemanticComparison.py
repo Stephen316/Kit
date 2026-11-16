@@ -18,6 +18,10 @@ from SemanticMatching import match_graphs
 
 QUANTITIES = {"length_mm", "angle_rad", "dimensionless", "area_mm2", "volume_mm3"}
 DOCUMENT_BYTES = 32 * 1024 * 1024
+IMPLEMENTATION_SHA256 = {
+    name: hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
+    for name in ("SemanticComparison.py", "SemanticGraph.py", "SemanticMatching.py")
+}
 
 
 def unique_object(pairs):
@@ -105,6 +109,11 @@ def tolerance_input(path, checksum):
 def compare_documents(
     first, second, tolerances, first_unit, second_unit, max_candidates
 ):
+    if any(
+        hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() != pin
+        for name, pin in IMPLEMENTATION_SHA256.items()
+    ):
+        raise ValueError("comparison implementation changed after it was imported")
     left = build_graph(first, first_unit)
     right = build_graph(second, second_unit)
     result = match_graphs(left, right, tolerances, max_candidates)
@@ -134,8 +143,14 @@ def compare_documents(
                 for key in ("path", "label")
             },
         }
+    if any(
+        hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest() != pin
+        for name, pin in IMPLEMENTATION_SHA256.items()
+    ):
+        raise ValueError("comparison implementation changed during evaluation")
     return {
         "comparison_version": 1,
+        "implementation_sha256": dict(IMPLEMENTATION_SHA256),
         "scope": "portable_semantic_graph_observation",
         "status": status,
         "semantic_qualification": "unverified",

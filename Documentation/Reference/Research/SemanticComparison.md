@@ -59,6 +59,7 @@ An exhausted candidate or evidence budget cannot produce an equality success.
 ## Expected result
 
 The command prints a JSON report with the pinned inputs, comparison status, source issues and explicit correspondence evidence.
+The report seals the three comparison source files and refuses source changes during an evaluation.
 Matched records retain both source identities and field paths.
 Ambiguous entries retain their alternatives and scores.
 Dependency differences retain reference roles, endpoints and multiplicities.
@@ -130,6 +131,8 @@ A controller outcome of `completed` records that the comparison observation fini
 Inspect its `status`, unresolved domains and qualification fields before using it as evidence.
 Differences, ambiguity and exhausted work remain explicit completed observations.
 The controller cannot turn an observation receipt into independently qualified CAD semantics.
+Update the job's immutable `tool_version` when its implementation changes so the controller invalidates cached work.
+The report's source-file seals record the executed observation; they do not automatically update existing job definitions.
 
 ## Related information
 
