@@ -62,11 +62,11 @@ def CheckCmgr() -> None:
     AssertBossMass(Report, Digests)
     AssertAtomLinks(Report, Digests)
     AssertCmgrEnds(Report)
-    AssertCmgrHeader(Report)
+    AssertMgrHdr(Report)
 
 
 # header bookkeeping and saved body counts must retain their independent evidence
-def AssertCmgrHeader(Report: dict[str, object]) -> None:
+def AssertMgrHdr(Report: dict[str, object]) -> None:
     Links = Report["linked_atom_records"]
     Headers = Report["base_header_records"]
     Fronts = Report["collection_front_records"]
