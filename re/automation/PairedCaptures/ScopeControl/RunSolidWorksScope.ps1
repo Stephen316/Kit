@@ -91,7 +91,7 @@ try {
     $finished = [SolidWorksScopeControl]::Measure($specificationText, $output, $binary.FullName, $authored) | ConvertFrom-Json
 } catch {
     $failure = $_.Exception.GetBaseException()
-    Write-NewJson (Join-Path $output 'failure.json') ([ordered]@{
+    $failureRecord = [ordered]@{
         schema = 1
         status = 'failed'
         phase = $phase
@@ -99,7 +99,11 @@ try {
         specification_sha256 = $specification.sha256
         type = $failure.GetType().Name
         hresult = $failure.HResult
-    })
+    }
+    if ($failure.Data.Contains('scope_cleanup')) {
+        $failureRecord['cleanup'] = $failure.Data['scope_cleanup'] | ConvertFrom-Json
+    }
+    Write-NewJson (Join-Path $output 'failure.json') $failureRecord
     throw
 }
 foreach ($pin in @($launcher, $collector, $specification)) {
