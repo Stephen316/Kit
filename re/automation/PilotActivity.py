@@ -70,7 +70,15 @@ def tally_event(activity, event):
 
 
 def operating_report(
-    store, start, end, after, through, *, time_dependencies=False, time_waits=False
+    store,
+    start,
+    end,
+    after,
+    through,
+    *,
+    time_dependencies=False,
+    time_waits=False,
+    time_open_waits=False,
 ):
     if not (0 <= start < end <= time.time() and math.isfinite(end)):
         raise ValueError("request an increasing past Unix-time window")
@@ -78,7 +86,7 @@ def operating_report(
     activity = activity_tally()
     identity = hashlib.sha256()
     receipts = {}
-    waits = WaitTiming() if time_waits else None
+    waits = WaitTiming() if time_waits or time_open_waits else None
     while True:
         page = event_window(store, None, cursor, through)
         through = page["through"]
@@ -122,7 +130,10 @@ def operating_report(
     if time_dependencies:
         report["dependency_timing"] = dependency_timing(store, receipts)
     if waits is not None:
-        report["settlement_to_next_claim"] = waits.summary()
+        if time_waits:
+            report["settlement_to_next_claim"] = waits.summary()
+        if time_open_waits:
+            report["open_wait_to_last_event"] = waits.open_summary(end)
     return report
 
 
@@ -137,6 +148,7 @@ def main():
     parser.add_argument("--through", type=int)
     parser.add_argument("--dependency-timing", action="store_true")
     parser.add_argument("--wait-timing", action="store_true")
+    parser.add_argument("--open-wait-timing", action="store_true")
     args = parser.parse_args()
     try:
         output = operating_report(
@@ -147,6 +159,7 @@ def main():
             args.through,
             time_dependencies=args.dependency_timing,
             time_waits=args.wait_timing,
+            time_open_waits=args.open_wait_timing,
         )
         print(canonical(output))
         return 0

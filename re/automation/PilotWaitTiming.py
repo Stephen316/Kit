@@ -20,9 +20,11 @@ class WaitTiming:
         self.blocks = {outcome: [] for outcome in KWaitOutcomes}
         self.superseded = dict.fromkeys(KWaitOutcomes, 0)
         self.opened = dict.fromkeys(KWaitOutcomes, 0)
+        self.last_event = None
 
     # a new definition, invalidation or unexplained settlement breaks wait attribution
     def observe(self, event):
+        self.last_event = (event["id"], event["at"])
         job = event["job_id"]
         action = event["action"]
         if job is None or action not in {
@@ -65,3 +67,31 @@ class WaitTiming:
                 "total_seconds": math.fsum(intervals) if intervals else None,
             }
         return result
+
+    # open waits can only age through the last selected controller record
+    def open_summary(self, until):
+        event_id, boundary = self.last_event or (None, None)
+        ages = {outcome: [] for outcome in KWaitOutcomes}
+        if boundary is not None:
+            for outcome, started in self.pending.values():
+                duration = boundary - started
+                if duration < 0 or not math.isfinite(duration):
+                    raise ValueError("open wait ends before its recorded settlement")
+                ages[outcome].append(duration)
+        return {
+            "last_selected_event": (
+                None if event_id is None else {"id": event_id, "at": boundary}
+            ),
+            "window_seconds_after_last_selected_event": (
+                None if boundary is None else until - boundary
+            ),
+            "settlements": {
+                outcome: {
+                    "count": len(intervals),
+                    "min_seconds": min(intervals, default=None),
+                    "max_seconds": max(intervals, default=None),
+                    "total_seconds": math.fsum(intervals) if intervals else None,
+                }
+                for outcome, intervals in ages.items()
+            },
+        }
