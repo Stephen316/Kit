@@ -54,7 +54,7 @@ def CheckCmgr() -> None:
     AssertCmgrEnds(Report)
 
 
-# the standalone and prior-path forms must preserve their per-file saved metadata
+# both path forms must preserve the saved metadata of each capture
 def AssertExtFile(Report: dict[str, object], Captures: dict[str, str]) -> None:
     Records = Report["external_file_records"]
     assert isinstance(Records, dict)
