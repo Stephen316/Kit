@@ -218,6 +218,16 @@ def observe_launch(owner, snapshot, archive, prepared):
         return {"archive_replacement_status": "launch_unobserved"}
     launch_raw, launched = read_peer_receipt(peer_path, request, request_raw, preflight)
     startup_path = owner.root / f"archived-replacement-startup-{archive_sha}.json"
-    return startup_proof(
+    result = startup_proof(
         owner, preflight, bundle, launched, launch_raw, startup_path, verify=verify
     )
+    if (
+        owner.args.measure_archived_replacement
+        and result["archive_replacement_status"] == "startup_verified_control_pending"
+    ):
+        from FusionArchiveControlOwner import observe_control
+
+        result.update(
+            observe_control(owner, archive, request, result, launched, verify)
+        )
+    return result

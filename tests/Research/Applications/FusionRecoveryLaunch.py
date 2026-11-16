@@ -1,8 +1,10 @@
 import json as JsonCodec
+import subprocess as Subprocess
+import sys as System
 from hashlib import sha256 as HashBytes
 from pathlib import Path as FilePath
 
-from tests.Research.Applications.DispatchHost import DispatchHost
+from tests.Research.Applications.DispatchHost import DispatchHost, KRepoRoot
 from tests.Research.Applications.FusionColdWatch import AwaitStatus, RunOwner
 from tests.Research.SupervisorClient import SessionHost
 
@@ -32,9 +34,108 @@ def VerifyLaunch(
         AssertNewPeer(Dispatch, LaunchPath, PeerPath, StartupPath, Report)
     LoseLaunchReply(Dispatch, Enabled, LaunchPath, PeerPath, StartupPath)
     LoseLaunchSeal(Dispatch, Enabled, LaunchPath)
+    VerifyControl(Dispatch, Enabled, str(ArchiveHash), PeerPath)
+    RefuseManual(Dispatch, Harness, str(ArchiveHash))
     First = Harness.ReadJob(PhaseName)
     assert First["state"] == "waiting_application" and First["attempts"] == 1
     assert Harness.ReadJob("fixture:cold-rival")["attempts"] == 0
+
+
+# old manual admission must defer to the sealed automatic control owner
+def RefuseManual(
+    Dispatch: DispatchHost, Harness: SessionHost, ArchiveHash: str
+) -> None:
+    Command = KRepoRoot / "re/automation/ApplicationWorkers/RetryFusionProbe.py"
+    Outcome = Subprocess.run(
+        [
+            System.executable,
+            "-B",
+            str(Command),
+            "--config",
+            str(Harness.ConfigFile),
+            "--queue-receipt",
+            str(Dispatch.RootPath / "ColdPair.json"),
+            "--archive-manifest-sha256",
+            ArchiveHash,
+        ],
+        capture_output=True,
+        text=True,
+        timeout=15,
+        check=False,
+    )
+    assert Outcome.returncode == 1, Outcome.stdout + Outcome.stderr
+    assert "reserved for the archived control owner" in Outcome.stderr
+
+
+# the replacement process runs the pinned native control path before any second claim
+def VerifyControl(
+    Dispatch: DispatchHost, Enabled: list[str], ArchiveHash: str, PeerPath: FilePath
+) -> None:
+    (Dispatch.RootPath / "exercise-archive-control").touch()
+    Flags = [*Enabled, "--measure-archived-replacement"]
+    with RunOwner(Dispatch, Flags, "ControlOwner") as LogPath:
+        Report = AwaitStatus(
+            LogPath,
+            "phase_a_probe_archived",
+            Replacement="control_verified_admission_pending",
+            WaitSeconds=45,
+        )
+    Request = Dispatch.Endpoint / f"archived-control-request-{ArchiveHash}.json"
+    Attempt = Dispatch.Endpoint / f"archived-control-attempt-{ArchiveHash}.json"
+    Result = Dispatch.Endpoint / f"archived-control-result-{ArchiveHash}.json"
+    ReportHash = Report["archive_replacement_control_sha256"]
+    assert Report["resource_rearmed"] is False
+    assert ReportHash == HashBytes(Result.read_bytes()).hexdigest()
+    Reply = JsonCodec.loads(Result.read_bytes())
+    ReplacementPeer = JsonCodec.loads(PeerPath.read_bytes())["peer"]
+    assert Reply["peer"]["pid"] == ReplacementPeer["pid"]
+    assert Reply["request_sha256"] == HashBytes(Request.read_bytes()).hexdigest()
+    assert Reply["attempt_sha256"] == HashBytes(Attempt.read_bytes()).hexdigest()
+    Reading = Reply["proof"]["readings"]["healthy_control"]
+    assert Reading["after_recompute"]["volume_mm3"] == 30_000
+    assert Reading["compute_all_return"] is True
+    assert Reply["proof"]["documents_after"] == 0
+    assert not (Dispatch.RootPath / "document-open").exists()
+    assert not (Dispatch.Endpoint / "grant.json").exists()
+    for Effect in ("imported", "recomputed", "closed"):
+        Evidence = Dispatch.RootPath / f"fixture-control-{Effect}"
+        assert JsonCodec.loads(Evidence.read_bytes()) == {"pid": ReplacementPeer["pid"]}
+    LoseControl(Dispatch, Flags, Request, Attempt, Result)
+
+
+# an owner interrupted after native work may reconcile its receipt but may not repeat it
+def LoseControl(
+    Dispatch: DispatchHost,
+    Flags: list[str],
+    Request: FilePath,
+    Attempt: FilePath,
+    Result: FilePath,
+) -> None:
+    RequestBytes = Request.read_bytes()
+    AttemptBytes = Attempt.read_bytes()
+    Withheld = Result.with_suffix(".withheld")
+    _ = Result.rename(Withheld)
+    try:
+        with RunOwner(Dispatch, Flags, "LostControl") as LogPath:
+            Report = AwaitStatus(
+                LogPath, "phase_a_probe_archived", Replacement="control_unobserved"
+            )
+        assert Report["resource_rearmed"] is False
+        assert not Result.exists()
+        assert Request.read_bytes() == RequestBytes
+        assert Attempt.read_bytes() == AttemptBytes
+    finally:
+        _ = Withheld.rename(Result)
+    with RunOwner(Dispatch, Flags, "ResumeControl") as LogPath:
+        Report = AwaitStatus(
+            LogPath,
+            "phase_a_probe_archived",
+            Replacement="control_verified_admission_pending",
+        )
+        assert (
+            Report["archive_replacement_control_sha256"]
+            == HashBytes(Result.read_bytes()).hexdigest()
+        )
 
 
 # the independent appkit receipt and bootstrap proof must agree on the new elected pid

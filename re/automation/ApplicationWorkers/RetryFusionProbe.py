@@ -13,6 +13,7 @@ from AuditFusionPhases import read_queue
 from ApplicationHolds import retry_delay
 from ApplicationProtocol import ACKNOWLEDGEMENT, directory, owner_lock, require
 from Artifacts import Artifacts
+from FusionArchiveControl import paths as control_paths
 from FusionTimeoutAudit import inspect_archive
 from Ledger import Ledger
 from QueueFusionPhases import queue_configuration
@@ -138,6 +139,10 @@ def require_archive(
             "fence_status": "absent",
         },
         "Fusion retry must name its exact current archive manifest after quarantine release",
+    )
+    require(
+        not any(os.path.lexists(path) for path in control_paths(root, archive_sha256).values()),
+        "Fusion retry is reserved for the archived control owner",
     )
     require_exclusive_resource(connection, queue)
     return timeout

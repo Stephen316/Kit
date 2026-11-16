@@ -12,6 +12,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import FusionStartupEvidence as startup
 from AppKitQuitDelegateFixture import build_fixture, wait_record
 from ApplicationProtocol import STARTUP_MANIFEST, encoded, file_bytes, sha256, write_new
+from FusionArchiveControlFixture import attach_control
 from FusionReadinessFixture import IdleEventSource, setup
 
 TOOL = Path(__file__).with_name("FusionStartupProvision.py")
@@ -100,10 +101,13 @@ def host(root, case):
         app.isStartupComplete = False
     adsk = ModuleType("adsk")
     core = ModuleType("adsk.core")
+    fusion = ModuleType("adsk.fusion")
     core.Application = SimpleNamespace(get=lambda: app)
     core.CustomEventHandler = object
     adsk.core = core
-    sys.modules.update(adsk=adsk, **{"adsk.core": core})
+    adsk.fusion = fusion
+    attach_control(app, fusion, ROOT)
+    sys.modules.update(adsk=adsk, **{"adsk.core": core, "adsk.fusion": fusion})
     script = root / startup.ADDIN / f"{startup.ADDIN}.py"
     bootstrap = runpy.run_path(str(script))
     runtime = bootstrap["run"].__globals__

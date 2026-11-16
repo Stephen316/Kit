@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import subprocess
 import threading
 import time
 from pathlib import Path
@@ -151,6 +152,16 @@ class Startup:
             if re.fullmatch("[0-9a-f]{48}", challenge)
             else None
         )
+        self.archive_control = None
+
+    # the native control provider loads only for an opted-in deployed startup context
+    def control_provider(self):
+        protocol = self.protocol
+        if self.archive_control is None:
+            self.archive_control = protocol["load_pinned"](
+                self.host.config, protocol["MAC_ARCHIVE_CONTROL"]
+            )
+        return self.archive_control
 
     def pending(self):
         try:
@@ -169,6 +180,23 @@ class Startup:
             RecursionError,
         ):
             pass
+        if (
+            self.launch_binding is not None
+            and self.protocol["macos_automatic_quit"](self.host.config)
+            and os.path.lexists(self.root / "archive-control-active.json")
+        ):
+            try:
+                return self.control_provider()["pending"](self)
+            except (
+                OSError,
+                ValueError,
+                KeyError,
+                TypeError,
+                AttributeError,
+                RecursionError,
+                subprocess.SubprocessError,
+            ):
+                pass
         return None
 
     def matches(self, request):
@@ -213,6 +241,11 @@ class Startup:
             threading.get_ident() == self.main_thread,
             "Fusion startup proof requires the add-in main thread",
         )
+        if isinstance(challenge, str) and challenge.startswith("archive:"):
+            self.control_provider()["serve"](
+                self, challenge.removeprefix("archive:"), app
+            )
+            return
         path = self.root / ACTIVE
         raw = protocol["file_bytes"](path)
         request = json.loads(raw)
@@ -227,22 +260,14 @@ class Startup:
         )
         client = request["client"]
         require(
-            client == executable_peer(self.read_peer, client["pid"]),
+            client == self.exact_peer(client["pid"]),
             "Fusion startup observer is no longer live",
         )
         if app.isStartupComplete is not True:
             return
+        self.check_deployment()
         require(
-            protocol["file_bytes"](self.installation_path) == self.installation
-            and protocol["file_bytes"](self.profile_path) == self.raw
-            and protocol["sha256"](protocol["file_bytes"](self.bootstrap))
-            == self.profile["bootstrap_sha256"]
-            and protocol["sha256"](
-                protocol["file_bytes"](self.bootstrap.with_suffix(".manifest"))
-            )
-            == self.profile["manifest_sha256"]
-            and self.peer == executable_peer(self.read_peer, os.getpid())
-            and protocol["file_bytes"](path) == raw
+            protocol["file_bytes"](path) == raw
             and self.matches(request)
             and isinstance(app.version, str)
             and 0 < len(app.version) <= 128,
@@ -267,3 +292,23 @@ class Startup:
             "Fusion startup challenge expired",
         )
         protocol["write_new"](response, protocol["encoded"](value))
+
+    # native observations use the same kernel identity normalization throughout
+    def exact_peer(self, pid):
+        return executable_peer(self.read_peer, pid)
+
+    # a deployed startup process can prove nothing after its trusted bytes or peer change
+    def check_deployment(self):
+        protocol = self.protocol
+        protocol["require"](
+            protocol["file_bytes"](self.installation_path) == self.installation
+            and protocol["file_bytes"](self.profile_path) == self.raw
+            and protocol["sha256"](protocol["file_bytes"](self.bootstrap))
+            == self.profile["bootstrap_sha256"]
+            and protocol["sha256"](
+                protocol["file_bytes"](self.bootstrap.with_suffix(".manifest"))
+            )
+            == self.profile["manifest_sha256"]
+            and self.peer == self.exact_peer(os.getpid()),
+            "Fusion startup custody changed before observation",
+        )

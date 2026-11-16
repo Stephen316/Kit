@@ -27,6 +27,9 @@ reply bound to that same installed process and archive launch challenge.
 parked. The healthy control and second attempt still require their own
 verified admission.
 
+The separately opted-in [archive control](FusionArchivedControl.md) takes
+the next observation on this exact startup peer.
+
 The hosted case uses a disposable AppKit app and the actual pinned
 bootstrap callback while exercising the existing A03 archive. It checks the
 fresh replacement process, the bound startup response and recovery when the
