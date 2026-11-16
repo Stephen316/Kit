@@ -46,7 +46,7 @@ Availability is a dated observation, not a permanent reservation.
 | B06 | Ordinary part histories and schema coverage            | Planned   | PR #94 register: A16; child owners unassigned         | B05 and feature-specific evidence            | Qualified sketches, constraints, expressions, cuts, revolutions, finishing operations, patterns and geometry pass held-out route acceptance.          |
 | B07 | Complete assembly, configuration and drawing semantics | Planned   | PR #94 register: A16; coordinate drawing PRs          | B06 and independent native controls          | Supported documents preserve all occurrences, mates, variants, dependencies, drawing dimensions and links through edit/rebuild and reopen.            |
 | B08 | Integrate existing native-format and evidence work     | Active    | Each existing PR below owns its scoped delivery       | Each PR's implementation and gates           | Accepted implementations are integrated without reviving donor writers. Their exact capability limits enter B01 and B12.                              |
-| B09 | Remaining CAD family adapters                          | Planned   | PR #94 register: A16; coordinate PRs #115–#117        | B01, B05 and family-specific grammar         | All nine roadmap families have qualified native reads and independent writes for their declared version scope.                                        |
+| B09 | Remaining CAD family adapters                          | Planned   | PR #94 register: A16 child claims                     | B01, B05 and family-specific grammar         | All nine roadmap families have qualified native reads and independent writes for their declared version scope.                                        |
 | B10 | CLI workflow and error usability                       | Available | Unassigned; separate scoped PR                        | Existing CLI and documented supported cases  | Representative users install, select formats, convert, inspect results and recover from refusal without undocumented assistance.                      |
 | B11 | Documentation accuracy, accessibility and evaluation   | Available | Unassigned; separate scoped PR                        | Current public contracts                     | Task guides match source and support limits. Rendered/narrow-view and representative-user findings are resolved or recorded explicitly.               |
 | B12 | Directional conversion acceptance matrix               | Planned   | Unassigned release owner; reuse PR #94's A13 evidence | B01 and each supported route                 | Every promised direction/version passes all CAD criteria on independent cases. Unsupported combinations refuse before output mutation.                |
@@ -80,9 +80,8 @@ This is B07 expansion work within PR #94's broad plan, not a completed or active
 
 ### Other native formats
 
-NX, Creo and CATIA already have open implementation PRs.
-Their containers, retained payloads and bounded geometry work do not establish arbitrary parametric conversion.
-Coordinate B08/B09 with those PRs before adding another adapter effort.
+The NX, CATIA and Creo implementation PRs closed without merging on 2026-11-16.
+Their work on containers, retained payloads and bounded geometry remains research evidence for scoped A16 child claims. Each claimed route requires independent native acceptance after A13 and A15. [NX #115](https://github.com/TryUniCAD/Kit/pull/115), [CATIA #116](https://github.com/TryUniCAD/Kit/pull/116), [Creo #117](https://github.com/TryUniCAD/Kit/pull/117)
 Rhino, standalone AutoCAD and Parashell have no matching implementation PR in the inspected inventory.
 They still belong to the broader A16 expansion scope and require explicit child claims.
 
