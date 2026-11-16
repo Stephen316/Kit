@@ -84,11 +84,15 @@ def RectParamIds(Rectangle: RectSketchProof | None) -> tuple[str, ...]:
 
 # the project body contract needs a shared interpretation so public document claims remain grounded in native records
 def ProjectBody(
-    Context: ExtrudeContext, Shape: RectGeometry, MaterialId: str
+    Context: ExtrudeContext,
+    Shape: RectGeometry,
+    MaterialId: str,
+    DepthSpan: tuple[float, float] | None = None,
 ) -> tuple[BrepModel, DesignBody]:
     Height = NumberValue(Context.Along.Fields["value"]) * 10
+    Lower, Upper = DepthSpan if DepthSpan is not None else (0.0, Height)
     Geometry, Volume, AreaValue, Bounds = BuildPrism(
-        Context.BodyNode.Identity, Transform(), Shape.Lines, 0.0, Height
+        Context.BodyNode.Identity, Transform(), Shape.Lines, Lower, Upper
     )
     Counts = TopologyCounts(
         1,

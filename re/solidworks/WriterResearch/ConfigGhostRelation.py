@@ -4,10 +4,13 @@ from ConfigMaterial import KModelDataClass
 from ConfigSplitEdges import RequireGeneration
 from PartArchive import PartArchiveWriter
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadEmptyRel
-from convert.adapters.solidworks.Container.Archive import KDefinitionKind, KStringMarker
+from convert.adapters.solidworks.Container.Archive import (
+    KBigObjectTag,
+    KDefinitionKind,
+    KStringMarker,
+)
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
-
 
 KInitialGhostId = 10000
 KGhostPartitionMode = 2
@@ -21,25 +24,18 @@ class GhostRelationSlots:
     RelationObject: int
 
 
-def WriteGhostRelationManagers(
-    Writer: PartArchiveWriter,
-    Generation: int,
-    *,
-    GhostPartitionPopulated: bool,
-    AutoSolveOrder: bool,
-) -> GhostRelationSlots:
-    RequireGeneration(Generation)
-    RequireArch(KModelDataClass in Writer.classes, True, "filed model data")
-    RequireArch(KRelationClass in Writer.classes, False, "new relation manager")
+# the two observed histories file their consecutive point identifiers newest first
+def SketchGhostIds(SketchPointCount: int) -> tuple[int, ...]:
     RequireArch(
-        GhostPartitionPopulated is True, True, "populated sketch ghost partition"
+        type(SketchPointCount) is int and SketchPointCount in (1, 2),
+        True,
+        "one or two sketch-point ghost records",
     )
-    RequireArch(AutoSolveOrder is True, True, "ordinary automatic equation ordering")
+    return tuple(range(KInitialGhostId + SketchPointCount, KInitialGhostId, -1))
 
-    GhostCount = 1
-    GhostId = KInitialGhostId + GhostCount
-    Writer.i32(GhostId)  # last allocated ID in the ghost manager
-    Writer.u32((KGhostPartitionMode << 28) | GhostCount)
+
+# both counts use the same inline point record without geometry or source identifiers
+def WritePointGhost(Writer: PartArchiveWriter, GhostId: int) -> None:
     Writer.i32(GhostId)
     Writer.i32(KSketchPointReference)
     Writer.i32(0)  # initial ghost flags
@@ -48,6 +44,31 @@ def WriteGhostRelationManagers(
     Writer.i32(-1)  # unset source ID
     Writer.i32(0)  # absent inline ghost geometry
     Writer.i32(0)  # empty inline point collection
+
+
+# the relation manager allocates the first object after the inline ghost records
+def WriteGhostRelationManagers(
+    Writer: PartArchiveWriter,
+    Generation: int,
+    *,
+    GhostPartitionPopulated: bool,
+    AutoSolveOrder: bool,
+    SketchPointCount: int = 1,
+) -> GhostRelationSlots:
+    RequireGeneration(Generation)
+    RequireArch(KModelDataClass in Writer.classes, True, "filed model data")
+    RequireArch(KRelationClass in Writer.classes, False, "new relation manager")
+    RequireArch(Writer.next_index + 1 < KBigObjectTag, True, "compact relation slots")
+    RequireArch(
+        GhostPartitionPopulated is True, True, "populated sketch ghost partition"
+    )
+    RequireArch(AutoSolveOrder is True, True, "ordinary automatic equation ordering")
+
+    GhostIds = SketchGhostIds(SketchPointCount)
+    Writer.i32(GhostIds[0])  # last allocated ID in the ghost manager
+    Writer.u32((KGhostPartitionMode << 28) | SketchPointCount)
+    for GhostId in GhostIds:
+        WritePointGhost(Writer, GhostId)
 
     Writer.BeginObject(KRelationClass, 1)
     Writer.u16(0)  # empty equation list
@@ -60,30 +81,32 @@ def WriteGhostRelationManagers(
     Writer.u16(0)  # empty relation manager auxiliary list
     Writer.i32(-1)  # unset +0x1b0 owner value
     Writer.i32(0)  # empty feature-parameter vector
-    return GhostRelationSlots(GhostId, Writer.next_index - 1)
+    return GhostRelationSlots(GhostIds[0], Writer.next_index - 1)
 
 
+# allocated point order and the ordinary empty relation return must both match
 def ReadGhostRelationManagers(
-    Cursor: ArchiveCursor, Generation: int
+    Cursor: ArchiveCursor, Generation: int, *, SketchPointCount: int = 1
 ) -> GhostRelationSlots:
     RequireGeneration(Generation)
     RequireArch(KModelDataClass in Cursor.Classes.values(), True, "filed model data")
     RequireArch(
         KRelationClass in Cursor.Classes.values(), False, "new relation manager"
     )
+    GhostIds = SketchGhostIds(SketchPointCount)
     Counter, PackedCount = Cursor.ReadInts("<iI")
     Mode, Count = PackedCount >> 28, PackedCount & 0x0FFFFFFF
     RequireArch(
         (Counter, Mode, Count),
-        (KInitialGhostId + 1, KGhostPartitionMode, 1),
-        "one allocated sketch ghost in a populated partition",
+        (GhostIds[0], KGhostPartitionMode, SketchPointCount),
+        "allocated sketch ghosts in a populated partition",
     )
-    RequireArch(
-        Cursor.ReadInts("<5i"),
-        (Counter, KSketchPointReference, 0, -1, 1),
-        "ordinary sketch-point ghost header",
-    )
-    RequireArch(Cursor.ReadInts("<3i"), (-1, 0, 0), "ordinary sketch-point ghost return")
+    for GhostId in GhostIds:
+        RequireArch(
+            Cursor.ReadInts("<8i"),
+            (GhostId, KSketchPointReference, 0, -1, 1, -1, 0, 0),
+            "ordered inline sketch-point ghost",
+        )
     _, _, RelationObject = Cursor.TakePointer(
         (KRelationClass,), KDefinitionKind, CompactOnly=True
     )

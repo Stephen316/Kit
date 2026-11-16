@@ -56,6 +56,9 @@ POSITIVE = {
 # The native display case preserves the same metric physical values under a different saved preference.
 INCH_SHA256 = "106767a536e453242e4b202af4db53d27973b16b7cf5f447b99a381cb8e09644"
 
+# The reverse control is the independently measured, constrained metric XY discovery save.
+REVERSE_SHA256 = "4cfc1e792d33d48e4b80f9829a4496cf70c2059378ce1b3cfa716b3a1c9e8aab"
+
 # Retain the exact original source reading checkpoint and its observed inch refusal.
 PRIOR_REPORT = {
     "revision": "f688178cbceed27a521be78787898db285573eb9",
@@ -63,15 +66,11 @@ PRIOR_REPORT = {
     "inch_refusal": "Unsupported native Fusion UnitSystemChoiceById.unitString",
 }
 
-# Adjacent discovery fixtures pin where the constrained positive XY reader stops.
+# The alternate datum still identifies the original strict schema boundary.
 REFUSED = {
     "plane-yz": (
         "c14b8c4a791415c5eb356d4c1e4143cb4b76ab856e0f84357c08b4f4da125b3a",
         "Unsupported native Fusion FusionSketchLinearDim.constraintType",
-    ),
-    "direction-negative": (
-        "4cfc1e792d33d48e4b80f9829a4496cf70c2059378ce1b3cfa716b3a1c9e8aab",
-        "Native rectangle saved driver values or zero taper disagree",
     ),
 }
 
@@ -611,6 +610,31 @@ def inch_case(snapshot, captures):
     }
 
 
+# The signed source also retains its selected frame, negative native literal, and analytic solid.
+def reverse_case(snapshot, captures):
+    variant = "direction-negative"
+    raw = source_bytes(snapshot, captures["fusion"][1][variant], REVERSE_SHA256)
+    witnesses = {app: entry[2][variant] for app, entry in captures.items()}
+    result, document, _, _ = admitted_case(raw, REVERSE_SHA256, witnesses)
+    body = document.bodies[0]
+    require(
+        result["parameters"]["depth_mm"]["expression"] == "-( 10 mm )"
+        and result["parameters"]["depth_mm"]["value"] == -10.0
+        and result["body"]["bounds_mm"] == [[0.0, 0.0, -10.0], [40.0, 20.0, 0.0]]
+        and (
+            body.topology.solid_count,
+            body.topology.shell_count,
+            body.topology.face_count,
+            body.topology.edge_count,
+            body.topology.vertex_count,
+            body.topology.surface_area,
+        )
+        == (1, 1, 6, 12, 8, 2800.0),
+        "Strict negative direction lost the saved station, topology or surface area",
+    )
+    return {**result, "surface_area_mm2": body.topology.surface_area}
+
+
 # Replay public entry points from immutable discovery receipts in the repository.
 def report():
     snapshot = GitSnapshot(ROOT)
@@ -661,6 +685,7 @@ def report():
         },
         "admitted": accepted,
         "inch_display": inch_case(snapshot, captures),
+        "metric_reverse_depth": reverse_case(snapshot, captures),
         "historical_metric_report": PRIOR_REPORT,
         "adjacent_refusals": adjacent,
         "valid_native_mutation_refusals": field_mutations(
