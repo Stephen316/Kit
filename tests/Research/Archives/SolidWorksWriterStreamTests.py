@@ -201,12 +201,12 @@ def CheckModelHdr() -> None:
     )
 
 
-# the detail opening and font must retain their native intervals and archive map
+# the full detail start and its independent subrecords must preserve native ownership
 def CheckCfgDetail() -> None:
     Report = LoadReport("VerifyConfigDetail.py", 14)
     assert (
         Report["replay_sha256"]
-        == "28ca63bc7a3bfd1f64917d471b2bb2146c477a0d4ebf15276ff4effc9ab7e0c8"
+        == "49e99ba22e662e41ba7895895cad5f14f5095039430f1b755492030b0ca00dd7"
     )
 
 
