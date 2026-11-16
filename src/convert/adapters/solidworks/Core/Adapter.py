@@ -457,14 +457,24 @@ def ReadNativePart(
         ),
         units=UnitSystem.MILLIMETER,
     )
-    DocValue = ProjectScopeDoc(
-        ProjectCutDoc(DocValue, Model.cut_source), Model, Archive, Payloads, Settings
-    )
-    DocValue = ProjectPadDoc(DocValue, Archive, Model.active_configuration_id)
-    DocValue = ProjectRoundDoc(DocValue, Model, Archive, Settings.include_brep)
+    DocValue = ProjectPartDoc(DocValue, Model, Archive, Payloads, Settings)
     DocValue.assert_valid()
     ValidateSource(Label, False)
     return RetainSource(DocValue, DataValue)
+
+
+# native refinements need a shared order because later paths use the preceding geometry
+def ProjectPartDoc(
+    DocValue: CadDoc,
+    Model: NativeModel,
+    Archive: SldprtArchive,
+    Payloads: tuple[BrepPayload, ...],
+    Settings: ReadOptions,
+) -> CadDoc:
+    DocValue = ProjectCutDoc(DocValue, Model.cut_source)
+    DocValue = ProjectScopeDoc(DocValue, Model, Archive, Payloads, Settings)
+    DocValue = ProjectPadDoc(DocValue, Archive, Model.active_configuration_id)
+    return ProjectRoundDoc(DocValue, Model, Archive, Settings.include_brep)
 
 
 # recognized multibody configurations refine the fallback only after all joins succeed

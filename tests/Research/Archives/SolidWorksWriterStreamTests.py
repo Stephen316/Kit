@@ -694,7 +694,7 @@ def CheckInfoProps() -> None:
 
 
 # the keyword and feature indices share the same saved document identity
-def CheckFeatureIndex() -> None:
+def CheckFeatIndex() -> None:
     Report = LoadReport("VerifyPartFeatureIndex.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["dimension_orders"] == 2
@@ -706,7 +706,7 @@ def CheckFeatureIndex() -> None:
 
 
 # the configuration exchange must fill its complete native database from typed fields
-def CheckConfigExchange() -> None:
+def CheckExchange() -> None:
     Report = LoadReport("VerifyConfigHeaderDb.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["refusals"] == 2
