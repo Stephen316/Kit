@@ -180,6 +180,123 @@ def CheckFusionPair(TmpPath: FilePath, ScopeRun: bool) -> None:
     assert not (TmpPath / "AbsentEndpoint").exists()
 
 
+# the child runs the actual queue and interrupts only at the selected persistence boundary
+def InterruptQueue(QueuePath: str, Arguments: list[str], Checkpoint: str) -> None:
+    ScriptText = """
+import os
+import runpy
+import sys
+from pathlib import Path
+
+script, checkpoint, *arguments = sys.argv[1:]
+sys.path.insert(0, str(Path(script).parent))
+queue = runpy.run_path(script)
+scope = queue["main"].__globals__
+
+def interrupt(*args, **kwargs):
+    os._exit(73)
+
+if checkpoint == "before-ledger":
+    scope["submit_pair"] = interrupt
+else:
+    seal = scope["seal"]
+    receipt = Path(arguments[-1])
+
+    def stop_before_receipt(path, raw):
+        if path == receipt:
+            interrupt()
+        seal(path, raw)
+
+    scope["seal"] = stop_before_receipt
+sys.argv = [script, *arguments]
+sys.exit(queue["main"]())
+"""
+    ResultInfo = Subprocess.run(
+        [
+            System.executable,
+            "-c",
+            ScriptText,
+            str(KRepoRoot / QueuePath),
+            Checkpoint,
+            *Arguments,
+        ],
+        cwd=KRepoRoot,
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+    assert ResultInfo.returncode == 73, ResultInfo.stderr
+    assert ResultInfo.stdout == ""
+
+
+# a lost receipt must recover the committed pair without another submission or a new plan
+@Pytest.mark.skipif(
+    System.platform not in ("darwin", "linux"), reason="POSIX receipt custody"
+)
+def CheckReceipt(TmpPath: FilePath) -> None:
+    OutputPath = TmpPath / "Prepared"
+    PlanReceipt = PreparePair(OutputPath, False)
+    Harness = MakeQueueHost(TmpPath, PlanReceipt["source_revision"])
+    assert Harness.StorePath is not None
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    PrivatePath = TmpPath.resolve() / "private"
+    PrivatePath.mkdir(mode=0o700)
+    ReceiptPath = PrivatePath / "QueueReceipt.json"
+    PlanPath = OutputPath / "plan.json"
+    QueuePath = "re/automation/ApplicationWorkers/QueueFusionPhases.py"
+    Config = ["--config", str(Harness.ConfigFile)]
+    Arguments = Config + [
+        "--resource",
+        "application:fusion:local",
+        "--plan",
+        str(PlanPath),
+        "--receipt",
+        str(ReceiptPath),
+    ]
+    Recovery = Config + ["--recover-receipt", str(ReceiptPath)]
+    InterruptQueue(QueuePath, Arguments, "before-ledger")
+    _ = RunFusionTool(QueuePath, Recovery, ExitCode=1)
+    assert not ReceiptPath.exists()
+    with CloseConnection(SqlCodec.connect(DatabasePath)) as Database:
+        assert Database.execute("SELECT COUNT(*) FROM jobs").fetchone() == (0,)
+
+    InterruptQueue(QueuePath, Arguments, "before-receipt")
+    assert not ReceiptPath.exists()
+    DigestBefore = HashLib.sha256(DatabasePath.read_bytes()).hexdigest()
+    _ = RunFusionTool(QueuePath, Arguments + ["--run", "conflict"], ExitCode=1)
+    PlanPath.unlink()
+    VerifyRecovery(Harness, ReceiptPath, QueuePath, Recovery, DigestBefore)
+
+
+# repeated read only recovery verifies the same committed definitions and never overwrites a receipt
+def VerifyRecovery(
+    Harness: SessionHost,
+    ReceiptPath: FilePath,
+    QueuePath: str,
+    Recovery: list[str],
+    DigestBefore: str,
+) -> None:
+    assert Harness.StorePath is not None
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    Stdout = RunFusionTool(QueuePath, Recovery)
+    Receipt: dict[str, object] = JsonCodec.loads(Stdout)
+    assert ReceiptPath.read_bytes() == Stdout.encode("utf-8")
+    assert ReceiptPath.stat().st_mode & 0o077 == 0
+    assert RunFusionTool(QueuePath, Recovery) == Stdout
+    assert HashLib.sha256(DatabasePath.read_bytes()).hexdigest() == DigestBefore
+    VerifyPhaseJobs(Harness, Receipt)
+    VerifyAudit(Harness, Receipt)
+    with CloseConnection(SqlCodec.connect(DatabasePath)) as Database:
+        assert Database.execute(
+            "SELECT COUNT(*) FROM events WHERE action='submitted'"
+        ).fetchone() == (2,)
+    _ = ReceiptPath.write_text('{"conflict":true}\n', encoding="utf-8")
+    _ = RunFusionTool(QueuePath, Recovery, ExitCode=1)
+    assert ReceiptPath.read_text(encoding="utf-8") == '{"conflict":true}\n'
+    assert not (Harness.RootPath / "AbsentEndpoint").exists()
+
+
 # preparation binds the actual recipe or scope program without opening the application
 def PreparePair(OutputPath: FilePath, ScopeRun: bool) -> dict[str, str]:
     Arguments = ["--output", str(OutputPath)]
