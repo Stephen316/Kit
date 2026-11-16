@@ -79,6 +79,46 @@ def ReadArtifact(Harness: SessionHost, Artifact: dict[str, object]) -> bytes:
     return Content
 
 
+# reader custody assertions distinguish retained observations from native or portable qualification
+def AssertReadback(Harness: SessionHost, SourceBytes: bytes) -> str:
+    Stored = ParseJson(EncodeJson(Harness.ReadResult("read-native")))
+    Records = Stored["result"]["records"]
+    assert Records["source_sha256"] == DigestBytes(SourceBytes).hexdigest()
+    assert Records["fingerprint"] == Harness.ReadJob("read-native")["fingerprint"]
+    assert Records["implementation"]["sdk_source_files"] > 0
+    assert (
+        Records["implementation"]["tool_sources_sha256"]["NeutralReaderRunner.py"]
+        == DigestBytes(
+            (KRepoRoot / "re/automation/NeutralReaderRunner.py").read_bytes()
+        ).hexdigest()
+    )
+    assert Records["read_options"] == {
+        "strict": False,
+        "configuration": None,
+        "include_brep": True,
+        "include_tessellation": True,
+    }
+    assert Records["portable_complete"] is False
+    assert Records["semantic_qualification"] == "unverified"
+    assert Records["native_acceptance"] == "not_established"
+    Neutral = ReadArtifact(Harness, Stored["output_artifacts"]["neutral-document"])
+    Document = LoadJson(Neutral.decode())
+    assert isinstance(Document, CadDocument)
+    Document.assert_valid()
+    assert Document.source.sha256 == Records["source_sha256"]
+    assert Document.metadata or Document.brep_payloads or Document.diagnostics
+    Evidence = ParseJson(
+        ReadArtifact(Harness, Stored["output_artifacts"]["reader-evidence"])
+    )
+    assert (
+        Evidence["neutral_sha256"]
+        == Records["neutral_sha256"]
+        == DigestBytes(Neutral).hexdigest()
+    )
+    assert Evidence["unresolved"] and Evidence["portable_complete"] is False
+    return str(Records["neutral_sha256"])
+
+
 # actual native inputs must survive durable selector chaining without turning retained evidence into qualification
 @MarkValue.parametrize("FormatName", tuple(KControls))
 def CheckNativeFlow(TmpPath: FilePath, FormatName: str) -> None:
@@ -121,41 +161,7 @@ def CheckNativeFlow(TmpPath: FilePath, FormatName: str) -> None:
     _ = Harness.RunIdle(MaxSeconds=120)
     assert Harness.ReadJob("read-native")["state"] == "completed"
     assert Harness.ReadJob("compare-native")["state"] == "completed"
-    Stored = ParseJson(EncodeJson(Harness.ReadResult("read-native")))
-    Records = Stored["result"]["records"]
-    assert Records["source_sha256"] == DigestBytes(SourceBytes).hexdigest()
-    assert Records["fingerprint"] == Harness.ReadJob("read-native")["fingerprint"]
-    assert Records["implementation"]["sdk_source_files"] > 0
-    assert (
-        Records["implementation"]["tool_sources_sha256"]["NeutralReaderRunner.py"]
-        == DigestBytes(
-            (KRepoRoot / "re/automation/NeutralReaderRunner.py").read_bytes()
-        ).hexdigest()
-    )
-    assert Records["read_options"] == {
-        "strict": False,
-        "configuration": None,
-        "include_brep": True,
-        "include_tessellation": True,
-    }
-    assert Records["portable_complete"] is False
-    assert Records["semantic_qualification"] == "unverified"
-    assert Records["native_acceptance"] == "not_established"
-    Neutral = ReadArtifact(Harness, Stored["output_artifacts"]["neutral-document"])
-    Document = LoadJson(Neutral.decode())
-    assert isinstance(Document, CadDocument)
-    Document.assert_valid()
-    assert Document.source.sha256 == Records["source_sha256"]
-    assert Document.metadata or Document.brep_payloads or Document.diagnostics
-    Evidence = ParseJson(
-        ReadArtifact(Harness, Stored["output_artifacts"]["reader-evidence"])
-    )
-    assert (
-        Evidence["neutral_sha256"]
-        == Records["neutral_sha256"]
-        == DigestBytes(Neutral).hexdigest()
-    )
-    assert Evidence["unresolved"] and Evidence["portable_complete"] is False
+    NeutralHash = AssertReadback(Harness, SourceBytes)
     Compared = ParseJson(EncodeJson(Harness.ReadResult("compare-native")))
     Report = ParseJson(
         ReadArtifact(Harness, Compared["output_artifacts"]["semantic-report"])
@@ -166,9 +172,7 @@ def CheckNativeFlow(TmpPath: FilePath, FormatName: str) -> None:
         and Report["sources"]["right"]["unresolved"]
     )
     assert (
-        Report["input_sha256"]["left"]
-        == Report["input_sha256"]["right"]
-        == Records["neutral_sha256"]
+        Report["input_sha256"]["left"] == Report["input_sha256"]["right"] == NeutralHash
     )
     assert SourcePath.read_bytes() == SourceBytes
     assert not any((TmpPath / "SupervisorState/sessions").iterdir())
