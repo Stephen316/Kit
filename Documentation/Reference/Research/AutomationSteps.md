@@ -221,6 +221,10 @@ Neither the scoped constructor nor its observation receipt closes A11 or qualifi
 
 ## A12 SOLIDWORKS writer research
 
+The [caller-supplied rectangular Boss candidate](../../Changes/Research/Writers/SolidWorks/Metadata/SolidWorksPortableBossCandidate.md) accepts a validated neutral document and explicit typed target state for the bounded Front/Right, signed blind-extrusion scope.
+It refuses unsupported required state and independently reads the complete generated archive before optional no-replace publication.
+Two independent source reviews of `02d32d220eae0809988f1f52c442903a58a3de6b` found no actionable defects; this does not replace hosted execution, licensed acceptance or public writer qualification.
+
 The [generation-19000 writer research](../../Changes/Research/Writers/SolidWorksWriterResearch.md) records evidence for the P03 rectangular blind boss, including the configuration-to-feature join, model header, and Definition notebook, appearance manager and terminal fields.
 The [typed Definition constructor](../../Changes/Research/Writers/SolidWorksDefinitionStream.md) reproduced the complete stream in all 25 pinned saves at `2fc4acbd`. The [CMgr visual properties analysis](../../../re/solidworks/WriterResearch/CmgrVisual.md) reproduced the measured 300-byte DSPBR record on the same hosted run. The [blind boss display analysis](../../../re/solidworks/WriterResearch/DisplayStyle.md) reproduced the 94-byte style in eight P03 saves. The subsequent 284 bytes passed the archive gate at `f0962377`. [Hosted archive results for f0962377](https://github.com/TryUniCAD/Kit/actions/runs/43847585169/job/133231531685)
 The hosted archive step at `af78da00` verified the [empty configuration mass record](../../Changes/Research/Writers/SolidWorksEmptyCmgrMass.md) across six P01 saves and the [blind boss handle and distance codecs](../../Changes/Research/Writers/SolidWorksBlindDistanceVerification.md) across eight P03 saves. [Hosted archive results for af78da00](https://github.com/TryUniCAD/Kit/actions/runs/43854211290/job/133254196499)
