@@ -134,6 +134,80 @@ The controller cannot turn an observation receipt into independently qualified C
 Update the job's immutable `tool_version` when its implementation changes so the controller invalidates cached work.
 The report's source-file seals record the executed observation; they do not automatically update existing job definitions.
 
+## Connect native reader jobs
+
+Register [the native reader worker](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md) as `reader.neutral` alongside `semantic.compare`.
+Generate each worker's records schema and use an adapter that supports durable output artifacts.
+Bind the two actual native inputs as `native:first` and `native:second` and bind the tolerance profile as `tolerances:pair`.
+Then submit a batch such as the following through `submit-batch`.
+Replace the immutable version placeholders and choose read options for the intended observation before scheduling.
+The example explicitly chooses partial reads and millimetre geometry contracts; neither choice is inferred from display units.
+
+```json
+{
+  "jobs": [
+    {
+      "id": "read:first",
+      "kind": "reader.neutral",
+      "inputs": { "source": "native:first" },
+      "rule_version": "ACTUAL_IMMUTABLE_RULE_VERSION",
+      "tool_version": "ACTUAL_IMMUTABLE_WORKER_VERSION",
+      "options": {
+        "scope": "paired-rectangle",
+        "source_format": "fusion.f3d",
+        "strict": false,
+        "configuration": null
+      }
+    },
+    {
+      "id": "read:second",
+      "kind": "reader.neutral",
+      "inputs": { "source": "native:second" },
+      "rule_version": "ACTUAL_IMMUTABLE_RULE_VERSION",
+      "tool_version": "ACTUAL_IMMUTABLE_WORKER_VERSION",
+      "options": {
+        "scope": "paired-rectangle",
+        "source_format": "solidworks.sldprt",
+        "strict": false,
+        "configuration": null
+      }
+    },
+    {
+      "id": "compare:pair",
+      "kind": "semantic.compare",
+      "depends_on": ["read:first", "read:second"],
+      "inputs": {
+        "first": { "dependency": "read:first", "artifact": "neutral-document" },
+        "second": {
+          "dependency": "read:second",
+          "artifact": "neutral-document"
+        },
+        "tolerances": "tolerances:pair"
+      },
+      "rule_version": "ACTUAL_IMMUTABLE_RULE_VERSION",
+      "tool_version": "ACTUAL_IMMUTABLE_WORKER_VERSION",
+      "options": {
+        "scope": "paired-rectangle",
+        "first_geometry_unit": "mm",
+        "second_geometry_unit": "mm",
+        "max_candidates": 20000
+      }
+    }
+  ]
+}
+```
+
+Each reader preserves its complete codec document, including native payloads, diagnostics and metadata.
+Its `reader-evidence` artifact retains unresolved records, raw source seals, exact options and observed implementation hashes.
+The comparator consumes the accepted immutable `neutral-document` artifacts through controller dependency selectors.
+Changed native bindings, definitions or accepted reader results invalidate the dependent comparison.
+No manual neutral export or broad identity mask is inserted between these steps.
+
+Read failures stop the dependent comparison rather than silently changing strictness or dropping source content.
+A completed reader observation does not establish portable completeness.
+The retained source issues can keep the comparator unresolved, ambiguous or incomplete.
+Independent source admission, frozen-rule evaluation and native acceptance remain required.
+
 ## Related information
 
 - [A01 contract audit](NeutralContractAudit.md)
@@ -141,3 +215,4 @@ The report's source-file seals record the executed observation; they do not auto
 - [Paired evidence preflight](../../Changes/Research/Controller/PairedEvidenceManifest.md)
 - [Comparison change entry](../../Changes/Research/Readers/Comparison/SemanticGraphComparison.md)
 - [Controller worker contract](../../Changes/Research/Controller/SemanticComparisonWorker.md)
+- [Native reader worker contract](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md)

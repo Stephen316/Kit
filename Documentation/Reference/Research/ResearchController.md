@@ -272,3 +272,5 @@ See [durable worker outputs](../../Changes/Research/Workers/DurableWorkerOutputs
 The [semantic comparison worker](../../Changes/Research/Controller/SemanticComparisonWorker.md) applies this protocol to pinned neutral documents and a separately pinned tolerance profile.
 It retains large correspondence reports as immutable artifacts and keeps a compact records receipt.
 See the [comparison guide](SemanticComparison.md#run-through-the-controller) for the job contract and its unverified research scope.
+The [native reader worker](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md) produces complete neutral-document and reader-evidence artifacts for these comparisons.
+The [reader-to-comparison batch](SemanticComparison.md#connect-native-reader-jobs) uses accepted dependency output selectors without manual exports.

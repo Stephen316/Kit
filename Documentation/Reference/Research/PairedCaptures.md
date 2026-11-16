@@ -26,6 +26,8 @@ Normalized JSON alone is insufficient.
 Missing Fusion or original P04 verifier handoffs remain explicit dependencies.
 The command preserves original captures and frozen rules, evaluates no qualification, and returns exit code `2` while admission is blocked.
 Keep P05 reserved for its independent holdout evaluation.
+Use the A02 owner's [explicit supplemental baseline reservation](../../Changes/Research/Controller/SupplementalEvidenceBaseline.md) when sealing the coordinated manifest.
+The frozen baseline, actual checkout and original capture revision have distinct roles and need not be the same commit.
 
 ## Rules for every capture
 
