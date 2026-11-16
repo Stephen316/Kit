@@ -25,7 +25,9 @@ from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the circle operation needs a distinct decoding boundary so public geometry remains consistent with native circular topology
-def ReadCircle(Graph: NativeGraph, Context: KSketchContexts) -> CircleShape:
+def ReadCircle(
+    Graph: NativeGraph, Context: KSketchContexts, Dimension: NativeNode | None = None
+) -> CircleShape:
     Circle = Graph.OneClass("CircArc3D")
     Center = ResolveField(Graph, Circle, "rCenterPoint", "Point3D")
     Points = Graph.ByClass("Point3D")
@@ -37,7 +39,8 @@ def ReadCircle(Graph: NativeGraph, Context: KSketchContexts) -> CircleShape:
         raise ValueError(
             "Native circular profile requires only an origin, center and full circle"
         )
-    SameNodes((*Points, Circle), LinkedNodes(Graph, Context.Sketch, "children"))
+    Expected = (*Points, Circle) if Dimension is None else (*Points, Circle, Dimension)
+    SameNodes(Expected, LinkedNodes(Graph, Context.Sketch, "children"))
     if Graph.Resolve(Circle.Fields["rParent"]) != Context.Sketch:
         raise ValueError("Native circle has inconsistent sketch ownership")
     CheckCircleUses(Graph, Circle, Center, Points)

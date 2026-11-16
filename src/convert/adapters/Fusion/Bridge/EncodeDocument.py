@@ -43,9 +43,10 @@ def EncodeDocument(Document: CadDocument) -> bytes:
     Payload = EmitParsed(ModelValue)
     Decoded = ReadDocument(Payload)
     Projector = ProjectVendor if Version == 2 else ProjectNative
-    Projected = ReplaceData(
-        Projector(Decoded, Document.source), metadata=Document.metadata
-    )
+    Projection = Projector(Decoded, Document.source)
+    if set(Projection.metadata) != {"fusion.native_state"}:
+        raise ValueError("Fusion native-state projection is read-only")
+    Projected = ReplaceData(Projection, metadata=Document.metadata)
     if Decoded != ModelValue or ModelValue.Meshes or Projected != Document:
         raise ValueError("Fusion native-state contract and neutral graph disagree")
     return Payload

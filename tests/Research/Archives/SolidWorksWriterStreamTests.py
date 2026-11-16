@@ -640,3 +640,32 @@ def CheckManifests() -> None:
         Report["replay_sha256"]
         == "c01ca63bd2fc5c306aaf072423da0aeb0c4209fdd2636abf19603e3a02399b27"
     )
+
+
+# replay each varying typed property stream without substituting source bytes
+def CheckSimpleProps() -> None:
+    Report = LoadReport("VerifySimpleProperties.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["distinct_payload_counts"] == {
+        "docProps/app.xml": 1,
+        "docProps/core.xml": 11,
+        "docProps/OpenTime.xml": 3,
+    }
+    assert (
+        Report["replay_sha256"]
+        == "06c9388493935704c0d19a9f9b87a5609301c9036052ede981bc2cff8a6824c4"
+    )
+
+
+# empty section streams must retain native dictionaries and typed property values
+def CheckPropSections() -> None:
+    Report = LoadReport("VerifySectionProperties.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["distinct_payload_counts"] == {
+        "docProps/Config-0-Properties.xml": 1,
+        "docProps/custom.xml": 1,
+    }
+    assert (
+        Report["replay_sha256"]
+        == "ef5afc4b0f93735ec5fb998d8931cd9a589e91ae638a53187b60e36b58a1b41a"
+    )

@@ -12,11 +12,14 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
     PointCoords,
 )
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
+from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 
 
 # invalid placement input must fail here so public document claims remain grounded in native records
-def CheckPlacement(Graph: NativeGraph, Context: KSketchContexts) -> None:
+def CheckPlacement(
+    Graph: NativeGraph, Context: KSketchContexts, Dimension: NativeNode | None = None
+) -> None:
     Instance = Graph.OneClass("ComponentInstance")
     if Graph.Resolve(Instance.Fields["rTargetComponent"]) != Context.Component:
         raise ValueError("Native root instance targets another component")
@@ -46,11 +49,13 @@ def CheckPlacement(Graph: NativeGraph, Context: KSketchContexts) -> None:
             "rOwningDeriveFeature": None,
         },
     )
-    EmptyFields(Context.Sketch, ("constraints", "dimensions", "offsets"))
+    EmptyFields(Context.Sketch, ("constraints", "offsets"))
+    if Dimension is None:
+        EmptyFields(Context.Sketch, ("dimensions",))
+        EmptyFields(Context.SketchFeature, ("dcParameters",))
     EmptyFields(
         Context.SketchFeature,
         (
-            "dcParameters",
             "meshSections",
             "sketchIsoCurves",
             "sketchProjects",
@@ -59,6 +64,11 @@ def CheckPlacement(Graph: NativeGraph, Context: KSketchContexts) -> None:
     )
     if Graph.Resolve(Context.Sketch.Fields["rDcNode"]) != Context.SketchFeature:
         raise ValueError("Native sketch feature link is not reciprocal")
+    CheckMatrix(Graph, Context)
+
+
+# the native sketch matrix and its unique plane recipe must agree with the xy frame
+def CheckMatrix(Graph: NativeGraph, Context: KSketchContexts) -> None:
     Matrix = ResolveField(
         Graph, Context.SketchFeature, "rSketchPlaneMatrix", "DRMatrix"
     )

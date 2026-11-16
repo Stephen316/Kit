@@ -1,14 +1,14 @@
 """Open-time metadata for a new or once opened ordinary standalone part."""
 
 from dataclasses import dataclass
-from xml.etree.ElementTree import Element, SubElement, fromstring
+from xml.etree.ElementTree import fromstring
 
 from PartFraming import VersionStorage
-from PartOpc import OFFICE_NS, EncodePackageXml
+from PartOpc import OFFICE_NS
+from PartSimpleProperties import EncodeOpenProps, OpenProperties
 
 OPEN_TIME_STREAM = "docProps/OpenTime.xml"
 OPEN_TIME_NS = f"{OFFICE_NS}/SolidworksOpenTime"
-VARIANT_TYPE_NS = f"{OFFICE_NS}/docPropsVTypes"
 TIMING_FIELDS = ("count", "TotalFileOpenTime", "LWcount", "LWTotalFileOpenTime")
 DISPLAY_TIME = "FileOpenTime"
 
@@ -56,13 +56,7 @@ def EncodePartOpenTime(Generation: int, State: PartOpenTime) -> bytes:
     if Lightweight[1] > 0:
         raise ValueError("the ordinary timing codec omits a lightweight open average")
     Average = AverageText(Resolved, State.ShowResolvedAverage)
-    Root = Element("Properties", {"xmlns": OPEN_TIME_NS, "xmlns:vt": VARIANT_TYPE_NS})
-    # Each child explicitly resets the default namespace in the native DOM.
-    for Name, Value in zip(TIMING_FIELDS, (*Resolved, *Lightweight), strict=True):
-        SubElement(Root, Name, xmlns="").text = str(Value)
-    if Average is not None:
-        SubElement(Root, DISPLAY_TIME, xmlns="").text = Average
-    return EncodePackageXml(Root, Standalone=True)
+    return EncodeOpenProps(OpenProperties(*Resolved, *Lightweight, Average))
 
 
 def ReadPartOpenTime(Generation: int, Data: bytes) -> PartOpenTime:

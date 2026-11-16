@@ -56,6 +56,18 @@ The ordinary standalone part emits two XML package manifests from its property i
 
 All six P01 and eight P03 receipt-pinned archives matched both generated streams byte-for-byte. The type manifest is 556 bytes with SHA-256 `a50ae48af011114c4a400111c09ca34e083c21db7e82a2f3e3c641c752b89f4d`. The 597-byte relationship manifest SHA-256 is `8fae89749a8d95ff5996361cf8f7dedb7c74a374c6ed87285d3d8c9e5a48717b`. All 42 individual missing-target controls were refused. The aggregate replay SHA-256 is `c01ca63bd2fc5c306aaf072423da0aeb0c4209fdd2636abf19603e3a02399b27`. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifyPartManifests.py)
 
+## Application, core and open-time property XML
+
+The writer builds the nine application fields from supplied values, with the observed lexical value of `AppVersion` independent of the licensed SOLIDWORKS build. Core properties encode the caller's modifier and two whole-second UTC timestamps. Open-time fields retain their counters, sentinel values and optional display time. The modifier uses the saved Dublin Core elements namespace. Open-time child elements explicitly reset the outer vendor namespace. All text is escaped by the standard XML writer. [Property writer](../../../../../../re/solidworks/WriterResearch/PartSimpleProperties.py)
+
+The 14 pinned P01/P03 controls matched all 42 generated documents byte-for-byte. They cover one app payload, eleven core timestamp combinations and three open-time payloads. The previous two-manifest digest also reproduced after sharing the XML serializer. The three-property replay SHA-256 is `06c9388493935704c0d19a9f9b87a5609301c9036052ede981bc2cff8a6824c4`. The report retains hashes and counts. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifySimpleProperties.py)
+
+## Empty document and configuration property sections
+
+The two scopes construct document-summary and user-property sections in their observed order. The namespace resets, empty name dictionaries and UTF-8 code page are emitted as typed XML elements. The document-level summary includes the witnessed `vt:bool` value `No`. The configuration summary contains only its empty dictionary. Populated sections and other summary states need separate evidence. [Section writer](../../../../../../re/solidworks/WriterResearch/PartSectionProperties.py)
+
+The 14 P01/P03 captures matched all 28 generated payloads byte-for-byte. Each member had one observed payload. The aggregate replay SHA-256 is `ef5afc4b0f93735ec5fb998d8931cd9a589e91ae638a53187b60e36b58a1b41a`. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifySectionProperties.py)
+
 ## Retained P03 members
 
 The licensed omission run kept 33 of the original 37 physical members
@@ -82,7 +94,7 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
 | Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
 | Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
-| Full typed payload | `docProps/Config-0-Properties.xml` | `PartDocProperties.EncodeConfigurationProperties` for the first storage index with empty configured properties |
+| Full typed payload | `docProps/Config-0-Properties.xml` | `PartDocProperties.EncodeConfigurationProperties` validates and uses the shared empty section serializer |
 | Open | `docProps/ISolidWorksInformation.xml` | Native system metadata, unit settings, and formatted mass from existing authored state |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
