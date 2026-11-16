@@ -26,6 +26,8 @@ The walk uses observed compact slots and earlier class declarations for this exa
 
 The [automatic-scope repeat comparison](AutomaticScopeRepeat.md) checks a second retained save from the preceding authoring revision. Both saves preserve the same two scope-body identities and scope word.
 
+Use `--inspect-map` with the repeat option to follow the typed scope rows and verify the active partition's native region and atom links for both saved bodies. [Native body identity replay](AutomaticScopeBodyIdentity.md)
+
 ## Pinned P04 control
 
 The P04 through-all stream closes with one scoped body and the same saved feature-scope word `1`. Its typed end specification reaches a null depth slot. The provisional automatic archive demonstrates two serialized scope body entries under the same scope word. Interpreting the persistence of Auto-select still requires independently saved automatic and explicit A+B controls observed after reopening.

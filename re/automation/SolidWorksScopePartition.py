@@ -4,6 +4,7 @@ from itertools import product
 from math import isclose, prod
 
 from PairedCaptureIntake import require, sha256
+from ScopePartitionIds import ReadNativeIds
 
 from convert.adapters.solidworks.container.Parasolid import decode_brep_model, decode_partition_stream
 from convert.adapters.solidworks.core.partition.PartMass import ReadPartMass
@@ -202,11 +203,24 @@ def read_scope_partition(archive, spec, scope_bodies):
         for sub in subsets
     )
     require(set(regions) == spec["bodies"].keys(), "active partition did not match both scoped recipe bodies")
-    for scope in scope_bodies:
-        regions[scope["producer_candidate"]]["resolved_scope"] = {
+    region_faces = {sub.regions[0].id: {face.id for face in sub.faces} for sub in subsets}
+    native = ReadNativeIds(payload, region_faces)
+    by_atom = {scope["recent_atom_id"]: scope for scope in scope_bodies}
+    require(
+        len(by_atom) == len(scope_bodies) == len(regions)
+        and by_atom.keys() == {row["recent_atom_id"] for row in native.values()},
+        "active partition atoms do not match the resolved Cut scope",
+    )
+    for label, region in regions.items():
+        identity = native[region["region_id"]]
+        scope = by_atom[identity["recent_atom_id"]]
+        require(scope["producer_candidate"] == label, "native region identity disagrees with the recipe geometry")
+        region["native_identity"] = identity
+        region["resolved_scope"] = {
             key: scope[key] for key in ("body_id", "feature_id", "recent_atom_id")
         }
     return {
         "stream": PARTITION, "stream_sha256": sha256(raw), "partition_sha256": sha256(payload),
-        "decoded_carrier_id": carrier.id, "region_binding": "matching_distinct_recipe_bounds", "regions": regions,
+        "decoded_carrier_id": carrier.id, "region_binding": "matching_native_shell_and_recent_atom",
+        "geometry_binding": "matching_distinct_recipe_bounds", "regions": regions,
     }
