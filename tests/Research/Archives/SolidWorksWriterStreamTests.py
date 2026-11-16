@@ -32,11 +32,17 @@ def CheckDefinition() -> None:
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
 
 
-# all observed default visual objects must reconstruct the same measured color body
-def CheckDspbr() -> None:
+# the default color body and feature-stamped terminal records use separate field owners
+def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
     Captures = Report["captures"]
     assert isinstance(Captures, dict)
     assert set(CastValue(dict[str, str], Captures).values()) == {
         "3b77a4c24f8a5953b871c3b9fa7b0df54008ddf61bacb11baffc7c78fba937a9"
     }
+    Terminals = Report["terminal_records"]
+    assert isinstance(Terminals, dict)
+    assert (
+        CastValue(dict[str, str], Terminals).keys()
+        == CastValue(dict[str, str], Captures).keys()
+    )
