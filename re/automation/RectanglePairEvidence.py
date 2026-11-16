@@ -335,6 +335,17 @@ def refusal_controls(rows, tolerance):
         and "matched_links" not in missing,
         "bad counterpart controls must not publish a perimeter correspondence",
     )
+    links = ambiguity["candidate_links"]
+    copies = [link for link in links if link["second_id"] == "duplicate-counterpart"]
+    require(len(copies) == 1, "the copied geometry must retain its candidate identity")
+    source = copies[0]["first_id"]
+    alternatives = [link for link in links if link["first_id"] == source]
+    require(
+        [link["second_id"] for link in alternatives]
+        == [solidworks[0][0], "duplicate-counterpart"]
+        and all(link["maximum_endpoint_delta_mm"] <= tolerance for link in alternatives),
+        "the ambiguous edge must preserve both geometric candidates",
+    )
     positive = baseline["boss"]["solidworks"]["displacement_mm"]
     negative = reverse["boss"]["fusion"]["displacement_mm"]
     # Both files have the same world perimeter, so signed extent must distinguish them.
