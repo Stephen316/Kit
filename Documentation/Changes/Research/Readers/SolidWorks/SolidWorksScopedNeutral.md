@@ -10,6 +10,6 @@ The Cut retains its authored selections independently of the affected bodies. A 
 | Explicit A | 101 | 101 | 7,200 mm³ | 1,000 mm³ |
 | Explicit A+B | 101, 102 | 101, 102 | 7,200 mm³ | 600 mm³ |
 
-All three hash-pinned archives passed the normal reader with and without B-rep retention, and their scoped history survived JSON serialization. With B-rep enabled, each saved solid region links to its own design body. The two body volumes, centroids and topology counts agree with the independent licensed rebuild measurements. The pinned ordinary P04 through-all document retains exactly the same 246,000-byte JSON, SHA-256 `c209f52d9eb3ead391f5cb8d65d63fca71fad254dff29fec10165a2cf32a84ff`. [Licensed controls](../../Workers/SolidWorks/ThroughAllScopeNativeEvidence.md)
+All three hash-pinned archives passed the normal reader with and without B-rep retention, and their scoped history survived JSON serialization. With B-rep enabled, each saved solid region links to its own design body. Both bodies’ bounds, volumes, centroids and topology counts agree with the independent licensed rebuild measurements. The pinned ordinary P04 through-all document retains exactly the same 246,000-byte JSON, SHA-256 `c209f52d9eb3ead391f5cb8d65d63fca71fad254dff29fec10165a2cf32a84ff`. [Licensed controls](../../Workers/SolidWorks/ThroughAllScopeNativeEvidence.md)
 
 This reader covers the witnessed source layout. Paired Fusion qualification, generated native output and editable round-trip acceptance remain open.
