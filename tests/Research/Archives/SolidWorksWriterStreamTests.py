@@ -280,6 +280,16 @@ def CheckCfgHistory() -> None:
     )
 
 
+# continuous presentation must deliver the same environment and region owners
+def CheckCfgScene() -> None:
+    Report = LoadReport("VerifyConfigPresentation.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "82a488c305b6e5abced11e86fac4dc262547a62f6f3f022179a755b7c6d4c178"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")

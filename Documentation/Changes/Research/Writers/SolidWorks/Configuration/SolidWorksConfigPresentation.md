@@ -1,0 +1,3 @@
+# Compose SOLIDWORKS configuration presentation
+
+One archive writer now carries Config-0 from the part root through the saved detail, lighting, views, sketch-block manager, annotations and model lists. It returns the environment object used by the resolved feature stream. The production reader reached the next mass-region section in all 14 pinned saves at next allocation 104 for P01 or 109 for P03. The hosted comparison allows the existing geometry and camera-matrix tolerances and checks the other bytes and map exactly. [Composition verifier](../../../../../../re/solidworks/WriterResearch/VerifyConfigPresentation.py), [native scene source](../../../../../../re/solidworks/WriterResearch/ConfigEnvironment.md)
