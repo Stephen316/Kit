@@ -13,7 +13,7 @@ The command uses the built-in A03 store and the registered `capture.fusion` runn
 
 The receipt prints the installation, exact revision, plan digest and phase job IDs. Repeat the command to recover the same IDs without creating a second pair. Set `--run` to a new label to schedule a separate capture from the same plan. An existing job with a conflicting definition or a changed content-addressed binding causes the transaction to fail.
 
-On macOS or Linux, pass `--receipt` with an absolute path in an owner-private directory to persist the same receipt. The [durable receipt procedure](FusionDurableQueueReceipt.md) covers verified recovery after interruption.
+On macOS, Linux or Windows, pass `--receipt` with an absolute path in an owner-private directory to persist the same receipt. The [durable receipt procedure](FusionDurableQueueReceipt.md) covers verified recovery after interruption. The [Windows expansion](Windows/WindowsFusionQueueReceipts.md) retains protected record custody and rejects reserved path aliases; persistence does not establish native dispatch or licensed Fusion acceptance.
 
 The [two-body through-all plan](../FusionReadback/FusionScopeControl.md) uses the same queue command and signed-in add-in. Its receipt identifies the fixed automatic, explicit-A and explicit-A+B cases. Phase B stages Phase A's accepted A03 result and its exact report, receipt and three archives. The native worker checks the accepted artifacts before it runs the next phase. The [read-only audit](FusionPhaseAudit.md) checks the linked reports and process identities under their scope receipt.
 
