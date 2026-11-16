@@ -244,6 +244,7 @@ def inspect_open(archive, measurement, construct, generated_config=None):
                 config_input,
                 configuration,
                 built,
+                state,
                 boss,
             )
             return built

@@ -10,6 +10,8 @@ from HeaderLogs import HeaderLogState
 from HeaderSelf import HeaderSelf
 from HeaderTail import HeaderTail, WriteModelHdr
 from OrdinaryConfig import OrdinaryConfig, OrdinaryConfigArchive
+from OrdinaryProfile import OrdinaryProfile
+from PackageIndices import EncodePackageIndices, MakePartIndex, PackageXmlState
 from PartDocProperties import (
     CoreProperties,
     CustomSummary,
@@ -68,6 +70,7 @@ class PackageState:
     FileProperties: PartPropertyInventory
     Ole: OleInventory
     OpenTime: PartOpenTime
+    Indices: PackageXmlState
 
 
 # CMgr reuses the same atom, file identity, and bounds carried by the generated part.
@@ -138,6 +141,7 @@ def BuildOrdinaryPackage(
     Configuration: OrdinaryConfig,
     Config: OrdinaryConfigArchive,
     Resolved: OrdinaryResolvedArchive,
+    Profile: OrdinaryProfile,
     Boss: ResolvedBossState | None,
     State: PackageState,
 ) -> bytes:
@@ -156,6 +160,15 @@ def BuildOrdinaryPackage(
         Header.SelfReference.ModifiedTime,
     )
     Streams = EncodePackageMetadata(Generation, State)
+    Identity = MakePartIndex(
+        State.Indices.SavedPath,
+        Header.SelfReference.File.Title,
+        Header.Tail.CreationTime,
+        Header.Logs.UpdateStamp,
+    )
+    Streams.update(
+        EncodePackageIndices(Generation, Identity, State.Indices, Profile, Boss)
+    )
     Streams.update(
         {
             KConfigStream: Config.Framed.Data,
