@@ -28,7 +28,7 @@ The following fields finish the external object and resume the manager. All rows
 | External object return | `0x31a0db7d`, `0x31a0dc44` and `0x31a0dc7b` write zero long, zero `su_CTime` and zero long. |
 | Manager before first list | `0x4c21cb58`, `0x4c21cb68` and `0x4c21cb78` write signed zero, an empty wide CString and a signed zero map count. |
 
-Starting after the title, the external object returns 71 bytes later and the first `suObList` begins 12 bytes after that. This walk reaches the already checked first list in all 25 discovery saves and the historical comparison. Configuration-manager data prior to the external object still needs typed attribution.
+Starting after the title, the external object returns 71 bytes later and the first `suObList` begins 12 bytes after that. This walk reaches the already checked first list in all 25 discovery saves and the historical comparison. The [part return and manager aliases](CmgrAtoms.md#part-return-and-manager-aliases) establish the preceding pointer and the archive map at the external object boundary.
 
 ## Root and feature stamps
 

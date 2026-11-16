@@ -1,6 +1,7 @@
 import json as JsonCodec
 import subprocess as Subprocess
 import sys as System
+from collections import Counter as CountItems
 from pathlib import Path as FilePath
 from typing import cast as CastValue
 
@@ -45,6 +46,7 @@ def CheckCmgr() -> None:
     assert isinstance(Terminals, dict)
     assert CastValue(dict[str, str], Terminals).keys() == Digests.keys()
     AssertEmptyMass(Report, Digests)
+    AssertPartEnd(Report, Digests)
 
 
 # the empty cache must cover the complete sketch only discovery lane
@@ -55,4 +57,18 @@ def AssertEmptyMass(Report: dict[str, object], Captures: dict[str, str]) -> None
     assert len(Digests) == 6 and Digests.keys() <= Captures.keys()
     assert set(Digests.values()) == {
         "dd69d4585ca970361fa398485ea5f2e828b0f76ebcc6b9a3ebe4287cc5cd9f31"
+    }
+
+
+# both saved enumeration orders must survive the hosted part reconstruction
+def AssertPartEnd(Report: dict[str, object], Captures: dict[str, str]) -> None:
+    Parts = Report["part_return_records"]
+    assert isinstance(Parts, dict)
+    Digests = CastValue(dict[str, str], Parts)
+    assert Digests.keys() == Captures.keys()
+    assert dict(CountItems(Digests.values())) == {
+        "6bc81a35e54444c743e02c4f601f97c2d97c1ed04791355ff41f39d3021ac07a": 6,
+        "ed41922d5772c1a3dd30505c22ca3560fd58329fe8fcf92930ae7ca52871001f": 8,
+        "86695a925f09429c1f61fbf2a1471b42da6f8f32f1ae65cfb091253d7dae6a11": 8,
+        "107161786115b59d507e01bde8b4fca38c425b4ce0f1df2cdc35dfe2456398ea": 3,
     }
