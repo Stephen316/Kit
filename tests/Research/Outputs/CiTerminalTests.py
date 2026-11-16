@@ -14,6 +14,13 @@ from tests.Research.SupervisorClient import KRepoRoot
     (
         ("success", "aggregate_success_attested"),
         ("failed", "aggregate_failure_unattributed"),
+        ("startup", "aggregate_failure_unattributed"),
+        ("startup_head_changed", "superseded"),
+        ("startup_other_attempt", "refused"),
+        ("startup_wrong_app", "refused"),
+        ("startup_with_check", "refused"),
+        ("startup_with_job", "refused"),
+        ("failed_without_job", "refused"),
         ("pending", "pending"),
         ("base_changed", "superseded"),
         ("head_changed", "superseded"),
@@ -52,7 +59,20 @@ def CheckCiObserve(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
     else:
         assert "tested_merge_sha" not in Report
     if Expected == "aggregate_failure_unattributed":
-        assert Report["aggregate_source_binding"] == "head_only"
+        AssertTermFail(Report, CaseName)
+
+
+# startup observations need the suite identity because no job ran
+def AssertTermFail(Report: dict[str, object], CaseName: str) -> None:
+    assert Report["aggregate_source_binding"] == "head_only"
+    if CaseName == "startup":
+        assert Report["aggregate_conclusion"] == "startup_failure"
+        assert Report["aggregate_terminal_event"] == "workflow_startup_failure"
+        assert Report["aggregate_check_suite_id"] == 40
+        assert "aggregate_job_id" not in Report
+        assert "evidence_artifact_id" not in Report
+    else:
+        assert Report["aggregate_job_id"] == 2
 
 
 # archive checks combine authenticated job steps and evidence with an explicit audit pin

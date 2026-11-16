@@ -15,6 +15,9 @@ from Records import canonical, digest, label, read_record
 
 HOST = "api.github.com"
 AGGREGATE = ".github/workflows/PullRequest.yml"
+
+# a jobless terminal run still needs the github actions check suite authority
+ACTIONS_APP = 15368
 MAX_BYTES = 1024 * 1024
 MEMBER_HASHES = {
     "fingerprint",
@@ -146,8 +149,11 @@ def pull_identity(api, number):
     }
 
 
-def run_identity(api, run_id, pull):
-    run = api.record(f"actions/runs/{run_id}")
+def run_identity(api, run_id, pull, attempt=None):
+    endpoint = f"actions/runs/{run_id}"
+    if attempt is not None:
+        endpoint += f"/attempts/{attempt}"
+    run = api.record(endpoint)
     require(
         run["id"] == run_id
         and run["repository"]["id"] == pull["repository_id"]
@@ -168,7 +174,11 @@ def run_identity(api, run_id, pull):
         "aggregate run names a different pull request",
     )
     return {
-        key: run[key] for key in ("workflow_id", "run_attempt", "status", "conclusion")
+        "workflow_id": run["workflow_id"],
+        "run_attempt": run["run_attempt"],
+        "status": run["status"],
+        "conclusion": run["conclusion"],
+        "check_suite_id": run.get("check_suite_id"),
     }
 
 
@@ -202,6 +212,14 @@ def aggregate_job(api, run_id, attempt, head, conclusion):
         payload["total_count"] == len(payload["jobs"]),
         "aggregate job listing is incomplete",
     )
+    if conclusion == "startup_failure":
+        require(
+            type(payload["total_count"]) is int
+            and payload["total_count"] == 0
+            and payload["jobs"] == [],
+            "aggregate startup failure has an unexpected attempt job",
+        )
+        return None
     jobs = [job for job in payload["jobs"] if job["name"] == "CI Agg"]
     require(len(jobs) == 1, "expected one trusted CI aggregate job")
     job = jobs[0]
@@ -216,6 +234,40 @@ def aggregate_job(api, run_id, attempt, head, conclusion):
         "aggregate job does not match the terminal run attempt",
     )
     return job
+
+
+# an empty attempt is terminal evidence only if the exact actions suite agrees
+def StartupSuite(api, pull, run_id, attempt, run):
+    suite_id = run["check_suite_id"]
+    require(
+        type(suite_id) is int
+        and suite_id > 0
+        and run_identity(api, run_id, pull, attempt) == run,
+        "aggregate startup failure does not match the exact workflow attempt",
+    )
+    endpoint = f"check-suites/{suite_id}"
+    suite = api.record(endpoint)
+    require(
+        suite["id"] == suite_id
+        and suite["repository"]["id"] == pull["repository_id"]
+        and suite["head_sha"] == pull["head_sha"]
+        and suite["app"]["id"] == ACTIONS_APP
+        and suite["status"] == "completed"
+        and suite["conclusion"] == "startup_failure"
+        and type(suite["latest_check_runs_count"]) is int
+        and suite["latest_check_runs_count"] == 0
+        and suite["check_runs_url"]
+        == f"https://{HOST}/repos/{pull['repository']}/{endpoint}/check-runs",
+        "aggregate startup failure does not match the exact Actions check suite",
+    )
+    checks = api.record(f"{endpoint}/check-runs?filter=all&per_page=100")
+    require(
+        type(checks["total_count"]) is int
+        and checks["total_count"] == 0
+        and checks["check_runs"] == [],
+        "aggregate startup failure has an unexpected Actions check run",
+    )
+    return suite_id
 
 
 def artifact_receipt(
@@ -363,11 +415,17 @@ def observe(api, repository, revision, roster_hash, pull_number, run_id, attempt
     job = aggregate_job(api, run_id, attempt, revision, run["conclusion"])
     observed = {
         **result,
-        "aggregate_job_id": job["id"],
         "aggregate_conclusion": run["conclusion"],
         "status": "aggregate_failure_unattributed",
         "aggregate_source_binding": "head_only",
     }
+    if job is None:
+        observed.update(
+            aggregate_terminal_event="workflow_startup_failure",
+            aggregate_check_suite_id=StartupSuite(api, pull, run_id, attempt, run),
+        )
+    else:
+        observed["aggregate_job_id"] = job["id"]
     if run["conclusion"] == "success":
         require(
             any(

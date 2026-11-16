@@ -19,7 +19,11 @@ class ReplyFixture:
     def __init__(self, case):
         self.case = case
         self.pulls = self.runs = self.listings = 0
-        self.conclusion = "failure" if case == "failed" else "success"
+        self.conclusion = "success"
+        if case.startswith("startup"):
+            self.conclusion = "startup_failure"
+        elif case in ("failed", "failed_without_job"):
+            self.conclusion = "failure"
         evidence = {
             "format": "pr-head-tree-v1",
             "workflow_event": "pull_request_target",
@@ -43,7 +47,12 @@ class ReplyFixture:
         if path == "pulls/94":
             self.pulls += 1
             base = "6" * 40 if self.case == "base_changed" and self.pulls > 1 else BASE
-            head = "7" * 40 if self.case == "head_changed" and self.pulls > 1 else HEAD
+            head = (
+                "7" * 40
+                if self.case in ("head_changed", "startup_head_changed")
+                and self.pulls > 1
+                else HEAD
+            )
             return {
                 "number": 94,
                 "state": "open",
@@ -67,7 +76,27 @@ class ReplyFixture:
                 "repository": {"id": 10},
                 "head_repository": {"id": 20},
                 "path": ".github/workflows/PullRequest.yml",
+                "check_suite_id": 40,
             }
+        if path == "actions/runs/1/attempts/1":
+            exact = self.record("actions/runs/1")
+            if self.case == "startup_other_attempt":
+                exact["run_attempt"] = 2
+            return exact
+        if path == "check-suites/40":
+            return {
+                "id": 40,
+                "repository": {"id": 10},
+                "head_sha": HEAD,
+                "app": {"id": 9 if self.case == "startup_wrong_app" else 15368},
+                "status": "completed",
+                "conclusion": "startup_failure",
+                "latest_check_runs_count": 0,
+                "check_runs_url": "https://api.github.com/repos/fixture/kit/check-suites/40/check-runs",
+            }
+        if path == "check-suites/40/check-runs?filter=all&per_page=100":
+            checks = [{"id": 700}] if self.case == "startup_with_check" else []
+            return {"total_count": len(checks), "check_runs": checks}
         if (
             path
             == f"actions/workflows/30/runs?head_sha={HEAD}&event=pull_request_target&per_page=100"
@@ -78,6 +107,10 @@ class ReplyFixture:
                 runs.append(self.run_summary(2))
             return {"total_count": len(runs), "workflow_runs": runs}
         if path == "actions/runs/1/attempts/1/jobs?per_page=100":
+            if self.case == "failed_without_job" or (
+                self.conclusion == "startup_failure" and self.case != "startup_with_job"
+            ):
+                return {"total_count": 0, "jobs": []}
             return {
                 "total_count": 1,
                 "jobs": [
@@ -99,7 +132,7 @@ class ReplyFixture:
                     }
                 ],
             }
-        if self.conclusion == "failure":
+        if self.conclusion != "success":
             raise AssertionError("failed aggregate cannot supply success evidence")
         if path == "actions/runs/1/artifacts?per_page=100":
             return {
