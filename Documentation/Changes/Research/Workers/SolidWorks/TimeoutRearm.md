@@ -19,9 +19,11 @@ A failure before the A03 transaction commits leaves the resource unavailable. [S
 Each retry uses the next ordinary controller lease, the submitted `max_attempts` and the configured exponential backoff.
 The resource stays unavailable when the budget is exhausted.
 Other explicitly parked attempts retain their park flags.
+Consuming pending application settlement counts as supervisor work in that pass, so a just-rearmed job can enter its configured backoff with a fresh idle interval.
 
 The remote Windows fixture runs the real queue, supervisor and controller with a disposable Windows process.
-It checks one successful rearm, exhaustion on the next attempt, retention of the first failed evidence and preservation of the second quarantine.
+The listener waits for the exact queue client's exit and timeout cancellation before closing the owned fixture process and publishing terminal evidence.
+The case checks one successful rearm, exhaustion on the next attempt, cleanup evidence for both retained spools and the final controller result's binding to the second quarantine.
 
 ## Licensed two-attempt witness
 

@@ -293,6 +293,7 @@ The sample is at most five seconds old. An unverified owner, a pending reconcili
 Each grouped job uses a logical slot. One group uses a single physical session, and more than one pool can observe the same free logical slots. [A03 controller capacity](../../Changes/Research/Supervisor/ControllerCapacitySnapshot.md)
 An observed A03 claim refusal for its logical concurrency limit appears in the pool decision. [Controller refusal evidence](../../Changes/Research/Supervisor/ControllerCapacityRefusal.md)
 Without `--idle-seconds` or `--max-seconds`, it runs until it receives `SIGTERM` or `SIGINT`.
+Processing a completed application acknowledgement or rearm resets the idle interval. Controller retry backoff continues to govern when the next claim is eligible. [SOLIDWORKS timeout rearm](../../Changes/Research/Workers/SolidWorks/TimeoutRearm.md)
 At shutdown it stops its sessions and finishes them with `retry`.
 `submit`, `bind` and `jobs` go through the configured adapter, so they work with any adapter.
 

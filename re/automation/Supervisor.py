@@ -402,11 +402,14 @@ class Supervisor:
             except (OSError, ValueError, KeyError, TypeError, RecursionError) as error:
                 self.report("application_acknowledgement_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
 
+    # consuming settlement evidence is progress even when its retry remains in backoff
     def report_application_acks(self):
+        progressed = False
         for future, (path, detail) in list(self.application_acks.items()):
             if not future.done():
                 continue
             del self.application_acks[future]
+            progressed = True
             operation = "rearm" if path.parent == self.rearm_intents else "acknowledgement"
             action = f"application_{operation}"
             try:
@@ -423,6 +426,7 @@ class Supervisor:
                     self.report("application_acknowledgement_not_accepted", None, detail)
                 else:
                     self.report(action, None, {**detail, **response})
+        return progressed
 
     def record_capacity(self, pool, admission, refusal=None):
         if refusal is None:
@@ -572,10 +576,10 @@ class Supervisor:
             for name, session in list(self.running.items()):
                 if session.tend(now, paused):
                     del self.running[name]
-            self.report_application_acks()
+            settled = self.report_application_acks()
             if self.stopping or (max_seconds is not None and time.monotonic() - started >= max_seconds):
                 break
-            if self.fill(paused) or self.running or self.application_acks:
+            if self.fill(paused) or self.running or self.application_acks or settled:
                 last_work = time.monotonic()
             elif idle_seconds is not None and time.monotonic() - last_work >= idle_seconds:
                 break
