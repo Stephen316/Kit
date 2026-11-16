@@ -75,7 +75,9 @@ def SourceState(Archive, Asset, Measurement, Layout):
     File = ReadHeaderSelf(Header, Generation).File
     Core = ReadCoreProperties(Generation, Archive.require("docProps/core.xml"))
     Calendar = InformationCalendar(SummaryTime(Core.ModifiedTime).date(), timezone.utc)
-    _, _, _, _, UnitsCursor, _, _ = read_visual(Archive.require("Contents/Config-0"), Generation, Layout)
+    _, _, _, _, UnitsCursor, _, _ = read_visual(
+        Archive.require("Contents/Config-0"), Generation, Layout
+    )
     Units = ReadConfigUnits(UnitsCursor, Generation).Display
 
     NativeMass = None
@@ -88,18 +90,21 @@ def SourceState(Archive, Asset, Measurement, Layout):
         ReadCmgrHeader(MassCursor, Generation)
         NativeMass = ReadBossMass(MassCursor, Generation, 1)
         GeneratedMass = CalcBossMass(Boss.MinimumM, Boss.MaximumM, Boss.DensityKgM3)
-    return InformationState(
-        OutputPath=PurePosixPath(Asset["path"]).name,
-        File=File,
-        Core=Core,
-        Calendar=Calendar,
-        Summary=InformationSummary("", "", "", "", "", ""),
-        Units=Units,
-        ZUp=False,
-        HasDesignTable=False,
-        ModernProperties=True,
-        Mass=NativeMass,
-    ), GeneratedMass
+    return (
+        InformationState(
+            OutputPath=PurePosixPath(Asset["path"]).name,
+            File=File,
+            Core=Core,
+            Calendar=Calendar,
+            Summary=InformationSummary("", "", "", "", "", ""),
+            Units=Units,
+            ZUp=False,
+            HasDesignTable=False,
+            ModernProperties=True,
+            Mass=NativeMass,
+        ),
+        GeneratedMass,
+    )
 
 
 # generated solid properties can differ from the kernel only in the sign of displayed zero products
@@ -140,12 +145,17 @@ def report():
         )
         State, Calculated = SourceState(Archive, Asset, Measurement, Layout)
         Sourced = EncodePartInformation(KPartGeneration, State)[KInfoXml]
-        require(Sourced == Source, f"independent information fields differ: {Asset['sha256']}")
+        require(
+            Sourced == Source,
+            f"independent information fields differ: {Asset['sha256']}",
+        )
         SourceConstructed += 1
         if Calculated is not None:
             Expected = dict(Values)
             Expected[KMassName] = CompareCalculated(Values[KMassName], Calculated)
-            Generated = EncodePartInformation(KPartGeneration, replace(State, Mass=Calculated))[KInfoXml]
+            Generated = EncodePartInformation(
+                KPartGeneration, replace(State, Mass=Calculated)
+            )[KInfoXml]
             require(
                 Generated == EncodeInformation(KPartGeneration, Expected),
                 f"authored geometry information stream differs: {Asset['sha256']}",
@@ -162,7 +172,9 @@ def report():
         "with_mass_summary": TotalWithMass,
         "source_constructed": SourceConstructed,
         "geometry_constructed": GeometryConstructed,
-        "replay_sha256": sha256(json.dumps(Cases, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+        "replay_sha256": sha256(
+            json.dumps(Cases, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest(),
     }
 
 
