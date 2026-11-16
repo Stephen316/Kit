@@ -20,6 +20,7 @@ from tests.Research.Archives.SolidWorksDistVerify import (
     KParentClasses,
     KRetainCount,
 )
+from tests.Research.Archives.SolidWorksEndVerify import VerifyEndStart
 
 
 # hosted import keeps the whole research constructor outside the installed namespace
@@ -154,6 +155,7 @@ def VerifyDisplay(
     DisplayObject = Depth["object_index"]
     DisplayName = "moDisplayDistanceDim_c"
     Writer.classes.update(KParentClasses)
+    Writer.classes["moEndSpec_c"] = DisplayObject - 2
     Writer.classes[DisplayName] = ReadTag(Resolved, Begin).index
     Writer.classes[KFavoriteName] = KFavoriteClass
     Writer.SetNextIndex(DisplayObject)
@@ -174,9 +176,10 @@ def VerifyDisplay(
 
     Native = ArchiveCursor(Resolved, Begin, DisplayObject, ParentClasses.copy(), {})
     SourceClose = ReadBossClose(Native)
-    Generated = ArchiveCursor(
-        Emitted + Resolved[EndOffset:], 0, DisplayObject, ParentClasses, {}
+    Combined = VerifyEndStart(
+        PatchValue, Writer, Variant, Resolved, EndOffset, len(Emitted), Generation
     )
+    Generated = ArchiveCursor(Combined, 0, DisplayObject, ParentClasses, {})
     Close = ReadBossClose(Generated)
     assert Close["depth_display"]["end"] == len(Emitted)
     assert Close["depth_display"]["cached_metres"] == Depth["cached_metres"]
