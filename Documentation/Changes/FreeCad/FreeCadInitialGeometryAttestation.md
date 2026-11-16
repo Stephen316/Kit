@@ -2,8 +2,13 @@
 
 Fresh history-generated FreeCAD Create extrusions no longer report `application_usable=True` or `vendor_loadable=True` merely because their inputs contain no unsupported retained BREP.
 The scoped reconstructed path now reports both fields as false in the write result and its metadata.
-It covers standalone documents with an active no-base Create extrusion and no retained BREP, BREP payloads or meshes.
-Exact native replay and other retained-BREP or mesh routes keep their existing behavior.
+It covers standalone documents whose sole active non-reference history step is a supported extrusion with an explicit Create or omitted operation and no retained BREP, BREP payloads or meshes.
+Sketch-reference dependencies remain in scope because they do not supply a native solid base.
+The emitter defaults an omitted operation to Create.
+The initial empty-dependency shortcut did not represent that emitter contract and is replaced by this bounded history classification.
+Exact native replay and histories with other solid, Boolean, native or imported steps keep their existing behavior and remain outside this audit.
+The retained-payload and mesh exclusions also remain separate audit boundaries; a nonempty container does not prove initial native geometry or acceptance.
+The [base-selection gotcha](../../Gotchas/Conversion/FreeCad/ExtrusionBaseAttestation.md) records the distinction between history dependencies and native solid ownership.
 
 The [independent initial-open witness](FreeCadEndNativeWitness.md) measured zero solids in all three original generated packages before native recompute.
 The earlier geometry predicate skipped documents without BREP, so it could return true without examining any generated initial solid.
@@ -17,7 +22,7 @@ This option permits output; it does not establish application usability, vendor 
 The current two-length readiness, binding and reversal observers now select that explicit research mode and check false result and metadata flags while retaining their XML, owner, geometry and refusal assertions.
 Historical reports, hashes and source observations remain unchanged.
 
-New public process coverage exercises forward, reversed, implicit-direction and symmetric authored controls through the neutral JSON codec.
+New public process coverage exercises forward, reversed, implicit-direction and symmetric authored controls through the neutral JSON codec, plus explicit/default Create with a sketch-reference dependency and omitted operation without dependencies.
 It checks research output and false flags, plus strict refusal with unchanged empty and existing streams, an absent path and an existing path.
 Local verification is static only; hosted process execution and independent fresh native acceptance remain required.
 See the [initial recompute limitation](../../Gotchas/Conversion/FreeCad/GeneratedExtrusionRequiresRecompute.md) and [CAD success criteria](../../Reference/Operations/CadSuccessCriteria.md).

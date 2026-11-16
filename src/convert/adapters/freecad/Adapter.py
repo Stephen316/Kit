@@ -2582,19 +2582,20 @@ def RebuildDiags(DocValue: CadDocument, CarrierOnly: bool) -> tuple[DiagValue, .
 
 # fresh history caches cannot establish independent initial application acceptance
 def HasFreshExtrude(DocValue: CadDocument) -> bool:
+    Features = tuple(
+        Feature
+        for Feature in DocValue.feature_timeline
+        if not Feature.suppressed and EnumText(Feature.kind) != "reference"
+    )
     return (
         DocValue.assembly is None
         and DocValue.brep is None
         and not DocValue.brep_payloads
         and not DocValue.meshes
-        and any(
-            not Feature.suppressed
-            and EnumText(Feature.kind) == "extrusion"
-            and EnumText(Feature.operation) == "create"
-            and not Feature.input_feature_ids
-            and isinstance(Feature.definition, ExtrusionFeature)
-            for Feature in DocValue.feature_timeline
-        )
+        and len(Features) == 1
+        and EnumText(Features[0].kind) == "extrusion"
+        and EnumText(Features[0].operation) in {"", "create"}
+        and IsExtrusion(Features[0])
     )
 
 

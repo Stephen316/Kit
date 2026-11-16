@@ -1,3 +1,4 @@
+from dataclasses import replace as ChangeRecord
 from io import BytesIO as ByteStream
 from json import dumps as EncodeJson, loads as ParseJson
 from pathlib import Path as FilePath
@@ -12,6 +13,8 @@ from pytest import mark as MarkValue
 from convert.adapters.base.UsabilityError import UsabilityError
 from convert.api.ApiWrite import WriteDocument
 from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Features.FeatureStep import FeatureStep
 from tests.Research.Archives.FreeCadReversedWriteTests import MakeInput
 
 # public process cases must inspect the same writer source as the committed checkout
@@ -23,7 +26,34 @@ KCaseNames = (
     "explicit-reversed",
     "implicit-negative-reversed",
     "explicit-symmetric",
+    "omitted-operation",
+    "reference-create",
+    "reference-omitted",
 )
+
+
+# reference dependencies and omitted operations must follow the admitted native extrusion contract
+def MakeControl(CaseName: str) -> CadDocument:
+    Document = MakeInput(
+        CaseName
+        if CaseName.startswith(("explicit", "implicit"))
+        else "explicit-positive"
+    )
+    (Feature,) = Document.feature_timeline
+    if CaseName in {"omitted-operation", "reference-omitted"}:
+        Feature = ChangeRecord(Feature, operation=None)
+    if not CaseName.startswith("reference"):
+        return ChangeRecord(Document, feature_timeline=(Feature,))
+    Reference = FeatureStep(
+        "reference:profile",
+        "Profile reference",
+        FeatureKind.KReference,
+        0,
+        sketch_id=Feature.sketch_id,
+        attributes={"native_type": "sketch"},
+    )
+    Feature = ChangeRecord(Feature, order=1, input_feature_ids=(Reference.id,))
+    return ChangeRecord(Document, feature_timeline=(Reference, Feature))
 
 
 # research emission preserves the archive without converting computed shape presence into measured native acceptance
@@ -40,10 +70,16 @@ def EmitResearch(Document: CadDocument) -> dict[str, object]:
     assert not Result.carrier_capabilities
     with ZipFile(ByteStream(Output.getvalue())) as Archive:
         RootValue = ParseXml(Archive.read("Document.xml"))
-    assert any(
-        NodeValue.get("type") == "Part::Extrusion"
-        for NodeValue in RootValue.findall("./Objects/Object")
-    )
+    NativeTypes = [
+        NodeValue.get("type") for NodeValue in RootValue.findall("./Objects/Object")
+    ]
+    assert NativeTypes.count("Part::Extrusion") == 1
+    assert not {
+        "Part::Fuse",
+        "Part::MultiFuse",
+        "Part::Cut",
+        "Part::Common",
+    }.intersection(NativeTypes)
     return {
         "application_usable": Result.application_usable,
         "vendor_loadable": Result.vendor_loadable,
@@ -89,7 +125,7 @@ def CheckTargets(Document: CadDocument, RootPath: FilePath) -> None:
 
 # every mode crosses the real neutral codec and public writer before policy observations are returned
 def ObserveCase(CaseName: str, RootPath: FilePath) -> dict[str, object]:
-    Document = CadDocument.from_json(MakeInput(CaseName).to_json(indent=None))
+    Document = CadDocument.from_json(MakeControl(CaseName).to_json(indent=None))
     Original = Document.to_json(indent=None)
     Report = EmitResearch(Document)
     CheckTargets(Document, RootPath)
