@@ -1,5 +1,6 @@
 import os
 import time
+from contextlib import nullcontext
 
 from ApplicationProtocol import (
     FUSION_PROVIDER,
@@ -36,7 +37,17 @@ def verify_readiness(readiness):
     )
 
 
-def seal_and_watch(root, readiness, executable, fence_sha256, seconds, verify, notify):
+def seal_and_watch(
+    root,
+    readiness,
+    executable,
+    fence_sha256,
+    seconds,
+    verify,
+    notify,
+    *,
+    authorize=None,
+):
     require(
         type(seconds) is int and 1 <= seconds <= 300,
         "invalid Fusion exit observation deadline",
@@ -61,30 +72,48 @@ def seal_and_watch(root, readiness, executable, fence_sha256, seconds, verify, n
             "watcher": watcher,
             "readiness": readiness,
         }
+        if authorize is not None:
+            intent["quit_mode"] = "authorized_cocoa"
         raw = encoded(intent)
         intent_sha256 = sha256(raw)
         path = root / f"quit-intent-{intent_sha256}.json"
         write_new(path, raw)
-        deadline = time.monotonic() + seconds
+        deadline_ns = time.monotonic_ns() + seconds * 1_000_000_000
         notify(intent_sha256)
-        remaining = deadline - time.monotonic()
-        event = observe_exit(monitor, peer, remaining) if remaining > 0 else None
-        if event is None or time.monotonic() > deadline:
-            return {"status": "exit_unobserved", "quit_intent_sha256": intent_sha256}
+        if authorize is not None:
+            verify()
+        with (
+            authorize(intent_sha256, deadline_ns)
+            if authorize is not None
+            else nullcontext()
+        ) as action_evidence:
+            remaining = (deadline_ns - time.monotonic_ns()) / 1_000_000_000
+            event = observe_exit(monitor, peer, remaining) if remaining > 0 else None
+            within_deadline = time.monotonic_ns() <= deadline_ns
+            action = action_evidence() if action_evidence is not None else None
+        observation = {"quit_intent_sha256": intent_sha256}
+        if action is not None:
+            observation["quit_action"] = action
+        if event is None or not within_deadline:
+            return {"status": "exit_unobserved", **observation}
         verify()
         require(
             file_bytes(path) == raw and event["observed_at"] >= armed_at,
             "Fusion exit observation differs from its durable armed intent",
         )
+        if action is not None and (
+            "attempt_sha256" not in action or action["state"] == "refused"
+        ):
+            return {"status": "exit_without_authorized_quit", **observation}
         receipt = {
             "version": 1,
             "scope": "external_fusion_exit_observation",
             "status": "exact_exit_observed",
-            "quit_intent_sha256": intent_sha256,
             "restart_intent_sha256": readiness["intent_sha256"],
             "fence_sha256": fence_sha256,
             "peer": peer,
             "cause": "unverified",
+            **observation,
             **event,
         }
         receipt_bytes = encoded(receipt)

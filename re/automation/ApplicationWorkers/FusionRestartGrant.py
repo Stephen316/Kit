@@ -11,6 +11,11 @@ REQUEST_SECONDS = 60
 
 
 def pending_request(protocol, host):
+    automatic = globals().get("_automatic_quit")
+    if automatic is not None:
+        path = automatic["pending"](protocol, host)
+        if path is not None:
+            return path
     mailbox = host.root / MAILBOX
     if not os.path.lexists(mailbox):
         return None
@@ -142,6 +147,11 @@ def active_grant(protocol, directory, request, response, now):
 
 
 def serve(protocol, source_pin, host, path, app, main_thread):
+    automatic = globals().get("_automatic_quit")
+    if automatic is not None and path.parent == host.root:
+        return automatic["serve"](
+            protocol, globals(), automatic, host, path, app, main_thread
+        )
     require = protocol["require"]
     operation = path.stem
     require(

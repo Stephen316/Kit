@@ -6,6 +6,7 @@ import sys
 import time
 from pathlib import Path
 
+import ApplicationProtocol as protocol
 from ApplicationProtocol import (
     MAC_REPLACEMENT_LAUNCH,
     RESTART_GRANT,
@@ -22,6 +23,7 @@ from ApplicationProtocol import (
 )
 from FusionExitRecords import exit_evidence, pin, read_pinned
 from FusionQuitCustody import FusionQuitCustody
+from FusionQuitRelease import bind_replacement
 from FusionReplacementPhase import observe_phase_b
 from MacApplicationBundle import pinned_bundle
 from MacBundleLaunch import available, launch_bundle
@@ -103,6 +105,13 @@ def request_launch(args, root, config, install_bytes):
                 }
                 request_bytes = encoded(request)
                 write_new(request_path, request_bytes)
+                bind_replacement(
+                    vars(protocol),
+                    root,
+                    request,
+                    sha256(request_bytes),
+                    bundle["executable"],
+                )
         observed = launch_bundle(
             source,
             bundle,
