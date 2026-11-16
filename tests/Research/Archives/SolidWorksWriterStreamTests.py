@@ -93,6 +93,18 @@ def CheckRectTrim() -> None:
     )
 
 
+# the first extrusion must carry the same profile and configuration owners into its chooser
+def CheckBossOpen() -> None:
+    Report = LoadReport("VerifyBossOpen.py", 8)
+    assert Report["constructed"] is True
+    assert Report["reverse_directions"] == 1
+    assert Report["nonzero_regen_times"] == 1
+    assert (
+        Report["opening_replay_sha256"]
+        == "43415df07de102cfb940542ade9ecf91df9afee9f4b24f39dfd4366b69a288ce"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
