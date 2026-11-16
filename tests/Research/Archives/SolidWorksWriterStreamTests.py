@@ -616,3 +616,17 @@ def CheckSimpleProps() -> None:
         Report["replay_sha256"]
         == "06c9388493935704c0d19a9f9b87a5609301c9036052ede981bc2cff8a6824c4"
     )
+
+
+# the empty sections retain the native dictionary, code page and summary state
+def CheckPropSections() -> None:
+    Report = LoadReport("VerifySectionProperties.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["distinct_payload_counts"] == {
+        "docProps/Config-0-Properties.xml": 1,
+        "docProps/custom.xml": 1,
+    }
+    assert (
+        Report["replay_sha256"]
+        == "ef5afc4b0f93735ec5fb998d8931cd9a589e91ae638a53187b60e36b58a1b41a"
+    )

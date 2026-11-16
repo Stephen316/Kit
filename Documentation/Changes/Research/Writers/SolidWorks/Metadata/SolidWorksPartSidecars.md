@@ -62,6 +62,12 @@ The writer builds the nine application fields from supplied values, with the obs
 
 The 14 pinned P01/P03 controls matched all 42 generated documents byte-for-byte. They cover one app payload, eleven core timestamp combinations and three open-time payloads. The previous two-manifest digest also reproduced after sharing the XML serializer. The three-property replay SHA-256 is `06c9388493935704c0d19a9f9b87a5609301c9036052ede981bc2cff8a6824c4`. The report retains hashes and counts. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifySimpleProperties.py)
 
+## Empty document and configuration property sections
+
+The two scopes construct document-summary and user-property sections in their observed order. The namespace resets, empty name dictionaries and UTF-8 code page are emitted as typed XML elements. The document-level summary includes the witnessed `vt:bool` value `No`. The configuration summary contains only its empty dictionary. Populated sections and other summary states need separate evidence. [Section writer](../../../../../../re/solidworks/WriterResearch/PartSectionProperties.py)
+
+The 14 P01/P03 captures matched all 28 generated payloads byte-for-byte. Each member had one observed payload. The aggregate replay SHA-256 is `ef5afc4b0f93735ec5fb998d8931cd9a589e91ae638a53187b60e36b58a1b41a`. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifySectionProperties.py)
+
 ## Retained P03 members
 
 The licensed omission run kept 33 of the original 37 physical members
@@ -87,9 +93,10 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
 | Full typed payload | `[Content_Types].xml`, `_rels/.rels` | `PartManifests.EncodeManifests` binds the actual app, core and custom property targets |
 | Full typed payload | `docProps/OpenTime.xml`, `docProps/app.xml`, `docProps/core.xml` | `PartSimpleProperties` constructs caller-owned property values in the exact namespaces |
-| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/custom.xml` | Typed property-section owners and serialization |
+| Full typed payload | `docProps/Config-0-Properties.xml`, `docProps/custom.xml` | `PartSectionProperties` constructs the exact empty document and configuration scopes |
+| Open | `docProps/ISolidWorksInformation.xml` | Typed saved application-information owners and values |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 18 retained members with standalone constructors, including two
-fresh-document payloads. Two are partially composed and 13 lack a
+There are 20 retained members with standalone constructors, including two
+fresh-document payloads. Two are partially composed and 11 lack a
 constructive owner. Native acceptance of a fully generated archive is pending.

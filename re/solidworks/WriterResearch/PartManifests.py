@@ -27,17 +27,26 @@ KProperties = (
 )
 
 
-# XMLGenerator emits escaped attribute data and self-closes the typed leaf records
-def EncodeXml(Declaration, RootName, RootFields, Entries):
+# escape typed text and attributes while keeping nested property records structured
+def WriteElement(Writer, Entry):
+    Name, Fields, Body = Entry
+    Writer.startElement(Name, Fields)
+    if isinstance(Body, str):
+        Writer.characters(Body)
+    elif Body is not None:
+        for Child in Body:
+            WriteElement(Writer, Child)
+    Writer.endElement(Name)
+
+
+# XMLGenerator closes each typed root with native standalone framing
+def EncodeXml(Declaration, RootName, RootFields, Entries, *, ShortEmpty=True):
     Stream = BytesIO()
     Stream.write(Declaration.encode("ascii") + b"\r\n")
-    Writer = XMLGenerator(Stream, encoding="utf-8", short_empty_elements=True)
+    Writer = XMLGenerator(Stream, encoding="utf-8", short_empty_elements=ShortEmpty)
     Writer.startElement(RootName, RootFields)
-    for Name, Fields, Body in Entries:
-        Writer.startElement(Name, Fields)
-        if Body is not None:
-            Writer.characters(Body)
-        Writer.endElement(Name)
+    for Entry in Entries:
+        WriteElement(Writer, Entry)
     Writer.endElement(RootName)
     Writer.endDocument()
     return Stream.getvalue() + b"\r\n"
