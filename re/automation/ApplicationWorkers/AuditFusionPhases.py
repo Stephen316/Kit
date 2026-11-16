@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from AcknowledgeApplication import accepted_output, stored_bytes
 from Adapters import copy_verified
-from ApplicationProtocol import configuration, record, require, sha256
+from ApplicationProtocol import configuration, record, require, sha256, windows_process
 from Artifacts import Artifacts
 from FusionPhasePlan import (
     CASES,
@@ -140,6 +140,40 @@ def verify_binding(owner, queue, scratch):
     return plan
 
 
+# restart custody must bind the exact lifetime before any optional timing audit
+def phase_process(dispatch, observed):
+    process = observed["process"]
+    host = dispatch["host"]
+    require(
+        type(process["pid"]) is int
+        and process["pid"] > 1
+        and host["pid"] == process["pid"]
+        and type(process["start_unix_seconds"]) is int
+        and process["start_unix_seconds"] > 0,
+        "accepted Fusion process identity differs",
+    )
+    started = host.get("started")
+    if not isinstance(started, str) or not started.startswith("windows:"):
+        return process
+    expected = windows_process(host)
+    proof = dispatch["proof"]
+    transport = proof.get("fixture_only") is True
+    require(
+        transport == (observed.get("fixture_only") is True),
+        "accepted Windows Fusion fixture markers differ",
+    )
+    if (
+        transport
+        and dispatch["reason"] == "fixture restart transport only"
+        and proof["fusion_version"] == "fixture build"
+        and observed["fusion_version"] == "fixture build"
+        and "started" not in process
+    ):
+        expected = {key: expected[key] for key in ("pid", "start_unix_seconds")}
+    require(process == expected, "accepted Windows Fusion process FILETIME differs")
+    return process
+
+
 def phase_evidence(owner, queue, phase, scratch, *, timing_plan=None):
     scratch.mkdir(mode=0o700)
     row, manifest, raw_dispatch = accepted_output(
@@ -239,15 +273,7 @@ def phase_evidence(owner, queue, phase, scratch, *, timing_plan=None):
         and observed["errors"] == [],
         "accepted Fusion measurements do not match the phase receipt",
     )
-    process = observed["process"]
-    require(
-        type(process["pid"]) is int
-        and process["pid"] > 1
-        and dispatch["host"]["pid"] == process["pid"]
-        and type(process["start_unix_seconds"]) is int
-        and process["start_unix_seconds"] > 0,
-        "accepted Fusion process identity differs",
-    )
+    process = phase_process(dispatch, observed)
     output = {
         "receipt_sha256": row["receipt"],
         "result_sha256": row["result"],
