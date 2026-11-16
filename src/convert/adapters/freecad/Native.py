@@ -2226,7 +2226,7 @@ def Extrusion(ObjValue: NativeObject) -> ExtrusionFeature:
     )
 
 
-# this definition exists because focused behavior needs one stable owner
+# saved extrusion flags preserve operation intent independently of the two native distance properties
 def PartExtrusion(ObjValue: NativeObject) -> ExtrusionFeature:
     DirectionNode = FindChild(ObjValue, "Dir", "PropertyVector")
     Direction = None
@@ -2241,8 +2241,8 @@ def PartExtrusion(ObjValue: NativeObject) -> ExtrusionFeature:
     return ExtrusionFeature(
         ParamValue(Forward, ValueKind.LENGTH, "mm"),
         end_condition=ExtrusionEndCondition.BLIND,
-        reversed=False,
-        symmetric=Forward > 0.0 and Reverse > 0.0 and (abs(Forward - Reverse) <= 1e-12),
+        reversed=IsBoolValue(ObjValue, "Reversed"),
+        symmetric=IsBoolValue(ObjValue, "Symmetric"),
         direction=Direction,
         second_length=ParamValue(Reverse, ValueKind.LENGTH, "mm"),
     )

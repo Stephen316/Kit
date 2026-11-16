@@ -226,9 +226,10 @@ The separate SOLIDWORKS generative research in PR #121 records controlled load, 
 
 ## A16 FreeCAD end-owner bindings
 
-| Child ID | Deliverable                                                 | Owner      | Status   | Remaining evidence                                                                                                                                                                                                              |
-| -------- | ----------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A16a     | Explicit forward and reverse FreeCAD extrusion dependencies | jdharcourt | checking | The [native emission repair](../../Changes/FreeCad/FreeCadTwoLengthBindings.md) preserves ordered end owners, both expression links and physical units; hosted process checks and independent native acceptance remain required |
+| Child ID | Deliverable                                                 | Owner      | Status   | Remaining evidence                                                                                                                                                                                                                 |
+| -------- | ----------------------------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A16a     | Explicit forward and reverse FreeCAD extrusion dependencies | jdharcourt | checking | The [native emission repair](../../Changes/FreeCad/FreeCadTwoLengthBindings.md) preserves ordered end owners and physical units; an exact `abfba60a` operator replay reported correct links, with native acceptance still required |
+| A16b     | Native FreeCAD symmetry and reversal preservation           | jdharcourt | checking | The [native reader repair](../../Changes/FreeCad/FreeCadNativeEndSemantics.md) reads saved flags independently of distances; native-only public process and native acceptance evidence remain required                             |
 
 The [earlier readiness observation](../../Changes/Research/Readers/Comparison/FreeCadTwoLengthReadiness.md) records the missing reverse link and equal-length roster crossing on its original checkpoint.
 The repair does not admit unsupported linked definitions or fallback carriers.
