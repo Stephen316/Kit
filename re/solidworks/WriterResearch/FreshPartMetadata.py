@@ -269,7 +269,7 @@ def CheckTimes(Times: MetadataTimes) -> None:
     )
 
 
-# the Front fixture binds the projected design to the same generated configuration and system
+# authored placement and the system Origin have independent datum owners
 def CheckOwners(
     State: BossWriterInput,
     Config: OrdinaryConfig,
@@ -278,19 +278,30 @@ def CheckOwners(
 ) -> None:
     Attach = State.Profile.Attachment
     RequireArch(
-        (
-            Config.Boss,
-            Config.First.Model.Bounds,
-            Attach.DatumId,
-            System.Origin.SupportTreeId,
-        ),
-        (State.Atom, State.Bounds, 2, 2),
-        "fresh Front boss shares the generated configuration and Origin datum",
+        (Config.Boss, Config.First.Model.Bounds),
+        (State.Atom, State.Bounds),
+        "fresh boss shares the generated configuration and bounds",
     )
     RequireArch(
-        (Attach.DatumTime, Attach.OriginTime, System.Origin.SupportTime),
-        (Context.Times.HistoryStart,) * 3,
-        "Front and Origin references share their inherited history clock",
+        Attach.DatumId in (2, 4)
+        and sum(Plane.TreeId == Attach.DatumId for Plane in System.Planes) == 1,
+        True,
+        "one generated Front or Right datum owns the authored profile",
+    )
+    RequireArch(
+        (
+            Attach.DatumTime,
+            Attach.OriginTime,
+            System.Origin.SupportTreeId,
+            System.Origin.SupportTime,
+        ),
+        (
+            Context.Times.HistoryStart,
+            Context.Times.HistoryStart,
+            2,
+            Context.Times.HistoryStart,
+        ),
+        "authored references and the built-in Front Origin share inherited history",
     )
     RequireArch(
         max(Config.Tail.Ids.ExplView, Config.Tail.Ids.Presentation)
