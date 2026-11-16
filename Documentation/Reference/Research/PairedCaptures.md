@@ -11,6 +11,7 @@ The UI steps below specify the authoring operations for the harnesses and worker
 The A08c workers own dispatch and native application recovery. A08e supplies the Windows supervisor support needed to run both applications on one host.
 The supplemental SOLIDWORKS through-all control uses a standalone collector on an isolated licensed Windows host. Its failure receipt records cleanup of the exact launched process. [Scope collector startup cleanup](../../Changes/Research/Workers/SolidWorks/ScopeStartupCleanup.md)
 For a hard cutoff across synchronous COM calls, run the standalone collector in its dedicated Windows Job Object. [Scope campaign watchdog](../../Changes/Research/Workers/SolidWorks/ScopeWatchdog.md)
+The scope collector records the direct or definition-edit authoring route for each explicit Cut and rechecks the intended policy through fresh reopen and rebuild. [Explicit Cut retry](../../Changes/Research/Workers/SolidWorks/ScopeExplicitFallback.md)
 
 A capture is research evidence only.
 It does not qualify a reader, a writer or a conversion by itself.

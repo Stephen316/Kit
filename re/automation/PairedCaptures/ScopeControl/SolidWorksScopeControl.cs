@@ -18,6 +18,8 @@ using SolidWorks.Interop.swconst;
 public sealed class SolidWorksScopeControl
 {
     const string Build = "34.4.1.1011";
+    const string DirectRoute = "feature_cut4";
+    const string RecoveryRoute = "modify_feature_scope";
     const double Mm = 1000;
     static readonly JavaScriptSerializer Json = new JavaScriptSerializer { MaxJsonLength = 1024 * 1024 };
     readonly ISldWorks app;
@@ -233,35 +235,101 @@ public sealed class SolidWorksScopeControl
         });
     }
 
-    void Cut(IModelDoc2 doc, Dictionary<string, IBody2> bodies, Dictionary<string, object> control, ref string step)
+    sealed class MissingExplicitCut : InvalidOperationException
+    {
+        public MissingExplicitCut(string mode)
+            : base("FeatureCut4 returned null after verifying the explicit selection for " + mode) { }
+    }
+
+    void ApplyExplicitScope(IModelDoc2 doc, IFeature feature, string[] intended, ref string step)
+    {
+        step = "access_scope_definition";
+        var native = feature.GetDefinition() as IExtrudeFeatureData2;
+        Check(native != null && native.AccessSelections(doc, null), "Could not access the Cut definition for scope editing");
+        bool attempted = false;
+        Exception failure = null;
+        try
+        {
+            Check(native.FeatureScope && native.AutoSelect, "The fallback did not recreate the automatic Cut scope");
+            step = "resolve_rolled_back_scope_bodies";
+            var bodies = Bodies(doc);
+            var selected = intended.Select(id => (object)bodies[id]).ToArray();
+            step = "set_explicit_scope_definition";
+            native.FeatureScope = true;
+            native.AutoSelect = false;
+            native.FeatureScopeBodies = selected;
+            step = "apply_explicit_scope_definition";
+            attempted = true;
+            Check(feature.ModifyDefinition(native, doc, null), "ModifyDefinition refused the explicit Cut scope");
+        }
+        catch (Exception error) { failure = error; throw; }
+        finally
+        {
+            if (!attempted)
+            {
+                try { native.ReleaseSelectionAccess(); }
+                catch (Exception error)
+                {
+                    if (failure == null) throw;
+                    failure.GetBaseException().Data["scope_selection_release_hresult"] = error.GetBaseException().HResult;
+                }
+            }
+        }
+    }
+
+    static void RebuildCut(IModelDoc2 doc, IFeature feature)
+    {
+        bool rebuilt = doc.ForceRebuild3(false);
+        bool warning;
+        int error = feature.GetErrorCode2(out warning);
+        Check(rebuilt && error == 0, "Could not rebuild the scoped through-all Cut (rebuild " + rebuilt
+            + ", feature code " + error + ", warning " + (error != 0 && warning) + ")");
+    }
+
+    void Cut(IModelDoc2 doc, Dictionary<string, IBody2> bodies, Dictionary<string, object> control,
+        string route, ref string step)
     {
         step = "create_cut_profile";
         var sketch = Rectangle(doc, (string)cutSpec["sketch"], Bounds(cutSpec["profile_bounds_mm"]), TopFace(bodies["A"]));
         step = "select_cut_inputs";
-        var selectedIds = Strings(control["input_body_ids"]);
-        bool automatic = control["input_body_ids"] == null;
+        var intended = Strings(control["input_body_ids"]);
+        bool recovery = route == RecoveryRoute;
+        bool automatic = recovery || control["input_body_ids"] == null;
+        var selectedIds = automatic ? new string[0] : intended;
+        if (!automatic) bodies = Bodies(doc);
         Check(doc.Extension.SelectByID2(sketch.Name, "SKETCH", 0, 0, 0, false, 0, null, 0),
             "Could not select the through-all sketch");
         foreach (string id in selectedIds)
             Check(doc.Extension.SelectByID2(bodies[id].Name, "SOLIDBODY", 0, 0, 0, true, 1, null, 0),
                 "Could not append scoped solid " + id);
         var selection = doc.ISelectionManager;
-        Check(selection.GetSelectedObjectCount2(1) == selectedIds.Length,
+        var selectedSketch = selection.GetSelectedObject6(1, 0);
+        Check(selection.GetSelectedObjectCount2(0) == 1
+            && (Same(selectedSketch, sketch) || Same(selectedSketch, sketch.GetSpecificFeature2()))
+            && selection.GetSelectedObjectCount2(1) == selectedIds.Length
+            && selection.GetSelectedObjectCount2(-1) == selectedIds.Length + 1,
             "The Cut scope selections do not match the requested roster");
         for (int index = 0; index < selectedIds.Length; index++)
             Check(Same(selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
                 "The Cut scope selection did not resolve to the intended native body");
         var supportBounds = Bounds(ObjectValue(bodySpecs["A"])["bounds_mm"]);
         double apiDepth = (supportBounds[1][2] - supportBounds[0][2]) / Mm;
-        step = "create_cut_feature";
+        step = recovery ? "create_automatic_fallback_cut" : "create_cut_feature";
         var feature = doc.FeatureManager.FeatureCut4(true, false, false, (int)swEndConditions_e.swEndCondThroughAll,
             0, apiDepth, apiDepth, false, false, false, false, 0, 0, false, false, false, false, false,
             true, automatic, false, false, false, (int)swStartConditions_e.swStartSketchPlane, 0, false, false);
-        Check(feature != null, "Could not create the scoped through-all Cut for " + control["mode"]);
+        if (feature == null && !automatic) throw new MissingExplicitCut((string)control["mode"]);
+        Check(feature != null, "Could not create the automatic through-all Cut for " + control["mode"]);
         feature.Name = (string)cutSpec["feature"];
         doc.ClearSelection2(true);
         step = "rebuild_cut_feature";
-        Check(doc.ForceRebuild3(false), "Could not rebuild the scoped through-all Cut");
+        RebuildCut(doc, feature);
+        if (recovery)
+        {
+            ApplyExplicitScope(doc, feature, intended, ref step);
+            step = "rebuild_explicit_scope_definition";
+            RebuildCut(doc, feature);
+        }
     }
 
     Dictionary<string, object> CutRecord(IModelDoc2 doc)
@@ -288,7 +356,8 @@ public sealed class SolidWorksScopeControl
             var selected = Items(native.FeatureScopeBodies);
             int selectedCount = native.GetFeatureScopeBodiesCount();
             Check(selected.Length == selectedCount, "Cut scope body inventory does not agree with its native count");
-            var selectedIds = selected.Cast<IBody2>().Select(body => BodyId(body, producers)).OrderBy(id => id).ToArray();
+            var rolledBackProducers = Producers(doc);
+            var selectedIds = selected.Cast<IBody2>().Select(body => BodyId(body, rolledBackProducers)).OrderBy(id => id).ToArray();
             var depth = native.GetDepth(true);
             return Row("end_condition", "through_all", "direction_world", new[] { 0, 0, -1 }, "depth_mm", null,
                 "observed_policy", auto ? "automatic" : "explicit",
@@ -301,13 +370,22 @@ public sealed class SolidWorksScopeControl
         finally { native.ReleaseSelectionAccess(); }
     }
 
-    object Observe(IModelDoc2 doc, Dictionary<string, object> before)
+    object Observe(IModelDoc2 doc, Dictionary<string, object> before, Dictionary<string, object> intended)
     {
         var measured = MeasureBodies(doc, Bodies(doc));
         var cut = CutRecord(doc);
-        cut["target_body_ids"] = measured.Keys.OrderBy(id => id).Where(id =>
+        var targets = measured.Keys.OrderBy(id => id).Where(id =>
             Convert.ToDouble(ObjectValue(before[id])["volume_mm3"]) -
                 Convert.ToDouble(ObjectValue(measured[id])["volume_mm3"]) > volumeTolerance).ToArray();
+        var native = ObjectValue(cut["native"]);
+        bool automatic = intended["input_body_ids"] == null;
+        Check((bool)native["auto_select"] == automatic
+            && (automatic || Strings(native["feature_scope_body_ids"]).SequenceEqual(
+                Strings(intended["input_body_ids"]).OrderBy(id => id))),
+            "The freshly read Cut policy or selected bodies differ from the intended scope");
+        Check(targets.SequenceEqual(Strings(intended["expected_affected_body_ids"]).OrderBy(id => id)),
+            "The measured Cut did not affect exactly the intended bodies");
+        cut["target_body_ids"] = targets;
         return Row("cut", cut, "bodies", measured);
     }
 
@@ -322,11 +400,45 @@ public sealed class SolidWorksScopeControl
         }
     }
 
-    Dictionary<string, object> Create(string directory, Dictionary<string, object> control, ref string step)
+    Dictionary<string, object> Create(string directory, Dictionary<string, object> control, ref string step,
+        Dictionary<string, object> process, Dictionary<string, object> provenance)
+    {
+        string route = DirectRoute;
+        Dictionary<string, object> primary = null;
+        try
+        {
+            try { return CreateAttempt(directory, control, route, ref step); }
+            catch (MissingExplicitCut error)
+            {
+                primary = Row("status", "null_feature", "step", step, "managed_hresult", error.HResult,
+                    "message", error.Message, "verified_selection_body_ids", Strings(control["input_body_ids"]));
+                if (error.Data.Contains("scope_document_close_hresult")) throw;
+                step = "publish_primary_creation_failure";
+                var mode = (string)control["mode"];
+                PublishCheckpoint(directory, mode, "primary_creation_failure",
+                    Row("mode", mode, "authoring_route", route, "primary_creation_failure", primary), process, provenance);
+                route = RecoveryRoute;
+                var result = CreateAttempt(directory, control, route, ref step);
+                result["primary_creation_failure"] = primary;
+                return result;
+            }
+        }
+        catch (Exception error)
+        {
+            var detail = error.GetBaseException().Data;
+            detail["scope_authoring_route"] = route;
+            if (primary != null) detail["scope_primary_creation_failure"] = Json.Serialize(primary);
+            throw;
+        }
+    }
+
+    Dictionary<string, object> CreateAttempt(string directory, Dictionary<string, object> control,
+        string route, ref string step)
     {
         var mode = (string)control["mode"];
         var file = "solidworks-scope-" + mode + ".SLDPRT";
         var path = Path.Combine(directory, file);
+        step = "open_part_template";
         Check(!File.Exists(path) && app.GetDocumentCount() == 0, "The scope authoring workspace is not empty");
         var doc = (IModelDoc2)app.INewDocument2(template, 0, 0, 0);
         Check(doc != null, "Could not create licensed scope part");
@@ -343,9 +455,9 @@ public sealed class SolidWorksScopeControl
             Check(doc.ForceRebuild3(false), "Could not rebuild the two uncut solids");
             var bodies = Bodies(doc);
             before = MeasureBodies(doc, bodies);
-            Cut(doc, bodies, control, ref step);
+            Cut(doc, bodies, control, route, ref step);
             step = "measure_authored_cut";
-            saved = Observe(doc, before);
+            saved = Observe(doc, before, control);
             step = "save_archive";
             var status = 0;
             var warnings = 0;
@@ -357,11 +469,12 @@ public sealed class SolidWorksScopeControl
         catch (Exception error) { failure = error; throw; }
         finally { CloseCaseDocument(doc, failure, ref step); }
         step = "hash_saved_archive";
-        return Row("mode", mode, "archive", Row("file", file, "sha256", Hash(path), "size_bytes", new FileInfo(path).Length),
+        return Row("mode", mode, "authoring_route", route,
+            "archive", Row("file", file, "sha256", Hash(path), "size_bytes", new FileInfo(path).Length),
             "before_cut", Row("bodies", before), "before_save", saved);
     }
 
-    void Reopen(string directory, Dictionary<string, object> control, ref string step)
+    void Reopen(string directory, Dictionary<string, object> control, Dictionary<string, object> intended, ref string step)
     {
         var archive = ObjectValue(control["archive"]);
         var file = "solidworks-scope-" + (string)control["mode"] + ".SLDPRT";
@@ -384,11 +497,11 @@ public sealed class SolidWorksScopeControl
                 "The exact scope control did not open cleanly and read-only (errors " + errors + ", warnings " + warnings + ")");
             var before = ObjectValue(ObjectValue(control["before_cut"])["bodies"]);
             step = "measure_reopened_cut";
-            control["after_reopen"] = Observe(doc, before);
+            control["after_reopen"] = Observe(doc, before, intended);
             step = "rebuild_reopened_cut";
-            Check(doc.ForceRebuild3(false), "The reopened scope control did not rebuild");
+            RebuildCut(doc, Feature(doc, (string)cutSpec["feature"]));
             step = "measure_rebuilt_cut";
-            control["after_rebuild"] = Observe(doc, before);
+            control["after_rebuild"] = Observe(doc, before, intended);
         }
         catch (Exception error) { failure = error; throw; }
         finally { CloseCaseDocument(doc, failure, ref step); }
@@ -699,15 +812,16 @@ public sealed class SolidWorksScopeControl
         File.Move(stage, target);
     }
 
-    Dictionary<string, object> CollectCase(string directory, Dictionary<string, object> control, string phase,
-        Dictionary<string, object> process, Dictionary<string, object> provenance)
+    Dictionary<string, object> CollectCase(string directory, Dictionary<string, object> intended,
+        Dictionary<string, object> control, string phase, Dictionary<string, object> process,
+        Dictionary<string, object> provenance)
     {
-        var mode = (string)control["mode"];
+        var mode = (string)intended["mode"];
         var step = phase == "authoring" ? "open_part_template" : "open_saved_archive";
         try
         {
-            if (phase == "authoring") control = Create(directory, control, ref step);
-            else Reopen(directory, control, ref step);
+            if (phase == "authoring") control = Create(directory, intended, ref step, process, provenance);
+            else Reopen(directory, control, intended, ref step);
             step = "publish_case_checkpoint";
             PublishCheckpoint(directory, mode, phase, control, process, provenance);
             return control;
@@ -717,6 +831,10 @@ public sealed class SolidWorksScopeControl
             var detail = error.GetBaseException().Data;
             detail["scope_case"] = mode;
             detail["scope_step"] = step;
+            if (control != null && control.ContainsKey("authoring_route"))
+                detail["scope_authoring_route"] = control["authoring_route"];
+            if (control != null && control.ContainsKey("primary_creation_failure"))
+                detail["scope_primary_creation_failure"] = Json.Serialize(control["primary_creation_failure"]);
             throw;
         }
     }
@@ -729,7 +847,7 @@ public sealed class SolidWorksScopeControl
             "The fixed scope control cases changed");
         if (priorJson == null)
         {
-            var cases = scopes.Select(item => CollectCase(directory, item, "authoring", process, provenance)).ToArray();
+            var cases = scopes.Select(item => CollectCase(directory, item, null, "authoring", process, provenance)).ToArray();
             return Row("native_processes", Row("authoring", process), "cases", cases);
         }
         var prior = ObjectValue(Json.DeserializeObject(priorJson));
@@ -741,7 +859,8 @@ public sealed class SolidWorksScopeControl
         var authored = Items(prior["cases"]).Select(ObjectValue).ToArray();
         Check(authored.Select(item => (string)item["mode"]).SequenceEqual(scopes.Select(item => (string)item["mode"])),
             "The authored scope roster differs from the requested cases");
-        foreach (var control in authored) CollectCase(directory, control, "reopen", process, provenance);
+        for (int index = 0; index < authored.Length; index++)
+            CollectCase(directory, scopes[index], authored[index], "reopen", process, provenance);
         owners["reopen"] = process;
         return prior;
     }

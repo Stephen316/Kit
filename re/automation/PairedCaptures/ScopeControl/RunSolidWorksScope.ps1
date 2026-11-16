@@ -114,6 +114,15 @@ try {
     if ($failure.Data.Contains('scope_document_close_hresult')) {
         $failureRecord['document_close_hresult'] = $failure.Data['scope_document_close_hresult']
     }
+    if ($failure.Data.Contains('scope_selection_release_hresult')) {
+        $failureRecord['selection_release_hresult'] = $failure.Data['scope_selection_release_hresult']
+    }
+    if ($failure.Data.Contains('scope_authoring_route')) {
+        $failureRecord['authoring_route'] = $failure.Data['scope_authoring_route']
+    }
+    if ($failure.Data.Contains('scope_primary_creation_failure')) {
+        $failureRecord['primary_creation_failure'] = $failure.Data['scope_primary_creation_failure'] | ConvertFrom-Json
+    }
     if ($failure.Data.Contains('scope_cleanup')) {
         $failureRecord['cleanup'] = $failure.Data['scope_cleanup'] | ConvertFrom-Json
     }
