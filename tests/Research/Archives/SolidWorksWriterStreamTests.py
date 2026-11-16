@@ -405,6 +405,19 @@ def CheckDetailMap() -> None:
     )
 
 
+# exact sidecar bytes and retained member names should agree across the eight licensed saves
+def CheckSidecars() -> None:
+    Report = LoadReport("VerifyPartSidecars.py", 8)
+    assert (
+        Report["replay_sha256"]
+        == "a0361c2da1f1182d8976fbabe0d77eaa9579dccfa6655554b622c2485ac36cd9"
+    )
+    assert (
+        Report["retained_sha256"]
+        == "f9e2742038653d48e89f4eef3bfd6f8c17846d4a3b4d8b8dd84fb78c9b0dcfb5"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
