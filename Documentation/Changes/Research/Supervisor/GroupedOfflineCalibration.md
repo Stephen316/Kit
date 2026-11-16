@@ -53,6 +53,6 @@ Both arms produced neutral-output SHA-256 `4f52325c1cef850bd63ef2ca3da80a623bad1
 The private report SHA-256 is `7facbb5d25a9b59559ed85774f489ec0762c32e43d6412050fb2627669f56b48`.
 The singleton and grouped physical-session reports have SHA-256 values `321e3519656c4b1b7d6fd9b23bbe1435d424ec9a77a33559a4a4efa111c92b9b` and `97a95b8e5150183be3d632d065e3b2958e0892fae653c0f2d23cc2aa9cb46823`.
 
-The new hosted process case exercises both arms on a generated Fusion archive through the normal calibration command.
-It verifies actual group membership and equal accepted output.
-Hosted process verification of that case remains pending.
+A second singleton-first Windows pair on integrated revision `ed0aa4bd808a642a9397c448e2a51f118dc076fe` used the same manifest. Both arms accepted all 64 archives once and reproduced the same neutral-output digest. The singleton arm used 64 sessions in 224.825 seconds. The grouped arm used ten sessions in 60.507 seconds. The command exited 0 and recorded the arms as comparable. Both arms verified clean shutdown. The private report SHA-256 is `29e7a118d68ec988c628476e874d8be613d7da7560e0b3b6f5792be1b4e27320`.
+
+The hosted process case exercises both arms on a generated Fusion archive through the normal calibration command. It verifies actual group membership and equal accepted output. The case passed in the 144-case macOS suite at PR head `f3e6b6cd` and tested merge `5d02823f`, with one Linux-only skip. [Hosted macOS process suite](https://github.com/TryUniCAD/Kit/actions/runs/43777547783/job/133007249036)
