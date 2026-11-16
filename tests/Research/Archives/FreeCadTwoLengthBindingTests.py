@@ -1,9 +1,13 @@
 from dataclasses import replace as ChangeRecord
+from importlib.util import module_from_spec as ModuleFromSpec
+from importlib.util import spec_from_file_location as SourceSpec
 from io import BytesIO as ByteStream
 from json import dumps as EncodeJson, loads as ParseJson
 from pathlib import Path as FilePath
 from subprocess import run as RunProcess
 import sys as System
+from types import ModuleType
+from typing import Callable, cast as CastValue
 
 from pytest import mark as MarkValue
 
@@ -17,18 +21,48 @@ from interchange.Records.RecordParameter import ParameterValue
 KRepoRoot = FilePath(__file__).resolve().parents[3]
 System.path.insert(0, str(KRepoRoot / "re/automation"))
 
-from FreeCadTwoLengthReadiness import (
-    BuildCase,
-    CASES as KReadinessCases,
-    ObserveCase,
-    ObserveNative,
-    ReadinessCase,
+
+# fixed repository source loading keeps research exports available without changing project import resolution
+def LoadReadiness() -> ModuleType:
+    SpecValue = SourceSpec(
+        "KitFreeCadReadiness", KRepoRoot / "re/automation/FreeCadTwoLengthReadiness.py"
+    )
+    if SpecValue is None or SpecValue.loader is None:
+        raise ImportError("the authored FreeCAD readiness source is unavailable")
+    Module = ModuleFromSpec(SpecValue)
+    System.modules[SpecValue.name] = Module
+    SpecValue.loader.exec_module(Module)
+    return Module
+
+
+# authored controls remain owned by their original source rather than copied into test fixtures
+KReadinessModule = LoadReadiness()
+
+# the shared roster is opaque because only its declared source functions interpret individual controls
+KReadinessCases = CastValue(tuple[object, ...], KReadinessModule.CASES)
+
+# typed construction keeps downstream document transformations checked across the dynamic source boundary
+KBuildCase = CastValue(Callable[[object], CadDocument], KReadinessModule.BuildCase)
+
+# public process observations retain their source implementation while exposing only their consumed contract
+KObserveCase = CastValue(
+    Callable[[object], dict[str, object]], KReadinessModule.ObserveCase
+)
+
+# native archive inspection remains shared with the independently authored readiness controls
+KObserveNative = CastValue(
+    Callable[[bytes, object], dict[str, object]], KReadinessModule.ObserveNative
+)
+
+# additional unit cases use the original control constructor without importing an unresolved module name
+KReadinessCase = CastValue(
+    Callable[[str, float, float | None], object], KReadinessModule.ReadinessCase
 )
 
 
 # each malformed case isolates one end ownership invariant at the public write boundary
 def ChangeBindings(ModeName: str) -> CadDocument:
-    Document = BuildCase(KReadinessCases[0])
+    Document = KBuildCase(KReadinessCases[0])
     Feature = Document.feature_timeline[0]
     Definition = Feature.definition
     assert isinstance(Definition, ExtrudeFeature)
@@ -92,7 +126,9 @@ def ObserveModified(ModeName: str) -> dict[str, object]:
     )
     return {
         "status": "emitted",
-        "native": ObserveNative(Output.getvalue(), ReadinessCase(ModeName, 25.4, 5.0)),
+        "native": KObserveNative(
+            Output.getvalue(), KReadinessCase(ModeName, 25.4, 5.0)
+        ),
     }
 
 
@@ -158,7 +194,7 @@ if __name__ == "__main__":
         print(
             EncodeJson(
                 {
-                    CaseValue.Name: ObserveCase(CaseValue)
+                    CastValue(str, getattr(CaseValue, "Name")): KObserveCase(CaseValue)
                     for CaseValue in KReadinessCases
                 }
             )
