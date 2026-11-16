@@ -43,8 +43,23 @@ func matchesPhysicalFileURL(_ observed: URL?, _ expected: String) -> Bool {
     return matchesPhysicalPath(observed.path, expected)
 }
 
+func absent(_ path: String) -> Bool {
+    var info = stat()
+    return path.withCString { Darwin.lstat($0, &info) == -1 && errno == ENOENT }
+}
+
+func coldEndpointIsEmpty(_ root: String) -> Bool {
+    let jobs = root + "/jobs"
+    let clear = ["fence.json", "acceptance-journal.json", "fusion-lifecycle-active.json"].allSatisfy {
+        absent(root + "/" + $0)
+    }
+    return clear && matchesPhysicalPath(jobs, jobs)
+        && (try? FileManager.default.contentsOfDirectory(atPath: jobs)) == []
+}
+
 let arguments = CommandLine.arguments
-guard [9, 10].contains(arguments.count),
+let coldStart = arguments.count == 11 && arguments[10] == "cold-start"
+guard [9, 10].contains(arguments.count) || coldStart,
       arguments[1].hasPrefix("/"),
       let wait = Double(arguments[6]),
       wait > 0, wait <= 300 else {
@@ -70,20 +85,43 @@ guard matchesPhysicalPath(path, path),
 }
 
 let requestPath = arguments[7]
-let fencePath = (requestPath as NSString).deletingLastPathComponent + "/fence.json"
+let root = (requestPath as NSString).deletingLastPathComponent
+let fencePath = root + "/fence.json"
 let request = URL(fileURLWithPath: requestPath)
 let fence = URL(fileURLWithPath: fencePath)
 guard matchesPhysicalPath(requestPath, requestPath),
-      matchesPhysicalPath(fencePath, fencePath),
       let requestData = boundedBytes(request, maximum: 1_048_576),
       digest(requestData) == arguments[8],
       let decoded = try? JSONSerialization.jsonObject(with: requestData),
-      let record = decoded as? [String: Any],
-      let fenceDigest = record["fence_sha256"] as? String else {
+      let record = decoded as? [String: Any] else {
     refuse(6, "Exact launch request custody is unavailable")
 }
+let coldChallenge: String?
+let fenceDigest: String?
+if coldStart {
+    let draftPath = root + "/cold-start-request.json"
+    guard (requestPath as NSString).lastPathComponent == "cold-start-launch.json",
+          record["scope"] as? String == "owner_fusion_cold_start_launch",
+          let challenge = record["launch_challenge"] as? String,
+          challenge.utf8.count == 48,
+          challenge.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }),
+          let draftDigest = record["owner_request_sha256"] as? String,
+          matchesPhysicalPath(draftPath, draftPath),
+          digest(URL(fileURLWithPath: draftPath), maximum: 1_048_576) == draftDigest else {
+        refuse(6, "Exact launch request custody is unavailable")
+    }
+    coldChallenge = challenge
+    fenceDigest = nil
+} else {
+    guard matchesPhysicalPath(fencePath, fencePath),
+          let expected = record["fence_sha256"] as? String else {
+        refuse(6, "Exact launch request custody is unavailable")
+    }
+    coldChallenge = nil
+    fenceDigest = expected
+}
 let dispatchDeadline: Double?
-if arguments.count == 10 {
+if arguments.count >= 10 {
     guard let deadline = Double(arguments[9]), deadline.isFinite,
           let sealedDeadline = record["dispatch_before"] as? Double,
           sealedDeadline == deadline else {
@@ -98,10 +136,13 @@ if arguments.count == 10 {
 }
 
 let workspace = NSWorkspace.shared
-if workspace.runningApplications.contains(where: {
-    !$0.isTerminated && ($0.bundleIdentifier == identifier ||
-        matchesPhysicalFileURL($0.bundleURL, path))
-}) {
+func hasCounterpart() -> Bool {
+    return workspace.runningApplications.contains(where: {
+        !$0.isTerminated && ($0.bundleIdentifier == identifier ||
+            matchesPhysicalFileURL($0.bundleURL, path))
+    })
+}
+if hasCounterpart() {
     refuse(2, "An application counterpart is already running")
 }
 
@@ -112,7 +153,15 @@ configuration.activates = false
 configuration.addsToRecentItems = false
 configuration.promptsUserIfNeeded = false
 
-guard digest(fence, maximum: 1_048_576) == fenceDigest else {
+if let coldChallenge {
+    configuration.environment = ["KIT_FUSION_OWNER_COLD_START": coldChallenge]
+    guard coldEndpointIsEmpty(root), digest(request, maximum: 1_048_576) == arguments[8] else {
+        refuse(7, "The initial application endpoint changed before launch")
+    }
+    if hasCounterpart() {
+        refuse(2, "An application counterpart is already running")
+    }
+} else if digest(fence, maximum: 1_048_576) != fenceDigest {
     refuse(7, "The retained restart fence changed before launch")
 }
 let dispatched = Date().timeIntervalSince1970

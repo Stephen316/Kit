@@ -26,6 +26,10 @@ from MacApplicationBundle import pinned_bundle
 from MacApplicationPeer import process_peer
 
 
+class StartupUnavailable(ValueError):
+    pass
+
+
 def owner_inputs(installation, lifecycle):
     require(
         sys.platform == "darwin", "Fusion owner startup provisioning requires macOS"
@@ -74,7 +78,16 @@ def prepare(args, config, installation, lifecycle_hash, executable):
     return {"status": "startup_copy_prepared", "profile_sha256": sha256(raw)}
 
 
-def observe(args, config, installation, lifecycle_hash, executable):
+def observe(
+    args,
+    config,
+    installation,
+    lifecycle_hash,
+    executable,
+    *,
+    launch_binding=None,
+    retain=None,
+):
     _, candidate = startup.profile_input(vars(protocol), args.profile)
     installed = Path(candidate["installed_bootstrap"])
     pinned = startup.verified_profile(
@@ -94,10 +107,31 @@ def observe(args, config, installation, lifecycle_hash, executable):
     )
     root = directory(directory(config["endpoint"]) / startup.MAILBOX, True)
     with owner_lock(root / "observer.lock"):
-        return request_proof(args, root, config, installation, raw, profile, peer)
+        return request_proof(
+            args,
+            root,
+            config,
+            installation,
+            raw,
+            profile,
+            peer,
+            launch_binding=launch_binding,
+            retain=retain,
+        )
 
 
-def request_proof(args, root, config, installation, raw_profile, profile, peer):
+def request_proof(
+    args,
+    root,
+    config,
+    installation,
+    raw_profile,
+    profile,
+    peer,
+    *,
+    launch_binding=None,
+    retain=None,
+):
     client = startup.executable_peer(process_peer, os.getpid())
     require(client != peer, "Fusion startup proof needs a separate owner process")
     active = root / startup.ACTIVE
@@ -113,6 +147,8 @@ def request_proof(args, root, config, installation, raw_profile, profile, peer):
         "issued_at": now,
         "deadline": now + args.wait_seconds,
     }
+    if launch_binding is not None:
+        request["launch_binding_sha256"] = launch_binding
     raw = encoded(request)
     write_new(root / f"{challenge}.request.json", raw)
     active.unlink(missing_ok=True)
@@ -122,20 +158,23 @@ def request_proof(args, root, config, installation, raw_profile, profile, peer):
         seen = json.loads(reply)
         lifecycle = file_bytes(args.lifecycle)
         verified_bundle = pinned_bundle(lifecycle, sha256(installation))
+        expected = {
+            "version",
+            "scope",
+            "startup_context",
+            "profile_sha256",
+            "request_sha256",
+            "peer",
+            "observed_at",
+            "source_revision",
+            "startup_provider_sha256",
+            "fusion_version",
+        }
+        if launch_binding is not None:
+            expected.add("launch_binding_sha256")
         require(
-            set(seen)
-            == {
-                "version",
-                "scope",
-                "startup_context",
-                "profile_sha256",
-                "request_sha256",
-                "peer",
-                "observed_at",
-                "source_revision",
-                "startup_provider_sha256",
-                "fusion_version",
-            }
+            set(seen) == expected
+            and seen.get("launch_binding_sha256") == launch_binding
             and type(seen["version"]) is int
             and seen["version"] == 1
             and seen["scope"] == startup.RECEIPT_SCOPE
@@ -165,6 +204,8 @@ def request_proof(args, root, config, installation, raw_profile, profile, peer):
             and 0 < len(seen["fusion_version"]) <= 128,
             "Fusion startup response differs from its exact owner challenge or deployment",
         )
+        if retain is not None:
+            retain(reply)
         return {
             "status": "vendor_bootstrap_startup_observed",
             "profile_sha256": request["profile_sha256"],
@@ -185,7 +226,7 @@ def wait_response(root, request, stop_at):
             return file_bytes(path)
         except FileNotFoundError:
             time.sleep(0.05)
-    raise ValueError("fresh Fusion startup proof unavailable")
+    raise StartupUnavailable("fresh Fusion startup proof unavailable")
 
 
 def main():

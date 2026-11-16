@@ -9,6 +9,7 @@
 import time
 
 from FusionRestartPairs import excludes_claim, installed as fusion_reservations
+from FusionColdStartAdmission import excludes_claim as excludes_cold_claim, installed as cold_reservations
 
 
 # Version checks keep old controller stores on their original claim path.
@@ -36,10 +37,14 @@ def runnable_jobs(ledger, pool, *, grouped=False):
             )>=a.capacity)
         )
     """
-    reserved = fusion_reservations(ledger)
-    if reserved:
-        where += f" AND NOT {excludes_claim('j')} "
-    grid_reservation = f" AND NOT {excludes_claim('grid')} " if reserved else ""
+    reservations = [
+        predicate for active, predicate in (
+            (fusion_reservations(ledger), excludes_claim),
+            (cold_reservations(ledger), excludes_cold_claim),
+        ) if active
+    ]
+    where += "".join(f" AND NOT {predicate('j')} " for predicate in reservations)
+    grid_reservation = "".join(f" AND NOT {predicate('grid')} " for predicate in reservations)
     params = {"now": time.time(), "pool": pool, "scope": pool or ""}
     limit = "" if grouped else " LIMIT 1"
     if not enabled(ledger):
