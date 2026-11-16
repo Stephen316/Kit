@@ -12,9 +12,10 @@ from collections.abc import Mapping
 from re import compile as Compile
 from xml.etree.ElementTree import Element, SubElement
 
-from PartDocProperties import USER_SECTION, UTF8_CODE_PAGE, VARIANT_NS
 from PartFraming import VersionStorage
 from PartOpc import EncodePackageXml, OFFICE_NS
+from PartSectionProperties import KUserProps, KUtf8
+from PartSimpleProperties import KVTypes
 
 KInfoXml = "docProps/ISolidWorksInformation.xml"
 KInfoNs = OFFICE_NS + "/SolidworksInformation-properties"
@@ -171,10 +172,15 @@ def EncodeInformation(Generation: int, Values: Mapping[str, str | int]) -> bytes
         raise ValueError(
             "ordinary SOLIDWORKS information properties do not match the witnessed roster"
         )
-    Root = Element("Properties", {"xmlns": KInfoNs, "xmlns:vt": VARIANT_NS})
-    Name, FormatId = USER_SECTION
-    Section = SubElement(Root, "propertySection", xmlns="", name=Name, fmtid=FormatId)
-    AddProperty(Section, 1, "", "i2", str(UTF8_CODE_PAGE))
+    Root = Element("Properties", {"xmlns": KInfoNs, "xmlns:vt": KVTypes})
+    Section = SubElement(
+        Root,
+        "propertySection",
+        xmlns="",
+        name="UserDefinedProperties",
+        fmtid=KUserProps,
+    )
+    AddProperty(Section, 1, "", "i2", str(KUtf8))
     for Pid, PropName in Names.items():
         Kind, Text = TypedValue(Pid, Values[PropName])
         AddProperty(Section, Pid, PropName, Kind, Text)

@@ -13,9 +13,9 @@ from hashlib import sha256
 import json
 from xml.etree.ElementTree import fromstring as ParseXml
 
-from PartDocProperties import VARIANT_NS
 from PartFraming import KPartGeneration
 from PartInformation import EncodeInformation, KInfoXml, KInfoNs, KMassName
+from PartSimpleProperties import KVTypes
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from convert.adapters.solidworks.Container.Container import SldprtArchive
 
@@ -34,11 +34,11 @@ def TypedMetadata(Data):
         (Child,) = list(Row)
         require(Name not in Values, "duplicated native information property name")
         Typed = Child.tag
-        if Typed == f"{{{VARIANT_NS}}}i4":
+        if Typed == f"{{{KVTypes}}}i4":
             Values[Name] = int(Child.text)
         else:
             require(
-                Typed == f"{{{VARIANT_NS}}}lpstr",
+                Typed == f"{{{KVTypes}}}lpstr",
                 "unmodeled native information property variant",
             )
             Values[Name] = Child.text or ""
