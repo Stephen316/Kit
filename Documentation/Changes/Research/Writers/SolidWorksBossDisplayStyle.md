@@ -1,0 +1,7 @@
+# Encode the normal SOLIDWORKS blind boss display style
+
+The [research codec](../../../../re/solidworks/WriterResearch/DisplayStyle.py) constructs the 94-byte appearance fragment of the generation-19000 blind boss depth display. It takes the already established archive generation, display mode 201 and condition-1 state. The supported branch has condition 1 clear. The caller establishes the blind boss display context and the offset immediately after the preceding null object. The fragment ends immediately before the four saved points.
+
+The encoder packs the constructor defaults, two empty map counts, two absent-child words, and the three signed-short and float line widths in the native field order. The reader checks every field and returns the next byte offset. It advances only a local field cursor and takes no archive object indices. Alternate generations, modes, condition-1 branches and populated or altered styles are outside this codec's scope. [Native serializers and eight pinned controls](../../../../re/solidworks/WriterResearch/DisplayStyle.md)
+
+The new codec has static verification only. A hosted boundary replay can obtain the style offset from the existing blind-boss depth walk on each receipt-pinned P03 save, compare the independently encoded fragment with the 94 native bytes, then verify the returned point offset through the existing typed display reader. Full display generation and native application acceptance remain open.
