@@ -82,16 +82,17 @@ def ReadEmptyRel(Cursor: ArchiveCursor) -> None:
 
 # an ordinary config returns its map only after the entire claimed stream is framed
 def ReadOrdinaryMap(
-    BlobValue: bytes, Generation: int | None
+    BlobValue: bytes, Generation: int | None, *, Scoped: bool = False
 ) -> tuple[ArchiveCursor, ModelMapWalk]:
     RequireArch(Generation, KConfigGen, "supported configuration generation")
-    Manager, Count = ReadRelEntry(BlobValue, LoadPartLayouts())
+    AllowedCounts = (3, 4) if Scoped else (0, 1)
+    Manager, Count = ReadRelEntry(BlobValue, LoadPartLayouts(), AllowedCounts)
     BodyStart = Manager.offset + ReadTag(BlobValue, Manager.offset).size
     Cursor = ArchiveCursor(
         BlobValue, BodyStart, Manager.Counter, Manager.Classes, Manager.Objects
     )
     ReadEmptyRel(Cursor)
-    Events, Regions = ReadModelTail(Cursor)
+    Events, Regions = ReadModelTail(Cursor, Scoped=Scoped)
     return Cursor, {
         "atom_count": Count,
         "relation_manager": Manager.offset,

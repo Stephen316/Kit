@@ -2,7 +2,7 @@ from pathlib import PurePosixPath
 
 from CmgrOpening import ReadCmgrOpening
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor, FieldCursor
 
 
 # the post-material color record is preceded by the inline RealView appearance
@@ -33,7 +33,7 @@ def ReadRealView(Cursor: FieldCursor) -> None:
 
 
 # the stored colors belong to the enclosing visual object and the body has its own end
-def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, int]:
+def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, ArchiveCursor]:
     Cursor = ReadCmgrOpening(BlobValue, Generation)
     ColorValue, _, _ = Cursor.ReadInts("<3I")
     ReadRealView(Cursor)
@@ -67,4 +67,4 @@ def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, int]:
     _ = Cursor.ReadValue("<2f")
     Paths += tuple(Cursor.ReadText() for _ in range(3))
     RequireArch(Paths, ("",) * 5, "CMgr DSPBR texture paths")
-    return ColorValue, Start, Cursor.Offset
+    return ColorValue, Start, Cursor

@@ -55,7 +55,8 @@ def read_second_profile(cursor, generation, planes, producer):
 
 def read_offset_cap(cursor, node, cap_kind, edge_kind, occurrence, classifier, edge_ids):
     face, count = ReadFaceHead(cursor, KClassRefKind, 768)
-    require(face["classifier"] == classifier, "unexpected offset boss face classifier")
+    if classifier is not None:
+        require(face["classifier"] == classifier, "unexpected offset boss face classifier")
     primary = ReadSurfaceId(cursor, CAP_CLASS, cap_kind)
     require(
         cursor.ReadInts("<2i") == (0, 0) and primary["occurrence"] == occurrence,
@@ -94,12 +95,13 @@ def read_offset_alias(cursor, cap):
     return {**face, "end": cursor.Offset, "cap_object": cap_object, "edge_objects": edge_objects}
 
 
-def read_offset_choices(cursor, node, edge_ids):
+def read_offset_choices(cursor, node, edge_ids, *, licensed=False):
     require(cursor.ReadInts("<2H") == (1, 1), "expected one offset boss chooser")
     _, _, primary = cursor.TakePointer(("moPerBodyChooserData_c",), KClassRefKind, CompactOnly=True)
     require(cursor.ReadInts("<H") == (2,), "expected two offset boss caps")
-    first, first_clock = read_offset_cap(cursor, node, KDefinitionKind, KDefinitionKind, 0, 4977, edge_ids)
-    second, second_clock = read_offset_cap(cursor, node, KClassRefKind, KClassRefKind, 1, 4891, edge_ids)
+    # The licensed saves vary the raw classifier while retaining typed surface ownership.
+    first, first_clock = read_offset_cap(cursor, node, KDefinitionKind, KDefinitionKind, 0, None if licensed else 4977, edge_ids)
+    second, second_clock = read_offset_cap(cursor, node, KClassRefKind, KClassRefKind, 1, None if licensed else 4891, edge_ids)
     bounds = ReadChoiceTail(cursor, KClassRefKind, ())
     CheckChoiceOwn(cursor, node, "moICE_c")
     require(cursor.ReadInts("<3H") == (1, 1, 0), "expected empty secondary offset boss chooser")
@@ -117,7 +119,7 @@ def read_offset_choices(cursor, node, edge_ids):
     }, [first_clock, second_clock]
 
 
-def read_offset_bounds(cursor, node, edge_ids):
+def read_offset_bounds(cursor, node, edge_ids, *, licensed=False):
     ReadFeatBase(cursor.ReadValue, cursor.ReadPoint, cursor.ReadNull, cursor.ReadText)
     require(cursor.ReadInts("<i3H") == (0, 0, 0, 0), "unexpected offset boss framing")
     require(cursor.ReadInts("<iH") == (1, 1), "expected one offset boss transfer")
@@ -126,7 +128,7 @@ def read_offset_bounds(cursor, node, edge_ids):
     cursor.ReadNull()
     atoms = cursor.ReadInts("<5i")
     require(atoms == (1, 102, 3, 0, 1), "unexpected offset boss atom framing")
-    choices, clocks = read_offset_choices(cursor, node, edge_ids)
+    choices, clocks = read_offset_choices(cursor, node, edge_ids, licensed=licensed)
     require(cursor.ReadInts("<H3i") == (0, 0, 0, 1), "unexpected offset boss partition")
     _, _, marker = cursor.TakePointer(("moPMarkRecord_c",), KClassRefKind, CompactOnly=True)
     (state,) = cursor.ReadInts("<i")
@@ -166,12 +168,12 @@ def read_offset_extents(cursor, spec, centre):
     }, token.hex()
 
 
-def read_second_boss(cursor, spec, generation, planes, file_object):
+def read_second_boss(cursor, spec, generation, planes, file_object, *, licensed=False):
     producer = spec["bodies"]["B"]["producer"]
     profile = read_second_profile(cursor, generation, planes, producer)
     node = ReadOpNode(cursor, "moICE_c", (0x40000140,), profile["object_index"], file_object)
     require(node["name"] == producer, "second scoped boss name differs from the recipe")
-    bounds, clocks = read_offset_bounds(cursor, node, profile["edge_ids"])
+    bounds, clocks = read_offset_bounds(cursor, node, profile["edge_ids"], licensed=licensed)
     end, token = read_offset_extents(cursor, spec, bounds["choices"]["centre"]["centre_and_scale"])
     cut_offset = cursor.Offset
     _, _, cut_object = cursor.TakePointer(("moProfileFeature_c",), KClassRefKind, CompactOnly=True)

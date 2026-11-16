@@ -23,15 +23,24 @@ def ReadRegionProps(Cursor: ArchiveCursor) -> None:
 
 
 # each populated inline group owns its property payload before the next group begins
-def ReadRegions(Cursor: ArchiveCursor) -> list[list[KRegionRow]]:
+def ReadRegions(
+    Cursor: ArchiveCursor, *, Scoped: bool = False
+) -> list[list[KRegionRow]]:
     RequireArch(Cursor.ReadCount(), 0, "empty modern model text-pair table")
-    _ = Cursor.ReadValue("<iB2i")
+    Header = Cursor.ReadInts("<iB2i")
     Count = Cursor.ReadCount()
-    RequireArch(Count in (0, 1, 2), True, "witnessed model region groups")
+    if Scoped:
+        RequireArch((Header, Count), ((0, 0, 0, 1), 2), "two-body model region groups")
+    else:
+        RequireArch(Count in (0, 1, 2), True, "witnessed model region groups")
     Regions: list[list[KRegionRow]] = []
     for _ in range(Count):
         ItemCount = Cursor.ReadCount()
-        RequireArch(ItemCount in (0, 1), True, "witnessed model region group size")
+        RequireArch(
+            ItemCount in ((2,) if Scoped else (0, 1)),
+            True,
+            "witnessed model region group size",
+        )
         Items: list[KRegionRow] = []
         for _ in range(ItemCount):
             BodyId, RegionId = Cursor.ReadInts("<2i")
@@ -40,9 +49,12 @@ def ReadRegions(Cursor: ArchiveCursor) -> list[list[KRegionRow]]:
         if Items:
             ReadRegionProps(Cursor)
         Regions.append(Items)
-    if Count == 2:
+    if Scoped:
+        RequireArch(Cursor.ReadInts("<2i"), (0, 0), "two-body region group return")
+    else:
+        if Count == 2:
+            _ = Cursor.ReadValue("<i")
         _ = Cursor.ReadValue("<i")
-    _ = Cursor.ReadValue("<i")
     return Regions
 
 

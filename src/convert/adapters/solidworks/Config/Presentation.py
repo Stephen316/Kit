@@ -152,12 +152,18 @@ def ReadSavedViews(Cursor: ArchiveCursor, ReadPointer: PointerReader) -> None:
 
 
 # the saved view list count governs which annotation objects can allocate
-def ReadSavedAnnots(Cursor: ArchiveCursor, ReadPointer: PointerReader) -> None:
+def ReadSavedAnnots(
+    Cursor: ArchiveCursor, ReadPointer: PointerReader, *, Scoped: bool = False
+) -> None:
     _ = ReadPointer(KClassRefKind, "suObList")
     (AnnotationCount,) = Cursor.ReadValue("<H")
-    RequireArch(AnnotationCount in (1, 2), True, "witnessed annotation view count")
+    RequireArch(
+        AnnotationCount in ((1,) if Scoped else (1, 2)),
+        True,
+        "witnessed annotation view count",
+    )
     _ = ReadPointer(KDefinitionKind, "moAnnotationView_c")
-    ReadAnnotView(Cursor, ReadPointer, ("*Front", "*Right"))
+    ReadAnnotView(Cursor, ReadPointer, ("*Top",) if Scoped else ("*Front", "*Right"))
     if AnnotationCount == 2:
         _ = ReadPointer(KClassRefKind, "moAnnotationView_c")
         ReadAnnotView(Cursor, ReadPointer, ("*Top",))
@@ -165,17 +171,17 @@ def ReadSavedAnnots(Cursor: ArchiveCursor, ReadPointer: PointerReader) -> None:
 
 # a model map is usable only after the typed presentation path reaches stream end
 def ReadModelTail(
-    Cursor: ArchiveCursor,
+    Cursor: ArchiveCursor, *, Scoped: bool = False
 ) -> tuple[list[KArchiveEvent], list[list[KRegionRow]]]:
     Events: list[KArchiveEvent] = []
     ReadPointer = Partial(ReadModelTagMut, Cursor, Events)
     ReadSavedDetail(Cursor, ReadPointer)
     ReadEnvironment(Cursor, ReadPointer)
     ReadSavedViews(Cursor, ReadPointer)
-    ReadSketchBlock(Cursor, ReadPointer)
-    ReadSavedAnnots(Cursor, ReadPointer)
+    ReadSketchBlock(Cursor, ReadPointer, Scoped=Scoped)
+    ReadSavedAnnots(Cursor, ReadPointer, Scoped=Scoped)
     ReadModelLists(Cursor, ReadPointer)
-    Regions = ReadRegions(Cursor)
+    Regions = ReadRegions(Cursor, Scoped=Scoped)
     ReadExplManager(Cursor, ReadPointer)
     ReadPartReturn(Cursor)
     RequireArch(

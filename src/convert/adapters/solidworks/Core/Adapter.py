@@ -110,7 +110,9 @@ from convert.adapters.solidworks.Assembly.Assembly import (
     decode_mate_list as DecodeMateList,
     decode_native_assembly as DecodeNativeAsm,
 )
-from convert.adapters.solidworks.Container.Archive import ContainerMo
+from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
+from convert.adapters.solidworks.Config.RootLayout import KConfigGen
+from convert.adapters.solidworks.Container.Archive import ArchiveError, ContainerMo
 from convert.adapters.solidworks.Container.Container import (
     SldprtArchive,
     SldprtFormatError,
@@ -176,6 +178,8 @@ from convert.adapters.solidworks.Core.OrdinaryRead import (
     ReadRectSupport,
 )
 from convert.adapters.solidworks.Core.RectProjection import ProjectRect
+from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
+from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
 from interchange.geometry.Models.GeometryTypes import KGeometryTypes
 from convert.adapters.solidworks.Container.Parasolid import (
     ParasolidPayload,
@@ -2031,6 +2035,22 @@ def ResolvedStream(Streams: Mapping[str, bytes], LaneValue: str) -> str:
     return KitResolvedStream if KitResolvedStream in Streams else LaneValue
 
 
+# a warning needs the reached configuration map and typed resolved system prefix
+def HasTwoBodyScope(ConfigData: bytes, Resolved: bytes, Generation: int | None) -> bool:
+    if (
+        Generation != KConfigGen
+        or len(Resolved) < 6
+        or Struct.unpack_from("<H", Resolved, 4)[0] != 23
+    ):
+        return False
+    try:
+        ConfigMap, _ = ReadOrdinaryMap(ConfigData, Generation, Scoped=True)
+        _ = ReadSysPrefix(OpenResolved(Resolved, ConfigMap, 23))
+    except (ArchiveError, Struct.error):
+        return False
+    return True
+
+
 # this definition exists because focused behavior needs one stable owner
 def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeModel:
     Keywords = Archive.require(KeywordsStream)
@@ -2085,7 +2105,20 @@ def NativePartModel(Archive: SldprtArchive, Requested: str | None) -> NativeMode
         return Model
     Generation = ContainerMo(Archive.streams)
     Ordinary = ReadRectSupport(Model, ConfigData, Resolved, Generation)
-    return ReadCutArchive(Ordinary, ConfigData, Resolved, Generation, ConfigStream, SelectedStream)
+    Decoded = ReadCutArchive(
+        Ordinary, ConfigData, Resolved, Generation, ConfigStream, SelectedStream
+    )
+    if Decoded.cut_source is not None or not HasTwoBodyScope(
+        ConfigData, Resolved, Generation
+    ):
+        return Decoded
+    return Replace(
+        Decoded,
+        diagnostics=(
+            *Decoded.diagnostics,
+            "Recognized two-body scope records. Neutral body history and feature scope remain unresolved.",
+        ),
+    )
 
 
 # this definition exists because focused behavior needs one stable owner

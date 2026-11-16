@@ -15,12 +15,19 @@ from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 
 # scene objects share a concept layout whose absent children delimit the feature fields
 def ReadSceneNode(
-    Cursor: ArchiveCursor, ReadNull: Callable[[], object], ExpectedFlags: int
+    Cursor: ArchiveCursor,
+    ReadNull: Callable[[], object],
+    ExpectedFlags: int,
+    ExpectedState: int = 0,
 ) -> None:
-    State, Flags, _, TrailValue = Cursor.ReadInts("<iIii")
+    State, Flags, LinkValue, TrailValue = Cursor.ReadInts("<iIii")
     RequireArch(
-        (State, Flags, TrailValue), (0, ExpectedFlags, 0), "ordinary scene concept"
+        (State, Flags, TrailValue),
+        (ExpectedState, ExpectedFlags, 0),
+        "witnessed scene concept",
     )
+    if ExpectedState == 1:
+        RequireArch(LinkValue, -1, "scoped block concept link")
     RequireArch(Cursor.ReadText(), "", "empty scene concept label")
     RequireArch(Cursor.ReadCount(), 0, "empty lightweight scene child list")
     _ = ReadNull()
@@ -28,9 +35,12 @@ def ReadSceneNode(
 
 # scene features must reach their inherited fields before any subclass options
 def ReadSceneFeat(
-    Cursor: ArchiveCursor, ReadNull: Callable[[], object], Flags: int
+    Cursor: ArchiveCursor,
+    ReadNull: Callable[[], object],
+    Flags: int,
+    ExpectedState: int = 0,
 ) -> None:
-    ReadSceneNode(Cursor, ReadNull, Flags)
+    ReadSceneNode(Cursor, ReadNull, Flags, ExpectedState)
     RequireArch(Cursor.ReadValue("<Hi"), (0, 0), "empty scene feature list and trailer")
     ReadFeatBase(Cursor.ReadValue, Cursor.ReadPoint, ReadNull, Cursor.ReadText)
 
@@ -73,11 +83,13 @@ def ReadEnvironment(Cursor: ArchiveCursor, ReadPointer: PointerReader) -> None:
 
 
 # the block settings must resolve to their own allocated manager
-def ReadSketchBlock(Cursor: ArchiveCursor, ReadPointer: PointerReader) -> None:
+def ReadSketchBlock(
+    Cursor: ArchiveCursor, ReadPointer: PointerReader, *, Scoped: bool = False
+) -> None:
     ReadNull = Partial(ReadPointer, KNullKind)
     Manager = ReadPointer(KDefinitionKind, "moSketchBlockMgr_c")
     _ = ReadNull()
-    ReadSceneFeat(Cursor, ReadNull, 0x40000000)
+    ReadSceneFeat(Cursor, ReadNull, 0x40000000, ExpectedState=int(Scoped))
     _ = Cursor.ReadValue("<16s")
     _ = Cursor.ReadValue("<i")
     RequireArch(
