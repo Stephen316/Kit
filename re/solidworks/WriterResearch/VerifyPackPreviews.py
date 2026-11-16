@@ -8,12 +8,12 @@
 
 """Verify preview member integration on the independently authored Boss fixture."""
 
+import json
+import sys
 from argparse import ArgumentParser
 from dataclasses import replace
 from hashlib import sha256
-import json
 from pathlib import Path
-import sys
 
 from OrdinaryConfig import BuildOrdinaryConfig
 from OrdinaryPackage import BuildOrdinaryPackage
@@ -30,6 +30,7 @@ from VerifyFreshBoss import (
     VerifyFreshBoss,
 )
 from VerifyPartPreviews import read_dib, read_png
+
 from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 KPreviewColors = ((246, 247, 249), (20, 32, 40), (148, 171, 188))
@@ -38,19 +39,20 @@ KPreviewColors = ((246, 247, 249), (20, 32, 40), (148, 171, 188))
 # compare all preexisting members and independently decode both generated images
 def VerifyPreviews(Context):
     Generation = KPartGeneration
-    Bound, Owners, Metadata = FixtureState(Context)
+    Baseline = replace(Context, PreviewColors=None)
+    Bound, Owners, Metadata = FixtureState(Baseline)
     Config = BuildOrdinaryConfig(Generation, Owners.Config)
     Resolved = BuildOrdinaryResolved(
         Generation, Config, Owners.System, Bound.Profile, Bound.Boss
     )
     Density = Owners.Config.First.DensityKgM3
     Mass = CalcBossMass(Bound.Bounds.Minimum, Bound.Bounds.Maximum, Density)
-    State = FixturePackage(Context, Owners, Metadata, Mass)
+    State = FixturePackage(Baseline, Owners, Metadata, Mass)
     Previous = BuildOrdinaryPackage(
         Generation, Owners.Config, Config, Resolved, Bound.Profile, Bound.Boss, State
     )
     require(
-        VerifyFreshBoss(Context)["archive_sha256"] == sha256(Previous).hexdigest(),
+        VerifyFreshBoss(Baseline)["archive_sha256"] == sha256(Previous).hexdigest(),
         "independent preview choice preserves the existing fixture archive",
     )
     Updated = BuildOrdinaryPackage(
