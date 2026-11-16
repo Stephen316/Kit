@@ -99,3 +99,12 @@ preserves those roles. The static branch shows how reconstruction and
 save can occur. Native equivalence remains unmeasured for this omission.
 [Historical omission](../archive/Multistream.md#4-which-streams-are-load-critical)
 [Licensed generation-19000 campaign](../../../Documentation/Changes/Research/Writers/SolidWorks/SolidWorksArchiveOmissions.md)
+
+The private P03 omission plan `52ea7c63438e9830e8b323c3305956742cfe79a0e2b51902fbd411c0369c6fa2`
+has a 32-member `VisualStates`-only omission and a 30-member omission that
+also removes the previews. Both passed offline verification. The pinned parent contains no
+`VisualStates-Dev` entry. These source-archive variants are ready for the
+separately owned licensed run described above. The independently generated
+preview-enabled Boss uses its own source, archive and measurement plan.
+[Omission preparation receipt](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6924172379)
+[Generated Boss witness](../../../Documentation/Changes/Research/Workers/SolidWorks/SolidWorksBossWitness.md)
