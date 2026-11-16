@@ -1,3 +1,4 @@
+#include <Python.h>
 #import <Cocoa/Cocoa.h>
 #include <errno.h>
 #include <fcntl.h>
@@ -10,6 +11,77 @@
 static void refuse(const char *message) {
     fprintf(stderr, "%s\n", message);
     exit(70);
+}
+
+static void setPythonText(PyObject *globals, const char *name, const char *value) {
+    PyObject *text = PyUnicode_DecodeFSDefault(value);
+    if (text == NULL || PyDict_SetItemString(globals, name, text) < 0) {
+        Py_XDECREF(text);
+        PyErr_Print();
+        refuse("unable to supply the pinned AppKit bridge source");
+    }
+    Py_DECREF(text);
+}
+
+static void startBridge(const char *home, const char *path, const char *digest) {
+    PyConfig config;
+    PyConfig_InitIsolatedConfig(&config);
+    config.install_signal_handlers = 0;
+    config.site_import = 0;
+    config.write_bytecode = 0;
+    PyStatus status = PyConfig_SetBytesString(&config, &config.home, home);
+    if (!PyStatus_Exception(status)) {
+        status = Py_InitializeFromConfig(&config);
+    }
+    PyConfig_Clear(&config);
+    if (PyStatus_Exception(status)) {
+        Py_ExitStatusException(status);
+    }
+    PyObject *main = PyImport_AddModule("__main__");
+    if (main == NULL) {
+        PyErr_Print();
+        refuse("unable to initialize the embedded Python witness");
+    }
+    PyObject *globals = PyModule_GetDict(main);
+    setPythonText(globals, "bridge_path", path);
+    setPythonText(globals, "bridge_digest", digest);
+    if (PyRun_SimpleString(
+            "from hashlib import sha256\n"
+            "with open(bridge_path, 'rb') as source:\n"
+            "    raw = source.read(65537)\n"
+            "if not 0 < len(raw) <= 65536 or sha256(raw).hexdigest() != bridge_digest:\n"
+            "    raise RuntimeError('pinned AppKit bridge bytes changed')\n"
+            "bridge = {'__name__': 'pinned_cocoa_quit'}\n"
+            "exec(compile(raw, bridge_path, 'exec'), bridge)\n"
+            "request_quit = bridge['request_quit']\n"
+            "QuitUnavailable = bridge['QuitUnavailable']\n"
+            "try:\n"
+            "    request_quit()\n"
+            "except QuitUnavailable as error:\n"
+            "    if str(error) != 'the existing AppKit application is unavailable':\n"
+            "        raise\n"
+            "else:\n"
+            "    raise RuntimeError('quit bridge accepted an absent application')\n") != 0) {
+        refuse("unable to load the pinned AppKit bridge or verify absent-app refusal");
+    }
+}
+
+static void requireWrongThreadRefusal(void) {
+    if (PyRun_SimpleString(
+            "from threading import Thread\n"
+            "errors = []\n"
+            "def try_quit():\n"
+            "    try:\n"
+            "        request_quit()\n"
+            "    except QuitUnavailable as error:\n"
+            "        errors.append(str(error))\n"
+            "worker = Thread(target=try_quit, daemon=True)\n"
+            "worker.start()\n"
+            "worker.join(2)\n"
+            "if worker.is_alive() or errors != ['normal Cocoa quit requires the main thread']:\n"
+            "    raise RuntimeError('quit bridge did not refuse the worker thread')\n") != 0) {
+        refuse("unable to verify the AppKit bridge main-thread check");
+    }
 }
 
 static BOOL publish(NSString *root, NSString *name, NSDictionary *value) {
@@ -68,6 +140,7 @@ static BOOL dispatchHeld(NSString *root) {
 @interface QuitFixture : NSObject <NSApplicationDelegate>
 @property(copy) NSString *root;
 @property(copy) NSString *attempt;
+@property(copy) NSString *bridgeDigest;
 @property BOOL acceptQuit;
 @property BOOL suppressReply;
 @property BOOL sawRequest;
@@ -86,9 +159,16 @@ static BOOL dispatchHeld(NSString *root) {
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
-    if (notification.object != NSApp ||
-        !publish(self.root, @"Ready.json", [self evidence:@"ready"])) {
+    if (notification.object != NSApp) {
         refuse("disposable AppKit startup does not identify this application");
+    }
+    requireWrongThreadRefusal();
+    NSMutableDictionary *ready = [[self evidence:@"ready"] mutableCopy];
+    ready[@"bridge_sha256"] = self.bridgeDigest;
+    ready[@"missing_application_refused"] = @YES;
+    ready[@"non_main_thread_refused"] = @YES;
+    if (!publish(self.root, @"Ready.json", ready)) {
+        refuse("disposable AppKit readiness already exists");
     }
 }
 
@@ -133,7 +213,9 @@ static BOOL dispatchHeld(NSString *root) {
     if (!dispatchHeld(self.root) || NSDocumentController.sharedDocumentController.documents.count != 0) {
         refuse("disposable quit authorization lost custody after sealing");
     }
-    [NSApp terminate:nil];
+    if (PyRun_SimpleString("request_quit()\n") != 0) {
+        refuse("the pinned AppKit bridge could not request normal quit");
+    }
     if (!self.suppressReply &&
         !publish(self.root, @"Return.json", [self evidence:@"quit_call_returned"])) {
         refuse("normal quit return receipt was already present");
@@ -162,8 +244,8 @@ static BOOL dispatchHeld(NSString *root) {
 
 int main(int argc, const char **argv) {
     @autoreleasepool {
-        if (argc != 4) {
-            refuse("disposable AppKit witness requires a private directory and case");
+        if (argc != 7) {
+            refuse("disposable AppKit witness requires a private directory, case and pinned bridge");
         }
         NSString *mode = [NSString stringWithUTF8String:argv[2]];
         BOOL accept = [mode isEqualToString:@"accept"];
@@ -172,9 +254,11 @@ int main(int argc, const char **argv) {
         if (!accept && !cancel && !lost) {
             refuse("unknown disposable AppKit quit case");
         }
+        startBridge(argv[4], argv[5], argv[6]);
         QuitFixture *delegate = [[QuitFixture alloc] init];
         delegate.root = [NSString stringWithUTF8String:argv[1]];
         delegate.attempt = [NSString stringWithUTF8String:argv[3]];
+        delegate.bridgeDigest = [NSString stringWithUTF8String:argv[6]];
         delegate.acceptQuit = accept;
         delegate.suppressReply = lost;
         delegate.deadline = [NSProcessInfo processInfo].systemUptime + 30;

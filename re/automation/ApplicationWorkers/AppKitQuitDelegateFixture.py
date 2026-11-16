@@ -2,6 +2,7 @@ import json
 import secrets
 import subprocess
 import sys
+import sysconfig
 import time
 from pathlib import Path
 from plistlib import dumps
@@ -26,15 +27,33 @@ def build_fixture(root):
         )
     )
     source = Path(__file__).with_suffix(".m")
+    include = Path(sysconfig.get_path("include"))
+    framework = sysconfig.get_config_var("PYTHONFRAMEWORK")
+    if framework:
+        library = Path(sys.base_prefix) / framework
+        search_path = library.parents[3]
+    else:
+        library = Path(sysconfig.get_config_var("LIBDIR")) / sysconfig.get_config_var(
+            "LDLIBRARY"
+        )
+        search_path = library.parent
+    assert (include / "Python.h").is_file() and library.is_file()
     compiled = subprocess.run(
         [
             "/usr/bin/clang",
             "-fobjc-arc",
             "-framework",
             "Cocoa",
+            "-I",
+            str(include),
             "-o",
             str(binary),
             str(source),
+            str(library),
+            "-Xlinker",
+            "-rpath",
+            "-Xlinker",
+            str(search_path),
         ],
         capture_output=True,
         text=True,
@@ -43,6 +62,22 @@ def build_fixture(root):
     )
     assert compiled.returncode == 0, compiled.stderr
     return binary
+
+
+def stage_bridge(root):
+    bridge = Path(__file__).resolve().with_name("MacCocoaQuit.py")
+    checkout = bridge.parents[3]
+    relative = bridge.relative_to(checkout).as_posix()
+    pinned = subprocess.run(
+        ["git", "-C", str(checkout), "show", f"HEAD:{relative}"],
+        capture_output=True,
+        check=True,
+        timeout=5,
+    ).stdout
+    assert 0 < len(pinned) <= 65536 and file_bytes(bridge) == pinned
+    staged = root / bridge.name
+    write_new(staged, pinned)
+    return staged, sha256(pinned)
 
 
 def wait_record(path, process):
@@ -66,12 +101,15 @@ def check_record(value, attempt, peer, status):
     assert value["main_thread"] is True and value["status"] == status
 
 
-def run_request(root, process, binary, attempt, case):
+def run_request(root, process, binary, attempt, case, bridge_sha256):
     observed = process_peer(process.pid)
     assert observed["executable"] == binary
     peer = {key: value for key, value in observed.items() if key != "executable"}
     ready, _ = wait_record(root / "Ready.json", process)
     check_record(ready, attempt, peer, "ready")
+    assert ready["bridge_sha256"] == bridge_sha256
+    assert ready["missing_application_refused"] is True
+    assert ready["non_main_thread_refused"] is True
     request = encoded({"attempt_id": attempt, "pid": peer["pid"]})
     with owner_lock(root / "dispatch.lock"), watch_peer(peer, binary) as monitor:
         write_new(root / "Request.json", request)
@@ -110,6 +148,9 @@ def run_request(root, process, binary, attempt, case):
         "scope": "disposable_appkit_quit_witness",
         "case": case,
         "peer": peer,
+        "bridge_sha256": bridge_sha256,
+        "missing_application_refused": ready["missing_application_refused"],
+        "non_main_thread_refused": ready["non_main_thread_refused"],
         "attempt_sha256": sha256(action_bytes),
         "delegate_sha256": sha256(decision_bytes),
         "delegate_decision": decision["status"],
@@ -126,12 +167,23 @@ def run_request(root, process, binary, attempt, case):
 
 def exercise(root, case):
     binary = build_fixture(root)
+    bridge, bridge_sha256 = stage_bridge(root)
     attempt = secrets.token_hex(16)
     process = subprocess.Popen(
-        [str(binary), str(root), case, attempt], stderr=subprocess.PIPE, text=True
+        [
+            str(binary),
+            str(root),
+            case,
+            attempt,
+            sys.base_prefix,
+            str(bridge),
+            bridge_sha256,
+        ],
+        stderr=subprocess.PIPE,
+        text=True,
     )
     try:
-        evidence = run_request(root, process, binary, attempt, case)
+        evidence = run_request(root, process, binary, attempt, case, bridge_sha256)
     finally:
         if process.poll() is None:
             (root / "FixtureStop").touch()

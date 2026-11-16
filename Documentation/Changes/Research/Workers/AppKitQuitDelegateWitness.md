@@ -6,6 +6,8 @@ The accepting delegate records its decision and normal termination notification.
 
 The private scratch directory retains the sealed attempt, delegate decision, any return receipt, and the separate exit observation. These fields distinguish consumed authorization, a normal delegate decision and an actual kernel exit. The fixture uses [the existing exact peer watcher](FusionQuitObserver.md) and the normal hosted macOS application selector.
 
+The fixture loads the [Python Cocoa bridge](MacCocoaQuitBridge.md) inside the disposable application from source pinned to the checkout. The bridge refuses an absent AppKit instance and a call from a worker thread.
+
 The intended Fusion integration still needs an approved signed-in witness for the exact installed app and its delegate. Until then the owner performs normal Fusion quit through the application and the existing observer records the exact exit.
 
 At PR head `786736c55`, all three disposable delegate cases passed on hosted macOS. The same job reported separate failures in the Python exit observer fixture and the AppKit replacement launch. [Hosted macOS process checks](https://github.com/TryUniCAD/Kit/actions/runs/43770822331/job/132986201023)
