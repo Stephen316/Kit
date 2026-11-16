@@ -1,5 +1,6 @@
 from hashlib import sha256
 
+from CmgrLinks import WriteCmgrLinks
 from CmgrPartEnd import ReadCmgrAliases, ReadCmgrPartEnd, WriteCmgrPartEnd
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
@@ -81,11 +82,12 @@ def read_base_return(cursor: ArchiveCursor, atoms: tuple[int, ...]) -> None:
 # the readback must finish at the separately measured boundaries for every family
 def read_part_evidence(
     cursor: ArchiveCursor, recipe: str, tree_ids: tuple[int, ...]
-) -> tuple[tuple[int, ...], bytes]:
+) -> tuple[tuple[int, ...], bytes, bytes]:
     linked_start, start, end, counter = PART_LOCATIONS[recipe]
     RequireArch((cursor.Offset, cursor.NextIndex), (1095, 9), "CMgr visual return map")
     cursor.Offset = linked_start
     atoms = read_linked_atoms(cursor, tree_ids)
+    saved_links = cursor.BlobValue[linked_start : cursor.Offset]
     read_base_return(cursor, atoms)
     RequireArch((cursor.Offset, cursor.NextIndex), (start, counter), "CMgr part start")
     classes, objects = cursor.Classes.copy(), cursor.Objects.copy()
@@ -106,14 +108,38 @@ def read_part_evidence(
         (KDefinitionKind, KExtObjectClass, 1, False),
         "CMgr external object after part aliases",
     )
-    return ids, cursor.BlobValue[start:end]
+    return ids, cursor.BlobValue[start:end], saved_links
+
+
+# The independent link map must grow the same archive namespace as the saved nodes.
+def verify_link_map(
+    writer: ArchiveWriter,
+    cursor: ArchiveCursor,
+    ids: tuple[int, ...],
+    tree_ids: tuple[int, ...],
+    saved: bytes,
+) -> str:
+    WriteCmgrLinks(writer, 19000, tuple(zip(ids, tree_ids, strict=True)))
+    RequireArch(
+        (writer.next_index, writer.classes),
+        (cursor.NextIndex, {name: index for index, name in cursor.Classes.items()}),
+        "CMgr emitted link allocator",
+    )
+    RequireArch(writer.build() == saved, True, "CMgr linked atom reconstruction")
+    return sha256(saved).hexdigest()
 
 
 # exact bytes and writer allocator stability must hold for both saved map orders
 def verify_part_end(
     cursor: ArchiveCursor, recipe: str, tree_ids: tuple[int, ...], asset: str
-) -> str:
-    ids, saved = read_part_evidence(cursor, recipe, tree_ids)
+) -> tuple[str, str | None]:
+    links_writer = ArchiveWriter()
+    links_writer.SetNextIndex(cursor.NextIndex)
+    links_writer.classes.update((name, index) for index, name in cursor.Classes.items())
+    ids, saved, saved_links = read_part_evidence(cursor, recipe, tree_ids)
+    links_digest = None
+    if len(tree_ids) <= 1:
+        links_digest = verify_link_map(links_writer, cursor, ids, tree_ids, saved_links)
     writer = ArchiveWriter()
     writer.SetNextIndex(cursor.NextIndex)
     writer.classes.update((name, index) for index, name in cursor.Classes.items())
@@ -125,4 +151,4 @@ def verify_part_end(
         "CMgr part write allocator",
     )
     RequireArch(writer.build() == saved, True, f"CMgr part reconstruction in {asset}")
-    return sha256(saved).hexdigest()
+    return sha256(saved).hexdigest(), links_digest
