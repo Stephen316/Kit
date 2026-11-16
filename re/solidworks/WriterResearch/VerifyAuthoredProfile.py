@@ -11,9 +11,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "authoring"))
 from AuthoredProfile import ReadAuthoredOpen, WriteAuthoredOpen
 from HeaderLogs import ReadHeaderLogs
 from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
+from PartArchive import PartArchiveWriter
 from RectangleFields import line_fields, measured_graph, point_fields
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
+from VerifyProfileSupport import verify_profile_support
 from VerifyRectAnchor import verify_anchor
 from VerifyRectAxes import verify_axes
 from VerifyRectCorners import verify_corners
@@ -63,7 +65,7 @@ def inspect_open(archive, measurement, construct):
     config_state = map_state(cursor)
     system_cursor = config_state.Cursor(stream, cursor.Offset)
     system = ReadResolvedSystem(system_cursor, generation)
-    ReadSysPrefix(cursor)
+    normal_system = ReadSysPrefix(cursor)
     origin = ReadOrigin(cursor, generation)
     require(
         system_cursor.Offset == cursor.Offset
@@ -161,6 +163,15 @@ def inspect_open(archive, measurement, construct):
         generation,
         PartArchiveWriter(map_state(cursor)) if construct else None,
     )
+    support_proof = verify_profile_support(
+        cursor,
+        profile,
+        normal_system,
+        origin,
+        model["atom_count"] == 1,
+        generation,
+        construct,
+    )
     return (
         opening,
         corner_proof,
@@ -171,6 +182,7 @@ def inspect_open(archive, measurement, construct):
         anchor_proof,
         display_proof,
         region_proof,
+        support_proof,
     )
 
 
@@ -185,11 +197,21 @@ def report(construct):
     anchor_rows = []
     display_rows = []
     region_rows = []
+    support_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners, proxy, lines, dims, axes, anchor, displays, region = (
-            inspect_open(archive, measurement, construct)
-        )
+        (
+            opening,
+            corners,
+            proxy,
+            lines,
+            dims,
+            axes,
+            anchor,
+            displays,
+            region,
+            support,
+        ) = inspect_open(archive, measurement, construct)
         rows.append((asset["sha256"], *opening))
         corner_rows.append((asset["sha256"], *corners))
         proxy_rows.append((asset["sha256"], *proxy))
@@ -199,6 +221,7 @@ def report(construct):
         anchor_rows.append((asset["sha256"], *anchor))
         display_rows.append((asset["sha256"], *displays))
         region_rows.append((asset["sha256"], *region))
+        support_rows.append((asset["sha256"], *support))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -227,6 +250,9 @@ def report(construct):
         ).hexdigest(),
         "region_replay_sha256": sha256(
             json.dumps(region_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "support_replay_sha256": sha256(
+            json.dumps(support_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(
