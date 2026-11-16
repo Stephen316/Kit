@@ -8,7 +8,7 @@ param(
     [string]$SourceRevision,
     [ValidatePattern('^[a-f0-9]{64}$')]
     [string]$QueuedRequestSha256,
-    [ValidateSet('P04', 'P01-P03')]
+    [ValidateSet('P04', 'P01-P03', 'P02')]
     [string]$ReadbackScope = 'P04'
 )
 
@@ -24,6 +24,9 @@ if ([bool]$SourceRoot -ne [bool]$SourceRevision) {
 }
 if ($QueuedRequestSha256 -and -not $SourceRevision) {
     throw 'Queued launch requires a pinned source revision.'
+}
+if ($QueuedRequestSha256 -and $ReadbackScope -eq 'P02') {
+    throw 'The P02 scope is a standalone readback.'
 }
 $repository = if ($SourceRoot) {
     (Resolve-Path -LiteralPath $SourceRoot).Path
@@ -95,6 +98,11 @@ if ($ReadbackScope -eq 'P04') {
         @{ recipe = 'P04'; capture = 'c1986308375a'; count = 11;
            sha256 = '7fd2fffa3c690998753a80cab81da2f1c2446c9fcec39574e3983a7f4345cae5' }
     )
+} elseif ($ReadbackScope -eq 'P02') {
+    $captureSets = @(
+        @{ recipe = 'P02'; capture = '4a9e35f34a39'; count = 5;
+           sha256 = 'f96892773ceadb4fa608395af20bb1dcee8690d7bb100865cc16c0920ec60b2a' }
+    )
 } else {
     $captureSets = @(
         @{ recipe = 'P01'; capture = '75b9308cf13e'; count = 6;
@@ -110,6 +118,7 @@ if ($spec.sha256 -cne '3c93e024f9fbdda50e610bda3b363bf30e8e7cdc914ef0728087befe1
     throw 'The specification or healthy control differs from the capture.'
 }
 $collector = Get-Pin "$authoringRoot/P04Readback.cs"
+$CircleCollector = Get-Pin "$authoringRoot/P02Readback.cs"
 $launcher = Get-Pin "$authoringRoot/ReadP04SolidWorks.ps1"
 Assert-Bytes $PSCommandPath $launcher
 $files = [ordered]@{}
@@ -182,12 +191,15 @@ foreach ($name in $files.Keys) {
 
 $collectorCopy = Join-Path $output 'P04Readback.cs'
 Copy-Pinned $collector $collectorCopy
+$CircleCopy = Join-Path $output 'P02Readback.cs'
+Copy-Pinned $CircleCollector $CircleCopy
 $provenance = [ordered]@{
     source_revision = $revision
     recipe = $ReadbackScope
     specification = $spec
     launcher = $launcher
     collector = $collector
+    circle_collector = $CircleCollector
     control = $control
     native_files = $files
     installed_executable_sha256 = (Get-FileHash -LiteralPath $binary.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
@@ -210,7 +222,7 @@ $planPin = @{
 $webExtensions = Join-Path ([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()) 'System.Web.Extensions.dll'
 Add-Type -Path $constants.FullName
 Add-Type -Path $interop.FullName
-Add-Type -Path $collectorCopy -ReferencedAssemblies @($interop.FullName, $constants.FullName, 'System.Core.dll', $webExtensions)
+Add-Type -Path @($collectorCopy, $CircleCopy) -ReferencedAssemblies @($interop.FullName, $constants.FullName, 'System.Core.dll', $webExtensions)
 if ($QueuedRequestSha256) {
     Write-NewJson (Join-Path $output 'native-ready.json') ([ordered]@{
         version = 1
@@ -247,6 +259,7 @@ foreach ($capture in $capturePins.Values) {
     Assert-Bytes (Join-Path $repository $capture.measurements.path) $capture.measurements
 }
 Assert-Bytes $collectorCopy $collector
+Assert-Bytes $CircleCopy $CircleCollector
 Assert-Bytes $provenancePath $planPin
 
 $reportPath = Join-Path $output 'measurements.json'
@@ -260,6 +273,8 @@ Write-NewJson $reportPath ([ordered]@{
 $observed = @($run.observations | Where-Object { $_.status -ceq 'observed' })
 $verified = if ($ReadbackScope -eq 'P04') {
     @($observed | Where-Object { $_.face_verified_before_and_after_rebuild })
+} elseif ($ReadbackScope -eq 'P02') {
+    @($observed | Where-Object { $_.circle_verified_before_and_after_rebuild })
 } else {
     @($observed)
 }
@@ -274,7 +289,11 @@ $receiptValue = [ordered]@{
     measurements_sha256 = (Get-FileHash -LiteralPath $reportPath -Algorithm SHA256).Hash.ToLowerInvariant()
     observed_files = $observed.Count
 }
-$countField = if ($ReadbackScope -eq 'P04') { 'supporting_faces_verified' } else { 'principal_profiles_observed' }
+$countField = switch ($ReadbackScope) {
+    'P04' { 'supporting_faces_verified' }
+    'P02' { 'circle_bindings_verified' }
+    'P01-P03' { 'principal_profiles_observed' }
+}
 $receiptValue.Add($countField, @($verified).Count)
 Write-NewJson (Join-Path $output 'receipt.json') $receiptValue
 if ($status -cne 'observed') {
