@@ -42,3 +42,9 @@ All 25 controls contain `Design Journal.doc`, time word `0`, and state word `0`.
 Two independently supplied attachment values produced notebook spans of 85 and 45 bytes. The inputs were `("A12 independent text", 173, 4)` and `("", -1, 0)`. Their SHA-256 digests were `4661da3e43074e7858a922151c86c40882bbfa60225ae090e1c0342dbaeb2628` and `718eec38fa3be7fbba7e173b26fb3fbce4e65e38a7f28299354af67bd2e6460d`. Both decoded to the supplied values and consumed the complete fragment. This measures the subrecord codec. Native field semantics and application acceptance remain unmeasured for the constructed values.
 
 The next Definition probe starts with the caller that resumes after the notebook. Recover the width, owner, and initializer of the remaining four-byte difference there before emitting a generation-19000 Definition stream.
+
+## Definition stream dispatch
+
+The pinned 2026 `slduiu.dll` above contains a wide `Definition` stream name at `0x4a649c58`. In the routine beginning at `0x49733490`, the path at `0x497342bd` opens that stream, obtains its `su_CArchive` through the imported `suFileStorage::getArchive`, installs the document's `ModelContext`, and dispatches the document serializer at vtable offset `0x1008` (`0x49734358`). The primary `uiModelDoc_c` RTTI locator at `0x4a91b708` gives table `0x4a652b90`. Slot 513 points to the exported `uiModelDoc_c::Serialize(su_CArchive&)` at `0x49710220`. This pins a stream-to-document entry for the next call trace. The inner call chain from that entry through the notebook and the generation-19000 tail remains open.
+
+The same build's `sldmodu.dll` (SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`) also uses a narrow `Definition` key at `0x4d257ad8`. That key is passed through `su_DBKey`; the object written with it uses the exported `moSketchBlockDef_c` runtime class at `0x4db02630`. This is a separate sketch-block serializer.
