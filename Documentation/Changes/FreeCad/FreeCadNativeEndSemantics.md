@@ -2,6 +2,7 @@
 
 The native `Part::Extrusion` reader now takes `Symmetric` and `Reversed` from their saved Boolean properties through the existing property reader.
 Equal forward and reverse distances no longer imply symmetry, and an explicit reversal is retained.
+The [saved-flag gotcha](../../Gotchas/Conversion/FreeCad/NativeExtrusionFlags.md) records the previous inference and its consequences.
 Missing flags retain their existing false defaults.
 
 The [official FreeCAD 1.0.2 implementation](https://github.com/FreeCAD/FreeCAD/blob/1.0.2/src/Mod/Part/App/FeatureExtrusion.cpp#L121-L130) treats the reverse length as an additional extrusion against the direction.

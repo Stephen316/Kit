@@ -31,3 +31,10 @@ No local tests, collection, readiness commands or CAD application runs were exec
 Hosted process execution, independent FreeCAD edits, rebuild, save and fresh reopen remain required.
 This implementation repairs dependency emission; it does not establish native acceptance or relax global qualification.
 The historical readiness note remains the observation of its original source checkpoint.
+
+The [owning operator reported an unchanged readiness replay](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6927257394) from a clean exact checkout at `abfba60a06a60cbc9dc6f0fe1ee1b9feb4a13baf` using CPython 3.14.6.
+The observer SHA-256 remained `5f5101df1fef3f1ac734f1f4baf61ef76b1e3bba8e182d83cf8ba2772d36b882`.
+The report SHA-256 was `d931d9337af0789fca5b9db271677ee9a6c74a5ade070a65d25a481f4189a59a`, with stdout SHA-256 `e9b7bbe28b52a1f0a3a996003f053f95e13cbdfc9c956e80d2421a2f280aa55f`.
+The four two-ended controls retained both correct owner expressions with zero missing or crossed links.
+The symmetric control retained its sole total driver, and the open control refused with zero bytes.
+These are operator-reported offline observations at that revision; native load, edits, rebuild, save and fresh reopen remain required.

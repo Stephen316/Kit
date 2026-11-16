@@ -52,6 +52,11 @@ The native reader maps object declarations, properties, sketches, and feature de
 The protocol tables identify recognized type families.
 A recognized type identifier does not prove complete reconstruction of every instance.
 
+For native `Part::Extrusion`, the reader preserves the saved `Symmetric` and `Reversed` flags.
+Equal forward and reverse distances do not imply symmetry.
+Both raw distances and the original direction remain available, including an inactive reverse distance in symmetric mode.
+See [native extrusion end semantics](../../Changes/FreeCad/FreeCadNativeEndSemantics.md) for the retained termination convention, native-only process coverage and acceptance limits.
+
 | Component     | Responsibility                                    |
 | ------------- | ------------------------------------------------- |
 | `Archive.py`  | Archive resources and document representation     |
