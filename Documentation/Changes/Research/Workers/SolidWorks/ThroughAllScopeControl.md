@@ -6,6 +6,8 @@ The SOLIDWORKS author selects the sketch and, for each explicit case, appends th
 
 The author clears inherited selections and selects the created sketch feature directly. The selection check retains exact counts and can compare the document's persistent references when SOLIDWORKS supplies distinct object wrappers. [Feature selection](https://help.solidworks.com/2022/english/api/sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IFeature~Select2.html), [Persistent object equality](https://help.solidworks.com/2025/english/api/sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModelDocExtension~IsSamePersistentID.html)
 
+When the initial automatic creation leaves the flag clear, the author sets the requested policy on the native extrusion definition and rebuilds. The before-save and reopened measurements still require the exact flag and independently measured affected bodies. [Automatic feature scope](https://help.solidworks.com/2025/english/api/sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IExtrudeFeatureData2~AutoSelect.html)
+
 Run the author and collector from an exact checkout on the licensed SOLIDWORKS `34.4.1.1011` Windows desktop with the application closed. Choose an unused output directory outside the checkout.
 
 ```powershell
