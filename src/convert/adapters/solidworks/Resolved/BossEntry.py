@@ -1,3 +1,5 @@
+from typing import TypedDict
+
 from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
@@ -19,6 +21,16 @@ from convert.adapters.solidworks.Resolved.BossEnd import (
 )
 from convert.adapters.solidworks.Resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.Resolved.PlaneAtom import ReadAtomMaps
+
+
+# the first body introduces its document reference after the resolved operation name
+class OpFields(TypedDict):
+    offset: int
+    object_index: int
+    name: str
+    native_feature_id: int
+    profile_object: int
+    profile_ref_offset: int
 
 
 # the operation must select the reached profile and identify its native feature slot
@@ -60,6 +72,27 @@ def ReadOpNode(
     *,
     KindValue: str = KDefinitionKind,
 ) -> OpNode:
+    Fields = ReadOpFields(Cursor, ClassName, Flags, ProfileObject, KindValue=KindValue)
+    return {
+        "offset": Fields["offset"],
+        "object_index": Fields["object_index"],
+        "name": Fields["name"],
+        "native_feature_id": Fields["native_feature_id"],
+        "profile_object": Fields["profile_object"],
+        "file_ref_object": FileObject,
+        "profile_ref_offset": Fields["profile_ref_offset"],
+    }
+
+
+# profile ownership is checked before the operation may bind its document reference
+def ReadOpFields(
+    Cursor: ArchiveCursor,
+    ClassName: str,
+    Flags: tuple[int, ...],
+    ProfileObject: int,
+    *,
+    KindValue: str = KDefinitionKind,
+) -> OpFields:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer((ClassName,), KindValue, CompactOnly=True)
     _ = Cursor.TakePointer(("moNodeName_c",), KClassRefKind, CompactOnly=True)
@@ -77,7 +110,6 @@ def ReadOpNode(
         "name": NameValue,
         "native_feature_id": FeatureId,
         "profile_object": Profile,
-        "file_ref_object": FileObject,
         "profile_ref_offset": ProfileRef,
     }
 
