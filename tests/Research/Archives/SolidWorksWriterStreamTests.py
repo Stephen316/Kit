@@ -8,7 +8,11 @@ from typing import cast as CastValue
 
 
 # each research record verifier runs with its own pinned archive evidence
-def LoadReport(ProgramName: str, CaptureCount: int = 25) -> dict[str, object]:
+def LoadReport(
+    ProgramName: str,
+    CaptureCount: int = 25,
+    CaptureRevision: str = "466dcb172dfa3803463e07ccde963ba01671d200",
+) -> dict[str, object]:
     RootPath = FilePath(__file__).resolve().parents[3]
     Program = RootPath / "re/solidworks/WriterResearch" / ProgramName
     Process = Subprocess.run(
@@ -21,7 +25,7 @@ def LoadReport(ProgramName: str, CaptureCount: int = 25) -> dict[str, object]:
     )
     assert Process.returncode == 0, Process.stderr
     Report: dict[str, object] = JsonCodec.loads(Process.stdout)
-    assert Report["capture_revision"] == "466dcb172dfa3803463e07ccde963ba01671d200"
+    assert Report["capture_revision"] == CaptureRevision
     Captures = Report["captures"]
     assert isinstance(Captures, dict)
     assert len(CastValue(dict[str, str], Captures)) == CaptureCount
@@ -137,6 +141,18 @@ def CheckBossWhole() -> None:
     assert (
         Report["boss_replay_sha256"]
         == "b90d5aa693f33eed082fc9250cf78bb79f54a545a22859f67ce714041eb74eab"
+    )
+
+
+# paired discovery keeps its admission refusal while an authored neutral graph maps
+def CheckBossInput() -> None:
+    Report = LoadReport(
+        "VerifyBossInput.py", 8, "89c25945f5833ad9c3a1c6c683df510b5702dd54"
+    )
+    assert Report["authored_cases"] == [[3, 37.5, 18.25, 13.5], [1, 42.25, 17.5, -8.75]]
+    assert (
+        Report["paired_sha256"]
+        == "f08dc5bb81e474b536611b4c96d1f58f42d1fc642e8c6725730c2cbbe8bda648"
     )
 
 
