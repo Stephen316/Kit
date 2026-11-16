@@ -120,6 +120,15 @@ def CheckConfigMat() -> None:
     )
 
 
+# the same typed writer must reach both native split boundaries with its live map
+def CheckConfigSplits() -> None:
+    Report = LoadReport("VerifyConfigSplitEdges.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "4dc6ac3465879123e0271e20a88ac585652414ba86f531243b37a442c52292c3"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")

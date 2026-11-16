@@ -31,6 +31,8 @@ The [hosted verification](../../WriterResearch/VerifyConfigResolvedFraming.py) r
 
 `BuildConfigArchive` writes the root tag, records the implicit external object and runs typed owners of the first and second split on one writer. It derives each length from bytes that its own callback produced. The result includes the full archive state with the bytes. `BuildResolvedArchive` resumes that state in a separate buffer. It writes one entry per supplied outer constructor, including aliases, and derives the root count from that list. A constructor writes its nested children in the same call. The tail serializes after the list and uses the same allocator.
 
+The [ordinary split constructors](../../WriterResearch/ConfigSplitEdges.md) now supply the complete first callback and the initial atom-manager state for the second.
+
 `PartArchiveWriter` tracks both `BeginObject` and `begin_object`, checks alias ownership, and exposes `ReserveObject` for proven native insertions without tags. Passing its state to another writer takes a copy of the class and object maps. Snapshot validation rejects untracked index gaps and overlapping ownership.
 
 This research code composes the framing around explicit typed callers. Complete Config-0 and ResolvedFeatures record construction, full document packaging, and an independent native fresh-process acceptance run remain pending.

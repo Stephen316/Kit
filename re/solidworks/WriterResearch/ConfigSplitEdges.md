@@ -1,0 +1,32 @@
+# Config-0 split composition for ordinary parts
+
+`WriteFirstSplitBody` is the first body callback for [the Config-0 framer](../authoring/PartStorage/ConfigResolvedArchive.md). The framer writes the model root and measures the actual callback's bytes. The callback uses the same allocator for visual properties, units, model presentation, settings and hatch, material and density, and the model data that completes the split.
+
+`WriteSecondSplitStart` starts the second callback. The caller supplies the number of atoms it will construct and receives their IDs in allocation order. The supported cases have either no atom or one Boss atom. The atom count differs from the archive map's next slot and from the count of resolved features.
+
+## Native writers
+
+References use RVAs in the pinned 34.4.1.1011 [sldmodu and swccu binaries](../records/P04ArchiveWalk.md#inputs). The part's virtual `Serialize` at `sldmodu+0x10e7260` calls entries +0x4b8 and +0x4c0 of the part's vtable. They open split modes 1 and 2 at `+0x10ee20f` and `+0x10f5074`.
+
+| Record | Stored fields and source |
+| --- | --- |
+| Model data after material | The part constructor assigns the new `uoModelData_c` object at `+0x105caa5`. It writes the pointer immediately after the material through the general archive object operator at `+0x10ee61c`. The data constructor at `+0x1277c90` initializes the scene pointer and ignore-feature-color field to zero. Virtual `Serialize` writes those fields at `+0x1278240` and `+0x127822f` on the ordinary archive route. |
+| Remaining first-split fields | The part invokes the body visualization writer at `+0x10ee62c`. That writer files separate collection counts at `+0x10ff149` and `+0x10ff226`. The part files the weldment predicate at `+0x10ee658`, then writes the modeled settings at +0x1614, +0x1618 and +0x161c through `+0x10eeafc`, `+0x10eeb52` and `+0x10eeba8`. The part constructor clears all three with the two qword stores at `+0x105c5db` and `+0x105c5e2`. The last handler, at `+0x10eebfb`, stores the ordered key-pair map initialized empty at `+0x105c988`. |
+| Separately serialized feature list | `moConcept_c::SerializeResolvedData` selects the separate stream at `+0x1039292`, empties its inline list temporarily and serializes it at `+0x10392dc`. Virtual `moNodeList_c::Serialize` emits the compact count and its zero return dword at `+0x103764b` and `+0x1037749`. |
+| Configuration atoms | The model dispatches the atom manager's virtual writer at `+0x10f19ce`. Its constructor seeds the ID counter at 100 at `+0xbacc19`. Allocation preincrements it at `+0xbafde2`–`+0xbafdea`. The manager writes its counter and live entry count at `+0xbaea73` and `+0xbaea80` and then serializes the atom objects on the same archive. |
+
+The first writer supports the observed null scene, empty body appearance lists, ordinary non-weldment flags and empty ordered map. The second writer opens the empty inline feature list used when the actual feature list is in the separate ResolvedFeatures stream.
+
+## Receipt-pinned coverage
+
+All six P01 and eight P03 saves at capture revision `466dcb172dfa3803463e07ccde963ba01671d200` carry a 53-byte first-split return beginning with the schema-1 model data definition. The first split ends with next archive slot 55 in P01 and 57 in P03. The 14-byte second-split opening allocates no archive slots. Its final two dwords are `100, 0` for P01 and `101, 1` for P03. The typed atom body in each P03 save independently confirms ID 101.
+
+The hosted verifier constructs the entire first split in memory. It compares nongeometry bytes directly and the generated box against independently measured world bounds through the existing `1e-15` metre model-frame tolerance. It compares both maps with the independent model-entry walker. It builds the second-split opening separately and checks its exact bytes, unchanged archive map and the upcoming record's ID.
+
+The read-only replay SHA-256 is `4dc6ac3465879123e0271e20a88ac585652414ba86f531243b37a442c52292c3`. The digest covers compact sorted-key JSON keyed by receipt SHA-256. Each value stores the first-split byte length, model data start, next archive slot, first atom location and assigned atom IDs.
+
+## Remaining second-split inputs
+
+The next callback actions own the optional `moAtom_c` body, atom-manager return, ghost ID manager and relation manager. P01 has no atom body. Each P03 atom occupies 100 bytes including its tag. Both profiles have another 44 bytes from the atom list return to the relation-manager definition. The ghost list is separately owned and has one entry even in P01. Later records cover detail definitions, environment, views, blocks, annotations, model lists, region ownership, explode state and the part return. The independent ordinary reader reaches the complete stream through `ReadModelTail`. Each of these records still needs its own constructive input before the complete second body callback can be used.
+
+The comparison was in memory. Complete Config-0 generation and fresh-process native acceptance remain pending.
