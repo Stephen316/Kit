@@ -60,3 +60,10 @@ It binds independently authored documents, checks a report above 1 MiB survives 
 The existing Archives workflow selection includes this path.
 Local tests and collection were not run; hosted process execution remains required.
 This step does not run native applications or establish any CAD acceptance criterion.
+
+Stephen316's [private Windows controller operation](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6927190826) at `7317092e37f52d6bfc3f26449e2b16a5bd82e86b` completed three strict P03 reader jobs and two comparisons on their first attempts.
+The accepted matched-size report SHA-256 `d5b30e651e0e83357e91db48876e845647c0625fa891ba214dc3d32f969eabd4` records `different` with 24 matches.
+The deliberate width-edit report SHA-256 `a664d7801d591cc96703bafe017eadeaf4b81f70b688a5784e4635baa00443c5` records `ambiguous` with four ambiguous correspondences.
+The operator reopened and hash-checked all five result/receipt pairs and eight artifacts through the controller; the source revision is preserved in this PR's accepted ancestry.
+This is an attributed exact-version artifact-custody observation, with private originals retained by the operator.
+Current-head hosted checks, independent semantic qualification and native acceptance remain required.

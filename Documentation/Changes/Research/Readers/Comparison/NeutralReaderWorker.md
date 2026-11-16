@@ -66,3 +66,11 @@ It invokes the real registry schema, controller, supervisor and both worker proc
 It checks source/fingerprint seals, retained metadata and unresolved evidence, durable artifact selectors into semantic comparison and cleanup.
 Independent worker subprocess cases refuse changed source bytes, changed fingerprints, missing pins and an independently authored embedded Kit container.
 Hosted process execution remains required.
+
+Stephen316 [reported a private Windows controller operation](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6927190826) at exact revision `7317092e37f52d6bfc3f26449e2b16a5bd82e86b`, now preserved in this PR's accepted ancestry.
+Three strict P03 reader jobs and two dependent comparisons completed in 44.05 seconds, each on its first attempt, with zero stale jobs or orphans.
+The operator reopened and hash-checked all five accepted result/receipt pairs and eight output artifacts through the controller.
+Each comparison used the exact accepted SOLIDWORKS document and its assigned Fusion document, with full saved metadata and the unverified qualification fields retained.
+The private summary SHA-256 is `eca1dcd25e36b3384e405576b750a25f7f9adfedd65c48de280709d0ab301cea`.
+This source-bound operator observation does not replace current-head hosted checks, independent semantic qualification, native application acceptance or the two-week pilot.
+P02 and P05 were outside the operation.
