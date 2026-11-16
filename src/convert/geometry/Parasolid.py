@@ -39,6 +39,7 @@ from interchange.brep.surfaces.BrepSurfaces import (
     TorusSurface,
 )
 from interchange.brep.topology.BrepModel import BrepModel
+from convert.geometry.PlanarLoopRoles import ReadPlanarRoles, SetPlanarRoles
 from convert.geometry.TopoMapsView import TopoMapsView  # lgtm[py/unsafe-cyclic-import]
 from interchange.brep.topology.BrepTopology import (
     BrepBody,
@@ -354,9 +355,16 @@ def ValidateSupport(Model: BrepModel) -> None:
             "Parasolid B-rep writing does not support degenerate edges"
         )
     Loops = {LoopDataData.id: LoopDataData for LoopDataData in Model.loops}
+    PlanarOuters = ReadPlanarRoles(Model)
     for FaceDataData in Model.faces:
         Outer = tuple((Loops[LoopId].outer for LoopId in FaceDataData.loop_ids))
-        if Outer != (True,) + (False,) * (len(FaceDataData.loop_ids) - 1):
+        KnownOuter = PlanarOuters.get(FaceDataData.id)
+        if KnownOuter is not None:
+            if Outer != tuple(LoopId == KnownOuter for LoopId in FaceDataData.loop_ids):
+                raise ParaWriteError(
+                    f"Parasolid B-rep face {FaceDataData.id} loop roles disagree with planar containment"
+                )
+        elif Outer != (True,) + (False,) * (len(FaceDataData.loop_ids) - 1):
             raise ParaWriteError(
                 f"Parasolid B-rep face {FaceDataData.id} requires its first loop to be the only outer loop"
             )
@@ -7451,19 +7459,21 @@ def BuildPartModel(
     FaceUses, Shells, ShellUses, Regions, Bodies = BuildTreeModel(
         Tables, OwnerFaces, FaceLoops, FaceRanks
     )
-    return BrepModel(
-        curves=Curves,
-        surfaces=Surfaces,
-        vertices=Vertices,
-        edges=Edges,
-        coedges=Coedges,
-        loops=Loops,
-        faces=Faces,
-        face_uses=FaceUses,
-        shells=Shells,
-        shell_uses=ShellUses,
-        regions=Regions,
-        bodies=Bodies,
+    return SetPlanarRoles(
+        BrepModel(
+            curves=Curves,
+            surfaces=Surfaces,
+            vertices=Vertices,
+            edges=Edges,
+            coedges=Coedges,
+            loops=Loops,
+            faces=Faces,
+            face_uses=FaceUses,
+            shells=Shells,
+            shell_uses=ShellUses,
+            regions=Regions,
+            bodies=Bodies,
+        )
     )
 
 
@@ -7986,7 +7996,7 @@ def MakePartEdges(
     return tuple(Edges)
 
 
-# outer loop discovery selects the first dimensional ring for every face
+# native order supplies roles when geometry cannot prove a more specific boundary
 def FindOuterLoops(
     FaceLoops: Mapping[int, Sequence[tuple[int, Sequence[int]]]], Tables: RecordTables
 ) -> set[int]:

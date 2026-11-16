@@ -18,6 +18,7 @@ from interchange.geometry.models.Selection import Selection
 from interchange.geometry.models.Sketch import Sketch, SketchRelation
 from interchange.geometry.models.VectorSpace import SpaceVector
 from interchange.records.RecordParameter import Parameter
+from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
 
 
 # each command compares saved archive records with pinned independent application measurements
@@ -1085,6 +1086,13 @@ def AssertSwMass(
         "edit-cut_depth_mm-5": 5,
         "termination-through-all": DepthValue,
     }.get(Variant, 4)
+    assert Document.brep is not None
+    ThroughAll = Variant == "termination-through-all"
+    GrossArea = WidthValue * HeightValue
+    HoleArea = CutWidth * CutHeight
+    VerifySwLoops(Document.brep, GrossArea, HoleArea, 2 if ThroughAll else 1)
+    if ThroughAll:
+        VerifySwExport(Document.brep, GrossArea, HoleArea)
     Gross = WidthValue * HeightValue * DepthValue
     Removed = CutWidth * CutHeight * CutDepth
     Volume = Gross - Removed
