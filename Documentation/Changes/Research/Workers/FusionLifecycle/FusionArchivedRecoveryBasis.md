@@ -15,6 +15,7 @@ admission for a native launch or another A03 attempt. Startup and a fresh
 main-thread healthy control need a separately authenticated replacement.
 The current initial startup provider uses a fixed commissioning receipt,
 and the ordinary restart provider requires accepted Phase A output.
+[Archive-scoped replacement preflight](FusionArchiveReplacementPreflight.md)
 
 The hosted macOS fixture commissions a disposable AppKit process and
 observes its exact exit. The normal supervisor then produces and archives

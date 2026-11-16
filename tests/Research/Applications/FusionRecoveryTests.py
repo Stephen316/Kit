@@ -13,6 +13,10 @@ from tests.Research.Applications.FusionColdStartTests import (
 )
 from tests.Research.Applications.FusionColdWatch import AwaitStatus, RunOwner
 from tests.Research.Applications.FusionPhaseQueueTests import RunFusionTool
+from tests.Research.Applications.FusionRecoveryPreflight import (
+    RefuseNewEpoch,
+    VerifyPreflight,
+)
 from tests.Research.SupervisorClient import SessionHost
 
 
@@ -37,7 +41,9 @@ def CheckRecovery(TmpPath: FilePath) -> None:
             Exited = AwaitStatus(LogPath, "commissioned_native_exit_observed")
             assert Exited["disposition"] == "outside_owner_scheduled_quit"
             ExitPath = Dispatch.Endpoint / f"initial-native-exit-{AdmissionHash}.json"
-            AwaitArchive(Dispatch, Harness, PhaseName, LogPath, ExitPath)
+            Verified = AwaitArchive(Dispatch, Harness, PhaseName, LogPath, ExitPath)
+            PreflightPath = VerifyPreflight(Dispatch, LogPath, Verified)
+        RefuseNewEpoch(Dispatch, Harness, Flags, PhaseName, PreflightPath)
     finally:
         _ = RunFusionTool(
             KFixtureTool, ["cleanup", str(Dispatch.RootPath), str(Dispatch.Endpoint)]
@@ -51,7 +57,7 @@ def AwaitArchive(
     PhaseName: str,
     LogPath: FilePath,
     ExitPath: FilePath,
-) -> None:
+) -> dict[str, object]:
     Withheld = ExitPath.with_suffix(".withheld")
     _ = ExitPath.rename(Withheld)
     try:
@@ -68,6 +74,7 @@ def AwaitArchive(
         LogPath, "phase_a_probe_archived", "sealed_for_replacement_preflight"
     )
     VerifyBasis(Dispatch, Harness, PhaseName, ExitPath, Verified)
+    return Verified
 
 
 # only the original attempt and its exact request may appear in the joined record
