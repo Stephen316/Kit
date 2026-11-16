@@ -74,6 +74,12 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
             id="paired-p01-p03-public-history",
         ),
         Pytest.param(
+            "re/automation/FusionCircularDimensionEvidence.py",
+            (),
+            "d9c75f49d36ae63e6682b7f8539d9a44caeffc205f608a6a98b5e43281a01c39",
+            id="fusion-circular-dimension-discovery",
+        ),
+        Pytest.param(
             "re/automation/FusionCutProfileEvidence.py",
             (),
             "4ac34b4dbb4b92473aab572336e0ef6402634b0c534f9c6a502b81cc9575b75c",
