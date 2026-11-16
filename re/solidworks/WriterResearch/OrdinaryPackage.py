@@ -12,6 +12,7 @@ from HeaderSelf import HeaderSelf
 from HeaderTail import HeaderTail, WriteModelHdr
 from OrdinaryConfig import OrdinaryConfig, OrdinaryConfigArchive
 from OrdinaryProfile import OrdinaryProfile
+from PackPartPreviews import BuildPreviewMembers
 from PackageIndices import EncodePackageIndices, MakePartIndex, PackageXmlState
 from PartConfigHeaderDb import ConfigExchange, EncodeConfigHeaderDb, KConfigDb
 from PartContentBinding import EncodePackageContent, PackageContent
@@ -28,6 +29,7 @@ from PartOle import EncodePartOle, OleInventory
 from PartOpc import EncodePartOpc
 from PartOpenTime import OPEN_TIME_STREAM, EncodePartOpenTime, PartOpenTime
 from PartPmiDatabase import EncodePmiDb, KPmiDb, PmiDimensions, PmiIndex
+from PartPreview import Palette
 from PartProperties import (
     CUSTOM_PROPERTIES,
     EncodePartProperties,
@@ -81,6 +83,7 @@ class PackageState:
     Objects: ObjectExchange
     Pmi: PmiIndex
     Content: PackageContent
+    PreviewColors: Palette | None = None
 
 
 # CMgr reuses the same atom, file identity, and bounds carried by the generated part.
@@ -219,4 +222,8 @@ def BuildOrdinaryPackage(
             ),
         }
     )
+    if State.PreviewColors is not None:
+        Streams.update(
+            BuildPreviewMembers(Generation, Profile, Boss, State.PreviewColors)
+        )
     return BuildVersionedArchive(Generation, Header.SelfReference.ModifiedTime, Streams)

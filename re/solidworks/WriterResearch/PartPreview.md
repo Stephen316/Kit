@@ -33,8 +33,7 @@ per pixel and a top-down 640 × 480 raster with four RGBA8 bytes per pixel.
 Palette indices 0, 1 and 2 match the caller's color order. The RGBA image
 has alpha 255, and the wrapper can encode the index raster with the same
 caller colors. The renderer has no archive reads, uses no saved pixels,
-and leaves the separately owned image wrappers and package integration
-open. [Renderer](PartPreview.py), [wrapper handoff](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6924776824)
+and feeds the independently implemented image wrappers during optional package construction. [Renderer](PartPreview.py), [wrapper handoff](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6924776824)
 
 ## Sealed geometry and raster checks
 
@@ -64,6 +63,4 @@ the geometry indices. Six negative controls refuse an unsupported
 datum, a diagonal perimeter, zero or nonfinite depth, an unsupported
 generation, and an ambiguous palette. [Verifier](VerifyPartPreview.py)
 
-The replay checks fresh pixels and measured geometry. Encoding and native
-acceptance of a substituted preview pair in a generated part require
-separate evidence.
+The package replay also checks wrapper decoding and unchanged geometry members. Licensed acceptance of the generated whole part remains open. [Package integration](../../../Documentation/Changes/Research/Writers/SolidWorks/Metadata/SolidWorksPreviewStreams.md)
