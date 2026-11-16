@@ -81,6 +81,17 @@ def CheckConfigUnit() -> None:
     )
 
 
+# both optional curvature branches must retain their native model and plane allocation
+def CheckConfigView() -> None:
+    Report = LoadReport("VerifyConfigView.py", 14)
+    assert Report["constructed"] is True
+    assert Report["curvature_records"] == 8
+    assert (
+        Report["replay_sha256"]
+        == "55dc06d858890565b1422363d76a22c12fde4e88c2bd573edf7ff559c6702569"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")
