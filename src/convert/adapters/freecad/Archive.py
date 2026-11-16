@@ -7148,7 +7148,7 @@ def AddRawExtMut(
         Features.CurrentName = FeatureInfo.InputBase
 
 
-# this definition exists because extrusion direction follows its support plane and reversal semantics
+# native direction keeps the profile or explicit axis separate from the saved reversal flag
 def ExtrudeVector(
     Geometry: DocGeometry, FeatureInfo: FeatureData
 ) -> tuple[float, float, float]:
@@ -7168,24 +7168,13 @@ def ExtrudeVector(
         TransformValue if IsPayloadMap(TransformValue) else {}
     )
     Normal = Normalize(Vector(Transform.get("z_axis"), (0.0, 0.0, 1.0)))
-    Reversed = bool(
-        FeatureInfo.Definition.get(
-            "reversed",
-            Number(
-                FeatureInfo.Attributes.get("direction_multiplier"),
-                -1.0 if FeatureInfo.Operation == "cut" else 1.0,
-            )
-            < 0,
-        )
-    )
     Explicit = FeatureInfo.Definition.get("direction")
     if Explicit is not None:
         return Normalize(Vector(Explicit, Normal))
-    Scale = -1.0 if Reversed else 1.0
-    return (Normal[0] * Scale, Normal[1] * Scale, Normal[2] * Scale)
+    return Normal
 
 
-# this definition exists because extrusion tools need canonical profile length and expression properties
+# native extrusion properties keep direction reversal and dimension expressions independently editable
 def AddExtToolMut(
     Context: DocContext,
     FeatureInfo: FeatureData,
@@ -7194,6 +7183,8 @@ def AddExtToolMut(
     SecondLength: float,
     Symmetric: bool,
     Expressions: list[tuple[str, str]],
+    *,
+    Reversed: bool = False,
 ) -> Object:
     ToolType = BoolOperationTypeByKind["create"]
     ToolRequested = (
@@ -7220,7 +7211,7 @@ def AddExtToolMut(
             FloatProp("LengthFwd", Length, "App::PropertyDistance"),
             FloatProp("LengthRev", SecondLength, "App::PropertyDistance"),
             BoolProp("Solid", True),
-            BoolProp("Reversed", False),
+            BoolProp("Reversed", Reversed),
             BoolProp("Symmetric", Symmetric),
             StringProp(
                 "EndCondition",
@@ -7297,6 +7288,16 @@ def AddExtrudeMut(
     FeatureInfo: FeatureData,
 ) -> Object:
     Direction = ExtrudeVector(Geometry, FeatureInfo)
+    Reversed = bool(
+        FeatureInfo.Definition.get(
+            "reversed",
+            Number(
+                FeatureInfo.Attributes.get("direction_multiplier"),
+                -1.0 if FeatureInfo.Operation == "cut" else 1.0,
+            )
+            < 0,
+        )
+    )
     Length = abs(
         Number(
             FeatureInfo.Definition.get("length"),
@@ -7319,7 +7320,14 @@ def AddExtrudeMut(
         if (Expression := Context.Parameters.expression(ParamId))
     ]
     ToolValue = AddExtToolMut(
-        Context, FeatureInfo, Direction, Length, SecondLength, Symmetric, Expressions
+        Context,
+        FeatureInfo,
+        Direction,
+        Length,
+        SecondLength,
+        Symmetric,
+        Expressions,
+        Reversed=Reversed,
     )
     Final = AddBoolMut(Context, FeatureInfo, ToolValue)
     TrackSolidMut(Features, FeatureInfo, Final)
