@@ -3,6 +3,7 @@ from dataclasses import replace as ChangeRecord
 from interchange.assembly.AssemblyEnums import ComponentKind
 from interchange.assembly.ComponentDefinition import ComponentDef
 from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepTopology import BrepBody, BrepVertex
 from interchange.document.Models.DocumentModel import AssemblyData, CadDocument
 from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
 from interchange.Enums.EnumGeometry import GeometryKind
@@ -248,7 +249,20 @@ def MakeUnresolved(ChangeName: str) -> CadDocument:
             Document, metadata={"authored_native_bytes": b"independently authored"}
         )
     if ChangeName == "brep":
-        return ChangeRecord(Document, brep=BrepModel())
+        return ChangeRecord(
+            Document,
+            brep=BrepModel(
+                vertices=(BrepVertex("retained-vertex", SpaceVector(0.0, 0.0, 0.0)),),
+                bodies=(
+                    BrepBody(
+                        "retained-brep-body",
+                        (),
+                        design_body_id=Document.bodies[0].id,
+                        vertex_ids=("retained-vertex",),
+                    ),
+                ),
+            ),
+        )
     if ChangeName == "assembly":
         return ChangeRecord(
             Document,

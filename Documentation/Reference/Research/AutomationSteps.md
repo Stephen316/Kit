@@ -53,7 +53,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A13 | Bidirectional native acceptance                        | A04, A05, A08, A11, A12              | Unassigned | planned  | Both routes match body count, volume, center of mass and feature history, preserve all required constraints/dependencies, and pass independent driving-parameter edits, restoration, rebuild and save/reopen with healthy controls |
 | A14 | Independent remote compatibility and regression gates  | A03; A06 for reader and writer gates | jdharcourt | active   | Exact-revision checks reject stale receipts, shared-reader/writer mistakes and unsupported input through real boundaries                                                                                                           |
 | A15 | Unattended operation, reports and forecast pilot       | A07, A08b, A14; A10 when enabled     | Unassigned | planned  | Two-week operating evidence records recovery, no-progress parking, blockers and verified documents unlocked. Record model spend when enabled                                                                                       |
-| A16 | Broader features and additional CAD families           | A13, A15                             | Unassigned | planned  | Each scoped feature/version/route has independent native acceptance; FreeCAD and CATIA use the same contract                                                                                                                       |
+| A16 | Broader features and additional CAD families           | A13, A15                             | jdharcourt | blocked  | Each scoped feature/version/route has independent native acceptance; FreeCAD and CATIA use the same contract                                                                                                                       |
 
 A04 and A05 start on the pinned corpus from A02a.
 Paired captures from A02c gate paired comparison and native acceptance, not reader integration.
@@ -223,6 +223,16 @@ The [configuration storage index](../../Changes/Research/Writers/SolidWorks/Soli
 The saved controls support offline format research while A06 graph qualification and A09 codec evidence remain open.
 A12 still needs complete native generation from a qualified portable graph, refusal at the writer boundary, and controlled application evidence.
 The separate SOLIDWORKS generative research in PR #121 records controlled load, edit, rebuild and fresh-reopen evidence for radius and diameter sketches and bounded blind circle bosses on build 34.5.2.0604. That source supplies independent constructor and oracle evidence for A12 and A16. The current public writer and qualified routes on PR #94 remain open. [PR #121 source and scope](https://github.com/TryUniCAD/Kit/pull/121)
+
+## A16 FreeCAD end-owner bindings
+
+| Child ID | Deliverable                                                 | Owner      | Status   | Remaining evidence                                                                                                                                                                                                              |
+| -------- | ----------------------------------------------------------- | ---------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A16a     | Explicit forward and reverse FreeCAD extrusion dependencies | jdharcourt | checking | The [native emission repair](../../Changes/FreeCad/FreeCadTwoLengthBindings.md) preserves ordered end owners, both expression links and physical units; hosted process checks and independent native acceptance remain required |
+
+The [earlier readiness observation](../../Changes/Research/Readers/Comparison/FreeCadTwoLengthReadiness.md) records the missing reverse link and equal-length roster crossing on its original checkpoint.
+The repair does not admit unsupported linked definitions or fallback carriers.
+A13, A15 and all route-specific edit, rebuild and fresh-reopen evidence remain open.
 
 ## Parallel-session child steps
 

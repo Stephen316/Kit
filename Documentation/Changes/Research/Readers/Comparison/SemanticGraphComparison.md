@@ -51,3 +51,5 @@ Local tests and collection were not run.
 The raw JSON bound now admits the [reported full native depth](../../../../Gotchas/Research/Readers/NativeNeutralJsonDepth.md) without removing retained metadata.
 Static syntax and formatting checks ran during implementation.
 Hosted execution and independently qualified paired evaluation remain required.
+The unsupported B-rep process fixture now contains an independently authored vertex body with valid ownership, following the [existing nonempty B-rep contract](../../../../Gotchas/Conversion/Comparison/EmptyBrepModelRefused.md).
+The existing model validator still runs before comparison, and the retained B-rep domain must still report unresolved.

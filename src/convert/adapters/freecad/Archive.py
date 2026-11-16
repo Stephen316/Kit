@@ -1,5 +1,6 @@
 from __future__ import annotations as Annotations
 from interchange.geometry.Models.VectorSpace import SpaceVector
+from interchange.Features.DistanceParam import KLengthFactors
 from collections.abc import Callable, Sequence as ValueSequence
 import base64 as BaseSixFour
 import copy as CopyValue
@@ -3316,6 +3317,80 @@ def FeatureParam(
         ):
             return ParamId
     return LengthIds[0] if LengthIds else IdsValue[0] if IdsValue else ""
+
+
+# native distance properties require physical millimetres regardless of parameter display units
+def GetExtLength(ValueData: object) -> float:
+    if not IsPayloadMap(ValueData) or EnumAction(ValueData.get("kind")) != "length":
+        raise ValueError("FreeCAD extrusion end requires a typed length")
+    UnitValue = ValueData.get("unit")
+    Factor = KLengthFactors.get(UnitValue) if isinstance(UnitValue, str) else None
+    Magnitude = ValueData.get("value")
+    if Factor is None or type(Magnitude) not in (int, float):
+        raise ValueError("FreeCAD extrusion end length has unsupported units or value")
+    LengthValue = Number(Magnitude) * Factor
+    if not MathValue.isfinite(LengthValue) or LengthValue < 0:
+        raise ValueError("FreeCAD extrusion end length must be finite and nonnegative")
+    return LengthValue
+
+
+# explicit end owners prevent equal lengths from selecting unrelated parameter drivers
+def CheckExtOwner(
+    FeatureInfo: FeatureData,
+    Parameters: ParamCatalog,
+    ParamId: str,
+    FieldName: str,
+) -> None:
+    ParamValue = Parameters.ByIdentifier.get(ParamId)
+    if (
+        ParamValue is None
+        or ParamId not in Sequence(FeatureInfo.Source.get("parameter_ids", []))
+        or ParamValue.get("owner_id") != FeatureInfo.FeatureId
+        or EnumAction(ParamValue.get("role")) != "driving"
+        or Parameters.kind(ParamId) != "length"
+    ):
+        raise ValueError("FreeCAD extrusion end owner differs from its typed length")
+    if not MathValue.isclose(
+        GetExtLength(ParamValue.get("value")),
+        GetExtLength(FeatureInfo.Definition.get(FieldName)),
+        rel_tol=0.0,
+        abs_tol=1e-9,
+    ):
+        raise ValueError("FreeCAD extrusion end owner has a stale typed length")
+
+
+# directional dependencies must follow explicit ownership instead of matching scalar values
+def ReadExtBindings(
+    FeatureInfo: FeatureData, Parameters: ParamCatalog, Length: float
+) -> tuple[str, str]:
+    HasReverse = not bool(FeatureInfo.Definition.get("symmetric")) and (
+        EnumAction(FeatureInfo.Definition.get("end_condition")) == "two_lengths"
+        or FeatureInfo.Definition.get("second_length") is not None
+    )
+    if "length_parameter_ids" not in FeatureInfo.Attributes:
+        if HasReverse and Sequence(FeatureInfo.Source.get("parameter_ids", [])):
+            raise ValueError(
+                "FreeCAD two length extrusion requires explicit end owners"
+            )
+        return (
+            ("", "")
+            if HasReverse
+            else (FeatureParam(FeatureInfo.Source, Parameters, Length), "")
+        )
+    RawIds = FeatureInfo.Attributes["length_parameter_ids"]
+    if IsPayloadMap(RawIds) and set(RawIds) != {"$tuple"}:
+        raise ValueError("FreeCAD extrusion end owners require an ordered sequence")
+    IdsValue = Sequence(RawIds)
+    Bindings = [Value for Value in IdsValue if isinstance(Value, str) and Value]
+    if (
+        len(Bindings) != len(IdsValue)
+        or len(Bindings) != (2 if HasReverse else 1)
+        or len(set(Bindings)) != len(Bindings)
+    ):
+        raise ValueError("FreeCAD extrusion end owner roster is invalid")
+    for ParamId, FieldName in zip(Bindings, ("length", "second_length")):
+        CheckExtOwner(FeatureInfo, Parameters, ParamId, FieldName)
+    return Bindings[0], Bindings[1] if HasReverse else ""
 
 
 # this definition exists because focused behavior needs one stable owner
@@ -7118,7 +7193,7 @@ def AddExtToolMut(
     Length: float,
     SecondLength: float,
     Symmetric: bool,
-    Expression: str | None,
+    Expressions: list[tuple[str, str]],
 ) -> Object:
     ToolType = BoolOperationTypeByKind["create"]
     ToolRequested = (
@@ -7154,7 +7229,7 @@ def AddExtToolMut(
                 ),
                 Dynamic=True,
             ),
-            ExpressionProp([("LengthFwd", Expression)] if Expression else []),
+            ExpressionProp(Expressions),
             ShapeProp(),
             *FeatureMeta(
                 FeatureInfo.Source,
@@ -7164,7 +7239,7 @@ def AddExtToolMut(
         ]
     )
     ToolValue.dependencies.append(FeatureInfo.SketchName)
-    if Expression:
+    if Expressions:
         ToolValue.dependencies.append(Context.ParamSheet.name)
     return ToolValue
 
@@ -7230,10 +7305,21 @@ def AddExtrudeMut(
     )
     SecondLength = abs(Number(FeatureInfo.Definition.get("second_length")))
     Symmetric = bool(FeatureInfo.Definition.get("symmetric"))
-    ParamId = FeatureParam(FeatureInfo.Source, Context.Parameters, Length)
-    Expression = Context.Parameters.expression(ParamId)
+    Bindings = ReadExtBindings(FeatureInfo, Context.Parameters, Length)
+    if "length_parameter_ids" in FeatureInfo.Attributes:
+        Length = GetExtLength(FeatureInfo.Definition.get("length"))
+        SecondLength = (
+            GetExtLength(FeatureInfo.Definition.get("second_length"))
+            if Bindings[1]
+            else 0.0
+        )
+    Expressions = [
+        (PropertyName, Expression)
+        for PropertyName, ParamId in zip(("LengthFwd", "LengthRev"), Bindings)
+        if (Expression := Context.Parameters.expression(ParamId))
+    ]
     ToolValue = AddExtToolMut(
-        Context, FeatureInfo, Direction, Length, SecondLength, Symmetric, Expression
+        Context, FeatureInfo, Direction, Length, SecondLength, Symmetric, Expressions
     )
     Final = AddBoolMut(Context, FeatureInfo, ToolValue)
     TrackSolidMut(Features, FeatureInfo, Final)
@@ -7322,7 +7408,13 @@ def HasEditExtMut(
         return False
     Direction = (PlanValue.Direction.x, PlanValue.Direction.y, PlanValue.Direction.z)
     ToolValue = AddExtToolMut(
-        Context, FeatureInfo, Direction, PlanValue.DistanceMm, 0.0, False, Expression
+        Context,
+        FeatureInfo,
+        Direction,
+        PlanValue.DistanceMm,
+        0.0,
+        False,
+        [("LengthFwd", Expression)],
     )
     ShapeFile = AddBrepEntryMut(Features.PayloadEntries, ToolValue.name, ShapeData)
     ReplaceNameMut(ToolValue.properties, "Shape", ShapeProp(ShapeFile))

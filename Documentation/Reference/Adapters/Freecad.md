@@ -72,6 +72,24 @@ This check runs before destination and component files are created, including wh
 Standalone edit-plan qualification does not establish the same support for a nested component emission path.
 See [native semantic write qualification](../../Changes/Research/Readers/NativeSemanticWriteQualification.md) for the checks, compatibility restriction, and additional in-memory encoding cost.
 
+For supported inline extrusions with two ends, declare ordered forward and reverse owners through `FeatureStep.attributes`:
+
+```python
+attributes={"length_parameter_ids": ("depth:forward", "depth:reverse")}
+```
+
+Both IDs must occur in the feature's parameter roster and identify distinct driving length parameters owned by that feature.
+Their physical values must match the corresponding inline end lengths within an absolute `1e-9` mm, with no relative tolerance.
+The writer connects both `LengthFwd` and `LengthRev` to their own spreadsheet expressions.
+Equal lengths and a reordered generic parameter roster do not exchange those dependencies.
+Supported parameter units are normalized to millimetres for native distance properties.
+The spreadsheet retains each parameter's declared units.
+
+A two-ended feature with a parameter roster and missing or invalid end ownership is refused before output publication.
+Literal two-ended features without a parameter roster retain literal editable properties.
+Symmetric extrusion retains one total-thickness driver.
+See [two-length bindings](../../Changes/FreeCad/FreeCadTwoLengthBindings.md) for scope, process coverage and the outstanding native edit, rebuild and fresh-reopen evidence.
+
 The `portable` writer option defaults to true in the inspected adapter revision.
 For assemblies, portable output can include companion component files.
 The final destination identifies the base location for those files.
