@@ -83,6 +83,15 @@ A modified or missing checkout file does not change the pinned snapshot.
 Use a new committed revision and a new snapshot when selecting changed inputs.
 In a shallow clone, fetch the pinned commit before verification.
 
+### Audit historical source dependencies
+
+The [history-input audit](../../Changes/Research/Controller/HistoryInputAudit.md) inventories literal Git pins in committed research source and process fixtures.
+It reports unavailable objects, pinned trees with prohibited binary paths, main ancestry, and changed capture identities.
+It reads Git metadata and selected text source without reading native or vendor payloads.
+Use its findings before proposing source-history changes.
+The audit does not rewrite history or qualify a capture.
+See the [pinned capture history gotcha](../../Gotchas/Git/PinnedCaptureVendorHistory.md).
+
 ## Author matched examples
 
 Use the five explicit recipes in [PairSpecs.json](../../../re/automation/PairSpecs.json).

@@ -17,6 +17,16 @@ The scope collector records the direct or definition-edit authoring route for ea
 A capture is research evidence only.
 It does not qualify a reader, a writer or a conversion by itself.
 
+## Preflight supplemental readbacks
+
+Use the [sealed supplemental-evidence preflight](../../Changes/Research/Controller/PairedEvidenceManifest.md) before handing private readbacks to the admission owner.
+Its manifest binds both application lanes, requested P01–P04 recipes, source revisions, specifications and normalized report digests.
+The public SOLIDWORKS lanes replay their original raw receipt chains before comparing report digests and native archive identities.
+Normalized JSON alone is insufficient.
+Missing Fusion or original P04 verifier handoffs remain explicit dependencies.
+The command preserves original captures and frozen rules, evaluates no qualification, and returns exit code `2` while admission is blocked.
+Keep P05 reserved for its independent holdout evaluation.
+
 ## Rules for every capture
 
 - Author from the recipe only.
