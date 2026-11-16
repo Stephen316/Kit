@@ -1,0 +1,7 @@
+# Construct the saved points and inline text of a SOLIDWORKS blind boss
+
+`EncodeBlindBossDisplayAfterStyle` constructs 284 bytes of the plain generation-19000 blind-boss distance display. It writes four origin points, two display-local +Y vectors, the inline text record and the caller's one-handle count. It uses the native distance class's format selector 18, the constructor's text defaults and the archive's CString and null-object framing. The caller supplies the established generation, mode 201, clear condition-1 state and intended handle count of one. The model depth and direction are owned by adjacent boss records. [Research codec](../../../../re/solidworks/WriterResearch/DisplayStyle.py)
+
+`ReadBlindBossDisplayAfterStyle` verifies these fields from the first point after the style and returns the offset of the first feature handle. The scope leaves the handle and its archive allocations to the caller. The encoder emits the constructor's plain default text branch, with empty arrays and absent format. The paired reader refuses other inline text values and handle counts. [Native stores and eight pinned saves](../../../../re/solidworks/WriterResearch/DisplayStyle.md)
+
+The constructor and parser boundaries have static checks and independent observations from the archived controls. Hosted execution of the new codec, full display construction and native application acceptance remain open.
