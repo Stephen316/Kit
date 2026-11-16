@@ -46,7 +46,7 @@ def WriteRegistry(RootPath: FilePath, KindPools: dict[str, str]) -> FilePath:
 
 
 # session checks must initialize a durable temporary store through its public entry point
-def InitStore(StorePath: FilePath) -> dict[str, object]:
+def InitStore(StorePath: FilePath, MaxRunning: int = 8) -> dict[str, object]:
     ResultInfo = Subprocess.run(
         [
             System.executable,
@@ -55,7 +55,7 @@ def InitStore(StorePath: FilePath) -> dict[str, object]:
             str(StorePath),
             "init",
             "--max-running",
-            "8",
+            str(MaxRunning),
         ],
         capture_output=True,
         text=True,

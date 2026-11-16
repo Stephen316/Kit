@@ -166,6 +166,7 @@ class Supervisor:
         self.budget = ResourceBudget(config, self.registry) if claiming else None
         self.admission = {}
         self.capacity = None
+        self.controller_refusals = set()
         self.measurement_error = None
         self.running = {}
         self.locks = []
@@ -423,25 +424,35 @@ class Supervisor:
                 else:
                     self.report(action, None, {**detail, **response})
 
+    def record_capacity(self, pool, admission, refusal=None):
+        if refusal is None:
+            self.controller_refusals.discard(pool)
+        elif pool not in self.controller_refusals:
+            self.controller_refusals.add(pool)
+            self.report("controller_claim_refused", None, {"pool": pool, "adapter": "a03", "reason": refusal})
+        self.capacity.observe(pool, admission, self.budget.host_sample_monotonic, refusal)
+
     def fill(self, paused):
         claimed = False
         pending = {detail["pool"] for _, detail in self.application_acks.values()}
         for pool, settings in sorted(self.config["pools"].items()):
             if pool in paused:
+                self.controller_refusals.discard(pool)
                 self.capacity.block(pool, "paused")
                 continue
             if pool in pending:
+                self.controller_refusals.discard(pool)
                 self.capacity.block(pool, "settlement_pending")
                 continue
             while sum(1 for session in self.running.values() if session.pool == pool) < settings["max_sessions"]:
                 admission = self.budget.admission(pool, settings, self.running)
                 previous = self.admission.get(pool)
                 self.admission[pool] = admission
-                self.capacity.observe(pool, admission, self.budget.host_sample_monotonic)
                 if previous is None or previous["reason"] != admission["reason"] or previous["active_limit"] != admission["active_limit"] or previous["adaptive_revision"] != admission["adaptive_revision"] or previous["upward_blocked_reason"] != admission["upward_blocked_reason"]:
                     event = {key: value for key, value in admission.items() if key not in {"limiting_factors", "memory_estimate_bytes_by_kind"}}
                     self.report("admission", None, {"pool": pool, **event})
                 if admission["additional_sessions"] == 0:
+                    self.record_capacity(pool, admission)
                     break
                 name = f"{time.time_ns():x}-{secrets.token_hex(4)}"
                 claim_path = self.claims / f"{name}.json"
@@ -459,6 +470,8 @@ class Supervisor:
                     self.stopping = True
                     self.report("claim_transport_failed", None, {"error": str(error)})
                     return claimed
+                refusal = self.adapter.last_claim_refusal if claim is None and self.config["controller"].get("adapter") == "a03" else None
+                self.record_capacity(pool, admission, refusal)
                 if claim is None:
                     break
                 claimed = True
