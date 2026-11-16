@@ -362,6 +362,15 @@ def CheckDetailEnd() -> None:
     )
 
 
+# the complete saved detail must reproduce the native span and map
+def CheckDetailMap() -> None:
+    Report = LoadReport("VerifyConfigDetailComposition.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "11a50a77b4c25deb5cfad5cc88fb3e0efe637d1d284d3550ebd36de06c721310"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
