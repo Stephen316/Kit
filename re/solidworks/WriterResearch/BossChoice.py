@@ -62,9 +62,9 @@ def CheckChoiceState(
         True,
         "chooser belongs to the same boss and shared file",
     )
+    RequireArch(len(State.EdgeOrders), 2, "two ordered cap faces")
     RequireArch(
         len(EdgeIds) == len(set(EdgeIds)) == 4
-        and len(State.EdgeOrders) == 2
         and all(
             len(Order) == 4 and set(Order) == set(EdgeIds) for Order in State.EdgeOrders
         )
@@ -72,9 +72,9 @@ def CheckChoiceState(
         True,
         "two cap traversals over the owned perimeter",
     )
+    RequireArch(len(State.CentreMetres), 3, "three centre coordinates")
     RequireArch(
-        len(State.CentreMetres) == 3
-        and all(IsFinite(Value) for Value in State.CentreMetres)
+        all(IsFinite(Value) for Value in State.CentreMetres)
         and IsFinite(State.DiameterMetres)
         and State.DiameterMetres > 0,
         True,
