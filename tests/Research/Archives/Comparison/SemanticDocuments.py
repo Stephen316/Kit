@@ -29,6 +29,7 @@ from interchange.geometry.Models.VectorSpace import SpaceVector
 from interchange.mesh.SurfaceMesh import SurfaceMesh
 from interchange.Records.RecordConfig import Configuration
 from interchange.Records.RecordParameter import Expression, Parameter, ParameterValue
+from interchange.Records.RecordProvenance import Provenance
 from interchange.Records.RecordSource import CadSource
 
 
@@ -221,6 +222,27 @@ def MakeSymmetric() -> CadDocument:
 # retained unsupported domains must block equality even when their observed content is identical
 def MakeUnresolved(ChangeName: str) -> CadDocument:
     Document = MakeDocument()
+    if ChangeName == "source_attributes":
+        return ChangeRecord(
+            Document,
+            source=ChangeRecord(
+                Document.source,
+                attributes={"authored_native_bytes": b"independently authored"},
+            ),
+        )
+    if ChangeName in {"provenance_attributes", "confidence"}:
+        Evidence = (
+            Provenance("authored", confidence=0.5)
+            if ChangeName == "confidence"
+            else Provenance(
+                "authored",
+                attributes={"authored_native_bytes": b"independently authored"},
+            )
+        )
+        return ChangeRecord(
+            Document,
+            sketches=(ChangeRecord(Document.sketches[0], provenance=Evidence),),
+        )
     if ChangeName == "metadata":
         return ChangeRecord(
             Document, metadata={"authored_native_bytes": b"independently authored"}

@@ -197,7 +197,19 @@ def CheckSearchCap(TmpPath: FilePath) -> None:
 
 
 # identical retained bytes and unsupported model domains cannot establish semantic equivalence
-@MarkValue.parametrize("DomainName", ("metadata", "native", "mesh", "brep", "assembly"))
+@MarkValue.parametrize(
+    "DomainName",
+    (
+        "metadata",
+        "native",
+        "mesh",
+        "brep",
+        "assembly",
+        "source_attributes",
+        "provenance_attributes",
+        "confidence",
+    ),
+)
 def CheckUnresolved(TmpPath: FilePath, DomainName: str) -> None:
     Document = MakeUnresolved(DomainName)
     Report = ReadReport(
