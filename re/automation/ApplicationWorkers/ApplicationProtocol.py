@@ -26,6 +26,8 @@ MAC_APPLICATION_PEER = "re/automation/ApplicationWorkers/MacApplicationPeer.py"
 MAC_QUIT_RELEASE = "re/automation/ApplicationWorkers/FusionQuitRelease.py"
 MAC_QUIT_HELPERS = (MAC_QUIT_AUTHORIZATION, MAC_COCOA_QUIT, MAC_APPLICATION_PEER, MAC_QUIT_RELEASE)
 MAC_STARTUP_EVIDENCE = "re/automation/ApplicationWorkers/FusionStartupEvidence.py"
+# the controller can address only this reviewed main-thread archive control provider
+MAC_ARCHIVE_CONTROL = "re/automation/ApplicationWorkers/FusionArchiveControl.py"
 STARTUP_MANIFEST = "re/automation/PairedCaptures/Runner/KitCaptureRunner/KitCaptureRunner.manifest"
 MAC_REPLACEMENT_LAUNCH = "re/automation/ApplicationWorkers/MacReplacementLaunch.swift"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
@@ -361,12 +363,12 @@ def committed_bytes(config, relative):
     require(
         relative
         in {PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, BOOTSTRAP, RESTART_GRANT, MAC_REPLACEMENT_LAUNCH,
-            MAC_STARTUP_EVIDENCE, STARTUP_MANIFEST, *MAC_QUIT_HELPERS, *WINDOWS_HELPERS.values(), *INPUTS, *SCOPE_INPUTS},
+            MAC_STARTUP_EVIDENCE, MAC_ARCHIVE_CONTROL, STARTUP_MANIFEST, *MAC_QUIT_HELPERS, *WINDOWS_HELPERS.values(), *INPUTS, *SCOPE_INPUTS},
         "unapproved application source path",
     )
     root = Path(config["source_root"])
     git = [windows_git(), "--no-replace-objects"] if windows_phase_a(config) else (
-        ["git", "--no-replace-objects"] if relative in (*MAC_QUIT_HELPERS, MAC_STARTUP_EVIDENCE, STARTUP_MANIFEST) else ["git"]
+        ["git", "--no-replace-objects"] if relative in (*MAC_QUIT_HELPERS, MAC_STARTUP_EVIDENCE, MAC_ARCHIVE_CONTROL, STARTUP_MANIFEST) else ["git"]
     )
     source = subprocess.run([*git, "-C", str(root), "show", f"{config['source_revision']}:{relative}"],
                             capture_output=True, check=False, timeout=15)
@@ -379,6 +381,7 @@ def load_pinned(config, relative):
     require(
         relative in (PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, RESTART_GRANT)
         or (macos_automatic_quit(config) and relative in MAC_QUIT_HELPERS)
+        or (macos_automatic_quit(config) and relative == MAC_ARCHIVE_CONTROL)
         or (sys.platform == "darwin" and config["application"] == "fusion"
             and relative in (MAC_STARTUP_EVIDENCE, MAC_APPLICATION_PEER)),
         "unapproved application helper",

@@ -80,7 +80,8 @@ def pinned_scope_plan(host, plan):
     return plan, tool
 
 
-def measure_probe(host, work, value, app, plan, tool):
+# an archive preflight needs the same native measurement without creating a dispatch grant
+def measure_control_proof(host, plan_sha, app, plan, tool):
     protocol["require"](app.documents.count == 0, "exclusive Fusion host has open documents")
     scope = plan.get("scope") == SCOPE
     measure = protocol["load_pinned"](host.config, protocol["TOOL"]) if scope else tool
@@ -95,13 +96,18 @@ def measure_probe(host, work, value, app, plan, tool):
             helper["close"](document, owned)
     protocol["require"](app.documents.count == 0, "healthy-control cleanup left open documents")
     proof = {"claim": "unqualified_application_observation", "control": "healthy", "host": host.host,
-             "plan_sha256": value["body"]["plan_sha256"], "fusion_version": app.version,
+             "plan_sha256": plan_sha, "fusion_version": app.version,
              "readings": readings, "measured_at": time.time(), "documents_after": 0,
              "loaded_sources": {**host.loaded_sources, "counterpart": _source_pin, "tool": tool["_source_pin"]},
              "input_pins": plan["pins"]}
     if scope:
         proof["scope"] = SCOPE
         proof["loaded_sources"]["fresh_process"] = measure["_source_pin"]
+    return proof
+
+
+def measure_probe(host, work, value, app, plan, tool):
+    proof = measure_control_proof(host, value["body"]["plan_sha256"], app, plan, tool)
     protocol["write_record"](host.root / "grant.json", {"job_id": value["job_id"], "client": value["client"],
                              "until": min(time.time() + 60, value["deadline"])}, replace=True)
     return "completed", "fresh main-thread challenge and pinned control completed", proof, {}
