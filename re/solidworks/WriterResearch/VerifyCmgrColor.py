@@ -18,6 +18,7 @@ from SolidworksCensusInputs import capture_inputs
 from VerifyCmgrBaseState import verify_base_state
 from VerifyCmgrBoss import verify_boss_mass
 from VerifyCmgrComposition import verify_cmgr_composition
+from VerifyCmgrIndex import verify_cmgr_index
 from VerifyCmgrOpen import verify_opening
 from VerifyCmgrPart import verify_part_end
 from VerifyCmgrVisual import verify_visual_prefix
@@ -106,6 +107,7 @@ def verify_color():
     captures = {}
     visuals = {}
     compositions = {}
+    configuration_indexes = {}
     externals = {}
     tails = {}
     masses = {}
@@ -132,6 +134,7 @@ def verify_color():
             compositions[item["sha256"]] = verify_cmgr_composition(
                 archive, generation, measurement
             )
+            configuration_indexes[item["sha256"]] = verify_cmgr_index(archive, generation)
         color, start, cursor = ReadColorSpan(stream, generation)
         end = cursor.Offset
         saved = stream[start:end]
@@ -167,11 +170,13 @@ def verify_color():
     RequireArch(len(masses), 6, "CMgr empty mass capture count")
     RequireArch(len(visuals), 14, "CMgr visual prefix capture count")
     RequireArch(len(compositions), 14, "CMgr composed stream capture count")
+    RequireArch(len(configuration_indexes), 14, "CMgr active index capture count")
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
         "visual_prefix_records": visuals,
         "composed_cmgr_records": compositions,
+        "configuration_index_records": configuration_indexes,
         "external_file_records": externals,
         "terminal_records": tails,
         "empty_mass_records": masses,

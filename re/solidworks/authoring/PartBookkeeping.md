@@ -21,6 +21,8 @@ The store paths use the exact `34.4.1.1011` installed [loader image hashes](../r
 
 ## Configuration dispatch
 
+The [generation-19000 configuration index and dispatch](PartStorage/ConfigurationIndex.md) adds a typed `Contents/CMgrHdr2` reconstruction for the active standalone part and records the remaining version folder and container framing questions.
+
 Run `python re/solidworks/authoring/PartBookkeeping.py compare` for the six pinned P01 SOLIDWORKS archives. The command verifies the named default configuration and zero bodies using the independent historical readback. It checks all 18 reconstructed metadata streams and the computed class tag, split lengths and resolved root header. Source receipts and generation are the same as the [rectangle experiment](RectangleFields.md). The compact comparison SHA-256 is `9517b7b283b054af1249f5fcdfc055b1124d18250b0ecadbaa1b934027aa8caf` before the terminal newline.
 
 | Archive group | Root class tag | Split word offsets | Computed body lengths | Inherited next map index | Logical root count |
