@@ -1457,31 +1457,39 @@ def MakeNodeState(
     return Nodes
 
 
-# paired fins must start at opposite ends without losing explicit topology use reversals
-def FindFinBodies(
+# a shell can change traversal only when every paired edge proves reciprocal use
+def FindFinShells(
     Topology: BrepTopology,
     Owners: EncodeOwners,
     ForwardFaces: Mapping[str, bool],
     ForwardUses: Mapping[str, bool],
 ) -> set[str]:
     FaceBreaks: set[str] = set()
-    UseBreaks: set[str] = set()
+    Unproved: set[str] = set()
     for EdgeData in Topology.edges.values():
         CoedgeIds = Topology.edge_coedges[EdgeData.id]
-        if len(CoedgeIds) != 2 or EdgeData.start_vertex_id == EdgeData.end_vertex_id:
+        FaceIds = tuple(
+            Topology.loop_face[Topology.coedge_loop[CoedgeId]] for CoedgeId in CoedgeIds
+        )
+        ShellIds = {Owners.KFaceShell[FaceId] for FaceId in FaceIds}
+        if len(CoedgeIds) != 2 or len(ShellIds) != 1:
+            Unproved.update(ShellIds)
             continue
         FirstId, OtherId = CoedgeIds
-        FirstFace = Topology.loop_face[Topology.coedge_loop[FirstId]]
-        OtherFace = Topology.loop_face[Topology.coedge_loop[OtherId]]
+        FirstFace, OtherFace = FaceIds
+        (ShellId,) = ShellIds
         RawOpposite = (
             Topology.coedges[FirstId].reversed ^ Topology.coedges[OtherId].reversed
         )
-        BodyId = Owners.KEdgeBody[EdgeData.id]
-        if RawOpposite == (ForwardFaces[FirstFace] ^ ForwardFaces[OtherFace]):
-            FaceBreaks.add(BodyId)
         if RawOpposite == (ForwardUses[FirstFace] ^ ForwardUses[OtherFace]):
-            UseBreaks.add(BodyId)
-    return FaceBreaks - UseBreaks
+            Unproved.add(ShellId)
+        elif EdgeData.start_vertex_id != EdgeData.end_vertex_id and RawOpposite == (
+            ForwardFaces[FirstFace] ^ ForwardFaces[OtherFace]
+        ):
+            FaceBreaks.add(ShellId)
+    return {
+        ShellId for ShellId in FaceBreaks - Unproved if Topology.shells[ShellId].closed
+    }
 
 
 # loop orientation converts face reversals into connected encoded coedge traversal
@@ -1497,12 +1505,12 @@ def MakeLoopOrder(
         FaceData.id: ForwardFaces[FaceData.id] == FaceData.same_sense
         for FaceData in Model.faces
     }
-    UseBodies = FindFinBodies(Topology, Owners, ForwardFaces, ForwardUses)
+    UseShells = FindFinShells(Topology, Owners, ForwardFaces, ForwardUses)
     for LoopData in Model.loops:
         FaceId = Topology.loop_face[LoopData.id]
         FaceForward = (
             ForwardUses[FaceId]
-            if Owners.KFaceBody[FaceId] in UseBodies
+            if Owners.KFaceShell[FaceId] in UseShells
             else ForwardFaces[FaceId]
         )
         EncodedLoops[LoopData.id] = (
