@@ -112,7 +112,9 @@ def read_part_evidence(
     ids = ReadCmgrPartEnd(cursor, Generation=19000, ConditionOne=False)
     RequireArch(set(ids), set(atoms), "CMgr part atoms match base links")
     RequireArch(cursor.Offset, end, "CMgr part return")
-    part_indices = tuple(index for index, name in objects.items() if name == KConfigClass)
+    part_indices = tuple(
+        index for index, name in objects.items() if name == KConfigClass
+    )
     RequireArch(part_indices, (4,), "CMgr original part allocation")
     ReadCmgrAliases(cursor, part_indices[0])
     RequireArch(
@@ -133,7 +135,7 @@ def read_part_evidence(
         stream[linked_start:link_end],
         stream[link_end:start],
         stream[start:end],
-        stream[end:cursor.Offset],
+        stream[end : cursor.Offset],
     )
 
 

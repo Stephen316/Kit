@@ -4,10 +4,11 @@ This census covers the six P01 sketch-only saves and eight P03 single-boss saves
 
 | Record | P01 | P03 | Current construction boundary |
 | --- | --- | --- | --- |
-| [Manager, inherited feature and part opening](CmgrOpening.md) | 0–278 | 0–278 | Read-only. Opening node state and feature stamps still need emitter inputs. |
+| [Manager, inherited feature and part opening](CmgrOpening.md) | 0–278 | 0–278 | Constructed with explicit clean node state, checked part flags and the manager FILETIME. The native configuration and archive allocators advance separately. |
 | [Visual properties before DSPBR](CmgrVisual.md#saved-spans) | 278–795 | 278–795 | Read-only. The material and RealView fields belong to the enclosing visual record. |
 | [Default color DSPBR](CmgrVisual.md#research-encoder) | 795–1095 | 795–1095 | Constructed from the explicit packed visual color and measured appearance profile. |
-| [Part inherited feature and base header](CmgrMiddle.md#inherited-feature) | 1095–1234 | 1095–1234 | Read-only. The header includes independent feature stamps and the variable base members at `+0x85c,+0x860,+0x670`. |
+| [Part inherited feature](CmgrMiddle.md#inherited-feature) | 1095–1206 | 1095–1206 | Constructed with the native feature defaults and the supplied part FILETIME. |
+| [Base header](CmgrMiddle.md#inherited-feature) | 1206–1234 | 1206–1234 | Read-only. The variable base members at `+0x85c,+0x860,+0x670` remain separate. |
 | [Mass record](CmgrMiddle.md#mass-property-record) | 1234–1488 | 1234–1488 | Constructed. P01 uses native empty defaults. P03 uses certified cuboid bounds and density, with numeric agreement for geometry and retained native residuals. |
 | [Base configuration collections](CmgrMiddle.md#base-configuration-collections) | 1488–1654 | 1488–1662 | Read-only. The saved solid count and accuracy byte have independent owners. The remaining model state and collection inputs need construction. |
 | [Linked atom map](CmgrAtoms.md#linked-atom-map) | 1654–1658 | 1662–1724 | Constructed. The empty map preserves next index 9. One P03 link advances from 9 to 11. |

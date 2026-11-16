@@ -15,6 +15,7 @@ from CmgrTail import ReadCmgrTail, WriteCmgrTail
 from ColorAppearance import EncodeColorDspbr
 from SolidworksCensusInputs import capture_inputs
 from VerifyCmgrBoss import verify_boss_mass
+from VerifyCmgrOpen import verify_opening
 from VerifyCmgrPart import verify_part_end
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -119,6 +120,8 @@ def verify_color():
         generation = ContainerMo(archive.streams)
         RequireArch(generation, 19000, "CMgr verification generation")
         stream = archive.require("Contents/CMgr")
+        if recipe in ("P01", "P03"):
+            verify_opening(stream, generation, item["path"])
         color, start, cursor = ReadColorSpan(stream, generation)
         end = cursor.Offset
         saved = stream[start:end]
@@ -129,9 +132,7 @@ def verify_color():
             f"CMgr default DSPBR reconstruction for {item['path']}",
         )
         captures[item["sha256"]] = sha256(saved).hexdigest()
-        part_evidence = verify_part_end(
-            cursor, recipe, TREE_IDS[recipe], item["path"]
-        )
+        part_evidence = verify_part_end(cursor, recipe, TREE_IDS[recipe], item["path"])
         for record, digest in part_evidence.items():
             part_reports[record][item["sha256"]] = digest
         externals[item["sha256"]], tails[item["sha256"]] = verify_tail(
