@@ -6,6 +6,7 @@ from ArchiveFusionProbe import archive_probe
 from FusionLifecyclePair import pairs
 from FusionProbeArchiveCustody import authorize_archive
 from FusionQueueReceipt import owned_bytes, receipt_bytes
+from FusionRecoveryBasis import retain_basis
 from FusionRestartPairs import installed
 from QueueFusionPhases import recover_receipt
 from StoreRead import read_store
@@ -43,12 +44,22 @@ def archive_timeout(owner, fence):
         queue,
         kind,
         authorize=partial(authorize_archive, owner, path, queue, raw),
+        retain=(
+            partial(retain_basis, owner, queue, raw)
+            if owner.exit_watch is not None and owner.exit_watch.epoch is not None
+            else None
+        ),
     )
     return {
         "status": "phase_a_probe_archived",
         "archive_manifest_sha256": saved["archive_manifest_sha256"],
         "resource_rearmed": False,
         "native_retry": "waiting_for_verified_owner_readiness",
+        **{
+            key: value
+            for key, value in saved.items()
+            if key.startswith("recovery_basis_")
+        },
     }
 
 

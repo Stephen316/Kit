@@ -47,13 +47,17 @@ def RunOwner(
 
 
 # the subprocess is ready only after its exact watch or exit report becomes visible
-def AwaitStatus(LogPath: FilePath, Expected: str) -> dict[str, object]:
+def AwaitStatus(
+    LogPath: FilePath, Expected: str, Recovery: str | None = None
+) -> dict[str, object]:
     Expires = TimeClock.monotonic() + 12
     while TimeClock.monotonic() < Expires:
         Content = LogPath.read_text(encoding="utf-8")
         for RecordLine in Content.split("\n")[:-1]:
             Report: dict[str, object] = JsonCodec.loads(RecordLine)
-            if Report["status"] == Expected:
+            if Report["status"] == Expected and (
+                Recovery is None or Report.get("recovery_basis_status") == Recovery
+            ):
                 return Report
         TimeClock.sleep(0.03)
     raise AssertionError(LogPath.read_text(encoding="utf-8")[-4096:])
