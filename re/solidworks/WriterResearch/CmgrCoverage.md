@@ -5,7 +5,7 @@ This census covers the six P01 sketch-only saves and eight P03 single-boss saves
 | Record | P01 | P03 | Current construction boundary |
 | --- | --- | --- | --- |
 | [Manager, inherited feature and part opening](CmgrOpening.md) | 0–278 | 0–278 | Constructed with explicit clean node state, checked part flags and the manager FILETIME. The native configuration and archive allocators advance separately. |
-| [Visual properties before DSPBR](CmgrVisual.md#saved-spans) | 278–795 | 278–795 | Read-only. The material and RealView fields belong to the enclosing visual record. |
+| [Visual properties before DSPBR](CmgrVisual.md#material-and-realview-research-constructor) | 278–795 | 278–795 | Constructed for the untextured default color profile with the supplied appearance ID, target locator and explicit visual controls. |
 | [Default color DSPBR](CmgrVisual.md#research-encoder) | 795–1095 | 795–1095 | Constructed from the explicit packed visual color and measured appearance profile. |
 | [Part inherited feature](CmgrMiddle.md#inherited-feature) | 1095–1206 | 1095–1206 | Constructed with the native feature defaults and the supplied part FILETIME. |
 | [Base header](CmgrMiddle.md#base-header) | 1206–1234 | 1206–1234 | Constructed for the default standalone profile with three explicit model bookkeeping words. |

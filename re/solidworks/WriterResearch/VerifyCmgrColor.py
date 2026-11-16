@@ -19,6 +19,7 @@ from VerifyCmgrBaseState import verify_base_state
 from VerifyCmgrBoss import verify_boss_mass
 from VerifyCmgrOpen import verify_opening
 from VerifyCmgrPart import verify_part_end
+from VerifyCmgrVisual import verify_visual_prefix
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
@@ -102,6 +103,7 @@ def verify_tail(
 def verify_color():
     rows, _ = capture_inputs(ROOT, CAPTURE_REVISION)
     captures = {}
+    visuals = {}
     externals = {}
     tails = {}
     masses = {}
@@ -121,6 +123,9 @@ def verify_color():
         stream = archive.require("Contents/CMgr")
         if recipe in ("P01", "P03"):
             verify_opening(stream, generation, item["path"])
+            visuals[item["sha256"]] = verify_visual_prefix(
+                stream, generation, item["path"]
+            )
         color, start, cursor = ReadColorSpan(stream, generation)
         end = cursor.Offset
         saved = stream[start:end]
@@ -153,9 +158,11 @@ def verify_color():
                 mass_cursor, archive, generation, measurement, item["path"]
             )
     RequireArch(len(masses), 6, "CMgr empty mass capture count")
+    RequireArch(len(visuals), 14, "CMgr visual prefix capture count")
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
+        "visual_prefix_records": visuals,
         "external_file_records": externals,
         "terminal_records": tails,
         "empty_mass_records": masses,
