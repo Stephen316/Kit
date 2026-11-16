@@ -96,7 +96,8 @@ def CheckFreshBoss() -> None:
     with MakeFolder() as TempRoot:
         Report = LoadCandidate(FilePath(TempRoot) / "FreshBoss.SLDPRT")
     Bounds = CastValue(list[list[float]], Report["bounds_metres"])
-    assert Report["stream_count"] >= 30
+    StreamCount = Report["stream_count"]
+    assert isinstance(StreamCount, int) and StreamCount >= 30
     assert Report["feature_ids"] == [26, 34]
     assert Report["dimension_ids"] == [72, 73, 74]
     assert Report["dimensions_mm"] == Approx([38.25, 22.5, -7.75])
