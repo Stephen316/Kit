@@ -14,6 +14,8 @@ The launcher checks its own Git blob, the collector and the specification. It at
 
 Startup cleanup verifies the original process handle before any forced exit. For a preserved or terminated process, consult the cleanup disposition in the failure record. [Scope collector startup cleanup](ScopeStartupCleanup.md)
 
+Per-case checkpoints keep the measurements and source pins for each completed authoring or reopen case. When a case raises an exception, the failure record preserves the case, failing step, HRESULT, and message. [Scope case checkpoints](ScopeCaseCheckpoints.md)
+
 Use the standalone watchdog when the campaign needs a hard deadline across synchronous COM calls. It retains the original capture artifacts and the outer job-drain receipt. [Scope campaign watchdog](ScopeWatchdog.md)
 
 ## Observed checkpoint

@@ -233,9 +233,11 @@ public sealed class SolidWorksScopeControl
         });
     }
 
-    void Cut(IModelDoc2 doc, Dictionary<string, IBody2> bodies, Dictionary<string, object> control)
+    void Cut(IModelDoc2 doc, Dictionary<string, IBody2> bodies, Dictionary<string, object> control, ref string step)
     {
+        step = "create_cut_profile";
         var sketch = Rectangle(doc, (string)cutSpec["sketch"], Bounds(cutSpec["profile_bounds_mm"]), TopFace(bodies["A"]));
+        step = "select_cut_inputs";
         var selectedIds = Strings(control["input_body_ids"]);
         bool automatic = control["input_body_ids"] == null;
         Check(doc.Extension.SelectByID2(sketch.Name, "SKETCH", 0, 0, 0, false, 0, null, 0),
@@ -251,12 +253,14 @@ public sealed class SolidWorksScopeControl
                 "The Cut scope selection did not resolve to the intended native body");
         var supportBounds = Bounds(ObjectValue(bodySpecs["A"])["bounds_mm"]);
         double apiDepth = (supportBounds[1][2] - supportBounds[0][2]) / Mm;
+        step = "create_cut_feature";
         var feature = doc.FeatureManager.FeatureCut4(true, false, false, (int)swEndConditions_e.swEndCondThroughAll,
             0, apiDepth, apiDepth, false, false, false, false, 0, 0, false, false, false, false, false,
             true, automatic, false, false, false, (int)swStartConditions_e.swStartSketchPlane, 0, false, false);
         Check(feature != null, "Could not create the scoped through-all Cut for " + control["mode"]);
         feature.Name = (string)cutSpec["feature"];
         doc.ClearSelection2(true);
+        step = "rebuild_cut_feature";
         Check(doc.ForceRebuild3(false), "Could not rebuild the scoped through-all Cut");
     }
 
@@ -307,7 +311,18 @@ public sealed class SolidWorksScopeControl
         return Row("cut", cut, "bodies", measured);
     }
 
-    Dictionary<string, object> Create(string directory, Dictionary<string, object> control)
+    void CloseCaseDocument(IModelDoc2 doc, Exception failure, ref string step)
+    {
+        if (failure == null) step = "close_document";
+        try { app.CloseDoc(doc.GetTitle()); }
+        catch (Exception error)
+        {
+            if (failure == null) throw;
+            failure.GetBaseException().Data["scope_document_close_hresult"] = error.GetBaseException().HResult;
+        }
+    }
+
+    Dictionary<string, object> Create(string directory, Dictionary<string, object> control, ref string step)
     {
         var mode = (string)control["mode"];
         var file = "solidworks-scope-" + mode + ".SLDPRT";
@@ -317,47 +332,67 @@ public sealed class SolidWorksScopeControl
         Check(doc != null, "Could not create licensed scope part");
         Dictionary<string, object> before;
         object saved;
+        Exception failure = null;
         try
         {
+            step = "create_boss_a";
             Boss(doc, "A");
+            step = "create_boss_b";
             Boss(doc, "B");
+            step = "measure_uncut_bodies";
             Check(doc.ForceRebuild3(false), "Could not rebuild the two uncut solids");
             var bodies = Bodies(doc);
             before = MeasureBodies(doc, bodies);
-            Cut(doc, bodies, control);
+            Cut(doc, bodies, control, ref step);
+            step = "measure_authored_cut";
             saved = Observe(doc, before);
+            step = "save_archive";
             var status = 0;
             var warnings = 0;
-            Check(doc.Extension.SaveAs3(path, 0, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, null,
-                ref status, ref warnings) && status == 0 && warnings == 0, "Could not save scoped through-all control");
+            var savedFile = doc.Extension.SaveAs3(path, 0, (int)swSaveAsOptions_e.swSaveAsOptions_Silent, null, null,
+                ref status, ref warnings);
+            Check(savedFile && status == 0 && warnings == 0,
+                "Could not save scoped through-all control (errors " + status + ", warnings " + warnings + ")");
         }
-        finally { app.CloseDoc(doc.GetTitle()); }
+        catch (Exception error) { failure = error; throw; }
+        finally { CloseCaseDocument(doc, failure, ref step); }
+        step = "hash_saved_archive";
         return Row("mode", mode, "archive", Row("file", file, "sha256", Hash(path), "size_bytes", new FileInfo(path).Length),
             "before_cut", Row("bodies", before), "before_save", saved);
     }
 
-    void Reopen(string directory, Dictionary<string, object> control)
+    void Reopen(string directory, Dictionary<string, object> control, ref string step)
     {
         var archive = ObjectValue(control["archive"]);
-        var path = Path.Combine(directory, (string)archive["file"]);
+        var file = "solidworks-scope-" + (string)control["mode"] + ".SLDPRT";
+        Check((string)archive["file"] == file, "The scope control archive name differs from its case");
+        var path = Path.Combine(directory, file);
         Check(Hash(path) == (string)archive["sha256"] && app.GetDocumentCount() == 0,
             "Could not reopen the exact saved scope control");
         int errors = 0, warnings = 0;
         int options = (int)(swOpenDocOptions_e.swOpenDocOptions_Silent | swOpenDocOptions_e.swOpenDocOptions_ReadOnly);
         var doc = app.OpenDoc6(path, (int)swDocumentTypes_e.swDocPART, options, "", ref errors, ref warnings) as IModelDoc2;
-        Check(doc != null, "The licensed application did not reopen the scope control");
+        Check(doc != null, "The licensed application did not reopen the scope control (errors " + errors
+            + ", warnings " + warnings + ")");
+        Exception failure = null;
         try
         {
+            step = "verify_read_only_open";
             Check(doc.IsOpenedReadOnly() && errors == 0
                 && (warnings & ~(int)swFileLoadWarning_e.swFileLoadWarning_ReadOnly) == 0
                 && string.Equals(doc.GetPathName(), path, StringComparison.OrdinalIgnoreCase),
-                "The exact scope control did not open cleanly and read-only");
+                "The exact scope control did not open cleanly and read-only (errors " + errors + ", warnings " + warnings + ")");
             var before = ObjectValue(ObjectValue(control["before_cut"])["bodies"]);
+            step = "measure_reopened_cut";
             control["after_reopen"] = Observe(doc, before);
+            step = "rebuild_reopened_cut";
             Check(doc.ForceRebuild3(false), "The reopened scope control did not rebuild");
+            step = "measure_rebuilt_cut";
             control["after_rebuild"] = Observe(doc, before);
         }
-        finally { app.CloseDoc(doc.GetTitle()); }
+        catch (Exception error) { failure = error; throw; }
+        finally { CloseCaseDocument(doc, failure, ref step); }
+        step = "verify_reopened_archive_hash";
         Check(Hash(path) == (string)archive["sha256"], "The scope control bytes changed during native readback");
     }
 
@@ -590,7 +625,7 @@ public sealed class SolidWorksScopeControl
         }
     }
 
-    static string Phase(string specification, string directory, string executable, string priorJson)
+    static string Phase(string specification, string directory, string executable, string provenance, string priorJson)
     {
         var launch = new ProcessStartInfo(executable)
         {
@@ -628,7 +663,7 @@ public sealed class SolidWorksScopeControl
                 var started = DateTime.FromFileTimeUtc(owned.Created);
                 var processRow = Row("pid", pid, "started_utc", started.ToString("O"));
                 mayStop = false;
-                var output = worker.Collect(directory, priorJson, processRow);
+                var output = worker.Collect(directory, priorJson, processRow, ObjectValue(Json.DeserializeObject(provenance)));
                 Check(application.GetDocumentCount() == 0, "The scope worker left an open document");
                 mayStop = true;
                 RequestExit(owned, ref application);
@@ -647,14 +682,54 @@ public sealed class SolidWorksScopeControl
         }
     }
 
-    Dictionary<string, object> Collect(string directory, string priorJson, Dictionary<string, object> process)
+    static void PublishCheckpoint(string directory, string mode, string phase, Dictionary<string, object> evidence,
+        Dictionary<string, object> process, Dictionary<string, object> provenance)
+    {
+        var target = Path.Combine(directory, mode + "." + phase + ".checkpoint.json");
+        var stage = target + "." + Guid.NewGuid().ToString("N");
+        var row = Row("schema", 1, "scope", "two-body-through-all-discovery", "kind", "scope_case_checkpoint",
+            "application", "solidworks", "application_build", Build, "phase", phase, "case", evidence,
+            "process", process, "campaign_completed", false, "process_exit_observed", false, "provenance", provenance);
+        var payload = Encoding.UTF8.GetBytes(Json.Serialize(row) + "\n");
+        using (var file = new FileStream(stage, FileMode.CreateNew, FileAccess.Write, FileShare.None))
+        {
+            file.Write(payload, 0, payload.Length);
+            file.Flush(true);
+        }
+        File.Move(stage, target);
+    }
+
+    Dictionary<string, object> CollectCase(string directory, Dictionary<string, object> control, string phase,
+        Dictionary<string, object> process, Dictionary<string, object> provenance)
+    {
+        var mode = (string)control["mode"];
+        var step = phase == "authoring" ? "open_part_template" : "open_saved_archive";
+        try
+        {
+            if (phase == "authoring") control = Create(directory, control, ref step);
+            else Reopen(directory, control, ref step);
+            step = "publish_case_checkpoint";
+            PublishCheckpoint(directory, mode, phase, control, process, provenance);
+            return control;
+        }
+        catch (Exception error)
+        {
+            var detail = error.GetBaseException().Data;
+            detail["scope_case"] = mode;
+            detail["scope_step"] = step;
+            throw;
+        }
+    }
+
+    Dictionary<string, object> Collect(string directory, string priorJson, Dictionary<string, object> process,
+        Dictionary<string, object> provenance)
     {
         var scopes = Items(spec["cases"]).Select(ObjectValue).ToArray();
         Check(scopes.Select(item => (string)item["mode"]).SequenceEqual(new[] { "automatic", "explicit_a", "explicit_ab" }),
             "The fixed scope control cases changed");
         if (priorJson == null)
         {
-            var cases = scopes.Select(item => Create(directory, item)).ToArray();
+            var cases = scopes.Select(item => CollectCase(directory, item, "authoring", process, provenance)).ToArray();
             return Row("native_processes", Row("authoring", process), "cases", cases);
         }
         var prior = ObjectValue(Json.DeserializeObject(priorJson));
@@ -663,18 +738,21 @@ public sealed class SolidWorksScopeControl
         Check((bool)author["exited_observed"] && (int)author["pid"] != (int)process["pid"]
             && DateTime.Parse((string)author["started_utc"]).ToUniversalTime()
                 < DateTime.Parse((string)process["started_utc"]).ToUniversalTime(), "The reopen phase did not use a fresh process");
-        foreach (var control in Items(prior["cases"]).Select(ObjectValue)) Reopen(directory, control);
+        var authored = Items(prior["cases"]).Select(ObjectValue).ToArray();
+        Check(authored.Select(item => (string)item["mode"]).SequenceEqual(scopes.Select(item => (string)item["mode"])),
+            "The authored scope roster differs from the requested cases");
+        foreach (var control in authored) CollectCase(directory, control, "reopen", process, provenance);
         owners["reopen"] = process;
         return prior;
     }
 
-    public static string Author(string specification, string directory, string executable)
+    public static string Author(string specification, string directory, string executable, string provenance)
     {
-        return Phase(specification, directory, executable, null);
+        return Phase(specification, directory, executable, provenance, null);
     }
 
-    public static string Measure(string specification, string directory, string executable, string authored)
+    public static string Measure(string specification, string directory, string executable, string provenance, string authored)
     {
-        return Phase(specification, directory, executable, authored);
+        return Phase(specification, directory, executable, provenance, authored);
     }
 }

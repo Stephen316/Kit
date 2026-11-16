@@ -83,12 +83,18 @@ Add-Type -Path $constants.FullName
 Add-Type -Path $interop.FullName
 Add-Type -Path (Join-Path $repository $collector.path) -ReferencedAssemblies @($interop.FullName, $constants.FullName, 'System.Core.dll', $web)
 
+$sourcePins = [ordered]@{ launcher = $launcher; collector = $collector; specification = $specification }
+$provenance = [ordered]@{
+    source_revision = $SourceRevision
+    specification_sha256 = $specification.sha256
+    sources = $sourcePins
+} | ConvertTo-Json -Depth 6 -Compress
 $phase = 'authoring'
 try {
-    $authored = [SolidWorksScopeControl]::Author($specificationText, $output, $binary.FullName)
+    $authored = [SolidWorksScopeControl]::Author($specificationText, $output, $binary.FullName, $provenance)
     Write-NewJson (Join-Path $output 'authoring.json') ($authored | ConvertFrom-Json)
     $phase = 'reopen'
-    $finished = [SolidWorksScopeControl]::Measure($specificationText, $output, $binary.FullName, $authored) | ConvertFrom-Json
+    $finished = [SolidWorksScopeControl]::Measure($specificationText, $output, $binary.FullName, $provenance, $authored) | ConvertFrom-Json
 } catch {
     $failure = $_.Exception.GetBaseException()
     $failureRecord = [ordered]@{
@@ -99,6 +105,14 @@ try {
         specification_sha256 = $specification.sha256
         type = $failure.GetType().Name
         hresult = $failure.HResult
+        message = $failure.Message.Substring(0, [Math]::Min($failure.Message.Length, 2048))
+    }
+    if ($failure.Data.Contains('scope_case')) {
+        $failureRecord['case'] = $failure.Data['scope_case']
+        $failureRecord['step'] = $failure.Data['scope_step']
+    }
+    if ($failure.Data.Contains('scope_document_close_hresult')) {
+        $failureRecord['document_close_hresult'] = $failure.Data['scope_document_close_hresult']
     }
     if ($failure.Data.Contains('scope_cleanup')) {
         $failureRecord['cleanup'] = $failure.Data['scope_cleanup'] | ConvertFrom-Json
@@ -121,7 +135,7 @@ Write-NewJson $reportPath ([ordered]@{
     source_revision = $SourceRevision
     specification_sha256 = $specification.sha256
     native_processes = $finished.native_processes
-    sources = [ordered]@{ launcher = $launcher; collector = $collector; specification = $specification }
+    sources = $sourcePins
     cases = $finished.cases
 })
 Write-Output (Get-FileHash -LiteralPath $reportPath -Algorithm SHA256).Hash.ToLowerInvariant()
