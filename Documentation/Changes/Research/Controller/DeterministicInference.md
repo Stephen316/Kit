@@ -76,6 +76,8 @@ rules and evidence invalidate only declared dependent jobs. Each rescan reads
 one pinned native archive, records public reader output identity and retains
 the unresolved inventory. A rescan does not apply a research hypothesis to the
 production reader.
+For paired assessments, the source hash and requested native format must match
+the same entry in the accepted report before the reader runs.
 
 ## Archive verification
 

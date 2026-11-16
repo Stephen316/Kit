@@ -112,6 +112,10 @@ def scan_archive(scope, assessment, content, source_format):
         or source_hash not in assessment.get("source_sha256", ())
     ):
         raise ValueError("archive is outside the affected inference scope")
+    if assessment["kind"] == GAP_KIND:
+        sources = assessment["assessment"]["affected_archives"]
+        if not isinstance(sources, dict) or sources.get(source_hash) != source_format:
+            raise ValueError("rescan source format differs from its paired assessment")
     sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
     from convert import open_document
 
