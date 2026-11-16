@@ -1,3 +1,5 @@
+from dataclasses import dataclass as Dataclass
+
 from DefinitionFragment import EncodeDefinitionFragment
 from DefinitionOptions import KDefinitionOptionsGeneration
 from JournalAttach import JournalAttach
@@ -26,6 +28,32 @@ KPrimaryPlacement = (1519, 227, 2, 1, 0, 764, 227, 10, -1)
 
 # the modern environment tail carries the build stamp of the supported profile
 KBuildStamp = 90165
+
+
+# the document supplies the independently owned view and environment settings
+@Dataclass(frozen=True, slots=True)
+class DefinitionFields:
+    UserName: str
+    PreambleView: tuple[float, ...] | None
+    Camera: tuple[float, float, float, float]
+    Views: tuple[ViewRecord, ViewRecord, ViewRecord]
+    Attachment: JournalAttach
+    AppearanceCounter: int
+    TerminalValue: float
+    Bindings: tuple[LineFontBinding, ...]
+
+
+def EncodePartDefinition(Fields: DefinitionFields) -> bytes:
+    return EncodeModernPartDefinition(
+        UserName=Fields.UserName,
+        PreambleView=Fields.PreambleView,
+        Camera=Fields.Camera,
+        Views=Fields.Views,
+        Attachment=Fields.Attachment,
+        AppearanceCounter=Fields.AppearanceCounter,
+        TerminalValue=Fields.TerminalValue,
+        Bindings=Fields.Bindings,
+    )
 
 
 # untagged window placement and fixed view widths determine the next archive class

@@ -118,10 +118,8 @@ def compare_composed_mass(
     return deltas
 
 
-# Only discovery configurations with a sketch or a single rectangular boss take this proof.
-def verify_cmgr_composition(
-    archive: SldprtArchive, generation: int, measurement
-) -> dict[str, object]:
+# the independent reader supplies typed manager state and the physical payload boundary
+def read_cmgr_document(archive: SldprtArchive, generation: int, measurement):
     _, session_stamp, body_stamp = unpack("<3I", archive.require("ModelStamps"))
     header_cursor, header = ReadHeaderLogs(
         archive.require("Contents/Config-0-ModelHeader"), generation
@@ -189,6 +187,32 @@ def verify_cmgr_composition(
         external_input,
         boss,
     )
+    return document, checked, mass_start, stored_mass
+
+
+# the geometry payload is the only part of the manager subject to physical tolerances
+def compare_cmgr_bytes(saved, generated, mass_start, stored_mass, generation):
+    RequireArch(len(generated), len(saved), "complete generated configuration manager")
+    if stored_mass is None:
+        RequireArch(generated, saved, "exact reconstructed sketch CMgr")
+        return len(saved), ()
+    geometry_end = mass_start + calcsize(KGeometryLayout)
+    RequireArch(generated[:mass_start], saved[:mass_start], "CMgr before boss geometry")
+    RequireArch(
+        generated[geometry_end:], saved[geometry_end:], "CMgr after boss geometry"
+    )
+    deltas = compare_composed_mass(stored_mass, generated, mass_start, generation)
+    return len(saved) - (geometry_end - mass_start), deltas
+
+
+# Only discovery configurations with a sketch or a single rectangular boss take this proof.
+def verify_cmgr_composition(
+    archive: SldprtArchive, generation: int, measurement
+) -> dict[str, object]:
+    stream = archive.require("Contents/CMgr")
+    document, checked, mass_start, stored_mass = read_cmgr_document(
+        archive, generation, measurement
+    )
     writer = BuildCmgr(generation, document)
     generated = writer.build()
     RequireArch(
@@ -201,24 +225,9 @@ def verify_cmgr_composition(
         "CMgr composed full stream size and live allocator",
     )
 
-    deltas = ()
-    exact_width = len(stream)
-    if stored_mass is None:
-        RequireArch(generated == stream, True, "exact reconstructed sketch CMgr")
-    else:
-        geometry_end = mass_start + calcsize(KGeometryLayout)
-        RequireArch(
-            generated[:mass_start] == stream[:mass_start],
-            True,
-            "CMgr before boss geometry",
-        )
-        RequireArch(
-            generated[geometry_end:] == stream[geometry_end:],
-            True,
-            "CMgr after boss geometry",
-        )
-        deltas = compare_composed_mass(stored_mass, generated, mass_start, generation)
-        exact_width -= geometry_end - mass_start
+    exact_width, deltas = compare_cmgr_bytes(
+        stream, generated, mass_start, stored_mass, generation
+    )
     return {
         "source_sha256": sha256(stream).hexdigest(),
         "generated_sha256": sha256(generated).hexdigest(),
