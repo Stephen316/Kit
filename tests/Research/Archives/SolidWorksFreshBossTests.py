@@ -115,3 +115,243 @@ def CheckFreshBoss() -> None:
     assert Bounds[1] == Approx([0.03825, 0.0225, 0.0])
     assert Report["volume_m3"] == Approx(0.00000666984375)
     assert Report["centroid_metres"] == Approx([0.019125, 0.01125, -0.003875])
+
+
+# the child process loads the typed research interface from this exact checkout
+KPortImports = """
+import json
+import sys
+from dataclasses import replace
+from datetime import timedelta
+from pathlib import Path
+
+sys.path.insert(0, str(Path.cwd() / "re/solidworks/WriterResearch"))
+from VerifyFreshBoss import (
+    ArchiveFeature, AuthoredTimes, BossIds, ConfigClocks, FileClock,
+    FixtureCfgPrefs, KMemberIds, KPartGeneration, MetadataContext, MetadataTimes,
+    PackageIdentity, ParseContext, PortableBossContext, SystemClocks,
+    VerifyPortableBoss, authored_case, wire_state,
+)
+from interchange.document.Models.DocumentModel import CadDocument
+"""
+
+# the caller supplies independent neutral dimensions and chooses its own saved view centre
+KPortGraph = """
+case, package = json.load(sys.stdin)
+reference = ParseContext(package)
+document = authored_case(case["right"], *case["dimensions_mm"])
+sketch, = document.sketches
+body, = document.bodies
+plane, = document.support_planes
+datum_name = "Right Plane" if case["right"] else "Front Plane"
+document = replace(
+    document,
+    support_planes=(replace(plane, name=datum_name),),
+    bodies=(replace(body, name=document.feature_timeline[1].name),),
+)
+first, second, third = reference.Definition.Views
+definition = replace(
+    reference.Definition,
+    Views=(replace(first, centre=tuple(case["centre_m"])), second, third),
+)
+"""
+
+# native feature and presentation inputs belong to the test caller
+KPortWires = """
+created = int(reference.Created.timestamp())
+shared = FileClock(reference.Created)
+profile_time = FileClock(reference.Created + timedelta(seconds=1))
+boss_time = FileClock(reference.Created + timedelta(seconds=2))
+title = "PortableRight" if case["right"] else "PortableFront"
+_, profile, boss = wire_state()
+trim_file = replace(profile.Trim.File, Title=title, SavedTime=created)
+profile = replace(
+    profile,
+    Feature=replace(profile.Feature, FileTime=profile_time),
+    DatumTime=created, OriginTime=created,
+    Trim=replace(profile.Trim, File=trim_file, ReferenceTime=created + 1),
+)
+boss = replace(
+    boss, Feature=replace(boss.Feature, FileTime=boss_time), ReferenceTime=created + 2,
+)
+prefs = FixtureCfgPrefs(case.get("units", "metric"))
+prefs = replace(
+    prefs, Title=title, BlockIdentity=reference.BlockId, DensityKgM3=1850.0,
+    Visual=replace(prefs.Visual, NativeAssetPath=reference.AssetPath, AppearanceId=121),
+)
+identities = PackageIdentity(
+    SavedPath=reference.SavedPath, Calendar=reference.Calendar,
+    Exchange=reference.Exchange, Objects=reference.Objects, Pmi=reference.Pmi,
+    Content=reference.Content, PreviewColors=reference.PreviewColors,
+)
+"""
+
+# the whole package consumes caller chosen ids and distinct typed lifecycle owners
+KPortContext = """
+context = PortableBossContext(
+    Ids=BossIds(**dict(zip(("Profile", "Operation", "Width", "Height", "Depth"), case["ids"], strict=True))),
+    Profile=profile, Boss=boss, Preferences=prefs,
+    ConfigTime=ConfigClocks(
+        GeometryStamp=251, DocumentUpdateStamp=267, BodyStamp=281,
+        SketchBlock=shared, ExplodedView=shared,
+    ),
+    SystemTime=SystemClocks(
+        Members={
+            identity: ArchiveFeature(201 + identity, KPartGeneration, 2026225, shared)
+            for identity in KMemberIds
+        },
+        FrontTime=created, RightTime=created, OriginTime=created, OriginState=103,
+    ),
+    Metadata=MetadataContext(
+        UserName="Portable caller", HistoryName=title, NextTreeId=90,
+        Times=MetadataTimes(
+            HistoryStart=created, Created=created, SummaryCreated=created,
+            Modified=created + 4, Updated=created + 3,
+            Profile=AuthoredTimes(Created=created + 1, Rebuilt=created + 2),
+            Boss=AuthoredTimes(Created=created + 2, Rebuilt=created + 3),
+        ),
+        Header=reference.Header, Definition=definition, ManagerTime=shared, PartTime=shared,
+    ),
+    Package=identities,
+)
+"""
+
+# rejected requests exercise the same neutral parsing and archive boundary as accepted ones
+KPortRefusals = """
+rejection = case.get("reject")
+if rejection == "body":
+    document = replace(document, bodies=(replace(body, name="Independent body label"),))
+elif rejection == "metadata":
+    document = replace(document, metadata={"unknown_semantics": True})
+elif rejection == "nested":
+    parameter, *others = document.parameters
+    document = replace(
+        document, parameters=(replace(parameter, attributes={"unmapped": True}), *others),
+    )
+elif rejection == "unframed":
+    document = replace(
+        document, sketches=(replace(sketch, attributes={"unframed_support_plane_native_id": 4}),),
+    )
+elif rejection == "datum clock":
+    context = replace(context, Profile=replace(profile, DatumTime=created + 1))
+elif rejection == "material":
+    context = replace(
+        context, Package=replace(identities, Content=replace(identities.Content, MaterialName="Steel")),
+    )
+result = VerifyPortableBoss(CadDocument.from_json(document.to_json()), context, Candidate=Path(sys.argv[1]))
+print(json.dumps(result))
+"""
+
+
+# each child receives the same checked research entry and its own independent inputs
+KPortableCaller = KPortImports + KPortGraph + KPortWires + KPortContext + KPortRefusals
+
+
+# separate fixture inputs establish the neutral dimensions and target identities independently
+KPortableCases: tuple[dict[str, object], ...] = (
+    {
+        "right": False,
+        "dimensions_mm": [31.25, 19.5, -6.75],
+        "ids": [53, 67, 81, 82, 83],
+        "datum": 2,
+        "bounds": [[0.0, 0.0, -0.00675], [0.03125, 0.0195, 0.0]],
+        "centre_m": [0.015625, 0.00975, -0.003375],
+    },
+    {
+        "right": True,
+        "dimensions_mm": [45.5, 23.75, 12.25],
+        "ids": [54, 68, 84, 85, 86],
+        "datum": 4,
+        "bounds": [[0.0, 0.0, 0.0], [0.01225, 0.0455, 0.02375]],
+        "centre_m": [0.006125, 0.02275, 0.011875],
+    },
+)
+
+
+# the test passes the targeted package identities independently of the requested neutral dimensions
+def RunPortable(
+    CaseValue: dict[str, object], Destination: FilePath
+) -> CompletedProcess[str]:
+    Title = "PortableRight" if CaseValue["right"] else "PortableFront"
+    FirstKey = 30 if CaseValue["right"] else 20
+    KeyValues = tuple(
+        str(OwnedUuid(int=Index, version=4)) for Index in range(FirstKey, FirstKey + 10)
+    )
+    Package = {
+        **KFreshContext,
+        "saved_path": f"C:\\KitFixture\\{Title}.SLDPRT",
+        "block_id": KeyValues[0],
+        "config_exchange": {"id": KeyValues[1], "created": KExchangeTime},
+        "object_exchange": {
+            "folder": KeyValues[2],
+            "planes": KeyValues[3:6],
+            "document": KeyValues[6],
+            "created": KExchangeTime,
+            "index_order": [1, 2, 0],
+        },
+        "pmi": {"keys": KeyValues[7:10], "created": KExchangeTime},
+        "content": {"material_name": "", "material_id": "", "body_visible": True},
+    }
+    return RunProcess(
+        [PythonExe, "-B", "-c", KPortableCaller, str(Destination)],
+        cwd=FilePath(__file__).resolve().parents[3],
+        input=EncodeJson((CaseValue, Package)),
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=120,
+    )
+
+
+# the whole archive must retain independently specified axes and editable sizes and owners
+def CheckPortable() -> None:
+    with MakeFolder() as TempRoot:
+        for Ordinal, CaseValue in enumerate(KPortableCases):
+            Destination = FilePath(TempRoot) / f"Portable{Ordinal}.SLDPRT"
+            Result = RunPortable(CaseValue, Destination)
+            assert Result.returncode == 0, Result.stderr
+            Report: dict[str, object] = ParseJson(Result.stdout)
+            assert (
+                DigestBytes(Destination.read_bytes()).hexdigest()
+                == Report["archive_sha256"]
+            )
+            assert Report["stream_count"] == 32
+            assert Report["centroid_metres"] == Approx(
+                CastValue(list[float], CaseValue["centre_m"])
+            )
+            IdentityValues = CastValue(list[int], CaseValue["ids"])
+            Readback = CastValue(dict[str, object], Report["readback"])
+            assert Readback["feature_ids"] == IdentityValues[:2]
+            assert Readback["dimension_ids"] == IdentityValues[2:]
+            assert Readback["dimensions_mm"] == Approx(
+                CastValue(list[float], CaseValue["dimensions_mm"])
+            )
+            Bounds = CastValue(list[list[float]], CaseValue["bounds"])
+            ActualBounds = CastValue(list[list[float]], Readback["bounds_metres"])
+            assert ActualBounds[0] == Approx(Bounds[0])
+            assert ActualBounds[1] == Approx(Bounds[1])
+            assert Readback["datum_id"] == CaseValue["datum"]
+            assert Readback["origin_support_id"] == 2
+            assert Readback["datum_time"] == Readback["origin_support_time"]
+
+
+# a rejected portable input must leave the requested destination unused
+def CheckPortReject() -> None:
+    with MakeFolder() as TempRoot:
+        Destination = FilePath(TempRoot) / "Refused.SLDPRT"
+        for Reason, Message in (
+            ("body", "preserve the authored names"),
+            ("metadata", "unsupported document metadata"),
+            ("nested", "unsupported nested attributes"),
+            ("unframed", "unqualified SOLIDWORKS sketch support"),
+            ("datum clock", "same datum and Origin times"),
+            ("material", "no mapped physical material"),
+        ):
+            Result = RunPortable({**KPortableCases[1], "reject": Reason}, Destination)
+            assert Result.returncode != 0, Result.stdout
+            assert Message in Result.stderr
+            assert not Destination.exists()
+        Result = RunPortable({**KPortableCases[1], "units": "inch"}, Destination)
+        assert Result.returncode != 0, Result.stdout
+        assert "witnessed metric display settings" in Result.stderr
+        assert not Destination.exists()
