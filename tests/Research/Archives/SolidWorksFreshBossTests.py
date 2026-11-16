@@ -162,7 +162,7 @@ created = int(reference.Created.timestamp())
 shared = FileClock(reference.Created)
 profile_time = FileClock(reference.Created + timedelta(seconds=1))
 boss_time = FileClock(reference.Created + timedelta(seconds=2))
-title = "PortableRight" if case["right"] else "PortableFront"
+title = case["title"]
 _, profile, boss = wire_state()
 trim_file = replace(profile.Trim.File, Title=title, SavedTime=created)
 profile = replace(
@@ -238,19 +238,32 @@ elif rejection == "material":
     context = replace(
         context, Package=replace(identities, Content=replace(identities.Content, MaterialName="Steel")),
     )
-result = VerifyPortableBoss(CadDocument.from_json(document.to_json()), context, Candidate=Path(sys.argv[1]))
+"""
+
+
+# direct construction bypasses json validation so the entry point must enforce it
+KPortRun = """
+document = CadDocument.from_json(document.to_json())
+if rejection == "invalid graph":
+    sketch, = document.sketches
+    document = replace(document, sketches=(replace(sketch, support_plane_id="missing-plane"),))
+result = VerifyPortableBoss(document, context, Candidate=Path(sys.argv[1]))
 print(json.dumps(result))
 """
 
 
 # each child receives the same checked research entry and its own independent inputs
-KPortableCaller = KPortImports + KPortGraph + KPortWires + KPortContext + KPortRefusals
+KPortableCaller = (
+    KPortImports + KPortGraph + KPortWires + KPortContext + KPortRefusals + KPortRun
+)
 
 
-# separate fixture inputs establish the neutral dimensions and target identities independently
-KPortableCases: tuple[dict[str, object], ...] = (
+# each front direction uses independently chosen neutral dimensions and target identities
+KFrontCases: tuple[dict[str, object], ...] = (
     {
         "right": False,
+        "title": "PortableFrontReverse",
+        "first_key": 20,
         "dimensions_mm": [31.25, 19.5, -6.75],
         "ids": [53, 67, 81, 82, 83],
         "datum": 2,
@@ -258,12 +271,39 @@ KPortableCases: tuple[dict[str, object], ...] = (
         "centre_m": [0.015625, 0.00975, -0.003375],
     },
     {
+        "right": False,
+        "title": "PortableFrontForward",
+        "first_key": 40,
+        "dimensions_mm": [36.75, 16.25, 8.5],
+        "ids": [55, 69, 87, 88, 89],
+        "datum": 2,
+        "bounds": [[0.0, 0.0, 0.0], [0.03675, 0.01625, 0.0085]],
+        "centre_m": [0.018375, 0.008125, 0.00425],
+    },
+)
+
+
+# each right direction must translate local sketch lengths into independently computed world bounds
+KRightCases: tuple[dict[str, object], ...] = (
+    {
         "right": True,
+        "title": "PortableRightForward",
+        "first_key": 30,
         "dimensions_mm": [45.5, 23.75, 12.25],
         "ids": [54, 68, 84, 85, 86],
         "datum": 4,
         "bounds": [[0.0, 0.0, 0.0], [0.01225, 0.0455, 0.02375]],
         "centre_m": [0.006125, 0.02275, 0.011875],
+    },
+    {
+        "right": True,
+        "title": "PortableRightReverse",
+        "first_key": 50,
+        "dimensions_mm": [40.25, 27.5, -15.5],
+        "ids": [56, 70, 71, 76, 79],
+        "datum": 4,
+        "bounds": [[-0.0155, 0.0, 0.0], [0.0, 0.04025, 0.0275]],
+        "centre_m": [-0.00775, 0.020125, 0.01375],
     },
 )
 
@@ -272,8 +312,8 @@ KPortableCases: tuple[dict[str, object], ...] = (
 def RunPortable(
     CaseValue: dict[str, object], Destination: FilePath
 ) -> CompletedProcess[str]:
-    Title = "PortableRight" if CaseValue["right"] else "PortableFront"
-    FirstKey = 30 if CaseValue["right"] else 20
+    Title = CastValue(str, CaseValue["title"])
+    FirstKey = CastValue(int, CaseValue["first_key"])
     KeyValues = tuple(
         str(OwnedUuid(int=Index, version=4)) for Index in range(FirstKey, FirstKey + 10)
     )
@@ -306,7 +346,7 @@ def RunPortable(
 # the whole archive must retain independently specified axes and editable sizes and owners
 def CheckPortable() -> None:
     with MakeFolder() as TempRoot:
-        for Ordinal, CaseValue in enumerate(KPortableCases):
+        for Ordinal, CaseValue in enumerate((*KFrontCases, *KRightCases)):
             Destination = FilePath(TempRoot) / f"Portable{Ordinal}.SLDPRT"
             Result = RunPortable(CaseValue, Destination)
             assert Result.returncode == 0, Result.stderr
@@ -346,12 +386,13 @@ def CheckPortReject() -> None:
             ("unframed", "unqualified SOLIDWORKS sketch support"),
             ("datum clock", "same datum and Origin times"),
             ("material", "no mapped physical material"),
+            ("invalid graph", "sketch drawing references missing plane"),
         ):
-            Result = RunPortable({**KPortableCases[1], "reject": Reason}, Destination)
+            Result = RunPortable({**KRightCases[0], "reject": Reason}, Destination)
             assert Result.returncode != 0, Result.stdout
             assert Message in Result.stderr
             assert not Destination.exists()
-        Result = RunPortable({**KPortableCases[1], "units": "inch"}, Destination)
+        Result = RunPortable({**KRightCases[0], "units": "inch"}, Destination)
         assert Result.returncode != 0, Result.stdout
         assert "witnessed metric display settings" in Result.stderr
         assert not Destination.exists()

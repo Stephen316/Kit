@@ -1082,6 +1082,7 @@ def VerifyPortableBoss(
     *,
     Candidate: Path | None = None,
 ) -> dict[str, object]:
+    Document.assert_valid()
     Logical = ProjectBoss(Document)
     Expected = BossExpectation(
         Logical,
