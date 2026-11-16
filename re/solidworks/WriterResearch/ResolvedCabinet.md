@@ -1,0 +1,11 @@
+# Standalone resolved annotation cabinet
+
+The annotation cabinet follows the [first six system folders](ResolvedFolders.md) in the generation-19000 P01 and P03 resolved streams. The cabinet is tree ID 1. Its Notes member is tree ID 17, and its end tag is tree ID 18. Licensed feature-tree measurements establish the three names and the separate ModelHeader log binds them to those IDs.
+
+In the pinned `sldmodu.dll` from SOLIDWORKS `34.4.1.1011`, SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`, the `moDetailCabinet_c` and `moNotesAreaFtrFolder_c` primary archive slots are `0x4ba494d0` and `0x4c221860`. Disassembly with `dumpbin 14.51.36231 /DISASM` traces the cabinet's base call at `0x4ba494ef` through `0x4bb18590` to the common feature serializer. That path stores the name and two-member list before the inherited feature return.
+
+The first list member allocates Notes and reaches the end tag through its typed sibling pointer. In `moNotesAreaFtrFolder_c`, `0x4c2218bd` is the ordinary `WriteObject` call for member `+0x388`. The end tag points back to Notes. The cabinet's second list member references the end tag already allocated through Notes. The next four signed words per member come from `+0x37c`, `+0x394`, `+0x378` and `+0x39c` at `0x4c2218cc..0x4c221909`. The primary Notes constructor sets `+0x378` to 1. The saved flags are `(0,0,1,1)` for the end tag and `(1,0,1,1)` for Notes.
+
+The final 32 bytes represent the signed base member from `0x4bb185c0`, the empty container from `0x4ba49501`, doubles at `+0x370` and `+0x378`, another empty container at `0x4ba49544`, the vector count from `0x4ba4955c` and the final member `+0x3f0`. Construction initializes both doubles to 1 at `0x4ba2abb2..0x4ba2abc3`. The measured stream values are `(0,0,1.0,1.0,0,0,0)` in layout `<iH2dH2i>`.
+
+Read-only replay matched the normal typed reader through byte 1873 in all 14 pinned source files. The 652-byte span allocates eight slots from 124 to 132 for P01 and from 129 to 137 for P03. The SHA-256 of the sorted source-to-cabinet digest map is `8ab5fe560c589276e8cf2a548c5b22e9d29dbe1f81bd0150d9ec47f645a67a05`. Hosted verification composes this cabinet directly after the six folders using one writer, compares exact bytes, and checks the final class map. [Construction](ResolvedCabinet.py) · [Archive verifier](VerifyResolvedFolders.py)

@@ -36,10 +36,8 @@ def RequireCmgrTime(Generation: int, StampValue: Stamp) -> None:
     )
 
 
-# the ordinary feature branch saves the version and timestamp fields separately
-def WriteArcFeature(
-    Writer: ArchiveWriter, Generation: int, State: ArchiveFeature
-) -> None:
+# callers can validate every feature before changing the live archive allocator
+def CheckArcFeature(Generation: int, State: ArchiveFeature) -> None:
     RequireCmgrTime(Generation, State.FileTime)
     RequireArch(
         type(State.UpdateStamp) is int
@@ -51,6 +49,13 @@ def WriteArcFeature(
         True,
         "ordinary feature update words",
     )
+
+
+# the ordinary feature branch saves the version and timestamp fields separately
+def WriteArcFeature(
+    Writer: ArchiveWriter, Generation: int, State: ArchiveFeature
+) -> None:
+    CheckArcFeature(Generation, State)
     Writer.raw(
         PackFields(
             "<iiIBiiiidi",
