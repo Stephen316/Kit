@@ -14,6 +14,7 @@ from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
 from RectangleFields import line_fields, measured_graph, point_fields
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
+from VerifyRectAnchor import verify_anchor
 from VerifyRectAxes import verify_axes
 from VerifyRectCorners import verify_corners
 from VerifyRectDims import verify_dims
@@ -46,7 +47,7 @@ def verify_members(stream, profile, measurement):
         for span, line in zip(lines, profile.Geometry["lines"], strict=True)
     ]
     require(roles.count("structural_header") == 1, "single structural line")
-    return corners, endpoints, tallies
+    return corners, proxy, endpoints, tallies
 
 
 # document IDs, archive allocations and geometry order must converge on the same owner
@@ -100,7 +101,9 @@ def inspect_open(archive, measurement, construct):
         and reference["handle_class"] == "sgPointHandle",
         "distinct local proxy points to the previously decoded Origin",
     )
-    corners, endpoints, tallies = verify_members(stream, profile, measurement)
+    corners, proxy_point, endpoints, tallies = verify_members(
+        stream, profile, measurement
+    )
     after = map_state(cursor)
     writer = origin_slots = None
     if construct:
@@ -130,7 +133,23 @@ def inspect_open(archive, measurement, construct):
     axis_proof = verify_axes(
         cursor, profile, corners, endpoints, measurement, generation, writer
     )
-    return opening, corner_proof, proxy_proof, line_proof, dim_proof, axis_proof
+    anchor_proof = verify_anchor(
+        cursor,
+        profile,
+        (*corners, proxy_point),
+        measurement,
+        generation,
+        PartArchiveWriter(map_state(cursor)) if construct else None,
+    )
+    return (
+        opening,
+        corner_proof,
+        proxy_proof,
+        line_proof,
+        dim_proof,
+        axis_proof,
+        anchor_proof,
+    )
 
 
 # composition pins the exact receipt order without relying on fixed record offsets
@@ -141,9 +160,10 @@ def report(construct):
     line_rows = []
     dim_rows = []
     axis_rows = []
+    anchor_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners, proxy, lines, dims, axes = inspect_open(
+        opening, corners, proxy, lines, dims, axes, anchor = inspect_open(
             archive, measurement, construct
         )
         rows.append((asset["sha256"], *opening))
@@ -152,6 +172,7 @@ def report(construct):
         line_rows.append((asset["sha256"], *lines))
         dim_rows.append((asset["sha256"], *dims))
         axis_rows.append((asset["sha256"], *axes))
+        anchor_rows.append((asset["sha256"], *anchor))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -171,6 +192,9 @@ def report(construct):
         ).hexdigest(),
         "axis_replay_sha256": sha256(
             json.dumps(axis_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "anchor_replay_sha256": sha256(
+            json.dumps(anchor_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(
