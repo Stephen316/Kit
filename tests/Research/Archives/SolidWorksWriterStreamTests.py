@@ -64,6 +64,16 @@ def CheckConfigVis() -> None:
     )
 
 
+# unit selectors and earlier length values must keep their separate saved fields
+def CheckConfigUnit() -> None:
+    Report = LoadReport("VerifyConfigUnits.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "8c4195e8660da7a1751a8c1c3d5c4e35ad53b2e58bfa6e8d9137fd36b3999a37"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")

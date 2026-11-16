@@ -16,4 +16,4 @@ python re/solidworks/WriterResearch/VerifyConfigVisual.py --read-only
 
 The six P01 and eight P03 pinned saves each contain an 817-byte visual body. Each body matches that file's independently parsed CMgr visual object exactly, including appearance ID and the entire DSPBR record. The saved ID frequencies are 4 in five saves, 5 in five, and 6 in four. The replay SHA-256 is `4fa9ad81435c8a0231ce0f280e62b29648dffa409d9be17e621bc73584aec82b`. Its digest covers compact JSON rows of native file hash, visual tag offset, visual body start and end, PW appearance ID, next index and body SHA-256, in receipt order.
 
-Hosted `CheckConfigVis` composes the named part root and the visual object through that same allocator, then compares their exact saved bytes. The hosted run and native acceptance remain pending. The next unconstructed record is the typed units table.
+Hosted `CheckConfigVis` composes the named part root and the visual object through that same allocator, then compares their exact saved bytes. The hosted run and native acceptance remain pending. Construction continues with the [typed units table](ConfigUnits.md).
