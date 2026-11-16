@@ -121,7 +121,7 @@ def CheckConfigMat() -> None:
 
 
 # the same typed writer must reach both native split boundaries with its live map
-def CheckConfigSplits() -> None:
+def CheckCfgSplits() -> None:
     Report = LoadReport("VerifyConfigSplitEdges.py", 14)
     assert (
         Report["replay_sha256"]
