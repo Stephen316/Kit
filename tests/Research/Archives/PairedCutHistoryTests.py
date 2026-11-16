@@ -53,10 +53,29 @@ def AssertCutAxes(History: dict[str, object], Variant: str) -> None:
     assert "SOLIDWORKS persisted through-all body-selection policy" in Issues
 
 
-# the actual through all control changes solid geometry despite identical axis bounds
-def AssertCutDiff(Report: dict[str, object]) -> None:
+# the duplicate boundary control preserves both identities without selecting one
+def AssertCutLinks(Report: dict[str, object]) -> None:
     Ambiguous = ReportObject(Report["ambiguous_boundary_control"])
     assert Ambiguous["status"] == "ambiguous", Ambiguous
+    assert "matched_links" not in Ambiguous
+    Links = Ambiguous["candidate_links"]
+    assert isinstance(Links, list)
+    Candidates = [ReportObject(Entry) for Entry in Links]
+    Copied = next(
+        Entry
+        for Entry in Candidates
+        if Entry["second_id"] == "duplicated_geometry_control"
+    )
+    SourceId = Copied["first_id"]
+    Alternatives = [Entry for Entry in Candidates if Entry["first_id"] == SourceId]
+    assert [
+        (Entry["second_id"], Entry["maximum_endpoint_delta_mm"])
+        for Entry in Alternatives
+    ] == [(SourceId, 0.0), ("duplicated_geometry_control", 0.0)]
+
+
+# the actual through all control changes solid geometry despite identical axis bounds
+def AssertCutDiff(Report: dict[str, object]) -> None:
     Controls = ReportObject(Report["termination_difference_control"])
     Change = ReportObject(Controls["public_baseline_solidworks_vs_through_all_fusion"])
     assert Change["status"] == "different" and Change["counts_exact"] is False
@@ -89,4 +108,5 @@ def CheckCutHistory() -> None:
     assert "historical_body_evidence" not in Report
     assert Report["fresh_native_fusion"] == "unverified"
     AssertCutPairs(ReportObject(Report["pairs"]))
+    AssertCutLinks(Report)
     AssertCutDiff(Report)
