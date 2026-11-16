@@ -7,6 +7,7 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from tests.Research.SupervisorClient import KRepoRoot
+from tests.Research.Windows.ScopeWatchStub import GetBasePython
 from tests.Research.Windows.WaitForExit import WaitForExit
 
 
@@ -17,7 +18,7 @@ def CheckScopeWatch(TmpPath: FilePath) -> None:
     RunPath.mkdir()
     Outside = Subprocess.Popen(
         [
-            System._base_executable,
+            GetBasePython(),
             "-I",
             "-S",
             "-c",
