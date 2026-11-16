@@ -141,7 +141,7 @@ def AssertRejected(Document: CadDocument, TargetData: FilePath | ByteStream) -> 
 
 
 # both empty and existing streams and paths retain their exact prior state after refusal
-def CheckTargets(Document: CadDocument, RootPath: FilePath) -> None:
+def AssertTargets(Document: CadDocument, RootPath: FilePath) -> None:
     Existing = b"caller owned destination"
     for Content in (b"", Existing):
         Output = ByteStream(Content)
@@ -162,7 +162,7 @@ def ObserveCase(CaseName: str, RootPath: FilePath) -> dict[str, object]:
     Document = CadDocument.from_json(MakeControl(CaseName).to_json(indent=None))
     Original = Document.to_json(indent=None)
     Report = EmitResearch(Document)
-    CheckTargets(Document, RootPath)
+    AssertTargets(Document, RootPath)
     assert Document.to_json(indent=None) == Original
     return {**Report, "refusals": 4, "input_unchanged": True}
 

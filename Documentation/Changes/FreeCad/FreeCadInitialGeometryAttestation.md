@@ -29,4 +29,6 @@ It checks research output and false flags, plus strict refusal with unchanged em
 Additional empty-mesh and auxiliary/verification-note controls preserve these checks.
 Notes retain their native-payload carrier classification and strict opaque-source refusal instead of being treated as a shape.
 Local verification is static only; hosted process execution and independent fresh native acceptance remain required.
+The [source-owner hosted observation](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6931236006) at `161885d8ec4442ddc2558a740fd2cd153a6c0819` reports all 54 intended cache and attestation cases passed, within a stage that failed on two unintended helper entries.
+The [helper naming repair](FreeCadProcessHelperCollection.md) changes only those names and their callers, preserving the cases and assertions.
 See the [initial recompute limitation](../../Gotchas/Conversion/FreeCad/GeneratedExtrusionRequiresRecompute.md) and [CAD success criteria](../../Reference/Operations/CadSuccessCriteria.md).

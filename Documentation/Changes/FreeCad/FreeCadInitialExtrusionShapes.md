@@ -30,4 +30,7 @@ The later Boolean control checks cache ownership only; Boolean and other history
 Static source, type, format, steering and policy checks were performed; local tests, collection, SDK/generator and native execution were not run.
 Hosted process and installed-native verification remain required.
 
+The [exact-source hosted observation](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6931236006) at `161885d8ec4442ddc2558a740fd2cd153a6c0819` reports all 54 intended cache and attestation cases passed.
+The archive stage still failed on two unintentionally collected helpers; the [helper naming repair](FreeCadProcessHelperCollection.md) preserves those cases and every assertion.
+
 [Cache implementation](../../../src/convert/adapters/freecad/ExtrusionCache/InlineShape.py), [profile guard](../../../src/convert/adapters/freecad/ExtrusionCache/InlineProfile.py), [process coverage](../../../tests/Research/Archives/FreeCadInitialShapeTests.py)
