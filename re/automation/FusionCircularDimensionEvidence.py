@@ -13,15 +13,12 @@ from pathlib import Path
 from FusionCircularLoopEvidence import saved_circle_loop
 from PairedCaptureIntake import GitSnapshot, require, sha256
 from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.Formats.Fusion.DocumentCodec.Records.NativeAuxiliary import (
-    KAuxiliarySchemas,
-)
 from convert.Formats.Fusion.Sketches.Dimensional.DimSpec import (
     KDiaDimension,
     KRadiusDimension,
 )
 from convert.adapters.Fusion.Adapter import FusionReader
-from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
+from convert.adapters.Fusion.Native.Graph.BuildGraph import BuildGraph
 from convert.adapters.base.ReadOptions import ReadOptions
 from interchange.Enums.EnumGeometry import GeometryKind
 from interchange.Enums.EnumValues import ParameterRole, ValueKind
@@ -69,60 +66,72 @@ DIMENSIONS = {
     ),
 }
 LENGTH_TOLERANCE_MM = 1e-6
-STRICT_ERROR = "Unknown native Fusion entity class"
 
 
 def close_mm(actual, measured):
     return math.isclose(actual, measured, rel_tol=0.0, abs_tol=LENGTH_TOLERANCE_MM)
 
 
-def unsupported_primary(model):
-    recognized = {entry.Value.ClassGuid.upper() for entry in ReadNames()}
-    auxiliary = {entry.ClassGuid.upper() for entry in KAuxiliarySchemas}
-    for segment in model.Segments:
-        identity = segment.Metadata.Header.SegmentId
-        first_groups = {}
-        for record in segment.Records:
-            if record.Groups:
-                first_groups.setdefault(
-                    record.ObjectId, record.Groups[0].ClassGuid.upper()
-                )
-        for record in segment.Records:
-            if not record.IsPrimary:
-                continue
-            guid = first_groups[record.ObjectId]
-            if guid not in recognized and (guid not in auxiliary or identity == 0):
-                yield identity, record.ObjectId, guid
-
-
-def strict_observation(reader, payload, model, kind):
+def strict_observation(reader, payload, model, sample, kind, driving):
     name, expected, _ = DIMENSIONS[kind]
-    try:
-        reader.Read(payload, ReadOptions(strict=True))
-    except ValueError as error:
-        require(
-            str(error) == STRICT_ERROR, f"Unexpected strict reader failure: {error}"
-        )
-    else:
-        raise ValueError(
-            "Strict reader accepted a previously unrecognized circular dimension"
-        )
-    unknown = tuple(unsupported_primary(model))
-    require(
-        len(unknown) == 1 and unknown[0][0] == 0 and unknown[0][2] == expected,
-        "Strict graph does not isolate the expected circular dimension class",
+    record = BuildGraph(model).OneClass(name.removeprefix("Na::"))
+    document = reader.Read(payload, ReadOptions(strict=True))
+    (sketch,) = document.sketches
+    (parameter,) = document.parameters
+    (feature,) = document.feature_timeline
+    (relation,) = sketch.constraints
+    (circle,) = (
+        entity for entity in sketch.entities if entity.kind == GeometryKind.KCircle
     )
-    segment, record, guid = unknown[0]
+    measured = sample["dimension"]
+    require(
+        record.Groups[0].ClassGuid.upper() == expected
+        and not document.bodies
+        and not document.diagnostics
+        and not document.metadata
+        and sketch.name == sample["sketch_name"]
+        and layout_matches(sketch, feature, circle, relation, parameter, record)
+        and relation.kind == kind
+        and relation.driving is measured["is_driving"] is driving
+        and parameter.role
+        is (ParameterRole.KDriving if driving else ParameterRole.KReference)
+        and parameter.name == measured["parameter_name"]
+        and parameter.expression is not None
+        and parameter.expression.source == measured["parameter_expression"]
+        and parameter.value.kind is ValueKind.KLength
+        and parameter.value.unit == "mm"
+        and close_mm(parameter.value.value, measured["parameter_value"] * 10.0),
+        "Packaged strict circle output differs from its native observation",
+    )
     return {
-        "status": "rejected",
-        "reason": STRICT_ERROR,
-        "unsupported_primary": {
-            "segment": segment,
-            "object_id": record,
-            "guid": guid,
+        "status": "read-only",
+        "primary": {
+            "segment": record.SegmentId,
+            "object_id": record.ObjectId,
+            "guid": expected,
             "class": name,
         },
+        "circle": compared_geometry(circle, sample["geometry"][0]),
+        "closed_profile_entity_ids": sketch.closed_profile_entity_ids,
+        "relation_id": relation.id,
+        "parameter_id": parameter.id,
+        "owner_id": feature.id,
+        "driving": driving,
+        "parameter_role": parameter.role.value,
     }
+
+
+def layout_matches(sketch, feature, circle, relation, parameter, record):
+    return (
+        sketch.closed_profile_entity_ids == ((circle.id,),)
+        and relation.id == record.Identity
+        and tuple((ref.entity_id, ref.point) for ref in relation.references)
+        == ((circle.id, ""),)
+        and relation.parameter_id == parameter.id
+        and feature.sketch_id == sketch.id
+        and parameter.owner_id == feature.id
+        and sketch.parameter_ids == feature.parameter_ids == (parameter.id,)
+    )
 
 
 def compared_geometry(circle, observed):
@@ -288,7 +297,7 @@ def report():
             f"Historical circle control differs: {filename}",
         )
         model = ReadDocument(payload)
-        strict = strict_observation(reader, payload, model, kind)
+        strict = strict_observation(reader, payload, model, sample, kind, driving)
         cases[filename] = {
             "archive_sha256": digest,
             "archive_bytes": size,
@@ -300,7 +309,7 @@ def report():
                 sample,
                 kind,
                 driving,
-                strict["unsupported_primary"]["object_id"],
+                strict["primary"]["object_id"],
             ),
         }
     return {
@@ -310,7 +319,7 @@ def report():
         "fusion_version": observed["fusion_version"],
         "measurement_sha256": MEASUREMENTS,
         "measurement_binding": "historical API observations joined by filename in the Git-pinned capture tree; capture-time digests unavailable",
-        "qualification": "fresh native evidence pending",
+        "qualification": "strict read-only circular discovery; writer qualification outside scope",
         "length_tolerance_mm": LENGTH_TOLERANCE_MM,
         "cases": cases,
     }

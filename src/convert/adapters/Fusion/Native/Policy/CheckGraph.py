@@ -9,6 +9,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
     PointCoords,
 )
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
+from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Policy.CheckClasses import CheckClasses
 from convert.adapters.Fusion.Native.Policy.CheckAssembly import CheckAssembly
 from convert.adapters.Fusion.Native.Policy.CheckContainers import CheckContainers
@@ -22,11 +23,13 @@ from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHist
 
 
 # invalid base input must fail here so public document claims remain grounded in native records
-def CheckBase(Graph: NativeGraph, Context: KSketchContexts) -> None:
-    CheckClasses(Graph)
+def CheckBase(
+    Graph: NativeGraph, Context: KSketchContexts, Dimension: NativeNode | None = None
+) -> None:
+    CheckClasses(Graph, Dimension)
     CheckAssembly(Graph, Context)
     CheckContainers(Graph, Context)
-    CheckPlacement(Graph, Context)
+    CheckPlacement(Graph, Context, Dimension)
     CheckFeature(Graph, Context.SketchFeature)
     Overrides = ObjectFields(Context.Component.Fields["massProperties"])
     if any(Value != -1.0 for Value in Overrides.values()):

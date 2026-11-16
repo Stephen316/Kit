@@ -76,7 +76,7 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
         Pytest.param(
             "re/automation/FusionCircularDimensionEvidence.py",
             (),
-            "eead06c25fc45e2078ff34deec8795bfecc43f38453342acaa0c88e6cc303430",
+            "5f03d294dcbe6007e384259b4ba9e3d91bb8e2b4da291140564000d049bd7ff6",
             id="fusion-circular-dimension-discovery",
         ),
         Pytest.param(
@@ -88,7 +88,7 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
         Pytest.param(
             "re/automation/FusionStrictRadialPrototype.py",
             (),
-            "43587934fae7dd9565c1531a57fc566fd2959137dcd137a4098d772a7eb798c8",
+            "2ccd6f09fa34bd8b04c1f0da349f69610654506998f77166c2a851c4949e476b",
             id="fusion-strict-radial-prototype",
         ),
         Pytest.param(
