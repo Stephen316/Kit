@@ -10,6 +10,8 @@ from ApplicationProtocol import (
     require,
     sha256,
 )
+from FusionCounterpart import NATIVE_ENTRY
+from FusionPhasePlan import phase_process
 from FusionRequestEvidence import ARCHIVE_RECORD, match_request, probe_archive_record
 from Records import digest
 
@@ -108,6 +110,56 @@ def inspect_response(response, timeout, config):
     }
 
 
+# timeout evidence may retain an admitted native operation even without phase outputs
+def inspect_entry(spool, config, timeout, phase, status, response):
+    try:
+        raw = file_bytes(spool / NATIVE_ENTRY)
+    except FileNotFoundError:
+        return None
+    entry = json.loads(raw)
+    require(
+        status in ("running", "done")
+        and set(entry) == {"version", "host", "request", "observed_at"}
+        and type(entry["version"]) is int
+        and entry["version"] == 1,
+        "retained Fusion native-entry observation has an invalid envelope",
+    )
+    request = match_request(encoded(entry["request"]), config, timeout, phase)
+    probe_raw = file_bytes(spool / "probe.done")
+    probe = json.loads(probe_raw)
+    host = entry["host"]
+    observed = entry["observed_at"]
+    require(
+        sha256(probe_raw) == request["body"]["probe_sha256"]
+        and probe["status"] == "completed"
+        and probe["version"] == 1
+        and probe["provider"] == "autodesk.fusion.addin"
+        and probe["installation"] == config["installation"]
+        and probe["source_revision"] == config["source_revision"]
+        and isinstance(host, dict)
+        and set(host) == {"pid", "started"}
+        and type(host["pid"]) is int
+        and host["pid"] > 1
+        and isinstance(host["started"], str)
+        and host == probe["host"] == probe["proof"]["host"]
+        and probe["proof"]["plan_sha256"] == timeout["plan_sha256"]
+        and probe["proof"]["control"] == "healthy"
+        and type(observed) in (int, float)
+        and phase_process(host)["start_unix_seconds"]
+        <= probe["proof"]["measured_at"]
+        <= probe["finished_at"]
+        <= observed
+        < request["deadline"]
+        and (
+            response is None
+            or host == response["host"]
+            and observed <= response["finished_at"] < float("inf")
+        ),
+        "retained Fusion native-entry observation differs from its request, control or process",
+    )
+    return {"sha256": sha256(raw), "host": host, "observed_at": observed}
+
+
 def inspect_spool(config, timeout, phase):
     queue_job_id = timeout["queue_job_id"]
     operation = timeout["operation"]
@@ -122,20 +174,27 @@ def inspect_spool(config, timeout, phase):
             return inspect_archive(root, config, timeout)
         return {"status": "spool_unavailable"}
     observations = []
+    response = None
     for suffix in ("request", "running", "done"):
         try:
             raw = file_bytes(spool / f"{operation}.{suffix}")
         except FileNotFoundError:
             continue
         if suffix == "done":
-            extra = inspect_response(json.loads(raw), timeout, config)
+            response = json.loads(raw)
+            extra = inspect_response(response, timeout, config)
         else:
             match_request(raw, config, timeout, phase)
             extra = {}
         observations.append({"status": suffix, **extra})
     if len(observations) != 1:
         return {"status": "spool_transition_or_no_record"}
-    return {**observations[0], "fence_status": fence_status(root, config, timeout)}
+    result = {**observations[0], "fence_status": fence_status(root, config, timeout)}
+    if operation == "phase":
+        entry = inspect_entry(spool, config, timeout, phase, result["status"], response)
+        if entry is not None:
+            result["native_entry"] = entry
+    return result
 
 
 def inspect_archive(root, config, timeout):

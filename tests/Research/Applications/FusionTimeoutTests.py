@@ -1,19 +1,25 @@
 import json as JsonCodec
+import sqlite3 as SqlCodec
 import sys as System
+from contextlib import closing as CloseConnection
 from hashlib import sha256 as HashBytes
 from pathlib import Path as FilePath
 
 from pytest import mark as TestMark
 
+from tests.Research.Applications.DispatchHost import DispatchHost
 from tests.Research.Applications.FusionPhaseQueueTests import (
     MakeQueueHost,
     RunFusionTool,
 )
-from tests.Research.SupervisorClient import SessionHost
+from tests.Research.Applications.RunQueueHost import RunQueueHost
+from tests.Research.SupervisorClient import KRepoRoot, SessionHost
 
 
 # a real queued pair provides the phase identity pins used by the recovery audit
-def PrepareTimeout(RootPath: FilePath) -> tuple[SessionHost, dict[str, object]]:
+def PrepareTimeout(
+    RootPath: FilePath, *, OwnerLifecycle: bool = True
+) -> tuple[SessionHost, dict[str, object]]:
     PlanRoot = RootPath / "Prepared"
     Planned = JsonCodec.loads(
         RunFusionTool(
@@ -54,8 +60,8 @@ def PrepareTimeout(RootPath: FilePath) -> tuple[SessionHost, dict[str, object]]:
                 "application:fusion:local",
                 "--receipt",
                 str(Inbox / "pair.json"),
-                "--owner-lifecycle",
-            ],
+            ]
+            + (["--owner-lifecycle"] if OwnerLifecycle else []),
         )
     )
     return Harness, Queued
@@ -372,3 +378,83 @@ def VerifyQueued(Harness: SessionHost, Names: dict[str, str]) -> None:
     assert First["state"] == "queued" and First["attempts"] == 1
     assert Second["state"] == "waiting_evidence" and Second["attempts"] == 0
     assert First["result"] is not None and Second["result"] is None
+
+
+# this disposable capture must reach a real controller timeout without a long default lease
+def ShortTimeout(Harness: SessionHost, JobName: str) -> None:
+    assert Harness.StorePath is not None
+    with CloseConnection(
+        SqlCodec.connect(Harness.StorePath / "ledger.sqlite3")
+    ) as DbConn:
+        RowData = DbConn.execute(
+            "SELECT definition FROM jobs WHERE id=?", (JobName,)
+        ).fetchone()
+    assert RowData is not None
+    Definition = JsonCodec.loads(RowData[0])
+    Definition["timeout_seconds"] = 16
+    Definition["lease_seconds"] = 12
+    Harness.SubmitJobs([Definition])
+
+
+# one exact admitted request must stay observable before and after terminal settlement
+@TestMark.skipif(System.platform != "darwin", reason="Fusion worker host boundary")
+def CheckEntry(TmpPath: FilePath) -> None:
+    RootPath = TmpPath.resolve()
+    Dispatch = DispatchHost(RootPath)
+    Harness, Queued = PrepareTimeout(RootPath, OwnerLifecycle=False)
+    Dispatch.Endpoint = RootPath / "AbsentEndpoint"
+    Dispatch.Command = [
+        System.executable,
+        str(KRepoRoot / "re/automation/ApplicationWorkers/FusionPhaseHealthFixture.py"),
+    ]
+    JobNames: dict[str, str] = JsonCodec.loads(JsonCodec.dumps(Queued["jobs"]))
+    ShortTimeout(Harness, JobNames["a"])
+    _ = (RootPath / "TimedQueue.json").write_text(
+        JsonCodec.dumps(Queued), encoding="utf-8"
+    )
+    with RunQueueHost(Dispatch, "entry") as HostInfo:
+        _ = Harness.RunIdle(IdleSeconds=1, MaxSeconds=35)
+        assert Harness.ReadJob(JobNames["a"])["state"] == "waiting_application"
+        assert Harness.ReadJob(JobNames["b"])["state"] == "waiting_evidence"
+        VerifyEntry(Harness, Dispatch, HostInfo)
+
+
+# changing the creation time must fail even when the recorded process id is unchanged
+def VerifyEntry(
+    Harness: SessionHost, Dispatch: DispatchHost, HostInfo: dict[str, object]
+) -> None:
+    assert Harness.StorePath is not None
+    Database = Harness.StorePath / "ledger.sqlite3"
+    Before = Database.read_bytes()
+    ToolPath = "re/automation/ApplicationWorkers/AuditFusionPhases.py"
+    Arguments = AuditArgs(Harness)
+    (EntryPath,) = Dispatch.Endpoint.glob("jobs/*/phase-native-entry.json")
+    RawData = EntryPath.read_bytes()
+    Record = JsonCodec.loads(RawData)
+    Expected = {
+        "sha256": HashBytes(RawData).hexdigest(),
+        "host": HostInfo,
+        "observed_at": Record["observed_at"],
+    }
+    Observed = ReadEntry(ToolPath, Arguments)
+    assert Observed["status"] == "running" and Observed["native_entry"] == Expected
+    Record["host"]["started"] = "different process lifetime"
+    _ = EntryPath.write_text(JsonCodec.dumps(Record), encoding="utf-8")
+    _ = RunFusionTool(ToolPath, Arguments, ExitCode=1)
+    _ = EntryPath.write_bytes(RawData)
+    (Dispatch.Endpoint / "release-phase").touch()
+    _ = Dispatch.WaitFile(
+        str((EntryPath.parent / "phase.done").relative_to(Dispatch.Endpoint))
+    )
+    Settled = ReadEntry(ToolPath, Arguments)
+    assert Settled["status"] == "done" and Settled["response_status"] == "expired"
+    assert Settled["native_entry"] == Expected and Settled["retained_output_count"] == 0
+    assert EntryPath.read_bytes() == RawData and Database.read_bytes() == Before
+
+
+# the executable must keep timeout observations separate from native qualification
+def ReadEntry(ToolPath: str, Arguments: list[str]) -> dict[str, object]:
+    Report = JsonCodec.loads(RunFusionTool(ToolPath, Arguments))
+    assert Report["status"] == "pending" and Report["native_qualified"] is False
+    Observation: dict[str, object] = Report["phases"]["a"]["spool_observation"]
+    return Observation

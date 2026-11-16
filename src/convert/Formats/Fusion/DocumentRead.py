@@ -23,7 +23,7 @@ from convert.Formats.Fusion.Revolves.RevolveProject import ProjectRevolves
 from convert.Formats.Fusion.Scales.ScaleProject import ProjectScale
 from convert.Formats.Fusion.Sketches.CenterDeps.ProjectCutCent import ProjectCutCent
 from convert.Formats.Fusion.Sketches.FaceSupport.FaceProjection import ProjectFaces
-from convert.Formats.Fusion.Sketches.SketchRules import AttachRules
+from convert.Formats.Fusion.Sketches.SketchRules import AttachRules, PromoteCirDrive
 from convert.Formats.Fusion.Sketches.SketchProjection import ProjectSketches
 from convert.Formats.Fusion.SourceBytes import LoadFusionBytes
 from convert.Formats.Fusion.Topology.BodyProjection import ProjectBodyList
@@ -108,6 +108,7 @@ def ProjectFusDoc(
     )
     Steps = ProjectDatums(BulkData, Spans, History, Planes, Steps, Parameters)
     Sketches, SketchRuleIssues = AttachRules(BulkData, Spans, Sketches, Parameters)
+    Parameters = PromoteCirDrive(Sketches, Parameters, SketchRuleIssues)
     Steps, ExtrudeIssues = ProjectExtrudes(
         BulkData, Spans, Steps, Parameters, Frames, Sketches
     )

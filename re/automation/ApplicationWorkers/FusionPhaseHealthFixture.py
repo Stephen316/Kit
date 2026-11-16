@@ -10,10 +10,13 @@ import argparse
 import time
 from pathlib import Path
 
+import ApplicationProtocol
 from ApplicationProtocol import (
+    COUNTERPART,
     HostQueue,
     configuration,
     file_bytes,
+    load_pinned,
     pin,
     record,
     sha256,
@@ -81,6 +84,21 @@ def phase_output(host, value, work, plan, fault):
     )
 
 
+# a parked real client can inspect the same entry on either side of settlement
+def wait_after_entry(host, value, work):
+    counterpart = load_pinned(host.config, COUNTERPART)
+    counterpart["protocol"] = vars(ApplicationProtocol)
+    counterpart["mark_native_entry"](host, work, value)
+    expires = time.monotonic() + 70
+    while (
+        not (host.root / "release-phase").exists()
+        and not (host.root / "stop-fixture").exists()
+        and time.monotonic() < expires
+    ):
+        time.sleep(0.025)
+    return "waiting_application", "disposable timed-out phase fixture", None, {}
+
+
 # exercising the real queue keeps copied bytes and the controller result separate
 def run_host(config, fault):
     host = HostQueue(config)
@@ -100,6 +118,8 @@ def run_host(config, fault):
                 },
                 {},
             )
+        if fault == "entry":
+            return wait_after_entry(host, value, work)
         return phase_output(host, value, work, record(work / "plan.json"), fault)
 
     write_record(host.root / "ready.json", {"host": host.host})
@@ -117,7 +137,7 @@ def run_host(config, fault):
 # the hosted process receives a fixed scenario without importing any cad module
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("fault", choices=("after", "fixture"))
+    parser.add_argument("fault", choices=("after", "fixture", "entry"))
     parser.add_argument("--installation", type=Path, required=True)
     args = parser.parse_args()
     run_host(configuration(args.installation), args.fault)

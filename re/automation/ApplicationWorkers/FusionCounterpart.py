@@ -6,6 +6,7 @@ import time
 
 SCOPE = "two-body-through-all-discovery"
 SCOPE_MODES = ("automatic", "explicit_a", "explicit_ab")
+NATIVE_ENTRY = "phase-native-entry.json"
 
 
 def pinned_plan(host, work, body):
@@ -113,6 +114,27 @@ def measure_probe(host, work, value, app, plan, tool):
     return "completed", "fresh main-thread challenge and pinned control completed", proof, {}
 
 
+# a failed native attempt must leave its exact admission and process lifetime
+def mark_native_entry(host, work, request):
+    observed = time.time()
+    protocol["require"](
+        request["operation"] == "phase"
+        and observed < request["deadline"]
+        and not (work / "cancel.json").exists()
+        and not host.fenced(),
+        "Fusion phase ceased to be runnable before native entry",
+    )
+    protocol["write_record"](
+        work / NATIVE_ENTRY,
+        {
+            "version": 1,
+            "host": host.host,
+            "request": request,
+            "observed_at": observed,
+        },
+    )
+
+
 def capture_phase(host, work, value, app, plan, tool):
     body = value["body"]
     raw = protocol["file_bytes"](work / "probe.done")
@@ -140,22 +162,30 @@ def capture_phase(host, work, value, app, plan, tool):
         return capture_scope_phase(host, work, value, app, plan, tool)
     phase = body["phase"]
     windows = protocol["windows_phase_a"](host.config)
+    options = {}
     if windows:
-        process = protocol["windows_process"](host.host)
-        tool["run_phase"](work / "plan.json", body["plan_sha256"], phase, windows_process=process)
-    else:
-        tool["run_phase"](work / "plan.json", body["plan_sha256"], phase)
+        options["windows_process"] = protocol["windows_process"](host.host)
+    mark_native_entry(host, work, value)
+    tool["run_phase"](work / "plan.json", body["plan_sha256"], phase, **options)
     result = protocol["record"](work / f"phase-{phase}" / "measurements.json")
-    protocol["require"](result["status"] == "complete" and result["phase"] == phase
-                        and result["plan_sha256"] == body["plan_sha256"]
-                        and result["process"]["pid"] == os.getpid()
-                        and result["source_revision"] == host.config["source_revision"]
-                        and result["fusion_version"] == app.version,
-                        "Fusion phase receipt does not match the dispatched process and plan")
+    protocol["require"](
+        result["status"] == "complete"
+        and result["phase"] == phase
+        and result["plan_sha256"] == body["plan_sha256"]
+        and result["process"]["pid"] == os.getpid()
+        and result["source_revision"] == host.config["source_revision"]
+        and result["fusion_version"] == app.version,
+        "Fusion phase receipt does not match the dispatched process and plan",
+    )
     if windows:
-        protocol["require"](result["process"] == process, "Windows phase process identity changed")
-    names = {f"phase-{phase}.receipt": f"phase-{phase}/receipt.json",
-             f"phase-{phase}.measurements": f"phase-{phase}/measurements.json"}
+        protocol["require"](
+            result["process"] == options["windows_process"],
+            "Windows phase process identity changed",
+        )
+    names = {
+        f"phase-{phase}.receipt": f"phase-{phase}/receipt.json",
+        f"phase-{phase}.measurements": f"phase-{phase}/measurements.json",
+    }
     names.update({f"phase-{phase}.{recipe}": f"phase-{phase}/{recipe}-fusion-fresh-baseline-{phase}.f3d"
                   for recipe in plan["recipes"]})
     files = {role: protocol["pin"](work / name, name) for role, name in names.items()}
@@ -307,6 +337,7 @@ def capture_scope_phase(host, work, value, app, plan, tool):
         expected.update(
             previous_phase_report_sha256=report_hash, previous_process=prior["process"]
         )
+    mark_native_entry(host, work, value)
     tool["run_phase"](work / "plan.json", body["plan_sha256"], phase)
     report, files = scope_outputs(work, phase, expected, host.host)
     if phase == "b":
