@@ -257,6 +257,8 @@ The separate SOLIDWORKS generative research in PR #121 records controlled load, 
 | A16c     | Independent FreeCAD direction and reversal emission         | jdharcourt | checking | The [inline writer repair](../../Changes/FreeCad/FreeCadReversedExtrusion.md) emits the normalized base direction and native reversal flag independently; hosted public-write process and native acceptance evidence remain required                    |
 | A16d     | Calculated initial FreeCAD extrusion geometry               | jdharcourt | checking | The [initial-shape implementation](../../Changes/FreeCad/FreeCadInitialExtrusionShapes.md) calculates an owned cache for the scoped inline profile family; hosted process checks and independent initial-open evidence before recompute remain required |
 | A16e     | Honest fresh FreeCAD extrusion acceptance flags             | jdharcourt | checking | The [attestation repair](../../Changes/FreeCad/FreeCadInitialGeometryAttestation.md) keeps fresh unqualified extrusion output explicitly incomplete and strict destinations protected; hosted process checks remain required                            |
+| A16f     | Refusal of changed inline FreeCAD snapshots                 | jdharcourt | checking | The [inline manifest guard](../../Changes/FreeCad/FreeCadInlineManifestGuard.md) checks scoped native controls before returning a snapshot; hosted process coverage, saved native edit controls and full edit reconstruction remain required            |
+| A16g     | Native FreeCAD spreadsheet alias dependencies               | jdharcourt | checking | The [alias recovery](../../Changes/FreeCad/FreeCadNativeSheetAliases.md) requires unique actual cells, raw saved numeric evidence and quantity corroboration; hosted read/replay process coverage remains required                                      |
 
 The [earlier readiness observation](../../Changes/Research/Readers/Comparison/FreeCadTwoLengthReadiness.md) records the missing reverse link and equal-length roster crossing on its original checkpoint.
 The repair does not admit unsupported linked definitions or fallback carriers.
@@ -266,6 +268,8 @@ The [later calculated-cache witness](../../Changes/FreeCad/FreeCadInitialOpenWit
 It retains false research flags and leaves the other cache families and route qualification unfinished.
 The next independent native witness must measure the original package immediately after open and before explicit recompute, then repeat driving edits, restoration, rebuild, save and fresh reopen with healthy controls.
 A13, A15 and the remaining route-specific acceptance requirements stay open.
+The inline guard and alias recovery are separate reader repairs, not native qualification.
+Unsupported edited graph reconstruction, cached BREP freshness and native body inventory remain separate work.
 
 ## Parallel-session child steps
 

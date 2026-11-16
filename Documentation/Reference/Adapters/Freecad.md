@@ -57,6 +57,15 @@ Equal forward and reverse distances do not imply symmetry.
 Both raw distances and the original direction remain available, including an inactive reverse distance in symmetric mode.
 See [native extrusion end semantics](../../Changes/FreeCad/FreeCadNativeEndSemantics.md) for the retained termination convention, native-only process coverage and acceptance limits.
 
+Native-only public reads recover [bounded spreadsheet alias dependencies](../../Changes/FreeCad/FreeCadNativeSheetAliases.md) from actual unique cells and direct object-qualified references.
+Dependency links require finite raw native scalar or dimensional-constraint evidence and matching physical quantities.
+Placeholders, malformed numeric defaults, unsupported formulas and ambiguous or external references remain unresolved with raw data preserved.
+The same recovery runs during unchanged-native replay verification.
+
+Embedded snapshots also pass the [scoped inline control guard](../../Changes/FreeCad/FreeCadInlineManifestGuard.md) before filtering.
+It refuses changed checked end controls, profile geometry, solver constraints, aliases or geometry-owner inventory instead of returning the old graph.
+Retained routes keep their separate contracts; the guard does not establish cached BREP freshness or reconstruct edited parameters and shapes.
+
 | Component     | Responsibility                                    |
 | ------------- | ------------------------------------------------- |
 | `Archive.py`  | Archive resources and document representation     |
