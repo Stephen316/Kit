@@ -13,6 +13,7 @@ from convert.adapters.solidworks.Config.RootLayout import KConfigGen
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Format import KResolvedFeaturesStream
 from convert.adapters.solidworks.Core.Cut.CutOwners import FindCutOwner
 from convert.adapters.solidworks.Core.Cut.FaceChart import PlaceCutFrame
 from convert.adapters.solidworks.Core.Cut.FaceProjection import (
@@ -143,7 +144,7 @@ def ProjectPadDoc(
 ) -> CadDocument:
     if ConfigId != 0 or ContainerMo(Archive.streams) != KConfigGen:
         return Document
-    StreamName = "Contents/Config-0-ResolvedFeatures"
+    StreamName = KResolvedFeaturesStream
     Resolved = Archive.get(StreamName)
     ConfigData = Archive.get("Contents/Config-0")
     if (
