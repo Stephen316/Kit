@@ -1,0 +1,7 @@
+# Assemble the SOLIDWORKS Definition fragment through stream end
+
+The [A12 research assembly](../../../../re/solidworks/WriterResearch/DefinitionFragment.py) reads and constructs the generation-19000 `Contents/Definition` fragment from the first journal class occurrence to stream end. The encoder accepts the typed journal attachment, unsigned appearance allocation counter and terminal part double. The [Definition options codec](SolidWorksDefinitionOptions.md) supplies the notebook, material manager and supported document settings through notebook end `+115`.
+
+The next 72 bytes contain 17 signed document state words, an empty DWORD array count and a null Excel configuration table pointer. The array count and pointer each occupy a zero 16-bit word. Their storage roles follow the native constructor and archive call sites. The [Definition tail codec](SolidWorksDefinitionTail.md) then writes the empty variability count and the supplied terminal double. The reader verifies the constructor values, empty array, null pointer, empty variability count and exact stream end. [Native field order and loader evidence](../../../../re/solidworks/WriterResearch/DefinitionJournal.md#final-document-members)
+
+The layout was established on all 25 receipt-pinned P01, P03 and P04 saves. The new assembly has static verification only. The caller supplies the already established journal offset. The Definition prefix, production registration and application acceptance of complete generated parts remain open.
