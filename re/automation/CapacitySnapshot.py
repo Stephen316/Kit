@@ -17,6 +17,7 @@ NAME = "supervisor-capacity.json"
 MAX_BYTES = 128 * 1024
 HEARTBEAT_SECONDS = 5
 FRESH_SECONDS = 20
+CONTROLLER_SAMPLE_SECONDS = 5
 LIMITING_FACTORS = ("configured", "cpu", "memory", "adaptive")
 BLOCKED_STATES = ("paused", "settlement_pending", "pool_full")
 DECISION_FIELDS = (
@@ -75,6 +76,9 @@ class CapacitySnapshot:
         self.previous_values = {}
         self.next_write = 0
         self.pause_revision = None
+        self.controller_sample = None
+        self.controller_sessions = ()
+        self.next_controller_sample = 0
         try:
             pid = os.getpid()
             start = process_start(pid, live=True)
@@ -91,10 +95,32 @@ class CapacitySnapshot:
         except OSError:
             self.pause_revision = []
 
+    def invalidate_controller(self):
+        self.controller_sample = None
+        for pool in self.pools.values():
+            if pool["decision"] is not None:
+                pool["decision"].pop("controller_capacity", None)
+
+    def sample_controller(self, adapter, running):
+        if self.owner is None:
+            return
+        sessions = tuple(running)
+        if sessions != self.controller_sessions:
+            self.invalidate_controller()
+            self.controller_sessions = sessions
+        now = time.monotonic()
+        if now >= self.next_controller_sample:
+            self.next_controller_sample = now + CONTROLLER_SAMPLE_SECONDS
+            self.invalidate_controller()
+            self.controller_sample = adapter.ReadCapacity()
+
     def observe(self, pool, admission, host_sample, controller_refusal=None):
         decision = {key: admission[key] for key in DECISION_FIELDS}
         if controller_refusal is not None:
             decision["controller_refusal"] = {"adapter": "a03", "reason": controller_refusal}
+        sample = self.controller_sample
+        if sample is not None and (controller_refusal is None or sample["running"] == sample["maximum"]):
+            decision["controller_capacity"] = {**sample, "physical": admission["running"]}
         self.pools[pool] = {
             "state": "evaluated",
             "evaluated": time.monotonic(),
@@ -158,7 +184,7 @@ class CapacitySnapshot:
 
 
 def decision_fields(record, settings, kinds):
-    if set(record) - {"controller_refusal"} != set(DECISION_FIELDS):
+    if set(record) - {"controller_refusal", "controller_capacity"} != set(DECISION_FIELDS):
         raise ValueError("capacity decision fields are invalid")
     if "controller_refusal" in record and record["controller_refusal"] != {"adapter": "a03", "reason": A03_CAPACITY_REFUSAL}:
         raise ValueError("controller capacity refusal is invalid")
@@ -181,7 +207,37 @@ def decision_fields(record, settings, kinds):
         raise ValueError("capacity host time is invalid")
 
 
-def pool_snapshot(pool, settings, kinds, now, pause_revision):
+def controller_projection(sample, decision, settings, now):
+    try:
+        if set(sample) != {"measured", "expires", "maximum", "running", "physical"}:
+            return None
+        measured, expires = sample["measured"], sample["expires"]
+        maximum = bounded(sample["maximum"], 1, 64)
+        running = bounded(sample["running"], 0, maximum)
+        physical = bounded(sample["physical"], 0, settings["max_sessions"])
+        if (type(measured) not in (int, float) or not 0 <= now - measured <= CONTROLLER_SAMPLE_SECONDS
+                or (running == 0 and expires is not None)
+                or (running > 0 and (type(expires) not in (int, float)
+                                    or not math.isfinite(expires) or expires <= time.time()))):
+            return None
+        available = maximum - running
+        if available and "controller_refusal" in decision:
+            return None
+        return {
+            "maximum_running_jobs": maximum,
+            "running_jobs": running,
+            "available_jobs": available,
+            "physical_sessions": physical,
+            "effective_capacity": min(decision["calculated_capacity"], physical + available),
+            "effective_active_limit": min(decision["active_limit"], physical + available),
+            "effective_additional_sessions": min(max(0, decision["active_limit"] - physical), available),
+            "age_seconds": now - measured,
+        }
+    except (TypeError, ValueError, KeyError, OverflowError):
+        return None
+
+
+def pool_snapshot(pool, settings, kinds, now, pause_revision, current_controller):
     state, decision = pool["state"], pool["decision"]
     if state in BLOCKED_STATES and decision is None and set(pool) == {"state", "decision"}:
         return {"state": state, "decision": None}
@@ -192,7 +248,12 @@ def pool_snapshot(pool, settings, kinds, now, pause_revision):
     if not current_age(pool["evaluated"], now) or not current_age(pool["host_sample"], now) or pool["host_sample"] > pool["evaluated"]:
         return {"state": "pool_full" if state == "pool_full" else "unavailable", "decision": None}
     decision_fields(decision, settings, kinds)
-    return {"state": state, "decision": {**decision, "age_seconds": now - pool["evaluated"]}}
+    visible = {key: value for key, value in decision.items() if key != "controller_capacity"}
+    if current_controller and "controller_capacity" in decision:
+        projected = controller_projection(decision["controller_capacity"], decision, settings, now)
+        if projected is not None:
+            visible["controller_capacity"] = projected
+    return {"state": state, "decision": {**visible, "age_seconds": now - pool["evaluated"]}}
 
 
 def capacity_status(config):
@@ -222,8 +283,10 @@ def capacity_status(config):
         if current["owner"] != owner or current["configuration"] != record["configuration"] or not current_age(record["published"], now):
             return {}
         pause_revision = pause_identity(path)
+        current_controller = (config["controller"].get("adapter") == "a03"
+                              and current["published"] == record["published"])
         return {
-            name: pool_snapshot(pool, config["pools"][name], kinds[name], now, pause_revision)
+            name: pool_snapshot(pool, config["pools"][name], kinds[name], now, pause_revision, current_controller)
             for name, pool in record["pools"].items()
         }
     except (OSError, ValueError, KeyError, TypeError, AttributeError, OverflowError, RecursionError):

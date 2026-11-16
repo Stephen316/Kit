@@ -194,7 +194,7 @@ The capacity is the smallest of these limits:
 | Configured maximum  | `max_sessions` for the pool in the supervisor configuration                       |
 | CPU                 | `(logical CPUs − reserved CPUs) ÷ threads per session`, rounded down              |
 | Memory              | `(available memory − reserved memory) ÷ peak memory estimate`, rounded down       |
-| Controller          | The controller's running-job limit minus the sessions that other pools use        |
+| Controller          | Physical sessions already running in the pool plus the shared free logical slots  |
 | Provider            | For model pools only: the provider's usage or rate limit and the remaining budget |
 | Exclusive resources | For the application pool only: the number of verified available installations     |
 
@@ -202,6 +202,10 @@ The default reserve is 2 logical CPUs and 4 GiB of memory.
 The operator can change the reserve in the supervisor configuration.
 Set the controller's running-job limit to at least the sum of all pool maximums.
 For A03, that limit is `max_running`.
+Subtract all running A03 jobs from `max_running` to get the shared free logical slots.
+Each member of a group uses one slot, including members already running in this pool.
+One new physical session needs at least one free slot. An N-member group needs N slots.
+A pool's controller-adjusted capacity is an upper bound. The available slots are shared across pools, and A03 determines availability and issues each claim in its transaction.
 
 ### Peak memory estimate
 

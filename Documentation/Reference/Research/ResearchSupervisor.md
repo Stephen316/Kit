@@ -288,6 +288,9 @@ python3 re/automation/Supervisor.py --config Supervisor.json jobs --job example
 
 `run` prints one JSON event per line and a final `summary`.
 `status` shows the live owner's last eligible local admission decision for each pool in `capacity`. [Capacity status and freshness](../../Changes/Research/Supervisor/LiveSupervisorCapacity.md)
+When a current A03 sample is available, `capacity.decision.controller_capacity` also reports the shared running-job maximum, running and available logical jobs, and the pool's physical session count and controller-adjusted limits.
+The sample is at most five seconds old. An unverified owner, a pending reconciliation, or an expired lease or execution deadline makes the sample unavailable.
+Each grouped job uses a logical slot. One group uses a single physical session, and more than one pool can observe the same free logical slots. [A03 controller capacity](../../Changes/Research/Supervisor/ControllerCapacitySnapshot.md)
 An observed A03 claim refusal for its logical concurrency limit appears in the pool decision. [Controller refusal evidence](../../Changes/Research/Supervisor/ControllerCapacityRefusal.md)
 Without `--idle-seconds` or `--max-seconds`, it runs until it receives `SIGTERM` or `SIGINT`.
 At shutdown it stops its sessions and finishes them with `retry`.

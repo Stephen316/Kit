@@ -435,6 +435,9 @@ class Supervisor:
     def fill(self, paused):
         claimed = False
         pending = {detail["pool"] for _, detail in self.application_acks.values()}
+        controller_capacity = self.config["controller"].get("adapter") == "a03"
+        if controller_capacity:
+            self.capacity.sample_controller(self.adapter, self.running)
         for pool, settings in sorted(self.config["pools"].items()):
             if pool in paused:
                 self.controller_refusals.discard(pool)
@@ -470,7 +473,9 @@ class Supervisor:
                     self.stopping = True
                     self.report("claim_transport_failed", None, {"error": str(error)})
                     return claimed
-                refusal = self.adapter.last_claim_refusal if claim is None and self.config["controller"].get("adapter") == "a03" else None
+                refusal = self.adapter.last_claim_refusal if claim is None and controller_capacity else None
+                if claim is not None and controller_capacity:
+                    self.capacity.invalidate_controller()
                 self.record_capacity(pool, admission, refusal)
                 if claim is None:
                     break
