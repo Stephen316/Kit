@@ -2590,8 +2590,12 @@ def HasFreshExtrude(DocValue: CadDocument) -> bool:
     return (
         DocValue.assembly is None
         and DocValue.brep is None
-        and not DocValue.brep_payloads
-        and not DocValue.meshes
+        and not any(
+            IsNative(Payload)
+            or Payload.role not in {PayloadRole.AUXILIARY, PayloadRole.VERIFICATION}
+            for Payload in DocValue.brep_payloads
+        )
+        and not any(IsMeshUsable(MeshValue) for MeshValue in DocValue.meshes)
         and len(Features) == 1
         and EnumText(Features[0].kind) == "extrusion"
         and EnumText(Features[0].operation) in {"", "create"}

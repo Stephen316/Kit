@@ -1,4 +1,5 @@
 from dataclasses import replace as ChangeRecord
+from hashlib import sha256 as DigestBytes
 from io import BytesIO as ByteStream
 from json import dumps as EncodeJson, loads as ParseJson
 from pathlib import Path as FilePath
@@ -14,7 +15,11 @@ from convert.adapters.base.UsabilityError import UsabilityError
 from convert.api.ApiWrite import WriteDocument
 from interchange.document.Models.DocumentModel import CadDocument
 from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Enums.EnumDocument import Capability
 from interchange.Features.FeatureStep import FeatureStep
+from interchange.mesh.SurfaceMesh import SurfaceMesh
+from interchange.Payloads.PayloadRecord import BrepPayload
+from interchange.Payloads.PayloadRoles import PayloadRole
 from tests.Research.Archives.FreeCadReversedWriteTests import MakeInput
 
 # public process cases must inspect the same writer source as the committed checkout
@@ -29,6 +34,9 @@ KCaseNames = (
     "omitted-operation",
     "reference-create",
     "reference-omitted",
+    "empty-mesh",
+    "auxiliary-note",
+    "verification-note",
 )
 
 
@@ -39,6 +47,24 @@ def MakeControl(CaseName: str) -> CadDocument:
         if CaseName.startswith(("explicit", "implicit"))
         else "explicit-positive"
     )
+    if CaseName == "empty-mesh":
+        return ChangeRecord(Document, meshes=(SurfaceMesh("empty", "Empty", (), ()),))
+    if CaseName.endswith("-note"):
+        Payload = BrepPayload(
+            "independent-note",
+            "research.note",
+            "text",
+            "utf8",
+            DigestBytes(b"independent note").hexdigest(),
+            b"independent note",
+            role=(
+                PayloadRole.KAuxiliary
+                if CaseName == "auxiliary-note"
+                else PayloadRole.KVerification
+            ),
+            file_extension=".txt",
+        )
+        return ChangeRecord(Document, brep_payloads=(Payload,))
     (Feature,) = Document.feature_timeline
     if CaseName in {"omitted-operation", "reference-omitted"}:
         Feature = ChangeRecord(Feature, operation=None)
@@ -67,7 +93,10 @@ def EmitResearch(Document: CadDocument) -> dict[str, object]:
     assert Result.metadata["application_usable"] is False
     assert Result.metadata["vendor_loadable"] is False
     assert Result.metadata["recompute_required"] is True
-    assert not Result.carrier_capabilities
+    if Document.brep_payloads:
+        assert Result.carrier_capabilities == frozenset({Capability.KNativePayloads})
+    else:
+        assert not Result.carrier_capabilities
     with ZipFile(ByteStream(Output.getvalue())) as Archive:
         RootValue = ParseXml(Archive.read("Document.xml"))
     NativeTypes = [
@@ -100,6 +129,11 @@ def AssertRejected(Document: CadDocument, TargetData: FilePath | ByteStream) -> 
     except UsabilityError as Problem:
         assert not Problem.IsAppUsable and not Problem.VendorLoadable
         assert {"application_unusable", "vendor_unloadable"} <= set(Problem.issues)
+        if Document.brep_payloads:
+            assert Problem.carrier_capabilities == frozenset(
+                {Capability.KNativePayloads}
+            )
+            assert "opaque_source_data" in Problem.issues
     else:
         raise AssertionError(
             "unqualified initial geometry must fail public usability policy"

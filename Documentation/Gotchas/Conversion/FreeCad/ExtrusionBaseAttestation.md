@@ -9,13 +9,16 @@ The adapter's supported inline extrusion predicate also admits omitted operation
 
 The first attestation repair incorrectly used an empty dependency roster as a proxy for the standalone emitter route and required explicit Create.
 That missed a first extrusion with reference dependencies or omitted operation, and could include the first extrusion in a later Boolean history.
-The corrected predicate conservatively covers a standalone document whose sole active non-reference step is a supported extrusion with explicit Create or omitted operation and no retained BREP, payloads or meshes.
+The corrected predicate conservatively covers a standalone document whose sole active non-reference step is a supported extrusion with explicit Create or omitted operation and no retained BREP or usable mesh representation.
 It retains the actual reference dependencies and leaves both result and metadata qualification flags false.
 Real public process controls include a preceding sketch-reference step with `native_type=sketch`, explicit/default Create, and omitted operation without dependencies.
 They inspect one native extrusion without a Boolean result, then require the strict public policy to refuse without destination mutation.
 
 Histories with other solid, Boolean, native or imported steps remain outside this scoped audit.
-The exclusions for retained payloads and meshes do not qualify those routes: a non-geometric payload container is not initial solid evidence.
+Empty meshes and nonreserved auxiliary or verification notes do not establish geometry and cannot exclude that fresh history from unqualified flags.
+The existing `IsNative` predicate protects native-document and native-binding payload routes; other payload roles and actual retained BREP remain a separate audit.
+The existing `IsMeshUsable` predicate preserves genuine nondegenerate mesh routes.
+Those exclusions do not qualify any retained route: a non-geometric payload container is not initial solid evidence.
 Do not infer geometry acceptance from container presence, dependency roster shape or a computed shape cache.
 Independent native initial-open measurements remain required.
 See [the attestation change entry](../../../Changes/FreeCad/FreeCadInitialGeometryAttestation.md) and [the initial recompute witness](GeneratedExtrusionRequiresRecompute.md).

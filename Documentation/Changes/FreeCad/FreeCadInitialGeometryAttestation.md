@@ -2,12 +2,14 @@
 
 Fresh history-generated FreeCAD Create extrusions no longer report `application_usable=True` or `vendor_loadable=True` merely because their inputs contain no unsupported retained BREP.
 The scoped reconstructed path now reports both fields as false in the write result and its metadata.
-It covers standalone documents whose sole active non-reference history step is a supported extrusion with an explicit Create or omitted operation and no retained BREP, BREP payloads or meshes.
+It covers standalone documents whose sole active non-reference history step is a supported extrusion with an explicit Create or omitted operation and no retained BREP or usable mesh representation.
+Empty or unusable meshes and nonreserved auxiliary or verification notes do not supply initial geometry and no longer exclude that scope.
+The existing native-document and native-binding payload predicates preserve their separate native routes.
 Sketch-reference dependencies remain in scope because they do not supply a native solid base.
 The emitter defaults an omitted operation to Create.
 The initial empty-dependency shortcut did not represent that emitter contract and is replaced by this bounded history classification.
 Exact native replay and histories with other solid, Boolean, native or imported steps keep their existing behavior and remain outside this audit.
-The retained-payload and mesh exclusions also remain separate audit boundaries; a nonempty container does not prove initial native geometry or acceptance.
+Other retained-payload roles, BREP and usable mesh routes remain separate audit boundaries; a nonempty container does not prove initial native geometry or acceptance.
 The [base-selection gotcha](../../Gotchas/Conversion/FreeCad/ExtrusionBaseAttestation.md) records the distinction between history dependencies and native solid ownership.
 
 The [independent initial-open witness](FreeCadEndNativeWitness.md) measured zero solids in all three original generated packages before native recompute.
@@ -24,5 +26,7 @@ Historical reports, hashes and source observations remain unchanged.
 
 New public process coverage exercises forward, reversed, implicit-direction and symmetric authored controls through the neutral JSON codec, plus explicit/default Create with a sketch-reference dependency and omitted operation without dependencies.
 It checks research output and false flags, plus strict refusal with unchanged empty and existing streams, an absent path and an existing path.
+Additional empty-mesh and auxiliary/verification-note controls preserve these checks.
+Notes retain their native-payload carrier classification and strict opaque-source refusal instead of being treated as a shape.
 Local verification is static only; hosted process execution and independent fresh native acceptance remain required.
 See the [initial recompute limitation](../../Gotchas/Conversion/FreeCad/GeneratedExtrusionRequiresRecompute.md) and [CAD success criteria](../../Reference/Operations/CadSuccessCriteria.md).
