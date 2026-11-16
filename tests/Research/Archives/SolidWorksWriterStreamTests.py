@@ -197,6 +197,15 @@ def CheckModelHdr() -> None:
     )
 
 
+# the detail opening and font must retain their native intervals and archive map
+def CheckCfgDetail() -> None:
+    Report = LoadReport("VerifyConfigDetail.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "28ca63bc7a3bfd1f64917d471b2bb2146c477a0d4ebf15276ff4effc9ab7e0c8"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
