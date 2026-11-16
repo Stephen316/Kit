@@ -14,6 +14,7 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from InferenceArchives import archive_cases, archive_gaps
+from InferenceGrid.Gate import VerifyGridGate
 from InferenceHoldoutGate import verify_holdout
 from InferenceRunner import FIELD_KIND, FORMATS, GAP_KIND, RESCAN_KIND, result_schema
 from InferenceSchedule import build_schedule
@@ -255,7 +256,10 @@ def verify_gaps(gate):
         and payload.get("result") is None,
         "mislabelled paired rescan did not preserve the format disagreement",
     )
-    return gaps
+    parked = next(
+        report for report in gaps if report["status"] == "needs-distinguishing-evidence"
+    )
+    return gaps, VerifyGridGate(gate, invoke, jobs[parked["status"]], parked, statuses)
 
 
 def check(directory):
@@ -281,12 +285,13 @@ def check(directory):
         "rule change caused a rescan beyond the affected scope",
     )
     verify_case(gate, schedules[0], changed)
-    gaps = verify_gaps(gate)
+    gaps, grid = verify_gaps(gate)
     holdout = verify_holdout(gate)
     return {
         "inference_version": 1,
         "cases": results,
         "shared_gaps": gaps,
+        "scope_grid_checks": grid,
         "holdout_process_checks": holdout,
         "unchanged_attempts": len(unchanged),
         "affected_jobs": sorted(rerun),
