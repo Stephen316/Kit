@@ -29,6 +29,7 @@ from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.resolved.cut.CutLinks import ReadCutLinks
 from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
 from SolidWorksScopePrefix import read_scope_prefix
+from SolidWorksScopeTerminal import comparable_terminal
 
 GENERATION = 19000
 BUILD = "34.4.1.1011"
@@ -496,6 +497,9 @@ def report(path, repeat_path=None, *, inspect_map=False):
                 "typed profile or boss differs across saves",
             )
             result["repeat_comparison"]["resolved_prefix_matched"] = True
+            require(comparable_terminal(left["cut_terminal"]) == comparable_terminal(right["cut_terminal"]),
+                    "typed Cut chooser, partition or extent differs across saves")
+            result["repeat_comparison"]["cut_terminal_matched"] = True
     return result
 
 

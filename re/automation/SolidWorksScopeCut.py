@@ -15,6 +15,7 @@ from convert.adapters.solidworks.resolved.support.FaceFrame import ReadFacePose
 from convert.adapters.solidworks.resolved.support.SupportPlane import ReadFaceSupport
 from convert.adapters.solidworks.sketch.InlineSketch import ParseInlineMut
 from SolidWorksScopeSecondBoss import CAP_CLASS, EDGE_CLASS
+from SolidWorksScopeTerminal import read_scope_terminal
 
 
 def read_cut_sketch(cursor, generation, profile, spec):
@@ -159,4 +160,6 @@ def read_scoped_cut(cursor, spec, generation, prefix, first_cap, first_choosers)
     node = ReadOpNode(cursor, KCutClass, (0x400201CA,), profile["object_index"], support["file_object"], KindValue=KClassRefKind)
     require(node["name"] == spec["cut"]["feature"], "scoped Cut node differs from the recipe")
     scope = read_typed_scope(cursor, generation, first_cap, prefix["second_boss"], prefix["second_operation"])
-    return {"cut_sketch": sketch, "cut_support": support, "cut_node": node, "cut_scope": scope}
+    recording = {"cut_sketch": sketch, "cut_support": support, "cut_node": node, "cut_scope": scope}
+    terminal = read_scope_terminal(cursor, recording, first_cap, first_choosers, prefix)
+    return {**recording, "cut_terminal": terminal}
