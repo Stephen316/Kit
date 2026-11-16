@@ -6,8 +6,8 @@ from typing import cast as CastValue
 
 
 # each research record verifier runs with its own pinned archive evidence
-def ReadWriterReport(ProgramName: str) -> dict[str, object]:
-    RootPath = FilePath(__file__).resolve().parents[2]
+def LoadReport(ProgramName: str) -> dict[str, object]:
+    RootPath = FilePath(__file__).resolve().parents[3]
     Program = RootPath / "re/solidworks/WriterResearch" / ProgramName
     Process = Subprocess.run(
         [System.executable, str(Program)],
@@ -28,13 +28,13 @@ def ReadWriterReport(ProgramName: str) -> dict[str, object]:
 
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
-    Report = ReadWriterReport("VerifyDefinition.py")
+    Report = LoadReport("VerifyDefinition.py")
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
 
 
 # all observed default visual objects must reconstruct the same measured color body
 def CheckDspbr() -> None:
-    Report = ReadWriterReport("VerifyCmgrColor.py")
+    Report = LoadReport("VerifyCmgrColor.py")
     Captures = Report["captures"]
     assert isinstance(Captures, dict)
     assert set(CastValue(dict[str, str], Captures).values()) == {

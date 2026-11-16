@@ -22,4 +22,6 @@ observes its exact exit. The normal supervisor then produces and archives
 the original hostless timeout within the commissioned job generation.
 Withholding the genuine exit receipt checks the parked response. Restoring
 its original bytes checks the joined result and confirms that Phase A and
-its rival remain ineligible. Hosted execution is pending.
+its rival remain ineligible. This passed at PR head `4285aea` and tested
+merge `e822910006afba1f68c4ad779aa64eae3367981b`. The macOS run passed 166
+cases with two skips. [Hosted macOS result](https://github.com/TryUniCAD/Kit/actions/runs/43804326178/job/133091614937)

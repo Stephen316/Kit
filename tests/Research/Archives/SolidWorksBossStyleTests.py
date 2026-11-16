@@ -1,4 +1,4 @@
-from hashlib import sha256 as Sha256
+from hashlib import sha256 as HashBytes
 from importlib.util import (
     module_from_spec as LoadModule,
     spec_from_file_location as LoadSpec,
@@ -87,7 +87,7 @@ class BossStyleCodec(Protocol):
 
 
 # an exact path keeps the research module independent of import search ordering
-def LoadBossStyleCodec() -> BossStyleCodec:
+def LoadStyleCodec() -> BossStyleCodec:
     SpecValue = LoadSpec(
         "solidworks_boss_display_style",
         KRepoRoot / "re/solidworks/WriterResearch/DisplayStyle.py",
@@ -99,9 +99,9 @@ def LoadBossStyleCodec() -> BossStyleCodec:
 
 
 # only exact files from the independent eight save receipt can witness shape
-def ReadPinnedBossPart(Variant: str) -> SldprtArchive:
+def ReadPinnedPart(Variant: str) -> SldprtArchive:
     ReceiptBytes = (KCaptureDir / "receipt.json").read_bytes()
-    assert Sha256(ReceiptBytes).hexdigest() == KReceiptHash
+    assert HashBytes(ReceiptBytes).hexdigest() == KReceiptHash
     Receipt = CastValue(SaveReceipt, LoadJson(ReceiptBytes))
     assert (Receipt["recipe_id"], Receipt["errors"], Receipt["measurements"]) == (
         "P03",
@@ -109,27 +109,29 @@ def ReadPinnedBossPart(Variant: str) -> SldprtArchive:
         "measurements.json",
     )
     MeasurementBytes = (KCaptureDir / Receipt["measurements"]).read_bytes()
-    assert Sha256(MeasurementBytes).hexdigest() == Receipt["measurement_receipt_sha256"]
-    assert tuple(Part["file"] for Part in Receipt["native_files"]) == tuple(
-        f"P03-solidworks-{Case}.SLDPRT" for Case, _ in KStyleCases
+    assert (
+        HashBytes(MeasurementBytes).hexdigest() == Receipt["measurement_receipt_sha256"]
     )
-    (Part,) = tuple(
+    assert tuple(Saved["file"] for Saved in Receipt["native_files"]) == tuple(
+        f"P03-solidworks-{CaseName}.SLDPRT" for CaseName, _ in KStyleCases
+    )
+    (PartInfo,) = tuple(
         Saved
         for Saved in Receipt["native_files"]
         if Saved["file"] == f"P03-solidworks-{Variant}.SLDPRT"
     )
-    assert (Part["save_errors"], Part["save_warnings"]) == (0, 0)
-    RawPart = (KCaptureDir / Part["file"]).read_bytes()
-    assert (len(RawPart), Sha256(RawPart).hexdigest()) == (
-        Part["size_bytes"],
-        Part["sha256"],
+    assert (PartInfo["save_errors"], PartInfo["save_warnings"]) == (0, 0)
+    RawPart = (KCaptureDir / PartInfo["file"]).read_bytes()
+    assert (len(RawPart), HashBytes(RawPart).hexdigest()) == (
+        PartInfo["size_bytes"],
+        PartInfo["sha256"],
     )
     return SldprtArchive.from_bytes(RawPart)
 
 
 # the normal boss reader proves ownership before the null opening reaches the style
-def ReadBossStyleBoundary(Variant: str) -> tuple[bytes, int, int]:
-    Archive = ReadPinnedBossPart(Variant)
+def ReadStyleBounds(Variant: str) -> tuple[bytes, int, int]:
+    Archive = ReadPinnedPart(Variant)
     Generation = ContainerMo(Archive.streams)
     assert Generation == 19000
     Resolved = Archive.require("Contents/Config-0-ResolvedFeatures")
@@ -165,10 +167,10 @@ def ReadBossStyleBoundary(Variant: str) -> tuple[bytes, int, int]:
 
 # the generated fragment must end at the adjacent native positions and directions
 @Pytest.mark.parametrize(("Variant", "NativeStyleOffset"), KStyleCases)
-def CheckBlindBossStyle(Variant: str, NativeStyleOffset: int) -> None:
-    Resolved, StyleOffset, Generation = ReadBossStyleBoundary(Variant)
+def CheckBossStyle(Variant: str, NativeStyleOffset: int) -> None:
+    Resolved, StyleOffset, Generation = ReadStyleBounds(Variant)
     assert StyleOffset == NativeStyleOffset
-    Codec = LoadBossStyleCodec()
+    Codec = LoadStyleCodec()
     Emitted = Codec.EncodeBlindBossDisplayStyle(
         Generation=Generation, DisplayMode=201, ConditionOne=False
     )
@@ -191,12 +193,12 @@ def CheckBlindBossStyle(Variant: str, NativeStyleOffset: int) -> None:
 
 
 # a nonempty map count at the witnessed boundary cannot reuse the empty default layout
-def CheckBlindBossStyleMapGuard() -> None:
-    Resolved, StyleOffset, Generation = ReadBossStyleBoundary("baseline-a")
+def CheckStyleGuard() -> None:
+    Resolved, StyleOffset, Generation = ReadStyleBounds("baseline-a")
     MapOffset = StyleOffset + 8
     assert Resolved[MapOffset : MapOffset + 4] == PackFields("<i", 0)
     Altered = Resolved[:MapOffset] + PackFields("<i", 1) + Resolved[MapOffset + 4 :]
-    Codec = LoadBossStyleCodec()
+    Codec = LoadStyleCodec()
     with Pytest.raises(ArchiveError, match="normal blind boss display style"):
         _ = Codec.ReadBlindBossDisplayStyle(
             Altered,
