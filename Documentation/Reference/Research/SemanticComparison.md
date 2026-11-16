@@ -94,9 +94,47 @@ For a changed pin, restore the intended immutable input or seal a new comparison
 For ambiguity, obtain distinguishing ownership or relationship evidence.
 Do not increase tolerances, remove constraints or mask native fields merely to produce equality.
 
+## Run through the controller
+
+Register [the comparison worker](../../Changes/Research/Controller/SemanticComparisonWorker.md) as `semantic.compare` in an offline pool.
+Generate its records schema with `SemanticComparisonRunner.py --schema` using the same supported Python environment as the worker.
+Bind both neutral documents and the tolerance file through the existing controller `bind` command.
+Submit this job with your actual immutable rule and worker versions:
+
+```json
+{
+  "id": "compare:pair",
+  "kind": "semantic.compare",
+  "inputs": {
+    "first": "neutral:first",
+    "second": "neutral:second",
+    "tolerances": "tolerances:pair"
+  },
+  "rule_version": "ACTUAL_IMMUTABLE_RULE_VERSION",
+  "tool_version": "ACTUAL_IMMUTABLE_WORKER_VERSION",
+  "options": {
+    "scope": "paired-rectangle",
+    "first_geometry_unit": "mm",
+    "second_geometry_unit": "mm",
+    "max_candidates": 20000
+  }
+}
+```
+
+The worker verifies the controller fingerprint and all three byte seals.
+It publishes the bounded graph report as the immutable `semantic-report` artifact.
+The small records receipt retains the report hash, input hashes and observation status.
+This preserves reports above the controller's 1 MiB metadata limit.
+
+A controller outcome of `completed` records that the comparison observation finished.
+Inspect its `status`, unresolved domains and qualification fields before using it as evidence.
+Differences, ambiguity and exhausted work remain explicit completed observations.
+The controller cannot turn an observation receipt into independently qualified CAD semantics.
+
 ## Related information
 
 - [A01 contract audit](NeutralContractAudit.md)
 - [A06 implementation and dependencies](AutomationSteps.md)
 - [Paired evidence preflight](../../Changes/Research/Controller/PairedEvidenceManifest.md)
 - [Comparison change entry](../../Changes/Research/Readers/Comparison/SemanticGraphComparison.md)
+- [Controller worker contract](../../Changes/Research/Controller/SemanticComparisonWorker.md)

@@ -25,6 +25,7 @@ def GitValue(
         ],
         input=InputText,
         text=True,
+        encoding="utf-8",
         capture_output=True,
         check=False,
         timeout=30,
@@ -189,12 +190,13 @@ def CheckAuditArgs(TmpPath: FilePath, ArgList: tuple[str, ...]) -> None:
 
 
 # oversized tracked source must be refused without loading its full contents into the audit
-def CheckAuditLimit(TmpPath: FilePath) -> None:
+@Pytest.mark.parametrize("FileName", ("Large.py", "Large-e\u0301.py"))
+def CheckAuditLimit(TmpPath: FilePath, FileName: str) -> None:
     _ = GitValue(TmpPath, ["init", "--bare"])
     LargeBlob = GitValue(
         TmpPath, ["hash-object", "-w", "--stdin"], "x" * (4 * 1024 * 1024 + 1)
     )
-    LargeTree = GitValue(TmpPath, ["mktree"], f"100644 blob {LargeBlob}\tLarge.py\n")
+    LargeTree = GitValue(TmpPath, ["mktree"], f"100644 blob {LargeBlob}\t{FileName}\n")
     Revision = GitValue(TmpPath, ["commit-tree", LargeTree, "-m", "oversized source"])
     RootPath = FilePath(__file__).resolve().parents[3]
     Process = Subprocess.run(
@@ -208,12 +210,65 @@ def CheckAuditLimit(TmpPath: FilePath) -> None:
             "--main",
             Revision,
             "--path",
-            "Large.py",
+            FileName,
         ],
         capture_output=True,
         text=True,
+        encoding="ascii",
         check=False,
         timeout=120,
+        env={**OsModule.environ, "PYTHONIOENCODING": "ascii:strict"},
     )
     assert Process.returncode == 1 and Process.stdout == ""
     assert "file or byte limits" in Process.stderr
+    assert '"selected_files":1' in Process.stderr
+    assert '"selected_bytes":4194305' in Process.stderr
+    assert '"oversized_files":1' in Process.stderr
+    assert "repeated --path" in Process.stderr
+    assert "no source blobs were read" in Process.stderr
+    assert Process.stderr.isascii()
+
+
+# redirected ascii stdout must preserve unicode paths and the utf eight canonical payload digest
+def CheckAuditAscii(TmpPath: FilePath) -> None:
+    FirstCommit, _, _, _ = SeedHistory(TmpPath)
+    FileName = "Probe-e\u0301.py"
+    SourceBlob = GitValue(TmpPath, ["hash-object", "-w", "--stdin"], FirstCommit)
+    TreeValue = GitValue(TmpPath, ["mktree"], f"100644 blob {SourceBlob}\t{FileName}\n")
+    Revision = GitValue(TmpPath, ["commit-tree", TreeValue, "-m", "unicode path"])
+    RootPath = FilePath(__file__).resolve().parents[3]
+    Process = Subprocess.run(
+        [
+            System.executable,
+            str(RootPath / "re/automation/HistoryInputAudit.py"),
+            "--root",
+            str(TmpPath),
+            "--revision",
+            Revision,
+            "--main",
+            FirstCommit,
+            "--path",
+            FileName,
+        ],
+        capture_output=True,
+        text=True,
+        encoding="ascii",
+        check=False,
+        timeout=120,
+        env={**OsModule.environ, "PYTHONIOENCODING": "ascii:strict", "PYTHONUTF8": "0"},
+    )
+    assert Process.returncode == 0, Process.stderr
+    assert Process.stdout.isascii() and "\\u0301" in Process.stdout
+    Report = JsonCodec.loads(Process.stdout)
+    assert Report["selected_paths"] == [FileName]
+    assert Report["scanned_files"][0]["path"] == FileName
+    assert Report["objects"][0]["references"][0]["path"] == FileName
+    Checksum = Report.pop("report_sha256")
+    assert (
+        Checksum
+        == Hashlib.sha256(
+            JsonCodec.dumps(
+                Report, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+            ).encode("utf-8")
+        ).hexdigest()
+    )
