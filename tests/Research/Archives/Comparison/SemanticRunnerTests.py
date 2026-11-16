@@ -83,21 +83,32 @@ def SubmitCompare(
 def CheckDurable(TmpPath: FilePath) -> None:
     Harness = PrepareWorker(TmpPath)
     Document = MakeDocument()
-    Changes = {
-        NameText: tuple(
-            ChangeRecord(Record, name="a" * 65536)
-            for Record in getattr(Document, NameText)
+    Content = DumpJson(
+        ChangeRecord(
+            Document,
+            parameters=tuple(
+                ChangeRecord(Record, name="a" * 65536) for Record in Document.parameters
+            ),
+            support_planes=tuple(
+                ChangeRecord(Record, name="a" * 65536)
+                for Record in Document.support_planes
+            ),
+            sketches=tuple(
+                ChangeRecord(Record, name="a" * 65536) for Record in Document.sketches
+            ),
+            feature_timeline=tuple(
+                ChangeRecord(Record, name="a" * 65536)
+                for Record in Document.feature_timeline
+            ),
+            bodies=tuple(
+                ChangeRecord(Record, name="a" * 65536) for Record in Document.bodies
+            ),
+            configurations=tuple(
+                ChangeRecord(Record, name="a" * 65536)
+                for Record in Document.configurations
+            ),
         )
-        for NameText in (
-            "parameters",
-            "support_planes",
-            "sketches",
-            "feature_timeline",
-            "bodies",
-            "configurations",
-        )
-    }
-    Content = DumpJson(ChangeRecord(Document, **Changes)).encode()
+    ).encode()
     SubmitCompare(Harness, Content, Content)
     JobInfo = Harness.ReadJob("comparison")
     assert JobInfo["state"] == "completed", JobInfo
