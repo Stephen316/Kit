@@ -105,6 +105,18 @@ def CheckBossOpen() -> None:
     )
 
 
+# genuine chooser references must distinguish first allocations and later cap aliases
+def CheckBossChoice() -> None:
+    Report = LoadReport("VerifyBossChoice.py", 8)
+    assert Report["constructed"] is True
+    assert Report["edge_orders"] == 2
+    assert Report["stale_boxes"] == 3
+    assert (
+        Report["choice_replay_sha256"]
+        == "bd4477321aea633bfb06579621443054a0bdefc134b081195d413b4fbef1f2a6"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")

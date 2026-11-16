@@ -81,11 +81,9 @@ def verify_measured(boss, measurement):
     )
 
 
-# begin at the real trim return and converge on the independent full chooser reader
-def inspect_boss(archive, measurement, construct):
-    generation = ContainerMo(archive.streams)
-    atom = read_atom(archive.require("Contents/Config-0"), generation)
-    cursor, profile, edges, mode, _ = open_trim(archive, generation)
+# finish the live rectangular profile before either boss proof consumes its opening
+def open_boss(archive, generation):
+    cursor, profile, edges, mode, reference = open_trim(archive, generation)
     require(mode == 1, "one retained body transfer")
     trim_owner = {
         "profile_object": profile.ObjectIndex,
@@ -93,16 +91,32 @@ def inspect_boss(archive, measurement, construct):
     }
     trim = ReadRectTrim(cursor, trim_owner, edges, mode)
     file_index = trim["trim_surface"]["file_reference"]["object_index"]
+    return cursor, profile, edges, reference, file_index
+
+
+# continue from the actual boss allocation and cross-check the configuration's atom ID
+def read_boss_open(cursor, generation, profile_index, file_index, atom):
+    node = ReadOpNode(cursor, KBossClass, KBossFlags, profile_index, file_index)
+    require(node["native_feature_id"] == atom.Body.FeatureId, "same saved boss owner")
+    feature = ReadArcFeature(cursor, generation, AllowRegenTime=True)
+    read_transfer(cursor, atom)
+    return node, feature
+
+
+# begin at the real trim return and converge on the independent full chooser reader
+def inspect_boss(archive, measurement, construct):
+    generation = ContainerMo(archive.streams)
+    atom = read_atom(archive.require("Contents/Config-0"), generation)
+    cursor, profile, _, _, file_index = open_boss(archive, generation)
     stream = cursor.BlobValue
     start, before = cursor.Offset, map_state(cursor)
     complete = before.Cursor(stream, start)
     boss = ReadRectBoss(complete, profile.ObjectIndex, file_index, atom.ObjectIndex)
     verify_measured(boss, measurement)
-    node = ReadOpNode(cursor, KBossClass, KBossFlags, profile.ObjectIndex, file_index)
-    require(node["native_feature_id"] == atom.Body.FeatureId, "same saved boss owner")
     flags = read_flags(before, stream, start)
-    feature = ReadArcFeature(cursor, generation, AllowRegenTime=True)
-    read_transfer(cursor, atom)
+    node, feature = read_boss_open(
+        cursor, generation, profile.ObjectIndex, file_index, atom
+    )
     end, after = cursor.Offset, map_state(cursor)
     require(after.NextIndex == before.NextIndex + 3, "boss class, object and name")
     require(
