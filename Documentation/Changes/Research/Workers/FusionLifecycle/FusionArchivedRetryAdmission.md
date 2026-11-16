@@ -25,5 +25,7 @@ The hosted case uses a disposable AppKit process and an Autodesk API
 stand-in to exercise replacement custody and control. It then uses the
 actual A03 commands to select the exact second lease ahead of an older
 rival and check failure after retry settlement and lease expiration. It
-also checks the durable evidence and generation invalidation. Hosted
-verification and signed-in Fusion retry acceptance remain pending.
+also checks the durable evidence and generation invalidation. The macOS
+supervisor passed 166 cases with two skips at `f0962377`, including this
+retry admission case. Signed-in Fusion retry acceptance remains pending.
+[Hosted macOS result](https://github.com/TryUniCAD/Kit/actions/runs/43847585169/job/133231532025)

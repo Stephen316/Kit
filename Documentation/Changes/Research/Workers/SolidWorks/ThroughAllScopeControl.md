@@ -27,3 +27,5 @@ Use the standalone watchdog when the campaign needs a hard deadline across synch
 ## Observed checkpoint
 
 Build `34.4.1.1011` authored and saved the automatic case in a provisional scratch run at `c996f65f1745aad9aa7a82f89537eeb2f14303ee`. The archive SHA-256 is `82141d768d1190bbc0193c0e30fdc06049a93ffdda88866b514c8d504213adfe`. The read-only replay follows two saved scope-body entries to distinct Boss producers. The initial explicit feature creation refused its input. A subsequent startup produced a SOLIDWORKS crash report before the process became available to COM. The explicit selections, persisted Auto-select and fresh three-case comparison remain unverified. [Archive replay](ProvisionalScopeArchive.md), [native comparison](CutScopeReadback.md)
+
+The bounded run at `57f1b3ee` created the through-all Cut and measured volume loss in both bodies. The freshly retrieved definition listed both bodies and reported `AutoSelect=false` before and during selection access after the edit and rebuild. The acceptance check stopped that run before save. The watchdog confirmed the private job drained.

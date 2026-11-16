@@ -33,5 +33,6 @@ The hosted process case uses a disposable AppKit app and a vendor API
 stand-in to drive the real pinned control code and committed input. It
 checks import, recompute, no-save close, one-shot reservation and response
 recovery, without treating the observed data as licensed Fusion results.
-Hosted execution and signed-in native Fusion control evidence remain
-pending.
+The macOS supervisor verified this control and the optional retry admission
+at `f0962377`. Signed-in native Fusion control evidence remains pending.
+[Hosted macOS result](https://github.com/TryUniCAD/Kit/actions/runs/43847585169/job/133231532025)
