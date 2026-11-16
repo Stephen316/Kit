@@ -6,16 +6,27 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from datetime import datetime, timezone
 import math
 import time
 
-from ApplicationProtocol import require
+from ApplicationProtocol import require, windows_process
 from ResourceOccupancy import union_seconds
 
 
 # unusual recorded numbers must be rejected before comparing native and controller clocks
 def is_timestamp(value):
     return type(value) in (int, float) and 0 <= value < math.inf
+
+
+# identical numerical process ids can belong to different application lifetimes
+def pinned_process(host):
+    if host["started"].startswith("windows:"):
+        return windows_process(host)
+    birth = datetime.strptime(host["started"], "%a %b %d %H:%M:%S %Y").replace(
+        tzinfo=timezone.utc
+    )
+    return {"pid": host["pid"], "start_unix_seconds": int(birth.timestamp())}
 
 
 # missing historical phase clocks stay visible without estimating them from claim timestamps
@@ -34,6 +45,7 @@ def phase_timing(database, row, controller, dispatch, observed, plan):
     require(
         attempt is not None
         and attempt["receipt"] == row["receipt"]
+        and observed["process"] == pinned_process(dispatch["host"])
         and all(
             is_timestamp(value)
             for value in (
