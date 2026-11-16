@@ -1,14 +1,22 @@
 from struct import Struct
-from typing import cast as Cast
+from typing import cast as CastValue
 
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Core.Partition.PartRecordBody import FindPartBodies
 
-# scope ownership uses a named Parasolid attribute with its checked definition domain
+# scope ownership uses a named parasolid attribute with its checked definition domain
 KAtomName = b"ATOM_ID_2001"
+
+# the attribute name length frames its complete encoded identifier
 KNameRecord = Struct(">IH12s")
+
+# the definition binds the attribute name before its counted references
 KDefRecord = Struct(">IHHHi24x")
+
+# each attribute carries its owner and value reference in the native layout
 KOwnerRecord = Struct(">IHI8H")
+
+# a separate integer record supplies the atom value for its referring attribute
 KValueRecord = Struct(">IHi")
 
 
@@ -30,7 +38,7 @@ def ReadAtomDef(DataValue: bytes) -> int:
         if (Count, NameIndex, Domain) == (2, Names[0], 9000) and Index > 1
     ]
     RequireArch(len(Definitions), 1, "unique partition atom definition")
-    return Cast(int, Definitions[0])
+    return CastValue(int, Definitions[0])
 
 
 # each shell owner needs one distinct attribute record and integer reference

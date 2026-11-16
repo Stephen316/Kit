@@ -18,7 +18,7 @@ def TakeEntities(
     return tuple(Lookup[IdValue] for IdValue in dict.fromkeys(IdValues) if IdValue)
 
 
-# per-region measures use only topology and geometry reached from one shell
+# each region measurement uses only topology and geometry reached from one shell
 def ExtractRegion(
     ModelValue: BrepModel, Region: BrepRegion, Carrier: BrepBody
 ) -> BrepModel:

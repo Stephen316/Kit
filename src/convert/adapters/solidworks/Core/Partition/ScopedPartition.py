@@ -17,7 +17,7 @@ from interchange.brep.Topology.BrepTopology import BrepBody
 from interchange.geometry.Models.Transform import KTransformIdentity
 from interchange.Records.RecordTopology import TopologyCounts
 
-# this schema carries the checked shell, region and named atom layouts
+# this schema carries the checked shell region and named atom layouts
 KScopeSchema = "SCH_3701250_37102_13006"
 
 
@@ -32,14 +32,14 @@ class ScopedRegion:
     MassValue: PartMass
 
 
-# whole-part topology stays intact while its carrier becomes independently owned bodies
+# whole part topology stays intact while its carrier becomes independently owned bodies
 @Dataclass(frozen=True, slots=True)
 class ScopedPartition:
     ModelValue: BrepModel
     Regions: tuple[ScopedRegion, ScopedRegion]
 
 
-# caller design IDs are admissible only with exact, distinct native atom keys
+# caller design identities are admissible only with exact distinct native atom keys
 def CheckDesignIds(DesignIds: Mapping[int, str]) -> None:
     RequireArch(
         len(DesignIds) == 2
@@ -75,7 +75,7 @@ def MeasureRegion(
     )
 
 
-# the split joins typed regions to their owners before binding caller design IDs
+# the split joins typed regions to their owners before binding caller design identities
 def SplitPartition(PayloadData: bytes, DesignIds: Mapping[int, str]) -> ScopedPartition:
     CheckDesignIds(DesignIds)
     Header = ParaHeaderData(PayloadData)
