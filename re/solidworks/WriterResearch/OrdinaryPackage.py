@@ -19,6 +19,7 @@ from PartDocProperties import (
     EncodeConfigurationProperties,
     EncodeDocumentProperties,
 )
+from PartEModelLicense import EncodeEModelLicense, KEModelLicense
 from PartFraming import BuildVersionedArchive
 from PartOle import EncodePartOle, OleInventory
 from PartOpc import EncodePartOpc
@@ -126,6 +127,7 @@ def EncodePackageMetadata(Generation: int, State: PackageState) -> dict[str, byt
     Members[KConfigDb] = EncodeConfigHeaderDb(
         Generation, State.Exchange.RecordId, State.Exchange.Created
     )
+    Members[KEModelLicense] = EncodeEModelLicense(Generation, Header.Tail.LicenseFlag)
     Members.update(EncodePartOle(Generation, State.Ole))
     Members[CUSTOM_PROPERTIES] = EncodePartProperties(Generation, State.FileProperties)
     Members[OPEN_TIME_STREAM] = EncodePartOpenTime(Generation, State.OpenTime)

@@ -101,7 +101,7 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `OrdinaryConfig.BuildOrdinaryConfig` and `ResolvedPart.BuildOrdinaryResolved` share the generated configuration map. |
 | Full typed payload | `Contents/3DExperienceExchange_ConfigHeader` | [Configuration exchange writer](SolidWorksConfigurationExchange.md) emits the sole ordinary configuration record |
 | Open | `Contents/3DExperienceExchange2`, `Contents/PMISemanticDataDB` | Exchange-object and PMI record constructors or licensed omission evidence |
-| Open | `Contents/eModelLic` | Scoped native save-context semantics and a justified caller input |
+| Typed payload with prerequisites | `Contents/eModelLic` | [The licensed package field](SolidWorksEModelLicense.md) uses the same caller-supplied package code as the document header |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
 | Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
@@ -111,9 +111,9 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
 | Typed payload with prerequisites | `swXmlContents/Features`, `swXmlContents/KeyWords` | `PartFeatureIndex.EncodeFeatures` and `PartKeywords.EncodeKeywords` use the same document identity plus caller-owned sketch and optional Boss display state |
 
-There are 26 retained members with typed constructors, including two
+There are 27 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Seven remain open. Native acceptance of a fully generated archive is pending.
+Six remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
 [Configuration property writer](SolidWorksConfigurationProperties.md)

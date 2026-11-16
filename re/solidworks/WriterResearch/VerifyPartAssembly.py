@@ -162,7 +162,7 @@ def verify_generated_package(
     streams = candidate.streams
     require(
         (candidate.format_version, ContainerMo(streams), len(streams))
-        == (4, generation, 26),
+        == (4, generation, 27),
         "ordinary generated package roster and version",
     )
     CheckVersionStreams(generation, streams)
