@@ -40,6 +40,7 @@ class RectanglePart:
     Directions: KSavedBasis
     Origin: OriginProfile
     Boss: BossOperation | None
+    IsSketchOnly: bool = False
 
 
 # the datum identity and frame must both agree with the archived sketch attachment
@@ -103,7 +104,7 @@ def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> Rectang
         EdgeIds,
         int(HasAtom),
     )
-    _ = ReadRectEnd(Cursor, HasAtom)
+    EndKind = ReadRectEnd(Cursor, HasAtom)
     BossValue = None
     if HasAtom:
         TryAtoms = tuple(
@@ -116,4 +117,14 @@ def ReadRectPart(ConfigData: bytes, Resolved: bytes, Generation: int) -> Rectang
             BossValue = TryRectBoss(
                 Cursor, Profile.ObjectIndex, FileObject, TryAtoms[0]
             )
-    return RectanglePart(Profile, Datum, Reference, Directions, Origin, BossValue)
+    return RectanglePart(
+        Profile,
+        Datum,
+        Reference,
+        Directions,
+        Origin,
+        BossValue,
+        IsSketchOnly=MapWalk["atom_count"] == 0
+        and EndKind == "resolved_list_end"
+        and not MapWalk["regions"],
+    )

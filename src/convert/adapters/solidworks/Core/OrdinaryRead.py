@@ -3,6 +3,7 @@ from struct import error as StructError
 
 from convert.adapters.solidworks.Config.RootLayout import KConfigGen
 from convert.adapters.solidworks.Container.Archive import ArchiveError
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 from convert.adapters.solidworks.Core.BossProjection import AttachRectBoss
 from convert.adapters.solidworks.Core.Native import (
     KPlaneSupportKind,
@@ -12,6 +13,7 @@ from convert.adapters.solidworks.Core.Native import (
     NativePlane,
     NativeSketchA,
 )
+from convert.adapters.solidworks.Core.Partition.ActivePartition import IsEmptyStream
 from convert.adapters.solidworks.Resolved.RectanglePart import (
     RectanglePart,
     ReadRectPart,
@@ -106,3 +108,16 @@ def ReadRectSupport(
     except (ArchiveError, StructError):
         return Model
     return AttachRectBoss(AttachRectPlane(Model, Parsed), Parsed)
+
+
+# rebuildable features and missing partitions must retain the established neutral body fallback
+def IsEmptyPart(Archive: SldprtArchive, Model: NativeModel) -> bool:
+    ConfigId = Model.active_configuration_id
+    if ConfigId is None or Model.operations or len(Model.sketches) != 1:
+        return False
+    (SketchValue,) = Model.sketches
+    Rectangle = SketchValue.rectangle
+    if Rectangle is None or not Rectangle.IsSketchOnly:
+        return False
+    Partition = Archive.get(f"Contents/Config-{ConfigId}-Partition")
+    return Partition is not None and IsEmptyStream(Partition)

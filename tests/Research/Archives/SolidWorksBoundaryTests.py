@@ -221,3 +221,53 @@ def TestSwPartGuard(Scenario: str) -> None:
         Value for Value in Updated.sketches if Value.name == "CutSketch"
     )
     assert CutSketch.attributes["support_plane_source"] == "typed-archive-face"
+
+
+# the measured sketch and boss families have distinct active body inventories
+def TestBodyCounts() -> None:
+    SketchFiles = tuple(sorted(KPlaneFile.parent.glob("*.SLDPRT")))
+    BossFiles = tuple(sorted(KBossFile.parent.glob("*.SLDPRT")))
+    assert (len(SketchFiles), len(BossFiles)) == (6, 8)
+    for Source in (*SketchFiles, *BossFiles):
+        RawValue = Source.read_bytes()
+        BodyCount = int(Source in BossFiles)
+        for IncludeBrep in (False, True):
+            Document = ReadSwFixture(RawValue, IncludeBrep)
+            assert len(Document.bodies) == BodyCount
+            assert len(Document.sketches[0].closed_profile_entity_ids[0]) == 4
+            assert (Document.brep is not None) is bool(IncludeBrep and BodyCount)
+            ActiveKinds = sorted(
+                Value.kind
+                for Value in Document.brep_payloads
+                if Value.source_stream == KPartStream
+            )
+            assert ActiveKinds == (["deltas", "partition"] if IncludeBrep else [])
+
+
+# contradictory and opaque geometry must preserve the established neutral fallback
+def TestPartGuard() -> None:
+    SketchData = KPlaneFile.read_bytes()
+    BossData = KBossFile.read_bytes()
+    BlankPart = SldprtArchive.from_bytes(SketchData).require(KPartStream)
+    BossArchive = SldprtArchive.from_bytes(BossData)
+    Candidates = (
+        (SketchData, BossArchive.require(KPartStream), 1),
+        (BossData, BlankPart, 0),
+        (SketchData, BossArchive.require("Contents/Config-0-GhostPartition"), 0),
+        (SketchData, BlankPart + b"opaque trailer", 0),
+        (SketchData, BlankPart[:24], 0),
+        (SketchData, None, 0),
+    )
+    for Original, Replacement, BodyCount in Candidates:
+        Archive = SldprtArchive.from_bytes(Original)
+        Streams = Archive.streams
+        if Replacement is None:
+            _ = Streams.pop(KPartStream)
+        else:
+            Streams[KPartStream] = Replacement
+        Updated = RebuildPart(Original, Archive, Streams)
+        for IncludeBrep in (False, True):
+            Document = ReadSwFixture(Updated, IncludeBrep)
+            assert len(Document.bodies) == 1
+            assert len(Document.sketches[0].closed_profile_entity_ids[0]) == 4
+            assert (Document.brep is not None) is bool(IncludeBrep and BodyCount)

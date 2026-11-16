@@ -174,6 +174,7 @@ from convert.adapters.solidworks.Core.Cut.CutEqProjection import ReadCutArchive
 from convert.adapters.solidworks.Core.Partition.ActivePartition import ReadActivePart
 from convert.adapters.solidworks.Core.Partition.PartTopology import ActivePartMass, PartTopology
 from convert.adapters.solidworks.Core.OrdinaryRead import (
+    IsEmptyPart,
     KArchiveSupport,
     ReadRectSupport,
 )
@@ -421,7 +422,7 @@ def ReadNativePart(
         sketches=SketchValues,
         selections=SelectValues,
         feature_timeline=TimeValues,
-        bodies=Bodies,
+        bodies=() if IsEmptyPart(Archive, Model) else Bodies,
         brep=BrepValue,
         brep_payloads=Payloads,
         diagnostics=Diagnostics,
