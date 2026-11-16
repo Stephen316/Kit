@@ -22,6 +22,7 @@ from VerifyCmgrIndex import verify_cmgr_index
 from VerifyCmgrOpen import verify_opening
 from VerifyCmgrPart import verify_part_end
 from VerifyCmgrVisual import verify_visual_prefix
+from VerifyPartFraming import verify_version_framing
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
@@ -108,6 +109,7 @@ def verify_color():
     visuals = {}
     compositions = {}
     configuration_indexes = {}
+    version_framing = {}
     externals = {}
     tails = {}
     masses = {}
@@ -135,6 +137,7 @@ def verify_color():
                 archive, generation, measurement
             )
             configuration_indexes[item["sha256"]] = verify_cmgr_index(archive, generation)
+            version_framing[item["sha256"]] = verify_version_framing(archive, generation)
         color, start, cursor = ReadColorSpan(stream, generation)
         end = cursor.Offset
         saved = stream[start:end]
@@ -171,12 +174,14 @@ def verify_color():
     RequireArch(len(visuals), 14, "CMgr visual prefix capture count")
     RequireArch(len(compositions), 14, "CMgr composed stream capture count")
     RequireArch(len(configuration_indexes), 14, "CMgr active index capture count")
+    RequireArch(len(version_framing), 14, "modern framing input capture count")
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
         "visual_prefix_records": visuals,
         "composed_cmgr_records": compositions,
         "configuration_index_records": configuration_indexes,
+        "version_framing_records": version_framing,
         "external_file_records": externals,
         "terminal_records": tails,
         "empty_mass_records": masses,

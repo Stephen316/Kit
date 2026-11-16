@@ -6,7 +6,7 @@ The active configuration uses one native configuration ID across the [CMgr openi
 
 On installed SOLIDWORKS `34.4.1.1011`, the ordinary `suFileStorage::loadVersion` branch at `sldmfcu.dll+0x19ce9f` passes the root prefix `_MO_VERSION_` through virtual slot `+0x250`. The ZIP storage vtable at `0x3cc8d610` gives `0x3c8cb620` for that slot. Its node walk filters to type 1, parses the matching suffix with `_wtoi` at `0x3c8cb7a3` and returns the greatest parsed generation, with zero when none is present. `writeVersion` uses slot `+0x258` at `0x3c8ce8c9`. That ZIP branch renders the supplied version in base ten and reaches `ZipStorage::createZipNode` at `0x3c8ca2e7` when the target folder is absent. Both saved children, `_MO_VERSION_19000/History` and `_MO_VERSION_19000/Biography`, occur in all fourteen saves.
 
-The [container codec](../../../../src/convert/adapters/solidworks/Container/Container.py) builds local and central entries from leaf streams and derives CRCs, sizes and offsets. The version folder has no separate data stream in the measured manifests. The loader has independent `LoadVersionHistory` and `LoadBiography` entry points in `doccplu.dll`. The `History` record includes original version state, application build and runtime session fields. `Biography` has additional authoring data. The generation detector's ignored child payloads still have these independent consumers. A portable version-folder carrier and exact omission behavior for its children require separate evidence.
+The [container codec](../../../../src/convert/adapters/solidworks/Container/Container.py) builds local and central entries from leaf streams and derives CRCs, sizes and offsets. The version folder has no separate data stream in the measured manifests. The loader has independent `LoadVersionHistory` and `LoadBiography` entry points in `doccplu.dll`. Their first-document branches determine the [generated leaf records](ContainerFraming.md#version-storage).
 
 | Role | Native observation and saved route |
 | --- | --- |
@@ -20,7 +20,7 @@ The older [measured stream ablations](../../archive/Multistream.md#4-which-strea
 
 The existing bookkeeping constructors reproduced all three of their streams in each pinned archive. This gives 18 exact stream matches across P01 and 24 across P03.
 
-The fourteen format-4 directories all validated through the existing codec. The 32-bit local record header word exposed by `TemplateFields` as `TypeId` was `0xfff7ffdf` for `Config-0` and `Config-0-ResolvedFeatures`. It was `0xff67dd74` on the two model headers, Definition, CMgr, CMgrHdr2, CnfgObjs, ModelStamps, display update and both version children. The generic codec supplies other defaults. Native consumption and safe substitution of this word on the modern profile are unverified. The constructor leaves container framing choices to the existing codec and makes no change to these defaults.
+The fourteen format-4 directories all validated through the existing codec. The 32-bit local record header word exposed by `TemplateFields` as `TypeId` was `0xfff7ffdf` for `Config-0` and `Config-0-ResolvedFeatures`. It was `0xff67dd74` on the two model headers, Definition, CMgr, CMgrHdr2, CnfgObjs, ModelStamps, display update and both version children. The native reader identifies this standard [ZIP date word](ContainerFraming.md#zip-date-word). The dated research wrapper derives it from the document's supplied modification time.
 
 ## Active configuration index
 
