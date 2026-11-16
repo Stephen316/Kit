@@ -1,4 +1,3 @@
-import json
 from types import SimpleNamespace
 
 from ApplicationProtocol import encoded, file_bytes, require, sha256
