@@ -1,5 +1,0 @@
-# SOLIDWORKS Cut scope modes
-
-`FeatureCut4` can seed the selected-bodies list with `UseAutoSelect=true`. This initial list covers existing intersecting bodies. At source revision `57f1b3ee`, a rebuilt Cut made by that route reported an explicit list of A and B with `AutoSelect=false` after retrieving its native definition. Both bodies had lost volume before the measurement stopped the run.
-
-For an automatic Cut on every applicable body, use `UseFeatScope=false`. SOLIDWORKS documents that this option also covers new applicable bodies placed before the Cut. A fresh definition and independent body measurements establish the saved scope and geometry for the two-body recipe. A separate edit that introduces a third intersecting body before the Cut would directly observe the behavior after a topology change. [SOLIDWORKS multibody API guide](https://help.solidworks.com/2024/english/api/sldworksapiprogguide/Overview/Programming_Multibody_Parts.htm?id=1.4.39.1), [two-body scope control](../../../Changes/Research/Workers/SolidWorks/ThroughAllScopeControl.md)
