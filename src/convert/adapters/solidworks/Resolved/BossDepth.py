@@ -1,3 +1,4 @@
+from math import ulp as UnitLastPlace
 from typing import TypedDict
 
 from convert.adapters.solidworks.Container.Archive import (
@@ -126,9 +127,18 @@ def ReadDepthClose(Cursor: ArchiveCursor, KindValue: str = KClassRefKind) -> int
 
 # a depth is exposed only when the saved model length and both copies agree
 def ReadBossDepth(
-    Cursor: ArchiveCursor, KindValue: str = KDefinitionKind, *, DisplayMode: int = 201
+    Cursor: ArchiveCursor,
+    KindValue: str = KDefinitionKind,
+    *,
+    DisplayMode: int = 201,
+    AllowCacheRoundoff: bool = False,
 ) -> DepthDisplay:
-    Display, _ = ReadDepthRefs(Cursor, KindValue, DisplayMode=DisplayMode)
+    Display, _ = ReadDepthRefs(
+        Cursor,
+        KindValue,
+        DisplayMode=DisplayMode,
+        AllowCacheRoundoff=AllowCacheRoundoff,
+    )
     return Display
 
 
@@ -140,6 +150,7 @@ def ReadDepthRefs(
     DisplayMode: int = 201,
     DisplayKind: str = KClassRefKind,
     FavoriteKind: str = KClassRefKind,
+    AllowCacheRoundoff: bool = False,
 ) -> tuple[DepthDisplay, DepthReference]:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(
@@ -149,7 +160,16 @@ def ReadDepthRefs(
     Handle = ReadFeatHandle(Cursor, KindValue)
     Depth, Reference = ReadDepthRefMut(Cursor, KindValue)
     Copies = ReadCache(Cursor)
-    RequireArch(Copies, (Depth["metres"],) * 2, "depth copies agree with parameter")
+    Metres = Depth["metres"]
+    if AllowCacheRoundoff:
+        RequireArch(Copies[1], Metres, "saved depth copy agrees with parameter")
+        RequireArch(
+            abs(Copies[0] - Metres) <= 2 * UnitLastPlace(Metres),
+            True,
+            "rounded depth copy agrees with parameter",
+        )
+    else:
+        RequireArch(Copies, (Metres,) * 2, "depth copies agree with parameter")
     Favorite = ReadDepthClose(Cursor, FavoriteKind)
     Display: DepthDisplay = {
         "offset": Offset,

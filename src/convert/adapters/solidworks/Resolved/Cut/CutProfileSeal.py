@@ -32,6 +32,8 @@ def ReadCutSeal(
     Cursor: ArchiveCursor,
     Profile: ProfileOwner,
     FileObject: int,
+    *,
+    MergeMode: bool = False,
 ) -> CutProfileSeal:
     Placement = ReadFacePose(Cursor)
     RequireArch(Cursor.ReadInts("<H"), (1,), "present cut auxiliary transform")
@@ -45,7 +47,9 @@ def ReadCutSeal(
     Cursor.ReadNull()
     RequireArch(Cursor.ReadInts("<2i"), (-1, 0), "guarded cut profile state")
     (State,) = Cursor.ReadInts("<I")
-    RequireArch(Cursor.ReadInts("<H"), (11,), "witnessed cut contour mode")
+    RequireArch(
+        Cursor.ReadInts("<H"), (3 if MergeMode else 11,), "witnessed cut contour mode"
+    )
     Cursor.ReadNull()
     RequireArch(Cursor.ReadInts("<H"), (1,), "one cached cut trim surface")
     Surface = ReadTrimSurface(Cursor, Profile, FileObject)

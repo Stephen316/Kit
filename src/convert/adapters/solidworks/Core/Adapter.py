@@ -183,6 +183,7 @@ from convert.adapters.solidworks.Core.Scope.ScopeDocument import (
     KScopeUnresolved,
     ReadScopeDoc,
 )
+from convert.adapters.solidworks.Core.TwoPad.PadDocument import ProjectPadDoc
 from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
 from interchange.geometry.Models.GeometryTypes import KGeometryTypes
@@ -458,6 +459,7 @@ def ReadNativePart(
     DocValue = ProjectScopeDoc(
         ProjectCutDoc(DocValue, Model.cut_source), Model, Archive, Payloads, Settings
     )
+    DocValue = ProjectPadDoc(DocValue, Archive, Model.active_configuration_id)
     DocValue.assert_valid()
     ValidateSource(Label, False)
     return RetainSource(DocValue, DataValue)

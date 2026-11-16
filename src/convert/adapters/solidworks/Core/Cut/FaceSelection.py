@@ -13,18 +13,20 @@ from interchange.Records.RecordProvenance import Provenance, ProvenanceSpan
 
 
 # support and individual surface spans keep the complete historical identity independently auditable
-def CutFaceSource(Support: SupportPlane, StreamName: str) -> Provenance:
+def CutFaceSource(
+    Support: SupportPlane, StreamName: str, *, RoleName: str = "cut-face"
+) -> Provenance:
     FaceData = Support["face"]
     FaceValue = FaceData["component"]["occurrence"]
     BaseValue = RectSource(
         str(Support["support_object"]),
         StreamName,
         MemberSpan(Support["offset"], FaceData["support_end"]),
-        "cut-face-support",
+        f"{RoleName}-support",
     )
     Surfaces = (
-        (FaceValue["primary"], "cut-face-cap"),
-        *((EdgeValue, "cut-face-edge") for EdgeValue in FaceValue["ordered_edges"]),
+        (FaceValue["primary"], f"{RoleName}-cap"),
+        *((EdgeValue, f"{RoleName}-edge") for EdgeValue in FaceValue["ordered_edges"]),
     )
     return Replace(
         BaseValue,
