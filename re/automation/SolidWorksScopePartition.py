@@ -12,6 +12,7 @@ from interchange.geometry.models.Transform import KTransformIdentity
 
 
 PARTITION = "Contents/Config-0-Partition"
+RESOLVED = "Contents/Config-0-ResolvedFeatures"
 TOPOLOGY = ("regions", "shell_uses", "shells", "face_uses", "faces", "loops", "coedges", "edges", "vertices")
 
 
@@ -47,6 +48,50 @@ def coordinate(point):
 
 def match_vector(observed, expected, tolerance):
     return all(isclose(v, target, rel_tol=0, abs_tol=tolerance) for v, target in zip(observed, expected, strict=True))
+
+
+def read_scope_support_sheet(blob, prefix, spec):
+    span = prefix["cut_sketch"]["kernel_packet"]
+    raw = blob[span["start"]:span["end"]]
+    parts = decode_partition_stream(raw, RESOLVED)
+    require(len(parts) == 1, "expected one wrapped Cut support payload")
+    (packet,) = parts
+    require(
+        packet.wrapper_offset == 1 and raw[0] == 0 and packet.stored_size == len(raw) - 1,
+        "wrapped Cut support does not consume its bounded payload",
+    )
+    model = decode_brep_model(packet.data)
+    require(
+        model is not None and not model.validate() and len(model.regions) == len(model.shells) == len(model.bodies)
+        == len(model.faces) == len(model.surfaces) == len(model.loops) == 1
+        and not model.regions[0].solid and not model.shells[0].closed
+        and len(model.edges) == len(model.vertices) == 4 and not model.wires,
+        "bounded Cut support is not a single four-edge sheet",
+    )
+    require(LinearPartBox(model) is not None, "scope support sheet is not planar and straight-edged")
+    face, surface = model.faces[0], model.surfaces[0]
+    require(face.surface_id == surface.id, "scope support face does not resolve its plane")
+    reference = prefix["cut_support"]["plane"]
+    normal = tuple(value if face.same_sense else -value for value in coordinate(surface.normal))
+    origin_mm = coordinate(surface.origin)
+    lower, upper = spec["bodies"][spec["cut"]["support_body"]]["bounds_mm"]
+    z = spec["cut"]["profile_bounds_mm"][0][2]
+    expected = sorted(product((lower[0], upper[0]), (lower[1], upper[1]), (z,)))
+    points = sorted(coordinate(row.point) for row in model.vertices)
+    tolerance = spec["tolerances"]["length_mm_absolute"]
+    require(
+        normal == reference["normal_world"]
+        and match_vector(origin_mm, (value * 1000 for value in reference["root_metres"]), tolerance)
+        and all(match_vector(p, q, tolerance) for p, q in zip(points, expected, strict=True)),
+        "bounded Cut sheet does not match the resolved support plane and its recipe cap",
+    )
+    return {
+        **span, "stored_sha256": sha256(raw), "decoded_sha256": packet.sha256,
+        "wrapper_offset": span["start"] + packet.wrapper_offset, "schema": packet.schema,
+        "compressed_size": packet.compressed_size, "decoded_size": packet.uncompressed_size,
+        "support_face_id": face.id, "origin_mm": origin_mm, "effective_normal_world": normal,
+        "points_mm": points,
+    }
 
 
 def cap_openings(model, body_bounds, cut_bounds, tolerance):

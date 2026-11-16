@@ -39,7 +39,8 @@ existing owner procedures.
 The [owner cold-start command](FusionStartup/FusionOwnerColdStart.md) uses the provisioned
 profile to start an unavailable installation before Phase A.
 
-The hosted fixture runs the actual pinned bootstrap and Darwin peer checks
-across disposable processes. Its controlled vendor context, manual context,
-incomplete startup, wrong peer, changed manifest and two independent
-challenges await hosted execution. A signed-in Fusion run is still required.
+At PR head `14f4a1f2` and tested merge `1198983e`, the hosted fixture ran the
+actual pinned bootstrap and Darwin peer checks across disposable processes.
+It verified the vendor startup callback, refusal of manual or incomplete
+startup, refusal of a wrong peer or changed manifest, and two fresh challenges.
+A signed-in Fusion run is still required. [Hosted macOS evidence](https://github.com/TryUniCAD/Kit/actions/runs/43788486237/job/133041436716)
