@@ -45,6 +45,16 @@ def EncodeBaseOpts(
     ConditionOne: bool,
 ) -> bytes:
     RequireClose(Generation, DisplayMode, ConditionOne)
+    return EncodeBaseOptFields(Preferences, Standard, ExtendLeader, SplitDual)
+
+
+# empty override groups and drafting preferences use the same native store layout
+def EncodeBaseOptFields(
+    Preferences: DisplayPrefs,
+    Standard: int,
+    ExtendLeader: bool,
+    SplitDual: bool,
+) -> bytes:
     RequireArch(
         (type(Standard), Standard, type(ExtendLeader), type(SplitDual)),
         (int, KExpectedStandard, bool, bool),
@@ -88,4 +98,9 @@ def EncodeBaseOpts(
 # the fields after SelLeader are ordinary constructor values through the base return
 def EncodeBaseEnd(*, Generation: int, DisplayMode: int, ConditionOne: bool) -> bytes:
     RequireClose(Generation, DisplayMode, ConditionOne)
+    return EncodeBaseEndFields()
+
+
+# the shared empty shifted point follows the inactive selector
+def EncodeBaseEndFields() -> bytes:
     return PackFields("<3d2i", *KShiftedOrigin, 0, 0) + EncodeString("")

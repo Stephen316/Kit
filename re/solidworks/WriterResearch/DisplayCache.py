@@ -49,8 +49,13 @@ def EncodeBossCache(
     DepthMetres: float, *, Generation: int, DisplayMode: int, ConditionOne: bool
 ) -> bytes:
     RequireCache(Generation, DisplayMode, ConditionOne)
+    return EncodeDistanceCache(DepthMetres, KAuthoredMask)
+
+
+# separate callers compose their native mask before storing the same scalar cache fields
+def EncodeDistanceCache(Metres: float, Mask: int) -> bytes:
     RequireArch(
-        type(DepthMetres) in (int, float) and 0 < DepthMetres <= FloatInfo.max,
+        type(Metres) in (int, float) and 0 < Metres <= FloatInfo.max,
         True,
         "positive finite distance cache length",
     )
@@ -58,20 +63,18 @@ def EncodeBossCache(
     NullObject = EncodeNull()
     return (
         NullObject * 2
-        + PackFields(
-            "<2d2i2HI2i", *KEmptyRefs, *KTolerancePrec, KAuthoredMask, *KAbsentArrays
-        )
+        + PackFields("<2d2i2HI2i", *KEmptyRefs, *KTolerancePrec, Mask, *KAbsentArrays)
         + EmptyText
         + NullObject * 2
         + PackFields(
             "<id4Id",
             KBrokenUnset,
-            DepthMetres,
+            Metres,
             KDoubleSize,
             KGrowthStep,
             KArrayStrategy,
             KCacheCount,
-            DepthMetres,
+            Metres,
         )
         + EmptyText
     )

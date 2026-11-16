@@ -135,6 +135,11 @@ def EncodeBlindBossDisplayStyle(
     *, Generation: int, DisplayMode: int, ConditionOne: bool
 ) -> bytes:
     RequireStyleScope(Generation, DisplayMode, ConditionOne)
+    return EncodeDefaultStyle()
+
+
+# the same empty style members are used by the ordinary sketch distance display
+def EncodeDefaultStyle() -> bytes:
     return PackFields(KDisplayStyleFormat, *KDefaultDisplayStyle)
 
 
@@ -188,10 +193,17 @@ def EncodeBlindBossDisplayAfterStyle(
         True,
         "one blind boss display handle",
     )
+    return EncodeInlineDisplayText(KDisplayOrigin, HandleCount)
+
+
+# the text constructor keeps its world position separate from default point and vector slots
+def EncodeInlineDisplayText(
+    Position: tuple[float, float, float], HandleCount: int
+) -> bytes:
     return (
         PackFields(KDisplayGeometryFormat, *KDefaultDisplayGeometry)
         + EncodeString("")
-        + PackFields(KTextPositionFormat, *KDefaultTextPosition)
+        + PackFields(KTextPositionFormat, *Position, KDefaultTextPosition[-1])
         + EncodeNull()
         + PackFields(KInlineTextTailFormat, *KDefaultTextTail)
         + PackFields("<i", HandleCount)

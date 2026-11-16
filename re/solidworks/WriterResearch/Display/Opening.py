@@ -19,6 +19,11 @@ KModeCount = 1
 # the compact ordinary branch leaves every optional opening object absent
 def EncodeOpening(*, Generation: int, DisplayMode: int, ConditionOne: bool) -> bytes:
     RequireClose(Generation, DisplayMode, ConditionOne)
+    return EncodeDisplayOpen(Generation, DisplayMode, 0)
+
+
+# model and sketch displays store the same opening with their own index and mode
+def EncodeDisplayOpen(Generation: int, DisplayMode: int, VisualIndex: int) -> bytes:
     NullObject = EncodeNull()
     ReturnFields = PackFields("<2iBd2i", KModeCount, DisplayMode, 0, 0.0, 0, 0)
     return (
@@ -37,7 +42,7 @@ def EncodeOpening(*, Generation: int, DisplayMode: int, ConditionOne: bool) -> b
             KDefaultVisualWidth,
             0,
             0,
-            0,
+            VisualIndex,
         )
         + NullObject
         + PackFields("<4i3d2i", 0, Generation, 0, KOpeningMask, 0.0, 0.0, 0.0, 0, 0)

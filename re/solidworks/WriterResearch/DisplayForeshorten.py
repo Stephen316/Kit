@@ -21,9 +21,8 @@ KForesScale = 1.0
 KClearPadding = 0
 
 
-# the ordinary close stores the default transform followed by the separate display scale
-def EncodeForesView(*, Generation: int, DisplayMode: int, ConditionOne: bool) -> bytes:
-    RequireClose(Generation, DisplayMode, ConditionOne)
+# ordinary inactive presentation uses the shared identity and clear padding
+def EncodeForesFields() -> bytes:
     return PackFields(
         "<9d2I4d2Id",
         *KUnitRows,

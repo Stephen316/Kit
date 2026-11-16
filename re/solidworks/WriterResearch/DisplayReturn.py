@@ -21,8 +21,13 @@ KPointOrigin = (0.0, 0.0, 0.0)
 # the distance subclass returns after the ordinary base display has finished
 def EncodeDistReturn(*, Generation: int, DisplayMode: int, ConditionOne: bool) -> bytes:
     RequireClose(Generation, DisplayMode, ConditionOne)
+    return EncodeDistReturnFields(KDistanceMask)
+
+
+# the ordinary subclass mask differs while the inactive bend and selection do not
+def EncodeDistReturnFields(Mask: int) -> bytes:
     return (
-        PackFields("<i5di", KDistanceMask, *KEmptyBend, *KPointOrigin, KSelectedFirst)
+        PackFields("<i5di", Mask, *KEmptyBend, *KPointOrigin, KSelectedFirst)
         + EncodeNull()
         + PackFields("<i", KClosingMode)
     )

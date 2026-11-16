@@ -18,6 +18,7 @@ from VerifyRectAnchor import verify_anchor
 from VerifyRectAxes import verify_axes
 from VerifyRectCorners import verify_corners
 from VerifyRectDims import verify_dims
+from VerifyRectDisplay import verify_display_list
 from VerifyRectLines import verify_lines
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
@@ -141,6 +142,14 @@ def inspect_open(archive, measurement, construct):
         generation,
         PartArchiveWriter(map_state(cursor)) if construct else None,
     )
+    display_proof = verify_display_list(
+        cursor,
+        profile,
+        corners,
+        measurement,
+        generation,
+        PartArchiveWriter(map_state(cursor)) if construct else None,
+    )
     return (
         opening,
         corner_proof,
@@ -149,6 +158,7 @@ def inspect_open(archive, measurement, construct):
         dim_proof,
         axis_proof,
         anchor_proof,
+        display_proof,
     )
 
 
@@ -161,9 +171,10 @@ def report(construct):
     dim_rows = []
     axis_rows = []
     anchor_rows = []
+    display_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners, proxy, lines, dims, axes, anchor = inspect_open(
+        opening, corners, proxy, lines, dims, axes, anchor, displays = inspect_open(
             archive, measurement, construct
         )
         rows.append((asset["sha256"], *opening))
@@ -173,6 +184,7 @@ def report(construct):
         dim_rows.append((asset["sha256"], *dims))
         axis_rows.append((asset["sha256"], *axes))
         anchor_rows.append((asset["sha256"], *anchor))
+        display_rows.append((asset["sha256"], *displays))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -195,6 +207,9 @@ def report(construct):
         ).hexdigest(),
         "anchor_replay_sha256": sha256(
             json.dumps(anchor_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "display_replay_sha256": sha256(
+            json.dumps(display_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(

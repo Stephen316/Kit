@@ -55,8 +55,15 @@ def WriteHandleMut(
     RequireScope(Generation, ConditionOne, Writer.next_index)
     RequireArch(KHandleClass in Writer.classes, False, "first feature handle class")
     ObjectIndex = Writer.next_index + 1
+    Writer.begin_object(KHandleClass, KHandleSchema)
+    Writer.raw(EncodeEmptyHandle(Generation))
+    return ObjectIndex
+
+
+# both typed handle subclasses start with the same absent component and transforms
+def EncodeEmptyHandle(Generation: int) -> bytes:
     NullValue = EncodeNull()
-    BodyValue = (
+    return (
         NullValue
         + PackFields(KComponentFormat, *KEmptyDimPart[:-1], Generation)
         + PackFields("<H", KAbsentTransform)
@@ -65,9 +72,6 @@ def WriteHandleMut(
         + NullValue * KOptionalRefCount
         + PackFields("<iHi", KDefaultRouteState, KAbsentTransform, KDefaultRouteFlags)
     )
-    Writer.begin_object(KHandleClass, KHandleSchema)
-    Writer.raw(BodyValue)
-    return ObjectIndex
 
 
 # invalid inherited fields must leave the caller offset and allocation maps intact

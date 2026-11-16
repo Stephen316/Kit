@@ -46,8 +46,13 @@ def WriteFavorMut(
         "existing compact favorite class and available object slot",
     )
     Writer.begin_object(KFavoriteClass, KFavoriteSchema)
-    Writer.raw(PackFields("<2iI", KFavoriteType, KAbsentFavorite, KInitialAuxiliary))
+    Writer.raw(EncodeFavoriteFields())
     return ObjectIndex
+
+
+# the unselected favorite body is identical for its first and subsequent occurrences
+def EncodeFavoriteFields() -> bytes:
+    return PackFields("<2iI", KFavoriteType, KAbsentFavorite, KInitialAuxiliary)
 
 
 # the favorite serializer ends at its third field before outer display properties resume

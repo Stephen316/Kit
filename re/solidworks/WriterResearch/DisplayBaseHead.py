@@ -1,7 +1,7 @@
 from struct import pack as PackFields
 
 from DisplayFavorite import RequireClose
-from DisplayForeshorten import EncodeForesView, ReadForesView
+from DisplayForeshorten import EncodeForesFields, ReadForesView
 from DisplayMasks import ComposeMasks, DisplayPrefs
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
@@ -46,10 +46,16 @@ def EncodeBaseHead(
     ConditionOne: bool,
 ) -> bytes:
     RequireClose(Generation, DisplayMode, ConditionOne)
-    return PackFields(
-        KBaseHeadFormat, *BaseFields(Preferences, Alignment)
-    ) + EncodeForesView(
-        Generation=Generation, DisplayMode=DisplayMode, ConditionOne=ConditionOne
+    return EncodeBaseHeadFields(Preferences, Alignment)
+
+
+# the scoped sketch and feature displays share this same ordinary base head
+def EncodeBaseHeadFields(
+    Preferences: DisplayPrefs, Alignment: tuple[int, int]
+) -> bytes:
+    return (
+        PackFields(KBaseHeadFormat, *BaseFields(Preferences, Alignment))
+        + EncodeForesFields()
     )
 
 
