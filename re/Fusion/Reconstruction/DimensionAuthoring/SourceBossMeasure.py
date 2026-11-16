@@ -98,9 +98,8 @@ def boss_facts(design, boss, adsk, same, require):
             if boss.operation == adsk.fusion.FeatureOperations.NewBodyFeatureOperation
             else "unresolved"
         ),
-        "single_sided": not boss.hasTwoExtents
-        and boss.extentTwo is None
-        and boss.symmetricExtent is None,
+        "single_sided": boss.extentType
+        == adsk.fusion.FeatureExtentTypes.OneSideFeatureExtentType,
         "from_profile_plane": adsk.fusion.ProfilePlaneStartDefinition.cast(
             boss.startExtent
         )
