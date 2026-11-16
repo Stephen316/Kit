@@ -6,6 +6,7 @@ from typing import cast as CastValue
 from pytest import mark as TestMark
 
 from tests.Research.Applications.DispatchHost import DispatchHost
+from tests.Research.Applications.FusionColdWatch import VerifyColdWatch
 from tests.Research.Applications.FusionPhaseQueueTests import (
     MakeQueueHost,
     PreparePair,
@@ -180,6 +181,7 @@ def CheckColdStart(TmpPath: FilePath) -> None:
         assert JsonCodec.loads(RunFusionTool(KOwnerTool, Flags)) == Claimed
         assert Request.read_bytes() == Sealed
         assert not (Dispatch.Endpoint / "fence.json").exists()
+        VerifyColdWatch(Dispatch, Flags, CastValue(str, Claimed["evidence_sha256"]))
     finally:
         _ = RunFusionTool(
             KFixtureTool, ["cleanup", str(Dispatch.RootPath), str(Dispatch.Endpoint)]

@@ -22,6 +22,7 @@ from ApplicationProtocol import (
     write_new,
 )
 from AuditFusionPhases import validate_queue
+from FusionCommissionedExit import CommissionedExit
 from FusionExitRecords import pin, read_pinned
 from FusionLifecyclePair import ACTIONABLE, phase_state, select_pair
 from FusionLifecycleRecords import active_intent, eligible_exit, optional, pin_handoff
@@ -62,6 +63,7 @@ def status(state, **evidence):
 class Owner:
     def __init__(self, args):
         self.args = args
+        self.exit_watch = None
         self.installation_bytes = file_bytes(args.installation)
         self.config = validate_configuration(json.loads(self.installation_bytes))
         require(
@@ -171,6 +173,8 @@ class Owner:
         return self.advance(active, path, validate_queue(json.loads(queue_raw)))
 
     def advance(self, active, queue_path, queue):
+        if self.exit_watch is not None:
+            self.exit_watch.planned = active
         final_path = (
             self.root / f"fusion-lifecycle-{active['restart_intent_sha256']}.json"
         )
@@ -428,11 +432,16 @@ def main():
             "invalid owner lifecycle time budget",
         )
         owner = Owner(args)
-        with owner_lock(owner.root / "fusion-lifecycle-owner.lock"):
+        with (
+            owner_lock(owner.root / "fusion-lifecycle-owner.lock"),
+            CommissionedExit(owner.root) as exit_watch,
+        ):
+            owner.exit_watch = exit_watch
             boot = initial_startup(owner, args)
             previous = None
             while True:
                 starting = boot is not None
+                commissioned = None
                 try:
                     if boot is None:
                         result = owner.tick()
@@ -441,6 +450,7 @@ def main():
                         with owner_lock(owner.root / "cold-start.lock"):
                             result = boot.tick()
                         if result["status"] == "initial_phase_a_admission_recorded":
+                            commissioned = boot
                             boot = None
                 except StartupUnavailable:
                     result = status("waiting_for_initial_startup_proof")
@@ -453,12 +463,29 @@ def main():
                     if result["status"] == "lifecycle_refused":
                         return 1
                     return 2 if boot is not None else 0
+                report_native_exit(exit_watch, commissioned, result)
                 if starting and boot is None:
                     continue
                 time.sleep(args.poll_seconds)
     except RECONCILE_ERRORS as error:
         print(f"Fusion lifecycle unavailable ({type(error).__name__})", file=sys.stderr)
         return 1
+
+
+# optional kernel evidence must never stop normal owner reconciliation
+def report_native_exit(watch, commissioned, result):
+    try:
+        evidence = (
+            watch.arm(commissioned, result)
+            if commissioned is not None
+            else watch.collect()
+        )
+    except RECONCILE_ERRORS as error:
+        evidence = status(
+            "commissioned_native_exit_unobserved", error=type(error).__name__
+        )
+    if evidence is not None:
+        print(encoded(evidence).decode(), end="", flush=True)
 
 
 if __name__ == "__main__":

@@ -8,7 +8,7 @@ from ApplicationProtocol import file_bytes
 from AppKitQuitDelegateFixture import build_fixture
 from FusionStartupFixture import prepare
 from MacApplicationPeer import process_peer
-from MacProcessExit import observe_exit, watch_peer
+from MacProcessExit import PeerUnavailable, observe_exit, watch_peer
 
 
 def stage(root, installation):
@@ -55,9 +55,12 @@ def cleanup(root, endpoint):
             (root / "stop").touch()
             return
     executable = root / "InitialStartupWitness.app/Contents/MacOS/InitialStartupWitness"
-    with watch_peer(peer, executable) as monitor:
-        (root / "stop").touch()
-        assert observe_exit(monitor, peer, 10) is not None
+    try:
+        with watch_peer(peer, executable) as monitor:
+            (root / "stop").touch()
+            assert observe_exit(monitor, peer, 10) is not None
+    except PeerUnavailable:
+        assert (root / "stop").is_file()
 
 
 if __name__ == "__main__":
