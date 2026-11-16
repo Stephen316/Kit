@@ -51,7 +51,12 @@ def verify_version_framing(archive: SldprtArchive, generation: int) -> str:
         generated,
         readback.records,
         {
-            (record.name, record.crc32, record.compressed_size, record.uncompressed_size)
+            (
+                record.name,
+                record.crc32,
+                record.compressed_size,
+                record.uncompressed_size,
+            )
             for record in readback.records
         },
     )

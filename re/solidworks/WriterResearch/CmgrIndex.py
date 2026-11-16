@@ -11,7 +11,6 @@ from convert.adapters.solidworks.Container.Definition import (
     KFirstLoadArrayIndex,
 )
 
-
 KConfigurationIndex = "Contents/CMgrHdr2"
 KManagerHeaderClass = "dmConfigMgrHeader_c"
 KConfigurationHeaderClass = "dmConfigHeader_c"
@@ -100,7 +99,9 @@ def ReadCmgrIndex(BlobValue: bytes, Generation: int) -> CmgrIndex:
         ("", "", (KStandaloneFlags, 0)),
         "CMgr index comment, alternate name and standalone options",
     )
-    GeometryStamp, TransformStamp, LastSavedTime, TreeSortOrder = Cursor.ReadInts("<IIIi")
+    GeometryStamp, TransformStamp, LastSavedTime, TreeSortOrder = Cursor.ReadInts(
+        "<IIIi"
+    )
     RequireArch(
         (TransformStamp, TreeSortOrder, Cursor.Offset),
         (KDefaultTransformStamp, KDefaultTreeSortOrder, len(BlobValue)),

@@ -136,8 +136,12 @@ def verify_color():
             compositions[item["sha256"]] = verify_cmgr_composition(
                 archive, generation, measurement
             )
-            configuration_indexes[item["sha256"]] = verify_cmgr_index(archive, generation)
-            version_framing[item["sha256"]] = verify_version_framing(archive, generation)
+            configuration_indexes[item["sha256"]] = verify_cmgr_index(
+                archive, generation
+            )
+            version_framing[item["sha256"]] = verify_version_framing(
+                archive, generation
+            )
         color, start, cursor = ReadColorSpan(stream, generation)
         end = cursor.Offset
         saved = stream[start:end]
