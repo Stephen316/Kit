@@ -150,7 +150,7 @@ def FixtureSources(RootPath: FilePath) -> dict[str, str]:
     }
 
 
-# the pilot needs independent samples for pre-start wait, job execution and skipped jobs
+# the pilot needs independent samples for wait before start and for job execution
 def CiJobs() -> list[dict[str, object]]:
     RunPath = "https://api.github.com/repos/example/kit/actions"
     Job: dict[str, object] = {

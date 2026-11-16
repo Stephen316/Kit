@@ -3,7 +3,7 @@ from collections import Counter
 from datetime import datetime, timedelta
 
 
-# the API's two URLs bind each timing row to the same repository and run
+# the two job urls bind each timing row to the same repository and run
 def job_identity(item):
     job, run, attempt = (item[key] for key in ("id", "run_id", "run_attempt"))
     if any(type(value) is not int or value < 1 for value in (job, run, attempt)):
@@ -23,7 +23,7 @@ def job_identity(item):
     return match[1].casefold(), job
 
 
-# the observation uses source timestamps on the same UTC clock
+# source timestamps place all job observations on the same clock
 def utc_time(value):
     if value is None:
         return None
