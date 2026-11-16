@@ -33,6 +33,7 @@ from BossProfile import Axes
 from CmgrBaseHeader import CmgrBaseState, ReadCmgrHeader
 from CmgrBossMass import BossMass, CalcBossMass, ReadBossMass
 from CmgrColorReadback import ReadColorSpan
+from CmgrExternal import ExternalFile
 from CmgrIndex import KConfigurationIndex, CmgrIndex, ReadCmgrIndex
 from CmgrInherited import ArchiveFeature, ReadCmgrFeature
 from ConfigAtomManager import ConfigAtomBinding
@@ -69,6 +70,7 @@ from OrdinaryPackage import (
 from OrdinaryProfile import OrdinaryProfile
 from PackPartPreviews import KNativeResolution
 from PackageIndices import DisplayScale, PackageXmlState
+from PartArchive import PartArchiveState
 from PartConfigHeaderDb import KConfigDb, ConfigExchange
 from PartContentBinding import PackageContent
 from PartDocProperties import ReadCoreProperties
@@ -110,8 +112,10 @@ from VerifyObjectExchangeDb import LiveRecords, ReadExchangeKeys
 from VerifyPartInformation import TypedMetadata
 from VerifyPartPreviews import read_dib, read_png
 from VerifyPmiDatabase import ReadPmiIndex
+from convert.adapters.solidworks.Config.RootLayout import LoadPartLayouts, PartLayouts
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Container.Bookkeeping import KModelStamps
 from convert.adapters.solidworks.Container.Cmgr import Stamp
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -125,6 +129,10 @@ from convert.adapters.solidworks.Resolved.RectanglePart import (
     RectanglePart,
     ReadRectPart,
 )
+from convert.adapters.solidworks.Resolved.ContourTrim import ReadRectTrim
+from convert.adapters.solidworks.Resolved.PrincipalRef import PrincipalRef
+from convert.adapters.solidworks.Resolved.ProfileSketch import ProfileSketch
+from convert.adapters.solidworks.Resolved.SavedFileRef import SavedFileRef
 from interchange.document.Models.DocumentModel import CadDocument
 from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
 from interchange.Records.RecordProvenance import Provenance
@@ -646,7 +654,7 @@ def VerifySidecars(
     Atom: ConfigAtomBinding,
     BossName: str,
     Bounds: HeaderBounds,
-) -> HeaderBounds:
+) -> tuple[HeaderBounds, float]:
     Gen = KPartGeneration
     Header = Archive.require(KModelHeader)
     RequireArch(Header, Archive.require(KHeaderCopy), "duplicate ModelHeader member")
@@ -690,8 +698,9 @@ def VerifySidecars(
         Metadata.OpenTime,
         "unopened document timing",
     )
+    Definition = ReadModernPartDefinition(Archive.require(KDefinition), Gen)
     RequireArch(
-        ReadModernPartDefinition(Archive.require(KDefinition), Gen),
+        Definition,
         Metadata.Definition,
         "Definition view, user and appearance allocation",
     )
@@ -740,7 +749,61 @@ def VerifySidecars(
         ),
         "content manager shares generated atom and clocks",
     )
-    return Tail.Bounds
+    return Tail.Bounds, Definition.TerminalValue
+
+
+# read the independent configuration material owner before attributing density to the whole part
+def ReadSavedDensity(
+    ConfigBytes: bytes, DefinitionDensity: float, Expected: float
+) -> float:
+    from VerifyConfigMat import inspect_material
+
+    InspectMaterial = cast(
+        Callable[
+            [bytes, int, PartLayouts, float, bool], tuple[int, int, int, int, float]
+        ],
+        inspect_material,
+    )
+    _, _, _, _, ConfigDensity = InspectMaterial(
+        ConfigBytes, KPartGeneration, LoadPartLayouts(), DefinitionDensity, False
+    )
+    RequireArch(
+        (ConfigDensity, DefinitionDensity),
+        (Expected, Expected),
+        "Config material and Definition retain the caller density",
+    )
+    return ConfigDensity
+
+
+# the production trim walk proves the allocation while the typed file reader verifies its actual path
+def VerifyStandaloneTrim(Archive: SldprtArchive, Expected: ExternalFile) -> None:
+    from VerifyRectTrim import open_trim, read_file
+
+    OpenTrim = cast(
+        Callable[
+            [SldprtArchive, int],
+            tuple[ArchiveCursor, ProfileSketch, tuple[int, ...], int, PrincipalRef],
+        ],
+        open_trim,
+    )
+    Cursor, Profile, Edges, Mode, _ = OpenTrim(Archive, KPartGeneration)
+    Trim = ReadRectTrim(
+        Cursor,
+        {"profile_object": Profile.ObjectIndex, "native_feature_id": Profile.FeatureId},
+        Edges,
+        Mode,
+    )
+    ReadTrimFile = cast(
+        Callable[[bytes, SavedFileRef, PartArchiveState, int], ExternalFile],
+        read_file,
+    )
+    After = PartArchiveState(
+        Cursor.NextIndex, tuple(Cursor.Classes.items()), tuple(Cursor.Objects.items())
+    )
+    Actual = ReadTrimFile(
+        Cursor.BlobValue, Trim["trim_surface"]["file_reference"], After, KPartGeneration
+    )
+    RequireArch(Actual, Expected, "standalone contour reference retains the local file")
 
 
 # read the actual stored mass and independent cuboid volume and centre
@@ -853,7 +916,7 @@ def VerifyBoundBoss(
     Expected: BossExpectation,
     Candidate: Path | None,
     *,
-    IncludeDatum: bool = False,
+    Portable: bool = False,
 ) -> dict[str, object]:
     Gen = KPartGeneration
     Config = BuildOrdinaryConfig(Gen, Owners.Config)
@@ -890,7 +953,7 @@ def VerifyBoundBoss(
     )
     Part = ReadRectPart(ConfigBytes, ResolvedBytes, Gen)
     Readback = VerifyGeometry(Part, Atom, Expected)
-    Bounds = VerifySidecars(
+    Bounds, DefinitionDensity = VerifySidecars(
         Archive, State, Metadata, Owners, Atom, Bound.Boss.Opening.Name, Expected.Bounds
     )
     Mass = VerifyMass(Archive, Metadata, Density, Expected.Bounds)
@@ -901,14 +964,18 @@ def VerifyBoundBoss(
         "dimensions_mm": Expected.DimensionsMm,
         "bounds_metres": (Expected.Bounds.Minimum, Expected.Bounds.Maximum),
     }
-    if IncludeDatum:
+    if Portable:
+        SavedDensity = ReadSavedDensity(ConfigBytes, DefinitionDensity, Density)
+        VerifyStandaloneTrim(Archive, Bound.Profile.Trim.File)
         Authored.update(
+            density_kg_m3=Density,
             datum_id=Expected.DatumId,
             datum_time=Expected.DatumTime,
             origin_support_id=2,
             origin_support_time=Expected.OriginSupportTime,
         )
         Readback.update(
+            density_kg_m3=SavedDensity,
             datum_id=Part.Reference.FeatureId,
             datum_time=Part.Reference.TimeValue,
             origin_support_id=Part.Origin.Support.FeatureId,
@@ -1034,6 +1101,16 @@ def CheckPortableContext(
     Package, Times = Context.Package, Context.Metadata.Times
     CheckPackageKeys(Package, Context.Preferences.BlockIdentity)
     RequireArch(
+        Context.Profile.Trim.File.FilePath,
+        "",
+        "standalone contour requires an empty trim path",
+    )
+    RequireArch(
+        Context.Metadata.Definition.TerminalValue,
+        Context.Preferences.DensityKgM3,
+        "Config and Definition density must agree",
+    )
+    RequireArch(
         (Package.Content.MaterialName, Package.Content.MaterialId),
         ("", ""),
         "portable candidate has no mapped physical material",
@@ -1100,7 +1177,7 @@ def VerifyPortableBoss(
     )
     Metadata = BuildFreshMetadata(Bound, Owners.Config, Owners.System, Context.Metadata)
     return VerifyBoundBoss(
-        Bound, Owners, Metadata, Context.Package, Expected, Candidate, IncludeDatum=True
+        Bound, Owners, Metadata, Context.Package, Expected, Candidate, Portable=True
     )
 
 

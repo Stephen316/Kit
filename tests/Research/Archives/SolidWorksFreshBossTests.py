@@ -18,6 +18,9 @@ KExchangeTime = "2026-07-09T12:30:28"
 # explicit colors keep the witness preview reproducible from the authored geometry
 KPreviewColors = ((246, 247, 249), (20, 32, 40), (148, 171, 188))
 
+# independently supplied density must reach both material records and the mass
+KPortDensity = 1850.0
+
 # the fixture explicitly selects the measured ordinary header classification
 KFixtureLicense = {
     "package_code": 4,
@@ -137,8 +140,9 @@ from interchange.document.Models.DocumentModel import CadDocument
 
 # the caller supplies independent neutral dimensions and chooses its own saved view centre
 KPortGraph = """
-case, package = json.load(sys.stdin)
-reference = ParseContext(package)
+case, raw_package = json.load(sys.stdin)
+package: dict[str, object] = raw_package
+reference = ParseContext(json.dumps(package))
 document = authored_case(case["right"], *case["dimensions_mm"])
 sketch, = document.sketches
 body, = document.bodies
@@ -150,9 +154,12 @@ document = replace(
     bodies=(replace(body, name=document.feature_timeline[1].name),),
 )
 first, second, third = reference.Definition.Views
+density = case["density_kg_m3"]
+terminal_density = density + 1 if case.get("reject") == "definition density" else density
 definition = replace(
     reference.Definition,
     Views=(replace(first, centre=tuple(case["centre_m"])), second, third),
+    TerminalValue=terminal_density,
 )
 """
 
@@ -165,6 +172,8 @@ boss_time = FileClock(reference.Created + timedelta(seconds=2))
 title = case["title"]
 _, profile, boss = wire_state()
 trim_file = replace(profile.Trim.File, Title=title, SavedTime=created)
+if case.get("reject") == "trim path":
+    trim_file = replace(trim_file, FilePath="C:/Other/Unrelated.SLDPRT", Flags=8)
 profile = replace(
     profile,
     Feature=replace(profile.Feature, FileTime=profile_time),
@@ -176,7 +185,7 @@ boss = replace(
 )
 prefs = FixtureCfgPrefs(case.get("units", "metric"))
 prefs = replace(
-    prefs, Title=title, BlockIdentity=reference.BlockId, DensityKgM3=1850.0,
+    prefs, Title=title, BlockIdentity=reference.BlockId, DensityKgM3=density,
     Visual=replace(prefs.Visual, NativeAssetPath=reference.AssetPath, AppearanceId=121),
 )
 identities = PackageIdentity(
@@ -335,7 +344,7 @@ def RunPortable(
     return RunProcess(
         [PythonExe, "-B", "-c", KPortableCaller, str(Destination)],
         cwd=FilePath(__file__).resolve().parents[3],
-        input=EncodeJson((CaseValue, Package)),
+        input=EncodeJson(({**CaseValue, "density_kg_m3": KPortDensity}, Package)),
         text=True,
         capture_output=True,
         check=False,
@@ -373,6 +382,7 @@ def CheckPortable() -> None:
             assert Readback["datum_id"] == CaseValue["datum"]
             assert Readback["origin_support_id"] == 2
             assert Readback["datum_time"] == Readback["origin_support_time"]
+            assert Readback["density_kg_m3"] == KPortDensity
 
 
 # a rejected portable input must leave the requested destination unused
@@ -387,6 +397,8 @@ def CheckPortReject() -> None:
             ("datum clock", "same datum and Origin times"),
             ("material", "no mapped physical material"),
             ("invalid graph", "sketch drawing references missing plane"),
+            ("definition density", "Config and Definition density must agree"),
+            ("trim path", "standalone contour requires an empty trim path"),
         ):
             Result = RunPortable({**KRightCases[0], "reject": Reason}, Destination)
             assert Result.returncode != 0, Result.stdout
