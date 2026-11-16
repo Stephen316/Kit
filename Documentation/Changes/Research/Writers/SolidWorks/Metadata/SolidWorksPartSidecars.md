@@ -56,6 +56,12 @@ The ordinary standalone part emits two XML package manifests from its property i
 
 All six P01 and eight P03 receipt-pinned archives matched both generated streams byte-for-byte. The type manifest is 556 bytes with SHA-256 `a50ae48af011114c4a400111c09ca34e083c21db7e82a2f3e3c641c752b89f4d`. The 597-byte relationship manifest SHA-256 is `8fae89749a8d95ff5996361cf8f7dedb7c74a374c6ed87285d3d8c9e5a48717b`. All 42 individual missing-target controls were refused. The aggregate replay SHA-256 is `c01ca63bd2fc5c306aaf072423da0aeb0c4209fdd2636abf19603e3a02399b27`. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifyPartManifests.py)
 
+## Application, core and open-time property XML
+
+The writer builds the nine application fields from supplied values, with the observed lexical value of `AppVersion` independent of the licensed SOLIDWORKS build. Core properties encode the caller's modifier and two whole-second UTC timestamps. Open-time fields retain their counters, sentinel values and optional display time. The modifier uses the saved Dublin Core elements namespace. Open-time child elements explicitly reset the outer vendor namespace. All text is escaped by the standard XML writer. [Property writer](../../../../../../re/solidworks/WriterResearch/PartSimpleProperties.py)
+
+The 14 pinned P01/P03 controls matched all 42 generated documents byte-for-byte. They cover one app payload, eleven core timestamp combinations and three open-time payloads. The previous two-manifest digest also reproduced after sharing the XML serializer. The three-property replay SHA-256 is `06c9388493935704c0d19a9f9b87a5609301c9036052ede981bc2cff8a6824c4`. The report retains hashes and counts. [Receipt-pinned replay](../../../../../../re/solidworks/WriterResearch/VerifySimpleProperties.py)
+
 ## Retained P03 members
 
 The licensed omission run kept 33 of the original 37 physical members
@@ -80,9 +86,10 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
 | Full typed payload | `[Content_Types].xml`, `_rels/.rels` | `PartManifests.EncodeManifests` binds the actual app, core and custom property targets |
-| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/OpenTime.xml`, `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | Typed document, configuration and application metadata owners and serialization |
+| Full typed payload | `docProps/OpenTime.xml`, `docProps/app.xml`, `docProps/core.xml` | `PartSimpleProperties` constructs caller-owned property values in the exact namespaces |
+| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/custom.xml` | Typed property-section owners and serialization |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 15 retained members with standalone constructors, including two
-fresh-document payloads. Two are partially composed and 16 lack a
+There are 18 retained members with standalone constructors, including two
+fresh-document payloads. Two are partially composed and 13 lack a
 constructive owner. Native acceptance of a fully generated archive is pending.

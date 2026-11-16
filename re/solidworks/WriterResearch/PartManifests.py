@@ -28,13 +28,15 @@ KProperties = (
 
 
 # XMLGenerator emits escaped attribute data and self-closes the typed leaf records
-def EncodeXml(Declaration, Namespace, RootName, Entries):
+def EncodeXml(Declaration, RootName, RootFields, Entries):
     Stream = BytesIO()
     Stream.write(Declaration.encode("ascii") + b"\r\n")
     Writer = XMLGenerator(Stream, encoding="utf-8", short_empty_elements=True)
-    Writer.startElement(RootName, {"xmlns": Namespace})
-    for Name, Fields in Entries:
+    Writer.startElement(RootName, RootFields)
+    for Name, Fields, Body in Entries:
         Writer.startElement(Name, Fields)
+        if Body is not None:
+            Writer.characters(Body)
         Writer.endElement(Name)
     Writer.endElement(RootName)
     Writer.endDocument()
@@ -87,12 +89,15 @@ def EncodeManifests(Members: Iterable[str]) -> dict[str, bytes]:
     )
     return {
         KTypes: EncodeXml(
-            '<?xml version="1.0"?>', KPackage + "/content-types", "Types", Types
+            '<?xml version="1.0"?>',
+            "Types",
+            {"xmlns": KPackage + "/content-types"},
+            ((Name, Fields, None) for Name, Fields in Types),
         ),
         KRelations: EncodeXml(
             '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',
-            KPackage + "/relationships",
             "Relationships",
-            Relationships,
+            {"xmlns": KPackage + "/relationships"},
+            ((Name, Fields, None) for Name, Fields in Relationships),
         ),
     }
