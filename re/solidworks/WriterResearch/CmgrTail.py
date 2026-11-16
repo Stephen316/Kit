@@ -7,11 +7,12 @@ from convert.adapters.solidworks.container.Archive import (
 )
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.Cmgr import FeatureStamp, Stamp
+from convert.adapters.solidworks.container.Cmgr import (
+    KObjectListClass as KListClass,
+    FeatureStamp,
+    Stamp,
+)
 from convert.adapters.solidworks.container.Definition import ArchiveWriter
-
-# the measured manager has two empty lists and shares one allocated class
-KListClass = "suObList"
 
 # the intervening manager stores an empty keyed map and four scalar words
 KManagerWords = (0, 0, 1, 0, 0)

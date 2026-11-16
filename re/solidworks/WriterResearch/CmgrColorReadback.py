@@ -1,6 +1,6 @@
 from pathlib import PurePosixPath
 
-from convert.adapters.solidworks.container.Archive import KDefinitionKind, ReadTag
+from CmgrOpening import ReadCmgrOpening
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
 
@@ -34,15 +34,7 @@ def ReadRealView(Cursor: FieldCursor) -> None:
 
 # the stored colors belong to the enclosing visual object and the body has its own end
 def ReadColorSpan(BlobValue: bytes, Generation: int) -> tuple[int, int, int]:
-    RequireArch(Generation, 19000, "CMgr ordinary color generation")
-    Cursor = FieldCursor(BlobValue, 252)
-    Tag = ReadTag(BlobValue, Cursor.Offset)
-    RequireArch(
-        (Tag.kind, Tag.class_name, Tag.schema),
-        (KDefinitionKind, "moVisualProperties_c", 1),
-        "CMgr visual properties class",
-    )
-    Cursor.Offset += Tag.size
+    Cursor = ReadCmgrOpening(BlobValue, Generation)
     ColorValue, _, _ = Cursor.ReadInts("<3I")
     ReadRealView(Cursor)
     RequireArch(

@@ -12,8 +12,10 @@ import pytest as Pytest
 
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
+    KDefinitionKind,
     ArchiveError,
     ContainerMo,
+    ReadTag,
 )
 from convert.adapters.solidworks.container.ArchiveCursor import (
     ArchiveCursor,
@@ -85,6 +87,22 @@ class BossStyleCodec(Protocol):
         ConditionOne: bool,
     ) -> int: ...
 
+    # plain text and points end before the archive allocates a feature handle
+    def EncodeBlindBossDisplayAfterStyle(
+        self, *, Generation: int, DisplayMode: int, ConditionOne: bool, HandleCount: int
+    ) -> bytes: ...
+
+    # independently parsed offsets must agree with the production handle boundary
+    def ReadBlindBossDisplayAfterStyle(
+        self,
+        BlobValue: bytes,
+        Offset: int,
+        *,
+        Generation: int,
+        DisplayMode: int,
+        ConditionOne: bool,
+    ) -> int: ...
+
 
 # an exact path keeps the research module independent of import search ordering
 def LoadStyleCodec() -> BossStyleCodec:
@@ -130,7 +148,7 @@ def ReadPinnedPart(Variant: str) -> SldprtArchive:
 
 
 # the normal boss reader proves ownership before the null opening reaches the style
-def ReadStyleBounds(Variant: str) -> tuple[bytes, int, int]:
+def ReadStyleBounds(Variant: str) -> tuple[bytes, int, int, int]:
     Archive = ReadPinnedPart(Variant)
     Generation = ContainerMo(Archive.streams)
     assert Generation == 19000
@@ -162,13 +180,13 @@ def ReadStyleBounds(Variant: str) -> tuple[bytes, int, int]:
     assert Cursor.Offset == Depth["handle"]["offset"]
     assert Cursor.Objects == {DisplayObject: ClassName}
     assert Cursor.NextIndex == DisplayObject + 1
-    return Resolved, StyleOffset, Generation
+    return Resolved, StyleOffset, Generation, Cursor.Offset
 
 
 # the generated fragment must end at the adjacent native positions and directions
 @Pytest.mark.parametrize(("Variant", "NativeStyleOffset"), KStyleCases)
 def CheckBossStyle(Variant: str, NativeStyleOffset: int) -> None:
-    Resolved, StyleOffset, Generation = ReadStyleBounds(Variant)
+    Resolved, StyleOffset, Generation, HandleOffset = ReadStyleBounds(Variant)
     assert StyleOffset == NativeStyleOffset
     Codec = LoadStyleCodec()
     Emitted = Codec.EncodeBlindBossDisplayStyle(
@@ -190,11 +208,26 @@ def CheckBossStyle(Variant: str, NativeStyleOffset: int) -> None:
     assert Positions.ReadText() == ""
     assert Positions.ReadPoint(3) == (0.0,) * 3
     assert Positions.ReadInts("<i") == (18,)
+    PostStyle = Codec.EncodeBlindBossDisplayAfterStyle(
+        Generation=Generation, DisplayMode=201, ConditionOne=False, HandleCount=1
+    )
+    HandleStart = Codec.ReadBlindBossDisplayAfterStyle(
+        Resolved, After, Generation=Generation, DisplayMode=201, ConditionOne=False
+    )
+    assert HandleStart == HandleOffset
+    assert HandleStart - After == len(PostStyle) == 284
+    assert PostStyle == Resolved[After:HandleStart]
+    HandleTag = ReadTag(Resolved, HandleStart)
+    assert (HandleTag.kind, HandleTag.schema, HandleTag.class_name) == (
+        KDefinitionKind,
+        1,
+        "moFeatureDimHandle_c",
+    )
 
 
 # a nonempty map count at the witnessed boundary cannot reuse the empty default layout
 def CheckStyleGuard() -> None:
-    Resolved, StyleOffset, Generation = ReadStyleBounds("baseline-a")
+    Resolved, StyleOffset, Generation, _ = ReadStyleBounds("baseline-a")
     MapOffset = StyleOffset + 8
     assert Resolved[MapOffset : MapOffset + 4] == PackFields("<i", 0)
     Altered = Resolved[:MapOffset] + PackFields("<i", 1) + Resolved[MapOffset + 4 :]

@@ -9,16 +9,18 @@ CAPTURE_REVISION = "466dcb172dfa3803463e07ccde963ba01671d200"
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "re/automation")]
 
 from CmgrColorReadback import ReadColorSpan
-from CmgrTail import KListClass, ReadCmgrTail, WriteCmgrTail
+from CmgrTail import ReadCmgrTail, WriteCmgrTail
 from ColorAppearance import EncodeColorDspbr
 from SolidworksCensusInputs import capture_inputs
 from convert.adapters.solidworks.container.Archive import (
     KClassRefKind,
+    ArchiveError,
     ContainerMo,
     ReadTag,
 )
 from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.container.Cmgr import KObjectListClass
 from convert.adapters.solidworks.container.Container import SldprtArchive
 from convert.adapters.solidworks.container.Definition import ArchiveWriter
 
@@ -26,18 +28,19 @@ TREE_IDS = {"P01": (), "P03": (34,), "P04": (34, 46)}
 
 
 # the witnessed second list reference anchors the typed terminal scan from EOF
-def verify_tail(stream, tree_ids, asset):
+def verify_tail(stream: bytes, tree_ids: tuple[int, ...], asset: str) -> str:
     second_list = len(stream) - 70
     reference = ReadTag(stream, second_list)
     RequireArch(
         (reference.kind, reference.size), (KClassRefKind, 2), "CMgr second list"
     )
     index = reference.index
-    RequireArch(index is not None, True, "CMgr list class allocation")
+    if index is None:
+        raise ArchiveError("CMgr second list has no class allocation")
     first_list = (
         second_list
         - calcsize("<HHH")
-        - len(KListClass)
+        - len(KObjectListClass)
         - calcsize("<Hi3iIi")
         - len(tree_ids) * calcsize("<iII")
     )
