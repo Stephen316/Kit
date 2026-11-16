@@ -266,6 +266,15 @@ def CheckCfgAnno() -> None:
     )
 
 
+# the table settings must reach the native label boundary with the same archive map
+def CheckCfgTables() -> None:
+    Report = LoadReport("VerifyConfigTables.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "b3d0a77dc2f93a84c3509b254d954090b96968c8db4232cbab350e8fbc6339a3"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")

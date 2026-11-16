@@ -18,4 +18,4 @@ Addresses are virtual addresses in the installed 34.4.1.1011 [pinned DLL](../rec
 
 All six P01 and eight P03 saves at capture revision `466dcb172dfa3803463e07ccde963ba01671d200` have the same 1,956-byte interval, beginning at +6019 and ending at +7975 relative to the relation return. Its SHA-256 is `740d5cc0c77735ff9d64a790ee72629a3e1be7ff62a72d373daaaf8cb9562966`. The incoming next slot stays at 66 or 70, and the independent table reader reaches +9441. [Hosted comparison](VerifyConfigAnnotations.py)
 
-The replay SHA-256 is `c70e99640be3231a0239d84e64203b5af1f7be90e89129b9fbb924c1a9dc0b07` over the pinned source hashes, native boundaries, inherited next slot and generated span hash. Construction continues with the saved table definitions.
+The replay SHA-256 is `c70e99640be3231a0239d84e64203b5af1f7be90e89129b9fbb924c1a9dc0b07` over the pinned source hashes, native boundaries, inherited next slot and generated span hash. Construction continues with the [saved table definitions](ConfigTables.md).
