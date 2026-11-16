@@ -112,6 +112,16 @@ def ReadReport(
     assert Report["independent_source_inventory"] == "not_supplied"
     assert Report["native_acceptance"] == "not_established"
     assert isinstance(Report["input_sha256"], dict)
+    assert Report["implementation_sha256"] == {
+        NameText: DigestBytes(
+            (KRepoRoot / "re/automation" / NameText).read_bytes()
+        ).hexdigest()
+        for NameText in (
+            "SemanticComparison.py",
+            "SemanticGraph.py",
+            "SemanticMatching.py",
+        )
+    }
     return Report
 
 

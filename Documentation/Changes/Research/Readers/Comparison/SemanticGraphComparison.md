@@ -19,6 +19,7 @@ Material fields, suppression, expressions, configuration overrides, feature orde
 
 The report separates observed field differences, ambiguous correspondence and unresolved source domains.
 It records both input hashes, the tolerance-profile hash and source identity digests.
+The report also seals the three comparison source files and refuses a change to them after import or during evaluation.
 Native bytes, native-only records, missing feature definitions and unclassified extensions cannot become an equality success.
 This includes [source and provenance extension bags](../../../../Gotchas/Conversion/ProvenanceExtensionBags.md) and uncertain provenance confidence.
 Assemblies, full boundary representations, payloads, meshes and reader diagnostics require their own independent comparison and remain explicit unresolved domains.
