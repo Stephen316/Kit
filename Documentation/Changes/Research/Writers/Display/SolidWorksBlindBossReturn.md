@@ -1,0 +1,5 @@
+# Construct the ordinary blind boss extrusion return
+
+The generation-19000 research codec independently constructs the 12-byte `moExtrusion_c` return after the ordinary P03 blind boss end specification. The pinned native constructor initializes both fields, and the eight hash-pinned P03 saves corroborate their wire order and values. [Native constructor and archive boundaries](../../../../../re/solidworks/WriterResearch/Display/EndOwner.md#extrusion-return-and-resolved-stream-footer)
+
+The five preceding end properties remain raw readback evidence. Their native copy and kernel paths confirm real properties used on surface routes. The four-byte resolved footer is separately observed and traced outside the extrusion and counted object list. The hosted archive comparison consumes those unchanged intervals only on its readback side while comparing the new 12-byte return. Hosted execution for the extension and whole-part acceptance remain pending. [Hosted boundary](../../../../../tests/Research/Archives/SolidWorksEndVerify.py)

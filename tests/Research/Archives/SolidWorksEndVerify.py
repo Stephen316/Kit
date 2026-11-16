@@ -27,6 +27,9 @@ class EndOwnerCodec(Protocol):
         self, Cursor: FieldCursor, *, Generation: int
     ) -> tuple[int, ...]: ...
 
+    # the constructor supplies the outer extrusion return separately from end properties
+    def EncodeBossReturn(self, *, Generation: int) -> bytes: ...
+
 
 # the fixture pins independent owner properties across the exact eight archives
 def SavedProps(Variant: str) -> tuple[int, ...]:
@@ -54,11 +57,18 @@ def VerifyEndStart(
     Boundary = EndOffset + KEndStartSpan
     assert Cursor.Offset == Boundary
     assert Codec.ReadEndProps(Cursor, Generation=Generation) == SavedProps(Variant)
-    assert Cursor.Offset == Boundary + 20
+    EndSpecStop = Cursor.Offset
+    assert EndSpecStop == Boundary + 20
     assert Codec.WriteEndStart(Writer, Generation=Generation) == StartObject
     assert Writer.next_index == Cursor.NextIndex
     assert {Index: NameValue for NameValue, Index in Writer.classes.items()} == ClassMap
     Emitted = Writer.build()
     assert len(Emitted) == DisplaySpan + KEndStartSpan
     assert Emitted[DisplaySpan:] == Resolved[EndOffset:Boundary]
-    return Emitted + Resolved[Boundary:]
+    ReturnBytes = Codec.EncodeBossReturn(Generation=Generation)
+    assert len(ReturnBytes) == 12
+    FooterStart = EndSpecStop + len(ReturnBytes)
+    assert ReturnBytes == Resolved[EndSpecStop:FooterStart]
+    return (
+        Emitted + Resolved[Boundary:EndSpecStop] + ReturnBytes + Resolved[FooterStart:]
+    )

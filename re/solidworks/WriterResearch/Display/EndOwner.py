@@ -26,6 +26,9 @@ KSurfaceLists = (1, 0, 1, 0)
 # the ordinary first solid starts from its profile sketch plane
 KSketchPlane = 0
 
+# the ordinary solid extrusion constructor supplies these two separate return members
+KExtrusionReturn = (0.0, -1)
+
 
 # the parent words are retained separately because the native reader does not discard them
 class EndProps(NamedTuple):
@@ -73,3 +76,9 @@ def ReadEndStart(Cursor: ArchiveCursor, *, Generation: int) -> int:
 def ReadEndProps(Cursor: FieldCursor, *, Generation: int) -> EndProps:
     RequireArch(Generation, KConfigGen, "plain modern blind boss end properties")
     return EndProps(*Cursor.ReadInts("<5i"))
+
+
+# the extrusion returns only after the independently owned end specification closes
+def EncodeBossReturn(*, Generation: int) -> bytes:
+    RequireArch(Generation, KConfigGen, "plain modern blind boss outer return")
+    return PackFields("<di", *KExtrusionReturn)
