@@ -7,6 +7,7 @@ import re
 import stat
 import sys
 from pathlib import Path
+from decimal import Decimal
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
@@ -33,6 +34,13 @@ def unique_object(pairs):
 
 def finite_constant(value):
     raise ValueError("comparison JSON contains a nonfinite constant")
+
+
+def codec_float(token):
+    value = float(token)
+    if not math.isfinite(value) or Decimal(token) != Decimal(str(value)):
+        raise ValueError("comparison JSON numeric literal loses precision in the codec")
+    return value
 
 
 def pinned_bytes(path, expected, limit):
@@ -64,14 +72,17 @@ def pinned_bytes(path, expected, limit):
 
 def bounded_json(content):
     value = json.loads(
-        content, object_pairs_hook=unique_object, parse_constant=finite_constant
+        content,
+        object_pairs_hook=unique_object,
+        parse_constant=finite_constant,
+        parse_float=codec_float,
     )
     pending = [(value, 0)]
     visited = 0
     while pending:
         current, depth = pending.pop()
         visited += 1
-        if visited > 500000 or depth > 48:
+        if visited > 500000 or depth > 64:
             raise ValueError("comparison JSON exceeds its structural limit")
         if isinstance(current, dict):
             pending.extend((child, depth + 1) for child in current.values())

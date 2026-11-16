@@ -94,3 +94,21 @@ def CheckJsonDepth(TmpPath: FilePath, DepthValue: int) -> None:
         assert "structural limit" in Result.stderr
         return
     assert ReadReport(Result, "unresolved", 3)["sources"]
+
+
+# sealed decimal observations must refuse before the codec can round distinct literal magnitudes together
+@MarkValue.parametrize(
+    "LiteralText", ("40.000000000000000000001", "9007199254740993.0", "1e-400")
+)
+def CheckCodecRound(TmpPath: FilePath, LiteralText: str) -> None:
+    Arguments = WriteInputs(TmpPath, MakeDocument(), MakeDocument())
+    FirstPath = FilePath(Arguments[Arguments.index("--first") + 1])
+    Original = FirstPath.read_bytes()
+    Payload = Original.replace(b"40.0", LiteralText.encode(), 1)
+    assert Payload != Original
+    assert FirstPath.write_bytes(Payload) == len(Payload)
+    Arguments[Arguments.index("--first-sha256") + 1] = DigestBytes(Payload).hexdigest()
+    Result = RunComparison(Arguments)
+    assert Result.returncode == 1, Result.stderr + Result.stdout
+    assert Result.stdout == ""
+    assert "numeric literal loses precision" in Result.stderr

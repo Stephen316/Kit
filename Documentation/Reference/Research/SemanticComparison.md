@@ -31,6 +31,8 @@ These example limits are explicit choices, not measured native acceptance eviden
 Record that file's SHA-256.
 No relative tolerance or implicit global epsilon is applied.
 Counts, booleans and exact fields remain exact.
+Dimensionless integer controls remain exact even when a floating tolerance is nonzero.
+Normalized quantity atoms retain reduced exact ratios alongside their displayed numeric values.
 
 ## Procedure
 
@@ -81,6 +83,8 @@ The report does not authorize a writer to remove retained source evidence.
 Each document is limited to 32 MiB and the tolerance file to 64 KiB.
 Inputs must be plain regular files with matching hashes.
 Duplicate JSON keys, nonfinite quantities and excessive JSON nesting are refused.
+Raw JSON is bounded to depth 64 and 500,000 visited values; the typed semantic walk remains bounded to depth 48.
+Decimal literals that lose canonical magnitude in the codec are refused before graph construction.
 Each projected document has at most 4,096 nodes and 100,000 scalar fields.
 Identities are limited to 512 characters.
 Individual field text is limited to 65,536 characters.

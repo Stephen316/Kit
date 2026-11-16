@@ -4,6 +4,7 @@ import math
 from collections.abc import Mapping
 from dataclasses import fields, is_dataclass
 from enum import Enum
+from fractions import Fraction
 
 from interchange.Features.DistanceParam import KLengthFactors
 
@@ -157,10 +158,20 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
         ):
             raise ValueError("semantic quantities require numeric magnitudes")
         if type(value) in (int, float) and quantity != "exact":
-            value *= scale
+            ratio = Fraction(str(value)) * Fraction(str(scale))
+            value = (
+                ratio.numerator
+                if type(value) is int and ratio.denominator == 1
+                else float(ratio)
+            )
             if not math.isfinite(value):
                 raise ValueError("normalized semantic quantity is nonfinite")
         node["fields"][path] = {"value": value, "quantity": quantity}
+        if type(value) in (int, float) and quantity != "exact":
+            node["fields"][path]["exact_ratio"] = [
+                str(ratio.numerator),
+                str(ratio.denominator),
+            ]
 
     def reference(node, role, value, ordered=True):
         if value is None or value == "":
