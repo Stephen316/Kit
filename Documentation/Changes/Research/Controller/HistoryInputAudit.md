@@ -36,8 +36,15 @@ The complete selection is limited to 4,096 files, 64 MiB, 8,192 distinct IDs and
 Each metadata response is limited to 16 MiB.
 All Git reads share a 256 MiB limit and a 180-second command budget.
 An exceeded limit produces an error instead of a partial inventory.
+File count, total bytes and oversized files are checked together from Git tree metadata before any selected source blob is read.
+A refused selection reports those totals and up to eight oversized file paths and sizes, then requires reviewed explicit `--path` selectors.
+Captured JSON reports remain part of directory selections; the command never silently excludes them or expands its limits.
+At `2817a2e90c2ffcf107cad3340021f4a037d12981`, the default selection contains 1,394 supported files and 103,579,917 bytes, including five `NativeAcceptance.json` files above 4 MiB.
+That default is intentionally refused; a narrower inventory describes only its explicit selected paths.
 
 The output is deterministic JSON with a SHA-256 over its canonical payload.
+Stdout escapes non-ASCII characters so redirected Windows output and restrictive console encodings can carry every path.
+The digest still uses the decoded payload serialized as canonical UTF-8 JSON with unescaped Unicode; presentation escaping does not change its definition.
 Exit code `0` means the inventory completed.
 Exit code `1` means an input, limit or Git metadata operation was refused.
 An unavailable object remains an explicit inventory item.
@@ -47,8 +54,12 @@ It does not prove that the literal was intended as a local commit pin.
 
 The new process coverage creates independent Git objects and invokes the standalone command.
 It covers retained forbidden paths, replacement refs, blob identity, capture-path comparisons, deterministic output and refused selectors or oversized input.
+Additional real-process cases run with ASCII-only stdout, preserve a decomposed Unicode source path and recompute the canonical UTF-8 digest.
+Oversized ASCII and Unicode paths verify metadata-only refusal diagnostics without partial stdout.
+Pinned formatting, type, steering, path, rationale, binary-range and whitespace checks validate the repair statically.
 No local tests or collection ran.
 Hosted execution remains required for the change revision.
+The [Windows output and bounded-selection gotcha](../../../Gotchas/Ci/Commands/HistoryAuditOutputEncoding.md) records the reported operator failure and exact metadata-only findings.
 
 The audit reports dependencies for review.
 It neither rewrites history nor supplies replacement provenance.

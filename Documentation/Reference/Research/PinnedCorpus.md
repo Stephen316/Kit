@@ -90,6 +90,10 @@ It reports unavailable objects, pinned trees with prohibited binary paths, main 
 It reads Git metadata and selected text source without reading native or vendor payloads.
 Use its findings before proposing source-history changes.
 The audit does not rewrite history or qualify a capture.
+Choose reviewed explicit `--path` files or directories when the default tree exceeds its fixed source limits.
+Refusal reports selected file and byte totals plus bounded oversized-file metadata before reading source blobs; it never returns a partial inventory or silently omits captured JSON.
+Stdout JSON is ASCII escaped for redirected Windows output, while its canonical payload digest remains defined over UTF-8 with unescaped Unicode.
+See the [audit output and bounded-selection gotcha](../../Gotchas/Ci/Commands/HistoryAuditOutputEncoding.md).
 See the [pinned capture history gotcha](../../Gotchas/Git/PinnedCaptureVendorHistory.md).
 
 ## Author matched examples
