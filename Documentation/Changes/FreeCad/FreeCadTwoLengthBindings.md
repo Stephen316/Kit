@@ -25,6 +25,7 @@ It invokes the actual public `WriteDocument` route and inspects the emitted FCSt
 The controls cover 11/5 mm, equal 7/7 mm, each parameter roster order, and a symmetric 16 mm total.
 Additional process cases cover equivalent inch/millimetre bindings and malformed, duplicate, unknown, unowned, non-driving or stale end owners.
 The independent open-profile control still requires refusal with zero output bytes.
+The test loads the unchanged research controls through a [fixed source boundary](../../Gotchas/Ci/Typing/ResearchFixtureModuleLookup.md) with typed exports, without changing project import paths or type gates.
 
 Static syntax, formatting and whitespace checks were performed.
 No local tests, collection, readiness commands or CAD application runs were executed.
