@@ -51,6 +51,7 @@ def CheckCmgr() -> None:
     AssertPartEnd(Report, Digests)
     AssertBossMass(Report, Digests)
     AssertAtomLinks(Report, Digests)
+    AssertCmgrEnds(Report)
 
 
 # the standalone and prior-path forms must preserve their per-file saved metadata
@@ -112,3 +113,25 @@ def AssertAtomLinks(Report: dict[str, object], Captures: dict[str, str]) -> None
         "df3f619804a92fdb4057192dc43dd748ea778adc52bc498ce80524c014b81119": 6,
         "22f5e73e80dea9ff154f1cb37127fc677648b8796824d1c6d17ddd711a5ac4fb": 8,
     }
+
+
+# the base return and aliases must cover the same captures as independent links
+def AssertCmgrEnds(Report: dict[str, object]) -> None:
+    Links = Report["linked_atom_records"]
+    assert isinstance(Links, dict)
+    LinkDigests = CastValue(dict[str, str], Links)
+    for Section, Digest in (
+        (
+            "base_return_records",
+            "09c4b9259191e2551e2113b623f9835dfdcb061e534ec0f74920cc6e56bd5890",
+        ),
+        (
+            "manager_alias_records",
+            "e5f9b36d163ace0f12265dcf7e98bbbfc5637a79dcfefcbe3e945f14ca9833f6",
+        ),
+    ):
+        Records = Report[Section]
+        assert isinstance(Records, dict)
+        Digests = CastValue(dict[str, str], Records)
+        assert Digests.keys() == LinkDigests.keys()
+        assert set(Digests.values()) == {Digest}

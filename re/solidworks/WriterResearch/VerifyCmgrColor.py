@@ -108,8 +108,12 @@ def verify_color():
     tails = {}
     masses = {}
     boss_masses = {}
-    parts = {}
-    links = {}
+    part_reports = {
+        "linked_atom_records": {},
+        "base_return_records": {},
+        "part_return_records": {},
+        "manager_alias_records": {},
+    }
     for recipe, item, data, _, measurement in rows:
         archive = SldprtArchive.from_bytes(data, item["path"])
         generation = ContainerMo(archive.streams)
@@ -125,15 +129,14 @@ def verify_color():
             f"CMgr default DSPBR reconstruction for {item['path']}",
         )
         captures[item["sha256"]] = sha256(saved).hexdigest()
-        part_digest, link_digest = verify_part_end(
+        part_evidence = verify_part_end(
             cursor, recipe, TREE_IDS[recipe], item["path"]
         )
+        for record, digest in part_evidence.items():
+            part_reports[record][item["sha256"]] = digest
         externals[item["sha256"]], tails[item["sha256"]] = verify_tail(
             cursor, TREE_IDS[recipe], item["path"]
         )
-        parts[item["sha256"]] = part_digest
-        if link_digest is not None:
-            links[item["sha256"]] = link_digest
         if recipe == "P01":
             masses[item["sha256"]] = verify_empty_mass(
                 stream, end, measurement["body_count"], item["path"]
@@ -151,8 +154,7 @@ def verify_color():
         "terminal_records": tails,
         "empty_mass_records": masses,
         "boss_mass_wrappers": boss_masses,
-        "part_return_records": parts,
-        "linked_atom_records": links,
+        **part_reports,
     }
 
 

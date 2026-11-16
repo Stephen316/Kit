@@ -1,7 +1,14 @@
+from dataclasses import dataclass
 from hashlib import sha256
 
+from CmgrBaseEnd import WriteCmgrBaseEnd
 from CmgrLinks import WriteCmgrLinks
-from CmgrPartEnd import ReadCmgrAliases, ReadCmgrPartEnd, WriteCmgrPartEnd
+from CmgrPartEnd import (
+    ReadCmgrAliases,
+    ReadCmgrPartEnd,
+    WriteCmgrAliases,
+    WriteCmgrPartEnd,
+)
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KDefinitionKind,
@@ -21,6 +28,17 @@ PART_LOCATIONS = {
     "P03": (1662, 1758, 1878, 11),
     "P04": (1678, 1840, 1968, 12),
 }
+
+
+# The captured boundaries let the verifier check every append in stream order.
+@dataclass(frozen=True)
+class PartRecords:
+    atom_ids: tuple[int, ...]
+    part_index: int
+    links: bytes
+    base: bytes
+    part: bytes
+    aliases: bytes
 
 
 # the discovery atom nodes store their relation as keys with null pointer values
@@ -82,12 +100,12 @@ def read_base_return(cursor: ArchiveCursor, atoms: tuple[int, ...]) -> None:
 # the readback must finish at the separately measured boundaries for every family
 def read_part_evidence(
     cursor: ArchiveCursor, recipe: str, tree_ids: tuple[int, ...]
-) -> tuple[tuple[int, ...], bytes, bytes]:
+) -> PartRecords:
     linked_start, start, end, counter = PART_LOCATIONS[recipe]
     RequireArch((cursor.Offset, cursor.NextIndex), (1095, 9), "CMgr visual return map")
     cursor.Offset = linked_start
     atoms = read_linked_atoms(cursor, tree_ids)
-    saved_links = cursor.BlobValue[linked_start : cursor.Offset]
+    link_end = cursor.Offset
     read_base_return(cursor, atoms)
     RequireArch((cursor.Offset, cursor.NextIndex), (start, counter), "CMgr part start")
     classes, objects = cursor.Classes.copy(), cursor.Objects.copy()
@@ -108,7 +126,15 @@ def read_part_evidence(
         (KDefinitionKind, KExtObjectClass, 1, False),
         "CMgr external object after part aliases",
     )
-    return ids, cursor.BlobValue[start:end], saved_links
+    stream = cursor.BlobValue
+    return PartRecords(
+        ids,
+        part_indices[0],
+        stream[linked_start:link_end],
+        stream[link_end:start],
+        stream[start:end],
+        stream[end:cursor.Offset],
+    )
 
 
 # The independent link map must grow the same archive namespace as the saved nodes.
@@ -129,26 +155,72 @@ def verify_link_map(
     return sha256(saved).hexdigest()
 
 
-# exact bytes and writer allocator stability must hold for both saved map orders
-def verify_part_end(
-    cursor: ArchiveCursor, recipe: str, tree_ids: tuple[int, ...], asset: str
-) -> tuple[str, str | None]:
-    links_writer = ArchiveWriter()
-    links_writer.SetNextIndex(cursor.NextIndex)
-    links_writer.classes.update((name, index) for index, name in cursor.Classes.items())
-    ids, saved, saved_links = read_part_evidence(cursor, recipe, tree_ids)
-    links_digest = None
-    if len(tree_ids) <= 1:
-        links_digest = verify_link_map(links_writer, cursor, ids, tree_ids, saved_links)
+# Both return records depend on the earlier allocator, so append to that same writer.
+def verify_base_end(writer: ArchiveWriter, records: PartRecords) -> None:
+    WriteCmgrBaseEnd(
+        writer,
+        Generation=19000,
+        ConditionOne=False,
+        AtomCount=len(records.atom_ids),
+        NewThreadRefs=True,
+    )
+    RequireArch(
+        writer.build() == records.links + records.base,
+        True,
+        "CMgr base return reconstruction",
+    )
+
+
+# Comparison snapshots may start before the links or at the existing part boundary.
+def part_writer(cursor: ArchiveCursor) -> ArchiveWriter:
     writer = ArchiveWriter()
     writer.SetNextIndex(cursor.NextIndex)
     writer.classes.update((name, index) for index, name in cursor.Classes.items())
-    classes = writer.classes.copy()
-    WriteCmgrPartEnd(writer, Generation=19000, ConditionOne=False, AtomIds=ids)
+    return writer
+
+
+# exact bytes and writer allocator stability must hold for both saved map orders
+def verify_part_end(
+    cursor: ArchiveCursor, recipe: str, tree_ids: tuple[int, ...], asset: str
+) -> dict[str, str]:
+    independent = len(tree_ids) <= 1
+    writer = part_writer(cursor) if independent else None
+    records = read_part_evidence(cursor, recipe, tree_ids)
+    report = {"part_return_records": sha256(records.part).hexdigest()}
+    prefix = b""
+    if writer is not None:
+        report["linked_atom_records"] = verify_link_map(
+            writer, cursor, records.atom_ids, tree_ids, records.links
+        )
+        verify_base_end(writer, records)
+        report["base_return_records"] = sha256(records.base).hexdigest()
+        prefix = records.links + records.base
+    else:
+        writer = part_writer(cursor)
+    WriteCmgrPartEnd(
+        writer, Generation=19000, ConditionOne=False, AtomIds=records.atom_ids
+    )
+    expected = prefix + records.part
+    RequireArch(
+        writer.build() == expected, True, f"CMgr part reconstruction in {asset}"
+    )
+    if independent:
+        WriteCmgrAliases(
+            writer,
+            Generation=19000,
+            PartIndex=records.part_index,
+            PartId=0,
+            ExternalCount=1,
+        )
+        RequireArch(
+            writer.build() == expected + records.aliases,
+            True,
+            "CMgr manager alias reconstruction",
+        )
+        report["manager_alias_records"] = sha256(records.aliases).hexdigest()
     RequireArch(
         (writer.next_index, writer.classes),
-        (cursor.NextIndex, classes),
-        "CMgr part write allocator",
+        (cursor.NextIndex, {name: index for index, name in cursor.Classes.items()}),
+        "CMgr base part and aliases write allocator",
     )
-    RequireArch(writer.build() == saved, True, f"CMgr part reconstruction in {asset}")
-    return sha256(saved).hexdigest(), links_digest
+    return report

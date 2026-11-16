@@ -28,7 +28,25 @@ The store rebuilds its two DWORD arrays before invoking their serializers. At `0
 
 [`WriteCmgrLinks`](CmgrLinks.py) emits an empty map or one independent atom link from a caller-supplied pair of positive atom and feature IDs. It allocates a schema-1 link node through the caller's compact archive namespace. The second feature array and all four relation maps are empty for this scope. Connected histories and a pre-existing link class require separate encoding. [Coverage and hosted verification](../../../Documentation/Changes/Research/Writers/SolidWorksCmgrAtomLinks.md)
 
-The base configuration then writes three signed zeros and a counted signed pair map through `0x4c21894d`. Only P04 populates that map, with the pair `(102,101)`. Three following signed words are `(2,0,0)`. The typed `moEnvelopePublisher_c` pointer at `0x4c218ab3` is null. The ordinary standalone part has archive condition 1 clear, so it skips the conditional signed word at `0x4c218dd0`. It then writes the empty signed vector count at `0x4c218e9b` and returns at 1692, 1758 and 1840 for P01, P03 and P04.
+## Base return
+
+The ordinary generation-19000 base return uses the following fields after the linked atom map. All scalar words are signed 32-bit values. The absent envelope pointer is a compact null.
+
+| Field | Constructor or model state | Store |
+| --- | --- | --- |
+| Optional object presence, zero | The base constructor clears `+0xb88` at `0x4bdc00e7`. | The absence route writes zero at `0x4c218817`. |
+| Empty named map count | The constructor at `0x4bdc00da` calls `0x4b797a60`, which clears size at `0x4b797a72`. | The helper reached at `0x4c21888a` writes the map size at `0x4c20ea7b`. |
+| Scalar `+0xbd0`, zero | Initialized at `0x4bdc0130`. | `0x4c2188e2` |
+| Empty signed pair map count | The constructor call at `0x4bdc00fc` clears the map size at `0x4b2d1e62`. | `0x4c21894d` calls the counted map writer at `0x4c20e6a0`. P04 carries a populated pair `(102,101)`. |
+| Configuration mode `+0x4c8`, value 2 | The constructor clears the word at `0x4bdbfc76`. The initialized modern thread reference mode sets bit 1 through `moModel_c::initCThreadRefMgr` at `0x4b584587`. | `0x4c2189a5` |
+| Inherited word `+0x4cc`, zero | The base initializer clears it at `0x4bdbea1c`. The new part constructor's base call copies it from the active configuration at `0x4bdbfc84..0x4bdbfc8a`. The bounded profile uses the inherited default. | `0x4c2189ff` |
+| Scalar `+0xa80`, zero | Initialized at `0x4bdc001f`. | `0x4c218a59` |
+| Absent envelope publisher | The constructor clears `+0xbd8` at `0x4bdc0142`. | The typed `moEnvelopePublisher_c` pointer at `0x4c218ab3` is null. |
+| Empty final vector count | Constructor call `0x4bdc0186` creates the empty container at `+0xbf8`. The linked sentinel is initialized at `0x4b277872..0x4b277879`. | `0x4c218e34..0x4c218e9b` gathers its keys and writes their count. |
+
+The ordinary standalone part has archive condition 1 clear and skips the conditional word at `0x4c218dd0`. The base returns at bytes 1692, 1758 and 1840 for P01, P03 and P04.
+
+In installed `sldprtu.dll` SHA-256 `cb1e260f8411a39dc44f4d8a6255ea585c7a5e60b223d0e69d3f51a258ee96de`, the eligible opened-model branch at `0x3339f2a4..0x3339f2ae` calls exported `initNewCThreadArch`. It checks the model state and the new-part option at `0x4b5845b0..0x4b5845f3` and delegates to `initCThreadRefMgr`. The latter sets the mode bit by configuration, including sketch-only controls. The [base-return constructor](CmgrBaseEnd.py) requires that mode as a caller input. Alternate mode, inherited settings and populated collections need separate construction evidence.
 
 ## Inline part configuration object
 
@@ -58,7 +76,9 @@ In `moPartConfiguration_c::Serialize` the call at `0x4c226bf7` computes the froz
 
 The four fields after this map are `(0,0,-1,-1)` from `0x4c226cc5`, `0x4c226cd4`, `0x4c226ce4` and `0x4c226cf4`. The first value is an empty map count. The two zero words at `0x4c226f29` and `0x4c226f34` are the high and low words of the part's final entry count. The checksum-to-return spans are 1768–1804, 1834–1878 and 1916–1968.
 
-The enclosing manager writes its second configuration pointer at `0x4c21c890` as an alias to the first part object, slot 4. `0x4c21c89f` writes count 1. `0x4c23f4e8` writes the configuration list, a compact count 1 followed by the same object reference. `0x4c21cb03` then writes external object count 1. These 14 bytes lead to the [first external object definition](CmgrTail.md#external-file-and-referenced-configuration) at offsets 1818, 1892 and 1982 respectively. All 25 modern and the old comparator preserve these aliases.
+The enclosing manager writes its second configuration pointer at `0x4c21c890` as an alias to the first part object, slot 4. `0x4c21c89f` writes the next configuration ID from manager member `+0x40c`. The first active part constructor calls `0x4b895b10` at `0x4bdc02ab`, which takes ID 0 and increments the next value to 1. This saved word is independent of list length.
+
+`0x4c23f490` filters the configuration list, including the ordinary configuration because its `+0xbe0` member starts at zero at `0x4bdc0149`. The list serializer reached at `0x4c23f4e8` writes a compact count 1 and the same object reference. `0x4c21cb03` writes the signed count of the preceding collected external-object list, one in this profile. These 14 bytes lead to the [first external object definition](CmgrTail.md#external-file-and-referenced-configuration) at offsets 1818, 1892 and 1982 respectively. All 25 modern and the old comparator preserve these aliases. [Alias construction and verification](../../../Documentation/Changes/Research/Writers/SolidWorksCmgrReturns.md)
 
 The [feature and mass property records](CmgrMiddle.md) establish the continuous typed walk from the visual return to this linked-atom map. Encoding should derive the recorded boundaries from each typed body and shared archive namespace.
 

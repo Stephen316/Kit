@@ -11,9 +11,9 @@ This census covers the six P01 sketch-only saves and eight P03 single-boss saves
 | [Mass record](CmgrMiddle.md#mass-property-record) | 1234–1488 | 1234–1488 | Constructed. P01 uses native empty defaults. P03 uses certified cuboid bounds and density, with numeric agreement for geometry and retained native residuals. |
 | [Base configuration collections](CmgrMiddle.md#base-configuration-collections) | 1488–1654 | 1488–1662 | Read-only. The saved solid count and accuracy byte have independent owners. The remaining model state and collection inputs need construction. |
 | [Linked atom map](CmgrAtoms.md#linked-atom-map) | 1654–1658 | 1662–1724 | Constructed. The empty map preserves next index 9. One P03 link advances from 9 to 11. |
-| [Base return](CmgrAtoms.md#linked-atom-map) | 1658–1692 | 1724–1758 | Read-only. The signed values `(2,0,0)` at the closing words have source members `+0x4c8,+0x4cc,+0xa80`. Their generation inputs are still open. |
+| [Base return](CmgrAtoms.md#base-return) | 1658–1692 | 1724–1758 | Constructed for default standalone configuration state with initialized modern thread references and empty collections. |
 | [Inline part and part return](CmgrAtoms.md#inline-part-configuration-object) | 1692–1804 | 1758–1878 | Constructed for the empty optional members and ordered zero-valued atom map. |
-| [Manager configuration aliases](CmgrAtoms.md#part-return-and-manager-aliases) | 1804–1818 | 1878–1892 | Read-only. Both references resolve to the already allocated part. A future emitter needs its actual allocation. |
+| [Manager configuration aliases](CmgrAtoms.md#part-return-and-manager-aliases) | 1804–1818 | 1878–1892 | Constructed from the active part allocation, first configuration ID and one declared external object. |
 | [External file and manager continuation](CmgrTail.md#external-file-and-referenced-configuration) | 1818–first list | 1892–first list | Constructed from typed file metadata in the standalone profile. The hosted byte and allocator comparison covers 25 archive spans and awaits execution. |
 | [Manager lists and feature stamps](CmgrTail.md#root-and-feature-stamps) | First list–EOF | First list–EOF | Constructed with explicit feature stamps and the enclosing allocator. |
 
