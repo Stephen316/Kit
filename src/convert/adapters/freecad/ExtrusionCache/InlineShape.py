@@ -18,9 +18,14 @@ def CacheStations(
     Symmetric: bool,
     Reversed: bool,
 ) -> tuple[float, float] | None:
+    Normals = (Normal.x, Normal.y, Normal.z)
+    if any(
+        Direction[First] * Normals[Second] != Direction[Second] * Normals[First]
+        for First, Second in ((0, 1), (0, 2), (1, 2))
+    ):
+        return None
     Alignment = sum(
-        First * Second
-        for First, Second in zip(Direction, (Normal.x, Normal.y, Normal.z), strict=True)
+        First * Second for First, Second in zip(Direction, Normals, strict=True)
     )
     if not IsClose(abs(Alignment), 1.0, rel_tol=0.0, abs_tol=1e-9):
         return None

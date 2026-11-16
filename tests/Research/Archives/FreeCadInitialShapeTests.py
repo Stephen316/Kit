@@ -221,8 +221,8 @@ def CheckCachedBody(CaseName: str, Document: CadDocument) -> dict[str, object]:
 def ObserveInitial(CaseName: str) -> dict[str, object]:
     if CaseName == "later":
         return ObserveLater()
-    if CaseName == "units":
-        return ObserveUnits()
+    if CaseName in ("units", "oblique", "extra"):
+        return ObserveUncached(CaseName)
     Document = CadDocument.from_json(MakeInitial(CaseName).to_json(indent=None))
     Before = Document.to_json(indent=None)
     Output = ByteStream()
@@ -285,9 +285,39 @@ def ObserveLater() -> dict[str, object]:
     }
 
 
-# unsupported geometry units preserve explicit unqualified output without a wrongly scaled cache
-def ObserveUnits() -> dict[str, object]:
-    Document = ChangeRecord(MakeInitial("triangle:xy:forward"), units=UnitSystem.KMeter)
+# each unsupported cache request remains a valid request for explicit unqualified native research output
+def MakeUncached(CaseName: str) -> CadDocument:
+    Document = MakeInitial("triangle:xy:forward")
+    if CaseName == "units":
+        return ChangeRecord(Document, units=UnitSystem.KMeter)
+    if CaseName == "extra":
+        Sketch = Document.sketches[0]
+        Extra = SketchEntity(
+            "extra", "circle", CircleGeometry(PlaneVector(50.0, 50.0), 2.0)
+        )
+        return ChangeRecord(
+            Document,
+            sketches=(ChangeRecord(Sketch, entities=(*Sketch.entities, Extra)),),
+        )
+    Feature = Document.feature_timeline[0]
+    Definition = Feature.definition
+    assert isinstance(Definition, ExtrudeFeature)
+    return ChangeRecord(
+        Document,
+        feature_timeline=(
+            ChangeRecord(
+                Feature,
+                definition=ChangeRecord(
+                    Definition, direction=SpaceVector(1e-5, 0.0, 1.0)
+                ),
+            ),
+        ),
+    )
+
+
+# unsupported cache families preserve explicit unqualified output without a wrongly constructed shape
+def ObserveUncached(CaseName: str) -> dict[str, object]:
+    Document = MakeUncached(CaseName)
     Output = ByteStream()
     Result = WriteDocument(
         Document, Output, DestFormat="freecad.fcstd", AllowCarrier=True
@@ -305,15 +335,16 @@ def ObserveUnits() -> dict[str, object]:
     return {"initial_cache": "not_supplied", "native_acceptance": "not_established"}
 
 
-# an independent process confirms unsupported geometry units cannot acquire cache evidence
-def CheckUnitCache() -> None:
+# independent processes confirm unsupported geometry units directions and selections cannot acquire cache evidence
+@MarkValue.parametrize("CaseName", ("units", "oblique", "extra"))
+def CheckUnitCache(CaseName: str) -> None:
     Result = RunProcess(
         [
             PythonExe,
             "-B",
             "-m",
             "tests.Research.Archives.FreeCadInitialShapeTests",
-            "units",
+            CaseName,
         ],
         cwd=KRepoRoot,
         capture_output=True,
