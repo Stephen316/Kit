@@ -45,7 +45,13 @@ def AddBodySeedMut(
     Source = PlanValue.Extrude
     Direction = (Source.Direction.x, Source.Direction.y, Source.Direction.z)
     SeedValue = AddExtToolMut(
-        Context, FeatureInfo, Direction, Source.DistanceMm, 0.0, False, DepthRef
+        Context,
+        FeatureInfo,
+        Direction,
+        Source.DistanceMm,
+        0.0,
+        False,
+        [("LengthFwd", DepthRef)] if DepthRef else [],
     )
     Expressions = [
         ("Dir", BodyDepthDir(Direction, DepthRef, Sketch.name)),

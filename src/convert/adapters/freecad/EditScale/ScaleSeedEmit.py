@@ -22,7 +22,13 @@ def AddScaleSeedMut(
 ) -> Object:
     AxisValue = (0.0, 0.0, 1.0)
     SeedValue = AddExtToolMut(
-        Context, Cache.Feature, AxisValue, Cache.Body.Depth, 0.0, False, Cache.DepthRef
+        Context,
+        Cache.Feature,
+        AxisValue,
+        Cache.Body.Depth,
+        0.0,
+        False,
+        [("LengthFwd", Cache.DepthRef)] if Cache.DepthRef else [],
     )
     ReplaceNameMut(
         SeedValue.properties,

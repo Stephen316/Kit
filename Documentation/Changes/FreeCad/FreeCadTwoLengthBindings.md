@@ -16,6 +16,7 @@ The property interpretation follows the target version's [official FreeCAD 1.0.2
 Both native length properties participate in recomputation.
 The change adds no CAD runtime, donor data, schema field or fallback carrier.
 Existing linked-distance, linked-plane, open-profile and unsupported-grammar refusal gates remain in force.
+The existing body-revolution and scale seed emitters pass their single forward expression through the same list contract.
 
 ## Verification evidence
 
