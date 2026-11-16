@@ -39,6 +39,15 @@ from StoreRead import read_store
 # reading the already released archive must allow a legitimate new host to own the host lock
 @contextmanager
 def retained_archive(owner, path, queue, kind, raw):
+    with (
+        read_store(owner.store / "ledger.sqlite3", None, (4,)) as database,
+        TemporaryDirectory(prefix="kit-fusion-replacement-archive-") as temporary,
+    ):
+        yield archive_snapshot(owner, path, queue, kind, raw, database, Path(temporary))
+
+
+# admission must repeat these checks inside the write transaction before rearming
+def archive_snapshot(owner, path, queue, kind, raw, database, scratch):
     store, config, _ = queue_configuration(owner.args.config, kind, queue["resource"])
     require(store == owner.store, "Fusion archive replacement store changed")
     require_idle(owner.root)
@@ -46,27 +55,21 @@ def retained_archive(owner, path, queue, kind, raw):
         not os.path.lexists(owner.root / "fusion-lifecycle-active.json"),
         "Fusion owner is already rotating another process",
     )
-    with (
-        read_store(store / "ledger.sqlite3", None, (4,)) as database,
-        TemporaryDirectory(prefix="kit-fusion-replacement-archive-") as temporary,
-    ):
-        timeout = current_probe(database, store, queue, kind, Path(temporary))
-        authorize = authorize_archive(
-            owner, path, queue, raw, database, config, timeout
-        )
-        archive = inspect_archive(owner.root, config, timeout)
-        require(
-            archive["status"] == "archived" and archive["fence_status"] == "absent",
-            "Fusion archive replacement requires a released probe archive",
-        )
-        archive_sha = archive["archive_manifest_sha256"]
-        manifest, request = archived_request(owner.root, config, timeout, archive_sha)
-        authorize(request["client"], manifest["fence"]["at"])
-        saved = {
-            "archive_manifest_sha256": archive_sha,
-            **retain_recovery(owner, queue, raw, database, config, timeout, archive),
-        }
-        yield saved, timeout
+    timeout = current_probe(database, store, queue, kind, scratch)
+    authorize = authorize_archive(owner, path, queue, raw, database, config, timeout)
+    archive = inspect_archive(owner.root, config, timeout)
+    require(
+        archive["status"] == "archived" and archive["fence_status"] == "absent",
+        "Fusion archive replacement requires a released probe archive",
+    )
+    archive_sha = archive["archive_manifest_sha256"]
+    manifest, request = archived_request(owner.root, config, timeout, archive_sha)
+    authorize(request["client"], manifest["fence"]["at"])
+    saved = {
+        "archive_manifest_sha256": archive_sha,
+        **retain_recovery(owner, queue, raw, database, config, timeout, archive),
+    }
+    return saved, timeout
 
 
 # the source rechecks the current parked archive immediately before the native submission
@@ -97,6 +100,15 @@ def reconcile_replacement(owner, path, queue, kind, raw):
                 return archive
             prepared = prepare_launch(owner, archive, timeout)
         result = observe_launch(owner, snapshot, archive, prepared)
+        if (
+            owner.args.admit_archived_retry
+            and result["archive_replacement_status"]
+            == "control_verified_admission_pending"
+        ):
+            from FusionArchiveRetryAdmission import admit_retry
+
+            parked = partial(archive_snapshot, owner, path, queue, kind, raw)
+            result.update(admit_retry(owner, queue, archive, result, parked))
     return {**archive, **result}
 
 

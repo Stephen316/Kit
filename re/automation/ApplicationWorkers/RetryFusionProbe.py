@@ -69,9 +69,9 @@ def retry_timing(connection, objects, queue, timeout):
     return row, due
 
 
-def queue_retry(ledger, queue, timeout, archive_sha256):
+# both owner and manual admission retain the retry deadline and exact target row
+def make_retry_runnable(ledger, queue, due):
     job_id = queue["jobs"]["a"]
-    row, due = retry_timing(ledger.db, ledger.objects, queue, timeout)
     ledger.change_resource(queue["resource"], True, unpark_waiters=False)
     ledger.db.execute("UPDATE jobs SET parked=0,next_run=? WHERE id=?", (due, job_id))
     ledger.refresh()
@@ -85,6 +85,12 @@ def queue_retry(ledger, queue, timeout, archive_sha256):
         first == "queued" and second == "waiting_evidence",
         "Fusion retry did not leave Phase B behind its accepted evidence gate",
     )
+
+
+def queue_retry(ledger, queue, timeout, archive_sha256):
+    job_id = queue["jobs"]["a"]
+    row, due = retry_timing(ledger.db, ledger.objects, queue, timeout)
+    make_retry_runnable(ledger, queue, due)
     ledger.event(
         job_id,
         ACTION,

@@ -13,6 +13,11 @@ from tests.Research.Applications.FusionColdStartTests import (
 )
 from tests.Research.Applications.FusionColdWatch import AwaitStatus, RunOwner
 from tests.Research.Applications.FusionPhaseQueueTests import RunFusionTool
+from tests.Research.Applications.FusionRecoveryAdmission import (
+    ArchiveEvents,
+    RefuseReadmit,
+    VerifyAdmission,
+)
 from tests.Research.Applications.FusionRecoveryPreflight import (
     RefuseNewEpoch,
     VerifyPreflight,
@@ -45,7 +50,12 @@ def CheckRecovery(TmpPath: FilePath) -> None:
             Verified = AwaitArchive(Dispatch, Harness, PhaseName, LogPath, ExitPath)
             PreflightPath = VerifyPreflight(Dispatch, LogPath, Verified)
         VerifyLaunch(Dispatch, Harness, Flags, PhaseName, Verified)
+        Admission = VerifyAdmission(Dispatch, Harness, Flags, PhaseName, Verified)
         RefuseNewEpoch(Dispatch, Harness, Flags, PhaseName, PreflightPath)
+        RefuseReadmit(Dispatch, Flags)
+        StorePath = Harness.StorePath
+        assert StorePath is not None
+        assert ArchiveEvents(StorePath) == [Admission]
     finally:
         _ = RunFusionTool(
             KFixtureTool, ["cleanup", str(Dispatch.RootPath), str(Dispatch.Endpoint)]

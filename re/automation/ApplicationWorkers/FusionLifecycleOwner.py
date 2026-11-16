@@ -411,6 +411,7 @@ def main():
     parser.add_argument("--startup-seconds", type=int, default=120)
     parser.add_argument("--launch-archived-replacement", action="store_true")
     parser.add_argument("--measure-archived-replacement", action="store_true")
+    parser.add_argument("--admit-archived-retry", action="store_true")
     parser.add_argument("--wait-seconds", type=int, default=60)
     parser.add_argument("--poll-seconds", type=int, default=2)
     parser.add_argument("--once", action="store_true")
@@ -424,6 +425,7 @@ def main():
         or args.queue_receipt is not None
         or args.launch_archived_replacement
         or args.measure_archived_replacement
+        or args.admit_archived_retry
     ):
         parser.error("reset evidence observation cannot request initial startup")
     if args.launch_archived_replacement and (
@@ -432,6 +434,8 @@ def main():
         parser.error("archive replacement requires ongoing commissioned owner custody")
     if args.measure_archived_replacement and not args.launch_archived_replacement:
         parser.error("archive control requires the authorized archive replacement route")
+    if args.admit_archived_retry and not args.measure_archived_replacement:
+        parser.error("archive retry admission requires archive replacement control")
     try:
         if args.reset_evidence_pid is not None:
             from FusionResetEvidence import observe
