@@ -13,5 +13,8 @@ KBlobGuid = "130A0711-4E92-4FCD-AADE-B9C82238BB27"
 # body guid must remain consistent across callers so supporting records retain their owning document relationships
 KBodyGuid = "EA90DA22-556C-4C61-89BB-20C2681B7A9D"
 
+# the mesh group GUID identifies the saved container independently of mesh body records
+KMeshGroupGuid = "443807AD-8025-41A3-8A50-5157579C3D78"
+
 # texture guid must remain consistent across callers so supporting records retain their owning document relationships
 KTextureGuid = "6FC173DC-C7E3-402C-A8C0-891A26DADF8D"

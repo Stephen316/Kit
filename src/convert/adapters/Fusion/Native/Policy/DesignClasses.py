@@ -75,6 +75,8 @@ KDesignClasses = frozenset(
         "Overrides",
         "PMIAnnotations",
         "PMISettings",
+        "ParaMeshBodies",
+        "ParaMeshTextureStore",
         "Parameter",
         "ParameterSearchByNameHelper",
         "ParameterTable",
