@@ -6,9 +6,11 @@ from decimal import Decimal
 from hashlib import sha256
 import json
 from math import isclose
+from os import fsync, link
 from pathlib import Path, PureWindowsPath
 from struct import unpack
 import sys
+from tempfile import NamedTemporaryFile
 from typing import cast, TypedDict
 from uuid import UUID
 from xml.etree.ElementTree import Element, fromstring
@@ -100,6 +102,7 @@ from convert.adapters.solidworks.Container.Container import SldprtArchive
 from convert.adapters.solidworks.Container.Definition import ViewRecord
 from convert.adapters.solidworks.Container.Format import (
     KConfigStream,
+    KPartSuffix,
     KResolvedFeaturesStream,
 )
 from convert.adapters.solidworks.Resolved.RectanglePart import (
@@ -608,8 +611,35 @@ def VerifyMass(
     return Mass
 
 
-# this hosted entry point builds and rereads one archive entirely in memory
-def VerifyFreshBoss(Context: FixtureContext) -> dict[str, object]:
+# hard linking a closed sibling file publishes the data without replacing another producer
+def PublishCandidate(Target: Path, Data: bytes) -> None:
+    if Target.suffix.casefold() != KPartSuffix:
+        raise ValueError("candidate destination must have a .SLDPRT suffix")
+    Stage = None
+    try:
+        with NamedTemporaryFile(
+            dir=Target.parent, prefix=".kit-fresh-boss-", delete=False
+        ) as Output:
+            Stage = Path(Output.name)
+            if Output.write(Data) != len(Data):
+                raise OSError("incomplete write to candidate staging file")
+            Output.flush()
+            fsync(Output.fileno())
+        try:
+            link(Stage, Target)
+        except FileExistsError as Error:
+            raise FileExistsError(
+                f"candidate destination already exists: {Target}"
+            ) from Error
+    finally:
+        if Stage is not None:
+            Stage.unlink(missing_ok=True)
+
+
+# this hosted entry point rereads the complete archive before any optional publication
+def VerifyFreshBoss(
+    Context: FixtureContext, *, Candidate: Path | None = None
+) -> dict[str, object]:
     Gen = KPartGeneration
     Bound, Owners, Metadata = FixtureState(Context)
     Config = BuildOrdinaryConfig(Gen, Owners.Config)
@@ -657,7 +687,7 @@ def VerifyFreshBoss(Context: FixtureContext) -> dict[str, object]:
         "dimensions_mm": (WIDTH_MM, HEIGHT_MM, SIGN_DEPTH_MM),
         "bounds_metres": (BOUNDS.Minimum, BOUNDS.Maximum),
     }
-    return {
+    Report = {
         **Authored,
         "archive_sha256": sha256(Data).hexdigest(),
         "stream_count": len(Archive.streams),
@@ -666,6 +696,9 @@ def VerifyFreshBoss(Context: FixtureContext) -> dict[str, object]:
         "authored": Authored,
         "readback": {**Readback, "bounds_metres": (Bounds.Minimum, Bounds.Maximum)},
     }
+    if Candidate is not None:
+        PublishCandidate(Candidate, Data)
+    return Report
 
 
 class CalendarInput(TypedDict):
@@ -794,7 +827,13 @@ def Main() -> None:
         required=True,
         help="explicit JSON context file or '-' for standard input",
     )
-    Source = Parser.parse_args().fixture_context
+    Parser.add_argument(
+        "--candidate",
+        type=Path,
+        help="publish the verified archive to a new .SLDPRT file",
+    )
+    Args = Parser.parse_args()
+    Source = Args.fixture_context
     try:
         Text = (
             sys.stdin.read()
@@ -804,7 +843,14 @@ def Main() -> None:
         Context = ParseContext(Text)
     except (KeyError, ValueError, TypeError, OSError) as Error:
         Parser.error(str(Error))
-    print(json.dumps(VerifyFreshBoss(Context), sort_keys=True))
+    if Args.candidate is None:
+        Report = VerifyFreshBoss(Context)
+    else:
+        try:
+            Report = VerifyFreshBoss(Context, Candidate=Args.candidate)
+        except (ValueError, OSError) as Error:
+            Parser.exit(1, f"{Error}\n")
+    print(json.dumps(Report, sort_keys=True))
 
 
 if __name__ == "__main__":
