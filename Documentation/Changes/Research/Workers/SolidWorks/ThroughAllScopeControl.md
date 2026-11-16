@@ -4,6 +4,8 @@ The [scope specification](../../../../../re/automation/PairedCaptures/ScopeContr
 
 The SOLIDWORKS author selects the sketch and, for each explicit case, appends the native body at the scope selection mark. Before and after save it reads the extrusion definition with selection access. The report keeps the native feature scope flag, automatic-selection flag, resolved scope body references, end condition and raw depth field. The normalized through-all extent has no finite depth. The observed affected bodies come from per-body volume changes. Each solid is identified by its native producer and checked against its specified bounds. [Multibody feature scope](https://help.solidworks.com/2024/english/api/sldworksapiprogguide/Overview/Programming_Multibody_Parts.htm), [native per-body mass properties](https://help.solidworks.com/2024/english/api/sldworksapi/solidworks.interop.sldworks~solidworks.interop.sldworks.ibody2~getmassproperties.html)
 
+The author clears inherited selections and selects the created sketch feature directly. The selection check retains exact counts and can compare the document's persistent references when SOLIDWORKS supplies distinct object wrappers. [Feature selection](https://help.solidworks.com/2022/english/api/sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IFeature~Select2.html), [Persistent object equality](https://help.solidworks.com/2025/english/api/sldworksapi/SolidWorks.Interop.sldworks~SolidWorks.Interop.sldworks.IModelDocExtension~IsSamePersistentID.html)
+
 Run the author and collector from an exact checkout on the licensed SOLIDWORKS `34.4.1.1011` Windows desktop with the application closed. Choose an unused output directory outside the checkout.
 
 ```powershell

@@ -116,6 +116,16 @@ public sealed class SolidWorksScopeControl
         return a != null && b != null && app.IsSame(a, b) == (int)swObjectEquality.swObjectSame;
     }
 
+    bool SameDocumentObject(IModelDocExtension extension, object first, object second)
+    {
+        if (first == null || second == null) return false;
+        if (Same(first, second)) return true;
+        var firstId = extension.GetPersistReference3(first) as byte[];
+        var secondId = extension.GetPersistReference3(second) as byte[];
+        return firstId != null && firstId.Length != 0 && secondId != null && secondId.Length != 0
+            && extension.IsSamePersistentID(firstId, secondId) == (int)swObjectEquality.swObjectSame;
+    }
+
     double[] PointInSketch(double[] millimeters, ISketch sketch)
     {
         var utility = (IMathUtility)app.GetMathUtility();
@@ -302,7 +312,7 @@ public sealed class SolidWorksScopeControl
         var selectedIds = automatic ? new string[0] : intended;
         if (!automatic) bodies = Bodies(doc);
         doc.ClearSelection2(true);
-        Check(doc.Extension.SelectByID2(sketch.Name, "SKETCH", 0, 0, 0, false, 0, null, 0),
+        Check(sketch.Select2(false, 0),
             "Could not select the through-all sketch");
         foreach (string id in selectedIds)
             Check(doc.Extension.SelectByID2(bodies[id].Name, "SOLIDBODY", 0, 0, 0, true, 1, null, 0),
@@ -312,13 +322,14 @@ public sealed class SolidWorksScopeControl
         int scopeCount = selection.GetSelectedObjectCount2(1);
         int totalCount = selection.GetSelectedObjectCount2(-1);
         var selectedSketch = sketchCount == 1 ? selection.GetSelectedObject6(1, 0) : null;
-        bool sameSketch = Same(selectedSketch, sketch) || Same(selectedSketch, sketch.GetSpecificFeature2());
+        bool sameSketch = SameDocumentObject(doc.Extension, selectedSketch, sketch)
+            || SameDocumentObject(doc.Extension, selectedSketch, sketch.GetSpecificFeature2());
         Check(sketchCount == 1 && sameSketch && scopeCount == selectedIds.Length
             && totalCount == selectedIds.Length + 1,
             "The Cut scope selections do not match the requested roster (sketch count: " + sketchCount
             + ", same sketch: " + sameSketch + ", scope count: " + scopeCount + ", total count: " + totalCount + ")");
         for (int index = 0; index < selectedIds.Length; index++)
-            Check(Same(selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
+            Check(SameDocumentObject(doc.Extension, selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
                 "The Cut scope selection did not resolve to the intended native body");
         var supportBounds = Bounds(ObjectValue(bodySpecs["A"])["bounds_mm"]);
         double apiDepth = (supportBounds[1][2] - supportBounds[0][2]) / Mm;
@@ -350,7 +361,8 @@ public sealed class SolidWorksScopeControl
         var producers = Producers(doc);
         Check(support != null && BodyId(support.GetBody() as IBody2, producers) == "A",
             "The Cut support does not belong to the first producer");
-        Check(Items(feature.GetParents()).OfType<IFeature>().Any(parent => Same(parent, profileFeature)),
+        Check(Items(feature.GetParents()).OfType<IFeature>()
+            .Any(parent => SameDocumentObject(doc.Extension, parent, profileFeature)),
             "The Cut does not consume its saved sketch");
         var native = (IExtrudeFeatureData2)feature.GetDefinition();
         Check(native.AccessSelections(doc, null), "Could not resolve native Cut scope selections");
