@@ -14,7 +14,7 @@ On 16 November 2026, the Windows supervisor processed the first private offline
 pilot batch at source revision `ce538c42b9ae0535d40e70ec64ac7a097411ee3e`, based on
 `1d294381340a36ce8e4d9e288e73d995da12fcd7`. The commissioned environment used
 CPython 3.14.6 and the frozen project lock. The registry enabled only the
-inference runner, with two available session slots and a reserve of two logical
+inference runner, with a two-session maximum and a reserve of two logical
 CPUs and 4 GiB of memory. Model providers and application dispatch were disabled.
 The inputs came from the P03 signed-depth and P04 termination and body-selection
 discovery grids. P05 remained reserved.
@@ -35,6 +35,8 @@ window. Its SHA-256 is
 `54a03aa267193c76ec3d8c9af4904e24cb84161b955613822883f959a0fc7faa`.
 The longest observed chain was one assessment plus one rescan, totaling
 10.10 seconds of controller attempt time.
+
+The same store processed a scoped update when the format guard changed at `e6cf245e`. The four P04 termination rescans completed again with new receipts. The other 22 jobs retained their receipts and states, including the three waiting for evidence. The Windows supervisor admitted one active session at a time.
 
 A15a still requires the two-week operating window and independent evidence for
 recovery, readiness-to-acceptance timing, operator intervention and verified
