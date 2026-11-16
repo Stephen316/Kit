@@ -35,17 +35,29 @@ class GhostRows(NamedTuple):
     integer: bytes
 
 
-# this schema uses the extended marker in front of the otherwise shared node fields
-def GhostRowHead(Kind: int) -> bytearray:
+# the surrounding typed stream determines the first occurrence of each class
+class GhostRowMarks(NamedTuple):
+    point: bool = True
+    vertex: bool = True
+    integer: bool = True
+
+
+# the first class occurrence carries the optional marker before its node fields
+def GhostRowHead(Kind: int, *, Marked: bool = True) -> bytearray:
+    if type(Marked) is not bool:
+        raise ParaWriteError("ghost row marker requires a boolean occurrence state")
     Result = bytearray()
     WriteTagMut(Result, Kind)
-    Result.append(0xFF)
+    if Marked:
+        Result.append(0xFF)
     return Result
 
 
 # the point stores its vertex plus empty attribute and sibling references
-def EncodePointRow(PointMm: SpaceVector, Slots: GhostAllocation) -> bytes:
-    Result = GhostRowHead(29)
+def EncodePointRow(
+    PointMm: SpaceVector, Slots: GhostAllocation, *, Marked: bool = True
+) -> bytes:
+    Result = GhostRowHead(29, Marked=Marked)
     WritePointerMut(Result, Slots.point)
     WriteSignedMut(Result, Slots.point_node)
     for Reference in (0, Slots.vertex, 0, 0):
@@ -55,8 +67,8 @@ def EncodePointRow(PointMm: SpaceVector, Slots: GhostAllocation) -> bytes:
 
 
 # the faceless vertex owns no fins or siblings and joins its shell and the point
-def EncodeVertexRow(Slots: GhostAllocation) -> bytes:
-    Result = GhostRowHead(18)
+def EncodeVertexRow(Slots: GhostAllocation, *, Marked: bool = True) -> bytes:
+    Result = GhostRowHead(18, Marked=Marked)
     WritePointerMut(Result, Slots.vertex)
     WriteSignedMut(Result, Slots.vertex_node)
     for Reference in (0, 0, 0, 0, Slots.point):
@@ -67,8 +79,8 @@ def EncodeVertexRow(Slots: GhostAllocation) -> bytes:
 
 
 # the witnessed ghost body identity occupies one signed integer in its value node
-def EncodeIdRow(Slots: GhostAllocation, GhostId: int) -> bytes:
-    Result = GhostRowHead(82)
+def EncodeIdRow(Slots: GhostAllocation, GhostId: int, *, Marked: bool = True) -> bytes:
+    Result = GhostRowHead(82, Marked=Marked)
     WriteSignedMut(Result, 1)
     WritePointerMut(Result, Slots.ghost_value)
     WriteSignedMut(Result, GhostId)
@@ -77,10 +89,17 @@ def EncodeIdRow(Slots: GhostAllocation, GhostId: int) -> bytes:
 
 # the caller's allocation and authored point determine the reciprocal owned records
 def EncodeGhostRows(
-    PointMm: SpaceVector, Slots: GhostAllocation, GhostId: int, *, Schema: str
+    PointMm: SpaceVector,
+    Slots: GhostAllocation,
+    GhostId: int,
+    *,
+    Schema: str,
+    Marks: GhostRowMarks = GhostRowMarks(),
 ) -> GhostRows:
     if Schema != KPointSchema:
         raise ParaWriteError("unsupported ghost point transmit schema")
+    if not isinstance(Marks, GhostRowMarks):
+        raise ParaWriteError("expected typed ghost row occurrence states")
     Indices = (Slots.shell, Slots.point, Slots.vertex, Slots.ghost_value)
     if len(set(Indices)) != 4 or not all(0 < Value < 32767 for Value in Indices):
         raise ParaWriteError("ghost point requires four distinct short transport slots")
@@ -92,7 +111,7 @@ def EncodeGhostRows(
     if not 10000 < GhostId < 1 << 31:
         raise ParaWriteError("ghost body identifier is outside the allocated range")
     return GhostRows(
-        EncodePointRow(PointMm, Slots),
-        EncodeVertexRow(Slots),
-        EncodeIdRow(Slots, GhostId),
+        EncodePointRow(PointMm, Slots, Marked=Marks.point),
+        EncodeVertexRow(Slots, Marked=Marks.vertex),
+        EncodeIdRow(Slots, GhostId, Marked=Marks.integer),
     )
