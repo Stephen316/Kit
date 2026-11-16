@@ -268,7 +268,8 @@ public sealed class SolidWorksScopeControl
         {
             step = "resolve_rolled_back_scope_bodies";
             var bodies = Bodies(doc);
-            var selected = intended.Select(id => (object)bodies[id]).ToArray();
+            // The COM setter receives a VARIANT. Preserve the body's IDispatch type in each array slot.
+            var selected = intended.Select(id => new DispatchWrapper(bodies[id])).ToArray();
             step = "set_explicit_scope_definition";
             native.FeatureScope = true;
             native.AutoSelect = false;
