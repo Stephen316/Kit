@@ -56,9 +56,9 @@ def ReadPlanarRoles(Model: BrepModel) -> dict[str, str]:
         if isinstance(Surface, PlaneSurface)
     }
     Faces = [
-        Face
-        for Face in Model.faces
-        if len(Face.loop_ids) > 1 and Face.surface_id in Planes
+        FaceValue
+        for FaceValue in Model.faces
+        if len(FaceValue.loop_ids) > 1 and FaceValue.surface_id in Planes
     ]
     if not Faces:
         return {}
@@ -68,10 +68,10 @@ def ReadPlanarRoles(Model: BrepModel) -> dict[str, str]:
     Vertices = {Vertex.id: Vertex for Vertex in Model.vertices}
     Lines = {Curve.id for Curve in Model.curves if isinstance(Curve, LineCurve)}
     Results: dict[str, str] = {}
-    for Face in Faces:
-        Members = [Loops[LoopId] for LoopId in Face.loop_ids if LoopId in Loops]
+    for FaceValue in Faces:
+        Members = [Loops[LoopId] for LoopId in FaceValue.loop_ids if LoopId in Loops]
         if (
-            len(Members) != len(Face.loop_ids)
+            len(Members) != len(FaceValue.loop_ids)
             or sum(len(LoopValue.coedge_ids) for LoopValue in Members) > KRingPointLimit
         ):
             continue
@@ -82,9 +82,9 @@ def ReadPlanarRoles(Model: BrepModel) -> dict[str, str]:
         Complete = tuple(RingValue for RingValue in Rings if RingValue is not None)
         if len(Complete) != len(Members):
             continue
-        OuterIndex = FindPlanarOuter(Complete, Planes[Face.surface_id])
+        OuterIndex = FindPlanarOuter(Complete, Planes[FaceValue.surface_id])
         if OuterIndex is not None:
-            Results[Face.id] = Members[OuterIndex].id
+            Results[FaceValue.id] = Members[OuterIndex].id
     return Results
 
 
@@ -94,10 +94,10 @@ def SetPlanarRoles(Model: BrepModel) -> BrepModel:
     if not Outers:
         return Model
     Roles = {
-        LoopId: LoopId == Outers[Face.id]
-        for Face in Model.faces
-        if Face.id in Outers
-        for LoopId in Face.loop_ids
+        LoopId: LoopId == Outers[FaceValue.id]
+        for FaceValue in Model.faces
+        if FaceValue.id in Outers
+        for LoopId in FaceValue.loop_ids
     }
     return Replace(
         Model,
