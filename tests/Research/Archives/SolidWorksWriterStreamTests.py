@@ -92,6 +92,17 @@ def CheckConfigView() -> None:
     )
 
 
+# material handoff must retain actual ownership across both model box branches
+def CheckConfigBody() -> None:
+    Report = LoadReport("VerifyConfigBody.py", 14)
+    assert Report["constructed"] is True
+    assert Report["model_boxes"] == 8
+    assert (
+        Report["replay_sha256"]
+        == "ef3be3962d274b830225cc91c447269c7b946147ec0811fe8364852f69890bdf"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")
