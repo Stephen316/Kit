@@ -15,12 +15,14 @@ from convert.adapters.solidworks.container.Archive import (
 )
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
+from convert.adapters.solidworks.resolved.FaceIdentity import KCapClass, ReadFaceHead
 from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
 from convert.adapters.solidworks.resolved.ProfilePlane import ReadProfileRef
 from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
 from convert.adapters.solidworks.resolved.RectanglePart import ResolveDatum
 from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
+from convert.adapters.solidworks.resolved.SavedFileRef import ReadFileRef
 from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
 
 
@@ -103,6 +105,34 @@ def read_boss_entry(cursor, profile, expected_name):
     }
 
 
+def read_first_cap(cursor, boss):
+    ReadFeatBase(cursor.ReadValue, cursor.ReadPoint, cursor.ReadNull, cursor.ReadText)
+    require(cursor.ReadInts("<i3H") == (0, 0, 0, 0), "unexpected scoped boss frame")
+    require(cursor.ReadInts("<iH") == (1, 1), "expected one scoped boss transfer object")
+    _, _, transfer = cursor.TakePointer(("moAtom_c",), KObjectRefKind, CompactOnly=True)
+    require(cursor.ReadInts("<i") == (0,), "unexpected secondary scoped boss transfer")
+    cursor.ReadNull()
+    require(cursor.ReadInts("<5i") == (1, 101, 3, 0, 1), "unexpected scoped boss atom fields")
+    require(cursor.ReadInts("<2H") == (1, 1), "expected one scoped body chooser")
+    cursor.TakePointer(("moPerBodyChooserData_c",), KDefinitionKind, CompactOnly=True)
+    require(cursor.ReadInts("<H") == (2,), "expected two scoped boss chooser caps")
+    face, edges = ReadFaceHead(cursor, KDefinitionKind, 768)
+    require(face["classifier"] == 0 and edges == 4, "unexpected first scoped cap")
+    start = cursor.Offset
+    _, _, cap = cursor.TakePointer((KCapClass,), KDefinitionKind, CompactOnly=True)
+    cursor.ReadNull()
+    feature_ref_offset = cursor.Offset
+    _, _, feature_ref = cursor.TakePointer(("moFR_c",), KDefinitionKind, CompactOnly=True)
+    file_ref = ReadFileRef(cursor)
+    owner, clock_word, occurrence, selector = cursor.ReadInts("<iI2i")
+    require((owner, occurrence, selector) == (boss["feature_id"], 0, 0), "scoped cap owner or selector differs")
+    return {
+        "start": start, "end": cursor.Offset, "object_index": cap, "feature_id": owner,
+        "transfer_object_index": transfer, "feature_reference_offset": feature_ref_offset,
+        "feature_reference_object": feature_ref, "file_reference": file_ref, "clock_word": clock_word,
+    }
+
+
 def read_scope_prefix(archive, resolved, spec, generation):
     config_map, config_report = read_config_map(archive.require("Contents/Config-0"))
     cursor = OpenResolved(resolved, config_map, 23)
@@ -126,4 +156,5 @@ def read_scope_prefix(archive, resolved, spec, generation):
             "datum": datum.NameValue, "datum_feature_id": datum.FeatureId, "trim": trim,
         },
         "first_boss": boss,
+        "first_cap": read_first_cap(cursor, boss),
     }

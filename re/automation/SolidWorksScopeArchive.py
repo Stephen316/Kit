@@ -313,6 +313,14 @@ def read_provisional(data, spec, stream_sha256, *, inspect_map=False):
             == (producers["A"]["name"], producers["A"]["feature_id"], producers["A"]["record_offset"]),
             "typed boss does not match the scope array's earlier owner",
         )
+        scope_file_slots = {
+            surface["file_reference_slot"]
+            for body in body_records for surface in body["face"]["surfaces"]
+        }
+        require(
+            scope_file_slots == {prefix["first_cap"]["file_reference"]["object_index"]},
+            "scope surface reference differs from the typed file object allocated by the first boss",
+        )
         result["resolved_prefix"] = prefix
     return result
 
