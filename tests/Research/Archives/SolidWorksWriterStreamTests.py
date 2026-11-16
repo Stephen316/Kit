@@ -157,7 +157,7 @@ def CheckCfgSplits() -> None:
     )
 
 
-# the atom binding must follow both the independent map and native Boss owner
+# the atom binding must follow both the independent map and native boss owner
 def CheckCfgAtoms() -> None:
     Report = LoadReport("VerifyConfigAtoms.py", 14)
     assert (
