@@ -24,6 +24,7 @@ def CheckWinTree() -> None:
                 FixtureJob(
                     "windows:tree",
                     "fixture.decode",
+                    lease_seconds=15,
                     options={"mode": "exit", "pid_file": str(RecordPath)},
                 )
             ]
