@@ -255,41 +255,27 @@ public sealed class SolidWorksScopeControl
             : base("FeatureCut4 returned null after verifying the explicit selection for " + mode) { }
     }
 
-    bool ApplyScopeDefinition(IModelDoc2 doc, IFeature feature, string[] intended, ref string step)
+    void ApplyExplicitScope(IModelDoc2 doc, IFeature feature, string[] intended, ref string step)
     {
         step = "access_scope_definition";
         var native = feature.GetDefinition() as IExtrudeFeatureData2;
         Check(native != null, "Could not obtain the Cut definition for scope editing");
-        bool scope = native.FeatureScope;
-        bool automatic = native.AutoSelect;
-        if (intended == null && scope && automatic) return false;
+        Check(!native.FeatureScope, "The fallback did not create an all-bodies Cut");
         Check(native.AccessSelections(doc, null), "Could not access the Cut definition for scope editing");
         bool attempted = false;
         Exception failure = null;
         try
         {
-            if (intended == null)
-            {
-                step = "set_automatic_scope_definition";
-                native.FeatureScope = true;
-                native.AutoSelect = true;
-                step = "apply_automatic_scope_definition";
-            }
-            else
-            {
-                Check(scope && automatic, "The fallback did not recreate the automatic Cut scope");
-                step = "resolve_rolled_back_scope_bodies";
-                var bodies = Bodies(doc);
-                var selected = intended.Select(id => (object)bodies[id]).ToArray();
-                step = "set_explicit_scope_definition";
-                native.FeatureScope = true;
-                native.AutoSelect = false;
-                native.FeatureScopeBodies = selected;
-                step = "apply_explicit_scope_definition";
-            }
+            step = "resolve_rolled_back_scope_bodies";
+            var bodies = Bodies(doc);
+            var selected = intended.Select(id => (object)bodies[id]).ToArray();
+            step = "set_explicit_scope_definition";
+            native.FeatureScope = true;
+            native.AutoSelect = false;
+            native.FeatureScopeBodies = selected;
+            step = "apply_explicit_scope_definition";
             attempted = true;
             Check(feature.ModifyDefinition(native, doc, null), "ModifyDefinition refused the requested Cut scope");
-            return true;
         }
         catch (Exception error) { failure = error; throw; }
         finally
@@ -323,9 +309,9 @@ public sealed class SolidWorksScopeControl
         step = "select_cut_inputs";
         var intended = Strings(control["input_body_ids"]);
         bool recovery = route == RecoveryRoute;
-        bool automatic = recovery || control["input_body_ids"] == null;
-        var selectedIds = automatic ? new string[0] : intended;
-        if (!automatic) bodies = Bodies(doc);
+        bool allBodies = recovery || control["input_body_ids"] == null;
+        var selectedIds = allBodies ? new string[0] : intended;
+        if (!allBodies) bodies = Bodies(doc);
         doc.ClearSelection2(true);
         Check(sketch.Select2(false, 0),
             "Could not select the through-all sketch");
@@ -348,24 +334,20 @@ public sealed class SolidWorksScopeControl
                 "The Cut scope selection did not resolve to the intended native body");
         var supportBounds = Bounds(ObjectValue(bodySpecs["A"])["bounds_mm"]);
         double apiDepth = (supportBounds[1][2] - supportBounds[0][2]) / Mm;
-        step = recovery ? "create_automatic_fallback_cut" : "create_cut_feature";
+        step = recovery ? "create_all_bodies_fallback_cut" : "create_cut_feature";
+        // Feature scope limits the Cut to selected bodies. AutoSelect only seeds that list.
         var feature = doc.FeatureManager.FeatureCut4(true, false, false, (int)swEndConditions_e.swEndCondThroughAll,
             0, apiDepth, apiDepth, false, false, false, false, 0, 0, false, false, false, false, false,
-            true, automatic, false, false, false, (int)swStartConditions_e.swStartSketchPlane, 0, false, false);
-        if (feature == null && !automatic) throw new MissingExplicitCut((string)control["mode"]);
-        Check(feature != null, "Could not create the automatic through-all Cut for " + control["mode"]);
+            !allBodies, false, false, false, false, (int)swStartConditions_e.swStartSketchPlane, 0, false, false);
+        if (feature == null && !allBodies) throw new MissingExplicitCut((string)control["mode"]);
+        Check(feature != null, "Could not create the all-bodies through-all Cut for " + control["mode"]);
         feature.Name = (string)cutSpec["feature"];
         doc.ClearSelection2(true);
         step = "rebuild_cut_feature";
         RebuildCut(doc, feature);
-        if (automatic && ApplyScopeDefinition(doc, feature, null, ref step))
-        {
-            step = "rebuild_automatic_scope_definition";
-            RebuildCut(doc, feature);
-        }
         if (recovery)
         {
-            ApplyScopeDefinition(doc, feature, intended, ref step);
+            ApplyExplicitScope(doc, feature, intended, ref step);
             step = "rebuild_explicit_scope_definition";
             RebuildCut(doc, feature);
         }
@@ -392,7 +374,7 @@ public sealed class SolidWorksScopeControl
         {
             bool accessAuto = native.AutoSelect;
             int end = native.GetEndCondition(true);
-            Check(scope && native.FeatureScope && end == (int)swEndConditions_e.swEndCondThroughAll
+            Check(scope == native.FeatureScope && end == (int)swEndConditions_e.swEndCondThroughAll
                 && !native.BothDirections && !native.ReverseDirection,
                 "The saved Cut switched away from the intended inward one-sided through-all scope");
             var selected = Items(native.FeatureScopeBodies);
@@ -402,7 +384,7 @@ public sealed class SolidWorksScopeControl
             var selectedIds = selected.Cast<IBody2>().Select(body => BodyId(body, rolledBackProducers)).OrderBy(id => id).ToArray();
             var depth = native.GetDepth(true);
             return Row("end_condition", "through_all", "direction_world", new[] { 0, 0, -1 }, "depth_mm", null,
-                "observed_policy", auto ? "automatic" : "explicit",
+                "observed_policy", !scope || auto ? "automatic" : "explicit",
                 "native", Row("feature_scope", scope, "auto_select", auto, "feature_scope_body_ids", selectedIds,
                     "auto_select_during_access", accessAuto,
                     "feature_scope_body_count", selectedCount, "end_condition", end,
@@ -423,11 +405,12 @@ public sealed class SolidWorksScopeControl
         var native = ObjectValue(cut["native"]);
         bool automatic = intended["input_body_ids"] == null;
         var nativeIds = Strings(native["feature_scope_body_ids"]);
-        Check((bool)native["auto_select"] == automatic
-            && (automatic || nativeIds.SequenceEqual(
-                Strings(intended["input_body_ids"]).OrderBy(id => id))),
-            "The freshly read Cut policy or selected bodies differ from the intended scope (AutoSelect: "
-            + native["auto_select"] + ", during access: " + native["auto_select_during_access"]
+        bool featureScope = (bool)native["feature_scope"];
+        Check(automatic ? !featureScope && nativeIds.Length == 0
+            : featureScope && !(bool)native["auto_select"] && !(bool)native["auto_select_during_access"]
+                && nativeIds.SequenceEqual(Strings(intended["input_body_ids"]).OrderBy(id => id)),
+            "The freshly read Cut policy or selected bodies differ from the intended scope (FeatureScope: "
+            + featureScope + ", AutoSelect: " + native["auto_select"] + ", during access: " + native["auto_select_during_access"]
             + ", native bodies: [" + string.Join(",", nativeIds) + "], affected bodies: ["
             + string.Join(",", targets) + "])");
         Check(targets.SequenceEqual(Strings(intended["expected_affected_body_ids"]).OrderBy(id => id)),
