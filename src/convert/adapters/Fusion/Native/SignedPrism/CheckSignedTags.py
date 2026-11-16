@@ -166,8 +166,11 @@ def CheckEdgeTags(
             continue
         Owner = StableRef(Table, Value.Links.OwnerRef)
         Coedge = Table.Entities[Owner]
-        IsCoedge = isinstance(Coedge, CoedgeNode)
-        EdgeSlot = StableRef(Table, Coedge.EdgeRef) if IsCoedge else Owner
+        EdgeSlot = Owner
+        Direction = 1
+        if isinstance(Coedge, CoedgeNode):
+            EdgeSlot = StableRef(Table, Coedge.EdgeRef)
+            Direction = 0
         EdgeValue = RequireLive(Table, EdgeSlot, EdgeNode)
         Start, Finish = (
             ReadVertexPoint(Table, StableRef(Table, Index))
@@ -176,7 +179,7 @@ def CheckEdgeTags(
         LinkValue = Value.SourceLink
         if (
             LinkValue.PrimaryId not in Curves
-            or LinkValue != SketchLink(LinkValue.PrimaryId, 0, int(not IsCoedge), 1, 1)
+            or LinkValue != SketchLink(LinkValue.PrimaryId, 0, Direction, 1, 1)
             or Start[2] != Finish[2]
             or Start[2] not in (0.0, Extent)
             or frozenset((Start[:2], Finish[:2])) != Curves[LinkValue.PrimaryId]
