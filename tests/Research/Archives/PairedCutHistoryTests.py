@@ -60,7 +60,7 @@ def AssertCutLinks(Report: dict[str, object]) -> None:
     assert "matched_links" not in Ambiguous
     Links = Ambiguous["candidate_links"]
     assert isinstance(Links, list)
-    Candidates = [ReportObject(Entry) for Entry in Links]
+    Candidates = [ReportObject(Entry) for Entry in CastValue(list[object], Links)]
     Copied = next(
         Entry
         for Entry in Candidates
