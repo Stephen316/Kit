@@ -34,6 +34,16 @@ def CheckDefinition() -> None:
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
 
 
+# the resolved folder sequence must retain the real feature and archive identities
+def CheckResFolder() -> None:
+    Report = LoadReport("VerifyResolvedFolders.py", 14)
+    Encoded = JsonCodec.dumps(Report["captures"], sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "21a06cba04c78d1311519d08df37d3dc310cf090075a6916abc371fd93fd583e"
+    )
+
+
 # the configured model title must keep real allocation order in the standalone archive
 def CheckConfigRoot() -> None:
     Report = LoadReport("VerifyConfigRoot.py", 14)

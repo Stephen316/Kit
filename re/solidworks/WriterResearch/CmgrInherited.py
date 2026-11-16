@@ -1,3 +1,4 @@
+from dataclasses import dataclass as Dataclass
 from struct import pack as PackFields
 
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -13,6 +14,15 @@ KFeatureReturn = (0, 4, 0, 0, 0, -1)
 KFeatureEnd = (2, KFileSession, 1)
 
 
+# A feature keeps its update stamp and last update version alongside its FILETIME.
+@Dataclass(frozen=True, slots=True)
+class ArchiveFeature:
+    UpdateStamp: int
+    LastGeneration: int
+    LastBuild: int
+    FileTime: Stamp
+
+
 # manager and part features take independent high and low words from their callers
 def RequireCmgrTime(Generation: int, StampValue: Stamp) -> None:
     RequireArch(Generation, 19000, "CMgr inherited feature generation")
@@ -26,11 +36,35 @@ def RequireCmgrTime(Generation: int, StampValue: Stamp) -> None:
     )
 
 
-# both native classes inherit the same default feature fields and stamp encoding
-def WriteCmgrFeature(Writer: ArchiveWriter, Generation: int, StampValue: Stamp) -> None:
-    RequireCmgrTime(Generation, StampValue)
+# the ordinary feature branch saves the version and timestamp fields separately
+def WriteArcFeature(
+    Writer: ArchiveWriter, Generation: int, State: ArchiveFeature
+) -> None:
+    RequireCmgrTime(Generation, State.FileTime)
+    RequireArch(
+        type(State.UpdateStamp) is int
+        and 0 <= State.UpdateStamp <= 0xFFFFFFFF
+        and all(
+            type(Word) is int and 0 <= Word <= 0x7FFFFFFF
+            for Word in (State.LastGeneration, State.LastBuild)
+        ),
+        True,
+        "ordinary feature update words",
+    )
     Writer.raw(
-        PackFields("<iiIBiiiidi", 0, 0, 101, 0, 0, 0, 0, Generation, 0.0, KBuildVersion)
+        PackFields(
+            "<iiIBiiiidi",
+            0,
+            0,
+            State.UpdateStamp,
+            0,
+            0,
+            State.LastGeneration,
+            State.LastBuild,
+            Generation,
+            0.0,
+            KBuildVersion,
+        )
     )
     Writer.u16(0)
     Writer.string("")
@@ -42,20 +76,35 @@ def WriteCmgrFeature(Writer: ArchiveWriter, Generation: int, StampValue: Stamp) 
         PackFields(
             "<IBBiiiIIHii",
             *KFeatureReturn,
-            StampValue.high,
-            StampValue.low,
+            State.FileTime.high,
+            State.FileTime.low,
             *KFeatureEnd,
         )
     )
 
 
-# timestamps vary independently of the constructor fields in the two features
-def ReadCmgrFeature(Cursor: ArchiveCursor, Generation: int) -> Stamp:
+# the shared feature reader guards the inactive members before returning saved state
+def ReadArcFeature(Cursor: ArchiveCursor, Generation: int) -> ArchiveFeature:
     RequireArch(Generation, 19000, "CMgr inherited feature generation")
+    (
+        First,
+        Second,
+        UpdateStamp,
+        HasText,
+        Fourth,
+        LastGeneration,
+        LastBuild,
+        Version,
+        Zero,
+        Build,
+    ) = Cursor.ReadInts("<iiIBiiiiQi")
     RequireArch(
-        Cursor.ReadInts("<iiIBiiiiQi"),
-        (0, 0, 101, 0, 0, 0, 0, Generation, 0, KBuildVersion),
+        (First, Second, HasText, Fourth, Version, Zero, Build),
+        (0, 0, 0, 0, Generation, 0, KBuildVersion),
         "CMgr inherited feature opening",
+    )
+    RequireArch(
+        min(LastGeneration, LastBuild) >= 0, True, "ordinary feature update version"
     )
     Cursor.ReadNull()
     RequireArch(
@@ -71,4 +120,22 @@ def ReadCmgrFeature(Cursor: ArchiveCursor, Generation: int) -> Stamp:
         (KFeatureReturn, KFeatureEnd),
         "CMgr inherited feature return",
     )
-    return Stamp(Fields[6], Fields[7])
+    return ArchiveFeature(
+        UpdateStamp, LastGeneration, LastBuild, Stamp(Fields[6], Fields[7])
+    )
+
+
+# both configuration manager classes start with the native initial update words
+def WriteCmgrFeature(Writer: ArchiveWriter, Generation: int, StampValue: Stamp) -> None:
+    WriteArcFeature(Writer, Generation, ArchiveFeature(101, 0, 0, StampValue))
+
+
+# manager and part timestamps vary while their default update words stay fixed
+def ReadCmgrFeature(Cursor: ArchiveCursor, Generation: int) -> Stamp:
+    State = ReadArcFeature(Cursor, Generation)
+    RequireArch(
+        (State.UpdateStamp, State.LastGeneration, State.LastBuild),
+        (101, 0, 0),
+        "CMgr inherited feature update words",
+    )
+    return State.FileTime
