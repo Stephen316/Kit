@@ -27,19 +27,28 @@ def match_perimeters(first, second, tolerance):
         for _, edge in first
     ]
     matched = [[item for item in row if item[1] <= tolerance] for row in candidates]
+    reason = None
     if any(len(row) > 1 for row in matched):
-        return {
-            "status": "ambiguous",
-            "reason": "multiple geometric counterparts for a boundary edge",
-        }
-    if any(not row for row in matched):
+        reason = "multiple geometric counterparts for a boundary edge"
+    elif any(not row for row in matched):
         return {"status": "different", "reason": "unmatched world boundary edge"}
-    edges = [row[0] for row in matched]
-    if len({index for index, _ in edges}) != len(second):
+    elif len({row[0][0] for row in matched}) != len(second):
+        reason = "boundary correspondence is not one to one"
+    if reason is not None:
         return {
             "status": "ambiguous",
-            "reason": "boundary correspondence is not one to one",
+            "reason": reason,
+            "candidate_links": [
+                {
+                    "first_id": identity,
+                    "second_id": second[index][0],
+                    "maximum_endpoint_delta_mm": delta,
+                }
+                for (identity, _), row in zip(first, matched, strict=True)
+                for index, delta in row
+            ],
         }
+    edges = [row[0] for row in matched]
     return {
         "status": "equal",
         "maximum_endpoint_delta_mm": max(delta for _, delta in edges),

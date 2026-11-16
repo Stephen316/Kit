@@ -15,7 +15,7 @@ from tempfile import TemporaryDirectory
 
 from InferenceArchives import archive_cases, archive_gaps
 from InferenceHoldoutGate import verify_holdout
-from InferenceRunner import FIELD_KIND, GAP_KIND, RESCAN_KIND, result_schema
+from InferenceRunner import FIELD_KIND, FORMATS, GAP_KIND, RESCAN_KIND, result_schema
 from InferenceSchedule import build_schedule
 from PairedCaptureIntake import require
 from Records import canonical, digest
@@ -205,6 +205,15 @@ def verify_gaps(gate):
         set(jobs) == {"refuted", "needs-distinguishing-evidence"},
         "paired Cut gaps lost their distinguishing controls",
     )
+    source = jobs["refuted"][1]
+    wrong_format = next(iter(FORMATS - {source["options"]["source_format"]}))
+    wrong_job = {
+        **source,
+        "id": "paired-gap:wrong-format",
+        "max_attempts": 1,
+        "options": {**source["options"], "source_format": wrong_format},
+    }
+    gate.controller("submit", gate.write("WrongFormat.json", wrong_job))
     statuses = gate.run()
     for verdict, scheduled in jobs.items():
         approved = verdict == "refuted"
@@ -233,6 +242,19 @@ def verify_gaps(gate):
                 ),
                 "unresolved paired gap released dependent rescans before the grid evidence",
             )
+    refusal = statuses[wrong_job["id"]]
+    require(
+        refusal["state"] == "failed" and refusal["attempts"] == 1 and refusal["result"],
+        "mislabelled paired rescan did not fail in a single supervised attempt",
+    )
+    failure_path = gate.controller("artifact", refusal["result"])["path"]
+    payload = json.loads(Path(failure_path).read_bytes())
+    require(
+        "rescan source format differs from its paired assessment"
+        in (payload.get("stderr_tail") or "")
+        and payload.get("result") is None,
+        "mislabelled paired rescan did not preserve the format disagreement",
+    )
     return gaps
 
 

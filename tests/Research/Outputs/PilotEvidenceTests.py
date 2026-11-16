@@ -36,6 +36,7 @@ def CheckEvidence(TmpPath: FilePath) -> None:
     _ = Client.RunCli("resource", "fixture:later", "--available")
     assert RunEvidence(TmpPath, Window, Sources) == Report
     AssertRefused(TmpPath, Window, Sources)
+    AssertTiming(TmpPath, Window)
 
 
 # changing either evidence cutoff content or stable record identity must refuse the report
@@ -131,14 +132,7 @@ def FixtureSources(RootPath: FilePath) -> dict[str, str]:
                 "records": Intervals(),
             },
         ),
-        "acceptance": WritePinned(
-            RootPath / "Acceptances.json",
-            {
-                "version": 1,
-                "authority": "independent_acceptance_attestation",
-                "records": AcceptedCases(),
-            },
-        ),
+        "acceptance": WriteCases(RootPath, AcceptedCases()),
         "ci_activity": WritePinned(
             RootPath / "CiActivity.json",
             {
@@ -225,6 +219,108 @@ def AcceptedCases() -> list[dict[str, object]]:
         CaseInfo,
         {**CaseInfo, "id": "case:two", "direction": "fixture:reverse"},
     ]
+
+
+# both report shapes must use the same independent acceptance envelope
+def WriteCases(RootPath: FilePath, CaseRows: list[dict[str, object]]) -> str:
+    return WritePinned(
+        RootPath / "Acceptances.json",
+        {
+            "version": 1,
+            "authority": "independent_acceptance_attestation",
+            "records": CaseRows,
+        },
+    )
+
+
+# preparation may precede the operating window without backdating an acceptance
+def TimingCases() -> list[dict[str, object]]:
+    Forward, _, Reverse = AcceptedCases()
+    Timed = {
+        **Forward,
+        "readiness": {"ready_at": 8, "evidence_sha256": "e" * 64},
+    }
+    Untimed = {**Forward, "id": "case:three", "document_sha256": "2" * 64}
+    OtherStart = {
+        **Timed,
+        "id": "case:four",
+        "document_sha256": "3" * 64,
+        "readiness": {"ready_at": 31, "evidence_sha256": "f" * 64},
+    }
+    AllMeasured = {
+        **Timed,
+        "id": "case:five",
+        "format_version": "v2",
+        "readiness": {"ready_at": 40, "evidence_sha256": "d" * 64},
+    }
+    return [Timed, Timed, Untimed, Reverse, OtherStart, AllMeasured]
+
+
+# a route forecast needs deduplication and explicit coverage of missing samples
+def AssertTiming(RootPath: FilePath, Window: dict[str, object]) -> None:
+    Cases = TimingCases()
+    Sources = {"acceptance": WriteCases(RootPath, Cases)}
+    Report = RunEvidence(RootPath, Window, Sources)
+    Acceptance = Report["acceptance"]
+    assert isinstance(Acceptance, dict)
+    assert Acceptance["attested_case_gains"] == 5
+    assert Acceptance["attested_document_gains"] == 3
+    assert Acceptance["readiness_to_acceptance"] == [
+        {
+            "family": "fixture",
+            "format_version": "v1",
+            "direction": "fixture:forward",
+            "status": "partial",
+            "accepted_cases": 3,
+            "timed_cases": 2,
+            "min_seconds": 11,
+            "max_seconds": 34,
+            "total_seconds": 45,
+        },
+        {
+            "family": "fixture",
+            "format_version": "v1",
+            "direction": "fixture:reverse",
+            "status": "unmeasured",
+            "accepted_cases": 1,
+            "timed_cases": 0,
+            "min_seconds": None,
+            "max_seconds": None,
+            "total_seconds": None,
+        },
+        {
+            "family": "fixture",
+            "format_version": "v2",
+            "direction": "fixture:forward",
+            "status": "measured",
+            "accepted_cases": 1,
+            "timed_cases": 1,
+            "min_seconds": 2,
+            "max_seconds": 2,
+            "total_seconds": 2,
+        },
+    ]
+    AssertBadTiming(RootPath, Window, Cases[0])
+
+
+# timing assertions cannot stand in for readiness provenance or a positive receipt
+def AssertBadTiming(
+    RootPath: FilePath, Window: dict[str, object], CaseInfo: dict[str, object]
+) -> None:
+    for Fields in (
+        {"readiness": {"ready_at": 43, "evidence_sha256": "e" * 64}},
+        {"readiness": {"ready_at": 8, "evidence_sha256": "digest"}},
+        {"candidate": {"status": "not_accepted", "receipt_sha256": "c" * 64}},
+    ):
+        SourceHash = WriteCases(RootPath, [{**CaseInfo, **Fields}])
+        _ = RunEvidence(RootPath, Window, {"acceptance": SourceHash}, ExitCode=1)
+    Conflict = {
+        **CaseInfo,
+        "id": "case:conflict",
+        "readiness": {"ready_at": 13, "evidence_sha256": "e" * 64},
+    }
+    SourceHash = WriteCases(RootPath, [CaseInfo, Conflict])
+    _ = RunEvidence(RootPath, Window, {"acceptance": SourceHash}, ExitCode=1)
 
 
 # a successful controller report may include independent evidence without disclosing its records

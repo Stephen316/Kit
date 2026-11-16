@@ -34,6 +34,8 @@ from convert.adapters.solidworks.Resolved.Scope.History import (
 )
 from interchange.Core.Common import FreezeMapping
 from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
 from interchange.geometry.Models.SupportPlane import SupportPlane
 from interchange.Payloads.PayloadRecord import BrepPayload
 from interchange.Records.RecordParameter import Parameter
@@ -88,10 +90,10 @@ def AttachBosses(
     Params = {Value.id: Value for Value in Document.parameters}
     Sketches = {Value.id: Value for Value in Document.sketches}
     Planes = {Value.id: Value for Value in Document.support_planes}
-    ChangedSteps = {}
+    ChangedSteps: dict[str, FeatureStep] = {}
     ChangedParams: dict[str, Parameter] = {}
-    ChangedSketches = {}
-    ChangedPlanes = {}
+    ChangedSketches: dict[str, Sketch] = {}
+    ChangedPlanes: dict[str, SupportPlane] = {}
     First = History.First
     Anchor = RectanglePart(
         First.Profile.Sketch,

@@ -140,9 +140,64 @@ def acceptance_status(item):
     return item["status"], item["receipt_sha256"]
 
 
+# acceptance can only be timed when the source records an independent readiness observation
+def acceptance_readiness(item, outcome, accepted_at):
+    if "readiness" not in item:
+        return None
+    readiness = item["readiness"]
+    fields(
+        readiness,
+        {"ready_at", "evidence_sha256"},
+        "invalid acceptance readiness observation",
+    )
+    ready_at = epoch(readiness["ready_at"])
+    require(
+        outcome == "accepted"
+        and ready_at <= accepted_at
+        and checksum(readiness["evidence_sha256"]),
+        "readiness requires a pinned observation no later than acceptance",
+    )
+    return ready_at, accepted_at, readiness["evidence_sha256"]
+
+
+# forecast samples need coverage by feature and route without exposing document identifiers
+def acceptance_timing(cases):
+    groups = defaultdict(list)
+    for case, (_, _, candidate, _, readiness) in cases.items():
+        if candidate == "accepted":
+            groups[case[1:]].append(
+                None if readiness is None else readiness[1] - readiness[0]
+            )
+    if not any(sample is not None for samples in groups.values() for sample in samples):
+        return {}
+    result = []
+    for (family, version, direction), samples in sorted(groups.items()):
+        durations = [sample for sample in samples if sample is not None]
+        result.append(
+            {
+                "family": family,
+                "format_version": version,
+                "direction": direction,
+                "status": (
+                    "unmeasured"
+                    if not durations
+                    else "measured" if len(durations) == len(samples) else "partial"
+                ),
+                "accepted_cases": len(samples),
+                "timed_cases": len(durations),
+                "min_seconds": min(durations, default=None),
+                "max_seconds": max(durations, default=None),
+                "total_seconds": math.fsum(durations) if durations else None,
+            }
+        )
+    return {"readiness_to_acceptance": result}
+
+
+# only independent source attestations establish gains and comparable route samples
 def acceptance_summary(records, start, end):
     cases, gains = {}, set()
     for item in records:
+        optional = {"readiness"} if "readiness" in item else set()
         fields(
             item,
             {
@@ -155,7 +210,8 @@ def acceptance_summary(records, start, end):
                 "baseline",
                 "candidate",
                 "verifier",
-            },
+            }
+            | optional,
             "invalid independent acceptance attestation",
         )
         document = item["document_sha256"]
@@ -175,9 +231,11 @@ def acceptance_summary(records, start, end):
             baseline_hash != candidate_hash,
             "acceptance needs distinct baseline and candidate receipts",
         )
-        if not start <= epoch(item["at"]) < end:
+        accepted_at = epoch(item["at"])
+        readiness = acceptance_readiness(item, candidate, accepted_at)
+        if not start <= accepted_at < end:
             continue
-        pair = (baseline, baseline_hash, candidate, candidate_hash)
+        pair = (baseline, baseline_hash, candidate, candidate_hash, readiness)
         require(
             cases.setdefault(case, pair) == pair,
             "conflicting independent acceptance attestations",
@@ -189,6 +247,7 @@ def acceptance_summary(records, start, end):
         "matched_cases": len(cases),
         "attested_case_gains": len(gains),
         "attested_document_gains": len({case[0] for case in gains}),
+        **acceptance_timing(cases),
     }
 
 
