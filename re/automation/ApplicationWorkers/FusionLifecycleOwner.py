@@ -35,6 +35,7 @@ from FusionReplacementLaunch import (
     replacement_source,
     request_launch,
 )
+from FusionStartupProvision import StartupUnavailable
 from MacBundleLaunch import available as replacement_available
 from QueueFusionPhases import recover_receipt
 from Supervisor import read_config
@@ -348,6 +349,46 @@ def pending_phase(current, budget=0):
     )
 
 
+def initial_startup(owner, args):
+    if args.profile is None and args.queue_receipt is None:
+        return None
+    require(
+        args.profile is not None and args.queue_receipt is not None,
+        "initial Fusion startup requires both the profile and queue receipt",
+    )
+    require(
+        args.queue_receipt.suffix == ".json"
+        and directory(args.queue_receipt.parent) == owner.inbox,
+        "initial Fusion queue receipt must be visible to the lifecycle owner",
+    )
+    require(
+        1 <= args.launch_seconds <= 300 and 1 <= args.startup_seconds <= 300,
+        "invalid Fusion initial startup budget",
+    )
+    from FusionOwnerColdStart import ColdStart
+
+    boot = ColdStart(
+        SimpleNamespace(
+            config=args.config,
+            installation=args.installation,
+            lifecycle=args.lifecycle,
+            profile=args.profile,
+            queue_receipt=args.queue_receipt,
+            launch_seconds=args.launch_seconds,
+            startup_seconds=args.startup_seconds,
+        )
+    )
+    require(
+        boot.root == owner.root
+        and boot.store == owner.store
+        and boot.installation == owner.installation_bytes
+        and boot.configuration == owner.supervisor_bytes
+        and boot.lifecycle_sha == owner.lifecycle_sha,
+        "initial Fusion startup differs from the pinned owner lifecycle",
+    )
+    return boot
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Advance the exact owned Fusion lifecycle"
@@ -356,6 +397,10 @@ def main():
     parser.add_argument("--installation", required=True, type=Path)
     parser.add_argument("--lifecycle", required=True, type=Path)
     parser.add_argument("--queue-directory", required=True, type=Path)
+    parser.add_argument("--profile", type=Path)
+    parser.add_argument("--queue-receipt", type=Path)
+    parser.add_argument("--launch-seconds", type=int, default=60)
+    parser.add_argument("--startup-seconds", type=int, default=120)
     parser.add_argument("--wait-seconds", type=int, default=60)
     parser.add_argument("--poll-seconds", type=int, default=2)
     parser.add_argument("--once", action="store_true")
@@ -367,17 +412,32 @@ def main():
         )
         owner = Owner(args)
         with owner_lock(owner.root / "fusion-lifecycle-owner.lock"):
+            boot = initial_startup(owner, args)
             previous = None
             while True:
+                starting = boot is not None
                 try:
-                    result = owner.tick()
+                    if boot is None:
+                        result = owner.tick()
+                    else:
+                        owner.check_configuration()
+                        with owner_lock(owner.root / "cold-start.lock"):
+                            result = boot.tick()
+                        if result["status"] == "initial_phase_a_admission_recorded":
+                            boot = None
+                except StartupUnavailable:
+                    result = status("waiting_for_initial_startup_proof")
                 except RECONCILE_ERRORS as error:
                     result = status("lifecycle_refused", error=type(error).__name__)
                 if result != previous:
                     print(encoded(result).decode(), end="", flush=True)
                     previous = result
                 if args.once:
-                    return int(result["status"] == "lifecycle_refused")
+                    if result["status"] == "lifecycle_refused":
+                        return 1
+                    return 2 if boot is not None else 0
+                if starting and boot is None:
+                    continue
                 time.sleep(args.poll_seconds)
     except RECONCILE_ERRORS as error:
         print(f"Fusion lifecycle unavailable ({type(error).__name__})", file=sys.stderr)

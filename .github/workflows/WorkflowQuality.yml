@@ -64,6 +64,7 @@ jobs:
           cache-dependency-glob: uv.lock
 
       - name: Synchronize the locked environment
+        id: linux_locked_environment
         run: uv sync --frozen --all-groups --all-extras --python 3.11
 
       - name: Verify repository CI contracts at process boundaries
@@ -219,6 +220,7 @@ jobs:
           python -m pytest tests/Research/Controller*Tests.py -q
 
       - name: Verify research session supervisor through process boundaries
+        if: ${{ !cancelled() && steps.linux_locked_environment.outcome == 'success' }}
         env:
           KIT_RESERVE_WITNESS: "1"
         run: >-

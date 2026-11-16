@@ -43,3 +43,5 @@ The hosted case uses a disposable AppKit bundle, the actual pinned
 bootstrap, and A03. It checks interrupted owner launch, missing launch
 evidence, observed-peer resume, and an older competing Phase A. Hosted
 execution is pending.
+
+The [continuous owner commissioning command](FusionOwnerCommissioning.md) can perform this same initial launch and then advance later queue phases in the same owner process.

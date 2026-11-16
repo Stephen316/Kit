@@ -19,6 +19,9 @@ KFixtureTool = "re/automation/ApplicationWorkers/FusionColdStartFixture.py"
 # the production entry is invoked unchanged when resuming the sealed launch
 KOwnerTool = "re/automation/ApplicationWorkers/FusionOwnerColdStart.py"
 
+# normal continuous lifecycle entry also needs to resume the same sealed startup
+KLifecycleTool = "re/automation/ApplicationWorkers/FusionLifecycleOwner.py"
+
 
 # the real queue is populated while the installation resource is still unavailable
 def PrepareCold(Dispatch: DispatchHost) -> tuple[SessionHost, list[str], str]:
@@ -106,8 +109,21 @@ def AssertNoReply(Dispatch: DispatchHost, Flags: list[str]) -> None:
     try:
         Output = RunFusionTool(KOwnerTool, Flags, ExitCode=2)
         assert JsonCodec.loads(Output) == {"status": "cold_launch_unobserved"}
+        assert RunInitialOwner(Dispatch, Flags, ExitCode=2) == JsonCodec.loads(Output)
     finally:
         _ = Withheld.rename(Receipt)
+
+
+# the normal owner CLI must make startup progress at the same durable custody boundary
+def RunInitialOwner(
+    Dispatch: DispatchHost, Flags: list[str], ExitCode: int = 0
+) -> dict[str, object]:
+    Output = RunFusionTool(
+        KLifecycleTool,
+        [*Flags, "--queue-directory", str(Dispatch.RootPath), "--once"],
+        ExitCode=ExitCode,
+    )
+    return CastValue(dict[str, object], JsonCodec.loads(Output))
 
 
 # a single real claim verifies controller availability and exact first admission
@@ -157,7 +173,7 @@ def CheckColdStart(TmpPath: FilePath) -> None:
         Sealed = Request.read_bytes()
         AssertNoReply(Dispatch, Flags)
         AssertDeferred(Harness)
-        Claimed = JsonCodec.loads(RunFusionTool(KOwnerTool, Flags))
+        Claimed = RunInitialOwner(Dispatch, Flags)
         assert Claimed["job"] == PhaseName
         assert Claimed["status"] == "initial_phase_a_admission_recorded"
         assert ClaimBoot(Harness, "SelectedClaim.json") == PhaseName
