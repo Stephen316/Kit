@@ -46,7 +46,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A06 | Semantic graph comparison                              | A02c, A04, A05                       | jdharcourt | active   | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
 | A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Codex A07  | blocked  | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
 | A08 | Controlled sample and trace workers                    | A02b, A03                            | jdharcourt | active   | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
-| A09 | Scoped field maps and typed codec candidates           | A07                                  | Unassigned | planned  | Solved pad-then-pad family is reproduced without model calls, with independent proof and zero donor blocks                                                                                                                         |
+| A09 | Scoped field maps and typed codec candidates           | A07                                  | Unassigned | blocked  | Solved pad-then-pad family is reproduced without model calls, with independent proof and zero donor blocks                                                                                                                         |
 | A10 | Optional model investigation packets                   | A08a, A07, A09                       | Unassigned | planned  | Models-off operation, fixed two-step escalation, a failure log, repeat-failure start-step routing, validated responses, cost limits and false-proposal rejection verified                                                          |
 | A11 | Portable neutral → Fusion writer                       | A01, A06, A09                        | jdharcourt | blocked  | Qualified portable graphs generate native files without source replay, proprietary runtime or opaque replacements                                                                                                                  |
 | A12 | Portable neutral → SOLIDWORKS writer                   | A01, A06, A09                        | Codex      | blocked  | Qualified portable graphs generate native files from understood fields and reject unsupported required semantics                                                                                                                   |
@@ -193,6 +193,17 @@ All five completed on their first attempts; the operator reopened and hash-check
 The reports remained `different` and `ambiguous`, with semantics unverified and native acceptance unestablished.
 This observation does not replace current-head hosted A06c/A06d checks or A06b qualification.
 A07 acceptance and A09 continue to depend on A06b.
+
+## A09 scoped codec research
+
+Stephen316's accepted research constructs the [two configured atom owners](../../Changes/Research/Writers/SolidWorks/Boss/SolidWorksTwoPadConfigAtoms.md), the upper sketch's [ordered same-length relation](../../Changes/Research/Writers/SolidWorks/Boss/SolidWorksTwoPadEqualRelation.md) and the earlier boss's [cap and boundary occurrences](../../Changes/Research/Writers/SolidWorks/Boss/SolidWorksTwoPadCapRefs.md).
+These scoped constructors retain caller-supplied ownership and allocation state; their entries distinguish saved-control observations from independently generated record controls.
+They do not establish a complete two-pad archive or qualify A09.
+
+The cap constructor starts after the enclosing face header, whose classifier and local-unit producers remain unverified.
+The upper sketch, joined kernel and rollback ownership, two-atom resolved composition and configuration-cache bindings remain construction dependencies.
+Ghost and relation-manager composition remain separately owned research work.
+A06b/A07 proof, complete donor-free generation and licensed load, independent edits, rebuild, save and fresh reopen remain required.
 
 ## A11 Fusion writer research
 
