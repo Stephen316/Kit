@@ -12,21 +12,25 @@ from MacApplicationPeer import process_peer
 from MacProcessExit import observe_exit, verify_peer, watch_peer
 
 
-def build_fixture(root):
-    bundle = root / "QuitWitness.app"
-    binary = bundle / "Contents/MacOS/QuitWitness"
+def build_fixture(root, *, name="QuitWitness", executable_source=None):
+    bundle = root / f"{name}.app"
+    binary = bundle / "Contents/MacOS" / name
     binary.parent.mkdir(parents=True)
     (bundle / "Contents/Info.plist").write_bytes(
         dumps(
             {
-                "CFBundleIdentifier": "org.unicad.kit.appkitquitfixture",
+                "CFBundleIdentifier": (
+                    "org.unicad.kit.appkitquitfixture"
+                    if name == "QuitWitness"
+                    else f"org.unicad.kit.{name.lower()}fixture"
+                ),
                 "CFBundleExecutable": binary.name,
                 "CFBundlePackageType": "APPL",
                 "LSUIElement": True,
             }
         )
     )
-    source = Path(__file__).with_suffix(".m")
+    source = executable_source or Path(__file__).with_suffix(".m")
     include = Path(sysconfig.get_path("include"))
     framework = sysconfig.get_config_var("PYTHONFRAMEWORK")
     if framework:

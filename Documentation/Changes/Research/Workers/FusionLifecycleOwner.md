@@ -7,6 +7,8 @@ replacement provider. Use the same A03 supervisor configuration and exact
 private installation and lifecycle profile used by the existing owner tools.
 Run the supervisor independently so Phase A output acceptance and its spool
 acknowledgement can finish during owner observation.
+The [startup provisioning tool](FusionStartupProvision.md) stages and verifies
+the opt-in add-in for a signed-in macOS owner session.
 
 ```sh
 python3 re/automation/ApplicationWorkers/FusionLifecycleOwner.py \
