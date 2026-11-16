@@ -65,7 +65,15 @@ Both empty arrays use two-byte counts. The word array in `swccu.dll` calls `su_C
 
 The material manager's binary `su_CObject::Serialize` base call consumes no bytes. Its store calls at `0x4c204871` and `0x4c20487d` emit Windows signed `long` words from manager members `+0x08` and `+0x0c`. The load calls at `0x4c202070` and `0x4c20207d` restore them to the same offsets. Those words hold the low and high halves of the 64-bit value that the exported `PWMaterialManager_c::getNewApperanceID` at `0x4c1fd340` returns and increments. The manager constructor initializes that 64-bit value to 1 at `0x4c1eee0e`.
 
-All 25 receipt-matching generation-19000 files at `466dcb172dfa3803463e07ccde963ba01671d200` agree with the little-endian field sequence `<iBB3HBiiH>` from the `ReadNotebook` return. The values were `(0, 0, 1, 0, 0, 0, 1, low, 0, 0)`, with the final zero the empty material-object list count. Only the low word at `+13` varies. In these saves it has the distribution in the table above. The constructor establishes the fresh counter state. Each completed save retains the counter after its own appearance allocations.
+All 25 receipt-matching generation-19000 files at `466dcb172dfa3803463e07ccde963ba01671d200` agree with the little-endian field sequence `<iBB3HBiiH>` from the `ReadNotebook` return. The values were `(0, 0, 1, 0, 0, 0, 1, low, 0, 0)`. The final zero is the [material-object list count](#empty-material-manager-list). Only the low word at `+13` varies. In these saves it has the distribution in the table above. The constructor establishes the fresh counter state. Each completed save retains the counter after its own appearance allocations.
+
+## Empty material manager list
+
+After the two counter words, `PWMaterialManager_c::save` constructs a temporary `suObList(10)` at `0x4c20488d`. Its base constructor in `swccu.dll` initializes the count and head to zero at `0x31a55e56` and `0x31a55e61`. The manager constructor clears members `+0x18` and `+0x28` at `0x4c1eee23` and `0x4c1eee2e`. With `+0x28` null, the store branch at `0x4c2048a4` goes directly to list serialization. The populated branch appends a candidate at `0x4c204934` only when its pointer member `+0x2f0` is nonnull.
+
+The call at `0x4c20494b` reaches `suObList::Serialize` and then `su_CObList::Serialize`. The binary store path calls `su_CArchive::WriteCount` at `0x31a56662`. A count of zero uses one unsigned 16-bit word and the null head skips object serialization. The manager then clears and destroys the temporary list and returns. Its restore path at `0x4c20209c` reads the same list and goes directly to cleanup on the null-head branch at `0x4c2020aa`.
+
+In all 25 receipt-pinned P01, P03 and P04 files, the two counter words end at notebook end `+21` and the zero list count ends at `+23`. The document then writes its own `CString` member `+0x1138` at `0x49710af3`. The document constructor initializes that member at `0x49758312`. Reading the next archive string directly at `+23` returns the empty Unicode string and advances to `+27` in every file. These observations establish the empty material manager's exact return boundary. Populated material records still need separate evidence.
 
 ## Part Definition tail
 
