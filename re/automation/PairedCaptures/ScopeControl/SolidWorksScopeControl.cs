@@ -262,7 +262,7 @@ public sealed class SolidWorksScopeControl
         Check(native != null, "Could not obtain the Cut definition for scope editing");
         Check(!native.FeatureScope, "The fallback did not create an all-bodies Cut");
         Check(native.AccessSelections(doc, null), "Could not access the Cut definition for scope editing");
-        bool attempted = false;
+        bool committed = false;
         Exception failure = null;
         try
         {
@@ -273,14 +273,30 @@ public sealed class SolidWorksScopeControl
             native.FeatureScope = true;
             native.AutoSelect = false;
             native.FeatureScopeBodies = selected;
+            step = "verify_pending_scope_definition";
+            var producers = Producers(doc);
+            var pendingIds = Items(native.FeatureScopeBodies).Cast<IBody2>()
+                .Select(body => BodyId(body, producers)).OrderBy(id => id).ToArray();
+            int pendingCount = native.GetFeatureScopeBodiesCount();
+            Check(native.FeatureScope && !native.AutoSelect && pendingCount == pendingIds.Length
+                && pendingIds.SequenceEqual(intended.OrderBy(id => id)),
+                "The editable Cut definition did not retain the selected bodies (FeatureScope: "
+                + native.FeatureScope + ", AutoSelect: " + native.AutoSelect + ", count: "
+                + pendingCount + ", body IDs: [" + string.Join(",", pendingIds) + "])");
             step = "apply_explicit_scope_definition";
-            attempted = true;
-            Check(feature.ModifyDefinition(native, doc, null), "ModifyDefinition refused the requested Cut scope");
+            committed = feature.ModifyDefinition(native, doc, null);
+            if (!committed)
+            {
+                bool warning;
+                int error = feature.GetErrorCode2(out warning);
+                throw new InvalidOperationException("ModifyDefinition refused the requested Cut scope (feature code "
+                    + error + ", warning " + warning + ")");
+            }
         }
         catch (Exception error) { failure = error; throw; }
         finally
         {
-            if (!attempted)
+            if (!committed)
             {
                 try { native.ReleaseSelectionAccess(); }
                 catch (Exception error)
@@ -313,7 +329,8 @@ public sealed class SolidWorksScopeControl
         var selectedIds = allBodies ? new string[0] : intended;
         if (!allBodies) bodies = Bodies(doc);
         doc.ClearSelection2(true);
-        Check(sketch.Select2(false, 0),
+        Check(allBodies ? sketch.Select2(false, 0)
+            : doc.Extension.SelectByID2(sketch.Name, "SKETCH", 0, 0, 0, true, 0, null, 0),
             "Could not select the through-all sketch");
         foreach (string id in selectedIds)
             Check(doc.Extension.SelectByID2(bodies[id].Name, "SOLIDBODY", 0, 0, 0, true, 1, null, 0),
@@ -323,14 +340,17 @@ public sealed class SolidWorksScopeControl
         int scopeCount = selection.GetSelectedObjectCount2(1);
         int totalCount = selection.GetSelectedObjectCount2(-1);
         var selectedSketch = sketchCount == 1 ? selection.GetSelectedObject6(1, 0) : null;
+        int sketchType = sketchCount == 1 ? selection.GetSelectedObjectType3(1, 0) : -1;
         bool sameSketch = SameDocumentObject(doc.Extension, selectedSketch, sketch)
             || SameDocumentObject(doc.Extension, selectedSketch, sketch.GetSpecificFeature2());
         Check(sketchCount == 1 && sameSketch && scopeCount == selectedIds.Length
-            && totalCount == selectedIds.Length + 1,
+            && totalCount == selectedIds.Length + 1 && (allBodies || sketchType == (int)swSelectType_e.swSelSKETCHES),
             "The Cut scope selections do not match the requested roster (sketch count: " + sketchCount
-            + ", same sketch: " + sameSketch + ", scope count: " + scopeCount + ", total count: " + totalCount + ")");
+            + ", sketch type: " + sketchType + ", same sketch: " + sameSketch + ", scope count: " + scopeCount
+            + ", total count: " + totalCount + ")");
         for (int index = 0; index < selectedIds.Length; index++)
-            Check(SameDocumentObject(doc.Extension, selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
+            Check(selection.GetSelectedObjectType3(index + 1, 1) == (int)swSelectType_e.swSelSOLIDBODIES
+                && SameDocumentObject(doc.Extension, selection.GetSelectedObject6(index + 1, 1), bodies[selectedIds[index]]),
                 "The Cut scope selection did not resolve to the intended native body");
         var supportBounds = Bounds(ObjectValue(bodySpecs["A"])["bounds_mm"]);
         double apiDepth = (supportBounds[1][2] - supportBounds[0][2]) / Mm;
