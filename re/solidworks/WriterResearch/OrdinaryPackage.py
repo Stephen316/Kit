@@ -28,7 +28,7 @@ from PartProperties import (
 from ResolvedPart import OrdinaryResolvedArchive
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.Bookkeeping import (
-    EncodePartBookkeeping,
+    EncodePartMeta,
     PartStamps,
 )
 from convert.adapters.solidworks.Container.Cmgr import FeatureStamp, Stamp
@@ -122,7 +122,7 @@ def EncodePackageMetadata(Generation: int, State: PackageState) -> dict[str, byt
     Members[CUSTOM_PROPERTIES] = EncodePartProperties(Generation, State.FileProperties)
     Members[OPEN_TIME_STREAM] = EncodePartOpenTime(Generation, State.OpenTime)
     Members.update(
-        EncodePartBookkeeping(
+        EncodePartMeta(
             Generation,
             PartStamps(
                 Header.Tail.CreationTime, Header.Logs.UpdateStamp, Header.Tail.BodyStamp

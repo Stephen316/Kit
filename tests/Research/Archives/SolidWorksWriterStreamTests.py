@@ -643,7 +643,7 @@ def CheckManifests() -> None:
 
 
 # replay each varying typed property stream without substituting source bytes
-def CheckSimpleProps() -> None:
+def CheckSimple() -> None:
     Report = LoadReport("VerifySimpleProperties.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["distinct_payload_counts"] == {
@@ -658,7 +658,7 @@ def CheckSimpleProps() -> None:
 
 
 # empty section streams must retain native dictionaries and typed property values
-def CheckPropSections() -> None:
+def CheckPropSect() -> None:
     Report = LoadReport("VerifySectionProperties.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["distinct_payload_counts"] == {

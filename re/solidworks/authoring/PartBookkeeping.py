@@ -26,7 +26,7 @@ from convert.adapters.solidworks.Container.Archive import (
     ReadTag,
 )
 from convert.adapters.solidworks.Container.Bookkeeping import (
-    EncodePartBookkeeping,
+    EncodePartMeta,
     KConfigObjects as CONFIG_OBJECTS,
     KDisplayUpdate as DISPLAY_STAMP,
     KModelStamps as MODEL_STAMPS,
@@ -59,7 +59,7 @@ PRE_ATOM_FIELDS = Struct("<IHi2i")
 
 
 def metadata_streams(stamps):
-    return EncodePartBookkeeping(KGeneration, stamps)
+    return EncodePartMeta(KGeneration, stamps)
 
 
 def read_null(cursor):

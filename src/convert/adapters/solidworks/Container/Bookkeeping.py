@@ -23,7 +23,7 @@ class PartStamps:
 
 
 # the ordinary part has no extra configuration object or display update pointer
-def EncodePartBookkeeping(Generation: int, Stamps: PartStamps) -> dict[str, bytes]:
+def EncodePartMeta(Generation: int, Stamps: PartStamps) -> dict[str, bytes]:
     RequireArch(Generation, 19000, "ordinary part bookkeeping generation")
     RequireArch(
         type(Stamps.creation_time) is int and 0 < Stamps.creation_time <= 0x7FFFFFFF,
