@@ -31,6 +31,32 @@ class EndOwnerCodec(Protocol):
     def EncodeBossReturn(self, *, Generation: int) -> bytes: ...
 
 
+# the ordinary configuration footer belongs to the model stream after the final feature
+class ResolvedEndCodec(Protocol):
+
+    # the hosted checks share the writer across both supported part shapes
+    def EncodeResolvedEnd(self, *, Generation: int, EntryCount: int) -> bytes: ...
+
+    # the exact end cursor is part of the observed archive boundary
+    def ReadResolvedEnd(
+        self, Cursor: FieldCursor, *, Generation: int, EntryCount: int
+    ) -> None: ...
+
+
+# the real archive prefix supplies the list size while the last owner supplies the position
+def VerifyListEnd(
+    PatchValue: MonkeyPatch, Resolved: bytes, Generation: int, FooterStart: int
+) -> bytes:
+    Codec = CastValue(ResolvedEndCodec, LoadResearchMut(PatchValue, "Resolved.EndMap"))
+    _, Count = FieldCursor(Resolved, 0).ReadInts("<iH")
+    Native = FieldCursor(Resolved, FooterStart)
+    Codec.ReadResolvedEnd(Native, Generation=Generation, EntryCount=Count)
+    assert Native.Offset == len(Resolved)
+    Footer = Codec.EncodeResolvedEnd(Generation=Generation, EntryCount=Count)
+    assert Footer == Resolved[FooterStart:]
+    return Footer
+
+
 # the fixture pins independent owner properties across the exact eight archives
 def SavedProps(Variant: str) -> tuple[int, ...]:
     ReverseControl = Variant == "direction-negative"
@@ -69,6 +95,5 @@ def VerifyEndStart(
     assert len(ReturnBytes) == 12
     FooterStart = EndSpecStop + len(ReturnBytes)
     assert ReturnBytes == Resolved[EndSpecStop:FooterStart]
-    return (
-        Emitted + Resolved[Boundary:EndSpecStop] + ReturnBytes + Resolved[FooterStart:]
-    )
+    Footer = VerifyListEnd(PatchValue, Resolved, Generation, FooterStart)
+    return Emitted + Resolved[Boundary:EndSpecStop] + ReturnBytes + Footer

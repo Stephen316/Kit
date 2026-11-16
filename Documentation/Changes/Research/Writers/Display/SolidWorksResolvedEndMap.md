@@ -1,0 +1,5 @@
+# SOLIDWORKS resolved end map
+
+A12 now constructs the four-byte empty MBSM data-object map that follows the final feature in the generation-19000 SOLIDWORKS resolved stream. The pinned writer and reader independently place it after the counted list. Six P01 and eight P03 archives reach this position through the packaged feature readers. The profile-only controls close at list count 18 and the blind-boss controls at list count 19, with the same signed zero word. [Research codec and native evidence](../../../../../re/solidworks/WriterResearch/Resolved/EndMap.md)
+
+The hosted checks append the constructed map at the independent profile or boss return boundary. The P03 comparison still retains the captured 20-byte end-specification property range. Hosted verification of this change and licensed acceptance of a complete independently generated part are pending. [P01 check](../../../../../tests/Research/Archives/SolidWorksListEndTests.py) · [P03 check](../../../../../tests/Research/Archives/SolidWorksEndVerify.py)
