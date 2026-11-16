@@ -339,7 +339,11 @@ def RunPortable(
             "index_order": [1, 2, 0],
         },
         "pmi": {"keys": KeyValues[7:10], "created": KExchangeTime},
-        "content": {"material_name": "", "material_id": "", "body_visible": True},
+        "content": {
+            "material_name": "Material <not specified>",
+            "material_id": CaseValue.get("material_id", "Steel"),
+            "body_visible": True,
+        },
     }
     return RunProcess(
         [PythonExe, "-B", "-c", KPortableCaller, str(Destination)],
@@ -395,7 +399,7 @@ def CheckPortReject() -> None:
             ("nested", "unsupported nested attributes"),
             ("unframed", "unqualified SOLIDWORKS sketch support"),
             ("datum clock", "same datum and Origin times"),
-            ("material", "no mapped physical material"),
+            ("material", "unassigned compatibility material labels"),
             ("invalid graph", "sketch drawing references missing plane"),
             ("definition density", "Config and Definition density must agree"),
             ("trim path", "standalone contour requires an empty trim path"),
@@ -407,4 +411,16 @@ def CheckPortReject() -> None:
         Result = RunPortable({**KRightCases[0], "units": "inch"}, Destination)
         assert Result.returncode != 0, Result.stdout
         assert "witnessed metric display settings" in Result.stderr
+        assert not Destination.exists()
+
+
+# the correct name cannot make a foreign material key a supported compatibility value
+def CheckPortMatKey() -> None:
+    with MakeFolder() as TempRoot:
+        Destination = FilePath(TempRoot) / "ForeignMaterial.SLDPRT"
+        Result = RunPortable(
+            {**KRightCases[0], "material_id": "unmapped-native-key"}, Destination
+        )
+        assert Result.returncode != 0, Result.stdout
+        assert "unassigned compatibility material labels" in Result.stderr
         assert not Destination.exists()
