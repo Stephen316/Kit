@@ -108,6 +108,11 @@ def policy_job(api, run_id, attempt, run, pull):
         and check["details_url"] == job["html_url"],
         "archive job does not match the authenticated Actions check run",
     )
+    return job["id"], job["conclusion"], gate_failure(job)
+
+
+# exact gate failures must remain distinct from unrelated policy failures
+def gate_failure(job):
     observed = []
     for name in GATE_STEPS:
         steps = [step for step in job["steps"] if step["name"] == name]
@@ -116,11 +121,33 @@ def policy_job(api, run_id, attempt, run, pull):
         require(
             positive(step["number"])
             and step["status"] == "completed"
-            and step["conclusion"] == "success",
-            "archive gate step lacks observed success",
+            and step["conclusion"] in ("success", "failure", "skipped"),
+            "archive gate step lacks a supported terminal observation",
         )
-        observed.append(step["number"])
-    require(observed == sorted(set(observed)), "archive gate step order differs")
+        observed.append({key: step[key] for key in ("number", "name", "conclusion")})
+    numbers = [step["number"] for step in observed]
+    require(numbers == sorted(set(numbers)), "archive gate step order differs")
+    outcomes = [step["conclusion"] for step in observed]
+    if outcomes != ["success"] * len(observed):
+        failed = [
+            index for index, outcome in enumerate(outcomes) if outcome == "failure"
+        ]
+        require(
+            job["conclusion"] == "failure" and len(failed) == 1,
+            "archive gate lacks an exact observed failure",
+        )
+        index = failed[0]
+        require(
+            outcomes[:index] == ["success"] * index
+            and outcomes[index + 1 :] == ["skipped"] * (len(observed) - index - 1)
+            and all(
+                positive(step["number"]) and step["number"] >= numbers[index]
+                for step in job["steps"]
+                if step["status"] == "completed" and step["conclusion"] == "failure"
+            ),
+            "failed archive gate did not preserve its prerequisite and skip order",
+        )
+        return {"failed_step": observed[index]["name"], "steps": observed}
     if job["conclusion"] == "failure":
         failed = [
             step["number"]
@@ -129,10 +156,10 @@ def policy_job(api, run_id, attempt, run, pull):
         ]
         require(
             failed
-            and all(positive(number) and number > observed[-1] for number in failed),
+            and all(positive(number) and number > numbers[-1] for number in failed),
             "policy failure was not isolated to subsequent steps",
         )
-    return job["id"], job["conclusion"]
+    return None
 
 
 def audited_checkout(api, pull, audited_revision):
@@ -258,6 +285,24 @@ def verify_receipt(api, receipt, origin, audited, saves_sha256):
     return collector
 
 
+# a changed pull request or rerun supersedes a prior result before it is reported
+def current_observation(api, args, pull, run, aggregate):
+    fresh_run = workflow_run(api, args.workflow_run, pull)
+    aggregate_run = run_identity(api, args.aggregate_run, pull)
+    return (
+        pull_identity(api, args.pull) == pull
+        and all(
+            fresh_run[key] == run[key]
+            for key in ("workflow_id", "check_suite_id", "run_attempt")
+        )
+        and latest_run(api, pull, run["workflow_id"], args.workflow_run, EVENT)
+        and aggregate_run["run_attempt"] == args.aggregate_attempt
+        and aggregate_run["status"] == "completed"
+        and aggregate_run["conclusion"] == aggregate["aggregate_conclusion"]
+        and latest_run(api, pull, aggregate_run["workflow_id"], args.aggregate_run)
+    )
+
+
 def observe(api, args, *, validated_roster=None):
     if validated_roster is None:
         validated_roster = load_roster(args.roster, args.roster_sha256)
@@ -308,8 +353,33 @@ def observe(api, args, *, validated_roster=None):
     policy = policy_job(api, args.workflow_run, args.workflow_attempt, run, pull)
     if policy is None:
         return {**result, "status": "pending"}
-    job, conclusion = policy
+    job, conclusion, failure = policy
     checkout = audited_checkout(api, pull, args.audited_revision)
+    if failure is not None:
+        require(
+            aggregate["status"] == "aggregate_failure_unattributed",
+            "a successful protected aggregate conflicts with a failed archive gate",
+        )
+        workflow_blob = source_blob(
+            api, WORKFLOW, checkout["tested_sha"], args.audited_revision
+        )
+        if not current_observation(api, args, pull, run, aggregate):
+            return {**result, "status": "superseded"}
+        return {
+            **result,
+            "status": "archive_gate_failed",
+            "archive_failure": {
+                **failure,
+                "workflow_id": run["workflow_id"],
+                "run_id": args.workflow_run,
+                "run_attempt": args.workflow_attempt,
+                "job_id": job,
+                "job_conclusion": conclusion,
+                "workflow_blob": workflow_blob,
+                "audited_merge_candidate_sha": checkout["tested_sha"],
+                "audited_merge_candidate_tree": checkout["tested_tree"],
+            },
+        }
     if aggregate["status"] == "aggregate_success_attested":
         require(
             aggregate["base_sha"] == pull["base_sha"]
@@ -342,20 +412,7 @@ def observe(api, args, *, validated_roster=None):
     collector = verify_receipt(
         api, receipt, origin, args.audited_revision, args.saves_sha256
     )
-    fresh_run = workflow_run(api, args.workflow_run, pull)
-    aggregate_run = run_identity(api, args.aggregate_run, pull)
-    if (
-        pull_identity(api, args.pull) != pull
-        or any(
-            fresh_run[key] != run[key]
-            for key in ("workflow_id", "check_suite_id", "run_attempt")
-        )
-        or not latest_run(api, pull, run["workflow_id"], args.workflow_run, EVENT)
-        or aggregate_run["run_attempt"] != args.aggregate_attempt
-        or aggregate_run["status"] != "completed"
-        or aggregate_run["conclusion"] != aggregate["aggregate_conclusion"]
-        or not latest_run(api, pull, aggregate_run["workflow_id"], args.aggregate_run)
-    ):
+    if not current_observation(api, args, pull, run, aggregate):
         return {**result, "status": "superseded"}
     return {
         **result,

@@ -9,6 +9,7 @@ from pathlib import Path
 
 from EventHistory import event_window
 from PilotDependencyTiming import dependency_timing
+from PilotWaitTiming import WaitTiming
 from Records import canonical
 
 ACTIONS = {
@@ -68,13 +69,16 @@ def tally_event(activity, event):
         activity["other_events"] += 1
 
 
-def operating_report(store, start, end, after, through, *, time_dependencies=False):
+def operating_report(
+    store, start, end, after, through, *, time_dependencies=False, time_waits=False
+):
     if not (0 <= start < end <= time.time() and math.isfinite(end)):
         raise ValueError("request an increasing past Unix-time window")
     cursor, scanned, selected = after, 0, 0
     activity = activity_tally()
     identity = hashlib.sha256()
     receipts = {}
+    waits = WaitTiming() if time_waits else None
     while True:
         page = event_window(store, None, cursor, through)
         through = page["through"]
@@ -86,13 +90,17 @@ def operating_report(store, start, end, after, through, *, time_dependencies=Fal
             if start <= instant < end:
                 identity.update(canonical(event).encode("utf-8") + b"\n")
                 tally_event(activity, event)
+                if waits is not None:
+                    waits.observe(event)
                 if time_dependencies and event["action"] == "finished":
                     detail = json.loads(event["detail"])
                     if detail["outcome"] == "completed" and not detail.get(
                         "waiting_ci_inputs"
                     ):
                         if detail["receipt"] in receipts:
-                            raise ValueError("duplicate accepted dependency timing event")
+                            raise ValueError(
+                                "duplicate accepted dependency timing event"
+                            )
                         receipts[detail["receipt"]] = event
                 selected += 1
         cursor = page["next_after"]
@@ -113,6 +121,8 @@ def operating_report(store, start, end, after, through, *, time_dependencies=Fal
     }
     if time_dependencies:
         report["dependency_timing"] = dependency_timing(store, receipts)
+    if waits is not None:
+        report["settlement_to_next_claim"] = waits.summary()
     return report
 
 
@@ -126,6 +136,7 @@ def main():
     parser.add_argument("--after", type=int, default=0)
     parser.add_argument("--through", type=int)
     parser.add_argument("--dependency-timing", action="store_true")
+    parser.add_argument("--wait-timing", action="store_true")
     args = parser.parse_args()
     try:
         output = operating_report(
@@ -135,6 +146,7 @@ def main():
             args.after,
             args.through,
             time_dependencies=args.dependency_timing,
+            time_waits=args.wait_timing,
         )
         print(canonical(output))
         return 0

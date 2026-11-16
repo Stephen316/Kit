@@ -62,6 +62,11 @@ def CheckCiObserve(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
         ("success", "archive_gate_verified"),
         ("aggregate_failed", "archive_gate_verified"),
         ("job_failed_later", "archive_steps_verified_job_failed"),
+        ("gate_failed", "archive_gate_failed"),
+        ("gate_failed_rerun", "superseded"),
+        ("gate_failed_bad_source", "refused"),
+        ("gate_failed_green", "refused"),
+        ("gate_failed_upstream", "refused"),
         ("quality_other_live", "archive_gate_verified"),
         ("quality_rerun", "superseded"),
         ("wrong_audit", "refused"),
@@ -93,9 +98,18 @@ def CheckArchiveObs(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
     assert Report["status"] == Expected
     assert Report["member_attribution"] == "unavailable"
     if Expected == "superseded":
-        assert "archive_gate" not in Report
+        assert "archive_gate" not in Report and "archive_failure" not in Report
         return
-    Evidence = Report["archive_gate"]
+    if Expected == "archive_gate_failed":
+        AssertGateFail(Report)
+        return
+    AssertGatePass(Report, CaseName)
+
+
+# successful gate observation requires the archive before aggregate lineage is considered
+def AssertGatePass(Report: dict[str, object], CaseName: str) -> None:
+    Evidence = JsonCodec.loads(JsonCodec.dumps(Report["archive_gate"]))
+    Aggregate = JsonCodec.loads(JsonCodec.dumps(Report["aggregate"]))
     assert Evidence["job_id"] == 5 and Evidence["artifact_id"] == 6
     JobConclusion = "failure" if CaseName == "job_failed_later" else "success"
     assert Evidence["job_conclusion"] == JobConclusion
@@ -103,8 +117,32 @@ def CheckArchiveObs(TmpPath: FilePath, CaseName: str, Expected: str) -> None:
     assert len(Evidence["receipt_sha256"]) == 64
     assert Evidence["receipt"]["origin"]["tested_sha"] == "3" * 40
     if CaseName in ("aggregate_failed", "job_failed_later", "quality_other_live"):
-        assert Report["aggregate"]["status"] == "aggregate_failure_unattributed"
-        assert "tested_merge_sha" not in Report["aggregate"]
+        assert Aggregate["status"] == "aggregate_failure_unattributed"
+        assert "tested_merge_sha" not in Aggregate
     else:
-        assert Report["aggregate"]["status"] == "aggregate_success_attested"
-        assert Report["aggregate"]["tested_merge_sha"] == "3" * 40
+        assert Aggregate["status"] == "aggregate_success_attested"
+        assert Aggregate["tested_merge_sha"] == "3" * 40
+
+
+# failed step metadata can explain waiting without attesting to a member or receipt
+def AssertGateFail(Report: dict[str, object]) -> None:
+    assert "archive_gate" not in Report
+    Failure = JsonCodec.loads(JsonCodec.dumps(Report["archive_failure"]))
+    assert Failure["run_id"] == 4 and Failure["run_attempt"] == 1
+    assert Failure["job_id"] == 5 and Failure["job_conclusion"] == "failure"
+    assert (
+        Failure["failed_step"]
+        == "Verify saved discovery evidence through both native archive readers"
+    )
+    assert [
+        (StepInfo["number"], StepInfo["conclusion"]) for StepInfo in Failure["steps"]
+    ] == [
+        (14, "failure"),
+        (15, "skipped"),
+        (16, "skipped"),
+    ]
+    assert Failure["audited_merge_candidate_sha"] == "3" * 40
+    assert len(Failure["workflow_blob"]) == 40
+    Aggregate = JsonCodec.loads(JsonCodec.dumps(Report["aggregate"]))
+    assert Aggregate["status"] == "aggregate_failure_unattributed"
+    assert "tested_merge_sha" not in Aggregate

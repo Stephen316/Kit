@@ -17,6 +17,10 @@ Use the [pinned private evidence report](PrivatePilotEvidence.md) to attach sepa
 
 Add `--dependency-timing` to measure the longest settled dependency chain by summed controller attempt time. The report starts at completed, nonprovisional settlement events in the selected window and follows the exact historical receipts declared as dependencies. Earlier ancestors contribute when those receipts bind the consumed job, result and timing. Each node's duration runs from its controller claim start to the receipt finish. The report gives path-wide attempt time, separate from readiness wait, retry time and independent application acceptance.
 
+Add `--wait-timing` to measure the controller time from a recorded `waiting_application`, `waiting_evidence` or `waiting_ci` settlement to the same job's next claim within the fixed window. A new definition, invalidation or another settlement before the next claim ends that attribution. Waits with no next claim at the cutoff are reported separately, without a duration. The measurement includes any time spent queued after the job could proceed. It covers waits with explicit settlement events and does not reconstruct pending prerequisites that did not produce one.
+
+The retained Windows recovery run had one recorded evidence wait without a subsequent claim inside its 79-event cutoff. A disposable controller run confirmed timed application rearm, an evidence wait superseded by a new definition and a CI wait whose next claim was still unobserved. Both reports replayed with unchanged store bytes. [Recovery commissioning](OfflinePilotCommissioning.md)
+
 The first replay used the [P03 affected depth run](../Inference/FusionDepthAffectedReplay.md). The retained store had 72 events and ten completed attempts. The longest path linked the signed-depth assessment to one archive rescan and totaled 5.37 attempt seconds. The command replayed the same bytes twice without changing the ledger. This measures the historical controller workload.
 
 Hosted controller coverage exercises multiple pages, an event appended beyond the fixed cutoff, a parked claim, replay and byte-identical readback of the store.

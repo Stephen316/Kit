@@ -248,12 +248,18 @@ def main():
             api, args, validated_roster=(roster["batch_revision"], roster["payload_sha256"])
         )
         aggregate_status = (evidence.get("aggregate") or {}).get("status")
-        if evidence["status"] != "archive_gate_verified" or aggregate_status != "aggregate_success_attested":
-            print(canonical({
+        if (
+            evidence["status"] != "archive_gate_verified"
+            or aggregate_status != "aggregate_success_attested"
+        ):
+            waiting = {
                 "status": "waiting_ci",
                 "observation": evidence["status"],
                 "aggregate": aggregate_status,
-            }))
+            }
+            if evidence["status"] == "archive_gate_failed":
+                waiting["archive_failure"] = evidence["archive_failure"]
+            print(canonical(waiting))
             return 0
         with Ledger(args.store) as ledger:
             response = release(ledger, roster, evidence)

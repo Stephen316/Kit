@@ -17,6 +17,8 @@ class ArchiveFixture(ReplyFixture):
         super().__init__(
             "failed"
             if case in ("aggregate_failed", "job_failed_later", "quality_other_live")
+            or case.startswith("gate_failed")
+            and case != "gate_failed_green"
             else "success"
         )
         self.archive_case = case
@@ -107,7 +109,10 @@ class ArchiveFixture(ReplyFixture):
 
     def completed(self):
         conclusion = "success"
-        if self.archive_case in ("job_failed_later", "job_failed_before"):
+        if self.archive_case in (
+            "job_failed_later",
+            "job_failed_before",
+        ) or self.archive_case.startswith("gate_failed"):
             conclusion = "failure"
         if self.archive_case == "job_cancelled":
             conclusion = "cancelled"
@@ -123,7 +128,10 @@ class ArchiveFixture(ReplyFixture):
         if path == "actions/runs/4":
             self.quality_runs += 1
             result = self.quality()
-            if self.archive_case == "quality_rerun" and self.quality_runs > 1:
+            if (
+                self.archive_case in ("quality_rerun", "gate_failed_rerun")
+                and self.quality_runs > 1
+            ):
                 result["run_attempt"] = 2
             return result
         if path == "actions/workflows/31":
@@ -145,6 +153,19 @@ class ArchiveFixture(ReplyFixture):
             ]
             if self.archive_case == "wrong_step":
                 steps[0]["conclusion"] = "skipped"
+            if self.archive_case.startswith("gate_failed"):
+                for number, step in enumerate(steps, 14):
+                    step["number"] = number
+                    step["conclusion"] = "failure" if number == 14 else "skipped"
+            if self.archive_case == "gate_failed_upstream":
+                steps.append(
+                    {
+                        "name": "Independent prerequisite",
+                        "number": 13,
+                        "status": "completed",
+                        "conclusion": "failure",
+                    }
+                )
             if self.archive_case in ("job_failed_later", "job_failed_before"):
                 number = (
                     len(GATE_STEPS) + 2
@@ -181,6 +202,8 @@ class ArchiveFixture(ReplyFixture):
                 "details_url": self.url,
             }
         if path == "actions/runs/4/artifacts?per_page=100":
+            if self.archive_case.startswith("gate_failed"):
+                raise AssertionError("a failed gate has no archive receipt to consult")
             return {
                 "total_count": 1,
                 "artifacts": [
@@ -211,7 +234,10 @@ class ArchiveFixture(ReplyFixture):
         if path.startswith("contents/") and path.endswith(f"?ref={MERGE}"):
             name = path.removeprefix("contents/").split("?", 1)[0]
             blob = self.blob(name)
-            if self.archive_case == "wrong_source" and name == WORKFLOW:
+            if (
+                self.archive_case in ("wrong_source", "gate_failed_bad_source")
+                and name == WORKFLOW
+            ):
                 blob = "d" * 40
             return {"path": name, "type": "file", "sha": blob}
         return super().record(path)
