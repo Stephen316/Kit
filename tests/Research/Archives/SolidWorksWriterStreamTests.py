@@ -76,6 +76,19 @@ def CheckProfile() -> None:
     )
 
 
+# the trimmed profile must return its shared file allocation with all side members intact
+def CheckRectTrim() -> None:
+    Report = LoadReport("VerifyRectTrim.py", 14)
+    assert Report["constructed"] is True
+    assert Report["path_forms"] == 2
+    assert Report["side_orders"] == 4
+    assert Report["extrusion_returns"] == 8
+    assert (
+        Report["trim_replay_sha256"]
+        == "772dc555b6cfbe4264ca8701b15da6787d881f3496457c2c816953fb13bf511c"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
