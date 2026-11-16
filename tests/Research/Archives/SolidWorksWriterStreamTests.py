@@ -82,8 +82,10 @@ def CheckResPlanes() -> None:
         == "58ea10925023d080a670a3e10884043677ad584cca704864f52a47860bea86c2"
     )
     OriginRecords = Report["origin_records"]
-    assert isinstance(OriginRecords, dict)
-    assert len(CastValue(dict[str, object], OriginRecords)) == 14
+    assert (
+        isinstance(OriginRecords, dict)
+        and len(CastValue(dict[str, object], OriginRecords)) == 14
+    )
     Encoded = JsonCodec.dumps(OriginRecords, sort_keys=True, separators=(",", ":"))
     assert (
         DigestBytes(Encoded.encode("ascii")).hexdigest()
