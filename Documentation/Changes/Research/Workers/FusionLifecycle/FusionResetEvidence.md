@@ -36,6 +36,7 @@ The hosted fixture starts a disposable macOS application and settles real
 A03 attempts. It checks a replaced job generation, duplicated request
 identity, another process lifetime, an unattributed completion, and both
 comparison limits. The controller database bytes must remain unchanged.
-Hosted execution is pending.
+The fixture passed in the 164-case hosted macOS run at PR head `27cb8d54`.
+[Hosted macOS job](https://github.com/TryUniCAD/Kit/actions/runs/43797562452/job/133069853452)
 
 [Current native resident memory evidence](FusionNativeResidentMemory.md)

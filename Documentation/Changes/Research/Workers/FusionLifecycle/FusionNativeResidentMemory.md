@@ -14,4 +14,6 @@ memory limit, history, or restart action.
 The existing hosted macOS fixture compares the reported bytes with an
 independent system reading of its disposable AppKit process. It also checks
 that the fixture's Python process cannot stand in for the pinned peer.
-Hosted execution and licensed Fusion measurements remain pending.
+The fixture passed in the 164-case hosted macOS run at PR head `27cb8d54`.
+Licensed Fusion measurements remain open.
+[Hosted macOS job](https://github.com/TryUniCAD/Kit/actions/runs/43797562452/job/133069853452)
