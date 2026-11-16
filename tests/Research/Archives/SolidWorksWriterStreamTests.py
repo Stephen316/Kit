@@ -568,3 +568,12 @@ def CheckCfgLists() -> None:
         Report["replay_sha256"]
         == "6c8aa5c122c06bb984a2bd519c74a5c0d2d165f34586c7c07ace6dee98154da0"
     )
+
+
+# the generated cache brackets and manager must leave the exact resolved archive map
+def CheckCfgEnd() -> None:
+    Report = LoadReport("VerifyCfgPartEnd.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "cd16fa11ca352bbc39545ff7c5d8c3afd78f4bdc61ef611cc1f92150c39c8e34"
+    )
