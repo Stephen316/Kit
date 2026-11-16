@@ -7,14 +7,16 @@ from HeaderLogs import ReadHeaderLogs
 from HeaderTail import KFrameTolerance
 from PartArchive import PartArchiveState, PartArchiveWriter
 from PrincipalPlaneView import BuildPlaneView, KPrincipalFrames
-from ResolvedCabinet import ReadCabinetRec
-from ResolvedFolderTail import ReadLateFolders
-from ResolvedFolders import ReadSysFolders
+from ResolvedCabinet import ReadCabinetRec, WriteCabinetRec
+from ResolvedFolderTail import ReadLateFolders, WriteLateFolders
+from ResolvedFolders import ReadSysFolders, WriteSysFolders
+from ResolvedOrigin import ReadOriginRec, WriteOriginRec
 from ResolvedPrincipal import ReadResolvedPlanes, WriteResolvedPlanes
 from VerifyModelHeader import measured_bounds
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Resolved.OriginProfile import ReadOrigin
 from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
 
@@ -38,6 +40,14 @@ def verify_inspection(planes, normal, archive, generation, measurement):
         row["name"] for row in measurement["feature_tree"] if row["type"] == "RefPlane"
     }
     bounds = measured_bounds(measurement)
+    require(
+        ("Origin", 5) in logged
+        and any(
+            (row["name"], row["type"]) == ("Origin", "OriginProfileFeature")
+            for row in measurement["feature_tree"]
+        ),
+        "licensed origin feature identity",
+    )
     for plane, datum, frame in zip(
         planes, normal.Planes, KPrincipalFrames, strict=True
     ):
@@ -71,11 +81,13 @@ def inspect_planes(archive, measurement, construct):
     config, model = ReadOrdinaryMap(archive.require("Contents/Config-0"), generation)
     stream = archive.require("Contents/Config-0-ResolvedFeatures")
     cursor = OpenResolved(stream, config, 18 + model["atom_count"])
-    normal_cursor = map_state(cursor).Cursor(stream, cursor.Offset)
+    prefix_start = cursor.Offset
+    config_map = map_state(cursor)
+    normal_cursor = config_map.Cursor(stream, prefix_start)
     normal = ReadSysPrefix(normal_cursor)
-    ReadSysFolders(cursor, generation)
-    ReadCabinetRec(cursor, generation)
-    ReadLateFolders(cursor, generation)
+    folders = ReadSysFolders(cursor, generation)
+    cabinet = ReadCabinetRec(cursor, generation)
+    later = ReadLateFolders(cursor, generation)
     start = cursor.Offset
     before = map_state(cursor)
     require(
@@ -90,33 +102,67 @@ def inspect_planes(archive, measurement, construct):
         "package plane return map",
     )
     verify_inspection(planes, normal, archive, generation, measurement)
-    if construct:
-        writer = PartArchiveWriter(before)
-        WriteResolvedPlanes(writer, generation, planes)
-        require(
-            writer.build() == stream[start:end], "exact typed principal plane bytes"
-        )
-        require(
-            writer.Snapshot() == map_state(cursor), "constructed principal plane map"
-        )
-    return (
+    plane_result = (
         start,
         end,
         before.NextIndex,
         cursor.NextIndex,
         sha256(stream[start:end]).hexdigest(),
     )
+    plane_map = map_state(cursor)
+    normal_origin = ReadOrigin(normal_cursor, generation)
+    origin = ReadOriginRec(cursor, generation)
+    require(
+        cursor.Offset == normal_cursor.Offset
+        and map_state(cursor) == map_state(normal_cursor)
+        and (
+            origin.PartObject,
+            origin.SupportTreeId,
+            origin.SupportTime,
+            origin.ProfileState,
+        )
+        == (
+            normal_origin.Support.PartIndex,
+            normal_origin.Support.FeatureId,
+            normal_origin.Support.TimeValue,
+            normal_origin.StateValue,
+        )
+        and origin.SupportTreeId == normal.Planes[0].FeatureId,
+        "package origin return map and reference identity",
+    )
+    if construct:
+        writer = PartArchiveWriter(config_map)
+        WriteSysFolders(writer, generation, folders)
+        WriteCabinetRec(writer, generation, cabinet)
+        WriteLateFolders(writer, generation, later)
+        require(writer.Snapshot() == before, "constructed folder and cabinet map")
+        WriteResolvedPlanes(writer, generation, planes)
+        require(
+            writer.build() == stream[prefix_start:end], "exact folders and datums"
+        )
+        require(writer.Snapshot() == plane_map, "constructed principal plane map")
+        WriteOriginRec(writer, generation, origin)
+        require(
+            writer.build() == stream[prefix_start : cursor.Offset],
+            "exact resolved prefix through origin",
+        )
+        require(writer.Snapshot() == map_state(cursor), "constructed origin map")
+    return plane_result, sha256(stream[end : cursor.Offset]).hexdigest()
 
 
 # each evidence row binds native plane coverage to an independently pinned asset
 def report(construct):
     rows = []
+    origins = {}
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        rows.append((asset["sha256"], *inspect_planes(archive, measurement, construct)))
+        planes, origin_digest = inspect_planes(archive, measurement, construct)
+        rows.append((asset["sha256"], *planes))
+        origins[asset["sha256"]] = origin_digest
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
+        "origin_records": origins,
         "constructed": construct,
         "replay_sha256": sha256(
             json.dumps(rows, separators=(",", ":")).encode()

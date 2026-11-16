@@ -79,10 +79,16 @@ def CheckFolderMap(Writer: ArchiveWriter, Classes: tuple[str, ...], Slots: int) 
 
 
 # the shared node fields precede each subclass's list and feature body
-def WriteFolderName(Writer: ArchiveWriter, EncodedName: bytes, TreeId: int) -> None:
+def WriteFolderName(
+    Writer: ArchiveWriter,
+    EncodedName: bytes,
+    TreeId: int,
+    *,
+    Flags: int = KNodeFlags,
+) -> None:
     Writer.begin_object(KNameClass, 1)
     Writer.raw(EncodedName)
-    Writer.raw(PackFields("<iIii", 0, KNodeFlags, TreeId, 0))
+    Writer.raw(PackFields("<iIii", 0, Flags, TreeId, 0))
     Writer.string("")
     Writer.i32(0)
     Writer.raw(EncodeNull())

@@ -19,6 +19,8 @@ The width and height edits move only their respective local coordinates. The inc
 
 ## Remaining authoring boundary
 
+The [generation-19000 authored profile opening](../WriterResearch/AuthoredProfile.md) constructs the enclosing feature and sketch allocation through the point count. Its replay extends the measured point and line field evidence to all fourteen P01/P03 discovery saves.
+
 The first physical corner starts at resolved byte 5,777 in these captures. Its 17-byte visual record at 5,787–5,804 and its standard width now have constructive field rules. The physical members' solved color and constraint state and the compact-branch selection still require evidence. The first physical point also introduces the `sgLineHandle` class before later point rows refer to it. That allocation must come from the authored graph traversal. The external Origin proxy has its distinct `sgExtEnt_c` pointer at byte 6,486. [Default member visual and width](SketchStyleFields.md)
 
 The first line spans 6,910–7,002. It has native ID −1, endpoints at slots 0 and 1, and curve contour word 0. The four independently measured perimeter lines have contour word 1. The former is a structural slot in this profile grammar. The flags and trailing words are reported observations. The current controls establish neither its complete neutral construction rule nor the direction-vector branch. The loader stores constructor state, display state and references that require their own proofs. [Curve base field names](../records/Sketch.md#2-fun_4c5d1b60--the-shared-curve-base-of-sgarc-and-sgline--partial)

@@ -14,7 +14,7 @@ from PrincipalPlaneView import (
     PrincipalFrame,
     RequirePlaneView,
 )
-from ResolvedFolders import CheckFolderMap, KNameClass
+from ResolvedFolders import CheckFolderMap, KNameClass, WriteFolderName
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KDefinitionKind,
@@ -148,12 +148,7 @@ def WriteResolvedPlanes(
         RequirePlaneView(Plane.View)
     for Name, Frame, Plane in zip(Names, KPrincipalFrames, Planes, strict=True):
         Writer.BeginObject(KPlaneClass, 1)
-        Writer.BeginObject(KNameClass, 1)
-        Writer.raw(Name)
-        Writer.raw(PackFields("<iIii", 0, KPlaneFlags, Plane.TreeId, 0))
-        Writer.string("")
-        Writer.i32(0)
-        Writer.raw(EncodeNull())
+        WriteFolderName(Writer, Name, Plane.TreeId, Flags=KPlaneFlags)
         Writer.u16(0)
         Writer.i32(0)
         WriteArcFeature(Writer, Generation, Plane.Feature)

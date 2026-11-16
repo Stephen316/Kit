@@ -28,6 +28,17 @@ def LoadReport(ProgramName: str, CaptureCount: int = 25) -> dict[str, object]:
     return Report
 
 
+# the authored profile opening must transfer its owned sketch and point count
+def CheckProfile() -> None:
+    Report = LoadReport("VerifyAuthoredProfile.py", 14)
+    assert Report["constructed"] is True
+    assert Report["nonzero_regen_times"] == 2
+    assert (
+        Report["replay_sha256"]
+        == "94e7a495ed5aab2ba98e8833c5154869c0d0678dc778e8ef2387d7b83b189156"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
@@ -65,6 +76,13 @@ def CheckResPlanes() -> None:
     assert (
         Report["replay_sha256"]
         == "58ea10925023d080a670a3e10884043677ad584cca704864f52a47860bea86c2"
+    )
+    OriginRecords = Report["origin_records"]
+    assert isinstance(OriginRecords, dict) and len(OriginRecords) == 14
+    Encoded = JsonCodec.dumps(OriginRecords, sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "591a9357a828d8dff9e062896cf3478d366f3aa084b0f10a6ac28c74aefcad81"
     )
 
 
@@ -136,6 +154,15 @@ def CheckCfgSplits() -> None:
     assert (
         Report["replay_sha256"]
         == "4dc6ac3465879123e0271e20a88ac585652414ba86f531243b37a442c52292c3"
+    )
+
+
+# the atom binding must follow both the independent map and native Boss owner
+def CheckCfgAtoms() -> None:
+    Report = LoadReport("VerifyConfigAtoms.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "193129f1559b395334b21a75f00b49ccf19f343b83ccb95ce63bdab175d83865"
     )
 
 

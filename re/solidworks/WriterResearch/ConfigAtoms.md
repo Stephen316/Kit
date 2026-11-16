@@ -13,8 +13,8 @@ to you under it immediately and permanently.
 This A12 result covers the `Contents/Config-0` atom list through the start of
 `moRelMgr_c` and the atom references in `Contents/Config-0-ResolvedFeatures`.
 The wire and ownership observations apply to generation 19000 discovery
-captures. Atom-value synthesis and the complete configuration writer remain
-unverified.
+captures. [Typed ordinary atom construction](ConfigAtomManager.md) now covers
+the P01 and P03 manager profiles with an explicit kernel body tag for P03.
 
 ## Discovery measurements
 
@@ -97,9 +97,9 @@ to read both operation references and the cut's parent reference.
 
 The two tail words at body offsets 70 and 78 are equal within every atom and
 take distinct values among the P03 captures, including 21457 and 21743 in
-the two baseline saves. Their initializer and loader requirements remain
-unknown. The next probe is to trace the saved values into the atom serializer,
-then distinguish generated state from an allowed default with existing
-same-model controls. The relation, presentation, and other configuration
-fields still need independent construction rules. This comparison produced no
-new SLDPRT, vendor load, rebuild, or editable acceptance evidence.
+the two baseline saves. They are stored by the partition rollback geometry
+branch. The [native trace](ConfigAtomManager.md#partition-rollback-geometry)
+identifies the geometry registration required to construct the P03 case.
+The relation and presentation fields still need independent construction
+rules. Future native acceptance must include load, rebuild and editable
+geometry verification.

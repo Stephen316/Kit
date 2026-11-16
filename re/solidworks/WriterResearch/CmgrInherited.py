@@ -1,4 +1,5 @@
 from dataclasses import dataclass as Dataclass
+from math import isfinite as IsFinite
 from struct import pack as PackFields
 
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -21,6 +22,7 @@ class ArchiveFeature:
     LastGeneration: int
     LastBuild: int
     FileTime: Stamp
+    RegenTime: float = 0.0
 
 
 # manager and part features take independent high and low words from their callers
@@ -37,7 +39,9 @@ def RequireCmgrTime(Generation: int, StampValue: Stamp) -> None:
 
 
 # callers can validate every feature before changing the live archive allocator
-def CheckArcFeature(Generation: int, State: ArchiveFeature) -> None:
+def CheckArcFeature(
+    Generation: int, State: ArchiveFeature, *, AllowRegenTime: bool = False
+) -> None:
     RequireCmgrTime(Generation, State.FileTime)
     RequireArch(
         type(State.UpdateStamp) is int
@@ -49,13 +53,31 @@ def CheckArcFeature(Generation: int, State: ArchiveFeature) -> None:
         True,
         "ordinary feature update words",
     )
+    CheckRegenTime(State.RegenTime, AllowRegenTime)
+
+
+# the folder and manager paths keep the existing exact zero timing field
+def CheckRegenTime(Value: float, Allowed: bool) -> None:
+    RequireArch(
+        (
+            IsFinite(Value) and Value >= 0.0
+            if Allowed
+            else PackFields("<d", Value) == bytes(8)
+        ),
+        True,
+        "ordinary feature regeneration time",
+    )
 
 
 # the ordinary feature branch saves the version and timestamp fields separately
 def WriteArcFeature(
-    Writer: ArchiveWriter, Generation: int, State: ArchiveFeature
+    Writer: ArchiveWriter,
+    Generation: int,
+    State: ArchiveFeature,
+    *,
+    AllowRegenTime: bool = False,
 ) -> None:
-    CheckArcFeature(Generation, State)
+    CheckArcFeature(Generation, State, AllowRegenTime=AllowRegenTime)
     Writer.raw(
         PackFields(
             "<iiIBiiiidi",
@@ -67,7 +89,7 @@ def WriteArcFeature(
             State.LastGeneration,
             State.LastBuild,
             Generation,
-            0.0,
+            State.RegenTime,
             KBuildVersion,
         )
     )
@@ -89,7 +111,9 @@ def WriteArcFeature(
 
 
 # the shared feature reader guards the inactive members before returning saved state
-def ReadArcFeature(Cursor: ArchiveCursor, Generation: int) -> ArchiveFeature:
+def ReadArcFeature(
+    Cursor: ArchiveCursor, Generation: int, *, AllowRegenTime: bool = False
+) -> ArchiveFeature:
     RequireArch(Generation, 19000, "CMgr inherited feature generation")
     (
         First,
@@ -100,14 +124,15 @@ def ReadArcFeature(Cursor: ArchiveCursor, Generation: int) -> ArchiveFeature:
         LastGeneration,
         LastBuild,
         Version,
-        Zero,
-        Build,
-    ) = Cursor.ReadInts("<iiIBiiiiQi")
+    ) = Cursor.ReadInts("<iiIBiiii")
+    (RegenTime,) = Cursor.ReadPoint(1)
+    (Build,) = Cursor.ReadInts("<i")
     RequireArch(
-        (First, Second, HasText, Fourth, Version, Zero, Build),
-        (0, 0, 0, 0, Generation, 0, KBuildVersion),
+        (First, Second, HasText, Fourth, Version, Build),
+        (0, 0, 0, 0, Generation, KBuildVersion),
         "CMgr inherited feature opening",
     )
+    CheckRegenTime(RegenTime, AllowRegenTime)
     RequireArch(
         min(LastGeneration, LastBuild) >= 0, True, "ordinary feature update version"
     )
@@ -126,7 +151,7 @@ def ReadArcFeature(Cursor: ArchiveCursor, Generation: int) -> ArchiveFeature:
         "CMgr inherited feature return",
     )
     return ArchiveFeature(
-        UpdateStamp, LastGeneration, LastBuild, Stamp(Fields[6], Fields[7])
+        UpdateStamp, LastGeneration, LastBuild, Stamp(Fields[6], Fields[7]), RegenTime
     )
 
 
