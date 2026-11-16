@@ -71,11 +71,15 @@ def read_sealed(path, expected, limit):
     directory(path.absolute().parent)
     before = plain(path)
     require(0 < before.st_size <= limit, "sealed input exceeds its byte limit")
-    descriptor = os.open(path, os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0))
+    descriptor = os.open(
+        path,
+        os.O_RDONLY | getattr(os, "O_NOFOLLOW", 0) | getattr(os, "O_NONBLOCK", 0),
+    )
     with os.fdopen(descriptor, "rb") as source:
         opened = os.fstat(source.fileno())
         require(
-            (opened.st_dev, opened.st_ino) == (before.st_dev, before.st_ino),
+            stat.S_ISREG(opened.st_mode)
+            and (opened.st_dev, opened.st_ino) == (before.st_dev, before.st_ino),
             "sealed input identity changed",
         )
         raw = source.read(limit + 1)
