@@ -53,8 +53,8 @@ def EncodePackageXml(Root: Element, *, Standalone: bool) -> bytes:
     Declaration = '<?xml version="1.0"'
     if Standalone:
         Declaration += ' encoding="UTF-8" standalone="yes"'
-    Body = tostring(Root, encoding="utf-8").replace(b" />", b"/>")
-    return (Declaration + "?>\r\n").encode("ascii") + Body + b"\r\n"
+    Body: bytes = tostring(Root, encoding="utf-8")
+    return (Declaration + "?>\r\n").encode("ascii") + Body.replace(b" />", b"/>") + b"\r\n"
 
 
 # Resolve every relationship against the exact canonical emitted stream path.
