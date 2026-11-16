@@ -57,28 +57,29 @@ def attempt_snapshot(objects, attempt):
             raise ValueError("an open claim lacks its current controller snapshot")
         snapshot = json.loads(attempt["current_snapshot"])
     else:
-        receipt = stored_record(objects, attempt["receipt"])
-        expected = {
-            "receipt_version": 1,
-            "job_id": attempt["job_id"],
-            "generation": attempt["generation"],
-            "attempt": attempt["number"],
-            "execution_id": attempt["id"],
-            "fingerprint": attempt["fingerprint"],
-        }
-        if not all(receipt[key] == value for key, value in expected.items()):
-            raise ValueError(
-                "a closed claim receipt does not match its historical attempt"
-            )
-        finished = receipt["finished_at"]
-        if not attempt["started"] <= finished <= attempt["ended"]:
-            raise ValueError(
-                "a closed claim receipt has an inconsistent completion time"
-            )
-        snapshot = receipt["snapshot"]
+        return closed_attempt_receipt(objects, attempt)["snapshot"]
     if digest(snapshot) != attempt["fingerprint"]:
         raise ValueError("claim occupancy snapshot fingerprint differs")
     return snapshot
+
+
+def closed_attempt_receipt(objects, attempt):
+    receipt = stored_record(objects, attempt["receipt"])
+    expected = {
+        "receipt_version": 1,
+        "job_id": attempt["job_id"],
+        "generation": attempt["generation"],
+        "attempt": attempt["number"],
+        "execution_id": attempt["id"],
+        "fingerprint": attempt["fingerprint"],
+    }
+    if not all(receipt[key] == value for key, value in expected.items()):
+        raise ValueError("a closed claim receipt does not match its historical attempt")
+    if not attempt["started"] <= receipt["finished_at"] <= attempt["ended"]:
+        raise ValueError("a closed claim receipt has an inconsistent completion time")
+    if digest(receipt["snapshot"]) != attempt["fingerprint"]:
+        raise ValueError("claim occupancy snapshot fingerprint differs")
+    return receipt
 
 
 def claim_intervals(objects, attempts, resource, start, end):
