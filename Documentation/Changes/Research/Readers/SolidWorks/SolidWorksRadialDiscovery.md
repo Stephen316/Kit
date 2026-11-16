@@ -44,3 +44,9 @@ The single configuration atom, its body region, the resolved transfer and the ac
 The same bounded reader also accepts all three separately restored copies with their repackaged bytes. Profile and boss values agree with the originals after reopening, while their resolved stream and active partition digests differ.
 
 Rehashed scratch controls were refused when the cap alias pointed to the other valid cap, the side occurrence differed from the saved circle, the distance definition schema changed or the active shell atom differed from the configuration. The earlier two checkpoint outputs reproduced their sealed observations.
+
+## Packaged circular boss readback
+
+The public SOLIDWORKS reader follows the same typed circular sketch and terminal blind-boss records for the witnessed generation-19000 profile. It retains the existing closed-profile identity, exposes the driving diameter and the ordered center-to-Origin coincidence, and gives the boss its saved sketch, direction, support and driving depth. The active partition binds to the same body atom as the selected configuration and extrusion. Its bounded cylindrical measurements are available in either BRep mode. When requested, the decoded active solid carries the existing neutral body identity.
+
+An inconsistent owner, support, chooser, extent or active partition leaves the compatibility result intact and records an unresolved circular projection. The packaged path verifies the three original licensed sources and the three separately restored copies. The private source captures and the existing archive digest checkpoints remain reproducible. This result covers reading the measured circular sketch and positive blind boss. Native output acceptance and the remaining A04c qualification gates are tracked separately.

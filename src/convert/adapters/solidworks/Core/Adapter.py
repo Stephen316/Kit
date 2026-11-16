@@ -146,6 +146,7 @@ from convert.adapters.solidworks.Core.EquationTarget import (
 )
 from convert.adapters.solidworks.Core.BindInch import KUnresolvedInchDimension
 from convert.adapters.solidworks.Core.BossProjection import BindBossAxis
+from convert.adapters.solidworks.Core.CircularProjection import ProjectCircularDoc
 from convert.adapters.solidworks.Core.ParseDisplay import (
     KInformationStream,
     ParseDisplay,
@@ -460,6 +461,7 @@ def ReadNativePart(
         ProjectCutDoc(DocValue, Model.cut_source), Model, Archive, Payloads, Settings
     )
     DocValue = ProjectPadDoc(DocValue, Archive, Model.active_configuration_id)
+    DocValue = ProjectCircularDoc(DocValue, Model, Archive, Settings.include_brep)
     DocValue.assert_valid()
     ValidateSource(Label, False)
     return RetainSource(DocValue, DataValue)
