@@ -35,13 +35,13 @@ Back up a quiescent store together with its objects; copying a live database fil
 
 Each submitted record must contain these fields:
 
-| Field          | Meaning                                                                             |
-| -------------- | ----------------------------------------------------------------------------------- |
-| `id`           | Stable job label; submitting changed content updates that job's definition          |
-| `kind`         | Worker operation identifier; the controller does not execute this string            |
+| Field          | Meaning                                                                                          |
+| -------------- | ------------------------------------------------------------------------------------------------ |
+| `id`           | Stable job label; submitting changed content updates that job's definition                       |
+| `kind`         | Worker operation identifier; the controller does not execute this string                         |
 | `inputs`       | Object mapping semantic roles to named evidence bindings or accepted dependency output selectors |
-| `rule_version` | Explicit rule version; actual integrations must use an immutable version identifier |
-| `tool_version` | Explicit worker build/version identifier                                            |
+| `rule_version` | Explicit rule version; actual integrations must use an immutable version identifier              |
+| `tool_version` | Explicit worker build/version identifier                                                         |
 
 Optional fields are `depends_on`, `resources`, `options`, `max_attempts`, `lease_seconds`, `timeout_seconds` and `retry_base_seconds`.
 Unknown top-level fields are rejected.
@@ -268,3 +268,9 @@ See [artifact publication across rollbacks](../../Gotchas/Research/ArtifactPubli
 The supervisor's A03 adapter can submit a completed result with declared files under its private `work` directory. The research `finish --output-root` option derives from the adjacent finish record; it does not create global input bindings. The controller verifies at most 64 files and 256 MiB in aggregate, stages their bytes, rechecks the lease, and records durable output hashes only for an accepted completion. Status and dependency checks verify the accepted output objects. Existing finish calls without outputs keep their protocol.
 
 See [durable worker outputs](../../Changes/Research/Workers/DurableWorkerOutputs.md) for schema, path protections, adapter capability and unverified concurrency cases.
+
+The [semantic comparison worker](../../Changes/Research/Controller/SemanticComparisonWorker.md) applies this protocol to pinned neutral documents and a separately pinned tolerance profile.
+It retains large correspondence reports as immutable artifacts and keeps a compact records receipt.
+See the [comparison guide](SemanticComparison.md#run-through-the-controller) for the job contract and its unverified research scope.
+The [native reader worker](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md) produces complete neutral-document and reader-evidence artifacts for these comparisons.
+The [reader-to-comparison batch](SemanticComparison.md#connect-native-reader-jobs) uses accepted dependency output selectors without manual exports.

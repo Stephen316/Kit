@@ -166,7 +166,7 @@ def selections(values):
 
 def references(git, entries, paths):
     files, pins = [], defaultdict(list)
-    total_bytes = total_references = 0
+    selected = []
     for path, entry in sorted(entries.items()):
         if not any(path == prefix or path.startswith(prefix + "/") for prefix in paths):
             continue
@@ -175,13 +175,33 @@ def references(git, entries, paths):
             or PurePosixPath(path).suffix.lower() not in SUFFIXES
         ):
             continue
-        total_bytes += entry["size_bytes"]
-        if (
-            entry["size_bytes"] > MAX_FILE
-            or total_bytes > MAX_SOURCE
-            or len(files) >= MAX_FILES
-        ):
-            raise ValueError("tracked source exceeds the audit file or byte limits")
+        selected.append((path, entry))
+    total_bytes = sum(entry["size_bytes"] for _, entry in selected)
+    oversized = [
+        {"path": path, "size_bytes": entry["size_bytes"]}
+        for path, entry in selected
+        if entry["size_bytes"] > MAX_FILE
+    ]
+    if oversized or total_bytes > MAX_SOURCE or len(selected) > MAX_FILES:
+        details = json.dumps(
+            {
+                "selected_files": len(selected),
+                "selected_bytes": total_bytes,
+                "oversized_files": len(oversized),
+                "oversized_examples": oversized[:8],
+            },
+            sort_keys=True,
+            separators=(",", ":"),
+            ensure_ascii=True,
+        )
+        raise ValueError(
+            "tracked source exceeds the audit file or byte limits: "
+            + details
+            + "; select reviewed files or directories with repeated --path; "
+            "no source blobs were read and no partial inventory was produced"
+        )
+    total_references = 0
+    for path, entry in selected:
         _, raw = git.run("cat-file", "blob", entry["git_blob"], limit=MAX_FILE)
         if len(raw) != entry["size_bytes"]:
             raise ValueError("tracked source differs from its Git tree metadata")
@@ -333,9 +353,7 @@ def main():
     try:
         report = audit(args.root, args.revision, args.main, selections(args.path))
         print(
-            json.dumps(
-                report, sort_keys=True, separators=(",", ":"), ensure_ascii=False
-            )
+            json.dumps(report, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
         )
         return 0
     except (
@@ -346,7 +364,9 @@ def main():
         subprocess.SubprocessError,
     ) as error:
         print(
-            f"history input audit refused ({type(error).__name__}): {error}",
+            f"history input audit refused ({type(error).__name__}): {error}".encode(
+                "ascii", "backslashreplace"
+            ).decode("ascii"),
             file=sys.stderr,
         )
         return 1

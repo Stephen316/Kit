@@ -11,7 +11,7 @@ from pathlib import Path, PureWindowsPath
 from struct import unpack
 import sys
 from tempfile import NamedTemporaryFile
-from typing import cast, TypedDict
+from typing import cast, NotRequired, TypedDict
 from uuid import UUID
 from xml.etree.ElementTree import Element, fromstring
 
@@ -64,6 +64,8 @@ from OrdinaryPackage import (
     BuildOrdinaryPackage,
     PackageState,
 )
+from OrdinaryProfile import OrdinaryProfile
+from PackPartPreviews import KNativeResolution
 from PackageIndices import PackageXmlState
 from PartConfigHeaderDb import KConfigDb, ConfigExchange
 from PartContentBinding import PackageContent
@@ -86,6 +88,15 @@ from PartOle import ReadPartOle
 from PartOpc import CORE_PROPERTIES
 from PartOpenTime import OPEN_TIME_STREAM, ReadPartOpenTime
 from PartPmiDatabase import KPmiDb, PmiIndex
+from PartPreview import (
+    DIB_SIZE,
+    PNG_SIZE,
+    BuildPreviewDrawing,
+    Palette,
+    RenderPartPreview,
+    ValidatePalette,
+)
+from PartPreviews import PREVIEW, PREVIEW_PNG
 from PartProperties import CUSTOM_PROPERTIES, ReadPartProperties
 from ResolvedPart import BuildOrdinaryResolved
 from VerifyBossBridge import wire_state
@@ -93,6 +104,7 @@ from VerifyBossOpen import read_atom
 from VerifyConfigHeaderDb import ReadHeaderIdentity
 from VerifyObjectExchangeDb import LiveRecords, ReadExchangeKeys
 from VerifyPartInformation import TypedMetadata
+from VerifyPartPreviews import read_dib, read_png
 from VerifyPmiDatabase import ReadPmiIndex
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -138,6 +150,7 @@ class FixtureContext:
     Pmi: PmiIndex
     Content: PackageContent
     BlockId: UUID
+    PreviewColors: Palette | None = None
 
 
 # FILETIME is independent of the whole seconds used in document revision records
@@ -300,6 +313,7 @@ def FixturePackage(
         Objects=Context.Objects,
         Pmi=Context.Pmi,
         Content=Context.Content,
+        PreviewColors=Context.PreviewColors,
     )
 
 
@@ -636,6 +650,37 @@ def PublishCandidate(Target: Path, Data: bytes) -> None:
             Stage.unlink(missing_ok=True)
 
 
+# the independent preview readers check both stored rasters before candidate publication
+def VerifyCandidatePreviews(
+    Archive: SldprtArchive, Profile: OrdinaryProfile, Colors: Palette
+) -> dict[str, str]:
+    Drawing = BuildPreviewDrawing(
+        Profile.Attachment.DatumId,
+        Profile.Corners,
+        {Line.CreationId: Line.Endpoints for Line in Profile.Lines},
+        DEPTH_M,
+    )
+    Rasters = RenderPartPreview(KPartGeneration, Drawing, Colors)
+    Dib, Png = Archive.require(PREVIEW), Archive.require(PREVIEW_PNG)
+    ReadDib = cast(Callable[[bytes], tuple[int, int, bytes, bytes]], read_dib)
+    ReadPng = cast(Callable[[bytes], tuple[int, int, tuple[int, int], bytes]], read_png)
+    Width, Height, ColorTable, Indices = ReadDib(Dib)
+    ExpectedColors = bytes(
+        Channel for Red, Green, Blue in Colors for Channel in (Blue, Green, Red, 0)
+    )
+    RequireArch(
+        (Width, Height, ColorTable[: len(ExpectedColors)], Indices),
+        (*DIB_SIZE, ExpectedColors, Rasters.DibIndices),
+        "exact DIB preview colors and geometry raster",
+    )
+    RequireArch(
+        ReadPng(Png),
+        (*PNG_SIZE, KNativeResolution, Rasters.PngRgba),
+        "exact PNG preview geometry raster and resolution",
+    )
+    return {PREVIEW: sha256(Dib).hexdigest(), PREVIEW_PNG: sha256(Png).hexdigest()}
+
+
 # this hosted entry point rereads the complete archive before any optional publication
 def VerifyFreshBoss(
     Context: FixtureContext, *, Candidate: Path | None = None
@@ -687,7 +732,7 @@ def VerifyFreshBoss(
         "dimensions_mm": (WIDTH_MM, HEIGHT_MM, SIGN_DEPTH_MM),
         "bounds_metres": (BOUNDS.Minimum, BOUNDS.Maximum),
     }
-    Report = {
+    Report: dict[str, object] = {
         **Authored,
         "archive_sha256": sha256(Data).hexdigest(),
         "stream_count": len(Archive.streams),
@@ -696,6 +741,10 @@ def VerifyFreshBoss(
         "authored": Authored,
         "readback": {**Readback, "bounds_metres": (Bounds.Minimum, Bounds.Maximum)},
     }
+    if Context.PreviewColors is not None:
+        Report["preview_sha256"] = VerifyCandidatePreviews(
+            Archive, Bound.Profile, Context.PreviewColors
+        )
     if Candidate is not None:
         PublishCandidate(Candidate, Data)
     return Report
@@ -761,6 +810,21 @@ class ContextInput(TypedDict):
     object_exchange: ObjectInput
     pmi: PmiInput
     content: ContentInput
+    preview_colors: NotRequired[object]
+
+
+# JSON lists are required here; the shared palette guard checks distinct byte RGB values
+def ParsePreviewColors(Value: object) -> Palette:
+    if not isinstance(Value, list) or len(Value) != 3:
+        raise ValueError("preview_colors requires three RGB lists")
+    Colors: list[tuple[object, ...]] = []
+    for Row in cast(list[object], Value):
+        if not isinstance(Row, list) or len(Row) != 3:
+            raise ValueError("preview_colors requires three channels per RGB list")
+        Colors.append(tuple(cast(list[object], Row)))
+    PaletteValue = cast(Palette, tuple(Colors))
+    ValidatePalette(PaletteValue)
+    return PaletteValue
 
 
 # the standalone verifier accepts an explicit hosted context without opening a CAD input
@@ -813,6 +877,11 @@ def ParseContext(Data: str) -> FixtureContext:
         ),
         Content=PackageContent(
             Content["material_name"], Content["material_id"], Content["body_visible"]
+        ),
+        PreviewColors=(
+            ParsePreviewColors(Raw["preview_colors"])
+            if "preview_colors" in Raw
+            else None
         ),
     )
 

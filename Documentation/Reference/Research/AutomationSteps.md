@@ -92,6 +92,9 @@ Relative filenames do not establish capture-time hash bindings.
 Analytic expectations are labelled separately from observed values.
 Zero native pairs are currently qualified; no conversion capability is claimed.
 A02 evidence does not establish completion of later steps.
+The A02 owner [reserved the supplemental baseline](../../Changes/Research/Controller/SupplementalEvidenceBaseline.md) at `f8a4dc7686dece8d44719b12721105a63864a365` on 2026-11-16.
+This new reservation follows existing discovery observations and does not assert an earlier freeze.
+Private verifier admission, the complete qualification protocol and P05 holdout evaluation remain separate.
 The [remote workflow-quality job](https://github.com/TryUniCAD/Kit/actions/runs/43419522392/job/131865721189) passed pinned-object verification and all three process cases at `0dd47cdab9d51d24b87acae61ffb1f174ba44d81`.
 That observation completes the A02a–A02b artifact criteria. The A02d audit verified the committed capture bytes and found no exact-byte aliases in the audited tree or the pinned historical corpus.
 
@@ -172,11 +175,12 @@ It compares typed fields and dependency roles, normalizes explicitly declared qu
 Unclassified references, unsupported domains and exhausted budgets cannot produce equality.
 The [guide](SemanticComparison.md) defines its input seals, bounds and research-only result scope.
 
-| Child ID | Deliverable                                                         | Owner      | Status   | Remaining evidence                                                                                                |
-| -------- | ------------------------------------------------------------------- | ---------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| A06a     | Bounded portable graph projection, matching and process command     | jdharcourt | checking | Static checks passed; hosted process execution remains required                                                   |
-| A06b     | Independently qualified equal, different and ambiguous native pairs | jdharcourt | blocked  | A02d evidence admission, frozen rules and A04/A05 source inventories remain required; zero pairs qualified        |
-| A06c     | Controller comparison worker and immutable report artifacts         | jdharcourt | active   | Implement the existing session/result/artifact protocol and verify through the hosted controller process boundary |
+| Child ID | Deliverable                                                         | Owner      | Status   | Remaining evidence                                                                                                                                                                                         |
+| -------- | ------------------------------------------------------------------- | ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A06a     | Bounded portable graph projection, matching and process command     | jdharcourt | checking | Static checks passed; hosted process execution remains required                                                                                                                                            |
+| A06b     | Independently qualified equal, different and ambiguous native pairs | jdharcourt | blocked  | A02d evidence admission, frozen rules and A04/A05 source inventories remain required; zero pairs qualified                                                                                                 |
+| A06c     | Controller comparison worker and immutable report artifacts         | jdharcourt | checking | The [worker](../../Changes/Research/Controller/SemanticComparisonWorker.md) implements the existing protocol; hosted controller process execution remains required                                         |
+| A06d     | Native reader artifacts chained into comparison jobs                | jdharcourt | checking | The [reader bridge](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md) preserves full codec documents and source evidence; hosted native-file/controller process execution remains required |
 
 Observed graph equality does not qualify a reader, writer or native conversion.
 A07 acceptance and A09 continue to depend on A06b.
