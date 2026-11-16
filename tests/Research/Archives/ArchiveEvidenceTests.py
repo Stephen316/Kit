@@ -76,7 +76,7 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
         Pytest.param(
             "re/automation/FusionCircularDimensionEvidence.py",
             (),
-            "dfc2e5de9c4aad3a11d03cc59e7da664522cc95d911a5336423985505ff992d7",
+            "eead06c25fc45e2078ff34deec8795bfecc43f38453342acaa0c88e6cc303430",
             id="fusion-circular-dimension-discovery",
         ),
         Pytest.param(

@@ -21,7 +21,15 @@ Each strict read stops at one unrecognized primary dimension class at Design seg
 
 The initial archive report SHA-256 was `d9c75f49d36ae63e6682b7f8539d9a44caeffc205f608a6a98b5e43281a01c39`. The two driving parameter roles are the only report changes. The full neutral documents likewise differ only at those two role fields. The four neighboring angle and tangent controls retain identical neutral documents after JSON round-trip.
 
-Run the evidence command from the repository with Python 3.14. It prints a canonical JSON report with SHA-256 `dfc2e5de9c4aad3a11d03cc59e7da664522cc95d911a5336423985505ff992d7`. The archive gate runs the same command through a fresh Python process and checks the digest. [Replay](../../../../../re/automation/FusionCircularDimensionEvidence.py), [archive gate](../../../../../tests/Research/Archives/ArchiveEvidenceTests.py)
+## Saved circular sheet membership
+
+The Design records reciprocate sketch 202 and feature 207. The sketch owns circle 230, center 228, dimension 234 and the separate origin point. Its circle has no endpoints and stores a full angular interval from 0 to 2π radians. The four sketch-only archives have no feature-selected profile descriptor or loop records.
+
+Each archive has one typed ASM sheet snapshot. The existing circular snapshot checker confirms the complete topology, plane and circle geometry, and tag correspondence. Face 4 owns loop 5, whose sole coedge 7 references edge 9. The edge begins and ends at seam vertex 11 and uses −π to +π. The edge and coedge carry the same unsplit Design curve tag 102 with their respective saved directions 1 and 0. The report pins the snapshot member path, size and SHA-256 and retains the Design source spans. [Saved-loop replay](../../../../../re/automation/FusionCircularLoopEvidence.py), [circular snapshot seams](../../../../Gotchas/Conversion/Fusion/Api/FusionCircleSnapshotSeams.md)
+
+The original licensed measurements recorded the circle center, radius and dimension mode. The four cases still lack native API profile-loop member readback and native curve evaluator bounds. The separate licensed unconstrained-circle acceptance records one profile and its circle geometry. Its observation supplies no profile-loop operand inventory for these four dimensioned controls. [Dimension capture](../../../../../re/Fusion/Study/GenerateDimensionControlModes.py), [unconstrained circle acceptance](../../../../../re/Fusion/LocalOracle/RotationalDocuments/NativeAcceptance.json)
+
+The prior role-corrected report SHA-256 was `dfc2e5de9c4aad3a11d03cc59e7da664522cc95d911a5336423985505ff992d7`. The four saved-sheet proofs are its only additions. Run the evidence command from the repository with Python 3.14. It prints a canonical JSON report with SHA-256 `eead06c25fc45e2078ff34deec8795bfecc43f38453342acaa0c88e6cc303430`. The archive gate runs the same command through a fresh Python process and checks the digest. [Replay](../../../../../re/automation/FusionCircularDimensionEvidence.py), [archive gate](../../../../../tests/Research/Archives/ArchiveEvidenceTests.py)
 
 ```sh
 uv run --frozen --python 3.14 python re/automation/FusionCircularDimensionEvidence.py
