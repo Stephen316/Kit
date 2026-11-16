@@ -279,6 +279,15 @@ def CheckCfgTables() -> None:
     )
 
 
+# the drawing labels must reach the native surface finish boundary with the same map
+def CheckCfgLabels() -> None:
+    Report = LoadReport("VerifyConfigLabels.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "ec01b43a07347fac6f8e851b419a03da1a6cd70bab391a3ba90a0d392e9443d1"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
