@@ -9,9 +9,9 @@ from convert.adapters.solidworks.Container.ArchiveCursor import (
 from convert.adapters.solidworks.Resolved.BossEntry import OpNode, ReadBodyReturn
 from convert.adapters.solidworks.Resolved.Cut.CutOpRead import ReadCutEnd
 from convert.adapters.solidworks.Resolved.Cut.ScopeBodies import ReadScopeList
-from convert.adapters.solidworks.Resolved.Cut.ScopeChoices import ReadScopeChoices
+from convert.adapters.solidworks.Resolved.Cut.ScopeChoices import ReadChooserPair
 from convert.adapters.solidworks.Resolved.Cut.ScopeChoiceProof import ScopeChoiceKeys
-from convert.adapters.solidworks.Resolved.Cut.ScopePartition import ReadScopePartition
+from convert.adapters.solidworks.Resolved.Cut.ScopePartition import ReadPartition
 from convert.adapters.solidworks.Resolved.Cut.ScopeTransfers import (
     CheckScopeXfer,
     ReadScopeLead,
@@ -42,7 +42,7 @@ def ReadScopedCut(
     Primary = ReadScopeList(Cursor, Owners, Primary=True)
     ScopeOffset = Cursor.Offset
     (ScopeWord,) = Cursor.ReadInts("<i")
-    Choices = ReadScopeChoices(Cursor, Owners, CutValue)
+    Choices = ReadChooserPair(Cursor, Owners, CutValue)
     First, Second = (
         ScopeChoiceKeys(Choice, Owner, CutValue, CutEdges)
         for Choice, Owner in zip(Choices, Owners, strict=True)
@@ -65,7 +65,7 @@ def ReadScopedCut(
     Bodies = Primary["bodies"] if ScopeWord else Later["bodies"]
     Count = len(Bodies)
     RequireArch(
-        tuple(Body["recent_atom_id"] for Body in Bodies),
+        tuple(BodyValue["recent_atom_id"] for BodyValue in Bodies),
         AtomIds[:Count],
         "scope body tails bind the reached atom ids",
     )
@@ -75,7 +75,7 @@ def ReadScopedCut(
         ((0, 0, 0), (0, 1, 0) if Count == 1 else (0, 0, 0)),
         "witnessed chooser states for the saved scope lists",
     )
-    Partition = ReadScopePartition(Cursor, Bodies)
+    Partition = ReadPartition(Cursor, Bodies)
     ReadBodyReturn(Cursor)
     EndValue = ReadCutEnd(Cursor)
     RequireArch(
@@ -96,7 +96,9 @@ def ReadScopedCut(
     return {
         **CutValue,
         "scope_kind": KindValue,
-        "scope_body_ids": tuple(Body["body_id"] for Body in Primary["bodies"]),
+        "scope_body_ids": tuple(
+            BodyValue["body_id"] for BodyValue in Primary["bodies"]
+        ),
         "chooser_body_ids": (
             Choices[0]["earlier_body_id"],
             Choices[1]["earlier_body_id"],

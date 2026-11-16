@@ -8,7 +8,7 @@ from convert.adapters.solidworks.Resolved.Cut.ScopeTypes import (
 
 
 # partition pairs are corroborating saved identities with their own count and raw state
-def ReadScopePartition(
+def ReadPartition(
     Cursor: ArchiveCursor, Bodies: tuple[ScopeBody, ...]
 ) -> ScopePartition:
     Offset = Cursor.Offset
@@ -20,7 +20,9 @@ def ReadScopePartition(
     RequireArch(Cursor.ReadInts("<4i"), (0,) * 4, "empty scope partition fields")
     (Count,) = Cursor.ReadInts("<i")
     Expected = (
-        tuple((Body["recent_atom_id"], Body["body_id"]) for Body in Bodies)
+        tuple(
+            (BodyValue["recent_atom_id"], BodyValue["body_id"]) for BodyValue in Bodies
+        )
         if len(Bodies) == 2
         else ()
     )

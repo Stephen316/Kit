@@ -9,28 +9,35 @@ from convert.adapters.solidworks.Resolved.FaceIdentity import SurfaceKey
 def ScopeChoiceKeys(
     Choice: ScopeChoice, Owner: ScopeOwner, CutValue: OpNode, CutEdges: frozenset[int]
 ) -> set[tuple[int, int, int, int]]:
-    First, Second = (Face["surfaces"] for Face in Choice["faces"])
+    First, Second = (FaceInfo["surfaces"] for FaceInfo in Choice["faces"])
     RequireArch(
-        tuple((Item["class"], Item["occurrence"]) for Item in First),
-        ((Owner.CapClass, 0), *((Owner.EdgeClass, Edge) for Edge in Owner.CapEdges)),
+        tuple((Surface["class"], Surface["occurrence"]) for Surface in First),
+        (
+            (Owner.CapClass, 0),
+            *((Owner.EdgeClass, EdgeId) for EdgeId in Owner.CapEdges),
+        ),
         "scope chooser retains earlier cap and ordered sides",
     )
-    Earlier = [Item for Item in Second if Item["feature_id"] == Owner.FeatureId]
+    Earlier = [
+        Surface for Surface in Second if Surface["feature_id"] == Owner.FeatureId
+    ]
     RequireArch(
-        tuple((Item["class"], Item["occurrence"]) for Item in Earlier),
+        tuple((Surface["class"], Surface["occurrence"]) for Surface in Earlier),
         ((Owner.CapClass, 0), (Owner.CapClass, 1)),
         "scope chooser second face retains both earlier caps",
     )
     RequireArch(
-        {SurfaceOwner(Item) for Item in (*First, *Earlier)},
+        {SurfaceOwner(Surface) for Surface in (*First, *Earlier)},
         {Owner.SurfaceOwner},
         "scope chooser retains the earlier file and clock",
     )
-    CutItems = [Item for Item in Second if Item["feature_id"] != Owner.FeatureId]
+    CutItems = [
+        Surface for Surface in Second if Surface["feature_id"] != Owner.FeatureId
+    ]
     RequireArch(
         {
-            (Item["file_ref_object"], Item["feature_id"], Item["class"])
-            for Item in CutItems
+            (Surface["file_ref_object"], Surface["feature_id"], Surface["class"])
+            for Surface in CutItems
         },
         {
             (
@@ -41,15 +48,15 @@ def ScopeChoiceKeys(
         },
         "scope chooser keeps typed sides from the reached cut",
     )
-    SideIds = {Item["occurrence"] for Item in CutItems}
+    SideIds = {Surface["occurrence"] for Surface in CutItems}
     RequireArch(
         len(SideIds) == 3 and SideIds <= CutEdges,
         True,
         "scope chooser sides belong to its cut contour",
     )
     RequireArch(
-        len({Item["time_word"] for Item in CutItems}),
+        len({Surface["time_word"] for Surface in CutItems}),
         1,
         "scope chooser cut side clocks agree",
     )
-    return {SurfaceKey(Item) for Item in CutItems}
+    return {SurfaceKey(Surface) for Surface in CutItems}

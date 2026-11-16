@@ -4,7 +4,7 @@ from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Resolved.BossChooser import CheckChoiceOwn
 from convert.adapters.solidworks.Resolved.BossEntry import OpNode
 from convert.adapters.solidworks.Resolved.Cut.CutChooser import KCutClass
-from convert.adapters.solidworks.Resolved.Cut.ScopeSurfaces import ReadScopeSurface
+from convert.adapters.solidworks.Resolved.Cut.ScopeSurfaces import ReadSurface
 from convert.adapters.solidworks.Resolved.Cut.ScopeTypes import (
     ScopeChoice,
     ScopeChoiceFace,
@@ -18,10 +18,10 @@ from convert.adapters.solidworks.Resolved.FaceIdentity import (
 
 # chooser face references survive even when a saved cut excludes their earlier body
 def ReadScopeFace(Cursor: ArchiveCursor) -> ScopeChoiceFace:
-    Face, Count = ReadFaceHead(Cursor, KClassRefKind, 768)
-    Surfaces = [ReadScopeSurface(Cursor) for _ in range(Count + 1)]
+    FaceInfo, Count = ReadFaceHead(Cursor, KClassRefKind, 768)
+    Surfaces = [ReadSurface(Cursor) for _ in range(Count + 1)]
     ReadFaceReturn(Cursor)
-    return {**Face, "surfaces": Surfaces, "end": Cursor.Offset}
+    return {**FaceInfo, "surfaces": Surfaces, "end": Cursor.Offset}
 
 
 # the earlier chooser centre binds this record independently of its raw activation fields
@@ -69,7 +69,7 @@ def ReadScopeChoice(Cursor: ArchiveCursor, Owner: ScopeOwner) -> ScopeChoice:
 
 
 # both witnesses must close with references to the same reached cut before later fields
-def ReadScopeChoices(
+def ReadChooserPair(
     Cursor: ArchiveCursor, Owners: tuple[ScopeOwner, ScopeOwner], CutValue: OpNode
 ) -> tuple[ScopeChoice, ScopeChoice]:
     RequireArch(Cursor.ReadInts("<2H"), (1, 2), "two primary scope chooser entries")

@@ -18,7 +18,7 @@ from convert.adapters.solidworks.Resolved.FaceIdentity import (
 
 
 # prior body and cut surfaces use the same reference base but keep distinct selectors
-def ReadScopeSurface(Cursor: ArchiveCursor) -> KSurfaceId | CutResultId:
+def ReadSurface(Cursor: ArchiveCursor) -> KSurfaceId | CutResultId:
     TagValue = ReadTag(Cursor.BlobValue, Cursor.Offset)
     RequireArch(TagValue.kind, KClassRefKind, "reached scope surface class reference")
     ClassName = Cursor.Classes.get(TagValue.index)

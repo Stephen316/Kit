@@ -4,7 +4,7 @@ from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Container.LocalFrame import ReadLocalPart
 from convert.adapters.solidworks.Resolved.Cut.CutEdgeRef import SurfaceOwner
-from convert.adapters.solidworks.Resolved.Cut.ScopeSurfaces import ReadScopeSurface
+from convert.adapters.solidworks.Resolved.Cut.ScopeSurfaces import ReadSurface
 from convert.adapters.solidworks.Resolved.Cut.ScopeTypes import (
     ScopeBody,
     ScopeBodyList,
@@ -26,16 +26,16 @@ def ReadScopeBody(
     )
     UnitObject, PartObject = ReadLocalPart(Cursor, KConfigGen)
     RequireArch(PartObject, 2, "scope body belongs to this part")
-    Face, Count = ReadFaceHead(Cursor, KClassRefKind, 512 if Primary else 0)
-    Surfaces = [ReadScopeSurface(Cursor) for _ in range(Count + 1)]
+    FaceInfo, Count = ReadFaceHead(Cursor, KClassRefKind, 512 if Primary else 0)
+    Surfaces = [ReadSurface(Cursor) for _ in range(Count + 1)]
     RequireArch(
-        {SurfaceOwner(Item) for Item in Surfaces},
+        {SurfaceOwner(Surface) for Surface in Surfaces},
         {Owner.SurfaceOwner},
         "scope surfaces belong to the reached boss",
     )
     EdgeClass, CapClass = Owner.EdgeClass, Owner.CapClass
     RequireArch(
-        tuple(Item["class"] for Item in Surfaces),
+        tuple(Surface["class"] for Surface in Surfaces),
         (EdgeClass, CapClass, EdgeClass, CapClass, EdgeClass),
         "witnessed scope body surface order",
     )
@@ -68,7 +68,7 @@ def ReadScopeBody(
         "raw_terminal_word": Terminal,
         "unit_component": UnitObject,
         "part_object": PartObject,
-        "face": Face,
+        "face": FaceInfo,
         "surfaces": Surfaces,
     }
 
