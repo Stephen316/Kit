@@ -262,7 +262,13 @@ def FinishCycle(
     ExpectHold: bool = False,
 ) -> None:
     Result = Dispatch.RootPath / "PhaseBResult.json"
-    _ = Result.write_text('{"fixture": true}', encoding="utf-8")
+    ReceiptData: dict[str, object] = {"fixture": True}
+    if ExpectHold:
+        ReceiptData.update(
+            receipt={"session": "a-12345678"},
+            application_acknowledgement_sha256="d" * 64,
+        )
+    _ = Result.write_text(JsonCodec.dumps(ReceiptData), encoding="utf-8")
     _ = RunFusionTool(
         "re/automation/Controller.py",
         [

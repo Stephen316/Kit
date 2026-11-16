@@ -7,6 +7,7 @@ import secrets
 import shutil
 import signal
 import subprocess
+import sqlite3
 import sys
 import time
 from pathlib import Path
@@ -20,6 +21,7 @@ from GroupSessions import GroupSession, release_group
 from OutputManifest import InvalidOutput
 from Processes import KILL_SIGNAL, process_start, signal_group, stop_orphan
 from Records import bounded, canonical, digest, label, read_record, reason_text
+from RecoveryFence import StaleOwner
 from ResourceBudget import ResourceBudget
 from ResourceOccupancy import claim_occupancy
 from Runners import Registry
@@ -162,6 +164,7 @@ class Supervisor:
         if self.installations and config["controller"].get("adapter") != "a03":
             raise ValueError("application acknowledgement requires the built-in a03 controller adapter")
         self.application_acks = {}
+        self.application_ack_retries = {}
         self.grouping = getattr(self.adapter, "GroupClaimsVersion", None) == 1
         self.budget = ResourceBudget(config, self.registry) if claiming else None
         self.admission = {}
@@ -331,8 +334,10 @@ class Supervisor:
         except OSError as error:
             self.report(f"application_{operation}_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
 
-    def queue_application_ack(self, path, intent, recovered):
+    def queue_application_ack(self, path, intent, recovered, *, retry=0):
         detail = self.acknowledgement_detail(intent, recovered)
+        if retry:
+            detail["ack_retry"] = retry
         try:
             future = self.acknowledger.submit(
                 acknowledge_application, self.installations[intent["kind"]], self.adapter, intent, recovered,
@@ -418,8 +423,11 @@ class Supervisor:
                 self.report(f"{action}_failed", None, {**detail, "error": f"supervisor stopped before {operation} started"})
             except subprocess.TimeoutExpired:
                 self.report(f"{action}_failed", None, {**detail, "error": f"application {operation} timed out"})
+                self.defer_application_ack(path, detail, operation)
             except (OSError, ValueError, KeyError, TypeError) as error:
                 self.report(f"{action}_failed", None, {**detail, "error": f"{type(error).__name__}: {error}"[:2048]})
+                if not isinstance(error, StaleOwner):
+                    self.defer_application_ack(path, detail, operation)
             else:
                 self.remove_application_intent(path, detail, operation)
                 if response["status"] == "not_accepted":
@@ -427,6 +435,35 @@ class Supervisor:
                 else:
                     self.report(action, None, {**detail, **response})
         return progressed
+
+    def defer_application_ack(self, path, detail, operation):
+        if sys.platform != "darwin" or self.stopping or operation != "acknowledgement":
+            return
+        from FusionAcknowledgementRetry import BACKOFF_SECONDS, can_retry
+
+        retry = detail.get("ack_retry", 0)
+        if retry >= len(BACKOFF_SECONDS):
+            return
+        try:
+            intent = read_intent(path)
+            installation = self.installations[intent["kind"]]
+            if not can_retry(self.adapter.store, self.adapter.owner, installation, intent):
+                return
+        except (OSError, ValueError, KeyError, TypeError, RecursionError, sqlite3.Error):
+            return
+        self.application_ack_retries[path] = (time.monotonic() + BACKOFF_SECONDS[retry], intent, retry + 1)
+
+    def queue_due_application_acks(self):
+        now = time.monotonic()
+        for path, (due, intent, retry) in list(self.application_ack_retries.items()):
+            if due <= now:
+                del self.application_ack_retries[path]
+                try:
+                    if read_intent(path) != intent:
+                        raise ValueError("durable acknowledgement changed during retry backoff")
+                except (OSError, ValueError, KeyError, TypeError, RecursionError):
+                    continue
+                self.queue_application_ack(path, intent, True, retry=retry)
 
     def record_capacity(self, pool, admission, refusal=None):
         if refusal is None:
@@ -579,7 +616,8 @@ class Supervisor:
             settled = self.report_application_acks()
             if self.stopping or (max_seconds is not None and time.monotonic() - started >= max_seconds):
                 break
-            if self.fill(paused) or self.running or self.application_acks or settled:
+            self.queue_due_application_acks()
+            if self.fill(paused) or self.running or self.application_acks or self.application_ack_retries or settled:
                 last_work = time.monotonic()
             elif idle_seconds is not None and time.monotonic() - last_work >= idle_seconds:
                 break

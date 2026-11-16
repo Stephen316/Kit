@@ -46,7 +46,12 @@ class Disposable:
             assert file_bytes(root / "fence.json") == fence
 
         def marker(_):
-            write_new(root / "fixture-watch", b"armed\n")
+            suffix = (
+                f"-{active['restart_intent_sha256']}"
+                if self.mode == "continuous"
+                else ""
+            )
+            write_new(root / f"fixture-watch{suffix}", b"armed\n")
 
         @contextmanager
         def publish(arm, deadline):
@@ -91,6 +96,8 @@ class Disposable:
             authorize=publish,
         )
         assert observed["status"] == "exact_exit_observed"
+        if self.mode == "continuous":
+            return observed
         os._exit(73)
 
     def launch(self, args, root, config, installation, *, admit):
@@ -128,6 +135,7 @@ class Disposable:
                     }
                 ),
             )
+            (root / "fence.json").unlink()
         else:
             assert self.mode == "launch-lost"
         os._exit(73)
