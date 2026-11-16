@@ -24,7 +24,29 @@ In the [pinned `sldmodu.dll`](CmgrTail.md#root-and-feature-stamps), the base con
 | P03, 8 saves | 1662–1724 | Key and atom ID 101. First array contains feature ID 34, second array and four maps empty. Class 9, object 10. Next index is 11. |
 | P04, 11 saves | 1678–1798 | Key and atom ID 101 has feature ID 34. Maps 2 and 4 each contain key 102 with a null pointer. Atom 102 has feature ID 46. Maps 1 and 3 each contain key 101 with a null pointer. Both second arrays and other maps empty. Class 9, objects 10 and 11. Next index is 12. |
 
-The base configuration then writes three signed zeros and a counted signed pair map through `0x4c21894d`. Only P04 populates that map, with the pair `(102,101)`. Three following signed words are `(2,0,0)`. The typed `moEnvelopePublisher_c` pointer at `0x4c218ab3` is null. The remaining signed zero and one-element signed list `[-1]` reach the base return at offsets 1700, 1766 and 1848 for P01, P03 and P04. The controls allocate no additional objects in this interval.
+The base configuration then writes three signed zeros and a counted signed pair map through `0x4c21894d`. Only P04 populates that map, with the pair `(102,101)`. Three following signed words are `(2,0,0)`. The typed `moEnvelopePublisher_c` pointer at `0x4c218ab3` is null. The ordinary standalone part has archive condition 1 clear, so it skips the conditional signed word at `0x4c218dd0`. It then writes the empty signed vector count at `0x4c218e9b` and returns at 1692, 1758 and 1840 for P01, P03 and P04.
+
+## Inline part configuration object
+
+`moPartConfiguration_c::Serialize` calls slot 5 of member `+0x4d0` at `0x4c226637`. The base constructor creates that member at `0x4bdbde93` and stores it at `0x4bdbdea0`. Its constructor at `0x4bdc1510` installs the `moPartConfigObject_c` vtable `0x4cec5f88`. Slot 5 at `0x4c225080` writes signed members `+0x0c` and `+0x08` in that order. Their initialized and saved values are `1` and `-1`. Those words begin the part object. They follow the base configuration's zero vector count.
+
+| Order | Archive fields | Native store calls |
+| --- | --- | --- |
+| 1 | Two signed words, `1` and `-1`, and null `moReferencedConfiguration_c` and `moVisualProperties_c` pointers | `0x4c2250d1`, `0x4c2250dd`, `0x4c2250ed`, `0x4c2250fd` |
+| 2 | Seven empty inline `suObList` counts in member order `+0x10`, `+0x60`, `+0x100`, `+0x80`, `+0x68`, `+0x58`, `+0x78` | `0x4c225380`, `0x4c22548d`, `0x4c225565`, `0x4c225646`, `0x4c22581a`, `0x4c2258ff`, `0x4c2259f3` |
+| 3 | Five unsigned 16-bit absence flags for list members `+0xc8`, `+0xd0`, `+0xe0`, `+0xe8`, `+0xf0` | `0x4c225ac0`, `0x4c225aec`, `0x4c225c47`, `0x4c225d16`, `0x4c225de5` |
+| 4 | Empty inline `suObList` for member `+0x70`, two signed zeros from `+0xd8` and `+0xf8`, then the unsigned 16-bit absence flag for `+0x98` | `0x4c225ed0`, `0x4c225f6f`, `0x4c225fc4`, `0x4c226025` |
+| 5 | Null object, null typed `suObList`, null object | `0x4c2260d1`, `0x4c226165`, `0x4c2261b4` |
+
+The constructor sets the absent members to zero and constructs the first inline list at `0x4bdc1545`. The store constructs empty temporary lists at the other inline calls when their members are absent. Each invokes [the compact count serializer](CmgrTail.md#root-and-feature-stamps) directly. The final object field is gated on generation at least `0x4973` (18803) at `0x4c226196`. The generation-19000 object is 54 bytes with the measured empty members.
+
+The containing part then writes double `-1.0`, a null `gcXhatch_c`, a signed zero and an empty per-body appearance vector count at `0x4c22672d..0x4c226894`. Condition 1 clear admits both the `moExplPrtId_c` pointer and `suObArray` pointer at `0x4c226a38` and `0x4c226a47`. Both are null. This adds 22 bytes before the frozen checksum. A typed walk verified all 25 receipt-pinned controls with no additional archive allocations.
+
+| Capture family | Inline object span | Part suffix ends at frozen checksum |
+| --- | --- | --- |
+| P01, 6 saves | 1692–1746 | 1768 |
+| P03, 8 saves | 1758–1812 | 1834 |
+| P04, 11 saves | 1840–1894 | 1916 |
 
 ## Part return and manager aliases
 
@@ -34,4 +56,4 @@ The four fields after this map are `(0,0,-1,-1)` from `0x4c226cc5`, `0x4c226cd4`
 
 The enclosing manager writes its second configuration pointer at `0x4c21c890` as an alias to the first part object, slot 4. `0x4c21c89f` writes count 1. `0x4c23f4e8` writes the configuration list, a compact count 1 followed by the same object reference. `0x4c21cb03` then writes external object count 1. These 14 bytes lead to the [first external object definition](CmgrTail.md#external-file-and-referenced-configuration) at offsets 1818, 1892 and 1982 respectively. All 25 modern and the old comparator preserve these aliases.
 
-The intervals between the visual return and linked-atom map, and between the base configuration return and frozen-feature checksum, still need continuous typed walks. The recorded positions anchor the source checks for these saves. Encoding should derive them from each typed body and shared archive namespace.
+The interval between the visual return and linked-atom map still needs a continuous typed walk. Encoding should derive the recorded boundaries from each typed body and shared archive namespace.
