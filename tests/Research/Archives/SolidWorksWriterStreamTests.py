@@ -50,6 +50,10 @@ def CheckProfile() -> None:
         Report["line_replay_sha256"]
         == "8fc41b75f4c3b0bd5e0e35a3285cc835f47f8e99a0716aa53722c26258fe97cc"
     )
+    assert (
+        Report["dim_replay_sha256"]
+        == "f20f6992915f75a45303b854e80e73d2d953409896ed3d162dc234beb9ab4a71"
+    )
 
 
 # the research writer and reader must agree on the full stream in real native files

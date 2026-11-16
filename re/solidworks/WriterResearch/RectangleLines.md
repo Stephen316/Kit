@@ -17,4 +17,4 @@ All 14 saves retain a deleted slot before the four lines. It carries mark 0, cre
 
 ## Boundary and replay
 
-Run `python -B re/solidworks/WriterResearch/VerifyAuthoredProfile.py --read-only` in the Kit environment. In every pinned discovery capture the count starts at byte 6906, the first line at 6910, and the fifth line returns at 7370. `line_replay_sha256` is `8fc41b75f4c3b0bd5e0e35a3285cc835f47f8e99a0716aa53722c26258fe97cc`. The hosted `CheckProfile` also compares the complete generated interval and preserved map. Value dimensions and subsequent relations still require constructive coverage and the finished part needs native edit and reopen verification.
+Run `python -B re/solidworks/WriterResearch/VerifyAuthoredProfile.py --read-only` in the Kit environment. In every pinned discovery capture the count starts at byte 6906, the first line at 6910, and the fifth line returns at 7370. `line_replay_sha256` is `8fc41b75f4c3b0bd5e0e35a3285cc835f47f8e99a0716aa53722c26258fe97cc`. The hosted `CheckProfile` also compares the complete generated interval and preserved map. The [two value dimensions](RectangleDims.md) start at this return.
