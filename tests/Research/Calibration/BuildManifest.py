@@ -8,7 +8,11 @@ from tests.convert.api.Fusion.AdapterCases import AdapterCase
 
 # calibration checks share immutable inputs so trial differences can be attributed to execution limits
 def BuildManifest(
-    RootPath: FilePath, JobCount: int = 8, *, MaxSeconds: int = 30
+    RootPath: FilePath,
+    JobCount: int = 8,
+    *,
+    MaxSeconds: int = 30,
+    LeaseSeconds: int = 3,
 ) -> FilePath:
     InputPath = RootPath / "Input.f3d"
     _ = WriteDocument(
@@ -44,7 +48,7 @@ def BuildManifest(
                 "resources": ["offline:slot"],
                 "options": {"allow_partial": False},
                 "max_attempts": 1,
-                "lease_seconds": 3,
+                "lease_seconds": LeaseSeconds,
                 "timeout_seconds": 30,
             }
             for Index in range(JobCount)

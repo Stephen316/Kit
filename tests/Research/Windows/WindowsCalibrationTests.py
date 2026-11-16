@@ -16,7 +16,9 @@ KSerialTrialSeconds = 45
 # a fixed workload is necessary to verify that windows reports decoder measurements without recommending restricted concurrency
 @Pytest.mark.skipif(System.platform != "win32", reason="Windows process boundary")
 def CheckWinSweep(TmpPath: FilePath) -> None:
-    ManifestPath = BuildManifest(TmpPath, MaxSeconds=KSerialTrialSeconds)
+    ManifestPath = BuildManifest(
+        TmpPath, MaxSeconds=KSerialTrialSeconds, LeaseSeconds=15
+    )
     Manifest = JsonCodec.loads(ManifestPath.read_text(encoding="utf-8"))
     OutputPath = TmpPath / "Sweep"
     Report = RunCalibration(ManifestPath, OutputPath)
