@@ -1,0 +1,7 @@
+# Encode the supported SOLIDWORKS Definition options fragment
+
+The [A12 research codec](../../../../re/solidworks/WriterResearch/DefinitionOptions.py) reads and constructs a contiguous generation-19000 fragment of `Contents/Definition`. It starts at the first journal class occurrence for a default notebook. The encoder takes a typed journal attachment and an interpreted unsigned appearance allocation counter. The reader validates the supplied generation, the supported empty fields and the constructor's rendering defaults. It returns the attachment, counter and exact cursor at notebook end `+115`.
+
+The first thirteen bytes after the notebook carry the measured document state, empty array counts and material manager presence field. The existing material manager codec adds the supplied counter and empty object list. Three short Unicode strings, two object lists, two string arrays and six scalar words then reach `+67`. The serializer writes the renderer defaults in `<6iI5i>` order, including the unsigned line color at the seventh word. The notebook, list counts, strings and rendering values are generated from their typed layouts. [Document field order and native constructor evidence](../../../../re/solidworks/WriterResearch/DefinitionJournal.md#document-rendering-options)
+
+The layout evidence covers 25 receipt-pinned P01, P03 and P04 saves. The codec stops before document member `+0x1388` at notebook end `+115`. The remaining Definition members and full native part generation still require evidence. This change has static verification only.
