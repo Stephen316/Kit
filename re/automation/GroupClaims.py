@@ -4,6 +4,8 @@ import shutil
 import tempfile
 from pathlib import Path
 
+from FusionArchiveRetryBudget import attempts_exhausted
+
 from PriorityBacklog import fill_backlog
 from PriorityClaims import runnable_jobs
 from Records import StaleLease, bounded, canonical, digest, label, read_record
@@ -65,7 +67,7 @@ def claim_group(ledger, worker, pool, entries):
     selected, reserved, identity, total = [], {}, None, 0
     for row in rows:
         spec = json.loads(row["definition"])
-        if row["attempts"] >= spec["max_attempts"]:
+        if attempts_exhausted(ledger, row, spec):
             continue
         key = (spec["kind"], spec["tool_version"], spec["rule_version"],
                row["schedule_lane"], row["schedule_family"])

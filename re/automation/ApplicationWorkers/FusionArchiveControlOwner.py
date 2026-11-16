@@ -152,6 +152,12 @@ def verify_control(owner, files, request, request_sha, launched, reply_raw):
         and reply["observed_at"] <= time.time(),
         "Fusion archive control result differs from its live request",
     )
+    protocol.require(
+        type(reply["observed_ns"]) is int
+        and 0 < reply["observed_ns"] < request["deadline_ns"]
+        and reply["observed_ns"] <= time.monotonic_ns(),
+        "Fusion archive control result differs from its monotonic window",
+    )
     if reply["status"] == "refused":
         protocol.require(
             set(reply)
@@ -162,6 +168,7 @@ def verify_control(owner, files, request, request_sha, launched, reply_raw):
                 "peer",
                 "provider_sha256",
                 "observed_at",
+                "observed_ns",
                 "status",
             }
             and not os.path.lexists(files["attempt"]),
@@ -181,6 +188,7 @@ def verify_control(owner, files, request, request_sha, launched, reply_raw):
             "peer",
             "provider_sha256",
             "observed_at",
+            "observed_ns",
             "status",
             "proof",
         }

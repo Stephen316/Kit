@@ -57,6 +57,13 @@ def install(ledger):
         ledger.db.execute(TABLE)
         ledger.db.execute(GUARD)
         ledger.db.execute("INSERT INTO settings VALUES (?,1)", (POLICY,))
+    verify_cold_schema(ledger)
+
+
+# an archive retry must verify the existing claim guard without installing a new reservation
+def verify_cold_schema(ledger):
+    if not installed(ledger):
+        raise ValueError("missing Fusion initial admission policy")
     rows = ledger.db.execute(
         "SELECT name,sql FROM sqlite_master WHERE name IN ('fusion_cold_start','fusion_cold_start_claim_guard')"
     ).fetchall()

@@ -212,7 +212,12 @@ def serve(startup, archive_sha, app):
     }
     if not idle(app):
         check_custody(startup, request, raw, files)
-        refused = {**response, "status": "refused", "observed_at": time.time()}
+        refused = {
+            **response,
+            "status": "refused",
+            "observed_at": time.time(),
+            "observed_ns": time.monotonic_ns(),
+        }
         require(matches(startup, request), "Fusion archive control expired")
         protocol["write_new"](files["result"], protocol["encoded"](refused))
         return
@@ -250,6 +255,7 @@ def serve(startup, archive_sha, app):
         "proof": proof,
         "status": "healthy",
         "observed_at": time.time(),
+        "observed_ns": time.monotonic_ns(),
     }
     require(matches(startup, request), "Fusion archive control deadline elapsed")
     protocol["write_new"](files["result"], protocol["encoded"](reply))

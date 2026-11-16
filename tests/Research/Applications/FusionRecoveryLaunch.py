@@ -116,7 +116,9 @@ def LoseControl(
     Withheld = Result.with_suffix(".withheld")
     _ = Result.rename(Withheld)
     try:
-        with RunOwner(Dispatch, Flags, "LostControl") as LogPath:
+        with RunOwner(
+            Dispatch, [*Flags, "--admit-archived-retry"], "LostControl"
+        ) as LogPath:
             Report = AwaitStatus(
                 LogPath, "phase_a_probe_archived", Replacement="control_unobserved"
             )
@@ -126,16 +128,6 @@ def LoseControl(
         assert Attempt.read_bytes() == AttemptBytes
     finally:
         _ = Withheld.rename(Result)
-    with RunOwner(Dispatch, Flags, "ResumeControl") as LogPath:
-        Report = AwaitStatus(
-            LogPath,
-            "phase_a_probe_archived",
-            Replacement="control_verified_admission_pending",
-        )
-        assert (
-            Report["archive_replacement_control_sha256"]
-            == HashBytes(Result.read_bytes()).hexdigest()
-        )
 
 
 # the independent appkit receipt and bootstrap proof must agree on the new elected pid

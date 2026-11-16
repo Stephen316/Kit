@@ -66,11 +66,18 @@ def archive_timeout(owner, fence):
 
 # the public owner status exposes evidence digest fields without local paths or launch challenges
 def archive_status(saved):
+    rearmed = saved.get("archive_replacement_status") == "retry_admitted"
     return {
-        "status": "phase_a_probe_archived",
+        "status": (
+            "phase_a_archive_retry_admitted" if rearmed else "phase_a_probe_archived"
+        ),
         "archive_manifest_sha256": saved["archive_manifest_sha256"],
-        "resource_rearmed": False,
-        "native_retry": "waiting_for_verified_owner_readiness",
+        "resource_rearmed": rearmed,
+        "native_retry": (
+            "authorized_second_attempt"
+            if rearmed
+            else "waiting_for_verified_owner_readiness"
+        ),
         **{
             key: value
             for key, value in saved.items()

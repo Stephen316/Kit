@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 from ApplicationHolds import invalidate_application_hold, retry_delay, save_application_hold
+from FusionArchiveRetryBudget import attempts_exhausted
 from FusionRestartPairs import accepted_hold
 from Artifacts import Artifacts
 from OutputIntake import OutputIntake
@@ -405,7 +406,7 @@ class Ledger:
         for resource in spec["resources"]:
             self.change_resource(resource, False)
             self.event(None, "resource_recovery_required", {"name": resource})
-        state = "failed" if row["attempts"] >= spec["max_attempts"] else "queued"
+        state = "failed" if attempts_exhausted(self, row, spec) else "queued"
         delay = retry_delay(spec, row["attempts"])
         self.db.execute("UPDATE jobs SET state=?,next_run=?,receipt=?,result=NULL,reason=? WHERE id=?", (state, time.time() + delay, receipt, "lease or execution timeout expired", row["id"]))
         self.event(row["id"], "expired", {"attempt": row["attempts"], "state": state})
@@ -426,7 +427,7 @@ class Ledger:
                 return {"job": None, "reason": "no runnable jobs"}
             self.verify_job(row)
             spec = json.loads(row["definition"])
-            if row["attempts"] >= spec["max_attempts"]:
+            if attempts_exhausted(self, row, spec):
                 self.db.execute("UPDATE jobs SET state='failed',reason=? WHERE id=?", ("attempt budget exhausted", row["id"]))
                 continue
             if row["schedule_installation"] is not None:
@@ -518,7 +519,7 @@ class Ledger:
         })
         state = outcome
         if outcome == "retry":
-            state = "failed" if row["attempts"] >= spec["max_attempts"] else "queued"
+            state = "failed" if attempts_exhausted(self, row, spec) else "queued"
         if outcome == "waiting_application":
             for resource in spec["resources"]:
                 self.change_resource(resource, False)

@@ -26,6 +26,8 @@ The resource and second A03 attempt remain parked. A later admission
 would require current proof and a separate exact controller transaction.
 Once automatic control custody is durable for that archive, the older
 manual retry command defers to its owner.
+The owner can separately opt into
+[transactional retry admission](FusionArchivedRetryAdmission.md).
 
 The hosted process case uses a disposable AppKit app and a vendor API
 stand-in to drive the real pinned control code and committed input. It
