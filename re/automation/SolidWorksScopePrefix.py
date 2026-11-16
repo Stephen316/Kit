@@ -5,7 +5,7 @@ from PairedCaptureIntake import require, sha256
 
 from convert.adapters.solidworks.Config import Presentation as presentation
 from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
-from convert.adapters.solidworks.Config.OrdinaryMap import ReadEmptyRel, ReadRelEntry
+from convert.adapters.solidworks.Config.OrdinaryMap import ReadEmptyRel, ReadOrdinaryMap, ReadRelEntry
 from convert.adapters.solidworks.Config.RootLayout import LoadPartLayouts
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
@@ -110,7 +110,8 @@ def read_first_cap(cursor, boss):
     _, _, transfer = cursor.TakePointer(("moAtom_c",), KObjectRefKind, CompactOnly=True)
     require(cursor.ReadInts("<i") == (0,), "unexpected secondary scoped boss transfer")
     cursor.ReadNull()
-    require(cursor.ReadInts("<5i") == (1, 101, 3, 0, 1), "unexpected scoped boss atom fields")
+    atoms = cursor.ReadInts("<5i")
+    require(atoms == (1, 101, 3, 0, 1), "unexpected scoped boss atom fields")
     require(cursor.ReadInts("<2H") == (1, 1), "expected one scoped body chooser")
     cursor.TakePointer(("moPerBodyChooserData_c",), KDefinitionKind, CompactOnly=True)
     require(cursor.ReadInts("<H") == (2,), "expected two scoped boss chooser caps")
@@ -125,7 +126,7 @@ def read_first_cap(cursor, boss):
     owner, clock_word, occurrence, selector = cursor.ReadInts("<iI2i")
     require((owner, occurrence, selector) == (boss["feature_id"], 0, 0), "scoped cap owner or selector differs")
     return {
-        "start": start, "end": cursor.Offset, "object_index": cap, "feature_id": owner,
+        "start": start, "end": cursor.Offset, "object_index": cap, "feature_id": owner, "body_id": atoms[1],
         "transfer_object_index": transfer, "feature_reference_offset": feature_ref_offset,
         "feature_reference_object": feature_ref, "file_reference": file_ref, "clock_word": clock_word,
     }
@@ -201,8 +202,16 @@ def read_boss_depth(cursor, spec):
     }
 
 
-def read_scope_prefix(archive, resolved, spec, generation):
-    config_map, config_report = read_config_map(archive.require("Contents/Config-0"))
+def read_scope_prefix(archive, resolved, spec, generation, *, licensed=False):
+    config = archive.require("Contents/Config-0")
+    if licensed:
+        config_map, walk = ReadOrdinaryMap(config, generation, Scoped=True)
+        config_report = {
+            **walk, "sha256": sha256(config), "end": config_map.Offset,
+            "next_map_index": config_map.NextIndex,
+        }
+    else:
+        config_map, config_report = read_config_map(config)
     cursor = OpenResolved(resolved, config_map, 23)
     system = ReadSysPrefix(cursor)
     origin = ReadOrigin(cursor, generation)
@@ -219,8 +228,8 @@ def read_scope_prefix(archive, resolved, spec, generation):
     cap = read_first_cap(cursor, boss)
     choosers = read_boss_choosers(cursor, boss, cap)
     depth = read_boss_depth(cursor, spec)
-    next_features = read_second_boss(cursor, spec, generation, system.Planes, cap["file_reference"]["object_index"])
-    cut = read_scoped_cut(cursor, spec, generation, next_features, cap, choosers)
+    next_features = read_second_boss(cursor, spec, generation, system.Planes, cap["file_reference"]["object_index"], licensed=licensed)
+    cut = read_scoped_cut(cursor, spec, generation, next_features, cap, choosers, licensed=licensed)
     return {
         "configuration": config_report, "resolved_list_count": 23,
         "first_profile": {

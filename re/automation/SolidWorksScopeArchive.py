@@ -1,4 +1,4 @@
-"""Replay the bounded scope array in exact provisional SOLIDWORKS archives."""
+"""Replay bounded scope records in hash-pinned SOLIDWORKS archives."""
 
 from argparse import ArgumentParser
 import json
@@ -28,6 +28,7 @@ from convert.adapters.solidworks.Resolved.FaceIdentity import ReadFaceReturn
 from convert.adapters.solidworks.Resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.Resolved.Cut.CutLinks import ReadCutLinks
 from convert.adapters.solidworks.Resolved.Cut.CutProof import ReadCutProof
+from CutScopeEvidence import read_report
 from SolidWorksScopePartition import read_scope_partition, read_scope_support_sheet
 from SolidWorksScopePrefix import read_scope_prefix
 from SolidWorksScopeTerminal import comparable_terminal
@@ -513,14 +514,73 @@ def report(path, repeat_path=None, *, inspect_map=False):
     return result
 
 
+def read_licensed_case(directory, case, spec):
+    saved = case["archive"]
+    data = (directory / saved["file"]).read_bytes()
+    require((len(data), sha256(data)) == (saved["size_bytes"], saved["sha256"]),
+            "native archive changed after report validation")
+    archive = SldprtArchive.from_bytes(data)
+    generation = ContainerMo(archive.streams)
+    require(generation == GENERATION, "unsupported licensed archive generation")
+    resolved = archive.require(RESOLVED)
+    replay = read_scope_prefix(archive, resolved, spec, generation, licensed=True)
+    scope = replay["cut_scope"]
+    labels = dict(zip(replay["earlier_body_ids"], ("A", "B"), strict=True))
+    selected = [labels[key] for key in scope["scope_body_ids"]]
+    observed = case["after_rebuild"]
+    native = observed["cut"]["native"]
+    require(
+        (scope["scope_word"], selected)
+        == (int(native["feature_scope"]), native["feature_scope_body_ids"] or []),
+        "saved scope differs from the native readback",
+    )
+    require(
+        (replay["first_boss"]["feature_id"], replay["second_boss"]["native_feature_id"],
+         scope["native_feature_id"])
+        == (observed["bodies"]["A"]["producer"]["native_id"],
+            observed["bodies"]["B"]["producer"]["native_id"], native["producer"]["native_id"]),
+        "archive feature owners differ from the native readback",
+    )
+    bodies = scope["primary_bodies"]["bodies"] or scope["later_bodies"]["bodies"]
+    region_ids = {body_id: body_id for body_id in replay["earlier_body_ids"]}
+    for body in bodies:
+        region_ids[body["body_id"]] = body["recent_atom_id"]
+    require(all({row[0] for row in group} == set(region_ids.values())
+                for group in replay["configuration"]["regions"]),
+            "configuration region identities differ from the bound result identities")
+    measured = observed["cut"]["target_body_ids"]
+    require({labels[body["body_id"]] for body in bodies} == set(measured),
+            "scope body rows differ from the independently measured Cut on this recipe")
+    return {
+        "archive": saved, "resolved_sha256": sha256(resolved),
+        "measured_affected_body_ids": measured, "resolved_prefix": replay,
+    }
+
+
+def report_licensed(path, digest):
+    native, spec = read_report(path, digest, "solidworks", GitSnapshot(ROOT))
+    return {
+        "schema": 1, "claim": "licensed_two_body_archive_scope", "qualification": False,
+        "application_build": native["application_build"], "report_sha256": digest,
+        "source_revision": native["source_revision"],
+        "cases": {mode: read_licensed_case(path.parent, case, spec)
+                  for mode, case in native["cases"].items()},
+    }
+
+
 def main():
     parser = ArgumentParser(description=__doc__)
     parser.add_argument("archive", type=Path)
     parser.add_argument("--compare-repeat", type=Path)
     parser.add_argument("--inspect-map", action="store_true")
+    parser.add_argument("--licensed-report-sha256")
     arguments = parser.parse_args()
+    digest = arguments.licensed_report_sha256
+    if digest is not None and (arguments.compare_repeat or arguments.inspect_map):
+        parser.error("licensed report mode already inspects all archive maps")
     try:
-        value = report(arguments.archive, arguments.compare_repeat, inspect_map=arguments.inspect_map)
+        value = (report_licensed(arguments.archive, digest) if digest is not None
+                 else report(arguments.archive, arguments.compare_repeat, inspect_map=arguments.inspect_map))
     except (ArchiveError, LookupError, OSError, ValueError) as error:
         parser.exit(1, f"scope archive refused: {error}\n")
     sys.stdout.buffer.write(

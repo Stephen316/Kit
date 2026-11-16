@@ -12,4 +12,12 @@ The licensed campaign supplied three exact MO 19000 controls. The independent na
 
 Each primary selected-body row stores a raw owner word of −1. The later all-bodies rows carry the reached feature IDs 32 and 40. All three archives retain atom IDs 103 and 104 and two result choosers. Even in Explicit A, the B chooser carries Cut-side references while the native measurement shows its body remains unchanged. The parser retains both chooser surfaces and the distinct raw chooser state. Both body lists, the chooser records and the partition pairs have separate outputs.
 
-The controls all have a depthless through-all extent and retain their raw partition state and unclassified start words. The native `AutoSelect` getter was false in all three cases. This evidence distinguishes the unscoped All bodies route from the two explicit lists. Composition with the configuration reader and verification of the new parser on the held archives are pending. [Earlier provisional archive reader](../../Workers/SolidWorks/AutomaticScopeCutTerminal.md)
+The controls all have a depthless through-all extent and retain their raw partition state and unclassified start words. The native `AutoSelect` getter was false in all three cases. The typed replay now composes the configuration, profile, Boss and Cut readers on all three archives. It compares the saved selection and geometry participants with the independent native report, then checks the region identities against the reached body records. The earlier provisional replay also completed both saved archives. [Configuration replay](SolidWorksScopeConfiguration.md), [earlier provisional replay](../../Workers/SolidWorks/AutomaticScopeCutTerminal.md)
+
+Run from the repository root with the retained report and parts in the same directory.
+
+```text
+python re/automation/SolidWorksScopeArchive.py /path/to/report.json --licensed-report-sha256 <report-sha256>
+```
+
+The public adapter recognizes the two-body configuration and emits `sldprt.native_record_unresolved` when the neutral projection lacks body history and scope. The typed archive replay establishes the saved fields on the three controls. Editable neutral projection and paired conversion acceptance remain open.

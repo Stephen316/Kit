@@ -11,6 +11,8 @@ from convert.adapters.solidworks.Resolved.FaceIdentity import (
 )
 from convert.adapters.solidworks.Resolved.Cut.CutChooser import KCutClass
 from convert.adapters.solidworks.Resolved.Cut.CutProfileBody import ReadCutBody
+from convert.adapters.solidworks.Resolved.Cut.ScopeOperation import ReadScopedCut
+from convert.adapters.solidworks.Resolved.Cut.ScopeTypes import ScopeOwner
 from convert.adapters.solidworks.Resolved.Support.FaceFrame import ReadFacePose
 from convert.adapters.solidworks.Resolved.Support.SupportPlane import ReadFaceSupport
 from convert.adapters.solidworks.Sketch.InlineSketch import ParseInlineMut
@@ -153,13 +155,39 @@ def read_typed_scope(cursor, generation, first_cap, second_boss, second_operatio
     }
 
 
-def read_scoped_cut(cursor, spec, generation, prefix, first_cap, first_choosers):
-    profile = prefix["cut_profile_entry"]
+def read_cut_entry(cursor, spec, generation, profile, first_cap, first_choosers):
     sketch, edges = read_cut_sketch(cursor, generation, profile, spec)
     support = read_cut_support(cursor, generation, spec, first_cap, first_choosers, edges)
     node = ReadOpNode(cursor, KCutClass, (0x400201CA,), profile["object_index"], support["file_object"], KindValue=KClassRefKind)
     require(node["name"] == spec["cut"]["feature"], "scoped Cut node differs from the recipe")
+    return {"cut_sketch": sketch, "cut_support": support, "cut_node": node}
+
+
+def read_licensed_cut(cursor, entry, first_cap, first_choosers, prefix):
+    second = prefix["second_operation"]
+    chooser = second["choices"]
+    clocks = prefix["second_archive_words"]["cap_clock_words"]
+    require(len(set(clocks)) == 1, "second boss cap clocks disagree")
+    owners = (
+        ScopeOwner(first_cap["body_id"], first_cap["file_reference"]["object_index"],
+                   first_cap["feature_id"], first_cap["clock_word"], first_cap["transfer_object_index"],
+                   KCapClass, KEdgeClass, tuple(first_choosers["side_occurrences"]),
+                   tuple(first_choosers["centre_and_scale"])),
+        ScopeOwner(second["atom_fields"][1], prefix["second_boss"]["file_ref_object"],
+                   prefix["second_boss"]["native_feature_id"], clocks[0], second["transfer_object"],
+                   CAP_CLASS, EDGE_CLASS, tuple(chooser["caps"][0]["edge_occurrences"]),
+                   tuple(chooser["centre"]["centre_and_scale"])),
+    )
+    parsed = ReadScopedCut(cursor, entry["cut_node"], owners, frozenset(entry["cut_sketch"]["chain"]["edge_ids"]))
+    return {**entry, "cut_scope": parsed, "earlier_body_ids": [owner.BodyId for owner in owners]}
+
+
+def read_scoped_cut(cursor, spec, generation, prefix, first_cap, first_choosers, *, licensed=False):
+    profile = prefix["cut_profile_entry"]
+    entry = read_cut_entry(cursor, spec, generation, profile, first_cap, first_choosers)
+    if licensed:
+        return read_licensed_cut(cursor, entry, first_cap, first_choosers, prefix)
     scope = read_typed_scope(cursor, generation, first_cap, prefix["second_boss"], prefix["second_operation"])
-    recording = {"cut_sketch": sketch, "cut_support": support, "cut_node": node, "cut_scope": scope}
+    recording = {**entry, "cut_scope": scope}
     terminal = read_scope_terminal(cursor, recording, first_cap, first_choosers, prefix)
     return {**recording, "cut_terminal": terminal}
