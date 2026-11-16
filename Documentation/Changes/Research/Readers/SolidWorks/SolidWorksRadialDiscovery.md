@@ -26,3 +26,11 @@ The private licensed run used SOLIDWORKS 2026 build 34.4.1.1011. Three independe
 The local command accepted all three sealed archives and refused both an incorrect attempt digest and a rehashed scratch archive whose owned diameter differed from the parsed circle. The native sources and receipts remained unchanged.
 
 This evidence covers the observed diameter-driven full circular sketch prefix in those three discovery archives. The native capture and archive observations remain separate from portable reader qualification and target application acceptance.
+
+## Circular profile return
+
+On the same sealed cohort, `--profile-return` continues the typed offline readback. The `moSkDimHandleRadial_c` owner resolves to the active sketch and selects its sole G1 diameter value. The two saved display value caches agree with the owned diameter in each archive. The radial subtype return reaches a single sketch region whose outline uses the existing circular entity.
+
+The single profile chain and right trim edge both identify the same native circle. The support reference agrees with the typed Origin datum and the independently observed licensed Front Plane. The saved profile returns at a typed schema-1 `moExtrusion_c` record. The report leaves the complete resolved boss graph unresolved. This check applies to the three positive blind-boss discovery captures on the measured build.
+
+Separate rehashed scratch copies with an incorrect radial value slot or an altered region return were both refused by this mode. The default prefix mode reproduced the original observation, and the sealed inputs remained unchanged.

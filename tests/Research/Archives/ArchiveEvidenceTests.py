@@ -86,6 +86,12 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
             id="fusion-neutral-rectangle-mapping",
         ),
         Pytest.param(
+            "re/automation/FusionStrictRadialPrototype.py",
+            (),
+            "43587934fae7dd9565c1531a57fc566fd2959137dcd137a4098d772a7eb798c8",
+            id="fusion-strict-radial-prototype",
+        ),
+        Pytest.param(
             "re/automation/FusionCutProfileEvidence.py",
             (),
             "4ac34b4dbb4b92473aab572336e0ef6402634b0c534f9c6a502b81cc9575b75c",

@@ -41,7 +41,12 @@ SOFTWARE = 0x2A48004000000011
 NAMES = ("width_mm", "height_mm")
 
 
-def generate():
+def generate(*, sizes=(40.0, 20.0)):
+    require(
+        len(sizes) == 2 and all(math.isfinite(value) and value > 0 for value in sizes),
+        "a pair of positive finite rectangle lengths is required",
+    )
+    width, height = sizes
     build = import_module("convert.Formats.Fusion.DocumentCodec.BuildDesign")
     dims = import_module("convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut")
     add_collections, add_constraints, emit = (
@@ -93,8 +98,8 @@ def generate():
                 spec,
                 Title="P01 sketch-owned dimensions",
                 SketchName="RectangleSketch",
-                WidthMm=40.0,
-                DepthMm=20.0,
+                WidthMm=width,
+                DepthMm=height,
                 WidthParamName=NAMES[0],
                 DepthParamName=NAMES[1],
             )
