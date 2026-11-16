@@ -19,4 +19,6 @@ the existing owner admission.
 The hosted macOS fixture uses a real A03 supervisor timeout with a
 disposable hostless endpoint. It checks claimed-probe refusal, owner
 archival, recovery in a separate owner process, and byte-identical A03
-state before the existing explicit retry. Hosted execution is pending.
+state before the existing explicit retry. It passed at PR head `fa58119b`
+and tested merge `b390918f`, in the 164-case suite with two platform skips.
+[Hosted macOS verification](https://github.com/TryUniCAD/Kit/actions/runs/43799670682/job/133076600079)
