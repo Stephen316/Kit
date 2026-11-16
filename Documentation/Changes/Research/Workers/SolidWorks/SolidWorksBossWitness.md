@@ -110,3 +110,40 @@ contains independent diameter and depth edits with a fresh reopen. Each provides
 evidence within its own scope. The generated rectangular Boss and route-level
 [A12 acceptance](../../../../Reference/Research/AutomationSteps.md#a12-solidworks-writer-research)
 remain open until their own native evidence is available.
+
+## Collect on the licensed Windows desktop
+
+Run the companion from a clean checkout in the pinned Windows research Python
+environment with pywin32. Compile against the registered interops before the
+native run.
+
+```powershell
+python -B re/automation/RunSolidWorksBossWitness.py `
+  --collector-revision COLLECTOR_COMMIT --compile-only
+```
+
+On the authorized empty licensed desktop, select a new owner-private output
+directory outside the checkout. The input witness directory contains the pinned
+plan, candidate, generation report and stock control.
+
+```powershell
+python -B re/automation/RunSolidWorksBossWitness.py `
+  --collector-revision COLLECTOR_COMMIT `
+  --witness C:\Private\BossPlan --plan-sha256 PLAN_SHA256 `
+  --output C:\Private\BossObservation --timeout-seconds 300
+```
+
+The launcher holds the shared research oracle mutex across both phases. Each
+phase uses a bounded STA collector and a separate direct SOLIDWORKS job. Their
+processes are checked by held handles, desktop session and creation time. The
+collector uses passive COM and confirms application job membership. It changes
+only a private scratch copy. A normal application exit and natural job drain
+are required before the saved bytes can enter fresh reopen.
+
+The private output contains the original input pins, `Collector.json` with the
+exact code revision and installed image and interop hashes, and per-phase
+`Ready.json`, `Launch.json`, `Raw.json` and bounded logs. The wrapper checks
+these records and seals `Edit.json` and `Reopen.json` for the standalone
+verifier. It retains `Failure.json` when a phase cannot complete. Only the
+independent verifier's successful result records completion of this native
+witness.
