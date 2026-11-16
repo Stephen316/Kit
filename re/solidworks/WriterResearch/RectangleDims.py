@@ -3,11 +3,12 @@ from math import isclose as IsClose
 from struct import pack as PackFields
 
 from AuthoredProfile import KSketchClass
-from BlindDepth import DepthFields, WriteDepthMut
+from BlindDepth import DepthFields
 from OriginProxy import KPointBackup
 from OriginSketch import KPointHandle
 from PartArchive import PartArchiveWriter
 from ResolvedFolders import KNameClass
+from SketchDimBase import WriteDimBase
 from convert.adapters.solidworks.Container.Archive import KBigObjectTag, EncodeNull
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
@@ -50,18 +51,13 @@ def WriteRectLength(
 ) -> int:
     Writer.BeginObject(KDistanceClass, 1)
     ObjectIndex = Writer.next_index - 1
-    Writer.i32(0)
-    WriteDepthMut(Writer, Name, Value)
-    NullValue = EncodeNull()
-    Writer.raw(NullValue)
-    Writer.raw(PackFields("<4i", Identity, 0, 0, 0))
-    Writer.raw(NullValue)
-    Writer.raw(PackFields("<HBi4H", 0, 0, 1, 2, 0, 0, 0))
+    WriteDimBase(Writer, Identity, 1, (Name, Value))
+    Writer.u16(0)
     for Slot in Slots:
         Writer.BeginObject(KPointHandle, 1)
         Writer.raw(PackFields("<H2i", Slot, -1, 0))
     Writer.raw(PackFields("<4H", 1, 1, 1, 0))
-    Writer.raw(NullValue)
+    Writer.raw(EncodeNull())
     Writer.raw(PackFields("<3d", 0.0, 0.0, 0.0))
     return ObjectIndex
 

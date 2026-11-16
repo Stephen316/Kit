@@ -14,6 +14,7 @@ from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
 from RectangleFields import line_fields, measured_graph, point_fields
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
+from VerifyRectAxes import verify_axes
 from VerifyRectCorners import verify_corners
 from VerifyRectDims import verify_dims
 from VerifyRectLines import verify_lines
@@ -126,7 +127,10 @@ def inspect_open(archive, measurement, construct):
     )
     line_proof = verify_lines(cursor, profile, endpoints, tallies, generation, writer)
     dim_proof = verify_dims(cursor, profile, corners, measurement, generation, writer)
-    return opening, corner_proof, proxy_proof, line_proof, dim_proof
+    axis_proof = verify_axes(
+        cursor, profile, corners, endpoints, measurement, generation, writer
+    )
+    return opening, corner_proof, proxy_proof, line_proof, dim_proof, axis_proof
 
 
 # composition pins the exact receipt order without relying on fixed record offsets
@@ -136,9 +140,10 @@ def report(construct):
     proxy_rows = []
     line_rows = []
     dim_rows = []
+    axis_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners, proxy, lines, dims = inspect_open(
+        opening, corners, proxy, lines, dims, axes = inspect_open(
             archive, measurement, construct
         )
         rows.append((asset["sha256"], *opening))
@@ -146,6 +151,7 @@ def report(construct):
         proxy_rows.append((asset["sha256"], *proxy))
         line_rows.append((asset["sha256"], *lines))
         dim_rows.append((asset["sha256"], *dims))
+        axis_rows.append((asset["sha256"], *axes))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -162,6 +168,9 @@ def report(construct):
         ).hexdigest(),
         "dim_replay_sha256": sha256(
             json.dumps(dim_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "axis_replay_sha256": sha256(
+            json.dumps(axis_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(
