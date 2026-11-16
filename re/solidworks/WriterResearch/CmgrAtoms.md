@@ -1,0 +1,37 @@
+<!--
+SPDX-License-Identifier: LicenseRef-PolyForm-Strict-1.0.0
+SPDX-FileCopyrightText: Copyright (c) 2026 Parashell, Odin Glynn-Martin
+
+This SPDX license identifier and copyright notice must not be
+removed, altered, or obscured. Doing so is a material breach of
+the PolyForm Strict License 1.0.0 and voids all licenses granted
+to you under it immediately and permanently.
+-->
+
+# Configuration manager atom links and part return
+
+The generation-19000 part configuration contains a counted linked-atom map. The native map preserves keys even when their pointer values are null. The first supported geometric target, P03, needs one link node with only its feature ID array populated. [Configuration atom ownership](ConfigAtoms.md), [Terminal manager fields](CmgrTail.md)
+
+## Linked-atom map
+
+In the [pinned `sldmodu.dll`](CmgrTail.md#root-and-feature-stamps), the base configuration serializer at `0x4c215630` writes the signed map count at `0x4c21848f`. The loop at `0x4c2184b6..0x4c2184c3` writes each signed atom key and the typed node pointer.
+
+`moLinkedAtomIdNode_c` has archive slot 5 at `0x4b567d50`. It writes the signed atom ID from member `+0x08`. Its calls at `0x4b567e4d` and `0x4b567e59` write two counted DWORD arrays. The four map calls at `0x4b567e84`, `0x4b567eb1`, `0x4b567edb` and `0x4b567f05` visit members `+0xf0`, `+0x100`, `+0x110` and `+0x120` in order. Each uses the count, signed key and typed object call at `0x4b56869e`, `0x4b5686ba` and `0x4b5686e3`. Exported `getAllAncestors` and `getAllDescendants` use the third and fourth maps respectively. The exported configuration `getImmediateAncestors` uses the first map.
+
+| Capture family | Root map span | Typed nodes and archive allocations |
+| --- | --- | --- |
+| P01, 6 saves | 1654–1658 | Empty map. Next object index remains 9. |
+| P03, 8 saves | 1662–1724 | Key and atom ID 101. First array contains feature ID 34, second array and four maps empty. Class 9, object 10. Next index is 11. |
+| P04, 11 saves | 1678–1798 | Key and atom ID 101 has feature ID 34. Maps 2 and 4 each contain key 102 with a null pointer. Atom 102 has feature ID 46. Maps 1 and 3 each contain key 101 with a null pointer. Both second arrays and other maps empty. Class 9, objects 10 and 11. Next index is 12. |
+
+The base configuration then writes three signed zeros and a counted signed pair map through `0x4c21894d`. Only P04 populates that map, with the pair `(102,101)`. Three following signed words are `(2,0,0)`. The typed `moEnvelopePublisher_c` pointer at `0x4c218ab3` is null. The remaining signed zero and one-element signed list `[-1]` reach the base return at offsets 1700, 1766 and 1848 for P01, P03 and P04. The controls allocate no additional objects in this interval.
+
+## Part return and manager aliases
+
+In `moPartConfiguration_c::Serialize` the call at `0x4c226bf7` computes the frozen-feature checksum. The field at `0x4c226c08` is unsigned and is zero in all 25. The following signed value and `su_CMapPtrToPtr` count at `0x4c226c3b..0x4c226c4b` are `-1` and the saved atom count. The loop at `0x4c226c91..0x4c226cae` emits each enumerated key and value as two longs. P01 has no entries. P03 has one entry `(101,0)`. P04 has both entries with value zero. Eight P04 files have order 101, 102 and three have order 102, 101. This is native map enumeration order. The historical [encoder](../../../src/convert/adapters/solidworks/container/Cmgr.py) calls the analogous field a reverse table.
+
+The four fields after this map are `(0,0,-1,-1)` from `0x4c226cc5`, `0x4c226cd4`, `0x4c226ce4` and `0x4c226cf4`. The first value is an empty map count. The two zero words at `0x4c226f29` and `0x4c226f34` are the high and low words of the part's final entry count. The checksum-to-return spans are 1768–1804, 1834–1878 and 1916–1968.
+
+The enclosing manager writes its second configuration pointer at `0x4c21c890` as an alias to the first part object, slot 4. `0x4c21c89f` writes count 1. `0x4c23f4e8` writes the configuration list, a compact count 1 followed by the same object reference. `0x4c21cb03` then writes external object count 1. These 14 bytes lead to the [first external object definition](CmgrTail.md#external-file-and-referenced-configuration) at offsets 1818, 1892 and 1982 respectively. All 25 modern and the old comparator preserve these aliases.
+
+The intervals between the visual return and linked-atom map, and between the base configuration return and frozen-feature checksum, still need continuous typed walks. The recorded positions anchor the source checks for these saves. Encoding should derive them from each typed body and shared archive namespace.
