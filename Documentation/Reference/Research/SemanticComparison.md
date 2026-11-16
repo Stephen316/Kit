@@ -97,6 +97,9 @@ Individual field text is limited to 65,536 characters.
 Candidate evidence has an 8 MiB budget, and the report has a 32 MiB limit.
 
 Unclassified attributes, native-only values, missing feature definitions and reader diagnostics remain explicit issues.
+A definition-free reference step is recognized only when it has no operation and resolves uniquely to a declared typed sketch.
+Its sketch and timeline dependencies remain part of the graph.
+The [sketch-reference rule](../../Changes/Research/Readers/Comparison/SemanticSketchReferences.md) does not admit missing operation definitions, dangling targets or metadata substitutes.
 Full B-rep, meshes, payloads and assembly graphs require separate comparison.
 Different inline and linked definitions remain different until their driving relationships have independent equivalence evidence.
 Constraint operands and closed-profile sequence are preserved.

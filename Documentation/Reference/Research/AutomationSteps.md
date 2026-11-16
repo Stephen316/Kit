@@ -185,6 +185,9 @@ The [guide](SemanticComparison.md) defines its input seals, bounds and research-
 | A06d     | Native reader artifacts chained into comparison jobs                | jdharcourt | checking | The [reader bridge](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md) preserves full codec documents and source evidence; hosted native-file/controller process execution remains required |
 
 Observed graph equality does not qualify a reader, writer or native conversion.
+The [sketch-reference repair](../../Changes/Research/Readers/Comparison/SemanticSketchReferences.md) recognizes a definition-free reference to a unique declared sketch in both graph projection and reader inventory, retaining operation-definition and unresolved-target findings.
+The [primitive-domain repair](../../Changes/Research/Readers/Comparison/SemanticValueDomains.md) keeps malformed or unknown parameter value kinds unresolved.
+These A06a/A06d source repairs remain checking hosted process execution.
 The [source-bound private P03 controller observation](../../Changes/Research/Readers/Comparison/NeutralReaderWorker.md#verification-evidence) records three strict reads and two dependent comparisons at `7317092e37f52d6bfc3f26449e2b16a5bd82e86b`, now preserved in the shared ancestry.
 All five completed on their first attempts; the operator reopened and hash-checked five result/receipt pairs and eight artifacts.
 The reports remained `different` and `ambiguous`, with semantics unverified and native acceptance unestablished.
