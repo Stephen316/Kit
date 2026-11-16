@@ -104,9 +104,11 @@ public sealed partial class SolidWorksCapture
         var doc = BuildTwoPad(sizes[0], sizes[1]);
         try
         {
-            return Row("variant", name, "base_depth_mm", sizes[0], "upper_depth_mm", sizes[1],
+            var evidence = Row("variant", name, "base_depth_mm", sizes[0], "upper_depth_mm", sizes[1],
                 "authored", ObserveTwoPad(doc, "authored", sizes[0], sizes[1]),
                 "save", Save(doc, Path.Combine(output, name + ".SLDPRT"), false));
+            SealTwoPad(Path.Combine(output, name + "-authored.json"), evidence);
+            return evidence;
         }
         finally { Close(doc); }
     }
@@ -122,6 +124,9 @@ public sealed partial class SolidWorksCapture
         var doc = Open(path, out status, true);
         try
         {
+            Check(doc.IsOpenedReadOnly() && app.GetDocumentCount() == 1
+                && String.Equals(doc.GetPathName(), path, StringComparison.OrdinalIgnoreCase),
+                "SOLIDWORKS did not reopen the exact private archive read-only");
             evidence["open"] = status;
             evidence["before_rebuild"] = ObserveTwoPad(doc, "before rebuild", sizes[0], sizes[1]);
             Rebuild(doc);
@@ -136,6 +141,7 @@ public sealed partial class SolidWorksCapture
                 Set(doc, "depth_mm", .010);
                 evidence["restored"] = ObserveTwoPad(doc, "restored", 10, 5);
             }
+            SealTwoPad(Path.Combine(output, name + "-reopened.json"), evidence);
         }
         finally { Close(doc); }
         Check(Hash(path) == (string)save["sha256"], "Reopen modified the saved bytes");
@@ -156,25 +162,27 @@ public sealed partial class SolidWorksCapture
     public static string CaptureTwoPad(
         string repository, string directory, string executable, string priorJson)
     {
-        return SolidWorksScopeControl.WithOwnedProcess(executable, (application, process) =>
+        var phase = String.IsNullOrEmpty(priorJson) ? "authoring" : "reopen";
+        return WithTwoPadCom(executable, directory, phase, (application, process) =>
         {
             var capture = new SolidWorksCapture(repository, directory, application);
             bool preference = application.GetUserPreferenceToggle(10);
             application.SetUserPreferenceToggle(10, false);
             try
             {
-                var before = capture.Control("before two-pad phase");
+                var before = capture.TwoPadStock(phase, "before");
                 if (String.IsNullOrEmpty(priorJson))
                 {
                     var cases = TwoPadCases.Where(name => name != "baseline-b").Select(capture.SaveTwoPad).ToArray();
-                    var after = capture.Control("after authoring");
+                    var after = capture.TwoPadStock(phase, "after");
                     MatchTwoPadControl(before, after);
                     return Row("authoring_process", process, "authoring_control_before", before,
                         "authoring_control_after", after, "cases", cases);
                 }
                 var prior = Json.Deserialize<Dictionary<string, object>>(priorJson);
                 var owner = (Dictionary<string, object>)prior["authoring_process"];
-                Check((bool)owner["exited_observed"] && (int)owner["pid"] != (int)process["pid"],
+                Check((bool)owner["exited_observed"] && (int)owner["exit_code"] == 0
+                    && (int)owner["pid"] != (int)process["pid"],
                     "Reopen must use a fresh owned SOLIDWORKS process");
                 MatchTwoPadControl((Dictionary<string, object>)prior["authoring_control_after"], before);
                 var reopened = Array(prior["cases"]).Cast<Dictionary<string, object>>().ToList();
@@ -185,7 +193,7 @@ public sealed partial class SolidWorksCapture
                 prior["cases"] = reopened;
                 prior["reopen_process"] = process;
                 prior["reopen_control_before"] = before;
-                var finalControl = capture.Control("after reopen");
+                var finalControl = capture.TwoPadStock(phase, "after");
                 MatchTwoPadControl(before, finalControl);
                 prior["reopen_control_after"] = finalControl;
                 return prior;

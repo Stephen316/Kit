@@ -20,7 +20,7 @@ if ((git -C $repository rev-parse HEAD) -cne $SourceRevision -or $LASTEXITCODE -
 $authoring = 're/automation/PairedCaptures/SolidWorksAuthoring'
 $pinned = @(
     "$authoring/RunTwoPad.ps1", "$authoring/TwoPadCapture.cs", "$authoring/SolidWorksCapture.cs",
-    're/automation/PairedCaptures/ScopeControl/SolidWorksScopeControl.cs',
+    "$authoring/TwoPadComSession.cs",
     're/automation/PairSpecs.json', 're/solidworks/examples/.SLDPRT/example.SLDPRT'
 )
 function Read-Pins {
@@ -62,6 +62,16 @@ $build = '34.4.1.1011'
 if (@($binary, $interop, $constants).Where({ $_.VersionInfo.FileVersion -cne $build }).Count) {
     throw "The registered application and installed interop must match $build."
 }
+$installed = [ordered]@{
+    executable = (Get-FileHash -LiteralPath $binary.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+    interop = (Get-FileHash -LiteralPath $interop.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+    constants = (Get-FileHash -LiteralPath $constants.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+}
+if ($installed.executable -cne '200ac2597814daaead89c1de698a45341850fa2fe0d8c094debb316009e7ea7f' -or
+    $installed.interop -cne '423c0fd109006a13700a7b4703b56200ccde38552c96c327af371921408d7477' -or
+    $installed.constants -cne 'b15e28ed5b2e8332d409ca79635f933a60e8cc0d9bd5ec980e2a2301220e7741') {
+    throw 'The installed SOLIDWORKS files do not match the licensed measurement build pins.'
+}
 $output = $ExecutionContext.SessionState.Path.GetUnresolvedProviderPathFromPSPath($OutputDirectory)
 $parent = Get-Item -LiteralPath (Split-Path -Parent $output)
 if ((Test-Path -LiteralPath $output) -or -not $parent.PSIsContainer -or
@@ -74,7 +84,7 @@ $web = Join-Path ([Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirect
 $code = @(
     (Join-Path $repository "$authoring/SolidWorksCapture.cs"),
     (Join-Path $repository "$authoring/TwoPadCapture.cs"),
-    (Join-Path $repository 're/automation/PairedCaptures/ScopeControl/SolidWorksScopeControl.cs')
+    (Join-Path $repository "$authoring/TwoPadComSession.cs")
 )
 $phase = 'compile'
 try {
@@ -95,6 +105,7 @@ try {
         scope = 'solidworks-face-supported-two-pad-discovery'
         source_revision = $SourceRevision
         application_build = $build
+        installed_files = $installed
         sources = $sources
         observations = $observations
     }) | ConvertTo-Json -Depth 45 -Compress)
@@ -105,6 +116,7 @@ try {
         phase = $phase
         source_revision = $SourceRevision
         application_build = $build
+        installed_files = $installed
         type = $failure.GetType().Name
         message = $failure.Message
     }) | ConvertTo-Json -Compress)
