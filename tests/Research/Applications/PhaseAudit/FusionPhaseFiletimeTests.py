@@ -7,6 +7,7 @@
 # to you under it immediately and permanently.
 
 import runpy as ScriptRunner
+import sys as System
 from collections.abc import Callable
 from typing import cast as CastValue
 
@@ -16,10 +17,14 @@ from tests.Research.Applications.DispatchHost import KRepoRoot
 
 
 # the auditor consumes retained windows identities even on a different host platform
-def CheckFiletime(MonkeyPatch: Pytest.MonkeyPatch) -> None:
+def CheckFiletime() -> None:
     ScriptPath = KRepoRoot / "re/automation/ApplicationWorkers/AuditFusionPhases.py"
-    MonkeyPatch.syspath_prepend(str(ScriptPath.parent))
-    Scope = ScriptRunner.run_path(str(ScriptPath))
+    SearchPath = System.path[:]
+    try:
+        System.path.insert(0, str(ScriptPath.parent))
+        Scope = ScriptRunner.run_path(str(ScriptPath))
+    finally:
+        System.path[:] = SearchPath
     AuditPhase = CastValue(
         Callable[[dict[str, object], dict[str, object]], dict[str, object]],
         Scope["phase_process"],
