@@ -31,7 +31,7 @@ state = {
     "app": None, "event": None, "handlers": [], "stop": threading.Event(), "finished": threading.Event(),
     "thread": None, "started_utc": None, "busy_seconds": 0.0, "jobs": 0, "failed": 0,
     "dispatch": None, "dispatch_protocol": None, "restart_grant": None,
-    "main_thread": None, "active_callback": False,
+    "main_thread": None, "active_callback": False, "startup": None,
 }
 
 
@@ -215,6 +215,10 @@ class JobHandler(adsk.core.CustomEventHandler):
                     state["dispatch_protocol"], grant["_source_pin"], state["dispatch"],
                     Path(request["restart"]), state["app"], state["main_thread"],
                 )
+            elif set(request) == {"startup"}:
+                startup = state["startup"]
+                if startup is not None:
+                    startup.prove(request["startup"], state["app"])
             else:
                 run_job(Path(request["job"]))
         except Exception:
@@ -237,18 +241,47 @@ def poll():
             if request_path is not None:
                 jobs = [request_path]
             else:
+                startup = state["startup"]
+                challenge = startup.pending() if startup is not None else None
+                if challenge is not None:
+                    deliver_event({"startup": challenge}, stop)
+                    stop.wait(IDLE_SECONDS)
+                    continue
                 legacy = host is None or (sys.platform != "win32" and host.legacy_available())
                 jobs = sorted(QUEUE.glob("*.json")) if legacy else []
             if not jobs:
                 stop.wait(IDLE_SECONDS)
                 continue
             request = {"job": str(jobs[0])}
-        state["finished"].clear()
-        if not state["app"].fireCustomEvent(EVENT_ID, json.dumps(request)):
-            stop.wait(IDLE_SECONDS)
-            continue
-        while not stop.is_set() and not state["finished"].wait(0.5):
-            pass
+        deliver_event(request, stop)
+
+
+def deliver_event(request, stop):
+    state["finished"].clear()
+    if not state["app"].fireCustomEvent(EVENT_ID, json.dumps(request)):
+        stop.wait(IDLE_SECONDS)
+        return
+    while not stop.is_set() and not state["finished"].wait(0.5):
+        pass
+
+
+def prepare_startup(context, config, protocol, installation_bytes, install_path):
+    if (
+        sys.platform != "darwin"
+        or not isinstance(context, dict)
+        or context.get("IsApplicationStartup") is not True
+        or "startup" not in config
+    ):
+        return None
+    path = Path(config["startup"])
+    protocol["require"](path.is_absolute(), "Fusion owner startup profile path must be absolute")
+    host = state["dispatch"]
+    helper = protocol["load_pinned"](host.config, protocol["MAC_STARTUP_EVIDENCE"])
+    peer = protocol["load_pinned"](host.config, protocol["MAC_APPLICATION_PEER"])
+    return helper["Startup"](
+        protocol, host, Path(install_path), installation_bytes, path,
+        Path(__file__), threading.get_ident(), peer["process_peer"],
+    )
 
 
 def run(context):
@@ -309,6 +342,14 @@ def run(context):
                 release["permits_replacement"], protocol, state["dispatch"],
                 read_peer=action["peer"]["process_peer"],
             )
+        try:
+            state["startup"] = prepare_startup(
+                context, config, protocol, installation_bytes, config["dispatch"]
+            )
+        except BaseException:
+            state["dispatch"].close()
+            state["dispatch"] = None
+            raise
     state["app"] = app
     state["main_thread"] = threading.get_ident()
     try:
@@ -316,9 +357,10 @@ def run(context):
         handler = JobHandler()
         event.add(handler)
     except BaseException:
-        if sys.platform == "win32" and state["dispatch"] is not None:
+        if (sys.platform == "win32" or state["startup"] is not None) and state["dispatch"] is not None:
             state["dispatch"].close()
             state["dispatch"] = None
+            state["startup"] = None
         raise
     state["event"], state["handlers"] = event, [handler]
     state["stop"].clear()
@@ -338,6 +380,7 @@ def stop(context):
     if state["dispatch"] is not None:
         state["dispatch"].close()
         state["dispatch"] = None
+    state["startup"] = None
     write_status("stopped")
     if sys.platform == "win32":
         state["started_utc"] = None
