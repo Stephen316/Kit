@@ -1,6 +1,6 @@
 # FreeCAD process helpers stay outside test discovery
 
-The initial-shape and attestation process modules now name their internal helpers `InspectCachedBody` and `AssertTargets`.
+The initial-shape and attestation process modules now name their internal helpers `ReadCachedBody` and `AssertTargets`.
 Kit's `python_functions` configuration collects `Check*` functions, including undecorated helpers with arguments.
 The previous helper names therefore became two unintended test entries and requested nonexistent fixtures.
 The rename preserves every process case, helper call and assertion; discovery rules and CI gates remain unchanged.

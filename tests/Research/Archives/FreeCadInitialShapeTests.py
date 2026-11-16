@@ -182,7 +182,7 @@ def ExpectedPoints(CaseName: str) -> set[tuple[float, float, float]]:
 
 
 # separately decoded native topology must describe the requested solid before any application recompute
-def InspectCachedBody(CaseName: str, Document: CadDocument) -> dict[str, object]:
+def ReadCachedBody(CaseName: str, Document: CadDocument) -> dict[str, object]:
     Model = Document.brep
     assert Model is not None and len(Model.bodies) == len(Model.regions) == 1
     assert Model.regions[0].solid and all(Shell.closed for Shell in Model.shells)
@@ -242,7 +242,7 @@ def ObserveInitial(CaseName: str) -> dict[str, object]:
     assert Readback.source.sha256 == DigestBytes(NativeOnly).hexdigest()
     assert Document.to_json(indent=None) == Before
     return {
-        "geometry": InspectCachedBody(CaseName, Readback),
+        "geometry": ReadCachedBody(CaseName, Readback),
         "entry": EntryName,
         "native_acceptance": "not_established",
     }
