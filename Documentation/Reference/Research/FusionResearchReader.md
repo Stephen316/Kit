@@ -42,6 +42,11 @@ Both strict and partial research outputs carry `kit.research_read_status = unqua
 Structural decoding and partial fallback do not qualify editable cross-format conversion.
 [Direct adapter writes](../../Changes/Research/DirectAdapterWriteSafeguards.md) apply the same research and unresolved-source safeguards as registry writes.
 
+The [strict reverse blind-prism reader](../../Changes/Research/Readers/Comparison/FusionStrictSignedPrism.md) accepts the bounded constrained metric-XY negative-distance P03 case after checking its signed parameter owner, selected loop, journal/snapshot geometry, native body ownership and mass cache.
+It retains the complete V2 native state and its read-only marker.
+The alternate YZ strict branch, marked and marker-stripped V2 writes, and V1 downgrade attempts retain their refusals.
+This scoped admission does not establish general reverse-extrusion coverage, editable conversion or fresh-process native acceptance.
+
 ## Per-file outcome evidence
 
 The remote corpus process check emits a complete census through `KIT_FUSION_CENSUS`.

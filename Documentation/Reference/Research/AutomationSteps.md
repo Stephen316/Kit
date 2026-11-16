@@ -201,9 +201,10 @@ Stephen316's accepted research constructs the [two configured atom owners](../..
 These scoped constructors retain caller-supplied ownership and allocation state; their entries distinguish saved-control observations from independently generated record controls.
 They do not establish a complete two-pad archive or qualify A09.
 
-The cap constructor starts after the enclosing face header, whose classifier and local-unit producers remain unverified.
+The cap constructor starts after the enclosing face header.
+The [matched-owner component prefix](../../Changes/Research/Writers/SolidWorks/Boss/SolidWorksTwoPadFaceComponent.md) now derives the component flags and atom references from the native ownership rules, while the selected earlier kernel-face handle and live candidate inventory remain open.
 The upper sketch, joined kernel and rollback ownership, two-atom resolved composition and configuration-cache bindings remain construction dependencies.
-Ghost and relation-manager composition remain separately owned research work.
+The [scoped ghost and relation managers](../../Changes/Research/Writers/SolidWorks/Boss/SolidWorksTwoPadGhosts.md) emit the two inline point records and following empty relation manager; the separate ghost-partition stream and whole-package integration remain open.
 A06b/A07 proof, complete donor-free generation and licensed load, independent edits, rebuild, save and fresh reopen remain required.
 
 ## A11 Fusion writer research
