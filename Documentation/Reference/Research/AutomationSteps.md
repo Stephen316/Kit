@@ -4,7 +4,7 @@
 
 This register belongs to the [neutral-first plan](AutomationPlan.md).
 A01 is complete as a source-backed contract and capability audit.
-**Current work: A02d capture evidence, A04c semantic qualification, A05 semantic qualification, A08c/A08e worker implementation and A14b regression evidence.**
+**Current work: A02d capture evidence, A04c/A05 semantic qualification, A06 comparison implementation, A08c/A08e workers and A14b regression evidence.**
 A05a reader integration and A08a supervisor process gates passed at `c1c3fcce5b8b67373113ec44ad5d122a52bd7260`.
 A05 includes fresh licensed observations for the four circular controls and the scoped packaged reader. Editable target acceptance remains open.
 The current request authorizes remaining deterministic work in dependency order on [PR #94](https://github.com/TryUniCAD/Kit/pull/94).
@@ -43,7 +43,7 @@ If work pauses or changes owner, post a handoff with remaining tasks.
 | A03 | Durable evidence store and job controller              | A01                                  | jdharcourt | complete | Transactional jobs, dependency invalidation, leases, bounded retries and interruption recovery verified remotely                                                                                                                   |
 | A04 | SOLIDWORKS → neutral reader integration                | A01, A02a                            | jdharcourt | active   | Initial sketches and feature variants preserve required semantics and report unresolved records accurately                                                                                                                         |
 | A05 | Fusion → neutral reader integration                    | A01, A02a                            | Stephen316 | active   | Equivalent initial designs serialize through the same contract with independently supported meaning                                                                                                                                |
-| A06 | Semantic graph comparison                              | A02c, A04, A05                       | Unassigned | planned  | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
+| A06 | Semantic graph comparison                              | A02c, A04, A05                       | jdharcourt | active   | Equal, intentionally different and ambiguous paired cases report correctly without broad identity masking                                                                                                                          |
 | A07 | Bounded deterministic inference and priority scheduler | A03, A06                             | Codex A07  | blocked  | Real shared gaps yield traceable hypotheses, counterexamples and affected-file rescans without models                                                                                                                              |
 | A08 | Controlled sample and trace workers                    | A02b, A03                            | jdharcourt | active   | Exact recipes and versioned receipts work with healthy controls; absent workers block only dependent jobs                                                                                                                          |
 | A09 | Scoped field maps and typed codec candidates           | A07                                  | Unassigned | planned  | Solved pad-then-pad family is reproduced without model calls, with independent proof and zero donor blocks                                                                                                                         |
@@ -164,6 +164,22 @@ A05a does not close A05b or A05c or qualify native conversion.
 A05c needs independent source inventories and distinguishing evidence rather than agreement with the same reader.
 The public Fusion partial reader now carries the [saved principal-plane identity](../../Changes/Fusion/Adapter/FusionPrincipalSketchSupport.md) and [signed axis-dimension operand order](../../Changes/Fusion/Adapter/FusionAxisDimensionOrder.md) into the neutral document. The hosted archive step passed all 25 checks at `fa7e92d8`. The partial reader also preserves the [saved point coincidence arguments](../../Changes/Fusion/Adapter/FusionPointCoincidence.md). Its three public-reader cases passed at `011ddb8b`. The latest reader also checks the [saved selected-profile proxy and descriptor](../../Changes/Fusion/Adapter/FusionOwnedProfileSelection.md) for the witnessed P03 and P04 extrusion layouts and projects the [historical P04 cut target body](../../Changes/Fusion/Adapter/FusionCutTargetSelection.md). Those cases passed on `b6ce2ec9`. The [P04 sketch's saved face recipe](../../Changes/Fusion/Adapter/FusionSketchFaceProvenance.md) passed its hosted checks at `f15b9cea`. The partial reader now joins that recipe to the [exact saved face occurrence](../../Changes/Fusion/Adapter/FusionSavedFaceOccurrence.md) on the verified prior body. It reads the [saved blind and through-all cut ends](../../Changes/Fusion/Adapter/FusionSavedCutEnds.md) and retains the [projected origin and center expression operands](../../Changes/Fusion/Adapter/FusionSavedCutCenter.md). All eleven saved P04 controls corroborate these reads. Hosted public checks, fresh licensed readback and editable acceptance remain open. [Hosted archive checks](https://github.com/TryUniCAD/Kit/actions/runs/43728415623/job/132855298357)
 See [the change entry](../../Changes/Research/PinnedFusionReader.md).
+
+## A06 comparison implementation and qualification
+
+The [portable graph comparator](../../Changes/Research/Readers/Comparison/SemanticGraphComparison.md) reads sealed neutral documents through the actual codec and validator.
+It compares typed fields and dependency roles, normalizes explicitly declared quantities and retains ambiguous correspondences.
+Unclassified references, unsupported domains and exhausted budgets cannot produce equality.
+The [guide](SemanticComparison.md) defines its input seals, bounds and research-only result scope.
+
+| Child ID | Deliverable                                                         | Owner      | Status   | Remaining evidence                                                                                                |
+| -------- | ------------------------------------------------------------------- | ---------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
+| A06a     | Bounded portable graph projection, matching and process command     | jdharcourt | checking | Static checks passed; hosted process execution remains required                                                   |
+| A06b     | Independently qualified equal, different and ambiguous native pairs | jdharcourt | blocked  | A02d evidence admission, frozen rules and A04/A05 source inventories remain required; zero pairs qualified        |
+| A06c     | Controller comparison worker and immutable report artifacts         | jdharcourt | active   | Implement the existing session/result/artifact protocol and verify through the hosted controller process boundary |
+
+Observed graph equality does not qualify a reader, writer or native conversion.
+A07 acceptance and A09 continue to depend on A06b.
 
 ## A12 SOLIDWORKS writer research
 

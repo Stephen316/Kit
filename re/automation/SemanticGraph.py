@@ -33,7 +33,7 @@ REFERENCES = {
     },
     "Configuration": {"parent_id", "suppressed_feature_ids"},
     "ParamOverride": {"parameter_id"},
-    "FeatureCfgState": {"configuration_id"},
+    "FeatureCfgState": {"configuration_id", "parameter_override_ids"},
     "DesignBody": {"final_feature_id", "material_id"},
     "DistanceExtrude": {
         "AlongParameterId",
@@ -51,6 +51,18 @@ REFERENCES = {
     "AngularRevolve": {"AxisSelectionId", "AlongParameterId", "AgainstParameterId"},
     "PlaneRevolve": {"AxisSelectionId", "PlaneSelectionIds"},
     "ExtrudeFeature": {"up_to_reference", "second_up_to_reference"},
+    "RefPlaneFeature": {"support_plane_id", "reference_plane_id"},
+    "FilletFeature": {"variable_radius_parameter_ids"},
+    "RevolveFeature": {"axis_entity_id"},
+    "LinearPattern": {"direction_selection_id"},
+    "CirclePattern": {"axis_selection_id"},
+    "ScopedExtrude": {"SelectedBodyIds", "AffectedBodyIds"},
+    "BoundConstructionPlane": {
+        "SupportPlaneId",
+        "ScalarParameterId",
+        "OffsetParameterId",
+    },
+    "BoundScale": {"FactorParameterIds", "CenterSelectionId", "BodySelectionIds"},
 }
 UNORDERED_REFERENCES = {"parameter_ids", "suppressed_feature_ids"}
 LENGTH_FIELDS = {
@@ -68,6 +80,7 @@ LENGTH_FIELDS = {
     "Transform": {"origin"},
     "BoundingBox": {"minimum", "maximum"},
     "Selection": {"point"},
+    "MoveBodyFeature": {"translation"},
 }
 DIMENSIONLESS_FIELDS = {
     "Transform": {"x_axis", "y_axis", "z_axis"},
@@ -84,6 +97,7 @@ DIMENSIONLESS_FIELDS = {
     "ArcParabGeom": {"axis"},
     "SplineGeometry": {"knots", "weights"},
     "MaterialRecord": {"ColorValue"},
+    "ScaleFeature": {"factors"},
 }
 
 
@@ -272,6 +286,13 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
             if name in REFERENCES.get(kind, set()):
                 reference(node, location, child, name not in UNORDERED_REFERENCES)
                 continue
+            if child and (
+                name.endswith(("_id", "_ids", "Id", "Ids"))
+                or (kind == "Selection" and name == "query")
+            ):
+                issue(
+                    node["path"] + location, "unclassified_reference_semantics", child
+                )
             if kind == "Sketch" and name in {"entities", "constraints"}:
                 atom(node, location + "/count", len(child))
                 continue
