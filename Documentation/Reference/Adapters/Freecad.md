@@ -104,6 +104,8 @@ See [extrusion reversal emission](../../Changes/FreeCad/FreeCadReversedExtrusion
 The [independent FreeCAD 1.1.4 witness](../../Changes/FreeCad/FreeCadEndNativeWitness.md) observed scoped driving edits, restoration, save and fresh reopen at exact source `b32222b5`.
 Its original generated packages had no cached BREP and exposed zero solids before native recompute.
 The post-recompute and saved-copy successes do not establish initial geometry availability or broader route qualification.
+The [calculated initial-shape implementation](../../Changes/FreeCad/FreeCadInitialExtrusionShapes.md) attaches supported independent Create caches to their actual editable owners without a CAD runtime.
+Other cache families, Boolean results and independent initial-open acceptance remain unfinished; cache presence does not establish application usability.
 
 The `portable` writer option defaults to true in the inspected adapter revision.
 For assemblies, portable output can include companion component files.

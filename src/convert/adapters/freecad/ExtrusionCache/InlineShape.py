@@ -1,7 +1,8 @@
 from collections.abc import Mapping
 from math import isclose as IsClose, isfinite as IsFinite
 
-from convert.adapters.freecad.Brep import BrepModelBrep, FreeCADBrepWriteError
+from convert.adapters.freecad.Brep import BrepModelBrep
+from convert.adapters.freecad.BrepGraph import FreeCadBrep
 from convert.adapters.freecad.ExtrusionCache.InlineProfile import ReadCacheFrame
 from convert.Geometry.Extrude.Circular.CircularExtrude import BuildCircular
 from convert.Geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
@@ -74,5 +75,5 @@ def MakeInlineShape(
             else BuildPrism(FeatureId, FrameValue, Profile, Lower, Upper)[0]
         )
         return BrepModelBrep(Model)
-    except (FreeCADBrepWriteError, ValueError, TypeError, KeyError, OverflowError):
+    except (FreeCadBrep, ValueError, TypeError, KeyError, OverflowError):
         return None
