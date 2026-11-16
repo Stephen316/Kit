@@ -42,6 +42,14 @@ def CheckModelHdr() -> None:
         DigestBytes(Encoded.encode("ascii")).hexdigest()
         == "3028ee71641c89df6c79c88c8bc299e464ad7c00d563c1396e751ac906554636"
     )
+    Records = Report["model_header_records"]
+    assert isinstance(Records, dict)
+    assert len(CastValue(dict[str, str], Records)) == 25
+    Encoded = JsonCodec.dumps(Records, sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "d577d96774b072bef17a237fc13a39eb1b876531bd52a5782df53b1821bd6787"
+    )
 
 
 # each configuration manager record needs separate pinned evidence from the subprocess
