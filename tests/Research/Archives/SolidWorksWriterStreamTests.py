@@ -41,6 +41,10 @@ def CheckProfile() -> None:
         Report["corner_replay_sha256"]
         == "824ef34e99d0bd6f0aa4b5d92cbc5532b296fd1f14e8590438135cfcdba540c8"
     )
+    assert (
+        Report["proxy_replay_sha256"]
+        == "422534f2ef8bd02ecb8f71c4d0bd6a7b7618dc4b15c5c9a6ab1db3d88bc2dc79"
+    )
 
 
 # the research writer and reader must agree on the full stream in real native files

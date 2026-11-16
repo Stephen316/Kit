@@ -12,7 +12,9 @@ from AuthoredProfile import ReadAuthoredOpen, WriteAuthoredOpen
 from HeaderLogs import ReadHeaderLogs
 from PartArchive import PartArchiveWriter
 from RectangleFields import line_fields, measured_graph, point_fields
+from ResolvedOrigin import ReadOriginRec
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
+from VerifyOriginProxy import read_ghost, verify_proxy
 from VerifyRectCorners import verify_corners
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
@@ -48,11 +50,16 @@ def verify_members(stream, profile, measurement):
 # document IDs, archive allocations and geometry order must converge on the same owner
 def inspect_open(archive, measurement, construct):
     generation = ContainerMo(archive.streams)
-    config, model = ReadOrdinaryMap(archive.require("Contents/Config-0"), generation)
+    config_blob = archive.require("Contents/Config-0")
+    config, model = ReadOrdinaryMap(config_blob, generation)
+    ghost = read_ghost(config_blob, model["relation_manager"])
     stream = archive.require("Contents/Config-0-ResolvedFeatures")
     cursor = OpenResolved(stream, config, 18 + model["atom_count"])
     ReadSysPrefix(cursor)
+    origin_cursor = map_state(cursor).Cursor(stream, cursor.Offset)
+    origin_state = ReadOriginRec(origin_cursor, generation)
     origin = ReadOrigin(cursor, generation)
+    require(origin_cursor.Offset == cursor.Offset, "independent complete Origin owner")
     start = cursor.Offset
     before = map_state(cursor)
     snapshot = before.Cursor(stream, start)
@@ -105,26 +112,35 @@ def inspect_open(archive, measurement, construct):
         fields.Feature.RegenTime,
         sha256(stream[start:end]).hexdigest(),
     )
-    return opening, verify_corners(
+    corner_proof = verify_corners(
         cursor, profile, corners, endpoints, tallies, generation, construct
     )
+    proxy_proof = verify_proxy(
+        cursor, profile, origin, origin_state, ghost, generation, construct
+    )
+    return opening, corner_proof, proxy_proof
 
 
 # composition pins the exact receipt order without relying on fixed record offsets
 def report(construct):
     rows = []
     corner_rows = []
+    proxy_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners = inspect_open(archive, measurement, construct)
+        opening, corners, proxy = inspect_open(archive, measurement, construct)
         rows.append((asset["sha256"], *opening))
         corner_rows.append((asset["sha256"], *corners))
+        proxy_rows.append((asset["sha256"], *proxy))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
         "constructed": construct,
         "corner_replay_sha256": sha256(
             json.dumps(corner_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "proxy_replay_sha256": sha256(
+            json.dumps(proxy_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(

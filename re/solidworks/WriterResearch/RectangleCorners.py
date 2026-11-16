@@ -3,8 +3,8 @@ from math import isfinite as IsFinite
 from struct import pack as PackFields
 
 from AuthoredProfile import KSketchClass
+from LocalPoint import WritePointEnd, WritePointOpen, WritePointPose
 from PartArchive import PartArchiveWriter
-from SketchMemberStyle import COLOR_STATUS_TYPE, Weight, default_visual, standard_width
 from convert.adapters.solidworks.Container.Archive import KBigObjectTag, EncodeNull
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
@@ -61,21 +61,13 @@ def WriteCorner(
     Mask: int,
     Status: int,
 ) -> None:
-    Writer.raw(PackFields("<H2i", 0, 0, Point.Identity))
-    Writer.raw(default_visual())
-    Writer.raw(PackFields("<iH", Point.RelationCount, 0))
-    # the native ordinary constraint-color branch maps status 2 to color 4
-    Writer.raw(COLOR_STATUS_TYPE.pack(4, Status, 1))
-    Writer.raw(standard_width(Weight.THIN))
+    WritePointOpen(Writer, 0, Point.Identity, Point.RelationCount, Status)
     Writer.raw(EncodeNull())
-    Writer.raw(PackFields("<2Hi", 4, 0, 0))
-    Writer.raw(EncodeNull())
-    Writer.raw(PackFields("<Bd2I", 0, 1.0, 0, 0))
-    Writer.raw(PackFields("<H2d2H", Mask, *Point.Position, 0, len(Handles)))
+    WritePointPose(Writer, Point.Position, Mask, 0, len(Handles))
     for Handle in Handles:
         Writer.BeginObject(KLineHandle, 1)
         Writer.raw(PackFields("<H2i", Handle, -1, 0))
-    Writer.raw(PackFields("<Hi4d2H", 0, -2, 0.0, 0.0, 0.0, 0.0, 0, 0))
+    WritePointEnd(Writer)
 
 
 # validate the graph and the current owner before mutating the shared archive

@@ -95,6 +95,8 @@ def verify_corners(cursor, profile, corners, endpoints, tallies, generation, con
         require(
             writer.Snapshot() == map_state(sketch), "exact ordinary corner archive map"
         )
+    cursor.Offset = end
+    cursor.NextIndex = sketch.NextIndex
     return (
         start,
         end,
