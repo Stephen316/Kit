@@ -9,6 +9,7 @@
 import json
 from collections import Counter
 from dataclasses import replace
+from io import BytesIO
 from math import isclose
 
 from FusionCutExtentEvidence import REVISION, ROOT, SPECIFICATION, SPECIFICATION_SHA256
@@ -16,14 +17,18 @@ from FusionRadialMutation import mutation_archive
 from PairedCaptureIntake import GitSnapshot, require, sha256
 from RectanglePairEvidence import capture
 
-from convert import open_document
+from convert import open_document, write_document
+from convert.Commands.CheckPortable import CheckPortable
+from convert.Commands.Qualified.CheckGeometry import KGeometryError
 from convert.adapters.Fusion.Bridge.CheckContract import CheckContract
 from convert.adapters.Fusion.Bridge.EncodeDocument import EncodeDocument
 from convert.adapters.Fusion.Native.Graph.BuildGraph import BuildGraph
+from convert.adapters.Fusion.Native.Graph.GraphChecks import LinkedNodes, ResolveField
 from convert.adapters.Fusion.Native.Graph.GraphValues import ObjectFields, PointCoords
 from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
 from convert.adapters.Fusion.Native.Graph.SelectExtrusion import SelectExtrusion
 from convert.adapters.Fusion.Writer import FusionWriter
+from convert.adapters.registry.RegistryErrors import AdapterNotFoundError
 from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from convert.Formats.Fusion.EntityCodec.Model.EntityFrame import EntityFrame
@@ -35,6 +40,7 @@ from convert.Formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
 from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 from interchange.Enums.EnumFeatures import BooleanOp
 from interchange.Enums.EnumGeometry import ConstraintKind
+from interchange.Enums.EnumUnits import UnitSystem
 from interchange.Enums.EnumValues import ParameterRole
 from interchange.Features.FeatureDistExt import DistanceExtrude
 
@@ -47,12 +53,18 @@ POSITIVE = {
     "edit-depth_mm-12": "d00651984f02f6de275fc0fa6d33777e75e1a110ba27a48309e1c37d6953247a",
 }
 
+# The native display case preserves the same metric physical values under a different saved preference.
+INCH_SHA256 = "106767a536e453242e4b202af4db53d27973b16b7cf5f447b99a381cb8e09644"
+
+# Retain the exact original source reading checkpoint and its observed inch refusal.
+PRIOR_REPORT = {
+    "revision": "f688178cbceed27a521be78787898db285573eb9",
+    "sha256": "b3324c35a37b1065e4d6fa325056a57afbf2f9f7f2a1067e8b64fbc607bb6bb6",
+    "inch_refusal": "Unsupported native Fusion UnitSystemChoiceById.unitString",
+}
+
 # Adjacent discovery fixtures pin where the constrained positive XY reader stops.
 REFUSED = {
-    "units-inch": (
-        "106767a536e453242e4b202af4db53d27973b16b7cf5f447b99a381cb8e09644",
-        "Unsupported native Fusion UnitSystemChoiceById.unitString",
-    ),
     "plane-yz": (
         "c14b8c4a791415c5eb356d4c1e4143cb4b76ab856e0f84357c08b4f4da125b3a",
         "Unsupported native Fusion FusionSketchLinearDim.constraintType",
@@ -102,10 +114,10 @@ LEGACY = {
 
 
 # Strict refusals must identify the intended policy guard after a successful wire read.
-def refusal(operation, expected):
+def refusal(operation, expected, error_type=ValueError):
     try:
         operation()
-    except ValueError as error:
+    except error_type as error:
         require(str(error) == expected, f"Unexpected refusal: {error}")
         return str(error)
     raise ValueError(f"Expected refusal: {expected}")
@@ -266,11 +278,16 @@ def body_match(document, context, observed):
 
 
 # Keep the complete typed native state and exact default partial bytes under their original contracts.
-def check_state(raw, document, model):
+def check_state(raw, document, model, display=None):
     contract = document.metadata["fusion.native_state"]
     (retained,) = open_document(raw, strict=False).brep_payloads
+    keys = {"fusion.native_state", "fusion.read_only"}
+    if display is not None:
+        keys.add("source_display_units")
     require(
-        set(document.metadata) == {"fusion.native_state", "fusion.read_only"}
+        set(document.metadata) == keys
+        and document.units is UnitSystem.KMillimeter
+        and document.metadata.get("source_display_units") == display
         and document.metadata["fusion.read_only"] is True
         and contract["version"] == 2
         and CheckContract(contract, "model", 2) == model
@@ -475,6 +492,125 @@ def legacy_controls(snapshot):
     return result
 
 
+# Run the full reader and independent body, constraint and parameter checks on each admitted save.
+def admitted_case(raw, digest, witnesses, *, display=None):
+    document = open_document(raw, strict=True)
+    model = ReadDocument(raw)
+    graph = BuildGraph(model)
+    context = SelectExtrusion(graph)
+    result = {
+        "archive_sha256": digest,
+        "phases": {app: witness[0] for app, witness in witnesses.items()},
+        "parameters": owned_drivers(document, witnesses["fusion"][1]),
+        "sketch": sketch_relations(document, graph, context),
+        "body": body_match(
+            document, context, {app: witness[1] for app, witness in witnesses.items()}
+        ),
+        "read_only_independent_guard": check_state(raw, document, model, display),
+    }
+    return result, document, model, graph
+
+
+# Recover the active length choice independently from the complete encoded native state.
+def modeling_length(graph):
+    settings = graph.OneClass("CommonDataAssetSettings")
+    units = ResolveField(graph, settings, "activeUnitSystem", "UnitSystem")
+    (choice,) = [
+        node
+        for node in LinkedNodes(graph, units, "children")
+        if node.ClassName == "UnitSystemChoiceById"
+        and node.Fields["id"] == "ModelingLength"
+    ]
+    return units, choice
+
+
+# These valid wire mutations isolate unsupported display text and a different typed owner.
+def display_mutations(model, graph):
+    units, choice = modeling_length(graph)
+    other = next(node for node in graph.ByClass("UnitSystem") if node != units)
+    outcomes = {}
+    for field, value in (
+        ("unitString", "centimeter"),
+        ("rParent", LocalRef(other.ObjectId)),
+    ):
+        changed = mutation_archive(model, choice, field, value)
+        _, reread = modeling_length(BuildGraph(ReadDocument(changed)))
+        require(
+            reread.Fields[field] == value,
+            f"Display mutation {field} did not survive wire decoding",
+        )
+        outcomes[field] = refusal(
+            lambda: open_document(changed, strict=True),
+            f"Unsupported native Fusion UnitSystemChoiceById.{field}",
+        )
+    return outcomes
+
+
+# Verify that normal public write routing cannot emit bytes from the inch display source.
+def inch_writer_refusals(document):
+    result = {"portable": refusal(lambda: CheckPortable(document), KGeometryError)}
+    for format_id, expected in (
+        ("fusion.f3d", "fusion.f3d does not support the destination"),
+        ("solidworks.sldprt", "no writer registered for solidworks.sldprt"),
+    ):
+        destination = BytesIO()
+        result[format_id] = refusal(
+            lambda: write_document(
+                document, destination, destination_format=format_id, allow_carrier=False
+            ),
+            expected,
+            AdapterNotFoundError,
+        )
+        require(
+            not destination.getvalue(),
+            f"{format_id} write refusal emitted archive bytes",
+        )
+    return result
+
+
+# A measured display preference must not alter any normalized driver or geometry.
+def inch_case(snapshot, captures):
+    variant = "units-inch"
+    raw = source_bytes(snapshot, captures["fusion"][1][variant], INCH_SHA256)
+    witnesses = {app: entry[2][variant] for app, entry in captures.items()}
+    result, document, model, graph = admitted_case(
+        raw, INCH_SHA256, witnesses, display="in"
+    )
+    native = CheckContract(document.metadata["fusion.native_state"], "model", 2)
+    units, choice = modeling_length(BuildGraph(native))
+    require(
+        witnesses["fusion"][1]["document_units"] == 3
+        and witnesses["solidworks"][1]["units_code"] == 3
+        and units.Fields["id"] == "Custom"
+        and choice.Fields["unitString"] == "inch"
+        and choice.Fields["rParent"] == LocalRef(units.ObjectId)
+        and [
+            (item.value.value, item.value.unit, item.expression.source)
+            for item in document.parameters
+        ]
+        == [
+            (40.0, "mm", "40 mm"),
+            (20.0, "mm", "20 mm"),
+            (10.0, "mm", "10 mm"),
+            (0.0, "rad", "0.0 deg"),
+        ],
+        "Native inch display custody or normalized literal driver values differ",
+    )
+    return {
+        **result,
+        "native_display": {
+            "unit_string": choice.Fields["unitString"],
+            "choice_id": choice.ObjectId,
+            "owner_id": units.ObjectId,
+            "fusion_measurement_code": witnesses["fusion"][1]["document_units"],
+        },
+        "neutral_units": document.units.value,
+        "source_display_units": document.metadata["source_display_units"],
+        "valid_native_display_mutation_refusals": display_mutations(model, graph),
+        "public_write_refusals": inch_writer_refusals(document),
+    }
+
+
 # Replay public entry points from immutable discovery receipts in the repository.
 def report():
     snapshot = GitSnapshot(ROOT)
@@ -492,23 +628,8 @@ def report():
     accepted = {}
     for variant, digest in POSITIVE.items():
         raw = source_bytes(snapshot, assets[variant], digest)
-        document = open_document(raw, strict=True)
-        model = ReadDocument(raw)
-        graph = BuildGraph(model)
-        context = SelectExtrusion(graph)
         witnesses = {app: captures[app][2][variant] for app in applications}
-        accepted[variant] = {
-            "archive_sha256": digest,
-            "phases": {app: witness[0] for app, witness in witnesses.items()},
-            "parameters": owned_drivers(document, witnesses["fusion"][1]),
-            "sketch": sketch_relations(document, graph, context),
-            "body": body_match(
-                document,
-                context,
-                {app: witness[1] for app, witness in witnesses.items()},
-            ),
-            "read_only_independent_guard": check_state(raw, document, model),
-        }
+        accepted[variant], _, _, _ = admitted_case(raw, digest, witnesses)
     adjacent = {}
     for variant, (digest, expected) in REFUSED.items():
         raw = source_bytes(snapshot, assets[variant], digest)
@@ -522,7 +643,7 @@ def report():
     )
     graph = BuildGraph(baseline)
     return {
-        "schema": 1,
+        "schema": 2,
         "revision": REVISION,
         "specification_sha256": SPECIFICATION_SHA256,
         "scope": "Strict source reading for a constrained millimeter XY first blind prism",
@@ -539,6 +660,8 @@ def report():
             for app, entry in captures.items()
         },
         "admitted": accepted,
+        "inch_display": inch_case(snapshot, captures),
+        "historical_metric_report": PRIOR_REPORT,
         "adjacent_refusals": adjacent,
         "valid_native_mutation_refusals": field_mutations(
             baseline, graph, SelectExtrusion(graph)

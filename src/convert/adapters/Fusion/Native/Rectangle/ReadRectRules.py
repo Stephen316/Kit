@@ -13,7 +13,7 @@ from convert.adapters.Fusion.Native.Graph.GraphChecks import (
     ResolveField,
     SameNodes,
 )
-from convert.adapters.Fusion.Native.Graph.GraphValues import PointCoords
+from convert.adapters.Fusion.Native.Graph.GraphValues import PointCoords, TextValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Rectangle.OrderLines import OrderLines
@@ -21,6 +21,7 @@ from convert.adapters.Fusion.Native.Rectangle.ReadRectDims import ReadRectDims
 from convert.adapters.Fusion.Native.Rectangle.RectSketchProof import RectSketchProof
 from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 from interchange.Enums.EnumGeometry import ConstraintKind
+from interchange.Enums.EnumUnits import UnitSystem
 from interchange.geometry.Models.Sketch import ConstraintRef, SketchRelation
 
 
@@ -36,7 +37,7 @@ def ReadRectRules(
         raise ValueError(
             "Native constrained rectangle requires five rules and two dimensions"
         )
-    CheckRectUnits(Graph)
+    DisplayUnit = ReadRectUnits(Graph)
     Rules = LinkedNodes(Graph, Context.Sketch, "constraints")
     Dimensions = LinkedNodes(Graph, Context.Sketch, "dimensions")
     SameNodes(Rules, Geometric)
@@ -60,11 +61,12 @@ def ReadRectRules(
         Anchor,
         Origin,
         (*AxisRules, AnchorRelation, *SizeRules),
+        DisplayUnit,
     )
 
 
-# the qualified source family records a millimeter choice in its active unit system
-def CheckRectUnits(Graph: NativeGraph) -> None:
+# display units follow the active modeling length choice without changing stored measurements
+def ReadRectUnits(Graph: NativeGraph) -> UnitSystem:
     Settings = Graph.OneClass("CommonDataAssetSettings")
     Units = ResolveField(Graph, Settings, "activeUnitSystem", "UnitSystem")
     Lengths = tuple(
@@ -77,9 +79,15 @@ def CheckRectUnits(Graph: NativeGraph) -> None:
         raise ValueError(
             "Native constrained rectangle requires one modeling length setting"
         )
-    RequireFields(
-        Lengths[0], {"unitString": "millimeter", "rParent": LocalRef(Units.ObjectId)}
-    )
+    NativeUnit = TextValue(Lengths[0].Fields["unitString"])
+    DisplayUnit = {
+        "millimeter": UnitSystem.KMillimeter,
+        "inch": UnitSystem.KInch,
+    }.get(NativeUnit)
+    if DisplayUnit is None:
+        raise ValueError("Unsupported native Fusion UnitSystemChoiceById.unitString")
+    RequireFields(Lengths[0], {"rParent": LocalRef(Units.ObjectId)})
+    return DisplayUnit
 
 
 # the free corner and the fixed origin have distinct identities and share only the proved coincidence
