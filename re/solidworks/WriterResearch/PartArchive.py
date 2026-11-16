@@ -1,5 +1,6 @@
 from dataclasses import dataclass
-from typing import override as Override
+
+from typing_extensions import override as Override
 
 from convert.adapters.solidworks.Container.Archive import KBigObjectTag, EncodeObjectRef
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
