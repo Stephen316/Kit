@@ -374,11 +374,11 @@ def CheckControls(TmpPath: FilePath, FaultKind: str, ReasonText: str) -> None:
         assert ResultInfo["outcome"] == "rejected"
         assert ReasonText in ResultInfo["reason"]
         assert "artifacts" not in ResultInfo and "output_artifacts" not in Finish
-        CheckSpool(Dispatch)
+        AssertSpool(Dispatch)
 
 
 # owner disposition must retain the completed files behind their original fence
-def CheckSpool(Dispatch: DispatchHost) -> None:
+def AssertSpool(Dispatch: DispatchHost) -> None:
     Fence = JsonCodec.loads((Dispatch.Endpoint / "fence.json").read_bytes())
     assert Fence["reason"] == "acceptance_required"
     Spool = Dispatch.Endpoint / "jobs" / Fence["job_id"]
