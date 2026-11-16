@@ -11,6 +11,8 @@
 from math import dist, isclose
 
 from PairedCaptureIntake import require, sha256
+from SolidWorksRadialBoss import read_radial_boss
+from SolidWorksRadialPartition import read_boss_partition
 from SolidWorksRadialDisplay import read_display_return
 from SolidWorksRadialProfile import read_circular_region, read_profile_return
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
@@ -255,8 +257,8 @@ def read_display_prefix(cursor):
     }
 
 
-# Continue through the radial display and profile only for the explicit research mode.
-def inspect_archive(data, profile_return=False):
+# Continue through explicitly selected circular discovery checkpoints.
+def inspect_archive(data, profile_return=False, *, boss_return=False):
     cursor, profile, origin = open_profile(data)
     points = read_points(cursor)
     circle = read_circle(cursor, points)
@@ -278,9 +280,18 @@ def inspect_archive(data, profile_return=False):
             "complete_resolved_boss_graph",
         ],
     }
-    if profile_return:
+    if profile_return or boss_return:
         result["display_return"] = read_display_return(cursor, profile, diameter)
         result["region"] = read_circular_region(cursor, circle)
         result["profile_return"] = read_profile_return(cursor, profile, circle, origin)
         result["unresolved"] = ["complete_resolved_boss_graph"]
+    if boss_return:
+        boss = read_radial_boss(
+            cursor, profile, result["profile_return"], circle, points, origin
+        )
+        result["boss"] = boss
+        result["partition"] = read_boss_partition(
+            SldprtArchive.from_bytes(data), CONFIG, boss, circle
+        )
+        result["unresolved"] = ["auxiliary_chooser_and_partition_state_semantics"]
     return result
