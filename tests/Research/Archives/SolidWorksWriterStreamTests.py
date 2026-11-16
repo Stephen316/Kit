@@ -292,13 +292,13 @@ def CheckCfgHistory() -> None:
     )
 
 
-# continuous presentation must deliver the same environment and region owners
-def CheckCfgScene() -> None:
-    Report = LoadReport("VerifyConfigPresentation.py", 14)
+# the generated part configuration must reach the exact end and resolve aliases
+def CheckCfgArchive() -> None:
+    Report = LoadReport("VerifyOrdinaryConfig.py", 14)
     assert Report["constructed"] is True
     assert (
         Report["replay_sha256"]
-        == "82a488c305b6e5abced11e86fac4dc262547a62f6f3f022179a755b7c6d4c178"
+        == "7f6ab4f42ab1d06ced9d90a23683eb092f34ad1856ea48f4b4a2100d50f7c812"
     )
 
 
