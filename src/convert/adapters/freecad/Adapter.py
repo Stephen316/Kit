@@ -92,6 +92,7 @@ from convert.adapters.freecad.Brep import (
     proven_ascii_brep as ProvenAsciiBrep,
 )
 from convert.adapters.freecad.EditRead.Formula.ReconcileSheet import ReconcileSheet
+from convert.adapters.freecad.NativeParameters.RecoverAlias import RecoverAlias
 from convert.adapters.freecad.EditRead.Sketch.ReconcileSketch import ReconcileSketch
 from convert.adapters.freecad.EditPlaneRev.ReconcilePlaneRev import ReconcilePlane
 from convert.adapters.freecad.EditRev.ReconcileRev import ReconcileRev
@@ -494,7 +495,7 @@ def UnchangedNative(DocValue: CadDocument) -> bytes | None:
     except (OSError, ValueError, Zipfile.BadZipFile):
         return None
     try:
-        Reparsed = ReadNativeFcstd(DataValue, DocValue.source.path)
+        Reparsed = RecoverAlias(ReadNativeFcstd(DataValue, DocValue.source.path))
     except (NativeFreeCadError, OSError, TypeError, ValueError):
         return None
     if SemanticDigest(Reparsed) != Expected:
@@ -2373,7 +2374,7 @@ def ReadSource(Source: Source, Options: ReadOptions | None = None) -> CadDoc:
         if str(ErrorInfo) != "FCStd archive has no embedded Kit interchange document":
             raise FreeCadAdapterA(str(ErrorInfo)) from ErrorInfo
         try:
-            DocValue = ReadNativeFcstd(DataValue, SourcePath(Source))
+            DocValue = RecoverAlias(ReadNativeFcstd(DataValue, SourcePath(Source)))
         except (NativeFreeCadError, TypeError, ValueError) as NativeError:
             raise FreeCadAdapterA(str(NativeError)) from NativeError
         Native = True
