@@ -35,15 +35,21 @@ def principal_captures():
         return git(ROOT, "cat-file", "blob", entries[str(path)])
 
     specification = read_blob(directory / "PairSpecs.json")
-    require(sha256(specification).hexdigest() == SPEC_SHA256, "paired specification pin")
+    require(
+        sha256(specification).hexdigest() == SPEC_SHA256, "paired specification pin"
+    )
     recipes = {row["id"]: row for row in json.loads(specification)["recipes"]}
     control = sha256(read_blob(CONTROL)).hexdigest()
     for recipe_id in ("P01", "P03"):
         folder, count, receipt = DISCOVERY[recipe_id]
         recipe = recipes[recipe_id]
-        require(recipe["split"] == "discovery", "principal configuration discovery scope")
+        require(
+            recipe["split"] == "discovery", "principal configuration discovery scope"
+        )
         path = directory / "PairedCaptures" / recipe_id / folder
-        yield from read_capture(path, recipe, count, receipt, entries, read_blob, control)
+        yield from read_capture(
+            path, recipe, count, receipt, entries, read_blob, control
+        )
 
 
 # The enclosing frame and archive map must reach the same visual allocation.
@@ -70,7 +76,10 @@ def inspect_part(saved, generation, layouts, construct):
         require(writer.build() == saved[:end], "typed root reconstruction")
         require(
             (writer.next_index, writer.classes)
-            == (cursor.NextIndex, {name: index for index, name in cursor.Classes.items()}),
+            == (
+                cursor.NextIndex,
+                {name: index for index, name in cursor.Classes.items()},
+            ),
             "constructed Config-0 archive namespace",
         )
     return (
@@ -96,9 +105,13 @@ def report(construct):
         rows.append((asset["sha256"], *fields))
     return {
         "capture_revision": CAPTURE_REVISION,
-        "captures": {asset_hash: root_hash for asset_hash, _, _, root_hash, _, _ in rows},
+        "captures": {
+            asset_hash: root_hash for asset_hash, _, _, root_hash, _, _ in rows
+        },
         "constructed": construct,
-        "replay_sha256": sha256(json.dumps(rows, separators=(",", ":")).encode()).hexdigest(),
+        "replay_sha256": sha256(
+            json.dumps(rows, separators=(",", ":")).encode()
+        ).hexdigest(),
     }
 
 

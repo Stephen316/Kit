@@ -4,4 +4,4 @@ The [standalone research constructor](../../../../re/solidworks/WriterResearch/C
 
 A read-only replay reproduced bytes 278–795 in six receipt-pinned P01 and eight P03 saves and preserved next archive index 9. The [hosted verifier](../../../../re/solidworks/WriterResearch/VerifyCmgrColor.py) applies the [separate comparison](../../../../re/solidworks/WriterResearch/VerifyCmgrVisual.py) to those same recipe IDs. [Field ownership and remaining limits](../../../../re/solidworks/WriterResearch/CmgrVisual.md#material-and-realview-research-constructor)
 
-Hosted execution of the added comparison, production composition and licensed acceptance remain pending.
+The added comparison passed the hosted archive gate at `ce413404`. Source-independent part assembly and licensed acceptance remain pending. [Hosted archive step](https://github.com/TryUniCAD/Kit/actions/runs/43869234190/job/133305694339)

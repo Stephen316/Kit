@@ -89,11 +89,19 @@ def AssertMgrHdr(Report: dict[str, object]) -> None:
     Headers = Report["base_header_records"]
     Fronts = Report["collection_front_records"]
     Tails = Report["collection_tail_records"]
+    Composed = Report["composed_cmgr_records"]
     assert isinstance(Links, dict)
     assert isinstance(Headers, dict)
     assert isinstance(Fronts, dict)
     assert isinstance(Tails, dict)
-    assert Links.keys() == Headers.keys() == Fronts.keys() == Tails.keys()
+    assert isinstance(Composed, dict)
+    assert (
+        Links.keys()
+        == Headers.keys()
+        == Fronts.keys()
+        == Tails.keys()
+        == Composed.keys()
+    )
     FrontDigests = CastValue(dict[str, str], Fronts)
     assert dict(CountItems(FrontDigests.values())) == {
         "ae538a3e846dc88c0dbc655355665826638036d85c799e299f2dd1e2a50c25e7": 6,

@@ -107,7 +107,9 @@ def ReadConfigRoot(Cursor: ArchiveCursor, Generation: int) -> ConfigRootState:
     title = Cursor.ReadText()
     update, flags, node_id, stored = Cursor.ReadInts("<iIiI")
     RequireArch(
-        (update, flags, stored), (0, KInitialNodeFlags, KStoredFlags), "Config-0 node state"
+        (update, flags, stored),
+        (0, KInitialNodeFlags, KStoredFlags),
+        "Config-0 node state",
     )
     RequireArch(
         Cursor.BlobValue.startswith(KStringMarker, Cursor.Offset),
