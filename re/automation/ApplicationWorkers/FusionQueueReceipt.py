@@ -1,16 +1,38 @@
+from contextlib import nullcontext
+import ntpath
 import os
 import stat
 
-from ApplicationProtocol import directory, file_bytes, require, write_new
+from ApplicationProtocol import (
+    directory,
+    file_bytes,
+    require,
+    windows_function,
+    write_new,
+)
 from Artifacts import Artifacts
 from Records import canonical, digest, specification
 from StoreRead import read_store
 
 
+# a receipt and its intent share the same directly checked owner directory
 def receipt_paths(path):
-    require(os.name == "posix", "persisted Fusion receipts require POSIX owner custody")
+    require(
+        os.name in {"posix", "nt"}, "persisted Fusion receipts require owner custody"
+    )
     require(path.is_absolute() and path.name, "Fusion receipt path must be absolute")
-    target = directory(path.parent) / path.name
+    if os.name == "nt":
+        require(
+            all(
+                part != ".." and not ntpath.isreserved(part) for part in path.parts[1:]
+            ),
+            "Fusion receipt requires ordinary Windows path components",
+        )
+        hold_directory = windows_function("windows_records", "hold_directory")
+        with hold_directory(path.parent):
+            target = path
+    else:
+        target = directory(path.parent) / path.name
     return target, target.with_name(f".{target.name}.intent.json")
 
 
@@ -18,7 +40,10 @@ def receipt_bytes(value):
     return (canonical(value) + "\n").encode("utf-8")
 
 
+# the platform record guard reads immutable bytes under the applicable owner boundary
 def owned_bytes(path):
+    if os.name == "nt":
+        return file_bytes(path)
     info = path.lstat()
     require(
         stat.S_ISREG(info.st_mode)
@@ -45,15 +70,21 @@ def matches(path, expected):
     return True
 
 
+# windows holds the checked ancestor chain across inspection and exclusive publication
 def seal(path, expected):
-    if matches(path, expected):
-        return
-    try:
-        write_new(path, expected)
-    except FileExistsError:
-        require(
-            matches(path, expected), "existing Fusion receipt or intent disappeared"
-        )
+    custody = nullcontext()
+    if os.name == "nt":
+        hold_directory = windows_function("windows_records", "hold_directory")
+        custody = hold_directory(path.parent)
+    with custody:
+        if matches(path, expected):
+            return
+        try:
+            write_new(path, expected)
+        except FileExistsError:
+            require(
+                matches(path, expected), "existing Fusion receipt or intent disappeared"
+            )
 
 
 def submission_intent(store, kind, run, receipt, jobs):
