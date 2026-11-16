@@ -80,14 +80,16 @@ class FaceHeader(TypedDict):
 
 # chooser and component face records share the observed entity envelope
 def ReadFaceHead(
-    Cursor: ArchiveCursor, KindValue: str, ExpectedFlags: int
+    Cursor: ArchiveCursor, KindValue: str, ExpectedFlags: int, *, ExpectedSides: int = 4
 ) -> tuple[FaceHeader, int]:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(("moFaceRef_c",), KindValue, CompactOnly=True)
     BodyStart = Cursor.Offset
     First, Second, Count = Cursor.ReadInts("<3I")
     RequireArch(
-        (First, Second, Count), (1, 0, 6), "witnessed face kind and entity count"
+        (First, Second, Count),
+        (1, 0, ExpectedSides + 2),
+        "witnessed face kind and entity count",
     )
     Flags, Classifier = Cursor.ReadInts("<iI")
     RequireArch(Flags, ExpectedFlags, "witnessed face reference flags")
