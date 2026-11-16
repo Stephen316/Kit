@@ -101,6 +101,10 @@ An explicit false definition takes precedence over the existing direction-multip
 Linked-edit seeds retain their existing effective direction vectors and default false flag.
 See [extrusion reversal emission](../../Changes/FreeCad/FreeCadReversedExtrusion.md) for process coverage and the outstanding native acceptance evidence.
 
+The [independent FreeCAD 1.1.4 witness](../../Changes/FreeCad/FreeCadEndNativeWitness.md) observed scoped driving edits, restoration, save and fresh reopen at exact source `b32222b5`.
+Its original generated packages had no cached BREP and exposed zero solids before native recompute.
+The post-recompute and saved-copy successes do not establish initial geometry availability or broader route qualification.
+
 The `portable` writer option defaults to true in the inspected adapter revision.
 For assemblies, portable output can include companion component files.
 The final destination identifies the base location for those files.

@@ -254,7 +254,8 @@ The separate SOLIDWORKS generative research in PR #121 records controlled load, 
 
 The [earlier readiness observation](../../Changes/Research/Readers/Comparison/FreeCadTwoLengthReadiness.md) records the missing reverse link and equal-length roster crossing on its original checkpoint.
 The repair does not admit unsupported linked definitions or fallback carriers.
-A13, A15 and all route-specific edit, rebuild and fresh-reopen evidence remain open.
+The [installed FreeCAD 1.1.4 witness](../../Changes/FreeCad/FreeCadEndNativeWitness.md) records scoped end-driver edits, restoration, save and fresh reopen at `b32222b5`; original packages required native recompute before exposing solids, so initial geometry availability and broader qualification remain unresolved.
+A13, A15 and the remaining route-specific acceptance requirements stay open.
 
 ## Parallel-session child steps
 
