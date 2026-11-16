@@ -23,7 +23,7 @@ from convert.adapters.Fusion.Adapter import FusionReader
 from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
 from convert.adapters.base.ReadOptions import ReadOptions
 from interchange.Enums.EnumGeometry import GeometryKind
-from interchange.Enums.EnumValues import ValueKind
+from interchange.Enums.EnumValues import ParameterRole, ValueKind
 
 ROOT = Path(__file__).resolve().parents[2]
 REVISION = "38079a7c1da24a3685af0e4c74854a8297006c80"
@@ -178,6 +178,11 @@ def compared_binding(
         and parameter.attributes.get("fusion.display_unit")
         == measured["parameter_unit"],
         "Neutral dimension type, mode, expression or display units differ from native",
+    )
+    expected_role = ParameterRole.KDriving if driving else ParameterRole.KReference
+    require(
+        parameter.role is expected_role,
+        "Neutral circle parameter role differs from native mode",
     )
     native_value = measured["parameter_value"] * 10.0
     require(
