@@ -525,3 +525,12 @@ def CheckCfgAnnots() -> None:
         Report["replay_sha256"]
         == "8a2cec83cdf5292b293cab777f8c11290a5b477c9bfb7a090158e51a2fabfc9d"
     )
+
+
+# the native marker and thread allocations must leave the following model regions readable
+def CheckCfgLists() -> None:
+    Report = LoadReport("VerifyCfgModelLists.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "6c8aa5c122c06bb984a2bd519c74a5c0d2d165f34586c7c07ace6dee98154da0"
+    )
