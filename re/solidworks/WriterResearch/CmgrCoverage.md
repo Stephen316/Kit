@@ -31,4 +31,4 @@ The 14-file read-only replay advances from the opening allocations to the visual
 
 The replay SHA-256 is `e9bdd8e32e2c6cbea7d3f3013d094f0d975e5cd89528ae683575adc8b7d8f3eb`. For each file in receipt order, compact JSON records its SHA-256, the consecutive boundary offsets from zero through EOF, the next indices before and after the link map, at the first list and at EOF, and the linked-map slice SHA-256. Use the typed walkers and field layouts linked in the table. The offsets are evidence for the pinned files. Future construction takes model inputs and uses the allocator to derive positions.
 
-The remaining record constructors and their composition into a generated native part are still open. Native acceptance requires the licensed open, rebuild, edit and save sequence with healthy controls.
+The [composed CMgr stream](CmgrComposition.md) now uses one allocator across all listed records. All six P01 streams reproduce exactly. All eight P03 streams reproduce exactly outside the twelve derived mass geometry fields and agree numerically there. Full native part generation and the licensed open, rebuild, edit and save sequence with healthy controls remain open.
