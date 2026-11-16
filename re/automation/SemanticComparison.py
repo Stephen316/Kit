@@ -6,13 +6,19 @@ import os
 import re
 import stat
 import sys
+from dataclasses import fields, is_dataclass
 from pathlib import Path
 from decimal import Decimal
+from types import MappingProxyType
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
 
 from interchange.document.Models.DocumentModel import CadDocument
+from interchange.serialization.Deserialize import FromData
 from interchange.serialization.JsonCodec import LoadJson
+from interchange.serialization.MigrationRegistry import KMigrationRegistry
+from interchange.serialization.TypeRegistry import KTypeRegistry
+from interchange.serialization.Wire import ResolveField
 
 from SemanticGraph import build_graph, evidence_digest
 from SemanticMatching import match_graphs
@@ -41,6 +47,30 @@ def codec_float(token):
     if not math.isfinite(value) or Decimal(token) != Decimal(str(value)):
         raise ValueError("comparison JSON numeric literal loses precision in the codec")
     return value
+
+
+def record_aliases(record):
+    name = record.get("$type")
+    target = KTypeRegistry.get(name) if isinstance(name, str) else None
+    if target is None or not is_dataclass(target):
+        return
+    known = {field.name for field in fields(target)}
+    arguments = {key: value for key, value in record.items() if key != "$type"}
+    slots = [ResolveField(target, key) for key in arguments]
+    slots = [slot for slot in slots if slot in known]
+    if len(slots) != len(set(slots)):
+        raise ValueError("comparison JSON contains colliding record field aliases")
+    migration = KMigrationRegistry.get(target)
+    if migration is None:
+        return
+    decoded = {key: FromData(value) for key, value in arguments.items()}
+    migrated = migration(MappingProxyType(decoded))
+    slots = [ResolveField(target, key) for key in migrated]
+    slots = [slot for slot in slots if slot in known]
+    if len(slots) != len(set(slots)):
+        raise ValueError(
+            "comparison record migration introduces colliding field aliases"
+        )
 
 
 def pinned_bytes(path, expected, limit):
@@ -78,6 +108,7 @@ def bounded_json(content):
         parse_float=codec_float,
     )
     pending = [(value, 0)]
+    records = []
     visited = 0
     while pending:
         current, depth = pending.pop()
@@ -85,6 +116,8 @@ def bounded_json(content):
         if visited > 500000 or depth > 64:
             raise ValueError("comparison JSON exceeds its structural limit")
         if isinstance(current, dict):
+            if "$type" in current:
+                records.append(current)
             pending.extend((child, depth + 1) for child in current.values())
         elif isinstance(current, list):
             pending.extend((child, depth + 1) for child in current)
@@ -92,6 +125,8 @@ def bounded_json(content):
             raise ValueError("comparison JSON contains a nonfinite magnitude")
         elif isinstance(current, str) and len(current) > DOCUMENT_BYTES:
             raise ValueError("comparison JSON text exceeds its length limit")
+    for record in reversed(records):
+        record_aliases(record)
     return value
 
 
