@@ -5,6 +5,7 @@ from pytest import MonkeyPatch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 from convert.adapters.solidworks.Resolved.BossDepth import ReadDepthClose
+from tests.Research.Archives.SolidWorksBaseVerify import VerifyBaseHead
 from tests.Research.Archives.SolidWorksCacheVerify import KFavoriteClass, KFavoriteName
 from tests.Research.Archives.SolidWorksDistCodecs import LoadResearchMut
 
@@ -104,6 +105,7 @@ def VerifyBossClose(
     assert Writer.next_index == Packaged.NextIndex
     assert Writer.build() == Resolved[FavoriteStart : Native.Offset]
 
+    VerifyBaseHead(PatchValue, Resolved, Generation, FavoriteStart, Native.Offset)
     ReturnStart = DisplayEnd - KReturnSpan
     Native.Offset = ReturnStart
     ReturnIo.ReadDistReturn(
