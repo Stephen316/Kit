@@ -156,6 +156,17 @@ def CheckBossInput() -> None:
     )
 
 
+# world geometry and generated dependencies must agree on both datums and signs
+def CheckBossBridge() -> None:
+    Report = LoadReport("VerifyBossBridge.py", 8)
+    assert Report["authored_cases"] == [[3, 13.5], [3, -8.75], [1, 13.5], [1, -8.75]]
+    assert Report["refusals"] == 5
+    assert (
+        Report["native_sha256"]
+        == "e475cebacf3dcc5650d23c4a4807313cd000abcb9216ba71d7f532c9072d90c1"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
