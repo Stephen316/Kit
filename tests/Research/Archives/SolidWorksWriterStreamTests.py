@@ -417,3 +417,9 @@ def AssertCmgrEnds(Report: dict[str, object]) -> None:
         Digests = CastValue(dict[str, str], Records)
         assert Digests.keys() == LinkDigests.keys()
         assert set(Digests.values()) == {Digest}
+
+
+# the generated block must retain exact map ownership through the annotation list
+def CheckSkBlock() -> None:
+    Report = LoadReport("VerifySketchBlock.py", 14)
+    assert Report["map_counts"] == {"94:96:99": 6, "98:100:104": 8}
