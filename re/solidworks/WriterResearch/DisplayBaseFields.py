@@ -27,11 +27,13 @@ KBreakExtLine = 1
 KKeepPrimary = 0
 KKeepDual = 0
 
-# the inactive foreshortening point uses the native default origin
+# the measured inactive part route accepts zero side with no shifted point
+KNoShiftedPoint = 0
+KInactiveSide = 0
 KShiftedOrigin = (0.0, 0.0, 0.0)
 
 
-# the native base sequence stops after SetPoint before the independently stored SelLeader
+# the ordinary branch writes both the inactive point flag and its independent side word
 def EncodeBaseOpts(
     Preferences: DisplayPrefs,
     Standard: int,
@@ -79,7 +81,7 @@ def EncodeBaseOpts(
             "<3i", KNoCachedLeader, 0, 0
         )  # CT attachment and parent child state
         + EmptyText  # child view name
-        + PackFields("<i", 0)  # SetPoint
+        + PackFields("<2i", KNoShiftedPoint, KInactiveSide)
     )
 
 

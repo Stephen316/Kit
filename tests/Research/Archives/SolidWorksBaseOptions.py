@@ -5,14 +5,14 @@ from pytest import MonkeyPatch
 from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 from tests.Research.Archives.SolidWorksDistCodecs import LoadResearchMut
 
-# this still open selector lies between proven base fragments
+# the oracle supports generation independent of the archival signed side value
 KSelectorOffset = 344
 
 # the base owner ends before the distance subclass writes its mask
 KBaseEnd = 384
 
 
-# the generated base tail uses named document settings and omits the separate selector
+# the generated base tail uses named document settings and the inactive selector rule
 class BaseTailCodec(Protocol):
 
     # the option and reference fields follow the native array and count framing
@@ -34,7 +34,7 @@ class BaseTailCodec(Protocol):
     ) -> bytes: ...
 
 
-# compare the two generated fragments on either side of the observed signed selector
+# compare every byte except the explicitly normalized inactive side from the archive
 def VerifyBaseOpts(
     PatchValue: MonkeyPatch,
     Resolved: bytes,
@@ -54,11 +54,16 @@ def VerifyBaseOpts(
         ConditionOne=False,
     )
     SelectorAt = FavoriteStart + KSelectorOffset
-    assert len(EncodedOpts) == SelectorAt - OptionsStart == 136
-    assert EncodedOpts == Resolved[OptionsStart:SelectorAt]
+    SelectorIndex = SelectorAt - OptionsStart
+    assert SelectorIndex == 136
+    assert len(EncodedOpts) == SelectorIndex + 4
+    assert EncodedOpts[:SelectorIndex] == Resolved[OptionsStart:SelectorAt]
 
-    Native = FieldCursor(Resolved, SelectorAt)
-    assert Native.ReadInts("<i") == (6029357,)
+    Native = FieldCursor(Resolved, SelectorAt - 4)
+    assert Native.ReadInts("<2i") == (0, 6029357)
+    Generated = FieldCursor(EncodedOpts, SelectorIndex - 4)
+    assert Generated.ReadInts("<2i") == (0, 0)
+    assert Generated.Offset == len(EncodedOpts)
     EncodedEnd = Codec.EncodeBaseEnd(
         Generation=Generation, DisplayMode=201, ConditionOne=False
     )
