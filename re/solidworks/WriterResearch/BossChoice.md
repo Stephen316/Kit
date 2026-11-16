@@ -20,4 +20,4 @@ In all eight saves the 742-byte chooser interval advances the map from 260 to 29
 
 The saved bounding state equals the independently measured prism's centre and diagonal in five files. The width, height and depth edits retain the original 40 × 20 × 10 mm box cache. Thus the existing saved cache is independent caller state for reconstruction. Fresh generation can derive a candidate cache from the requested prism, with native rebuild still required.
 
-Run `python -B re/solidworks/WriterResearch/VerifyBossChoice.py --read-only` in the Kit environment. The exact report SHA-256 is `bd4477321aea633bfb06579621443054a0bdefc134b081195d413b4fbef1f2a6`. Hosted `CheckBossChoice` compares both materializations, aliases and the complete map. The partition and end-specification owners remain subsequent work.
+Run `python -B re/solidworks/WriterResearch/VerifyBossChoice.py --read-only` in the Kit environment. The exact report SHA-256 is `bd4477321aea633bfb06579621443054a0bdefc134b081195d413b4fbef1f2a6`. Hosted `CheckBossChoice` compares both materializations, aliases and the complete map. The [partition and signed end](BossEndOpen.md) follow.

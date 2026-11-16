@@ -117,6 +117,18 @@ def CheckBossChoice() -> None:
     )
 
 
+# the signed end enters the existing distance display after the native partition marker
+def CheckBossEnd() -> None:
+    Report = LoadReport("VerifyBossEndOpen.py", 8)
+    assert Report["constructed"] is True
+    assert Report["mark_ids"] == [7, 9, 11, 15, 19, 23]
+    assert Report["reverse_directions"] == 1
+    assert (
+        Report["end_open_replay_sha256"]
+        == "209520b1305788589d2d235f784f66d8ff8642b327d027ef43df22b9964a3343"
+    )
+
+
 # the research writer and reader must agree on the full stream in real native files
 def CheckDefinition() -> None:
     Report = LoadReport("VerifyDefinition.py")
