@@ -4,10 +4,10 @@ from convert.adapters.Fusion.Authoring.ProfileShape import (
     ProfileCircle,
     ProfileLines,
 )
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import PointGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import PointGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
 
 
 # the sketch operation needs a consistent construction rule so public document claims remain grounded in native records

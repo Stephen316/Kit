@@ -18,12 +18,12 @@ SOURCE = ROOT / 're/Fusion/LocalOracle/FormDocuments/General'
 TARGET = SOURCE / 'CapAccept'
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Form.EmitFormDoc import EmitFormDoc  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Form.EmitFormDoc import EmitFormDoc  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 VARIANTS = (
     ('Same', 'G1CAPS', 0.0),

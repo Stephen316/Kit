@@ -8,10 +8,10 @@ Every integer in a Fusion journal fits in a signed 32-bit value. Generic ASM att
 
 Fusion boundary fill saves write `int64_attrib-name_attrib-gen-attrib` records on faces. The census found 297 records in 9 saved archives. The final token has tag 23 and holds a signed 64-bit integer.
 
-| Name | Integer values |
-| --- | --- |
-| `SCULPT_TOOL_BODY` | 354, 275 |
-| `SCULPT_WORKPLANE_TOOL` | 282, -282 |
+| Name                    | Integer values |
+| ----------------------- | -------------- |
+| `SCULPT_TOOL_BODY`      | 354, 275       |
+| `SCULPT_WORKPLANE_TOOL` | 282, -282      |
 
 The value -282 shows that the integer is signed. The same files hold `name_attrib-gen-attrib` records on edges with the names `sb_cvtycheck_edge` and `sb_split_edge`.
 
@@ -29,4 +29,4 @@ The 9 boundary fill archives then failed on edges with three coedges. They read 
 
 - [Journal attribute evidence](../../../../../re/Fusion/Reconstruction/ReaderCoverage/JournalAttributes/Evidence.json)
 - [Earlier tag 23 study](../../../../../re/Fusion/Study/asm-int64-investigation.json)
-- [Saved archive tests](../../../../../tests/convert/formats/FusionCodec/SavedCorpus/JournalAttributeTests.py)
+- [Saved archive tests](../../../../../tests/Convert/Formats/FusionCodec/SavedCorpus/JournalAttributeTests.py)

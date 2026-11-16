@@ -11,8 +11,8 @@ from convert.adapters.freecad.EditRead.Sketch.SavedSketchGeom import ReadSketchG
 from convert.adapters.freecad.EditRead.Sketch.SavedSketchRules import CheckStaticRow
 from convert.adapters.freecad.EditRead.XmlField import EditChild
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
 
 
 # verified native constraints retain source point links and the derived profile corner joins

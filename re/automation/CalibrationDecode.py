@@ -15,7 +15,7 @@ def decode(content, kind, options):
     if SOURCE not in sys.path:
         sys.path.insert(0, SOURCE)
     if kind == "decode.solidworks":
-        from convert.adapters.solidworks.core.Adapter import ReadSldprt
+        from convert.adapters.solidworks.Core.Adapter import ReadSldprt
 
         return ReadSldprt(content, Config=options.get("configuration"))
     if kind != "decode.fusion":

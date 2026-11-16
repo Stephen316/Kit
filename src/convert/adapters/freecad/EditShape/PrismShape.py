@@ -12,9 +12,9 @@ from convert.adapters.freecad.EditShape.Prism.PrismExpected import (
 from convert.adapters.freecad.EditShape.Prism.PrismFaces import CheckFaceMut
 from convert.adapters.freecad.EditShape.Prism.PrismProof import PrismProof
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import PrismRaw, ReadPrismRaw
-from convert.geometry.Opencascade import EdgeData, FaceData
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorPlane import PlaneVector
+from convert.Geometry.Opencascade import EdgeData, FaceData
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 # an analytic prism with sixty four sides fits within a bounded native shape entry
 KMaxPrismBytes = 262_144

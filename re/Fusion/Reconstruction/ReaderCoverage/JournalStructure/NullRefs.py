@@ -8,16 +8,16 @@ ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).parent))
 
-import convert.formats.Fusion.BrepCodec.Journal.Reading.ReadBoardMut as BoardModule
-import convert.formats.Fusion.Topology.AsmEdge.AsmTable as StatesModule
+import convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadBoardMut as BoardModule
+import convert.Formats.Fusion.Topology.AsmEdge.AsmTable as StatesModule
 
 BoardModule.KBoardChanges = 1 << 20
 StatesModule.KRecordTokens = 1 << 20
 from Journals import members, raw_model
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
-from convert.formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
+from convert.Formats.Fusion.MetaCursor import MetaCursor
 
 
 def tables(path):

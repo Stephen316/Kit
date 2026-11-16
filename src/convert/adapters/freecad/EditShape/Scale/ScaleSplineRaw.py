@@ -10,7 +10,7 @@ from convert.adapters.freecad.EditShape.Scale.ScaleLines import ScaleLines
 from convert.adapters.freecad.EditShape.Scale.ScalePatch import ReadScalePatch
 from convert.adapters.freecad.EditShape.Scale.ScaleSpan import ReadScaleSpan
 from convert.adapters.freecad.EditShape.Scale.ScaleTrims import CheckScaleTrims
-from convert.geometry.Opencascade import ExpectHeader, ReadCount, Tokens, ZeroTable
+from convert.Geometry.Opencascade import ExpectHeader, ReadCount, Tokens, ZeroTable
 
 
 # native nonuniform scaling needs its own bounded carrier grammar and trim proof

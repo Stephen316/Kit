@@ -2,7 +2,7 @@ from sys import version_info as KPythonVersion
 
 from convert.Commands.Qualified.CanonicalFusion import CanonicalFusion
 from convert.Commands.Qualified.SemanticCore import SemanticCore
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 # unqualified geometry needs a consistent refusal before writers can claim usability
 KGeometryError = (

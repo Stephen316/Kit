@@ -7,7 +7,7 @@ BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 NAME = 'Box3'
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 STENCIL = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil/tmp'
 

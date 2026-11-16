@@ -1,9 +1,9 @@
 from collections.abc import Mapping
 
 from convert.adapters.freecad.EditRev.RevAngles import IsRevLiteral, ReadRevAngle
-from interchange.enums.EnumValues import ParameterRole, ValueKind
-from interchange.features.FeatureStep import FeatureStep
-from interchange.records.RecordParameter import Parameter
+from interchange.Enums.EnumValues import ParameterRole, ValueKind
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Records.RecordParameter import Parameter
 
 
 # the preserved along angle belongs to the feature but does not drive either target

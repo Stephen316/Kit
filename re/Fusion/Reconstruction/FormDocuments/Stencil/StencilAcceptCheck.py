@@ -8,11 +8,11 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE))
 from StencilCheck import compare, form_entities
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.SwapFormCage import SwapFormCage
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Form.SwapFormCage import SwapFormCage
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/StencilAccept'
 TARGET = BASE / 'StencilAcceptCheck.json'

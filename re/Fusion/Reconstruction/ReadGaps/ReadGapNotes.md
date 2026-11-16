@@ -110,7 +110,7 @@ The TSM reader now reads the block into `KnotSurface.EdgeKnots`. These two files
 
 ### Fractional patch programs
 
-`PatchWords.py` shows the patch program words of the four interval files. Fusion writes each word as a double in `%.17g` form, for example `0.5`, `-2.9999999999999991` and `2.2204460492503131e-16`. `ReadPatchRow` in `src/convert/formats/Fusion/BrepCodec/Journal/Spline/Reading` parses every word with `int`. That folder belongs to the Form conversion writer, so this work does not change it. The four files stay unread:
+`PatchWords.py` shows the patch program words of the four interval files. Fusion writes each word as a double in `%.17g` form, for example `0.5`, `-2.9999999999999991` and `2.2204460492503131e-16`. `ReadPatchRow` in `src/convert/Formats/Fusion/BrepCodec/Journal/Spline/Reading` parses every word with `int`. That folder belongs to the Form conversion writer, so this work does not change it. The four files stay unread:
 
 - `Intervals/Plane4x4/Half.f3d`
 - `Intervals/Plane4x4/ColumnRow.f3d`
@@ -142,7 +142,7 @@ The TSM reader now reads the block into `KnotSurface.EdgeKnots`. These two files
 | `Parameter` | 7 | 8 | Ambiguous: `actIdentifier` and one of six 1-byte members |
 | `DRMatrix` | 12 | 3 | Ambiguous: `LinearOffsetOnPeriodicFace` and one of many members |
 
-The ACT classes moved from the `CommonData` class space and its base classes to ACT bases. Their own members did not change. `BuildHistoric.py` writes the eight unique layouts to `src/convert/formats/Fusion/DocumentCodec/Vocabulary/HistoricClasses.json`.
+The ACT classes moved from the `CommonData` class space and its base classes to ACT bases. Their own members did not change. `BuildHistoric.py` writes the eight unique layouts to `src/convert/Formats/Fusion/DocumentCodec/Vocabulary/HistoricClasses.json`.
 
 ### Opaque records
 

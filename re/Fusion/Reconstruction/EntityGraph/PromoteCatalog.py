@@ -66,11 +66,11 @@ def promote(check_only=False):
     source = json.loads(lzma.decompress(SOURCE.read_bytes()))
     artifacts = (
         (
-            ROOT / 'src/convert/formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz',
+            ROOT / 'src/convert/Formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz',
             make_catalog(source),
         ),
         (
-            ROOT / 'tests/convert/formats/FusionCodec/Corpus/CorpusSources.xz',
+            ROOT / 'tests/Convert/Formats/FusionCodec/Corpus/CorpusSources.xz',
             make_sources(source),
         ),
     )

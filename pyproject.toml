@@ -9,7 +9,7 @@ description = "Fully parametric CAD file interchange"
 readme = "README.md"
 requires-python = ">=3.11"
 license = "MIT"
-license-files = ["LICENSE", "src/convert/adapters/solidworks/container/OpenSwxLicense.md"]
+license-files = ["LICENSE", "src/convert/adapters/solidworks/Container/OpenSwxLicense.md"]
 authors = [
     { name = "Odin Glynn-Martin" },
     { name = "Stephen Harcourt" },
@@ -134,7 +134,7 @@ pretty = true
 [tool.pyright]
 extraPaths = ["src", "Cli"]
 include = ["src", "Cli", "tests", "tools"]
-exclude = [".venv", "examples", "modules", "re", "tests/oracle"]
+exclude = [".venv", "examples", "modules", "re", "tests/Oracle"]
 ignore = ["re"]
 typeCheckingMode = "strict"
 pythonVersion = "3.11"

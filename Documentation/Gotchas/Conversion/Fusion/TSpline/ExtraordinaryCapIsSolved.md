@@ -62,7 +62,7 @@ Two details change the answer:
 
 ## Workaround
 
-Kit ships no per-layout table. `SolveCaps` in `convert.formats.Fusion.BrepCodec.Journal.Spline.Caps` builds the rows from the request's valence and knots and solves them with a pivoted Householder least-squares solve in pure Python. The window rows are a literal table of integer coefficients. It raises `ValueError` when:
+Kit ships no per-layout table. `SolveCaps` in `convert.Formats.Fusion.BrepCodec.Journal.Spline.Caps` builds the rows from the request's valence and knots and solves them with a pivoted Householder least-squares solve in pure Python. The window rows are a literal table of integer coefficients. It raises `ValueError` when:
 
 - a spoke's two sides see different spans;
 - a knot ratio is not 1/2 or 2/3;

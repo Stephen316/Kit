@@ -3,13 +3,13 @@ from math import cos as Cosine, sin as SinValue
 from convert.adapters.freecad.EditableRev import EditRevolve
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from convert.adapters.freecad.Native import NativeObject
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
-from interchange.geometry.models.Transform import (
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
+from interchange.geometry.Models.Transform import (
     KOriginZero,
     KTransformIdentity,
     Transform,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the fixed axis rotates the centered sweep without moving its origin

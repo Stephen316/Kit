@@ -3,18 +3,18 @@
 import math
 from dataclasses import dataclass
 
-from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.enums.EnumValues import ValueKind
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.Records.RecordParameter import Parameter
 
 
 class GraphGap(ValueError):

@@ -22,7 +22,7 @@ import BuildPruned3  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, field, prune  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 HANDLE_GROUPS = set(range(320, 370)) | set(range(390, 400)) | {480, 481, 1005}
 

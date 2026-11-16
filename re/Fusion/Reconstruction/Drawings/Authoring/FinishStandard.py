@@ -28,8 +28,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[5] / 'src'))
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Records.GroupItems import EncodeGroups  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Records.GroupItems import EncodeGroups  # noqa: E402
 
 MATERIAL_ASSETS = 'FBXASSET'
 SCALE_LIST = 'NOD/ACAD_SCALELIST'

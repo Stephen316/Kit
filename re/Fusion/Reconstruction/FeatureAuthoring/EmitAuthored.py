@@ -21,36 +21,36 @@ REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO / "src"))
 sys.dont_write_bytecode = True
 
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ArcCurve import ArcCurve  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.AxisSpec import AxisSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ChamferSpec import ChamferSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.CircleCurve import CircleCurve  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import ExtrudeSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import FilletSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.HoleSpec import HoleSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import LineCurve  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PatternSpec import PatternSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.CircularSpec import CircularSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.MirrorSpec import MirrorSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.MoveSpec import MoveSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.OffsetSpec import OffsetSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.DraftSpec import DraftSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PlaneSpec import PlaneSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PointSpec import PointSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.RevolveSpec import RevolveSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.CombineSpec import CombineSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.SplitSpec import SplitSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.BodyGridSpec import BodyGridSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.BodyRingSpec import BodyRingSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.LoftSpec import LoftSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.SweepSpec import SweepSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Model.PasteSpec import PasteSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.SolidMass import SolidMass  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.BuildShape import BuildShape  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ArcCurve import ArcCurve  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.AxisSpec import AxisSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ChamferSpec import ChamferSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.CircleCurve import CircleCurve  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ExtrudeSpec import ExtrudeSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.FilletSpec import FilletSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.HoleSpec import HoleSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.LineCurve import LineCurve  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.ShellSpec import ShellSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PatternSpec import PatternSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.CircularSpec import CircularSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.MirrorSpec import MirrorSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.MoveSpec import MoveSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.OffsetSpec import OffsetSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.DraftSpec import DraftSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PlaneSpec import PlaneSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PointSpec import PointSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.RevolveSpec import RevolveSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.CombineSpec import CombineSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.SplitSpec import SplitSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.BodyGridSpec import BodyGridSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.BodyRingSpec import BodyRingSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.LoftSpec import LoftSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.SweepSpec import SweepSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.PasteSpec import PasteSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Design.SolidMass import SolidMass  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Shape.BuildShape import BuildShape  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart  # noqa: E402
 
 OUTPUT = REPO / "re/Fusion/LocalOracle/FeatureAuthoring/Authored"
 

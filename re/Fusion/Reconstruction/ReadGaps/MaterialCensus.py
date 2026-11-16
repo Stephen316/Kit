@@ -12,11 +12,11 @@ sys.setrecursionlimit(20000)
 
 
 def references(model):
-    from convert.formats.Fusion.DocumentCodec.Reading.Materials.BindMaterials import BindMaterials
-    from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields
-    from convert.formats.Fusion.DocumentCodec.Reading.Materials.ResolveMatAsset import ResolveMatAsset
-    from convert.formats.Fusion.EntityCodec.Model.OptionalValue import OptionalValue
-    from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
+    from convert.Formats.Fusion.DocumentCodec.Reading.Materials.BindMaterials import BindMaterials
+    from convert.Formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields
+    from convert.Formats.Fusion.DocumentCodec.Reading.Materials.ResolveMatAsset import ResolveMatAsset
+    from convert.Formats.Fusion.EntityCodec.Model.OptionalValue import OptionalValue
+    from convert.Formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
     from convert.adapters.Fusion.Native.Graph.ReadNames import ReadNames
     names = {schema.Value.ClassGuid.upper(): schema.NameValue.rsplit('::', 1)[-1] for schema in ReadNames()}
     managers = BindMaterials(model)
@@ -49,7 +49,7 @@ def references(model):
 
 
 def census(name, data):
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     try:
         model = ReadDocument(data)
     except Exception:
@@ -83,7 +83,7 @@ def job(name):
     from SweepOne import ROOT as base
     data = (base / name).read_bytes()
     if name.endswith('.f3z'):
-        from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+        from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
         rows = []
         for index, entry in enumerate(ReadBundle(data).Documents):
             if entry.FileName.lower().endswith('.f3d'):

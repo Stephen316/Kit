@@ -4,8 +4,8 @@ import json as JsonData
 from pathlib import Path as PathInfo
 import struct as Struct
 from typing import Any as AnyInfo
-from convert.adapters.solidworks.container.Archive import ReadString
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Archive import ReadString
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 # needed to keep reverse engineering responsibilities isolated and maintainable
 KPrimWidths = {

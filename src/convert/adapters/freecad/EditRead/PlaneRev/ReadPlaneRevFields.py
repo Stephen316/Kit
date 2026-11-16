@@ -11,9 +11,9 @@ from convert.adapters.freecad.EditRead.PlaneRev.PlaneControls import (
 from convert.adapters.freecad.EditRead.PlaneRev.PlaneGraph import ReadPlaneGraph
 from convert.adapters.freecad.EditRead.Sketch.RingProof import ReadRingProfile
 from convert.adapters.freecad.Native import ParseObjects
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.geometry.models.Sketch import Sketch
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # saved graph and geometry fields carry only the proven editable neutral values

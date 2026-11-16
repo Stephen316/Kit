@@ -1,8 +1,8 @@
 """Join the derived CutSketch profile and its typed supporting face."""
 
-from convert.adapters.solidworks.container.PlaneBasis import KUnitRows
-from convert.adapters.solidworks.resolved.FaceIdentity import SurfaceKey
-from convert.adapters.solidworks.resolved.support.SupportPlane import (
+from convert.adapters.solidworks.Container.PlaneBasis import KUnitRows
+from convert.adapters.solidworks.Resolved.FaceIdentity import SurfaceKey
+from convert.adapters.solidworks.Resolved.Support.SupportPlane import (
     ReadFaceSupport,
     RequireFaceCap,
 )

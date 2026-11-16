@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [SDK assembly readers](../../../src/convert/formats/Fusion/Assembly) and [public assembly tests](../../../tests/convert/api/ApiFusionAssemblyTests.py).
+See [SDK assembly readers](../../../src/convert/Formats/Fusion/Assembly) and [public assembly tests](../../../tests/Convert/Api/ApiFusionAssemblyTests.py).
 
 ## SDK coverage
 

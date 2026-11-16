@@ -5,15 +5,15 @@ from convert.adapters.Fusion.Native.Circular.Snapshots.CheckCarriers import (
     CheckCone,
 )
 from convert.adapters.Fusion.Native.Circular.Snapshots.CheckRim import CheckRim
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PlaneNode import PlaneNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ConeNode import ConeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
 # invalid solid input must fail here so public geometry remains consistent with native circular topology

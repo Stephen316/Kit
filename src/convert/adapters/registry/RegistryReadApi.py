@@ -8,8 +8,8 @@ from convert.adapters.base.AdapterProtocols import CadReaderAdapter
 from convert.adapters.base.ContractTypes import KSourceType
 from convert.adapters.base.ReadOptions import ReadOptions
 from convert.adapters.registry.RegistrySelect import SelectReader
-from convert.adapters.staging.SourceReplay import GetReplayMut
-from convert.adapters.staging.SourceReplay import ReplaySource as SeekableSource
+from convert.adapters.Staging.SourceReplay import GetReplayMut
+from convert.adapters.Staging.SourceReplay import ReplaySource as SeekableSource
 
 # historical source annotations need local resolution after public methods move to the registry facade
 Source = KSourceType

@@ -13,8 +13,8 @@ sys.path.insert(0, str(ROOT / "src"))
 
 import AsmScan  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
 
 KNOWN = {
     "asmheader", "body", "lump", "shell", "face", "loop", "coedge", "edge", "vertex", "point",

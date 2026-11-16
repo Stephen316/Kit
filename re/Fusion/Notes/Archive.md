@@ -9,11 +9,11 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [the archive source proof](../../../src/convert/formats/Fusion/SourceProof/InspectSource.py) for the receipt and [the wire codecs](../../../src/convert/formats/Fusion/SegmentCodec) for stream framing.
+See [the archive source proof](../../../src/convert/Formats/Fusion/SourceProof/InspectSource.py) for the receipt and [the wire codecs](../../../src/convert/Formats/Fusion/SegmentCodec) for stream framing.
 
 ## SDK coverage
 
-The SDK's `convert.formats.Fusion.BulkSpans.ReadBulkSpans` indexes native
+The SDK's `convert.Formats.Fusion.BulkSpans.ReadBulkSpans` indexes native
 version-8 design streams. It accepts decompressed BulkStream and MetaStream
 bytes and returns immutable record spans with class and object identities.
 It checks each bulk header against its metadata entry and verifies that
@@ -21,7 +21,7 @@ continuations belong to ancestors of their primary class. The SDK index
 agreed with the study on all 261,141 record boundaries and identities
 across the 712 tracked archives.
 
-`convert.formats.Fusion.DesignZip.ReadDesignZip` loads the active design
+`convert.Formats.Fusion.DesignZip.ReadDesignZip` loads the active design
 stream pair directly from `.f3d` bytes and returns the BulkStream with its
 verified record spans. It checks archive size and entry limits, rejects
 duplicate or encrypted members, and verifies both selected payloads.
@@ -35,7 +35,7 @@ every referenced body history stream. It reads referenced streams on demand.
 Explicit-format reads share this session across all feature projections.
 Automatic format detection still performs a separate, non-inflating probe.
 
-`convert.formats.Fusion.SourceProof.InspectSource.ReadFusionSourceProof`
+`convert.Formats.Fusion.SourceProof.InspectSource.ReadFusionSourceProof`
 reports coverage for the exact archive SHA-256 and selected native history.
 It reports each unresolved ZIP member and design record, including primary
 records and continuations. Framed streams and source spans attached to

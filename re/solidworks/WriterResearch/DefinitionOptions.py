@@ -3,9 +3,9 @@ from struct import pack as PackFields
 from JournalAttach import JournalAttach
 from MaterialManager import EncodeEmptyMaterialManager, ReadEmptyMaterialManager
 from Notebook import EncodeNotebook, ReadNotebook
-from convert.adapters.solidworks.container.Archive import EncodeString
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.Archive import EncodeString
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 # the measured fragment admits only the proven part document generation
 KDefinitionOptionsGeneration = 19000

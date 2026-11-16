@@ -12,7 +12,7 @@ from typing import cast as CastValue
 import xml.etree.ElementTree as XmlTree  # noqa: DUO107
 import zipfile as Zipfile
 from interchange.serialization.WireData import ValidateWireMap
-from interchange.geometry.models.GeometryTypes import KGeometryTypes as GeometryTypes
+from interchange.geometry.Models.GeometryTypes import KGeometryTypes as GeometryTypes
 from interchange import (
     ArcEllipseGeometry as ArcEllipseGeom,
     ArcGeometry as ArcGeom,
@@ -81,7 +81,7 @@ from interchange import (
     Vector3 as VectorThree,
     infer_capabilities as InferCapabilities,
 )
-from convert.geometry.Opencascade import decode_ascii_brep as DecodeAsciiBrep
+from convert.Geometry.Opencascade import decode_ascii_brep as DecodeAsciiBrep
 from convert.adapters.freecad.Archive import (
     DOCUMENT_ENTRY as DocEntry,
     MAX_ENTRY_SIZE as MaxEntrySize,

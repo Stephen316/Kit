@@ -8,8 +8,8 @@ from convert.adapters.freecad.EditRead.XmlField import (
     EditScalar,
 )
 from convert.adapters.freecad.Native import EntryName, NativeObject
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # nondepth controls must remain in the exact independent blind extrusion family

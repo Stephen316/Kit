@@ -1,11 +1,11 @@
 from dataclasses import dataclass as MakeDataClass
 from math import cos as Cosine, hypot as Hypot, sin as SineValue, tau as TauValue
 
-from convert.geometry.Revolve.SweepVector import CrossVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import BrepEdge
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import CrossVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepTopology import BrepEdge
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # an absolute millimeter bound avoids accepting a large displacement at far coordinates
 KPositionTolerance = 1e-6

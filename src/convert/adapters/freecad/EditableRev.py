@@ -6,12 +6,12 @@ from convert.adapters.freecad.EditRev.RevAxisProof import CheckRevAxis
 from convert.adapters.freecad.EditRev.RevBodyProof import CheckRevBody
 from convert.adapters.freecad.EditRev.RevProfileProof import CheckRevProfile
 from convert.adapters.freecad.EditRev.RevScope import ReadRevScope
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Transform import KOriginZero
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Transform import KOriginZero
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native controls preserve the signed sweep and any independently authored centered limits

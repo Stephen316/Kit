@@ -1,10 +1,10 @@
 from math import isfinite as IsFinite
 
-from convert.geometry.Extrude.Trimmed.TrimMeasures import MeasureTrim
-from convert.geometry.Extrude.Trimmed.TrimOperand import ReadOperand
-from convert.geometry.Extrude.Trimmed.TrimOrder import MatchTrimEnds
-from convert.geometry.Extrude.Trimmed.TrimSimple import CheckTrimSimple
-from interchange.geometry.models.GeometryCurves import ArcGeometry, LineGeometry
+from convert.Geometry.Extrude.Trimmed.TrimMeasures import MeasureTrim
+from convert.Geometry.Extrude.Trimmed.TrimOperand import ReadOperand
+from convert.Geometry.Extrude.Trimmed.TrimOrder import MatchTrimEnds
+from convert.Geometry.Extrude.Trimmed.TrimSimple import CheckTrimSimple
+from interchange.geometry.Models.GeometryCurves import ArcGeometry, LineGeometry
 
 
 # native planar trimming needs proven simplicity and signed winding in the actual coedge order

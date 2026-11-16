@@ -77,22 +77,22 @@ P01 with zero atoms, so the atom count cannot serve as the ghost count.
 
 ## Reproduction and remaining fields
 
-Locate the model body with [`ReadModelEntry`](../../../src/convert/adapters/solidworks/config/ModelEntry.py)
-and [`ModelAtomStart`](../../../src/convert/adapters/solidworks/config/RootFields.py).
+Locate the model body with [`ReadModelEntry`](../../../src/convert/adapters/solidworks/Config/ModelEntry.py)
+and [`ModelAtomStart`](../../../src/convert/adapters/solidworks/Config/RootFields.py).
 Walk the list and validate each body return with
-[`SkipAtomList`](../../../src/convert/adapters/solidworks/config/OrdinaryMap.py)
-and [`AtomEnd`](../../../src/convert/adapters/solidworks/config/RootAtoms.py).
+[`SkipAtomList`](../../../src/convert/adapters/solidworks/Config/OrdinaryMap.py)
+and [`AtomEnd`](../../../src/convert/adapters/solidworks/Config/RootAtoms.py).
 Resolve the schema definition or class reference through the map at the
 relation manager. For each atom, read the initial null pointer, four signed
 32-bit words, variable-width string, absent list and pointer, empty node list
 and trailer, and the thirteen signed 32-bit tail words. Use the third and
 fourth tail words for the ID comparison. Measure the ghost span from the
 atom list end to the relation manager and use
-[`ReadRectPart`](../../../src/convert/adapters/solidworks/resolved/RectanglePart.py)
+[`ReadRectPart`](../../../src/convert/adapters/solidworks/Resolved/RectanglePart.py)
 for P01 and P03. For P04 use
-[`ReadCutConfig`](../../../src/convert/adapters/solidworks/config/CutConfig.py),
-[`ReadCutLinks`](../../../src/convert/adapters/solidworks/resolved/cut/CutLinks.py)
-and [`ReadCutProof`](../../../src/convert/adapters/solidworks/resolved/cut/CutProof.py)
+[`ReadCutConfig`](../../../src/convert/adapters/solidworks/Config/CutConfig.py),
+[`ReadCutLinks`](../../../src/convert/adapters/solidworks/Resolved/Cut/CutLinks.py)
+and [`ReadCutProof`](../../../src/convert/adapters/solidworks/Resolved/Cut/CutProof.py)
 to read both operation references and the cut's parent reference.
 
 The two tail words at body offsets 70 and 78 are equal within every atom and

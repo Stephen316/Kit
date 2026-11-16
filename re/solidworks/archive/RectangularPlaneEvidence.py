@@ -137,8 +137,8 @@ def build_report(
         read_resolved_rectangle,
     )
     from SketchRoot import KGeneration, Require
-    from convert.adapters.solidworks.container.Archive import ContainerMo
-    from convert.adapters.solidworks.container.Container import SldprtArchive
+    from convert.adapters.solidworks.Container.Archive import ContainerMo
+    from convert.adapters.solidworks.Container.Container import SldprtArchive
 
     snapshot = GitSnapshot(root)
     specifications_bytes = snapshot.blob(REVISION, SPECIFICATIONS)

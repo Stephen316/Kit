@@ -65,7 +65,7 @@ The SMT writer uses text header `23200 0 2 2` and native millimetre unit value `
 
 ## Verification
 
-Remote integration coverage under `tests/convert/formats/FusionCodec/Geometry/Frustum` writes and reopens complete SMB files, independently decodes cone/rim geometry, verifies pointer closure and partner senses, checks the radius law and volume, checks SMT dimensional fields, rejects invalid inputs before writing a file, rejects trailing binary data, and reconstructs the native 7-degree taper dimensions without using its record payloads in the writer.
+Remote integration coverage under `tests/Convert/Formats/FusionCodec/Geometry/Frustum` writes and reopens complete SMB files, independently decodes cone/rim geometry, verifies pointer closure and partner senses, checks the radius law and volume, checks SMT dimensional fields, rejects invalid inputs before writing a file, rejects trailing binary data, and reconstructs the native 7-degree taper dimensions without using its record payloads in the writer.
 
 No local tests or product execution were run by the implementation agent. Scoped Black, Ruff, mypy, Pyright and repository steering checks passed. Pyright also reported three pre-existing unrecognized configuration keys; it reported no source errors or warnings. Remote integration execution is pending publication of this revision.
 

@@ -2,8 +2,8 @@
 
 from functools import partial
 
-from convert.adapters.solidworks.config.FeatureBase import ReadFeatBase
-from convert.adapters.solidworks.container.Archive import ReadString
+from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
+from convert.adapters.solidworks.Container.Archive import ReadString
 from SketchRoot import Require
 
 

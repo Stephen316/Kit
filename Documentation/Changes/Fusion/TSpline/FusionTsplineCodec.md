@@ -1,6 +1,6 @@
 # Typed Fusion TSM control surfaces
 
-Kit adds `ReadTspline(bytes)`, `EmitTspline(TsplineSurface)` and `MakeClosedCage(Vertices, Faces, Header=None, Orientation=None)` under `convert.formats.Fusion.TSplineCodec`.
+Kit adds `ReadTspline(bytes)`, `EmitTspline(TsplineSurface)` and `MakeClosedCage(Vertices, Faces, Header=None, Orientation=None)` under `convert.Formats.Fusion.TSplineCodec`.
 
 The immutable model contains the cubic declaration profile, quad topology, native link orientation and valence offsets, weighted control points and primary/secondary grip ownership. The model also contains compound spoke layouts, edge end conditions, creased edges/vertices, smart grips and one planar symmetry. The writer derives text from these typed values without retaining source bytes or invoking Fusion.
 

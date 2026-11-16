@@ -3,14 +3,14 @@ from convert.adapters.freecad.EditShape.Prism.PrismRaw import KLocationChain, Pr
 from convert.adapters.freecad.EditShape.Scale.ScalePatch import ScalePatch
 from convert.adapters.freecad.EditShape.Scale.ScaleSpan import ScaleSpan
 from convert.adapters.freecad.EditShape.TrimBind import TrimBinding
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     EdgeData,
     FaceData,
     LocationPoint,
     LocationProduct,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # a matching surface and location bind a trim to the actual face instance

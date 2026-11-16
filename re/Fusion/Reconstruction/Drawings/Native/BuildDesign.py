@@ -7,9 +7,9 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[4]
 sys.path.insert(0, str(ROOT / "src"))
 
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 OUT = Path(os.environ.get("KIT_DESIGN_OUT", str(HERE / "Out"))) / "Designs"
 LABEL = os.environ.get("KIT_DESIGN_LABEL", "KitAuthoredCylinder")

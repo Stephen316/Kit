@@ -2,13 +2,13 @@ from collections.abc import Mapping
 from dataclasses import dataclass as MakeDataClass
 from math import hypot as Hypot, isfinite as IsFinite
 
-from interchange.geometry.models.GeometryCurves import (
+from interchange.geometry.Models.GeometryCurves import (
     CircleGeometry,
     LineGeometry,
     PointGeometry,
 )
-from interchange.geometry.models.Sketch import SketchEntity, SketchRelation
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.Sketch import SketchEntity, SketchRelation
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 # residual tolerances use physical millimeters and separate unitless directions
 KSketchRuleTol = 1e-6

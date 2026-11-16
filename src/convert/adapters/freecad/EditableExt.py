@@ -5,12 +5,12 @@ from convert.adapters.freecad.EditExtDepth import GetEditDepth
 from convert.adapters.freecad.EditExtProfile import GetCenterPoint, GetEditCircle
 from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditExtScope import IsEditExtScope
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native extrusion emission and transfer accounting must agree on the same proven controls

@@ -54,15 +54,15 @@ import BuildPruned6  # noqa: E402
 import BuildPruned7  # noqa: E402
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import DayTime  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.ShellParts import AuthorAppInfo, AuthorSummary, AuxHeader  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Header.HeaderFrame import MakeFrame  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgAppInfo import DwgAppInfo  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import AsHandle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import NamedValue  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import DayTime  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.ShellParts import AuthorAppInfo, AuthorSummary, AuxHeader  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.HeaderFrame import MakeFrame  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgAppInfo import DwgAppInfo  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Records.CoerceValue import AsHandle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Sections.RecordParts import NamedValue  # noqa: E402
 
 PLAN = 'PlanBisect.json'
 AUX_GROUPS = {

@@ -37,7 +37,7 @@ Later equation handles cross-check both owners. Baseline A's cut width, bottom a
 
 ## Reproduce the inventory
 
-1. Read each of the eleven files as bytes from Git at the recorded revision and verify it against the capture receipt. Open the container with `SldprtArchive.from_bytes` and extract `Contents/Config-0` and `Contents/Config-0-ResolvedFeatures`. [Container reader](../../../src/convert/adapters/solidworks/container/Container.py)
+1. Read each of the eleven files as bytes from Git at the recorded revision and verify it against the capture receipt. Open the container with `SldprtArchive.from_bytes` and extract `Contents/Config-0` and `Contents/Config-0-ResolvedFeatures`. [Container reader](../../../src/convert/adapters/solidworks/Container/Container.py)
 2. In the resolved stream, locate each feature name in its framed UTF-16 `moNodeName_c` record. The feature tree ID is the little-endian integer at name end +8. In these eleven files, the sketch child begins at name end +157. Read its little-endian object tag and compare with the offsets above.
 3. In `Config-0`, identify the `moRelDimension_c` → `moDimRefWrapper_c` → `moSkDimHandleValG2_c` chain. For baseline A the cut-left wrapper scalar starts at 3,628 and the parent width wrapper scalar at 12,801. At each handle body +110, inspect the class tag or backreference. Cross-check the two object IDs against the interior dimension handles and against the resolved profile slots.
 

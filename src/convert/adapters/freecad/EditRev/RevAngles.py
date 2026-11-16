@@ -1,16 +1,16 @@
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
-from convert.formats.Fusion.FeatureLabels import KFeatureFields
-from convert.geometry.Formula.Arithmetic import (
+from convert.Formats.Fusion.FeatureLabels import KFeatureFields
+from convert.Geometry.Formula.Arithmetic import (
     EvalFormula,
     IsLiteralExpr,
     ReadFormula,
 )
-from convert.geometry.Formula.FormulaUnits import IsMatchingQty
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.enums.EnumValues import ParameterRole, ValueKind
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.FormulaUnits import IsMatchingQty
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Enums.EnumValues import ParameterRole, ValueKind
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Records.RecordParameter import Parameter
 
 
 # qualified native literals can retain freecad syntax across repeated exports

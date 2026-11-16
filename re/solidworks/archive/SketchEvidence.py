@@ -238,8 +238,8 @@ def CheckCoincidence(Sketches, Reading):
 
 # exact native blob checks keep witness based layouts scoped to their discovery inputs
 def ReadCapture(RootPath, Asset, Reading, IncludeCoincidence=False):
-    from convert.adapters.solidworks.container.Archive import ContainerMo
-    from convert.adapters.solidworks.container.Container import SldprtArchive
+    from convert.adapters.solidworks.Container.Archive import ContainerMo
+    from convert.adapters.solidworks.Container.Container import SldprtArchive
     from SketchReader import ReadSketches
     from SketchRoot import KGeneration, Require
 

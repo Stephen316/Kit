@@ -5,11 +5,11 @@ from struct import unpack_from
 from FusionBossDirectionEvidence import compare_solidworks_direction
 from PairedCaptureIntake import require
 from RectanglePairSketch import parameter_mm, same, unique, xyz
-from convert.adapters.solidworks.container.Archive import KObjectRefKind, ReadTag
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.resolved.RectanglePart import ReadRectPart
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureExtrude import ExtrudeFeature
+from convert.adapters.solidworks.Container.Archive import KObjectRefKind, ReadTag
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Resolved.RectanglePart import ReadRectPart
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureExtrude import ExtrudeFeature
 
 
 def find_boss(document, sketch):

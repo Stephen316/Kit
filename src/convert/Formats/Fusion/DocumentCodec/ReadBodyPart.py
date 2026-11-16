@@ -1,0 +1,21 @@
+from convert.Formats.Fusion.BrepCodec.Journal.JournalLimits import (
+    KJournalBytes,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentBody import DocumentBody
+from convert.Formats.Fusion.DocumentCodec.Reading.PickBodyView import PickBodyView
+from convert.Formats.Fusion.DocumentCodec.Reading.ReadTypedBody import ReadTypedBody
+
+
+# the body part operation needs a distinct decoding boundary so model state retains its native feature and ownership relationships
+def ReadBodyPart(Value: ContainerPart) -> DocumentBody:
+    if not Value.Name.startswith("Breps.BlobParts/BREP.") or not Value.Name.endswith(
+        ".smbh"
+    ):
+        raise ValueError("Unsupported Fusion document part")
+    if type(Value.Payload) is not bytes or not 0 < len(Value.Payload) <= KJournalBytes:
+        raise ValueError("Invalid or oversized Fusion document history")
+    Journal = ReadJournal(Value.Payload)
+    Typed = ReadTypedBody(Value.Payload, PickBodyView(Journal))
+    return DocumentBody(Value.Name, Journal if Typed is None else Typed)

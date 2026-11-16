@@ -16,13 +16,13 @@ from PairedCaptureIntake import GitSnapshot, inspect_capture, require, sha256
 from decode_basics import named_features
 from fusion_metadata import design_records
 
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.HistoryRef import ReadNativeRef
-from convert.formats.Fusion.MetaCursor import MetaCursor
-from convert.formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
-from convert.formats.Fusion.ParamBinding import ResolveOwner
-from convert.formats.Fusion.Sketches.Dimensional.DimRecord import DimRecordBody
-from convert.formats.Fusion.Sketches.Dimensional.DimBinding import KDimBindingGuid
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.HistoryRef import ReadNativeRef
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
+from convert.Formats.Fusion.ParamBinding import ResolveOwner
+from convert.Formats.Fusion.Sketches.Dimensional.DimRecord import DimRecordBody
+from convert.Formats.Fusion.Sketches.Dimensional.DimBinding import KDimBindingGuid
 
 CONTROLS = (
     "baseline-a",

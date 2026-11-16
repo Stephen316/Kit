@@ -93,8 +93,8 @@ def check_witness(result, witness):
 
 # the save receipt and complete resolved digest guard the witnessed data and archive indices
 def read_capture(root, asset, reading, witness):
-    from convert.adapters.solidworks.container.Archive import ContainerMo
-    from convert.adapters.solidworks.container.Container import SldprtArchive
+    from convert.adapters.solidworks.Container.Archive import ContainerMo
+    from convert.adapters.solidworks.Container.Container import SldprtArchive
     from FaceOccurrence import FaceCursor
     from ProfileSupport import read_profile_support
     from SketchRoot import KGeneration, Require

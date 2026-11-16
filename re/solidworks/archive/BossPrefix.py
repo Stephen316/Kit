@@ -1,11 +1,11 @@
 """Expose the packaged extrusion parser to the saved report replay."""
 
-from convert.adapters.solidworks.resolved.BossEnd import (
+from convert.adapters.solidworks.Resolved.BossEnd import (
     ReadBossClose,
     ReadEndHead as read_end_prefix,
     ReadEndTail as read_end_tail,
 )
-from convert.adapters.solidworks.resolved.BossEntry import (
+from convert.adapters.solidworks.Resolved.BossEntry import (
     ReadBodyReturn as read_body_feature_tail,
     ReadBossHead,
 )

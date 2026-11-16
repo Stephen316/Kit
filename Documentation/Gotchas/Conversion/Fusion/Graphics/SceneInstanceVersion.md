@@ -22,4 +22,4 @@ Each class must still appear once. Every other class must be present at a known 
 
 - [Cache and package notes](../../../../../re/Fusion/Reconstruction/ReadGaps/CachePackageNotes.md#serializer-header-without-graphicsblobfeatures-member-0)
 - [Graphics census](../../../../../re/Fusion/Reconstruction/ReadGaps/GraphicsCensus.json)
-- [Cache gap tests](../../../../../tests/convert/formats/FusionCodec/SavedCorpus/CacheGapTests.py), cases `TestCacheMember` and `TestOldInstance`
+- [Cache gap tests](../../../../../tests/Convert/Formats/FusionCodec/SavedCorpus/CacheGapTests.py), cases `TestCacheMember` and `TestOldInstance`

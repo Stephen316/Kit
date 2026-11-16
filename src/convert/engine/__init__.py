@@ -12,7 +12,7 @@ from convert.adapters.base.WriteOptions import WriteOptions
 from convert.adapters.base.WriteResult import WriteResult
 from convert.adapters.registry import AdapterRegistry
 from convert.engine.EngineResult import ConversionResult
-from convert.formats.SourceFormat import ResolveFormat
+from convert.Formats.SourceFormat import ResolveFormat
 
 
 # compat protocol marker exempts paired wrappers from naming constraints

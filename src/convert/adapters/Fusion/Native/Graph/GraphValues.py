@@ -1,14 +1,14 @@
 from math import isfinite as IsFinite
 from typing import cast as CastValue
 
-from convert.formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
-from convert.formats.Fusion.EntityCodec.Model.OptionalValue import OptionalValue
-from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
-from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
-from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
-from convert.formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
-from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
+from convert.Formats.Fusion.EntityCodec.Model.OptionalValue import OptionalValue
+from convert.Formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
+from convert.Formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
+from convert.Formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
+from convert.Formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
 # series items needs an explicit validity boundary so public document claims remain grounded in native records

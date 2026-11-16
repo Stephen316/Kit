@@ -12,14 +12,14 @@ After `TransientEntityHolder` entered the catalog, `CloseCatalog` reached `BaseO
 
 Six classes have two catalog versions. In each pair, the newer version is the current registration in Fusion 2706.1.17:
 
-| Class | Catalog versions | Current registration |
-| --- | --- | --- |
-| `DcDraftFeature` | 5, 6 | 6 |
-| `DRMatrix` | 15, 16 | 16 |
-| `Parameter` | 9, 10 | 10 |
-| `ComponentBaseInstance` | 10, 11 | 11 |
-| `BaseOccurrencePathValue` | 4, 5 | 5 |
-| `PMISettings` | 2, 4 | 4 |
+| Class                     | Catalog versions | Current registration |
+| ------------------------- | ---------------- | -------------------- |
+| `DcDraftFeature`          | 5, 6             | 6                    |
+| `DRMatrix`                | 15, 16           | 16                   |
+| `Parameter`               | 9, 10            | 10                   |
+| `ComponentBaseInstance`   | 10, 11           | 11                   |
+| `BaseOccurrencePathValue` | 4, 5             | 5                    |
+| `PMISettings`             | 2, 4             | 4                    |
 
 ## Workaround
 
@@ -28,6 +28,6 @@ When the metadata has no row for a class, `PickSchema` selects the newest catalo
 ## Evidence
 
 - [Native version differences](../../../../../re/Fusion/LocalOracle/Reflection/VersionDifferences.json)
-- [Version selection](../../../../../src/convert/formats/Fusion/EntityCodec/Vocabulary/PickSchema.py)
+- [Version selection](../../../../../src/convert/Formats/Fusion/EntityCodec/Vocabulary/PickSchema.py)
 - [Class gap census script](../../../../../re/Fusion/Reconstruction/ReaderCoverage/ClassGaps.py)
 - [Change entry](../../../../Changes/Fusion/Records/FusionSavedDocumentCoverage.md)

@@ -4,7 +4,7 @@ from convert.adapters.freecad.EditRead.EditObjects import RequireEditObj
 from convert.adapters.freecad.EditRead.Revolve.RevGraph import RequireRevName
 from convert.adapters.freecad.EditRead.Revolve.RevGraphLinks import RequireRevProp
 from convert.adapters.freecad.Native import NativeObject
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # resolved native identities retain separate source group and feature ordering

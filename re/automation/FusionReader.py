@@ -79,8 +79,8 @@ def read_document(content, allow_partial):
 
 def encode_document(document):
     from convert.adapters.registry.ResearchWrite import KResearchReadStatus
-    from interchange.core.Common import FreezeMapping
-    from interchange.document.models.DocumentModel import CadDocument
+    from interchange.Core.Common import FreezeMapping
+    from interchange.document.Models.DocumentModel import CadDocument
 
     document = replace(
         document,

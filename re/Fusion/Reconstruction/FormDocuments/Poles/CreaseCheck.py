@@ -19,9 +19,9 @@ from KnotRule import as_vector, capped_points, cap_levels, predict as knot_predi
 from PoleRule import predict_face  # noqa: E402
 import CreaseLab  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout, KnotScale  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout, KnotScale  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 CREASE = ROOT / 're/Fusion/LocalOracle/FormDocuments/Crease'
 

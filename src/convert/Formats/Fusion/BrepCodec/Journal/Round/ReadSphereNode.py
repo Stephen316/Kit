@@ -1,0 +1,36 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadPrefixMut import (
+    ReadPrefixMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut import (
+    ReadVectorMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut import (
+    ReadDoubleMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.IsLogicalMut import (
+    IsLogicalMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadBoundMut import (
+    ReadBoundMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Round.CheckRoundNode import CheckRoundNode
+from convert.Formats.Fusion.BrepCodec.Journal.Round.SphereNode import SphereNode
+
+
+# the sphere node operation needs a distinct decoding boundary so topology changes retain their native revision relationships
+def ReadSphereNode(Cursor: FieldCursor) -> SphereNode:
+    Value = SphereNode(
+        ReadPrefixMut(Cursor),
+        ReadVectorMut(Cursor, 19),
+        ReadDoubleMut(Cursor),
+        ReadVectorMut(Cursor, 20),
+        ReadVectorMut(Cursor, 20),
+        IsLogicalMut(Cursor),
+        ReadBoundMut(Cursor),
+        ReadBoundMut(Cursor),
+        ReadBoundMut(Cursor),
+        ReadBoundMut(Cursor),
+    )
+    CheckRoundNode(Value)
+    return Value

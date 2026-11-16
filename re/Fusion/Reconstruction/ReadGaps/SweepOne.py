@@ -68,7 +68,7 @@ def material(model):
     from convert.adapters.Fusion.Native.Projection.ReadMaterial import ReadMaterial
     row = {}
     try:
-        from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
+        from convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
         spec = NativeMaterial(model)
         if not model.Bodies and spec == MaterialSpec():
             row['native'] = {'status': 'empty'}
@@ -102,8 +102,8 @@ def material(model):
 
 
 def document(data, deep):
-    from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     row = {'kind': 'design'}
     start = time.monotonic()
     try:
@@ -124,8 +124,8 @@ def document(data, deep):
 
 
 def drawing(data, deep):
-    from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing
-    from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing
+    from convert.Formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing
+    from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing
     row = {'kind': 'drawing'}
     try:
         model = ReadDrawing(data)
@@ -143,8 +143,8 @@ def drawing(data, deep):
 
 
 def bundle(data, deep):
-    from convert.formats.Fusion.BundleCodec.EmitBundle import EmitBundle
-    from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+    from convert.Formats.Fusion.BundleCodec.EmitBundle import EmitBundle
+    from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
     row = {'kind': 'bundle'}
     try:
         model = ReadBundle(data)

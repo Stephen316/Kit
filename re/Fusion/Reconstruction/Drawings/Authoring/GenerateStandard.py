@@ -23,8 +23,8 @@ sys.path.insert(0, str(HERE.parent / 'Dwg'))
 
 from PruneDwg import Graph, field, owner_of, target  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
 
 TABLE_ENTRIES = {'LAYER', 'STYLE', 'LTYPE', 'APPID', 'DIMSTYLE', 'VPORT', 'BLOCK_HEADER', 'VIEW', 'UCS'}
 DICTIONARIES = {'DICTIONARY', 'ACDBDICTIONARYWDFLT'}

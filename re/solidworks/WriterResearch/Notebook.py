@@ -9,8 +9,8 @@
 from struct import pack as PackFields
 
 from JournalAttach import EncodeJournal, JournalAttach, ReadJournal
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 
 # the four empty lists expose the end of the notebook before the outer definition resumes

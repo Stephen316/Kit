@@ -20,13 +20,13 @@ sys.dont_write_bytecode = True
 
 import EmitAuthored  # noqa: E402
 import TruncateHistory  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Materialize import Materialize  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.History.EmitPartHist import EmitPartHist  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Shape.BuildShape import BuildShape  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Materialize import Materialize  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.History.EmitPartHist import EmitPartHist  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Shape.BuildShape import BuildShape  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart  # noqa: E402
 
 OUTPUT = REPO / "re/Fusion/LocalOracle/FeatureAuthoring/Variants"
 CONTROLS = REPO / "re/Fusion/LocalOracle/FeatureAuthoring/Controls"

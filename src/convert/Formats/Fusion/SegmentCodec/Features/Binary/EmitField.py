@@ -1,0 +1,34 @@
+from convert.Formats.Fusion.SegmentCodec.Features.Model.FieldValue import KFieldValue
+from convert.Formats.Fusion.SegmentCodec.Features.Schema.FieldKind import FieldKind
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.CheckUuid import CheckUuid
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.EmitLocalRef import (
+    EmitLocalRef,
+)
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.EmitRefs import EmitRefs
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.EmitScalar import EmitScalar
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.EmitText import EmitText
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.EmitVector import EmitVector
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.RefKinds import (
+    KCollectionKinds,
+    KReferenceKinds,
+)
+from convert.Formats.Fusion.SegmentCodec.Features.Binary.ScalarKinds import KScalarKinds
+
+
+# the field operation needs a consistent construction rule so native records retain their segment ownership and schema
+def EmitField(KindValue: FieldKind, Value: KFieldValue) -> bytes:
+    if KindValue in KScalarKinds:
+        return EmitScalar(KindValue, Value)
+    if KindValue in (FieldKind.KUnicode, FieldKind.KUuidText):
+        if type(Value) is not str:
+            raise ValueError("Fusion feature string requires text")
+        if KindValue is FieldKind.KUuidText:
+            CheckUuid(Value)
+        return EmitText(Value, True)
+    if KindValue is FieldKind.KVector:
+        return EmitVector(Value)
+    if KindValue in KReferenceKinds:
+        return EmitLocalRef(Value)
+    if KindValue in KCollectionKinds:
+        return EmitRefs(KindValue, Value)
+    raise ValueError("Unsupported Fusion feature field type")

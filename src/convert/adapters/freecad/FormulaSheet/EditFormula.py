@@ -5,8 +5,8 @@ from convert.adapters.freecad.FormulaSheet.FormulaPlans import (
     FormulaPlan,
     ReadFusionPlan,
 )
-from convert.geometry.Formula.Arithmetic import IsLiteralExpr, ReadFormula
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.Arithmetic import IsLiteralExpr, ReadFormula
+from interchange.Records.RecordParameter import Parameter
 
 
 # the editable feature requires a proven dependency chain with writable literal inputs

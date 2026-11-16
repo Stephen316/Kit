@@ -3,8 +3,8 @@ from math import isclose as IsClose
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Graph.GraphValues import SeriesItems
-from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
-from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.EntityCodec.Model.ValueMap import ValueMap
 
 
 # invalid fields input must fail here so public document claims remain grounded in native records

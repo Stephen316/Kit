@@ -7,22 +7,22 @@ sys.path.insert(0, str(BASE))
 sys.setrecursionlimit(20000)
 
 from ExampleRecords import documents
-import convert.formats.Fusion.GraphicsCodec.Schema.GlobalVersions as Globals
-import convert.formats.Fusion.GraphicsCodec.Schema.AttrRules as Attrs
-from convert.formats.Fusion.GraphicsCodec.Schema.FieldRule import FieldRule
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts
+import convert.Formats.Fusion.GraphicsCodec.Schema.GlobalVersions as Globals
+import convert.Formats.Fusion.GraphicsCodec.Schema.AttrRules as Attrs
+from convert.Formats.Fusion.GraphicsCodec.Schema.FieldRule import FieldRule
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts
 
 SEEN = []
 
 
 def main():
-    import convert.formats.Fusion.GraphicsCodec.Wire.XferObjectMut as Objects
+    import convert.Formats.Fusion.GraphicsCodec.Wire.XferObjectMut as Objects
     module = sys.modules[[name for name in sys.modules if name.endswith('XferGlobalMut')][0]] if any(name.endswith('XferGlobalMut') for name in sys.modules) else None
     if module is None:
         import importlib
-        for name in ('convert.formats.Fusion.GraphicsCodec.Fields.XferGlobalMut', 'convert.formats.Fusion.GraphicsCodec.Wire.XferGlobalMut', 'convert.formats.Fusion.GraphicsCodec.Model.XferGlobalMut'):
+        for name in ('convert.Formats.Fusion.GraphicsCodec.Fields.XferGlobalMut', 'convert.Formats.Fusion.GraphicsCodec.Wire.XferGlobalMut', 'convert.Formats.Fusion.GraphicsCodec.Model.XferGlobalMut'):
             try:
                 module = importlib.import_module(name)
                 break

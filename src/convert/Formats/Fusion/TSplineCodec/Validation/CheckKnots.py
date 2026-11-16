@@ -1,0 +1,15 @@
+from math import isfinite
+
+from convert.Formats.Fusion.TSplineCodec.Model.KnotSurface import KnotSurface
+from convert.Formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
+
+
+# invalid knots input must fail here so control cage topology retains its native connectivity
+def CheckKnots(Surface: TsplineSurface) -> None:
+    if not isinstance(Surface, KnotSurface):
+        return
+    if len(Surface.EdgeKnots) != len(Surface.Topology.Edges) or any(
+        type(Value) is not float or not isfinite(Value) or Value <= 0.0
+        for Value in Surface.EdgeKnots
+    ):
+        raise ValueError("TSM edge knot rows must give one positive value per edge")

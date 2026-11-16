@@ -26,4 +26,4 @@ Legacy swaps can continue to require identical declarations as a layout invarian
 
 - [Cap preparation](../../../../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/Preparation.json)
 - [Native lifecycle](../../../../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json)
-- [Integration coverage](../../../../../../tests/convert/formats/FusionCodec/Documents/Form/GeneralAcceptTests.py)
+- [Integration coverage](../../../../../../tests/Convert/Formats/FusionCodec/Documents/Form/GeneralAcceptTests.py)

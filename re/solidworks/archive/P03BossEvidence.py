@@ -2,7 +2,7 @@
 
 from math import dist, isclose
 
-from convert.adapters.solidworks.resolved.BossEntry import ReadRectBoss
+from convert.adapters.solidworks.Resolved.BossEntry import ReadRectBoss
 from DepthDisplay import display_report
 from SketchRoot import Require
 

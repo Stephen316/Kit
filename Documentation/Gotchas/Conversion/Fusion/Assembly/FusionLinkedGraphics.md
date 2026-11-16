@@ -12,9 +12,9 @@ Each of these controls has two frames with the flag set and two qualifiers.
 The unsaved control `R4_joint` has the same joint but neither structure.
 The saved subassembly `S1_saved` has a reference but no joint, and it has neither structure.
 
-| Structure | Change | Typed model |
-| --- | --- | --- |
-| Render frame | A third link flag follows the two empty links | `RenderFrame.HasEmptyLink` |
+| Structure                | Change                                                   | Typed model                |
+| ------------------------ | -------------------------------------------------------- | -------------------------- |
+| Render frame             | A third link flag follows the two empty links            | `RenderFrame.HasEmptyLink` |
 | `SelectabilityAttribute` | The field links an `AlphaImageSelectionQualifier` object | `QualifierValue.ImagePath` |
 
 The qualifier holds an absolute image path in the Fusion installation.
@@ -31,7 +31,7 @@ A set frame flag that a callback payload follows still raises `ValueError`.
 
 ## Evidence
 
-- [Frame transfer](../../../../../src/convert/formats/Fusion/GraphicsCodec/Nodes/XferFrameMut.py)
-- [Qualifier transfer](../../../../../src/convert/formats/Fusion/GraphicsCodec/Values/XferQualifier.py)
+- [Frame transfer](../../../../../src/convert/Formats/Fusion/GraphicsCodec/Nodes/XferFrameMut.py)
+- [Qualifier transfer](../../../../../src/convert/Formats/Fusion/GraphicsCodec/Values/XferQualifier.py)
 - [Scene trace script](../../../../../re/Fusion/Reconstruction/LinksConfigs/TraceScene.py)
 - [External references change](../../../../Changes/Fusion/Assembly/FusionExternalReferences.md)

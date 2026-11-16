@@ -6,6 +6,9 @@ KMaxDirectFiles = 32
 # ascii stems keep imports predictable across every operating system and review tool
 KStemPattern = r"^[A-Z][A-Za-z]*$"
 
+# owned code trees require directory validation without changing external research path identities
+KCodeRoots = frozenset({"src", "tools", "typings", "tests"})
+
 # fixed ecosystem identities stay explicit so ordinary nested files cannot borrow exemptions
 KToolPathSet = frozenset(
     {

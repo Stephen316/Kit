@@ -7,7 +7,7 @@ The public conversion registry now discovers `fusion.f3d` and its `f3d` alias fo
 ```python
 from convert import open_document, write_document
 from convert.adapters.Fusion import MakeFusionDoc
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 Document = MakeFusionDoc(DocumentSpec(
     "Dimensioned cuboid", "height", 31.0, ProfileKind="cuboid",

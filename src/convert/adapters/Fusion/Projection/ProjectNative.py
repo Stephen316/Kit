@@ -6,11 +6,11 @@ from convert.adapters.Fusion.Projection.CompareNative import CompareNative
 from convert.adapters.Fusion.Projection.NativeIndex import MakeIndex
 from convert.adapters.Fusion.Projection.NativeProfile import NativeProfile
 from convert.adapters.Fusion.State.EncodeState import EncodeState
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.records.RecordSource import CadSource
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Records.RecordSource import CadSource
 
 
 # project native needs an explicit validity boundary so public document claims remain grounded in native records

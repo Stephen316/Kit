@@ -30,7 +30,7 @@ sys.path.insert(0, str(HERE.parents[4] / 'src'))
 import GenerateDefaults  # noqa: E402
 
 ROOT = HERE.parents[4]
-DEFAULTS = ROOT / 'src/convert/formats/Fusion/DrawingCodec/Dwg/Author/Standard/SheetDefaults.json'
+DEFAULTS = ROOT / 'src/convert/Formats/Fusion/DrawingCodec/Dwg/Author/Standard/SheetDefaults.json'
 GRAFTS = HERE.parent / 'Rules' / 'GraftRoundUnknowns.json'
 DIMENSIONS = ('DIMENSION_ALIGNED', 'DIMENSION_DIAMETER', 'DIMENSION_LINEAR', 'DIMENSION_RADIUS')
 OUTCOMES = (('opened', 'Fusion opens the drawing with'), ('damaged', 'Fusion reports the drawing as damaged with'), ('stalled', 'Fusion stops answering while it opens the drawing with'))

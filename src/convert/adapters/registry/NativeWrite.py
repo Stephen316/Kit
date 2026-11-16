@@ -2,9 +2,9 @@ from convert.adapters.registry.NativeEnds import EndFindings
 from convert.adapters.registry.NativeAssembly import AssemblyIssues
 from convert.adapters.registry.NativeFeatures import FeatureFindings
 from convert.adapters.registry.NativeSketch import SketchFindings
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentWalk import WalkDocuments
-from interchange.features.FeatureKinds import NativeFeature
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentWalk import WalkDocuments
+from interchange.Features.FeatureKinds import NativeFeature
 
 
 # shared conversion boundaries must reject incomplete native history even after source relabeling

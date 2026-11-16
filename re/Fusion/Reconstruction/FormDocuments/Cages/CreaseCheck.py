@@ -21,12 +21,12 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Tables'))
 sys.path.insert(0, str(BASE))
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil import ClassifyEdges as Rule
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import ShapeBody
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil import ClassifyEdges as Rule
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import ShapeBody
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
 from ReadShapes import ReadShapes
 from StencilKey import StencilKey
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from ReadConverted import ReadConverted
 
 TARGET = BASE / 'CreaseCheck.json'

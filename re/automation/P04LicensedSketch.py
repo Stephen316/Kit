@@ -12,9 +12,9 @@ from CutHistoryGraph import unique, xyz
 from CutHistorySketch import bound_parameters
 from PairedCaptureIntake import require
 from Records import canonical
-from interchange.enums.EnumValues import ParameterRole, ValueKind
-from interchange.features.DistanceParam import GetDistParam
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.Enums.EnumValues import ParameterRole, ValueKind
+from interchange.Features.DistanceParam import GetDistParam
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
 
 ASSIGNMENT = re.compile(r'"([^"]+)"\s*=\s*\(\s*"([^"]+)"\s*-\s*"([^"]+)"\s*\)\s*/\s*2')
 PHASES = ("before_rebuild", "after_rebuild")

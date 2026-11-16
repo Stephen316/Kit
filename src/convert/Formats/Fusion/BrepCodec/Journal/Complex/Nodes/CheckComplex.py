@@ -1,0 +1,40 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import (
+    TcoedgeNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TedgeNode import TedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TvertexNode import (
+    TvertexNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
+
+
+# invalid form sign input must fail here so nested spline and surface records retain their relationships
+def CheckFormSign(Entities: tuple[KJournalEntity, ...], Coedge: CoedgeNode) -> None:
+    if not 0 <= Coedge.Pcurve < len(Entities):
+        return
+    Pcurve = Entities[Coedge.Pcurve]
+    if not isinstance(Pcurve, PcurveNode) or not Pcurve.Form:
+        return
+    if (Pcurve.Form > 0) != (Coedge.Reversed == Pcurve.Reversed):
+        raise ValueError("Fusion pcurve form sign disagrees with its coedge sense")
+
+
+# invalid tolerance input must fail here so nested spline and surface records retain their relationships
+def CheckTolerance(Entities: tuple[KJournalEntity, ...], Tolerant: TedgeNode) -> None:
+    for Vertex in (Tolerant.Base.StartVertex, Tolerant.Base.EndVertex):
+        Value = Entities[Vertex] if 0 <= Vertex < len(Entities) else None
+        if isinstance(Value, TvertexNode) and Value.Tolerance < Tolerant.Tolerance:
+            raise ValueError("Fusion tolerant vertex is tighter than its tolerant edge")
+
+
+# invalid complex input must fail here so nested spline and surface records retain their relationships
+def CheckComplex(Entities: tuple[KJournalEntity, ...]) -> None:
+    for Value in Entities:
+        if isinstance(Value, TcoedgeNode):
+            CheckFormSign(Entities, Value.Base)
+        elif isinstance(Value, CoedgeNode):
+            CheckFormSign(Entities, Value)
+        elif isinstance(Value, TedgeNode):
+            CheckTolerance(Entities, Value)

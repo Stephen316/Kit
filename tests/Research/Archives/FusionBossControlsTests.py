@@ -3,8 +3,8 @@ from pathlib import Path as FilePath
 import pytest as Pytest
 
 from convert.api.ApiOpen import OpenDocument
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the archive controls separate signed depth from the stored frame direction

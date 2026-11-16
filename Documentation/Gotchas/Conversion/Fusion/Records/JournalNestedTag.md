@@ -8,10 +8,10 @@ An ASM custom attribute starts with a null attribute pointer. A generic tag attr
 
 Fusion move, split face and surface edit saves break all three rules. The census found 90 such parent tags in 18 saved archives.
 
-| Record | Attribute pointer | Owner | Payload |
-| --- | --- | --- | --- |
-| Parent tag | Points to the child tag | Face (77) or body (13) | Normal tag groups |
-| Child tag | Null | The parent tag | One group with an empty identifier |
+| Record     | Attribute pointer       | Owner                  | Payload                            |
+| ---------- | ----------------------- | ---------------------- | ---------------------------------- |
+| Parent tag | Points to the child tag | Face (77) or body (13) | Normal tag groups                  |
+| Child tag  | Null                    | The parent tag         | One group with an empty identifier |
 
 The child group always has byte count 0, an empty primary identifier, secondary identifier 0, one operation identifier and approach 0. The operation identifiers are 302 to 307. The child sibling pointers are always null.
 
@@ -25,4 +25,4 @@ Keep `FeatureTag` strict. Decode only the exact child layout as `NestedTag`, whi
 
 - [Journal attribute evidence](../../../../../re/Fusion/Reconstruction/ReaderCoverage/JournalAttributes/Evidence.json)
 - [Earlier owner variant study](../../../../../re/Fusion/Study/attribute-owner-variant-decoding.json)
-- [Saved archive tests](../../../../../tests/convert/formats/FusionCodec/SavedCorpus/JournalAttributeTests.py)
+- [Saved archive tests](../../../../../tests/Convert/Formats/FusionCodec/SavedCorpus/JournalAttributeTests.py)

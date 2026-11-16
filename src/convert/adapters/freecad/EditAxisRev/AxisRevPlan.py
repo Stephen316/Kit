@@ -11,13 +11,13 @@ from convert.adapters.freecad.EditAxisRev.AxisRevScope import ReadAxisScope
 from convert.adapters.freecad.EditAxisRev.AxisSelect import ReadAxisPick
 from convert.adapters.freecad.EditRev.RevAngles import ReadRevAngles
 from convert.adapters.freecad.EditRev.RevBodyProof import CheckRevBody
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the live angular feature retains both directed endpoints and original point joins

@@ -17,7 +17,7 @@ The CI allowlist includes this job in both pull-request and merge-group health c
 
 ## Usage and limitations
 
-These modules extend `convert.formats.Fusion.SegmentCodec.Parameters`.
+These modules extend `convert.Formats.Fusion.SegmentCodec.Parameters`.
 They feed the existing segment writer, which derives updated record offsets.
 They are internal native-format components, not a complete Fusion document writer.
 The explicit partial reader remains the supported research entry point.

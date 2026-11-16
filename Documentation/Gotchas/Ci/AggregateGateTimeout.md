@@ -1,11 +1,11 @@
 # Aggregate gate cases can time out without output
 
-`TestPendingGate` in `tests/Policy/ReviewerAggregationTests.py` might appear to fail only when the CI aggregate logic changes.
-Each case starts `node` with a 2 second timeout and expects a `Waiting for` line before the timeout.
-On a loaded queue runner, the process can produce no output in 2 seconds.
+The former `TestPendingGate` cases could fail without changes to the CI aggregate logic.
+The original probe started `node` with a two-second timeout and required a `Waiting for` line before that timeout.
+On a loaded queue runner, the process could produce no output in two seconds.
 The `quality-missing` case failed in [run 43530545010](https://github.com/TryUniCAD/Kit/actions/runs/43530545010) and passed in [run 43530343040](https://github.com/TryUniCAD/Kit/actions/runs/43530343040) on the same tree.
 
-Compare the failure with an earlier queue run of the same tree before you change the aggregate scripts.
+Compare failures with earlier queue runs of the same tree before changing the aggregate scripts.
 
 The same `quality-missing` case later failed without output in
 [the post-merge audit](https://github.com/TryUniCAD/Kit/actions/runs/43695567222/job/132757055841).
@@ -14,3 +14,7 @@ The [probe repair](../../Changes/Ci/PendingAggregateProbe.md) waits for the actu
 then retains a full two-second observation that the process stays blocked.
 It also retains the missing-evidence assertion and rejects an early process exit.
 Production CI budgets and required checks remain unchanged.
+
+The [flaky-test removal](../../Changes/Ci/FlakyPendingGateRemoval.md) subsequently removes all seven pending-gate cases and their four unused helpers.
+The synchronized version had no recorded recurrence in this audit; its removal follows the request to delete the historically flaky family.
+Completed-result checks remain, but they do not replace coverage of pending-process liveness or missing evidence during waiting.

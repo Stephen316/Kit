@@ -11,8 +11,8 @@ sys.path.insert(0, str(BASE))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Topology'))
 from StencilCheck import compare  # noqa: E402
 from SavedBodies import read_saved  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
 
 TARGET = BASE / 'StencilCensus.json'
 SLACK = 1e-12

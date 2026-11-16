@@ -15,5 +15,5 @@ entity-kind tag.
 Use `kit decode` or the research commands to inspect and recover unsupported
 semantics. Known enum values and their canonical strings remain eligible, and SDK
 inspection still preserves the original records. See
-[the process cases](../../../../tests/convert/Commands/Kind/CliKindTests.py) and
+[the process cases](../../../../tests/Convert/Commands/Kind/CliKindTests.py) and
 [the change entry](../../../Changes/Commands/NativeRecordKinds.md).

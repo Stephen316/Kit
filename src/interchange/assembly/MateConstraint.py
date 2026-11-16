@@ -6,11 +6,11 @@ from typing import Mapping as TypeMap
 from interchange.assembly.AssemblyEnums import MateAlignment, MateKind
 from interchange.assembly.ConstraintDrive import ConstraintDrive
 from interchange.assembly.ConstraintView import ConstraintView
-from interchange.core.Common import FreezeMapping
-from interchange.core.ModelBase import ModelBase, ModelDataMut
-from interchange.core.ModelExtras import ModelExtras
-from interchange.records.RecordParameter import ParameterValue
-from interchange.records.RecordProvenance import Provenance
+from interchange.Core.Common import FreezeMapping
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
+from interchange.Core.ModelExtras import ModelExtras
+from interchange.Records.RecordParameter import ParameterValue
+from interchange.Records.RecordProvenance import Provenance
 
 
 # mate constraints preserve relationships values and bindings across systems

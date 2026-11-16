@@ -2,13 +2,13 @@ from math import cos as Cosine, sin as SineValue, tau as FullTurn
 
 from convert.adapters.Fusion.Native.Circular.Snapshots.SnapAccess import SnapEntity
 from convert.adapters.Fusion.Native.Graph.GraphChecks import SameNumbers
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
 
 
 # invalid rim input must fail here so public geometry remains consistent with native circular topology

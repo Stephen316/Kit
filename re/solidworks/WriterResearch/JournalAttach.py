@@ -9,14 +9,14 @@
 from dataclasses import dataclass as DataClass
 from struct import pack as PackFields
 
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KDefinitionKind,
     EncodeClass,
     EncodeString,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 
 # the attachment record has a smaller field boundary than its surrounding notebook

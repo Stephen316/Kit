@@ -361,7 +361,7 @@ The supported parameter writer does not silently emit cross-segment references.
 
 ### Metadata object
 
-Kit's [MetaSegment](../../../src/convert/formats/Fusion/SegmentCodec/Metadata/MetaSegment.py) retains these fields in native order:
+Kit's [MetaSegment](../../../src/convert/Formats/Fusion/SegmentCodec/Metadata/MetaSegment.py) retains these fields in native order:
 
 | Field         | Type                               | Interpretation                                                                 |
 | ------------- | ---------------------------------- | ------------------------------------------------------------------------------ |
@@ -378,7 +378,7 @@ Kit's [MetaSegment](../../../src/convert/formats/Fusion/SegmentCodec/Metadata/Me
 Observed core segments use metadata version 8.
 The supported header carries magic 1234 and repeats its segment kind.
 Design, ACT, and Browser are distinct segment kinds.
-The exact header codec is [ReadWireHead](../../../src/convert/formats/Fusion/SegmentCodec/Metadata/ReadWireHead.py).
+The exact header codec is [ReadWireHead](../../../src/convert/Formats/Fusion/SegmentCodec/Metadata/ReadWireHead.py).
 
 ### Bulk record
 
@@ -407,7 +407,7 @@ The corresponding GUID identifies the native class.
 An inherited record retains the primary object's identity but selects an ancestor class.
 The indexer verifies this ancestry before accepting a continuation.
 
-The [segment writer](../../../src/convert/formats/Fusion/SegmentCodec/EmitSegment.py) derives both offset tables from emitted record positions.
+The [segment writer](../../../src/convert/Formats/Fusion/SegmentCodec/EmitSegment.py) derives both offset tables from emitted record positions.
 Changing a string length therefore moves later records without requiring offset patches.
 Registry order, record order, and timeline order remain separate inputs.
 
@@ -417,7 +417,7 @@ Registry order, record order, and timeline order remain separate inputs.
 
 A history payload contains six zero bytes, an owner reference, and an ordered list of feature references.
 Group records carry group state, an ordered membership list, and a counted name.
-The [chronology writers](../../../src/convert/formats/Fusion/SegmentCodec/Chronology) construct the supported layouts directly.
+The [chronology writers](../../../src/convert/Formats/Fusion/SegmentCodec/Chronology) construct the supported layouts directly.
 
 A reader must preserve owner-specific histories.
 When one archive contains multiple histories, choosing a physical first record is ambiguous.
@@ -1275,7 +1275,7 @@ Native circle/cylinder/frustum documents now reconstruct their complete graphics
 
 A Fusion Form body stores its T-spline control cage as a `.tsm` text program.
 The converted BRep body is separate committed geometry.
-The production codec is `ReadTspline`, `EmitTspline`, and `MakeClosedCage` in `convert.formats.Fusion.TSplineCodec`.
+The production codec is `ReadTspline`, `EmitTspline`, and `MakeClosedCage` in `convert.Formats.Fusion.TSplineCodec`.
 The [field model](../../../re/Fusion/Reconstruction/TSpline/FieldModel.md) describes each field from twelve controlled Fusion exports.
 
 ### Declaration profile

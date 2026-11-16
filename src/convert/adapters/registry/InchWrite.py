@@ -1,6 +1,6 @@
-from convert.adapters.solidworks.core.BindInch import KUnresolvedInchDimension
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentWalk import WalkDocuments
+from convert.adapters.solidworks.Core.BindInch import KUnresolvedInchDimension
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentWalk import WalkDocuments
 
 
 # display precision alone cannot justify exporting an exact driving length

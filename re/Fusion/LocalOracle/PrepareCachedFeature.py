@@ -9,11 +9,11 @@ root = Path(__file__).resolve().parent
 repository = root.parents[2]
 sys.path.insert(0, str(repository / "src"))
 
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
-from convert.formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.Formats.Fusion.SegmentCodec.EmitSegment import EmitSegment
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 api = runpy.run_path(str(repository / "re/Fusion/Reconstruction/EntityGraph/DecodeGraph.py"))
 source = root / "Features/kit_features_19mm.f3d"

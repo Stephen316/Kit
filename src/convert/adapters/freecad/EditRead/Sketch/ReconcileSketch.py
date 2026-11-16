@@ -1,5 +1,5 @@
-from interchange.records.RecordParameter import Parameter
-from interchange.geometry.models.Transform import Transform
+from interchange.Records.RecordParameter import Parameter
+from interchange.geometry.Models.Transform import Transform
 from convert.adapters.freecad.Native import NativeObject
 from collections.abc import Mapping
 from dataclasses import replace as Replace
@@ -26,8 +26,8 @@ from convert.adapters.freecad.EditRead.Sketch.SketchParams import (
     ReadSketchVals,
 )
 from convert.adapters.freecad.EditSketchPlan import KSketchEditBinding, ReadSketchPlan
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Sketch import Sketch
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # bound sketch edits replace only the geometry and values that native records corroborate

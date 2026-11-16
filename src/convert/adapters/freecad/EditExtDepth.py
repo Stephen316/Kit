@@ -1,9 +1,9 @@
 from convert.adapters.freecad.FormulaSheet.EditFormula import IsEditFormula
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
-from interchange.features.DistanceValues import GetDistValues
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.records.RecordParameter import Parameter
+from interchange.Features.DistanceValues import GetDistValues
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Records.RecordParameter import Parameter
 
 
 # dependent formulas cannot be replaced with writable scalar spreadsheet cells

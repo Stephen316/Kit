@@ -39,16 +39,16 @@ Everything below is measured. Controls measured 8000.000000000001 mm³, centre `
 | `moFR_c` gets its modern 8-byte inline data record          | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | advances 23 donors to `moFaceRef_c`        |
 | `ParallelPlaneDistanceDim_c` gets its transform predicate   | `re/data/Layouts/ClassLayoutsVersioned.json`                   | closes the 403/474/475-byte split          |
 | `moFromEndSpec_c` and `moEndSpec_c` get owned tails         | both authored layout tables                                    | separates nested feature tails             |
-| the four-byte stream footer becomes archive framing         | `src/convert/adapters/solidworks/container/Archive.py`         | three exact donor round trips              |
+| the four-byte stream footer becomes archive framing         | `src/convert/adapters/solidworks/Container/Archive.py`         | three exact donor round trips              |
 | `moICE_c` gets its complete conditional child graph         | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | removes the former 9.6 KB content wall     |
 | `moPerBodyChooserData_c` gets three counted object arrays   | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | replaces a fitted fixed three-child shape  |
 | native `su_CDWordArray` count replaces a boolean guess      | `re/data/Layouts/ClassLayoutsDecompiled.json`                  | accepts every chooser DWord count          |
-| native ANSI and Unicode CString framing                     | `src/convert/adapters/solidworks/container/Archive.py`         | decodes all four native length forms       |
+| native ANSI and Unicode CString framing                     | `src/convert/adapters/solidworks/Container/Archive.py`         | decodes all four native length forms       |
 | guarded primitive trace for the 1437-byte lightweight lane  | `re/tooling/windbg/Commands/Fields/FieldCdbLwdata.txt`         | confirms it is not read on normal open     |
-| donor object floor                                          | `tests/convert/solidworks/container/SolidworksArchiveTests.py` | 5244 → **18761**                           |
-| exact donor round-trip floor                                | `tests/convert/solidworks/container/SolidworksArchiveTests.py` | 0 → **17**                                 |
-| `_name_record` flag word per node kind                      | `src/convert/adapters/solidworks/core/Native.py`               | correct for planes, Origin and cuts        |
-| `_resolved_payload` first `u32`                             | `src/convert/adapters/solidworks/core/Native.py`               | base map index, not the object count       |
+| donor object floor                                          | `tests/Convert/Solidworks/Container/SolidworksArchiveTests.py` | 5244 → **18761**                           |
+| exact donor round-trip floor                                | `tests/Convert/Solidworks/Container/SolidworksArchiveTests.py` | 0 → **17**                                 |
+| `_name_record` flag word per node kind                      | `src/convert/adapters/solidworks/Core/Native.py`               | correct for planes, Origin and cuts        |
+| `_resolved_payload` first `u32`                             | `src/convert/adapters/solidworks/Core/Native.py`               | base map index, not the object count       |
 
 `Archive.py` now mirrors the native `swccu.dll` CString reader and writer: short ANSI strings use a
 single length prefix; Unicode strings use `ff fe ff` followed by the same 8/16/32-bit length

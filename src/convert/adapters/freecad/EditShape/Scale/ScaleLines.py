@@ -4,10 +4,10 @@ from math import isfinite as IsFinite
 
 from convert.adapters.freecad.EditShape.CylinderRims import KPositionTolerance
 from convert.adapters.freecad.EditShape.Scale.ScaleSpan import ScaleSpan
-from convert.geometry.Opencascade import DecodeFailure, EdgeData, ShapeRecord
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.brep.curves.BrepCurves import LineCurve
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Opencascade import DecodeFailure, EdgeData, ShapeRecord
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.brep.Curves.BrepCurves import LineCurve
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # converting verified affine spans to exact distance parameters lets the prism proof stay shared

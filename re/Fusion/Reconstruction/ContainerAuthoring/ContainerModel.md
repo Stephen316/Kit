@@ -91,7 +91,7 @@ The lower-level `build_container` accepts `generated_parts`, a mapping from asse
 
 ### Complete independent extrusion generation
 
-`PrepareExtrusion.py` prepares a fresh semantic extrusion Design, passes its `brepContract` into production `convert.formats.Fusion.BrepCodec.EmitHistory`, and packages the result through `package_feature`. It reads the semantic specification, type vocabulary, and implementation modules. It does not open an existing F3D, an authored-model snapshot, geometry payload, or history payload.
+`PrepareExtrusion.py` prepares a fresh semantic extrusion Design, passes its `brepContract` into production `convert.Formats.Fusion.BrepCodec.EmitHistory`, and packages the result through `package_feature`. It reads the semantic specification, type vocabulary, and implementation modules. It does not open an existing F3D, an authored-model snapshot, geometry payload, or history payload.
 
 ```sh
 .venv/bin/python re/Fusion/Reconstruction/ContainerAuthoring/PrepareExtrusion.py

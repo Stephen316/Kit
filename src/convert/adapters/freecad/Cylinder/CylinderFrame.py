@@ -1,8 +1,8 @@
 from math import hypot as Hypot, isfinite as IsFinite, tan as TanValue
 
-from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
-from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.brep.Surfaces.BrepSurfaces import ConeSurface, CylinderSurface
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # normalized carrier axes must agree before lengths establish a trim
 KAxisTolerance = 1e-9

@@ -26,16 +26,16 @@ from convert.adapters.freecad.EditBodyRev.BodyRevScope import (
 from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditExtSolid import BuildEditSolid
 from convert.adapters.freecad.EditRev.RevAngles import ReadRevAngles
-from convert.formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
-from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
+from convert.Formats.Fusion.Revolves.JoinRevModels import JoinRevModels
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # both live controls share an exact source edge while each solid keeps its own geometry

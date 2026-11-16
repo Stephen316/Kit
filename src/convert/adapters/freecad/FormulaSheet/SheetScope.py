@@ -3,7 +3,7 @@ from typing import cast as CastValue
 
 from convert.adapters.base.WriteValidate import IsObjectMap
 from convert.adapters.freecad.FormulaSheet.FormulaPlans import ReadFusionRows
-from interchange.records.RecordConfig import Configuration
+from interchange.Records.RecordConfig import Configuration
 from interchange.serialization.Deserialize import FromData
 
 # no other modeled entities may depend on cells in the standalone workbook

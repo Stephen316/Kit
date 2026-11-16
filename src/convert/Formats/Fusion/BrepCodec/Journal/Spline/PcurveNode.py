@@ -1,0 +1,18 @@
+from dataclasses import dataclass as MakeDataClass
+
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import (
+    KSubtypeValue,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
+
+
+# pcurve node needs an explicit state contract so topology changes retain their native revision relationships
+@MakeDataClass(frozen=True, slots=True)
+class PcurveNode:
+    Prefix: EntityPrefix
+    Reversed: bool
+    Curve: KSubtypeValue | None
+    OffsetU: float
+    OffsetV: float
+    Form: int = 0
+    CurveRef: int = -1

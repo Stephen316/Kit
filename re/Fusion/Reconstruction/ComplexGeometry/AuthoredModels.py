@@ -1,8 +1,8 @@
 """Explicit control-point models authored through the production NURBS API."""
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.NurbsBody import NurbsBody, NurbsEdge, NurbsFace, NurbsUse
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.PatchSheet import LinePcurve, PatchSheet
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import BsSurface
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.NurbsBody import NurbsBody, NurbsEdge, NurbsFace, NurbsUse
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.PatchSheet import LinePcurve, PatchSheet
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import BsSurface
 
 from NurbsMath import full_knots
 

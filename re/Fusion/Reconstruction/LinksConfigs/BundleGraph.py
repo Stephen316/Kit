@@ -4,13 +4,13 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
-from convert.formats.Fusion.ContainerCodec.Wire.EmitRedirects import EmitRedirects
-from convert.formats.Fusion.ContainerCodec.Wire.ReadDocProps import ReadDocProps
-from convert.formats.Fusion.ContainerCodec.Wire.ReadRedirects import ReadRedirects
-from convert.formats.Fusion.ContainerCodec.Wire.ReadAssetHeader import ReadAssetHeader
-from convert.formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWire
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.ContainerCodec.Wire.EmitRedirects import EmitRedirects
+from convert.Formats.Fusion.ContainerCodec.Wire.ReadDocProps import ReadDocProps
+from convert.Formats.Fusion.ContainerCodec.Wire.ReadRedirects import ReadRedirects
+from convert.Formats.Fusion.ContainerCodec.Wire.ReadAssetHeader import ReadAssetHeader
+from convert.Formats.Fusion.SegmentCodec.Manifest.ReadRootWire import ReadRootWire
 
 bundle = ReadBundle(Path(sys.argv[1]).read_bytes())
 owners = {entry.ObjectId: entry for entry in bundle.Description.Graph.Objects}

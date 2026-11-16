@@ -20,13 +20,13 @@ from SketchEvidence import (
 )
 from SolidWorksScopePartition import PARTITION, RESOLVED, TOPOLOGY, region_model
 
-from convert.adapters.solidworks.config.CutConfig import ReadCutConfig
-from convert.adapters.solidworks.config.RootLayout import KConfigGen
-from convert.adapters.solidworks.container.Archive import ArchiveError, ContainerMo
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.container.Parasolid import DecodeBrep, DecodePartition
-from convert.adapters.solidworks.resolved.cut.CutLinks import ReadCutLinks
-from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
+from convert.adapters.solidworks.Config.CutConfig import ReadCutConfig
+from convert.adapters.solidworks.Config.RootLayout import KConfigGen
+from convert.adapters.solidworks.Container.Archive import ArchiveError, ContainerMo
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Parasolid import DecodeBrep, DecodePartition
+from convert.adapters.solidworks.Resolved.Cut.CutLinks import ReadCutLinks
+from convert.adapters.solidworks.Resolved.Cut.CutProof import ReadCutProof
 
 
 # the independently decoded cut provides the authored atom and target body

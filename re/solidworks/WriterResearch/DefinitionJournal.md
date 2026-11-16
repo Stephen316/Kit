@@ -10,7 +10,7 @@ to you under it immediately and permanently.
 
 # Definition journal attachment and notebook boundary
 
-The `uoJournal_c` attachment occupies 65 bytes in the measured generation-19000 definitions. The surrounding `uoNotebookMgr_c` finishes 16 bytes later, leaving 199 bytes in `Contents/Definition`. The generation-18000 emitter in [Definition.py](../../../src/convert/adapters/solidworks/container/Definition.py) produces the same 81-byte span followed by 195 bytes. The older [Definition field map](../records/Definition.md#41-the-generation-rule) attributed the final scalar block to the attachment. The loader establishes separate attachment, notebook, and outer Definition boundaries.
+The `uoJournal_c` attachment occupies 65 bytes in the measured generation-19000 definitions. The surrounding `uoNotebookMgr_c` finishes 16 bytes later, leaving 199 bytes in `Contents/Definition`. The generation-18000 emitter in [Definition.py](../../../src/convert/adapters/solidworks/Container/Definition.py) produces the same 81-byte span followed by 195 bytes. The older [Definition field map](../records/Definition.md#41-the-generation-rule) attributed the final scalar block to the attachment. The loader establishes separate attachment, notebook, and outer Definition boundaries.
 
 ## Loader evidence
 

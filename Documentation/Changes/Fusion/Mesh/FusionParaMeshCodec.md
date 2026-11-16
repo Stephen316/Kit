@@ -1,10 +1,10 @@
 # Typed Fusion ParaMesh codec
 
-`ReadParaMesh(bytes) -> ParaMesh` and `EmitParaMesh(ParaMesh) -> bytes` implement the qualified version-2 `.paramesh` component format under `convert.formats.Fusion.MeshCodec`. The immutable model exposes positions, ordered triangle corners, the original signed terminal corner word, octahedral normal pairs, corner overrides, feature edges and per-triangle face-group keys. Its registry keeps the container UUID, Design `fusion_uuid`, normal resource UUID and face-group UUIDs independent. Stream names and their chunk order are explicit semantic references.
+`ReadParaMesh(bytes) -> ParaMesh` and `EmitParaMesh(ParaMesh) -> bytes` implement the qualified version-2 `.paramesh` component format under `convert.Formats.Fusion.MeshCodec`. The immutable model exposes positions, ordered triangle corners, the original signed terminal corner word, octahedral normal pairs, corner overrides, feature edges and per-triangle face-group keys. Its registry keeps the container UUID, Design `fusion_uuid`, normal resource UUID and face-group UUIDs independent. Stream names and their chunk order are explicit semantic references.
 
 ```python
-from convert.formats.Fusion.MeshCodec.EmitParaMesh import EmitParaMesh
-from convert.formats.Fusion.MeshCodec.ReadParaMesh import ReadParaMesh
+from convert.Formats.Fusion.MeshCodec.EmitParaMesh import EmitParaMesh
+from convert.Formats.Fusion.MeshCodec.ReadParaMesh import ReadParaMesh
 
 mesh = ReadParaMesh(source_member)
 rebuilt_member = EmitParaMesh(mesh)

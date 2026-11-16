@@ -4,8 +4,8 @@ from convert.adapters.freecad.EditShape.CylinderRims import (
 )
 from convert.adapters.freecad.EditShape.Sketch.SavedWireData import SavedWireData
 from convert.adapters.freecad.EditShape.Sketch.WireEdge import ReadSavedEdge, SavedEdge
-from convert.geometry.Opencascade import DecodeFailure, Reference, VertexData
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Opencascade import DecodeFailure, Reference, VertexData
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # each ordered wire consumes complete authored curve geometry and connects matching vertices

@@ -1,18 +1,18 @@
 from struct import pack as PackFields
 
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KBigObjectTag,
     KClassRefKind,
     KDefinitionKind,
 )
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.Cmgr import (
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.Cmgr import (
     KObjectListClass as KListClass,
     FeatureStamp,
     Stamp,
 )
-from convert.adapters.solidworks.container.Definition import ArchiveWriter
+from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 
 # the intervening manager stores an empty keyed map and four scalar words
 KManagerWords = (0, 0, 1, 0, 0)

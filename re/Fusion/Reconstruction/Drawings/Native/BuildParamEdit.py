@@ -10,7 +10,7 @@ ROOT = HERE.parents[4]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
-from tests.convert.formats.FusionCodec.Parameters.RebuildParams import RebuildParams
+from tests.Convert.Formats.FusionCodec.Parameters.RebuildParams import RebuildParams
 
 SOURCE = Path(
     os.environ.get(

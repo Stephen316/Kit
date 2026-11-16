@@ -12,17 +12,17 @@ from CmgrColorReadback import ReadColorSpan
 from CmgrTail import ReadCmgrTail, WriteCmgrTail
 from ColorAppearance import EncodeColorDspbr
 from SolidworksCensusInputs import capture_inputs
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     ArchiveError,
     ContainerMo,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.Cmgr import KObjectListClass
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.container.Definition import ArchiveWriter
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.Cmgr import KObjectListClass
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Definition import ArchiveWriter
 
 TREE_IDS = {"P01": (), "P03": (34,), "P04": (34, 46)}
 

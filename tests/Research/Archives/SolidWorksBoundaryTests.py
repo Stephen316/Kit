@@ -4,16 +4,16 @@ from struct import pack as PackBytes, unpack_from as UnpackFrom
 import pytest as Pytest
 
 from convert.adapters.solidworks import build_sldprt as BuildSldprt
-from convert.adapters.solidworks.container.Container import (
+from convert.adapters.solidworks.Container.Container import (
     SldprtArchive,
     container_signatures as ContainerSignatures,
 )
-from convert.adapters.solidworks.container.Parasolid import (
+from convert.adapters.solidworks.Container.Parasolid import (
     decode_brep_model as DecodeBrep,
 )
-from convert.adapters.solidworks.resolved.RectanglePart import ReadRectPart
+from convert.adapters.solidworks.Resolved.RectanglePart import ReadRectPart
 from convert.api.ApiOpen import OpenDocument
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 # each corruption control keeps the original observed discovery data named explicitly
 KCaptureRoot = FilePath(__file__).resolve().parents[3] / "re/automation/PairedCaptures"

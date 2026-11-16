@@ -77,6 +77,11 @@ Do not publish a translation as current without a review of changed meaning.
 
 ## Maintenance triggers
 
+The [completion roadmap](../../Roadmap.md) orders product milestones.
+The [conversion backlog](ConversionBacklog.md) records task ownership, dependencies, open PRs and completion conditions.
+Consult both before planning new work.
+Keep detailed research status in its owning register and link it from the backlog.
+
 Review the affected pages when an API, adapter, dependency, error, workflow, or support claim changes.
 Review the standards register before each documentation release.
 Record user-reported defects through the [feedback procedure](Feedback.md).

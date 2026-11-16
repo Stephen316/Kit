@@ -1,13 +1,13 @@
 from dataclasses import replace as Replace
 
-from convert.geometry.Formula.FormulaUnits import (
+from convert.Geometry.Formula.FormulaUnits import (
     GetQuantity,
     KDimension,
     KFormulaUnits,
     KQuantity,
 )
-from interchange.enums.EnumValues import ValueKind
-from interchange.records.RecordParameter import ParameterValue
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Records.RecordParameter import ParameterValue
 
 # exact canonical units avoid a roundtrip through an inexact source conversion factor
 KCanonicalUnits: dict[KDimension, str] = {(1, 0): "mm", (0, 1): "rad", (0, 0): ""}

@@ -9,17 +9,17 @@ REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO / "src"))
 sys.dont_write_bytecode = True
 
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
-from convert.formats.Fusion.BrepCodec.Journal.Materialize import Materialize
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode
-from convert.formats.Fusion.BrepCodec.Journal.States.BulletinBoard import BulletinBoard
-from convert.formats.Fusion.BrepCodec.Journal.States.BulletinChange import BulletinChange
-from convert.formats.Fusion.BrepCodec.Journal.Validation.BuildAliases import BuildAliases
-from convert.formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
-from convert.formats.Fusion.BrepCodec.Journal.Validation.UndoStateMut import UndoStateMut
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
-from convert.formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
+from convert.Formats.Fusion.BrepCodec.Journal.Materialize import Materialize
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntityNode import ReadEntityNode
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinBoard import BulletinBoard
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinChange import BulletinChange
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.BuildAliases import BuildAliases
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.ResolveSlot import ResolveSlot
+from convert.Formats.Fusion.BrepCodec.Journal.Validation.UndoStateMut import UndoStateMut
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import MakeEntityNode
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
 
 
 def pop_head(model):

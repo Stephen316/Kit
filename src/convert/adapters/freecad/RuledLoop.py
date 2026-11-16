@@ -6,9 +6,9 @@ from convert.adapters.freecad.Cylinder.CylinderFrame import (
     NormCylinder,
 )
 from convert.adapters.freecad.Cylinder.RuledSpans import IsRuledSpans
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
-from interchange.brep.topology.BrepTopology import BrepFace, BrepLoop
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.brep.Surfaces.BrepSurfaces import ConeSurface, CylinderSurface
+from interchange.brep.Topology.BrepTopology import BrepFace, BrepLoop
 
 
 # ruled periodic faces require one trim rectangle with two proven generators

@@ -1,6 +1,6 @@
 # Blind boss feature handle and dimension boundary
 
-All eight generation-19000 [P03 SOLIDWORKS captures](../../automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json) have the same 133-byte `moFeatureDimHandle_c` span with SHA-256 `13282cefe47002dea925f0081a4341fb4210ab2c373696857a4d09095efce523`. The [production typed path](../../../src/convert/adapters/solidworks/resolved/BossDepth.py) reaches it from the one-handle count after [inline display text](DisplayStyle.md#first-feature-handle-and-owned-dimension). Receipt file sizes and digests and the independent native measurement digest were checked before reading each archive. The native addresses below refer to SOLIDWORKS 34.4.1.1011 and the pinned modules identified in the [display style evidence](DisplayStyle.md).
+All eight generation-19000 [P03 SOLIDWORKS captures](../../automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json) have the same 133-byte `moFeatureDimHandle_c` span with SHA-256 `13282cefe47002dea925f0081a4341fb4210ab2c373696857a4d09095efce523`. The [production typed path](../../../src/convert/adapters/solidworks/Resolved/BossDepth.py) reaches it from the one-handle count after [inline display text](DisplayStyle.md#first-feature-handle-and-owned-dimension). Receipt file sizes and digests and the independent native measurement digest were checked before reading each archive. The native addresses below refer to SOLIDWORKS 34.4.1.1011 and the pinned modules identified in the [display style evidence](DisplayStyle.md).
 
 ## Empty component reference
 

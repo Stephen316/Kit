@@ -1,0 +1,71 @@
+from binascii import crc32 as CrcThirtyTwo
+from struct import pack as PackFields
+
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.ReadCryptHeader import (
+    KCryptMask,
+    KFileIdBytes,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgCryptHeader import (
+    DwgCryptHeader,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgFileHeader import DwgFileHeader
+
+# header trail must remain consistent across callers so section boundaries and object references remain consistent
+KHeaderTrail = bytes.fromhex("f8466a0496730ed9162f6768d4f74a4ad0576876")
+
+
+# the file head operation needs a consistent construction rule so section boundaries and object references remain consistent
+def EmitFileHead(FileHeader: DwgFileHeader) -> bytes:
+    Output = FileHeader.VersionText.encode("latin-1") + FileHeader.PaddingBytes
+    Output += PackFields(
+        "<BBIBBH",
+        FileHeader.MaintenanceVersion,
+        FileHeader.HeaderMarker,
+        FileHeader.PreviewAddress,
+        FileHeader.AppVersion,
+        FileHeader.AppMaintenance,
+        FileHeader.CodePage,
+    )
+    Output += FileHeader.ReservedTriple
+    Output += PackFields(
+        "<7I",
+        FileHeader.SecurityFlags,
+        FileHeader.ReservedAddress,
+        FileHeader.SummaryAddress,
+        FileHeader.VbaAddress,
+        FileHeader.CryptAddress,
+        FileHeader.AppInfoAddress,
+        FileHeader.AppHistoryAddress,
+    )
+    Output += PackFields("<19I", *FileHeader.TrailingWords)
+    if len(Output) != 0x80:
+        raise ValueError("DWG file header fields do not fill 128 bytes")
+    return Output
+
+
+# the crypt operation needs a consistent construction rule so section boundaries and object references remain consistent
+def EmitCrypt(CryptHeader: DwgCryptHeader) -> bytes:
+    Plain = KFileIdBytes + PackFields(
+        "<3I3I2I2Q2I3IIQ3I",
+        *CryptHeader.FixedWords,
+        CryptHeader.RootGap,
+        CryptHeader.LeftGap,
+        CryptHeader.RightGap,
+        CryptHeader.ReservedWord,
+        CryptHeader.LastPageId,
+        CryptHeader.LastPageEnd,
+        CryptHeader.SecondAddress,
+        CryptHeader.GapAmount,
+        CryptHeader.PageAmount,
+        *CryptHeader.LayoutWords,
+        CryptHeader.PageMapId,
+        CryptHeader.PageMapAddress,
+        CryptHeader.SectionMapId,
+        CryptHeader.PageArraySize,
+        CryptHeader.GapArraySize,
+    )
+    Plain += PackFields("<I", CrcThirtyTwo(Plain + bytes(4)))
+    return bytes(
+        LeftByte ^ RightByte
+        for LeftByte, RightByte in zip(Plain, KCryptMask, strict=True)
+    )

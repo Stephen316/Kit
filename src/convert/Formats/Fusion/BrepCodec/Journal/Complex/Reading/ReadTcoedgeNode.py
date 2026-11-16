@@ -1,0 +1,36 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.ReadRuleMut import (
+    ReadRuleMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.RuleWords import (
+    KCurveCall,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import (
+    TcoedgeNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut import (
+    ReadDoubleMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import (
+    ReadLongMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadRefMut import (
+    ReadRefMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Geometry.ReadCoedgeNode import (
+    ReadCoedgeNode,
+)
+
+
+# the tcoedge node operation needs a distinct decoding boundary so nested spline and surface records retain their relationships
+def ReadTcoedgeNode(Cursor: FieldCursor) -> TcoedgeNode:
+    BaseNode = ReadCoedgeNode(Cursor)
+    RangeLower = ReadDoubleMut(Cursor)
+    RangeUpper = ReadDoubleMut(Cursor)
+    CurveRef = ReadRefMut(Cursor)
+    CurveForm = ReadLongMut(Cursor)
+    Curve = ReadRuleMut(Cursor, KCurveCall)
+    Stamp = ReadLongMut(Cursor)
+    return TcoedgeNode(
+        BaseNode, RangeLower, RangeUpper, CurveRef, CurveForm, Curve, Stamp
+    )

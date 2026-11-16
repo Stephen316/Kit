@@ -1,6 +1,6 @@
 # Typed Fusion Form documents
 
-Kit reads and writes complete Fusion Form documents through `ReadDocument` and `EmitParsed` in `convert.formats.Fusion.DocumentCodec`. A Form document joins a T-spline control cage, a Form feature graph and a converted BRep body. Earlier Kit readers rejected these documents.
+Kit reads and writes complete Fusion Form documents through `ReadDocument` and `EmitParsed` in `convert.Formats.Fusion.DocumentCodec`. A Form document joins a T-spline control cage, a Form feature graph and a converted BRep body. Earlier Kit readers rejected these documents.
 
 Kit also converts cages exactly. Open grid cages use a closed-form rule, also with one whole-number knot interval on every edge. Every other closed or creased cage converts by general rules computed from its topology, also with weighted grips and one whole-number knot interval. Kit ships no per-layout table. Kit puts a new cage into a Form document of the same layout, or writes a new Form document from the cage alone. It refuses a cage that the rules cannot convert exactly.
 
@@ -8,7 +8,7 @@ Kit also converts cages exactly. Open grid cages use a closed-form rule, also wi
 
 `DocumentModel.Forms` contains one `DocumentForm(Name, Surface)` for each `TSplines.BlobParts/TSpline.<uuid>.tsm` member. `Surface` is the typed `TsplineSurface` from `ReadTspline`. The writer derives the member text with `EmitTspline`. The Design records stay in the typed entity model. `FormClasses.json` adds the Form vocabulary to the document schema catalog.
 
-The converted body uses three new journal entity types in `convert.formats.Fusion.BrepCodec.Journal.Spline`.
+The converted body uses three new journal entity types in `convert.Formats.Fusion.BrepCodec.Journal.Spline`.
 
 | Entity           | Type           | Main fields                                                                                              |
 | ---------------- | -------------- | -------------------------------------------------------------------------------------------------------- |
@@ -47,7 +47,7 @@ Edited Form archives also store graphics world kind 2. `XferTSplineMut` reads an
 
 ## Grid cage conversion
 
-`ConvertGrid(Surface)` in `convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion` returns a `GridResult`. The result holds the exact `NubsSurface`, the patch cells, four boundary curves, four corner points and the discontinuity lists.
+`ConvertGrid(Surface)` in `convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion` returns a `GridResult`. The result holds the exact `NubsSurface`, the patch cells, four boundary curves, four corner points and the discontinuity lists.
 
 | Step                     | Function                  | Result                                                                  |
 | ------------------------ | ------------------------- | ----------------------------------------------------------------------- |
@@ -63,7 +63,7 @@ Edited Form archives also store graphics world kind 2. `XferTSplineMut` reads an
 
 `SwapEntity` replaces the converted surface, curves and corner points of one entity. It first checks that the entity holds the conversion of the old cage. It raises `ValueError` on a stale surface, a stale boundary curve, a stale corner point or another patch program.
 
-`SwapGridCage(Model, Surface)` in `convert.formats.Fusion.DocumentCodec.Auxiliary.Form` returns a new `DocumentModel`. It needs exactly one Form and the same patch cells and knots for the old and the new cage. It replaces the cage, every converted history and snapshot entity, and sets `Graphics` to `None`. Fusion regenerates the graphics when it opens the document.
+`SwapGridCage(Model, Surface)` in `convert.Formats.Fusion.DocumentCodec.Auxiliary.Form` returns a new `DocumentModel`. It needs exactly one Form and the same patch cells and knots for the old and the new cage. It replaces the cage, every converted history and snapshot entity, and sets `Graphics` to `None`. Fusion regenerates the graphics when it opens the document.
 
 The [grid pole order gotcha](../../../Gotchas/Conversion/Fusion/TSpline/GridCagePoleOrder.md) gives the conversion rules. The [discontinuity gotcha](../../../Gotchas/Conversion/Fusion/TSpline/ConvertedDiscontinuityLists.md) gives the jump rule.
 
@@ -71,7 +71,7 @@ The [grid pole order gotcha](../../../Gotchas/Conversion/Fusion/TSpline/GridCage
 
 ## General cage conversion
 
-Fusion converts a cage with a map that is linear in the homogeneous grips. The [linearity gotcha](../../../Gotchas/Conversion/Fusion/TSpline/ConversionIsLinear.md) gives the probe. Kit derives every part of that map from the cage topology. It ships no table for any layout, and nothing in `src` reads a Fusion save. `ConvertCage(Surface)` in `convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil` builds the rows of the cage and returns a `CageResult`.
+Fusion converts a cage with a map that is linear in the homogeneous grips. The [linearity gotcha](../../../Gotchas/Conversion/Fusion/TSpline/ConversionIsLinear.md) gives the probe. Kit derives every part of that map from the cage topology. It ships no table for any layout, and nothing in `src` reads a Fusion save. `ConvertCage(Surface)` in `convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil` builds the rows of the cage and returns a `CageResult`.
 
 | Part           | Function or type                                                | Rule                                                                                                                                                                               |
 | -------------- | --------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -104,7 +104,7 @@ The [platform trigonometry gotcha](../../../Gotchas/Conversion/Fusion/TSpline/Pl
 
 ## Source-free Form documents
 
-`EmitFormDoc(FormSpec)` in `convert.formats.Fusion.DocumentCodec.Form` writes a complete Form `.f3d` from a cage and a typed converted body. It reads no source archive and copies no template bytes. Each document gets a new asset ID, new entity identities, a new geometry stamp and the current time.
+`EmitFormDoc(FormSpec)` in `convert.Formats.Fusion.DocumentCodec.Form` writes a complete Form `.f3d` from a cage and a typed converted body. It reads no source archive and copies no template bytes. Each document gets a new asset ID, new entity identities, a new geometry stamp and the current time.
 
 `ConvertForm(Surface)` derives the body from the cage alone. It uses `GridBody(ConvertGrid(Surface))` for an open grid without interior creases and `CageBody` for every other cage.
 
@@ -309,7 +309,7 @@ The creased plane swap document predates the crease class rule. Its vendor carri
 
 Remote integration cases cover the 32 Form archives, the ACT slack archives, the edited worlds and 66 spline journal members. Grid cases cover 17 native archives, three refusals, two document swaps with their emitted SHA-256, three cage faults, a stale body and a layout change.
 
-Stencil and cage cases in `tests/convert/formats/FusionCodec/Documents/Form/` cover the following.
+Stencil and cage cases in `tests/Convert/Formats/FusionCodec/Documents/Form/` cover the following.
 
 | Test                                 | Cases                                                                                                                                                                 |
 | ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

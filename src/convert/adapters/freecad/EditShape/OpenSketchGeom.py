@@ -1,10 +1,10 @@
 from math import hypot as Hypot
 
-from interchange.brep.topology.BrepMath import IsFinitePlane
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.brep.Topology.BrepMath import IsFinitePlane
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # only simple independent sketch geometry with a known cache grammar can be preserved

@@ -1,9 +1,9 @@
 from math import radians as ToRadians
 
 from convert.adapters.Fusion.Authoring.ProfileShape import HasSolid
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from interchange.enums.EnumValues import ValueKind
-from interchange.records.RecordParameter import Expression, Parameter, ParameterValue
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Records.RecordParameter import Expression, Parameter, ParameterValue
 
 
 # the length operation needs a consistent construction rule so public document claims remain grounded in native records

@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import fields as GetFields
 from functools import lru_cache as Memoize
 
-from interchange.core.Reflection import CanonName
+from interchange.Core.Reflection import CanonName
 from interchange.serialization.RecordType import DataRecord
 from interchange.serialization.WireFields import KTypeWireFields, KWireFields
 from interchange.serialization.WireTypes import KWireTypes

@@ -11,8 +11,8 @@ from convert.adapters.registry.InchWrite import CheckInchWrite
 from convert.adapters.registry.ResearchWrite import CheckResearch
 from convert.adapters.registry.SupportWrite import CheckSupports
 from convert.adapters.registry.NativeWrite import CheckNative
-from interchange.document.models.DocumentCaps import InferCaps
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentCaps import InferCaps
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the fusion writer contract needs a dedicated boundary so public document claims remain grounded in native records

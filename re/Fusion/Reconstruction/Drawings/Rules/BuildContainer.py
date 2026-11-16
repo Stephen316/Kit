@@ -39,18 +39,18 @@ import BuildGrafts  # noqa: E402
 import BuildHybrid  # noqa: E402
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Records.EmitDocSegment import EmitDocSegment  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.EmitDrawing import EmitDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Records.EmitDocSegment import EmitDocSegment  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire  # noqa: E402
 
 PLAN = 'PlanContainer.json'
 TEMPLATE_THUMBS = ('SheetThumbnails/D3_large.png', 'SheetThumbnails/D3_small.png')

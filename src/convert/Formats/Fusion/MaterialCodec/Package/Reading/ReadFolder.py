@@ -1,0 +1,52 @@
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import IndexedArchive
+from convert.Formats.Fusion.MaterialCodec.Package.Envelope.ReadCore import ReadCore
+from convert.Formats.Fusion.MaterialCodec.Package.Envelope.ReadLinks import ReadLinks
+from convert.Formats.Fusion.MaterialCodec.Package.Envelope.ReadResources import (
+    ReadResources,
+)
+from convert.Formats.Fusion.MaterialCodec.Package.Model.PackageFolder import (
+    PackageFolder,
+)
+from convert.Formats.Fusion.MaterialCodec.Package.PackageLimits import (
+    KMaxFolderDepth,
+    KMaxPackage,
+    KMaxXmlBytes,
+)
+from convert.Formats.Fusion.MaterialCodec.Package.Validation.CheckFolder import (
+    CheckSegment,
+)
+from convert.Formats.Fusion.MaterialCodec.Package.Xml.ReadGroup import ReadGroup
+
+
+# the folder operation needs a distinct decoding boundary so typed appearance properties retain their native identifiers
+def ReadFolder(
+    Archive: IndexedArchive, PathValue: str, FolderName: str, Depth: int
+) -> PackageFolder:
+    if Depth > KMaxFolderDepth:
+        raise ValueError("Material resource folders exceed the depth limit")
+    CoreValue = ReadCore(Archive.ReadMember(PathValue + "core.xml", KMaxXmlBytes))
+    if CoreValue.NameValue != FolderName:
+        raise ValueError("Material resource folder disagrees with its link")
+    Payload = Archive.ReadMember(PathValue + "cnx.xml", KMaxXmlBytes)
+    if all("class" in Child.attrib for Child in ReadGroup(Payload, "default")):
+        Links = ReadResources(Payload)
+        for LinkValue in Links:
+            CheckSegment(LinkValue.FileName)
+        return PackageFolder(
+            CoreValue,
+            Links=Links,
+            Contents=tuple(
+                Archive.ReadMember(PathValue + LinkValue.FileName, KMaxPackage)
+                for LinkValue in Links
+            ),
+        )
+    Names = ReadLinks(Payload)
+    for NameValue in Names:
+        CheckSegment(NameValue)
+    return PackageFolder(
+        CoreValue,
+        tuple(
+            ReadFolder(Archive, PathValue + NameValue + "/", NameValue, Depth + 1)
+            for NameValue in Names
+        ),
+    )

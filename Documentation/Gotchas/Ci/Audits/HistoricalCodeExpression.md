@@ -26,3 +26,5 @@ describes rule-specific conjunctions.
 Its [implementation](https://github.com/gitleaks/gitleaks/blob/v8.30.1/detect/detect.go#L704-L825)
 checks all supplied commit, path, and value conditions.
 See the [repair entry](../../../Changes/Ci/PostMergeAuditRepairs.md).
+Keep the historical path spelling when current source directories move.
+See [historical scan path identities](HistoricalScanPathsUseCommitSpelling.md).

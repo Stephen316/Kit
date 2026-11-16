@@ -11,8 +11,8 @@ from convert.adapters.freecad.EditRead.Sketch.SavedRuleTable import (
 )
 from convert.adapters.freecad.Native import NativeObject
 from convert.adapters.freecad.Protocol import KRuleCodeByKind, KRuleValueKindByCode
-from interchange.geometry.models.Sketch import Sketch, SketchEntity, SketchRelation
-from interchange.records.RecordParameter import Parameter
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity, SketchRelation
+from interchange.Records.RecordParameter import Parameter
 
 
 # emitted rule names associate verified solver rows with exact original neutral relations

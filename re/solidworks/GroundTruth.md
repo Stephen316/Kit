@@ -120,7 +120,7 @@ alongside `Config-0`. `Contents/Config-N-GhostPartition` (55 files) is a lane Ki
 
 ## 6. Confirmed live decoder defect
 
-`uv run python -m pytest tests/convert/solidworks/core/SolidworksAdapterTests.py::test_entire_local_solidworks_corpus_decodes`
+`uv run python -m pytest tests/Convert/Solidworks/Core/SolidworksAdapterTests.py::test_entire_local_solidworks_corpus_decodes`
 
 fails on `BIELA.SLDPRT` with:
 
@@ -136,7 +136,7 @@ plane it never created.
 
 ## 7. Test baseline to preserve
 
-`uv run python -m pytest tests -q --ignore=tests/convert/formats/SwapsTests.py --ignore=tests/convert/formats/RandomAssemblyTests.py`
+`uv run python -m pytest tests -q --ignore=tests/Convert/Formats/SwapsTests.py --ignore=tests/Convert/Formats/RandomAssemblyTests.py`
 => `8 failed, 808 passed, 8 skipped`. The 8:
 
 - `ApiTests.py::test_readme_describes_default_reversible_swaps_and_strict_mode`

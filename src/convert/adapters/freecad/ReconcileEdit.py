@@ -1,6 +1,6 @@
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.GeometryCurves import LineGeometry
 from collections.abc import Mapping
 from xml.etree.ElementTree import Element
 from zipfile import BadZipFile, ZipFile, ZipInfo
@@ -23,10 +23,10 @@ from convert.adapters.freecad.EditShape.SavedSketchWire import (
     IsSketchCache,
     KMaxSketchBytes,
 )
-from convert.geometry.Extrude.Polygon.PrismRing import ReadPrismRing
-from convert.geometry.Formula.Arithmetic import EvalFormula, ReadFormula
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.GeometryCurves import CircleGeometry
+from convert.Geometry.Extrude.Polygon.PrismRing import ReadPrismRing
+from convert.Geometry.Formula.Arithmetic import EvalFormula, ReadFormula
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.GeometryCurves import CircleGeometry
 
 
 # archive resource limits also apply to the native shape used as readback evidence

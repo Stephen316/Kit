@@ -1,0 +1,69 @@
+from typing import cast as CastValue
+
+from convert.Formats.Fusion.DrawingCodec.Legacy.LegacyHeader import LegacyHeader
+from convert.Formats.Fusion.DrawingCodec.Legacy.LegacySegment import LegacySegment
+from convert.Formats.Fusion.SegmentCodec.BindBulkRows import BindBulkRows
+from convert.Formats.Fusion.SegmentCodec.Bulk.EmitBulkStream import EmitBulkStream
+from convert.Formats.Fusion.SegmentCodec.Metadata.EmitWireRows import (
+    EmitWireClasses,
+    EmitWireTable,
+)
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaLimits import KMaxMetaIds
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaRows import MetaOffset
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaSink import MetaSink
+
+# legacy version must remain consistent across callers so drawing members retain their sheet and model associations
+KLegacyVersion = 2
+
+# modern magic must remain consistent across callers so drawing members retain their sheet and model associations
+KModernMagic = 1234
+
+
+# invalid legacy head input must fail here so drawing members retain their sheet and model associations
+def CheckLegacyHead(Header: LegacyHeader) -> None:
+    if not isinstance(CastValue(object, Header), LegacyHeader):
+        raise ValueError("Expected a typed legacy Fusion drawing segment header")
+    if (
+        Header.Version != KLegacyVersion
+        or Header.Software == KModernMagic
+        or Header.RepeatedKind != Header.Kind
+        or Header.StorageWords != (1, 0)
+    ):
+        raise ValueError("Unsupported legacy Fusion drawing segment header")
+
+
+# the legacy operation needs a consistent construction rule so drawing members retain their sheet and model associations
+def EmitLegacy(Value: LegacySegment) -> tuple[bytes, bytes]:
+    if not isinstance(CastValue(object, Value), LegacySegment):
+        raise ValueError("Expected a typed legacy Fusion drawing segment")
+    Header = Value.Header
+    CheckLegacyHead(Header)
+    BulkData, Entries = EmitBulkStream(BindBulkRows(Value.Classes, Value.Records))
+    Primary = tuple(
+        MetaOffset(Identity, Offset)
+        for Offset, Identity, FlagValue in Entries
+        if FlagValue
+    )
+    Others = tuple(
+        MetaOffset(Identity, Offset)
+        for Offset, Identity, FlagValue in Entries
+        if not FlagValue
+    )
+    SinkValue = MetaSink()
+    SinkValue.AddText(Header.Kind)
+    SinkValue.AddWord(Header.SegmentId)
+    SinkValue.AddText(Header.Namespace, WideText=True)
+    SinkValue.AddWord(Header.Software)
+    SinkValue.AddWord(Header.Version)
+    SinkValue.AddText(Header.RepeatedKind)
+    SinkValue.AddText(Header.StorageSpace)
+    for Number in Header.StorageWords:
+        SinkValue.AddWord(Number)
+    EmitWireClasses(SinkValue, Value.Classes)
+    SinkValue.AddCount(Value.StoredIds, KMaxMetaIds)
+    for Identity in Value.StoredIds:
+        SinkValue.AddLong(Identity)
+    EmitWireTable(SinkValue, Primary)
+    EmitWireTable(SinkValue, Others)
+    SinkValue.AddLong(Value.NextId)
+    return BulkData, bytes(SinkValue.Buffer)

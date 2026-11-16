@@ -1,0 +1,23 @@
+from __future__ import annotations
+
+from typing import Protocol as TypeProtocol
+
+from interchange.brep.Curves.BrepCurves import BrepCurve
+from interchange.brep.Curves.BrepPcurves import BrepPcurve
+from interchange.brep.Surfaces.BrepSurfaces import BrepSurface
+
+
+# geometry passes need curve and surface reads without any topology storage coupling
+class GeometryAccess(TypeProtocol):
+
+    # curve access lets validation passes read topology without touching storage
+    @property
+    def curves(self) -> tuple[BrepCurve, ...]: ...  # lgtm[py/ineffectual-statement]
+
+    # pcurve access keeps parametric checks independent of storage internals
+    @property
+    def pcurves(self) -> tuple[BrepPcurve, ...]: ...  # lgtm[py/ineffectual-statement]
+
+    # surface access lets validation passes read geometry without touching storage
+    @property
+    def surfaces(self) -> tuple[BrepSurface, ...]: ...  # lgtm[py/ineffectual-statement]

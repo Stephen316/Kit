@@ -8,8 +8,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-import convert.formats.Fusion.BrepCodec.Journal.Reading.ReadBoardMut as BoardModule
-import convert.formats.Fusion.Topology.AsmEdge.AsmTable as StatesModule
+import convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadBoardMut as BoardModule
+import convert.Formats.Fusion.Topology.AsmEdge.AsmTable as StatesModule
 
 # lift the production bounds so the measured maxima are not clipped by them
 BoardModule.KBoardChanges = 1 << 20

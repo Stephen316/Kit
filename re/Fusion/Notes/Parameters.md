@@ -9,11 +9,11 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [numeric parameters](../../../src/convert/formats/Fusion/ZipParameters.py) and [formula tests](../../../tests/convert/formats/FusionFormulaTests.py).
+See [numeric parameters](../../../src/convert/Formats/Fusion/ZipParameters.py) and [formula tests](../../../tests/Convert/Formats/FusionFormulaTests.py).
 
 ## SDK coverage
 
-`convert.formats.Fusion.ZipParameters.ReadZipParams` projects indexed
+`convert.Formats.Fusion.ZipParameters.ReadZipParams` projects indexed
 numeric parameters into Kit's neutral `Parameter` records. It retains native
 expression text, display units, binding IDs, and source spans. Values use
 their stored radians or centimetres where applicable. Feature-bound
@@ -27,7 +27,7 @@ records also produce diagnostics. The SDK projection matched the study on
 across the 13 Fusion 2706 captures. All 2,593 feature-bound parameters
 matched the study's native owner IDs.
 
-`convert.formats.Fusion.ZipHistory.ReadZipHistory` projects native history
+`convert.Formats.Fusion.ZipHistory.ReadZipHistory` projects native history
 references into ordered Kit feature steps, keeps histories separate by
 owner, and retains the original group membership and collapse state.
 It links numeric parameters to feature steps through verified bindings.
@@ -39,7 +39,7 @@ projected for the observed Extrude, Revolve, and construction-plane
 classes. Other entries retain native identity and provenance. Feature
 definitions, geometry, and default adapter integration remain open.
 
-`convert.formats.Fusion.ReadFusionDoc` exposes this history through a
+`convert.Formats.Fusion.ReadFusionDoc` exposes this history through a
 validated `CadDocument`. It accepts a path or archive bytes and uses the
 same optional Zstandard callback as `ReadDesignZip`. When more than one
 history is present, pass the native `HistoryId` to select one. The resulting
@@ -121,8 +121,8 @@ The SDK tries the role at `M + 10` first. It retries at `M + 11` only
 when role decoding fails, a binding reference is present and all 11 metadata
 bytes are zero. The reader still validates the remaining fields and trailer. The meaning of
 the extra zero byte remains unresolved. See the
-[SDK numeric decoder](../../../src/convert/formats/Fusion/NumericParam.py)
-and [numeric proof tests](../../../tests/convert/formats/FusionProof/FusionNumberTests.py).
+[SDK numeric decoder](../../../src/convert/Formats/Fusion/NumericParam.py)
+and [numeric proof tests](../../../tests/Convert/Formats/FusionProof/FusionNumberTests.py).
 
 ## Saved study coverage
 

@@ -3,8 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass as DataClass
 from typing import TypeVar
 
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumDocument import Capability
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumDocument import Capability
 
 from convert.adapters.base.TransferContract import CapTransfer as CapabilityTransfer
 from convert.adapters.base.WriteResult import WriteResult

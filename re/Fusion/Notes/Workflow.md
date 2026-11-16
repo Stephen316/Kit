@@ -134,13 +134,13 @@ From the repository root, use the local Graphify CLI to build a graph of the
 SDK decoder. The output lives under the repository's ignored `tmp/` directory.
 
 ```sh
-graphify extract src/convert/formats/Fusion --code-only --force --no-cluster --out tmp/FusionGraph/Extract
+graphify extract src/convert/Formats/Fusion --code-only --force --no-cluster --out tmp/FusionGraph/Extract
 graphify query 'where are construction plane control bindings validated' \
   --seed ReadPlaneControls --budget 700 --graph tmp/FusionGraph/Extract/graphify-out/graph.json
 ```
 
 Rebuild after SDK source changes. Returned source paths are relative to
-`src/convert/formats/Fusion`. Start with the feature index
+`src/convert/Formats/Fusion`. Start with the feature index
 for status and tests. Query the graph when a reader crosses several modules.
 Check the returned source and focused tests before recording a finding. The
 graph covers SDK source relationships. The notes link to study captures,

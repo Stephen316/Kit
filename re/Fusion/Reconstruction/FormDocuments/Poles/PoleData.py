@@ -22,7 +22,7 @@ for extra in ('src', 're/Fusion/Reconstruction/FormDocuments/General', 're/Fusio
     if str(ROOT / extra) not in sys.path:
         sys.path.insert(0, str(ROOT / extra))
 
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 STENCILS = ROOT / 're/Fusion/Reconstruction/FormDocuments/Tables/FormStencils.xz'
 GENERAL_DIR = ROOT / 're/Fusion/LocalOracle/FormDocuments/General'
@@ -65,7 +65,7 @@ def table_faces(table):
 
 def old_surface(label):
     from SavedBodies import OLD_SAVES
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     model = ReadDocument((ROOT / OLD_SAVES[label]).read_bytes())
     return model.Forms[0].Surface
 

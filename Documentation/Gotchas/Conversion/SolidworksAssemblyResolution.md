@@ -27,6 +27,6 @@ An unrepresented part or reference is still refused by CLI conversion even
 without a false flag. A complete file tree alone does not make a partial nested
 neutral projection conversion-ready.
 
-See [the adapter](../../../src/convert/adapters/solidworks/core/Adapter.py),
+See [the adapter](../../../src/convert/adapters/solidworks/Core/Adapter.py),
 [the change entry](../../Changes/Solidworks/AssemblyResolutionEvidence.md), and
-[CLI process coverage](../../../tests/convert/Commands/CliAssemblyTests.py).
+[CLI process coverage](../../../tests/Convert/Commands/CliAssemblyTests.py).

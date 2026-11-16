@@ -1,4 +1,4 @@
-from interchange.enums.EnumBase import WireEnum
+from interchange.Enums.EnumBase import WireEnum
 
 
 # component kinds distinguish reusable parts assemblies references and native definitions

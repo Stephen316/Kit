@@ -1,11 +1,11 @@
 """Research copy of the retired per-layout Form tables. Nothing in src/ loads this folder."""
 from dataclasses import dataclass as MakeDataClass
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
     FormUse,
     FormWindow,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 
 
 @MakeDataClass(frozen=True, slots=True)

@@ -34,10 +34,10 @@ jobs:
           cache-dependency-glob: uv.lock
 
       - name: Synchronize the locked environment
-        run: uv sync --frozen --python 3.11
+        run: uv sync --frozen --extra dev --python 3.11
 
       - name: Verify rationale comments across every tracked owned source
-        run: uv run python -m tools.steering.CheckRationaleComments
+        run: uv run python -m tools.Steering.CheckRationaleComments
 
       - name: Reject newly added explanatory comments
         env:
@@ -48,4 +48,7 @@ jobs:
           if [ -n "$BASE_REF" ]; then
             Arguments=(--base "$BASE_REF" --head "$HEAD_REF")
           fi
-          uv run python -m tools.steering.CheckRationaleComments "${Arguments[@]}"
+          uv run python -m tools.Steering.CheckRationaleComments "${Arguments[@]}"
+
+      - name: Verify renamed source comment history
+        run: uv run --extra dev pytest tests/Steering/RationaleRenameTests.py

@@ -20,8 +20,8 @@ if __name__ == "__main__":
     ImportPaths.insert(0, str(Path(__file__).resolve().parents[3] / "src"))
 
 from SketchRoot import KGeneration, Require
-from convert.adapters.solidworks.config.CutConfig import ReadCutConfig
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Config.CutConfig import ReadCutConfig
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 
 # this research continuation is bounded to the pinned build and witnessed suffix layout

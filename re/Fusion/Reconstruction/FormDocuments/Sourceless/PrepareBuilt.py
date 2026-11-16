@@ -22,13 +22,13 @@ ROOT = HERE.parents[4]
 
 from ExtractBody import extract  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.GridBody import GridBody  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Form.EmitFormDoc import EmitFormDoc  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.GridBody import GridBody  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Form.EmitFormDoc import EmitFormDoc  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/Sourceless'
 PRIMITIVES = 're/Fusion/LocalOracle/FormDocuments/Grid/Primitives/'

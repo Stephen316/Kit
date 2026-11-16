@@ -5,10 +5,10 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Circular.CircleShape import CircleShape
 from convert.adapters.Fusion.Native.Rectangle.CurveTags import CurveTag, SketchTag
-from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
-from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
-from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
+from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
 # invalid round tags input must fail here so public geometry remains consistent with native circular topology

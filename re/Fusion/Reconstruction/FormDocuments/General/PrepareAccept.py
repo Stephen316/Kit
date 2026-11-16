@@ -23,12 +23,12 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(BASE.parent / 'Topology'))
 from SavedBodies import GENERAL, GENERAL_DIR, OLD_SAVES  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Form.EmitFormDoc import EmitFormDoc  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Form.EmitFormDoc import EmitFormDoc  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Form.FormSpec import FormSpec  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/General/Accept'
 HELD = ROOT / 're/Fusion/LocalOracle/FormDocuments/General/HeldOut'

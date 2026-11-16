@@ -2,16 +2,16 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import NumberValue, TextVa
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
-from convert.geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
-from interchange.records.RecordTopology import TopologyCounts
+from convert.Geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
+from interchange.Records.RecordTopology import TopologyCounts
 
 
 # the project sketch contract needs a shared interpretation so public document claims remain grounded in native records

@@ -41,7 +41,7 @@ CONTROLS = {
 
 # sequential profile links must use an existing configuration sketch allocation
 def read_profile_link(cursor, pointer_kind):
-    from convert.adapters.solidworks.container.Archive import (
+    from convert.adapters.solidworks.Container.Archive import (
         KClassRefKind,
         KDefinitionKind,
         KObjectRefKind,
@@ -75,7 +75,7 @@ def read_profile_link(cursor, pointer_kind):
 
 # an extrusion node must select the profile already allocated by this walk
 def read_operation_node(cursor, class_name, flags, expected_profile, file_reference):
-    from convert.adapters.solidworks.resolved.BossEntry import ReadOpNode
+    from convert.adapters.solidworks.Resolved.BossEntry import ReadOpNode
 
     result = ReadOpNode(
         cursor, class_name, flags, expected_profile["profile_object"], file_reference
@@ -102,7 +102,7 @@ def read_boss_entry(cursor, rectangle, file_reference, *, directions=(0,)):
 def read_list_prefix(
     blob, config_map, through_cut=False, through_support=False, through_operation=False
 ):
-    from convert.adapters.solidworks.container.Archive import (
+    from convert.adapters.solidworks.Container.Archive import (
         KClassRefKind,
         KDefinitionKind,
     )
@@ -177,7 +177,7 @@ def read_list_prefix(
 
 # fixed witness anchors provide evidence before the full resolved list is available
 def read_profile(blob, config_map, start, reference, reference_class, target):
-    from convert.adapters.solidworks.container.Archive import (
+    from convert.adapters.solidworks.Container.Archive import (
         KClassRefKind,
         KDefinitionKind,
         KObjectRefKind,
@@ -306,8 +306,8 @@ def read_capture(
     through_operation=False,
 ):
     from ConfigMap import ReadConfigMap
-    from convert.adapters.solidworks.container.Archive import ContainerMo
-    from convert.adapters.solidworks.container.Container import SldprtArchive
+    from convert.adapters.solidworks.Container.Archive import ContainerMo
+    from convert.adapters.solidworks.Container.Container import SldprtArchive
     from SketchRoot import KGeneration, Require
 
     name = asset["file"]

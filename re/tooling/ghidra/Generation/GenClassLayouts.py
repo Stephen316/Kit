@@ -842,8 +842,8 @@ def BindExternSlots(
 # needed to keep reverse engineering responsibilities isolated and maintainable
 def TracedStreams(Traces: Sequence[Mapping[str, object]]) -> DictInfo[str, bytes]:
     System.path.insert(0, str(KRootInfo / "src"))
-    from convert.adapters.solidworks.container.Container import SldprtArchive
-    from convert.adapters.solidworks.container.Format import (
+    from convert.adapters.solidworks.Container.Container import SldprtArchive
+    from convert.adapters.solidworks.Container.Format import (
         RESOLVED_FEATURES_STREAM as ResolvedStream,
     )
 

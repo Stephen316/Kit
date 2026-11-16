@@ -7,17 +7,17 @@ from struct import unpack_from as UnpackFrom
 
 import pytest as Pytest
 
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 from convert.api.ApiOpen import OpenDocument
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumDocument import Capability
-from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Sketch import Sketch, SketchRelation
-from interchange.geometry.models.VectorSpace import SpaceVector
-from interchange.records.RecordParameter import Parameter
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumDocument import Capability
+from interchange.Features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.Sketch import Sketch, SketchRelation
+from interchange.geometry.Models.VectorSpace import SpaceVector
+from interchange.Records.RecordParameter import Parameter
 from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
 
 

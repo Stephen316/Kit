@@ -3,13 +3,13 @@ from xml.etree.ElementTree import Element
 
 from convert.adapters.freecad.EditRead.EditGeometry import KSketchTolerance
 from convert.adapters.freecad.EditRead.XmlField import EditFloat
-from interchange.geometry.models.GeometryCurves import (
+from interchange.geometry.Models.GeometryCurves import (
     ArcGeometry,
     CircleGeometry,
     LineGeometry,
     PointGeometry,
 )
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 # bounded editable shapes share one explicit planar geometry vocabulary
 KSketchPrimitive = PointGeometry | LineGeometry | CircleGeometry | ArcGeometry

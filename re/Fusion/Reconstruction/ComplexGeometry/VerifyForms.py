@@ -21,21 +21,21 @@ ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree, SwapSubtree  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import MapSubtypes, WalkSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListPrograms import ListPrograms  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
-from tests.convert.formats.FusionCodec.Documents.Form.FormArchives import KFormArchives  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree, SwapSubtree  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import MapSubtypes, WalkSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListPrograms import ListPrograms  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from tests.Convert.Formats.FusionCodec.Documents.Form.FormArchives import KFormArchives  # noqa: E402
 
 
 def members(data):

@@ -3,16 +3,16 @@ from math import hypot as Hypot
 
 from convert.adapters.freecad.EditShape.CylinderRims import KAngleTolerance
 from convert.adapters.freecad.EditShape.Scale.ScaleSpan import ReadScaleDomain
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     ApplyDirection,
     DecodeFailure,
     KIdentityLocation,
     Tokens,
     VectorValue,
 )
-from convert.geometry.Revolve.SweepVector import CrossVector, OffsetVector
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import CrossVector, OffsetVector
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # the affine reduction allows only numeric roundoff in spatial control points
 KPlaneResidual = 1e-9

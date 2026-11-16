@@ -35,12 +35,12 @@ from decode_basics import attach_parameters, named_features
 from decode_parameters import decode_stream
 from fusion_metadata import design_records
 
-from convert.adapters.solidworks.config.CutConfig import ReadCutConfig
-from convert.adapters.solidworks.container.Archive import ContainerMo, ReadTag
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.resolved.RectanglePart import ReadRectPart
-from convert.adapters.solidworks.resolved.cut.CutLinks import ReadCutLinks
-from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
+from convert.adapters.solidworks.Config.CutConfig import ReadCutConfig
+from convert.adapters.solidworks.Container.Archive import ContainerMo, ReadTag
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Resolved.RectanglePart import ReadRectPart
+from convert.adapters.solidworks.Resolved.Cut.CutLinks import ReadCutLinks
+from convert.adapters.solidworks.Resolved.Cut.CutProof import ReadCutProof
 
 FORMATS = {"fusion": "fusion.f3d", "solidworks": "solidworks.sldprt"}
 CONFOUNDS = ("width_mm", "height_mm")

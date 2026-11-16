@@ -20,14 +20,14 @@ from convert.adapters.freecad.EditShape.TrimGeometry import (
     TrimCurve,
     TrimPoint,
 )
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     EdgeData,
     FaceData,
     LocationPoint,
 )
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
 
 # end pairs retain native parameter space so wrapped wires cannot alias a shorter domain
 KUvEdge = tuple[tuple[float, float], tuple[float, float]]

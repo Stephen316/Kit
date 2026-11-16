@@ -17,10 +17,10 @@ from RectangleFields import (
     sha256,
 )
 from RectangularResolved import close_rectangle, read_rectangle_entry
-from convert.adapters.solidworks.config.ModelEntry import ReadModelEntry
-from convert.adapters.solidworks.config.RootFields import ModelAtomStart
-from convert.adapters.solidworks.config.RootLayout import KRootClass, LoadPartLayouts
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Config.ModelEntry import ReadModelEntry
+from convert.adapters.solidworks.Config.RootFields import ModelAtomStart
+from convert.adapters.solidworks.Config.RootLayout import KRootClass, LoadPartLayouts
+from convert.adapters.solidworks.Container.Archive import (
     ContainerMo,
     EncodeClass,
     EncodeNull,
@@ -28,15 +28,15 @@ from convert.adapters.solidworks.container.Archive import (
     KNullKind,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
-from convert.adapters.solidworks.container.Container import (
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.Container import (
     BuildSldprt,
     Container,
     KDefaultFileId,
     SldprtArchive,
     Signature,
 )
-from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
+from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 
 CONFIG_OBJECTS = "Contents/CnfgObjs"
 MODEL_STAMPS = "ModelStamps"

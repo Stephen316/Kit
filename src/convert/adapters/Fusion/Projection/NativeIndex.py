@@ -1,13 +1,13 @@
 from dataclasses import dataclass as MakeDataClass
 from typing import cast as CastValue
 
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment
-from convert.formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import AuthorSchemas
-from convert.formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
-from convert.formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
-from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
-from convert.formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Model.ParsedSegment import ParsedSegment
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.AuthorSchemas import AuthorSchemas
+from convert.Formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
+from convert.Formats.Fusion.EntityCodec.Model.ValueStruct import ValueStruct
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.MetaIndex import SegmentKind
 
 
 # native index needs an explicit state contract so public document claims remain grounded in native records

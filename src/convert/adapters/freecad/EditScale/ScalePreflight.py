@@ -12,7 +12,7 @@ from convert.adapters.freecad.EditScale.ScaleCache import MakeScaleCache, ScaleC
 from convert.adapters.freecad.EditScale.ScaleExpressions import ScaleOffset
 from convert.adapters.freecad.EditScale.ScalePointEmit import FindScalePoint
 from convert.adapters.freecad.EditScale.ScaleWritePlan import ScaleWritePlan
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # graph mutation starts only after every dependency and cache is ready

@@ -11,8 +11,8 @@ from convert.adapters.Fusion.Native.Graph.IntegerValue import IntegerValue
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Parameters.ParamExpression import ParamExpression
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
-from interchange.enums.EnumValues import ValueKind
-from interchange.records.RecordParameter import Parameter, ParameterValue
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Records.RecordParameter import Parameter, ParameterValue
 
 
 # the parameters operation needs a distinct decoding boundary so public document claims remain grounded in native records

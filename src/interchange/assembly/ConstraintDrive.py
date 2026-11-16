@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import cast as CastValue
 
 from interchange.assembly.AssemblyEnums import MateAlignment
-from interchange.records.RecordParameter import ParameterValue
+from interchange.Records.RecordParameter import ParameterValue
 
 
 # solvers evaluate bindings and orientation intent so those reads share one view

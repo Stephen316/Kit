@@ -10,9 +10,9 @@ sys.path[:0] = [str(ROOT / "src"), str(ROOT / "re/automation")]
 from DefinitionReadback import ReadModernPartDefinition
 from DefinitionStream import EncodeModernPartDefinition
 from SolidworksCensusInputs import capture_inputs
-from convert.adapters.solidworks.container.Archive import ArchiveError, ContainerMo
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Archive import ArchiveError, ContainerMo
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 
 # every saved stream must match its independently framed reconstruction through EOF

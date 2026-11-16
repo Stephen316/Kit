@@ -1,0 +1,139 @@
+from __future__ import annotations
+
+# shared empty set keeps parameter defaults free of repeated constructor calls
+KNoDesignBodies: frozenset[str] = frozenset()
+
+from interchange.brep.Curves.BrepCurves import BrepCurve
+from interchange.brep.Curves.BrepPcurves import BrepPcurve
+from interchange.brep.Surfaces.BrepSurfaces import BrepSurface
+from interchange.brep.Topology.BrepTopology import (
+    BrepBody,
+    BrepCoedge,
+    BrepEdge,
+    BrepFace,
+    BrepFaceUse,
+    BrepLoop,
+    BrepRegion,
+    BrepShell,
+    BrepShellUse,
+    BrepVertex,
+    BrepWire,
+)
+from interchange.Core.ModelBase import ModelBase, ModelDataMut
+
+
+# compat protocol marker exempts paired wrappers from naming constraints
+class PairProtocol:
+
+    KSlotsValue = ()
+
+    locals()["__slots__"] = KSlotsValue
+
+
+# brep model keeps the historical surface because callers depend on it directly
+@ModelDataMut
+class BrepModel(PairProtocol, ModelBase):
+    curves: tuple[BrepCurve, ...] = ()
+    pcurves: tuple[BrepPcurve, ...] = ()
+    surfaces: tuple[BrepSurface, ...] = ()
+    vertices: tuple[BrepVertex, ...] = ()
+    edges: tuple[BrepEdge, ...] = ()
+    coedges: tuple[BrepCoedge, ...] = ()
+    loops: tuple[BrepLoop, ...] = ()
+    wires: tuple[BrepWire, ...] = ()
+    faces: tuple[BrepFace, ...] = ()
+    face_uses: tuple[BrepFaceUse, ...] = ()
+    shells: tuple[BrepShell, ...] = ()
+    shell_uses: tuple[BrepShellUse, ...] = ()
+    regions: tuple[BrepRegion, ...] = ()
+    bodies: tuple[BrepBody, ...] = ()
+    schema_version: str = "1.0"
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Curves(self) -> tuple[BrepCurve, ...]:
+        return self.curves
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Pcurves(self) -> tuple[BrepPcurve, ...]:
+        return self.pcurves
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Surfaces(self) -> tuple[BrepSurface, ...]:
+        return self.surfaces
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Vertices(self) -> tuple[BrepVertex, ...]:
+        return self.vertices
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Edges(self) -> tuple[BrepEdge, ...]:
+        return self.edges
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Coedges(self) -> tuple[BrepCoedge, ...]:
+        return self.coedges
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Loops(self) -> tuple[BrepLoop, ...]:
+        return self.loops
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Wires(self) -> tuple[BrepWire, ...]:
+        return self.wires
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Faces(self) -> tuple[BrepFace, ...]:
+        return self.faces
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def FaceUses(self) -> tuple[BrepFaceUse, ...]:
+        return self.face_uses
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Shells(self) -> tuple[BrepShell, ...]:
+        return self.shells
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def ShellUses(self) -> tuple[BrepShellUse, ...]:
+        return self.shell_uses
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Regions(self) -> tuple[BrepRegion, ...]:
+        return self.regions
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def Bodies(self) -> tuple[BrepBody, ...]:
+        return self.bodies
+
+    # pascal consumers remain typed while lowercase fields own dataclass storage
+    @property
+    def SchemaVersion(self) -> str:
+        return self.schema_version
+
+    # lowercase validation stays concrete because static consumers cannot observe runtime aliases
+    def validate(
+        self, design_body_ids: frozenset[str] = KNoDesignBodies
+    ) -> tuple[str, ...]:
+        from interchange.brep.Validation.BrepValidate import GetBrepErrors
+
+        return GetBrepErrors(self, design_body_ids)
+
+    # pascal validation remains available because existing adapters still use the canonical method
+    def GetErrors(
+        self, DesignBodyIds: frozenset[str] = KNoDesignBodies
+    ) -> tuple[str, ...]:
+        return self.validate(DesignBodyIds)

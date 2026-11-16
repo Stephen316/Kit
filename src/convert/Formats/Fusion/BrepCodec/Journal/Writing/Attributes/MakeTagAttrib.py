@@ -1,0 +1,19 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeAttribHead import (
+    MakeAttribHead,
+)
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.Attributes.MakeTagGroups import (
+    MakeTagGroups,
+)
+
+
+# the tag attribute operation needs a consistent construction rule so revision ownership survives native history reconstruction
+def MakeTagAttrib(Value: TagAttrib) -> AsmRecord:
+    return AsmRecord(
+        "ATTRIB_CUSTOM-attrib",
+        (
+            *MakeAttribHead(Value.Links, "generic_tag_attrib_def", Value.Attribute),
+            *MakeTagGroups(Value.Groups),
+        ),
+    )

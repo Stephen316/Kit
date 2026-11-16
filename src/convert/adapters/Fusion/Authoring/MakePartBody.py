@@ -1,12 +1,12 @@
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.PartFeatures.Design.PartTopology import (
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Design.PartTopology import (
     MeasurePart,
 )
-from convert.formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart
-from interchange.features.FeatureBody import DesignBody
-from interchange.geometry.models.BoundingBox import BoundingBox
-from interchange.geometry.models.VectorSpace import SpaceVector
-from interchange.records.RecordTopology import TopologyCounts
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart
+from interchange.Features.FeatureBody import DesignBody
+from interchange.geometry.Models.BoundingBox import BoundingBox
+from interchange.geometry.Models.VectorSpace import SpaceVector
+from interchange.Records.RecordTopology import TopologyCounts
 
 
 # the part body operation needs a consistent construction rule so public document claims remain grounded in native records

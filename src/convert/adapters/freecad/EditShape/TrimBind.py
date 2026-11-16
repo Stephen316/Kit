@@ -1,7 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 from re import fullmatch as FullMatch
 
-from convert.geometry.Opencascade import DecodeFailure, Tokens
+from convert.Geometry.Opencascade import DecodeFailure, Tokens
 
 
 # both native seam encodings bind two curves to one cylindrical surface

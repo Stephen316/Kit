@@ -2,12 +2,12 @@ import json,sys,hashlib
 from pathlib import Path
 from dataclasses import asdict
 ROOT=Path(__file__).resolve().parents[4];sys.path.insert(0,str(ROOT/'src'))
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Records.MakeDocProfile import MakeDocProfile
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSegment import ReadDocSegment
-from convert.formats.Fusion.DocumentCodec.Reading.ReadDocParts import ReadDocParts
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Records.MakeDocProfile import MakeDocProfile
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSegment import ReadDocSegment
+from convert.Formats.Fusion.DocumentCodec.Reading.ReadDocParts import ReadDocParts
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 sources=('re/Fusion/Study/thinextrudes-c1632bcb5efe/ordinary_rectangle_control.f3d','re/Fusion/LocalOracle/RectangleAuthoring/vendor_ProductionCuboid37mm.f3d')
 reports=[]
 for source in sources:

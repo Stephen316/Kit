@@ -10,7 +10,7 @@ from collections.abc import Mapping
 from struct import pack as PackStruct
 from sys import float_info as FloatInfo
 
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KBigObjectTag,
     EncodeClassRef,
     EncodeNull,

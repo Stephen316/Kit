@@ -8,7 +8,7 @@ from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Rectangle.CurveTags import CurveTag, SketchTag
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair
 
 
 # invalid region input must fail here so public document claims remain grounded in native records

@@ -2,15 +2,15 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import TextValue
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 from convert.adapters.Fusion.Native.Circular.CircleShape import CircleShape
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
-from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.records.RecordTopology import TopologyCounts
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Geometry.Extrude.Circular.CircularExtrude import BuildCircular
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.Records.RecordTopology import TopologyCounts
 
 
 # the circle sketch contract needs a shared interpretation so public geometry remains consistent with native circular topology

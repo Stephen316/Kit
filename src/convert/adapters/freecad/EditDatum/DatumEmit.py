@@ -18,7 +18,7 @@ from convert.adapters.freecad.Archive import (
 )
 from convert.adapters.freecad.EditDatum.DatumBinding import KDatumBinding, KDatumGroup
 from convert.adapters.freecad.EditDatum.DatumExpr import DatumPoseExpr
-from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeatureBoundPlane import BoundDatum
 from interchange.serialization.EncodeData import ToData
 
 

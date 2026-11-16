@@ -4,7 +4,7 @@
 
 ## API
 
-The API lives in `convert.formats.Fusion.BrepCodec.Journal`:
+The API lives in `convert.Formats.Fusion.BrepCodec.Journal`:
 
 | Function         | Input                                                                 | Result                                                                       |
 | ---------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------------------- |

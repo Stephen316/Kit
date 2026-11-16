@@ -30,9 +30,9 @@ ROOT = HERE.parents[3]
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(HERE))
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.StitchAttrib import StitchAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.StitchAttrib import StitchAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
 
 import NurbsMath  # noqa: E402
 

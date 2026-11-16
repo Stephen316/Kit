@@ -1,7 +1,7 @@
 from base64 import b64encode as EncodeBase
 from sys import version_info as KPythonVersion
 
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
 
 
 # archive investigation needs bounded stream evidence without implying recovered feature semantics

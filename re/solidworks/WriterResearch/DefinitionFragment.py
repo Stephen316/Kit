@@ -3,9 +3,9 @@ from struct import pack as PackFields
 from DefinitionOptions import EncodeDefinitionOptions, ReadDefinitionOptions
 from DefinitionTail import EncodePartDefinitionTail, ReadPartDefinitionTail
 from JournalAttach import JournalAttach
-from convert.adapters.solidworks.container.Archive import KNullTag, EncodeNull
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.Archive import KNullTag, EncodeNull
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 # these document constructor values precede the empty dword array
 KBeforeDwordArray = (1, 1, 0, 1, 0)

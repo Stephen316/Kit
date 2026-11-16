@@ -1,6 +1,6 @@
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
-from interchange.features.FeatureKinds import HoleFeature
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureExtrude import ExtrudeEnd, ExtrudeFeature
+from interchange.Features.FeatureKinds import HoleFeature
 
 # portable end modes give writers a shared boundary for reconstructing termination
 KPortableEnds = frozenset(

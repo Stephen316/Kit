@@ -6,7 +6,7 @@ A fixture containing `0.040` can appear to exercise rejection of three fractiona
 
 ## Actual behavior
 
-The existing [inch decimal parser](../../../../src/convert/adapters/solidworks/core/InchDecimal.py) removes trailing zeros before counting fractional digits.
+The existing [inch decimal parser](../../../../src/convert/adapters/solidworks/Core/InchDecimal.py) removes trailing zeros before counting fractional digits.
 It counts `0.040` as two significant fractional digits and `0.041` as three.
 The first indexed-binding ambiguity fixture incorrectly expected the trailing-zero form to remain unresolved.
 The remote parser-process case instead reported its valid `1.0 mm` binding.

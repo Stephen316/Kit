@@ -7,16 +7,16 @@ from convert.adapters.freecad.EditShape.CylinderRims import (
     KPositionTolerance,
 )
 from convert.adapters.freecad.EditShape.Sketch.WireEdge import EvalWireCurve, SavedEdge
-from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.geometry.models.GeometryCurves import (
+from convert.Geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.geometry.Models.GeometryCurves import (
     ArcGeometry,
     CircleGeometry,
     LineGeometry,
 )
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # supported cache edges retain exactly the editable finite curve families
 KSketchCurve = ArcGeometry | CircleGeometry | LineGeometry

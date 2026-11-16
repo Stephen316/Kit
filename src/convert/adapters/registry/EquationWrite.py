@@ -1,6 +1,6 @@
-from convert.adapters.solidworks.core.EquationTarget import KUnresolvedEqTargets
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentWalk import WalkDocuments
+from convert.adapters.solidworks.Core.EquationTarget import KUnresolvedEqTargets
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentWalk import WalkDocuments
 
 
 # retained equation failures must survive public conversion and nested assembly exports

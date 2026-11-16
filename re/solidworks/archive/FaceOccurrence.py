@@ -1,13 +1,13 @@
 """Read the witnessed modern face occurrence and its enclosing reference plane."""
 
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KNullKind,
 )
-from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart
-from convert.adapters.solidworks.resolved.support.FaceFrame import ReadFacePose as read_transform
-from convert.adapters.solidworks.resolved.FaceIdentity import (
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.LocalFrame import ReadLocalPart
+from convert.adapters.solidworks.Resolved.Support.FaceFrame import ReadFacePose as read_transform
+from convert.adapters.solidworks.Resolved.FaceIdentity import (
     ReadFaceHead as read_face_header,
     ReadFaceReturn as read_face_tail,
     ReadSurfaceId,

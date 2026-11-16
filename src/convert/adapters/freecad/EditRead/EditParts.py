@@ -7,9 +7,9 @@ from convert.adapters.freecad.EditRead.EditProfile import CheckEditPlane
 from convert.adapters.freecad.EditRead.OpenSketchXml import CheckOpenXml
 from convert.adapters.freecad.EditRead.XmlField import CheckNoEditExpr, EditScalar
 from convert.adapters.freecad.Native import EntryName, NativeObject
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
 
 # these object families supply metadata and groups without independent geometry
 KMetadataTypes = frozenset(

@@ -1,13 +1,13 @@
-from interchange.brep.curves.BrepCurves import BrepCurve
-from convert.geometry.Opencascade import Reference, ShapeRecord
+from interchange.brep.Curves.BrepCurves import BrepCurve
+from convert.Geometry.Opencascade import Reference, ShapeRecord
 from convert.adapters.freecad.EditShape.CylinderRims import (
     IsFullRim,
     IsNearPoint,
     IsParallel,
     KPositionTolerance,
 )
-from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
-from convert.geometry.Opencascade import (
+from convert.Geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from convert.Geometry.Opencascade import (
     ApplyLocations,
     DecodeFailure,
     EdgeData,
@@ -21,10 +21,10 @@ from convert.geometry.Opencascade import (
     VertexData,
     ZeroTable,
 )
-from interchange.brep.curves.BrepCurves import CircleCurve
-from interchange.brep.topology.BrepTopology import BrepEdge
-from interchange.geometry.models.GeometryCurves import CircleGeometry
-from interchange.geometry.models.Transform import Transform
+from interchange.brep.Curves.BrepCurves import CircleCurve
+from interchange.brep.Topology.BrepTopology import BrepEdge
+from interchange.geometry.Models.GeometryCurves import CircleGeometry
+from interchange.geometry.Models.Transform import Transform
 
 
 # a saved sketch cache can only represent its verified single circular profile

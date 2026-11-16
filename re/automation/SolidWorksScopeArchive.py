@@ -11,9 +11,9 @@ from PairedCaptureIntake import GitSnapshot, require, sha256
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "src"))
 
-from convert.adapters.solidworks.config.CutConfig import ReadCutConfig
-from convert.adapters.solidworks.config.FeatureBase import ReadFeatBase
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Config.CutConfig import ReadCutConfig
+from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
+from convert.adapters.solidworks.Container.Archive import (
     ArchiveError,
     ContainerMo,
     KClassRefKind,
@@ -22,12 +22,12 @@ from convert.adapters.solidworks.container.Archive import (
     KObjectRefKind,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.resolved.FaceIdentity import ReadFaceReturn
-from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
-from convert.adapters.solidworks.resolved.cut.CutLinks import ReadCutLinks
-from convert.adapters.solidworks.resolved.cut.CutProof import ReadCutProof
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Resolved.FaceIdentity import ReadFaceReturn
+from convert.adapters.solidworks.Resolved.NamedNode import ReadNamedNode
+from convert.adapters.solidworks.Resolved.Cut.CutLinks import ReadCutLinks
+from convert.adapters.solidworks.Resolved.Cut.CutProof import ReadCutProof
 from SolidWorksScopePartition import read_scope_partition, read_scope_support_sheet
 from SolidWorksScopePrefix import read_scope_prefix
 from SolidWorksScopeTerminal import comparable_terminal

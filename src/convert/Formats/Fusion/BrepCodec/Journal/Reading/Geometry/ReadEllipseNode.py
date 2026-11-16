@@ -1,0 +1,28 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EllipseNode import EllipseNode
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadBoundMut import (
+    ReadBoundMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadDoubleMut import (
+    ReadDoubleMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadPrefixMut import (
+    ReadPrefixMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadVectorMut import (
+    ReadVectorMut,
+)
+
+
+# the ellipse node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
+def ReadEllipseNode(Cursor: FieldCursor) -> EllipseNode:
+    Prefix = ReadPrefixMut(Cursor)
+    OriginCm = ReadVectorMut(Cursor, 19)
+    Normal = ReadVectorMut(Cursor, 20)
+    MajorAxisCm = ReadVectorMut(Cursor, 20)
+    EllipseRatio = ReadDoubleMut(Cursor)
+    LowerBound = ReadBoundMut(Cursor)
+    UpperBound = ReadBoundMut(Cursor)
+    return EllipseNode(
+        Prefix, OriginCm, Normal, MajorAxisCm, EllipseRatio, LowerBound, UpperBound
+    )

@@ -6,9 +6,9 @@ A parametric-history capability might appear to prove that every feature has a p
 
 ## Actual behavior
 
-At main `52dbbe55`, [capability inference](../../../src/interchange/document/models/DocumentCaps.py) marks history present for any timeline feature whose kind is not imported.
+At main `52dbbe55`, [capability inference](../../../src/interchange/document/Models/DocumentCaps.py) marks history present for any timeline feature whose kind is not imported.
 That condition also admits native-only or partially interpreted feature records.
-The [SOLIDWORKS feature builder](../../../src/convert/adapters/solidworks/core/Adapter.py) can retain native definitions and unresolved termination codes.
+The [SOLIDWORKS feature builder](../../../src/convert/adapters/solidworks/Core/Adapter.py) can retain native definitions and unresolved termination codes.
 Optional provenance and a successful model-reference check do not establish complete semantic interpretation.
 
 ## Workaround

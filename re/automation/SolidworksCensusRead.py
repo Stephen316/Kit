@@ -8,9 +8,9 @@ from SolidworksSupportEvidence import support_candidates
 
 
 def native_read(content, path):
-    from convert.adapters.solidworks.container.Container import SldprtArchive
-    from convert.adapters.solidworks.container.Format import KitDocStream
-    from convert.adapters.solidworks.core.Adapter import NativePartModel
+    from convert.adapters.solidworks.Container.Container import SldprtArchive
+    from convert.adapters.solidworks.Container.Format import KitDocStream
+    from convert.adapters.solidworks.Core.Adapter import NativePartModel
 
     try:
         archive = SldprtArchive.from_bytes(content, path)
@@ -99,7 +99,7 @@ def native_sketch(item, archive):
 
 
 def neutral_read(root, manifest, asset, output, revision):
-    from interchange.document.models.DocumentModel import CadDocument
+    from interchange.document.Models.DocumentModel import CadDocument
 
     command = [
         sys.executable, str(root / "re/automation/SolidworksReader.py"),
@@ -183,7 +183,7 @@ def neutral_data(document, receipt):
 
 
 def neutral_feature(item, names):
-    from interchange.features.FeatureExtrude import ExtrudeFeature
+    from interchange.Features.FeatureExtrude import ExtrudeFeature
 
     definition = item.definition
     extrude = isinstance(definition, ExtrudeFeature)
@@ -240,7 +240,7 @@ def provenance(value):
 
 
 def neutral_entity(entity, transform):
-    from interchange.geometry.models.GeometryCurves import LineGeometry
+    from interchange.geometry.Models.GeometryCurves import LineGeometry
 
     segment = None
     if isinstance(entity.geometry, LineGeometry):

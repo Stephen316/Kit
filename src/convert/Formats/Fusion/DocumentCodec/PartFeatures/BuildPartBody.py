@@ -1,0 +1,59 @@
+from dataclasses import replace as ReplaceValue
+from time import time_ns as ReadTimeNano
+
+from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
+from convert.Formats.Fusion.DocumentCodec.Model.AuthorPolicy import AuthorPolicy
+from convert.Formats.Fusion.DocumentCodec.Model.DesignResult import DesignResult
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.History.EmitPartHist import (
+    EmitPartHist,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.FamilyRules import (
+    IsStateless,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Shape.BuildShape import (
+    BuildShape,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Shape.ShapeBody import ShapeBody
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
+    PrismSolid,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.SolvePart import SolvePart
+
+
+# the tracked shape contract needs a shared interpretation so feature parameters remain connected to the resulting geometry
+def TrackedShape(Solid: PrismSolid, Roles: dict[str, int]) -> ShapeBody:
+    Tracks = tuple(
+        (Label, Roles["f" + str(Index + 1) + "_source_ref"])
+        for Label, Index in Solid.Tracks
+    )
+    return ReplaceValue(BuildShape(Solid), Tracks=Tracks)
+
+
+# the part body operation needs a consistent construction rule so feature parameters remain connected to the resulting geometry
+def BuildPartBody(
+    SpecValue: DocumentSpec, Design: DesignResult
+) -> tuple[ContainerPart, ...]:
+    if Design.BrepPart is None:
+        raise ValueError("Fusion part authoring requires a BRep part identity")
+    Policy = AuthorPolicy()
+    if Policy.BodyKey != 0:
+        raise ValueError("Fusion part journals claim body tag zero first")
+    BaseValue, Stages = SolvePart(SpecValue)
+    KeptStages = tuple(Stage for Stage in Stages if not IsStateless(Stage.Feature))
+    Solids = (() if BaseValue is None else ((BaseValue,),)) + tuple(
+        Stage.Bodies for Stage in KeptStages
+    )
+    StateIds = (() if BaseValue is None else (Policy.HistoryCurrentId,)) + tuple(
+        Stage.StateId for Stage in KeptStages
+    )
+    Payload = EmitPartHist(
+        tuple(
+            tuple(TrackedShape(Solid, Design.Roles) for Solid in Bodies)
+            for Bodies in Solids
+        ),
+        StateIds,
+        Policy.HistoryInitialId,
+        float(ReadTimeNano() // 1000),
+    )
+    return (ContainerPart("Breps.BlobParts/" + Design.BrepPart, Payload),)

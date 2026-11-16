@@ -8,10 +8,10 @@ Token 1 of each ASM face and vertex record in a body history is `-1`. The typed 
 
 After some edits and saves, Fusion 2706.1.17 writes entity ids in that slot. `vendor_NativeCylinderControl.f3d` and `vendor_NativeFrustumControl.f3d` both hold these values:
 
-| Records | Ordinals | Entity ids |
-| --- | --- | --- |
-| Faces | 4, 5, 6 | 14, 15, 16 |
-| Vertices | 20, 21 | 12, 13 |
+| Records  | Ordinals | Entity ids |
+| -------- | -------- | ---------- |
+| Faces    | 4, 5, 6  | 14, 15, 16 |
+| Vertices | 20, 21   | 12, 13     |
 
 The typed views compared the stored tokens with the tokens they rebuilt. They then raised `ValueError("Unsupported Fusion BRep semantic field")`. 23 Fusion-saved documents failed with this error.
 
@@ -23,7 +23,7 @@ Prism histories can hold ids in the same way. `namedbodies.f3d` holds ids on six
 
 ## Evidence
 
-- [Entity id model](../../../../../src/convert/formats/Fusion/BrepCodec/Models/EntityIds.py)
+- [Entity id model](../../../../../src/convert/Formats/Fusion/BrepCodec/Models/EntityIds.py)
 - [Typed mismatch script](../../../../../re/Fusion/Reconstruction/ReaderCoverage/TypedMismatch.py)
 - [Native acceptance cases `CylinderIds` and `FrustumIds`](../../../../../re/Fusion/LocalOracle/ReaderCoverage/NativeAcceptance.json)
 - [Change entry](../../../../Changes/Fusion/Records/FusionSavedDocumentCoverage.md)

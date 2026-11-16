@@ -22,7 +22,7 @@ from GenerateStandard import SHARED_ENTRIES, Converter, Keys  # noqa: E402
 from LoadVariant import load_variant  # noqa: E402
 from PruneDwg import Graph  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 # Fields that only look constant because every control shares one design, one sheet name, one
 # scale and one title block. Kit's builders must always supply them, so they never become defaults.

@@ -1,4 +1,4 @@
-from interchange.geometry.models.Sketch import ConstraintRef, SketchRelation
+from interchange.geometry.Models.Sketch import ConstraintRef, SketchRelation
 
 
 # the relations operation needs a consistent construction rule so public document claims remain grounded in native records

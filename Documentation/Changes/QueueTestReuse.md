@@ -130,7 +130,7 @@ To stop reuse, remove the `--cache` argument from the `Plan test shards` step.
 - A package `__init__.py` that imports many modules links all of them to each test that imports the package.
   Most `convert` tests import `convert`, so a change to most `convert` sources runs most `convert` tests.
 - Modules that start a process never reuse results.
-  `tests/convert/runtime/WheelRuntimeTests.py::CheckWheel` is one of them and still sets the shortest test path.
+  `tests/Convert/Runtime/WheelRuntimeTests.py::CheckWheel` is one of them and still sets the shortest test path.
 - The plugin does not see `os.stat` and existence checks, environment variables, network access, the time, or files that native code reads.
   A test that depends on these items can reuse an old result until the record is 7 days old or the guard changes.
 - The guard does not include the runner image.

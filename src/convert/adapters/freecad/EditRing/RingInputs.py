@@ -1,9 +1,9 @@
 from convert.adapters.freecad.EditRing.RingEndpoints import CheckRingEnds, ReadRingEnds
-from convert.geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
-from interchange.brep.topology.BrepMath import IsFinitePlane
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
+from convert.Geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
+from interchange.brep.Topology.BrepMath import IsFinitePlane
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
 
 
 # explicit source entity identities keep retained helper points distinguishable

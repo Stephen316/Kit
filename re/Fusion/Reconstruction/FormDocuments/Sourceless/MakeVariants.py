@@ -21,13 +21,13 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries  # noqa: E402
 
 OUT = ROOT / 're/Fusion/LocalOracle/FormDocuments/Sourceless/Variants'
 NAMES = {}
-for path in (ROOT / 'src/convert/formats/Fusion').rglob('*Classes.json'):
+for path in (ROOT / 'src/convert/Formats/Fusion').rglob('*Classes.json'):
     for entry in json.loads(path.read_text()):
         NAMES[entry['ClassGuid'].upper()] = entry['NameValue']
 

@@ -8,7 +8,7 @@ from convert.adapters.freecad.EditRead.Sketch.RuleOperands import (
     RuleLineLocal,
     RuleOperand,
 )
-from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, LineGeometry
 
 
 # tangency direction branches must persist instead of flipping the source solution

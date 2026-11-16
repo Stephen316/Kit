@@ -1,0 +1,43 @@
+from convert.Formats.Fusion.GeometryCodec.EntityRef import EntityRef
+from convert.Formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
+from convert.Formats.Fusion.GeometryCodec.KeywordToken import KeywordToken
+from convert.Formats.Fusion.GeometryCodec.MakeRecord import MakeRecord
+from convert.Formats.Fusion.GeometryCodec.Prism.PrismLayout import (
+    KEdgeCorners,
+    KFirstCoedge,
+    KFirstEdge,
+    KFirstLoop,
+)
+from convert.Formats.Fusion.GeometryCodec.Prism.PrismUse import PrismUse
+
+
+# the coedges operation needs a consistent construction rule so geometric values retain their native record boundaries
+def BuildCoedges(UseValues: tuple[PrismUse, ...]) -> tuple[GeometryRecord, ...]:
+    Lookup = {
+        (Value.Start, Value.Finish): KFirstCoedge + Index
+        for Index, Value in enumerate(UseValues)
+    }
+    return tuple(
+        MakeRecord(
+            "coedge",
+            (
+                EntityRef(
+                    KFirstCoedge + 4 * Value.FaceIndex + (Value.RingIndex + 1) % 4
+                ),
+                EntityRef(
+                    KFirstCoedge + 4 * Value.FaceIndex + (Value.RingIndex - 1) % 4
+                ),
+                EntityRef(Lookup[(Value.Finish, Value.Start)]),
+                EntityRef(KFirstEdge + Value.EdgeIndex),
+                KeywordToken(
+                    "forward"
+                    if KEdgeCorners[Value.EdgeIndex][0] == Value.Start
+                    else "reversed"
+                ),
+                EntityRef(KFirstLoop + Value.FaceIndex),
+                0,
+                EntityRef(-1),
+            ),
+        )
+        for Value in UseValues
+    )

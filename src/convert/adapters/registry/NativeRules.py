@@ -1,6 +1,6 @@
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumGeometry import ConstraintKind
-from interchange.geometry.models.Sketch import Sketch
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumGeometry import ConstraintKind
+from interchange.geometry.Models.Sketch import Sketch
 
 # constraint export needs a common vocabulary with understood portable semantics
 KPortableRules = frozenset(

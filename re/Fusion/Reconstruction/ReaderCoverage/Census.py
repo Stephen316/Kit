@@ -24,8 +24,8 @@ def where(error):
 
 
 def document(data):
-    from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     row = {}
     try:
         model = ReadDocument(data)
@@ -52,8 +52,8 @@ def verify(path):
     data = path.read_bytes()
     row = {'file': str(path.relative_to(ROOT)), 'sha256': hashlib.sha256(data).hexdigest(), 'bytes': len(data)}
     if path.suffix.lower() == '.f3z':
-        from convert.formats.Fusion.BundleCodec.EmitBundle import EmitBundle
-        from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+        from convert.Formats.Fusion.BundleCodec.EmitBundle import EmitBundle
+        from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
         try:
             bundle = ReadBundle(data)
             again = ReadBundle(EmitBundle(bundle))

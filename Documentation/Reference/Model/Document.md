@@ -84,7 +84,7 @@ It does not extend schema `1.0` or declare new conversion support.
 
 ## Sources
 
-- [Root model](../../../src/interchange/document/models/DocumentModel.py)
-- [Document validation](../../../src/interchange/document/validation/DocumentValidate.py)
-- [Read filters](../../../src/interchange/document/models/DocumentFilter.py)
+- [Root model](../../../src/interchange/document/Models/DocumentModel.py)
+- [Document validation](../../../src/interchange/document/Validation/DocumentValidate.py)
+- [Read filters](../../../src/interchange/document/Models/DocumentFilter.py)
 - [Result evaluation](../../Tasks/InspectResult.md)

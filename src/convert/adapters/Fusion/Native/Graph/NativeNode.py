@@ -1,8 +1,8 @@
 from dataclasses import dataclass as MakeDataClass
 
-from convert.formats.Fusion.EntityCodec.Model.EntityFrame import EntityFrame
-from convert.formats.Fusion.EntityCodec.Model.EntityGroup import EntityGroup
-from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.EntityCodec.Model.EntityFrame import EntityFrame
+from convert.Formats.Fusion.EntityCodec.Model.EntityGroup import EntityGroup
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
 
 
 # native node needs an explicit state contract so public document claims remain grounded in native records

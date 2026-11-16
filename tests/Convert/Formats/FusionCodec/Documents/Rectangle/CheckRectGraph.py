@@ -1,0 +1,36 @@
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
+from tests.Convert.Formats.FusionCodec.Documents.Rectangle.RectFields import RectFields
+from tests.Convert.Formats.FusionCodec.Documents.Rectangle.RectValues import (
+    ReadFields,
+    ReadPoint,
+)
+
+
+# the rect graph contract needs boundary coverage so stored document relationships remain consistent
+def CheckRectGraph(Model: DocumentModel) -> None:
+    Lines = RectFields(Model, "Line3D")
+    assert len(Lines) == 4
+    assert len(RectFields(Model, "Point3D")) == 5
+    Starts = tuple(LineValue["rStartPoint"] for LineValue in Lines)
+    Finishes = tuple(LineValue["rEndPoint"] for LineValue in Lines)
+    assert all(isinstance(Value, LocalRef) for Value in (*Starts, *Finishes))
+    assert len(set(Starts)) == 4
+    assert set(Starts) == set(Finishes)
+    Curves = tuple(ReadFields(LineValue["lineCurve"]) for LineValue in Lines)
+    assert {ReadPoint(Curve["startPoint"]) for Curve in Curves} == {
+        (0.0, 0.0, 0.0),
+        (1.7, 0.0, 0.0),
+        (1.7, 2.3, 0.0),
+        (0.0, 2.3, 0.0),
+    }
+    assert {ReadPoint(Curve["displacement"]) for Curve in Curves} == {
+        (1.7, 0.0, 0.0),
+        (0.0, 2.3, 0.0),
+        (-1.7, 0.0, 0.0),
+        (0.0, -2.3, 0.0),
+    }
+    Sketch = RectFields(Model, "MSketch")[0]
+    assert Sketch["constraints"] == ValueSeries(())
+    assert Sketch["dimensions"] == ValueSeries(())

@@ -1,7 +1,7 @@
 # Run CLI process coverage in two required parallel groups
 
 The CLI compatibility workflow now runs core commands and qualification cases on
-separate Ubuntu 24.04 runners. Core collects `tests/convert/Commands` while
+separate Ubuntu 24.04 runners. Core collects `tests/Convert/Commands` while
 excluding its Feature, Metadata, and Sketch directories. Qualification collects
 those three directories explicitly. Every existing process case remains in
 exactly one group; new directories join Core by default.

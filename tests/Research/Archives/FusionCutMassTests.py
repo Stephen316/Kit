@@ -1,6 +1,6 @@
 import pytest as Pytest
 
-from interchange.enums.EnumDocument import Capability
+from interchange.Enums.EnumDocument import Capability
 from tests.Research.Archives.ArchiveEvidenceTests import OpenCutArchive
 
 

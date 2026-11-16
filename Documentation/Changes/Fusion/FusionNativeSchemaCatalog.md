@@ -9,9 +9,9 @@ The packaged `NativeClasses.xz` contains 412 class/version declarations and six 
 ## API
 
 ```python
-from convert.formats.Fusion.EntityCodec.DecodeEntities import DecodeEntities
-from convert.formats.Fusion.EntityCodec.EncodeEntities import EncodeEntities
-from convert.formats.Fusion.EntityCodec.Vocabulary.BuildProfile import BuildProfile
+from convert.Formats.Fusion.EntityCodec.DecodeEntities import DecodeEntities
+from convert.Formats.Fusion.EntityCodec.EncodeEntities import EncodeEntities
+from convert.Formats.Fusion.EntityCodec.Vocabulary.BuildProfile import BuildProfile
 
 Profile = BuildProfile(Metadata.Classes, ExternalTargets)
 Values = DecodeEntities(Records, Metadata.Classes, Profile)

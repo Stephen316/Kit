@@ -6,9 +6,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.EmitSceneParts import EmitSceneParts
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.EmitSceneParts import EmitSceneParts
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Graphics.ReadSceneParts import ReadSceneParts
 
 
 def where(error):

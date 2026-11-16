@@ -14,7 +14,7 @@ from convert.adapters.freecad.EditShape.Revolution.RevCarriers import (
 )
 from convert.adapters.freecad.EditShape.Revolution.RevExpected import RevExpected
 from convert.adapters.freecad.EditShape.Revolution.RevRaw import RevRaw
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     ApplyDirection,
     DecodeFailure,
     EdgeData,
@@ -22,10 +22,10 @@ from convert.geometry.Opencascade import (
     Reference,
     VertexData,
 )
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.topology.BrepTopology import BrepEdge
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Topology.BrepTopology import BrepEdge
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # native locations distinguish separate instances of a shared edge or vertex
 KPlacedKey = tuple[int, KLocationChain]

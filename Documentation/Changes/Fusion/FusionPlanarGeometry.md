@@ -24,10 +24,10 @@ The three lengths extend along positive X, Y, and Z respectively.
 The geometry serializers do not choose the current time or inspect the filesystem.
 
 ```python
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
-from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
-from convert.formats.Fusion.GeometryCodec.Prism.EmitCuboidSmb import EmitCuboidSmb
-from convert.formats.Fusion.GeometryCodec.Prism.EmitCuboidSmt import EmitCuboidSmt
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
+from convert.Formats.Fusion.GeometryCodec.Prism.EmitCuboidSmb import EmitCuboidSmb
+from convert.Formats.Fusion.GeometryCodec.Prism.EmitCuboidSmt import EmitCuboidSmt
 
 Model = CuboidBody(17.5, 23.25, 8.75, (-12.5, 7.25, 3.5))
 Stamp = GeometryStamp("Kit", "Independent rectangular cuboid", "2026-11-12T00:00:00Z")

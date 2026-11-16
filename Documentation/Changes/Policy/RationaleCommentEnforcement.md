@@ -29,7 +29,7 @@ The convention applies to Python; it does not introduce a comment convention for
 Run the static policy command from the repository root:
 
 ```sh
-uv run python -m tools.steering.CheckRationaleComments
+uv run python -m tools.Steering.CheckRationaleComments
 ```
 
 `--root` selects another Git worktree.

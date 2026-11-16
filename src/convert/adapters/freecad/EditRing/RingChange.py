@@ -3,9 +3,9 @@ from dataclasses import replace as Replace
 from convert.adapters.freecad.EditExtRing import GetRingPoints
 from convert.adapters.freecad.EditRead.Sketch.SavedEntity import IsSameCoord
 from convert.adapters.freecad.EditRing.RingEndpoints import ReadRingEnds
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # unchanged source identity restricts geometry edits to the ring and its exact endpoint points

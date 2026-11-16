@@ -8,7 +8,7 @@ BASE = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE))
 
-import convert.formats.Fusion.EntityCodec.Frame.ReadNamedMut as Module
+import convert.Formats.Fusion.EntityCodec.Frame.ReadNamedMut as Module
 from ExampleRecords import documents
 from RecordFailures import failures
 from Sweep import tracked
@@ -36,7 +36,7 @@ def main():
 
     Module.NamedShape = count
     if len(sys.argv) > 1:
-        from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+        from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
         for name in tracked():
             if name.endswith('.f3d'):
                 try:

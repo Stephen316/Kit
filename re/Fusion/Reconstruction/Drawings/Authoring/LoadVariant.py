@@ -12,7 +12,7 @@ sys.path.insert(0, str(HERE.parents[4] / 'src'))
 
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 VARIANTS = Path(tempfile.gettempdir()) / 'KitFusionDrawings' / 'Variants'
 

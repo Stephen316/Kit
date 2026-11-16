@@ -18,6 +18,8 @@ Production conversion runs without requiring CAD software.
 
 The [documentation index](Documentation/Index.md) includes API, model, adapter, research, and maintenance references.
 The [standards scope](Documentation/Standards/Scope.md) identifies the writing rules and current conformance limits.
+The [completion roadmap](Roadmap.md) describes the path to full conversion support.
+Use the [conversion backlog](Documentation/Maintenance/ConversionBacklog.md) to find task ownership, dependencies and existing PRs.
 
 ## Formats and limits
 

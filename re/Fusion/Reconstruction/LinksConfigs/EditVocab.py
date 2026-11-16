@@ -5,9 +5,9 @@ from pathlib import Path
 
 repository = Path(__file__).resolve().parents[4]
 sources = {
-    'design': repository / 'src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json',
-    'act': repository / 'src/convert/formats/Fusion/ContainerCodec/Assembly/ActClasses.json',
-    'browser': repository / 'src/convert/formats/Fusion/ContainerCodec/Browser/BrowserClasses.json',
+    'design': repository / 'src/convert/Formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json',
+    'act': repository / 'src/convert/Formats/Fusion/ContainerCodec/Assembly/ActClasses.json',
+    'browser': repository / 'src/convert/Formats/Fusion/ContainerCodec/Browser/BrowserClasses.json',
 }
 
 

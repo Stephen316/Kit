@@ -1,6 +1,6 @@
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.features.FeatureKinds import CombineFeature
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Features.FeatureKinds import CombineFeature
 
 # portable feature kinds bound what a writer may interpret as editable history
 KPortableFeatures = frozenset(

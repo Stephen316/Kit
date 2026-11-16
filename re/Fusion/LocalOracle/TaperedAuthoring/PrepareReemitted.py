@@ -7,8 +7,8 @@ import sys
 root = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(root / "src"))
 
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 
 
 folder = Path(__file__).resolve().parent

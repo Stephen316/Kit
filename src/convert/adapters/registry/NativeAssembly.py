@@ -1,4 +1,4 @@
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # assembly exports require qualified placements and constraints throughout the component tree

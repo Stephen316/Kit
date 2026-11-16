@@ -7,8 +7,8 @@ from convert.adapters.freecad.EditRing.RingChange import SyncRingEdit
 from convert.adapters.freecad.EditScale.ScaleWritePlan import ScaleWritePlan
 from convert.adapters.freecad.EditShape.SavedSketchWire import IsSketchCache
 from convert.adapters.freecad.Native import NativeObject
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Sketch import Sketch
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # standalone datum sketches can change only the point explicitly consumed by the scale

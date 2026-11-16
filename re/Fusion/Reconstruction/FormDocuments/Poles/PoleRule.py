@@ -22,8 +22,8 @@ from KnotRule import CORNERS, capped_points, cap_levels, fusion_faces, predict a
 from PoleData import GENERAL, OLD_LABELS, expand, grip_array, read_tables, table_faces  # noqa: E402
 from CapLab import Cage, Levels, regular_net  # noqa: E402
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout, KnotScale  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CageGraph import ReadGraph  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Capped.CappedLayout import CappedLayout, KnotScale  # noqa: E402
 
 TOL = 1e-12
 

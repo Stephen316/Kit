@@ -1,9 +1,9 @@
 from struct import pack as PackFields
 from typing import cast as CastValue
 
-from convert.adapters.solidworks.container.Archive import ArchiveError
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.Archive import ArchiveError
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 
 # the measured part generations put different base fields before the terminal double

@@ -87,7 +87,7 @@ Preserve the environment version so later investigators can assess drift.
 ## Sources
 
 - [Research methodology](../../../re/Methodology.md)
-- [Oracle integration tests](../../../tests/convert/solidworks/core/SolidworksOracleTests.py)
-- [Oracle inspection sequence](../../../tests/oracle/Session.py)
+- [Oracle integration tests](../../../tests/Convert/Solidworks/Core/SolidworksOracleTests.py)
+- [Oracle inspection sequence](../../../tests/Oracle/Session.py)
 - [Historical donor experiment](../../../re/solidworks/features/RevolveDonorSpec.md)
 - [Lossless acceptance rule](../../../.agents/skills/standard-pr-practice/references/Standards/Portable/LosslessTranslation.md)

@@ -1,8 +1,8 @@
 from math import isclose as IsClose
 
-from convert.geometry.Parasolid import DecodeBrepModel, EncodeBrepModel
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import BrepLoop
+from convert.Geometry.Parasolid import DecodeBrepModel, EncodeBrepModel
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepTopology import BrepLoop
 
 
 # captured rectangles give an independent area witness for exterior and cut boundaries

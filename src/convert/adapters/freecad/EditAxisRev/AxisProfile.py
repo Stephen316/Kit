@@ -7,10 +7,10 @@ from convert.adapters.freecad.EditAxisRev.AxisPrimitives import (
 from convert.adapters.freecad.EditRev.RevProfileProof import CheckRevMembers
 from convert.adapters.freecad.EditRing.RingEndpoints import ReadRingEnds
 from convert.adapters.freecad.EditRing.RingInputs import ReadRingEnts
-from convert.formats.Fusion.Profiles.LineRing import OrderLineRing
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.VectorPlane import PlaneVector
+from convert.Formats.Fusion.Profiles.LineRing import OrderLineRing
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # separate point ids are paired only through exactly joined selected profile neighbors

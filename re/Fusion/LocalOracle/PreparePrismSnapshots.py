@@ -8,10 +8,10 @@ from zipfile import ZipFile
 root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(root / 'src'))
 
-from convert.formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
-from convert.formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.PrismSnapshot import PrismSnapshot
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Snapshots.ReadSnapPart import ReadSnapPart
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Snapshots.EmitSnapPart import EmitSnapPart
+from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Models.PrismSnapshot import PrismSnapshot
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Snapshots.ReadSnapPart import ReadSnapPart
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Snapshots.EmitSnapPart import EmitSnapPart
 
 
 def digest(value):

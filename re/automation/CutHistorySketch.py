@@ -3,8 +3,8 @@
 import math
 
 from CutHistoryGraph import GraphGap, check, index, length_mm, ref, unique, world
-from interchange.enums.EnumValues import ParameterRole
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.Enums.EnumValues import ParameterRole
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
 from PairedPerimeters import match_perimeters
 
 

@@ -2,8 +2,8 @@ from math import isclose as IsClose
 from xml.etree.ElementTree import Element
 
 from convert.adapters.freecad.EditRead.XmlField import EditAttr, EditFloat
-from interchange.geometry.models.GeometryCurves import CircleGeometry, PointGeometry
-from interchange.geometry.models.Sketch import SketchEntity
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import SketchEntity
 
 # native decimal formatting can move a restored coordinate by machine precision
 KSketchTolerance = 1e-9

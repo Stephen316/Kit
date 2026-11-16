@@ -1,17 +1,17 @@
 from convert.adapters.Fusion.Native.Graph.GraphValues import ObjectFields, TextValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
-from convert.formats.Fusion.DocumentCodec.Materials.Vocabulary.FamilyFields import (
+from convert.Formats.Fusion.DocumentCodec.Materials.Vocabulary.FamilyFields import (
     KColorFields,
 )
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.ResolveMatAsset import (
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.ResolveMatAsset import (
     ResolveMatAsset,
 )
-from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
-from convert.formats.Fusion.MaterialCodec.Models.MaterialAsset import MaterialAsset
-from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
-from convert.formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
+from convert.Formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
+from convert.Formats.Fusion.MaterialCodec.Models.MaterialAsset import MaterialAsset
+from convert.Formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
+from convert.Formats.Fusion.MaterialCodec.Package.Model.MaterialPackage import (
     MaterialPackage,
 )
 from interchange.materials.MaterialRecord import MaterialRecord

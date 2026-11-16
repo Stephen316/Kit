@@ -1,0 +1,18 @@
+from dataclasses import replace as Replace
+
+from convert.Formats.Fusion.BrepCodec.Models.VertexIndices import VertexIndices
+from convert.Formats.Fusion.GeometryCodec.GeometryRecord import GeometryRecord
+
+
+# the apply vertices contract needs a shared interpretation so topology identity survives native history reconstruction
+def ApplyVertices(
+    Records: tuple[GeometryRecord, ...], Vertices: VertexIndices
+) -> tuple[GeometryRecord, ...]:
+    Results = list(Records)
+    for Ordinal, EdgeIndex in ((20, Vertices.TopIndex), (21, Vertices.BottomIndex)):
+        Current = Results[Ordinal]
+        Results[Ordinal] = Replace(
+            Current,
+            Fields=(*Current.Fields[:4], EdgeIndex, *Current.Fields[5:]),
+        )
+    return tuple(Results)

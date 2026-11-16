@@ -8,8 +8,8 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.setrecursionlimit(20000)
 
-from convert.formats.Fusion.BundleCodec.ReadBundle import ReadBundle
-from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
+from convert.Formats.Fusion.BundleCodec.ReadBundle import ReadBundle
+from convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
 
 PREFIX = 'OGS.BlobFolder/OGS/DefaultScene/'
 BUNDLE = 're/Fusion/examples/.f3z/example1.f3z'

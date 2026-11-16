@@ -14,11 +14,11 @@ sys.path.insert(0, str(BASE))
 sys.setrecursionlimit(20000)
 
 from ExampleRecords import documents
-import convert.formats.Fusion.Topology.AsmEdge.AsmTable as Table
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
-import convert.formats.Fusion.BrepCodec.Journal.ReadJournal as JournalModule
-import convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead as Head
-import convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut as Entities
+import convert.Formats.Fusion.Topology.AsmEdge.AsmTable as Table
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+import convert.Formats.Fusion.BrepCodec.Journal.ReadJournal as JournalModule
+import convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead as Head
+import convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut as Entities
 
 WIDTH = [8]
 STATS = []
@@ -54,7 +54,7 @@ RECORD = Table.ReadAsmRecord
 
 def patch():
     Table.KRecordTokens = 1 << 22
-    import convert.formats.Fusion.BrepCodec.Journal.Reading.ReadStatesMut as States
+    import convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadStatesMut as States
     States.ReadAsmRecord = record
     for name, module in list(sys.modules.items()):
         if name.startswith('convert.') and getattr(module, 'ReadAsmToken', None) is original:
@@ -103,7 +103,7 @@ def entities(cursor, end):
 
 
 def check(model):
-    from convert.formats.Fusion.BrepCodec.Journal.Validation import CheckJournal as source
+    from convert.Formats.Fusion.BrepCodec.Journal.Validation import CheckJournal as source
     if source.CountRoots(model.Entities[: model.ActiveCount]) != model.Header.RootCount - 1:
         raise ValueError('Fusion journal active bodies disagree with its root count')
     for name in ('CheckStream', 'CheckStates', 'CheckAllocTags'):
@@ -123,7 +123,7 @@ def check(model):
 
 
 def main():
-    import convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut  # noqa
+    import convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut  # noqa
     patch()
     causes = collections.Counter()
     for name, data in documents():

@@ -7,12 +7,12 @@ from types import MappingProxyType as ReadOnlyMap
 from typing import Mapping as KMapping
 from typing import cast as CastValue
 
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
     FormUse,
     FormWindow,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PatchCell import PatchCell
 from ReadStencils import (
     ReadStencils,
 )

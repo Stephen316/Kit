@@ -9,7 +9,7 @@
 from struct import pack as PackFields
 from struct import unpack as UnpackFields
 
-from convert.adapters.solidworks.container.Archive import ArchiveError, EncodeString
+from convert.adapters.solidworks.Container.Archive import ArchiveError, EncodeString
 
 # The color asset's IOR also supplies the post-reader's derived float.
 KColorIor = 1.5

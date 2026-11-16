@@ -7,17 +7,17 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import ChoiceValue
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import CurveContext
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import ChoiceValue
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import CurveContext
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.NubsSurface import NubsSurface
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.TSplineCodec.Model.TsplineSurface import TsplineSurface
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil'
 TARGET = BASE / 'StencilInvariance.json'

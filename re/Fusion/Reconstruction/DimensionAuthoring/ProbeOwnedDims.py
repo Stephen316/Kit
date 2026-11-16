@@ -17,22 +17,22 @@ from FusionCutExtentEvidence import REVISION, ROOT, design_members
 from PairedCaptureIntake import GitSnapshot, require, sha256
 from fusion_metadata import parse_metadata
 from convert.adapters.Fusion.Projection.NativeIndex import MakeIndex
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.ContainerCodec.ContainerLayout import KRootName
-from convert.formats.Fusion.ContainerCodec.Wire.ReadDocument import ReadDocument as ReadHeader
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.LinkDimGraphMut import (
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.ContainerCodec.ContainerLayout import KRootName
+from convert.Formats.Fusion.ContainerCodec.Wire.ReadDocument import ReadDocument as ReadHeader
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.LinkDimGraphMut import (
     LinkDimGraphMut,
 )
-from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
-from convert.formats.Fusion.DocumentCodec.Values.ReadObjects import ReadSeries
-from convert.formats.Fusion.HistoryRef import ReadNativeRef
-from convert.formats.Fusion.MetaCursor import MetaCursor
-from convert.formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
-from convert.formats.Fusion.ParamBinding import ResolveOwner
-from convert.formats.Fusion.Sketches.Dimensional.DimRecord import DimRecordBody, ReadDimRecord
-from convert.formats.Fusion.Sketches.Dimensional.DimSpec import KLinearDimension
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
+from convert.Formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
+from convert.Formats.Fusion.DocumentCodec.Values.ReadObjects import ReadSeries
+from convert.Formats.Fusion.HistoryRef import ReadNativeRef
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.NumericParam import KParamGuid, ReadNativeNum
+from convert.Formats.Fusion.ParamBinding import ResolveOwner
+from convert.Formats.Fusion.Sketches.Dimensional.DimRecord import DimRecordBody, ReadDimRecord
+from convert.Formats.Fusion.Sketches.Dimensional.DimSpec import KLinearDimension
+from convert.Formats.Fusion.Sketches.SketchPlacement import KSketchFeature
 
 P01_FOLDER = "re/automation/PairedCaptures/P01/fusion-5dc3245eb59c/"
 P01_RECEIPT = "88ca575b5176e61cd25d585c9cb6804d6ea2c1b3d3ef843ac2d2bcb43593a4db"
@@ -42,8 +42,8 @@ NAMES = ("width_mm", "height_mm")
 
 
 def generate():
-    build = import_module("convert.formats.Fusion.DocumentCodec.BuildDesign")
-    dims = import_module("convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut")
+    build = import_module("convert.Formats.Fusion.DocumentCodec.BuildDesign")
+    dims = import_module("convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut")
     add_collections, add_constraints, emit = (
         build.AddCollectMut,
         build.ConstrainMut,

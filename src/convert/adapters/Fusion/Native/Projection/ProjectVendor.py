@@ -1,9 +1,9 @@
 from convert.adapters.Fusion.Native.Circular.ProjectCircular import ProjectCircular
 from convert.adapters.Fusion.Native.Graph.BuildGraph import BuildGraph
 from convert.adapters.Fusion.Native.Projection.ProjectPrism import ProjectPrism
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.records.RecordSource import CadSource
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Records.RecordSource import CadSource
 
 
 # project vendor needs an explicit validity boundary so public document claims remain grounded in native records

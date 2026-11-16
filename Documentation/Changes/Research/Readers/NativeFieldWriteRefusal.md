@@ -27,7 +27,7 @@ Retained native data must be decoded and independently qualified before export.
 
 ## Verification
 
-`tests/convert/solidworks/core/NativeWrites` adds persisted compatibility cases
+`tests/Convert/Solidworks/Core/NativeWrites` adds persisted compatibility cases
 through public conversion/writing and direct writer file/stream boundaries.
 The cases check destination preservation, relabeled sources, suppressed history
 and nested documents. Native sketch evidence comes from the existing saved

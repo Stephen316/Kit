@@ -36,28 +36,28 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(HERE))
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.StitchAttrib import StitchAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.VertedgeAttrib import VertedgeAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.CreateNurbsBody import CreateNurbsBody  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.NurbsBody import CylinderCarrier, PlaneCarrier  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.SplineEval import PointOnSurface  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import SubtypeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import TcoedgeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Nodes.TedgeNode import TedgeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Nodes.TvertexNode import TvertexNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import BsSurface  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
-from tests.convert.formats.FusionCodec.Brep.Complex.NurbsSamples import KNurbsHistory, KNurbsStamp  # noqa: E402
-from tests.convert.formats.FusionCodec.Brep.Complex.WiderNurbs import KDomeProfile, KHoleBox, KTorusMajor, KTorusMinor, KTubeProfile, WiderModels  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.StitchAttrib import StitchAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.VertedgeAttrib import VertedgeAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.CreateNurbsBody import CreateNurbsBody  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.NurbsBody import CylinderCarrier, PlaneCarrier  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.SplineEval import PointOnSurface  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import SubtypeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import TcoedgeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TedgeNode import TedgeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TvertexNode import TvertexNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsSurface import BsSurface  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListSubtypes import ListSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
+from tests.Convert.Formats.FusionCodec.Brep.Complex.NurbsSamples import KNurbsHistory, KNurbsStamp  # noqa: E402
+from tests.Convert.Formats.FusionCodec.Brep.Complex.WiderNurbs import KDomeProfile, KHoleBox, KTorusMajor, KTorusMinor, KTubeProfile, WiderModels  # noqa: E402
 
 import NurbsMath  # noqa: E402
 

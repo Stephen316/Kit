@@ -6,7 +6,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
 )
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
-from convert.formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
+from convert.Formats.Fusion.BrepCodec.Models.TopologyTags import TopologyTags
 
 
 # invalid round body input must fail here so public geometry remains consistent with native circular topology

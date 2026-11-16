@@ -16,8 +16,8 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Cages'))
 
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 STENCILS = ROOT / 're/Fusion/Reconstruction/FormDocuments/Stencil/FormStencils.xz'
 if not STENCILS.exists():

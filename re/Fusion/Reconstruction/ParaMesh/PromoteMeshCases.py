@@ -81,7 +81,7 @@ def main():
                     "SemanticHash": hashlib.sha256(encoded).hexdigest(),
                     "Vertices": len(model["Positions"]), "Triangles": len(model["Corners"]) // 3,
                 })
-    output = REPO / "tests/convert/formats/FusionCodec/Mesh/MeshSources.xz"
+    output = REPO / "tests/Convert/Formats/FusionCodec/Mesh/MeshSources.xz"
     output.parent.mkdir(parents=True, exist_ok=True)
     data = lzma.compress((json.dumps(cases, indent=2) + "\n").encode())
     output.write_bytes(data)

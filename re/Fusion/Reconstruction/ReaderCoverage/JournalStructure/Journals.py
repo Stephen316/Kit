@@ -5,13 +5,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadStatesMut import ReadStatesMut
-from convert.formats.Fusion.BrepCodec.Journal.Reading.ReadStreamNode import ReadStreamNode
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.MetaCursor import MetaCursor
-from convert.formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadEntitiesMut import ReadEntitiesMut
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadModelHead import ReadModelHead
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadStatesMut import ReadStatesMut
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.ReadStreamNode import ReadStreamNode
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import ReadAsmName, ReadAsmRecord
 
 
 def members(path, suffix):

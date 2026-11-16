@@ -8,7 +8,7 @@ from typing import Mapping as TypeMap
 from interchange import CadDocument as KCadDocument
 from interchange import PayloadRole as KPayloadRole
 from interchange import frozen_mapping as FreezeMapping
-from interchange.compatibility.PythonCompat import BindTypeGlobals
+from interchange.Compatibility.PythonCompat import BindTypeGlobals
 
 from convert.adapters.base.AdapterInfo import AdapterInfo as KAdapterInfo
 from convert.adapters.base.ContractTypes import (

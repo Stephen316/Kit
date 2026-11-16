@@ -1,0 +1,15 @@
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import KAsmToken
+
+
+# the source link operation needs a consistent construction rule so revision ownership survives native history reconstruction
+def MakeSourceLink(Value: SketchLink) -> tuple[KAsmToken, ...]:
+    Numbers = (
+        Value.PrimaryId,
+        Value.SecondaryId,
+        Value.Direction,
+        Value.TopologyRoleFlags,
+        Value.SplitSequenceId,
+        Value.SplitTotalNumber,
+    )
+    return (4, 1), (4, 1), (4, 3), (7, " ".join(str(Number) for Number in Numbers))

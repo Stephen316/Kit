@@ -10,27 +10,27 @@ from convert.adapters.freecad.EditBodyRev.BodyAxisEdit import (
     ReadAxisEdit,
     ReadEditedAxis,
 )
-from convert.formats.Fusion.BodyBlob import KHistoryPrefix, KMaxAsmSize
-from convert.formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid
-from convert.formats.Fusion.SelectionProxy import KSelectProxy
-from convert.formats.Fusion.Topology.AsmEdge.AsmPoints import AsmPointMm, IsAsmNear
-from convert.formats.Fusion.Topology.AsmEdge.PrismProfile import ReadProfileTags
-from convert.formats.Fusion.Topology.BodyAnchor import KAnchorGuid, KBodyGuid
-from convert.formats.Fusion.Topology.BodyAsmMap import KAsmName
-from convert.formats.Fusion.Topology.BodyCollectionRole import KBodyHistory
-from convert.formats.Fusion.Topology.LineContext import KLineContext
-from convert.formats.Fusion.Topology.PickDescriptor import KPickHelper, KTopoSelect
-from convert.formats.Fusion.Topology.PickSupport import KSupportGuid
-from convert.formats.Fusion.Topology.RecipeRead import KRecipeGuid
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Selection import SelectPathElem, Selection
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.BodyBlob import KHistoryPrefix, KMaxAsmSize
+from convert.Formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid
+from convert.Formats.Fusion.SelectionProxy import KSelectProxy
+from convert.Formats.Fusion.Topology.AsmEdge.AsmPoints import AsmPointMm, IsAsmNear
+from convert.Formats.Fusion.Topology.AsmEdge.PrismProfile import ReadProfileTags
+from convert.Formats.Fusion.Topology.BodyAnchor import KAnchorGuid, KBodyGuid
+from convert.Formats.Fusion.Topology.BodyAsmMap import KAsmName
+from convert.Formats.Fusion.Topology.BodyCollectionRole import KBodyHistory
+from convert.Formats.Fusion.Topology.LineContext import KLineContext
+from convert.Formats.Fusion.Topology.PickDescriptor import KPickHelper, KTopoSelect
+from convert.Formats.Fusion.Topology.PickSupport import KSupportGuid
+from convert.Formats.Fusion.Topology.RecipeRead import KRecipeGuid
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Selection import SelectPathElem, Selection
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # the resolved selection carries these exact ordered native links before its shape witness
 KPickSpanKinds = (

@@ -31,7 +31,7 @@ def main():
   model=PARSE(path);value=typed(model,path)
   semantic=json.dumps(value,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
   cases.append(dict(Name=path.stem,Source=str(path.relative_to(ROOT)),SourceHash=hashlib.sha256(path.read_bytes()).hexdigest(),SemanticHash=hashlib.sha256(semantic).hexdigest(),Faces=len(model['faces']),Vertices=len(model['vertices']),Grips=len(model['grips'])))
- target=ROOT/'tests/convert/formats/FusionCodec/TSpline/TsmSources.xz';target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(lzma.compress(json.dumps(cases,separators=(',',':')).encode()))
+ target=ROOT/'tests/Convert/Formats/FusionCodec/TSpline/TsmSources.xz';target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(lzma.compress(json.dumps(cases,separators=(',',':')).encode()))
  print(json.dumps(dict(cases=len(cases),fixture=str(target.relative_to(ROOT)),sha256=hashlib.sha256(target.read_bytes()).hexdigest())))
 
 if __name__=='__main__':main()

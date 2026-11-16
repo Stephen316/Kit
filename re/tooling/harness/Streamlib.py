@@ -12,7 +12,7 @@ KRootInfo = KHereInfo.parents[2]
 for CandInfo in (KHereInfo, KRootInfo, KRootInfo / "src"):
     if str(CandInfo) not in System.path:
         System.path.insert(0, str(CandInfo))
-from convert.adapters.solidworks.container.Container import (
+from convert.adapters.solidworks.Container.Container import (
     SldprtArchive,
     _template_fields as TemplateFields,
 )
@@ -168,7 +168,7 @@ def Rebuild(
     *,
     DropInfo: frozenset[str] = frozenset({KPartition}),
 ) -> bytes:
-    from convert.adapters.solidworks.container.Container import (
+    from convert.adapters.solidworks.Container.Container import (
         build_sldprt as BuildSldprt,
     )
 

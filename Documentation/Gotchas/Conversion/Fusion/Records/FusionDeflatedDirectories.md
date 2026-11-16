@@ -16,7 +16,7 @@ Twelve Kit-prepared archives use that deflated layout for all 146 of their direc
 
 ## Evidence
 
-- [Container reader](../../../../../src/convert/formats/Fusion/ContainerCodec/ReadContainer.py)
+- [Container reader](../../../../../src/convert/Formats/Fusion/ContainerCodec/ReadContainer.py)
 - [Journal state acceptance](../../../../../re/Fusion/LocalOracle/JournalStates/NativeProductionAcceptance.json)
 - [Planar topology acceptance](../../../../../re/Fusion/LocalOracle/PlanarTopology/NativeAcceptance.json)
 - [Native acceptance case `DeflatedFolders`](../../../../../re/Fusion/LocalOracle/ReaderCoverage/NativeAcceptance.json)

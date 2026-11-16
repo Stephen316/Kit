@@ -5,14 +5,14 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.EntityCodec.Vocabulary.PickSchema import PickSchema
-from convert.formats.Fusion.EntityCodec.Vocabulary.SchemaJson import SchemaJson
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.EntityCodec.Vocabulary.PickSchema import PickSchema
+from convert.Formats.Fusion.EntityCodec.Vocabulary.SchemaJson import SchemaJson
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
-vocabulary = repository / 'src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json'
+vocabulary = repository / 'src/convert/Formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json'
 present = {(item['ClassGuid'].upper(), item['SchemaVersion']) for item in json.loads(vocabulary.read_text())}
 container = ReadContainer(Path(sys.argv[1]).read_bytes())
 catalog = DocumentCatalog(ReadDocSchemas())

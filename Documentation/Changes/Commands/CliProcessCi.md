@@ -1,6 +1,6 @@
 # Run CLI process coverage independently of archive compatibility
 
-The Fusion compatibility workflow runs `tests/convert/Commands` through the required
+The Fusion compatibility workflow runs `tests/Convert/Commands` through the required
 `CLI conversion and inspection compatibility` report. Its current
 [parallel groups](CliProcessGroups.md) preserve every case. The existing
 `Fusion archive compatibility` job retains every codec/API case. Each suite

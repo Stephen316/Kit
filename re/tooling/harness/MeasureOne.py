@@ -11,7 +11,7 @@ KRootInfo = KHereInfo.parents[2]
 for CandInfo in (KRootInfo, KRootInfo / "src"):
     if str(CandInfo) not in System.path:
         System.path.insert(0, str(CandInfo))
-from tests.oracle.Session import SolidWorksSession
+from tests.Oracle.Session import SolidWorksSession
 
 
 # needed to keep reverse engineering responsibilities isolated and maintainable

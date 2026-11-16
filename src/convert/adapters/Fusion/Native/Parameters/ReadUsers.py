@@ -7,7 +7,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import TextValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.SketchContext import SketchContext
 from convert.adapters.Fusion.Native.Parameters.ReadParameters import ProjectParam
-from interchange.records.RecordParameter import Parameter
+from interchange.Records.RecordParameter import Parameter
 
 
 # the users operation needs a distinct decoding boundary so public document claims remain grounded in native records

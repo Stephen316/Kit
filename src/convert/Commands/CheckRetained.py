@@ -4,7 +4,7 @@ from dataclasses import is_dataclass as IsDataClass
 from typing import cast as CastValue
 
 from convert.Commands.CheckKinds import CheckKinds
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 # retained source data needs a distinct refusal that directs callers toward inspection
 KMetadataError = (

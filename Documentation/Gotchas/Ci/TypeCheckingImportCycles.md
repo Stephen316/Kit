@@ -10,4 +10,4 @@ For a mixin that reads fields of its composing class, declare a `Protocol` with 
 Cast `self` to that `Protocol`.
 The mixin module then imports only leaf types.
 Keep a member whose type is defined in the composing module, such as `CadDocument.Assembly`, in that class.
-See the `RootAccess`, `FeatureAccess` and `GeometryAccess` mixins under `src/interchange/document/models/Access/`.
+See the `RootAccess`, `FeatureAccess` and `GeometryAccess` mixins under `src/interchange/document/Models/Access/`.

@@ -33,10 +33,10 @@ import BuildPruned6  # noqa: E402
 import BuildPruned7  # noqa: E402
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import DayTime  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorShell import AuthorShell  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Header.HeaderFrame import MakeFrame  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorDwg import DayTime  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorShell import AuthorShell  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.HeaderFrame import MakeFrame  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 ZERO_SHORTS = MakeFrame(8, 0b10101010, b'')
 

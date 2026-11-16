@@ -63,7 +63,7 @@ These tasks have different success conditions.
 
 ## Sources
 
-- [Parasolid geometry](../../../src/convert/geometry/Parasolid.py)
-- [OpenCASCADE geometry](../../../src/convert/geometry/Opencascade.py)
+- [Parasolid geometry](../../../src/convert/Geometry/Parasolid.py)
+- [OpenCASCADE geometry](../../../src/convert/Geometry/Opencascade.py)
 - [FreeCAD B-rep handling](../../../src/convert/adapters/freecad/Brep.py)
 - [Neutral B-rep model](../Model/Brep.md)

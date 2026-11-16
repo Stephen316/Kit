@@ -78,6 +78,6 @@ A confirmed record field does not establish a complete translator.
 ## Sources
 
 - [Repository instructions](../../../AGENTS.md)
-- [Integration suites](../../../tests/convert/)
+- [Integration suites](../../../tests/Convert/)
 - [Research methodology](../../../re/Methodology.md)
 - [Oracle evidence](../Research/Oracles.md)

@@ -1,0 +1,23 @@
+from dataclasses import dataclass as MakeDataClass
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.EntityRef import EntityRef
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.SceneSet import SceneSet
+
+
+# node value needs an explicit state contract so display geometry retains its entity and scene relationships
+@MakeDataClass(frozen=True, slots=True)
+class NodeValue:
+    NodeType: int
+    RenderRef: str | None
+    Attributes: SceneSet
+    EntityStatus: int
+    EntityLink: EntityRef | None
+    Qualifier: float
+    ClientName: str | None
+    SubtypeName: str | None
+    SerialId: float
+    DoubleSided: int
+    ColorValue: tuple[float, ...]
+    ConsolFlags: int
+    ImmediateFlags: int
+    RenderFlags: int
+    SceneFlags: int

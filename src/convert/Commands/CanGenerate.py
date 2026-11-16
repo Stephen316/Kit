@@ -1,9 +1,9 @@
 from collections.abc import Mapping
 
 from convert.Commands.GeneratorKinds import KCreatorTypes
-from interchange.enums.EnumFeatures import BooleanOp
-from interchange.features.FeatureKinds import CombineFeature
-from interchange.features.FeatureStep import FeatureStep
+from interchange.Enums.EnumFeatures import BooleanOp
+from interchange.Features.FeatureKinds import CombineFeature
+from interchange.Features.FeatureStep import FeatureStep
 
 
 # geometry must depend on active typed inputs rather than unrelated feature presence

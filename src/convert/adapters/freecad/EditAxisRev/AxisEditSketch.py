@@ -3,8 +3,8 @@ from dataclasses import replace as Replace
 from convert.adapters.freecad.EditRead.Sketch.SavedEntity import IsSameCoord
 from convert.adapters.freecad.EditRing.RingChange import SyncRingLine
 from convert.adapters.freecad.EditRing.RingEndpoints import ReadRingEnds
-from interchange.geometry.models.GeometryCurves import PointGeometry
-from interchange.geometry.models.Sketch import Sketch
+from interchange.geometry.Models.GeometryCurves import PointGeometry
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # metadata and unrelated point geometry retain their exact source identities

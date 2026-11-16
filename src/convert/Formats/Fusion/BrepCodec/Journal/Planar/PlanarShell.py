@@ -1,0 +1,24 @@
+from dataclasses import dataclass as MakeDataClass
+
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
+    KJournalVector,
+)
+
+
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
+    TransformNode,
+)
+
+
+# planar shell needs an explicit state contract so topology changes retain their native revision relationships
+@MakeDataClass(frozen=True, slots=True)
+class PlanarShell:
+    StateId: int
+    BodyRef: int
+    EntityTag: int
+    VertexRefs: tuple[int, ...]
+    PointsCm: tuple[KJournalVector, ...]
+    FaceRefs: tuple[int, ...]
+    Rings: tuple[tuple[int, ...], ...]
+    VolumeCm3: float
+    Placement: TransformNode | None = None

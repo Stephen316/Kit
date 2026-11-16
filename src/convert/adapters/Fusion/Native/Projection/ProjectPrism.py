@@ -20,13 +20,13 @@ from convert.adapters.Fusion.Native.Rectangle.CheckPrismTags import CheckPrismTa
 from convert.adapters.Fusion.Native.Rectangle.ReadRectangle import ReadRectangle
 from convert.adapters.Fusion.Native.Graph.SelectExtrusion import SelectExtrusion
 from convert.adapters.Fusion.State.EncodeState import EncodeState
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import Transform
-from interchange.records.RecordConfig import Configuration
-from interchange.records.RecordSource import CadSource
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import Transform
+from interchange.Records.RecordConfig import Configuration
+from interchange.Records.RecordSource import CadSource
 
 
 # project prism needs an explicit validity boundary so public document claims remain grounded in native records

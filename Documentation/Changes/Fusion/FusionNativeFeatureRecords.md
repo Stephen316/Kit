@@ -12,7 +12,7 @@ The writer derives the complete payload from typed frames, member groups, and fi
 
 ## Usage
 
-Import `ReadFeature` and `EmitFeature` from `convert.formats.Fusion.SegmentCodec.Features`' corresponding modules.
+Import `ReadFeature` and `EmitFeature` from `convert.Formats.Fusion.SegmentCodec.Features`' corresponding modules.
 Construct a tuple of `ClassStamp(ClassGuid, BaseGuid, SchemaVersion)` entries from the record's owning class through all bases to the entity root.
 `ReadFeature(Payload, Lineage)` returns a `FeatureRecord` containing its frame and ordered member groups.
 `EmitFeature(Record)` encodes that semantic record without access to the original bytes.

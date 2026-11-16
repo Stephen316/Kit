@@ -1,5 +1,5 @@
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentWalk import WalkDocuments
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentWalk import WalkDocuments
 
 # reader and writer boundaries share one persistent qualification status key
 KResearchReadStatus = "kit.research_read_status"

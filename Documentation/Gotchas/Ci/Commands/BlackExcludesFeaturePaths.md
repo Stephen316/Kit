@@ -2,7 +2,7 @@
 
 The repository's Black `force-exclude` expression `(examples|modules|re)/`
 matches the trailing `re/` in `Feature/`. An explicit process-case path under
-`tests/convert/Commands/Feature/` can therefore be skipped even though Black exits
+`tests/Convert/Commands/Feature/` can therefore be skipped even though Black exits
 successfully. Check its reported file count before treating formatting as evidence.
 
 For these explicitly owned files, run the pinned formatter with

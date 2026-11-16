@@ -83,4 +83,4 @@ Use [error recovery](../../Tasks/Troubleshoot.md) for rejected output.
 - [Adapter](../../../src/convert/adapters/catia/Adapter.py)
 - [Container](../../../src/convert/adapters/catia/Container.py)
 - [Format metadata](../../../src/convert/adapters/catia/Format.py)
-- [CATIA integration coverage](../../../tests/convert/catia/)
+- [CATIA integration coverage](../../../tests/Convert/Catia/)

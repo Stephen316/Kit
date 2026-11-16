@@ -2,7 +2,7 @@
 
 ## Behavior and usage
 
-`convert.formats.Fusion.MaterialCodec` reads and writes the three binary members of the nested Protein material package without a CAD runtime or donor payloads.
+`convert.Formats.Fusion.MaterialCodec` reads and writes the three binary members of the nested Protein material package without a CAD runtime or donor payloads.
 
 `DecodeMaterials(Streams, Schemas)` accepts a `MaterialData` value containing table-of-contents, definition-store, and instance-store bytes, plus explicit `MaterialSchema` declarations. It returns immutable `MaterialAsset` values.
 `EncodeMaterials(Assets, Schemas)` accepts those semantic values and returns newly allocated binary stores. It does not accept original payloads, padding, source paths, or residual byte strings.

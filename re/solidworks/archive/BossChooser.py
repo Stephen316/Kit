@@ -1,6 +1,6 @@
 """Expose packaged chooser parsing to the saved report replay."""
 
-from convert.adapters.solidworks.resolved.BossChooser import (
+from convert.adapters.solidworks.Resolved.BossChooser import (
     CheckChoiceOwn as require_chooser_owner,
     ReadBossChoices as read_boss_choosers,
     ReadChoiceTail,

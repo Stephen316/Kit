@@ -71,10 +71,10 @@ jobs:
         run: >-
           uv run pytest tests/Policy/CodeqlPolicyTests.py
           tests/Policy/CiReportsTests.py tests/Policy/QueueAggregationTests.py
-          tests/Policy/ReviewerAggregationTests.py tests/steering/AgentSkillsMigrationTests.py
-          tests/convert/api/ApiMetadataTests.py tests/Policy/DiffBreakdownTests.py
+          tests/Policy/ReviewerAggregationTests.py tests/Steering/AgentSkillsMigrationTests.py
+          tests/Convert/Api/ApiMetadataTests.py tests/Policy/DiffBreakdownTests.py
           tests/Policy/ShardPlanTests.py
-          tests/convert/Commands/CliRuntimeTests.py
+          tests/Convert/Commands/CliRuntimeTests.py
 
       - name: Census the SOLIDWORKS discovery captures
         run: >-
@@ -146,43 +146,43 @@ jobs:
       - name: Exercise native file reading and writing
         run: >-
           uv run pytest
-          tests/convert/solidworks
-          tests/convert/formats/ParasolidTests.py
-          tests/convert/api/ApiTests.py
-          tests/convert/api/ApiSupportTests.py
-          tests/convert/registry
-          tests/convert/qualification
-          tests/steering/RationaleCommentsTests.py
+          tests/Convert/Solidworks
+          tests/Convert/Formats/ParasolidTests.py
+          tests/Convert/Api/ApiTests.py
+          tests/Convert/Api/ApiSupportTests.py
+          tests/Convert/Registry
+          tests/Convert/Qualification
+          tests/Steering/RationaleCommentsTests.py
 
       - name: Verify typed carrier compatibility at native write boundaries
         run: >-
           uv run --frozen python -m pytest
-          tests/convert/catia/CatiaTests.py::TestRoundtripIs
-          tests/convert/catia/CatiaTests.py::TestPublicSdkTo
-          tests/convert/catia/CatiaTests.py::TestGeneratedC
-          tests/convert/catia/CatiaTests.py::TestStripped
-          tests/convert/catia/CatiaTests.py::TestTypedKind
-          tests/convert/catia/CatiaTests.py::TestModifiedDoc
-          tests/convert/catia/CatiaTests.py::TestEmbeddedAnd
-          tests/convert/catia/CatiaTests.py::TestGeneratedA
-          tests/convert/catia/CatiaTests.py::TestGeneratedD
-          tests/convert/catia/CatiaTests.py::TestForeignRole
-          tests/convert/catia/CatiaTests.py::TestLegacyDocIs
-          tests/convert/catia/CatiaTests.py::TestForeign
-          tests/convert/catia/CatiaTests.py::TestReaderKind
-          tests/convert/catia/CatiaTests.py::TestConversion
-          tests/convert/catia/CatiaAssemblyTests.py::TestChangedBase
-          tests/convert/catia/CatiaAssemblyTests.py::TestCatproductO
-          tests/convert/freecad/FreecadTests.py::TestFeatureAnd
-          tests/convert/freecad/FreecadTests.py::TestNonFeature
-          tests/convert/freecad/FreecadTests.py::TestStrictTo
-          tests/convert/freecad/FreecadTests.py::TestDirectFcstd
-          tests/convert/freecad/FreecadTests.py::TestFcstd
-          tests/convert/freecad/FreecadTests.py::TestFcstdOutput
-          tests/convert/freecad/FreecadTests.py::TestFcstdStream
-          tests/convert/freecad/FreecadTests.py::TestSolidworksA
-          tests/convert/freecad/FreecadTests.py::TestSolidworksB
-          tests/convert/freecad/FreecadTests.py::TestSolidworks
+          tests/Convert/Catia/CatiaTests.py::TestRoundtripIs
+          tests/Convert/Catia/CatiaTests.py::TestPublicSdkTo
+          tests/Convert/Catia/CatiaTests.py::TestGeneratedC
+          tests/Convert/Catia/CatiaTests.py::TestStripped
+          tests/Convert/Catia/CatiaTests.py::TestTypedKind
+          tests/Convert/Catia/CatiaTests.py::TestModifiedDoc
+          tests/Convert/Catia/CatiaTests.py::TestEmbeddedAnd
+          tests/Convert/Catia/CatiaTests.py::TestGeneratedA
+          tests/Convert/Catia/CatiaTests.py::TestGeneratedD
+          tests/Convert/Catia/CatiaTests.py::TestForeignRole
+          tests/Convert/Catia/CatiaTests.py::TestLegacyDocIs
+          tests/Convert/Catia/CatiaTests.py::TestForeign
+          tests/Convert/Catia/CatiaTests.py::TestReaderKind
+          tests/Convert/Catia/CatiaTests.py::TestConversion
+          tests/Convert/Catia/CatiaAssemblyTests.py::TestChangedBase
+          tests/Convert/Catia/CatiaAssemblyTests.py::TestCatproductO
+          tests/Convert/Freecad/FreecadTests.py::TestFeatureAnd
+          tests/Convert/Freecad/FreecadTests.py::TestNonFeature
+          tests/Convert/Freecad/FreecadTests.py::TestStrictTo
+          tests/Convert/Freecad/FreecadTests.py::TestDirectFcstd
+          tests/Convert/Freecad/FreecadTests.py::TestFcstd
+          tests/Convert/Freecad/FreecadTests.py::TestFcstdOutput
+          tests/Convert/Freecad/FreecadTests.py::TestFcstdStream
+          tests/Convert/Freecad/FreecadTests.py::TestSolidworksA
+          tests/Convert/Freecad/FreecadTests.py::TestSolidworksB
+          tests/Convert/Freecad/FreecadTests.py::TestSolidworks
           -q
 
       - name: Verify pinned research corpus and command boundaries

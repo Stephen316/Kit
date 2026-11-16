@@ -22,16 +22,16 @@ from convert.adapters.Fusion.Native.Rectangle.CheckRegion import CheckRegion
 from convert.adapters.Fusion.Native.Projection.ProjectRectangle import ProjectFeatures
 from convert.adapters.Fusion.Native.Projection.ReadMaterial import ReadMaterial
 from convert.adapters.Fusion.State.EncodeState import EncodeState
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
-from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
+from convert.Formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
     FrustumHistory,
 )
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import Transform
-from interchange.records.RecordConfig import Configuration
-from interchange.records.RecordSource import CadSource
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import Transform
+from interchange.Records.RecordConfig import Configuration
+from interchange.Records.RecordSource import CadSource
 
 
 # project round needs an explicit validity boundary so public geometry remains consistent with native circular topology

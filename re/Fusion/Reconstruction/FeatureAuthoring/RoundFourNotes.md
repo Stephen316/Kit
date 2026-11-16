@@ -7,7 +7,7 @@ Earlier commits: `ff1f0282c` (neutral feature defaults), `be4540264` (re-accepta
 
 ## State
 
-- Edge rounds on horizontal edges are implemented in `src/convert/formats/Fusion/DocumentCodec/PartFeatures/Brep/`.
+- Edge rounds on horizontal edges are implemented in `src/convert/Formats/Fusion/DocumentCodec/PartFeatures/Brep/`.
   `FilletSpec` and `ChamferSpec` take `LevelMm`; the points then name horizontal edges at that height.
 - Kit follows the tangent chain from the seed edge along the cap loop: seed first, then forward, then backward.
   A closed chain is a loop (disc rim, rounded-block rim, slot rim).

@@ -1,0 +1,16 @@
+from convert.Formats.Fusion.TSplineCodec.Model.SurfaceHeader import SurfaceHeader
+from convert.Formats.Fusion.TSplineCodec.Writing.NumberText import NumberText
+
+
+# the header operation needs a consistent construction rule so control cage topology retains its native connectivity
+def WriteHeader(Header: SurfaceHeader) -> tuple[str, ...]:
+    return (
+        "#TS0200",
+        "",
+        "degree " + str(Header.Degree),
+        "cap-type " + Header.CapType,
+        "star-smoothness " + NumberText(Header.StarSmoothness),
+        "units " + NumberText(Header.UnitScale) + " " + Header.UnitName,
+        "end-conditions " + Header.EndConditions,
+        "star-knot-rule " + Header.StarKnotRule,
+    )

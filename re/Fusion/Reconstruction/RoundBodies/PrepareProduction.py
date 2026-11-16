@@ -10,18 +10,18 @@ from zipfile import ZipFile
 
 ROOT=Path(__file__).resolve().parents[4]
 sys.path.insert(0,str(ROOT/'src'))
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
-from convert.formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
-from convert.formats.Fusion.BrepCodec.Journal.Round.CreateRoundBody import CreateRoundBody
-from convert.formats.Fusion.BrepCodec.Journal.Round.SphereBody import SphereBody
-from convert.formats.Fusion.BrepCodec.Journal.Round.TorusBody import TorusBody
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry
-from convert.formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal
+from convert.Formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal
+from convert.Formats.Fusion.BrepCodec.Journal.Round.CreateRoundBody import CreateRoundBody
+from convert.Formats.Fusion.BrepCodec.Journal.Round.SphereBody import SphereBody
+from convert.Formats.Fusion.BrepCodec.Journal.Round.TorusBody import TorusBody
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry
+from convert.Formats.Fusion.BrepCodec.Models.HistoryState import HistoryState
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
 
 OUT=ROOT/'re/Fusion/LocalOracle/RoundBodies'
 HISTORY=HistoryState(7,2,7,1,2,7)

@@ -8,10 +8,10 @@ ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
-from convert.formats.Fusion.DrawingCodec.Dwg.Header.MakeCryptMask import MakeCryptMask
-from convert.formats.Fusion.DrawingCodec.Dwg.Integrity.PageChecksum import PageChecksum
-from convert.formats.Fusion.DrawingCodec.Dwg.Inflate.InflatePage import InflatePage
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.MakeCryptMask import MakeCryptMask
+from convert.Formats.Fusion.DrawingCodec.Dwg.Integrity.PageChecksum import PageChecksum
+from convert.Formats.Fusion.DrawingCodec.Dwg.Inflate.InflatePage import InflatePage
 from ProtoContainer import parse_stream, encode_literal_count, encode_extended
 
 MASK = MakeCryptMask(0x10000)

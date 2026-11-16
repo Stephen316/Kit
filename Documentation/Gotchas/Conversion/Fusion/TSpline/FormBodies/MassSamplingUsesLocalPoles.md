@@ -22,7 +22,7 @@ Skip zero-width intervals and never rescan the knot vector at a quadrature point
 For each sample, select only the local `(degreeU + 1) * (degreeV + 1)` poles and weights.
 Evaluate position and both derivatives from the same local basis data.
 Rational surfaces use the shared `MassFrame` arithmetic, while ordinary surfaces accumulate their poles directly.
-The [local evaluator](../../../../../../src/convert/formats/Fusion/BrepCodec/Journal/Spline/Stencil/SurfacePoint.py) contains the implementation.
-The [span map](../../../../../../src/convert/formats/Fusion/BrepCodec/Journal/Spline/Stencil/KnotSpans.py) computes each basis index once.
-The [mass integrator](../../../../../../src/convert/formats/Fusion/DocumentCodec/Form/SurfaceMass.py) hoists expanded knots and reuses this evaluator.
+The [local evaluator](../../../../../../src/convert/Formats/Fusion/BrepCodec/Journal/Spline/Stencil/SurfacePoint.py) contains the implementation.
+The [span map](../../../../../../src/convert/Formats/Fusion/BrepCodec/Journal/Spline/Stencil/KnotSpans.py) computes each basis index once.
+The [mass integrator](../../../../../../src/convert/Formats/Fusion/DocumentCodec/Form/SurfaceMass.py) hoists expanded knots and reuses this evaluator.
 The [native lifecycle](../../../../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json) confirms that the optimization preserves geometry and mass measurements.

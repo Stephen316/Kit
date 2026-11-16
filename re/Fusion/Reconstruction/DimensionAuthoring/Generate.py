@@ -3,9 +3,9 @@ from hashlib import sha256
 from json import dumps
 from pathlib import Path
 
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
 
 
 Root = Path(__file__).resolve().parents[4]

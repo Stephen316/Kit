@@ -15,9 +15,9 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE))
 from StencilFit import geometry
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.ListTsplines import ListTsplines
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil'
 TARGET = BASE / 'WeightProbe.json'

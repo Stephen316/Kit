@@ -4,7 +4,7 @@ from struct import Struct
 
 from PairedCaptureIntake import require
 
-from convert.geometry.Parasolid import NativeId, ParaHeaderData, ScanPartRecords
+from convert.Geometry.Parasolid import NativeId, ParaHeaderData, ScanPartRecords
 
 # native body attributes preserve the identity needed to compare across streams
 KAtomName = b"ATOM_ID_2001"

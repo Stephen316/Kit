@@ -1,12 +1,12 @@
 from convert.adapters.freecad.EditExtScope import EditSketchInput, ReadSketchInput
-from convert.formats.Fusion.Revolves.SketchAxis import KFrameGuid, KSketchGuid
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchBase, KSketchFeature
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureStep import FeatureStep
-from interchange.payloads.PayloadRoles import PayloadRole
+from convert.Formats.Fusion.Revolves.SketchAxis import KFrameGuid, KSketchGuid
+from convert.Formats.Fusion.Sketches.SketchPlacement import KSketchBase, KSketchFeature
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Payloads.PayloadRoles import PayloadRole
 
 
 # only two independent input sketches and their standalone solid may participate

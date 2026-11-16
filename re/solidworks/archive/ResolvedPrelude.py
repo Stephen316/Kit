@@ -1,9 +1,9 @@
 """Read the shared modern resolved list through its principal planes and origin."""
 
-from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode as read_named_concept
-from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
-from convert.adapters.solidworks.resolved.ProfileEntry import ReadProfileHead as read_profile_body_prefix
-from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
+from convert.adapters.solidworks.Resolved.NamedNode import ReadNamedNode as read_named_concept
+from convert.adapters.solidworks.Resolved.OriginProfile import ReadOrigin
+from convert.adapters.solidworks.Resolved.ProfileEntry import ReadProfileHead as read_profile_body_prefix
+from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 
 
 # report the folder and its allocation without changing the reader's typed data
@@ -97,7 +97,7 @@ def report_origin(origin):
 
 # folder suffixes are confined to the ordinary bodies at the start of these captures
 def read_resolved_prelude(blob, config_map, expected_count):
-    from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
+    from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
     from FaceOccurrence import FaceCursor
     from SketchRoot import KGeneration, Require
 

@@ -1,21 +1,21 @@
 from math import cos as Cosine, pi as PiValue, sin as SineValue
 
 from convert.adapters.freecad.EditShape.CylinderRims import KAngleTolerance
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     IsFrame,
     ReadCount,
     Tokens,
     VectorValue,
 )
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import (
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import (
     ConeSurface,
     CylinderSurface,
     PlaneSurface,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # only elementary sweep carriers are qualified by the native shape witness
 KRevCurve = LineCurve | CircleCurve

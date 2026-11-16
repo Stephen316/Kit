@@ -10,10 +10,10 @@ from convert.adapters.freecad.EditRead.XmlField import (
 )
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from convert.adapters.freecad.Native import NativeObject
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumValues import ValueKind
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.records.RecordParameter import Parameter
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumValues import ValueKind
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Records.RecordParameter import Parameter
 from interchange.serialization.EncodeData import ToData
 
 

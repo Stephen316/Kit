@@ -1,13 +1,13 @@
-from convert.adapters.solidworks.container.Archive import KDefinitionKind
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.container.Cmgr import (
+from convert.adapters.solidworks.Container.Archive import KDefinitionKind
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.Cmgr import (
     KConfigClass,
     KNodeNameClass,
     KRootClass,
     KVisualClass,
 )
-from convert.adapters.solidworks.container.Definition import KFirstLoadArrayIndex
+from convert.adapters.solidworks.Container.Definition import KFirstLoadArrayIndex
 
 # the opening reader recognizes only the ordinary pinned discovery profile
 KBuildVersion = 2026225

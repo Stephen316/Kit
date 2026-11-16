@@ -19,11 +19,11 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Tables'))
 sys.path.insert(0, str(BASE))
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil import ReadShapes as ShapeModule
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import CageBody
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil import ReadShapes as ShapeModule
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import CageBody
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.ConvertCage import ConvertCage
 from ReadStencils import ReadStencils
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from ReadConverted import ReadConverted
 
 ORACLE = 're/Fusion/LocalOracle/'

@@ -1,9 +1,9 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
-from convert.formats.Fusion.EntityCodec.Model.SegmentRef import SegmentRef
-from convert.formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
-from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
+from convert.Formats.Fusion.EntityCodec.Model.SegmentRef import SegmentRef
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 
 # native graph needs an explicit state contract so public document claims remain grounded in native records

@@ -56,7 +56,7 @@ Publish updates with fast-forward pushes. Integrate concurrent remote work befor
 ## Existing assets and revision boundaries
 
 Reuse [the neutral model](../Model/Document.md), [JSON serialization](../Data/Serialization.md) and existing format codecs.
-The [Fusion source-proof ledger](../../../src/convert/formats/Fusion/SourceProof/InspectSource.py) retains exact-source claims and unresolved entries.
+The [Fusion source-proof ledger](../../../src/convert/Formats/Fusion/SourceProof/InspectSource.py) retains exact-source claims and unresolved entries.
 The [SOLIDWORKS tooling](../../../re/tooling/) includes container inspection, tracing, serializer analysis and recovered program generation.
 These components need integration and qualification, not a replacement universal parser.
 

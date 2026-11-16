@@ -7,9 +7,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-import convert.formats.Fusion.GraphicsCodec.Wire.MeshStreams as MeshModule
-from convert.formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
-from convert.formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
+import convert.Formats.Fusion.GraphicsCodec.Wire.MeshStreams as MeshModule
+from convert.Formats.Fusion.GraphicsCodec.Model.State.GraphicsStream import GraphicsStream
+from convert.Formats.Fusion.GraphicsCodec.ReadGraphics import ReadGraphics
 
 PREFIX = 'FusionAssetName[Active]/OGS.BlobFolder/OGS/DefaultScene/'
 calls = []

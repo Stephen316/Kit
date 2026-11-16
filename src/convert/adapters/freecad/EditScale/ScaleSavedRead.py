@@ -17,12 +17,12 @@ from convert.adapters.freecad.EditScale.ScaleSavedSketch import ReadScaleRings
 from convert.adapters.freecad.EditScale.ScaleSavedSolids import RebuildScale
 from convert.adapters.freecad.EditScale.ScaleWritePlan import ScaleWritePlan
 from convert.adapters.freecad.Native import NativeObject, ParseObjects
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.BoundScaleValues import GetScaleValues
-from interchange.features.FeatureBoundScale import BoundScale
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Transform import Transform
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.BoundScaleValues import GetScaleValues
+from interchange.Features.FeatureBoundScale import BoundScale
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.Transform import Transform
 
 
 # a scale point derives from the solved source sketch before its own placement is trusted

@@ -7,19 +7,19 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing import MakeTsplSurf as TsplModule
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeJumps import MakeJumps
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeRefScope import MakeRefScope
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeSubtrans import MakeSubtrans
-from convert.formats.Fusion.BrepCodec.Journal.Writing.MakeBound import MakeBound
-import convert.formats.Fusion.BrepCodec.Journal.Validation.CheckNode
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing import MakeTsplSurf as TsplModule
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeJumps import MakeJumps
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeRefScope import MakeRefScope
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeSubtrans import MakeSubtrans
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeBound import MakeBound
+import convert.Formats.Fusion.BrepCodec.Journal.Validation.CheckNode
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 WRITERS = (
-    'convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeSplineNode',
-    'convert.formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeParCurve',
+    'convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeSplineNode',
+    'convert.Formats.Fusion.BrepCodec.Journal.Spline.Writing.MakeParCurve',
 )
 ORIGINAL = TsplModule.MakeTsplSurf
 SOURCES = {
@@ -76,7 +76,7 @@ def shifted_surface(value):
     return ORIGINAL(replace(value, Cache=replace(cache, Points=tuple(points))))
 
 
-CHECK_NODE = sys.modules['convert.formats.Fusion.BrepCodec.Journal.Validation.CheckNode'].CheckNode
+CHECK_NODE = sys.modules['convert.Formats.Fusion.BrepCodec.Journal.Validation.CheckNode'].CheckNode
 
 
 def rebind(original, replacement):

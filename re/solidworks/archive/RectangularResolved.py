@@ -4,9 +4,9 @@ from ArchiveVersion import KApplicationBuild
 from RectangleTail import read_principal_profile_support
 from ResolvedPrelude import read_resolved_prelude
 from SketchRoot import KGeneration, Require
-from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
-from convert.adapters.solidworks.resolved.ContourTrim import ReadRectEnd, ReadRectTrim
-from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
+from convert.adapters.solidworks.Resolved.ContourChain import ReadChainState
+from convert.adapters.solidworks.Resolved.ContourTrim import ReadRectEnd, ReadRectTrim
+from convert.adapters.solidworks.Resolved.ProfileSketch import ReadProfileBody
 
 
 # transfer the same map through the inline sketch and back to its containing feature

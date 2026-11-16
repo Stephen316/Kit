@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterable
 
 from tools.Policy.CheckDirCounts import CheckDirCounts
+from tools.Policy.CheckDirNames import CheckDirNames
 from tools.Policy.CheckNamePaths import CheckNamePaths
 from tools.Policy.PathFinding import PathFinding
 
@@ -16,4 +17,5 @@ def CheckPathPolicy(
     TargetSet = TrackedSet if TargetPaths is None else set(TargetPaths) & TrackedSet
     FindingList = CheckNamePaths(TargetSet)
     FindingList.extend(CheckDirCounts(TrackedSet, TargetSet))
+    FindingList.extend(CheckDirNames(TargetSet))
     return sorted(FindingList)

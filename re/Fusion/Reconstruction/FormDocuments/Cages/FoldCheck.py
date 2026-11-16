@@ -23,15 +23,15 @@ sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Tables'))
 sys.path.insert(0, str(BASE))
 from CreaseCheck import kit_written
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted import CheckFolds as Rule
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.GridBody import GridBody
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import ShapeBody
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted import CheckFolds as Rule
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.GridBody import GridBody
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import ShapeBody
 from ReadShapes import ReadShapes
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import CurveFrame
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import CurveFrame
 from StencilKey import StencilKey
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 TARGET = BASE / 'FoldCheck.json'
 LIMITS = ROOT / 're/Fusion/Reconstruction/FormDocuments/Stencil/LimitProbe.json'

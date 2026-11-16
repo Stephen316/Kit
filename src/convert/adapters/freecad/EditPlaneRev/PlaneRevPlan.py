@@ -6,13 +6,13 @@ from convert.adapters.freecad.EditPlaneRev.PlaneTargetPlans import ReadTargetPla
 from convert.adapters.freecad.EditPlaneRev.PlaneTargetData import PlaneRevTarget
 from convert.adapters.freecad.EditRev.RevBodyProof import CheckRevBody
 from convert.adapters.freecad.EditRev.RevProfileProof import CheckRevProfile
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native editable plan preserves source role order and geometric endpoint assignment

@@ -7,9 +7,9 @@ root = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(root / 'src'))
 from convert import open_document, write_document
 from convert.adapters.Fusion import MakeFusionDoc
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
-from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec import MaterialSpec
+from convert.Formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
 
 out = root / 're/Fusion/LocalOracle/PublicAdapter'
 out.mkdir(exist_ok=True)

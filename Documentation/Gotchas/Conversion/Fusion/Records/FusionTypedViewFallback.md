@@ -16,21 +16,21 @@ Before this change, such a mismatch rejected the whole document. In the corpus, 
 
 The typed views put records in a canonical order. A typed view that succeeds can therefore write different bytes with an equal model. Across the corpus, only part of the typed members re-emit byte-exact:
 
-| Model | Byte-exact members |
-| --- | --- |
-| `JournalModel` | 525 of 525 |
-| `GeometryState` | 581 of 581 |
-| `HistoryModel` | 20 of 59 |
-| `PrismHistory` | 14 of 77 |
-| `FrustumHistory` | 12 of 24 |
-| `SnapshotModel` | 7 of 47 |
-| `PrismSnapshot` | 6 of 105 |
+| Model            | Byte-exact members |
+| ---------------- | ------------------ |
+| `JournalModel`   | 525 of 525         |
+| `GeometryState`  | 581 of 581         |
+| `HistoryModel`   | 20 of 59           |
+| `PrismHistory`   | 14 of 77           |
+| `FrustumHistory` | 12 of 24           |
+| `SnapshotModel`  | 7 of 47            |
+| `PrismSnapshot`  | 6 of 105           |
 
 `TestTypedFall` checks that `offset_negative.f3d` keeps its journal model.
 
 ## Evidence
 
-- [Typed body selection](../../../../../src/convert/formats/Fusion/DocumentCodec/Reading/ReadTypedBody.py)
+- [Typed body selection](../../../../../src/convert/Formats/Fusion/DocumentCodec/Reading/ReadTypedBody.py)
 - [Typed mismatch script](../../../../../re/Fusion/Reconstruction/ReaderCoverage/TypedMismatch.py)
 - [Byte exactness script](../../../../../re/Fusion/Reconstruction/ReaderCoverage/BrepExactness.py)
 - [Native acceptance cases `JournalFallback`, `SnapshotFallback` and `PrismFallback`](../../../../../re/Fusion/LocalOracle/ReaderCoverage/NativeAcceptance.json)

@@ -1,0 +1,37 @@
+from dataclasses import replace as ReplaceValue
+
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Model.CombineSpec import (
+    CombineSpec,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Pattern.MoveSlab import (
+    MoveSlab,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.ExtrudeSolid import (
+    ExtrudeSolid,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.PrismSolid import (
+    PrismSolid,
+)
+from convert.Formats.Fusion.DocumentCodec.PartFeatures.Solid.SlabRoof import IsSealed
+
+# the stay place order must stay explicit so feature parameters remain connected to the resulting geometry
+KStayPlace = ((0.0, 0.0), 0.0, False)
+
+
+# combine solid needs an explicit validity boundary so feature parameters remain connected to the resulting geometry
+def CombineSolid(
+    Target: PrismSolid,
+    Tools: tuple[PrismSolid, ...],
+    Feature: CombineSpec,
+    Operation: int,
+) -> PrismSolid:
+    if IsSealed(Target):
+        raise ValueError("Fusion combines take bodies that are not tapered or swept")
+    Result = Target
+    for ToolSolid in Tools:
+        if len(ToolSolid.Slabs) != 1 or IsSealed(ToolSolid):
+            raise ValueError("Fusion combine tools must be single straight slabs")
+        Shaper = MoveSlab(ToolSolid.Slabs[0], KStayPlace, (Operation,))
+        Joined = ToolSolid.BodyLabel if Feature.Operation == "join" else None
+        Result = ExtrudeSolid(Result, Shaper, Feature.Operation, Joined)
+    return ReplaceValue(Result, Ordinal=Target.Ordinal)

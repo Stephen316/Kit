@@ -14,8 +14,8 @@ sys.path.insert(0, str(BASE))
 
 from Sweep import tracked
 
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 
 def main():

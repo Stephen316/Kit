@@ -11,8 +11,8 @@ sys.path.insert(0, str(ROOT / 'src'))
 
 
 def classify(name):
-    from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-    from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+    from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+    from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
     data = (ROOT / name).read_bytes()
     model = ReadDocument(data)
     emitted = EmitParsed(model)

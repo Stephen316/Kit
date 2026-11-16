@@ -2,18 +2,18 @@ from math import isclose
 
 from PairedCaptureIntake import require
 
-from convert.adapters.solidworks.config.FeatureBase import ReadFeatBase
-from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefinitionKind, KObjectRefKind
-from convert.adapters.solidworks.container.LocalFrame import ReadLocalPart
-from convert.adapters.solidworks.resolved.BossEntry import ReadOpNode
-from convert.adapters.solidworks.resolved.FaceIdentity import (
+from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
+from convert.adapters.solidworks.Container.Archive import KClassRefKind, KDefinitionKind, KObjectRefKind
+from convert.adapters.solidworks.Container.LocalFrame import ReadLocalPart
+from convert.adapters.solidworks.Resolved.BossEntry import ReadOpNode
+from convert.adapters.solidworks.Resolved.FaceIdentity import (
     KCapClass, KEdgeClass, ReadFaceHead, ReadFaceReturn, ReadSurfaceId, SurfaceKey,
 )
-from convert.adapters.solidworks.resolved.cut.CutChooser import KCutClass
-from convert.adapters.solidworks.resolved.cut.CutProfileBody import ReadCutBody
-from convert.adapters.solidworks.resolved.support.FaceFrame import ReadFacePose
-from convert.adapters.solidworks.resolved.support.SupportPlane import ReadFaceSupport
-from convert.adapters.solidworks.sketch.InlineSketch import ParseInlineMut
+from convert.adapters.solidworks.Resolved.Cut.CutChooser import KCutClass
+from convert.adapters.solidworks.Resolved.Cut.CutProfileBody import ReadCutBody
+from convert.adapters.solidworks.Resolved.Support.FaceFrame import ReadFacePose
+from convert.adapters.solidworks.Resolved.Support.SupportPlane import ReadFaceSupport
+from convert.adapters.solidworks.Sketch.InlineSketch import ParseInlineMut
 from SolidWorksScopeSecondBoss import CAP_CLASS, EDGE_CLASS
 from SolidWorksScopeTerminal import read_scope_terminal
 

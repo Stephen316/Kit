@@ -27,13 +27,13 @@ from RectangularConfig import read_rectangle_configuration
 from RectangularPlaneEvidence import REVISION, SPECIFICATION_SHA256
 from ResolvedPrelude import read_resolved_prelude
 from SketchRoot import KGeneration
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     ContainerMo,
     KNullKind,
     ReadTag,
 )
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Resolved.ProfileSketch import ReadProfileBody
 
 MEMBER_HEAD = Struct("<H2i")
 MEMBER_VISUAL = Struct("<HHBIHhf")

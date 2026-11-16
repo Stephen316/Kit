@@ -13,38 +13,38 @@ BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.AttribLinks import AttribLinks  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import PcurveSpline, SplineCurve  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.NegateCurve import NegateCurve  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import SubtypeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import WalkSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import ExactIntCur, ExpParCur  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import FormBody, FormEdge, FormFace, FormSurface, FormUse, FormWindow  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields  # noqa: E402
-from convert.formats.Fusion.EntityCodec.Model.ValueMap import ValueMap  # noqa: E402
-from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject  # noqa: E402
-from convert.formats.Fusion.EntityCodec.Model.ValuePair import ValuePair  # noqa: E402
-from convert.formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries  # noqa: E402
-from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.AttribLinks import AttribLinks  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import PcurveSpline, SplineCurve  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.NegateCurve import NegateCurve  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import SubtypeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import WalkSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Typed.CurveRecords import ExactIntCur, ExpParCur  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LoopNode import LoopNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.PointNode import PointNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.VertexNode import VertexNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import FormBody, FormEdge, FormFace, FormSurface, FormUse, FormWindow  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.PcurveNode import PcurveNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields  # noqa: E402
+from convert.Formats.Fusion.EntityCodec.Model.ValueMap import ValueMap  # noqa: E402
+from convert.Formats.Fusion.EntityCodec.Model.ValueObject import ValueObject  # noqa: E402
+from convert.Formats.Fusion.EntityCodec.Model.ValuePair import ValuePair  # noqa: E402
+from convert.Formats.Fusion.EntityCodec.Model.ValueSeries import ValueSeries  # noqa: E402
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef  # noqa: E402
 
 FEATURE_GUID = '6C90740C-229E-4EE5-8F35-A4E5AE4F7C73'
 WINDOW_NAMES = ('uLow', 'uHigh', 'vLow', 'vHigh')
@@ -229,5 +229,5 @@ def general_saved(name):
 
 
 def general_surface(name):
-    from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+    from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
     return ReadTspline((GENERAL_DIR / (name + '.tsm')).read_bytes())

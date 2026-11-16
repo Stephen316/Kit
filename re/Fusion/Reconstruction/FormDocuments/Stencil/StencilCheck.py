@@ -9,8 +9,8 @@ ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT / 're/Fusion/Reconstruction/FormDocuments/Topology'))
 from SavedBodies import read_saved  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.ConvertForm import ConvertForm  # noqa: E402
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline  # noqa: E402
 
 WORK = ROOT / 're/Fusion/LocalOracle/FormDocuments/Stencil'
 TARGET = BASE / 'StencilCheck.json'

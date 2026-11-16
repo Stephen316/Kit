@@ -9,7 +9,7 @@ from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[4]
 SOURCE = ROOT / 're/Fusion/LocalOracle/RectangleAuthoring/mass_probe_ProductionCuboid.f3d'
-TARGET = ROOT / 'src/convert/formats/Fusion/DocumentCodec/Materials/Vocabulary/MaterialSchemas.json'
+TARGET = ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Materials/Vocabulary/MaterialSchemas.json'
 NAMES = ('CommonSchema', 'PhysMatSchema', 'PrismCommonSchema', 'PrismMetalSchema', 'StructuralCommonSchema', 'StructuralAdvancedSchema', 'StructuralMetalSchema', 'ThermalCommonSchema', 'ThermalSolidSchema')
 
 

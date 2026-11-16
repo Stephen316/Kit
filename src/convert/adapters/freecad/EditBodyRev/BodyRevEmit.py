@@ -28,7 +28,7 @@ from convert.adapters.freecad.EditBodyRev.BodyRevCache import (
 from convert.adapters.freecad.EditBodyRev.BodyRevExpr import BodyAngleExpr, BodyDepthDir
 from convert.adapters.freecad.EditBodyRev.BodyRevPlan import BodyRevPlan, ReadBodyRev
 from convert.adapters.freecad.EditRev.RevolveProps import MakeRevProps
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the upstream solid retains its sketch incidence and owns the linked edge cache

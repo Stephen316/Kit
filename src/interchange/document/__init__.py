@@ -1,12 +1,12 @@
-from interchange.document.models.DocumentCaps import GetRetainedCaps, InferCaps
-from interchange.document.models.DocumentError import DocumentError
-from interchange.document.models.DocumentFilter import FilterDocument
-from interchange.document.models.DocumentMetadata import AddWrapperMeta, GetSemanticMeta
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.models.DocumentPayload import GetPayloadIds
-from interchange.document.behavior.DocumentMethods import BindDocumentMut
-from interchange.compatibility.PythonCompat import BindCompatMut
-from interchange.compatibility.PublicMetadata import BindFunctionMut, BindNameMut
+from interchange.document.Models.DocumentCaps import GetRetainedCaps, InferCaps
+from interchange.document.Models.DocumentError import DocumentError
+from interchange.document.Models.DocumentFilter import FilterDocument
+from interchange.document.Models.DocumentMetadata import AddWrapperMeta, GetSemanticMeta
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentPayload import GetPayloadIds
+from interchange.document.Behavior.DocumentMethods import BindDocumentMut
+from interchange.Compatibility.PythonCompat import BindCompatMut
+from interchange.Compatibility.PublicMetadata import BindFunctionMut, BindNameMut
 from inspect import Signature as FuncSig
 from inspect import Parameter as FuncParam
 

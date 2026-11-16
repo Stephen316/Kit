@@ -1,8 +1,8 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Sketch import SketchEntity
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import SketchEntity
 
 
 # rect geometry needs an explicit state contract so public document claims remain grounded in native records

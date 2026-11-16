@@ -1,0 +1,69 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.MakeRule import MakeRule
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.RuleWords import (
+    KCurveCall,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TcoedgeNode import (
+    TcoedgeNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TedgeNode import TedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Nodes.TvertexNode import (
+    TvertexNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.Geometry.MakeCoedgeNode import (
+    MakeCoedgeNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.Geometry.MakeEdgeNode import (
+    MakeEdgeNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.Geometry.MakeVertexNode import (
+    MakeVertexNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.WireWords import (
+    FloatWord,
+    IntWord,
+    RefWord,
+)
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
+
+
+# the tcoedge node operation needs a consistent construction rule so nested spline and surface records retain their relationships
+def MakeTcoedgeNode(Value: TcoedgeNode) -> AsmRecord:
+    return AsmRecord(
+        "tcoedge-coedge",
+        (
+            *MakeCoedgeNode(Value.Base).Tokens,
+            FloatWord(Value.RangeLower),
+            FloatWord(Value.RangeUpper),
+            RefWord(Value.CurveRef),
+            IntWord(Value.CurveForm),
+            *MakeRule(KCurveCall, Value.Curve),
+            IntWord(Value.Stamp),
+        ),
+    )
+
+
+# the tedge node operation needs a consistent construction rule so nested spline and surface records retain their relationships
+def MakeTedgeNode(Value: TedgeNode) -> AsmRecord:
+    return AsmRecord(
+        "tedge-edge",
+        (
+            *MakeEdgeNode(Value.Base).Tokens,
+            FloatWord(Value.Tolerance),
+            IntWord(Value.SaveVersion),
+            IntWord(Value.Stamp),
+        ),
+    )
+
+
+# the tvertex node operation needs a consistent construction rule so nested spline and surface records retain their relationships
+def MakeTvertexNode(Value: TvertexNode) -> AsmRecord:
+    return AsmRecord(
+        "tvertex-vertex",
+        (
+            *MakeVertexNode(Value.Base).Tokens,
+            FloatWord(Value.Sentinel),
+            FloatWord(Value.Tolerance),
+            FloatWord(Value.SavedTolerance),
+            IntWord(Value.Stamp),
+        ),
+    )

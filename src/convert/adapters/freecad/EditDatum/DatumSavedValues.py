@@ -10,14 +10,14 @@ from convert.adapters.freecad.EditScale.ScaleSavedParams import (
     ReadScaleScalar,
 )
 from convert.adapters.freecad.Native import NativeObject
-from convert.geometry.Formula.FormulaUnits import GetQuantity
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.validation.BoundPlaneValidate import CheckBoundPlane
-from interchange.features.BoundPlaneValues import GetDatumFrame
-from interchange.features.FeatureBoundPlane import BoundDatum
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Transform import Transform
-from interchange.records.RecordParameter import Parameter
+from convert.Geometry.Formula.FormulaUnits import GetQuantity
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Validation.BoundPlaneValidate import CheckBoundPlane
+from interchange.Features.BoundPlaneValues import GetDatumFrame
+from interchange.Features.FeatureBoundPlane import BoundDatum
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Transform import Transform
+from interchange.Records.RecordParameter import Parameter
 
 
 # native saves can round equivalent canonical quantities to fifteen significant digits

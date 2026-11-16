@@ -1,0 +1,23 @@
+from dataclasses import replace as ReplaceValue
+
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinBoard import BulletinBoard
+from convert.Formats.Fusion.BrepCodec.Journal.States.BulletinChange import (
+    BulletinChange,
+)
+
+
+# the remap boards contract needs a shared interpretation so topology changes retain their native revision relationships
+def RemapBoards(
+    Boards: tuple[BulletinBoard, ...], Mapping: tuple[int, ...]
+) -> tuple[BulletinBoard, ...]:
+    Results: list[BulletinBoard] = []
+    for Board in Boards:
+        Changes = tuple(
+            BulletinChange(
+                Mapping[Change.OldRef] if Change.OldRef >= 0 else -1,
+                Mapping[Change.NewRef] if Change.NewRef >= 0 else -1,
+            )
+            for Change in Board.Changes
+        )
+        Results.append(ReplaceValue(Board, Changes=Changes))
+    return tuple(Results)

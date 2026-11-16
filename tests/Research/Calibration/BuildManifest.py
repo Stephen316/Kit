@@ -3,7 +3,7 @@ import json as JsonCodec
 from pathlib import Path as FilePath
 
 from convert import write_document as WriteDocument
-from tests.convert.api.Fusion.AdapterCases import AdapterCase
+from tests.Convert.Api.Fusion.AdapterCases import AdapterCase
 
 
 # calibration checks share immutable inputs so trial differences can be attributed to execution limits

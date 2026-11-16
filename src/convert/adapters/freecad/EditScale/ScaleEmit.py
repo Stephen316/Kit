@@ -14,7 +14,7 @@ from convert.adapters.freecad.EditScale.ScaleResultEmit import (
 from convert.adapters.freecad.EditScale.ScaleSeedEmit import AddScaleSeedMut
 from convert.adapters.freecad.EditScale.ScaleSketchEmit import TrackSketchMut
 from convert.adapters.freecad.EditScale.ScaleWritePlan import GetScalePlan
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the live archive retains the original source steps and the result body tip order

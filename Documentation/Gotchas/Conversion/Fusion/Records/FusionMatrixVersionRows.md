@@ -17,6 +17,6 @@ Set `HasMatrixRows` to true for `matrix3d` in `DRMatrix` version 16. The codec t
 ## Evidence
 
 - [Native version differences](../../../../../re/Fusion/LocalOracle/Reflection/VersionDifferences.json)
-- [Design vocabulary](../../../../../src/convert/formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json)
+- [Design vocabulary](../../../../../src/convert/Formats/Fusion/DocumentCodec/Vocabulary/DesignClasses.json)
 - [Native acceptance case `RoundFillets`](../../../../../re/Fusion/LocalOracle/ReaderCoverage/NativeAcceptance.json)
 - [Change entry](../../../../Changes/Fusion/Records/FusionSavedDocumentCoverage.md)

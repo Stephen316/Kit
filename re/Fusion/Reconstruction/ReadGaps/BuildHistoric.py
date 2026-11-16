@@ -8,16 +8,16 @@ sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE))
 
 from ExampleRecords import documents, segments
-from convert.formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
+from convert.Formats.Fusion.EntityCodec.Vocabulary.ReadCatalog import ReadCatalog
 
-VOCABULARY = ROOT / 'src/convert/formats/Fusion/DocumentCodec/Vocabulary'
+VOCABULARY = ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Vocabulary'
 TARGET = VOCABULARY / 'HistoricClasses.json'
 SOURCES = (
     VOCABULARY / 'DesignClasses.json',
     VOCABULARY / 'FormClasses.json',
     VOCABULARY / 'SavedClasses.json',
-    ROOT / 'src/convert/formats/Fusion/ContainerCodec/Assembly/ActClasses.json',
-    ROOT / 'src/convert/formats/Fusion/ContainerCodec/Browser/BrowserClasses.json',
+    ROOT / 'src/convert/Formats/Fusion/ContainerCodec/Assembly/ActClasses.json',
+    ROOT / 'src/convert/Formats/Fusion/ContainerCodec/Browser/BrowserClasses.json',
 )
 
 
@@ -37,7 +37,7 @@ def vocabulary():
 
 
 def native(guid, version):
-    for entry in json.loads(__import__('lzma').decompress((ROOT / 'src/convert/formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))['Classes']:
+    for entry in json.loads(__import__('lzma').decompress((ROOT / 'src/convert/Formats/Fusion/EntityCodec/Vocabulary/NativeClasses.xz').read_bytes()))['Classes']:
         if entry['ClassGuid'].upper() == guid and entry['SchemaVersion'] == version:
             return entry
     return None

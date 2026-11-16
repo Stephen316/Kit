@@ -2,7 +2,7 @@ from collections.abc import Sequence
 
 from convert.Commands.CheckKinds import CheckKinds
 from convert.Commands.IsClosedProfile import IsClosedProfile
-from interchange.geometry.models.Sketch import Sketch
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # generator history needs actual closed supported sketch geometry rather than unverified profile references

@@ -5,13 +5,13 @@ from DefinitionFragment import ReadDefinitionFragment
 from DefinitionOptions import KDefinitionOptionsGeneration
 from DefinitionStream import KBuildStamp, KPrimaryPlacement, KSessionWords
 from JournalAttach import JournalAttach
-from convert.adapters.solidworks.container import Definition as Fields
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container import Definition as Fields
+from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KDefinitionKind,
 )
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import (
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import (
     ArchiveCursor,
     FieldCursor,
 )

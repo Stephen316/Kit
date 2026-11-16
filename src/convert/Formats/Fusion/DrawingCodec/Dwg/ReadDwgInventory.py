@@ -1,0 +1,46 @@
+from convert.Formats.Fusion.DrawingCodec.Dwg.Classes.ReadClasses import ReadClasses
+from convert.Formats.Fusion.DrawingCodec.Dwg.Handles.CountHandles import CountHandles
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.ReadCryptHeader import (
+    ReadCryptHeader,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Header.ReadFileHeader import (
+    ReadFileHeader,
+)
+from convert.Formats.Fusion.DrawingCodec.Dwg.Metadata.ReadAppInfo import ReadAppInfo
+from convert.Formats.Fusion.DrawingCodec.Dwg.Metadata.ReadSummary import ReadSummary
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgInventory import DwgInventory
+from convert.Formats.Fusion.DrawingCodec.Dwg.Pages.ReadPageMap import ReadPageMap
+from convert.Formats.Fusion.DrawingCodec.Dwg.Pages.ReadSections import ReadSections
+from convert.Formats.Fusion.DrawingCodec.Dwg.RequireSection import RequireSection
+
+# max drawing bytes must remain consistent across callers so section boundaries and object references remain consistent
+KMaxDwgBytes = 256 * 1024 * 1024
+
+
+# the inventory operation needs a distinct decoding boundary so section boundaries and object references remain consistent
+def ReadInventory(Content: bytes) -> DwgInventory:
+    if len(Content) > KMaxDwgBytes:
+        raise ValueError("DWG exceeds the 256 MiB inventory limit")
+    FileHeader = ReadFileHeader(Content)
+    CryptHeader = ReadCryptHeader(Content)
+    MapPages = ReadPageMap(Content, CryptHeader)
+    MapWords, Sections = ReadSections(Content, CryptHeader, MapPages)
+    Named = {Section.SectionInfo.SectionName: Section.DataValue for Section in Sections}
+    SummaryData = Named.get("AcDb:SummaryInfo")
+    AppInfoData = Named.get("AcDb:AppInfo")
+    ObjectSize = len(RequireSection(Named, "AcDb:AcDbObjects"))
+    return DwgInventory(
+        FileHeader=FileHeader,
+        CryptHeader=CryptHeader,
+        MapPages=MapPages,
+        MapWords=MapWords,
+        Sections=Sections,
+        ClassTable=ReadClasses(RequireSection(Named, "AcDb:Classes"), FileHeader),
+        Summary=None if SummaryData is None else ReadSummary(SummaryData),
+        AppInfo=None if AppInfoData is None else ReadAppInfo(AppInfoData),
+        HandleMap=CountHandles(RequireSection(Named, "AcDb:Handles"), ObjectSize),
+    )
+
+
+# read drawing inventory must share the read inventory contract so native drawing reconstruction cannot drift between equivalent names
+ReadDwgInventory = ReadInventory

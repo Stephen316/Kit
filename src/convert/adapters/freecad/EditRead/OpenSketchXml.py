@@ -4,8 +4,8 @@ from xml.etree.ElementTree import Element
 from convert.adapters.freecad.EditRead.EditGeometry import KSketchTolerance
 from convert.adapters.freecad.EditRead.XmlField import EditAttr, EditChild, EditFloat
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
-from interchange.geometry.models.Sketch import Sketch, SketchEntity
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.Sketch import Sketch, SketchEntity
 
 
 # independent sketch points and line endpoints must retain their exact local coordinates

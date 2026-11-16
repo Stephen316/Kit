@@ -1,14 +1,14 @@
 from struct import pack as PackFields
 
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KNullKind,
     ArchiveError,
     EncodeNull,
     EncodeString,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 # the three line width members split the signed document words in the saved style
 KDisplayStyleFormat = "<d2ihf2ihf8ihf5i"

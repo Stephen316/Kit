@@ -2,7 +2,7 @@ from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from convert.adapters.freecad.EditRead.Formula.SheetScaffold import CheckGroupState
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditFloat, EditScalar
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.Transform import KTransformIdentity
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 # native saves add attachment and display properties absent from generated sketches
 KSketchExtras = {

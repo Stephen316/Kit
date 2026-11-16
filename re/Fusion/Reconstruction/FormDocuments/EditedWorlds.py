@@ -6,9 +6,9 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-import convert.formats.Fusion.DocumentCodec.Reading.ReadDocParts as DocParts
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.GraphicsCodec.Wire import SceneCodec
+import convert.Formats.Fusion.DocumentCodec.Reading.ReadDocParts as DocParts
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.GraphicsCodec.Wire import SceneCodec
 
 NAMES = ('BoxEdited', 'PlaneEdited', 'SymmetricBoxEdited')
 SEEN = []

@@ -6,18 +6,18 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.GridJumps import SpanThirds
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.JumpCurve import JumpCurve
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import SplineCurve
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import GeometryState
-from convert.formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.GridJumps import SpanThirds
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.JumpCurve import JumpCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Spline.BsCurve import BsCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import SplineCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import GeometryState
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.IntcurveNode import IntcurveNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineNode import SplineNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 SCOPE = 'Kit grid conversion against every converted Form body in local Fusion archives'
 KIT_BODIES = ('re/Fusion/LocalOracle/FormDocuments/Grid/Affine.f3d', 're/Fusion/LocalOracle/FormDocuments/Grid/Warped.f3d')

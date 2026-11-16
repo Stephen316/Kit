@@ -7,13 +7,13 @@ from zipfile import BadZipFile, ZipFile
 from convert.adapters.base.ContractTypes import KSourceType
 from convert.adapters.base.ProbeResult import ProbeResult
 from convert.adapters.Fusion.AdapterInfo import KReaderInfo
-from convert.formats.Fusion.ArchiveRead.ArchiveBounds import (
+from convert.Formats.Fusion.ArchiveRead.ArchiveBounds import (
     CheckZipTailMut,
     KArchiveLimit,
 )
-from convert.adapters.staging.SourceReplay import ReplaySource
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.ZipItems import IndexZipItems
+from convert.adapters.Staging.SourceReplay import ReplaySource
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.ZipItems import IndexZipItems
 
 
 # discovery validates owned design names without inflating archive members

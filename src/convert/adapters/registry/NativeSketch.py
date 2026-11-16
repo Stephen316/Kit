@@ -1,7 +1,7 @@
 from convert.adapters.registry.NativeRules import RuleFindings
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import NativeGeometry
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import NativeGeometry
 
 # portable geometry kinds keep unresolved source shapes out of editable exports
 KPortableKinds = frozenset(

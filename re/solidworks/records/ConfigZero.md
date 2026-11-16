@@ -645,7 +645,7 @@ than 18000, because the tables are 18000-only and rung 4 makes cross-generation 
 measured crash rather than a risk. **The tables must be re-recorded if Kit ever targets another
 generation.**
 
-`tests/convert/solidworks/configuration/SolidworksConfigZeroTests.py` retains the quality checks for
+`tests/Convert/Solidworks/Configuration/SolidworksConfigZeroTests.py` retains the quality checks for
 typed-byte ownership, zero opaque bytes, absence of encoded vendor blocks, and rejection of raw
 donor prologues. Stream-level unit tests have been removed; complete document conversion, native
 archive roundtrips, and vendor-oracle coverage remain in the higher-level suites.

@@ -1,9 +1,9 @@
 from hashlib import sha256 as HashBytes
 from pathlib import Path
 
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.container.Parasolid import DecodePartition
-from convert.geometry.Parasolid import (
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Parasolid import DecodePartition
+from convert.Geometry.Parasolid import (
     BrepTopology,
     DecodeBrepModel,
     MakeEncOwners,

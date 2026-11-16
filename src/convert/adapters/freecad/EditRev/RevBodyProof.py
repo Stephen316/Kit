@@ -1,16 +1,16 @@
 from convert.adapters.base.WriteValidate import IsObjectTuple
 from convert.adapters.base.WriteValidate import IsObjectMap
-from convert.formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
-from convert.formats.Fusion.Topology.BodyAnchor import KBodyGuid
-from convert.formats.Fusion.Topology.BodyCollection import KBodyCollection
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeaturePlaneRev import PlaneRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.records.RecordTopology import TopologyCounts
+from convert.Formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
+from convert.Formats.Fusion.Topology.BodyAnchor import KBodyGuid
+from convert.Formats.Fusion.Topology.BodyCollection import KBodyCollection
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeaturePlaneRev import PlaneRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.Records.RecordTopology import TopologyCounts
 
 
 # cached inventory must identify only the same reciprocal source body and component

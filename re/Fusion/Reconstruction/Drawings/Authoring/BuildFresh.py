@@ -28,20 +28,20 @@ sys.path.insert(0, str(HERE))
 import BuildVariants  # noqa: E402
 from LoadVariant import VARIANTS, variant_drawing  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.AuthorShell import AuthorShell, ReplaceVars  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftBook import DraftBook  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftRow import DraftRow  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import DraftRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.FinishBook import AssignHandles, FinishEed, FinishRow  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.ResolveDraft import ResolveDraft, ResolveRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.ReadDraftJson import ReadDraftJson, ReadDraftRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Author.Standard.ReadStandard import ReadDraftRow, ReadEedBlock, ReadStandard  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgClassTable import DwgClassTable  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgDayTime import DwgDayTime  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgObject import DwgObject  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.AuthorShell import AuthorShell, ReplaceVars  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftBook import DraftBook  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftRow import DraftRow  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.DraftValue import DraftRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.FinishBook import AssignHandles, FinishEed, FinishRow  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.ResolveDraft import ResolveDraft, ResolveRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Standard.ReadDraftJson import ReadDraftJson, ReadDraftRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Author.Standard.ReadStandard import ReadDraftRow, ReadEedBlock, ReadStandard  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgClassTable import DwgClassTable  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgDayTime import DwgDayTime  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgObject import DwgObject  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile  # noqa: E402
 
 MATERIAL_ASSETS = 'FBXASSET'
 

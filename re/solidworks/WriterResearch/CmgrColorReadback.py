@@ -1,8 +1,8 @@
 from pathlib import PurePosixPath
 
 from CmgrOpening import ReadCmgrOpening
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 
 # the post-material color record is preceded by the inline RealView appearance

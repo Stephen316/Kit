@@ -7,10 +7,10 @@ from convert.adapters.base.ContractTypes import KSourceType
 from convert.adapters.base.ReadOptions import ReadOptions
 from convert.adapters.Fusion.Projection.ProjectNative import ProjectNative
 from convert.adapters.Fusion.StreamRead import ReadSourceMut
-from convert.formats.Fusion.ArchiveRead.ArchiveBounds import KArchiveLimit
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.records.RecordSource import CadSource
+from convert.Formats.Fusion.ArchiveRead.ArchiveBounds import KArchiveLimit
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Records.RecordSource import CadSource
 
 
 # the strict operation needs a distinct decoding boundary so public document claims remain grounded in native records

@@ -6,10 +6,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.DocumentCodec.Records.DocumentCatalog import DocumentCatalog
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 names = {item['identifier'].upper(): item['class'] for item in json.loads((ROOT / 're/Fusion/Reconstruction/BinaryClasses.json').read_text()).get('classes', [])}
 catalog = DocumentCatalog(ReadDocSchemas())

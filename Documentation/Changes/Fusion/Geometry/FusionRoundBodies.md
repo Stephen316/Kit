@@ -4,12 +4,12 @@ The typed BRep journal codec now reads, writes and independently authors closed 
 
 ## Usage
 
-`CreateRoundBody(Model, History, Stamp)` in `convert.formats.Fusion.BrepCodec.Journal.Round.CreateRoundBody` returns a complete `JournalModel`. `Model` is a `SphereBody` or a `TorusBody`. `History` gives the state identifiers and the next entity tag. `Stamp` gives the product, kernel version and date that the SMB header records. Emit the model with `EmitJournal` for an `.smbh` history and with `EmitStateSmb` for the current `.smb` geometry.
+`CreateRoundBody(Model, History, Stamp)` in `convert.Formats.Fusion.BrepCodec.Journal.Round.CreateRoundBody` returns a complete `JournalModel`. `Model` is a `SphereBody` or a `TorusBody`. `History` gives the state identifiers and the next entity tag. `Stamp` gives the product, kernel version and date that the SMB header records. Emit the model with `EmitJournal` for an `.smbh` history and with `EmitStateSmb` for the current `.smb` geometry.
 
-| Class | Fields | Constraint |
-| --- | --- | --- |
-| `SphereBody` | `RadiusMm`, `CenterMm`, `EntityTag` | Positive finite radius |
-| `TorusBody` | `MajorRadiusMm`, `MinorRadiusMm`, `CenterMm`, `AxisVector`, `ReferenceAxis`, `EntityTag` | Ring torus: major radius greater than minor radius; orthogonal unit frame |
+| Class        | Fields                                                                                   | Constraint                                                                |
+| ------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `SphereBody` | `RadiusMm`, `CenterMm`, `EntityTag`                                                      | Positive finite radius                                                    |
+| `TorusBody`  | `MajorRadiusMm`, `MinorRadiusMm`, `CenterMm`, `AxisVector`, `ReferenceAxis`, `EntityTag` | Ring torus: major radius greater than minor radius; orthogonal unit frame |
 
 The authored body has one closed periodic face, one loop-free shell and one lump. It has no edges and no vertices. `ReadJournal` and `ReadGeometry` read the same sphere and torus nodes from native files. The field order follows the decoded native controls in the research entry.
 
@@ -32,11 +32,11 @@ The trimmed history path is the general linear journal from the [document histor
 
 [Native acceptance](../../../../re/Fusion/LocalOracle/RoundBodies/NativeAcceptance.json), SHA-256 `7ce52b6fd762408fd9aa0fe98380ad9cd4e223588c26882ef1e285c0c6025b9f`, has status `accepted` in Fusion 2706.1.17. Zero documents remained open.
 
-| Group | Cases | Native checks |
-| --- | --- | --- |
-| Source-free authored bodies | Sphere r 19 mm, torus 31/9 mm, tilted torus axis (0, 0.6, 0.8) | Temporary BRep import, persisted body, analytic surface type, save and reopen |
-| Re-emitted native carriers | Sphere, torus, tilted torus, placed torus | Byte-exact `.smb` regeneration, body equality with the native control, save and reopen |
-| Trimmed histories | Pipe partial closed, composite circular pipe, rule-all-rounds fillets | Every rollback marker, rebuild, driving-parameter edit, save and reopen, equal to the control |
+| Group                       | Cases                                                                 | Native checks                                                                                 |
+| --------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Source-free authored bodies | Sphere r 19 mm, torus 31/9 mm, tilted torus axis (0, 0.6, 0.8)        | Temporary BRep import, persisted body, analytic surface type, save and reopen                 |
+| Re-emitted native carriers  | Sphere, torus, tilted torus, placed torus                             | Byte-exact `.smb` regeneration, body equality with the native control, save and reopen        |
+| Trimmed histories           | Pipe partial closed, composite circular pipe, rule-all-rounds fillets | Every rollback marker, rebuild, driving-parameter edit, save and reopen, equal to the control |
 
 The authored sphere volume is 28.73091201462985 cm³ and its area is 45.36459791783661 cm². These equal 4/3·π·r³ and 4·π·r² for r = 1.9 cm. Each authored torus has volume 49.56515330227076 cm³ and area 110.14478511615724 cm². These equal 2·π²·R·r² and 4·π²·R·r for R = 3.1 cm and r = 0.9 cm. Fusion reported `adsk::core::Sphere` and `adsk::core::Torus` surfaces.
 

@@ -12,18 +12,18 @@ from convert.adapters.freecad.EditBodyRev.BodyRevModels import GetBodyTopology
 from convert.adapters.freecad.EditBodyRev.BodyRevPlan import BodyRevPlan
 from convert.adapters.freecad.EditExtRing import GetEditRing
 from convert.adapters.freecad.EditExtSolid import BuildEditSolid
-from convert.formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
-from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
-from convert.formats.Fusion.Revolves.ProfileMeridian import CalcMeridian
-from convert.formats.Fusion.Revolves.RevProfile import ReadRevProfile
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.features.RevolveSpan import GetAngleSpan
-from interchange.geometry.models.Selection import SelectPathElem
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Revolves.BuildRevGeom import BuildRevGeom
+from convert.Formats.Fusion.Revolves.JoinRevModels import JoinRevModels
+from convert.Formats.Fusion.Revolves.ProfileMeridian import CalcMeridian
+from convert.Formats.Fusion.Revolves.RevProfile import ReadRevProfile
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Features.RevolveSpan import GetAngleSpan
+from interchange.geometry.Models.Selection import SelectPathElem
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the occupied meridian controls the effective sweep even when the linked edge moves sides

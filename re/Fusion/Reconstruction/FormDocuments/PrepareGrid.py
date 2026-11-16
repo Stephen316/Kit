@@ -8,12 +8,12 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid
-from convert.formats.Fusion.DocumentCodec.Auxiliary.Form.SwapGridCage import SwapGridCage
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Conversion.ConvertGrid import ConvertGrid
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Form.SwapGridCage import SwapGridCage
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 SOURCE = 're/Fusion/LocalOracle/TSpline/Plane.f3d'
 TARGET = ROOT / 're/Fusion/LocalOracle/FormDocuments/Grid'

@@ -7,7 +7,7 @@ A JSON roundtrip can appear to establish that its full source meaning is underst
 
 ## Actual behavior
 
-The [SOLIDWORKS reader](../../../src/convert/adapters/solidworks/core/Adapter.py) retains source bytes in document metadata.
+The [SOLIDWORKS reader](../../../src/convert/adapters/solidworks/Core/Adapter.py) retains source bytes in document metadata.
 It can also read an embedded `Kit/Interchange` document instead of decoding independent native semantics.
 Typed features can retain native termination codes or mappings without independent direction/frame qualification.
 Model validation checks structural relationships, not complete source interpretation.

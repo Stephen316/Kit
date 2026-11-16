@@ -18,7 +18,7 @@ from convert.adapters.Fusion.Native.Policy.CheckPlacement import CheckPlacement
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
-from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
+from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
 
 
 # invalid base input must fail here so public document claims remain grounded in native records

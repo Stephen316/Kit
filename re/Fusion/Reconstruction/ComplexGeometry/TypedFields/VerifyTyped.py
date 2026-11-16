@@ -28,19 +28,19 @@ OPTIONS = ARGS.parse_args()
 sys.path.insert(0, OPTIONS.src)
 sys.path.insert(1, str(BASE))
 
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import SubtypeNode  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.RelinkSubtypes import RelinkSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import DefinedName, MapSubtypes, WalkSubtypes  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Grammar.GrammarValue import SubtypeNode  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.RelinkSubtypes import RelinkSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import DefinedName, MapSubtypes, WalkSubtypes  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.EmitJournal import EmitJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.ReadJournal import ReadJournal  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef  # noqa: E402
 
 try:
-    from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedCodecs import KTypedCodecs, TreeBody, TypeBody  # noqa: E402
-    from convert.formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedRecord import KRecordTypes  # noqa: E402
+    from convert.Formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedCodecs import KTypedCodecs, TreeBody, TypeBody  # noqa: E402
+    from convert.Formats.Fusion.BrepCodec.Journal.Complex.Typed.TypedRecord import KRecordTypes  # noqa: E402
 except ImportError:
     KTypedCodecs = None
 
@@ -92,8 +92,8 @@ def corpus(report):
 
 
 def authored(report):
-    from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.CreateNurbsBody import CreateNurbsBody
-    from convert.formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb
+    from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.CreateNurbsBody import CreateNurbsBody
+    from convert.Formats.Fusion.BrepCodec.Journal.EmitStateSmb import EmitStateSmb
     from AuthoredModels import authored_models
     from PrepareAcceptance import HISTORY, OUT, STAMP
     rows = []

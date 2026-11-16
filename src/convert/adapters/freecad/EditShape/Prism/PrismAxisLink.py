@@ -1,12 +1,12 @@
 from convert.adapters.freecad.EditShape.CylinderRims import IsNearPoint
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import KLocationChain, PrismRaw
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     LocationPoint,
     Reference,
     VertexData,
 )
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # native edge selection needs the exact directed endpoints at its saved subelement number
 KPrismLink = tuple[int, SpaceVector, SpaceVector]

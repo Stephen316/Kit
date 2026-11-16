@@ -2,15 +2,15 @@ import struct
 
 from PairedCaptureIntake import require
 
-from convert.adapters.solidworks.container.Archive import KClassRefKind, ReadTag
-from convert.adapters.solidworks.resolved.BossChooser import CheckChoiceOwn, ReadChoiceTail
-from convert.adapters.solidworks.resolved.BossEntry import ReadBodyReturn
-from convert.adapters.solidworks.resolved.FaceIdentity import (
+from convert.adapters.solidworks.Container.Archive import KClassRefKind, ReadTag
+from convert.adapters.solidworks.Resolved.BossChooser import CheckChoiceOwn, ReadChoiceTail
+from convert.adapters.solidworks.Resolved.BossEntry import ReadBodyReturn
+from convert.adapters.solidworks.Resolved.FaceIdentity import (
     KCapClass, KEdgeClass, ReadFaceHead, ReadFaceReturn, ReadSurfaceId, SurfaceKey,
 )
-from convert.adapters.solidworks.resolved.cut.CutChooser import KCutClass
-from convert.adapters.solidworks.resolved.cut.CutOpRead import ReadCutEnd
-from convert.adapters.solidworks.resolved.cut.CutResultFace import KCutSelectors
+from convert.adapters.solidworks.Resolved.Cut.CutChooser import KCutClass
+from convert.adapters.solidworks.Resolved.Cut.CutOpRead import ReadCutEnd
+from convert.adapters.solidworks.Resolved.Cut.CutResultFace import KCutSelectors
 from SolidWorksScopeSecondBoss import CAP_CLASS, EDGE_CLASS
 
 

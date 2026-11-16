@@ -2,7 +2,7 @@
 
 Every number below is `IModelDocExtension::GetMassProperties(1, status)[3] × 1e9` (volume, mm³)
 after `ForceRebuild3(False)`, read in a **fresh SOLIDWORKS subprocess per file** via
-`tests/oracle/Session.py`. Every file was built with **`Contents/Config-0-Partition` deleted**, so
+`tests/Oracle/Session.py`. Every file was built with **`Contents/Config-0-Partition` deleted**, so
 every volume is a genuine rebuild from `Contents/Config-0-ResolvedFeatures` +
 `swXmlContents/KeyWords`, not a cached body.
 

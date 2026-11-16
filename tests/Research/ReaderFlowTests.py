@@ -5,7 +5,7 @@ import sys as System
 import tempfile as TempFiles
 from pathlib import Path as FilePath
 
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # a known good part establishes whether native reading and publication work through the cli together

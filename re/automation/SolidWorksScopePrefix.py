@@ -3,35 +3,35 @@ from math import isclose
 
 from PairedCaptureIntake import require, sha256
 
-from convert.adapters.solidworks.config import Presentation as presentation
-from convert.adapters.solidworks.config.FeatureBase import ReadFeatBase
-from convert.adapters.solidworks.config.OrdinaryMap import ReadEmptyRel, ReadRelEntry
-from convert.adapters.solidworks.config.RootLayout import LoadPartLayouts
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Config import Presentation as presentation
+from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
+from convert.adapters.solidworks.Config.OrdinaryMap import ReadEmptyRel, ReadRelEntry
+from convert.adapters.solidworks.Config.RootLayout import LoadPartLayouts
+from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     KNullKind,
     KObjectRefKind,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
-from convert.adapters.solidworks.resolved.BossChooser import CheckChoiceOwn, ReadCap, ReadCapAlias, ReadChoiceTail
-from convert.adapters.solidworks.resolved.BossDepth import ReadFeatHandle, ReadParDepthMut
-from convert.adapters.solidworks.resolved.BossEnd import ReadEndHead, ReadEndTail
-from convert.adapters.solidworks.resolved.BossEntry import ReadBodyReturn
-from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
-from convert.adapters.solidworks.resolved.FaceIdentity import KCapClass, KEdgeClass, ReadFaceHead, ReadFaceReturn, ReadSurfaceId
-from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
-from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
-from convert.adapters.solidworks.resolved.PlaneAtom import ReadAtomMaps
-from convert.adapters.solidworks.resolved.ProfilePlane import ReadProfileRef
-from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
-from convert.adapters.solidworks.resolved.RectanglePart import ResolveDatum
-from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
-from convert.adapters.solidworks.resolved.SavedFileRef import ReadFileRef
-from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
-from convert.adapters.solidworks.sketch.DisplayFields import ReadCache, ReadDisplayTail
-from convert.adapters.solidworks.sketch.DisplayOpen import ReadDisplayOpen
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Resolved.BossChooser import CheckChoiceOwn, ReadCap, ReadCapAlias, ReadChoiceTail
+from convert.adapters.solidworks.Resolved.BossDepth import ReadFeatHandle, ReadParDepthMut
+from convert.adapters.solidworks.Resolved.BossEnd import ReadEndHead, ReadEndTail
+from convert.adapters.solidworks.Resolved.BossEntry import ReadBodyReturn
+from convert.adapters.solidworks.Resolved.ContourChain import ReadChainState
+from convert.adapters.solidworks.Resolved.FaceIdentity import KCapClass, KEdgeClass, ReadFaceHead, ReadFaceReturn, ReadSurfaceId
+from convert.adapters.solidworks.Resolved.NamedNode import ReadNamedNode
+from convert.adapters.solidworks.Resolved.OriginProfile import ReadOrigin
+from convert.adapters.solidworks.Resolved.PlaneAtom import ReadAtomMaps
+from convert.adapters.solidworks.Resolved.ProfilePlane import ReadProfileRef
+from convert.adapters.solidworks.Resolved.ProfileSketch import ReadProfileBody
+from convert.adapters.solidworks.Resolved.RectanglePart import ResolveDatum
+from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
+from convert.adapters.solidworks.Resolved.SavedFileRef import ReadFileRef
+from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
+from convert.adapters.solidworks.Sketch.DisplayFields import ReadCache, ReadDisplayTail
+from convert.adapters.solidworks.Sketch.DisplayOpen import ReadDisplayOpen
 from SolidWorksScopeCut import read_scoped_cut
 from SolidWorksScopeSecondBoss import read_second_boss, read_uncached_trim
 

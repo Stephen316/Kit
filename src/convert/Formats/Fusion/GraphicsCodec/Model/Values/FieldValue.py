@@ -1,0 +1,25 @@
+from dataclasses import dataclass as MakeDataClass
+from typing import Generic
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.ObjectRef import ObjectRef
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.TextureValue import TextureValue
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.NodeTarget import NodeTarget
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.OverrideSet import OverrideSet
+from convert.Formats.Fusion.GraphicsCodec.Model.Values.KSetValue import KSetValue
+
+
+# field value needs an explicit state contract so display geometry retains its entity and scene relationships
+@MakeDataClass(frozen=True, slots=True)
+class FieldValue(Generic[KSetValue]):
+    FieldName: str
+    DataValue: (
+        bool
+        | int
+        | float
+        | str
+        | None
+        | tuple[float, ...]
+        | TextureValue
+        | ObjectRef
+        | NodeTarget
+        | tuple[OverrideSet[KSetValue], ...]
+    )

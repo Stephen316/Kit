@@ -1,0 +1,16 @@
+from convert.Formats.Fusion.ContainerCodec.Model.ContainerPart import ContainerPart
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Form.FormName import FormName
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentForm import DocumentForm
+from convert.Formats.Fusion.TSplineCodec.EmitTspline import EmitTspline
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+
+
+# the form part operation needs a distinct decoding boundary so supporting records retain their owning document relationships
+def ReadFormPart(Value: ContainerPart) -> DocumentForm:
+    _ = FormName(Value.Name)
+    if type(Value.Payload) is not bytes or not 0 < len(Value.Payload) <= 16777216:
+        raise ValueError("Invalid or oversized document T-spline part")
+    Surface = ReadTspline(Value.Payload)
+    if EmitTspline(Surface) != Value.Payload:
+        raise ValueError("Noncanonical document T-spline part")
+    return DocumentForm(Value.Name, Surface)

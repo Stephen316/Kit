@@ -7,10 +7,10 @@ sys.path.insert(0, str(BASE))
 
 from PackageSpy import ROOT, ReadBundle, packages
 
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
-from convert.formats.Fusion.MaterialCodec.Package.Envelope.ReadLinks import ReadLinks
-from convert.formats.Fusion.MaterialCodec.Package.Reading.ReadPackageBody import ReadPackageBody
-from convert.formats.Fusion.MaterialCodec.Package.Validation.CheckPackage import CheckPackage
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.MaterialCodec.Package.Envelope.ReadLinks import ReadLinks
+from convert.Formats.Fusion.MaterialCodec.Package.Reading.ReadPackageBody import ReadPackageBody
+from convert.Formats.Fusion.MaterialCodec.Package.Validation.CheckPackage import CheckPackage
 
 
 def walk(value, path, found, depth=0):

@@ -4,8 +4,8 @@ from interchange.assembly.AssemblyEnums import ComponentKind, MateEntityKind, Ma
 from interchange.assembly.ComponentDefinition import ComponentDef
 from interchange.assembly.MateConstraint import MateConstraint
 from interchange.assembly.MateEntity import MateEntity
-from interchange.enums.EnumGeometry import ConstraintKind, GeometryKind
-from interchange.geometry.models.Sketch import SketchEntity, SketchRelation
+from interchange.Enums.EnumGeometry import ConstraintKind, GeometryKind
+from interchange.geometry.Models.Sketch import SketchEntity, SketchRelation
 
 # portable conversion needs explicit supported kind sets for open typed records
 KRecordKinds: dict[type[object], frozenset[str]] = {

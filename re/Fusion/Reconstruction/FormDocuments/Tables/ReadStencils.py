@@ -8,11 +8,11 @@ from types import MappingProxyType as ReadOnlyMap
 from typing import Mapping as KMapping
 from typing import cast as CastValue
 
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilCurve import (
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SplineKnot import SplineKnot
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilCurve import (
     StencilCurve,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilFace import (
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilFace import (
     StencilFace,
 )
 from StencilJson import (
@@ -20,7 +20,7 @@ from StencilJson import (
     StencilsJson,
     TableJson,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilTable import (
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.StencilTable import (
     StencilTable,
 )
 

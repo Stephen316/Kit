@@ -14,10 +14,10 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path[:0] = [str(ROOT / "src"), str(Path(__file__).with_name("ApplicationWorkers"))]
 
 from ApplicationProtocol import encoded
-from convert.adapters.solidworks.container.Archive import ArchiveError, ContainerMo
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.container.PlaneBasis import KUnitRows
-from convert.adapters.solidworks.resolved.RectanglePart import ReadRectPart
+from convert.adapters.solidworks.Container.Archive import ArchiveError, ContainerMo
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.PlaneBasis import KUnitRows
+from convert.adapters.solidworks.Resolved.RectanglePart import ReadRectPart
 
 CAPTURE_REVISION = "89c25945f5833ad9c3a1c6c683df510b5702dd54"
 CAPTURES = {

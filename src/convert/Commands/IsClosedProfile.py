@@ -1,13 +1,13 @@
 from typing import cast as CastValue
 
-from convert.geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
-from interchange.brep.curves.BrepCurves import CircleCurve
-from interchange.brep.validation.BrepCurveValidate import GetCurveErrors
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import CircleGeometry, LineGeometry
-from interchange.geometry.models.Sketch import SketchEntity
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
+from interchange.brep.Curves.BrepCurves import CircleCurve
+from interchange.brep.Validation.BrepCurveValidate import GetCurveErrors
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import CircleGeometry, LineGeometry
+from interchange.geometry.Models.Sketch import SketchEntity
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # generator qualification requires supported closed analytic profiles rather than declared profile identifiers alone

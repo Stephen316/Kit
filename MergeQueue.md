@@ -159,6 +159,10 @@ The acceptance gate requires the plan, every shard, and the report to succeed.
 The trusted-base `CI Agg` of the first sharded candidate still requires that name.
 The CI allowlist matches shard check names by pattern because the shard count changes with the suite.
 
+The seven historically flaky pending-aggregate probes and their dedicated helpers are removed.
+Completed-result process checks remain; pending-process liveness and evidence publication during waiting no longer have those probes.
+See the [removal scope and evidence](Documentation/Changes/Ci/FlakyPendingGateRemoval.md).
+
 The checked-in desired queue has no bypass actors, uses squash merges, requires `ALLGREEN`, builds
 at most two candidates concurrently, and merges one entry at a time. Its
 90-minute response timeout allows the existing 60-minute analyses plus runner

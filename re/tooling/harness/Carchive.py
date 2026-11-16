@@ -9,7 +9,7 @@ KRootInfo = PathInfo(__file__).resolve().parents[3]
 for CandInfo in (KRootInfo, KRootInfo / "src"):
     if str(CandInfo) not in System.path:
         System.path.insert(0, str(CandInfo))
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 
 # needed to keep reverse engineering responsibilities isolated and maintainable

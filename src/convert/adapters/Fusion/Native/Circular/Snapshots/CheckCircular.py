@@ -12,19 +12,19 @@ from convert.adapters.Fusion.Native.Circular.Snapshots.CheckSnapTags import (
 )
 from convert.adapters.Fusion.Native.Circular.Snapshots.SnapFaces import BodyFaces
 from convert.adapters.Fusion.Native.Rectangle.CurveTags import CurveTag
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
-from convert.formats.Fusion.BrepCodec.Models.SnapshotModel import SnapshotModel
-from convert.formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
-from convert.formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
-from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.FaceNode import FaceNode
+from convert.Formats.Fusion.BrepCodec.Models.SnapshotModel import SnapshotModel
+from convert.Formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
+from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
+from convert.Formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
     FrustumHistory,
 )
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
 
 
 # invalid circular input must fail here so public geometry remains consistent with native circular topology

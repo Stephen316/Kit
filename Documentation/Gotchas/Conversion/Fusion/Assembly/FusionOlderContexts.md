@@ -20,5 +20,5 @@ Every other corpus document passed the equality check, so no other document has 
 
 - [Cache and package notes](../../../../../re/Fusion/Reconstruction/ReadGaps/CachePackageNotes.md#version-contexts-older-than-their-link-member-3)
 - [Link spy](../../../../../re/Fusion/Reconstruction/ReadGaps/LinkSpy.py)
-- [Cache gap tests](../../../../../tests/convert/formats/FusionCodec/SavedCorpus/CacheGapTests.py), case `TestOlderUrn`
+- [Cache gap tests](../../../../../tests/Convert/Formats/FusionCodec/SavedCorpus/CacheGapTests.py), case `TestOlderUrn`
 - [Link renewal](FusionLinkRenewal.md)

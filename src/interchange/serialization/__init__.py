@@ -1,7 +1,7 @@
 from inspect import Parameter as FuncParam
 from inspect import Signature as FuncSig
 
-from interchange.compatibility.PublicMetadata import BindFunctionMut
+from interchange.Compatibility.PublicMetadata import BindFunctionMut
 from interchange.serialization.Deserialize import FromData
 from interchange.serialization.EncodeData import ToData
 from interchange.serialization.JsonCodec import DumpJson, LoadJson

@@ -7,15 +7,15 @@ sys.path.insert(0, str(BASE))
 
 from PackageSpy import ROOT, ReadBundle, packages
 
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
-from convert.formats.Fusion.MaterialCodec.Package.Envelope.ReadLinks import ReadLinks
-from convert.formats.Fusion.MaterialCodec.Package.Envelope.ReadResources import ReadResources
-from convert.formats.Fusion.MaterialCodec.Package.Schema.ReadSchemaNode import ReadSchemaNode
-from convert.formats.Fusion.MaterialCodec.Package.SchemaModels import SchemaModels
-from convert.formats.Fusion.MaterialCodec.Records.DecodeAsset import DecodeAsset
-from convert.formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchemas
-from convert.formats.Fusion.MaterialCodec.Stores.DecodeStore import DecodeStore
-from convert.formats.Fusion.MaterialCodec.Table.DecodeTable import DecodeTable
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.MaterialCodec.Package.Envelope.ReadLinks import ReadLinks
+from convert.Formats.Fusion.MaterialCodec.Package.Envelope.ReadResources import ReadResources
+from convert.Formats.Fusion.MaterialCodec.Package.Schema.ReadSchemaNode import ReadSchemaNode
+from convert.Formats.Fusion.MaterialCodec.Package.SchemaModels import SchemaModels
+from convert.Formats.Fusion.MaterialCodec.Records.DecodeAsset import DecodeAsset
+from convert.Formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchemas
+from convert.Formats.Fusion.MaterialCodec.Stores.DecodeStore import DecodeStore
+from convert.Formats.Fusion.MaterialCodec.Table.DecodeTable import DecodeTable
 
 
 def short(entry):

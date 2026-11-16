@@ -3,7 +3,7 @@ import json as JsonCodec
 from collections import Counter
 from pathlib import Path as FilePath
 
-from interchange.document.models.DocumentModel import CadDocument
+from interchange.document.Models.DocumentModel import CadDocument
 from tests.Research.FusionClient import KControlAsset
 
 

@@ -7,8 +7,8 @@ ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
-from convert.formats.Fusion.DrawingCodec.Dwg.Integrity.CrcSixteen import CrcSixteen
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgInventory import ReadInventory
+from convert.Formats.Fusion.DrawingCodec.Dwg.Integrity.CrcSixteen import CrcSixteen
 from ProtoBits import Reader, Writer
 
 FIXED = {

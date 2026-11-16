@@ -1,14 +1,14 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.freecad.EditShape.OpenSketchGeom import ReadOpenGeom
-from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import FeatureKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.payloads.PayloadRoles import PayloadRole
+from convert.Geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.Payloads.PayloadRoles import PayloadRole
 
 
 # each sketch only timeline step owns one exact sketch and support pair

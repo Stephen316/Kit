@@ -2,19 +2,19 @@ from math import isclose
 
 from PairedCaptureIntake import require
 
-from convert.adapters.solidworks.config.FeatureBase import ReadFeatBase
-from convert.adapters.solidworks.container.Archive import KClassRefKind, KDefinitionKind, KObjectRefKind
-from convert.adapters.solidworks.resolved.BossChooser import CheckChoiceOwn, ReadChoiceTail
-from convert.adapters.solidworks.resolved.BossDepth import ReadBossDepth
-from convert.adapters.solidworks.resolved.BossEnd import ReadEndHead, ReadStartHead
-from convert.adapters.solidworks.resolved.BossEntry import ReadBodyReturn, ReadOpNode
-from convert.adapters.solidworks.resolved.ContourChain import ReadChain
-from convert.adapters.solidworks.resolved.FaceIdentity import ReadFaceHead, ReadFaceReturn, ReadSurfaceId
-from convert.adapters.solidworks.resolved.PlaneAtom import ReadAtomMaps
-from convert.adapters.solidworks.resolved.ProfileEntry import ReadProfileHead
-from convert.adapters.solidworks.resolved.ProfilePlane import ReadProfileRef
-from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
-from convert.adapters.solidworks.resolved.RectanglePart import ResolveDatum
+from convert.adapters.solidworks.Config.FeatureBase import ReadFeatBase
+from convert.adapters.solidworks.Container.Archive import KClassRefKind, KDefinitionKind, KObjectRefKind
+from convert.adapters.solidworks.Resolved.BossChooser import CheckChoiceOwn, ReadChoiceTail
+from convert.adapters.solidworks.Resolved.BossDepth import ReadBossDepth
+from convert.adapters.solidworks.Resolved.BossEnd import ReadEndHead, ReadStartHead
+from convert.adapters.solidworks.Resolved.BossEntry import ReadBodyReturn, ReadOpNode
+from convert.adapters.solidworks.Resolved.ContourChain import ReadChain
+from convert.adapters.solidworks.Resolved.FaceIdentity import ReadFaceHead, ReadFaceReturn, ReadSurfaceId
+from convert.adapters.solidworks.Resolved.PlaneAtom import ReadAtomMaps
+from convert.adapters.solidworks.Resolved.ProfileEntry import ReadProfileHead
+from convert.adapters.solidworks.Resolved.ProfilePlane import ReadProfileRef
+from convert.adapters.solidworks.Resolved.ProfileSketch import ReadProfileBody
+from convert.adapters.solidworks.Resolved.RectanglePart import ResolveDatum
 
 
 CAP_CLASS = "moEndFace3IntSurfIdRep_c"

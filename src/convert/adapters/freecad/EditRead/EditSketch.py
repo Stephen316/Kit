@@ -1,7 +1,7 @@
 from convert.adapters.freecad.EditRead.EditGeometry import CheckEditGeom
 from convert.adapters.freecad.EditRead.XmlField import EditChild
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.Sketch import Sketch
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # geometry and solver lists must still describe the exact selected circle

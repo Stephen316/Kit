@@ -13,9 +13,9 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil import ClassifyEdges as Rule
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import CageBody, ShapeBody
-from convert.formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil import ClassifyEdges as Rule
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.CageBody import CageBody, ShapeBody
+from convert.Formats.Fusion.TSplineCodec.ReadTspline import ReadTspline
 
 ORACLE = ROOT / 're/Fusion/LocalOracle/FormDocuments/Crease'
 

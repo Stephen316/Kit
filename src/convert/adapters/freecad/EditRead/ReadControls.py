@@ -12,10 +12,10 @@ from convert.adapters.freecad.EditRead.EditProfile import CheckEditProf
 from convert.adapters.freecad.EditRead.EditSheet import ReadEditText
 from convert.adapters.freecad.EditRead.XmlField import EditScalar
 from convert.adapters.freecad.Native import NativeObject, ParseObjects
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.geometry.models.Sketch import Sketch
-from interchange.records.RecordParameter import Parameter
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.Records.RecordParameter import Parameter
 
 # generated metadata groups delimit which native objects belong to the bound solid
 KProfileRoots = {

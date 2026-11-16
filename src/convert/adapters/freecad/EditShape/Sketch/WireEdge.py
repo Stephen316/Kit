@@ -7,10 +7,10 @@ from convert.adapters.freecad.EditShape.CylinderRims import (
     KPositionTolerance,
 )
 from convert.adapters.freecad.EditShape.Sketch.SavedWireData import SavedWireData
-from convert.geometry.Opencascade import DecodeFailure, EdgeData, Reference, VertexData
-from convert.geometry.Revolve.SweepVector import CrossVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Opencascade import DecodeFailure, EdgeData, Reference, VertexData
+from convert.Geometry.Revolve.SweepVector import CrossVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # bounded analytic edge data retains its trim and oriented vertex identities

@@ -5,7 +5,7 @@ from convert.adapters.freecad.EditRead.Sketch.SavedExternal import CheckExternal
 from convert.adapters.freecad.EditRead.Sketch.SavedIncidence import CheckIncidence
 from convert.adapters.freecad.EditRead.XmlField import EditChild
 from convert.adapters.freecad.Native import NativeObject
-from interchange.geometry.models.Sketch import Sketch
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # native sketch edits retain original entity ids and their exact incidence roles

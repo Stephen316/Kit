@@ -1,0 +1,50 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.AsmRoot import AsmRoot
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.LumpNode import LumpNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.ShellNode import ShellNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.TransformNode import (
+    TransformNode,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
+from convert.Formats.Fusion.BrepCodec.Journal.PolyAuthor.MakePolyEdges import (
+    MakePolyEdges,
+    MakePolyCurves,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.PolyAuthor.MakePolyFaces import (
+    MakePolyFaces,
+    MakePolyLoops,
+    MakePolyPlanes,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.PolyAuthor.MakePolyPoints import (
+    MakePolyPoints,
+    MakePolyVerts,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.PolyAuthor.MakePolyUses import (
+    MakePolyUses,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.PolyAuthor.PolyLayout import PolyLayout
+
+
+# the poly nodes operation needs a consistent construction rule so topology changes retain their native revision relationships
+def MakePolyNodes(
+    Layout: PolyLayout, EntityTag: int, Placement: TransformNode | None
+) -> tuple[KJournalEntity, ...]:
+    Prefix = EntityPrefix(-1, -1)
+    Coedges = MakePolyUses(Layout)
+    TransformRef = Layout.CurveBase + len(Layout.Edges) if Placement is not None else -1
+    Records: tuple[KJournalEntity, ...] = (
+        AsmRoot(-1, -1, "232.5.0.65535"),
+        BodyNode(EntityPrefix(-1, EntityTag), 2, TransformRef),
+        LumpNode(Prefix, -1, 3, 1),
+        ShellNode(Prefix, -1, 4, 2),
+        *MakePolyFaces(Layout),
+        *MakePolyLoops(Layout),
+        *Coedges,
+        *MakePolyEdges(Layout, Coedges),
+        *MakePolyVerts(Layout),
+        *MakePolyPoints(Layout),
+        *MakePolyPlanes(Layout),
+        *MakePolyCurves(Layout),
+    )
+    return Records if Placement is None else (*Records, Placement)

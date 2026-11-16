@@ -5,7 +5,7 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 
 names = {}
 for item in json.loads((repository / 're/Fusion/Reconstruction/BinaryClasses.json').read_text()).get('classes', []):

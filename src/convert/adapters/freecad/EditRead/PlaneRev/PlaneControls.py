@@ -11,12 +11,12 @@ from convert.adapters.freecad.EditRead.PlaneRev.PlaneNativeExpr import CheckPlan
 from convert.adapters.freecad.EditRead.Revolve.RevControls import CheckRevVector
 from convert.adapters.freecad.EditRead.Revolve.RevPose import RotateRevAxis
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditFloat, EditScalar
-from convert.formats.Fusion.AnglePlane.AnglePlaneBasis import RotatePlane
-from convert.formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
-from convert.formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import KTransformIdentity, Transform
+from convert.Formats.Fusion.AnglePlane.AnglePlaneBasis import RotatePlane
+from convert.Formats.Fusion.Revolves.PlaneRevInputs import ProfileLines
+from convert.Formats.Fusion.Revolves.PlaneSweep import DerivePlaneSpan
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import KTransformIdentity, Transform
 from interchange.serialization.EncodeData import ToData
 
 

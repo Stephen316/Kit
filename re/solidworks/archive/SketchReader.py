@@ -2,8 +2,8 @@
 
 from ArchiveVersion import KApplicationBuild
 from SketchRoot import KGeneration, Require
-from convert.adapters.solidworks.config.CutConfig import ReadCutRel
-from convert.adapters.solidworks.sketch.Geometry import KAxisRelations
+from convert.adapters.solidworks.Config.CutConfig import ReadCutRel
+from convert.adapters.solidworks.Sketch.Geometry import KAxisRelations
 
 
 def ReadSketchConfiguration(BlobValue, BuildName, IncludeCoincidence=False):

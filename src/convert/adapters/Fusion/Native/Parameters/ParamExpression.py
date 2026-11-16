@@ -4,7 +4,7 @@ from re import fullmatch as FullMatch
 from convert.adapters.Fusion.Native.Graph.GraphChecks import SameNumbers
 from convert.adapters.Fusion.Native.Graph.GraphValues import NumberValue, TextValue
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
-from interchange.records.RecordParameter import Expression
+from interchange.Records.RecordParameter import Expression
 
 
 # parameter expression needs an explicit validity boundary so public document claims remain grounded in native records

@@ -29,5 +29,5 @@ definition with its representation intact is not rejected for its filename.
 Use `kit decode` or the deterministic research tools to inspect these artifacts
 while their semantics are recovered. The public SDK and CATIA reader are unchanged.
 See [the guard](../../../../src/convert/Commands/CheckPortable.py),
-[the isolated CATProduct process cases](../../../../tests/convert/Commands/CliCatiaTests.py),
+[the isolated CATProduct process cases](../../../../tests/Convert/Commands/CliCatiaTests.py),
 and [the change entry](../../../Changes/Commands/OpaqueConversionGuard.md).

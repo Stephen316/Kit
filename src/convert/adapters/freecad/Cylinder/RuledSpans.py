@@ -6,10 +6,10 @@ from convert.adapters.freecad.Cylinder.CylinderFrame import KAxisTolerance
 from convert.adapters.freecad.Cylinder.CylinderQuad import IsCylinderQuad
 from convert.adapters.freecad.Cylinder.CylinderRail import ReadCylRail
 from convert.adapters.freecad.Cylinder.CylinderSpan import CylinderSpan
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
-from interchange.brep.topology.BrepTopology import BrepEdge
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import ConeSurface, CylinderSurface
+from interchange.brep.Topology.BrepTopology import BrepEdge
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # the trimmed arc radii set the angular tolerance even when the carrier starts at an apex

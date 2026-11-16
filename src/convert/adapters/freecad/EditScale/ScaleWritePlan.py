@@ -9,15 +9,15 @@ from convert.adapters.freecad.EditScale.ScalePointPlan import (
     ScalePointPlan,
 )
 from convert.adapters.freecad.EditScale.ScaleSourcePlan import ReadScaleBody
-from convert.formats.Fusion.Extrudes.SolidCreators import IsSavedActive
-from convert.formats.Fusion.Revolves.JoinRevModels import JoinRevModels
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.BoundScaleValues import GetScaleValues
-from interchange.features.FeatureBoundScale import BoundScale
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Formats.Fusion.Extrudes.SolidCreators import IsSavedActive
+from convert.Formats.Fusion.Revolves.JoinRevModels import JoinRevModels
+from convert.Formats.Fusion.Sketches.SketchPlacement import KSketchFeature
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.BoundScaleValues import GetScaleValues
+from interchange.Features.FeatureBoundScale import BoundScale
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # a checked native scale plan owns the complete editable source tree and final body order

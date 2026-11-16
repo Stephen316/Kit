@@ -1,6 +1,6 @@
 from dataclasses import dataclass as MakeDataClass
 
-from interchange.brep.topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepModel import BrepModel
 
 
 # each visible scale result owns its own source sketch and two generated solid caches

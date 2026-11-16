@@ -1,12 +1,12 @@
-from convert.formats.Fusion.DesignZip import KDesignPrefix
-from convert.formats.Fusion.Revolves.OriginAxis import KAxisGuid, KOriginGuid
-from convert.formats.Fusion.SelectionProxy import KSelectProxy
-from convert.formats.Fusion.SelectionRef import KSelectDesc, KSelectLeaf
-from convert.geometry.Revolve.SweepVector import DotVector, OffsetVector
-from interchange.features.FeatureAngleRev import AngularRevolve
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Selection import Selection
-from interchange.geometry.models.Transform import Transform
+from convert.Formats.Fusion.DesignZip import KDesignPrefix
+from convert.Formats.Fusion.Revolves.OriginAxis import KAxisGuid, KOriginGuid
+from convert.Formats.Fusion.SelectionProxy import KSelectProxy
+from convert.Formats.Fusion.SelectionRef import KSelectDesc, KSelectLeaf
+from convert.Geometry.Revolve.SweepVector import DotVector, OffsetVector
+from interchange.Features.FeatureAngleRev import AngularRevolve
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Selection import Selection
+from interchange.geometry.Models.Transform import Transform
 
 
 # source axis ownership remains exact only for the captured component origin axes

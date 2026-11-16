@@ -71,18 +71,18 @@ Any later field or type addition requires registered serialization, compatibilit
 
 ### Source anchors
 
-- [Root document](../../../src/interchange/document/models/DocumentModel.py)
-- [Parameters, roles and expressions](../../../src/interchange/records/RecordParameter.py)
-- [Sketches and relations](../../../src/interchange/geometry/models/Sketch.py)
-- [Feature step](../../../src/interchange/features/FeatureStep.py)
-- [Inline feature definitions](../../../src/interchange/features/FeatureKinds.py)
-- [Inline extrusion](../../../src/interchange/features/FeatureExtrude.py)
-- [Linked distance extrusion](../../../src/interchange/features/FeatureDistExt.py)
-- [Linked angular revolution](../../../src/interchange/features/FeatureAngleRev.py)
-- [Configuration records](../../../src/interchange/records/RecordConfig.py)
-- [Bodies](../../../src/interchange/features/FeatureBody.py)
-- [B-rep tolerance fields](../../../src/interchange/brep/topology/BrepTopology.py)
-- [Provenance records](../../../src/interchange/records/RecordProvenance.py)
+- [Root document](../../../src/interchange/document/Models/DocumentModel.py)
+- [Parameters, roles and expressions](../../../src/interchange/Records/RecordParameter.py)
+- [Sketches and relations](../../../src/interchange/geometry/Models/Sketch.py)
+- [Feature step](../../../src/interchange/Features/FeatureStep.py)
+- [Inline feature definitions](../../../src/interchange/Features/FeatureKinds.py)
+- [Inline extrusion](../../../src/interchange/Features/FeatureExtrude.py)
+- [Linked distance extrusion](../../../src/interchange/Features/FeatureDistExt.py)
+- [Linked angular revolution](../../../src/interchange/Features/FeatureAngleRev.py)
+- [Configuration records](../../../src/interchange/Records/RecordConfig.py)
+- [Bodies](../../../src/interchange/Features/FeatureBody.py)
+- [B-rep tolerance fields](../../../src/interchange/brep/Topology/BrepTopology.py)
+- [Provenance records](../../../src/interchange/Records/RecordProvenance.py)
 - [JSON codec](../../../src/interchange/serialization/JsonCodec.py), [wire encoding](../../../src/interchange/serialization/EncodeData.py), [registered type reconstruction](../../../src/interchange/serialization/Deserialize.py)
 
 ## Reader and writer capability boundaries
@@ -110,7 +110,7 @@ The pinned [unmerged Fusion adapter description](https://github.com/TryUniCAD/Ki
 It expressly rejects arbitrary changed neutral graphs outside those contracts.
 Do not resolve the main material gap by adding a competing type before reconciling that work.
 
-Source evidence: [SOLIDWORKS adapter](../../../src/convert/adapters/solidworks/core/Adapter.py), [container versions](../../../src/convert/adapters/solidworks/container/Format.py), [Fusion discovery exclusion](../../../src/convert/adapters/registry/AdapterDiscovery.py), [partial-reader options](../../../src/convert/adapters/Fusion/ReaderOptions.py), [corpus scope](../../../re/Fusion/Notes/Corpus.md), [measured writer scope](../../../re/solidworks/CorpusCoverage.md).
+Source evidence: [SOLIDWORKS adapter](../../../src/convert/adapters/solidworks/Core/Adapter.py), [container versions](../../../src/convert/adapters/solidworks/Container/Format.py), [Fusion discovery exclusion](../../../src/convert/adapters/registry/AdapterDiscovery.py), [partial-reader options](../../../src/convert/adapters/Fusion/ReaderOptions.py), [corpus scope](../../../re/Fusion/Notes/Corpus.md), [measured writer scope](../../../re/solidworks/CorpusCoverage.md).
 
 ## Demonstrated gaps and owning steps
 
@@ -130,7 +130,7 @@ The SOLIDWORKS `BuildExtrude` path derives its `reversed` field from the cut ope
 This is a mapping observation, not a measured direction defect.
 A04 must verify direction, frame and operation independently before treating those values as portable source semantics.
 
-Source evidence: [feature construction and fallback](../../../src/convert/adapters/solidworks/core/Adapter.py), [feature-kind labels](../../../src/interchange/enums/EnumFeatures.py), [definition-specific checks](../../../src/interchange/document/validation/DocumentDefValidate.py), [capability inference](../../../src/interchange/document/models/DocumentCaps.py), [write policy](../../../src/convert/adapters/base/WritePolicy.py).
+Source evidence: [feature construction and fallback](../../../src/convert/adapters/solidworks/Core/Adapter.py), [feature-kind labels](../../../src/interchange/Enums/EnumFeatures.py), [definition-specific checks](../../../src/interchange/document/Validation/DocumentDefValidate.py), [capability inference](../../../src/interchange/document/Models/DocumentCaps.py), [write policy](../../../src/convert/adapters/base/WritePolicy.py).
 
 ## Initial contract profiles
 

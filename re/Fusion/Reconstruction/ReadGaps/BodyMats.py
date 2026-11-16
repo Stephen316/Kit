@@ -7,8 +7,8 @@ sys.path.insert(0, str(BASE))
 
 from PackageSpy import ROOT, ReadBundle
 
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import ReadMatRefs
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.ReadMatRefs import ReadMatRefs
 
 
 def main():

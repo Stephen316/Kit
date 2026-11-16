@@ -2,13 +2,13 @@ from dataclasses import dataclass as MakeDataClass
 from math import hypot as Hypot
 
 from convert.adapters.freecad.EditShape.CylinderRims import KPositionTolerance
-from convert.geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame, PlacePrismPoint
-from convert.geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
-from convert.geometry.Revolve.SweepVector import CrossVector
-from interchange.geometry.models.GeometryCurves import LineGeometry
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorPlane import PlaneVector
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Extrude.Polygon.PrismFrame import CheckPrismFrame, PlacePrismPoint
+from convert.Geometry.Extrude.Polygon.PrismRing import MeasureRing, ReadPrismRing
+from convert.Geometry.Revolve.SweepVector import CrossVector
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorPlane import PlaneVector
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # face winding keys ignore the native wire start without losing directed topology

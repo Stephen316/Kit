@@ -8,13 +8,13 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import MappingItems, TextV
 from convert.adapters.Fusion.Native.Graph.IntegerValue import IntegerValue
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
-from convert.formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
-from convert.formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
-from convert.formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
+from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
+from convert.Formats.Fusion.BrepCodec.Models.HistoryModel import HistoryModel
+from convert.Formats.Fusion.BrepCodec.Frustum.Models.FrustumHistory import (
     FrustumHistory,
 )
 from convert.adapters.Fusion.Native.Graph.KnownHistory import KKnownHistory
-from convert.formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 
 
 # invalid body joins input must fail here so public document claims remain grounded in native records

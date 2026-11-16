@@ -7,9 +7,9 @@ from convert.adapters.Fusion.Bridge.ReadStrict import ReadStrict
 from convert.adapters.Fusion.ArchiveProbe import ProbeFusion
 from convert.adapters.Fusion.ReaderOptions import GetFusionOpts
 from convert.adapters.Fusion.StreamRead import ReadSourceMut
-from convert.formats.Fusion.DocumentRead import ReadFusionDoc
-from interchange.document.models.DocumentFilter import FilterDocument
-from interchange.document.models.DocumentModel import CadDocument
+from convert.Formats.Fusion.DocumentRead import ReadFusionDoc
+from interchange.document.Models.DocumentFilter import FilterDocument
+from interchange.document.Models.DocumentModel import CadDocument
 
 
 # the structural reader exposes the qualified projection through adapter discovery

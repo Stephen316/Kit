@@ -4,25 +4,25 @@ from hashlib import sha256
 from typing import Any, cast
 from xml.etree.ElementTree import Element
 
-from convert.formats.Fusion.MaterialCodec.DecodeMaterials import DecodeMaterials
-from convert.formats.Fusion.MaterialCodec.EncodeMaterials import EncodeMaterials
-from convert.formats.Fusion.MaterialCodec.Models.AssetLinks import AssetLinks
-from convert.formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
-from convert.formats.Fusion.MaterialCodec.Models.MaterialAsset import MaterialAsset
-from convert.formats.Fusion.MaterialCodec.Models.MaterialData import MaterialData
-from convert.formats.Fusion.MaterialCodec.Models.MaterialSchema import MaterialSchema
-from convert.formats.Fusion.MaterialCodec.Models.PropertySpec import (
+from convert.Formats.Fusion.MaterialCodec.DecodeMaterials import DecodeMaterials
+from convert.Formats.Fusion.MaterialCodec.EncodeMaterials import EncodeMaterials
+from convert.Formats.Fusion.MaterialCodec.Models.AssetLinks import AssetLinks
+from convert.Formats.Fusion.MaterialCodec.Models.ColorValue import ColorValue
+from convert.Formats.Fusion.MaterialCodec.Models.MaterialAsset import MaterialAsset
+from convert.Formats.Fusion.MaterialCodec.Models.MaterialData import MaterialData
+from convert.Formats.Fusion.MaterialCodec.Models.MaterialSchema import MaterialSchema
+from convert.Formats.Fusion.MaterialCodec.Models.PropertySpec import (
     KConnectMode,
     KPropertyKind,
     PropertySpec,
 )
-from convert.formats.Fusion.MaterialCodec.Models.PropertyValue import (
+from convert.Formats.Fusion.MaterialCodec.Models.PropertyValue import (
     KMaterialValue,
     KScalarValue,
     PropertyValue,
 )
-from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
-from convert.formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchemas
+from convert.Formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
+from convert.Formats.Fusion.MaterialCodec.Schema.BuildSchemas import BuildSchemas
 
 
 def schema_models(schemas: Mapping[str, Element]) -> tuple[MaterialSchema, ...]:
@@ -134,7 +134,7 @@ def decode_material_data(streams: Mapping[str, bytes], schemas: Mapping[str, Ele
 def reader_report(streams: Mapping[str, bytes], schemas: Mapping[str, Element]) -> dict[str, Any]:
     assets = decode_material_data(streams, schemas)
     return {
-        "reader": "convert.formats.Fusion.MaterialCodec.DecodeMaterials",
+        "reader": "convert.Formats.Fusion.MaterialCodec.DecodeMaterials",
         "scope": "Supplied Protein AssetData streams and explicit schema declarations; no package or native API access",
         "stream_sha256": {name: sha256(payload).hexdigest() for name, payload in streams.items()},
         "instances": len(assets),

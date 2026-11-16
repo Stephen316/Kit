@@ -9,10 +9,10 @@ from convert.adapters.freecad.Cylinder.CylinderFrame import (
     RuledRadius,
 )
 from convert.adapters.freecad.Cylinder.CylinderSpan import CylinderSpan
-from convert.geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
-from interchange.brep.curves.BrepCurves import CircleCurve
-from interchange.brep.surfaces.BrepSurfaces import ConeSurface, CylinderSurface
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import CrossVector, DotVector, OffsetVector
+from interchange.brep.Curves.BrepCurves import CircleCurve
+from interchange.brep.Surfaces.BrepSurfaces import ConeSurface, CylinderSurface
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # a circle trim supplies one horizontal side with a signed unwrapped angular extent

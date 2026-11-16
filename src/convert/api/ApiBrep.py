@@ -6,8 +6,8 @@ from interchange import CadDocument
 
 from convert.adapters.base.ContractTypes import KSourceType as Source
 from convert.api.ApiOpen import OpenDocument
-from convert.geometry.BrepNames import MakeBrepNameMut
-from convert.geometry.BrepPayloads import GetBrepPayloads
+from convert.Geometry.BrepNames import MakeBrepNameMut
+from convert.Geometry.BrepPayloads import GetBrepPayloads
 
 
 # exact brep extraction gives callers native geometry bytes without invoking cad software

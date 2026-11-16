@@ -1,11 +1,11 @@
 from convert.adapters.freecad.EditExtDepth import GetEditDepth, IsLiteralParam
-from convert.formats.Fusion.Extrudes.ExtrudeBinding import KExtrudeBinding
-from convert.formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid
-from convert.formats.Fusion.NumericParam import KParamGuid
-from interchange.enums.EnumValues import ParameterRole
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.records.RecordParameter import Parameter
+from convert.Formats.Fusion.Extrudes.ExtrudeBinding import KExtrudeBinding
+from convert.Formats.Fusion.Extrudes.ExtrudeRead import KExtrudeGuid
+from convert.Formats.Fusion.NumericParam import KParamGuid
+from interchange.Enums.EnumValues import ParameterRole
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Records.RecordParameter import Parameter
 
 
 # every parameter belongs to one exact feature so an edit cannot orphan another control

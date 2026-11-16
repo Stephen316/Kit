@@ -1,13 +1,13 @@
 from convert.adapters.base.WriteValidate import IsObjectTuple
 from convert.adapters.base.WriteValidate import IsObjectMap
-from convert.formats.Fusion.Topology.BodyAnchor import KAnchorGuid, KBodyGuid
-from convert.formats.Fusion.Topology.BodyCollection import KBodyCollection
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.BoundingBox import BoundingBox
-from interchange.records.RecordTopology import TopologyCounts
+from convert.Formats.Fusion.Topology.BodyAnchor import KAnchorGuid, KBodyGuid
+from convert.Formats.Fusion.Topology.BodyCollection import KBodyCollection
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.BoundingBox import BoundingBox
+from interchange.Records.RecordTopology import TopologyCounts
 
 
 # inventory evidence covers exactly the two saved bodies with reciprocal native ownership

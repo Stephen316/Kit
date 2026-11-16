@@ -3,9 +3,9 @@ from convert.adapters.freecad.EditShape.PrismShape import IsPrismMatch, KMaxPris
 from convert.adapters.freecad.EditShape.Scale.ScaleExpected import ScaleExpected
 from convert.adapters.freecad.EditShape.Scale.ScalePlaces import CheckScaleRoot
 from convert.adapters.freecad.EditShape.Scale.ScaleSplineRaw import ReadScaleSpline
-from convert.geometry.Opencascade import DecodeFailure
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Opencascade import DecodeFailure
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # scale readback needs independent proof for both native carrier forms and kit seeds

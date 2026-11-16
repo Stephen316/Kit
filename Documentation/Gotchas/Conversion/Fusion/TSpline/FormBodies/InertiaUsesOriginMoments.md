@@ -31,7 +31,7 @@ The archive round-trip also checks the recovered cage and converted body, rather
 
 ## Evidence
 
-- [Origin-moment cache writer](../../../../../../src/convert/formats/Fusion/DocumentCodec/Form/CenteredMass.py)
-- [Existing cuboid convention](../../../../../../src/convert/formats/Fusion/DocumentCodec/Rectangle/CuboidCache.py)
-- [Existing feature convention](../../../../../../src/convert/formats/Fusion/DocumentCodec/PartFeatures/Design/PartCache.py)
+- [Origin-moment cache writer](../../../../../../src/convert/Formats/Fusion/DocumentCodec/Form/CenteredMass.py)
+- [Existing cuboid convention](../../../../../../src/convert/Formats/Fusion/DocumentCodec/Rectangle/CuboidCache.py)
+- [Existing feature convention](../../../../../../src/convert/Formats/Fusion/DocumentCodec/PartFeatures/Design/PartCache.py)
 - [Native acceptance](../../../../../../re/Fusion/LocalOracle/FormDocuments/General/CapAccept/NativeAcceptance.json)

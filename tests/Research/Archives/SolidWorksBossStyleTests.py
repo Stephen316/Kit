@@ -10,20 +10,20 @@ from typing import Protocol, TypedDict, cast as CastValue
 
 import pytest as Pytest
 
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KDefinitionKind,
     ArchiveError,
     ContainerMo,
     ReadTag,
 )
-from convert.adapters.solidworks.container.ArchiveCursor import (
+from convert.adapters.solidworks.Container.ArchiveCursor import (
     ArchiveCursor,
     FieldCursor,
 )
-from convert.adapters.solidworks.container.Container import SldprtArchive
-from convert.adapters.solidworks.resolved.RectanglePart import ReadRectPart
-from convert.adapters.solidworks.sketch.DisplayOpen import (
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Resolved.RectanglePart import ReadRectPart
+from convert.adapters.solidworks.Sketch.DisplayOpen import (
     ReadDisplayBase,
     ReadDisplayOpen,
 )

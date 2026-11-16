@@ -4,9 +4,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.ContainerCodec.ReadContainer import ReadContainer
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
 
 def spans(path, guid):

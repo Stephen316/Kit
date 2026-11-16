@@ -7,7 +7,7 @@ from convert.adapters.freecad.EditShape.Prism.PrismProof import PrismProof, Read
 from convert.adapters.freecad.EditShape.Prism.PrismRaw import KLocationChain
 from convert.adapters.freecad.EditShape.Prism.PrismTrim import CheckTrimBind
 from convert.adapters.freecad.EditShape.TrimGeometry import SurfaceHand
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     ApplyDirection,
     DecodeFailure,
     EdgeData,
@@ -15,10 +15,10 @@ from convert.geometry.Opencascade import (
     LocationPoint,
     Reference,
 )
-from convert.geometry.Revolve.SweepVector import DotVector
-from interchange.brep.curves.BrepCurves import LineCurve
-from interchange.brep.surfaces.BrepSurfaces import PlaneSurface
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import DotVector
+from interchange.brep.Curves.BrepCurves import LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import PlaneSurface
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # native storage may list edge uses out of traversal order but must prove one simple cycle

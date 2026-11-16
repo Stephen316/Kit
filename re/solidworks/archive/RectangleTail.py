@@ -1,12 +1,12 @@
 """Read the modern P04 rectangle profile through its principal support and trim cache."""
 
-from convert.adapters.solidworks.container.Archive import KDefinitionKind
-from convert.adapters.solidworks.resolved.ContourSurf import (
+from convert.adapters.solidworks.Container.Archive import KDefinitionKind
+from convert.adapters.solidworks.Resolved.ContourSurf import (
     ReadContourEdge as read_trim_edge,
     ReadTrimSurface,
 )
-from convert.adapters.solidworks.resolved.ContourTrim import ReadRectTrim as read_rectangle_trim
-from convert.adapters.solidworks.resolved.ProfilePlane import CheckProfileRef, ReadProfileRef
+from convert.adapters.solidworks.Resolved.ContourTrim import ReadRectTrim as read_rectangle_trim
+from convert.adapters.solidworks.Resolved.ProfilePlane import CheckProfileRef, ReadProfileRef
 from ProfileSupport import read_chain
 from SketchRoot import KGeneration, Require
 

@@ -2,8 +2,8 @@
 
 from ArchiveVersion import KApplicationBuild
 from SketchRoot import Require
-from convert.adapters.solidworks.config.OrdinaryMap import ReadOrdinaryMap
-from convert.adapters.solidworks.config.RootLayout import KConfigGen
+from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
+from convert.adapters.solidworks.Config.RootLayout import KConfigGen
 
 
 # independent capture evidence still requires the witnessed application build

@@ -6,8 +6,8 @@ from pathlib import Path
 BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[3]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.MetaIndex import SegmentKind
 
 PROBE = ROOT / 're/Fusion/LocalOracle/ActSlack/Probe.json'
 

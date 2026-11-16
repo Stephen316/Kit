@@ -1,13 +1,13 @@
 from convert.adapters.freecad.EditExtScope import ReadSketchInput
-from convert.formats.Fusion.Sketches.SketchPlacement import KSketchFeature
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.enums.EnumFeatures import BooleanOp, FeatureKind
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.features.FeatureBody import DesignBody
-from interchange.features.FeatureStep import FeatureStep
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.payloads.PayloadRoles import PayloadRole
+from convert.Formats.Fusion.Sketches.SketchPlacement import KSketchFeature
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Features.FeatureBody import DesignBody
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.Payloads.PayloadRoles import PayloadRole
 
 
 # a single independent sketch and solid delimit the verified native revolution graph

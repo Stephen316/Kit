@@ -8,7 +8,7 @@ Configuration support is deliberately limited to empty table and rule JSON objec
 
 ## Usage
 
-Import `ReadSnapPart` and `EmitSnapPart` from `convert.formats.Fusion.DocumentCodec.Auxiliary.Snapshots`. The reader accepts a `ContainerPart` with its logical `Breps.BlobParts/BREP.<UUID>.smb` name and returns a `DocumentSnap`. Its `Snapshot` is either the existing `SnapshotModel` or the new `PrismSnapshot`. The emitter returns a regenerated `ContainerPart`.
+Import `ReadSnapPart` and `EmitSnapPart` from `convert.Formats.Fusion.DocumentCodec.Auxiliary.Snapshots`. The reader accepts a `ContainerPart` with its logical `Breps.BlobParts/BREP.<UUID>.smb` name and returns a `DocumentSnap`. Its `Snapshot` is either the existing `SnapshotModel` or the new `PrismSnapshot`. The emitter returns a regenerated `ContainerPart`.
 
 Direct cuboid APIs are under `DocumentCodec.Auxiliary.PrismSnapshot`: `ReadPrismSnap(Payload)` and `EmitPrismSnap(Value)`. `PrismSnapshot` contains millimeter dimensions, centimeter carrier frames, header/provenance, six solid face tags, four paired source-coedge identities and two explicit rectangular region models. Mutations must keep geometry, carrier endpoints, topology and parameter ranges consistent; validation rejects inconsistent edits.
 

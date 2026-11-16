@@ -1,6 +1,6 @@
 from ast import dump as DumpAst
 
-from convert.geometry.Formula.Arithmetic import Formula
+from convert.Geometry.Formula.Arithmetic import Formula
 
 
 # matching operator trees tolerates formatting without accepting altered aliases or arithmetic

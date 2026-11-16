@@ -19,7 +19,7 @@ from convert.adapters.freecad.EditShape.Revolution.RevTrimRead import (
 )
 from convert.adapters.freecad.EditShape.TrimBind import TrimBinding
 from convert.adapters.freecad.EditShape.TrimGeometry import TrimCurve
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     ExpectHeader,
     FoldMatrix,

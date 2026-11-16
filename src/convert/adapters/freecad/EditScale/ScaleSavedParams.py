@@ -8,13 +8,13 @@ from convert.adapters.freecad.EditRead.Formula.SheetLayout import CheckSheetShap
 from convert.adapters.freecad.EditRead.XmlField import KEditNumber
 from convert.adapters.freecad.LiteralQuantity import IsLiteralQty
 from convert.adapters.freecad.Native import NativeObject
-from convert.geometry.Formula.Arithmetic import (
+from convert.Geometry.Formula.Arithmetic import (
     EvalFormula,
     IsLiteralExpr,
     ReadFormula,
 )
-from convert.geometry.Formula.FormulaUnits import GetQuantity
-from interchange.records.RecordParameter import Expression, Parameter
+from convert.Geometry.Formula.FormulaUnits import GetQuantity
+from interchange.Records.RecordParameter import Expression, Parameter
 
 
 # only closed literal inputs can override the corresponding neutral scale controls

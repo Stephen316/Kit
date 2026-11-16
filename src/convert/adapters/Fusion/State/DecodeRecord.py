@@ -4,8 +4,8 @@ from enum import Enum as EnumBase
 from typing import Protocol, cast as CastValue
 
 from convert.adapters.Fusion.State.StateTypes import KStateNames
-from convert.formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
-from convert.formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import (
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.FinishSpec import FinishSpec
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.MechanicSpec import (
     MechanicSpec,
 )
 
@@ -25,22 +25,22 @@ def DecodeRecord(NameValue: object, Values: dict[str, object]) -> object:
     ClassType = KStateNames[NameValue]
     if (
         NameValue
-        == "convert.formats.Fusion.DocumentCodec.Model.DocumentModel.DocumentModel"
+        == "convert.Formats.Fusion.DocumentCodec.Model.DocumentModel.DocumentModel"
     ):
         Values = {"Meshes": (), "Forms": (), **Values}
     if (
         NameValue
-        == "convert.formats.Fusion.DocumentCodec.Model.ParsedSegment.ParsedSegment"
+        == "convert.Formats.Fusion.DocumentCodec.Model.ParsedSegment.ParsedSegment"
     ):
         Values = {"BulkSlack": b"", **Values}
     if (
         NameValue
-        == "convert.formats.Fusion.GraphicsCodec.Model.Nodes.SketchWorld.SketchWorld"
+        == "convert.Formats.Fusion.GraphicsCodec.Model.Nodes.SketchWorld.SketchWorld"
     ):
         Values = {"RegularNodes": (), "NoCullingNodes": (), **Values}
     if (
         NameValue
-        == "convert.formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec"
+        == "convert.Formats.Fusion.DocumentCodec.Materials.Model.MaterialSpec.MaterialSpec"
     ):
         Values = {
             "ClassName": "Generic",

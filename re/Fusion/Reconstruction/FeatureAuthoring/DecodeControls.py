@@ -8,19 +8,19 @@ REPO = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(REPO / "src"))
 sys.dont_write_bytecode = True
 
-from convert.formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
-from convert.formats.Fusion.BulkSpans import ReadBulkSpans
-from convert.formats.Fusion.EntityCodec.DecodeEntities import DecodeEntities
-from convert.formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
-from convert.formats.Fusion.DocumentCodec.Records.MakeDesignProf import MakeDesignProf
-from convert.formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
-from convert.formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
-from convert.formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
+from convert.Formats.Fusion.ArchiveRead.IndexedArchive import OpenFusionZip
+from convert.Formats.Fusion.BulkSpans import ReadBulkSpans
+from convert.Formats.Fusion.EntityCodec.DecodeEntities import DecodeEntities
+from convert.Formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
+from convert.Formats.Fusion.DocumentCodec.Records.MakeDesignProf import MakeDesignProf
+from convert.Formats.Fusion.DocumentCodec.Records.ReadDocSchemas import ReadDocSchemas
+from convert.Formats.Fusion.SegmentCodec.Bulk.BulkRecord import BulkRecord
+from convert.Formats.Fusion.SegmentCodec.Metadata.ReadMetaWire import ReadMetaWire
 
-import convert.formats.Fusion.EntityCodec.Values.ReadShapeMut as ShapeModule
-from convert.formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
-from convert.formats.Fusion.EntityCodec.Schema.WireType import WireType
-from convert.formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
+import convert.Formats.Fusion.EntityCodec.Values.ReadShapeMut as ShapeModule
+from convert.Formats.Fusion.EntityCodec.Model.MatrixValue import MatrixValue
+from convert.Formats.Fusion.EntityCodec.Schema.WireType import WireType
+from convert.Formats.Fusion.EntityCodec.Wire.ReadAtomMut import ReadAtomMut
 
 
 def permissive_matrix(cursor, shape):
@@ -33,7 +33,7 @@ ShapeModule.ReadMatrixMut = permissive_matrix
 NAMES = {}
 for entry in json.loads((REPO / "re/Fusion/Reconstruction/BinaryClasses.json").read_text())["classes"]:
     NAMES.setdefault(entry["identifier"].upper(), entry["class"].split("::")[-1])
-for vocab in (REPO / "src/convert/formats/Fusion/DocumentCodec").rglob("*Classes.json"):
+for vocab in (REPO / "src/convert/Formats/Fusion/DocumentCodec").rglob("*Classes.json"):
     for entry in json.loads(vocab.read_text()):
         NAMES.setdefault(entry["ClassGuid"].upper(), entry["NameValue"])
 

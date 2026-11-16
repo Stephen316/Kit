@@ -15,11 +15,11 @@ ROOT = HERE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(ROOT))
 
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields  # noqa: E402
-from tests.convert.formats.FusionCodec.Documents.Form.FormArchives import KFormArchives  # noqa: E402
-from tests.convert.formats.FusionCodec.Documents.Form.GridArchives import KGridArchives, KGridRefusals  # noqa: E402
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument  # noqa: E402
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields  # noqa: E402
+from tests.Convert.Formats.FusionCodec.Documents.Form.FormArchives import KFormArchives  # noqa: E402
+from tests.Convert.Formats.FusionCodec.Documents.Form.GridArchives import KGridArchives, KGridRefusals  # noqa: E402
 
 BODY = 'D3937028-C20C-4E65-B010-94AD418A5C20'
 CACHE = 'C46D3EEB-40E1-43FA-83DC-9CB204335417'

@@ -1,8 +1,8 @@
 from struct import pack as PackFields
 
-from convert.adapters.solidworks.container.Archive import ArchiveError
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.ArchiveCursor import FieldCursor
+from convert.adapters.solidworks.Container.Archive import ArchiveError
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 
 # the signed word writes preserve one unsigned counter before the short list count
 KEmptyMaterialLayout = "<QH"

@@ -18,8 +18,8 @@ BASE = Path(__file__).resolve().parent
 ROOT = BASE.parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
 sys.path.insert(0, str(BASE.parent / 'Cages'))
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import BasisLevel, BasisSlope, CurveFrame, FindSpan, KnotList
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Stencil.SplineFrame import BasisLevel, BasisSlope, CurveFrame, FindSpan, KnotList
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
 from ReadConverted import ReadConverted
 
 ORACLE = ROOT / 're/Fusion/LocalOracle/FormDocuments/Crease'

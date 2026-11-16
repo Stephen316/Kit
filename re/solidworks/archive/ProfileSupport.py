@@ -1,8 +1,8 @@
 """Keep positional evidence reports on the packaged cut profile reader."""
 
-from convert.adapters.solidworks.container.Archive import KObjectRefKind
-from convert.adapters.solidworks.resolved.ContourChain import ReadChain as read_chain
-from convert.adapters.solidworks.resolved.cut.CutProfileBody import ReadCutBody as read_profile_body
+from convert.adapters.solidworks.Container.Archive import KObjectRefKind
+from convert.adapters.solidworks.Resolved.ContourChain import ReadChain as read_chain
+from convert.adapters.solidworks.Resolved.Cut.CutProfileBody import ReadCutBody as read_profile_body
 
 
 def read_profile_support(cursor):

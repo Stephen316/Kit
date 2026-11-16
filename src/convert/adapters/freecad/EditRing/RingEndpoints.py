@@ -1,5 +1,5 @@
 from convert.adapters.base.WriteValidate import IsObjectTuple
-from interchange.geometry.models.Sketch import SketchEntity
+from interchange.geometry.Models.Sketch import SketchEntity
 
 
 # native point identifiers establish incidence independently of coincident coordinates

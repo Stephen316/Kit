@@ -1,0 +1,20 @@
+from convert.Formats.Fusion.BrepCodec.Journal.JournalEntity import KJournalEntity
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.EntityReaders import (
+    KEntityReaders,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.CheckFieldEnd import (
+    CheckFieldEnd,
+)
+from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import AsmRecord
+
+
+# the entity node operation needs a distinct decoding boundary so revision ownership survives native history reconstruction
+def ReadEntityNode(Record: AsmRecord) -> KJournalEntity:
+    Reader = KEntityReaders.get(Record.Name)
+    if Reader is None:
+        raise ValueError("Unsupported Fusion journal entity kind: " + Record.Name)
+    Cursor = FieldCursor(Record)
+    Value = Reader(Cursor)
+    CheckFieldEnd(Cursor)
+    return Value

@@ -1,6 +1,6 @@
 from base64 import b64encode as EncodeBase
 
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 
 
 # compressed container inspection needs bounded decoded evidence before exposing archive members

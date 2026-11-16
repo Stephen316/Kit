@@ -1,9 +1,9 @@
 from convert.adapters.freecad.EditExtDepth import IsLiteralParam
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.document.validation.BoundPlaneValidate import CheckBoundPlane
-from interchange.enums.EnumUnits import UnitSystem
-from interchange.features.FeatureBoundPlane import BoundDatum
-from interchange.payloads.PayloadRoles import PayloadRole
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.document.Validation.BoundPlaneValidate import CheckBoundPlane
+from interchange.Enums.EnumUnits import UnitSystem
+from interchange.Features.FeatureBoundPlane import BoundDatum
+from interchange.Payloads.PayloadRoles import PayloadRole
 
 
 # an independent datum timeline has no solid consumer or unsupported configuration state

@@ -1,0 +1,31 @@
+from dataclasses import replace as ReplaceValue
+
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.CoedgeNode import CoedgeNode
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.ReadGeometry import ReadGeometry
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.EmitWireRecord import (
+    EmitWireRecord,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Writing.MakeEntityNode import (
+    MakeEntityNode,
+)
+
+
+# shared break incidence setup keeps fixtures consistent so native document reconstruction failures identify the intended compatibility boundary
+def BreakIncidence(Payload: bytes, Fault: str) -> bytes:
+    Native = ReadGeometry(Payload)
+    SlotId, Value = next(
+        (Index, Value)
+        for Index, Value in enumerate(Native.Entities)
+        if isinstance(Value, CoedgeNode)
+    )
+    if Fault == "partner":
+        Changed = ReplaceValue(Value, Partner=-1)
+    elif Fault == "loop":
+        Changed = ReplaceValue(Value, NextCoedge=SlotId)
+    else:
+        Changed = ReplaceValue(Value, Partner=SlotId)
+    return Payload.replace(
+        EmitWireRecord(MakeEntityNode(Value)),
+        EmitWireRecord(MakeEntityNode(Changed)),
+        1,
+    )

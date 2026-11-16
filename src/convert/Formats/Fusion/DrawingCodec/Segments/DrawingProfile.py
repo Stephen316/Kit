@@ -1,0 +1,55 @@
+from convert.Formats.Fusion.DocumentCodec.Records.DocumentCatalog import (
+    DocumentCatalog,
+)
+from convert.Formats.Fusion.DrawingCodec.Segments.ReadDrawSchemas import (
+    ReadDrawSchemas,
+)
+from convert.Formats.Fusion.EntityCodec.Schema.BindProfile import BindProfile
+from convert.Formats.Fusion.EntityCodec.Schema.EntityProfile import EntityProfile
+from convert.Formats.Fusion.EntityCodec.Schema.ExternalTarget import ExternalTarget
+from convert.Formats.Fusion.EntityCodec.Vocabulary.CloseCatalog import CloseCatalog
+from convert.Formats.Fusion.EntityCodec.Vocabulary.NativeRoot import KNativeRoot
+from convert.Formats.Fusion.EntityCodec.Vocabulary.PickSchema import PickSchema
+from convert.Formats.Fusion.EntityCodec.Vocabulary.SelectClasses import SelectClasses
+from convert.Formats.Fusion.SegmentCodec.Metadata.MetaSegment import MetaSegment
+
+# the pinned classes order must stay explicit so drawing members retain their sheet and model associations
+KPinnedClasses = (("4C835764-5BAB-4421-B5D2-06015BEF6EB2", 5),)
+
+
+# drawing profile needs an explicit validity boundary so drawing members retain their sheet and model associations
+def DrawingProfile(Metadata: tuple[MetaSegment, ...], SegmentId: int) -> EntityProfile:
+    Selected = tuple(
+        Segment for Segment in Metadata if Segment.Header.SegmentId == SegmentId
+    )
+    if len(Selected) != 1:
+        raise ValueError("Missing or duplicate Fusion drawing segment identity")
+    Targets = tuple(
+        ExternalTarget(Segment.Header.SegmentId, ObjectId, ClassValue.ClassGuid)
+        for Segment in Metadata
+        if Segment.Header.SegmentId != SegmentId
+        for ClassValue in Segment.Classes
+        for ObjectId in ClassValue.OwnerIds
+    )
+    Catalog = DocumentCatalog(ReadDrawSchemas())
+    Pinned = KPinnedClasses + tuple(
+        (ClassValue.ClassGuid, ClassValue.SchemaVersion)
+        for Segment in Metadata
+        if Segment.Header.SegmentId != SegmentId
+        for ClassValue in Segment.Classes
+    )
+    Chosen = {
+        **{
+            ClassGuid.upper(): PickSchema(ClassGuid, Version, Catalog)
+            for ClassGuid, Version in Pinned
+        },
+        **SelectClasses(Selected[0].Classes, Catalog),
+    }
+    Profile = EntityProfile(
+        KNativeRoot,
+        CloseCatalog(Chosen, Catalog, Targets),
+        Targets,
+        Catalog.NamedTypes,
+    )
+    _ = BindProfile(Profile, Selected[0].Classes)
+    return Profile

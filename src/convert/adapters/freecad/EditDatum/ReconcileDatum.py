@@ -13,8 +13,8 @@ from convert.adapters.freecad.EditDatum.DatumSavedValues import (
     ApplyDatumVals,
     ReadDatumParams,
 )
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.features.FeatureBoundPlane import BoundDatum
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Features.FeatureBoundPlane import BoundDatum
 
 
 # legacy static planes and separately reconciled revolve planes are outside this binding

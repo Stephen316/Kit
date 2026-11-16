@@ -5,13 +5,13 @@ from convert.adapters.Fusion.Authoring.ProfileShape import (
     ProfileCircle,
     ProfileLines,
 )
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.geometry.Extrude.Circular.CircularExtrude import BuildCircular
-from convert.geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.features.FeatureBody import DesignBody
-from interchange.geometry.models.Transform import Transform
-from interchange.records.RecordTopology import TopologyCounts
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Geometry.Extrude.Circular.CircularExtrude import BuildCircular
+from convert.Geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.Features.FeatureBody import DesignBody
+from interchange.geometry.Models.Transform import Transform
+from interchange.Records.RecordTopology import TopologyCounts
 
 
 # the geometry operation needs a consistent construction rule so public document claims remain grounded in native records

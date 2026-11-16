@@ -3,10 +3,10 @@ from math import isclose as IsClose
 
 from convert.adapters.freecad.EditExtDepth import GetEditDepth
 from convert.adapters.freecad.EditShape.CylinderRims import KPositionTolerance
-from interchange.features.DistanceParam import KLengthFactors
-from interchange.features.FeatureDistExt import DistanceExtrude
-from interchange.features.FeatureStep import FeatureStep
-from interchange.records.RecordParameter import Expression, Parameter
+from interchange.Features.DistanceParam import KLengthFactors
+from interchange.Features.FeatureDistExt import DistanceExtrude
+from interchange.Features.FeatureStep import FeatureStep
+from interchange.Records.RecordParameter import Expression, Parameter
 
 
 # original units remain useful unless conversion would round the native depth

@@ -6,8 +6,8 @@ from zipfile import ZipFile
 
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / 'src'))
-from convert.formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage  # noqa: E402
-from convert.formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Package.EmitPackage import EmitPackage  # noqa: E402
+from convert.Formats.Fusion.MaterialCodec.Package.ReadPackage import ReadPackage  # noqa: E402
 
 
 def main():

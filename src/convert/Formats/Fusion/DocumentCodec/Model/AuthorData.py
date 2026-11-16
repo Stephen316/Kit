@@ -1,0 +1,30 @@
+from dataclasses import dataclass as MakeDataClass
+
+from convert.Formats.Fusion.DocumentCodec.Materials.Model.AuthoredMat import AuthoredMat
+
+from convert.Formats.Fusion.DocumentCodec.Model.AuthorPolicy import AuthorPolicy
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.Model.DraftEntity import DraftEntity
+from convert.Formats.Fusion.DocumentCodec.Vocabulary.NativeSchema import NativeSchema
+
+
+# author data needs an explicit state contract so model state retains its native feature and ownership relationships
+@MakeDataClass(slots=True)
+class AuthorData:
+    SpecValue: DocumentSpec
+    Policy: AuthorPolicy
+    AssetId: str
+    Schemas: tuple[NativeSchema, ...]
+    ByName: dict[str, NativeSchema]
+    ByGuid: dict[str, NativeSchema]
+    Defaults: dict[str, dict[str, object]]
+    Roles: dict[str, int]
+    Entities: list[DraftEntity]
+    NextId: int
+    RevisionId: str
+    ComponentId: str
+    InstanceId: str
+    BodyId: str
+    BrepPart: str
+    Materials: AuthoredMat | None = None
+    FocusOrdinal: int = 1

@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [SDK Extrude readers](../../../src/convert/formats/Fusion/Extrudes) and [public Extrude tests](../../../tests/convert/api/ApiFusionExtTests.py).
+See [SDK Extrude readers](../../../src/convert/Formats/Fusion/Extrudes) and [public Extrude tests](../../../tests/Convert/Api/ApiFusionExtTests.py).
 
 ## SDK coverage
 

@@ -15,7 +15,7 @@ KRootInfo = KHereInfo.parents[2]
 for CandInfo in (str(KRootInfo / "src"),):
     if CandInfo not in System.path:
         System.path.insert(0, CandInfo)
-from convert.adapters.solidworks.container.Archive import (
+from convert.adapters.solidworks.Container.Archive import (
     BaseResolution,
     ContainerMo,
     KMoVersionPrefix,
@@ -24,7 +24,7 @@ from convert.adapters.solidworks.container.Archive import (
     ResolveBase,
     Verify,
 )
-from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Container import SldprtArchive
 from convert.Security.PathBoundary import (
     ResolveFolder,
     ResolveInput,

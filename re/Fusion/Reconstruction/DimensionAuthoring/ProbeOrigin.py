@@ -17,16 +17,16 @@ from decode_sketch import attributes, reference
 from fusion_metadata import design_records
 
 from convert.adapters.Fusion.Projection.NativeIndex import MakeIndex
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
-from convert.formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
-from convert.formats.Fusion.MetaCursor import MetaCursor
-from convert.formats.Fusion.Sketches.Dimensional.DimRecord import ReadDimRecord
-from convert.formats.Fusion.Sketches.Dimensional.DimSpec import KLinearDimension
-from convert.formats.Fusion.Sketches.Geometric.GeomRuleRecord import KGeomRuleGuid, ReadGeomRule
-from convert.formats.Fusion.Sketches.RulePrefix import ReadRulePrefix
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Sketch.SketchRole import SketchRole
+from convert.Formats.Fusion.DocumentCodec.Values.MakeAttributes import MakeAttributes
+from convert.Formats.Fusion.MetaCursor import MetaCursor
+from convert.Formats.Fusion.Sketches.Dimensional.DimRecord import ReadDimRecord
+from convert.Formats.Fusion.Sketches.Dimensional.DimSpec import KLinearDimension
+from convert.Formats.Fusion.Sketches.Geometric.GeomRuleRecord import KGeomRuleGuid, ReadGeomRule
+from convert.Formats.Fusion.Sketches.RulePrefix import ReadRulePrefix
 
 CAPTURES = {
     "P01/fusion-5dc3245eb59c": (
@@ -45,7 +45,7 @@ DIMENSION_CODES = {0x400000, 0x800000}
 
 
 def emit_rectangle():
-    seam = import_module("convert.formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut")
+    seam = import_module("convert.Formats.Fusion.DocumentCodec.Rectangle.Dimensions.ConstrainMut")
     fixed_rectangle = seam.AddConstrMut
 
     def allocate_coincidence(author):

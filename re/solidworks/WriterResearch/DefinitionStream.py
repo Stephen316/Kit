@@ -1,9 +1,9 @@
 from DefinitionFragment import EncodeDefinitionFragment
 from DefinitionOptions import KDefinitionOptionsGeneration
 from JournalAttach import JournalAttach
-from convert.adapters.solidworks.container.Archive import KLongStringLimit
-from convert.adapters.solidworks.container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.container.Definition import (
+from convert.adapters.solidworks.Container.Archive import KLongStringLimit
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
+from convert.adapters.solidworks.Container.Definition import (
     KJournalClass,
     KLineFontBindings,
     KViewBlockDoubles,

@@ -29,9 +29,9 @@ sys.path.insert(0, str(HERE.parents[4] / 'src'))
 
 import BuildVariants  # noqa: E402
 from PruneDwg import field, target  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgHandleRef import DwgHandleRef  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 ROOT = Path(os.environ['TMPDIR']) / 'KitFusionDrawings'
 OUT = HERE / 'GraftRoundT16.json'

@@ -13,27 +13,27 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[5]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
-from convert.formats.Fusion.BrepCodec.Journal.Attributes.TimeAttrib import TimeAttrib
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import SplineCurve
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Authoring.NegateCurve import NegateCurve
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree
-from convert.formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import WalkSubtypes
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
-from convert.formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
-from convert.formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import GeometryState
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormCurve import FormCurve
-from convert.formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TagAttrib import TagAttrib
+from convert.Formats.Fusion.BrepCodec.Journal.Attributes.TimeAttrib import TimeAttrib
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.ExactSubtypes import SplineCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Authoring.NegateCurve import NegateCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.EntitySubtree import EntitySubtree
+from convert.Formats.Fusion.BrepCodec.Journal.Complex.Subtypes.WalkSubtypes import WalkSubtypes
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.BodyNode import BodyNode
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EntityPrefix import EntityPrefix
+from convert.Formats.Fusion.BrepCodec.Journal.JournalModel import JournalModel
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import GeometryState
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormCurve import FormCurve
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.Converted.FormBody import (
     FormBody, FormEdge, FormFace, FormSurface, FormUse, FormWindow,
 )
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
-from convert.formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
-from convert.formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields
-from convert.formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
-from convert.formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtransNode import SubtransNode
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.TsplineSurf import TsplineSurf
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.Reading.Materials.GroupFields import GroupFields
+from convert.Formats.Fusion.EntityCodec.Model.ValueObject import ValueObject
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 FEATURE_GUID = '6C90740C-229E-4EE5-8F35-A4E5AE4F7C73'
 

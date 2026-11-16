@@ -1,0 +1,98 @@
+from __future__ import annotations
+
+from dataclasses import replace as ReplaceValue
+
+from interchange.Payloads.PayloadRecord import BrepPayload
+from interchange.Payloads.PayloadRoles import PayloadRole
+
+
+# export filtering needs payload records transformed without altering source documents
+def FilterPayloads(
+    DocumentValue: CadDocument,
+    *,
+    IncludeBrep: bool,
+    IncludeMesh: bool,
+    KeepPayloads: bool,
+) -> tuple[BrepPayload, ...]:
+    PayloadValues: list[BrepPayload] = []
+    for PayloadValue in DocumentValue.brep_payloads:
+        IsExcluded = (PayloadValue.role == PayloadRole.KBrep and not IncludeBrep) or (
+            PayloadValue.role == PayloadRole.KTessellation and not IncludeMesh
+        )
+        if not IsExcluded:
+            PayloadValues.append(PayloadValue)
+        elif KeepPayloads:
+            PayloadValues.append(ReplaceValue(PayloadValue, data=None))
+    return tuple(PayloadValues)
+
+
+# recursive filtering preserves assembly structure while removing selected geometry content
+def FilterDocument(
+    DocumentValue: CadDocument,
+    *,
+    IncludeBrep: bool = True,
+    IncludeMesh: bool = True,
+    KeepPayloads: bool = True,
+    **LegacyValues: bool,
+) -> CadDocument:
+    from interchange.document.Models.DocumentCaps import GetRetainedCaps
+    from interchange.document.Validation.DocumentBoundary import GetDocument
+
+    RemainingValues = dict(LegacyValues)
+    if "include_brep" in RemainingValues:
+        IncludeBrep = RemainingValues.pop("include_brep")
+    if "include_tessellation" in RemainingValues:
+        IncludeMesh = RemainingValues.pop("include_tessellation")
+    if "keep_payload_records" in RemainingValues:
+        KeepPayloads = RemainingValues.pop("keep_payload_records")
+    if RemainingValues:
+        UnknownName = next(iter(RemainingValues))
+        raise TypeError(
+            f"FilterDocument got an unexpected keyword argument {UnknownName!r}"
+        )
+    AssemblyValue = DocumentValue.assembly
+    if AssemblyValue is not None:
+        AssemblyValue = ReplaceValue(
+            AssemblyValue,
+            documents=tuple(
+                ReplaceValue(
+                    ComponentValue,
+                    document=(
+                        FilterDocument(
+                            NestedValue,
+                            IncludeBrep=IncludeBrep,
+                            IncludeMesh=IncludeMesh,
+                            KeepPayloads=KeepPayloads,
+                        )
+                        if (NestedValue := GetDocument(ComponentValue.document))
+                        is not None
+                        else ComponentValue.document
+                    ),
+                )
+                for ComponentValue in AssemblyValue.documents
+            ),
+        )
+    FilteredDoc = ReplaceValue(
+        DocumentValue,
+        meshes=DocumentValue.meshes if IncludeMesh else (),
+        brep_payloads=FilterPayloads(
+            DocumentValue,
+            IncludeBrep=IncludeBrep,
+            IncludeMesh=IncludeMesh,
+            KeepPayloads=KeepPayloads,
+        ),
+        assembly=AssemblyValue,
+        brep=DocumentValue.brep if IncludeBrep else None,
+    )
+    return ReplaceValue(
+        FilteredDoc,
+        capabilities=GetRetainedCaps(
+            FilteredDoc,
+            DocumentValue.capabilities,
+            IncludeBrep=IncludeBrep,
+            IncludeMesh=IncludeMesh,
+        ),
+    )
+
+
+from interchange.document.Models.DocumentModel import CadDocument  # noqa: E402

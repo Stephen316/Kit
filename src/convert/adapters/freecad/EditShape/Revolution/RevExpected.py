@@ -4,16 +4,16 @@ from convert.adapters.freecad.EditShape.Revolution.RevCarriers import (
     KRevCurve,
     KRevSurface,
 )
-from convert.geometry.Opencascade import DecodeFailure
-from interchange.brep.curves.BrepCurves import CircleCurve, LineCurve
-from interchange.brep.surfaces.BrepSurfaces import (
+from convert.Geometry.Opencascade import DecodeFailure
+from interchange.brep.Curves.BrepCurves import CircleCurve, LineCurve
+from interchange.brep.Surfaces.BrepSurfaces import (
     ConeSurface,
     CylinderSurface,
     PlaneSurface,
 )
-from interchange.brep.topology.BrepModel import BrepModel
-from interchange.brep.topology.BrepTopology import BrepEdge
-from interchange.geometry.models.VectorSpace import SpaceVector
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepTopology import BrepEdge
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 # oriented edge keys preserve model winding after arbitrary native identifier assignment
 KFaceLoop = tuple[tuple[str, int], ...]

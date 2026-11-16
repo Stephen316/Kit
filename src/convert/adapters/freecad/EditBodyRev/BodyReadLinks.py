@@ -12,7 +12,7 @@ from convert.adapters.freecad.EditRead.XmlField import (
     EditFloat,
     OnlyEditChild,
 )
-from convert.geometry.Revolve.SweepVector import DotVector
+from convert.Geometry.Revolve.SweepVector import DotVector
 
 
 # legacy exports used a fixed normal which remains admissible when its saved vector agrees

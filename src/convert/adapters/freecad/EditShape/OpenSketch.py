@@ -8,17 +8,17 @@ from convert.adapters.freecad.EditShape.OpenSketchData import (
     ReadOpenShape,
 )
 from convert.adapters.freecad.EditShape.OpenSketchGeom import ReadOpenGeom
-from convert.geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
-from convert.geometry.Opencascade import (
+from convert.Geometry.Extrude.Polygon.PrismFrame import PlacePrismPoint
+from convert.Geometry.Opencascade import (
     DecodeFailure,
     EdgeData,
     ShapeRecord,
     VertexData,
 )
-from convert.geometry.Revolve.SweepVector import OffsetVector
-from interchange.geometry.models.Sketch import Sketch
-from interchange.geometry.models.Transform import Transform
-from interchange.geometry.models.VectorSpace import SpaceVector
+from convert.Geometry.Revolve.SweepVector import OffsetVector
+from interchange.geometry.Models.Sketch import Sketch
+from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
 # independent sketch caches cannot introduce extra or moved analytic point geometry

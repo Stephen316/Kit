@@ -17,7 +17,7 @@ from convert.adapters.freecad.EditScale.ScaleSavedGraphState import (
     CheckExtraProp,
 )
 from convert.adapters.freecad.Native import IsTransformNear, NativeObject
-from interchange.geometry.models.Transform import KOriginZero, KTransformIdentity
+from interchange.geometry.Models.Transform import KOriginZero, KTransformIdentity
 
 # built in property statuses are added when freecad saves the original generated objects
 KSavedStatuses = {

@@ -1,7 +1,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.freecad.EditShape.CylinderRims import KAngleTolerance
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     ApplyLocations,
     AssertReachable,
     DecodeFailure,
@@ -19,7 +19,7 @@ from convert.geometry.Opencascade import (
     Tokens,
     ZeroTable,
 )
-from interchange.brep.curves.BrepCurves import BrepCurve, CircleCurve, LineCurve
+from interchange.brep.Curves.BrepCurves import BrepCurve, CircleCurve, LineCurve
 
 
 # the qualified topology holds only analytic wire curves and point vertices

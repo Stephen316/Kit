@@ -6,10 +6,10 @@ from math import isclose, prod
 from PairedCaptureIntake import require, sha256
 from ScopePartitionIds import ReadNativeIds
 
-from convert.adapters.solidworks.container.Parasolid import decode_brep_model, decode_partition_stream
-from convert.adapters.solidworks.core.partition.PartMass import ReadPartMass
-from convert.adapters.solidworks.core.partition.PartTopology import LinearPartBox
-from interchange.geometry.models.Transform import KTransformIdentity
+from convert.adapters.solidworks.Container.Parasolid import decode_brep_model, decode_partition_stream
+from convert.adapters.solidworks.Core.Partition.PartMass import ReadPartMass
+from convert.adapters.solidworks.Core.Partition.PartTopology import LinearPartBox
+from interchange.geometry.Models.Transform import KTransformIdentity
 
 
 PARTITION = "Contents/Config-0-Partition"

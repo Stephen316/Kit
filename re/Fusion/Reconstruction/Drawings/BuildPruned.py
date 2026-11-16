@@ -18,9 +18,9 @@ sys.path.insert(0, str(HERE / 'Dwg'))
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, field, prune, target  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile, EncodeContents  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.Image.PlanImages import ReplanFile  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.EmitDwgFile import EmitDwgFile, EncodeContents  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Image.PlanImages import ReplanFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 ACM_PREFIXES = ('ACAMG', 'ACM', 'AMDT', 'AMG', 'AMIMASTER', 'ACGREF', 'ACIM', 'Acm')
 OPTIONAL_SECTIONS = ('AcDb:Preview', 'AcDb:RevHistory', 'AcDb:AppInfoHistory', 'AcDb:AcDsPrototype_1b')

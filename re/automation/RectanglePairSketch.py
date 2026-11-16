@@ -6,7 +6,7 @@ from collections import Counter
 from FusionRectangleSketchEvidence import historical_world_curves
 from PairedCaptureIntake import require
 from PairedPerimeters import edge_gap, match_perimeters
-from interchange.geometry.models.GeometryCurves import LineGeometry, PointGeometry
+from interchange.geometry.Models.GeometryCurves import LineGeometry, PointGeometry
 
 
 def unique(values, purpose):

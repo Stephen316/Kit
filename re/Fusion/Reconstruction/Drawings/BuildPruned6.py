@@ -35,8 +35,8 @@ import BuildPruned4  # noqa: E402
 import BuildVariants  # noqa: E402
 from PruneDwg import Graph, prune  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.Model.DwgRecord import DwgField, DwgRecord  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
 
 DATA_STORE = 'AcDb:AcDsPrototype_1b'
 

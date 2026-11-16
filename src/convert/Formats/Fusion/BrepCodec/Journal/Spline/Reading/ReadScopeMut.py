@@ -1,0 +1,26 @@
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.FieldCursor import FieldCursor
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.NeedFieldMut import (
+    NeedFieldMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadFieldMut import (
+    ReadFieldMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Reading.Fields.ReadLongMut import (
+    ReadLongMut,
+)
+from convert.Formats.Fusion.BrepCodec.Journal.Spline.SubtypeRef import SubtypeRef
+
+
+# the scope operation needs a distinct decoding boundary so topology changes retain their native revision relationships
+def ReadScopeMut(Cursor: FieldCursor, Family: str) -> str | SubtypeRef:
+    NeedFieldMut(Cursor, (15, None))
+    TagValue, Value = ReadFieldMut(Cursor)
+    if TagValue != 13 or type(Value) is not str or not Value.isascii():
+        raise ValueError("Invalid Fusion journal subtype name")
+    if Value != "ref":
+        return Value
+    Index = ReadLongMut(Cursor)
+    NeedFieldMut(Cursor, (16, None))
+    if Index < 0:
+        raise ValueError("Invalid Fusion journal subtype table reference")
+    return SubtypeRef(Family, Index)

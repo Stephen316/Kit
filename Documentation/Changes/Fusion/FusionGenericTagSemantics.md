@@ -42,8 +42,8 @@ It accepts at most 256 ordered operation identities, including an empty sequence
 Old explicit count inputs are removed:
 
 ```python
-from convert.formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
-from convert.formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
+from convert.Formats.Fusion.BrepCodec.Models.BodyIdentity import BodyIdentity
+from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 
 FaceTag = FeatureTag("3", (1701,))
 EdgeTag = FeatureTag("-102", (1701,), SecondaryId=0, ApproachId=0)

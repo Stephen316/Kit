@@ -18,9 +18,9 @@ from convert.adapters.freecad.EditShape.Revolution.RevolveShape import (
     KMaxRevolveBytes,
 )
 from convert.adapters.freecad.ReconcileEdit import ReadEditBrep
-from convert.geometry.Extrude.Polygon.PrismRing import ReadPrismRing
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.Sketch import Sketch
+from convert.Geometry.Extrude.Polygon.PrismRing import ReadPrismRing
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.Sketch import Sketch
 
 
 # the two features and two sketches each own separate native evidence

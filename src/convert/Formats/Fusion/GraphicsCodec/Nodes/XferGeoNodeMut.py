@@ -1,0 +1,20 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+from convert.Formats.Fusion.GraphicsCodec.Nodes.XferFrameMut import XferFrameMut
+from convert.Formats.Fusion.GraphicsCodec.Geometry.XferGeometryMut import (
+    XferGeometryMut,
+)
+
+from convert.Formats.Fusion.GraphicsCodec.Model.Nodes.GeoValue import GeoValue
+
+if TYPE_CHECKING:
+    from convert.Formats.Fusion.GraphicsCodec.Wire.SceneCodec import SceneCodec
+
+
+# the transfer geo node contract needs a shared interpretation so display geometry retains its entity and scene relationships
+def XferGeoNodeMut(State: SceneCodec, Value: GeoValue | None) -> GeoValue:
+    Frame = XferFrameMut(State, Value.Frame if Value else None)
+    Geometry = XferGeometryMut(State, Value.Geometry if Value else None)
+    Bounds = State.Vector(Value.Bounds if Value else None, 6, "<d")
+    State.EmptyLinks(1)
+    return GeoValue(Frame, Geometry, Bounds)

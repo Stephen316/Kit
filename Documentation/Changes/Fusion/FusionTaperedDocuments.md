@@ -9,8 +9,8 @@ The existing `extrusion` profile remains a cylinder. Nonzero `TaperDegrees` requ
 ```python
 from pathlib import Path
 
-from convert.formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.EmitDocument import EmitDocument
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
 
 Specification = DocumentSpec(
     "Independent expanding frustum",

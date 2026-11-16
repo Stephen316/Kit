@@ -1,6 +1,6 @@
 """Keep the existing receipt shape while sharing the typed depth reader."""
 
-from convert.adapters.solidworks.resolved.BossDepth import ReadBossDepth
+from convert.adapters.solidworks.Resolved.BossDepth import ReadBossDepth
 
 
 def display_report(display):

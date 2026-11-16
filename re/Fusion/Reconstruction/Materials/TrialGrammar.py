@@ -4,13 +4,13 @@ Each trial form is accepted only when every record in the sweep decodes to its
 exact end, because records are positional and a wrong width breaks the rest.
 """
 
-from convert.formats.Fusion.MaterialCodec.Models.PropertySpec import PropertySpec
-from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
-from convert.formats.Fusion.MaterialCodec.Package import SchemaModels as SchemaModule
-from convert.formats.Fusion.MaterialCodec.Package.Schema import SchemaGrammar
-from convert.formats.Fusion.MaterialCodec.Schema import BuildSchemas as BuildModule
-from convert.formats.Fusion.MaterialCodec.Values import DecodeScalar as ScalarModule
-from convert.formats.Fusion.MaterialCodec.Values import DecodeValue as ValueModule
+from convert.Formats.Fusion.MaterialCodec.Models.PropertySpec import PropertySpec
+from convert.Formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
+from convert.Formats.Fusion.MaterialCodec.Package import SchemaModels as SchemaModule
+from convert.Formats.Fusion.MaterialCodec.Package.Schema import SchemaGrammar
+from convert.Formats.Fusion.MaterialCodec.Schema import BuildSchemas as BuildModule
+from convert.Formats.Fusion.MaterialCodec.Values import DecodeScalar as ScalarModule
+from convert.Formats.Fusion.MaterialCodec.Values import DecodeValue as ValueModule
 
 SchemaGrammar.KSchemaAttrs['Distance'] = ('id', 'val', 'label', 'unit')
 SchemaGrammar.KSchemaAttrs['TextureURI'] = ('id', 'val', 'label', 'allowmultiplevalues')

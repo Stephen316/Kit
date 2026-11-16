@@ -1,0 +1,16 @@
+from convert.Formats.Fusion.EntityCodec.Model.EntityRecord import EntityRecord
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
+from convert.Formats.Fusion.EntityCodec.Model.ValueTypes import KEntityValue
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.Form.LeadGuid import LeadGuid
+
+
+# form target needs an explicit validity boundary so supporting records retain their owning document relationships
+def FormTarget(
+    Value: KEntityValue, Owners: dict[int, EntityRecord], ClassGuid: str
+) -> EntityRecord:
+    if not isinstance(Value, LocalRef):
+        raise ValueError("Form link requires a local Design entity reference")
+    Target = Owners.get(Value.ObjectId)
+    if Target is None or LeadGuid(Target) != ClassGuid:
+        raise ValueError("Form reference has no compatible primary entity")
+    return Target

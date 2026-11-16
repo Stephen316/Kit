@@ -17,7 +17,7 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[4]
 SWEEP = ROOT / 're/Fusion/LocalOracle/MaterialFamilies/Sweep'
 CONTROLS = ROOT / 're/Fusion/LocalOracle/MaterialFamilies/Controls'
-TARGET = ROOT / 'src/convert/formats/Fusion/DocumentCodec/Materials/Vocabulary/MaterialSchemas.json'
+TARGET = ROOT / 'src/convert/Formats/Fusion/DocumentCodec/Materials/Vocabulary/MaterialSchemas.json'
 NAMES = (
     'CommonSchema', 'PhysMatSchema',
     'PrismCommonSchema', 'PrismMetalSchema', 'PrismOpaqueSchema', 'PrismTransparentSchema', 'PrismLayeredSchema',

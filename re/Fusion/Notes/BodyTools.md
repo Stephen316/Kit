@@ -9,7 +9,7 @@ to you under it immediately and permanently.
 
 [Fusion feature index](../README.md)
 
-See [SDK body inputs](../../../src/convert/formats/Fusion/BodyInputs), [SDK Scale readers](../../../src/convert/formats/Fusion/Scales) and [body input tests](../../../tests/convert/api/ApiFusionBodyInputTests.py).
+See [SDK body inputs](../../../src/convert/Formats/Fusion/BodyInputs), [SDK Scale readers](../../../src/convert/Formats/Fusion/Scales) and [body input tests](../../../tests/Convert/Api/ApiFusionBodyInputTests.py).
 
 ## SDK coverage
 

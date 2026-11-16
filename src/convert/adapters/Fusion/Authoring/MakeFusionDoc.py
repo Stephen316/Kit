@@ -6,14 +6,14 @@ from convert.adapters.Fusion.Authoring.MakePartParams import MakePartParams
 from convert.adapters.Fusion.Authoring.MakeSketch import MakeSketch
 from convert.adapters.Fusion.Authoring.ProfileShape import HasSolid
 from convert.adapters.Fusion.State.EncodeState import EncodeState
-from convert.formats.Fusion.DocumentCodec.CheckDocSpec import CheckDocSpec
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from interchange.document.models.DocumentModel import CadDocument
-from interchange.geometry.models.SupportPlane import SupportPlane
-from interchange.geometry.models.Transform import Transform
+from convert.Formats.Fusion.DocumentCodec.CheckDocSpec import CheckDocSpec
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from interchange.document.Models.DocumentModel import CadDocument
+from interchange.geometry.Models.SupportPlane import SupportPlane
+from interchange.geometry.Models.Transform import Transform
 from interchange.materials.MaterialRecord import MaterialRecord
-from interchange.records.RecordConfig import Configuration
-from interchange.records.RecordSource import CadSource
+from interchange.Records.RecordConfig import Configuration
+from interchange.Records.RecordSource import CadSource
 
 
 # the fusion doc operation needs a consistent construction rule so public document claims remain grounded in native records

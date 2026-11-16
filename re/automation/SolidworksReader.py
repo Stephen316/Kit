@@ -61,11 +61,11 @@ def decode(root, manifest_path, asset_path, configuration, output):
     try:
         sys.path.insert(0, str(root / "src"))
         from convert.adapters.registry.ResearchWrite import KResearchReadStatus
-        from convert.adapters.solidworks.core.Adapter import ReadSldprt
-        from convert.adapters.solidworks.container.Container import SldprtArchive
-        from convert.adapters.solidworks.container.Format import KitDocStream
-        from interchange.core.Common import FreezeMapping
-        from interchange.document.models.DocumentModel import CadDocument
+        from convert.adapters.solidworks.Core.Adapter import ReadSldprt
+        from convert.adapters.solidworks.Container.Container import SldprtArchive
+        from convert.adapters.solidworks.Container.Format import KitDocStream
+        from interchange.Core.Common import FreezeMapping
+        from interchange.document.Models.DocumentModel import CadDocument
 
         archive = SldprtArchive.from_bytes(content, asset_path)
         if archive.get(KitDocStream) is not None:

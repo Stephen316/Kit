@@ -24,16 +24,16 @@ sys.path.insert(0, str(HERE.parents[4] / 'src'))
 import BuildAuthored  # noqa: E402
 import BuildVariants  # noqa: E402
 
-from convert.formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase  # noqa: E402
-from convert.formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.BuildBundle import BuildBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.BuildDrawing import BuildDrawing  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.MakeIdentity import MakeIdentity  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.DrawingSpec import DrawingSpec  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Author.Model.SheetSpec import SheetSpec  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.EmitDrawBundle import EmitDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Bundle.ReadDrawBundle import ReadDrawBundle  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Dwg.ReadDwgFile import ReadDwgFile  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.Model.DrawingDatabase import DrawingDatabase  # noqa: E402
+from convert.Formats.Fusion.DrawingCodec.ReadDrawing import ReadDrawing  # noqa: E402
 
 
 def sheet_layout(dwg):

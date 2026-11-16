@@ -8,10 +8,10 @@ root = Path(__file__).resolve().parent
 repository = root.parents[2]
 sys.path.insert(0, str(repository / "src"))
 
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
-from convert.formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
-from convert.formats.Fusion.GeometryCodec.Prism.EmitCuboidSmb import EmitCuboidSmb
-from convert.formats.Fusion.GeometryCodec.Prism.EmitCuboidSmt import EmitCuboidSmt
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.GeometryCodec.Prism.CuboidBody import CuboidBody
+from convert.Formats.Fusion.GeometryCodec.Prism.EmitCuboidSmb import EmitCuboidSmb
+from convert.Formats.Fusion.GeometryCodec.Prism.EmitCuboidSmt import EmitCuboidSmt
 
 
 model = CuboidBody(17.0, 23.0, 31.0, (-7.0, 13.0, 5.0))

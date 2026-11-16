@@ -1,12 +1,12 @@
 # Independent Fusion frustum geometry
 
-The new `convert.formats.Fusion.GeometryCodec.Frustum` modules independently author one closed circular frustum as standalone SMT or SMB. Inputs are positive lower and upper radii, a positive height and a bottom-center position, all in millimetres. The axis is +Z. Expanding, contracting and equal-radius cases share an explicit three-face, two-edge, two-vertex topology.
+The new `convert.Formats.Fusion.GeometryCodec.Frustum` modules independently author one closed circular frustum as standalone SMT or SMB. Inputs are positive lower and upper radii, a positive height and a bottom-center position, all in millimetres. The axis is +Z. Expanding, contracting and equal-radius cases share an explicit three-face, two-edge, two-vertex topology.
 
 ```python
-from convert.formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmb import EmitFrustumSmb
-from convert.formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmt import EmitFrustumSmt
-from convert.formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
-from convert.formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
+from convert.Formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmb import EmitFrustumSmb
+from convert.Formats.Fusion.GeometryCodec.Frustum.EmitFrustumSmt import EmitFrustumSmt
+from convert.Formats.Fusion.GeometryCodec.Frustum.FrustumBody import FrustumBody
+from convert.Formats.Fusion.GeometryCodec.GeometryStamp import GeometryStamp
 
 Model = FrustumBody(10.0, 14.0, 17.0, (20.0, -30.0, 5.0))
 Stamp = GeometryStamp("Kit", "Frustum authoring", "2026-11-12T00:00:00Z")

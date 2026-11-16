@@ -21,6 +21,20 @@ then building the writer. Put both documents in every sub-agent brief for CAD wo
 
 ## Documentation and gotchas
 
+Read the [completion roadmap](Roadmap.md) and [conversion backlog](Documentation/Maintenance/ConversionBacklog.md)
+before claiming conversion, format, documentation, CLI or release work.
+Refresh the linked PRs and owning registers before treating a task as available.
+Distinguish active implementation, planned programme scope, blocked work and unassigned tasks.
+Preserve PR #94's explicit programme delivery rule and coordinate existing separate PRs.
+Do not infer that a broad future plan implements every individual gap.
+
+Record the task ID, owner, scope, dependencies, delivery PR and exit condition when claiming work.
+Update its owning register when the scope, blocker, PR state or completion evidence changes.
+Update the backlog links and production snapshot when those changes affect this roadmap.
+Update Roadmap.md when a milestone or supported production boundary changes.
+Completion requires revision-bound acceptance evidence, not an open PR, decoded-byte count or green PR checks.
+Retain unfinished requirements and link the evidence for completed work.
+
 Every new feature, API, adapter, command, configuration option, workflow, tool,
 or other repository addition MUST include a new PascalCase Markdown entry in
 `Documentation/Changes/` in the same PR. Describe behavior, usage or configuration,

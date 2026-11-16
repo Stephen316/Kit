@@ -8,15 +8,15 @@ from convert.adapters.freecad.EditRead.Sketch.SavedPrimitive import (
     ReadPrimitive,
 )
 from convert.adapters.freecad.EditRead.XmlField import OnlyEditChild
-from interchange.enums.EnumGeometry import GeometryKind
-from interchange.geometry.models.GeometryCurves import (
+from interchange.Enums.EnumGeometry import GeometryKind
+from interchange.geometry.Models.GeometryCurves import (
     ArcGeometry,
     CircleGeometry,
     LineGeometry,
     PointGeometry,
 )
-from interchange.geometry.models.Sketch import SketchEntity
-from interchange.geometry.models.VectorPlane import PlaneVector
+from interchange.geometry.Models.Sketch import SketchEntity
+from interchange.geometry.Models.VectorPlane import PlaneVector
 
 # only writer emitted planar entity layouts have stable editable index semantics
 KEntityLayouts: dict[str, tuple[str, str, type[KSketchPrimitive]]] = {

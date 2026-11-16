@@ -8,9 +8,9 @@ import sys
 root = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(root / "src"))
 
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
-from convert.formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.MaterialCodec.Models.UnitValue import UnitValue
 
 
 output = Path(__file__).resolve().parent / "RectangleAuthoring"

@@ -1,6 +1,6 @@
 from typing import TypeVar
 
-from convert.formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.GeometryState import (
     GeometryState,
 )
 

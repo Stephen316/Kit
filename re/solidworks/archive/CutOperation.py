@@ -2,7 +2,7 @@
 
 from DepthDisplay import display_report
 from SketchRoot import Require
-from convert.adapters.solidworks.resolved.cut.CutOpRead import ReadCutOp
+from convert.adapters.solidworks.Resolved.Cut.CutOpRead import ReadCutOp
 
 
 def read_cut_operation(cursor, cut, boss):

@@ -18,14 +18,14 @@ from convert.adapters.freecad.EditShape.Revolution.RevFaceLoops import (
 from convert.adapters.freecad.EditShape.Revolution.RevFaceMatch import IsRevCarrier
 from convert.adapters.freecad.EditShape.Revolution.RevRaw import ReadRevRaw
 from convert.adapters.freecad.EditShape.Revolution.RevTrimProof import CheckRevTrims
-from convert.geometry.Opencascade import (
+from convert.Geometry.Opencascade import (
     AssertReachable,
     DecodeFailure,
     EdgeData,
     FaceData,
     Reference,
 )
-from interchange.brep.topology.BrepModel import BrepModel
+from interchange.brep.Topology.BrepModel import BrepModel
 
 # bounded native topology permits repeated edits without allocating untrusted archive data
 KMaxRevolveBytes = 262_144

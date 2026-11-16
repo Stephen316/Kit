@@ -6,14 +6,14 @@ from pathlib import Path
 repository = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(repository / 'src'))
 
-from convert.formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
-from convert.formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
-from convert.formats.Fusion.LinkAuthor.EmitAssembly import EmitAssembly
-from convert.formats.Fusion.LinkAuthor.Model.AssemblySpec import AssemblySpec
-from convert.formats.Fusion.LinkAuthor.Model.LinkTarget import LinkTarget
-from convert.formats.Fusion.LinkAuthor.Model.PlacedPart import PlacedPart
-from convert.formats.Fusion.LinkAuthor.Model.RigidJoint import RigidJoint
-from convert.formats.Fusion.MetaIndex import SegmentKind
+from convert.Formats.Fusion.DocumentCodec.Model.DocumentSpec import DocumentSpec
+from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.LinkAuthor.EmitAssembly import EmitAssembly
+from convert.Formats.Fusion.LinkAuthor.Model.AssemblySpec import AssemblySpec
+from convert.Formats.Fusion.LinkAuthor.Model.LinkTarget import LinkTarget
+from convert.Formats.Fusion.LinkAuthor.Model.PlacedPart import PlacedPart
+from convert.Formats.Fusion.LinkAuthor.Model.RigidJoint import RigidJoint
+from convert.Formats.Fusion.MetaIndex import SegmentKind
 
 private = repository / 're/Fusion/LocalOracle/LinksConfigs/tmp'
 author = private / 'author'
