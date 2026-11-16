@@ -11,6 +11,7 @@ import ctypes
 from ctypes import wintypes
 from pathlib import Path
 import re
+from threading import Lock
 
 from WindowsIdentity import (
     CLOSE_HANDLE,
@@ -58,6 +59,7 @@ class PeerUnavailable(ValueError):
 class ExitWatch:
     # a closed watch must not supply a potentially recycled handle value
     def __init__(self, handle, pid, started):
+        self._lock = Lock()
         self.handle = handle
         self.pid = pid
         self.started = started
@@ -122,9 +124,10 @@ def watch_peer(peer, executable):
         require_live(handle)
         yield watch
     finally:
-        watch.handle = None
-        if not CLOSE_HANDLE(handle):
-            raise ctypes.WinError(ctypes.get_last_error())
+        with watch._lock:
+            watch.handle = None
+            if not CLOSE_HANDLE(handle):
+                raise ctypes.WinError(ctypes.get_last_error())
 
 
 # filetime words retain the exact kernel tick without a wall clock conversion
@@ -138,31 +141,32 @@ def observe_exit(watch, timeout_ms):
         raise ValueError(
             "Windows exit wait must be between zero and 300000 milliseconds"
         )
-    handle = watch.handle
-    if handle is None:
-        raise ValueError("Windows process exit watch is closed")
-    status = WAIT_FOR_OBJECT(handle, timeout_ms)
-    if status == WAIT_TIMEOUT:
-        return None
-    if status != WAIT_OBJECT_0:
-        raise ctypes.WinError(ctypes.get_last_error())
-    times = [wintypes.FILETIME() for _ in range(4)]
-    code = wintypes.DWORD()
-    if not GET_PROCESS_TIMES(handle, *[ctypes.byref(value) for value in times]):
-        raise ctypes.WinError(ctypes.get_last_error())
-    if not GET_EXIT_CODE(handle, ctypes.byref(code)):
-        raise ctypes.WinError(ctypes.get_last_error())
-    exited = filetime_ticks(times[1])
-    if (
-        GET_PROCESS_ID(handle) != watch.pid
-        or f"windows:{filetime_ticks(times[0])}" != watch.started
-        or exited == 0
-    ):
-        raise ValueError("Windows exit did not preserve the exact armed lifetime")
-    return {
-        "observation": "windows_process_exit_handle",
-        "pid": watch.pid,
-        "started": watch.started,
-        "exit_filetime": exited,
-        "exit_code": code.value,
-    }
+    with watch._lock:
+        handle = watch.handle
+        if handle is None:
+            raise ValueError("Windows process exit watch is closed")
+        status = WAIT_FOR_OBJECT(handle, timeout_ms)
+        if status == WAIT_TIMEOUT:
+            return None
+        if status != WAIT_OBJECT_0:
+            raise ctypes.WinError(ctypes.get_last_error())
+        times = [wintypes.FILETIME() for _ in range(4)]
+        code = wintypes.DWORD()
+        if not GET_PROCESS_TIMES(handle, *[ctypes.byref(value) for value in times]):
+            raise ctypes.WinError(ctypes.get_last_error())
+        if not GET_EXIT_CODE(handle, ctypes.byref(code)):
+            raise ctypes.WinError(ctypes.get_last_error())
+        exited = filetime_ticks(times[1])
+        if (
+            GET_PROCESS_ID(handle) != watch.pid
+            or f"windows:{filetime_ticks(times[0])}" != watch.started
+            or exited == 0
+        ):
+            raise ValueError("Windows exit did not preserve the exact armed lifetime")
+        return {
+            "observation": "windows_process_exit_handle",
+            "pid": watch.pid,
+            "started": watch.started,
+            "exit_filetime": exited,
+            "exit_code": code.value,
+        }
