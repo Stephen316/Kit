@@ -101,8 +101,9 @@ def CheckFreshBoss() -> None:
         Report = LoadCandidate(FilePath(TempRoot) / "FreshBoss.SLDPRT")
     Bounds = CastValue(list[list[float]], Report["bounds_metres"])
     assert Report["stream_count"] == 32
-    PreviewDigests = Report["preview_sha256"]
-    assert isinstance(PreviewDigests, dict)
+    PreviewValue = Report["preview_sha256"]
+    assert isinstance(PreviewValue, dict)
+    PreviewDigests = CastValue(dict[str, object], PreviewValue)
     assert set(PreviewDigests) == {"Preview", "PreviewPNG"}
     assert all(
         isinstance(Value, str) and len(Value) == 64 for Value in PreviewDigests.values()
