@@ -34,3 +34,13 @@ On the same sealed cohort, `--profile-return` continues the typed offline readba
 The single profile chain and right trim edge both identify the same native circle. The support reference agrees with the typed Origin datum and the independently observed licensed Front Plane. The saved profile returns at a typed schema-1 `moExtrusion_c` record. The report leaves the complete resolved boss graph unresolved. This check applies to the three positive blind-boss discovery captures on the measured build.
 
 Separate rehashed scratch copies with an incorrect radial value slot or an altered region return were both refused by this mode. The default prefix mode reproduced the original observation, and the sealed inputs remained unchanged.
+
+## Circular boss return
+
+On the same sealed cohort, `--boss-return` continues through the terminal positive blind boss. The two saved chooser caps each carry one side occurrence for the circular profile. Both cap and side pairs bind the same reached file, feature and clock, and the repeated chooser resolves the original cap and side objects. The existing distance-dimension reader follows the first typed distance display definition to the owned driving depth and confirms both cached values. The saved reference starts at the circle perimeter on the sketch plane and advances normally to the boss end. The operation starts on its sketch plane and closes the resolved stream at EOF.
+
+The single configuration atom, its body region, the resolved transfer and the active partition's named shell atom agree. The active solid has one cylindrical side and two planar caps, with two full circular edges shared by those faces. The typed BRep represents each closed edge by a single repeated endpoint. The licensed API reports no topological vertices on these bodies. On all 15 original licensed observations, the archive results agree with the boss owner, driving parameter, direction, depth, body counts, bounds, centroid and analytic cylinder volume. The report retains raw chooser and partition state without assigning further semantics.
+
+The same bounded reader also accepts all three separately restored copies with their repackaged bytes. Profile and boss values agree with the originals after reopening, while their resolved stream and active partition digests differ.
+
+Rehashed scratch controls were refused when the cap alias pointed to the other valid cap, the side occurrence differed from the saved circle, the distance definition schema changed or the active shell atom differed from the configuration. The earlier two checkpoint outputs reproduced their sealed observations.

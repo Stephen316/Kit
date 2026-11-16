@@ -6,7 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
-"""Verify the sealed licensed SOLIDWORKS radial-boss discovery prefix offline."""
+"""Verify sealed licensed SOLIDWORKS radial-boss discovery checkpoints offline."""
 
 import argparse
 import json
@@ -23,6 +23,8 @@ sys.path.insert(0, str(ROOT / "src"))
 from Corpus import git
 from PairedCaptureIntake import require, sha256
 from SolidWorksRadialArchive import inspect_archive
+from SolidWorksRadialBoss import check_licensed_boss
+from SolidWorksRadialPartition import check_licensed_body
 
 CONTROL_SHA = "d1bbca099ccac1330024619390df3c6b76320a6a6c281a5009578b2fb63e7408"
 LOAD = {"document_returned": True, "errors": 0, "warnings": 0}
@@ -203,7 +205,7 @@ def check_native(parsed, observation, expected_depth):
 
 
 # Join all parsed boundaries to the sealed cohort and licensed measurements.
-def report(directory, expected, profile_return=False):
+def report(directory, expected, profile_return=False, *, boss_return=False):
     plan, phases, roster, author, reopened = read_capture(
         directory.absolute(), expected
     )
@@ -216,23 +218,35 @@ def report(directory, expected, profile_return=False):
         data = read_bytes(
             directory / asset["name"], asset["sha256"], asset["size_bytes"]
         )
-        parsed = inspect_archive(data, profile_return)
-        for moment in ("before_rebuild", "after_rebuild"):
-            check_native(parsed, source[moment], plan["recipe"]["depth_mm"])
-            if profile_return:
+        parsed = inspect_archive(data, profile_return, boss_return=boss_return)
+        snapshots = [source["before_rebuild"], source["after_rebuild"]]
+        if boss_return:
+            snapshots.extend(
+                fresh[moment]
+                for moment in ("after_authoring", "before_save", "after_save")
+            )
+        for snapshot in snapshots:
+            check_native(parsed, snapshot, plan["recipe"]["depth_mm"])
+            if profile_return or boss_return:
                 require(
                     parsed["profile_return"]["support"]["feature"]
-                    == source[moment]["support"]["id"],
+                    == snapshot["support"]["id"],
                     "saved circular profile datum differs from the licensed support",
                 )
+            if boss_return:
+                check_licensed_boss(parsed["boss"], snapshot["boss"])
+                check_licensed_body(
+                    parsed["partition"], parsed["boss"], snapshot["body"]
+                )
         observations.append({"archive": asset, **parsed})
+    scope = "licensed_discovery_circular_sketch_prefix"
+    if boss_return:
+        scope = "licensed_discovery_circular_boss_return"
+    elif profile_return:
+        scope = "licensed_discovery_circular_profile_return"
     return {
         "schema": 1,
-        "scope": (
-            "licensed_discovery_circular_profile_return"
-            if profile_return
-            else "licensed_discovery_circular_sketch_prefix"
-        ),
+        "scope": scope,
         "intake_sha256": expected,
         "capture_revision": plan["source_revision"],
         "reader_revision": git(ROOT, "rev-parse", "HEAD").decode("ascii").strip(),
@@ -247,11 +261,16 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("directory", type=Path)
     parser.add_argument("--receipt-sha256", required=True)
-    parser.add_argument("--profile-return", action="store_true")
+    checkpoint = parser.add_mutually_exclusive_group()
+    checkpoint.add_argument("--profile-return", action="store_true")
+    checkpoint.add_argument("--boss-return", action="store_true")
     options = parser.parse_args()
     try:
         value = report(
-            options.directory, options.receipt_sha256, options.profile_return
+            options.directory,
+            options.receipt_sha256,
+            options.profile_return,
+            boss_return=options.boss_return,
         )
         print(
             json.dumps(
