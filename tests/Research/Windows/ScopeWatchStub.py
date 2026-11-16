@@ -7,6 +7,14 @@ import time as Clock
 from pathlib import Path as FilePath
 
 
+# process evidence needs the interpreter itself because a virtual environment launcher owns a different pid
+def GetBasePython() -> str:
+    PythonPath: object = getattr(System, "_base_executable", None)
+    if not isinstance(PythonPath, str) or not PythonPath:
+        raise RuntimeError("base Python executable is unavailable")
+    return PythonPath
+
+
 # the launcher starts an actual descendant before it enters an unreturning wait
 def HangCollector(RunPath: FilePath) -> None:
     Child = Subprocess.Popen(
@@ -24,7 +32,7 @@ def WatchFixture(RunPath: FilePath, ResearchPath: str) -> None:
     System.path.insert(0, ResearchPath)
     Watcher = ScriptRun.run_path(str(FilePath(ResearchPath) / "ScopeWatchdog.py"))
     Command = [
-        System._base_executable,
+        GetBasePython(),
         "-I",
         "-S",
         __file__,

@@ -44,13 +44,15 @@ def WaitReserve(
     Until = TimeClock.monotonic() + 12
     Previous: dict[str, object] = {}
     while TimeClock.monotonic() < Until:
-        Pool = JsonCodec.loads(Harness.RunCli("status", Timeout=5))["pools"]["decode"]
-        Current = CastValue(dict[str, object], Pool["capacity"]["decision"] or {})
+        DecodePool = JsonCodec.loads(Harness.RunCli("status", Timeout=5))["pools"][
+            "decode"
+        ]
+        Current = CastValue(dict[str, object], DecodePool["capacity"]["decision"] or {})
         Previous = Current
         Sample = Current.get("host_measured_at")
         Revision = Current.get("adaptive_revision")
         if (
-            len(Pool["running"]) == 2
+            len(DecodePool["running"]) == 2
             and Current.get("active_limit") == Active
             and isinstance(Sample, (int, float))
             and Sample > After
