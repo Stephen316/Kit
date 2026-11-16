@@ -14,6 +14,7 @@ from CmgrOpening import ReadCmgrFeature
 from CmgrTail import ReadCmgrTail, WriteCmgrTail
 from ColorAppearance import EncodeColorDspbr
 from SolidworksCensusInputs import capture_inputs
+from VerifyCmgrBoss import verify_boss_mass
 from VerifyCmgrPart import verify_part_end
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
@@ -31,8 +32,10 @@ TREE_IDS = {"P01": (), "P03": (34,), "P04": (34, 46)}
 
 
 # the mass block follows the part feature fields and its base configuration header
-def read_mass_start(stream: bytes, visual_end: int) -> int:
-    RequireArch(visual_end, 1095, "CMgr visual return before empty mass")
+def read_mass_start(
+    stream: bytes, visual_end: int
+) -> tuple[ArchiveCursor, tuple[int, ...]]:
+    RequireArch(visual_end, 1095, "CMgr visual return before mass")
     cursor = ArchiveCursor(stream, visual_end, 9, {}, {})
     ReadCmgrFeature(cursor, 19000)
     RequireArch(cursor.Offset, 1206, "CMgr base configuration opening")
@@ -41,15 +44,16 @@ def read_mass_start(stream: bytes, visual_end: int) -> int:
         ("", (-1, 0x80400180), ""),
         "CMgr base configuration header",
     )
-    first, _, last = cursor.ReadInts("<3I")
-    RequireArch((first, last), (28, 0), "CMgr empty configuration members")
-    RequireArch(cursor.Offset, 1234, "CMgr empty mass start")
-    return cursor.Offset
+    fields = cursor.ReadInts("<3I")
+    RequireArch(cursor.Offset, 1234, "CMgr mass start")
+    return cursor, fields
 
 
 # the independent archive path must supply the exact span for byte comparison
 def verify_empty_mass(stream: bytes, visual_end: int, body_count: int, asset: str) -> str:
-    start = read_mass_start(stream, visual_end)
+    cursor, (first, _, last) = read_mass_start(stream, visual_end)
+    RequireArch((first, last), (28, 0), "CMgr empty configuration members")
+    start = cursor.Offset
     end = ReadEmptyMass(stream, start, 19000, body_count)
     RequireArch(end, 1488, "CMgr empty mass return")
     saved = stream[start:end]
@@ -97,6 +101,7 @@ def verify_color():
     captures = {}
     tails = {}
     masses = {}
+    boss_masses = {}
     parts = {}
     for recipe, item, data, _, measurement in rows:
         archive = SldprtArchive.from_bytes(data, item["path"])
@@ -121,12 +126,18 @@ def verify_color():
             masses[item["sha256"]] = verify_empty_mass(
                 stream, end, measurement["body_count"], item["path"]
             )
+        if recipe == "P03":
+            mass_cursor, _ = read_mass_start(stream, end)
+            boss_masses[item["sha256"]] = verify_boss_mass(
+                mass_cursor, archive, generation, measurement, item["path"]
+            )
     RequireArch(len(masses), 6, "CMgr empty mass capture count")
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": captures,
         "terminal_records": tails,
         "empty_mass_records": masses,
+        "boss_mass_wrappers": boss_masses,
         "part_return_records": parts,
     }
 

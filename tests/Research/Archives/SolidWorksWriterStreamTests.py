@@ -47,6 +47,7 @@ def CheckCmgr() -> None:
     assert CastValue(dict[str, str], Terminals).keys() == Digests.keys()
     AssertEmptyMass(Report, Digests)
     AssertPartEnd(Report, Digests)
+    AssertBossMass(Report, Digests)
 
 
 # the empty cache must cover the complete sketch only discovery lane
@@ -71,4 +72,15 @@ def AssertPartEnd(Report: dict[str, object], Captures: dict[str, str]) -> None:
         "ed41922d5772c1a3dd30505c22ca3560fd58329fe8fcf92930ae7ca52871001f": 8,
         "86695a925f09429c1f61fbf2a1471b42da6f8f32f1ae65cfb091253d7dae6a11": 8,
         "107161786115b59d507e01bde8b4fca38c425b4ce0f1df2cdc35dfe2456398ea": 3,
+    }
+
+
+# the signed boss lane needs exact option and coordinate wrapper coverage
+def AssertBossMass(Report: dict[str, object], Captures: dict[str, str]) -> None:
+    Masses = Report["boss_mass_wrappers"]
+    assert isinstance(Masses, dict)
+    Digests = CastValue(dict[str, str], Masses)
+    assert len(Digests) == 8 and Digests.keys() <= Captures.keys()
+    assert set(Digests.values()) == {
+        "2e3fc40724bbb867dc41e0340f0b792b83d8b5cdb7254e221473c3ae1d9c73e3"
     }
