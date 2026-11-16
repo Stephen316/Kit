@@ -41,6 +41,10 @@ KCases = (
     "external-links",
     "duplicate-links",
     "unknown-child",
+    "placeholder",
+    "nonfinite-scalar",
+    "invalid-scalar",
+    "missing-scalar",
 )
 
 
@@ -64,6 +68,10 @@ def MakeCells(CaseName: str) -> list[dict[str, str]]:
         },
         {"address": "B3", "alias": "factor", "content": "=2.5"},
     ]
+    if CaseName == "placeholder":
+        Cells.append({"address": "B4", "alias": "zero", "content": "0"})
+    if CaseName in {"nonfinite-scalar", "invalid-scalar", "missing-scalar"}:
+        Cells[2]["content"] = "0"
     if CaseName == "duplicate-alias":
         Cells[1]["alias"] = "forward"
     if CaseName == "duplicate-address":
@@ -162,6 +170,7 @@ def MakeFixture(CaseName: str) -> bytes:
         RootValue = XmlTree.fromstring(Archive.read("Document.xml"))
     AddSheetMut(RootValue, CaseName)
     AddExprMut(RootValue, CaseName)
+    AddEvidenceMut(RootValue, CaseName)
     assert not any(
         NodeValue.get("name", "").startswith("KitManifest")
         for NodeValue in RootValue.iter()
@@ -170,6 +179,46 @@ def MakeFixture(CaseName: str) -> bytes:
     with ZipFile(Output, "w") as Archive:
         Archive.writestr("Document.xml", XmlTree.tostring(RootValue, encoding="utf-8"))
     return Output.getvalue()
+
+
+# unconsumed paths and permissively normalized scalars retain their actual independent persisted evidence
+def AddEvidenceMut(RootValue: XmlTree.Element, CaseName: str) -> None:
+    Props = RootValue.find("./ObjectData/Object[@name='Extrusion']/Properties")
+    assert Props is not None
+    Scalar = Props.find("./Property[@name='Factor']/Float")
+    assert Scalar is not None
+    if CaseName == "nonfinite-scalar":
+        Scalar.set("value", "nan")
+    if CaseName == "invalid-scalar":
+        Scalar.set("value", "invalid")
+    if CaseName == "missing-scalar":
+        del Scalar.attrib["value"]
+    if CaseName == "placeholder":
+        Placement = XmlTree.SubElement(
+            Props, "Property", {"name": "Placement", "type": "App::PropertyPlacement"}
+        )
+        _ = XmlTree.SubElement(
+            Placement,
+            "PropertyPlacement",
+            {
+                "Px": "17",
+                "Py": "0",
+                "Pz": "0",
+                "Q0": "0",
+                "Q1": "0",
+                "Q2": "0",
+                "Q3": "1",
+            },
+        )
+        Engine = Props.find("./Property[@name='ExpressionEngine']/ExpressionEngine")
+        assert Engine is not None
+        _ = XmlTree.SubElement(
+            Engine,
+            "Expression",
+            {"path": "Placement.Base.x", "expression": "Dimensions.zero"},
+        )
+        Engine.set("count", str(len(Engine)))
+    Props.set("Count", str(len(Props)))
 
 
 # native alias reconstruction must participate in both semantic replay digest compositions
@@ -207,7 +256,12 @@ def AssertOwners(Document: CadDocument, CaseName: str) -> None:
         14.0 if CaseName == "edited" else 7.0 if CaseName == "equal-reordered" else 11.0
     )
     assert Reverse.value.value == (7.0 if CaseName == "equal-reordered" else 5.0)
-    assert Factor.value.value == 2.5 and Factor.value.kind == ValueKind.KNumber
+    assert Factor.value.value == (
+        0.0
+        if CaseName in {"nonfinite-scalar", "invalid-scalar", "missing-scalar"}
+        else 2.5
+    )
+    assert Factor.value.kind == ValueKind.KNumber
     for Param in (Forward, Reverse, Factor):
         assert Param.expression is not None and Param.expression.language == "freecad"
     Expected = {
@@ -252,8 +306,24 @@ def AssertBindings(Document: CadDocument, CaseName: str) -> None:
         assert Expression is not None
         Expected = not InvalidSheet and (
             FieldName != "LengthFwd"
-            or CaseName in {"literal", "leading-reference", "edited", "equal-reordered"}
+            or CaseName
+            in {
+                "literal",
+                "leading-reference",
+                "edited",
+                "equal-reordered",
+                "placeholder",
+                "nonfinite-scalar",
+                "invalid-scalar",
+                "missing-scalar",
+            }
         )
+        if FieldName == "Factor" and CaseName in {
+            "nonfinite-scalar",
+            "invalid-scalar",
+            "missing-scalar",
+        }:
+            Expected = False
         assert Expression.parameter_ids == (
             (f"freecad:parameter:Dimensions:cell:{Address}",) if Expected else ()
         )
@@ -285,6 +355,13 @@ def AssertBindings(Document: CadDocument, CaseName: str) -> None:
     )
     if CaseName == "stale":
         assert Findings[0].attributes["counts"] == {"quantity_mismatch": 1}
+    if CaseName in {
+        "placeholder",
+        "nonfinite-scalar",
+        "invalid-scalar",
+        "missing-scalar",
+    }:
+        assert Findings[0].attributes["counts"] == {"unverified_native_value": 1}
 
 
 # raw metadata must preserve every source cell even when typed recovery is unsupported
@@ -311,6 +388,48 @@ def AssertRawSheet(Document: CadDocument, CaseName: str) -> None:
         assert Links[0]["children"]
     if CaseName == "unknown-child":
         assert any(Value.get("tag") == "UnresolvedNativeRecord" for Value in Nodes)
+
+
+# normalized zeros cannot replace the actual native property or synthetic expression observations
+def AssertEvidence(Document: CadDocument, CaseName: str) -> None:
+    if CaseName == "placeholder":
+        (Param,) = (
+            Value
+            for Value in Document.parameters
+            if Value.attributes.get("freecad_path") == "Placement.Base.x"
+        )
+        assert Param.value.value == 0.0 and "freecad_property" not in Param.attributes
+        assert (
+            Param.expression is not None
+            and Param.expression.source == "Dimensions.zero"
+        )
+        assert Param.expression.parameter_ids == ()
+        Native = CastValue(Mapping[str, object], Document.metadata["freecad"])
+        Objects = CastValue(Sequence[Mapping[str, object]], Native["objects"])
+        (Owner,) = (Value for Value in Objects if Value.get("name") == "Extrusion")
+        Props = CastValue(Mapping[str, object], Owner["properties"])
+        Placement = CastValue(Mapping[str, object], Props["Placement"])
+        Children = CastValue(Sequence[Mapping[str, object]], Placement["children"])
+        assert CastValue(Mapping[str, str], Children[0]["attributes"])["Px"] == "17"
+    if CaseName in {"nonfinite-scalar", "invalid-scalar", "missing-scalar"}:
+        (Param,) = (
+            Value
+            for Value in Document.parameters
+            if Value.attributes.get("freecad_path") == "Factor"
+        )
+        Property = CastValue(Mapping[str, object], Param.attributes["freecad_property"])
+        Children = CastValue(Sequence[Mapping[str, object]], Property["children"])
+        Actual = CastValue(Mapping[str, str], Children[0]["attributes"])
+        assert (
+            Actual.get("value")
+            == {
+                "nonfinite-scalar": "nan",
+                "invalid-scalar": "invalid",
+                "missing-scalar": None,
+            }[CaseName]
+        )
+        assert Param.value.value == 0.0 and Param.expression is not None
+        assert Param.expression.parameter_ids == ()
 
 
 # actual native read and unchanged replay are isolated from fixture construction and assertions
@@ -345,6 +464,7 @@ def CheckAliases(TmpPath: FilePath, CaseName: str) -> None:
     AssertOwners(Document, CaseName)
     AssertBindings(Document, CaseName)
     AssertRawSheet(Document, CaseName)
+    AssertEvidence(Document, CaseName)
 
 
 if __name__ == "__main__":

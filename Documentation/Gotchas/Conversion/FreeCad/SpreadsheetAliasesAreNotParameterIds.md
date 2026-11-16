@@ -13,6 +13,11 @@ It also requires external-link records to be unique and empty; unknown group chi
 Unsupported references and cells retain raw metadata and text with an explicit unresolved diagnostic.
 
 A syntactically valid alias is not proof that its current saved property agrees with the literal cell or that native geometry was recomputed.
+The native reader also synthesizes zero-valued parameters for unconsumed expression paths and defaults missing, malformed or nonfinite scalar text to zero.
+Neither zero is saved scalar evidence: a nonzero placement referenced through an unconsumed path or a `Float value="nan"` must not gain a dependency merely because its alias contains zero.
+Recovery requires supported raw scalar-property or dimensional-constraint evidence, validates its finite numeric domain and native kind/unit, and compares it to the parsed value before quantity corroboration.
+Unsupported or invalid evidence retains the expression and raw metadata with `unverified_native_value` diagnostics.
+The separate [zero-evidence gotcha](NativeZeroIsNotEvidence.md) records the parser fallback distinction and authored controls.
 The [recovery](../../../Changes/FreeCad/FreeCadNativeSheetAliases.md) preserves both values and requires quantity corroboration before linking.
 Its stale control is independently authored XML; the earlier operator's saved copies were restored before saving and do not establish a discrepant native-save witness.
 Native fallback and replay verification must both recover aliases before computing semantic equality, or an unchanged native file can lose exact replay solely because the reconstructed dependency graph differs.

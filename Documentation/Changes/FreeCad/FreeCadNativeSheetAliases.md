@@ -13,6 +13,9 @@ Cell contents must be finite decimal literals, optionally beginning with `=`, wi
 Length units are mm, cm, m, in and ft; angle units are rad and deg.
 The stored cell spelling determines its typed unit and kind.
 The reader requires dimensional and numeric corroboration with the current saved native property through the existing quantity comparison before assigning a dependency ID.
+Corroboration first requires a supported scalar property's actual type, child and finite raw numeric value, or a recognized indexed dimensional constraint's raw type and value, to agree exactly with the parsed parameter.
+Unconsumed expression placeholders have no saved scalar evidence and remain unresolved even when their synthetic zero matches a cell.
+Missing, malformed and nonfinite raw scalars normalized to zero by the general native reader cannot establish alias equivalence.
 A literal/property mismatch retains both observations and the original expression without a guessed target, with an explicit diagnostic.
 This does not prove that a native recompute occurred or that geometry is current.
 
@@ -28,9 +31,11 @@ An exceeded recovery budget preserves the original native document and reports t
 Source-authored public process coverage reads native XML without either Kit manifest representation.
 It checks independently owned forward/reverse depths, equal values with reordered cells, edited matching values, mm/cm conversion, dimensionless values, label and metadata decoys, stale observations, ambiguous cells, unsupported syntax/units and recovery limits.
 It also requires byte-identical public unchanged-native replay.
+Additional native-only controls retain a nonzero saved placement with a synthetic zero expression parameter, and missing, malformed or nonfinite scalar text with a zero alias; all retain raw evidence and unresolved dependencies through exact replay.
 Local verification is static only; hosted process execution remains required.
 The operator's [physical native readback](https://github.com/TryUniCAD/Kit/pull/94#issuecomment-6930111667) established the earlier text-only dependency gap, not a retained discrepant-edit save control.
 No native acceptance or broader conversion admission is established by this recovery.
 
 The vocabulary follows FreeCAD 1.0.2's [sheet persistence and alias checks](https://github.com/FreeCAD/FreeCAD/blob/1.0.2/src/Mod/Spreadsheet/App/PropertySheet.cpp) and [cell content/alias persistence](https://github.com/FreeCAD/FreeCAD/blob/1.0.2/src/Mod/Spreadsheet/App/Cell.cpp).
 See the [alias gotcha](../../Gotchas/Conversion/FreeCad/SpreadsheetAliasesAreNotParameterIds.md).
+See also [native zero defaults](../../Gotchas/Conversion/FreeCad/NativeZeroIsNotEvidence.md).

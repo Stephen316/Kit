@@ -2,6 +2,7 @@ from collections.abc import Mapping
 from dataclasses import replace as Replace
 from re import compile as CompileRegex
 
+from convert.adapters.freecad.NativeParameters.ReadEvidence import HasSavedValue
 from convert.Geometry.Formula.FormulaUnits import GetQuantity, IsMatchingQty
 from interchange.Enums.EnumValues import ValueKind
 from interchange.Records.RecordParameter import Parameter
@@ -32,6 +33,8 @@ def ResolveAlias(
     Target = Aliases.get((Match["sheet"], Match["alias"]))
     if Target is None:
         return Param, "missing_or_ambiguous_alias"
+    if not HasSavedValue(Param):
+        return Param, "unverified_native_value"
     Quantity = GetQuantity(Target.value)
     if (
         Quantity is None
