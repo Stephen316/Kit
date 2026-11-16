@@ -301,6 +301,19 @@ def CheckCfgHelpers() -> None:
     )
 
 
+# the weld and tolerance helpers must preserve native frames and archive ownership
+def CheckCfgWeldTol() -> None:
+    Report = LoadReport("VerifyConfigWeldTolerance.py", 14)
+    assert (
+        Report["weld_replay_sha256"]
+        == "2115ff0916fd90b17900e6bba2c67ce9964183de9c3e446197bf8b93d3791a0b"
+    )
+    assert (
+        Report["tolerance_replay_sha256"]
+        == "7e2e03da49c28147edfe34010635b41553073c2ceaf74c859a450f9de11c6360"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
