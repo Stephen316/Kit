@@ -1,6 +1,6 @@
 # Standalone part visualization state
 
-The eight receipt-pinned P03 saves from revision `466dcb172dfa3803463e07ccde963ba01671d200` retain a 1,789-byte `ThirdPtyStore/VisualStates` member. The ordinary part has a populated native display state. It cannot be reconstructed by serializing an empty representation map. [Capture receipt](../../automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json)
+The eight receipt-pinned P03 saves from revision `466dcb172dfa3803463e07ccde963ba01671d200` retain a 1,789-byte `ThirdPtyStore/VisualStates` member. Reconstructing the ordinary part's display state requires its populated representation map. [Capture receipt](../../automation/PairedCaptures/P03/solidworks-db1390476325/receipt.json)
 
 ## Native save and archive context
 
@@ -28,4 +28,6 @@ The edited width and height captures advance the sketch's modification times whi
 
 ## Remaining decision
 
-A constructive retained stream still needs the display-state representation ID allocator and its link to the component-owner and attribute maps. It also needs the visual-context appearance locator and native archive condition handling for the typed component references. The existing CMgr visual constructor can account for the shared 300-byte DSPBR body once those owners are available. A generation-19000 omission campaign is the shorter independent way to establish whether this ordinary display state may regenerate after open, rebuild, driving-dimension edit, save and fresh reopen. Older generation-18000 evidence established those operations for a narrower visual-state omission. The current P03 omission run retained this member. [Earlier omission](../archive/Multistream.md#4-which-streams-are-load-critical) [Current licensed campaign](../../../Documentation/Changes/Research/Writers/SolidWorks/SolidWorksArchiveOmissions.md)
+The follow-up owner trace establishes the first representation ID, its configuration relationship, the visual appearance allocator, and the component and attribute references. Construction still needs the original appearance-allocation sequence and attribution of the unit-component payloads, state flags and footer. The existing CMgr visual constructor accounts for the shared 300-byte DSPBR body. [Visual-state owners](VisualStateOwners.md)
+
+A generation-19000 omission campaign can establish whether the ordinary display state regenerates after open, rebuild, driving-dimension edit, save and fresh reopen. Older generation-18000 evidence covered a narrower visual-state omission. The current P03 omission run retained this member. [Earlier omission](../archive/Multistream.md#4-which-streams-are-load-critical) [Current licensed campaign](../../../Documentation/Changes/Research/Writers/SolidWorks/SolidWorksArchiveOmissions.md)
