@@ -87,6 +87,10 @@ Raw JSON is bounded to depth 64 and 500,000 visited values; the typed semantic w
 Decimal literals that lose canonical magnitude in the codec are refused before graph construction.
 Distinct wire keys that resolve to the same model slot are refused, including collisions introduced by a registered migration.
 Unambiguous compatibility aliases remain valid.
+Primitive parameter values must match their declared domains: number accepts integers or floats, integer accepts integers, boolean accepts booleans, and string accepts text.
+Booleans do not count as numeric or integer magnitudes.
+Malformed or unknown primitive domains remain explicit unresolved evidence, including when both inputs carry the same invalid value.
+The [value-domain change](../../Changes/Research/Readers/Comparison/SemanticValueDomains.md) describes the retained observations and process coverage.
 Each projected document has at most 4,096 nodes and 100,000 scalar fields.
 Identities are limited to 512 characters.
 Individual field text is limited to 65,536 characters.
