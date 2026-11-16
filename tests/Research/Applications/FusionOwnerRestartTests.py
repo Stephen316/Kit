@@ -115,8 +115,40 @@ def CheckIntent(TmpPath: FilePath) -> None:
             Arguments[:-2] + ["--job", PhaseName],
         )
         assert JsonCodec.loads(AckText)["restart_retained"] is True
+        VerifyBusyAudit(Harness, Arguments)
         VerifyRetained(Dispatch, Arguments, JobInfo, OldOwner)
     _ = InvokeRestart(Arguments + ["--check"], "prior Fusion process is no longer live")
+
+
+# even an accepted disposable application receipt must contribute no native busy time
+def VerifyBusyAudit(Harness: SessionHost, Arguments: list[str]) -> None:
+    assert Harness.StorePath is not None
+    DatabasePath = Harness.StorePath / "ledger.sqlite3"
+    Before = DatabasePath.read_bytes()
+    ScriptPath = "re/automation/ApplicationWorkers/AuditFusionPhases.py"
+    Audit = JsonCodec.loads(
+        RunFusionTool(ScriptPath, Arguments + ["--busy-window", "10", "20"])
+    )
+    assert Audit["status"] == "pending"
+    assert Audit["native_qualified"] is False
+    assert Audit["phases"]["a"]["evidence"]["native_timing"] == {"status": "fixture"}
+    assert Audit["native_busy_time"] == {
+        "scope": "accepted_fusion_phase_main_thread_intervals",
+        "from_unix_seconds": 10,
+        "until_unix_seconds": 20,
+        "window_seconds": 10,
+        "busy_seconds_lower_bound": 0,
+        "busy_fraction_lower_bound": 0,
+        "intersecting_measured_phases": 0,
+        "phase_observations": {
+            "measured": 0,
+            "unmeasured": 0,
+            "fixture": 1,
+            "uncompleted": 1,
+        },
+    }
+    _ = RunFusionTool(ScriptPath, Arguments + ["--busy-window", "20", "10"], ExitCode=1)
+    assert DatabasePath.read_bytes() == Before
 
 
 # passive verification must leave each retained byte stable and refuse a changed fence or intent

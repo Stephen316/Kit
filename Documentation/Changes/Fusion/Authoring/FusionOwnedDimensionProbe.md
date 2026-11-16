@@ -25,10 +25,10 @@ The archive at codec revision `e9097e8f47249012118ce3d2b2c4c6ab7f442302` has 57,
 Its SHA-256 is `4054963f82329aecdd85d3566e0ca1ade7c67d51e88f908b4fb1162fc9dfd49d`.
 The JSON evidence SHA-256 is `436aacdf2cae8287a81aafd7104c402af923b45879152b0463d0c08cbc4d1edb`.
 
-| Model parameter | P01 baseline A parameter, binding, dimension | Generated parameter, binding, dimension |
-| --- | --- | --- |
-| `width_mm` with `40 mm` | 258, 259, 257 | 1125, 1126, 1128 |
-| `height_mm` with `20 mm` | 265, 266, 264 | 1129, 1130, 1132 |
+| Model parameter          | P01 baseline A parameter, binding, dimension | Generated parameter, binding, dimension |
+| ------------------------ | -------------------------------------------- | --------------------------------------- |
+| `width_mm` with `40 mm`  | 258, 259, 257                                | 1125, 1126, 1128                        |
+| `height_mm` with `20 mm` | 265, 266, 264                                | 1129, 1130, 1132                        |
 
 The six P01 archives and the generated archive share ProductVersion `2706.1.17` and the same Design metadata version words.
 Each bound numeric parameter has 11 zero expression metadata bytes and matching cached values in its binding.
@@ -54,3 +54,5 @@ Verify a 920 mm² profile, the original width, and the same coincidence.
 Restore `20 mm`, recompute, save, and reopen in a fresh process.
 Verify the original area, both driving values, and the preserved constraint inventory.
 Native loadability and editability remain unmeasured for this research archive.
+
+Use the [two-process witness procedure](FusionOriginCoincidenceProbe.md#prepare-the-two-process-native-witness) with `--kind owned`. The harness requires two directly bound sketch model parameters and records the restored archive, which Phase B reopens and rebuilds in a separate Fusion process.

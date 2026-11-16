@@ -13,8 +13,16 @@ from Adapters import copy_verified
 from ApplicationProtocol import configuration, record, require, sha256
 from Artifacts import Artifacts
 from FusionPhasePlan import (
-    CASES, check_scope_archives, check_scope_report, phase_identity, phase_options, phase_paths, phase_rule, plan_scope,
+    CASES,
+    check_scope_archives,
+    check_scope_report,
+    phase_identity,
+    phase_options,
+    phase_paths,
+    phase_rule,
+    plan_scope,
 )
+from FusionPhaseTiming import busy_window, phase_timing, validate_window
 from FusionTimeoutAudit import inspect_spool, parked_timeout
 from OutputManifest import output_manifest
 from Records import canonical, digest, label, specification
@@ -129,9 +137,10 @@ def verify_binding(owner, queue, scratch):
         and plan["source_revision"] == queue["source_revision"],
         "stored plan differs from the queue receipt",
     )
+    return plan
 
 
-def phase_evidence(owner, queue, phase, scratch):
+def phase_evidence(owner, queue, phase, scratch, *, timing_plan=None):
     scratch.mkdir(mode=0o700)
     row, manifest, raw_dispatch = accepted_output(
         owner, queue["jobs"][phase], scratch, None, None
@@ -190,7 +199,8 @@ def phase_evidence(owner, queue, phase, scratch):
             owner.objects.verify(value["sha256"]) == value["size_bytes"],
             f"accepted artifact bytes differ for {role}",
         )
-    snapshot = json.loads((scratch / "receipt.json").read_bytes())["snapshot"]
+    controller = json.loads((scratch / "receipt.json").read_bytes())
+    snapshot = controller["snapshot"]
     require(
         digest(snapshot) == row["fingerprint"]
         and snapshot["definition_hash"] == row["definition_hash"]
@@ -251,10 +261,15 @@ def phase_evidence(owner, queue, phase, scratch):
     }
     if scope is not None:
         output["previous_process"] = observed.get("previous_process")
+    if timing_plan is not None:
+        output["native_timing"] = phase_timing(
+            owner.database, row, controller, dispatch, observed, timing_plan
+        )
     return output
 
 
-def audit(store, queue, installation=None):
+def audit(store, queue, installation=None, *, window=None):
+    validate_window(window)
     scope = plan_scope(queue)
     if installation is not None:
         require(
@@ -275,7 +290,7 @@ def audit(store, queue, installation=None):
     ):
         owner = StoreSnapshot(connection, store)
         scratch = Path(temporary)
-        verify_binding(owner, queue, scratch)
+        plan = verify_binding(owner, queue, scratch)
         resource = connection.execute(
             "SELECT available FROM resources WHERE name=?",
             (queue["resource"],),
@@ -287,7 +302,13 @@ def audit(store, queue, installation=None):
                 for key in ("id", "kind", "state", "reason", "generation", "attempts")
             }
             if row["state"] == "completed":
-                item["evidence"] = phase_evidence(owner, queue, phase, scratch / phase)
+                item["evidence"] = phase_evidence(
+                    owner,
+                    queue,
+                    phase,
+                    scratch / phase,
+                    timing_plan=plan if window is not None else None,
+                )
             elif row["state"] == "waiting_application" and row["result"] is not None:
                 timeout = parked_timeout(owner, row, queue, phase, scratch / phase)
                 if timeout is not None:
@@ -347,6 +368,8 @@ def audit(store, queue, installation=None):
     }
     if scope is not None:
         output["scope"] = scope
+    if window is not None:
+        output["native_busy_time"] = busy_window(phases, *window)
     return output
 
 
@@ -357,12 +380,24 @@ def main():
     parser.add_argument("--store", type=Path, required=True)
     parser.add_argument("--queue-receipt", type=Path, required=True)
     parser.add_argument("--installation", type=Path)
+    parser.add_argument(
+        "--busy-window",
+        type=float,
+        nargs=2,
+        metavar=("FROM_UNIX", "UNTIL_UNIX"),
+        help="report the measured busy-time lower bound for an audited pair",
+    )
     args = parser.parse_args()
     try:
         installation = (
             configuration(args.installation) if args.installation is not None else None
         )
-        result = audit(args.store, read_queue(args.queue_receipt), installation)
+        result = audit(
+            args.store,
+            read_queue(args.queue_receipt),
+            installation,
+            window=args.busy_window,
+        )
     except (OSError, ValueError, KeyError, TypeError, sqlite3.Error) as error:
         print(
             f"Fusion phase audit: {type(error).__name__}: {error}"[:2048],
