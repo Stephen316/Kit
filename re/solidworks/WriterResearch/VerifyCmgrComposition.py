@@ -1,3 +1,4 @@
+from dataclasses import replace
 from hashlib import sha256
 from struct import calcsize, unpack
 
@@ -15,6 +16,7 @@ from CmgrPartEnd import ReadCmgrAliases, ReadCmgrPartEnd
 from CmgrTail import ReadCmgrTail
 from DefinitionTail import ReadPartDefinitionTail
 from HeaderLogs import ReadHeaderLogs
+from HeaderSelf import ReadHeaderSelf
 from VerifyCmgrBoss import GEOMETRY_TOLERANCES, boss_bounds
 from VerifyCmgrPart import read_base_return, read_linked_atoms
 from VerifyCmgrVisual import read_visual_fields
@@ -29,7 +31,10 @@ from convert.adapters.solidworks.Container.Archive import (
     ReadTag,
 )
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
-from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor, FieldCursor
+from convert.adapters.solidworks.Container.ArchiveCursor import (
+    ArchiveCursor,
+    FieldCursor,
+)
 from convert.adapters.solidworks.Container.Cmgr import FeatureStamp, Stamp
 from convert.adapters.solidworks.Container.Container import SldprtArchive
 from convert.adapters.solidworks.Resolved.BossEntry import BossOperation
@@ -98,7 +103,9 @@ def compare_composed_mass(
     new = ReadBossMass(cursor, generation, 1)
     deltas = tuple(
         abs(derived - native)
-        for derived, native in zip(BossMassFields(new), BossMassFields(saved), strict=True)
+        for derived, native in zip(
+            BossMassFields(new), BossMassFields(saved), strict=True
+        )
     )
     RequireArch(
         all(
@@ -116,10 +123,11 @@ def verify_cmgr_composition(
     archive: SldprtArchive, generation: int, measurement
 ) -> dict[str, object]:
     _, session_stamp, body_stamp = unpack("<3I", archive.require("ModelStamps"))
-    _, header = ReadHeaderLogs(
+    header_cursor, header = ReadHeaderLogs(
         archive.require("Contents/Config-0-ModelHeader"), generation
     )
     RequireArch(session_stamp, header.UpdateStamp, "CMgr document update stamp owner")
+    shared_file = ReadHeaderSelf(header_cursor, generation).File
     boss = read_rectangular_boss(archive, generation, measurement, body_stamp)
     atom_ids = (boss.AtomId,) if boss is not None else ()
     feature_stamps = (boss.Feature,) if boss is not None else ()
@@ -130,7 +138,9 @@ def verify_cmgr_composition(
     visual = read_visual_fields(cursor)
     color, dspbr_start, checked = ReadColorSpan(stream, generation)
     RequireArch(
-        (cursor.Offset, visual.SurfaceColor), (dspbr_start, color), "CMgr visual boundary"
+        (cursor.Offset, visual.SurfaceColor),
+        (dspbr_start, color),
+        "CMgr visual boundary",
     )
     part_time = ReadCmgrFeature(checked, generation)
     state = ReadCmgrHeader(checked, generation)
@@ -162,12 +172,22 @@ def verify_cmgr_composition(
     )
     ReadCmgrAliases(checked, slots.PartObject)
     external = ReadCmgrExt(checked, generation)
+    external_input = replace(shared_file, Flags=external.Flags)
+    RequireArch(external_input == external, True, "CMgr shared ModelHeader file fields")
     RequireArch(
-        ReadCmgrTail(checked, generation), feature_stamps, "CMgr resolved feature stamps"
+        ReadCmgrTail(checked, generation),
+        feature_stamps,
+        "CMgr resolved feature stamps",
     )
 
     document = CmgrDocument(
-        opening, visual, part_time, header.NextTreeId, session_stamp, external, boss
+        opening,
+        visual,
+        part_time,
+        header.NextTreeId,
+        session_stamp,
+        external_input,
+        boss,
     )
     writer = BuildCmgr(generation, document)
     generated = writer.build()
@@ -188,10 +208,14 @@ def verify_cmgr_composition(
     else:
         geometry_end = mass_start + calcsize(KGeometryLayout)
         RequireArch(
-            generated[:mass_start] == stream[:mass_start], True, "CMgr before boss geometry"
+            generated[:mass_start] == stream[:mass_start],
+            True,
+            "CMgr before boss geometry",
         )
         RequireArch(
-            generated[geometry_end:] == stream[geometry_end:], True, "CMgr after boss geometry"
+            generated[geometry_end:] == stream[geometry_end:],
+            True,
+            "CMgr after boss geometry",
         )
         deltas = compare_composed_mass(stored_mass, generated, mass_start, generation)
         exact_width -= geometry_end - mass_start
