@@ -25,7 +25,8 @@ Broader A16, A13 and A15 requirements remain open.
 New public process coverage authors varied polygon/circle profiles, rigid frames, direction/reversal combinations, symmetric/two-ended controls and mixed cm/mm drivers.
 It inspects native XML and shape ownership, then strips only the neutral manifests and reads the BREP through the public native reader.
 Additional controls retain unsupported units/oblique directions/extra sketch geometry without a cache and prevent stale cache ownership after a Boolean.
-Research output uses explicit `AllowCarrier=True` with unqualified flags; strict output refusal remains governed by the separate attestation repair.
+Single-extrusion cache and unsupported-cache controls use explicit `AllowCarrier=True` with unqualified flags; strict output refusal remains governed by the separate attestation repair.
+The later Boolean control checks cache ownership only; Boolean and other history routes remain a separate attestation audit.
 Static source, type, format, steering and policy checks were performed; local tests, collection, SDK/generator and native execution were not run.
 Hosted process and installed-native verification remain required.
 
