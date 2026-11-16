@@ -100,7 +100,7 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
 | Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
 | Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
-| Full typed payload | `docProps/Config-0-Properties.xml` | `PartSectionProperties.EncodeSectionProps` constructs the empty configuration scope |
+| Full typed payload | `docProps/Config-0-Properties.xml` | `PartDocProperties.EncodeConfigurationProperties` validates and uses the shared empty section serializer |
 | Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
@@ -109,3 +109,4 @@ fresh-document payloads and two manifests with property stream prerequisites.
 Ten remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
+[Configuration property writer](SolidWorksConfigurationProperties.md)

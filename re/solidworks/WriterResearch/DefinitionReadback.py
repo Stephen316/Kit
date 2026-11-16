@@ -1,10 +1,13 @@
-from dataclasses import dataclass as Dataclass
 from typing import cast as CastValue
 
 from DefinitionFragment import ReadDefinitionFragment
 from DefinitionOptions import KDefinitionOptionsGeneration
-from DefinitionStream import KBuildStamp, KPrimaryPlacement, KSessionWords
-from JournalAttach import JournalAttach
+from DefinitionStream import (
+    KBuildStamp,
+    KPrimaryPlacement,
+    KSessionWords,
+    DefinitionFields as DefinitionReadback,
+)
 from convert.adapters.solidworks.Container import Definition as Fields
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
@@ -15,19 +18,6 @@ from convert.adapters.solidworks.Container.ArchiveCursor import (
     ArchiveCursor,
     FieldCursor,
 )
-
-
-# these fields vary independently of the shared class allocations and fixed settings
-@Dataclass(frozen=True, slots=True)
-class DefinitionReadback:
-    UserName: str
-    PreambleView: tuple[float, ...] | None
-    Camera: tuple[float, float, float, float]
-    Views: tuple[Fields.ViewRecord, Fields.ViewRecord, Fields.ViewRecord]
-    Attachment: JournalAttach
-    AppearanceCounter: int
-    TerminalValue: float
-    Bindings: tuple[Fields.LineFontBinding, ...]
 
 
 # the optional preamble view changes the starting offset of the shared class map

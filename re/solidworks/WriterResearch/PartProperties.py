@@ -5,7 +5,9 @@ from dataclasses import dataclass
 from PartFraming import VersionStorage
 from convert.adapters.solidworks.Container.Archive import (
     KDefinitionKind,
+    KNullKind,
     EncodeNull,
+    ReadTag,
 )
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
@@ -13,7 +15,6 @@ from convert.adapters.solidworks.Container.Definition import (
     ArchiveWriter,
     KFirstLoadArrayIndex,
 )
-
 
 CUSTOM_PROPERTIES = "Contents/CusProps"
 MANAGER_CLASS = "moCusPropMgr_c"
@@ -33,6 +34,7 @@ class PartPropertyInventory:
     ConfiguredCutListGroupCount: int
     HasWeldmentContainer: bool
     CopyAndLinkToRepresentations: bool
+    HasCutListContainer: bool = True
 
 
 # The fixed profile keeps the file and cut-list containers with no property entries.
@@ -57,8 +59,9 @@ def EncodePartProperties(Generation: int, State: PartPropertyInventory) -> bytes
         (
             State.HasWeldmentContainer is False,
             State.CopyAndLinkToRepresentations is False,
+            type(State.HasCutListContainer) is bool,
         ),
-        (True, True),
+        (True, True, True),
         "standalone part without weldment properties or representation links",
     )
     Writer = ArchiveWriter()
@@ -71,9 +74,12 @@ def EncodePartProperties(Generation: int, State: PartPropertyInventory) -> bytes
     Writer.BeginObject(FILE_CLASS, 1)
     Writer.raw(EncodeNull())
     Writer.raw(EncodeNull())
-    Writer.BeginObject(CUT_LIST_CLASS, 1)
-    Writer.i32(State.GlobalCutListGroupCount)
-    Writer.i32(State.ConfiguredCutListGroupCount)
+    if State.HasCutListContainer:
+        Writer.BeginObject(CUT_LIST_CLASS, 1)
+        Writer.i32(State.GlobalCutListGroupCount)
+        Writer.i32(State.ConfiguredCutListGroupCount)
+    else:
+        Writer.raw(EncodeNull())
     Writer.raw(EncodeNull())
     Writer.i32(CONTAINER_INITIAL_STATE)
     Writer.u8(int(State.CopyAndLinkToRepresentations))
@@ -96,9 +102,12 @@ def ReadPartProperties(Generation: int, Data: bytes) -> PartPropertyInventory:
     _ = Cursor.TakePointer((FILE_CLASS,), KDefinitionKind, CompactOnly=True)
     Cursor.ReadNull()
     Cursor.ReadNull()
-    _ = Cursor.TakePointer((CUT_LIST_CLASS,), KDefinitionKind, CompactOnly=True)
-    GlobalCount, ConfiguredCount = Cursor.ReadInts("<ii")
-    RequireArch((GlobalCount, ConfiguredCount), (0, 0), "empty cut-list property maps")
+    HasCutList = ReadTag(Data, Cursor.Offset).kind != KNullKind
+    if HasCutList:
+        _ = Cursor.TakePointer((CUT_LIST_CLASS,), KDefinitionKind, CompactOnly=True)
+        RequireArch(Cursor.ReadInts("<ii"), (0, 0), "empty cut-list property maps")
+    else:
+        Cursor.ReadNull()
     Cursor.ReadNull()
     RequireArch(
         Cursor.ReadInts("<iB"),
@@ -106,4 +115,4 @@ def ReadPartProperties(Generation: int, Data: bytes) -> PartPropertyInventory:
         "property container initial state and representation link flag",
     )
     RequireArch(Cursor.Offset, len(Data), "complete native custom property stream")
-    return PartPropertyInventory(Key, 0, GlobalCount, ConfiguredCount, False, False)
+    return PartPropertyInventory(Key, 0, 0, 0, False, False, HasCutList)

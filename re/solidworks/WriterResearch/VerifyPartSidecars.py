@@ -9,6 +9,7 @@ from HeaderTail import ReadHeaderTail
 from PartDocProperties import (
     CoreProperties,
     CustomSummary,
+    EncodeConfigurationProperties,
     EncodeDocumentProperties,
     ReadCoreProperties,
 )
@@ -19,6 +20,7 @@ from PartOpenTime import OPEN_TIME_STREAM, EncodePartOpenTime, ReadPartOpenTime
 from PartProperties import CUSTOM_PROPERTIES, EncodePartProperties, ReadPartProperties
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.Format import KConfigStream
 
 
 LICENSED_OMISSIONS = {
@@ -51,6 +53,7 @@ def report():
     captures = {}
     package_captures = {}
     property_captures = {}
+    configuration_captures = {}
     rosters = set()
     generation = KPartGeneration
     fresh = CoreProperties("Writer & <Reader> \u0394", 1_700_000_000, 1_700_000_001)
@@ -80,7 +83,16 @@ def report():
         property_captures[asset["sha256"]] = [
             (name, sha256(payload).hexdigest()) for name, payload in sorted(properties.items())
         ]
-        package = EncodePartOpc(generation, properties)
+        require(archive.require(KConfigStream), "configuration property owning stream")
+        configured = EncodeConfigurationProperties(generation, 0, 0)
+        require(
+            all(archive.require(name) == payload for name, payload in configured.items()),
+            "complete configured property sidecar",
+        )
+        configuration_captures[asset["sha256"]] = [
+            (name, sha256(payload).hexdigest()) for name, payload in configured.items()
+        ]
+        package = EncodePartOpc(generation, {**properties, **configured})
         timing = ReadPartOpenTime(generation, archive.require(OPEN_TIME_STREAM))
         package[OPEN_TIME_STREAM] = EncodePartOpenTime(generation, timing)
         require(
@@ -99,6 +111,7 @@ def report():
         "replay_sha256": json_digest(captures),
         "package_sha256": json_digest(package_captures),
         "document_sha256": json_digest(property_captures),
+        "configuration_sha256": json_digest(configuration_captures),
         "retained_sha256": json_digest(roster),
     }
 

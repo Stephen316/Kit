@@ -8,7 +8,11 @@ from typing import cast as CastValue
 
 
 # each research record verifier runs with its own pinned archive evidence
-def LoadReport(ProgramName: str, CaptureCount: int = 25) -> dict[str, object]:
+def LoadReport(
+    ProgramName: str,
+    CaptureCount: int = 25,
+    CaptureRevision: str = "466dcb172dfa3803463e07ccde963ba01671d200",
+) -> dict[str, object]:
     RootPath = FilePath(__file__).resolve().parents[3]
     Program = RootPath / "re/solidworks/WriterResearch" / ProgramName
     Process = Subprocess.run(
@@ -21,7 +25,7 @@ def LoadReport(ProgramName: str, CaptureCount: int = 25) -> dict[str, object]:
     )
     assert Process.returncode == 0, Process.stderr
     Report: dict[str, object] = JsonCodec.loads(Process.stdout)
-    assert Report["capture_revision"] == "466dcb172dfa3803463e07ccde963ba01671d200"
+    assert Report["capture_revision"] == CaptureRevision
     Captures = Report["captures"]
     assert isinstance(Captures, dict)
     assert len(CastValue(dict[str, str], Captures)) == CaptureCount
@@ -137,6 +141,29 @@ def CheckBossWhole() -> None:
     assert (
         Report["boss_replay_sha256"]
         == "b90d5aa693f33eed082fc9250cf78bb79f54a545a22859f67ce714041eb74eab"
+    )
+
+
+# paired discovery keeps its admission refusal while an authored neutral graph maps
+def CheckBossInput() -> None:
+    Report = LoadReport(
+        "VerifyBossInput.py", 8, "89c25945f5833ad9c3a1c6c683df510b5702dd54"
+    )
+    assert Report["authored_cases"] == [[3, 37.5, 18.25, 13.5], [1, 42.25, 17.5, -8.75]]
+    assert (
+        Report["paired_sha256"]
+        == "f08dc5bb81e474b536611b4c96d1f58f42d1fc642e8c6725730c2cbbe8bda648"
+    )
+
+
+# world geometry and generated dependencies must agree on both datums and signs
+def CheckBossBridge() -> None:
+    Report = LoadReport("VerifyBossBridge.py", 8)
+    assert Report["authored_cases"] == [[3, 13.5], [3, -8.75], [1, 13.5], [1, -8.75]]
+    assert Report["refusals"] == 5
+    assert (
+        Report["native_sha256"]
+        == "e475cebacf3dcc5650d23c4a4807313cd000abcb9216ba71d7f532c9072d90c1"
     )
 
 
@@ -432,6 +459,10 @@ def CheckSidecars() -> None:
         == "76446501f05f8a0087064f6023170f518ca07dc7e795443c03da32427b03fb7f"
     )
     assert (
+        Report["configuration_sha256"]
+        == "0db4774832006f8df815b5d53dca7932efde02f5f875c50c6352e6fc4b884240"
+    )
+    assert (
         Report["retained_sha256"]
         == "f9e2742038653d48e89f4eef3bfd6f8c17846d4a3b4d8b8dd84fb78c9b0dcfb5"
     )
@@ -623,7 +654,7 @@ def CheckManifests() -> None:
 
 
 # replay each varying typed property stream without substituting source bytes
-def CheckSimpleProps() -> None:
+def CheckSimple() -> None:
     Report = LoadReport("VerifySimpleProperties.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["distinct_payload_counts"] == {
@@ -638,7 +669,7 @@ def CheckSimpleProps() -> None:
 
 
 # empty section streams must retain native dictionaries and typed property values
-def CheckPropSections() -> None:
+def CheckPropSect() -> None:
     Report = LoadReport("VerifySectionProperties.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["distinct_payload_counts"] == {

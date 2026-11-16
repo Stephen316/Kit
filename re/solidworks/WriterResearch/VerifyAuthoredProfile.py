@@ -21,6 +21,7 @@ from ResolvedPart import BuildOrdinaryResolved
 from VerifyBossResolve import inspect_boss
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
+from VerifyPartAssembly import verify_generated_package
 from VerifyProfileSupport import verify_profile_support
 from VerifyRectAnchor import verify_anchor
 from VerifyRectAxes import verify_axes
@@ -62,7 +63,7 @@ def verify_members(stream, profile, measurement):
 
 
 # document IDs, archive allocations and geometry order must converge on the same owner
-def inspect_open(archive, measurement, construct, configuration=None):
+def inspect_open(archive, measurement, construct, generated_config=None):
     generation = ContainerMo(archive.streams)
     config_blob = archive.require("Contents/Config-0")
     config, model = ReadOrdinaryMap(config_blob, generation)
@@ -117,7 +118,7 @@ def inspect_open(archive, measurement, construct, configuration=None):
     )
     after = map_state(cursor)
     writer = origin_slots = None
-    if construct and configuration is None:
+    if construct and generated_config is None:
         writer, origin_slots = BeginOrdinaryResolved(generation, config_state, system)
         require(writer.Snapshot() == before, "generated system owner map")
         WriteAuthoredOpen(
@@ -198,7 +199,8 @@ def inspect_open(archive, measurement, construct, configuration=None):
         require(
             len(writer.build()) == cursor.Offset, "complete generated profile return"
         )
-    if configuration is not None:
+    if generated_config is not None:
+        config_input, configuration = generated_config
         require(
             configuration.Framed.State == config_state, "generated config namespace"
         )
@@ -234,6 +236,15 @@ def inspect_open(archive, measurement, construct, configuration=None):
                 (built.Profile.Feature, built.Profile.Sketch, built.Profile.File)
                 == (profile.ObjectIndex, profile.SketchIndex, trim_proof[4]),
                 "actual generated profile sketch and trim file aliases",
+            )
+            verify_generated_package(
+                archive,
+                generation,
+                measurement,
+                config_input,
+                configuration,
+                built,
+                boss,
             )
             return built
 

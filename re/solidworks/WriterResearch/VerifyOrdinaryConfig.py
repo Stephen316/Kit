@@ -221,7 +221,7 @@ def compare_composed(
         prefix.Environment == slots.Environment,
         "resolved stream uses the generated environment",
     )
-    inspect_open(archive, measurement, True, configuration=built)
+    inspect_open(archive, measurement, True, generated_config=(state, built))
 
 
 def inspect_presentation(archive, generation, layouts, measurement, construct):

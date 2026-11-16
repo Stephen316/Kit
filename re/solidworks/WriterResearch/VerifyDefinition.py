@@ -8,7 +8,7 @@ CAPTURE_REVISION = "466dcb172dfa3803463e07ccde963ba01671d200"
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "re/automation")]
 
 from DefinitionReadback import ReadModernPartDefinition
-from DefinitionStream import EncodeModernPartDefinition
+from DefinitionStream import EncodePartDefinition
 from SolidworksCensusInputs import capture_inputs
 from convert.adapters.solidworks.Container.Archive import ArchiveError, ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -27,16 +27,7 @@ def verify_definition():
         RequireArch(generation, 19000, "Definition verification generation")
         saved = archive.require("Contents/Definition")
         decoded = ReadModernPartDefinition(saved, 19000)
-        rebuilt = EncodeModernPartDefinition(
-            UserName=decoded.UserName,
-            PreambleView=decoded.PreambleView,
-            Camera=decoded.Camera,
-            Views=decoded.Views,
-            Attachment=decoded.Attachment,
-            AppearanceCounter=decoded.AppearanceCounter,
-            TerminalValue=decoded.TerminalValue,
-            Bindings=decoded.Bindings,
-        )
+        rebuilt = EncodePartDefinition(decoded)
         if rebuilt != saved:
             offset = next(
                 (

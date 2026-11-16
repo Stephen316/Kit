@@ -47,6 +47,8 @@ The [registry write boundary](../../../src/convert/adapters/registry/RegistryWri
 
 ## First generative check
 
+The [logical input projection](BossInput.md) binds one independently authored portable rectangle and signed distance to the target-local sketch and feature roles. It keeps the existing public qualification boundary.
+
 The [resolved boss opening](BossOpening.md) constructs the named feature and primary transfer fields from the live profile, trim file and configuration atom. It reaches the chooser boundary in the eight P03 discovery saves.
 
 The smallest geometry-bearing candidate is the typed blind-end/depth record for one already validated symbolic sketch-and-boss graph. Allocate its class and object references from symbolic owners. Derive the positive length scalar and both copies from the requested parameter. Decode the generated record with the existing [blind-end and depth readers](../../../src/convert/adapters/solidworks/Resolved/BossEnd.py) and confirm that changing only the requested depth changes that owner's length and derived copies. A saved record helps verify the reader and field map. Its offsets, row values and byte ranges supply no candidate input.
