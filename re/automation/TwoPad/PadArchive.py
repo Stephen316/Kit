@@ -27,6 +27,9 @@ from convert.adapters.solidworks.Resolved.TwoPad.PadHistory import (
 )
 from convert.api.ApiOpen import OpenDocument
 from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumGeometry import ConstraintKind
+from interchange.geometry.Models.GeometryCurves import LineGeometry
+from interchange.geometry.Models.Sketch import Sketch
 
 from PadGeometry import KSavedPhases, CheckVector
 from PadReceipts import ReadPadBytes
@@ -108,6 +111,65 @@ def CheckReadback(CaseValue: dict, Proof: PadHistory) -> None:
             Transform,
             "saved model to sketch transform",
         )
+        CheckPadPair(UpperSketch, Proof)
+
+
+# compare native API relation identity with the two ordered compact sketch handles
+def CheckPadPair(UpperSketch: dict, Proof: PadHistory) -> None:
+    PairValue = Proof.UpperPair
+    (Record,) = (
+        Value
+        for Value in UpperSketch["relations"]
+        if Value["type"] == PairValue.CodeValue
+    )
+    RequirePad(
+        Record["entity_types"] == [3, 3]
+        and tuple(
+            (Entity["segment_type"], tuple(Entity["id"]))
+            for Entity in Record["entities"]
+        )
+        == tuple((0, (NativeId, NativeId)) for NativeId in PairValue.Lines),
+        "The licensed same-length relation differs from the typed line pair",
+    )
+
+
+# verify the projected references against the independent geometric endpoints of the saved lines
+def CheckSdkPair(Upper: Sketch, Proof: PadHistory) -> None:
+    Geometry = Proof.UpperProfile.Geometry
+    (LoopIds,) = Upper.closed_profile_entity_ids
+    LineMap = {Line["native_id"]: Line for Line in Geometry["lines"]}
+    Expected = []
+    for NativeId in Proof.UpperPair.Lines:
+        Corners = sorted(
+            tuple(1000 * Value for Value in Geometry["points_metres"][PointId])
+            for PointId in LineMap[NativeId]["point_indices"]
+        )
+        (EntityId,) = (
+            Entity.id
+            for Entity in Upper.entities
+            if Entity.id in LoopIds
+            and isinstance(Entity.geometry, LineGeometry)
+            and Corners
+            == sorted(
+                [
+                    (Point.x, Point.y)
+                    for Point in (Entity.geometry.start, Entity.geometry.end)
+                ]
+            )
+        )
+        Expected.append((EntityId, ""))
+    (Relation,) = (
+        Value
+        for Value in Upper.constraints
+        if Value.kind == ConstraintKind.KEqual.value
+    )
+    RequirePad(
+        Relation.driving
+        and not Relation.suppressed
+        and Relation.parameter_id is None
+        and [(Ref.entity_id, Ref.point) for Ref in Relation.references] == Expected,
+        "Public SDK does not retain the ordered same-length operands",
+    )
 
 
 # the public strict read and neutral JSON must preserve the same selected face and dependency
@@ -120,6 +182,7 @@ def CheckSdkRound(DataValue: bytes, Proof: PadHistory) -> str:
         for Value in Document.sketches
         if Value.name == Proof.UpperProfile.NameValue
     )
+    CheckSdkPair(Upper, Proof)
     (Plane,) = (
         Value for Value in Document.support_planes if Value.id == Upper.support_plane_id
     )

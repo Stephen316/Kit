@@ -70,7 +70,7 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
         Pytest.param(
             "re/automation/FusionConstrainedPrismEvidence.py",
             (),
-            "b3324c35a37b1065e4d6fa325056a57afbf2f9f7f2a1067e8b64fbc607bb6bb6",
+            "1a1330667b72bfdd5daee76f6def1f532e37f37e6d5a1ef4a9e24bb84fc1529d",
             id="fusion-p03-strict-constrained-prism",
         ),
         Pytest.param(

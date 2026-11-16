@@ -9,6 +9,7 @@
 from dataclasses import dataclass as MakeDataClass
 
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
+from interchange.Enums.EnumUnits import UnitSystem
 from interchange.geometry.Models.Sketch import SketchRelation
 
 
@@ -22,3 +23,4 @@ class RectSketchProof:
     Anchor: NativeNode
     Origin: NativeNode
     Relations: tuple[SketchRelation, ...]
+    DisplayUnit: UnitSystem

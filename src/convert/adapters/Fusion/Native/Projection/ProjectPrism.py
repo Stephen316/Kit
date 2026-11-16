@@ -24,6 +24,7 @@ from convert.adapters.Fusion.State.EncodeState import EncodeState
 from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
 from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
 from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumUnits import UnitSystem
 from interchange.geometry.Models.SupportPlane import SupportPlane
 from interchange.geometry.Models.Transform import Transform
 from interchange.Records.RecordConfig import Configuration
@@ -57,6 +58,8 @@ def ProjectPrism(
     }
     if Rectangle is not None:
         Metadata["fusion.read_only"] = True
+        if Rectangle.DisplayUnit is UnitSystem.KInch:
+            Metadata["source_display_units"] = Rectangle.DisplayUnit.value
     Document = CadDocument(
         Source,
         (Configuration("default", Title, True),),

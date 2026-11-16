@@ -25,7 +25,7 @@ from convert.adapters.solidworks.Core.Cut.FaceSelection import (
     CutFaceSource,
     MakeCutFacePick,
 )
-from convert.adapters.solidworks.Core.TwoPad.PadBind import AttachPadPair, CheckPadLoop
+from convert.adapters.solidworks.Core.TwoPad.PadBind import AttachPadPair, MapPadLoop
 from convert.adapters.solidworks.Resolved.TwoPad.PadHistory import (
     KPadListCount,
     PadHistory,
@@ -75,7 +75,7 @@ def BindPadDoc(
     Profile = Proof.UpperProfile
     SketchValue, ProfileStep = FindCutOwner(Document, Profile.FeatureId)
     RequireArch(SketchValue.name, Profile.NameValue, "same upper-pad sketch name")
-    CheckPadLoop(SketchValue, Profile, StreamName)
+    Bindings = MapPadLoop(SketchValue, Profile, StreamName)
     BossId = Proof.BaseValue["native_feature_id"]
     BossStep = FindCutBoss(Document, ProfileStep, BossId)
     CheckPadDepth(BossStep, Proof.BaseEnd["depth_display"]["dimension"]["metres"])
@@ -129,7 +129,7 @@ def BindPadDoc(
         Placed,
         sketches=tuple(
             (
-                AttachPadPair(Value, Proof.UpperPair, StreamName)
+                AttachPadPair(Value, Proof.UpperPair, StreamName, Bindings)
                 if Value.id == SketchValue.id
                 else Value
             )
