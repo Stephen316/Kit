@@ -1,0 +1,7 @@
+# Construct the generation-19000 SOLIDWORKS Definition stream
+
+The [research encoder](../../../../re/solidworks/WriterResearch/DefinitionStream.py) builds a complete `Contents/Definition` stream for the measured generation-19000 part profile. Callers supply the user name, an optional nine-double preamble view, four camera doubles, the three typed environment view records, the journal attachment, the appearance allocation counter and the terminal part double. The primary environment view owns the untagged window placement. Each supplied view rotation must be absent or contain nine doubles.
+
+The preamble uses the existing typed part fields and caller-supplied camera. The shared archive allocator emits the observed British drafting class, line styles and font bindings. It continues through the user environment and empty BOM, with the generation-19000 session words, primary placement and build stamp 90165. The journal-to-end fragment starts with its first schema-0 class definition and contains no subsequent class references. The complete stream uses typed inputs and field settings without opening a saved document. [Pinned prefix observations](../../../../re/solidworks/records/Definition.md#generation-19000-discovery-preamble), [journal-to-end layout](SolidWorksDefinitionFragment.md)
+
+The shared field writers retain their generation-18000 defaults and existing entry points. The new encoder stays in research and has static verification only. Measuring a generated stream in a complete part and qualifying a production writer remain open.
