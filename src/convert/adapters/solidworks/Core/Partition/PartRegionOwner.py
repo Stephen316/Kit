@@ -6,7 +6,7 @@ from convert.Geometry.Parasolid import NativeId, ScanPartRecords
 from interchange.brep.Topology.BrepModel import BrepModel
 
 
-# decoded face IDs identify the raw shell independently of region order and geometry
+# decoded face identities identify the raw shell independently of region order and geometry
 def ReadRegionAtoms(
     DataValue: bytes, Regions: tuple[BrepModel, BrepModel]
 ) -> dict[str, tuple[int, int, int]]:

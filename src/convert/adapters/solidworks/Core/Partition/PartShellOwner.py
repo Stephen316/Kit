@@ -8,6 +8,8 @@ from convert.Geometry.Parasolid import TopologyRecord
 
 # compact shell and region records carry reciprocal references and their common owner
 KShellRecord = Struct(">HI8H")
+
+# the solid region record carries the reference back to its owning shell
 KRegionRecord = Struct(">HI6HB")
 
 
