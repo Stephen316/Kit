@@ -32,7 +32,7 @@ def CheckDefinition() -> None:
     assert Report["preamble_view_forms"] == Report["line_font_orders"] == 2
 
 
-# the default color body and feature-stamped terminal records use separate field owners
+# the default color body and stamped terminal records use separate field owners
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
     Captures = Report["captures"]
