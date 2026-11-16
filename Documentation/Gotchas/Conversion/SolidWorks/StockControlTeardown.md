@@ -1,0 +1,5 @@
+# Stock SOLIDWORKS control can fail during shutdown after a healthy rebuild
+
+In the licensed SOLIDWORKS 34.4.1.1011 P03 selector experiment, the fresh trailing process opened only the pinned stock control with zero load errors and warnings. It measured the expected volume and centroid, rebuilt successfully and closed the document. The held process then returned signed exit `-1073740940`, the Windows `STATUS_HEAP_CORRUPTION` value `0xC0000374`, after the scope worker's normal `ExitApp` and COM release path. The separate candidate process exited zero. [Exact archive and watchdog receipts](../../../../re/solidworks/WriterResearch/DisplayBaseFields.md#inactive-oracle-controls)
+
+Keep the measurement receipt and the process exit as separate observations. A healthy measured control can still fail a campaign's required lifecycle. Retain the watchdog drain observation and leave the native campaign failed until both measurements and lifecycle satisfy its acceptance checks. This observation concerns one stock file and one installed build.
