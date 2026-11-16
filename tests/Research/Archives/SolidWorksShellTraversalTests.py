@@ -1,4 +1,4 @@
-from hashlib import sha256 as Sha256
+from hashlib import sha256 as HashBytes
 from pathlib import Path
 
 from convert.adapters.solidworks.container.Container import SldprtArchive
@@ -12,20 +12,20 @@ from convert.geometry.Parasolid import (
 
 
 # the saved independent shells expose changes that body wide traversal would hide
-def CheckSwShellTraversal() -> None:
-    Root = Path(__file__).resolve().parents[3]
+def CheckShellWalk() -> None:
+    RootPath = Path(__file__).resolve().parents[3]
     PartPath = (
-        Root
+        RootPath
         / "re/solidworks/examples"
         / "Single Turbo Dual Overhead Cam V8 - KDP - 2024"
         / "RODAMIENTO DE BANDA.SLDPRT"
     )
-    Data = PartPath.read_bytes()
-    assert len(Data) == 532245
-    assert Sha256(Data).hexdigest() == (
+    PartBytes = PartPath.read_bytes()
+    assert len(PartBytes) == 532245
+    assert HashBytes(PartBytes).hexdigest() == (
         "d3b6e56ddadbfc81523d9f73c3da81b57956f11df5c248b03a6acbf12e2c891a"
     )
-    Archive = SldprtArchive.from_bytes(Data, PartPath.name)
+    Archive = SldprtArchive.from_bytes(PartBytes, PartPath.name)
     Stream = "Contents/Config-0-Partition"
     (Partition,) = (
         Value
@@ -52,12 +52,12 @@ def CheckSwShellTraversal() -> None:
         "sldprt:brep:face:153",
         "sldprt:brep:face:161",
     }
-    assert StableLegacyFlips <= {Face.id for Face in Model.faces}
+    assert StableLegacyFlips <= {FaceValue.id for FaceValue in Model.faces}
     for LoopValue in Model.loops:
-        Flip = Topology.loop_face[LoopValue.id] in StableLegacyFlips
-        ExpectedOrder = LoopValue.coedge_ids[::-1] if Flip else LoopValue.coedge_ids
+        Flipped = Topology.loop_face[LoopValue.id] in StableLegacyFlips
+        ExpectedOrder = LoopValue.coedge_ids[::-1] if Flipped else LoopValue.coedge_ids
         assert EncodedLoops[LoopValue.id] == ExpectedOrder
         assert all(
-            EncodedDirections[FinId] == Topology.coedges[FinId].reversed ^ Flip
+            EncodedDirections[FinId] == Topology.coedges[FinId].reversed ^ Flipped
             for FinId in LoopValue.coedge_ids
         )
