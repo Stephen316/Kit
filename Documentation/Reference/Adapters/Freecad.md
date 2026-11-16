@@ -106,6 +106,9 @@ Its original generated packages had no cached BREP and exposed zero solids befor
 The post-recompute and saved-copy successes do not establish initial geometry availability or broader route qualification.
 The [calculated initial-shape implementation](../../Changes/FreeCad/FreeCadInitialExtrusionShapes.md) attaches supported independent Create caches to their actual editable owners without a CAD runtime.
 Other cache families, Boolean results and independent initial-open acceptance remain unfinished; cache presence does not establish application usability.
+The [fresh-extrusion attestation repair](../../Changes/FreeCad/FreeCadInitialGeometryAttestation.md) reports both acceptance flags as false for its scoped reconstructed history, including sketch-reference dependencies and omitted Create operations.
+Strict public writes refuse that output before changing the destination; explicit `AllowCarrier=True` permits an unqualified research artifact.
+Retained-geometry and other history routes remain outside that audit.
 
 The `portable` writer option defaults to true in the inspected adapter revision.
 For assemblies, portable output can include companion component files.
