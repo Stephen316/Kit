@@ -22,6 +22,9 @@ The earlier [history audit encoding failure](../../../Ci/Commands/HistoryAuditOu
 Use the [explicit controller UTF-8 transport](../../../../Changes/Research/Controller/ControllerUtfEightTransport.md).
 Successful responses retain canonical JSON bytes and one LF; stderr diagnostics use UTF-8 as well.
 The actual adapter decodes both streams strictly as UTF-8.
+The archive gate must also explicitly decode controller responses as UTF-8.
+Its former locale decoder could corrupt returned artifact paths after the controller changed to UTF-8 output.
+The [consumer repair](../../../../Changes/Research/Controller/ControllerUtfEightConsumers.md) pins only the controller child streams; unrelated archive child tools retain their existing decoding contracts.
 No logical record, byte limit, hash definition, transaction or return code changes.
 
 This removes locale encoding as the failure mechanism; it does not guarantee delivery after commit.

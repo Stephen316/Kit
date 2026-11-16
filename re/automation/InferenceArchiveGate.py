@@ -31,6 +31,7 @@ def invoke(script, *arguments, timeout=90):
         cwd=ROOT,
         capture_output=True,
         text=True,
+        encoding="utf-8" if script == "Controller.py" else None,
         timeout=timeout,
         check=False,
     )
