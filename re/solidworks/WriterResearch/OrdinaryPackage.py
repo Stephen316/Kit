@@ -184,7 +184,9 @@ def BuildOrdinaryPackage(
         Header.Logs.UpdateStamp,
     )
     Streams.update(
-        EncodePackageIndices(Generation, Identity, State.Indices, Profile, Boss)
+        EncodePackageIndices(
+            Generation, Identity, State.Indices, Profile, Boss, Atom=Config.History.Atom
+        )
     )
     Streams[CONTENT_MANAGER] = EncodePackageContent(
         Generation,

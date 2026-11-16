@@ -6,6 +6,8 @@ from hashlib import sha256 as DigestBytes
 from pathlib import Path as FilePath
 from typing import cast as CastValue
 
+from tests.Research.Archives.SolidWorksFreshBossTests import KFreshContext
+
 
 # each research record verifier runs with its own pinned archive evidence
 def LoadReport(
@@ -693,16 +695,35 @@ def CheckInfoProps() -> None:
     )
 
 
-# the keyword and feature indices share the same saved document identity
+# the feature indices must share both captured identities and independently allocated ones
 def CheckFeatIndex() -> None:
     Report = LoadReport("VerifyPartFeatureIndex.py", 14)
     assert Report["counts"] == {"P01": 6, "P03": 8}
     assert Report["dimension_orders"] == 2
     assert Report["invalid_driver_refusals"] == 4
+    assert Report["invalid_owner_refusals"] == 8
     assert (
         Report["replay_sha256"]
         == "c60b495c59431b3b047a000390be782032f44d6b8a5260f58f9de11c2b9f4a49"
     )
+    RootPath = FilePath(__file__).resolve().parents[3]
+    Program = RootPath / "re/solidworks/WriterResearch/VerifyPartFeatureIndex.py"
+    Process = Subprocess.run(
+        [System.executable, "-B", str(Program), "--fresh-context", "-"],
+        cwd=RootPath,
+        input=JsonCodec.dumps(KFreshContext),
+        text=True,
+        capture_output=True,
+        check=False,
+        timeout=120,
+    )
+    assert Process.returncode == 0, Process.stderr
+    assert JsonCodec.loads(Process.stdout) == {
+        "keyword_feature_ids": [53, 67],
+        "typed_feature_ids": [53, 67],
+        "header_feature_ids": [53, 67],
+        "member_count": 30,
+    }
 
 
 # the configuration exchange must fill its complete native database from typed fields
