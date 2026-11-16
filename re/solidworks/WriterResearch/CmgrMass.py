@@ -16,13 +16,14 @@ from convert.adapters.solidworks.Container.ArchiveCursor import FieldCursor
 KGeometryLayout = "<12d"
 KEmptyGeometry = (0.0,) * 12
 
-# The standalone part carries one initialized flag and a zero accuracy value.
+# Both standalone profiles have identical options apart from the accuracy value.
 KOptionsLayout = "<5id4i"
-KEmptyOptions = (1, 0, 0, 0, 0, 0.0, 0, 0, 0, 0)
+KOptionFlags = (1, 0, 0, 0, 0)
+KOverrideFlags = (0, 0, 0, 0)
 
 # The trailing coordinate frame retains the three initialized Cartesian axes.
 KFrameLayout = "<i12diH"
-KEmptyFrame = (
+KIdentityFrame = (
     0,
     0.0,
     0.0,
@@ -49,18 +50,37 @@ def CheckEmptyMass(Generation: int, BodyCount: int) -> None:
         raise ArchiveError("the empty configuration mass record requires zero bodies")
 
 
+# Both standalone mass profiles use the same default options and world frame.
+def EncodeMassRecord(Geometry: tuple[float, ...], Accuracy: float) -> bytes:
+    return b"".join(
+        (
+            PackFields(KGeometryLayout, *Geometry),
+            PackFields(KOptionsLayout, *KOptionFlags, Accuracy, *KOverrideFlags),
+            EncodeString(""),
+            EncodeString(""),
+            PackFields(KFrameLayout, *KIdentityFrame),
+        )
+    )
+
+
 # Source defaults suffice for the bounded cache without reading a native archive.
 def EncodeEmptyMass(Generation: int, BodyCount: int) -> bytes:
     CheckEmptyMass(Generation, BodyCount)
-    return b"".join(
-        (
-            PackFields(KGeometryLayout, *KEmptyGeometry),
-            PackFields(KOptionsLayout, *KEmptyOptions),
-            EncodeString(""),
-            EncodeString(""),
-            PackFields(KFrameLayout, *KEmptyFrame),
-        )
+    return EncodeMassRecord(KEmptyGeometry, 0.0)
+
+
+# Assigned mass and coordinate overrides require a different record profile.
+def ReadMassOptions(Cursor: FieldCursor, Accuracy: float) -> None:
+    RequireArch(
+        Cursor.ReadValue(KOptionsLayout),
+        (*KOptionFlags, Accuracy, *KOverrideFlags),
+        "default mass options",
     )
+    for FieldName in ("center coordinate system", "reference coordinate system"):
+        NameOffset = Cursor.Offset
+        RequireArch(Cursor.ReadText(), "", FieldName)
+        RequireArch(Cursor.Offset - NameOffset, 4, f"{FieldName} wide CString")
+    RequireArch(Cursor.ReadValue(KFrameLayout), KIdentityFrame, "default mass frame")
 
 
 # The returned position is the enclosing configuration's next field.
@@ -74,12 +94,5 @@ def ReadEmptyMass(
     RequireArch(
         Cursor.ReadValue(KGeometryLayout), KEmptyGeometry, "empty mass geometry"
     )
-    RequireArch(
-        Cursor.ReadValue(KOptionsLayout), KEmptyOptions, "empty mass options"
-    )
-    for FieldName in ("center coordinate system", "reference coordinate system"):
-        NameOffset = Cursor.Offset
-        RequireArch(Cursor.ReadText(), "", FieldName)
-        RequireArch(Cursor.Offset - NameOffset, 4, f"{FieldName} wide CString")
-    RequireArch(Cursor.ReadValue(KFrameLayout), KEmptyFrame, "empty mass frame")
+    ReadMassOptions(Cursor, 0.0)
     return Cursor.Offset
