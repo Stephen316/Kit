@@ -11,8 +11,8 @@ from interchange.geometry.Models.VectorSpace import SpaceVector
 KPoint = tuple[float, float]
 KSlots = tuple[int, int]
 KLocalPairs = ((0, 3), (0, 2), (2, 1), (3, 1))
-KFrontAxes = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
-KRightAxes = ((0, 0, -1), (0, 1, 0), (1, 0, 0))
+KFrontAxes = ((1.0, 0.0, 0.0), (0.0, 1.0, 0.0), (0.0, 0.0, 1.0))
+KRightAxes = ((0.0, 0.0, -1.0), (0.0, 1.0, 0.0), (1.0, 0.0, 0.0))
 
 
 # canonical target slot order and original neutral endpoint order remain distinguishable

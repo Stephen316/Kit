@@ -1,8 +1,9 @@
 from dataclasses import replace
 
 from BossInput import ProjectBoss
-from VerifyConfigRoot import require
+from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from interchange.document.Models.DocumentModel import CadDocument
+from interchange.Enums.EnumValues import ValueKind
 from interchange.Features.FeatureBody import DesignBody
 from interchange.Features.FeatureDistExt import DistanceExtrude
 from interchange.Features.FeatureStep import FeatureStep
@@ -23,7 +24,7 @@ from interchange.Records.RecordSource import CadSource
 
 
 # construct a fresh neutral example using independent authored dimensions and arbitrary IDs
-def authored_case(right, width, height, depth):
+def authored_case(right: bool, width: float, height: float, depth: float) -> CadDocument:
     x, y = (-height, width) if right else (width, height)
     origin, bottom, far, left = (
         PlaneVector(0.0, 0.0),
@@ -97,19 +98,19 @@ def authored_case(right, width, height, depth):
             Parameter(
                 "W",
                 "width_mm",
-                ParameterValue(width, "length", "mm"),
+                ParameterValue(width, ValueKind.LENGTH, "mm"),
                 owner_id="profile",
             ),
             Parameter(
                 "H",
                 "height_mm",
-                ParameterValue(height, "length", "mm"),
+                ParameterValue(height, ValueKind.LENGTH, "mm"),
                 owner_id="profile",
             ),
             Parameter(
                 "D",
                 "depth_mm",
-                ParameterValue(depth / 10.0, "length", "cm"),
+                ParameterValue(depth / 10.0, ValueKind.LENGTH, "cm"),
                 owner_id="form",
             ),
         ),
@@ -151,29 +152,29 @@ def authored_case(right, width, height, depth):
     )
 
 
-def rules_case(document, rules):
+def rules_case(document: CadDocument, rules: tuple[SketchRelation, ...]) -> CadDocument:
     (sketch,) = document.sketches
     return replace(document, sketches=(replace(sketch, constraints=rules),))
 
 
-def expect_refused(document, reason):
+def expect_refused(document: CadDocument, reason: str) -> None:
     try:
         ProjectBoss(document)
     except ValueError as error:
-        require(reason in str(error), f"unexpected refusal for {reason}")
+        RequireArch(reason in str(error), True, f"unexpected refusal for {reason}")
     else:
         raise ValueError(f"unsupported neutral graph accepted for {reason}")
 
 
 # hosted checks preserve edit ownership and distinguish equality of geometry from shared nodes
-def hosted_cases():
+def hosted_cases() -> list[tuple[int, float, float, float]]:
     results = []
     for right, width, height, depth in (
         (False, 37.5, 18.25, 13.5),
         (True, 42.25, 17.5, -8.75),
     ):
         graph = ProjectBoss(authored_case(right, width, height, depth))
-        require(
+        RequireArch(
             graph.Profile.AxisCode == (1 if right else 3)
             and graph.Profile.EdgeSlots == {1: (0, 3), 2: (0, 2), 3: (2, 1), 4: (3, 1)}
             and tuple(edge.SourceId for edge in graph.Profile.Edges)
@@ -194,10 +195,12 @@ def hosted_cases():
             == ("W", "profile", "H", "profile", "D", "form", depth)
             and graph.MagnitudeMm == abs(depth)
             and graph.Reversed == (depth < 0),
+            True,
             "canonical allocated topology, dimension owners and signed extent",
         )
-        require(
-            graph.AxialBoundsMm == (min(0, depth), max(0, depth)),
+        RequireArch(
+            graph.AxialBoundsMm,
+            (min(0, depth), max(0, depth)),
             "one-sided axial bounds",
         )
         results.append((graph.Profile.AxisCode, width, height, graph.Depth.Millimetres))
