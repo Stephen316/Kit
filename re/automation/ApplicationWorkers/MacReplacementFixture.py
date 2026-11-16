@@ -103,6 +103,27 @@ def require_refusal(error, returncode, reason):
     ], f"Expected launch refusal {returncode}: {reason}. Observed {error_output(error)}"
 
 
+def verify_expired(root, bundle, source, fence, request):
+    deadline = time.time() - 1
+    raw = json.dumps({"fence_sha256": sha256(fence), "dispatch_before": deadline}).encode()
+    request.write_bytes(raw)
+    swift = root / "CheckedLaunch.swift"
+    swift.write_bytes(source)
+    executable = bundle["executable"]
+    result = subprocess.run(
+        [
+            "/usr/bin/swift", str(swift), str(executable.parents[2]), str(executable),
+            bundle["bundle_identifier"], bundle["info_sha256"], bundle["executable_sha256"],
+            "30", str(request), sha256(raw), str(deadline),
+        ],
+        capture_output=True, check=False, timeout=35,
+    )
+    require_refusal(
+        MacLaunchError(result), 8, "The reviewed launch admission expired before dispatch"
+    )
+    assert result.stdout == b""
+
+
 def exercise(root):
     bundle = fixture_bundle(root)
     source = (ROOT / MAC_REPLACEMENT_LAUNCH).read_bytes()
@@ -154,11 +175,20 @@ def exercise(root):
         else:
             raise AssertionError("AppKit helper launched after the exact fence changed")
         fence_path.write_bytes(fence)
-        observed = launch_bundle(source, bundle, time.time(), old, 30, *custody)
+        verify_expired(root, bundle, source, fence, request)
+        started = time.time()
+        deadline = started + 30
+        limited = json.dumps({"fence_sha256": sha256(fence), "dispatch_before": deadline}).encode()
+        request.write_bytes(limited)
+        observed = launch_bundle(
+            source, bundle, started, old, 30, request, sha256(limited), dispatch_before=deadline
+        )
         assert (
             observed["peer"]["pid"] != old["pid"]
             and observed["peer"]["uid"] == old["uid"]
+            and observed["dispatched_at"] < deadline
         )
+        request.write_bytes(request_bytes)
         try:
             launch_bundle(source, bundle, time.time(), old, 30, *custody)
         except MacLaunchError as error:
@@ -173,6 +203,7 @@ def exercise(root):
                     "symlink_refused": True,
                     "fence_change_refused": True,
                     "duplicate_refused": True,
+                    "expired_dispatch_refused": True,
                 }
             )
         )

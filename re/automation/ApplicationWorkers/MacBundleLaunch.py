@@ -25,6 +25,7 @@ class MacLaunchError(ValueError):
             5: "macOS replacement bundle differs from its reviewed pin",
             6: "macOS replacement request custody is unavailable",
             7: "macOS replacement fence changed before launch",
+            8: "macOS replacement admission expired before launch",
         }.get(
             self.returncode, "macOS replacement launch did not return an exact process"
         )
@@ -46,7 +47,8 @@ def available(expected_uid=None):
 
 
 def launch_bundle(
-    source, bundle, earliest, old_peer, seconds, request_path, request_sha256
+    source, bundle, earliest, old_peer, seconds, request_path, request_sha256,
+    *, dispatch_before=None,
 ):
     available(old_peer["uid"])
     expected = bundle["executable"]
@@ -54,8 +56,7 @@ def launch_bundle(
     with TemporaryDirectory(prefix="kit-mac-launch-") as temporary:
         script = Path(temporary) / "MacReplacementLaunch.swift"
         script.write_bytes(source)
-        invocation = subprocess.run(
-            [
+        arguments = [
                 SWIFT,
                 str(script),
                 str(application),
@@ -66,7 +67,12 @@ def launch_bundle(
                 str(seconds),
                 str(request_path),
                 request_sha256,
-            ],
+        ]
+        if dispatch_before is not None:
+            require(time.time() < dispatch_before, "macOS replacement admission expired before provider start")
+            arguments.append(str(dispatch_before))
+        invocation = subprocess.run(
+            arguments,
             capture_output=True,
             check=False,
             timeout=seconds + 5,

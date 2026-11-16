@@ -44,7 +44,7 @@ func matchesPhysicalFileURL(_ observed: URL?, _ expected: String) -> Bool {
 }
 
 let arguments = CommandLine.arguments
-guard arguments.count == 9,
+guard [9, 10].contains(arguments.count),
       arguments[1].hasPrefix("/"),
       let wait = Double(arguments[6]),
       wait > 0, wait <= 300 else {
@@ -82,6 +82,20 @@ guard matchesPhysicalPath(requestPath, requestPath),
       let fenceDigest = record["fence_sha256"] as? String else {
     refuse(6, "Exact launch request custody is unavailable")
 }
+let dispatchDeadline: Double?
+if arguments.count == 10 {
+    guard let deadline = Double(arguments[9]), deadline.isFinite,
+          let sealedDeadline = record["dispatch_before"] as? Double,
+          sealedDeadline == deadline else {
+        refuse(6, "Exact launch deadline custody is unavailable")
+    }
+    dispatchDeadline = deadline
+} else {
+    guard record["dispatch_before"] == nil else {
+        refuse(6, "The sealed launch deadline is missing from the invocation")
+    }
+    dispatchDeadline = nil
+}
 
 let workspace = NSWorkspace.shared
 if workspace.runningApplications.contains(where: {
@@ -102,6 +116,9 @@ guard digest(fence, maximum: 1_048_576) == fenceDigest else {
     refuse(7, "The retained restart fence changed before launch")
 }
 let dispatched = Date().timeIntervalSince1970
+if let deadline = dispatchDeadline, dispatched >= deadline {
+    refuse(8, "The reviewed launch admission expired before dispatch")
+}
 workspace.openApplication(at: target, configuration: configuration) { app, error in
     if let error {
         let failure = error as NSError
