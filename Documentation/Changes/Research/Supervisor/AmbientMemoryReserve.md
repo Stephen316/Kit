@@ -8,4 +8,6 @@ The allocator is enabled only on the disposable GitHub-hosted Linux workflow. It
 
 The expected observation is one active-limit change from two to one while two workers remain alive. A second low sample must keep the same revision. After the pages are released, the calculated capacity must return to four while the adaptive target stays at one. Both original jobs must finish on their first attempts. CI prints the admission records and allocation receipt on success.
 
-Unsupported host or cgroup conditions before startup leave the observation unmeasured. Hosted verification is pending.
+Unsupported host or cgroup conditions before startup leave the observation unmeasured.
+
+At PR head `14f4a1f2` and tested merge `1198983e`, the hosted child measured available memory falling from 14,848 to 14,455 MiB across the 14,621 MiB reserve. The live assertions observed one reduction from two workers to one, followed by restored headroom. Both jobs completed on their first attempts. The final reporting assertion then raised a key error on the terminal summary record. The report now distinguishes that summary from an event and the hosted verdict needs a rerun. [Hosted Linux evidence](https://github.com/TryUniCAD/Kit/actions/runs/43788486237/job/133041436819)
