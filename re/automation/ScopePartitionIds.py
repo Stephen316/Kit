@@ -184,10 +184,13 @@ def ReadNativeIds(payload, region_faces):
     require(tables is not None, "cannot recover scope partition faces")
     bridges = tables.bridges
     shells = {face.references[3] for face in bridges.values()}
-    require(len(shells) == len(region_faces) == 2, "expected two native solid shells")
+    require(
+        len(shells) == len(region_faces) and len(shells) in (1, 2),
+        "expected one or two native solid shells matching the decoded regions",
+    )
     native = [ShellFaces(data, bridges, shell, origin) for shell in shells]
     owners = {row["body_index"] for row in native}
-    require(len(owners) == 2, "native shells share a single body owner")
+    require(len(owners) == len(shells), "native shells share a body owner")
     atoms = BodyAtoms(data, owners, origin)
     candidates = {}
     seen = set()
