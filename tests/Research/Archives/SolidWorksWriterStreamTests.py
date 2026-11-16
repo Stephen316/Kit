@@ -62,6 +62,28 @@ def CheckCmgr() -> None:
     AssertBossMass(Report, Digests)
     AssertAtomLinks(Report, Digests)
     AssertCmgrEnds(Report)
+    AssertCmgrHeader(Report)
+
+
+# header bookkeeping and saved body counts must retain their independent evidence
+def AssertCmgrHeader(Report: dict[str, object]) -> None:
+    Links = Report["linked_atom_records"]
+    Headers = Report["base_header_records"]
+    Fronts = Report["collection_front_records"]
+    assert isinstance(Links, dict)
+    assert isinstance(Headers, dict)
+    assert isinstance(Fronts, dict)
+    assert Links.keys() == Headers.keys() == Fronts.keys()
+    FrontDigests = CastValue(dict[str, str], Fronts)
+    assert dict(CountItems(FrontDigests.values())) == {
+        "ae538a3e846dc88c0dbc655355665826638036d85c799e299f2dd1e2a50c25e7": 6,
+        "c78f21f350ce049a9a155ece4aff10eff8bf65561bb0579d6d8a88a1962811cc": 8,
+    }
+    Encoded = JsonCodec.dumps(Headers, sort_keys=True, separators=(",", ":"))
+    assert (
+        DigestBytes(Encoded.encode("ascii")).hexdigest()
+        == "27cc75de0930610b2681d28ed10e6cc597f551532aad3854bb0089829a91de5d"
+    )
 
 
 # both path forms must preserve the saved metadata of each capture

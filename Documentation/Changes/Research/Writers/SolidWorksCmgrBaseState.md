@@ -1,0 +1,9 @@
+# SOLIDWORKS CMgr base configuration state
+
+The [base header codec](../../../../re/solidworks/WriterResearch/CmgrBaseHeader.py) constructs the 28-byte generation-19000 base header for P01 and P03. It uses the four source-attributed configuration flags and takes the model's highest assigned ID, session update stamp and mass-property stamp as explicit inputs. Other configuration profiles and text remain outside this codec. [Native owners and archive offsets](../../../../re/solidworks/WriterResearch/CmgrMiddle.md#base-header)
+
+The [collection opening codec](../../../../re/solidworks/WriterResearch/CmgrCollectionFront.py) constructs the 26 bytes after mass properties with an explicit count of zero or one solid bodies, standalone save mode and the enclosing generation. The named toolbox and related configurations are absent in this profile. Both records preserve the archive allocation map. [Constructor and save branches](../../../../re/solidworks/WriterResearch/CmgrMiddle.md#base-configuration-collections)
+
+Read-only replay checked both ranges in all six P01 and eight P03 receipt-pinned saves. It traversed the remaining collections to offsets 1654 and 1662 and confirmed their typed link transitions. The compact replay SHA-256 is `71a4ce42e8b3cf2073d8f100a42ec86779a91b297a00eac0a808c275c0a031c3`. Its rows contain the capture hash, header and collection boundaries, independent slice hashes and next index in receipt order.
+
+Hosted `CheckCmgr` compares the emitted bytes and archive map for both ranges against the pinned files. The header comparison uses saved bookkeeping words as typed inputs. The collection comparison uses the independently measured body count. The hosted check awaits execution. Fresh stamp construction, the remaining collection fields and licensed native acceptance remain open. [Current coverage](../../../../re/solidworks/WriterResearch/CmgrCoverage.md)

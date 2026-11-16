@@ -7,6 +7,7 @@ ROOT = Path(__file__).resolve().parents[3]
 CAPTURE_REVISION = "466dcb172dfa3803463e07ccde963ba01671d200"
 sys.path[:0] = [str(ROOT / "src"), str(ROOT / "re/automation")]
 
+from CmgrBaseHeader import ReadCmgrHeader
 from CmgrColorReadback import ReadColorSpan
 from CmgrExternal import ReadCmgrExt, WriteCmgrExt
 from CmgrMass import EncodeEmptyMass, ReadEmptyMass
@@ -14,6 +15,7 @@ from CmgrOpening import ReadCmgrFeature
 from CmgrTail import ReadCmgrTail, WriteCmgrTail
 from ColorAppearance import EncodeColorDspbr
 from SolidworksCensusInputs import capture_inputs
+from VerifyCmgrBaseState import verify_base_state
 from VerifyCmgrBoss import verify_boss_mass
 from VerifyCmgrOpen import verify_opening
 from VerifyCmgrPart import verify_part_end
@@ -34,14 +36,9 @@ def read_mass_start(
     cursor = ArchiveCursor(stream, visual_end, 9, {}, {})
     ReadCmgrFeature(cursor, 19000)
     RequireArch(cursor.Offset, 1206, "CMgr base configuration opening")
-    RequireArch(
-        (cursor.ReadText(), cursor.ReadInts("<iI"), cursor.ReadText()),
-        ("", (-1, 0x80400180), ""),
-        "CMgr base configuration header",
-    )
-    fields = cursor.ReadInts("<3I")
+    fields = ReadCmgrHeader(cursor, 19000)
     RequireArch(cursor.Offset, 1234, "CMgr mass start")
-    return cursor, fields
+    return cursor, (fields.model_highest_id, fields.session_stamp, fields.mass_stamp)
 
 
 # the independent archive path must supply the exact span for byte comparison
@@ -109,6 +106,8 @@ def verify_color():
     tails = {}
     masses = {}
     boss_masses = {}
+    base_headers = {}
+    collection_fronts = {}
     part_reports = {
         "linked_atom_records": {},
         "base_return_records": {},
@@ -132,6 +131,12 @@ def verify_color():
             f"CMgr default DSPBR reconstruction for {item['path']}",
         )
         captures[item["sha256"]] = sha256(saved).hexdigest()
+        if recipe in ("P01", "P03"):
+            header, front = verify_base_state(
+                cursor, generation, measurement["body_count"]
+            )
+            base_headers[item["sha256"]] = header
+            collection_fronts[item["sha256"]] = front
         part_evidence = verify_part_end(cursor, recipe, TREE_IDS[recipe], item["path"])
         for record, digest in part_evidence.items():
             part_reports[record][item["sha256"]] = digest
@@ -155,6 +160,8 @@ def verify_color():
         "terminal_records": tails,
         "empty_mass_records": masses,
         "boss_mass_wrappers": boss_masses,
+        "base_header_records": base_headers,
+        "collection_front_records": collection_fronts,
         **part_reports,
     }
 
