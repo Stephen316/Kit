@@ -16,6 +16,7 @@ from ResolvedOrigin import ReadOriginRec
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
 from VerifyRectCorners import verify_corners
+from VerifyRectLines import verify_lines
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -118,7 +119,10 @@ def inspect_open(archive, measurement, construct):
     proxy_proof = verify_proxy(
         cursor, profile, origin, origin_state, ghost, generation, construct
     )
-    return opening, corner_proof, proxy_proof
+    line_proof = verify_lines(
+        cursor, profile, endpoints, tallies, generation, construct
+    )
+    return opening, corner_proof, proxy_proof, line_proof
 
 
 # composition pins the exact receipt order without relying on fixed record offsets
@@ -126,12 +130,14 @@ def report(construct):
     rows = []
     corner_rows = []
     proxy_rows = []
+    line_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        opening, corners, proxy = inspect_open(archive, measurement, construct)
+        opening, corners, proxy, lines = inspect_open(archive, measurement, construct)
         rows.append((asset["sha256"], *opening))
         corner_rows.append((asset["sha256"], *corners))
         proxy_rows.append((asset["sha256"], *proxy))
+        line_rows.append((asset["sha256"], *lines))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
@@ -141,6 +147,10 @@ def report(construct):
         ).hexdigest(),
         "proxy_replay_sha256": sha256(
             json.dumps(proxy_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
+        "line_mark_orders": len({row[-2] for row in line_rows}),
+        "line_replay_sha256": sha256(
+            json.dumps(line_rows, separators=(",", ":")).encode()
         ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(

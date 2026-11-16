@@ -45,6 +45,11 @@ def CheckProfile() -> None:
         Report["proxy_replay_sha256"]
         == "422534f2ef8bd02ecb8f71c4d0bd6a7b7618dc4b15c5c9a6ab1db3d88bc2dc79"
     )
+    assert Report["line_mark_orders"] == 2
+    assert (
+        Report["line_replay_sha256"]
+        == "8fc41b75f4c3b0bd5e0e35a3285cc835f47f8e99a0716aa53722c26258fe97cc"
+    )
 
 
 # the research writer and reader must agree on the full stream in real native files
