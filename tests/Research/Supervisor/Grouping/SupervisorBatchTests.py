@@ -15,10 +15,20 @@ def CheckBatchCap() -> None:
     with TempFiles.TemporaryDirectory() as TempPath:
         RootPath = FilePath(TempPath)
         Harness = MakeBatchHost(RootPath)
-        Harness.SubmitJobs(BatchJobs(25, options={"hold_seconds": 4}))
+        Harness.SubmitJobs(BatchJobs(25, lease_seconds=15, options={"hold_seconds": 4}))
         Events = Harness.RunIdle(MaxSeconds=60)
         Started = BatchEvents(Events, "started")
-        assert [Record["group_size"] for Record in Started] == [20, 5]
+        GroupSizes = [Record["group_size"] for Record in Started]
+        assert GroupSizes == [20, 5], {
+            "groups": GroupSizes,
+            "stops": BatchEvents(Events, "stopping")[-10:],
+            "renewal_errors": BatchEvents(Events, "renew_error")[-10:],
+            "unsettled": [
+                Record
+                for Record in BatchEvents(Events, "finished")
+                if Record.get("stale") or Record.get("outcome") != "completed"
+            ][-10:],
+        }
         CheckBatchData(Harness, 25)
         for GroupSize in (5, 20):
             HistoryFile = (
