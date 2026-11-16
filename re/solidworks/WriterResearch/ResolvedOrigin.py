@@ -7,6 +7,7 @@ from CmgrInherited import (
     ReadArcFeature,
     WriteArcFeature,
 )
+from LocalComponent import CheckLocalComponent, WriteLocalComponent
 from OriginSketch import (
     KObjectList,
     KPointHandle,
@@ -36,9 +37,6 @@ KOriginName = "Origin"
 KOriginTreeId = 5
 KOriginFlags = 0xC0000000
 KPlaneRef = "moCompRefPlane_c"
-KUnitComponent = "moUnitComponent_c"
-KPartClass = "moPart_c"
-KComponentWords = (0,) * 10 + (-1,) * 4 + (0,) * 5
 
 
 # The saved profile state follows the feature stamp and local datum's reference time.
@@ -80,9 +78,7 @@ def WriteOriginRef(
 ) -> None:
     Writer.raw(EncodeNull())
     Writer.begin_object(KPlaneRef, 1)
-    Writer.begin_object(KUnitComponent, 1)
-    Writer.ReferenceObject(State.PartObject, KPartClass)
-    Writer.raw(PackFields("<B20i", 0, *KComponentWords, Generation))
+    WriteLocalComponent(Writer, Generation, State.PartObject)
     Writer.i32(State.SupportTreeId)
     Writer.u32(State.SupportTime)
     Writer.raw(EncodeNull())
@@ -96,24 +92,15 @@ def WriteOriginRef(
 # Origin reserves its sketch, handle and support objects on the same resolved archive.
 def WriteOriginRec(
     Writer: PartArchiveWriter, Generation: int, State: OriginState
-) -> None:
+) -> int:
     CheckArcFeature(Generation, State.Feature, AllowRegenTime=True)
     CheckFolderMap(Writer, (KOriginClass, KSketchClass, KPointHandle, KPlaneRef), 12)
     RequireArch(
-        all(
-            0 < Writer.classes.get(Name, 0) < Writer.next_index
-            for Name in (KObjectList, KUnitComponent)
-        ),
+        0 < Writer.classes.get(KObjectList, 0) < Writer.next_index,
         True,
-        "inherited resolved origin classes",
+        "inherited resolved origin list class",
     )
-    RequireArch(
-        type(State.PartObject) is int
-        and 0 < State.PartObject < Writer.next_index
-        and Writer.objects.get(State.PartObject) == KPartClass,
-        True,
-        "resolved origin local part alias",
-    )
+    CheckLocalComponent(Writer, Generation, State.PartObject)
     RequireArch(
         type(State.SupportTreeId) is int
         and State.SupportTreeId == 2
@@ -133,6 +120,7 @@ def WriteOriginRec(
     Writer.raw(PackFields("<2i", 0, 0))
     Writer.raw(EncodeNull())
     Writer.i32(0)
-    WriteOriginSketch(Writer)
+    SketchObject = WriteOriginSketch(Writer)
     WriteOriginView(Writer)
     WriteOriginRef(Writer, Generation, State)
+    return SketchObject

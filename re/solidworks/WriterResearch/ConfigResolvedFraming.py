@@ -110,13 +110,11 @@ def WriteResolvedEntry(
         RequireArch(Writer.Snapshot(), Before, "resolved object alias map")
 
 
-# Each action writes one outer list entry and its inline children.
-def BuildResolvedArchive(
+def BeginResolvedArchive(
     Generation: int,
     ConfigState: PartArchiveState,
-    RootEntries: Sequence[PartArchiveAction],
-    WriteTail: PartArchiveAction,
-) -> FramedArchive:
+    RootCount: int,
+) -> PartArchiveWriter:
     RequireArch(
         (type(Generation), Generation),
         (int, KConfigGen),
@@ -128,9 +126,20 @@ def BuildResolvedArchive(
         (KRootClass, KRootClass, KExtObjectClass),
         "resolved archive owning part and external object",
     )
-    Entries = tuple(RootEntries)
     Writer = PartArchiveWriter(ConfigState)
-    Writer.raw(EncodeResolvedHeader(ConfigState, len(Entries)))
+    Writer.raw(EncodeResolvedHeader(ConfigState, RootCount))
+    return Writer
+
+
+# Each action writes one outer list entry and its inline children.
+def BuildResolvedArchive(
+    Generation: int,
+    ConfigState: PartArchiveState,
+    RootEntries: Sequence[PartArchiveAction],
+    WriteTail: PartArchiveAction,
+) -> FramedArchive:
+    Entries = tuple(RootEntries)
+    Writer = BeginResolvedArchive(Generation, ConfigState, len(Entries))
     for WriteEntry in Entries:
         WriteResolvedEntry(Writer, WriteEntry)
     WriteTail(Writer)

@@ -9,8 +9,9 @@ KObjectList = "suObList"
 
 
 # The Origin sketch has one inline 2D point, with a real handle to its local slot.
-def WriteOriginSketch(Writer: ArchiveWriter) -> None:
+def WriteOriginSketch(Writer: ArchiveWriter) -> int:
     Writer.begin_object(KSketchClass, 1)
+    SketchObject = Writer.next_index - 1
     Writer.i32(1)
     Writer.raw(PackFields("<Hii", 0, 1, 1))
     Writer.raw(PackFields("<HHBIHhf", 65535, 31, 3, 0xFFFFFFFF, 65535, -1, -1.0))
@@ -30,6 +31,7 @@ def WriteOriginSketch(Writer: ArchiveWriter) -> None:
     Writer.raw(PackFields("<HBi5H", 0, 0, 17, 2, 0, 0, 65534, 0))
     Writer.begin_object(KPointHandle, 1)
     Writer.raw(PackFields("<Hii", 0, -1, 0))
+    return SketchObject
 
 
 # Each empty presentation list retains an object allocation in the inherited namespace.

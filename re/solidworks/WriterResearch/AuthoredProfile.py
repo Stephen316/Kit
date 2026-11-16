@@ -8,7 +8,7 @@ from CmgrInherited import (
     WriteArcFeature,
 )
 from PartArchive import PartArchiveWriter
-from ResolvedFolders import CheckFolderMap, KNameClass
+from ResolvedFolders import CheckFolderMap, KNameClass, WriteFolderName
 from convert.adapters.solidworks.Container.Archive import (
     KClassRefKind,
     KDefinitionKind,
@@ -89,12 +89,7 @@ def WriteAuthoredOpen(
     CheckFolderMap(Writer, (KProfileClass,), 4)
     Name = EncodeString(State.Name)
     Writer.BeginObject(KProfileClass, 1)
-    Writer.BeginObject(KNameClass, 1)
-    Writer.raw(Name)
-    Writer.raw(PackFields("<iIii", 0, State.Flags, State.TreeId, 0))
-    Writer.string("")
-    Writer.i32(0)
-    Writer.raw(EncodeNull())
+    WriteFolderName(Writer, Name, State.TreeId, Flags=State.Flags)
     Writer.raw(PackFields("<Hi", 0, 0))
     WriteArcFeature(Writer, Generation, State.Feature, AllowRegenTime=True)
     Writer.i32(0)

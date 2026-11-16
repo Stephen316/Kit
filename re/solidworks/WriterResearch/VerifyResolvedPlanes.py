@@ -3,15 +3,17 @@ from hashlib import sha256
 import json
 
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
+from AuthoredProfile import KPointCount, ReadAuthoredOpen, WriteAuthoredOpen
 from HeaderLogs import ReadHeaderLogs
 from HeaderTail import KFrameTolerance
-from PartArchive import PartArchiveState, PartArchiveWriter
+from OrdinaryResolved import BeginOrdinaryResolved, ResolvedSystem
+from PartArchive import PartArchiveState
 from PrincipalPlaneView import BuildPlaneView, KPrincipalFrames
-from ResolvedCabinet import ReadCabinetRec, WriteCabinetRec
-from ResolvedFolderTail import ReadLateFolders, WriteLateFolders
-from ResolvedFolders import ReadSysFolders, WriteSysFolders
-from ResolvedOrigin import ReadOriginRec, WriteOriginRec
-from ResolvedPrincipal import ReadResolvedPlanes, WriteResolvedPlanes
+from ResolvedCabinet import ReadCabinetRec
+from ResolvedFolderTail import ReadLateFolders
+from ResolvedFolders import ReadSysFolders
+from ResolvedOrigin import ReadOriginRec
+from ResolvedPrincipal import ReadResolvedPlanes
 from VerifyModelHeader import measured_bounds
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
@@ -109,7 +111,6 @@ def inspect_planes(archive, measurement, construct):
         cursor.NextIndex,
         sha256(stream[start:end]).hexdigest(),
     )
-    plane_map = map_state(cursor)
     normal_origin = ReadOrigin(normal_cursor, generation)
     origin = ReadOriginRec(cursor, generation)
     require(
@@ -130,24 +131,37 @@ def inspect_planes(archive, measurement, construct):
         and origin.SupportTreeId == normal.Planes[0].FeatureId,
         "package origin return map and reference identity",
     )
+    origin_end = cursor.Offset
+    origin_map = map_state(cursor)
+    profile, _, profile_sketch = ReadAuthoredOpen(
+        cursor, generation, normal_origin.SketchIndex
+    )
+    require(
+        origin_map.NextIndex + 4 == cursor.NextIndex
+        and profile_sketch == cursor.NextIndex - 1
+        and any(
+            row["name"] == profile.Name and row["type"] == "ProfileFeature"
+            for row in measurement["feature_tree"]
+        ),
+        "authored profile tree and four tracked allocations",
+    )
     if construct:
-        writer = PartArchiveWriter(config_map)
-        WriteSysFolders(writer, generation, folders)
-        WriteCabinetRec(writer, generation, cabinet)
-        WriteLateFolders(writer, generation, later)
-        require(writer.Snapshot() == before, "constructed folder and cabinet map")
-        WriteResolvedPlanes(writer, generation, planes)
-        require(
-            writer.build() == stream[prefix_start:end], "exact folders and datums"
+        writer, origin_sketch = BeginOrdinaryResolved(
+            generation,
+            config_map,
+            ResolvedSystem(folders, cabinet, later, planes, origin),
         )
-        require(writer.Snapshot() == plane_map, "constructed principal plane map")
-        WriteOriginRec(writer, generation, origin)
+        require(origin_sketch == normal_origin.SketchIndex, "generated origin sketch")
         require(
-            writer.build() == stream[prefix_start : cursor.Offset],
-            "exact resolved prefix through origin",
+            writer.build() == stream[:origin_end], "exact framed resolved system roots"
         )
-        require(writer.Snapshot() == map_state(cursor), "constructed origin map")
-    return plane_result, sha256(stream[end : cursor.Offset]).hexdigest()
+        require(writer.Snapshot() == origin_map, "constructed origin map")
+        WriteAuthoredOpen(writer, generation, origin_sketch, profile, KPointCount)
+        require(
+            writer.build() == stream[: cursor.Offset], "exact framed authored opening"
+        )
+        require(writer.Snapshot() == map_state(cursor), "constructed authored map")
+    return plane_result, sha256(stream[end:origin_end]).hexdigest()
 
 
 # each evidence row binds native plane coverage to an independently pinned asset
