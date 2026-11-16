@@ -20,6 +20,11 @@ CANCEL_REASON = "requesting worker stopped before application completion"
 FUSION_PROVIDER = "autodesk.fusion.addin"
 PROTOCOL = "re/automation/ApplicationWorkers/ApplicationProtocol.py"
 RESTART_GRANT = "re/automation/ApplicationWorkers/FusionRestartGrant.py"
+MAC_QUIT_AUTHORIZATION = "re/automation/ApplicationWorkers/FusionQuitAuthorization.py"
+MAC_COCOA_QUIT = "re/automation/ApplicationWorkers/MacCocoaQuit.py"
+MAC_APPLICATION_PEER = "re/automation/ApplicationWorkers/MacApplicationPeer.py"
+MAC_QUIT_RELEASE = "re/automation/ApplicationWorkers/FusionQuitRelease.py"
+MAC_QUIT_HELPERS = (MAC_QUIT_AUTHORIZATION, MAC_COCOA_QUIT, MAC_APPLICATION_PEER, MAC_QUIT_RELEASE)
 MAC_REPLACEMENT_LAUNCH = "re/automation/ApplicationWorkers/MacReplacementLaunch.swift"
 COUNTERPART = "re/automation/ApplicationWorkers/FusionCounterpart.py"
 TOOL = "re/automation/PairedCaptures/FusionFreshProcess.py"
@@ -314,12 +319,24 @@ def validate_configuration(value):
     if "windows_phase_a" in value:
         require(windows_phase_a(value), "Windows Phase A opt-in requires a Windows Fusion installation")
         keys.add("windows_phase_a")
+    if "macos_automatic_quit" in value:
+        require(macos_automatic_quit(value), "automatic quit opt-in requires a macOS Fusion installation")
+        keys.add("macos_automatic_quit")
     require(set(value) == keys and value["version"] == 1, "invalid application installation configuration")
     require(isinstance(value["installation"], str) and re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._:-]{0,127}", value["installation"]), "invalid installation identity")
     require(value["application"] in ("fusion", "solidworks"), "unsupported application installation")
     require(isinstance(value["source_revision"], str) and re.fullmatch("[0-9a-f]{40}", value["source_revision"]), "installation needs an exact source revision")
     require(all(isinstance(value[key], str) and Path(value[key]).is_absolute() for key in ("endpoint", "source_root")), "installation paths must be absolute")
     return value
+
+
+def macos_automatic_quit(config):
+    return (
+        sys.platform == "darwin"
+        and sys.version_info >= (3, 10)
+        and config.get("application") == "fusion"
+        and config.get("macos_automatic_quit") is True
+    )
 
 
 # the windows dispatcher must never interpret a session directory as executable authority
@@ -342,11 +359,13 @@ def committed_bytes(config, relative):
     require(
         relative
         in {PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, BOOTSTRAP, RESTART_GRANT, MAC_REPLACEMENT_LAUNCH,
-            *WINDOWS_HELPERS.values(), *INPUTS, *SCOPE_INPUTS},
+            *MAC_QUIT_HELPERS, *WINDOWS_HELPERS.values(), *INPUTS, *SCOPE_INPUTS},
         "unapproved application source path",
     )
     root = Path(config["source_root"])
-    git = [windows_git(), "--no-replace-objects"] if windows_phase_a(config) else ["git"]
+    git = [windows_git(), "--no-replace-objects"] if windows_phase_a(config) else (
+        ["git", "--no-replace-objects"] if relative in MAC_QUIT_HELPERS else ["git"]
+    )
     source = subprocess.run([*git, "-C", str(root), "show", f"{config['source_revision']}:{relative}"],
                             capture_output=True, check=False, timeout=15)
     require(source.returncode == 0 and 0 < len(source.stdout) <= MAX_BYTES, "pinned application input is unavailable")
@@ -356,13 +375,16 @@ def committed_bytes(config, relative):
 
 def load_pinned(config, relative):
     require(
-        relative in (PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, RESTART_GRANT),
+        relative in (PROTOCOL, COUNTERPART, TOOL, SCOPE_TOOL, RESTART_GRANT)
+        or (macos_automatic_quit(config) and relative in MAC_QUIT_HELPERS),
         "unapproved application helper",
     )
     root = Path(config["source_root"])
     source = committed_bytes(config, relative)
     require(len(source) <= 1024 * 1024, "application executable source exceeds 1 MiB")
     scope = {"__name__": "__kit_pinned_application__", "__file__": str(root / relative)}
+    if relative == MAC_APPLICATION_PEER:
+        scope["require"] = require
     exec(compile(source, str(root / relative), "exec"), scope)
     scope["_source_pin"] = source_pin(config, relative, source)
     return scope
@@ -505,6 +527,7 @@ class HostQueue:
     def __init__(self, config, provider=FUSION_PROVIDER):
         self.config = config
         self.provider = provider
+        self.mac_quit_replacement = None
         self.root = directory(config["endpoint"], not windows_phase_a(config))
         directory(self.root / "jobs", True)
         self.lock = ExitStack()
@@ -536,6 +559,20 @@ class HostQueue:
                 return True
         old = value.get("host")
         if isinstance(old, dict) and old != self.host and identity(old["pid"]) is None:
+            if (
+                sys.platform == "darwin"
+                and self.provider == FUSION_PROVIDER
+                and value.get("reason") == "restart_required"
+            ):
+                handoff_id = value["job_id"]
+                require(
+                    re.fullmatch("[0-9a-f]{32}", handoff_id),
+                    "invalid Fusion restart handoff",
+                )
+                if os.path.lexists(self.root / f"quit-hold-{handoff_id}.json") and (
+                    self.mac_quit_replacement is None or not self.mac_quit_replacement(value)
+                ):
+                    return True
             path.unlink()
             return False
         return True

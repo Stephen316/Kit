@@ -1,3 +1,4 @@
+import functools
 import json
 import os
 import runpy
@@ -288,6 +289,13 @@ def run(context):
         if BOOTSTRAP_SOURCE != trusted_bootstrap:
             raise ValueError("reload the add-in from the trusted installation revision")
         state["restart_grant"] = protocol["load_pinned"](installation, protocol["RESTART_GRANT"])
+        if protocol["macos_automatic_quit"](installation):
+            action = protocol["load_pinned"](installation, protocol["MAC_QUIT_AUTHORIZATION"])
+            action["bridge"] = protocol["load_pinned"](installation, protocol["MAC_COCOA_QUIT"])
+            action["peer"] = protocol["load_pinned"](installation, protocol["MAC_APPLICATION_PEER"])
+            action["installation"] = Path(config["dispatch"])
+            action["installation_bytes"] = installation_bytes
+            state["restart_grant"]["_automatic_quit"] = action
         state["dispatch_protocol"] = protocol
         state["dispatch"] = protocol["HostQueue"](installation)
         state["dispatch"].installation_sha256 = protocol["sha256"](installation_bytes)
@@ -295,6 +303,12 @@ def run(context):
             "bootstrap": {"path": protocol["BOOTSTRAP"], "sha256": protocol["sha256"](BOOTSTRAP_SOURCE), "size_bytes": len(BOOTSTRAP_SOURCE), "revision": installation["source_revision"]},
             "protocol": {"path": relative, "sha256": protocol["sha256"](source.stdout), "size_bytes": len(source.stdout), "revision": installation["source_revision"]},
         }
+        if protocol["macos_automatic_quit"](installation):
+            release = protocol["load_pinned"](installation, protocol["MAC_QUIT_RELEASE"])
+            state["dispatch"].mac_quit_replacement = functools.partial(
+                release["permits_replacement"], protocol, state["dispatch"],
+                read_peer=action["peer"]["process_peer"],
+            )
     state["app"] = app
     state["main_thread"] = threading.get_ident()
     try:

@@ -3,7 +3,8 @@ import os
 import sys
 from pathlib import Path
 
-from ApplicationProtocol import require
+if __name__ != "__kit_pinned_application__":
+    from ApplicationProtocol import require
 
 PROC_PIDTBSDINFO = 3
 PROC_FLAG_INEXIT = 4
