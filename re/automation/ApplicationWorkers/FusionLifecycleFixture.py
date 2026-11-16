@@ -162,6 +162,12 @@ class Disposable:
 
 
 def main():
+    if sys.argv[1] == "acceptance-crash":
+        del sys.argv[1]
+        return acceptance_crash()
+    if sys.argv[1] == "legacy-timeout":
+        print(json.dumps(legacy_timeout(Path(sys.argv[2]))))
+        return 0
     fixture = argparse.ArgumentParser()
     fixture.add_argument("mode")
     fixture.add_argument("replacement", type=int)
@@ -180,6 +186,103 @@ def main():
         driver.seal = stop_after_final
     sys.argv[1:] = owner_args
     return driver.main()
+
+
+def acceptance_crash():
+    from Adapters import A03Adapter
+    from Supervisor import main
+
+    finish = A03Adapter.FinishJob
+
+    def stop_after_a(self, path, outcome, result, reason):
+        response = finish(self, path, outcome, result, reason)
+        if outcome == "completed" and response["stale"] is False:
+            os._exit(74)
+        return response
+
+    A03Adapter.FinishJob = stop_after_a
+    return main()
+
+
+def legacy_timeout(store):
+    from Ledger import Ledger
+    from RecoveryFence import owner_digest, rotate_owner
+
+    resource = "application:solidworks:legacy-fixture"
+    kind = "fixture.timeout"
+    worker = "fixture:legacy"
+    revision = "d" * 40
+    with Ledger(store) as ledger:
+        owner = "f" * 64
+        rotate_owner(ledger, owner)
+        ledger.resource(resource, available=True, capacity=1)
+        ledger.pool("timeout", [kind])
+        ledger.submit(
+            {
+                "id": worker,
+                "kind": kind,
+                "resources": [resource],
+                "inputs": {},
+                "rule_version": "fixture@1",
+                "tool_version": revision,
+                "options": {"source_revision": revision},
+            }
+        )
+        claim = ledger.claim(worker, "timeout")
+        timeout = {
+            "version": 1,
+            "installation": "solidworks:legacy-fixture",
+            "source_revision": revision,
+            "queue_job_id": "e" * 32,
+            "request_sha256": "c" * 64,
+            "nonce": "b" * 48,
+            "client": {"pid": 1, "started": "windows:1"},
+            "job_id": worker,
+            "kind": kind,
+            "resources": [resource],
+            "session": "fixture",
+            "generation": claim["generation"],
+            "fingerprint": claim["fingerprint"],
+            "attempt": claim["attempt"],
+        }
+        result = {
+            "session_version": 1,
+            "receipt": {
+                "receipt_version": 1,
+                "job_id": worker,
+                "attempt": claim["attempt"],
+                "session": "fixture",
+                "orphan": False,
+                "stop_reason": None,
+                "exit_status": 0,
+                "signal": None,
+            },
+            "result": {
+                "outcome": "waiting_application",
+                "records": {
+                    "installation": timeout["installation"],
+                    "application": "solidworks",
+                    "claim": "unqualified_dispatch",
+                    "native_qualified": False,
+                    "queue_timeout": timeout,
+                },
+            },
+        }
+        ledger.finish(
+            worker,
+            claim["lease_token"],
+            "waiting_application",
+            None,
+            "legacy fixture timeout",
+            result_record=result,
+            owner_pin=owner_digest(owner),
+        )
+        return dict(
+            ledger.db.execute(
+                "SELECT resource,epoch,job_id,receipt,result FROM application_holds WHERE resource=?",
+                (resource,),
+            ).fetchone()
+        )
 
 
 if __name__ == "__main__":

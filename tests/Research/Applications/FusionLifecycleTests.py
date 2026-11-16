@@ -1,6 +1,8 @@
 import json as JsonCodec
+import sqlite3 as SqlCodec
 import subprocess as Subprocess
 import sys as System
+from contextlib import closing as CloseConnection
 from pathlib import Path as FilePath
 from typing import cast as CastValue
 
@@ -14,7 +16,7 @@ from tests.Research.Applications.FusionPhaseQueueTests import (
     RunFusionTool,
 )
 from tests.Research.Applications.RunQueueHost import RunQueueHost
-from tests.Research.SupervisorClient import SessionHost
+from tests.Research.SupervisorClient import FixtureJob, SessionHost
 
 # the disposable provider hosts the actual owner cli in a separate process
 KLifecycleTool = (
@@ -23,7 +25,9 @@ KLifecycleTool = (
 
 
 # the driver must recover the actual durable paired queue after accepted phase a
-def PrepareCycle(Dispatch: DispatchHost) -> tuple[SessionHost, FilePath, bytes]:
+def PrepareCycle(
+    Dispatch: DispatchHost, ReservePair: bool = False
+) -> tuple[SessionHost, FilePath, bytes]:
     Output = Dispatch.RootPath / "Prepared"
     PlanInfo = PreparePair(Output, False)
     Harness = MakeQueueHost(Dispatch.RootPath, PlanInfo["source_revision"])
@@ -33,6 +37,8 @@ def PrepareCycle(Dispatch: DispatchHost) -> tuple[SessionHost, FilePath, bytes]:
     Inbox = Dispatch.RootPath / "Inbox"
     Inbox.mkdir(mode=0o700)
     Receipt = Inbox / "Queue.json"
+    if ReservePair:
+        QueueRivals(Harness)
     _ = RunFusionTool(
         "re/automation/ApplicationWorkers/QueueFusionPhases.py",
         [
@@ -44,11 +50,27 @@ def PrepareCycle(Dispatch: DispatchHost) -> tuple[SessionHost, FilePath, bytes]:
             "application:fusion:local",
             "--receipt",
             str(Receipt),
-        ],
+        ]
+        + (["--owner-lifecycle"] if ReservePair else []),
     )
     Registry = (Dispatch.RootPath / "Runners.json").read_bytes()
     SelectFixture(Dispatch, Harness)
     return Harness, Receipt, Registry
+
+
+# the older contenders become runnable only after the accepted phase establishes custody
+def QueueRivals(Harness: SessionHost) -> None:
+    Harness.SubmitJobs(
+        [
+            FixtureJob(
+                NameValue,
+                "capture.fusion",
+                resources=["application:fusion:local"],
+                inputs={"source": "fixture:rival-input"},
+            )
+            for NameValue in ("fixture:rival-first", "fixture:rival-second")
+        ]
+    )
 
 
 # true controller settlement and spool acknowledgement precede phase admission
@@ -195,6 +217,7 @@ def ExerciseLaunch(
     PhaseB: str,
     Claim: FilePath,
     ModeName: str,
+    ExpectHold: bool = False,
 ) -> None:
     Child = Subprocess.Popen(
         [
@@ -220,7 +243,9 @@ def ExerciseLaunch(
             assert (Dispatch.Endpoint / "fence.json").is_file()
         else:
             assert Status["status"] == "waiting_for_phase_b"
-            FinishCycle(Dispatch, Harness, Receipt, PhaseB, Claim, Child.pid)
+            FinishCycle(
+                Dispatch, Harness, Receipt, PhaseB, Claim, Child.pid, ExpectHold
+            )
     finally:
         _ = Child.communicate("\n", timeout=5)
         assert Child.returncode == 0
@@ -234,6 +259,7 @@ def FinishCycle(
     PhaseB: str,
     Claim: FilePath,
     PeerPid: int,
+    ExpectHold: bool = False,
 ) -> None:
     Result = Dispatch.RootPath / "PhaseBResult.json"
     _ = Result.write_text('{"fixture": true}', encoding="utf-8")
@@ -253,9 +279,13 @@ def FinishCycle(
             "disposable",
         ],
     )
+    if ExpectHold:
+        AssertClaimable(Harness, None)
     _ = AdvanceCycle(Dispatch, Harness, Receipt, "final-lost", 73, PeerPid)
     Active = Dispatch.Endpoint / "fusion-lifecycle-active.json"
     assert Active.is_file()
+    if ExpectHold:
+        AssertClaimable(Harness, None)
     Status = AdvanceCycle(Dispatch, Harness, Receipt, "resume")
     assert Status["status"] == "lifecycle_verified"
     PhaseInfo = CastValue(dict[str, object], Status["phase_b"])
@@ -264,3 +294,205 @@ def FinishCycle(
     assert PeerInfo["pid"] == PeerPid
     assert PhaseInfo["native_qualified"] is False
     assert not Active.exists()
+
+
+# a real claim response proves whether a runnable contender can take the held installation
+def AssertClaimable(Harness: SessionHost, Expected: str | None) -> None:
+    Destination = Harness.RootPath / "ContendingClaim.json"
+    Output = RunFusionTool(
+        "re/automation/Controller.py",
+        [
+            "--store",
+            str(Harness.StorePath),
+            "claim",
+            "--worker",
+            "fixture:contender",
+            "--claim-file",
+            str(Destination),
+        ],
+    )
+    assert JsonCodec.loads(Output)["job"] == Expected
+    assert Destination.is_file() == (Expected is not None)
+
+
+# an interrupted supervisor has committed phase a without performing acknowledgement
+def StopAfterFirst(Dispatch: DispatchHost, Harness: SessionHost) -> None:
+    RunnerPath = Dispatch.RootPath / "Runners.json"
+    Runners = JsonCodec.loads(RunnerPath.read_bytes())
+    Runners["runners"]["capture.fusion"]["application_installation"] = str(
+        Dispatch.ConfigFile
+    )
+    _ = RunnerPath.write_text(JsonCodec.dumps(Runners), encoding="utf-8")
+    Process = Subprocess.run(
+        [
+            System.executable,
+            "-B",
+            str(KLifecycleTool),
+            "acceptance-crash",
+            "--config",
+            str(Harness.ConfigFile),
+            "run",
+            "--idle-seconds",
+            "3",
+            "--max-seconds",
+            "50",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=60,
+    )
+    assert Process.returncode == 74, Process.stdout + Process.stderr
+
+
+# the installed priority lane must ignore requested work blocked by the same reservation
+def InstallGrid(Harness: SessionHost, PhaseB: str) -> None:
+    assert Harness.StorePath is not None
+    with CloseConnection(
+        SqlCodec.connect(Harness.StorePath / "ledger.sqlite3")
+    ) as DbRead:
+        JobSpecs = [
+            JsonCodec.loads(
+                DbRead.execute(
+                    "SELECT definition FROM jobs WHERE id=?", (JobName,)
+                ).fetchone()[0]
+            )
+            for JobName in (PhaseB, "fixture:rival-first")
+        ]
+    Priorities: list[dict[str, object]] = [
+        {
+            "id": SpecInfo["id"],
+            "family": "fixture",
+            "documents": [],
+            "distinguishing_evidence": [],
+            "installation": "application:fusion:local",
+            "grid": GridKind,
+        }
+        for SpecInfo, GridKind in zip(JobSpecs, ("standard", "requested"), strict=True)
+    ]
+    PlanPath = Harness.RootPath / "GridPlan.json"
+    _ = PlanPath.write_text(
+        JsonCodec.dumps(
+            {"schedule_version": 1, "jobs": JobSpecs, "priority": Priorities}
+        ),
+        encoding="utf-8",
+    )
+    _ = RunFusionTool(
+        "re/automation/Controller.py",
+        ["--store", str(Harness.StorePath), "schedule", str(PlanPath)],
+    )
+
+
+# neither an unacknowledged hold nor a single admitted phase may form a runnable group
+def AssertNoGroup(Harness: SessionHost) -> None:
+    Registry = Harness.RootPath / "GroupRegistry.json"
+    _ = Registry.write_text(
+        '{"group_registry_version":1,"kinds":{"capture.fusion":16777216}}',
+        encoding="utf-8",
+    )
+    Destination = Harness.RootPath / "RivalGroup"
+    Reply = RunFusionTool(
+        "re/automation/Controller.py",
+        [
+            "--store",
+            str(Harness.StorePath),
+            "claim-group",
+            "--worker",
+            "fixture:contender",
+            "--pool",
+            "fusion",
+            "--registry",
+            str(Registry),
+            "--claim-dir",
+            str(Destination),
+        ],
+    )
+    assert JsonCodec.loads(Reply)["count"] == 0
+    assert not Destination.exists()
+
+
+# the older timeout hold uses the actual a03 terminal path on a different installation
+def AddTimeoutHold(Harness: SessionHost) -> dict[str, object]:
+    Process = Subprocess.run(
+        [
+            System.executable,
+            "-B",
+            str(KLifecycleTool),
+            "legacy-timeout",
+            str(Harness.StorePath),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+        timeout=30,
+    )
+    assert Process.returncode == 0, Process.stderr + Process.stdout
+    return CastValue(dict[str, object], JsonCodec.loads(Process.stdout))
+
+
+# neither activation nor final release can erase another installation timeout epoch
+def AssertTimeout(Harness: SessionHost, Original: dict[str, object]) -> None:
+    assert Harness.StorePath is not None
+    with CloseConnection(
+        SqlCodec.connect(Harness.StorePath / "ledger.sqlite3")
+    ) as DbRead:
+        HoldRow = DbRead.execute(
+            "SELECT resource,epoch,job_id,receipt,result FROM application_holds WHERE resource=?",
+            (Original["resource"],),
+        ).fetchone()
+    KeysHeld = ("resource", "epoch", "job_id", "receipt", "result")
+    assert dict(zip(KeysHeld, HoldRow, strict=True)) == Original
+    assert Harness.ReadJob("fixture:legacy")["state"] == "waiting_application"
+
+
+# the older grid candidate cannot park fusion during either handoff or final proof recovery
+@TestMark.skipif(
+    System.platform != "darwin", reason="macOS restart policy and endpoint custody"
+)
+@TestMark.parametrize("CaseName", ("complete", "invalidated"))
+def CheckReserve(TmpPath: FilePath, CaseName: str) -> None:
+    Dispatch = DispatchHost(TmpPath.resolve())
+    Harness, Receipt, Registry = PrepareCycle(Dispatch, True)
+    QueueInfo = JsonCodec.loads(Receipt.read_bytes())
+    PhaseB = CastValue(str, QueueInfo["jobs"]["b"])
+    Claim = Dispatch.RootPath / "ReservedClaim.json"
+    with RunQueueHost(Dispatch, "owner-restart-host"):
+        StopAfterFirst(Dispatch, Harness)
+        TimeoutProof = AddTimeoutHold(Harness) if CaseName == "complete" else {}
+        assert Harness.ReadJob(QueueInfo["jobs"]["a"])["state"] == "completed"
+        Harness.BindBytes("fixture:rival-input", b"runnable competitor")
+        AssertClaimable(Harness, None)
+        AssertNoGroup(Harness)
+        RecoverFirst(Dispatch, Harness, Receipt, Registry)
+        if CaseName == "invalidated":
+            Harness.BindBytes(QueueInfo["plan_binding"], b"replaced plan")
+            AssertClaimable(Harness, None)
+            assert (
+                AdvanceCycle(Dispatch, Harness, Receipt, "resume", 1)["status"]
+                == "lifecycle_refused"
+            )
+            return
+        InstallGrid(Harness, PhaseB)
+        AssertNoGroup(Harness)
+        ClaimSecond(Harness, PhaseB, Claim)
+        _ = AdvanceCycle(Dispatch, Harness, Receipt, "exit-lost", 73)
+    ExerciseLaunch(Dispatch, Harness, Receipt, PhaseB, Claim, "launch-exit", True)
+    AssertClaimable(Harness, "fixture:rival-first")
+    AssertTimeout(Harness, TimeoutProof)
+
+
+# a replacement supervisor drains the accepted spool before the owner opens the reserved phase
+def RecoverFirst(
+    Dispatch: DispatchHost, Harness: SessionHost, Receipt: FilePath, Registry: bytes
+) -> None:
+    assert (
+        AdvanceCycle(Dispatch, Harness, Receipt, "resume")["status"]
+        == "waiting_for_acknowledged_phase_a"
+    )
+    _ = Harness.RunIdle()
+    _ = (Dispatch.RootPath / "Runners.json").write_bytes(Registry)
+    Receipt.unlink()
+    assert (
+        AdvanceCycle(Dispatch, Harness, Receipt, "resume")["status"]
+        == "waiting_for_phase_b_claim"
+    )

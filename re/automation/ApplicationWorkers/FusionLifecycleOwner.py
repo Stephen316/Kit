@@ -25,6 +25,7 @@ from AuditFusionPhases import validate_queue
 from FusionExitRecords import pin, read_pinned
 from FusionLifecyclePair import ACTIONABLE, phase_state, select_pair
 from FusionLifecycleRecords import active_intent, eligible_exit, optional, pin_handoff
+from FusionLifecycleRegistration import admit, pending_admission, release
 from FusionOwnerRestart import record_restart
 from FusionQueueReceipt import owned_bytes, receipt_bytes, seal
 from FusionQuitObserver import watch
@@ -164,11 +165,21 @@ class Owner:
         return self.advance(active, path, validate_queue(json.loads(queue_raw)))
 
     def advance(self, active, queue_path, queue):
-        current, budget = phase_state(
-            self.store, queue, active, self.grace, self.args.wait_seconds
-        )
         final_path = (
             self.root / f"fusion-lifecycle-{active['restart_intent_sha256']}.json"
+        )
+        if pending_admission(self.store, queue, self.config, active, final_path):
+            with owner_lock(self.root / "dispatch.lock"):
+                verified = record_restart(
+                    self.args.installation, self.store, queue_path, check=True
+                )
+                require(
+                    verified["intent_sha256"] == active["restart_intent_sha256"],
+                    "drained Fusion acknowledgement belongs to another intent",
+                )
+                admit(self.store, queue, self.config, active)
+        current, budget = phase_state(
+            self.store, queue, active, self.grace, self.args.wait_seconds
         )
         final = optional(final_path)
         if final is not None:
@@ -297,6 +308,12 @@ class Owner:
         marker = self.root / ACTIVE
         require(
             file_bytes(marker) == encoded(active), "active Fusion lifecycle changed"
+        )
+        final_path = (
+            self.root / f"fusion-lifecycle-{active['restart_intent_sha256']}.json"
+        )
+        release(
+            self.store, queue, self.config, active, final_path, receipt_bytes(final)
         )
         marker.unlink()
         sync_directory(marker.parent)
