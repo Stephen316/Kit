@@ -102,6 +102,12 @@ DIMENSIONLESS_FIELDS = {
     "MaterialRecord": {"ColorValue"},
     "ScaleFeature": {"factors"},
 }
+PRIMITIVE_TYPES = {
+    "number": (int, float),
+    "integer": (int,),
+    "boolean": (bool,),
+    "string": (str,),
+}
 
 
 def tag(value):
@@ -239,6 +245,24 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
             )
         if kind == "ParameterValue":
             category, unit = tag(value.kind), value.unit
+            expected = (
+                PRIMITIVE_TYPES.get(category) if isinstance(category, str) else None
+            )
+            if expected is not None and type(value.value) not in expected:
+                issue(node["path"] + path, "invalid_parameter_value_domain", value)
+                graph["issues"][-1]["observation"] = {
+                    "declared_kind": category,
+                    "value": value.value,
+                    "value_type": type(value.value).__name__,
+                    "unit": unit,
+                }
+            elif not isinstance(category, str) or category not in {
+                *PRIMITIVE_TYPES,
+                "length",
+                "angle",
+                "quantity",
+            }:
+                issue(node["path"] + path, "unsupported_parameter_value_kind", value)
             if category in {"length", "angle"} and type(value.value) not in (
                 int,
                 float,
