@@ -20,7 +20,7 @@ class OrderedMap:
     Entries: tuple[tuple[str, ExchangeValue], ...]
 
 
-ExchangeValue = bool | int | float | str | OrderedMap | tuple[float, ...]
+ExchangeValue = bool | int | float | str | OrderedMap | tuple[float | OrderedMap, ...]
 
 
 # preserve token kinds and lexical order without normalizing map duplicates

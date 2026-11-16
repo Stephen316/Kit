@@ -726,3 +726,24 @@ def CheckObjectDb() -> None:
         Report["replay_sha256"]
         == "2a3a7e30bc31defa0f341ac9256856b17c1095baab7a3c0ad97cf5520b793799"
     )
+
+
+# each authored width height and Boss length must own one saved annotation record
+def CheckPmiDb() -> None:
+    Report = LoadReport("VerifyPmiDatabase.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["full_presentation"] == 5
+    assert Report["annotations"] == 36
+    assert (
+        Report["replay_sha256"]
+        == "15b6da57b7f543e005f4120c3e5dc0f35c6010479e09f3c778e6497385fe4ae0"
+    )
+
+
+# the compatibility manager must retain its generated configuration and body owners
+def CheckContent() -> None:
+    Report = LoadReport("VerifyContentManager.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "6d54767e03caf52459ae49a0c8ed84dd05cbc5a60456e451d2180c00313910a0"
+    )

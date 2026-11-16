@@ -92,7 +92,6 @@ and an inconsistent repeated folder count. [Verifier](VerifyContentManager.py)
 The archive-only replay establishes the bounded member layout and
 construction. A prior observation found that a legacy assembly opened
 after omission of this member. The licensed P03 omission run retained the
-member. Standalone part omission, package assembly, and native acceptance
-of the generated member still require licensed evidence.
+member. The ordinary package now constructs this member from its linked header, configuration, and generated body. Standalone part omission and native acceptance of a generated whole file still require licensed evidence.
 [Legacy assembly measurement](../measurements/Measure.md),
 [Licensed P03 omission run](../../../Documentation/Changes/Research/Writers/SolidWorks/SolidWorksArchiveOmissions.md)

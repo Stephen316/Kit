@@ -5,6 +5,7 @@ from CmgrComposition import BuildCmgr, CmgrDocument, CmgrRectangularBoss
 from CmgrIndex import CmgrIndex, EncodeCmgrIndex, KConfigurationIndex
 from CmgrOpening import CmgrOpenFields, KFirstConfigurationId
 from CmgrVisualPrefix import CmgrVisualFields
+from ContentManager import CONTENT_MANAGER, ContentClock
 from DefinitionStream import DefinitionFields, EncodePartDefinition
 from HeaderLogs import HeaderLogState
 from HeaderSelf import HeaderSelf
@@ -13,6 +14,7 @@ from OrdinaryConfig import OrdinaryConfig, OrdinaryConfigArchive
 from OrdinaryProfile import OrdinaryProfile
 from PackageIndices import EncodePackageIndices, MakePartIndex, PackageXmlState
 from PartConfigHeaderDb import ConfigExchange, EncodeConfigHeaderDb, KConfigDb
+from PartContentBinding import EncodePackageContent, PackageContent
 from PartDocProperties import (
     CoreProperties,
     CustomSummary,
@@ -25,6 +27,7 @@ from PartObjectExchange import EncodeObjectExchangeDb, KObjectDb, ObjectExchange
 from PartOle import EncodePartOle, OleInventory
 from PartOpc import EncodePartOpc
 from PartOpenTime import OPEN_TIME_STREAM, EncodePartOpenTime, PartOpenTime
+from PartPmiDatabase import EncodePmiDb, KPmiDb, PmiDimensions, PmiIndex
 from PartProperties import (
     CUSTOM_PROPERTIES,
     EncodePartProperties,
@@ -76,6 +79,8 @@ class PackageState:
     Indices: PackageXmlState
     Exchange: ConfigExchange
     Objects: ObjectExchange
+    Pmi: PmiIndex
+    Content: PackageContent
 
 
 # CMgr reuses the same atom, file identity, and bounds carried by the generated part.
@@ -177,6 +182,26 @@ def BuildOrdinaryPackage(
     )
     Streams.update(
         EncodePackageIndices(Generation, Identity, State.Indices, Profile, Boss)
+    )
+    Streams[CONTENT_MANAGER] = EncodePackageContent(
+        Generation,
+        State.Manager.Opening.NameValue,
+        ContentClock(
+            Header.Tail.CreationTime,
+            Header.Tail.UpdateTime,
+            Header.Logs.UpdateStamp,
+        ),
+        State.Indices.Information,
+        Config.History.Atom,
+        Boss,
+        State.Content,
+    )
+    DocumentFile = Header.SelfReference.File
+    Streams[KPmiDb] = EncodePmiDb(
+        Generation,
+        State.Pmi,
+        None if DocumentFile.FilePath else DocumentFile.Title,
+        PmiDimensions(Profile, Boss),
     )
     Streams[KObjectDb] = EncodeObjectExchangeDb(
         Generation, State.Objects, Resolved.System

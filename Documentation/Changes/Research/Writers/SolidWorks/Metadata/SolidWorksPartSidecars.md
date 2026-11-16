@@ -103,10 +103,11 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Full typed payload | `Contents/Config-0`, `Contents/Config-0-ResolvedFeatures` | `OrdinaryConfig.BuildOrdinaryConfig` and `ResolvedPart.BuildOrdinaryResolved` share the generated configuration map. |
 | Full typed payload | `Contents/3DExperienceExchange_ConfigHeader` | [Configuration exchange writer](SolidWorksConfigurationExchange.md) emits the sole ordinary configuration record |
 | Fresh-document payload | `Contents/3DExperienceExchange2` | [Object exchange writer](SolidWorksObjectExchange.md) emits the live document, folder, three datums and table of contents |
-| Open | `Contents/PMISemanticDataDB` | Typed PMI annotation records or licensed omission evidence |
+| Full typed payload | `Contents/PMISemanticDataDB` | [PMI data](SolidWorksPmiDatabase.md) emits the scoped width, height and optional depth annotation records |
 | Typed payload with prerequisites | `Contents/eModelLic` | [The licensed package field](SolidWorksEModelLicense.md) uses the same caller-supplied package code as the document header |
 | Open | `Preview`, `PreviewPNG` | Native preview encoding from generated content or licensed omission evidence |
-| Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
+| Full typed payload | `SwDocContentMgr/SwDocContentMgrInfo` | [Compatibility content](../../../../../../re/solidworks/WriterResearch/ContentManager.md) uses the shared configuration, header, units and body owner |
+| Open | `ThirdPtyStore/VisualStates` | Visualization state construction or licensed omission evidence |
 | Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
 | Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
 | Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
@@ -114,9 +115,9 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Typed payload with prerequisites | `docProps/ISolidWorksInformation.xml` | `PartInformation.EncodeInformation` emits the ordinary information table from caller-owned document and unit values |
 | Typed payload with prerequisites | `swXmlContents/Features`, `swXmlContents/KeyWords` | `PartFeatureIndex.EncodeFeatures` and `PartKeywords.EncodeKeywords` use the same document identity plus caller-owned sketch and optional Boss display state |
 
-There are 28 retained members with typed constructors, including three
+There are 30 retained members with typed constructors, including three
 fresh-document payloads and two manifests with property stream prerequisites.
-Five remain open. Native acceptance of a fully generated archive is pending.
+Three remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
 [Document property writers](SolidWorksDocumentProperties.md)
 [Configuration property writer](SolidWorksConfigurationProperties.md)

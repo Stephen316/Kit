@@ -6,6 +6,7 @@ from struct import unpack_from
 from xml.etree.ElementTree import fromstring
 
 from CmgrIndex import KConfigurationIndex, ReadCmgrIndex
+from ContentManager import CONTENT_MANAGER, ReadContentManager
 from DefinitionReadback import ReadModernPartDefinition
 from HeaderLogs import ReadHeaderLogs
 from HeaderSelf import ReadHeaderSelf
@@ -21,6 +22,7 @@ from OrdinaryPackage import (
 )
 from PackageIndices import MakePartIndex, PackageXmlState
 from PartConfigHeaderDb import ConfigExchange, KConfigDb
+from PartContentBinding import PackageContent
 from PartDocProperties import CustomSummary, ReadCoreProperties
 from PartFeatureIndex import KFeaturesXml
 from PartInformation import KInfoXml
@@ -30,6 +32,7 @@ from PartObjectExchange import KObjectDb
 from PartOle import ReadPartOle
 from PartOpc import CORE_PROPERTIES
 from PartOpenTime import OPEN_TIME_STREAM, ReadPartOpenTime
+from PartPmiDatabase import KPmiDb
 from PartProperties import CUSTOM_PROPERTIES, ReadPartProperties
 from VerifyBossOpen import verify_measured
 from VerifyCmgrComposition import compare_cmgr_bytes, read_cmgr_document
@@ -39,6 +42,7 @@ from VerifyModelHeader import FRAME_OFFSET, FRAME_WIDTH, measured_bounds
 from VerifyObjectExchangeDb import LiveRecords, ReadExchangeKeys
 from VerifyPartFeatureIndex import ReadDrivers, ReadIdentity
 from VerifyPartInformation import TypedMetadata
+from VerifyPmiDatabase import ReadPmiIndex
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Bookkeeping import KModelStamps
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -92,6 +96,7 @@ def read_package(archive, generation, measurement):
     )
     _, drivers, _ = ReadDrivers(keywords, "P03" if measurement["body_count"] else "P01")
     object_db = archive.require(KObjectDb)
+    content = ReadContentManager(generation, archive.require(CONTENT_MANAGER))
     state = PackageState(
         PackageHeader(
             logs, self_reference, replace(tail, Bounds=measured_bounds(measurement))
@@ -112,6 +117,12 @@ def read_package(archive, generation, measurement):
         ),
         ConfigExchange(*ReadHeaderIdentity(archive.require(KConfigDb))),
         ReadExchangeKeys(object_db, LiveRecords(object_db)),
+        ReadPmiIndex(archive.require(KPmiDb)),
+        PackageContent(
+            content.MaterialName,
+            content.MaterialId,
+            None if content.Body is None else content.Body.Visible,
+        ),
     )
     return state, frame, mass_at, mass
 
@@ -166,7 +177,7 @@ def verify_generated_package(
     streams = candidate.streams
     require(
         (candidate.format_version, ContainerMo(streams), len(streams))
-        == (4, generation, 28),
+        == (4, generation, 30),
         "ordinary generated package roster and version",
     )
     CheckVersionStreams(generation, streams)

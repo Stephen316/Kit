@@ -191,7 +191,7 @@ def Report():
         "fresh_body_sha256": Fresh,
         "fresh_sketch_sha256": Empty,
         "negative_controls": 4,
-        "cases": Cases,
+        "captures": Cases,
     }
 
 
