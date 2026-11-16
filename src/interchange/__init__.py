@@ -121,6 +121,7 @@ from interchange.Features.FeatureKinds import (
 from interchange.Features.FeaturePlaneExt import PlaneExtrude
 from interchange.Features.FeaturePlaneRev import PlaneRevolve
 from interchange.Features.FeatureStep import FeatureCfgState, FeatureStep
+from interchange.Features.ScopedExtrude import ScopedExtrude
 from interchange.geometry.Models.GeometryConics import (
     ArcEllipseGeom,
     ArcHyperGeom,
@@ -204,6 +205,7 @@ ExtrusionEndCondition = ExtrudeEnd
 
 # the public extrusion feature name must remain available so existing integrations keep resolving the canonical implementation
 ExtrusionFeature = ExtrudeFeature
+ScopedExtrusionFeature = ScopedExtrude
 
 # the public feature definition name must remain available so existing integrations keep resolving the canonical implementation
 FeatureDefinition = FeatureDef
@@ -401,6 +403,7 @@ __all__ = (
     "ReferencePlaneFeature",
     "RevolutionFeature",
     "ScaleFeature",
+    "ScopedExtrusionFeature",
     "Selection",
     "SelectionPathElement",
     "Severity",

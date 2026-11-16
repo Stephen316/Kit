@@ -14,6 +14,7 @@ from interchange.Features.FeaturePlaneExt import PlaneExtrude
 from interchange.Features.FeaturePlaneRev import PlaneRevolve
 from interchange.Features.FeatureStep import FeatureStep
 from interchange.Features.PlaneExtValues import GetPlaneExt
+from interchange.Features.ScopedExtrude import ScopedExtrude
 from interchange.geometry.Models.Selection import Selection
 from interchange.geometry.Models.Sketch import Sketch
 from interchange.geometry.Models.SupportPlane import SupportPlane
@@ -30,6 +31,14 @@ def GetDefErrors(
     Sketches: TypeMap[str, Sketch],
 ) -> tuple[str, ...]:
     Definition = StepValue.definition
+    if isinstance(Definition, ScopedExtrude):
+        BodyIds = set(Definition.SelectedBodyIds) | set(Definition.AffectedBodyIds)
+        Missing = sorted(BodyIds - IdentitySets["bodies"])
+        if Missing:
+            return (
+                f"scoped extrusion {StepValue.id} references missing bodies {Missing}",
+            )
+        Definition = Definition.Extrusion
     if isinstance(Definition, PlaneRevolve):
         return GetPlaneRevErrs(
             StepValue, Definition, Selections, IdentitySets["support_planes"]

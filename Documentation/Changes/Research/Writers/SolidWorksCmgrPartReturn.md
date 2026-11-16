@@ -13,4 +13,4 @@ The read-only replay used 25 receipt-pinned saves at `466dcb172dfa3803463e07ccde
 
 The replay digest is `093d6b0ba1546d7812a14cf2e592d4b2a0e30a2714d8851671a41fad5ea4fc27`. It covers each file digest, part start and return offsets, ordered atom IDs and part slice digest in receipt order.
 
-Hosted `CheckCmgr` invokes [`VerifyCmgrColor.py`](../../../../re/solidworks/WriterResearch/VerifyCmgrColor.py) in a separate process. The verifier compares generated part bytes with each pinned archive, checks that the writer leaves its shared allocator unchanged and requires all four observed record forms. Hosted reconstruction and full native open, rebuild, edit and save remain pending.
+Hosted `CheckCmgr` invokes [`VerifyCmgrColor.py`](../../../../re/solidworks/WriterResearch/VerifyCmgrColor.py) in a separate process. The verifier compared generated part bytes with each pinned archive, checked that the writer left its shared allocator unchanged and required all four observed record forms at `408f6ba3`. Full native open, rebuild, edit and save remain pending. [Hosted archive step](https://github.com/TryUniCAD/Kit/actions/runs/43858305980/job/133268369127)

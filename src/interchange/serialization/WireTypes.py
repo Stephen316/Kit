@@ -27,6 +27,7 @@ KWireTypes: TypeMap[str, str] = {
     "PlaneVector": "Vector2",
     "RefPlaneFeature": "ReferencePlaneFeature",
     "RevolveFeature": "RevolutionFeature",
+    "ScopedExtrude": "ScopedExtrusionFeature",
     "SelectPathElem": "SelectionPathElement",
     "SketchRelation": "SketchConstraint",
     "SpaceVector": "Vector3",
