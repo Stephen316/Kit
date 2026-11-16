@@ -53,8 +53,10 @@ def AwaitStatus(
     Recovery: str | None = None,
     *,
     Preflight: str | None = None,
+    Replacement: str | None = None,
+    WaitSeconds: int = 12,
 ) -> dict[str, object]:
-    Expires = TimeClock.monotonic() + 12
+    Expires = TimeClock.monotonic() + WaitSeconds
     while TimeClock.monotonic() < Expires:
         Content = LogPath.read_text(encoding="utf-8")
         for RecordLine in Content.split("\n")[:-1]:
@@ -67,6 +69,10 @@ def AwaitStatus(
                 and (
                     Preflight is None
                     or Report.get("replacement_preflight_status") == Preflight
+                )
+                and (
+                    Replacement is None
+                    or Report.get("archive_replacement_status") == Replacement
                 )
             ):
                 return Report

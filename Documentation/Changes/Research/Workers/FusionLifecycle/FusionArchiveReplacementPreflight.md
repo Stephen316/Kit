@@ -18,3 +18,5 @@ The hosted disposable AppKit and real A03 timeout case checks the retained
 preflight, refuses a changed challenge, and invalidates the original
 generation through the normal controller. It also checks refusal after a
 change to the private commissioning record. Hosted verification is pending.
+
+[Archive replacement launch and bootstrap](FusionArchivedReplacement.md)

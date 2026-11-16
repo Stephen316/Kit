@@ -1,6 +1,7 @@
 import AppKit
 import CryptoKit
 import Darwin
+import Dispatch
 import Foundation
 
 func refuse(_ code: Int32, _ reason: String) -> Never {
@@ -57,9 +58,59 @@ func coldEndpointIsEmpty(_ root: String) -> Bool {
         && (try? FileManager.default.contentsOfDirectory(atPath: jobs)) == []
 }
 
+func lowercaseHex(_ value: Any?, count: Int) -> String? {
+    guard let value = value as? String, value.utf8.count == count,
+          value.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }) else {
+        return nil
+    }
+    return value
+}
+
+func matchesRecord(_ path: String, _ checksum: String) -> Data? {
+    guard matchesPhysicalPath(path, path),
+          let raw = boundedBytes(URL(fileURLWithPath: path), maximum: 1_048_576),
+          digest(raw) == checksum else {
+        return nil
+    }
+    return raw
+}
+
+func archiveChallenge(
+    _ root: String, _ requestPath: String, _ record: [String: Any], _ arguments: [String]
+) -> String? {
+    guard record["scope"] as? String == "owner_fusion_archived_replacement_launch",
+          let archive = lowercaseHex(record["archive_manifest_sha256"], count: 64),
+          let basis = lowercaseHex(record["recovery_basis_sha256"], count: 64),
+          let preflight = lowercaseHex(record["replacement_preflight_sha256"], count: 64),
+          let priorExit = lowercaseHex(record["commissioned_exit_sha256"], count: 64),
+          let admission = lowercaseHex(record["commissioned_admission_sha256"], count: 64),
+          let queue = lowercaseHex(record["queue_job_id"], count: 32),
+          let challenge = lowercaseHex(record["launch_challenge"], count: 48),
+          (requestPath as NSString).lastPathComponent == "archived-replacement-launch-\(archive).json",
+          matchesRecord(root + "/archived-recovery-basis-\(archive).json", basis) != nil,
+          matchesRecord(root + "/failed-spools/\(queue)/ProbeArchive.json", archive) != nil,
+          matchesRecord(root + "/initial-native-exit-\(admission).json", priorExit) != nil,
+          let context = matchesRecord(root + "/archived-replacement-preflight-\(archive).json", preflight),
+          let decoded = try? JSONSerialization.jsonObject(with: context),
+          let binding = decoded as? [String: Any],
+          binding["scope"] as? String == "fusion_archived_replacement_preflight",
+          binding["recovery_basis_sha256"] as? String == basis,
+          binding["archive_manifest_sha256"] as? String == archive,
+          binding["commissioned_exit_sha256"] as? String == priorExit,
+          binding["launch_challenge"] as? String == challenge,
+          let bundle = binding["bundle"] as? [String: Any],
+          bundle["bundle_identifier"] as? String == arguments[3],
+          bundle["info_sha256"] as? String == arguments[4],
+          bundle["executable_sha256"] as? String == arguments[5] else {
+        return nil
+    }
+    return challenge
+}
+
 let arguments = CommandLine.arguments
 let coldStart = arguments.count == 11 && arguments[10] == "cold-start"
-guard [9, 10].contains(arguments.count) || coldStart,
+let archiveRecovery = arguments.count == 11 && arguments[10] == "archive-recovery"
+guard [9, 10].contains(arguments.count) || coldStart || archiveRecovery,
       arguments[1].hasPrefix("/"),
       let wait = Double(arguments[6]),
       wait > 0, wait <= 300 else {
@@ -98,7 +149,13 @@ guard matchesPhysicalPath(requestPath, requestPath),
 }
 let coldChallenge: String?
 let fenceDigest: String?
-if coldStart {
+if archiveRecovery {
+    guard let challenge = archiveChallenge(root, requestPath, record, arguments) else {
+        refuse(6, "Exact archive replacement custody is unavailable")
+    }
+    coldChallenge = challenge
+    fenceDigest = nil
+} else if coldStart {
     let draftPath = root + "/cold-start-request.json"
     guard (requestPath as NSString).lastPathComponent == "cold-start-launch.json",
           record["scope"] as? String == "owner_fusion_cold_start_launch",
@@ -155,6 +212,14 @@ configuration.promptsUserIfNeeded = false
 
 if let coldChallenge {
     configuration.environment = ["KIT_FUSION_OWNER_COLD_START": coldChallenge]
+    if archiveRecovery {
+        FileHandle.standardOutput.write(Data([0x52]))
+        guard FileHandle.standardInput.readData(ofLength: 1) == Data([0x78]),
+              archiveChallenge(root, requestPath, record, arguments) == coldChallenge,
+              absent(root + "/grant.json") else {
+            refuse(6, "Exact archive replacement admission is unavailable")
+        }
+    }
     guard coldEndpointIsEmpty(root), digest(request, maximum: 1_048_576) == arguments[8] else {
         refuse(7, "The initial application endpoint changed before launch")
     }
@@ -168,7 +233,11 @@ let dispatched = Date().timeIntervalSince1970
 if let deadline = dispatchDeadline, dispatched >= deadline {
     refuse(8, "The reviewed launch admission expired before dispatch")
 }
+let submission = DispatchSemaphore(value: 0)
 workspace.openApplication(at: target, configuration: configuration) { app, error in
+    if archiveRecovery {
+        submission.wait()
+    }
     if let error {
         let failure = error as NSError
         refuse(3, "LaunchServices error \(failure.domain):\(failure.code)")
@@ -192,6 +261,10 @@ workspace.openApplication(at: target, configuration: configuration) { app, error
     }
     FileHandle.standardOutput.write(response)
     exit(0)
+}
+if archiveRecovery {
+    FileHandle.standardOutput.write(Data([0x44]))
+    submission.signal()
 }
 
 _ = Timer.scheduledTimer(withTimeInterval: wait, repeats: false) { _ in
