@@ -129,6 +129,10 @@ The synthetic holdout supported and contradicted the same frozen hypothesis
 in separate runs, and the worker refused the repeated lineage.
 [Hosted evidence artifact](https://github.com/TryUniCAD/Kit/actions/runs/43763760551/artifacts/14181740600)
 
+The private A07 historical replay at source `8425b5fbc9bbda0b19c9efbd8dc566d2ea6cc0c4` used the original paired P03 and P04 discovery captures from `89c25945f5833ad9c3a1c6c683df510b5702dd54` and the real A03 supervisor. It settled 23 jobs, including 20 rescans, and parked three. An unchanged submission reused all 24 issued receipts with zero new attempts. The P03 negative direction supported the partial signed Fusion candidate while refuting the equivalent signed SOLIDWORKS scalar. The P04 through-all counterexample refuted the shared blind-depth hypothesis and released four rescans. The body-selection assessment and both dependent rescans remained parked. Both rescans had zero attempts.
+
+The retained report SHA-256 is `66a1e22b04c02f004ef662b86d0506959c17efbd85ccca57bafaa1e77e5d1744`. The exact body-selection parked receipt SHA-256 is `06414a895e34601d8866dd0cccff87d82da1cbffd90b4829b0a2cdbd9d293fd2`. Its next evidence is accepted licensed Fusion Phase A/B output from the same A03 store and an independently proven saved target-policy field. P05 stays reserved. The separate hosted inference job passed on the same PR head. [Hosted inference results](https://github.com/TryUniCAD/Kit/actions/runs/43902999977/job/133424485649)
+
 The [standalone Fusion search](../Inference/FusionSignedDepthSearch.md) also
 records the second signed-depth copy.
 
