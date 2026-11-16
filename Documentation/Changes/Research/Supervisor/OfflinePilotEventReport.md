@@ -15,4 +15,8 @@ Use this controller evidence alongside independently measured operator intervent
 
 Use the [pinned private evidence report](PrivatePilotEvidence.md) to attach separately sourced intervention, interval and acceptance records to that fixed window.
 
+Add `--dependency-timing` to measure the longest settled dependency chain by summed controller attempt time. The report starts at completed, nonprovisional settlement events in the selected window and follows the exact historical receipts declared as dependencies. Earlier ancestors contribute when those receipts bind the consumed job, result and timing. Each node's duration runs from its controller claim start to the receipt finish. The report gives path-wide attempt time, separate from readiness wait, retry time and independent application acceptance.
+
+The first replay used the [P03 affected depth run](../Inference/FusionDepthAffectedReplay.md). The retained store had 72 events and ten completed attempts. The longest path linked the signed-depth assessment to one archive rescan and totaled 5.37 attempt seconds. The command replayed the same bytes twice without changing the ledger. This measures the historical controller workload.
+
 Hosted controller coverage exercises multiple pages, an event appended beyond the fixed cutoff, a parked claim, replay and byte-identical readback of the store.

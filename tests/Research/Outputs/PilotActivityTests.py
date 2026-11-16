@@ -24,6 +24,57 @@ def CheckPilot(TmpPath: FilePath) -> None:
     VerifyPilot(TmpPath, Client, PageInfo["through"])
 
 
+# dependency timing must follow historical attempts even after the current jobs change
+def CheckTiming(TmpPath: FilePath) -> None:
+    Client = JobClient(TmpPath)
+    BatchPath = TmpPath / "TimingJobs.json"
+    ResultPath = TmpPath / "TimingResult.json"
+    RootJob = FixtureJob("timing:root", "fixture.inspect", lease_seconds=30)
+    ChildJob = FixtureJob(
+        "timing:child", "fixture.inspect", lease_seconds=30, depends_on=["timing:root"]
+    )
+    _ = BatchPath.write_text(
+        JsonCodec.dumps({"jobs": [RootJob, ChildJob]}), encoding="utf-8"
+    )
+    _ = Client.RunCli("submit-batch", str(BatchPath))
+    _ = ResultPath.write_text('{"fixture":true}', encoding="utf-8")
+    for Index in range(2):
+        LeasePath = TmpPath / f"TimingLease{Index}.json"
+        _ = Client.RunCli(
+            "claim", "--worker", "worker:timing", "--claim-file", str(LeasePath)
+        )
+        _ = Client.RunCli(
+            "finish",
+            "--lease",
+            str(LeasePath),
+            "--result",
+            str(ResultPath),
+            "--outcome",
+            "completed",
+        )
+    Window = ["--from-unix", "0", "--until-unix", str(TimeClock.time())]
+    Pinned = ReadActivity(TmpPath, Window + ["--dependency-timing"])
+    Timing = JsonCodec.loads(JsonCodec.dumps(Pinned["dependency_timing"]))
+    assert Timing["settled_events"] == Timing["timed_attempts_with_ancestors"] == 2
+    Chain = Timing["longest_dependency_chain"]
+    assert [Node["job"] for Node in Chain["path"]] == ["timing:root", "timing:child"]
+    assert Chain["attempt_seconds"] == sum(
+        Node["attempt_seconds"] for Node in Chain["path"]
+    )
+    assert Chain["attempt_seconds"] > 0
+    _ = BatchPath.write_text(
+        JsonCodec.dumps({"jobs": [{**RootJob, "rule_version": "rule@2"}]}),
+        encoding="utf-8",
+    )
+    _ = Client.RunCli("submit-batch", str(BatchPath))
+    Replay = Window + [
+        "--through",
+        str(Pinned["through_event_id"]),
+        "--dependency-timing",
+    ]
+    assert ReadActivity(TmpPath, Replay) == Pinned
+
+
 # the activity reporter reads existing evidence without changing controller bytes
 def ReadActivity(RootPath: FilePath, Arguments: list[str]) -> dict[str, object]:
     StorePath = RootPath / "State"

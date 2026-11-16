@@ -8,6 +8,7 @@ import time
 from pathlib import Path
 
 from EventHistory import event_window
+from PilotDependencyTiming import dependency_timing
 from Records import canonical
 
 ACTIONS = {
@@ -67,12 +68,13 @@ def tally_event(activity, event):
         activity["other_events"] += 1
 
 
-def operating_report(store, start, end, after, through):
+def operating_report(store, start, end, after, through, *, time_dependencies=False):
     if not (0 <= start < end <= time.time() and math.isfinite(end)):
         raise ValueError("request an increasing past Unix-time window")
     cursor, scanned, selected = after, 0, 0
     activity = activity_tally()
     identity = hashlib.sha256()
+    receipts = {}
     while True:
         page = event_window(store, None, cursor, through)
         through = page["through"]
@@ -84,11 +86,19 @@ def operating_report(store, start, end, after, through):
             if start <= instant < end:
                 identity.update(canonical(event).encode("utf-8") + b"\n")
                 tally_event(activity, event)
+                if time_dependencies and event["action"] == "finished":
+                    detail = json.loads(event["detail"])
+                    if detail["outcome"] == "completed" and not detail.get(
+                        "waiting_ci_inputs"
+                    ):
+                        if detail["receipt"] in receipts:
+                            raise ValueError("duplicate accepted dependency timing event")
+                        receipts[detail["receipt"]] = event
                 selected += 1
         cursor = page["next_after"]
         if cursor is None:
             break
-    return {
+    report = {
         "report_version": 1,
         "scope": "a03_controller_pre_pilot_activity",
         "from_unix_seconds": start,
@@ -101,6 +111,9 @@ def operating_report(store, start, end, after, through):
         "selected_events_sha256": identity.hexdigest(),
         "activity": activity,
     }
+    if time_dependencies:
+        report["dependency_timing"] = dependency_timing(store, receipts)
+    return report
 
 
 def main():
@@ -112,10 +125,16 @@ def main():
     parser.add_argument("--until-unix", type=float, required=True)
     parser.add_argument("--after", type=int, default=0)
     parser.add_argument("--through", type=int)
+    parser.add_argument("--dependency-timing", action="store_true")
     args = parser.parse_args()
     try:
         output = operating_report(
-            args.store, args.from_unix, args.until_unix, args.after, args.through
+            args.store,
+            args.from_unix,
+            args.until_unix,
+            args.after,
+            args.through,
+            time_dependencies=args.dependency_timing,
         )
         print(canonical(output))
         return 0
