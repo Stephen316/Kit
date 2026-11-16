@@ -105,6 +105,20 @@ def StartFixture(
         )
 
 
+# hosted failures need child diagnostics before the private fixture is discarded
+def ReadLogTails(Dispatch: DispatchHost) -> str:
+    LogTails: list[str] = []
+    for ModeName in ("host", "owner", "supervisor"):
+        LogPath = Dispatch.RootPath / f"{ModeName}.log"
+        if LogPath.is_file():
+            with LogPath.open("rb") as LogFile:
+                LogSize = LogFile.seek(0, 2)
+                _ = LogFile.seek(max(0, LogSize - 2048))
+                LogTail = LogFile.read(2048).decode("utf-8", errors="replace")
+            LogTails.append(f"{ModeName}: {LogTail}")
+    return "\n".join(LogTails)
+
+
 # owner progress is complete only when the exact number of final receipts is durable
 def WaitFinal(Dispatch: DispatchHost, Expected: int, Drained: bool = False) -> None:
     Expires = TimeClock.monotonic() + 25
@@ -177,7 +191,7 @@ def StopFixture(
         )
 
 
-# one supervisor and one owner loop process both pairs after uncertain acknowledgement replies
+# the fixture parent owns child reaping while the supervisor and owner process both pairs
 @TestMark.skipif(
     System.platform != "darwin", reason="macOS Fusion owner acknowledgement"
 )
@@ -219,7 +233,10 @@ def CheckTwoPairs(TmpPath: FilePath) -> None:
                 "90",
             )
         )
+        assert Processes[0].wait(timeout=30) == 0, "Initial Fusion host exit failed"
         ReplayAck(Dispatch, Harness, JobNames)
         VerifyTwo(Harness, JobNames)
+    except (AssertionError, Subprocess.TimeoutExpired) as Error:
+        raise AssertionError(f"{Error}\n{ReadLogTails(Dispatch)}") from Error
     finally:
         StopFixture(Dispatch, Processes)
