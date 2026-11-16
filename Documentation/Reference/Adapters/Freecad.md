@@ -95,6 +95,12 @@ Literal two-ended features without a parameter roster retain literal editable pr
 Symmetric extrusion retains one total-thickness driver.
 See [two-length bindings](../../Changes/FreeCad/FreeCadTwoLengthBindings.md) for scope, process coverage and the outstanding native edit, rebuild and fresh-reopen evidence.
 
+Supported inline extrusions emit the normalized profile normal or explicit direction as `Dir` and retain reversal in the independent native `Reversed` property.
+The reversal flag applies once, including when an explicit axis is supplied.
+An explicit false definition takes precedence over the existing direction-multiplier and Cut fallbacks.
+Linked-edit seeds retain their existing effective direction vectors and default false flag.
+See [extrusion reversal emission](../../Changes/FreeCad/FreeCadReversedExtrusion.md) for process coverage and the outstanding native acceptance evidence.
+
 The `portable` writer option defaults to true in the inspected adapter revision.
 For assemblies, portable output can include companion component files.
 The final destination identifies the base location for those files.
