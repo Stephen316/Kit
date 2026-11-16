@@ -24,6 +24,8 @@ The hosted cases use the real A03 claim, settlement, acknowledgement recovery,
 and grid scheduler. They interrupt the supervisor after Phase A settlement,
 make older contenders runnable, preserve an unrelated timeout hold, and use
 disposable lifecycle providers for the accepted-exit and Phase B recovery
-boundaries. The new contention cases await hosted execution.
+boundaries. Both contention cases passed in the 161-case macOS suite at
+PR head `14f4a1f2` and tested merge `1198983e`. A signed-in Fusion run
+remains pending. [Hosted macOS evidence](https://github.com/TryUniCAD/Kit/actions/runs/43788486237/job/133041436716)
 
 [Owner program](FusionLifecycleOwner.md), [Grid admission and restart fences](../../../Gotchas/Research/Workers/FusionGridPrecedenceRequiresAdmission.md)
