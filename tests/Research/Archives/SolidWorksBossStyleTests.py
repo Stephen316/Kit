@@ -28,6 +28,7 @@ from convert.adapters.solidworks.Sketch.DisplayOpen import (
     ReadDisplayBase,
     ReadDisplayOpen,
 )
+from tests.Research.Archives.SolidWorksDispVerify import VerifyDisplay
 from tests.Research.Archives.SolidWorksDistVerify import VerifyDistChild
 
 # the repository root anchors both pinned native data and unpackaged research code
@@ -229,6 +230,8 @@ def CheckBossStyle(Variant: str, NativeStyleOffset: int) -> None:
     )
     with Pytest.MonkeyPatch.context() as PatchValue:
         VerifyDistChild(PatchValue, Variant, Resolved, Generation, Depth, Measurements)
+    with Pytest.MonkeyPatch.context() as PatchValue:
+        VerifyDisplay(PatchValue, Variant, Resolved, Generation, Depth, Measurements)
 
 
 # a nonempty map count at the witnessed boundary cannot reuse the empty default layout

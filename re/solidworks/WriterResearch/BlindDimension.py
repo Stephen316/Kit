@@ -3,7 +3,7 @@ from math import hypot as Hypot, isclose as IsClose, isfinite as IsFinite
 from struct import pack as PackFields
 from typing import TypeAlias
 
-from BlindDepth import EncodeDepth
+from BlindDepth import DepthClasses, DepthFields, WriteDepthMut
 from DisplayHandle import KHandleClass, RequireScope
 from convert.adapters.solidworks.Container.Archive import KMaxMapIndex, EncodeNull
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
@@ -158,18 +158,18 @@ def WriteDistMut(
         True,
         "depth child archive allocations",
     )
-    Parameter = EncodeDepth(NameValue, DepthMm, Writer.classes)
+    _ = DepthClasses(Writer.classes)
+    NameBytes, ValueBytes = DepthFields(NameValue, DepthMm)
     NullValue = EncodeNull()
     BodyValue = (
-        PackFields("<i", RetainCount)
-        + Parameter
-        + NullValue  # dimension tolerance
+        NullValue  # dimension tolerance
         + PackFields("<4i", DimensionId, 0, 0, 0)
         + NullValue  # attachment point
         + PackFields("<HB", 0, 0)  # driven state and alternate name presence
         + EmitGeometry(Geometry, DepthMm / 1000)
     )
     Writer.begin_object(KClassName, KClassSchema)
+    Writer.i32(RetainCount)
+    WriteDepthMut(Writer, NameBytes, ValueBytes)
     Writer.raw(BodyValue)
-    Writer.SetNextIndex(Writer.next_index + len(KDepthClasses))
     return NextIndex + 1
