@@ -8,6 +8,7 @@ Each capture records the native files, the application build and the measured ob
 These captures give later steps an answer key that does not come from a Kit reader.
 Use the [step register](AutomationSteps.md) for current status.
 The UI steps below specify the authoring operations for the harnesses and workers. Use the [SOLIDWORKS COM harness](SolidWorksCaptureAuthoring.md) or [Fusion capture queue](#fusion-captures) for scripted runs. Use the [Fusion fresh-process procedure](../../Changes/Research/FusionReadback/FusionFreshProcessEvidence.md) for separate restart evidence.
+Use the [standalone SOLIDWORKS P02 readback](../../Changes/Research/Workers/SolidWorks/CircleBindingReadback.md) to verify the saved circle dimension binding in a fresh licensed session.
 The A08c workers own dispatch and native application recovery. A08e supplies the Windows supervisor support needed to run both applications on one host.
 The supplemental SOLIDWORKS through-all control uses a standalone collector on an isolated licensed Windows host. Its failure receipt records cleanup of the exact launched process. [Scope collector startup cleanup](../../Changes/Research/Workers/SolidWorks/ScopeStartupCleanup.md)
 For a hard cutoff across synchronous COM calls, run the standalone collector in its dedicated Windows Job Object. [Scope campaign watchdog](../../Changes/Research/Workers/SolidWorks/ScopeWatchdog.md)

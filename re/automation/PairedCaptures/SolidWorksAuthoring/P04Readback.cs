@@ -14,7 +14,7 @@ using Microsoft.Win32.SafeHandles;
 using SolidWorks.Interop.sldworks;
 using SolidWorks.Interop.swconst;
 
-public sealed class P04Readback
+public sealed partial class P04Readback
 {
     const string Build = "34.4.1.1011";
     static readonly JavaScriptSerializer Json = new JavaScriptSerializer { MaxJsonLength = int.MaxValue };
@@ -452,6 +452,16 @@ public sealed class P04Readback
                 row["center_of_mass_m"] = mass.CenterOfMass;
                 Require(bodies.Length == 1 && Math.Abs(mass.Volume * 1e9 - 881814.3482038013) <= .001,
                     "Control geometry differs from its pinned observation");
+            }
+            else if (row["file"].ToString().StartsWith("P02-", StringComparison.Ordinal))
+            {
+                var FileName = (string)row["file"];
+                var Before = ObserveCircle(document, FileName);
+                row["before_rebuild"] = Before;
+                Require(document.ForceRebuild3(false), "Circular profile rebuild failed");
+                var After = ObserveCircle(document, FileName);
+                row["after_rebuild"] = After;
+                row["circle_verified_before_and_after_rebuild"] = (bool)Before["verified"] && (bool)After["verified"];
             }
             else if (row["file"].ToString().StartsWith("P01-", StringComparison.Ordinal) ||
                      row["file"].ToString().StartsWith("P03-", StringComparison.Ordinal))
