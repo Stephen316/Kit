@@ -239,7 +239,26 @@ def wait_permission(root, name):
     expires = time.monotonic() + 18
     while not (root / name).is_file() and time.monotonic() < expires:
         time.sleep(0.02)
-    assert (root / name).is_file(), "fixture acknowledgement barrier did not clear"
+    assert (
+        root / name
+    ).is_file(), f"fixture acknowledgement barrier did not clear: {name}"
+
+
+# The real cleanup can retry its transport before the fixture injects another lost reply.
+def confirm_cleanup(acknowledge, installation, adapter, intent):
+    delays = (0, 0.2, 0.5)
+    for attempt, delay in enumerate(delays, 1):
+        if delay:
+            time.sleep(delay)
+        try:
+            return acknowledge(installation, adapter, intent, True)
+        except (OSError, ValueError) as error:
+            print(
+                f"fixture cleanup attempt {attempt}: {type(error).__name__}: {error}",
+                flush=True,
+            )
+            if attempt == len(delays):
+                raise
 
 
 def supervisor(arguments):
@@ -247,23 +266,25 @@ def supervisor(arguments):
 
     root, selected = Path(arguments[0]), arguments[1]
     acknowledge = supervisor_module.acknowledge_application
-    seen = 0
+    first_loss = False
+    cleanup_observed = False
 
     def lose_reply(installation, adapter, intent, recovered):
-        nonlocal seen
+        nonlocal first_loss, cleanup_observed
         if intent["job"] != selected:
             return acknowledge(installation, adapter, intent, recovered)
-        seen += 1
-        if seen == 1:
+        if not first_loss:
             write_new(root / "ack-first-lost", b"B accepted with retained spool\n")
+            first_loss = True
             raise subprocess.TimeoutExpired("fixture acknowledgement", 1)
-        if seen == 2:
+        assert recovered
+        if not cleanup_observed:
             wait_permission(root, "ack-allow-cleanup")
-            response = acknowledge(installation, adapter, intent, recovered)
+            response = confirm_cleanup(acknowledge, installation, adapter, intent)
             assert response == {"status": "acknowledged", "restart_retained": False}
             write_new(root / "ack-cleaned-lost", b"B cleaned before reply loss\n")
+            cleanup_observed = True
             raise subprocess.TimeoutExpired("fixture acknowledgement", 1)
-        assert seen == 3 and recovered
         wait_permission(root, "ack-allow-replay")
         response = acknowledge(installation, adapter, intent, recovered)
         assert response == {"status": "no_pending_acceptance"}

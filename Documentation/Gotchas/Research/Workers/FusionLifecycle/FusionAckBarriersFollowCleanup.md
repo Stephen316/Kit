@@ -1,0 +1,5 @@
+# Fusion acknowledgement barriers follow observed cleanup
+
+The continuous Fusion fixture injects one lost acknowledgement reply before cleanup and another after verified cleanup. At PR head `3cdcaca6`, the supervisor reached the replay barrier before the test parent saw the cleanup marker. Its callback had advanced a call counter before the real cleanup returned. A retry could then wait for replay permission while the parent still waited for cleanup evidence. [Hosted macOS failure](https://github.com/TryUniCAD/Kit/actions/runs/43878525516/job/133337869233)
+
+Advance the fixture stages only after their evidence is published. The fixture allows a short, bounded retry of the real recovered acknowledgement before injecting its second reply loss. That retry uses the same accepted intent and retains diagnostics for each rejected cleanup attempt. The test still checks the cleared fence, removed spool and journal, retained lifecycle, and replay of the exact accepted job. [Fixture logic](../../../../../re/automation/ApplicationWorkers/FusionContinuousFixture.py)
