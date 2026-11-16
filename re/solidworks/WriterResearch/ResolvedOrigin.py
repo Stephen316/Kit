@@ -49,6 +49,13 @@ class OriginState:
     ProfileState: int
 
 
+# A later sketch reference uses both archive occurrences created by Origin.
+@Dataclass(frozen=True, slots=True)
+class OriginSlots:
+    FeatureObject: int
+    SketchObject: int
+
+
 # The active archive must continue to the first authored profile after reading Origin.
 def ReadOriginRec(Cursor: ArchiveCursor, Generation: int) -> OriginState:
     Cursor.TakePointer((KOriginClass,), KDefinitionKind, CompactOnly=True)
@@ -92,7 +99,7 @@ def WriteOriginRef(
 # Origin reserves its sketch, handle and support objects on the same resolved archive.
 def WriteOriginRec(
     Writer: PartArchiveWriter, Generation: int, State: OriginState
-) -> int:
+) -> OriginSlots:
     CheckArcFeature(Generation, State.Feature, AllowRegenTime=True)
     CheckFolderMap(Writer, (KOriginClass, KSketchClass, KPointHandle, KPlaneRef), 12)
     RequireArch(
@@ -112,6 +119,7 @@ def WriteOriginRec(
         "resolved origin local reference state",
     )
     Writer.begin_object(KOriginClass, 1)
+    FeatureObject = Writer.next_index - 1
     WriteFolderName(
         Writer, EncodeString(KOriginName), KOriginTreeId, Flags=KOriginFlags
     )
@@ -123,4 +131,4 @@ def WriteOriginRec(
     SketchObject = WriteOriginSketch(Writer)
     WriteOriginView(Writer)
     WriteOriginRef(Writer, Generation, State)
-    return SketchObject
+    return OriginSlots(FeatureObject, SketchObject)

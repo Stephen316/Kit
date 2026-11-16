@@ -8,6 +8,7 @@ from ConfigDetailOpening import (
     WriteDetailOpening,
     WritePlainCharFormat,
 )
+from ConfigDetailStart import DetailDimSettings, DetailNames, WriteDetailStart
 from PartArchive import PartArchiveWriter
 from VerifyConfigResolvedFraming import allocation_state
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
@@ -46,6 +47,13 @@ OPERATING_PROFILE = DetailOpening(
 CHARACTER_FORMAT = PlainCharFormat(Face="Century Gothic", Height=0.0035, LineSpacing=0.001)
 
 
+NAMES = DetailNames(
+    MicrometreSuffix="\u00b5m",
+    StatusLabels=("Description", "High Priority", "Low Priority", "Complete", "Reminder"),
+)
+DIMENSIONS = DetailDimSettings(ArrowsOut=2, SmartArrows=True, AddParentheses=False)
+
+
 def inspect_detail(config, generation, layouts):
     relation, _ = ReadRelEntry(config, layouts)
     cursor = ArchiveCursor(
@@ -79,9 +87,14 @@ def inspect_detail(config, generation, layouts):
     )
     require(prefix == config[start : start + len(prefix)], "constructed detail opening")
     require(font == config[font_start:font_end], "constructed inline character format")
+    composed_writer = PartArchiveWriter(inherited)
+    WriteDetailStart(composed_writer, generation, OPERATING_PROFILE, NAMES, CHARACTER_FORMAT, DIMENSIONS)
+    composed = composed_writer.build()
+    require(composed == config[start : full.Offset], "constructed complete detail start")
     require(
         prefix_writer.Snapshot()
         == font_writer.Snapshot()
+        == composed_writer.Snapshot()
         == allocation_state(cursor)
         == allocation_state(full)
         == inherited,
@@ -96,6 +109,7 @@ def inspect_detail(config, generation, layouts):
         inherited.NextIndex,
         sha256(prefix).hexdigest(),
         sha256(font).hexdigest(),
+        sha256(composed).hexdigest(),
     ]
 
 

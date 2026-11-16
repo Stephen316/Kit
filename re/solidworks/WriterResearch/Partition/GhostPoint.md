@@ -12,9 +12,25 @@ The inner attribute definition at `0x2ed` names `GHOST_REF_BODY_ID_2001`. The te
 
 Across all six expanded payloads, only bytes `0x120` and `0x124` vary. They are the last bytes of two equal observed big-endian words at `0x11d` and `0x121`. In receipt order their values are `2, 3, 4, 5, 6, 2`. The values differ between the two baselines despite identical ghost geometry. Their exact native allocation or revision semantics remain open. A point constructor would need the typed partition/body hierarchy, reciprocal vertex and point, the native attribute definition and bound body ID, and an accounted source for those two words. The existing regular solid B-rep encoder covers faced bodies. Its wrapper can frame independently constructed point payload bytes once that grammar is established.
 
+## Constructed point records
+
+The bounded research writer derives three independently placed records from a neutral point in millimetres, caller-owned graph slots and node IDs, a positive allocated ghost ID, and the pinned transmit schema. It reuses the common tag, pointer and signed numeric codecs, emitting the observed optional `ff` marker after each tag. It writes native point coordinates in metres using the common scale. It writes the isolated vertex with no fin or sibling pointers and the existing undefined-tolerance sentinel. The caller supplies its body reference. [Three-row codec](PointRows.py)
+
+| Expanded span | Width | Saved record |
+| --- | ---: | --- |
+| `0x3b5..0x3de` | 41 | Point 8, node ID 4, vertex 10, three clear pointers and three coordinates |
+| `0x414..0x431` | 29 | Vertex 10, node ID 2, point 8, body 7, four clear pointers and undefined tolerance |
+| `0x488..0x495` | 13 | One-value signed integer array at slot 12 with ghost ID 10001 |
+
+All offsets are half-open within the expanded stream. The physical transport encodes a slot as its internal index plus one. The fixture binds the published discovery controls by receipt SHA-256, reaches the reciprocal point and vertex through the packaged scanner and compares the three constructed records at their original archive positions. The containing body, attribute definition and binding, index map and partition preamble remain separate constructive boundaries. [Hosted archive cases](../../../../tests/Research/Archives/SolidWorksGhostPointTests.py)
+
+The ordinary main partition is a useful negative control for the changing preamble fields. All six files contain a separate 307-byte blank main partition of the same version and schema, plus a 411-byte deltas member. Its two words at `0x11d` and `0x121` both remain 3. The two ghost words therefore do not follow a single file-wide value.
+
 ## Pinned native paths
 
 The following preferred virtual addresses apply to the SOLIDWORKS 34.4.1.1011 installation. The SHA-256 values are `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99` for `sldmodu.dll`, `120e1d5c359f5895d9785325995ebfaafc790ef7d74fe4fb0e242303f933939b` for `doccplu.dll` and `797f81cba7080ea6edd37eca36abeaa9a2c0539f9319b980b92abc5a875edf24` for `sldgcu.dll`.
+
+The `sldgcu.dll` ghost ID wrappers reach `sldgciParau.dll` with SHA-256 `af3bb6440b9b78445a084c1ae2ce6787f6db06aa70690c43cd9ac041e64db017`. Its definition initializer passes `GHOST_REF_BODY_ID` and `GHOST_REF_BODY_ID_2001` at `0x32faedc1–0x32faedcf`. That result is stored at `0x3313ced0` and retrieved by `gciBody_w::setGhostId` at `0x32f93789`, including a configuration-dependent two-value case. The one-value path calls `0x32fb12a0` at `0x32f93913` with the supplied body and signed identity. This matches the single integer value and same definition in all six controls.
 
 `SolidStorage_c::SaveGhostModels` at `0x180023b70` checks the runtime ghosting gate at `0x180023bac`. It collects the eligible configuration's live ghost bodies at `0x180023d05`, and branches around the document save dispatch when that array has size zero. A nonempty array reaches the virtual document save at `0x180023d31`. The named physical transmitter `SolidStorage_c::CommitPartition2` opens a named stream and calls `gcPartition_w::save` at `0x18002bbae`. `iCleanUpModelStorages` registers the exact `-GhostPartition` suffix at `0x1800320b9`. The concrete part-document save override linking those two entry points still needs attribution.
 

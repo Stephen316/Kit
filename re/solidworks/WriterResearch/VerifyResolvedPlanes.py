@@ -146,17 +146,23 @@ def inspect_planes(archive, measurement, construct):
         "authored profile tree and four tracked allocations",
     )
     if construct:
-        writer, origin_sketch = BeginOrdinaryResolved(
+        writer, origin_slots = BeginOrdinaryResolved(
             generation,
             config_map,
             ResolvedSystem(folders, cabinet, later, planes, origin),
         )
-        require(origin_sketch == normal_origin.SketchIndex, "generated origin sketch")
+        require(
+            (origin_slots.FeatureObject, origin_slots.SketchObject)
+            == (normal_origin.ObjectIndex, normal_origin.SketchIndex),
+            "generated origin feature and sketch",
+        )
         require(
             writer.build() == stream[:origin_end], "exact framed resolved system roots"
         )
         require(writer.Snapshot() == origin_map, "constructed origin map")
-        WriteAuthoredOpen(writer, generation, origin_sketch, profile, KPointCount)
+        WriteAuthoredOpen(
+            writer, generation, origin_slots.SketchObject, profile, KPointCount
+        )
         require(
             writer.build() == stream[: cursor.Offset], "exact framed authored opening"
         )

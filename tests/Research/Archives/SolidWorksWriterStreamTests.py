@@ -41,6 +41,23 @@ def CheckProfile() -> None:
         Report["corner_replay_sha256"]
         == "824ef34e99d0bd6f0aa4b5d92cbc5532b296fd1f14e8590438135cfcdba540c8"
     )
+    assert (
+        Report["proxy_replay_sha256"]
+        == "422534f2ef8bd02ecb8f71c4d0bd6a7b7618dc4b15c5c9a6ab1db3d88bc2dc79"
+    )
+    assert Report["line_mark_orders"] == 2
+    assert (
+        Report["line_replay_sha256"]
+        == "8fc41b75f4c3b0bd5e0e35a3285cc835f47f8e99a0716aa53722c26258fe97cc"
+    )
+    assert (
+        Report["dim_replay_sha256"]
+        == "f20f6992915f75a45303b854e80e73d2d953409896ed3d162dc234beb9ab4a71"
+    )
+    assert (
+        Report["axis_replay_sha256"]
+        == "22e2a564d8acabb259e39fdafa8117f92f674f3e9dc78890558e91aa5616a2c1"
+    )
 
 
 # the research writer and reader must agree on the full stream in real native files
@@ -134,6 +151,16 @@ def CheckConfigView() -> None:
     )
 
 
+# the standard view group preserves its generated camera bases and archive allocations
+def CheckCfgViews() -> None:
+    Report = LoadReport("VerifyConfigSavedViews.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "56fbc3f5a09c81918a8702d5598172b3c4650aba233901e3ddf293073abee395"
+    )
+
+
 # material handoff must retain actual ownership across both model box branches
 def CheckConfigBody() -> None:
     Report = LoadReport("VerifyConfigBody.py", 14)
@@ -200,12 +227,21 @@ def CheckModelHdr() -> None:
     )
 
 
-# the detail opening and font must retain their native intervals and archive map
+# the full detail start and its independent subrecords must preserve native ownership
 def CheckCfgDetail() -> None:
     Report = LoadReport("VerifyConfigDetail.py", 14)
     assert (
         Report["replay_sha256"]
-        == "28ca63bc7a3bfd1f64917d471b2bb2146c477a0d4ebf15276ff4effc9ab7e0c8"
+        == "49e99ba22e662e41ba7895895cad5f14f5095039430f1b755492030b0ca00dd7"
+    )
+
+
+# the dimension styles must preserve native unit ownership and the annotation boundary
+def CheckDimStyles() -> None:
+    Report = LoadReport("VerifyDimensionStyles.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "5fe2c5a1d827b0eecd71310587752b208a99201a5f1891d4f62e5470ca83312e"
     )
 
 
