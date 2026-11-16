@@ -51,6 +51,7 @@ starting any subsequent restart. A registered installation also waits for
 [Phase B acknowledgement to drain](FusionLifecycle/FusionPhaseBAcknowledgement.md).
 `--once` performs one reconciliation and emits an
 evidence status suitable for checking a parked owner.
+[Automatic archive of an unclaimed Phase A timeout](FusionLifecycle/FusionOwnerProbeArchive.md)
 
 Use [the read-only completion report](FusionLifecycle/FusionResetEvidence.md)
 to inspect confirmed work in the exact current Fusion process lifetime.

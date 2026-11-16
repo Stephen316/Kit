@@ -73,7 +73,7 @@ def optional_record(path):
         return None
 
 
-def relocate(root, config, timeout):
+def relocate(root, config, timeout, *, verify_client=None):
     require(
         not os.path.lexists(root / ACKNOWLEDGEMENT)
         and not os.path.lexists(root / "grant.json"),
@@ -101,6 +101,8 @@ def relocate(root, config, timeout):
     expected, client = probe_archive_record(
         spool, config, timeout, fence if fence is not None else prior["fence"]
     )
+    if verify_client is not None:
+        verify_client(client, expected["fence"]["at"])
     require(
         identity(client["pid"]) != client,
         "the timed out Fusion request process is still present",
@@ -144,7 +146,7 @@ def relocate(root, config, timeout):
     }
 
 
-def archive_probe(config_path, queue, kind):
+def archive_probe(config_path, queue, kind, *, authorize=None):
     store, config, _ = queue_configuration(config_path, kind, queue["resource"])
     require(
         config["installation"] == queue["installation"]
@@ -164,7 +166,10 @@ def archive_probe(config_path, queue, kind):
         TemporaryDirectory(prefix="kit-fusion-probe-archive-") as temporary,
     ):
         timeout = current_probe(connection, store, queue, kind, Path(temporary))
-        return relocate(root, config, timeout)
+        verify_client = (
+            authorize(connection, config, timeout) if authorize is not None else None
+        )
+        return relocate(root, config, timeout, verify_client=verify_client)
 
 
 def main():
