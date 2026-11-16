@@ -31,10 +31,12 @@ def ReadDisplayBase(
     Cursor.ReadNull()
     RequireArch(Cursor.ReadPoint(3), (0, 0, 0), "empty display reference point")
     RequireArch(ReadLocalPose(Cursor), (None, (0, 0, 0, 1)), "identity display setup")
-    Mode = DisplayMode if DisplayMode is not None else (200 if SketchMode else 201)
+    SelectedMode = (
+        DisplayMode if DisplayMode is not None else (200 if SketchMode else 201)
+    )
     RequireArch(
         Cursor.ReadValue("<2iBd2i"),
-        (1, Mode, 0, 0, 0, 0),
+        (1, SelectedMode, 0, 0, 0, 0),
         "guarded display mode",
     )
 
