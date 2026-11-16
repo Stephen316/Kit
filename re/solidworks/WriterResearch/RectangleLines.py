@@ -61,9 +61,13 @@ def WriteRectLines(
         "witnessed permanent marks",
     )
     RequireArch(
+        tuple(len(Line.Endpoints) for Line in Lines),
+        (2, 2, 2, 2),
+        "two local slots per perimeter line",
+    )
+    RequireArch(
         all(
             Line.RelationCount == 1
-            and len(Line.Endpoints) == 2
             and Line.Endpoints[0] != Line.Endpoints[1]
             and all(type(Slot) is int and 0 <= Slot < 4 for Slot in Line.Endpoints)
             for Line in Lines

@@ -13,11 +13,8 @@ from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 def RectAxisType(
     Corners: tuple[tuple[float, float], ...], Slots: tuple[int, int]
 ) -> int:
-    RequireArch(
-        len(Corners) == 4 and len(Slots) == 2 and all(0 <= Slot < 4 for Slot in Slots),
-        True,
-        "rectangular axis endpoints",
-    )
+    RequireArch((len(Corners), len(Slots)), (4, 2), "rectangular axis arity")
+    RequireArch(all(0 <= Slot < 4 for Slot in Slots), True, "rectangular axis endpoints")
     First, Second = (Corners[Slot] for Slot in Slots)
     SameX = First[0] == Second[0]
     SameY = First[1] == Second[1]

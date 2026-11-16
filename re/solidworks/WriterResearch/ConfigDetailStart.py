@@ -140,22 +140,24 @@ def WriteDetailStart(
     Font: PlainCharFormat,
     Dimensions: DetailDimSettings,
 ) -> None:
+    RequireArch(type(Names.StatusLabels), tuple, "detail resource labels are a tuple")
+    RequireArch(len(Names.StatusLabels), 5, "five saved detail status labels")
     RequireArch(
-        type(Names.StatusLabels) is tuple
-        and len(Names.StatusLabels) == 5
-        and all(
-            isinstance(Value, str) and Value and "\x00" not in Value
+        all(
+            issubclass(type(Value), str) and Value and "\x00" not in Value
             for Value in (Names.MicrometreSuffix, *Names.StatusLabels)
         ),
         True,
         "nonempty detail resource labels",
     )
     RequireArch(
-        type(Dimensions.ArrowsOut) is int
-        and Dimensions.ArrowsOut == 2
-        and type(Dimensions.SmartArrows) is bool
-        and type(Dimensions.AddParentheses) is bool,
-        True,
+        (
+            type(Dimensions.ArrowsOut),
+            Dimensions.ArrowsOut,
+            type(Dimensions.SmartArrows),
+            type(Dimensions.AddParentheses),
+        ),
+        (int, 2, bool, bool),
         "supported detail dimension settings",
     )
 
