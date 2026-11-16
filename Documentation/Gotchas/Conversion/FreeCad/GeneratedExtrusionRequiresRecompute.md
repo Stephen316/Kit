@@ -18,3 +18,5 @@ Native recompute is an observed research verification action, not permission to 
 Initial application usability remains incomplete under CAD success criterion C5, which rejects zero bodies and an empty viewport on opening.
 The required next implementation is derived shape data attached to the actual editable feature owners, followed by independent initial-open measurement before explicit recompute.
 Do not hide this distinction through the embedded neutral manifest or qualify the whole route from the saved copies alone.
+The [calculated-cache follow-up](../../../Changes/FreeCad/FreeCadInitialOpenWitness.md) measured valid initial geometry before recompute for three rectangular controls at `161885d8`.
+It leaves this earlier failure intact and does not establish other cache families or broader route qualification.

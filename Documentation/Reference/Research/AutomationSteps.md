@@ -262,6 +262,8 @@ The [earlier readiness observation](../../Changes/Research/Readers/Comparison/Fr
 The repair does not admit unsupported linked definitions or fallback carriers.
 The [installed FreeCAD 1.1.4 witness](../../Changes/FreeCad/FreeCadEndNativeWitness.md) records scoped end-driver edits, restoration, save and fresh reopen at `b32222b5`; original packages required native recompute before exposing solids, so initial geometry availability and broader qualification remain unresolved.
 Calculated cache presence does not qualify the route or establish the initial-open result.
+The [later calculated-cache witness](../../Changes/FreeCad/FreeCadInitialOpenWitness.md) at `161885d8` closes the pre-recompute initial-open measurement for three rectangular controls and records independent edits, restoration, save and fresh reopen.
+It retains false research flags and leaves the other cache families and route qualification unfinished.
 The next independent native witness must measure the original package immediately after open and before explicit recompute, then repeat driving edits, restoration, rebuild, save and fresh reopen with healthy controls.
 A13, A15 and the remaining route-specific acceptance requirements stay open.
 

@@ -105,7 +105,8 @@ The [independent FreeCAD 1.1.4 witness](../../Changes/FreeCad/FreeCadEndNativeWi
 Its original generated packages had no cached BREP and exposed zero solids before native recompute.
 The post-recompute and saved-copy successes do not establish initial geometry availability or broader route qualification.
 The [calculated initial-shape implementation](../../Changes/FreeCad/FreeCadInitialExtrusionShapes.md) attaches supported independent Create caches to their actual editable owners without a CAD runtime.
-Other cache families, Boolean results and independent initial-open acceptance remain unfinished; cache presence does not establish application usability.
+The [later initial-open witness](../../Changes/FreeCad/FreeCadInitialOpenWitness.md) at `161885d8` measured three rectangular controls with valid editable solids before recompute, then independent edits, restoration, save and fresh reopen with healthy controls.
+Other cache families and Boolean results remain unfinished; neither cache presence nor these three controls qualify the entire route.
 The [fresh-extrusion attestation repair](../../Changes/FreeCad/FreeCadInitialGeometryAttestation.md) reports both acceptance flags as false for its scoped reconstructed history, including sketch-reference dependencies and omitted Create operations.
 Strict public writes refuse that output before changing the destination; explicit `AllowCarrier=True` permits an unqualified research artifact.
 Retained-geometry and other history routes remain outside that audit.

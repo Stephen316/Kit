@@ -23,3 +23,4 @@ This establishes attributed scoped edit and reopen observations for that exact s
 It does not establish immediate geometry availability in the original packages: the [initial recompute limitation](../../Gotchas/Conversion/FreeCad/GeneratedExtrusionRequiresRecompute.md) remains explicit.
 Broader A16 qualification remains `not_evaluated`; A13 and A15 gates remain open.
 No local native application, SDK, generator, test or collection execution was performed while recording this evidence.
+The [later calculated-cache witness](FreeCadInitialOpenWitness.md) records successful initial geometry for three rectangles at `161885d8`; it does not change this earlier source's zero-solid failure.
