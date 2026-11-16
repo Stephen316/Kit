@@ -109,6 +109,40 @@ The rendering-options block uses little-endian `<6iI5i>`, with line color the si
 
 Reading the six document members and six scalar words from notebook end `+27` reaches `+67` in all 25 receipt-pinned files. Reading the twelve rendering options consumes exactly 48 more bytes and reaches `+115`. At that boundary the next document `long`, member `+0x1388` written at `0x49710bfe`, is 1 in every capture. These measurements cover empty lists, empty strings and the constructor's rendering defaults.
 
+## Final document members
+
+The native store path after the rendering options writes the document members in the order below. Scalars use the Windows signed `long` archive operator. The load thresholds are inclusive archive versions. The store checks the same thresholds for the first four rows and the last scalar. All rows are present on the measured generation-19000 path.
+
+| Offset from notebook end | Document member | Saved value | Store call | Minimum load version |
+| --- | --- | --- | --- | --- |
+| +115 | `+0x1388` | 1 | `0x49710bfe` | `0x12c0` |
+| +119 | `+0x1390` | 1 | `0x49710c40` | `0x12f8` |
+| +123 | `+0x07bc`, freeze status | 0 | `0x49710c82` | `0x1304` |
+| +127 | `+0x135c`, scale textures to model | 1 | `0x49710cbc` | `0x13ee` |
+| +131 | `+0x13c8` | 0 | `0x49710ccb` | `0x140a` |
+| +135 | `+0x13d0`, `suDWordArray` | Empty | `0x49710cde` | `0x140a` |
+| +137 | `+0x1400` | 1 | `0x49710cea` | `0x1421` |
+| +141 | `+0x1408`, apply updated rules | 1 | `0x49710cf9` | `0x1459` |
+| +145 | `+0x13f0` | 0 | `0x49710d08` | `0x1861` |
+| +149 | `+0x0a7c` | 0 | `0x49710d17` | `0x1fd4` |
+| +153 | `+0x0a80` | 0 | `0x49710d26` | `0x1fe3` |
+| +157 | `+0x0d78`, tree order type | 2 | `0x49710d35` | `0x23c4` |
+| +161 | `+0x12e8`, `uoExcel365ConfigurationTable_c` pointer | Null | `0x49710d45` | `0x2f64` |
+| +163 | `+0x1424` | 0 | `0x49710d53` | `0x2f99` |
+| +167 | `+0x0930` | 0 | `0x49710d62` | `0x373e` |
+| +171 | `+0x1304`, physical-product title tree display setting | 0 | `0x49710d71` | `0x3767` |
+| +175 | `+0x0d7c` | 3 | `0x49710d80` | `0x3769` |
+| +179 | `+0x1368`, store OLE images with model | 1 | `0x49710d8f` | `0x39d2` |
+| +183 | `+0x03e8`, default BOM part number for new configurations | 0 | `0x49710dd1` | `0x3b18` |
+
+The `uiModelDoc_c` constructor assigns the listed scalar defaults and clears the Excel table pointer at `0x4975844b`. The final BOM field belongs to its base class. In this build's `sldappu.dll` (SHA-256 `de39fa156eb9e92c030ec23c5d4a3a742aef941ec6246c7689c99ffb0abcd0b2`), the `uiBaseDoc_c` constructor clears that field at `0x4590422d` and `getDefaultBOMPartNoNewConfigs` reads it at `0x45709fe0`.
+
+The document initializes its `suDWordArray` at `0x49758525`. The derived constructor installs vtable `0x3cc82798`, with slot 5 forwarding through `0x3cac312b` to `su_CDWordArray::Serialize` at `0x31a4c120`. The base constructor sets size to zero at `0x31a4bcc7`. The serializer writes its size through `WriteCount` at `0x31a4c13f`, followed by four bytes per array item. The empty path uses one zero 16-bit count and has no items.
+
+The Excel field uses the exported typed archive operators at `0x48f2aaf0` and `0x48f2aab0`. Both obtain runtime class `uoExcel365ConfigurationTable_c`, schema `0x80000001`, through `0x48f2ad40`. The null branch of `WriteObject` passes zero to the 16-bit archive writer at `0x31a4a9bf`. The load route at `0x4973565` uses the typed pointer on versions at least `0x2f64`. A separate load branch at `0x4973516` reads a `CString` for versions from `0x2f58` through `0x2f63`.
+
+From notebook end `+115`, the 6 P01, 8 P03 and 11 P04 receipt-pinned saves each read as `<5iH6iH6i>` with the listed values. The interval consumes exactly 72 bytes and ends at the variability count at `+187`. This verifies the empty array and null Excel pointer path. Populated arrays and tables and the older string branch remain unmeasured in this corpus.
+
 ## Part Definition tail
 
 In installed build `34.4.1.1011`, `sldprtu.dll` (SHA-256 `cb1e260f8411a39dc44f4d8a6255ea585c7a5e60b223d0e69d3f51a258ee96de`) has the primary `uiPartDoc_c` RTTI locator at `0x334e5cd8` and vtable at `0x334af0f0`. Slot 513 selects `0x333bb1b0`. The override calls the imported `uiModelDoc_c::Serialize` at `0x333bb1c8`. On the store branch it then writes `this+0x1688` with the archive double operator at `0x333bb31d` and returns. The part load branch reads the double at `0x333bb2f5` on the supported modern path.
