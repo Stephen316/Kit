@@ -68,10 +68,11 @@ def ModelIndex(Generation: int, NextIndex: int, Classes: dict[str, int]) -> int:
 def RequireView(State: ConfigModelView) -> None:
     Curvature = State.Curvature
     if Curvature is not None:
+        RequireArch(len(Curvature.Settings), 5, "native curvature setting count")
         RequireArch(
-            len(Curvature.Settings) == 5 and all(map(IsFinite, Curvature.Settings)),
+            all(map(IsFinite, Curvature.Settings)),
             True,
-            "five finite native curvature settings",
+            "finite native curvature settings",
         )
         RequireArch(
             type(Curvature.CreatedFiletime) is int
