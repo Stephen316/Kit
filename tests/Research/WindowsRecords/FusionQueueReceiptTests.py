@@ -14,7 +14,6 @@ from pathlib import Path as FilePath
 
 import pytest as Pytest
 
-from tests.Research.SupervisorClient import SessionHost
 from tests.Research.Applications.FusionPhaseQueueTests import (
     InterruptQueue,
     MakeQueueHost,
@@ -86,7 +85,7 @@ def VerifyPending(
         assert Database.execute("SELECT COUNT(*) FROM jobs").fetchone() == (0,)
 
 
-# linked records and alternate stream names cannot replace the exact receipt cell
+# links and reserved windows aliases cannot replace the exact receipt cell
 def VerifyUnsafe(
     QueuePath: str, Recovery: list[str], ReceiptPath: FilePath, Expected: bytes
 ) -> None:
@@ -96,8 +95,14 @@ def VerifyUnsafe(
         _ = RunFusionTool(QueuePath, Recovery, ExitCode=1)
     finally:
         LinkedPath.unlink()
-    StreamPath = f"{ReceiptPath}:stream"
-    _ = RunFusionTool(QueuePath, [*Recovery[:-1], StreamPath], ExitCode=1)
+    for AlternateName in (
+        f"{ReceiptPath.name}:stream",
+        "x:stream",
+        "NUL .json",
+        f"{ReceiptPath.name}.",
+    ):
+        AlternatePath = f"{ReceiptPath.parent}\\{AlternateName}"
+        _ = RunFusionTool(QueuePath, [*Recovery[:-1], AlternatePath], ExitCode=1)
     assert ReceiptPath.read_bytes() == Expected
     Conflict = b'{"conflict":true}\n'
     _ = ReceiptPath.write_bytes(Conflict)

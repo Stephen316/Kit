@@ -1,6 +1,7 @@
 from contextlib import nullcontext
 import ntpath
 import os
+from pathlib import PureWindowsPath
 import stat
 
 from ApplicationProtocol import (
@@ -15,6 +16,18 @@ from Records import canonical, digest, specification
 from StoreRead import read_store
 
 
+# windows leaf components must reject colon aliases before pathname device checks
+def is_windows_record_name(name):
+    if name.endswith((".", " ")) or any(
+        character in '"*/:<>?\\|' or ord(character) < 32 for character in name
+    ):
+        return False
+    is_reserved = getattr(ntpath, "isreserved", None)
+    if is_reserved is not None:
+        return not is_reserved(name)
+    return not PureWindowsPath(name).is_reserved()
+
+
 # a receipt and its intent share the same directly checked owner directory
 def receipt_paths(path):
     require(
@@ -23,9 +36,7 @@ def receipt_paths(path):
     require(path.is_absolute() and path.name, "Fusion receipt path must be absolute")
     if os.name == "nt":
         require(
-            all(
-                part != ".." and not ntpath.isreserved(part) for part in path.parts[1:]
-            ),
+            all(is_windows_record_name(part) for part in path.parts[1:]),
             "Fusion receipt requires ordinary Windows path components",
         )
         hold_directory = windows_function("windows_records", "hold_directory")
