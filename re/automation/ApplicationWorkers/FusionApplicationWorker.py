@@ -8,13 +8,32 @@ import sys
 import time
 
 from ApplicationProtocol import (
-    ApplicationTimeout, QueueClient, WaitingApplication, configuration,
-    file_bytes, load_pinned, pin, record, request_link, require, require_win_sources,
-    sha256, windows_phase_a, windows_process, write_new, write_record,
+    ApplicationTimeout,
+    QueueClient,
+    WaitingApplication,
+    configuration,
+    file_bytes,
+    load_pinned,
+    pin,
+    record,
+    request_link,
+    require,
+    require_win_sources,
+    sha256,
+    windows_phase_a,
+    write_new,
+    write_record,
 )
-from FusionPhasePlan import check_scope_archives, check_scope_report, phase_options, phase_paths, plan_scope
+from FusionPhasePlan import (
+    check_phase_controls,
+    check_scope_archives,
+    check_scope_report,
+    phase_options,
+    phase_paths,
+    phase_process,
+    plan_scope,
+)
 from FusionRestart import wait_for_restart
-
 
 def input_file(session, job, role, limit=256 * 1024 * 1024):
     require(role in job["inputs"], f"missing application input role: {role}")
@@ -67,99 +86,172 @@ def stage_plan(client, session, job, raw, plan, plan_hash, accepted):
         receipt = record(prior / "receipt.json")
         if scope is None:
             data = file_bytes(prior / "measurements.json")
-            require(receipt["status"] == "complete" and receipt["phase"] == "a"
-                    and receipt["plan_sha256"] == plan_hash
-                    and receipt["measurements_sha256"] == sha256(data)
-                    and json.loads(data)["status"] == "complete", "phase A inputs are incomplete or belong to a different plan")
+            report = json.loads(data)
+            require(
+                receipt["status"] == "complete"
+                and receipt["phase"] == "a"
+                and receipt["plan_sha256"] == plan_hash
+                and receipt["measurements_sha256"] == sha256(data)
+                and report["status"] == "complete",
+                "phase A inputs are incomplete or belong to a different plan",
+            )
         else:
             data = file_bytes(prior / "report.json")
             report = json.loads(data)
             check_scope_report(receipt, report, data, plan_hash, "a")
             check_scope_archives(report, result["output_artifacts"], "a")
+        check_phase_controls(report, plan)
+        require(
+            "fixture_only" not in report,
+            "Fusion fixture reports cannot supply native Phase A evidence",
+        )
 
 
-# windows evidence must bind the exact admitted process and successful native controls
-def check_windows_phase(client, response, plan, plan_hash, directory, artifacts):
-    proof = response["proof"]
-    raw = file_bytes(directory / "measurements.json")
-    report = json.loads(raw)
-    sealed = record(directory / "receipt.json")
-    require(sealed == {"schema": 1, "phase": "a", "status": "complete", "plan_sha256": plan_hash,
-                       "measurements_sha256": sha256(raw)}
-            and report["schema"] == 1 and report["phase"] == "a" and report["status"] == "complete"
-            and report["plan_sha256"] == plan_hash and report["pins"] == plan["pins"]
-            and report["source_revision"] == client.config["source_revision"]
-            and proof["host"] == response["host"] and report["process"] == windows_process(response["host"])
-            and report["fusion_version"] == proof["fusion_version"] and report["errors"] == []
-            and set(report["captures"]) == set(plan["recipes"]),
-            "Windows Fusion phase report does not match its receipt, plan and admitted process")
-    require(all(report[label]["compute_all_return"] is True
-                and report[label]["native_input"] == plan["pins"]["control"]
-                for label in ("healthy_control_before", "healthy_control_after")),
-            "Windows Fusion phase is missing its pinned controls")
-    handoff = proof["restart_handoff"]
-    require(handoff == {"installation": client.config["installation"], "job_id": client.job_id,
-                        "reason": "restart_required", "host": response["host"], "plan_sha256": plan_hash,
-                        "at": handoff["at"], "owner": "external_application_owner"}
-            and report["ended_unix_seconds"] <= handoff["at"] <= response["finished_at"],
-            "Windows Fusion restart fence does not match the admitted Phase A")
+# ordinary phases must bind every saved archive to their exact measurement receipt
+def check_discovery_phase(sealed, report, raw, plan, plan_hash, phase, artifacts):
+    require(
+        sealed
+        == {
+            "schema": 1,
+            "phase": phase,
+            "status": "complete",
+            "plan_sha256": plan_hash,
+            "measurements_sha256": sha256(raw),
+        }
+        and report["schema"] == 1
+        and report["phase"] == phase
+        and report["status"] == "complete"
+        and report["plan_sha256"] == plan_hash
+        and report["errors"] == []
+        and isinstance(report.get("captures"), dict)
+        and set(report["captures"]) == set(plan["recipes"]),
+        "Fusion discovery phase report does not match its receipt and plan",
+    )
     for recipe, capture in report["captures"].items():
-        saved = artifacts[f"phase-a.{recipe}"]
-        require(capture["save_a"] == {"file": Path(saved["path"]).name, "sha256": saved["sha256"],
-                                      "size_bytes": saved["size_bytes"]},
-                "Windows Fusion native archive differs from its sealed report")
+        saved = artifacts[f"phase-{phase}.{recipe}"]
+        require(
+            capture[f"save_{phase}"]
+            == {
+                "file": Path(saved["path"]).name,
+                "sha256": saved["sha256"],
+                "size_bytes": saved["size_bytes"],
+            },
+            "Fusion native archive differs from its sealed report",
+        )
+
+
+# a completed report must agree with the owned process and restart boundary
+def check_phase_owner(client, response, report, phase, plan_hash, build):
+    proof = response["proof"]
+    require(
+        report["source_revision"] == client.config["source_revision"]
+        and proof["host"] == response["host"]
+        and report["process"] == phase_process(response["host"])
+        and build == proof["fusion_version"],
+        "Fusion phase report belongs to a different installed process",
+    )
+    handoff = proof.get("restart_handoff")
+    if phase == "a":
+        require(
+            isinstance(handoff, dict)
+            and handoff
+            == {
+                "installation": client.config["installation"],
+                "job_id": client.job_id,
+                "reason": "restart_required",
+                "host": response["host"],
+                "plan_sha256": plan_hash,
+                "at": handoff["at"],
+                "owner": "external_application_owner",
+            }
+            and report["ended_unix_seconds"]
+            <= handoff["at"]
+            <= response["finished_at"],
+            "Fusion restart fence does not match the admitted Phase A",
+        )
+    else:
+        require(handoff is None, "Fusion Phase B cannot require another restart")
 
 
 def collect(session, client, response, plan, plan_hash, phase):
     from ApplicationProtocol import identity
 
     scope = plan_scope(plan)
-    require(response["proof"]["claim"] == "unqualified_application_observation"
-            and response["proof"].get("scope") == scope
-            and response["proof"]["phase"] == phase and response["proof"]["plan_sha256"] == plan_hash,
-            "application phase proof differs from this request")
+    require(
+        response["proof"]["claim"] == "unqualified_application_observation"
+        and response["proof"].get("scope") == scope
+        and response["proof"]["phase"] == phase
+        and response["proof"]["plan_sha256"] == plan_hash,
+        "application phase proof differs from this request",
+    )
     files = response["files"]
     windows = windows_phase_a(client.config)
-    require(isinstance(files, dict) and len(files) <= 63
-            and sum(item["size_bytes"] for item in files.values()) <= 256 * 1024 * 1024, "invalid application output roster")
-    report = None
-    if scope is not None or windows:
-        label = "Windows Fusion" if windows else "Fusion scope"
-        require({role: item["path"] for role, item in files.items()} == phase_paths(plan, phase),
-                f"{label} response did not contain its exact output roster")
+    require(
+        isinstance(files, dict)
+        and len(files) <= 63
+        and sum(item["size_bytes"] for item in files.values()) <= 256 * 1024 * 1024,
+        "invalid application output roster",
+    )
+    require(
+        {role: item["path"] for role, item in files.items()}
+        == phase_paths(plan, phase),
+        "Fusion response did not contain its exact phase output roster",
+    )
     for item in files.values():
         relative = item["path"]
-        require(relative.startswith(f"phase-{phase}/") and len(Path(relative).parts) == 2
-                and Path(relative).name not in ("", ".", "..") and "\\" not in relative,
-                "application output escapes its phase directory")
+        require(
+            relative.startswith(f"phase-{phase}/")
+            and len(Path(relative).parts) == 2
+            and Path(relative).name not in ("", ".", "..")
+            and "\\" not in relative,
+            "application output escapes its phase directory",
+        )
     artifacts = client.copy_files(session / "work", response)
     if windows:
         require_win_sources(client.config, response["proof"]["loaded_sources"])
-        check_windows_phase(client, response, plan, plan_hash, session / "work/phase-a", artifacts)
     report_name = "measurements.json" if scope is None else "report.json"
-    if scope is not None:
-        directory = session / "work" / f"phase-{phase}"
-        data = file_bytes(directory / report_name)
-        report = json.loads(data)
-        check_scope_report(record(directory / "receipt.json"), report, data, plan_hash, phase)
+    directory = session / "work" / f"phase-{phase}"
+    data = file_bytes(directory / report_name)
+    report = json.loads(data)
+    sealed = record(directory / "receipt.json")
+    if scope is None:
+        check_discovery_phase(sealed, report, data, plan, plan_hash, phase, artifacts)
+        build = report["fusion_version"]
+    else:
+        check_scope_report(sealed, report, data, plan_hash, phase)
         check_scope_archives(report, artifacts, phase)
-        require(report["source_revision"] == client.config["source_revision"]
-                and report["process"]["pid"] == response["host"]["pid"]
-                and report["application_build"] == response["proof"]["fusion_version"],
-                "Fusion scope report belongs to a different installed process")
+        build = report["application_build"]
+    check_phase_owner(client, response, report, phase, plan_hash, build)
+    check_phase_controls(report, plan)
+    require(
+        "fixture_only" not in report and "fixture_only" not in response["proof"],
+        "Fusion fixture reports cannot settle a native phase",
+    )
     if phase == "b":
         prior_raw = file_bytes(client.directory / "phase-a" / report_name)
         previous = json.loads(prior_raw)["process"]
-        require(previous["pid"] != response["host"]["pid"] and identity(previous["pid"]) is None,
-                "phase B requires the old Fusion process to have exited")
-        if report is not None:
-            require(report["previous_phase_report_sha256"] == sha256(prior_raw)
-                    and report["previous_process"] == previous,
-                    "Fusion scope report does not bind the staged Phase A report and process")
+        require(
+            previous["pid"] != response["host"]["pid"]
+            and identity(previous["pid"]) is None,
+            "phase B requires the old Fusion process to have exited",
+        )
+        if scope is None:
+            require(
+                report["previous_measurements_sha256"] == sha256(prior_raw),
+                "Fusion Phase B does not bind the staged Phase A measurements",
+            )
+        else:
+            require(
+                report["previous_phase_report_sha256"] == sha256(prior_raw)
+                and report["previous_process"] == previous,
+                "Fusion scope report does not bind the staged Phase A report and process",
+            )
     write_record(session / "work/dispatch.json", response)
     artifacts["dispatch"] = pin(session / "work/dispatch.json", "dispatch.json")
-    require(sum(item["size_bytes"] for item in artifacts.values()) <= 256 * 1024 * 1024,
-            "application outputs and dispatch receipt exceed 256 MiB")
+    require(
+        sum(item["size_bytes"] for item in artifacts.values()) <= 256 * 1024 * 1024,
+        "application outputs and dispatch receipt exceed 256 MiB",
+    )
     return artifacts
 
 

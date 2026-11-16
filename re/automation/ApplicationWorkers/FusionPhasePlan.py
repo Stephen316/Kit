@@ -1,5 +1,5 @@
-from ApplicationProtocol import require, sha256
-
+from ApplicationProtocol import require, sha256, windows_process
+from FusionCounterpart import scope_process
 
 SCOPE = "two-body-through-all-discovery"
 CASES = ("automatic", "explicit_a", "explicit_ab")
@@ -37,6 +37,30 @@ def phase_paths(identity, phase):
     else:
         files.update({f"{directory}.{mode}": f"{directory}/fusion-{mode}.f3d" for mode in CASES})
     return files
+
+
+# every grouped phase needs the same successful pinned control on both sides
+def check_phase_controls(report, plan):
+    require(
+        report.get("pins") == plan["pins"]
+        and all(
+            isinstance(reading, dict)
+            and reading.get("compute_all_return") is True
+            and reading.get("native_input") == plan["pins"]["control"]
+            for reading in (
+                report.get("healthy_control_before"),
+                report.get("healthy_control_after"),
+            )
+        ),
+        "Fusion phase did not preserve both healthy pinned controls",
+    )
+
+
+# phase verification must agree with the generating host on the process lifetime
+def phase_process(host):
+    if host["started"].startswith("windows:"):
+        return windows_process(host)
+    return scope_process(host)
 
 
 def check_scope_report(receipt, report, raw, plan_hash, phase):

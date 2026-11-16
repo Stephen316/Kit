@@ -9,6 +9,8 @@ from typing import cast as CastValue
 
 import pytest as Pytest
 
+from tests.Research.Applications.DispatchHost import DispatchHost
+from tests.Research.Applications.RunQueueHost import RunQueueHost
 from tests.Research.SupervisorClient import KRepoRoot, SessionHost
 
 # the separate scope study uses a closed case roster in both controller jobs
@@ -309,3 +311,82 @@ def PreparePair(OutputPath: FilePath, ScopeRun: bool) -> dict[str, str]:
     return CastValue(
         dict[str, str], JsonCodec.loads(RunFusionTool(ScriptPath, Arguments))
     )
+
+
+# live claim state must come from the exact queue command and worker registry
+def QueuePhases(Dispatch: DispatchHost) -> tuple[SessionHost, str, str]:
+    RootPath = Dispatch.RootPath
+    OutputPath = RootPath / "Prepared"
+    PlanInfo = PreparePair(OutputPath, False)
+    Harness = MakeQueueHost(RootPath, PlanInfo["source_revision"])
+    InstallInfo = JsonCodec.loads(Dispatch.ConfigFile.read_bytes())
+    InstallInfo["endpoint"] = str(Dispatch.Endpoint)
+    _ = Dispatch.ConfigFile.write_text(JsonCodec.dumps(InstallInfo), encoding="utf-8")
+    QueueText = RunFusionTool(
+        "re/automation/ApplicationWorkers/QueueFusionPhases.py",
+        [
+            "--config",
+            str(Harness.ConfigFile),
+            "--plan",
+            str(OutputPath / "plan.json"),
+            "--resource",
+            "application:fusion:local",
+        ],
+    )
+    _ = RunFusionTool(
+        "re/automation/Controller.py",
+        [
+            "--store",
+            str(Harness.StorePath),
+            "resource",
+            "application:fusion:local",
+            "--capacity",
+            "1",
+            "--available",
+        ],
+    )
+    Names: dict[str, str] = JsonCodec.loads(QueueText)["jobs"]
+    return Harness, Names["a"], Names["b"]
+
+
+# one bad control must discard every recipe result and preserve the owner evidence
+@Pytest.mark.skipif(System.platform != "darwin", reason="macOS application worker")
+@Pytest.mark.parametrize(
+    ("FaultKind", "ReasonText"),
+    (
+        ("after", "Fusion phase did not preserve both healthy pinned controls"),
+        ("fixture", "Fusion fixture reports cannot settle a native phase"),
+    ),
+)
+def CheckControls(TmpPath: FilePath, FaultKind: str, ReasonText: str) -> None:
+    Dispatch = DispatchHost(TmpPath.resolve())
+    Dispatch.Command = [
+        System.executable,
+        str(KRepoRoot / "re/automation/ApplicationWorkers/FusionPhaseHealthFixture.py"),
+    ]
+    Harness, FirstName, RepeatName = QueuePhases(Dispatch)
+    with RunQueueHost(Dispatch, FaultKind):
+        _ = Harness.RunIdle()
+        assert Harness.ReadJob(FirstName)["state"] == "rejected"
+        assert Harness.ReadJob(RepeatName)["state"] == "waiting_evidence"
+        Finish = Harness.ReadResult(FirstName)
+        ResultInfo = JsonCodec.loads(JsonCodec.dumps(Finish["result"]))
+        assert ResultInfo["outcome"] == "rejected"
+        assert ReasonText in ResultInfo["reason"]
+        assert "artifacts" not in ResultInfo and "output_artifacts" not in Finish
+        CheckSpool(Dispatch)
+
+
+# owner disposition must retain the completed files behind their original fence
+def CheckSpool(Dispatch: DispatchHost) -> None:
+    Fence = JsonCodec.loads((Dispatch.Endpoint / "fence.json").read_bytes())
+    assert Fence["reason"] == "acceptance_required"
+    Spool = Dispatch.Endpoint / "jobs" / Fence["job_id"]
+    assert (Spool / "pending-acceptance.json").is_file()
+    Reply = JsonCodec.loads((Spool / "phase.done").read_bytes())
+    Copied = JsonCodec.loads((Spool / "copied.json").read_bytes())
+    assert Reply["status"] == "completed"
+    assert Copied["status"] == "copied_pending_controller_acceptance"
+    assert Reply["files"] == Copied["artifacts"]
+    for Recipe in ("P01", "P04"):
+        assert (Spool / f"phase-a/{Recipe}-fusion-fresh-baseline-a.f3d").is_file()
