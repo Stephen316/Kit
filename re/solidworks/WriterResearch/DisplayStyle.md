@@ -57,8 +57,46 @@ All eight exact saves decode as `<12di6d>` with four `(0, 0, 0)` points, count 2
 
 To reproduce the offsets, verify the receipt, measurement digest, file sizes and file digests as in the [hosted archive check](../../../tests/Research/Archives/SolidWorksBossStyleTests.py). Open the ordinary [rectangle and boss read](../../../src/convert/adapters/solidworks/resolved/RectanglePart.py) on `Contents/Config-0` and `Contents/Config-0-ResolvedFeatures`. In the unique boss `ReadDisplayOpen`, the cursor is at the first point after the style value has been read. Advance 148 bytes through the points and vectors to the first text byte. The offset on return from that call is the independently recovered `depth_display.handle.offset`.
 
-## Following inline text and handle
+## Inline dimension text
 
-The `moDisplayDim_c` caller resumes at `0x4c82a1e9` and calls serializer slot 5 on the inline `moDimText_c` member `+0x6a0` at `0x4c82a1f6`. The vtable at `0x4d243868` resolves that slot to `0x4c6e86b0`. Its plain saved text begins with the empty Unicode `iText` CString at member `+0x08`, written by the CString operator at `0x4c6e8870`. The next fields are the origin `Position` at `+0x38`, `FormatToUse` signed long 18 at `+0x10`, and the null `Format` object at `+0x18`. Their store calls are `0x4c6e88eb`, `0x4c6e892d` and `0x4c6e898c`. The constructor at `0x4c84ff90` initializes the points, a null format object on this path and scale 1.0. The `useOtherFormat` entry at `0x4c8578b0` writes the supplied format to `+0x10` and clears `+0x18`. The calling route that supplies 18 on this boss still needs attribution.
+The three exported `moDisplayDistanceDim_c` constructors at `0x4c8a2230`, `0x4c8a2350` and `0x4c8a25a0` install vtable `0x4d2501a0` before calling `0x4c8871e0` at `0x4c8a22bd`, `0x4c8a23f0` and `0x4c8a264a`. The common initialization helper calls display vtable slot `+0xae0` at `0x4c887233`. That entry is `0x4bc4bf10` and returns 18. The helper passes that result to slot `+0xa8` of the inline `moDimText_c` at display member `+0x6a0`, at `0x4c887242`. The inline vtable `0x4d243868` resolves this to `useOtherFormat` at `0x4c8578b0`, which writes the selector to `+0x10` and clears the explicit format object at `+0x18`. The base display table `0x4d24e738` has a different selector target returning 2, so the saved value 18 follows the distance-display class dispatch.
 
-The 136 bytes from the empty CString through the last field before the handle also agree in all eight saves, with SHA-256 `f88940a3060281aebab6185f30814dc56f675b79047c28e1036dab141751cd6f`. The offset after them holds a compact schema-1 `moFeatureDimHandle_c` class definition. The typed walk reaches it at next map index 297, which allocates the handle class and object 298. The enclosing compact display reference has already allocated object 296 before `ReadDisplayOpen`, whose entry and exit both have next index 297. The `moDisplayDim_c` store writes `DimHandleCount` from `+0x860` at `0x4c82a35d` before the handle loop. Attribution of the remaining inline text fields and the producer of its selected format is needed before complete depth-display generation. [Handle and cache reader](../../../src/convert/adapters/solidworks/resolved/BossDepth.py)
+The base constructor overloads call `moDimText_c` at `0x4c84ff90` with an empty label, absent format and position inputs, zero flag arguments, width and height from the two `1e-6` values at `0x4cd973d0`, and width factor from `1.0` at `0x4cd973c0`. The calls at `0x4c86c439`, `0x4c86cc28` and `0x4c86d397` pass these same values. The inline constructor initializes the two points at `0x4c84fffe` and `0x4c850009`, sets scale 1.0 at `0x4c85001a`, clears the curve and mirror members, and constructs the empty `su_CStringArray` at `0x4c85009d`. Its later scalar stores at `0x4c85006e` through `0x4c8500dd` populate the supplied text box and font settings.
+
+After the terminal display item vectors, `moDisplayDim_c` calls serializer slot 5 on the inline text member at `0x4c82a1f6`. Its vtable resolves that slot to `0x4c6e86b0`. The inherited `su_CObject::Serialize` call at `0x4c6e8712` contributes no bytes on the plain route and the subsequent database-key calls do not add fields there. The saved order below uses offsets relative to the first CString byte. The last row belongs to the outer display and is shown to make the next object boundary explicit.
+
+| Offset | Member or native key | Wire type | Saved value | Store call |
+| ---: | --- | --- | --- | --- |
+| 0 | `+0x08` `iText` | Unicode CString | empty, four-byte framing | `0x4c6e8870` |
+| 4 | `+0x38` `Position` | `3 f64` | `(0, 0, 0)` | `0x4c6e88eb` |
+| 28 | `+0x10` `FormatToUse` | `i32` | 18 | `0x4c6e892d` |
+| 32 | `+0x18` `Format` | archive object | compact null | `0x4c6e898c` |
+| 34 | `+0x20` `AlignType` | `i32` | 0 | `0x4c6e89ea` |
+| 38 | `+0x50` `EndPoint` | `3 f64` | `(0, 0, 0)` | `0x4c6e8a65` |
+| 62 | `+0x68` `Scale` | `f64` | 1.0 | `0x4c6e8aa9` |
+| 70 | `+0x90` array count | `i32` | 0 | `0x4c6e8ad7` |
+| 74 | `+0xc4` `MirrorHorizontal` | `i32` | 0 | `0x4c6e8e3b` |
+| 78 | `+0xa0` `CurveText` | `i32` | 0 | `0x4c6e8e9c` |
+| 82 | `+0xd0` `TextInBoxStyle` | `i32` | 0 | `0x4c6e9383` |
+| 86 | `+0xd8` `TextInBoxWidth` | `f64` | `1e-6` | `0x4c6e93e6` |
+| 94 | `+0xe0` `TextInBoxHeight` | `f64` | `1e-6` | `0x4c6e9449` |
+| 102 | `+0x24` | `i32` | 0 | `0x4c6e94a7` |
+| 106 | `+0xf0` `TextInBoxSplitData` | compact count | 0 | `0x4c6e9509` |
+| 108 | `+0x118` `TextInBoxSplitDataReady` | `i32` | 0 | `0x4c6e955a` |
+| 112 | `+0x120` `IsUserOverridenText` | `i32` | 0 | `0x4c6e95bb` |
+| 116 | `+0x124` `IsFitText` | `i32` | 0 | `0x4c6e961c` |
+| 120 | `+0x128` `WidthFactorBeforeFit` | `f64` | 1.0 | `0x4c6e967f` |
+| 128 | `+0x130` `WasUsingTableOrDocFontBeforeFit` | `i32` | 0 | `0x4c6e96e0` |
+| 132 | outer display `+0x860` `DimHandleCount` | `i32` | 1 | `0x4c82a35d` |
+
+The first empty count skips the array stores starting at `0x4c6e8b10`. The clear curve selector jumps from `0x4c6e8ec5` to `0x4c6e9344`, bypassing its additional geometry. The format-pointer helper in the pinned `sldmfcu.dll` routes through `su_CArchive::WriteObject` at `0x3c7cf68e`. At offset 106, `swccu.dll` SHA-256 `7254b30f4eb77fd5b49fdbb0a7ab499ba3bf1d39a3f8f18d72090c2568967b49` delegates the plain `su_CStringArray::Serialize` route at `0x31a476f4` to MFC ordinal 12836. In the inspected `mfc140u.dll` SHA-256 `fc5848eb58982e193cdfe73f1f26cd04fce4e196f717f42b89ae27315cd52f6f`, the array constructor reached through ordinal 962 clears its count at `0x1801d4da8`. The serializer reads it from `+0x10` at `0x1801d54fb`, and the count writer at `0x1801d1ea4` uses a 16-bit word for values below `0xffff`. The eight archives independently show a two-byte zero count there. The `+0x24` word is the second half of the qword cleared at `0x4c84ffe9`. Its meaning remains unassigned because the same database key is also used for the preceding height.
+
+All eight saved inline text spans are 132 bytes with SHA-256 `eaed804b70c0f2af5875c9df36b4eb2c48108d3004d09c81c9cc2c386c914930`. Adding the outer one-handle count yields 136 bytes with SHA-256 `f88940a3060281aebab6185f30814dc56f675b79047c28e1036dab141751cd6f`. `ReadDisplayOpen` consumes the inline text and count with the same next map index 297 it had on entry after display object 296. The edited depth changes the actual model value to 0.012 metres while preserving the text bytes.
+
+## First feature handle and owned dimension
+
+For the plain archive the display stores handles from its array at `+0x858` via the object operator at `0x4c82a401`. The model-writing constructor route at `0x4c86d2b0` creates the supplied runtime-class dimension through `0x4c81ea90` at `0x4c86d7f3`, wraps that result using the initializer at `0x4c839f80`, installs the feature-handle vtable `0x4d1881b0`, and adds it to the display handle array at `0x4c86d848`. Its serializer slot 5 is `0x4c832420`. That calls the reference-dimension serializer `0x4c828570` at `0x4c832432`, whose component reference begins at `0x4bba6160`. The reference serializer stores the optional transforms, view tags and route fields before returning. The feature serializer's plain store path writes the object from `+0xf0` at `0x4c832545` when the `+0xe8` route is absent. This is the next typed dimension boundary in the saved record.
+
+The [production boss reader](../../../src/convert/adapters/solidworks/resolved/BossDepth.py) observes the same 133-byte span in all eight archives from the `moFeatureDimHandle_c` definition to the start of `ParallelPlaneDistanceDim_c`. Its SHA-256 is `13282cefe47002dea925f0081a4341fb4210ab2c373696857a4d09095efce523`. The 26-byte compact schema-1 definition allocates class 297 and object 298. The following null and 20 signed component words consume 82 bytes. The remaining 25 bytes match the [shared local dimension route](../../../src/convert/adapters/solidworks/sketch/DimHandle.py) with selector 0, state -1, flags 0 and absent transforms. The typed dimension definition begins exactly at handle offset plus 133 and allocates class 299 and object 300. These indices are observed positions in the pinned inputs. A constructive writer must derive them from its own enclosing archive's allocation state.
+
+The inline text and one-handle boundary now have both native field attribution and eight matching saves. The full default provenance for the component-reference bytes, the dimension and favorite tail, and application acceptance of an independently authored feature remain open.
