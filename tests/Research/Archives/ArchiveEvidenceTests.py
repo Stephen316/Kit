@@ -80,6 +80,12 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
             id="fusion-circular-dimension-discovery",
         ),
         Pytest.param(
+            "re/automation/FusionNeutralRectanglePlan.py",
+            (),
+            "06ad424e2ce4d40da9211163a55a8f5dbe8751cd25594120e71fd1a433028d58",
+            id="fusion-neutral-rectangle-mapping",
+        ),
+        Pytest.param(
             "re/automation/FusionCutProfileEvidence.py",
             (),
             "4ac34b4dbb4b92473aab572336e0ef6402634b0c534f9c6a502b81cc9575b75c",
