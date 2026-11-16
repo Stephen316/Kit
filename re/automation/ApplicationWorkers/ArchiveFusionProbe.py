@@ -146,7 +146,7 @@ def relocate(root, config, timeout, *, verify_client=None):
     }
 
 
-def archive_probe(config_path, queue, kind, *, authorize=None):
+def archive_probe(config_path, queue, kind, *, authorize=None, retain=None):
     store, config, _ = queue_configuration(config_path, kind, queue["resource"])
     require(
         config["installation"] == queue["installation"]
@@ -169,7 +169,10 @@ def archive_probe(config_path, queue, kind, *, authorize=None):
         verify_client = (
             authorize(connection, config, timeout) if authorize is not None else None
         )
-        return relocate(root, config, timeout, verify_client=verify_client)
+        result = relocate(root, config, timeout, verify_client=verify_client)
+        if retain is not None:
+            result.update(retain(connection, config, timeout, result))
+        return result
 
 
 def main():

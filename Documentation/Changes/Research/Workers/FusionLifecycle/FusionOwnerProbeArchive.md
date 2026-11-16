@@ -15,6 +15,7 @@ requesting worker and preserves the request evidence. Native Fusion exit,
 replacement readiness and retry still require their own evidence and
 the existing owner admission.
 [Explicit archive and retry commands](../FusionPhaseAudit.md)
+[Joined recovery custody](FusionArchivedRecoveryBasis.md)
 
 The hosted macOS fixture uses a real A03 supervisor timeout with a
 disposable hostless endpoint. It checks claimed-probe refusal, owner
