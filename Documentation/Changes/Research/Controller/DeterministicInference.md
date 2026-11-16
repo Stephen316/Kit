@@ -97,6 +97,24 @@ capture leaves automatic and explicit selection compatible with the same
 target. The controller parks this gap until distinguishing evidence arrives
 and retains the two-body grid and affected archives in the receipt.
 
+Queue the fixed [Fusion two-body scope study](../FusionReadback/FusionScopeControl.md)
+in the same A03 store as the parked assessment. Attach it using the original
+parked assessment receipt and the SHA-256 of the issued queue receipt.
+
+```shell
+uv run --frozen --group dev --python 3.14 python re/automation/InferenceGrid/Resume.py \
+  --store /private/ResearchStore --queue-receipt /private/GridQueue.json \
+  --queue-receipt-sha256 QUEUE_SHA256 --parked-receipt-sha256 ASSESSMENT_SHA256
+```
+
+The controller retains the previous attempt and schedules a new generation of
+the same assessment. Both application phases and all selected output roles
+must complete before the successor can run. It verifies the accepted result
+and dispatch pins, healthy controls, linked process identities, and saved
+archives before admitting the Fusion observations. The assessment remains
+parked until independent evidence establishes the saved target-policy meaning.
+The original rescan dependencies and frozen holdout stay in place.
+
 The hosted integration also exercises a synthetic disjoint-lineage holdout
 and a repeated-lineage refusal. P03 and P04 remain discovery evidence. P05
 remains reserved. Full milestone acceptance requires qualified A06 paired

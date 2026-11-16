@@ -14,6 +14,7 @@ from convert.adapters.solidworks.Container.Parasolid import (
 from convert.adapters.solidworks.Resolved.RectanglePart import ReadRectPart
 from convert.api.ApiOpen import OpenDocument
 from interchange.document.Models.DocumentModel import CadDocument
+from tests.Research.Archives.SolidWorksWriterStreamTests import LoadReport
 
 # each corruption control keeps the original observed discovery data named explicitly
 KCaptureRoot = FilePath(__file__).resolve().parents[3] / "re/automation/PairedCaptures"
@@ -271,3 +272,17 @@ def TestPartGuard() -> None:
             assert len(Document.bodies) == 1
             assert len(Document.sketches[0].closed_profile_entity_ids[0]) == 4
             assert (Document.brep is not None) is bool(IncludeBrep and BodyCount)
+
+
+# independent archives distinguish empty live and stale first cache lists
+def CheckMassCache() -> None:
+    Report = LoadReport("VerifyConfigMassCaches.py", 14)
+    assert Report["widths"] == {"4": 6, "278": 4, "286": 4}
+    assert (
+        Report["replay_sha256"]
+        == "382f78cdb1a9f801781b0c397bb9d272f210f4a03bbeb71ba4f845d103502542"
+    )
+    assert (
+        Report["independent_geometry_sha256"]
+        == "f8708eec571a0dd64b741eed6fbdd2dca4ec7c03f1b560906f6f5a259f68bd8e"
+    )
