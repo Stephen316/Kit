@@ -1,6 +1,6 @@
 # SOLIDWORKS ModelHeader self reference and spatial frame
 
-The [research constructor](../../../../re/solidworks/WriterResearch/HeaderTail.py) writes the complete generation-19000 model header on one archive allocator. It composes revision logs, the self reference, the empty replaced-components list and the bounding frame. The caller supplies the document times and stamps, license words, saved reference and sketch settings and evaluated world bounds. The constructor derives the frame midpoint and radius from those bounds. [Native field ownership](../../../../re/solidworks/WriterResearch/ModelHeader.md#continuation-and-spatial-frame)
+The [research constructor](../../../../../re/solidworks/WriterResearch/HeaderTail.py) writes the complete generation-19000 model header on one archive allocator. It composes revision logs, the self reference, the empty replaced-components list and the bounding frame. The caller supplies the document times and stamps, license words, saved reference and sketch settings and evaluated world bounds. The constructor derives the frame midpoint and radius from those bounds. [Native field ownership](../../../../../re/solidworks/WriterResearch/ModelHeader.md#continuation-and-spatial-frame)
 
 The old apparent empty class near the end is the overlap between a signed `-1` field and the next unsigned license-type word. The typed read consumes both without allocating a slot. The self reference allocates five slots and the subsequent replaced-components list allocates one.
 
