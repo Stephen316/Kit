@@ -31,6 +31,7 @@ from PairedCaptureIntake import (
     sha256,
 )
 from PairedPerimeters import edge_gap, match_perimeters
+from RectanglePair.BodyEvidence import CheckNoBodies, CompareBodies
 from RectanglePairBoss import compare_boss, fusion_boss, solidworks_boss
 from RectanglePairSketch import (
     match_axes,
@@ -309,6 +310,18 @@ def compare_variant(
             dict(rectangle["perimeter"]["matched_links"]),
             tolerances,
         )
+        result["body"] = CompareBodies(
+            {"fusion": fusion_doc, "solidworks": sw_doc},
+            {"fusion": fusion_observed, "solidworks": sw_observed},
+            result["boss"],
+            tolerances,
+        )
+    else:
+        result["body"] = {
+            "roster_status": "equal",
+            "fusion": CheckNoBodies(fusion_doc, fusion_observed),
+            "solidworks": CheckNoBodies(sw_doc, sw_observed),
+        }
     return result
 
 
@@ -343,7 +356,9 @@ def refusal_controls(rows, tolerance):
     require(
         [link["second_id"] for link in alternatives]
         == [solidworks[0][0], "duplicate-counterpart"]
-        and all(link["maximum_endpoint_delta_mm"] <= tolerance for link in alternatives),
+        and all(
+            link["maximum_endpoint_delta_mm"] <= tolerance for link in alternatives
+        ),
         "the ambiguous edge must preserve both geometric candidates",
     )
     positive = baseline["boss"]["solidworks"]["displacement_mm"]
@@ -436,15 +451,17 @@ def report(counterexamples=None):
             except (KeyError, ValueError) as error:
                 if counterexamples is None:
                     raise ValueError(f"{kind}/{variant}: {error}") from error
-                counterexamples.append({
-                    "recipe": kind,
-                    "variant": variant,
-                    "sources": {
-                        "fusion": left_assets[variant]["sha256"],
-                        "solidworks": right_assets[variant]["sha256"],
-                    },
-                    "reason": str(error)[:2048],
-                })
+                counterexamples.append(
+                    {
+                        "recipe": kind,
+                        "variant": variant,
+                        "sources": {
+                            "fusion": left_assets[variant]["sha256"],
+                            "solidworks": right_assets[variant]["sha256"],
+                        },
+                        "reason": str(error)[:2048],
+                    }
+                )
     if counterexamples is not None and len(counterexamples) > first_error:
         return {"pairs": rows}
     require(

@@ -70,7 +70,7 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
         Pytest.param(
             "re/automation/RectanglePairEvidence.py",
             (),
-            "b7f08b98d26d69394c85ff23ddba04a46959df8668dd6c1c6b56935f32496529",
+            "4e0615e5153f12b313f8a3b61b73f81b19fef0768a9571a2c4c09c2806c6d2cc",
             id="paired-p01-p03-public-history",
         ),
         Pytest.param(
