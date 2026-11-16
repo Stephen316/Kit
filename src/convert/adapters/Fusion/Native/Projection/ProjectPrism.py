@@ -52,7 +52,9 @@ def ProjectPrism(
     Material = ReadMaterial(Graph, Context, Model)
     Geometry, BodyValue = ProjectBody(Context, Shape, Material.id)
     Title = dict(Model.Asset.Properties).get("documentName", "")
-    Metadata = {"fusion.native_state": {"version": 2, "model": EncodeState(Model)}}
+    Metadata: dict[str, object] = {
+        "fusion.native_state": {"version": 2, "model": EncodeState(Model)}
+    }
     if Rectangle is not None:
         Metadata["fusion.read_only"] = True
     Document = CadDocument(
