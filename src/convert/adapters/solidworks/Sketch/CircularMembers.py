@@ -6,9 +6,9 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from collections.abc import Callable
 from math import dist as Distance, isclose as IsClose
-
-from typing_extensions import override as Override
+from typing import TYPE_CHECKING, TypeVar
 
 from convert.adapters.solidworks.Container.Archive import ArchiveError
 from convert.adapters.solidworks.Resolved.OriginProfile import OriginProfile
@@ -32,6 +32,19 @@ from convert.adapters.solidworks.Sketch.Relations import ReadRelations
 from convert.adapters.solidworks.Sketch.SketchTail import ReadLogicalTail
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
+if TYPE_CHECKING:
+    from typing_extensions import override as MarkOverrideMut
+else:
+
+    # preserve the original callable type when marking its override
+    KMethod = TypeVar("KMethod", bound=Callable[..., object])
+
+    # preserve override metadata without a runtime extension dependency
+    def MarkOverrideMut(Method: KMethod) -> KMethod:
+        setattr(Method, "__override__", True)
+        return Method
+
+
 # the full circle and the primary point adjacency share this allocated handle type
 KCircleHandle = "sgArcHandle"
 
@@ -41,14 +54,14 @@ class CircularCursor(SketchArchive):
     """Limit otherwise shared point adjacency to a witnessed circular handle."""
 
     # redirect ordinary point adjacency to the reached arc handle
-    @Override
+    @MarkOverrideMut
     def ReadObject(self, *Expected: str | None) -> int:
         if Expected == (None, "sgLineHandle"):
             Expected = (None, KCircleHandle)
         return super().ReadObject(*Expected)
 
     # decode circular adjacency and the inactive entity inactive operand
-    @Override
+    @MarkOverrideMut
     def ReadPayload(self, NameValue: str, ObjectIndex: int) -> None:
         if NameValue == KCircleHandle:
             (SlotValue,) = self.ReadInts("<H")
