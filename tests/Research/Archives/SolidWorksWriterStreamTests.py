@@ -270,7 +270,7 @@ def CheckGhostRel() -> None:
     )
 
 
-# the composed prefix must carry the first split's map through saved detail entry
+# the composed prefix must carry the first split map through saved detail entry
 def CheckCfgHistory() -> None:
     Report = LoadReport("VerifyConfigHistory.py", 14)
     assert Report["constructed"] is True
