@@ -253,6 +253,15 @@ def CheckDimStyles() -> None:
     )
 
 
+# annotation definitions must reach the table boundary without new archive objects
+def CheckCfgAnno() -> None:
+    Report = LoadReport("VerifyConfigAnnotations.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "c70e99640be3231a0239d84e64203b5af1f7be90e89129b9fbb924c1a9dc0b07"
+    )
+
+
 # each configuration manager record needs separate pinned evidence from the subprocess
 def CheckCmgr() -> None:
     Report = LoadReport("VerifyCmgrColor.py")
