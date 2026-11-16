@@ -2,13 +2,11 @@ from base64 import b64encode as EncodeBytes
 from collections.abc import Mapping
 from decimal import Decimal, InvalidOperation
 from hashlib import sha256 as DigestBytes
-from xml.etree.ElementTree import Element
 from zlib import compress as CompressBytes
 
-from convert.adapters.base import ParseUntrusted
+from convert.adapters.base.SafeParsing import ParseUntrusted
 from convert.adapters.freecad.Archive import CanonicalJson, KMaxDocSize, ValidateXml
 from convert.adapters.freecad.ArchiveOutput.ArchiveWrite import BuildDocXmlMut
-from convert.adapters.freecad.EditRead.EditSheet import EditCells
 from convert.adapters.freecad.EditRead.XmlField import EditAttr, EditChild, EditFloat
 from convert.adapters.freecad.ExtrusionCache.InlineProfile import ReadCacheFrame
 from convert.adapters.freecad.LiteralQuantity import KLiteralPattern
@@ -101,17 +99,6 @@ def ReadInlineExpr(ObjectValue: NativeObject) -> dict[str, str]:
             raise ValueError("inline end expression owner changed")
         Result[PathValue] = SourceText
     return Result
-
-
-# actual cell aliases remain unique and local before their source contents can corroborate an end
-def ReadInlineCells(ObjectValue: NativeObject) -> dict[str, Element]:
-    Cells = EditChild(ObjectValue, "cells", "Spreadsheet::PropertySheet", "Cells")
-    if any(
-        len(LinkValue) or LinkValue.get("count") != "0"
-        for LinkValue in Cells.findall("XLinks")
-    ):
-        raise ValueError("inline parameter cells gained external links")
-    return EditCells(ObjectValue, False)
 
 
 # harmless literal spelling changes preserve exact physical millimetres without tolerating edited values

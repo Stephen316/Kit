@@ -5,6 +5,7 @@ from convert.adapters.freecad.EditRead.EditObjects import FindEditObject, Requir
 from convert.adapters.freecad.EditRead.EditPlacement import CheckEditFrame
 from convert.adapters.freecad.EditRead.EditExtrusion import CheckEditMaker
 from convert.adapters.freecad.EditRead.EditProfile import CheckEditPlane
+from convert.adapters.freecad.EditRead.EditSheet import EditCells
 from convert.adapters.freecad.EditRead.Sketch.SavedRuleTable import ReadRuleRows
 from convert.adapters.freecad.EditRead.Sketch.SavedSketchGeom import ReadSketchGeom
 from convert.adapters.freecad.EditRead.Sketch.SketchDefaults import (
@@ -14,7 +15,6 @@ from convert.adapters.freecad.EditRead.Sketch.SketchDefaults import (
 from convert.adapters.freecad.EditRead.XmlField import EditChild, EditFloat, EditScalar
 from convert.adapters.freecad.InlineRead.ReadInline import (
     ReadExpected,
-    ReadInlineCells,
     ReadInlineDepth,
     ReadInlineExpr,
     ReadInlineScope,
@@ -80,7 +80,7 @@ def GuardEndCells(
     (Saved,) = (Value for Value in Objects if Value.type_id == "Spreadsheet::Sheet")
     if Saved.name != Original.name:
         raise ValueError("inline parameter sheet owner changed")
-    OriginalCells, SavedCells = ReadInlineCells(Original), ReadInlineCells(Saved)
+    OriginalCells, SavedCells = EditCells(Original, True), EditCells(Saved, True)
     if set(OriginalCells) != set(SavedCells):
         raise ValueError("inline parameter alias roster changed")
     Owned = {
@@ -122,7 +122,7 @@ def GuardInventory(Document: CadDocument, Objects: tuple[NativeObject, ...]) -> 
     ):
         raise ValueError("inline sketch owner inventory changed")
     (Sheet,) = (Value for Value in Objects if Value.type_id == "Spreadsheet::Sheet")
-    if len(Document.parameters) != len(ReadInlineCells(Sheet)):
+    if len(Document.parameters) != len(EditCells(Sheet, True)):
         raise ValueError("inline parameter inventory changed")
 
 
@@ -197,8 +197,14 @@ def GuardOwners(
 
 # unproven edits must refuse rather than silently substitute the original neutral snapshot
 def GuardInline(
-    Document: CadDocument, Manifest: Mapping[str, object], RootValue: Element
+    Document: CadDocument,
+    Manifest: Mapping[str, object],
+    RootValue: Element,
+    *,
+    RetainedRoute: bool,
 ) -> None:
+    if RetainedRoute:
+        return
     try:
         Feature = ReadInlineScope(Document, Manifest)
         if Feature is None:

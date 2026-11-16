@@ -17,7 +17,12 @@ from convert.api.ApiOpen import OpenDocument
 from convert.api.ApiWrite import WriteDocument
 from interchange.document.Models.DocumentModel import CadDocument
 from interchange.Enums.EnumFeatures import FeatureKind
+from interchange.Enums.EnumDocument import Capability
 from interchange.Features.FeatureStep import FeatureStep
+from interchange.geometry.Models.VectorSpace import SpaceVector
+from interchange.mesh.SurfaceMesh import SurfaceMesh
+from interchange.Payloads.PayloadRecord import BrepPayload
+from interchange.Payloads.PayloadRoles import PayloadRole
 from tests.Research.Archives.FreeCadInitialShapeTests import MakeInitial
 from tests.Research.Archives.FreeCadTwoLengthBindingTests import (
     KBuildCase,
@@ -32,6 +37,15 @@ KInlineCases = {
     "reference": ("pentagon:xy:anti", True, True),
     "constrained": ("", False, False),
 }
+
+# retained geometry and native binding contracts stay outside this bounded reconciliation guard
+KRetainedCases = (
+    "usable-mesh",
+    "native-binding",
+    "empty-mesh",
+    "auxiliary-note",
+    "verification-note",
+)
 
 # structurally valid field changes leave the original neutral copies untouched
 KFieldEdits = {
@@ -52,6 +66,8 @@ KRepoRoot = FilePath(__file__).resolve().parents[3]
 
 # default operations and sketch references do not erase the inline native feature owner
 def MakeInline(CaseName: str) -> CadDocument:
+    if CaseName in KRetainedCases:
+        return MakeRetained(CaseName)
     if CaseName == "constrained":
         return KBuildCase(KReadinessCases[0])
     SeedName, Omitted, Reference = KInlineCases[CaseName]
@@ -71,6 +87,45 @@ def MakeInline(CaseName: str) -> CadDocument:
     )
     Feature = ChangeRecord(Feature, order=1, input_feature_ids=(SketchStep.id,))
     return ChangeRecord(Document, feature_timeline=(SketchStep, Feature))
+
+
+# actual typed retained routes remain independently readable without qualifying their native behavior
+def MakeRetained(CaseName: str) -> CadDocument:
+    Document = MakeInline("two-length")
+    if CaseName.endswith("mesh"):
+        MeshValue = SurfaceMesh("retained:mesh", "Retained mesh", (), ())
+        if CaseName == "usable-mesh":
+            MeshValue = ChangeRecord(
+                MeshValue,
+                vertices=(
+                    SpaceVector(0, 0, 0),
+                    SpaceVector(3, 0, 0),
+                    SpaceVector(0, 2, 0),
+                ),
+                triangles=((0, 1, 2),),
+            )
+        return ChangeRecord(Document, meshes=(MeshValue,))
+    IsBinding = CaseName == "native-binding"
+    Content = (
+        DigestBytes(b"independently authored binding control").digest()
+        if IsBinding
+        else b"independent note"
+    )
+    Payload = BrepPayload(
+        "freecad:native-document-binding" if IsBinding else "independent-note",
+        "freecad.fcstd.sha256" if IsBinding else "research.note",
+        "native_document_binding" if IsBinding else "text",
+        "sha256" if IsBinding else "utf8",
+        DigestBytes(Content).hexdigest(),
+        Content,
+        role=(
+            PayloadRole.KAuxiliary
+            if CaseName == "auxiliary-note"
+            else PayloadRole.KVerification
+        ),
+        file_extension=".sha256" if IsBinding else ".txt",
+    )
+    return ChangeRecord(Document, brep_payloads=(Payload,))
 
 
 # native object lookup uses declared types before selecting any property values
@@ -141,6 +196,17 @@ def ChangeTaperMut(RootValue: XmlTree.Element) -> None:
     Properties.set("Count", str(len(Properties.findall("Property"))))
 
 
+# duplicate local links and unknown records cannot be hidden behind unchanged alias cells
+def ChangeLinksMut(RootValue: XmlTree.Element, ModeName: str) -> None:
+    Cells = ReadNativeVal(ReadNativeObj(RootValue, "Spreadsheet::Sheet"), "cells")
+    if ModeName == "duplicate-links":
+        _ = XmlTree.SubElement(Cells, "XLinks", {"count": "0"})
+    elif ModeName == "unknown-cell-child":
+        _ = XmlTree.SubElement(Cells, "UnknownRecord", {"value": "unresolved"})
+    else:
+        Cells.set("xlink", "0")
+
+
 # profile edits keep the source snapshots intact while changing actual solver inputs
 def ChangeSketchMut(RootValue: XmlTree.Element, ModeName: str) -> None:
     Sketch = ReadNativeObj(RootValue, "Sketcher::SketchObject")
@@ -185,16 +251,19 @@ def RewriteNative(Payload: bytes, ModeName: str) -> bytes:
     with ZipFile(ByteStream(Payload)) as Archive:
         Entries = {Value.filename: Archive.read(Value) for Value in Archive.infolist()}
     RootValue = XmlTree.fromstring(Entries["Document.xml"])
-    Owner = ReadNativeObj(RootValue, "Part::Extrusion")
     if ModeName in KFieldEdits:
         FieldName, AttrName, NewValue = KFieldEdits[ModeName]
-        ReadNativeVal(Owner, FieldName).set(AttrName, NewValue)
+        ReadNativeVal(ReadNativeObj(RootValue, "Part::Extrusion"), FieldName).set(
+            AttrName, NewValue
+        )
     elif ModeName == "taper":
         ChangeTaperMut(RootValue)
     elif ModeName in ("geometry", "constraint", "construction"):
         ChangeSketchMut(RootValue, ModeName)
     elif ModeName == "foreign-solid":
         AddForeignMut(RootValue)
+    elif ModeName in ("duplicate-links", "unknown-cell-child", "local-links"):
+        ChangeLinksMut(RootValue, ModeName)
     elif ModeName == "copies":
         Manifest = ParseJson(Entries["interchange/document.json"])
         Manifest["schema_version"] = "2.0"
@@ -217,14 +286,20 @@ def RewriteNative(Payload: bytes, ModeName: str) -> bytes:
 
 
 # public research writes create the actual native control graph used by the read boundary
-def WriteInline(Document: CadDocument) -> bytes:
+def WriteInline(Document: CadDocument, *, RequireUnqualified: bool = True) -> bytes:
     Output = ByteStream()
     Result = WriteDocument(
         Document, Output, DestFormat="freecad.fcstd", AllowCarrier=True
     )
-    assert (
-        Result.bytes_written == len(Output.getvalue()) and not Result.application_usable
-    )
+    assert Result.bytes_written == len(Output.getvalue())
+    assert Result.metadata["application_usable"] is Result.application_usable
+    assert Result.metadata["vendor_loadable"] is Result.vendor_loadable
+    if RequireUnqualified:
+        assert not Result.application_usable and not Result.vendor_loadable
+    if Document.brep_payloads:
+        assert Capability.KNativePayloads in Result.carrier_capabilities
+    if any(MeshValue.triangles for MeshValue in Document.meshes):
+        assert Capability.KTessellation in Result.native_capabilities
     return Output.getvalue()
 
 
@@ -232,7 +307,9 @@ def WriteInline(Document: CadDocument) -> bytes:
 def ObservePlain(CaseName: str) -> dict[str, object]:
     Document = CadDocument.from_json(MakeInline(CaseName).to_json(indent=None))
     Before = Document.to_json(indent=None)
-    Payload = WriteInline(Document)
+    Payload = WriteInline(
+        Document, RequireUnqualified=CaseName not in ("usable-mesh", "native-binding")
+    )
     for StrictValue in (True, False):
         Readback = OpenDocument(
             Payload, SourceFormat="freecad.fcstd", StrictMode=StrictValue
@@ -250,10 +327,17 @@ def ObservePlain(CaseName: str) -> dict[str, object]:
 
 # detected unsupported changes cannot become a stale successful read even under filtering or permissive mode
 def ObserveChange(ModeName: str) -> dict[str, object]:
-    Payload = WriteInline(
-        MakeInline("constrained" if ModeName == "constraint" else "two-length")
+    SourceCase = (
+        ModeName.removesuffix("-forward")
+        if ModeName.endswith("-forward")
+        else "two-length"
     )
-    Changed = RewriteNative(Payload, ModeName)
+    if ModeName == "constraint":
+        SourceCase = "constrained"
+    Payload = WriteInline(MakeInline(SourceCase))
+    Changed = RewriteNative(
+        Payload, "forward" if ModeName.endswith("-forward") else ModeName
+    )
     OriginalDigest = DigestBytes(Payload).hexdigest()
     ChangedDigest = DigestBytes(Changed).hexdigest()
     if ModeName not in ("copies", "hash"):
@@ -280,7 +364,7 @@ def ObserveChange(ModeName: str) -> dict[str, object]:
 
 
 # each child exercises the real public reader without a native runtime or a private reconciliation call
-@MarkValue.parametrize("CaseName", tuple(KInlineCases))
+@MarkValue.parametrize("CaseName", (*KInlineCases, *KRetainedCases))
 def CheckUnchanged(CaseName: str) -> None:
     Process = RunProcess(
         [
@@ -317,6 +401,12 @@ def CheckUnchanged(CaseName: str) -> None:
         "constraint",
         "construction",
         "foreign-solid",
+        "duplicate-links",
+        "unknown-cell-child",
+        "local-links",
+        "empty-mesh-forward",
+        "auxiliary-note-forward",
+        "verification-note-forward",
         "copies",
         "hash",
     ),

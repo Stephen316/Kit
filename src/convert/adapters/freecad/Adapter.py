@@ -2409,7 +2409,13 @@ def ReadEmbedded(
     DocValue = ReconcilePlane(DocValue, RootValue, Archive, Members)
     DocValue = ReconcileSheet(DocValue, Value, RootValue)
     DocValue = ReconcileSketch(DocValue, Value, RootValue, Archive, Members)
-    GuardInline(DocValue, Value, RootValue)
+    GuardInline(
+        DocValue,
+        Value,
+        RootValue,
+        RetainedRoute=any(IsMeshUsable(MeshValue) for MeshValue in DocValue.meshes)
+        or any(IsNative(Payload) for Payload in DocValue.brep_payloads),
+    )
     return DocValue
 
 
