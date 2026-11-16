@@ -14,7 +14,7 @@ The job would already be running while the command reported failure.
 Canonical JSON construction, the 1 MiB metadata limit, object and receipt digests, stored records, schema, transactions and operation return semantics are unchanged.
 This repair does not make acknowledgement delivery transactional.
 Broken pipes, process interruption and other I/O failures can still lose a response after commit.
-The [output encoding gotcha](../../../Gotchas/Research/Workers/ControllerSuccessOutputEncoding.md) explains that boundary.
+The [output encoding gotcha](../../../Gotchas/Research/Workers/Controller/ControllerSuccessOutputEncoding.md) explains that boundary.
 
 ## Process coverage
 
