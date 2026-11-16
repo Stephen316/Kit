@@ -9,6 +9,6 @@
 """Expose the packaged circular profile through the historical research checkpoint."""
 
 from convert.adapters.solidworks.Resolved.Circular.Profile import (
-    ReadCircularProfileReturn as read_profile_return,
-    ReadCircularRegion as read_circular_region,
+    ReadArcProfile as read_profile_return,
+    ReadRoundRegion as read_circular_region,
 )

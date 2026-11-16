@@ -15,19 +15,20 @@ from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.Container import SldprtArchive
 from convert.adapters.solidworks.Core.CircularSketch import (
-    BindCircularParameter,
-    BindCircularSketch,
-    BindCircularSupport,
+    BindRoundParam,
+    BindRoundSketch,
+    BindRoundPlane,
     CircularSource,
 )
 from convert.adapters.solidworks.Core.Native import NativeModel
 from convert.adapters.solidworks.Core.Partition.CircularPartition import (
-    ReadCircularPartition,
+    CircularShape,
+    ReadRoundPart,
 )
 from convert.adapters.solidworks.Core.Scope.ScopeDocument import KScopeUnresolved
 from convert.adapters.solidworks.Resolved.Circular.Part import (
     CircularPart,
-    ReadCircularPart,
+    ReadRoundModel,
 )
 from interchange.Core.Common import FreezeMapping
 from interchange.Enums.EnumDocument import Severity
@@ -47,8 +48,8 @@ from interchange.geometry.Models.GeometryCurves import CircleGeometry
 from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
-# Leave established readers in charge outside the selected ordinary single-circle candidate.
-def IsCircularCandidate(Document: CadDocument, Model: NativeModel, Stream: str) -> bool:
+# leave established readers in charge outside the selected ordinary single circle candidate
+def IsCircleRead(Document: CadDocument, Model: NativeModel, Stream: str) -> bool:
     if (
         Model.cut_source is not None
         or KScopeUnresolved in Model.diagnostics
@@ -69,7 +70,7 @@ def IsCircularCandidate(Document: CadDocument, Model: NativeModel, Stream: str) 
     )
 
 
-# Reconcile the typed feature identities and publish the positive blind extent with source spans.
+# reconcile the typed feature identities and publish the positive blind extent with source spans
 def BindCircleBoss(
     BossFeature: FeatureStep,
     SketchFeature: FeatureStep,
@@ -77,11 +78,12 @@ def BindCircleBoss(
     Stream: str,
     DepthId: str,
 ) -> FeatureStep:
-    Boss = Saved.Boss
+    BossValue = Saved.Boss
     Definition = BossFeature.definition
     RequireArch(
-        BossFeature.name == Boss["name"]
-        and BossFeature.attributes.get("native_object_id") == Boss["native_feature_id"]
+        BossFeature.name == BossValue["name"]
+        and BossFeature.attributes.get("native_object_id")
+        == BossValue["native_feature_id"]
         and BossFeature.kind == FeatureKind.KExtrusion
         and BossFeature.operation == BooleanOp.JOIN
         and BossFeature.order > SketchFeature.order
@@ -91,22 +93,22 @@ def BindCircleBoss(
         True,
         "public circular boss agrees with the reached single profile extrusion",
     )
-    Depth = Boss["depth_display"]["dimension"]
-    Spec = Boss["end_specification"]
+    Depth = BossValue["depth_display"]["dimension"]
+    EndSpec = BossValue["end_specification"]
     Source = CircularSource(
         Stream,
-        str(Boss["native_feature_id"]),
-        (Boss["offset"], Boss["boss_end"]),
+        str(BossValue["native_feature_id"]),
+        (BossValue["offset"], BossValue["boss_end"]),
         "circular-extrusion",
     )
     Spans = (
         ProvenanceSpan(
-            Stream, Boss["profile_ref_offset"], 2, "operation-profile-reference"
+            Stream, BossValue["profile_ref_offset"], 2, "operation-profile-reference"
         ),
         ProvenanceSpan(
             Stream,
-            Spec["offset"],
-            Boss["depth_display"]["offset"] - Spec["offset"],
+            EndSpec["offset"],
+            BossValue["depth_display"]["offset"] - EndSpec["offset"],
             "extrusion-end-spec",
         ),
         ProvenanceSpan(Stream, Depth["value_offset"], 8, "extrusion-depth-scalar"),
@@ -117,43 +119,50 @@ def BindCircleBoss(
         sketch_id=SketchFeature.sketch_id,
         parameter_ids=(DepthId,),
         definition=ExtrudeFeature(
-            ParameterValue(Boss["signed_depth_m"] * 1000, ValueKind.LENGTH, "mm"),
+            ParameterValue(BossValue["signed_depth_m"] * 1000, ValueKind.LENGTH, "mm"),
             ExtrudeEnd.BLIND,
-            direction=SpaceVector(*Boss["axis"]),
+            direction=SpaceVector(*BossValue["axis"]),
         ),
         provenance=Replace(Source, spans=(*Source.spans, *Spans)),
     )
 
 
-# The analytically checked closed cylinder provides body measures in document millimetres.
-def BindCircularBody(
-    Body: DesignBody,
+# the analytically checked closed cylinder provides body measures in document millimetres
+def BindRoundBody(
+    BodyValue: DesignBody,
     Saved: CircularPart,
-    Shape,
+    Shape: CircularShape,
     Feature: FeatureStep,
     PayloadId: str | None,
 ) -> DesignBody:
-    Boss = Saved.Boss
-    Axis, Origin = Boss["axis"], Boss["start_center_m"]
-    Radius, Depth = Shape["radius_m"], Boss["signed_depth_m"]
-    Span = tuple(Radius * SquareRoot(max(0.0, 1 - Direction**2)) for Direction in Axis)
-    End = tuple(
-        First + Depth * Direction for First, Direction in zip(Origin, Axis, strict=True)
+    BossValue = Saved.Boss
+    AxisValue, Origin = BossValue["axis"], BossValue["start_center_m"]
+    Radius, Depth = Shape["radius_m"], BossValue["signed_depth_m"]
+    Extents = tuple(
+        Radius * SquareRoot(max(0.0, 1 - Direction**2)) for Direction in AxisValue
+    )
+    Endpoint = tuple(
+        First + Depth * Direction
+        for First, Direction in zip(Origin, AxisValue, strict=True)
     )
     Lower = SpaceVector(
         *(
-            1000 * (min(A, B) - Extent)
-            for A, B, Extent in zip(Origin, End, Span, strict=True)
+            1000 * (min(StartValue, EndValue) - Extent)
+            for StartValue, EndValue, Extent in zip(
+                Origin, Endpoint, Extents, strict=True
+            )
         )
     )
     Upper = SpaceVector(
         *(
-            1000 * (max(A, B) + Extent)
-            for A, B, Extent in zip(Origin, End, Span, strict=True)
+            1000 * (max(StartValue, EndValue) + Extent)
+            for StartValue, EndValue, Extent in zip(
+                Origin, Endpoint, Extents, strict=True
+            )
         )
     )
     return Replace(
-        Body,
+        BodyValue,
         final_feature_id=Feature.id,
         topology=TopologyCounts(
             solid_count=1,
@@ -168,17 +177,17 @@ def BindCircularBody(
         ),
         attributes=FreezeMapping(
             {
-                **Body.attributes,
-                "native_body_id": Boss["saved_body_id"],
-                "native_producer_feature_id": Boss["native_feature_id"],
-                "native_producer_transfer_object": Boss["transfer_object"],
+                **BodyValue.attributes,
+                "native_body_id": BossValue["saved_body_id"],
+                "native_producer_feature_id": BossValue["native_feature_id"],
+                "native_producer_transfer_object": BossValue["transfer_object"],
                 "native_partition_owner": Shape["native_owner"],
                 "native_partition_region": Shape["native_region"],
                 "brep_closed_edge_representative_vertices": Shape[
                     "closed_edge_representative_vertices"
                 ],
                 "solidworks.body_centroid_mm": tuple(
-                    Value * 1000 for Value in Boss["centroid_m"]
+                    Value * 1000 for Value in BossValue["centroid_m"]
                 ),
                 **(
                     {"parasolid_active_payload_id": PayloadId}
@@ -190,9 +199,13 @@ def BindCircularBody(
     )
 
 
-# Match the selected payload by stream and digest before exposing the decoded native solid.
-def AttachCircularBrep(
-    Document: CadDocument, Geometry: BrepModel, BodyId: str, Shape, IncludeBrep: bool
+# match the selected payload by stream and digest before exposing the decoded native solid
+def LinkRoundBrep(
+    Document: CadDocument,
+    Geometry: BrepModel,
+    BodyId: str,
+    Shape: CircularShape,
+    IncludeBrep: bool,
 ) -> tuple[BrepModel | None, str | None]:
     if not IncludeBrep:
         return None, None
@@ -218,30 +231,30 @@ def AttachCircularBrep(
     return Attached, Payload.id
 
 
-# Replace all editing and ownership records atomically after checking their existing identities.
-def BuildCircularDoc(
+# replace all editing and ownership records atomically after checking their existing identities
+def BuildRoundDoc(
     Document: CadDocument,
     Saved: CircularPart,
     Stream: str,
     Geometry: BrepModel,
-    Shape,
+    Shape: CircularShape,
     IncludeBrep: bool,
 ) -> CadDocument:
-    (SketchValue,), (Body,) = Document.sketches, Document.bodies
+    (SketchValue,), (BodyValue,) = Document.sketches, Document.bodies
     Reached = {
         Saved.Profile["feature_id"],
         Saved.Boss["native_feature_id"],
         Saved.Origin.FeatureId,
         Saved.Datum.FeatureId,
     }
-    Rows = tuple(
+    Records = tuple(
         Value
         for Value in Document.feature_timeline
         if Value.attributes.get("native_object_id") in Reached
     )
-    Features = {Value.attributes.get("native_object_id"): Value for Value in Rows}
+    Features = {Value.attributes.get("native_object_id"): Value for Value in Records}
     RequireArch(
-        len(Rows) == len(Features) == len(Reached) == 4,
+        len(Records) == len(Features) == len(Reached) == 4,
         True,
         "unique reached circular feature identities",
     )
@@ -267,7 +280,7 @@ def BuildCircularDoc(
         "public circular sketch, boss, datum and Origin match their archive identities",
     )
     RequireArch(
-        Body.final_feature_id,
+        BodyValue.final_feature_id,
         BossFeature.id,
         "circular boss owns the public design body",
     )
@@ -282,9 +295,9 @@ def BuildCircularDoc(
         for Value in Document.support_planes
         if Value.id == SketchValue.support_plane_id
     )
-    Support = BindCircularSupport(Plane, Saved, Stream)
+    Support = BindRoundPlane(Plane, Saved, Stream)
     Radial, Extent = Saved.Diameter, Saved.Boss["depth_display"]["dimension"]
-    Diameter = BindCircularParameter(
+    Diameter = BindRoundParam(
         Document.parameters,
         SketchFeature.id,
         Radial["parameter_name"],
@@ -294,7 +307,7 @@ def BuildCircularDoc(
         Radial["native_id"],
         "sketch-diameter-scalar",
     )
-    Depth = BindCircularParameter(
+    Depth = BindRoundParam(
         Document.parameters,
         BossFeature.id,
         Extent["parameter_name"],
@@ -309,15 +322,15 @@ def BuildCircularDoc(
         ((Diameter.id,), (Depth.id,)),
         "exact circular profile and boss driving parameter roster",
     )
-    Sketch = BindCircularSketch(SketchValue, Saved, Diameter.id, Stream)
+    Sketch = BindRoundSketch(SketchValue, Saved, Diameter.id, Stream)
     BossStep = BindCircleBoss(BossFeature, SketchFeature, Saved, Stream, Depth.id)
     SketchStep = Replace(
         SketchFeature,
         input_feature_ids=(DatumFeature.id, OriginFeature.id),
         provenance=Sketch.provenance,
     )
-    Brep, PayloadId = AttachCircularBrep(
-        Document, Geometry, Body.id, Shape, IncludeBrep
+    BrepValue, PayloadId = LinkRoundBrep(
+        Document, Geometry, BodyValue.id, Shape, IncludeBrep
     )
     Revisions = {BossStep.id: BossStep, SketchStep.id: SketchStep}
     Parameters = {Diameter.id: Diameter, Depth.id: Depth}
@@ -333,15 +346,15 @@ def BuildCircularDoc(
         parameters=tuple(
             Parameters.get(Value.id, Value) for Value in Document.parameters
         ),
-        bodies=(BindCircularBody(Body, Saved, Shape, BossStep, PayloadId),),
-        brep=Brep,
+        bodies=(BindRoundBody(BodyValue, Saved, Shape, BossStep, PayloadId),),
+        brep=BrepValue,
     )
     Result.assert_valid()
     return Result
 
 
-# A contradiction retains the reader's existing compatibility document and a scoped diagnostic.
-def ProjectCircularDoc(
+# a contradiction retains the reader s existing compatibility document and a scoped diagnostic
+def ProjectRoundDoc(
     Document: CadDocument,
     Native: NativeModel,
     Archive: SldprtArchive,
@@ -353,18 +366,16 @@ def ProjectCircularDoc(
     Config = f"Contents/Config-{ConfigId}"
     Stream = f"{Config}-ResolvedFeatures"
     if (
-        not IsCircularCandidate(Document, Native, Stream)
+        not IsCircleRead(Document, Native, Stream)
         or ContainerMo(Archive.streams) != KConfigGen
     ):
         return Document
     try:
-        Saved = ReadCircularPart(
+        Saved = ReadRoundModel(
             Archive.require(Config), Archive.require(Stream), KConfigGen
         )
-        Geometry, Shape = ReadCircularPartition(
-            Archive, Config, Saved.Boss, Saved.Circle
-        )
-        return BuildCircularDoc(Document, Saved, Stream, Geometry, Shape, IncludeBrep)
+        Geometry, Shape = ReadRoundPart(Archive, Config, Saved.Boss, Saved.Circle)
+        return BuildRoundDoc(Document, Saved, Stream, Geometry, Shape, IncludeBrep)
     except (KeyError, IndexError, ValueError, StructError) as ErrorInfo:
         return Replace(
             Document,

@@ -13,6 +13,19 @@ from convert.adapters.solidworks.Container.Archive import (
     KDefinitionKind,
     ReadTag,
 )
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Container.PlaneBasis import KSavedBasis, KSavedVector
+from convert.adapters.solidworks.Resolved.Circular.Records import (
+    CircularBoss,
+    CircularExtent,
+    ArcProfile,
+)
+from convert.adapters.solidworks.Resolved.OriginProfile import OriginProfile
+from convert.adapters.solidworks.Sketch.CircularRecords import (
+    CircularHeader,
+    CircularMember,
+    CircularPoint,
+)
 from convert.adapters.solidworks.Resolved.BossDepth import ReadDepthRefs
 from convert.adapters.solidworks.Resolved.BossEnd import ReadEndHead, ReadEndTail
 from convert.adapters.solidworks.Resolved.BossEntry import ReadBodyReturn, ReadOpNode
@@ -27,33 +40,40 @@ from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Resolved.BossChooser import ReadBossChoices
 
 
-# Convert an already bound local sketch point to the saved datum's world coordinates.
-def WorldPoint(Xy, Axes, Origin):
-    X, Y = Xy
-    return tuple(
-        Offset + X * AxisX + Y * AxisY
-        for Offset, AxisX, AxisY in zip(Origin, *Axes[:2], strict=True)
+# convert an already bound local sketch point to the saved datum s world coordinates
+def WorldPoint(
+    PointValue: tuple[float, ...], SavedAxes: KSavedBasis, Origin: KSavedVector
+) -> KSavedVector:
+    XValue, YValue = PointValue
+    First, Second, Third = (
+        Offset + XValue * AxisX + YValue * AxisY
+        for Offset, AxisX, AxisY in zip(Origin, *SavedAxes[:2], strict=True)
     )
+    return First, Second, Third
 
 
-# Read the existing end, distance parameter and start grammar through the resolved EOF.
-def ReadCircularExtent(Cursor, Centre, Radius, Normal):
+# read the existing end distance parameter and start grammar through the resolved eof
+def ReadBlindDepth(
+    Cursor: ArchiveCursor, Centre: KSavedVector, Radius: float, Normal: KSavedVector
+) -> CircularExtent:
     EndSpec = ReadEndHead(Cursor, KDefinitionKind, (0,))
     RequireArch(EndSpec["conditions"] == (0, 0), True, "expected circular blind end")
-    Tag = ReadTag(Cursor.BlobValue, Cursor.Offset)
+    TagValue = ReadTag(Cursor.BlobValue, Cursor.Offset)
     RequireArch(
-        (Tag.kind, Tag.class_name, Tag.schema)
+        (TagValue.kind, TagValue.class_name, TagValue.schema)
         == (KDefinitionKind, "moDisplayDistanceDim_c", 1),
         True,
         "expected first circular boss distance display definition",
     )
     Depth, Reference = ReadDepthRefs(Cursor, DisplayKind=KDefinitionKind)
     Signed = SignedDistance(Depth, Reference, Normal)
-    Base = Reference["points_metres"][:3]
+    BaseValue = Reference["points_metres"][:3]
     RequireArch(
         Signed > 0
-        and abs(PointOffset(Base, Centre, Normal)) <= KPlaneTolerance
-        and IsClose(Distance(Base, Centre), Radius, rel_tol=0, abs_tol=KPlaneTolerance),
+        and abs(PointOffset(BaseValue, Centre, Normal)) <= KPlaneTolerance
+        and IsClose(
+            Distance(BaseValue, Centre), Radius, rel_tol=0, abs_tol=KPlaneTolerance
+        ),
         True,
         "circular boss depth does not run forward from its sketch perimeter",
     )
@@ -78,8 +98,15 @@ def ReadCircularExtent(Cursor, Centre, Radius, Normal):
     }
 
 
-# A circular boss must own the reached profile, transfer and one-side body chooser.
-def ReadCircularBoss(Cursor, Profile, ProfileReturn, Circle, Points, Origin):
+# a circular boss must own the reached profile transfer and one side body chooser
+def ReadRoundBoss(
+    Cursor: ArchiveCursor,
+    Profile: CircularHeader,
+    ProfileReturn: ArcProfile,
+    Circle: CircularMember,
+    Points: list[CircularPoint],
+    Origin: OriginProfile,
+) -> CircularBoss:
     FileObject = ProfileReturn["trim"]["same_file_object"]
     Owner = ReadOpNode(
         Cursor,
@@ -88,7 +115,7 @@ def ReadCircularBoss(Cursor, Profile, ProfileReturn, Circle, Points, Origin):
         Profile["feature_node"],
         FileObject,
     )
-    Transfer, Body = ReadScopeAtom(Cursor)
+    Transfer, BodyValue = ReadScopeAtom(Cursor)
     Choices = ReadBossChoices(Cursor, Owner, EdgeIds=(Circle["native_id"],))
     RequireArch(
         Cursor.ReadInts("<H3i") == (0, 0, 0, 1),
@@ -102,14 +129,17 @@ def ReadCircularBoss(Cursor, Profile, ProfileReturn, Circle, Points, Origin):
     ReadAtomMaps(Cursor)
     AtomEnd = Cursor.Offset
     ReadBodyReturn(Cursor)
-    Axes = ProfileReturn["support"]["axes"]
-    DatumOrigin = Origin.Support.ShiftScale[:3]
-    Centre = WorldPoint(Points[Circle["center_slot"]]["xy_m"], Axes, DatumOrigin)
-    Extent = ReadCircularExtent(Cursor, Centre, Circle["radial_metres"], Axes[2])
+    SavedAxes = ProfileReturn["support"]["axes"]
+    ShiftX, ShiftY, ShiftZ = Origin.Support.ShiftScale[:3]
+    DatumOrigin = (ShiftX, ShiftY, ShiftZ)
+    Centre = WorldPoint(Points[Circle["center_slot"]]["xy_m"], SavedAxes, DatumOrigin)
+    Extent = ReadBlindDepth(Cursor, Centre, Circle["radial_metres"], SavedAxes[2])
     Depth = Extent["signed_depth_m"]
-    Midpoint = tuple(
-        Value + Depth * Axis / 2 for Value, Axis in zip(Centre, Axes[2], strict=True)
+    First, Second, Third = (
+        Value + Depth * AxisValue / 2
+        for Value, AxisValue in zip(Centre, SavedAxes[2], strict=True)
     )
+    Midpoint = (First, Second, Third)
     RequireArch(
         Distance(Choices["centre"]["centre_and_scale"][:3], Midpoint)
         <= KPlaneTolerance,
@@ -120,12 +150,12 @@ def ReadCircularBoss(Cursor, Profile, ProfileReturn, Circle, Points, Origin):
         **Owner,
         **Extent,
         "transfer_object": Transfer,
-        "saved_body_id": Body,
+        "saved_body_id": BodyValue,
         "choosers": Choices,
         "partition_object": Marker,
         "partition_state": StateValue,
         "atom_end": AtomEnd,
-        "axis": Axes[2],
+        "axis": SavedAxes[2],
         "start_center_m": Centre,
         "centroid_m": Midpoint,
     }

@@ -9,5 +9,5 @@
 """Expose the packaged radial display through the historical research checkpoint."""
 
 from convert.adapters.solidworks.Sketch.CircularDisplay import (
-    ReadDisplayReturn as read_display_return,
+    ReadRadialView as read_display_return,
 )

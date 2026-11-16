@@ -8,6 +8,14 @@
 
 from math import isclose as IsClose
 
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Sketch.CircularRecords import (
+    RoundDiameter,
+    CircularHeader,
+    CircularView,
+    RadialHandle,
+    RadialSuffix,
+)
 from convert.adapters.solidworks.Sketch.DimHandle import ReadDimHandle
 from convert.adapters.solidworks.Sketch.DisplayFields import (
     ReadCache,
@@ -18,8 +26,8 @@ from convert.adapters.solidworks.Sketch.Displays import TakeShownClass
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
 
-# Connect the displayed radial handle to the active sketch and its sole driving value.
-def ReadRadialHandle(Cursor, SketchNode):
+# connect the displayed radial handle to the active sketch and its sole driving value
+def ReadRadialLink(Cursor: ArchiveCursor, SketchNode: int) -> RadialHandle:
     Cursor.ReadNull()
     Style = Cursor.ReadValue("<d2ihf2ihf8ihf5i")
     RequireArch(Style[-5:] == (0, 0, 0, 0, 4), True, "unexpected radial visual mode")
@@ -29,7 +37,7 @@ def ReadRadialHandle(Cursor, SketchNode):
     RequireArch(
         Cursor.ReadInts("<i") == (2,), True, "unexpected radial display direction count"
     )
-    Cursor.ReadPoint(6)
+    _ = Cursor.ReadPoint(6)
     ReadEmptyTexts(Cursor, 1)
     TextPoint = Cursor.ReadPoint(3)
     RequireArch(
@@ -45,27 +53,27 @@ def ReadRadialHandle(Cursor, SketchNode):
     StartOffset = Cursor.Offset
     TakeShownClass(Cursor, "moSkDimHandleRadial_c")
     Handle = Cursor.NextIndex - 1
-    Slot = ReadDimHandle(Cursor, SketchNode)
-    RequireArch(Slot == 0, True, "radial display does not reach the sole G1 value")
+    SlotValue = ReadDimHandle(Cursor, SketchNode)
+    RequireArch(SlotValue == 0, True, "radial display does not reach the sole G1 value")
     return {
         "span": [StartOffset, Cursor.Offset],
         "object": Handle,
         "sketch_object": SketchNode,
-        "g1_slot": Slot,
+        "g1_slot": SlotValue,
         "text_point_m": TextPoint,
     }
 
 
-# Confirm that both measured display caches describe the owned diameter.
-def ReadValueCaches(Cursor, Diameter):
+# confirm that both measured display caches describe the owned diameter
+def ReadValueCaches(Cursor: ArchiveCursor, Diameter: float) -> tuple[float, float]:
     RequireArch(
         Cursor.ReadInts("<3H") == (0, 0, 0), True, "unexpected radial display groups"
     )
     RequireArch(Cursor.ReadText() == "<MOD-DIAM>", True, "missing saved diameter label")
     ReadEmptyTexts(Cursor, 3)
-    Cursor.ReadPoint(22)
-    Cursor.ReadInts("<i7H")
-    Cursor.ReadPoint(3)
+    _ = Cursor.ReadPoint(22)
+    _ = Cursor.ReadInts("<i7H")
+    _ = Cursor.ReadPoint(3)
     Copies = ReadCache(Cursor)
     RequireArch(
         all(IsClose(Value, Diameter, rel_tol=0, abs_tol=1e-9) for Value in Copies),
@@ -75,8 +83,8 @@ def ReadValueCaches(Cursor, Diameter):
     return Copies
 
 
-# Reach the subtype-specific return through the framed common display fields.
-def ReadCommonReturn(Cursor):
+# reach the subtype specific return through the framed common display fields
+def ReadViewTail(Cursor: ArchiveCursor) -> None:
     TakeShownClass(Cursor, "moFavoriteHandle_c")
     Appearance = Cursor.ReadValue("<2iId2HI4didHi30Id")
     RequireArch(
@@ -85,7 +93,7 @@ def ReadCommonReturn(Cursor):
         "unexpected radial display favorite",
     )
     ReadEmptyTexts(Cursor, 4)
-    Cursor.ReadInts("<2HiI")
+    _ = Cursor.ReadInts("<2HiI")
     ReadNulls(Cursor, 3)
     RequireArch(
         Cursor.ReadInts("<I") == (1002101,), True, "unexpected radial display flags"
@@ -95,16 +103,16 @@ def ReadCommonReturn(Cursor):
         Cursor.ReadInts("<3i") == (0, 0, 0), True, "unexpected additional display items"
     )
     Cursor.ReadNull()
-    Cursor.ReadValue("<5id6i")
+    _ = Cursor.ReadValue("<5id6i")
     ReadEmptyTexts(Cursor, 2)
-    Cursor.ReadInts("<3i")
+    _ = Cursor.ReadInts("<3i")
     ReadEmptyTexts(Cursor, 1)
-    Cursor.ReadValue("<2i3d2i")
+    _ = Cursor.ReadValue("<2i3d2i")
     ReadEmptyTexts(Cursor, 1)
 
 
-# Recognize the witnessed radial return and leave the appearance flags uninterpreted.
-def ReadRadialSuffix(Cursor):
+# recognize the witnessed radial return and leave the appearance flags uninterpreted
+def ReadRadialTail(Cursor: ArchiveCursor) -> RadialSuffix:
     StartOffset = Cursor.Offset
     (Flags,) = Cursor.ReadInts("<i")
     RequireArch(
@@ -126,10 +134,12 @@ def ReadRadialSuffix(Cursor):
     return {"span": [StartOffset, Cursor.Offset], "raw_flags": Flags}
 
 
-# Continue from the common display object to the circular sketch environment.
-def ReadDisplayReturn(Cursor, Profile, Diameter):
-    Handle = ReadRadialHandle(Cursor, Profile["sketch_node"])
+# continue from the common display object to the circular sketch environment
+def ReadRadialView(
+    Cursor: ArchiveCursor, Profile: CircularHeader, Diameter: RoundDiameter
+) -> CircularView:
+    Handle = ReadRadialLink(Cursor, Profile["sketch_node"])
     CopyValues = ReadValueCaches(Cursor, Diameter["diameter_m"])
-    ReadCommonReturn(Cursor)
-    Suffix = ReadRadialSuffix(Cursor)
+    ReadViewTail(Cursor)
+    Suffix = ReadRadialTail(Cursor)
     return {"handle": Handle, "diameter_cache_m": CopyValues, "radial_suffix": Suffix}

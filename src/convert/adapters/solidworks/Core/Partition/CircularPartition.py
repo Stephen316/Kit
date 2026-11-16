@@ -7,9 +7,16 @@
 # to you under it immediately and permanently.
 
 from math import dist as Distance, isclose as IsClose, pi as PiValue
+from typing import TypedDict
 
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Config.RootLayout import KConfigGen
+from convert.adapters.solidworks.Config.Regions import KRegionRow
+from convert.adapters.solidworks.Container.Archive import ArchiveError
+from convert.adapters.solidworks.Container.Container import SldprtArchive
+from convert.adapters.solidworks.Container.PlaneBasis import KSavedVector
+from convert.adapters.solidworks.Resolved.Circular.Records import CircularBoss
+from convert.adapters.solidworks.Sketch.CircularRecords import CircularMember
 from convert.adapters.solidworks.Container.Parasolid import DecodeBrep, DecodePartition
 from convert.adapters.solidworks.Core.Partition.PartAtomOwner import ReadOwnerAtoms
 from convert.adapters.solidworks.Core.Partition.PartShellOwner import ReadShellOwner
@@ -20,22 +27,50 @@ from convert.adapters.solidworks.Resolved.Scope.Distance import (
 from convert.Geometry.Parasolid import NativeId, ParaHeaderData, ScanPartRecords
 from interchange.brep.Curves.BrepCurves import CircleCurve
 from interchange.brep.Surfaces.BrepSurfaces import CylinderSurface, PlaneSurface
+from interchange.brep.Topology.BrepModel import BrepModel
+from interchange.geometry.Models.VectorSpace import SpaceVector
 from interchange.geometry.Models.Transform import KTransformIdentity
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
 
-# The existing neutral BRep decoder returns geometry in millimetres.
-def PointMetres(Value):
+# the raw shell retains the native owner and named body atom
+class CircularAtom(TypedDict):
+    native_shell: int
+    native_owner: int
+    native_region: int
+    body_atom_id: int
+
+
+# the bounded analytic geometry derives from the isolated closed cylinder
+class CylinderData(TypedDict):
+    face_count: int
+    edge_count: int
+    closed_edge_representative_vertices: int
+    radius_m: float
+    analytic_volume_m3: float
+    cap_offsets_m: list[float]
+
+
+# the checked body combines the raw shell and active stream provenance
+class CircularShape(CircularAtom, CylinderData):
+    config_region: KRegionRow
+    stream: str
+    payload_sha256: str
+    schema: str
+
+
+# the existing neutral brep decoder returns geometry in millimetres
+def PointMetres(Value: SpaceVector) -> KSavedVector:
     return (Value.x / 1000, Value.y / 1000, Value.z / 1000)
 
 
-# A cylinder and its cap circles may express the same axis with opposite orientation.
-def CheckParallel(Value, Axis):
-    Unit = (Value.x, Value.y, Value.z)
+# a cylinder and its cap circles may express the same axis with opposite orientation
+def CheckParallel(Value: SpaceVector, AxisValue: KSavedVector) -> None:
+    UnitVector = (Value.x, Value.y, Value.z)
     RequireArch(
         min(
-            Distance(Unit, Axis),
-            Distance(Unit, tuple(-Component for Component in Axis)),
+            Distance(UnitVector, AxisValue),
+            Distance(UnitVector, tuple(-Component for Component in AxisValue)),
         )
         <= KPlaneTolerance,
         True,
@@ -43,19 +78,22 @@ def CheckParallel(Value, Axis):
     )
 
 
-# The decoded body and raw face roster must identify the very same native shell atom.
-def ReadPartitionAtom(DataValue, Model):
+# the decoded body and raw face roster must identify the very same native shell atom
+def ReadShellAtom(DataValue: bytes, Model: BrepModel) -> CircularAtom:
     Header = ParaHeaderData(DataValue)
-    RequireArch(Header is not None, True, "unreadable active circular partition header")
+    if Header is None:
+        raise ArchiveError("unreadable active circular partition header")
     Inner = DataValue[Header.body_offset :]
     Tables = ScanPartRecords(Inner)
-    RequireArch(Tables is not None, True, "unreadable active circular partition table")
-    ShellIds = {Face.references[3] for Face in Tables.bridges.values()}
+    if Tables is None:
+        raise ArchiveError("unreadable active circular partition table")
+    ShellIds = {FaceValue.references[3] for FaceValue in Tables.bridges.values()}
     RequireArch(len(ShellIds) == 1, True, "expected one raw circular partition shell")
     (Shell,) = ShellIds
     Owner, Region, Faces = ReadShellOwner(Inner, Tables.bridges, Shell)
     RequireArch(
-        {NativeId("face", Face) for Face in Faces} == {Face.id for Face in Model.faces},
+        {NativeId("face", FaceValue) for FaceValue in Faces}
+        == {FaceValue.id for FaceValue in Model.faces},
         True,
         "raw circular shell faces disagree with the decoded solid",
     )
@@ -67,34 +105,42 @@ def ReadPartitionAtom(DataValue, Model):
     }
 
 
-# Associate every circular edge with its planar cap and the same cylindrical side.
-def ReadBoundaryUses(Model, CylinderId):
-    Coedges = {Use.id: Use.edge_id for Use in Model.coedges}
+# associate every circular edge with its planar cap and the same cylindrical side
+def ReadLoopEdges(Model: BrepModel, CylinderId: str) -> dict[str, str]:
+    Coedges = {UseValue.id: UseValue.edge_id for UseValue in Model.coedges}
     Loops = {
-        Loop.id: tuple(Coedges[Use] for Use in Loop.coedge_ids) for Loop in Model.loops
+        LoopValue.id: tuple(Coedges[UseValue] for UseValue in LoopValue.coedge_ids)
+        for LoopValue in Model.loops
     }
     Boundaries = {
-        Face.surface_id: [Edge for Loop in Face.loop_ids for Edge in Loops[Loop]]
-        for Face in Model.faces
+        FaceValue.surface_id: [
+            EdgeValue
+            for LoopValue in FaceValue.loop_ids
+            for EdgeValue in Loops[LoopValue]
+        ]
+        for FaceValue in Model.faces
     }
-    Expected = {Edge.id for Edge in Model.edges}
-    Side = Boundaries.pop(CylinderId)
+    Expected = {EdgeValue.id for EdgeValue in Model.edges}
+    SideValue = Boundaries.pop(CylinderId)
     RequireArch(
-        len(Side) == 2
-        and set(Side) == Expected
-        and all(len(Cap) == 1 for Cap in Boundaries.values())
-        and {Cap[0] for Cap in Boundaries.values()} == Expected,
+        len(SideValue) == 2
+        and set(SideValue) == Expected
+        and all(len(CapValue) == 1 for CapValue in Boundaries.values())
+        and {CapValue[0] for CapValue in Boundaries.values()} == Expected,
         True,
         "active cap loops do not share their two closed curves with the cylindrical side",
     )
-    return {SurfaceId: Cap[0] for SurfaceId, Cap in Boundaries.items()}
+    return {SurfaceId: CapValue[0] for SurfaceId, CapValue in Boundaries.items()}
 
 
-# Check that the measured active cylinder axis and cap edges remain on the reached design axis.
-def AxisOffset(Anchor, Origin, Axis):
-    Offset = PointOffset(Anchor, Origin, Axis)
+# check that the measured active cylinder axis and cap edges remain on the reached design axis
+def AxisOffset(
+    Anchor: KSavedVector, Origin: KSavedVector, AxisValue: KSavedVector
+) -> float:
+    Offset = PointOffset(Anchor, Origin, AxisValue)
     Projected = tuple(
-        Value + Offset * Base for Value, Base in zip(Origin, Axis, strict=True)
+        Value + Offset * BaseValue
+        for Value, BaseValue in zip(Origin, AxisValue, strict=True)
     )
     RequireArch(
         Distance(Anchor, Projected) <= KPlaneTolerance,
@@ -104,11 +150,12 @@ def AxisOffset(Anchor, Origin, Axis):
     return Offset
 
 
-# Check analytic surfaces and full circular boundaries before deriving cylinder metrics.
-def CheckCylinder(Model, Boss, Radius):
+# check analytic surfaces and full circular boundaries before deriving cylinder metrics
+def CheckCylinder(
+    Model: BrepModel, BossValue: CircularBoss, Radius: float
+) -> CylinderData:
     RequireArch(
-        Model is not None
-        and len(Model.bodies) == len(Model.regions) == len(Model.shells) == 1
+        len(Model.bodies) == len(Model.regions) == len(Model.shells) == 1
         and Model.regions[0].solid
         and Model.shells[0].closed
         and len(Model.faces) == len(Model.surfaces) == 3
@@ -127,7 +174,7 @@ def CheckCylinder(Model, Boss, Radius):
         "active circular carrier owns exactly the saved solid",
     )
     RequireArch(
-        set(Face.surface_id for Face in Model.faces)
+        set(FaceValue.surface_id for FaceValue in Model.faces)
         == set(Surface.id for Surface in Model.surfaces)
         and all(isinstance(Curve, CircleCurve) for Curve in Model.curves),
         True,
@@ -146,45 +193,53 @@ def CheckCylinder(Model, Boss, Radius):
     )
     RequireArch(
         all(
-            Edge.start_vertex_id == Edge.end_vertex_id
+            EdgeValue.start_vertex_id == EdgeValue.end_vertex_id
             and IsClose(
-                Edge.end_parameter - Edge.start_parameter,
+                EdgeValue.end_parameter - EdgeValue.start_parameter,
                 2 * PiValue,
                 rel_tol=0,
                 abs_tol=KPlaneTolerance,
             )
-            for Edge in Model.edges
+            for EdgeValue in Model.edges
         )
-        and {Edge.curve_id for Edge in Model.edges}
+        and {EdgeValue.curve_id for EdgeValue in Model.edges}
         == {Curve.id for Curve in Model.curves}
-        and {Edge.start_vertex_id for Edge in Model.edges}
+        and {EdgeValue.start_vertex_id for EdgeValue in Model.edges}
         == {Vertex.id for Vertex in Model.vertices},
         True,
         "active circular boundaries do not cover a full revolution",
     )
     (Cylinder,) = Cylinders
-    Origin, Axis, Depth = Boss["start_center_m"], Boss["axis"], Boss["signed_depth_m"]
-    CheckParallel(Cylinder.axis, Axis)
+    Origin, AxisValue, Depth = (
+        BossValue["start_center_m"],
+        BossValue["axis"],
+        BossValue["signed_depth_m"],
+    )
+    CheckParallel(Cylinder.axis, AxisValue)
     RequireArch(
         IsClose(Cylinder.radius / 1000, Radius, rel_tol=0, abs_tol=KPlaneTolerance),
         True,
         "active cylinder radius differs from the owned sketch",
     )
-    AxisOffset(PointMetres(Cylinder.origin), Origin, Axis)
-    Boundaries = ReadBoundaryUses(Model, Cylinder.id)
-    CurvesById = {Curve.id: Curve for Curve in Model.curves}
-    CurvesByEdge = {Edge.id: CurvesById[Edge.curve_id] for Edge in Model.edges}
-    Offsets = []
+    _ = AxisOffset(PointMetres(Cylinder.origin), Origin, AxisValue)
+    Boundaries = ReadLoopEdges(Model, Cylinder.id)
+    CurvesById = {
+        Curve.id: Curve for Curve in Model.curves if isinstance(Curve, CircleCurve)
+    }
+    CurvesByEdge = {
+        EdgeValue.id: CurvesById[EdgeValue.curve_id] for EdgeValue in Model.edges
+    }
+    Offsets: list[float] = []
     for Plane in Planes:
-        CheckParallel(Plane.normal, Axis)
-        Offset = PointOffset(PointMetres(Plane.origin), Origin, Axis)
+        CheckParallel(Plane.normal, AxisValue)
+        Offset = PointOffset(PointMetres(Plane.origin), Origin, AxisValue)
         Offsets.append(Offset)
         Curve = CurvesByEdge[Boundaries[Plane.id]]
-        CheckParallel(Curve.axis, Axis)
+        CheckParallel(Curve.axis, AxisValue)
         RequireArch(
             IsClose(Curve.radius / 1000, Radius, rel_tol=0, abs_tol=KPlaneTolerance)
             and IsClose(
-                AxisOffset(PointMetres(Curve.center), Origin, Axis),
+                AxisOffset(PointMetres(Curve.center), Origin, AxisValue),
                 Offset,
                 rel_tol=0,
                 abs_tol=KPlaneTolerance,
@@ -207,15 +262,22 @@ def CheckCylinder(Model, Boss, Radius):
     }
 
 
-# Join the active payload, the configuration region and the resolved atom occurrence.
-def ReadCircularPartition(Archive, ConfigStream, Boss, Circle):
-    Config, Walk = ReadOrdinaryMap(Archive.Require(ConfigStream), KConfigGen)
-    Atoms = [Index for Index, Kind in Config.Objects.items() if Kind == "moAtom_c"]
-    Regions = [Row for Group in Walk["regions"] for Row in Group]
+# join the active payload the configuration region and the resolved atom occurrence
+def ReadRoundPart(
+    Archive: SldprtArchive,
+    ConfigStream: str,
+    BossValue: CircularBoss,
+    Circle: CircularMember,
+) -> tuple[BrepModel, CircularShape]:
+    Config, ConfigWalk = ReadOrdinaryMap(Archive.Require(ConfigStream), KConfigGen)
+    Atoms = [
+        Index for Index, ClassName in Config.Objects.items() if ClassName == "moAtom_c"
+    ]
+    Regions = [Record for Group in ConfigWalk["regions"] for Record in Group]
     RequireArch(
-        Atoms == [Boss["transfer_object"]]
+        Atoms == [BossValue["transfer_object"]]
         and len(Regions) == 1
-        and Regions[0][0] == Boss["saved_body_id"],
+        and Regions[0][0] == BossValue["saved_body_id"],
         True,
         "circular boss transfer or saved body does not match the active configuration",
     )
@@ -230,8 +292,12 @@ def ReadCircularPartition(Archive, ConfigStream, Boss, Circle):
     )
     (Payload,) = Sources
     Model = DecodeBrep(Payload.data)
-    Geometry = CheckCylinder(Model, Boss, Circle["radial_metres"])
-    Identity = ReadPartitionAtom(Payload.data, Model)
+    if Model is None:
+        raise ArchiveError(
+            "active circular partition is not a single closed analytic solid"
+        )
+    Geometry = CheckCylinder(Model, BossValue, Circle["radial_metres"])
+    Identity = ReadShellAtom(Payload.data, Model)
     RequireArch(
         Identity["body_atom_id"] == Regions[0][0],
         True,

@@ -19,7 +19,7 @@ from convert.adapters.solidworks.Resolved.Circular.Part import OpenCircular
 from convert.adapters.solidworks.Sketch.CircularMembers import (
     ReadCircle as read_circle,
     ReadDiameter as read_diameter,
-    ReadDisplayPrefix as read_display_prefix,
+    ReadViewPrefix as read_display_prefix,
     ReadOriginJoin as read_origin_join,
     ReadPoints as read_points,
 )

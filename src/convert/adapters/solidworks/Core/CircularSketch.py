@@ -6,6 +6,7 @@
 # the PolyForm Strict License 1.0.0 and voids all licenses granted
 # to you under it immediately and permanently.
 
+from collections.abc import Sequence
 from dataclasses import replace as Replace
 from math import isclose as IsClose
 
@@ -31,21 +32,23 @@ from interchange.geometry.Models.VectorPlane import PlaneVector
 from interchange.geometry.Models.VectorSpace import SpaceVector
 
 
-# Every typed neutral record keeps the exact producer span within the selected resolved stream.
-def CircularSource(Stream: str, NativeId: str, Bounds, Record: str) -> Provenance:
-    First, Last = Bounds
+# every typed neutral record keeps the exact producer span within the selected resolved stream
+def CircularSource(
+    Stream: str, NativeId: str, Bounds: Sequence[int], Record: str
+) -> Provenance:
+    First, EndOffset = Bounds
     return Provenance(
         KPartFormatId,
         NativeId,
-        spans=(ProvenanceSpan(Stream, First, Last - First, Record),),
+        spans=(ProvenanceSpan(Stream, First, EndOffset - First, Record),),
     )
 
 
-# Retain stable public parameter IDs once their saved owner, name, and scalar agree.
-def BindCircularParameter(
+# retain stable public parameter ids once their saved owner name and scalar agree
+def BindRoundParam(
     Parameters: tuple[Parameter, ...],
     Owner: str,
-    Name: str,
+    NameValue: str,
     Metres: float,
     Stream: str,
     Offset: int,
@@ -53,7 +56,9 @@ def BindCircularParameter(
     Record: str,
 ) -> Parameter:
     (ParameterValueData,) = tuple(
-        Value for Value in Parameters if Value.owner_id == Owner and Value.name == Name
+        Value
+        for Value in Parameters
+        if Value.owner_id == Owner and Value.name == NameValue
     )
     Existing = ParameterValueData.value
     RequireArch(
@@ -74,8 +79,8 @@ def BindCircularParameter(
     )
 
 
-# Rebind the already reached principal support using its typed frame and saved feature span.
-def BindCircularSupport(
+# rebind the already reached principal support using its typed frame and saved feature span
+def BindRoundPlane(
     Plane: SupportPlane, Saved: CircularPart, Stream: str
 ) -> SupportPlane:
     Datum = Saved.Datum
@@ -98,14 +103,15 @@ def BindCircularSupport(
     )
 
 
-# Locate the unique retained representation of the typed profile and reconcile its sampled geometry.
-def BindCircleEntity(Neutral: Sketch, Saved: CircularPart, Stream: str) -> SketchEntity:
+# locate the unique retained representation of the typed profile and reconcile its sampled geometry
+def BindCircleEdge(Neutral: Sketch, Saved: CircularPart, Stream: str) -> SketchEntity:
     ((EntityId,),) = Neutral.closed_profile_entity_ids
     (Entity,) = tuple(Value for Value in Neutral.entities if Value.id == EntityId)
-    Arc = Saved.Circle
-    Center = Saved.Points[Arc["center_slot"]]["xy_m"]
+    ArcValue = Saved.Circle
+    Center = Saved.Points[ArcValue["center_slot"]]["xy_m"]
     Geometry = CircleGeometry(
-        PlaneVector(*(Value * 1000 for Value in Center)), Arc["radial_metres"] * 1000
+        PlaneVector(*(Value * 1000 for Value in Center)),
+        ArcValue["radial_metres"] * 1000,
     )
     Existing = Entity.geometry
     RequireArch(
@@ -122,28 +128,37 @@ def BindCircleEntity(Neutral: Sketch, Saved: CircularPart, Stream: str) -> Sketc
         geometry=Geometry,
         kind=GeometryKind.KCircle,
         provenance=CircularSource(
-            Stream, str(Arc["native_id"]), Arc["span"], "sketch-profile-circle"
+            Stream,
+            str(ArcValue["native_id"]),
+            ArcValue["span"],
+            "sketch-profile-circle",
         ),
         attributes=FreezeMapping(
             {
                 **Entity.attributes,
-                "native_segment_id": Arc["native_id"],
-                "native_member_index": Arc["arc_slot"],
-                "native_center_slot": Arc["center_slot"],
-                "native_seam_slot": Arc["seam_slot"],
+                "native_segment_id": ArcValue["native_id"],
+                "native_member_index": ArcValue["arc_slot"],
+                "native_center_slot": ArcValue["center_slot"],
+                "native_seam_slot": ArcValue["seam_slot"],
             }
         ),
     )
 
 
-# The fixed construction point represents the actual external Origin handle reached by G2.
+# the ordered coincidence retains the local point identifier of its external origin
+def OriginPointId(Saved: CircularPart) -> tuple[int, int]:
+    (PointId,) = tuple(
+        PointValue
+        for PointValue in Saved.Coincidence["point_native_ids"]
+        if PointValue[0] != Saved.Circle["center_slot"]
+    )
+    return PointId
+
+
+# the fixed construction point represents the actual external origin handle reached by coincidence
 def BindOriginProxy(Neutral: Sketch, Saved: CircularPart, Stream: str) -> SketchEntity:
     Reference = Saved.Coincidence["origin_proxy"]
-    ((OriginSlot, PointId),) = tuple(
-        Item
-        for Item in Saved.Coincidence["point_native_ids"]
-        if Item[0] != Saved.Circle["center_slot"]
-    )
+    OriginSlot, PointId = OriginPointId(Saved)
     Point = Saved.Points[OriginSlot]
     return SketchEntity(
         f"{Neutral.id}:origin:{PointId}",
@@ -164,8 +179,8 @@ def BindOriginProxy(Neutral: Sketch, Saved: CircularPart, Stream: str) -> Sketch
     )
 
 
-# Both typed relations are attached together, preserving the original diameter ID and G2 operand order.
-def BindCircularSketch(
+# both typed relations are attached together preserving the original diameter id and coincidence operand order
+def BindRoundSketch(
     Neutral: Sketch, Saved: CircularPart, ParameterId: str, Stream: str
 ) -> Sketch:
     Profile = Saved.Profile
@@ -174,7 +189,7 @@ def BindCircularSketch(
         (Profile["name"], Profile["feature_id"]),
         "public circular sketch and its typed owner agree",
     )
-    Circle = BindCircleEntity(Neutral, Saved, Stream)
+    Circle = BindCircleEdge(Neutral, Saved, Stream)
     Origin = BindOriginProxy(Neutral, Saved, Stream)
     RequireArch(
         all(Value.id == Circle.id or Value.construction for Value in Neutral.entities),
@@ -187,48 +202,48 @@ def BindCircularSketch(
         ("diameter", ParameterId, (ConstraintRef(Circle.id),)),
         "public diameter relation uses the reached circle and owned parameter",
     )
-    Data = Saved.Diameter
+    DimValue = Saved.Diameter
     Driving = Replace(
         Diameter,
         driving=True,
         provenance=CircularSource(
-            Stream, str(Data["native_id"]), Data["span"], "sketch-diameter"
+            Stream, str(DimValue["native_id"]), DimValue["span"], "sketch-diameter"
         ),
         attributes=FreezeMapping(
             {
                 **Diameter.attributes,
-                "native_dimension_id": Data["native_id"],
-                "native_parameter_object": Data["parameter_object"],
-                "native_arc_handle": Data["arc_handle"],
+                "native_dimension_id": DimValue["native_id"],
+                "native_parameter_object": DimValue["parameter_object"],
+                "native_arc_handle": DimValue["arc_handle"],
             }
         ),
     )
-    G2 = Saved.Coincidence
-    OriginSlot = Origin.attributes["native_point_id"][0]
-    Refs = tuple(
+    Relation = Saved.Coincidence
+    OriginSlot, _ = OriginPointId(Saved)
+    References = tuple(
         (
             ConstraintRef(Origin.id)
-            if Slot == OriginSlot
+            if SlotValue == OriginSlot
             else ConstraintRef(Circle.id, "center")
         )
-        for Slot in G2["point_indices"]
+        for SlotValue in Relation["point_indices"]
     )
     Coincidence = SketchRelation(
-        f"sldprt:constraint:{Profile['feature_id']}:native-relation:{G2['offset']}",
+        f"sldprt:constraint:{Profile['feature_id']}:native-relation:{Relation['offset']}",
         "coincident",
-        Refs,
+        References,
         provenance=CircularSource(
             Stream,
-            str(G2["offset"]),
-            (G2["offset"], G2["end"]),
+            str(Relation["offset"]),
+            (Relation["offset"], Relation["end"]),
             "sketch-origin-coincidence",
         ),
         attributes=FreezeMapping(
             {
-                "native_code": G2["type_code"],
-                "native_point_ids": tuple(G2["point_native_ids"]),
-                "native_point_handles": tuple(G2["point_handle_objects"]),
-                "native_origin_feature_id": G2["origin_feature"],
+                "native_code": Relation["type_code"],
+                "native_point_ids": tuple(Relation["point_native_ids"]),
+                "native_point_handles": tuple(Relation["point_handle_objects"]),
+                "native_origin_feature_id": Relation["origin_feature"],
             }
         ),
     )

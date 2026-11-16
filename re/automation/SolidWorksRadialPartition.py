@@ -12,14 +12,14 @@ from math import dist, isclose, sqrt
 
 from PairedCaptureIntake import require
 from convert.adapters.solidworks.Core.Partition.CircularPartition import (
-    ReadCircularPartition,
+    ReadRoundPart,
 )
 from convert.adapters.solidworks.Resolved.Scope.Distance import KPlaneTolerance
 
 
 # The historical receipt records the bound payload identity and geometry fields.
 def read_boss_partition(archive, config_stream, boss, circle):
-    _, shape = ReadCircularPartition(archive, config_stream, boss, circle)
+    _, shape = ReadRoundPart(archive, config_stream, boss, circle)
     return shape
 
 

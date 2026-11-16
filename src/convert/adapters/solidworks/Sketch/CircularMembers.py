@@ -8,6 +8,17 @@
 
 from math import dist as Distance, isclose as IsClose
 
+from typing_extensions import override as Override
+
+from convert.adapters.solidworks.Container.Archive import ArchiveError
+from convert.adapters.solidworks.Resolved.OriginProfile import OriginProfile
+from convert.adapters.solidworks.Sketch.CircularRecords import (
+    RoundDiameter,
+    CircularMember,
+    CircularOrigin,
+    CircularPoint,
+    RadialPrefix,
+)
 from convert.adapters.solidworks.Sketch.Cursor import SketchArchive
 from convert.adapters.solidworks.Sketch.DimFields import ReadDimFields
 from convert.adapters.solidworks.Sketch.DisplayOpen import ReadDisplayBase
@@ -21,23 +32,29 @@ from convert.adapters.solidworks.Sketch.Relations import ReadRelations
 from convert.adapters.solidworks.Sketch.SketchTail import ReadLogicalTail
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
-# The full circle and the primary point adjacency share this allocated handle type.
+# the full circle and the primary point adjacency share this allocated handle type
 KCircleHandle = "sgArcHandle"
 
 
-# This reader verifies the RadialCursor boundary.
+# this reader verifies the radialcursor boundary
 class CircularCursor(SketchArchive):
     """Limit otherwise shared point adjacency to a witnessed circular handle."""
 
-    def ReadObject(self, *Expected):
+    # redirect ordinary point adjacency to the reached arc handle
+    @Override
+    def ReadObject(self, *Expected: str | None) -> int:
         if Expected == (None, "sgLineHandle"):
             Expected = (None, KCircleHandle)
         return super().ReadObject(*Expected)
 
-    def ReadPayload(self, NameValue, Index):
+    # decode circular adjacency and the inactive entity inactive operand
+    @Override
+    def ReadPayload(self, NameValue: str, ObjectIndex: int) -> None:
         if NameValue == KCircleHandle:
-            (Slot,) = self.ReadInts("<H")
-            RequireArch(Slot < 0x777F, True, "unsupported circular handle index width")
+            (SlotValue,) = self.ReadInts("<H")
+            RequireArch(
+                SlotValue < 0x777F, True, "unsupported circular handle index width"
+            )
             Owner, Flags = self.ReadInts("<2i")
         elif NameValue == "sgEntHandle":
             RequireArch(
@@ -45,22 +62,22 @@ class CircularCursor(SketchArchive):
                 True,
                 "expected invalid placeholder index width",
             )
-            Slot, Owner, Flags = self.ReadInts("<3i")
-            RequireArch(Slot == -2, True, "unexpected second G1 operand")
+            SlotValue, Owner, Flags = self.ReadInts("<3i")
+            RequireArch(SlotValue == -2, True, "unexpected second G1 operand")
         else:
-            super().ReadPayload(NameValue, Index)
+            super().ReadPayload(NameValue, ObjectIndex)
             return
         RequireArch((Owner, Flags) == (-1, 0), True, "circular handle is not local")
-        self.Handles[Index] = Slot, Owner, Flags
+        self.Handles[ObjectIndex] = SlotValue, Owner, Flags
 
 
-# This reader verifies the points boundary.
-def ReadPoints(Cursor):
+# this reader verifies the points boundary
+def ReadPoints(Cursor: CircularCursor) -> list[CircularPoint]:
     RequireArch(
         Cursor.ReadCount() == 3, True, "expected center, seam and origin-proxy points"
     )
-    Points = []
-    for Slot in range(3):
+    Points: list[CircularPoint] = []
+    for SlotValue in range(3):
         StartOffset = Cursor.Offset
         Earlier = set(Cursor.Handles)
         Identity, References, Coords = ReadPointMut(Cursor)
@@ -71,7 +88,7 @@ def ReadPoints(Cursor):
         ]
         Points.append(
             {
-                "slot": Slot,
+                "slot": SlotValue,
                 "id": Identity,
                 "span": [StartOffset, Cursor.Offset],
                 "references": References,
@@ -80,15 +97,15 @@ def ReadPoints(Cursor):
             }
         )
     RequireArch(
-        len({Row["id"] for Row in Points}) == len(Points),
+        len({Record["id"] for Record in Points}) == len(Points),
         True,
         "duplicate source point identity",
     )
     return Points
 
 
-# This reader verifies the circle boundary.
-def ReadCircle(Cursor, Points):
+# this reader verifies the circle boundary
+def ReadCircle(Cursor: CircularCursor, Points: list[CircularPoint]) -> CircularMember:
     RequireArch(
         Cursor.ReadInts("<4i") == (0, 0, 0, 1),
         True,
@@ -97,7 +114,7 @@ def ReadCircle(Cursor, Points):
     StartOffset = Cursor.Offset
     RequireArch(Cursor.ReadInts("<H") == (0,), True, "unsupported circular member mode")
     _, Identity, Flags, FlagsTwo, References, External = ReadMember(Cursor)
-    Seam, EndOffset = ReadPointSlot(Cursor), ReadPointSlot(Cursor)
+    SeamSlot, EndOffset = ReadPointSlot(Cursor), ReadPointSlot(Cursor)
     RequireArch(
         Cursor.ReadInts("<2H") == (1, 0), True, "unsupported circular endpoint fields"
     )
@@ -111,29 +128,29 @@ def ReadCircle(Cursor, Points):
     )
     RequireArch(
         (Flags, FlagsTwo, References, External, Orientation) == (4, 0, 1, 0, 1)
-        and Seam == EndOffset
-        and Seam != Center
-        and {Seam, Center} <= set(range(len(Points))),
+        and SeamSlot == EndOffset
+        and SeamSlot != Center
+        and {SeamSlot, Center} <= set(range(len(Points))),
         True,
         "expected one ordinary positive full circle",
     )
-    Adjacency = Points[Seam]["arc_adjacency"]
+    Adjacency = Points[SeamSlot]["arc_adjacency"]
     RequireArch(
         len(Adjacency) == 1
         and Cursor.Handles[Adjacency[0]] == (0, -1, 0)
         and all(
-            not Point["arc_adjacency"] for Point in Points if Point["slot"] != Seam
+            not Point["arc_adjacency"] for Point in Points if Point["slot"] != SeamSlot
         ),
         True,
         "the seam does not own the local circular adjacency",
     )
-    Radius = Distance(Points[Seam]["xy_m"], Points[Center]["xy_m"])
+    Radius = Distance(Points[SeamSlot]["xy_m"], Points[Center]["xy_m"])
     RequireArch(Radius > 0, True, "circle center and seam coincide")
     return {
         "span": [StartOffset, Cursor.Offset],
         "arc_slot": 0,
         "native_id": Identity,
-        "seam_slot": Seam,
+        "seam_slot": SeamSlot,
         "center_slot": Center,
         "orientation": Orientation,
         "radial_metres": Radius,
@@ -141,8 +158,8 @@ def ReadCircle(Cursor, Points):
     }
 
 
-# This reader verifies the diameter boundary.
-def ReadDiameter(Cursor, Circle):
+# this reader verifies the diameter boundary
+def ReadDiameter(Cursor: CircularCursor, Circle: CircularMember) -> RoundDiameter:
     RequireArch(
         Cursor.ReadInts("<8i") == (0,) * 8, True, "unexpected remaining geometry groups"
     )
@@ -187,25 +204,33 @@ def ReadDiameter(Cursor, Circle):
     }
 
 
-# This reader verifies the origin join boundary.
-def ReadOriginJoin(Cursor, Points, Circle, Origin):
+# this reader verifies the origin join boundary
+def ReadOriginJoin(
+    Cursor: CircularCursor,
+    Points: list[CircularPoint],
+    Circle: CircularMember,
+    Origin: OriginProfile,
+) -> CircularOrigin:
     RequireArch(
         Cursor.ReadInts("<H") == (0,) and not ReadRelations(Cursor),
         True,
         "unexpected other value or logical dimensions",
     )
     (Coincident,) = ReadLogicalTail(
-        Cursor, [(Row["slot"], Row["id"]) for Row in Points]
+        Cursor, [(Record["slot"], Record["id"]) for Record in Points]
     )
     Center = Circle["center_slot"]
     (Proxy,) = set(range(len(Points))) - {Center, Circle["seam_slot"]}
     Reference = Cursor.PointReferences.get(Points[Proxy]["id"])
+    if Reference is None:
+        raise ArchiveError(
+            "active G2 does not join the actual circle center to the typed Origin point"
+        )
     RequireArch(
         not Coincident["deleted"]
         and not Coincident["suppressed"]
         and set(Coincident["point_indices"]) == {Center, Proxy}
         and set(Cursor.PointReferences) == {Points[Proxy]["id"]}
-        and Reference is not None
         and Reference["feature_id"] == Origin.FeatureId
         and Reference["handle_class"] == "sgPointHandle"
         and Reference["handle_fields"] == (0, -1, 0)
@@ -218,8 +243,8 @@ def ReadOriginJoin(Cursor, Points, Circle, Origin):
     return {**Coincident, "origin_feature": Origin.FeatureId, "origin_proxy": Reference}
 
 
-# This reader verifies the display prefix boundary.
-def ReadDisplayPrefix(Cursor):
+# this reader verifies the display prefix boundary
+def ReadViewPrefix(Cursor: CircularCursor) -> RadialPrefix:
     StartOffset = Cursor.Offset
     TakeShownClass(Cursor, "suObList")
     RequireArch(Cursor.ReadInts("<H") == (1,), True, "expected one radial display")

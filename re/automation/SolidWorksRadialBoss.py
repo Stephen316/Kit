@@ -12,13 +12,13 @@ from math import isclose
 
 from PairedCaptureIntake import require
 from SolidWorksRadialChoices import report_choices
-from convert.adapters.solidworks.Resolved.Circular.Boss import ReadCircularBoss
+from convert.adapters.solidworks.Resolved.Circular.Boss import ReadRoundBoss
 from convert.adapters.solidworks.Resolved.Scope.Distance import KPlaneTolerance
 
 
 # Use the same typed boss parser as the public adapter and retain previous evidence fields.
 def read_radial_boss(cursor, profile, profile_return, circle, points, origin):
-    boss = ReadCircularBoss(cursor, profile, profile_return, circle, points, origin)
+    boss = ReadRoundBoss(cursor, profile, profile_return, circle, points, origin)
     return {**boss, "choosers": report_choices(boss["choosers"])}
 
 

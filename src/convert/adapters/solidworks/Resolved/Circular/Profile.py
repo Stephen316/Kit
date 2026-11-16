@@ -8,7 +8,22 @@
 
 from convert.adapters.solidworks.Config.RootLayout import KConfigGen
 from convert.adapters.solidworks.Container.Archive import KClassRefKind, KDefinitionKind
+from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.Resolved.Circular.Records import (
+    CircularChain,
+    ArcProfile,
+    CircularRegion,
+    CircularSupport,
+    CircularTrim,
+)
+from convert.adapters.solidworks.Resolved.OriginProfile import OriginProfile
+from convert.adapters.solidworks.Sketch.CircularMembers import CircularCursor
+from convert.adapters.solidworks.Sketch.CircularRecords import (
+    CircularHeader,
+    CircularMember,
+)
 from convert.adapters.solidworks.Resolved.ContourSurf import (
+    ProfileOwner,
     ReadContourEdge,
     ReadTrimSurface,
 )
@@ -21,8 +36,8 @@ from convert.adapters.solidworks.Sketch.Displays import TakeShownClass
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
 
-# Reach the region list through the witnessed circular sketch environment.
-def ReadCircularEnvironment(Cursor):
+# reach the region list through the witnessed circular sketch environment
+def ReadRoundEnv(Cursor: ArchiveCursor) -> int:
     RequireArch(
         Cursor.ReadInts("<7H") == (0,) * 7, True, "unexpected post-display collections"
     )
@@ -56,15 +71,15 @@ def ReadCircularEnvironment(Cursor):
     return StateWord
 
 
-# Prove that the closed region outline reaches the live circular member.
-def ReadCircularRegion(Cursor, Circle):
-    StateWord = ReadCircularEnvironment(Cursor)
+# prove that the closed region outline reaches the live circular member
+def ReadRoundRegion(Cursor: CircularCursor, Circle: CircularMember) -> CircularRegion:
+    StateWord = ReadRoundEnv(Cursor)
     StartOffset = Cursor.Offset
-    Cursor.TakePointer(("suObList",), KClassRefKind)
+    _ = Cursor.TakePointer(("suObList",), KClassRefKind)
     RequireArch(Cursor.ReadInts("<H") == (1,), True, "expected one circular region")
     TakeShownClass(Cursor, "moSketchRegion_c")
     Region = Cursor.NextIndex - 1
-    Cursor.TakePointer(("suObList",), KClassRefKind)
+    _ = Cursor.TakePointer(("suObList",), KClassRefKind)
     RequireArch(
         Cursor.ReadInts("<H") == (1,), True, "expected one circular region outline"
     )
@@ -88,8 +103,8 @@ def ReadCircularRegion(Cursor, Circle):
     }
 
 
-# Tie the sole resolved profile edge to the native circle identity.
-def ReadCircularChain(Cursor, Circle):
+# tie the sole resolved profile edge to the native circle identity
+def ReadRoundChain(Cursor: ArchiveCursor, Circle: CircularMember) -> CircularChain:
     StartOffset = Cursor.Offset
     RequireArch(
         Cursor.ReadInts("<Ii") == (1, 1),
@@ -100,16 +115,16 @@ def ReadCircularChain(Cursor, Circle):
         ("moSketchChain_c",), KDefinitionKind, CompactOnly=True
     )
     RequireArch(Cursor.ReadInts("<H") == (1,), True, "expected one circular chain edge")
-    (Edge,) = Cursor.ReadInts("<I")
+    (EdgeValue,) = Cursor.ReadInts("<I")
     RequireArch(
-        Edge == Circle["native_id"],
+        EdgeValue == Circle["native_id"],
         True,
         "chain edge does not name the native circular member",
     )
     RequireArch(
         Cursor.ReadInts("<H") == (1,), True, "unexpected secondary chain collection"
     )
-    Cursor.ReadInts("<I6i")
+    _ = Cursor.ReadInts("<I6i")
     RequireArch(Cursor.ReadText() == "", True, "unexpected chain label")
     RequireArch(Cursor.ReadInts("<H") == (0,), True, "unexpected chain handle list")
     _, Pairs = Cursor.ReadInts("<2I")
@@ -122,12 +137,14 @@ def ReadCircularChain(Cursor, Circle):
     return {
         "span": [StartOffset, Cursor.Offset],
         "object": Chain,
-        "edge_native_id": Edge,
+        "edge_native_id": EdgeValue,
     }
 
 
-# Check that the right trim edge is owned by the same active profile and circle.
-def ReadCircularTrim(Cursor, Profile, Circle):
+# check that the right trim edge is owned by the same active profile and circle
+def ReadRoundTrim(
+    Cursor: ArchiveCursor, Profile: CircularHeader, Circle: CircularMember
+) -> CircularTrim:
     StartOffset = Cursor.Offset
     RequireArch(
         Cursor.ReadInts("<2H") == (0, 4), True, "unexpected circular profile flags"
@@ -144,16 +161,16 @@ def ReadCircularTrim(Cursor, Profile, Circle):
     RequireArch(
         Cursor.ReadInts("<H") == (1,), True, "expected one circular trim surface"
     )
-    Owner = {
+    Owner: ProfileOwner = {
         "profile_object": Profile["feature_node"],
         "native_feature_id": Profile["feature_id"],
     }
     Surface = ReadTrimSurface(Cursor, Owner)
     RequireArch(Cursor.ReadInts("<H") == (1,), True, "expected one circular trim edge")
-    Edge = ReadContourEdge(Cursor, Owner, Surface)
+    EdgeValue = ReadContourEdge(Cursor, Owner, Surface)
     RequireArch(
-        Edge["class"] == "moSegmRightTrimEdgeIdRep_c"
-        and Edge["edge_id"] == Circle["native_id"],
+        EdgeValue["class"] == "moSegmRightTrimEdgeIdRep_c"
+        and EdgeValue["edge_id"] == Circle["native_id"],
         True,
         "trim edge does not name the circular member",
     )
@@ -163,13 +180,18 @@ def ReadCircularTrim(Cursor, Profile, Circle):
         "raw_state": WireState,
         "surface_object": Surface["object_index"],
         "same_file_object": Surface["file_reference"]["object_index"],
-        "edge": Edge,
+        "edge": EdgeValue,
     }
 
 
-# Prove the support and trim join before locating the following typed feature.
-def ReadCircularProfileReturn(Cursor, Profile, Circle, Origin):
-    Chain = ReadCircularChain(Cursor, Circle)
+# prove the support and trim join before locating the following typed feature
+def ReadArcProfile(
+    Cursor: ArchiveCursor,
+    Profile: CircularHeader,
+    Circle: CircularMember,
+    Origin: OriginProfile,
+) -> ArcProfile:
+    Chain = ReadRoundChain(Cursor, Circle)
     StartOffset = Cursor.Offset
     Reference = ReadProfileRef(Cursor, KConfigGen)
     Datum = Origin.Support
@@ -178,18 +200,18 @@ def ReadCircularProfileReturn(Cursor, Profile, Circle, Origin):
         True,
         "saved circular profile does not bind the typed Origin datum",
     )
-    Normal = tuple(float(Axis == Datum.AxisCode) for Axis in (1, 2, 3))
-    Axes = CheckProfileRef(Reference, Datum.ShiftScale[:3], Normal)
-    Support = {
+    Normal = tuple(float(AxisValue == Datum.AxisCode) for AxisValue in (1, 2, 3))
+    SavedAxes = CheckProfileRef(Reference, Datum.ShiftScale[:3], Normal)
+    Support: CircularSupport = {
         "span": [StartOffset, Cursor.Offset],
         "feature": Reference.FeatureId,
-        "axes": Axes,
+        "axes": SavedAxes,
     }
-    Trim = ReadCircularTrim(Cursor, Profile, Circle)
+    TrimValue = ReadRoundTrim(Cursor, Profile, Circle)
     return {
         "chain": Chain,
         "support": Support,
-        "trim": Trim,
+        "trim": TrimValue,
         "next_record": ReadRectEnd(Cursor, True),
         "next_record_offset": Cursor.Offset,
     }
