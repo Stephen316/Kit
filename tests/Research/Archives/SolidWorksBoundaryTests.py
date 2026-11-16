@@ -286,3 +286,14 @@ def CheckMassCache() -> None:
         Report["independent_geometry_sha256"]
         == "f8708eec571a0dd64b741eed6fbdd2dca4ec7c03f1b560906f6f5a259f68bd8e"
     )
+
+
+# the model package code must agree with the independently stored header flag
+def CheckSaveCode() -> None:
+    Report = LoadReport("VerifyEModelLicense.py", 14)
+    assert Report["counts"] == {"P01": 6, "P03": 8}
+    assert Report["refused_contexts"] == 4
+    assert (
+        Report["replay_sha256"]
+        == "a37825fa376f5180478bb8d8735d9d13d4fc917a55bf87481eec6fb1ae975824"
+    )

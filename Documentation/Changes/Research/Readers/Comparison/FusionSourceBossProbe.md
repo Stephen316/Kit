@@ -26,7 +26,11 @@ Readback verifies that the Boss profile proxy and region select the four matched
 Run the command with Python 3.14 and a new private directory outside the checkout. The output manifest pins the source receipt, measurement, archive and source programs. The generated archives have fresh identifiers and timestamps, so the manifest binds the exact output bytes for each run. [Probe](../../../../../re/Fusion/Reconstruction/DimensionAuthoring/SourceBossProbe.py)
 
 ```sh
-PYTHONPATH=src:re/automation uv run --frozen --python 3.14 python -B +  re/Fusion/Reconstruction/DimensionAuthoring/SourceBossProbe.py +  --output /private/P03Candidates
+PYTHONPATH=src:re/automation uv run --frozen --python 3.14 python -B \
+  re/Fusion/Reconstruction/DimensionAuthoring/SourceBossProbe.py \
+  --output /private/P03Candidates
 ```
+
+A locked Python 3.14 Windows replay at `90bdd0e8` generated and checked all four candidates. Its sealed output manifest SHA-256 is `b030dc8cf99425abd3b523058c2c58ab767ff9096e56d6718966b7504656d5f8`.
 
 The candidate uses the constructor's default material. Physical density and mass parity remain unqualified. Licensed acceptance still requires a native readback of the selected profile identity, the three independently effective driving edits, restoration and rebuild, and fresh-process reopen with healthy controls.
