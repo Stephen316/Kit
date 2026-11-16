@@ -27,13 +27,18 @@ from interchange.geometry.Models.Sketch import ConstraintRef, SketchRelation
 
 # the selected constrained profile must prove its exact additions before sharing ordinary strict guards
 def ReadRectRules(
-    Graph: NativeGraph, Context: ExtrudeContext, Reverse: bool = False
+    Graph: NativeGraph,
+    Context: ExtrudeContext,
+    Reverse: bool = False,
+    YzDatum: bool = False,
 ) -> RectSketchProof | None:
     Geometric = Graph.ByClass("SketchGeomConstraint")
     Linear = Graph.ByClass("FusionSketchLinearDim")
     if not Geometric and not Linear:
         if Reverse:
             raise ValueError("Native reverse prism requires a constrained rectangle")
+        if YzDatum:
+            raise ValueError("Native YZ prism requires a constrained rectangle")
         return None
     if len(Geometric) != 5 or len(Linear) != 2:
         raise ValueError(
@@ -42,6 +47,8 @@ def ReadRectRules(
     DisplayUnit = ReadRectUnits(Graph)
     if Reverse and DisplayUnit is not UnitSystem.KMillimeter:
         raise ValueError("Native reverse prism requires millimeter display units")
+    if YzDatum and DisplayUnit is not UnitSystem.KMillimeter:
+        raise ValueError("Native YZ prism requires millimeter display units")
     Rules = LinkedNodes(Graph, Context.Sketch, "constraints")
     Dimensions = LinkedNodes(Graph, Context.Sketch, "dimensions")
     SameNodes(Rules, Geometric)
@@ -50,7 +57,7 @@ def ReadRectRules(
     AnchorRule, Anchor, Origin = ReadRectAnchor(Graph, Context, Rules, Lines)
     AxisRules = ReadRectAxes(Graph, Context, Rules, AnchorRule, Lines)
     Bindings, Params, SizeRules = ReadRectDims(
-        Graph, Context, Dimensions, Lines, Anchor, Reverse
+        Graph, Context, Dimensions, Lines, Anchor, Reverse, YzDatum
     )
     AnchorRelation = SketchRelation(
         AnchorRule.Identity,

@@ -9,12 +9,16 @@ from convert.Formats.Fusion.Topology.AsmEdge.AsmTable import (
 
 
 # the snapshot wire operation needs a distinct decoding boundary so supporting records retain their owning document relationships
-def ReadSnapWire(Payload: bytes) -> BrepWire:
+def ReadSnapWire(Payload: bytes, RecordCount: int = 168) -> BrepWire:
     if type(Payload) is not bytes or not 0 < len(Payload) <= 2 * 1024 * 1024:
         raise ValueError("Invalid or oversized cuboid snapshot")
+    if RecordCount not in (168, 170):
+        raise ValueError("Unsupported cuboid snapshot record count")
     Cursor = MetaCursor(Payload)
     Header, Stamp = ReadBrepHeadMut(Cursor, False)
-    Records = tuple(ReadAsmRecord(Cursor, ReadAsmName(Cursor)) for _ in range(168))
+    Records = tuple(
+        ReadAsmRecord(Cursor, ReadAsmName(Cursor)) for _ in range(RecordCount)
+    )
     if ReadAsmName(Cursor) != "End-of-ASM-data" or Cursor.Offset != len(Payload):
         raise ValueError("Unterminated or trailing cuboid snapshot data")
     return BrepWire(Header, Stamp, AsmTable(4, Records), ())

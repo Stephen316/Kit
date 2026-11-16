@@ -21,7 +21,14 @@ sys.path[:0] = [
     str(ROOT / "re/automation/FusionSignedPrism"),
 ]
 
-from FusionConstrainedPrismEvidence import POSITIVE, REFUSED, refusal
+from FusionConstrainedPrismEvidence import (
+    POSITIVE,
+    PRIOR_YZ_REPORT,
+    YZ_SHA256,
+    modeling_length,
+    nonzero_taper,
+    refusal,
+)
 from FusionCutExtentEvidence import REVISION, SPECIFICATION, SPECIFICATION_SHA256
 from FusionRadialMutation import mutation_archive
 from PairedCaptureIntake import GitSnapshot, require, sha256
@@ -39,6 +46,7 @@ from VerifySignedPrism import (
     body_parts,
     design_curves,
     face_and_body_tags,
+    replace_depth,
 )
 from convert import open_document, write_document
 from convert.adapters.Fusion.Bridge.CheckContract import CheckContract
@@ -58,6 +66,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
 )
 from convert.adapters.Fusion.Native.Graph.SelectExtrusion import SelectExtrusion
 from convert.adapters.Fusion.Native.Parameters.ReadParameters import ReadParameters
+from convert.adapters.Fusion.Native.Parameters.ReadParameters import CheckBinding
 from convert.adapters.Fusion.Native.Policy.CheckAuxiliary import CheckSceneRefs
 from convert.adapters.Fusion.Native.Policy.CheckScopes import CheckScopes
 from convert.adapters.Fusion.Native.Projection.ProjectRectangle import (
@@ -555,6 +564,7 @@ def mutation_evidence(raw, model, graph, context, frame, world_curves):
     )
     width, _ = LinkedNodes(graph, context.Sketch, "dimensions")
     results = {}
+    public = {}
     cases = (
         (
             "single_matrix_changed",
@@ -575,6 +585,11 @@ def mutation_evidence(raw, model, graph, context, frame, world_curves):
             "Unsupported native Fusion FusionSketchLinearDim.constraintType",
         ),
     )
+    public_messages = {
+        "single_matrix_changed": "Unsupported native Fusion DRMatrix.matrix3d",
+        "different_origin_datum": "Native Fusion saved geometry or parameter values disagree",
+        "wrong_width_local_axis": PRIOR_YZ_REPORT["yz_refusal"],
+    }
     for label, changed, reader, expected in cases:
         decoded = ReadDocument(changed)
         changed_graph = BuildGraph(decoded)
@@ -585,6 +600,9 @@ def mutation_evidence(raw, model, graph, context, frame, world_curves):
             else (changed_graph, changed_context)
         )
         results[label] = refusal(lambda: reader(*args), expected)
+        public[label] = refusal(
+            lambda: open_document(changed, strict=True), public_messages[label]
+        )
     for label, root, first, attr in (
         ("world_section_curve", 2, 88, 152),
         ("local_section_curve", 3, 113, 160),
@@ -596,11 +614,75 @@ def mutation_evidence(raw, model, graph, context, frame, world_curves):
             ),
             "YZ section omits a selected curve",
         )
-    return results
+        public[label] = refusal(
+            lambda: open_document(changed, strict=True),
+            "Native reverse prism section lacks a selected curve",
+        )
+    return results, {**public, **unsupported_variants(model, graph, context, matrix)}
+
+
+# The target stays bounded to the measured metric positive origin and exact section roles.
+def unsupported_variants(model, graph, context, matrix):
+    _, display = modeling_length(graph)
+    depth = CheckBinding(graph, context.Along, context)
+    source_matrix = context.Plane.Fields["transform"]
+    entries = list(source_matrix.Entries)
+    entries[3] = 0.1
+    translated = MatrixValue(tuple(entries))
+    moved = mutation_archive(model, context.Plane, "transform", translated)
+    moved = mutation_archive(ReadDocument(moved), matrix, "matrix3d", translated)
+    part = model.Snapshots[0]
+    snapshot = part.Snapshot
+    entities = list(snapshot.Entities)
+    entities[2] = replace(entities[2], TransformRef=-1)
+    changed = replace(snapshot, Entities=tuple(entities))
+    wrong_root = EmitParsed(
+        replace(model, Snapshots=(replace(part, Snapshot=changed),))
+    )
+    require(
+        ReadDocument(wrong_root).Snapshots[0].Snapshot == changed,
+        "YZ wrong-root mutation did not survive the wire",
+    )
+    cases = (
+        (
+            "inch_yz",
+            mutation_archive(model, display, "unitString", "inch"),
+            "Native YZ prism requires millimeter display units",
+        ),
+        (
+            "negative_yz",
+            replace_depth(model, context, depth, -1.0, "-( 10 mm )"),
+            PRIOR_YZ_REPORT["yz_refusal"],
+        ),
+        (
+            "zero_depth_yz",
+            replace_depth(model, context, depth, 0.0, "0 mm"),
+            "Native rectangle saved driver values or zero taper disagree",
+        ),
+        (
+            "nonzero_taper_yz",
+            nonzero_taper(model, graph, context),
+            "Native rectangle saved driver values or zero taper disagree",
+        ),
+        ("translated_yz", moved, PRIOR_YZ_REPORT["yz_refusal"]),
+        (
+            "wrong_section_placement",
+            wrong_root,
+            "Native YZ snapshot has unsupported root placements",
+        ),
+    )
+    result = {}
+    for name, payload, expected in cases:
+        require(
+            bool(ReadDocument(payload).Segments),
+            "Changed YZ proof failed the low-level native read",
+        )
+        result[name] = refusal(lambda: open_document(payload, strict=True), expected)
+    return result
 
 
 # Existing refusal, partial archive custody and writer routing stay public consequences of the source boundary.
-def public_guards(snapshot, raw, document):
+def public_guards(snapshot, raw, expected):
     control = snapshot.blob(
         REVISION,
         "re/automation/PairedCaptures/P03/fusion-8d53584027ff/P03-fusion-baseline-a.f3d",
@@ -609,6 +691,19 @@ def public_guards(snapshot, raw, document):
         sha256(control) == POSITIVE["baseline-a"]
         and len(open_document(control, strict=True).bodies) == 1,
         "Established positive XY strict control differs",
+    )
+    document = open_document(raw, strict=True)
+    require(
+        document.parameters == expected.parameters
+        and document.support_planes == expected.support_planes
+        and document.sketches == expected.sketches
+        and document.feature_timeline == expected.feature_timeline
+        and document.brep == expected.brep
+        and len(document.bodies) == len(expected.bodies) == 1
+        and document.bodies[0].topology == expected.bodies[0].topology
+        and document.materials == expected.materials
+        and document.metadata == expected.metadata,
+        "Public strict YZ projection differs from the independent framed neutral proof",
     )
     target = BytesIO()
     writer = refusal(
@@ -630,15 +725,17 @@ def public_guards(snapshot, raw, document):
         lambda: write_document(
             stripped, target, destination_format="fusion.f3d", allow_carrier=False
         ),
-        REFUSED["plane-yz"][1],
+        "Fusion native-state projection is read-only",
     )
     require(
         not target.getvalue(), "Marker-stripped YZ research state emitted archive bytes"
     )
     return {
-        "yz_strict": refusal(
-            lambda: open_document(raw, strict=True), REFUSED["plane-yz"][1]
-        ),
+        "yz_strict": {
+            "plane": document.support_planes[0].name,
+            "read_only": True,
+            "body_count": len(document.bodies),
+        },
         "partial_exact_archive": True,
         "xy_strict_body_count": 1,
         "research_document_public_writer": writer,
@@ -661,7 +758,7 @@ def report():
     asset = captures["fusion"][1]["plane-yz"]
     raw = snapshot.blob(REVISION, asset["path"])
     require(
-        sha256(raw) == asset["sha256"] == REFUSED["plane-yz"][0],
+        sha256(raw) == asset["sha256"] == YZ_SHA256,
         "YZ source archive digest differs",
     )
     observations = {app: data[2]["plane-yz"] for app, data in captures.items()}
@@ -711,12 +808,15 @@ def report():
         tuple(value / 10 for value in observed["bounds_world_mm"][0]),
         tuple(value / 10 for value in observed["bounds_world_mm"][1]),
     )
+    research_refusals, public_refusals = mutation_evidence(
+        raw, model, graph, context, frame, curves
+    )
     return {
         "schema": 1,
         "source_revision": REVISION,
         "archive_sha256": sha256(raw),
         "specification_sha256": SPECIFICATION_SHA256,
-        "scope": "saved P03 metric YZ proof only",
+        "scope": "saved P03 metric YZ proof and strict read",
         "native_receipts": {
             app: {
                 **{
@@ -742,9 +842,8 @@ def report():
         "body": observed,
         "saved_geometry": parts.evidence,
         "state": state,
-        "wire_valid_mutation_refusals": mutation_evidence(
-            raw, model, graph, context, frame, curves
-        ),
+        "wire_valid_mutation_refusals": research_refusals,
+        "public_strict_mutation_refusals": public_refusals,
         "public_guards": public_guards(snapshot, raw, document),
     }
 

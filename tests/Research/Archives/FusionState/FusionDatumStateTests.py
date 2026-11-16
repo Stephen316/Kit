@@ -26,5 +26,5 @@ def CheckDatumState() -> None:
     ActualDigest = DigestBytes(Result.stdout.replace(b"\r\n", b"\n")).hexdigest()
     assert (
         ActualDigest
-        == "941c644135992ecfc2226769e4beae569f60870c0b1af6af739114b12ccd5b49"
+        == "8fb0b77a5d097c95119649ab550a3718b93f567d9652b8f6b40cc956cd1f65e2"
     )

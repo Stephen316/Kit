@@ -10,7 +10,7 @@ from interchange.Features.FeatureBody import DesignBody
 from interchange.Features.FeatureDistExt import DistanceExtrude
 from interchange.Features.FeatureStep import FeatureStep
 from interchange.geometry.Models.Sketch import Sketch
-from interchange.geometry.Models.Transform import Transform
+from interchange.geometry.Models.Transform import KAxisZ, KTransformIdentity, Transform
 from interchange.geometry.Models.VectorSpace import SpaceVector
 from interchange.Records.RecordTopology import TopologyCounts
 
@@ -39,6 +39,7 @@ def ProjectFeatures(
     Graph: NativeGraph,
     Context: ExtrudeContext,
     Rectangle: RectSketchProof | None = None,
+    Direction: SpaceVector = KAxisZ,
 ) -> tuple[FeatureStep, ...]:
     Along = Graph.Resolve(Context.Along.Fields["parameter"])
     Taper = Graph.Resolve(Context.Taper.Fields["parameter"])
@@ -57,7 +58,7 @@ def ProjectFeatures(
         parameter_ids=RectParamIds(Rectangle),
     )
     Definition = DistanceExtrude(
-        Along.Identity, SpaceVector(0.0, 0.0, 1.0), TaperParameterId=Taper.Identity
+        Along.Identity, Direction, TaperParameterId=Taper.Identity
     )
     Extrude = FeatureStep(
         Context.Extrude.Identity,
@@ -88,11 +89,12 @@ def ProjectBody(
     Shape: RectGeometry,
     MaterialId: str,
     DepthSpan: tuple[float, float] | None = None,
+    FrameValue: Transform = KTransformIdentity,
 ) -> tuple[BrepModel, DesignBody]:
     Height = NumberValue(Context.Along.Fields["value"]) * 10
     Lower, Upper = DepthSpan if DepthSpan is not None else (0.0, Height)
     Geometry, Volume, AreaValue, Bounds = BuildPrism(
-        Context.BodyNode.Identity, Transform(), Shape.Lines, Lower, Upper
+        Context.BodyNode.Identity, FrameValue, Shape.Lines, Lower, Upper
     )
     Counts = TopologyCounts(
         1,

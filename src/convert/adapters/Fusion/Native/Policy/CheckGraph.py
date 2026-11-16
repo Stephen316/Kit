@@ -29,11 +29,12 @@ def CheckBase(
     Context: KSketchContexts,
     Dimension: NativeNode | None = None,
     Rectangle: RectSketchProof | None = None,
+    YzDatum: bool = False,
 ) -> None:
     CheckClasses(Graph, Dimension, Rectangle)
     CheckAssembly(Graph, Context)
     CheckContainers(Graph, Context)
-    CheckPlacement(Graph, Context, Dimension, Rectangle)
+    CheckPlacement(Graph, Context, Dimension, Rectangle, YzDatum)
     CheckFeature(Graph, Context.SketchFeature)
     Overrides = ObjectFields(Context.Component.Fields["massProperties"])
     if any(Value != -1.0 for Value in Overrides.values()):
@@ -45,10 +46,11 @@ def CheckGraph(
     Graph: NativeGraph,
     Context: ExtrudeContext,
     Rectangle: RectSketchProof | None = None,
+    YzDatum: bool = False,
 ) -> None:
-    CheckBase(Graph, Context, Rectangle=Rectangle)
+    CheckBase(Graph, Context, Rectangle=Rectangle, YzDatum=YzDatum)
     CheckFeature(Graph, Context.Extrude)
-    CheckExtrusion(Graph, Context)
+    CheckExtrusion(Graph, Context, YzDatum)
     Overrides = ObjectFields(Context.BodyNode.Fields["massProperties"])
     if any(Value != -1.0 for Value in Overrides.values()):
         raise ValueError("Native body mass-property overrides are not qualified")

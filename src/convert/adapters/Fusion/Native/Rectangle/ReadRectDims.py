@@ -44,6 +44,7 @@ def ReadRectDims(
     Lines: tuple[NativeNode, ...],
     Anchor: NativeNode,
     Reverse: bool = False,
+    YzDatum: bool = False,
 ) -> tuple[tuple[NativeNode, ...], tuple[NativeNode, ...], tuple[SketchRelation, ...]]:
     SketchBindings = LinkedNodes(Graph, Context.SketchFeature, "dcParameters")
     if len(SketchBindings) != 2:
@@ -70,7 +71,9 @@ def ReadRectDims(
     CheckRectDeps(Graph, Context, SketchBindings)
     Kinds = (ConstraintKind.KDistanceX, ConstraintKind.KDistanceY)
     Relations = tuple(
-        ReadRectDim(Graph, Context, Dimension, Binding, Param, Lines, Anchor, KindValue)
+        ReadRectDim(
+            Graph, Context, Dimension, Binding, Param, Lines, Anchor, KindValue, YzDatum
+        )
         for Dimension, Binding, Param, KindValue in zip(
             Dimensions, SketchBindings, Params[:2], Kinds, strict=True
         )
@@ -82,6 +85,8 @@ def ReadRectDims(
     )
     if Ranks not in ((2, 3), (4, 5)):
         raise ValueError("Native rectangle dimension settings observer ranks disagree")
+    if YzDatum and Ranks != (4, 5):
+        raise ValueError("Native YZ dimension settings observer ranks disagree")
     return SketchBindings, Params[:2], Relations
 
 
@@ -182,12 +187,14 @@ def ReadRectDim(
     Lines: tuple[NativeNode, ...],
     Anchor: NativeNode,
     KindValue: ConstraintKind,
+    YzDatum: bool = False,
 ) -> SketchRelation:
     IsWidth = KindValue is ConstraintKind.KDistanceX
+    AxisValue = int(IsWidth) if YzDatum else int(not IsWidth)
     RequireFields(
         Dimension,
         {
-            "constraintType": 1 << (22 if IsWidth else 23),
+            "constraintType": 1 << (22 + AxisValue),
             "ParentNode": LocalRef(Context.Sketch.ObjectId),
             "rParent": LocalRef(Context.Sketch.ObjectId),
             "dcParameter": LocalRef(Binding.ObjectId),
@@ -211,11 +218,11 @@ def ReadRectDim(
             "Native rectangle dimension does not measure its exact ordered anchored side"
         )
     Points = tuple(PointCoords(NodeValue.Fields["point"]) for NodeValue in Nodes)
-    CheckDimCache(Dimension.Fields, Param, Points, IsWidth)
+    CheckDimCache(Dimension.Fields, Param, Points, IsWidth, YzDatum)
     CheckDimFrame(Graph, Dimension, Nodes, Anchor, IsWidth)
     return SketchRelation(
         Dimension.Identity,
-        KindValue,
+        ConstraintKind.KDistanceY if AxisValue else ConstraintKind.KDistanceX,
         tuple(ConstraintRef(NodeValue.Identity) for NodeValue in Nodes),
         parameter_id=Param.Identity,
     )
@@ -227,13 +234,17 @@ def CheckDimCache(
     Param: NativeNode,
     Points: tuple[tuple[float, float, float], ...],
     IsWidth: bool,
+    YzDatum: bool = False,
 ) -> None:
     InfoValue = ObjectFields(Fields["LinearDimensionInfo"])
     Start, Finish = Points
-    AxisValue = int(not IsWidth)
+    AxisValue = int(IsWidth) if YzDatum else int(not IsWidth)
     Amount = NumberValue(Param.Fields["value"])
     Other = Finish if IsWidth else Start
-    SameNumbers(Other, (Amount, 0.0, 0.0) if IsWidth else (0.0, Amount, 0.0))
+    SignedAmount = -Amount if YzDatum and not IsWidth else Amount
+    SameNumbers(
+        Other, (0.0, SignedAmount, 0.0) if AxisValue else (SignedAmount, 0.0, 0.0)
+    )
     SameNumbers(
         (Distance(Start, Finish), NumberValue(InfoValue["length"])), (Amount, Amount)
     )
@@ -254,7 +265,9 @@ def CheckDimCache(
         or SeriesItems(Fields["RefPositions"]) != (0.0, 1.0)
         or Extension[1 - AxisValue] != 0.0
         or Extension[2] != 0.0
-        or not 0.0 <= Extension[AxisValue] <= Amount
+        or (
+            Extension != Start if YzDatum else not 0.0 <= Extension[AxisValue] <= Amount
+        )
     ):
         raise ValueError(
             "Native rectangle dimension has inconsistent literal or annotation placement"
