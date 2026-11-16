@@ -122,7 +122,7 @@ def authored_case(right, width, height, depth):
                 lines,
                 (*coincident, *axes, *dims),
                 ("W", "H"),
-                (("elm", "oak", "ash", "pine"),),
+                (("pine", "elm", "oak", "ash"),),
             ),
         ),
         selections=(),
