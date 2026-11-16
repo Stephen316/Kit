@@ -40,7 +40,7 @@ def ReadScopeTrim(Cursor: ArchiveCursor, ModeValue: int) -> int:
 
 
 # scope support is resolved by the saved plane identity and basis instead of its name
-def ReadScopeProfile(
+def ReadScopeProf(
     Cursor: ArchiveCursor,
     Generation: int,
     Planes: tuple[PrincipalDatum, ...],
@@ -52,7 +52,9 @@ def ReadScopeProfile(
         Cursor, Generation, ProfileKind=KindValue, EnvironmentLead=6 if First else 5
     )
     EdgeIds = tuple(
-        Line["native_id"] for Line in Sketch.Geometry["lines"] if Line["native_id"] >= 0
+        LineValue["native_id"]
+        for LineValue in Sketch.Geometry["lines"]
+        if LineValue["native_id"] >= 0
     )
     RequireArch(
         len(EdgeIds) == len(set(EdgeIds)) == 4,

@@ -205,6 +205,7 @@ ExtrusionEndCondition = ExtrudeEnd
 
 # the public extrusion feature name must remain available so existing integrations keep resolving the canonical implementation
 ExtrusionFeature = ExtrudeFeature
+# the public scope record preserves its dedicated wire identity
 ScopedExtrusionFeature = ScopedExtrude
 
 # the public feature definition name must remain available so existing integrations keep resolving the canonical implementation

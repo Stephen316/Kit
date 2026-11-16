@@ -128,12 +128,12 @@ def ReadDepthClose(Cursor: ArchiveCursor, KindValue: str = KClassRefKind) -> int
 def ReadBossDepth(
     Cursor: ArchiveCursor, KindValue: str = KDefinitionKind, *, DisplayMode: int = 201
 ) -> DepthDisplay:
-    Display, _ = ReadBossDepthRefs(Cursor, KindValue, DisplayMode=DisplayMode)
+    Display, _ = ReadDepthRefs(Cursor, KindValue, DisplayMode=DisplayMode)
     return Display
 
 
 # first and repeated displays take their own class routes while sharing value assembly
-def ReadBossDepthRefs(
+def ReadDepthRefs(
     Cursor: ArchiveCursor,
     KindValue: str = KDefinitionKind,
     *,

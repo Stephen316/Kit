@@ -35,7 +35,7 @@ class ScopeCutProof:
     Operation: ScopedCut
 
 
-# this face-attached profile stores its placement before the absent trim caches
+# this face attached profile stores its placement before the absent trim caches
 def ReadScopeSeal(Cursor: ArchiveCursor, Support: SupportPlane) -> int:
     RequireArch(
         ReadFacePose(Cursor),

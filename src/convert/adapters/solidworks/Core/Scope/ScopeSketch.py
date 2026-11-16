@@ -35,23 +35,23 @@ def BuildScopeRect(
     RequireArch(
         Profile.Geometry["length_dimensions"], [], "scoped profile has no lengths"
     )
-    Seed = SeedLinkedRect(
+    Seeded = SeedLinkedRect(
         Replace(Template, entities=(), constraints=(), closed_profile_entity_ids=()),
         Profile,
         StreamName,
     )
     if Anchor is not None:
-        Bound = BuildRect(Seed, Anchor, StreamName, ())
+        Bound = BuildRect(Seeded, Anchor, StreamName, ())
     else:
         RequireArch(
             (Profile.Geometry["external_point_references"], Profile.Coincidences),
             ([], []),
             "scoped rectangle has no other saved relations",
         )
-        Binding = BindRectangle(Seed, Profile, StreamName)
+        Binding = BindRectangle(Seeded, Profile, StreamName)
         Bound = Replace(
-            Seed,
-            constraints=ProjectAxes(Seed, Profile.Geometry, Binding, StreamName),
+            Seeded,
+            constraints=ProjectAxes(Seeded, Profile.Geometry, Binding, StreamName),
         )
     return Replace(
         Bound,

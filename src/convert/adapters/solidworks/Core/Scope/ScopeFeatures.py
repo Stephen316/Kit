@@ -19,7 +19,7 @@ from interchange.geometry.Models.VectorSpace import SpaceVector
 from interchange.Records.RecordParameter import Parameter, ParameterValue
 
 
-# scoped operations reuse the public feature ID only after its original native name matches
+# scoped operations reuse the public feature identity only after its original native name matches
 def CheckScopeFeat(StepValue: FeatureStep, NativeId: int, NameValue: str) -> None:
     RequireArch(
         (StepValue.id, StepValue.name, StepValue.kind, StepValue.suppressed),
@@ -195,7 +195,7 @@ def ScopeCutStep(
         sketch_id=f"sldprt:sketch:{SketchId}",
         operation=BooleanOp.CUT,
         definition=Definition,
-        selection_ids=tuple(Pick.id for Pick in Selected),
+        selection_ids=tuple(PickValue.id for PickValue in Selected),
         provenance=RectSource(
             str(CutId),
             StreamName,

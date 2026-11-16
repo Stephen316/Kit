@@ -12,10 +12,10 @@ from convert.adapters.solidworks.Resolved.BossEntry import (
 )
 from convert.adapters.solidworks.Resolved.Cut.ScopeTypes import ScopeOwner
 from convert.adapters.solidworks.Resolved.PlaneAtom import ReadAtomMaps
-from convert.adapters.solidworks.Resolved.Scope.BossChoices import ReadScopedChoices
+from convert.adapters.solidworks.Resolved.Scope.BossChoices import ReadBossChoices
 from convert.adapters.solidworks.Resolved.Scope.BossExtent import (
     ScopedExtent,
-    ReadScopedExtent,
+    ReadBossExtent,
 )
 from convert.adapters.solidworks.Resolved.Scope.Profile import ScopeProfile
 
@@ -40,9 +40,11 @@ def ReadScopeAtom(Cursor: ArchiveCursor) -> tuple[int, int]:
     _, _, Transfer = Cursor.TakePointer(("moAtom_c",), KObjectRefKind, CompactOnly=True)
     RequireArch(Cursor.ReadInts("<i"), (0,), "empty secondary scoped boss transfer")
     Cursor.ReadNull()
-    Count, BodyId, Mode, Array, Scope = Cursor.ReadInts("<5i")
+    Count, BodyId, BodyMode, Array, Scope = Cursor.ReadInts("<5i")
     RequireArch(
-        (Count, Mode, Array, Scope), (1, 3, 0, 1), "witnessed scoped boss atom frame"
+        (Count, BodyMode, Array, Scope),
+        (1, 3, 0, 1),
+        "witnessed scoped boss atom frame",
     )
     RequireArch(BodyId > 0, True, "positive saved scoped boss body identity")
     return Transfer, BodyId
@@ -58,7 +60,7 @@ def ReadScopedBoss(
     ClassName = "moExtrusion_c" if First else "moICE_c"
     Fields = ReadOpFields(Cursor, ClassName, (0x40000140,), Profile.Sketch.ObjectIndex)
     Transfer, BodyId = ReadScopeAtom(Cursor)
-    Node, Choices = ReadScopedChoices(
+    NodeValue, Choices = ReadBossChoices(
         Cursor, Fields, Profile.Chain["edge_ids"], FileObject
     )
     RequireArch(
@@ -71,19 +73,19 @@ def ReadScopedBoss(
     ReadAtomMaps(Cursor)
     ReadBodyReturn(Cursor)
     Centre = Choices["centre"]["centre_and_scale"]
-    Extent = ReadScopedExtent(Cursor, Profile.Datum.Geometry, Centre, First=First)
+    Extent = ReadBossExtent(Cursor, Profile.Datum.Geometry, Centre, First=First)
     FirstCap = Choices["caps"][0]
     Primary = FirstCap["primary"]
     Sides = FirstCap["edges"]
     Owner = ScopeOwner(
         BodyId,
-        Node["file_ref_object"],
-        Node["native_feature_id"],
+        NodeValue["file_ref_object"],
+        NodeValue["native_feature_id"],
         Primary["time_word"],
         Transfer,
         Primary["class"],
         Sides[0]["class"],
-        tuple(Side["occurrence"] for Side in Sides),
+        tuple(SideValue["occurrence"] for SideValue in Sides),
         Centre,
     )
-    return ScopeBoss(Profile, Node, Owner, Choices, Extent, Marker, State)
+    return ScopeBoss(Profile, NodeValue, Owner, Choices, Extent, Marker, State)

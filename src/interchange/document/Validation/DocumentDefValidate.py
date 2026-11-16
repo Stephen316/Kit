@@ -21,6 +21,26 @@ from interchange.geometry.Models.SupportPlane import SupportPlane
 from interchange.Records.RecordParameter import Parameter
 
 
+# the primary length can be omitted only when the saved termination is through all
+def GetExtrudeErrs(
+    StepValue: FeatureStep, Definition: ExtrudeFeature
+) -> tuple[str, ...]:
+    if Definition.length is None and Definition.end_condition != ExtrudeEnd.THROUGH_ALL:
+        return (f"extrusion {StepValue.id} requires a primary length",)
+    return ()
+
+
+# a scoped definition carries design body references in addition to the actual extrusion
+def GetScopeErrors(
+    StepValue: FeatureStep, Definition: ScopedExtrude, BodyIds: set[str]
+) -> tuple[str, ...]:
+    ScopeIds = set(Definition.SelectedBodyIds) | set(Definition.AffectedBodyIds)
+    Missing = sorted(ScopeIds - BodyIds)
+    if Missing:
+        return (f"scoped extrusion {StepValue.id} references missing bodies {Missing}",)
+    return GetExtrudeErrs(StepValue, Definition.Extrusion)
+
+
 # supported editable definitions require checks beyond generic dependency validation
 def GetDefErrors(
     StepValue: FeatureStep,
@@ -32,13 +52,7 @@ def GetDefErrors(
 ) -> tuple[str, ...]:
     Definition = StepValue.definition
     if isinstance(Definition, ScopedExtrude):
-        BodyIds = set(Definition.SelectedBodyIds) | set(Definition.AffectedBodyIds)
-        Missing = sorted(BodyIds - IdentitySets["bodies"])
-        if Missing:
-            return (
-                f"scoped extrusion {StepValue.id} references missing bodies {Missing}",
-            )
-        Definition = Definition.Extrusion
+        return GetScopeErrors(StepValue, Definition, IdentitySets["bodies"])
     if isinstance(Definition, PlaneRevolve):
         return GetPlaneRevErrs(
             StepValue, Definition, Selections, IdentitySets["support_planes"]
@@ -47,12 +61,8 @@ def GetDefErrors(
         return GetAngleRevErrs(StepValue, Definition, Selections, Params)
     if isinstance(Definition, DistanceExtrude):
         return GetDistExtErrs(StepValue, Definition, IdentitySets["sketches"], Params)
-    if (
-        isinstance(Definition, ExtrudeFeature)
-        and Definition.length is None
-        and Definition.end_condition != ExtrudeEnd.THROUGH_ALL
-    ):
-        return (f"extrusion {StepValue.id} requires a primary length",)
+    if isinstance(Definition, ExtrudeFeature):
+        return GetExtrudeErrs(StepValue, Definition)
     if isinstance(Definition, BoundDatum):
         try:
             CheckBoundPlane(StepValue, Definition, Params, Frames)

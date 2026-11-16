@@ -454,41 +454,56 @@ def ReadNativePart(
         ),
         units=UnitSystem.MILLIMETER,
     )
-    DocValue = ProjectCutDoc(DocValue, Model.cut_source)
-    ConfigIdValue = Model.active_configuration_id
-    if ConfigIdValue is not None and KScopeUnresolved in Model.diagnostics:
-        try:
-            ScopedPayloads = Payloads
-            if not Settings.include_brep:
-                PartitionName = f"Contents/Config-{ConfigIdValue}-Partition"
-                ScopedPayloads = tuple(
-                    BrepPayloadA(Index, Value)
-                    for Index, Value in enumerate(
-                        DecodePartitionStream(Archive.require(PartitionName), PartitionName)
-                    )
-                )
-            DocValue = ReadScopeDoc(
-                DocValue,
-                Archive,
-                ConfigIdValue,
-                ScopedPayloads,
-                RetainBrep=Settings.include_brep,
-            )
-        except (KeyError, ValueError, Struct.error) as ErrorInfo:
-            DocValue = Replace(
-                DocValue,
-                diagnostics=(
-                    *DocValue.diagnostics,
-                    DiagValue(
-                        code="sldprt.scope_projection_unresolved",
-                        message=str(ErrorInfo),
-                        severity=Severity.INFO,
-                    ),
-                ),
-            )
+    DocValue = ProjectScopeDoc(
+        ProjectCutDoc(DocValue, Model.cut_source), Model, Archive, Payloads, Settings
+    )
     DocValue.assert_valid()
     ValidateSource(Label, False)
     return RetainSource(DocValue, DataValue)
+
+
+# recognized multibody configurations refine the fallback only after all joins succeed
+def ProjectScopeDoc(
+    DocValue: CadDoc,
+    Model: NativeModel,
+    Archive: SldprtArchive,
+    Payloads: tuple[BrepPayload, ...],
+    Settings: ReadOptions,
+) -> CadDoc:
+    ConfigIdValue = Model.active_configuration_id
+    if ConfigIdValue is None or KScopeUnresolved not in Model.diagnostics:
+        return DocValue
+    try:
+        ScopedPayloads = Payloads
+        if not Settings.include_brep:
+            PartitionName = f"Contents/Config-{ConfigIdValue}-Partition"
+            ScopedPayloads = tuple(
+                BrepPayloadA(Index, Value)
+                for Index, Value in enumerate(
+                    DecodePartitionStream(
+                        Archive.require(PartitionName), PartitionName
+                    )
+                )
+            )
+        return ReadScopeDoc(
+            DocValue,
+            Archive,
+            ConfigIdValue,
+            ScopedPayloads,
+            RetainBrep=Settings.include_brep,
+        )
+    except (KeyError, ValueError, Struct.error) as ErrorInfo:
+        return Replace(
+            DocValue,
+            diagnostics=(
+                *DocValue.diagnostics,
+                DiagValue(
+                    code="sldprt.scope_projection_unresolved",
+                    message=str(ErrorInfo),
+                    severity=Severity.INFO,
+                ),
+            ),
+        )
 
 
 # boolean option validation keeps compatibility keywords aligned with canonical options

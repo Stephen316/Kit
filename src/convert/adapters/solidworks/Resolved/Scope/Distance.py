@@ -11,7 +11,12 @@ KPlaneTolerance = 1e-10
 def PointOffset(
     Point: tuple[float, ...], Origin: tuple[float, ...], Normal: tuple[float, ...]
 ) -> float:
-    return sum((A - B) * Axis for A, B, Axis in zip(Point, Origin, Normal, strict=True))
+    return sum(
+        (FirstValue - SecondValue) * AxisValue
+        for FirstValue, SecondValue, AxisValue in zip(
+            Point, Origin, Normal, strict=True
+        )
+    )
 
 
 # the signed distance agrees with the driving magnitude and has no lateral drift
@@ -19,8 +24,8 @@ def SignedDistance(
     Display: DepthDisplay, Reference: DepthReference, Normal: tuple[float, ...]
 ) -> float:
     Points = Reference["points_metres"]
-    Start, End = Points[:3], Points[3:6]
-    Signed = PointOffset(End, Start, Normal)
+    Start, Endpoint = Points[:3], Points[3:6]
+    Signed = PointOffset(Endpoint, Start, Normal)
     RequireArch(
         IsClose(
             abs(Signed),
@@ -34,8 +39,15 @@ def SignedDistance(
     )
     RequireArch(
         all(
-            IsClose(B - A, Signed * Axis, rel_tol=0, abs_tol=KPlaneTolerance)
-            for A, B, Axis in zip(Start, End, Normal, strict=True)
+            IsClose(
+                SecondValue - FirstValue,
+                Signed * AxisValue,
+                rel_tol=0,
+                abs_tol=KPlaneTolerance,
+            )
+            for FirstValue, SecondValue, AxisValue in zip(
+                Start, Endpoint, Normal, strict=True
+            )
         ),
         True,
         "scoped display displacement is normal to the resolved support",

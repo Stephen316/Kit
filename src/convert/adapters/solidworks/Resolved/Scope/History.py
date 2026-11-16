@@ -8,7 +8,7 @@ from convert.adapters.solidworks.Resolved.OriginProfile import OriginProfile, Re
 from convert.adapters.solidworks.Resolved.PrincipalDatum import PrincipalDatum
 from convert.adapters.solidworks.Resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.Resolved.Scope.Boss import ScopeBoss, ReadScopedBoss
-from convert.adapters.solidworks.Resolved.Scope.Profile import ReadScopeProfile
+from convert.adapters.solidworks.Resolved.Scope.Profile import ReadScopeProf
 from convert.adapters.solidworks.Resolved.SystemPrefix import ReadSysPrefix
 
 
@@ -23,7 +23,7 @@ class ScopeHistory:
 
 
 # the two boss histories must close against the reached map before exposing the next profile
-def ReadScopeHistory(
+def ReadBossHistory(
     ConfigMap: ArchiveCursor,
     Resolved: bytes,
     Generation: int,
@@ -37,9 +37,9 @@ def ReadScopeHistory(
         System.Planes[0].FeatureId,
         "scoped origin uses the first principal plane",
     )
-    FirstProfile = ReadScopeProfile(Cursor, Generation, System.Planes, First=True)
+    FirstProfile = ReadScopeProf(Cursor, Generation, System.Planes, First=True)
     First = ReadScopedBoss(Cursor, FirstProfile, None)
-    SecondProfile = ReadScopeProfile(Cursor, Generation, System.Planes, First=False)
+    SecondProfile = ReadScopeProf(Cursor, Generation, System.Planes, First=False)
     Second = ReadScopedBoss(Cursor, SecondProfile, First.Owner.FileObject)
     RequireArch(
         First.Owner.BodyId != Second.Owner.BodyId

@@ -27,8 +27,8 @@ KOffsetEdge = "moFromSktEnt3IntSurfIdRep_c"
 
 # the first cap publishes the file object used by all later surface references
 def ReadInitialCap(Cursor: ArchiveCursor) -> SavedCap:
-    Head, SideCount = ReadFaceHead(Cursor, KDefinitionKind, 768)
-    RequireArch(Head["classifier"], 0, "witnessed initial cap classifier")
+    FaceHead, SideCount = ReadFaceHead(Cursor, KDefinitionKind, 768)
+    RequireArch(FaceHead["classifier"], 0, "witnessed initial cap classifier")
     Offset = Cursor.Offset
     _, _, CapIndex = Cursor.TakePointer((KCapClass,), KDefinitionKind, CompactOnly=True)
     Cursor.ReadNull()
@@ -38,7 +38,7 @@ def ReadInitialCap(Cursor: ArchiveCursor) -> SavedCap:
     FileRef = ReadFileRef(Cursor)
     FeatureId, Clock, Occurrence, Selector = Cursor.ReadInts("<iI2i")
     RequireArch((Occurrence, Selector), (0, 0), "witnessed initial boss cap")
-    Cap: KSurfaceId = {
+    CapValue: KSurfaceId = {
         "offset": Offset,
         "end": Cursor.Offset,
         "class": KCapClass,
@@ -52,23 +52,23 @@ def ReadInitialCap(Cursor: ArchiveCursor) -> SavedCap:
     Edges = [ReadSurfaceId(Cursor, KEdgeClass, KDefinitionKind)]
     Edges.extend(ReadSurfaceId(Cursor, KEdgeClass) for _ in range(SideCount - 1))
     ReadFaceReturn(Cursor)
-    return {**Head, "end": Cursor.Offset, "primary": Cap, "edges": Edges}
+    return {**FaceHead, "end": Cursor.Offset, "primary": CapValue, "edges": Edges}
 
 
 # offset cap records preserve raw classifiers while verifying the typed surface route
 def ReadOffsetCap(Cursor: ArchiveCursor, Occurrence: int) -> SavedCap:
-    Head, SideCount = ReadFaceHead(Cursor, KClassRefKind, 768)
+    FaceHead, SideCount = ReadFaceHead(Cursor, KClassRefKind, 768)
     KindValue = KDefinitionKind if Occurrence == 0 else KClassRefKind
-    Cap = ReadSurfaceId(Cursor, KOffsetCap, KindValue)
+    CapValue = ReadSurfaceId(Cursor, KOffsetCap, KindValue)
     RequireArch(
         Cursor.ReadInts("<2i"),
         KCutSelectors[KOffsetCap],
         "witnessed offset cap selectors",
     )
-    RequireArch(Cap["occurrence"], Occurrence, "witnessed offset cap occurrence")
+    RequireArch(CapValue["occurrence"], Occurrence, "witnessed offset cap occurrence")
     Edges: list[KSurfaceId] = []
     for Index in range(SideCount):
-        Edge = ReadSurfaceId(
+        EdgeValue = ReadSurfaceId(
             Cursor, KOffsetEdge, KindValue if Index == 0 else KClassRefKind
         )
         RequireArch(
@@ -76,15 +76,15 @@ def ReadOffsetCap(Cursor: ArchiveCursor, Occurrence: int) -> SavedCap:
             KCutSelectors[KOffsetEdge],
             "witnessed offset side selectors",
         )
-        Edges.append(Edge)
+        Edges.append(EdgeValue)
     ReadFaceReturn(Cursor)
-    return {**Head, "end": Cursor.Offset, "primary": Cap, "edges": Edges}
+    return {**FaceHead, "end": Cursor.Offset, "primary": CapValue, "edges": Edges}
 
 
 # repeated chooser caps must point to the same earlier native archive object slots
-def ReadOffsetAlias(Cursor: ArchiveCursor, Cap: SavedCap) -> CapAlias:
-    Head, SideCount = ReadFaceHead(Cursor, KClassRefKind, 768)
-    RequireArch(Head["classifier"], 0, "witnessed repeated offset face classifier")
+def ReadOffsetAlias(Cursor: ArchiveCursor, CapValue: SavedCap) -> CapAlias:
+    FaceHead, SideCount = ReadFaceHead(Cursor, KClassRefKind, 768)
+    RequireArch(FaceHead["classifier"], 0, "witnessed repeated offset face classifier")
     _, _, CapIndex = Cursor.TakePointer((KOffsetCap,), KObjectRefKind, CompactOnly=True)
     EdgeIndices = [
         Cursor.TakePointer((KOffsetEdge,), KObjectRefKind, CompactOnly=True)[2]
@@ -92,17 +92,17 @@ def ReadOffsetAlias(Cursor: ArchiveCursor, Cap: SavedCap) -> CapAlias:
     ]
     RequireArch(
         CapIndex,
-        Cap["primary"]["object_index"],
+        CapValue["primary"]["object_index"],
         "offset cap alias uses its original slot",
     )
     RequireArch(
         EdgeIndices,
-        [Side["object_index"] for Side in Cap["edges"]],
+        [SideValue["object_index"] for SideValue in CapValue["edges"]],
         "offset side aliases use their original slots",
     )
     ReadFaceReturn(Cursor)
     return {
-        **Head,
+        **FaceHead,
         "end": Cursor.Offset,
         "cap_object": CapIndex,
         "edge_objects": EdgeIndices,
@@ -111,15 +111,18 @@ def ReadOffsetAlias(Cursor: ArchiveCursor, Cap: SavedCap) -> CapAlias:
 
 # both cap chains must agree on the same reached feature file clock and sketch edges
 def CheckScopeCap(
-    Cap: SavedCap, Owner: tuple[int, int, int], EdgeIds: tuple[int, ...]
+    CapValue: SavedCap, Owner: tuple[int, int, int], EdgeIds: tuple[int, ...]
 ) -> None:
     RequireArch(
-        {SurfaceKey(Side)[:3] for Side in (Cap["primary"], *Cap["edges"])},
+        {
+            SurfaceKey(SideValue)[:3]
+            for SideValue in (CapValue["primary"], *CapValue["edges"])
+        },
         {Owner},
         "scoped cap surfaces share document feature and clock",
     )
     RequireArch(
-        sorted(Side["occurrence"] for Side in Cap["edges"]),
+        sorted(SideValue["occurrence"] for SideValue in CapValue["edges"]),
         sorted(EdgeIds),
         "scoped cap sides match its sketch",
     )
