@@ -4,8 +4,13 @@ from struct import pack as PackFields
 from convert.adapters.solidworks.Container.Archive import EncodeNull, EncodeString
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 
+# configuration object references save in their own named member
 KConfigObjects = "Contents/CnfgObjs"
+
+# document clocks share the stamps member used by configuration readers
 KModelStamps = "ModelStamps"
+
+# display update readers select the member by the model generation
 KDisplayUpdate = "_DL_VERSION_19000/DLUpdateStamp"
 
 
