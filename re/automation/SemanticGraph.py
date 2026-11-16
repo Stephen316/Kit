@@ -7,6 +7,8 @@ from enum import Enum
 from fractions import Fraction
 
 from interchange.Features.DistanceParam import KLengthFactors
+from interchange.Core.Reflection import CanonName
+from interchange.serialization.Wire import ResolveField
 
 COLLECTIONS = (
     "configurations",
@@ -227,7 +229,7 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
             return
         if not is_dataclass(value):
             raise ValueError("semantic graph contains an unsupported record")
-        kind = type(value).__name__
+        kind = CanonName(type(value))
         atom(node, path + "/record_type", kind)
         if kind in {"NativeGeometry", "NativeFeature", "NativeFeatureDefinition"}:
             issue(node["path"] + path, "native_only_record")
@@ -275,7 +277,7 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
             if category in {"length", "angle", "quantity"} or unit:
                 issue(node["path"] + path, "unsupported_parameter_quantity", value)
         for field in fields(value):
-            name = field.name
+            name = ResolveField(type(value), field.name)
             child = getattr(value, name)
             location = path + "/" + pointer(name)
             if kind == "FeatureStep" and name == "definition" and child is None:
@@ -354,7 +356,7 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
             raise ValueError(
                 "semantic node identity is duplicated or exceeds its limit"
             )
-        kind = type(value).__name__
+        kind = CanonName(type(value))
         if hasattr(value, "kind"):
             kind += ":" + str(tag(value.kind))
         label = value.name if hasattr(value, "name") else None
@@ -365,7 +367,7 @@ def build_graph(document, geometry_unit, *, max_nodes=4096, max_fields=100000):
         graph["nodes"][owner]["links"].append({"role": role, "target": identity})
         node["links"].append({"role": "owned_by", "target": owner})
         walk(node, value, "")
-        if type(value).__name__ == "Sketch":
+        if CanonName(type(value)) == "Sketch":
             for collection in ("entities", "constraints"):
                 for index, child in enumerate(getattr(value, collection)):
                     add(child, path + f"/{collection}/{index}", identity, collection)

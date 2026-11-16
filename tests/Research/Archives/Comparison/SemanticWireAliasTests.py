@@ -16,7 +16,7 @@ from tests.Research.Archives.Comparison.SemanticDocuments import MakeDocument
 
 
 # independently sealing modified wire bytes keeps alias checks inside the real comparison process boundary
-def SealFirst(Arguments: list[str], Record: dict[str, object]) -> None:
+def SealFirstMut(Arguments: list[str], Record: dict[str, object]) -> None:
     FileName = FilePath(Arguments[Arguments.index("--first") + 1])
     Payload = EncodeJson(Record).encode()
     assert FileName.write_bytes(Payload) == len(Payload)
@@ -47,7 +47,7 @@ def CheckCollisions(
     )
     Target.clear()
     Target.update(Replacement)
-    SealFirst(Arguments, Record)
+    SealFirstMut(Arguments, Record)
     Result = RunComparison(Arguments)
     assert Result.returncode == 1, Result.stderr + Result.stdout
     assert "colliding record field aliases" in Result.stderr
@@ -63,8 +63,22 @@ def CheckOneAlias(TmpPath: FilePath, FieldName: str) -> None:
     Parameter = Record["parameters"]["$tuple"][0]
     Target = Parameter["value"] if FieldName == "value" else Parameter
     Target[FieldName.title()] = Target.pop(FieldName)
-    SealFirst(Arguments, Record)
+    SealFirstMut(Arguments, Record)
     assert ReadReport(RunComparison(Arguments), "equal_observed_graph", 0)
+
+
+# reflected legacy field metadata must not hide a collision on a canonical typed feature storage slot
+def CheckTypedAlias(TmpPath: FilePath) -> None:
+    Arguments = WriteInputs(TmpPath, MakeDocument(), MakeDocument())
+    FileName = FilePath(Arguments[Arguments.index("--first") + 1])
+    Record = ParseJson(FileName.read_text(encoding="utf-8"))
+    Target = Record["feature_timeline"]["$tuple"][1]["definition"]
+    Target["AlongParameterId"] = Target["along_parameter_id"]
+    SealFirstMut(Arguments, Record)
+    Result = RunComparison(Arguments)
+    assert Result.returncode == 1, Result.stderr + Result.stdout
+    assert "colliding record field aliases" in Result.stderr
+    assert not Result.stdout
 
 
 # migration defaults must not overwrite an explicitly supplied payload role through a second alias
@@ -88,7 +102,7 @@ def CheckRoleClash(TmpPath: FilePath, LegacyAlias: bool) -> None:
     Target["Role"] = Target["role"]
     if LegacyAlias:
         del Target["role"]
-    SealFirst(Arguments, Record)
+    SealFirstMut(Arguments, Record)
     Result = RunComparison(Arguments)
     assert Result.returncode == 1, Result.stderr + Result.stdout
     assert "colliding" in Result.stderr
@@ -113,5 +127,5 @@ def CheckLegacyRead(TmpPath: FilePath) -> None:
     Target = Record["brep_payloads"]["$tuple"][0]
     del Target["role"]
     del Target["file_extension"]
-    SealFirst(Arguments, Record)
+    SealFirstMut(Arguments, Record)
     assert ReadReport(RunComparison(Arguments), "unresolved", 3)

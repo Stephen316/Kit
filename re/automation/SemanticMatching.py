@@ -76,9 +76,9 @@ def _profile(tolerances):
 
 
 def _ratio(atom):
-    encoded = atom.get("exact_ratio")
-    if encoded is None:
+    if "exact_ratio" not in atom:
         return Fraction(str(atom["value"]))
+    encoded = atom["exact_ratio"]
     if (
         not isinstance(encoded, list)
         or len(encoded) != 2

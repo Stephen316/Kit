@@ -85,6 +85,8 @@ Inputs must be plain regular files with matching hashes.
 Duplicate JSON keys, nonfinite quantities and excessive JSON nesting are refused.
 Raw JSON is bounded to depth 64 and 500,000 visited values; the typed semantic walk remains bounded to depth 48.
 Decimal literals that lose canonical magnitude in the codec are refused before graph construction.
+Distinct wire keys that resolve to the same model slot are refused, including collisions introduced by a registered migration.
+Unambiguous compatibility aliases remain valid.
 Each projected document has at most 4,096 nodes and 100,000 scalar fields.
 Identities are limited to 512 characters.
 Individual field text is limited to 65,536 characters.

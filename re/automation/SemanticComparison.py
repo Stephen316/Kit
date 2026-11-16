@@ -6,7 +6,7 @@ import os
 import re
 import stat
 import sys
-from dataclasses import fields, is_dataclass
+from dataclasses import is_dataclass
 from pathlib import Path
 from decimal import Decimal
 from types import MappingProxyType
@@ -18,7 +18,7 @@ from interchange.serialization.Deserialize import FromData
 from interchange.serialization.JsonCodec import LoadJson
 from interchange.serialization.MigrationRegistry import KMigrationRegistry
 from interchange.serialization.TypeRegistry import KTypeRegistry
-from interchange.serialization.Wire import ResolveField
+from interchange.serialization.Wire import GetSlotNames, ResolveField
 
 from SemanticGraph import build_graph, evidence_digest
 from SemanticMatching import match_graphs
@@ -54,7 +54,7 @@ def record_aliases(record):
     target = KTypeRegistry.get(name) if isinstance(name, str) else None
     if target is None or not is_dataclass(target):
         return
-    known = {field.name for field in fields(target)}
+    known = set(GetSlotNames(target))
     arguments = {key: value for key, value in record.items() if key != "$type"}
     slots = [ResolveField(target, key) for key in arguments]
     slots = [slot for slot in slots if slot in known]
