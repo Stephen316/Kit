@@ -57,4 +57,5 @@ def verify_lines(cursor, profile, endpoints, tallies, generation, writer):
             writer.Snapshot() == after, "line writer retains the shared archive map"
         )
     cursor.Offset = end
-    return start, end, before.NextIndex, marks, sha256(stream[start:end]).hexdigest()
+    proof = (start, end, before.NextIndex, marks, sha256(stream[start:end]).hexdigest())
+    return proof, tuple(lines)

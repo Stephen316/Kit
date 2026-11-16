@@ -150,7 +150,7 @@ def verify_proxy(
         )
     cursor.Offset = end
     cursor.NextIndex = sketch.NextIndex
-    return (
+    proof = (
         start,
         end,
         before.NextIndex,
@@ -159,3 +159,4 @@ def verify_proxy(
         source.LastAccessStamp,
         sha256(cursor.BlobValue[start:end]).hexdigest(),
     )
+    return proof, source

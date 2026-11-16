@@ -170,13 +170,16 @@ def verify_display_list(cursor, profile, corners, measurement, generation, write
     )
     ReadRegionStart(normal)
     raw = cursor.BlobValue[start:end]
+    restored = {record[1] for record in records}
+    require(len(restored) == 1, "both displays share the saved reference history")
+    (restored_mode,) = restored
+    poses = tuple(record[0] for record in records)
+    inactive = tuple(offset for _, _, words in records for offset in words)
     if writer is not None:
         require(
             writer.Snapshot() == before,
             "display writer receives the live sketch namespace",
         )
-        restored = {record[1] for record in records}
-        require(len(restored) == 1, "both displays share the saved reference history")
         owned = tuple(
             index
             for index, name in before.Objects
@@ -190,14 +193,13 @@ def verify_display_list(cursor, profile, corners, measurement, generation, write
             owned,
             corners,
             lengths,
-            tuple(record[0] for record in records),
+            poses,
             DRAFT,
-            Restored=restored.pop(),
+            Restored=restored_mode,
         )
         comparison = bytearray(raw)
-        for _, _, words in records:
-            for offset in words:
-                comparison[offset - start : offset - start + 4] = bytes(4)
+        for offset in inactive:
+            comparison[offset - start : offset - start + 4] = bytes(4)
         require(
             writer.build()[position:] == comparison,
             "exact display bytes with known inactive fields normalized",
@@ -205,4 +207,5 @@ def verify_display_list(cursor, profile, corners, measurement, generation, write
         require(
             writer.Snapshot() == after, "constructed display and favorite allocations"
         )
-    return start, end, before.NextIndex, after.NextIndex, sha256(raw).hexdigest()
+    proof = (start, end, before.NextIndex, after.NextIndex, sha256(raw).hexdigest())
+    return proof, poses, restored_mode, inactive

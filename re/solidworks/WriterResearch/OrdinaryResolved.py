@@ -1,12 +1,14 @@
-from dataclasses import dataclass as Dataclass
+from dataclasses import dataclass as Dataclass, replace as Replace
 
 from ConfigResolvedFraming import BeginResolvedArchive
+from OrdinaryConfig import OrdinaryConfigArchive
 from PartArchive import PartArchiveState, PartArchiveWriter
 from ResolvedCabinet import CabinetState, ReadCabinetRec, WriteCabinetRec
 from ResolvedFolderTail import LateFolders, ReadLateFolders, WriteLateFolders
 from ResolvedFolders import ReadSysFolders, SystemFolder, WriteSysFolders
 from ResolvedOrigin import OriginSlots, OriginState, ReadOriginRec, WriteOriginRec
 from ResolvedPrincipal import PrincipalPlane, ReadResolvedPlanes, WriteResolvedPlanes
+from convert.adapters.solidworks.Config.RootLayout import KRootClass
 from convert.adapters.solidworks.Container.ArchiveCheck import RequireArch
 from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 
@@ -49,3 +51,17 @@ def BeginOrdinaryResolved(
     WriteLateFolders(Writer, Generation, System.LateFolders)
     WriteResolvedPlanes(Writer, Generation, System.Planes)
     return Writer, WriteOriginRec(Writer, Generation, System.Origin)
+
+
+# Cross-stream pointers come from the generated configuration's actual allocation.
+def BeginResolvedPart(
+    Generation: int, Config: OrdinaryConfigArchive, System: ResolvedSystem
+) -> tuple[PartArchiveWriter, OriginSlots]:
+    State = Config.Framed.State
+    (Part,) = (Index for Index, Name in State.Objects if Name == KRootClass)
+    Bound = Replace(
+        System,
+        Origin=Replace(System.Origin, PartObject=Part),
+        LateFolders=Replace(System.LateFolders, Environment=Config.Scene.Environment),
+    )
+    return BeginOrdinaryResolved(Generation, State, Bound)

@@ -94,10 +94,11 @@ def verify_corners(cursor, profile, corners, endpoints, tallies, generation, wri
         )
     cursor.Offset = end
     cursor.NextIndex = sketch.NextIndex
-    return (
+    proof = (
         start,
         end,
         before.NextIndex,
         sketch.NextIndex,
         sha256(stream[start:end]).hexdigest(),
     )
+    return proof, points

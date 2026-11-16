@@ -9,6 +9,7 @@ from ConfigScene.Compose import ConfigScene, ConfigSceneSlots
 from ConfigScene.ModelLists import KMarkerClass, PartMarker
 from ConfigScene.SketchBlock import KBlockManager
 from OrdinaryConfig import BuildOrdinaryConfig, ConfigTail, OrdinaryConfig
+from VerifyAuthoredProfile import inspect_open
 from VerifyCfgPartEnd import read_end_fields
 from VerifyConfigDetailComposition import detail_inputs
 from VerifyConfigHistory import read_history
@@ -179,7 +180,7 @@ def compare_tail(config, data, generation, end, mass):
 
 # The complete configuration independently supplies the resolved feature namespace.
 def compare_composed(
-    archive, generation, first, history, state, offsets, slots, mass, after
+    archive, generation, first, history, state, offsets, slots, mass, after, measurement
 ):
     config = archive.require("Contents/Config-0")
     scene_start, end, ranges, scene_map = offsets
@@ -220,6 +221,7 @@ def compare_composed(
         prefix.Environment == slots.Environment,
         "resolved stream uses the generated environment",
     )
+    inspect_open(archive, measurement, True, configuration=built)
 
 
 def inspect_presentation(archive, generation, layouts, measurement, construct):
@@ -250,6 +252,7 @@ def inspect_presentation(archive, generation, layouts, measurement, construct):
             slots,
             mass,
             after,
+            measurement,
         )
     return [
         detail_start,
