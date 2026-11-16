@@ -11,6 +11,7 @@ from convert.adapters.solidworks.Core.RectSource import RectSource
 from convert.adapters.solidworks.Resolved.ProfileSketch import ProfileSketch
 from convert.adapters.solidworks.Resolved.RectanglePart import RectanglePart
 from convert.adapters.solidworks.Resolved.Scope.Profile import ScopeProfile
+from convert.adapters.solidworks.Sketch.GeometryTypes import Coincidence, PointReference
 from convert.adapters.solidworks.Sketch.MemberSpans import MemberSpan
 from interchange.Core.Common import FreezeMapping
 from interchange.geometry.Models.Sketch import Sketch
@@ -43,9 +44,10 @@ def BuildScopeRect(
     if Anchor is not None:
         Bound = BuildRect(Seeded, Anchor, StreamName, ())
     else:
+        EmptyRelations: tuple[list[PointReference], list[Coincidence]] = ([], [])
         RequireArch(
             (Profile.Geometry["external_point_references"], Profile.Coincidences),
-            ([], []),
+            EmptyRelations,
             "scoped rectangle has no other saved relations",
         )
         Binding = BindRectangle(Seeded, Profile, StreamName)
