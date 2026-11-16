@@ -13,6 +13,7 @@ from HeaderLogs import ReadHeaderLogs
 from PartArchive import PartArchiveWriter
 from RectangleFields import line_fields, measured_graph, point_fields
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
+from VerifyRectCorners import verify_corners
 from convert.adapters.solidworks.Config.OrdinaryMap import ReadOrdinaryMap
 from convert.adapters.solidworks.Container.Archive import ContainerMo
 from convert.adapters.solidworks.Container.Container import SldprtArchive
@@ -41,7 +42,7 @@ def verify_members(stream, profile, measurement):
         for span, line in zip(lines, profile.Geometry["lines"], strict=True)
     ]
     require(roles.count("structural_header") == 1, "single structural line")
-    return len(corners) + 1
+    return corners, endpoints, tallies
 
 
 # document IDs, archive allocations and geometry order must converge on the same owner
@@ -85,17 +86,18 @@ def inspect_open(archive, measurement, construct):
         and reference["handle_class"] == "sgPointHandle",
         "distinct local proxy points to the previously decoded Origin",
     )
-    point_count = verify_members(stream, profile, measurement)
+    corners, endpoints, tallies = verify_members(stream, profile, measurement)
+    after = map_state(cursor)
     if construct:
         writer = PartArchiveWriter(before)
-        WriteAuthoredOpen(writer, generation, origin.SketchIndex, fields, point_count)
+        WriteAuthoredOpen(
+            writer, generation, origin.SketchIndex, fields, len(corners) + 1
+        )
         require(
             writer.build() == stream[start:end], "exact typed authored profile opening"
         )
-        require(
-            writer.Snapshot() == map_state(cursor), "constructed authored sketch map"
-        )
-    return (
+        require(writer.Snapshot() == after, "constructed authored sketch map")
+    opening = (
         start,
         end,
         before.NextIndex,
@@ -103,18 +105,27 @@ def inspect_open(archive, measurement, construct):
         fields.Feature.RegenTime,
         sha256(stream[start:end]).hexdigest(),
     )
+    return opening, verify_corners(
+        cursor, profile, corners, endpoints, tallies, generation, construct
+    )
 
 
 # composition pins the exact receipt order without relying on fixed record offsets
 def report(construct):
     rows = []
+    corner_rows = []
     for _, asset, data, _, measurement in principal_captures():
         archive = SldprtArchive.from_bytes(data, asset["path"])
-        rows.append((asset["sha256"], *inspect_open(archive, measurement, construct)))
+        opening, corners = inspect_open(archive, measurement, construct)
+        rows.append((asset["sha256"], *opening))
+        corner_rows.append((asset["sha256"], *corners))
     return {
         "capture_revision": CAPTURE_REVISION,
         "captures": {row[0]: row[-1] for row in rows},
         "constructed": construct,
+        "corner_replay_sha256": sha256(
+            json.dumps(corner_rows, separators=(",", ":")).encode()
+        ).hexdigest(),
         "nonzero_regen_times": sum(row[-2] != 0.0 for row in rows),
         "replay_sha256": sha256(
             json.dumps(rows, separators=(",", ":")).encode()

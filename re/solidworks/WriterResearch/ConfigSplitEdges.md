@@ -27,6 +27,6 @@ The read-only replay SHA-256 is `4dc6ac3465879123e0271e20a88ac585652414ba86f5312
 
 ## Remaining second-split inputs
 
-The [ordinary atom-manager constructor](ConfigAtomManager.md) combines the second-split opening, optional atom and generation return. P01 has no atom body. Each P03 atom occupies 100 bytes including its tag and takes a separately generated kernel body tag. The following ghost ID manager and the relation manager still need constructive inputs. The ghost list is separately owned and has one entry even in P01. Later records cover detail definitions, environment, views, blocks, annotations, model lists, region ownership, explode state and the part return. The independent ordinary reader reaches the complete stream through `ReadModelTail`.
+The [ordinary atom-manager constructor](ConfigAtomManager.md) combines the second-split opening, optional atom and generation return. P01 has no atom body. Each P03 atom occupies 100 bytes including its tag and takes a separately generated kernel body tag. The [ghost and relation managers](ConfigGhostRelation.md) continue from there to the model array before saved detail. The ghost list is independently owned and has one entry even in P01. Later records cover detail definitions, environment, views, blocks, annotations, model lists, region ownership, explode state and the part return. The independent ordinary reader reaches the complete stream through `ReadModelTail`.
 
 The comparison was in memory. Complete Config-0 generation and fresh-process native acceptance remain pending.

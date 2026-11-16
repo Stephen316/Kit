@@ -1,0 +1,17 @@
+# Generation 19000 rectangle corner points
+
+`WriteRectCorners` continues the [authored sketch opening](AuthoredProfile.md) through four local point records and their eight allocated `sgLineHandle` objects. It consumes the ordered corners in metres, their relation incidences, and the authored perimeter line IDs and point slots. It checks that the four edges form one complete axis-aligned rectangle. The caller supplies the witnessed member constraint code `2` and point mask `0x1e`. This bounded writer covers the observed solved, ordinary 2D branch. The cause of all solver and mask state remains a separate input question.
+
+The following addresses refer to the pinned SOLIDWORKS `34.4.1.1011` `sldmodu.dll` with SHA-256 `2201734ebe0106efde5a93e306067b4b5e2fdb0ba70bf38ce9a59242b283cb99`.
+
+| Field group | Native ownership |
+| --- | --- |
+| Base member | `sgPoint` calls `sg2DEnt` storage at `0x4c58d9dd`. `PermMark`, `CreationId` and `RefCount` store through the keys at `0x4c5815b4`, `0x4c581603` and `0x4c581817`. The standard visual and width use the [shared constructor rules](../authoring/SketchStyleFields.md). |
+| Solved color and flags | `sgEntHandle::setConstraintStatus` writes member `+0x34` at `0x4c5d3439`. `setConstraintColor` calls `0x4c3df710`, where ordinary member flags and constraint code `2` return `4` at `0x4c3df757`. The setter stores that color at `0x4c3e0b43`. The base constructor at `0x4c3df3db` sets flags `4` and flags2 `0`, clears the name and paired state and sets the `+0x68` double to `1.0`. The ordinary record writes those members through `0x4c581d82`. |
+| Position and incidences | The mask is assembled before `0x4c58dadc`, the 2D position reaches the native point store at `0x4c58db78`, and `PointType` and `GeomRefCount` are named at `0x4c58db7e` and `0x4c58dbd1`. The two contour handles carry the two incident local line identities. |
+| Short handles | `sgPointHandle::getContour1` and `getContour2` return members `+0xf8` and `+0x100` at `0x4c5f8199` and `0x4c5f81b9`. The `sgPoint` serializer stores the handles through `0x4c58dd5f` and the following typed call using the second member. The `sgLineHandle` vtable uses `sgEntHandle` storage at `0x4c5858a0`. The short `EntIndex` writes at `0x4c5859b1`, the local `RefId=-1` at `0x4c585a55` and `DimOnCM=0` at `0x4c585aa4`. |
+| No sharp or jet geometry | The `sgPoint` constructor at `0x4c578ba0` initializes no jet, a zero center reference count, sharp index `-2` and the pair of default point objects. The tail writes the empty jet selector at `0x4c58dfcc` and `BiExtGeomRefCount` at `0x4c58e037`. |
+
+The four measured records span 5777–6441 in all 14 receipt-pinned P01/P03 saves. The first is 178 bytes and defines the handle class. The next three are 162 bytes each, with two new instances of that class per corner. All 112 handle bodies agree with the independently measured incident line pairs `(1,2)`, `(3,4)`, `(2,3)`, `(1,4)` in saved point order. The archive counter advances by nine and the next record is the separate external Origin proxy.
+
+Run `python -B re/solidworks/WriterResearch/VerifyAuthoredProfile.py --read-only`. Its `corner_replay_sha256` is `824ef34e99d0bd6f0aa4b5d92cbc5532b296fd1f14e8590438135cfcdba540c8`. The hosted check also compares the constructed bytes and exact class and object maps. The external proxy, the remaining sketch records, and native edit and reopen acceptance remain open.

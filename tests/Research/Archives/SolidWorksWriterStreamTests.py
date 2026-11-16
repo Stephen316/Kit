@@ -37,6 +37,10 @@ def CheckProfile() -> None:
         Report["replay_sha256"]
         == "94e7a495ed5aab2ba98e8833c5154869c0d0678dc778e8ef2387d7b83b189156"
     )
+    assert (
+        Report["corner_replay_sha256"]
+        == "824ef34e99d0bd6f0aa4b5d92cbc5532b296fd1f14e8590438135cfcdba540c8"
+    )
 
 
 # the research writer and reader must agree on the full stream in real native files
@@ -163,6 +167,15 @@ def CheckCfgAtoms() -> None:
     assert (
         Report["replay_sha256"]
         == "193129f1559b395334b21a75f00b49ccf19f343b83ccb95ce63bdab175d83865"
+    )
+
+
+# inline ghost state and the relation allocation must close at saved detail
+def CheckGhostRel() -> None:
+    Report = LoadReport("VerifyConfigGhostRelation.py", 14)
+    assert (
+        Report["replay_sha256"]
+        == "0ba2e2768dbbe1c6bba1e669fdde413b75edba4e4819b4a7f0e17e77ba8fba23"
     )
 
 

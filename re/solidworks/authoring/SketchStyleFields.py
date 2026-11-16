@@ -1,9 +1,19 @@
 """Generate and compare default SOLIDWORKS sketch styling fields for pinned P01."""
 
 from collections import Counter
-from enum import IntEnum
-from struct import Struct
+from pathlib import Path
 import json
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "WriterResearch"))
+
+from SketchMemberStyle import (
+    COLOR_STATUS_TYPE,
+    Weight,
+    default_visual,
+    initial_display_state,
+    standard_width,
+)
 
 from RectangleFields import (
     KApplicationBuild,
@@ -17,39 +27,6 @@ from RectangleFields import (
     require,
     sha256,
 )
-
-
-class Weight(IntEnum):
-    NONE = -1
-    THIN = 0
-    NORMAL = 1
-
-
-VISUAL_PREFIX = Struct("<hHBIh")
-STANDARD_WIDTH = Struct("<hf")
-COLOR_STATUS_TYPE = Struct("<3H")
-NO_LAYER = -1
-ALL_BY_LAYER = 0x1F
-INITIAL_VISUAL_STATE = 3
-NO_COLOR = 0xFFFFFFFF
-NO_STYLE = -1
-NO_CUSTOM_WIDTH = -1.0
-
-
-def standard_width(weight):
-    require(isinstance(weight, Weight), "expected a declared standard line weight")
-    return STANDARD_WIDTH.pack(weight, NO_CUSTOM_WIDTH)
-
-
-def default_visual():
-    return VISUAL_PREFIX.pack(
-        NO_LAYER, ALL_BY_LAYER, INITIAL_VISUAL_STATE, NO_COLOR, NO_STYLE
-    ) + standard_width(Weight.NONE)
-
-
-def initial_display_state():
-    # the sg2DEnt constructors initialize the three named store fields before solving
-    return COLOR_STATUS_TYPE.pack(5, 1, 1)
 
 
 def compare_style(blob, span, role, weight):
