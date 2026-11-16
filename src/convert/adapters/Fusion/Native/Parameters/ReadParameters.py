@@ -22,6 +22,7 @@ def ReadParameters(
     Context: ExtrudeContext,
     AllowTaper: bool = False,
     Rectangle: RectSketchProof | None = None,
+    Reverse: bool = False,
 ) -> tuple[Parameter, ...]:
     Table = ResolveField(Graph, Context.Component, "rParameterTable", "ParameterTable")
     Nodes = LinkedNodes(Graph, Table, "children")
@@ -50,10 +51,11 @@ def ReadParameters(
         raise ValueError(
             "Native parameter identifiers disagree with their fragment allocator"
         )
+    Distance = NumberValue(Along.Fields["value"])
     if (
         Along.Fields["unit"] != "mm"
         or Taper.Fields["unit"] != "deg"
-        or NumberValue(Along.Fields["value"]) <= 0
+        or (Distance >= 0.0 if Reverse else Distance <= 0.0)
         or (not AllowTaper and NumberValue(Taper.Fields["value"]) != 0)
     ):
         raise ValueError(
@@ -64,7 +66,12 @@ def ReadParameters(
         for NodeValue in Rectangle.Parameters:
             Owners[NodeValue.Identity] = Context.SketchFeature
     return tuple(
-        ProjectParam(NodeValue, Catalog, Owners.get(NodeValue.Identity))
+        ProjectParam(
+            NodeValue,
+            Catalog,
+            Owners.get(NodeValue.Identity),
+            Reverse and NodeValue == Along,
+        )
         for NodeValue in Nodes
     )
 
@@ -94,6 +101,7 @@ def ProjectParam(
     NodeValue: NativeNode,
     Catalog: dict[str, NativeNode],
     Owner: NativeNode | None,
+    Reverse: bool = False,
 ) -> Parameter:
     IsOwned = Owner is not None
     RequireFields(
@@ -125,7 +133,7 @@ def ProjectParam(
         NodeValue.Identity,
         TextValue(NodeValue.Fields["userName"]),
         Value,
-        expression=ParamExpression(NodeValue, Catalog),
+        expression=ParamExpression(NodeValue, Catalog, Reverse),
         owner_id=Owner.Identity if Owner is not None else "",
         attributes={
             "comment": TextValue(NodeValue.Fields["comment"]),

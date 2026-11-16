@@ -19,8 +19,15 @@ from zipfile import ZipFile
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "re/automation"))
 
-from FusionConstrainedPrismEvidence import POSITIVE, REFUSED, refusal
+from FusionConstrainedPrismEvidence import (
+    POSITIVE,
+    REVERSE_SHA256,
+    modeling_length,
+    nonzero_taper,
+    refusal,
+)
 from FusionCutExtentEvidence import REVISION, SPECIFICATION, SPECIFICATION_SHA256
+from FusionRadialMutation import mutation_archive
 from PairedCaptureIntake import GitSnapshot, require, sha256
 from ReadSignedPrism import face_areas, read_signed_prism
 from RectanglePairEvidence import capture
@@ -58,14 +65,23 @@ from convert.Formats.Fusion.BrepCodec.Journal.Geometry.EdgeNode import EdgeNode
 from convert.Formats.Fusion.BrepCodec.Journal.Planar.ReadVertexPoint import (
     ReadVertexPoint,
 )
+from convert.Formats.Fusion.BrepCodec.Journal.Snapshot.EmitGeometry import EmitGeometry
 from convert.Formats.Fusion.BrepCodec.Models.FeatureTag import FeatureTag
 from convert.Formats.Fusion.BrepCodec.Models.SketchLink import SketchLink
 from convert.Formats.Fusion.DocumentCodec.ReadDocument import ReadDocument
+from convert.Formats.Fusion.DocumentCodec.EmitParsed import EmitParsed
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Reading.MapRegion import (
+    MapRegion,
+)
+from convert.Formats.Fusion.DocumentCodec.Auxiliary.PrismSnapshot.Reading.ReadSnapWire import (
+    ReadSnapWire,
+)
+from convert.Formats.Fusion.SegmentCodec.Features.Model.LocalRef import LocalRef
 
 # These independently measured discovery archives exclude all unrelated profiles.
 CASES = {
     **{name: value for name, value in POSITIVE.items() if name != "baseline-b"},
-    "direction-negative": REFUSED["direction-negative"][0],
+    "direction-negative": REVERSE_SHA256,
 }
 
 
@@ -364,7 +380,7 @@ def corrupt_owner(
         and decoded.evidence["bounds_cm"] == signed.evidence["bounds_cm"],
         "Owner mutation did not preserve wire geometry",
     )
-    return refusal(
+    research = refusal(
         lambda: body_identity(
             graph,
             context,
@@ -375,6 +391,157 @@ def corrupt_owner(
         ),
         "Saved body tag or journal states do not own the linked Design extrusion",
     )
+    body = replace(model.Bodies[0], History=decoded.history)
+    raw = EmitParsed(replace(model, Bodies=(body,)))
+    require(
+        ReadDocument(raw).Bodies[0].History == decoded.history,
+        "Archive lost tampered typed body tag",
+    )
+    return {
+        "research": research,
+        "public_strict": refusal(
+            lambda: open_document(raw, strict=True),
+            "Native reverse prism body tag does not own the modeled extrusion",
+        ),
+    }
+
+
+# Change both reciprocal cached distance fields and the original driver literal in a valid archive.
+def replace_depth(model, context, parameter, value, expression):
+    raw = mutation_archive(model, parameter, "expression", expression)
+    raw = mutation_archive(ReadDocument(raw), parameter, "value", value)
+    raw = mutation_archive(ReadDocument(raw), context.Along, "value", value)
+    reread = BuildGraph(ReadDocument(raw))
+    changed = reread.Nodes[(parameter.SegmentId, parameter.ObjectId)]
+    binding = reread.Nodes[(context.Along.SegmentId, context.Along.ObjectId)]
+    require(
+        changed.Fields["value"] == binding.Fields["value"] == value
+        and changed.Fields["expression"] == expression,
+        "Mutated distance did not survive independent wire read",
+    )
+    return raw
+
+
+# Change a selected link in a real auxiliary ring while retaining its original typed slot and owner.
+def change_section(model, root, start, attr_start):
+    (part,) = model.Snapshots
+    snapshot = part.Snapshot
+    table = ReadSnapWire(EmitGeometry(snapshot)).Table
+    slots = MapRegion(table, root, start, attr_start)
+    primary, alternate = (slots[attr_start + index] for index in (0, 1))
+    entities = list(snapshot.Entities)
+    original = entities[primary]
+    different = entities[alternate]
+    require(
+        isinstance(original, SketchAttrib)
+        and isinstance(different, SketchAttrib)
+        and original.SourceLink.PrimaryId != different.SourceLink.PrimaryId,
+        "Auxiliary negative requires distinct original typed tags",
+    )
+    entities[primary] = replace(
+        original,
+        SourceLink=replace(
+            original.SourceLink, PrimaryId=different.SourceLink.PrimaryId
+        ),
+    )
+    changed = replace(snapshot, Entities=tuple(entities))
+    raw = EmitParsed(replace(model, Snapshots=(replace(part, Snapshot=changed),)))
+    require(
+        ReadDocument(raw).Snapshots[0].Snapshot == changed,
+        "Wire lost the auxiliary mutation",
+    )
+    return raw
+
+
+# Exercise physical and literal refusal with each deliberately changed archive still wire-readable.
+def reverse_mutations(model, graph, context):
+    depth = CheckBinding(graph, context.Along, context)
+    taper = CheckBinding(graph, context.Taper, context)
+    _, length = modeling_length(graph)
+    bodies = ResolveField(graph, context.Component, "rBodies", "Bodies")
+    serializer = ResolveField(graph, bodies, "rBRepSerializer", "BRepHistorySerializer")
+    wrong_bodies = next(node for node in graph.ByClass("Bodies") if node != bodies)
+    cache = context.BodyNode.Fields["cache"]
+    (group,) = cache.Groups
+    changed_cache = replace(
+        cache,
+        Groups=(
+            replace(
+                group,
+                Fields=tuple(
+                    replace(entry, Value=9.0) if entry.FieldName == "volume" else entry
+                    for entry in group.Fields
+                ),
+            ),
+        ),
+    )
+    cases = (
+        (
+            "wrong_literal_value",
+            mutation_archive(model, depth, "expression", "-( 11 mm )"),
+            "Native Fusion saved geometry or parameter values disagree",
+        ),
+        (
+            "unwrapped_literal",
+            mutation_archive(model, depth, "expression", "-10 mm"),
+            "Native reverse distance requires a wrapped millimeter literal",
+        ),
+        (
+            "wrong_physical_depth",
+            replace_depth(model, context, depth, -1.1, "-( 11 mm )"),
+            "Native reverse prism signed geometry disagrees with the selected rectangle",
+        ),
+        (
+            "zero_depth",
+            replace_depth(model, context, depth, 0.0, "0 mm"),
+            "Native rectangle saved driver values or zero taper disagree",
+        ),
+        (
+            "wrapped_taper",
+            mutation_archive(model, taper, "expression", "-( 0.0 deg )"),
+            "Native parameter formula is outside the qualified literal/reference grammar",
+        ),
+        (
+            "nonzero_taper",
+            nonzero_taper(model, graph, context),
+            "Native rectangle saved driver values or zero taper disagree",
+        ),
+        (
+            "reverse_inch_display",
+            mutation_archive(model, length, "unitString", "inch"),
+            "Native reverse prism requires millimeter display units",
+        ),
+        (
+            "wrong_serializer_owner",
+            mutation_archive(
+                model, serializer, "rBodies", LocalRef(wrong_bodies.ObjectId)
+            ),
+            "Unsupported native Fusion BRepHistorySerializer.rBodies",
+        ),
+        (
+            "wrong_cached_mass",
+            mutation_archive(model, context.BodyNode, "cache", changed_cache),
+            "Native Fusion saved geometry or parameter values disagree",
+        ),
+        (
+            "profile_section_link",
+            change_section(model, 2, 88, 152),
+            "Native reverse prism section lacks a selected curve",
+        ),
+        (
+            "sketch_section_link",
+            change_section(model, 3, 113, 160),
+            "Native reverse prism section lacks a selected curve",
+        ),
+    )
+    outcomes = {}
+    for name, raw, expected in cases:
+        require(
+            bool(ReadDocument(raw).Segments),
+            "Mutated reverse archive failed wire decoding",
+        )
+        outcomes[name] = refusal(lambda: open_document(raw, strict=True), expected)
+    return outcomes
 
 
 # Retain the exact scope and record attribution before checking the licensed comparison.
@@ -434,8 +601,18 @@ def compare_case(raw, digest, variant, witness):
         "licensed_geometry": compare_measurements(graph, context, signed, witness),
     }
     if variant == "direction-negative":
-        result["public_strict_refusal"] = refusal(
-            lambda: open_document(raw, strict=True), REFUSED[variant][1]
+        document = open_document(raw, strict=True)
+        require(
+            len(document.bodies) == 1
+            and document.metadata.get("fusion.read_only") is True,
+            "The strict reverse source must retain exactly one read-only body",
+        )
+        result["public_strict"] = {
+            "body_count": len(document.bodies),
+            "read_only": document.metadata["fusion.read_only"],
+        }
+        result["wire_valid_reverse_mutation_refusals"] = reverse_mutations(
+            model, graph, context
         )
         result["wire_valid_owner_mutation_refusal"] = corrupt_owner(
             history_bytes, snapshot_bytes, signed, graph, context, model, progenitor

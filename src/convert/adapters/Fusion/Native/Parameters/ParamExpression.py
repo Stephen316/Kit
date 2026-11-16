@@ -9,9 +9,11 @@ from interchange.Records.RecordParameter import Expression
 
 # parameter expression needs an explicit validity boundary so public document claims remain grounded in native records
 def ParamExpression(
-    NodeValue: NativeNode, Catalog: dict[str, NativeNode]
+    NodeValue: NativeNode, Catalog: dict[str, NativeNode], Reverse: bool = False
 ) -> Expression:
     Source = TextValue(NodeValue.Fields["expression"])
+    if Reverse:
+        return ReverseLiteral(NodeValue, Source)
     Target = Catalog.get(Source)
     if Target is not None:
         if (
@@ -50,4 +52,22 @@ def ParamExpression(
             )
         Amount *= Factors[UnitName]
     SameNumbers((Amount,), (NumberValue(NodeValue.Fields["value"]),))
+    return Expression(Source, language="fusion")
+
+
+# the saved reverse distance wraps one positive metric literal with unary minus
+def ReverseLiteral(NodeValue: NativeNode, Source: str) -> Expression:
+    Match = FullMatch(
+        r"\s*-\(\s*((?:[0-9]+(?:\.[0-9]+)?|\.[0-9]+))\s+mm\s*\)\s*", Source
+    )
+    if NodeValue.Fields["unit"] != "mm" or Match is None:
+        raise ValueError(
+            "Native reverse distance requires a wrapped millimeter literal"
+        )
+    Amount = float(Match.group(1))
+    if Amount <= 0:
+        raise ValueError(
+            "Native reverse distance requires a wrapped millimeter literal"
+        )
+    SameNumbers((-Amount / 10,), (NumberValue(NodeValue.Fields["value"]),))
     return Expression(Source, language="fusion")

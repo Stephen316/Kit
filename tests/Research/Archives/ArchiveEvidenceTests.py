@@ -70,8 +70,14 @@ from tests.Research.Archives.SwPlanarLoops import VerifySwExport, VerifySwLoops
         Pytest.param(
             "re/automation/FusionConstrainedPrismEvidence.py",
             (),
-            "1a1330667b72bfdd5daee76f6def1f532e37f37e6d5a1ef4a9e24bb84fc1529d",
+            "7c2bac73e8a3b6241ccddf0da5bbad20b8d4383fdfb9f43e7e091c438a82cef1",
             id="fusion-p03-strict-constrained-prism",
+        ),
+        Pytest.param(
+            "re/automation/FusionSignedPrism/VerifySignedPrism.py",
+            (),
+            "de418711fb9d347a4e03b883ef0538b5163df3a1653c48f896ab849a8251c807",
+            id="fusion-p03-signed-native-geometry",
         ),
         Pytest.param(
             "re/automation/RectanglePairEvidence.py",

@@ -26,5 +26,5 @@ def CheckPrismState() -> None:
     ActualDigest = DigestBytes(Result.stdout.replace(b"\r\n", b"\n")).hexdigest()
     assert (
         ActualDigest
-        == "9f65aaa183fe35889b3a49587ff93bf962b9d0a6dd826610f163299e4fb91a45"
+        == "9cb493ca2f27ba479a0b8bd4dd13d88a54d643535e693e847a6e4259330c6f29"
     )

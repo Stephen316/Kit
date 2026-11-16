@@ -1,6 +1,9 @@
 from convert.adapters.Fusion.Native.Graph.GraphChecks import SameNumbers
 from convert.adapters.Fusion.Native.Graph.GraphValues import ObjectFields, PointCoords
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
+from convert.Formats.Fusion.BrepCodec.Journal.Geometry.JournalVector import (
+    KJournalVector,
+)
 from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
 
 
@@ -11,6 +14,15 @@ def CheckMassCache(Context: ExtrudeContext, History: PrismHistory) -> None:
     Center = tuple(
         Model.BasePoint[Index] / 10 + Lengths[Index] / 2 for Index in range(3)
     )
+    CheckBoxInertia(Context, Lengths, Center)
+
+
+# the cached tensor is expressed about the document origin in either extrusion direction
+def CheckBoxInertia(
+    Context: ExtrudeContext,
+    Lengths: KJournalVector,
+    Center: tuple[float, ...],
+) -> None:
     Volume = Lengths[0] * Lengths[1] * Lengths[2]
     Inertia = tuple(
         Volume

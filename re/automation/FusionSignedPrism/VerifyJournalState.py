@@ -16,7 +16,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "re/automation"))
 
-from FusionConstrainedPrismEvidence import POSITIVE, REFUSED, REVISION, refusal
+from FusionConstrainedPrismEvidence import (
+    POSITIVE,
+    REFUSED,
+    REVERSE_SHA256,
+    REVISION,
+    refusal,
+)
 from PairedCaptureIntake import GitSnapshot, require, sha256
 from VerifySignedPrism import body_parts
 from convert import open_document, write_document
@@ -130,18 +136,15 @@ def malformed_refusals(model, history, contract):
 
 
 # A caller supplied V2 state must still reach the original read-only or reprojection guard.
-def writer_refusals(positive, contract, original_model):
-    marked = replace(
-        positive, metadata={"fusion.native_state": contract, "fusion.read_only": True}
-    )
-    stripped = replace(positive, metadata={"fusion.native_state": contract})
+def writer_refusals(marked, contract, original_model):
+    stripped = replace(marked, metadata={"fusion.native_state": contract})
     v1 = replace(
-        positive,
+        marked,
         metadata={"fusion.native_state": {"version": 1, "model": contract["model"]}},
     )
     unwrapped = replace(original_model, Graphics=None, Snapshots=(), Configurations=())
     v1_no_aux = replace(
-        positive,
+        marked,
         metadata={
             "fusion.native_state": {"version": 1, "model": EncodeState(unwrapped)}
         },
@@ -162,7 +165,7 @@ def writer_refusals(positive, contract, original_model):
         (
             "marker_stripped_v2_reprojection",
             stripped,
-            REFUSED["direction-negative"][1],
+            "Fusion native-state projection is read-only",
             ValueError,
         ),
         (
@@ -194,10 +197,10 @@ def writer_refusals(positive, contract, original_model):
     return result
 
 
-# Pin the scoped codec result and the unchanged source admission behavior.
+# Pin exact state transport and each writer boundary using the actual strict reader result.
 def report():
     snapshot = GitSnapshot(ROOT)
-    digest, refusal_message = REFUSED["direction-negative"]
+    digest = REVERSE_SHA256
     raw = pinned_source(snapshot, "direction-negative", digest)
     model = ReadDocument(raw)
     (body,) = model.Bodies
@@ -208,6 +211,12 @@ def report():
         "The pinned source no longer exercises the two generic saved forms",
     )
     contract, custody = transported_state(raw, model)
+    negative = open_document(raw, strict=True)
+    require(
+        negative.metadata
+        == {"fusion.native_state": contract, "fusion.read_only": True},
+        "Strict reverse projection did not retain full read-only V2 state",
+    )
     positive = open_document(
         pinned_source(snapshot, "baseline-a", POSITIVE["baseline-a"]), strict=True
     )
@@ -229,14 +238,13 @@ def report():
         "malformed_state_refusals": malformed_refusals(model, history, contract),
         "strict_reader": {
             "positive_body_count": len(positive.bodies),
-            "negative": refusal(
-                lambda: open_document(raw, strict=True), refusal_message
-            ),
+            "negative_body_count": len(negative.bodies),
+            "negative_read_only": negative.metadata["fusion.read_only"],
             "alternate_datum": refusal(
                 lambda: open_document(yz, strict=True), yz_refusal
             ),
         },
-        "writer_refusals": writer_refusals(positive, contract, model),
+        "writer_refusals": writer_refusals(negative, contract, model),
     }
 
 
