@@ -110,6 +110,16 @@ def CheckConfigBody() -> None:
     )
 
 
+# material and definition must agree on density before the model data allocation
+def CheckConfigMat() -> None:
+    Report = LoadReport("VerifyConfigMat.py", 14)
+    assert Report["constructed"] is True
+    assert (
+        Report["replay_sha256"]
+        == "f7f43f4bbee7452e83d0fd271eaf6143b49bc9453556310cc4bb1119aa7f09ce"
+    )
+
+
 # authored log order and shared archive allocation must survive repeated edits
 def CheckModelHdr() -> None:
     Report = LoadReport("VerifyModelHeader.py")
