@@ -1,0 +1,5 @@
+# Verify generated SOLIDWORKS blind boss distance records
+
+The hosted archive check extends the eight pinned P03 blind-boss cases. It verifies each native archive and the independent measurement receipt before deriving the distance inputs. The caller supplies the observed display frame convention and enclosing archive allocations. The measurement receipt provides the profile vertices and tangent, principal support, signed direction and positive depth. [Hosted integration check](../../../../tests/Research/Archives/SolidWorksBossStyleTests.py)
+
+The check requires exact byte equality for the generated 133-byte handle and the separately bounded 346-byte distance child. The production reader then rereads those bytes with the saved enclosing presentation tail and verifies the parameter, object identities and next position. The enclosing tail is a hosted reader input. Its construction and licensed CAD acceptance remain open. Hosted results are pending. [Native boundaries and geometry convention](../../../../re/solidworks/WriterResearch/DisplayHandle.md#constructing-the-ordinary-owned-distance)

@@ -20,11 +20,13 @@ from convert.adapters.solidworks.container.ArchiveCursor import (
     FieldCursor,
 )
 from convert.adapters.solidworks.container.Container import SldprtArchive
+from convert.adapters.solidworks.resolved.BossDepth import DepthDisplay
 from convert.adapters.solidworks.resolved.RectanglePart import ReadRectPart
 from convert.adapters.solidworks.sketch.DisplayOpen import (
     ReadDisplayBase,
     ReadDisplayOpen,
 )
+from tests.Research.Archives.SolidWorksDistVerify import VerifyDistChild
 
 # the repository root anchors both pinned native data and unpackaged research code
 KRepoRoot = FilePath(__file__).resolve().parents[3]
@@ -99,7 +101,7 @@ def LoadBossStyleCodec() -> BossStyleCodec:
 
 
 # only exact files from the independent eight save receipt can witness shape
-def ReadPinnedBossPart(Variant: str) -> SldprtArchive:
+def ReadPinnedBossPart(Variant: str) -> tuple[SldprtArchive, bytes]:
     ReceiptBytes = (KCaptureDir / "receipt.json").read_bytes()
     assert Sha256(ReceiptBytes).hexdigest() == KReceiptHash
     Receipt = CastValue(SaveReceipt, LoadJson(ReceiptBytes))
@@ -124,12 +126,12 @@ def ReadPinnedBossPart(Variant: str) -> SldprtArchive:
         Part["size_bytes"],
         Part["sha256"],
     )
-    return SldprtArchive.from_bytes(RawPart)
+    return SldprtArchive.from_bytes(RawPart), MeasurementBytes
 
 
 # the normal boss reader proves ownership before the null opening reaches the style
-def ReadBossStyleBoundary(Variant: str) -> tuple[bytes, int, int]:
-    Archive = ReadPinnedBossPart(Variant)
+def ReadBossStyleBoundary(Variant: str) -> tuple[bytes, int, int, DepthDisplay, bytes]:
+    Archive, Measurements = ReadPinnedBossPart(Variant)
     Generation = ContainerMo(Archive.streams)
     assert Generation == 19000
     Resolved = Archive.require("Contents/Config-0-ResolvedFeatures")
@@ -160,13 +162,17 @@ def ReadBossStyleBoundary(Variant: str) -> tuple[bytes, int, int]:
     assert Cursor.Offset == Depth["handle"]["offset"]
     assert Cursor.Objects == {DisplayObject: ClassName}
     assert Cursor.NextIndex == DisplayObject + 1
-    return Resolved, StyleOffset, Generation
+    return Resolved, StyleOffset, Generation, Depth, Measurements
 
 
 # the generated fragment must end at the adjacent native positions and directions
 @Pytest.mark.parametrize(("Variant", "NativeStyleOffset"), KStyleCases)
-def CheckBlindBossStyle(Variant: str, NativeStyleOffset: int) -> None:
-    Resolved, StyleOffset, Generation = ReadBossStyleBoundary(Variant)
+def CheckBlindBossStyle(
+    Variant: str, NativeStyleOffset: int, monkeypatch: Pytest.MonkeyPatch
+) -> None:
+    Resolved, StyleOffset, Generation, Depth, Measurements = ReadBossStyleBoundary(
+        Variant
+    )
     assert StyleOffset == NativeStyleOffset
     Codec = LoadBossStyleCodec()
     Emitted = Codec.EncodeBlindBossDisplayStyle(
@@ -188,11 +194,12 @@ def CheckBlindBossStyle(Variant: str, NativeStyleOffset: int) -> None:
     assert Positions.ReadText() == ""
     assert Positions.ReadPoint(3) == (0.0,) * 3
     assert Positions.ReadInts("<i") == (18,)
+    VerifyDistChild(monkeypatch, Variant, Resolved, Generation, Depth, Measurements)
 
 
 # a nonempty map count at the witnessed boundary cannot reuse the empty default layout
 def CheckBlindBossStyleMapGuard() -> None:
-    Resolved, StyleOffset, Generation = ReadBossStyleBoundary("baseline-a")
+    Resolved, StyleOffset, Generation, _, _ = ReadBossStyleBoundary("baseline-a")
     MapOffset = StyleOffset + 8
     assert Resolved[MapOffset : MapOffset + 4] == PackFields("<i", 0)
     Altered = Resolved[:MapOffset] + PackFields("<i", 1) + Resolved[MapOffset + 4 :]
