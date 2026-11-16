@@ -57,9 +57,9 @@ def CheckTiming(TmpPath: FilePath) -> None:
     Timing = JsonCodec.loads(JsonCodec.dumps(Pinned["dependency_timing"]))
     assert Timing["settled_events"] == Timing["timed_attempts_with_ancestors"] == 2
     Chain = Timing["longest_dependency_chain"]
-    assert [Node["job"] for Node in Chain["path"]] == ["timing:root", "timing:child"]
+    assert [Entry["job"] for Entry in Chain["path"]] == ["timing:root", "timing:child"]
     assert Chain["attempt_seconds"] == sum(
-        Node["attempt_seconds"] for Node in Chain["path"]
+        Entry["attempt_seconds"] for Entry in Chain["path"]
     )
     assert Chain["attempt_seconds"] > 0
     _ = BatchPath.write_text(
