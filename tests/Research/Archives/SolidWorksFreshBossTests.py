@@ -1,7 +1,10 @@
+from hashlib import sha256 as DigestBytes
 from json import dumps as EncodeJson, loads as ParseJson
 from pathlib import Path as FilePath
-from subprocess import run as RunProcess
+from subprocess import CompletedProcess, run as RunProcess
 from sys import executable as PythonExe
+from tempfile import TemporaryDirectory as MakeFolder
+from typing import cast as CastValue
 from uuid import UUID as OwnedUuid
 
 from pytest import approx as Approx
@@ -50,12 +53,20 @@ KFreshContext = {
 }
 
 
-# the hosted process must reopen the independently authored part and preserve its driving graph
-def CheckFreshBoss() -> None:
+# the native candidate command receives the same explicit fixture context on each invocation
+def RunFreshBoss(Destination: FilePath) -> CompletedProcess[str]:
     RootPath = FilePath(__file__).resolve().parents[3]
     ProgramPath = RootPath / "re/solidworks/WriterResearch/VerifyFreshBoss.py"
-    Result = RunProcess(
-        [PythonExe, "-B", str(ProgramPath), "--fixture-context", "-"],
+    return RunProcess(
+        [
+            PythonExe,
+            "-B",
+            str(ProgramPath),
+            "--fixture-context",
+            "-",
+            "--candidate",
+            str(Destination),
+        ],
         cwd=RootPath,
         input=EncodeJson(KFreshContext),
         text=True,
@@ -63,13 +74,34 @@ def CheckFreshBoss() -> None:
         check=False,
         timeout=120,
     )
+
+
+# the exported bytes must bind the in memory readback and preserve any competing destination
+def LoadCandidate(Destination: FilePath) -> dict[str, object]:
+    Result = RunFreshBoss(Destination)
     assert Result.returncode == 0, Result.stderr
-    Report = ParseJson(Result.stdout)
-    assert Report["stream_count"] >= 30
+    Report: dict[str, object] = ParseJson(Result.stdout)
+    assert DigestBytes(Destination.read_bytes()).hexdigest() == Report["archive_sha256"]
+    Existing = b"independent existing candidate"
+    Destination.write_bytes(Existing)
+    Retry = RunFreshBoss(Destination)
+    assert Retry.returncode != 0, Retry.stdout
+    assert "already exists" in Retry.stderr
+    assert Destination.read_bytes() == Existing
+    return Report
+
+
+# the hosted process must reopen the independently authored part and preserve its driving graph
+def CheckFreshBoss() -> None:
+    with MakeFolder() as TempRoot:
+        Report = LoadCandidate(FilePath(TempRoot) / "FreshBoss.SLDPRT")
+    Bounds = CastValue(list[list[float]], Report["bounds_metres"])
+    StreamCount = Report["stream_count"]
+    assert isinstance(StreamCount, int) and StreamCount >= 30
     assert Report["feature_ids"] == [26, 34]
     assert Report["dimension_ids"] == [72, 73, 74]
     assert Report["dimensions_mm"] == Approx([38.25, 22.5, -7.75])
-    assert Report["bounds_metres"][0] == Approx([0.0, 0.0, -0.00775])
-    assert Report["bounds_metres"][1] == Approx([0.03825, 0.0225, 0.0])
+    assert Bounds[0] == Approx([0.0, 0.0, -0.00775])
+    assert Bounds[1] == Approx([0.03825, 0.0225, 0.0])
     assert Report["volume_m3"] == Approx(0.00000666984375)
     assert Report["centroid_metres"] == Approx([0.019125, 0.01125, -0.003875])
