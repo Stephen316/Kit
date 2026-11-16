@@ -1,6 +1,5 @@
 from hashlib import sha256
 
-from PartArchive import PartArchiveWriter
 from RectangleLines import KDeletedSlots, KPermMarkOrders, RectangleLine, WriteRectLines
 from VerifyConfigRoot import require
 from VerifyResolvedPlanes import map_state
@@ -9,7 +8,7 @@ from convert.adapters.solidworks.Sketch.Members import ReadLineItem
 
 
 # the production line reader corroborates the separate deleted record and stable authored identities
-def verify_lines(cursor, profile, endpoints, tallies, generation, construct):
+def verify_lines(cursor, profile, endpoints, tallies, generation, writer):
     stream = cursor.BlobValue
     start = cursor.Offset
     before = map_state(cursor)
@@ -51,12 +50,9 @@ def verify_lines(cursor, profile, endpoints, tallies, generation, construct):
     marks = tuple(line.PermMark for line in lines)
     require(marks in KPermMarkOrders, "witnessed mark assignment")
     end = sketch.Offset
-    if construct:
-        writer = PartArchiveWriter(before)
+    if writer is not None:
         WriteRectLines(writer, generation, profile.SketchIndex, tuple(lines))
-        require(
-            writer.build() == stream[start:end], "exact typed line count and members"
-        )
+        require(writer.build() == stream[:end], "exact framed line count and members")
         require(
             writer.Snapshot() == after, "line writer retains the shared archive map"
         )

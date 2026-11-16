@@ -1,6 +1,5 @@
 from hashlib import sha256
 
-from PartArchive import PartArchiveWriter
 from RectangleCorners import (
     ContourPairs,
     CornerPoint,
@@ -44,7 +43,7 @@ def verify_handles(cursor, point, expected, first):
 
 
 # preserve the archive snapshot before the external Origin point begins allocating
-def verify_corners(cursor, profile, corners, endpoints, tallies, generation, construct):
+def verify_corners(cursor, profile, corners, endpoints, tallies, generation, writer):
     stream = cursor.BlobValue
     start = cursor.Offset
     before = map_state(cursor)
@@ -78,8 +77,8 @@ def verify_corners(cursor, profile, corners, endpoints, tallies, generation, con
     require(
         sketch.NextIndex == before.NextIndex + 9, "one class and eight corner handles"
     )
-    if construct:
-        writer = PartArchiveWriter(before)
+    if writer is not None:
+        require(writer.Snapshot() == before, "generated sketch before corners")
         WriteRectCorners(
             writer,
             generation,
@@ -89,9 +88,7 @@ def verify_corners(cursor, profile, corners, endpoints, tallies, generation, con
             Mask=next(iter(masks)),
             Status=next(iter(statuses)),
         )
-        require(
-            writer.build() == stream[start:end], "exact typed ordinary corner bytes"
-        )
+        require(writer.build() == stream[:end], "exact framed ordinary corner bytes")
         require(
             writer.Snapshot() == map_state(sketch), "exact ordinary corner archive map"
         )

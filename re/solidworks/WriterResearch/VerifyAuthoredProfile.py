@@ -10,9 +10,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "authoring"))
 
 from AuthoredProfile import ReadAuthoredOpen, WriteAuthoredOpen
 from HeaderLogs import ReadHeaderLogs
-from PartArchive import PartArchiveWriter
+from OrdinaryResolved import BeginOrdinaryResolved, ReadResolvedSystem
 from RectangleFields import line_fields, measured_graph, point_fields
-from ResolvedOrigin import ReadOriginRec
 from VerifyConfigRoot import CAPTURE_REVISION, principal_captures, require
 from VerifyOriginProxy import read_ghost, verify_proxy
 from VerifyRectCorners import verify_corners
@@ -56,11 +55,16 @@ def inspect_open(archive, measurement, construct):
     ghost = read_ghost(config_blob, model["relation_manager"])
     stream = archive.require("Contents/Config-0-ResolvedFeatures")
     cursor = OpenResolved(stream, config, 18 + model["atom_count"])
+    config_state = map_state(cursor)
+    system_cursor = config_state.Cursor(stream, cursor.Offset)
+    system = ReadResolvedSystem(system_cursor, generation)
     ReadSysPrefix(cursor)
-    origin_cursor = map_state(cursor).Cursor(stream, cursor.Offset)
-    origin_state = ReadOriginRec(origin_cursor, generation)
     origin = ReadOrigin(cursor, generation)
-    require(origin_cursor.Offset == cursor.Offset, "independent complete Origin owner")
+    require(
+        system_cursor.Offset == cursor.Offset
+        and map_state(system_cursor) == map_state(cursor),
+        "independent complete resolved system",
+    )
     start = cursor.Offset
     before = map_state(cursor)
     snapshot = before.Cursor(stream, start)
@@ -96,14 +100,14 @@ def inspect_open(archive, measurement, construct):
     )
     corners, endpoints, tallies = verify_members(stream, profile, measurement)
     after = map_state(cursor)
+    writer = origin_slots = None
     if construct:
-        writer = PartArchiveWriter(before)
+        writer, origin_slots = BeginOrdinaryResolved(generation, config_state, system)
+        require(writer.Snapshot() == before, "generated system owner map")
         WriteAuthoredOpen(
-            writer, generation, origin.SketchIndex, fields, len(corners) + 1
+            writer, generation, origin_slots.SketchObject, fields, len(corners) + 1
         )
-        require(
-            writer.build() == stream[start:end], "exact typed authored profile opening"
-        )
+        require(writer.build() == stream[:end], "exact framed authored profile opening")
         require(writer.Snapshot() == after, "constructed authored sketch map")
     opening = (
         start,
@@ -114,14 +118,12 @@ def inspect_open(archive, measurement, construct):
         sha256(stream[start:end]).hexdigest(),
     )
     corner_proof = verify_corners(
-        cursor, profile, corners, endpoints, tallies, generation, construct
+        cursor, profile, corners, endpoints, tallies, generation, writer
     )
     proxy_proof = verify_proxy(
-        cursor, profile, origin, origin_state, ghost, generation, construct
+        cursor, profile, origin, system.Origin, ghost, generation, writer, origin_slots
     )
-    line_proof = verify_lines(
-        cursor, profile, endpoints, tallies, generation, construct
-    )
+    line_proof = verify_lines(cursor, profile, endpoints, tallies, generation, writer)
     return opening, corner_proof, proxy_proof, line_proof
 
 

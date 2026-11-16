@@ -1,9 +1,9 @@
+from dataclasses import replace
 from hashlib import sha256
 
 from LocalComponent import KComponentTail, KPartClass
 from OriginProxy import KCompHandle, KPointBackup, OriginProxy, WriteOriginProxy
 from OriginSketch import KPointHandle
-from PartArchive import PartArchiveWriter
 from VerifyConfigRoot import require
 from VerifyResolvedPlanes import map_state
 from convert.adapters.solidworks.Config.ModelEntry import ReadModelEntry
@@ -111,7 +111,7 @@ def proxy_state(sketch, before, origin, origin_state, ghost_id, generation):
 
 # keep the line-count boundary and shared namespace visible to the enclosing profile
 def verify_proxy(
-    cursor, profile, origin, origin_state, ghost_id, generation, construct
+    cursor, profile, origin, origin_state, ghost_id, generation, writer, origin_slots
 ):
     start = cursor.Offset
     before = map_state(cursor)
@@ -132,12 +132,18 @@ def verify_proxy(
         FieldCursor(cursor.BlobValue, end).ReadCount() == 5,
         "preceding the five typed lines",
     )
-    if construct:
-        writer = PartArchiveWriter(before)
+    if writer is not None:
+        require(origin_slots is not None, "generated Origin feature and sketch slots")
+        require(writer.Snapshot() == before, "generated sketch before Origin proxy")
+        source = replace(
+            source,
+            FeatureObject=origin_slots.FeatureObject,
+            SketchObject=origin_slots.SketchObject,
+        )
         WriteOriginProxy(writer, generation, profile.SketchIndex, source)
         require(
-            writer.build() == cursor.BlobValue[start:end],
-            "exact typed Origin proxy bytes",
+            writer.build() == cursor.BlobValue[:end],
+            "exact framed Origin proxy bytes",
         )
         require(
             writer.Snapshot() == map_state(sketch), "complete Origin proxy archive map"
