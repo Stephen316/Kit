@@ -6,7 +6,7 @@ from convert.adapters.solidworks.sketch.GeometryTypes import SketchLine
 
 
 # inactive sketch settings must remain empty before the region can allocate
-def ReadRegionStart(Cursor: SketchArchive) -> None:
+def ReadRegionStart(Cursor: SketchArchive, *, EnvironmentLead: int = 6) -> None:
     RequireArch(Cursor.ReadInts("<7H"), (0,) * 7, "empty post-display collections")
     ModeValue, Flags, State = Cursor.ReadInts("<2Hi")
     RequireArch(ModeValue in (1, 2), True, "witnessed sketch presentation mode")
@@ -14,7 +14,7 @@ def ReadRegionStart(Cursor: SketchArchive) -> None:
     RequireArch(State in (5, 9), True, "witnessed sketch state")
     RequireArch(
         Cursor.ReadInts("<15i"),
-        (6, 5, *([1] * 11), 0, 1),
+        (EnvironmentLead, 5, *([1] * 11), 0, 1),
         "guarded sketch environment settings",
     )
     RequireArch(Cursor.ReadInts("<4H"), (0,) * 4, "empty additional sketch arrays")

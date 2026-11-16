@@ -38,12 +38,12 @@ def ReadLogicalTail(
 
 # the inline body returns to its saved owner only after the presentation and region finish
 def ReadSketchTail(
-    Cursor: SketchArchive, Geometry: SketchGeometry
+    Cursor: SketchArchive, Geometry: SketchGeometry, *, EnvironmentLead: int = 6
 ) -> list[Coincidence]:
     PointIds = [Point["id"] for Point in Geometry["point_relation_tallies"]]
     Coincidences = ReadLogicalTail(Cursor, PointIds)
     ReadDisplays(Cursor, Geometry)
-    ReadRegionStart(Cursor)
+    ReadRegionStart(Cursor, EnvironmentLead=EnvironmentLead)
     ReadRegion(Cursor, Geometry["lines"])
     RequireArch(Cursor.ReadInts("<H7i"), (0,) * 8, "empty post-region sketch records")
     return Coincidences

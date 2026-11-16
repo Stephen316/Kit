@@ -72,8 +72,8 @@ def ReadBlindEnd(Cursor: ArchiveCursor, Directions: tuple[int, ...]) -> BlindEnd
     }
 
 
-# the start must use its sketch plane after the optional draft and surface fields
-def ReadEndTail(Cursor: ArchiveCursor, KindValue: str, State: int) -> int:
+# the empty draft and surface fields lead to a typed start record
+def ReadStartHead(Cursor: ArchiveCursor, KindValue: str, State: int) -> int:
     Cursor.ReadNull()
     RequireArch(
         Cursor.ReadValue("<BHBHd6i"),
@@ -88,6 +88,12 @@ def ReadEndTail(Cursor: ArchiveCursor, KindValue: str, State: int) -> int:
         "guarded end feature fields",
     )
     _, _, Origin = Cursor.TakePointer(("moFromEndSpec_c",), KindValue, CompactOnly=True)
+    return Origin
+
+
+# the ordinary blind boss starts from its sketch plane
+def ReadEndTail(Cursor: ArchiveCursor, KindValue: str, State: int) -> int:
+    Origin = ReadStartHead(Cursor, KindValue, State)
     RequireArch(Cursor.ReadInts("<i"), (0,), "extrusion starts from its sketch plane")
     _ = Cursor.ReadInts("<5i")
     return Origin

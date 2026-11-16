@@ -47,7 +47,12 @@ def CheckInline(Parent: ArchiveCursor, TagOffset: int, ObjectIndex: int) -> None
 
 # a failed body must leave the enclosing archive usable at its original snapshot
 def ParseInlineMut(
-    Parent: ArchiveCursor, TagOffset: int, ObjectIndex: int, Generation: int | None
+    Parent: ArchiveCursor,
+    TagOffset: int,
+    ObjectIndex: int,
+    Generation: int | None,
+    *,
+    EnvironmentLead: int = 6,
 ) -> InlineRead:
     RequireArch(Generation, KConfigGen, "supported inline sketch generation")
     CheckInline(Parent, TagOffset, ObjectIndex)
@@ -64,7 +69,7 @@ def ParseInlineMut(
         Cursor.PointerEvents = []
     try:
         Geometry, Members = ReadGeoSpansMut(Cursor, ObjectIndex)
-        Coincidences = ReadSketchTail(Cursor, Geometry)
+        Coincidences = ReadSketchTail(Cursor, Geometry, EnvironmentLead=EnvironmentLead)
     except KeyError as Error:
         raise ArchiveError("unbound inline sketch operand") from Error
     Parent.Offset, Parent.NextIndex = Cursor.Offset, Cursor.NextIndex

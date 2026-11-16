@@ -311,7 +311,19 @@ def read_provisional(data, spec, stream_sha256, *, inspect_map=False):
         require(
             (first_boss["name"], first_boss["feature_id"], first_boss["start"])
             == (producers["A"]["name"], producers["A"]["feature_id"], producers["A"]["record_offset"]),
-            "typed boss does not match the scope array's earlier owner",
+            "typed first boss does not match the scope array's earlier owner",
+        )
+        second_boss = prefix["second_boss"]
+        require(
+            (second_boss["name"], second_boss["native_feature_id"], second_boss["offset"])
+            == (producers["B"]["name"], producers["B"]["feature_id"], producers["B"]["record_offset"]),
+            "typed second boss does not match the scope array's earlier owner",
+        )
+        cut_profile = prefix["cut_profile_entry"]
+        require(
+            (cut_profile["name"], cut_profile["feature_id"], cut_profile["offset"], cut_profile["object_index"])
+            == (profile["name"], profile["feature_id"], profile["record_offset"], cut["profile_reference_slot"]),
+            "typed Cut profile differs from the named profile or saved Cut slot",
         )
         scope_file_slots = {
             surface["file_reference_slot"]
@@ -320,6 +332,21 @@ def read_provisional(data, spec, stream_sha256, *, inspect_map=False):
         require(
             scope_file_slots == {prefix["first_cap"]["file_reference"]["object_index"]},
             "scope surface reference differs from the typed file object allocated by the first boss",
+        )
+        cut_node, typed_scope = prefix["cut_node"], prefix["cut_scope"]
+        require(
+            (cut_node["name"], cut_node["native_feature_id"], cut_node["offset"], cut_node["profile_object"])
+            == (cut["name"], cut["feature_id"], cut["record_offset"], cut["profile_reference_slot"])
+            and (typed_scope["array_offset"], typed_scope["scope_word_offset"], typed_scope["scope_word"])
+            == (array_offset, scope_offset, scope),
+            "typed Cut node or scope boundary differs from the earlier byte observations",
+        )
+        body_fields = ("offset", "end", "body_id", "feature_id", "recent_atom_id", "face_node_id")
+        require(
+            typed_scope["transfers"] == [group["object_slots"] for group in transfers]
+            and all(all(typed[key] == raw[key] for key in body_fields)
+                    for typed, raw in zip(typed_scope["bodies"], body_records, strict=True)),
+            "typed Cut body or transfer identity differs from the earlier byte observations",
         )
         result["resolved_prefix"] = prefix
     return result
@@ -462,8 +489,11 @@ def report(path, repeat_path=None, *, inspect_map=False):
         if inspect_map:
             left, right = primary["resolved_prefix"], repeat["resolved_prefix"]
             require(
-                all(left[field] == right[field] for field in ("first_profile", "first_boss", "first_operation")),
-                "typed first profile or boss differs across saves",
+                all(left[field] == right[field] for field in (
+                    "first_profile", "first_boss", "first_operation", "second_profile", "second_boss",
+                    "second_operation", "cut_profile_entry", "cut_sketch", "cut_support", "cut_node", "cut_scope",
+                )),
+                "typed profile or boss differs across saves",
             )
             result["repeat_comparison"]["resolved_prefix_matched"] = True
     return result

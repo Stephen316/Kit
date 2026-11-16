@@ -32,6 +32,8 @@ from convert.adapters.solidworks.resolved.SavedFileRef import ReadFileRef
 from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
 from convert.adapters.solidworks.sketch.DisplayFields import ReadCache, ReadDisplayTail
 from convert.adapters.solidworks.sketch.DisplayOpen import ReadDisplayOpen
+from SolidWorksScopeCut import read_scoped_cut
+from SolidWorksScopeSecondBoss import read_second_boss, read_uncached_trim
 
 
 def read_block_manager(cursor, pointer):
@@ -82,18 +84,6 @@ def read_config_map(config):
         "sketch_block_manager": block,
         "annotation": {"name": "*Top", "object_index": annotation, "end": annotation_end},
     }
-
-
-def read_uncached_trim(cursor):
-    start = cursor.Offset
-    require(cursor.ReadInts("<2H") == (0, 4), "unsupported scoped profile flags")
-    cursor.ReadNull()
-    require(cursor.ReadInts("<2i") == (-1, 0), "unsupported scoped profile state")
-    (state_word,) = cursor.ReadInts("<I")
-    require(cursor.ReadInts("<H") == (1,), "unsupported scoped contour mode")
-    cursor.ReadNull()
-    require(cursor.ReadInts("<2Hi") == (0, 0, 0), "unexpected scoped trim cache")
-    return {"start": start, "end": cursor.Offset, "state_word": state_word, "cached_surfaces": 0, "cached_segments": 0}
 
 
 def read_boss_entry(cursor, profile, expected_name):
@@ -155,6 +145,7 @@ def read_boss_choosers(cursor, boss, cap):
     )
     ReadFaceReturn(cursor)
     second = ReadCap(cursor, KClassRefKind, 1, owner)
+    require(second["primary"]["time_word"] == cap["clock_word"], "different first boss cap clocks")
     primary = ReadChoiceTail(cursor, KDefinitionKind)
     CheckChoiceOwn(cursor, owner)
     require(cursor.ReadInts("<3H") == (1, 1, 0), "unexpected secondary scoped chooser")
@@ -170,6 +161,7 @@ def read_boss_choosers(cursor, boss, cap):
     return {
         "end": cursor.Offset, "centre_and_scale": primary["centre_and_scale"],
         "side_occurrences": [side["occurrence"] for side in sides],
+        "second_cap_edge_occurrences": [side["occurrence"] for side in second["edges"]],
     }
 
 
@@ -227,6 +219,8 @@ def read_scope_prefix(archive, resolved, spec, generation):
     cap = read_first_cap(cursor, boss)
     choosers = read_boss_choosers(cursor, boss, cap)
     depth = read_boss_depth(cursor, spec)
+    next_features = read_second_boss(cursor, spec, generation, system.Planes, cap["file_reference"]["object_index"])
+    cut = read_scoped_cut(cursor, spec, generation, next_features, cap, choosers)
     return {
         "configuration": config_report, "resolved_list_count": 23,
         "first_profile": {
@@ -237,4 +231,6 @@ def read_scope_prefix(archive, resolved, spec, generation):
         "first_boss": boss,
         "first_cap": cap,
         "first_operation": {"choosers": choosers, **depth},
+        **next_features,
+        **cut,
     }

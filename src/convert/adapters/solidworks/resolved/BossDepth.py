@@ -105,13 +105,13 @@ def ReadDepthClose(Cursor: ArchiveCursor) -> int:
 
 # a depth is exposed only when the saved model length and both copies agree
 def ReadBossDepth(
-    Cursor: ArchiveCursor, KindValue: str = KDefinitionKind
+    Cursor: ArchiveCursor, KindValue: str = KDefinitionKind, *, DisplayMode: int = 201
 ) -> DepthDisplay:
     Offset = Cursor.Offset
     _, _, Index = Cursor.TakePointer(
         ("moDisplayDistanceDim_c",), KClassRefKind, CompactOnly=True
     )
-    ReadDisplayOpen(Cursor)
+    ReadDisplayOpen(Cursor, DisplayMode=DisplayMode)
     Handle = ReadFeatHandle(Cursor, KindValue)
     Depth = ReadParDepthMut(Cursor, KindValue)
     Copies = ReadCache(Cursor)

@@ -23,10 +23,16 @@ class ProfileSketch:
 
 
 # the profile owns the inline sketch read from its exact saved class reference
-def ReadProfileBody(Cursor: ArchiveCursor, Generation: int) -> ProfileSketch:
+def ReadProfileBody(
+    Cursor: ArchiveCursor,
+    Generation: int,
+    *,
+    ProfileKind: str = KDefinitionKind,
+    EnvironmentLead: int = 6,
+) -> ProfileSketch:
     Offset = Cursor.Offset
     _, _, ObjectIndex = Cursor.TakePointer(
-        ("moProfileFeature_c",), KDefinitionKind, CompactOnly=True
+        ("moProfileFeature_c",), ProfileKind, CompactOnly=True
     )
     _ = Cursor.TakePointer(("moNodeName_c",), KClassRefKind, CompactOnly=True)
     NameValue, FeatureId, _ = ReadProfileHead(Cursor, (0x40000000, 0xC0000000))
@@ -34,7 +40,9 @@ def ReadProfileBody(Cursor: ArchiveCursor, Generation: int) -> ProfileSketch:
     _, _, SketchIndex = Cursor.TakePointer(
         ("sgSketch",), KClassRefKind, CompactOnly=True
     )
-    Inline = ParseInlineMut(Cursor, SketchOffset, SketchIndex, Generation)
+    Inline = ParseInlineMut(
+        Cursor, SketchOffset, SketchIndex, Generation, EnvironmentLead=EnvironmentLead
+    )
     return ProfileSketch(
         NameValue,
         FeatureId,

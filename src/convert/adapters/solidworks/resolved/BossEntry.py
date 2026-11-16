@@ -57,9 +57,11 @@ def ReadOpNode(
     Flags: tuple[int, ...],
     ProfileObject: int,
     FileObject: int,
+    *,
+    KindValue: str = KDefinitionKind,
 ) -> OpNode:
     Offset = Cursor.Offset
-    _, _, Index = Cursor.TakePointer((ClassName,), KDefinitionKind, CompactOnly=True)
+    _, _, Index = Cursor.TakePointer((ClassName,), KindValue, CompactOnly=True)
     _ = Cursor.TakePointer(("moNodeName_c",), KClassRefKind, CompactOnly=True)
     NameValue, FeatureId = ReadNamedNode(Cursor, Flags)
     RequireArch(Cursor.ReadInts("<H"), (1,), "one resolved operation profile")
