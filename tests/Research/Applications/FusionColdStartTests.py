@@ -114,7 +114,7 @@ def AssertNoReply(Dispatch: DispatchHost, Flags: list[str]) -> None:
         _ = Withheld.rename(Receipt)
 
 
-# the normal owner CLI must make startup progress at the same durable custody boundary
+# the normal owner cli must make startup progress at the same durable custody boundary
 def RunInitialOwner(
     Dispatch: DispatchHost, Flags: list[str], ExitCode: int = 0
 ) -> dict[str, object]:
