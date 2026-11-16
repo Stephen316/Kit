@@ -654,6 +654,8 @@ public sealed class SolidWorksScopeControl
     static ISldWorks AttachOwned(OwnedProcess process)
     {
         var elapsed = Stopwatch.StartNew();
+        int unavailable = 0;
+        int rejected = 0;
         while (!process.Exited(0) && elapsed.Elapsed.TotalSeconds < 60)
         {
             RequireIsolated(process.Pid);
@@ -669,8 +671,9 @@ public sealed class SolidWorksScopeControl
             }
             catch (COMException error)
             {
-                if (error.ErrorCode != unchecked((int)0x800401E3) &&
-                    error.ErrorCode != unchecked((int)0x80010001)) throw;
+                if (error.ErrorCode == unchecked((int)0x800401E3)) unavailable++;
+                else if (error.ErrorCode == unchecked((int)0x80010001)) rejected++;
+                else throw;
                 Thread.Sleep(250);
             }
             finally
@@ -678,7 +681,10 @@ public sealed class SolidWorksScopeControl
                 if (active != null) Marshal.ReleaseComObject(active);
             }
         }
-        throw new InvalidOperationException("The directly launched SOLIDWORKS process did not expose its COM object");
+        throw new InvalidOperationException(
+            "The directly launched SOLIDWORKS process did not expose its COM object" +
+            " (ROT unavailable: " + unavailable + ", RPC rejected: " + rejected +
+            ", process exited: " + process.Exited(0) + ")");
     }
 
     static void Release(ref ISldWorks application)
