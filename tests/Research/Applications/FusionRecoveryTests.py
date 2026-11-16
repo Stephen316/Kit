@@ -17,6 +17,7 @@ from tests.Research.Applications.FusionRecoveryPreflight import (
     RefuseNewEpoch,
     VerifyPreflight,
 )
+from tests.Research.Applications.FusionRecoveryLaunch import VerifyLaunch
 from tests.Research.SupervisorClient import SessionHost
 
 
@@ -43,6 +44,7 @@ def CheckRecovery(TmpPath: FilePath) -> None:
             ExitPath = Dispatch.Endpoint / f"initial-native-exit-{AdmissionHash}.json"
             Verified = AwaitArchive(Dispatch, Harness, PhaseName, LogPath, ExitPath)
             PreflightPath = VerifyPreflight(Dispatch, LogPath, Verified)
+        VerifyLaunch(Dispatch, Harness, Flags, PhaseName, Verified)
         RefuseNewEpoch(Dispatch, Harness, Flags, PhaseName, PreflightPath)
     finally:
         _ = RunFusionTool(

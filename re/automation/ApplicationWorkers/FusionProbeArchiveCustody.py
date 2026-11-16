@@ -13,6 +13,8 @@ from ResourceOccupancy import closed_attempt_receipt, stored_record
 ARCHIVE_POLICY = (
     "ApplicationWorkers/ApplicationProtocol.py",
     "ApplicationWorkers/ArchiveFusionProbe.py",
+    "ApplicationWorkers/FusionArchivedReplacement.py",
+    "ApplicationWorkers/FusionArchiveReplacementRecords.py",
     "ApplicationWorkers/FusionCommissionedExit.py",
     "ApplicationWorkers/FusionExitRecords.py",
     "ApplicationWorkers/FusionOwnerColdStart.py",
@@ -26,6 +28,8 @@ ARCHIVE_POLICY = (
     "ApplicationWorkers/FusionApplicationWorker.py",
     "ApplicationWorkers/FusionStartupEvidence.py",
     "ApplicationWorkers/MacApplicationBundle.py",
+    "ApplicationWorkers/MacArchiveLaunchGate.py",
+    "ApplicationWorkers/MacBundleLaunch.py",
     "FusionColdStartAdmission.py",
     "LaunchGate.py",
     "Processes.py",

@@ -409,6 +409,7 @@ def main():
     parser.add_argument("--queue-receipt", type=Path)
     parser.add_argument("--launch-seconds", type=int, default=60)
     parser.add_argument("--startup-seconds", type=int, default=120)
+    parser.add_argument("--launch-archived-replacement", action="store_true")
     parser.add_argument("--wait-seconds", type=int, default=60)
     parser.add_argument("--poll-seconds", type=int, default=2)
     parser.add_argument("--once", action="store_true")
@@ -418,9 +419,15 @@ def main():
     if args.reset_evidence_pid is None and args.queue_directory is None:
         parser.error("--queue-directory is required for the Fusion lifecycle loop")
     if args.reset_evidence_pid is not None and (
-        args.profile is not None or args.queue_receipt is not None
+        args.profile is not None
+        or args.queue_receipt is not None
+        or args.launch_archived_replacement
     ):
         parser.error("reset evidence observation cannot request initial startup")
+    if args.launch_archived_replacement and (
+        args.once or args.profile is None or args.queue_receipt is None
+    ):
+        parser.error("archive replacement requires ongoing commissioned owner custody")
     try:
         if args.reset_evidence_pid is not None:
             from FusionResetEvidence import observe

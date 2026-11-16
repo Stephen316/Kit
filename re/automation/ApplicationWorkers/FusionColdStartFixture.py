@@ -41,9 +41,17 @@ def interrupt(arguments):
 
 def cleanup(root, endpoint):
     try:
-        raw = file_bytes(endpoint / "cold-start-peer.json")
+        replacement = list(endpoint.glob("archived-replacement-peer-*.json"))
+        assert len(replacement) <= 1
+        raw = file_bytes(
+            replacement[0] if replacement else endpoint / "cold-start-peer.json"
+        )
         peer = json.loads(raw)["peer"]
-    except FileNotFoundError:
+        current = process_peer(peer["pid"])
+        assert {
+            key: value for key, value in current.items() if key != "executable"
+        } == peer
+    except (FileNotFoundError, ValueError):
         try:
             target = json.loads(file_bytes(root / "ready.json"))["pid"]
             peer = {

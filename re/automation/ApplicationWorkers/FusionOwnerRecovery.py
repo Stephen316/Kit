@@ -40,6 +40,16 @@ def archive_timeout(owner, fence):
         queue == expected and raw == receipt_bytes(expected),
         "Fusion probe archive lost its durable queue receipt",
     )
+    if (
+        fence is None
+        and owner.exit_watch is not None
+        and owner.exit_watch.epoch is not None
+        and owner.args.launch_archived_replacement
+    ):
+        from FusionArchivedReplacement import reconcile_replacement
+
+        saved = reconcile_replacement(owner, path, queue, kind, raw)
+        return archive_status(saved)
     saved = archive_probe(
         owner.args.config,
         queue,
@@ -51,6 +61,11 @@ def archive_timeout(owner, fence):
             else None
         ),
     )
+    return archive_status(saved)
+
+
+# the public owner status exposes evidence digest fields without local paths or launch challenges
+def archive_status(saved):
     return {
         "status": "phase_a_probe_archived",
         "archive_manifest_sha256": saved["archive_manifest_sha256"],
@@ -59,7 +74,9 @@ def archive_timeout(owner, fence):
         **{
             key: value
             for key, value in saved.items()
-            if key.startswith(("recovery_basis_", "replacement_preflight_"))
+            if key.startswith(
+                ("recovery_basis_", "replacement_preflight_", "archive_replacement_")
+            )
         },
     }
 
