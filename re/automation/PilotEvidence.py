@@ -9,6 +9,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from PilotActivity import operating_report
+from PilotCiJobs import ci_summary, job_identity
 from Records import canonical, label
 
 MAX_BYTES = 1024 * 1024
@@ -207,6 +208,7 @@ SOURCES = {
         "independent_acceptance_attestation",
         acceptance_summary,
     ),
+    "ci_activity": ("CiActivity.json", "github_actions_job_observations", ci_summary),
 }
 
 
@@ -228,7 +230,7 @@ def source_report(root, name, expected, start, end):
     unique = {}
     for item in value["records"]:
         require(isinstance(item, dict), "private evidence records must be JSON objects")
-        identifier = label(item["id"])
+        identifier = job_identity(item) if name == "ci_activity" else label(item["id"])
         require(
             canonical(unique.setdefault(identifier, item)) == canonical(item),
             "conflicting private evidence with the same record ID",
@@ -277,6 +279,7 @@ def report(store, path, manifest_hash):
     private = {
         name: source_report(path.parent, name, pins.get(name), start, end)
         for name in SOURCES
+        if name != "ci_activity" or name in pins
     }
     return {
         "report_version": 1,

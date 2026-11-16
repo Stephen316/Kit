@@ -139,7 +139,53 @@ def FixtureSources(RootPath: FilePath) -> dict[str, str]:
                 "records": AcceptedCases(),
             },
         ),
+        "ci_activity": WritePinned(
+            RootPath / "CiActivity.json",
+            {
+                "version": 1,
+                "authority": "github_actions_job_observations",
+                "records": CiJobs(),
+            },
+        ),
     }
+
+
+# the pilot needs independent samples for pre-start wait, job execution and skipped jobs
+def CiJobs() -> list[dict[str, object]]:
+    RunPath = "https://api.github.com/repos/example/kit/actions"
+    Job: dict[str, object] = {
+        "id": 201,
+        "run_id": 11,
+        "run_attempt": 2,
+        "url": f"{RunPath}/jobs/201",
+        "run_url": f"{RunPath}/runs/11",
+        "head_sha": "a" * 40,
+        "created_at": "1970-01-01T00:00:18Z",
+        "started_at": "1970-01-01T00:00:24Z",
+        "completed_at": "1970-01-01T00:00:32Z",
+        "status": "completed",
+        "conclusion": "success",
+    }
+    return [
+        Job,
+        Job,
+        {**Job, "id": 202, "url": f"{RunPath}/jobs/202", "conclusion": "skipped"},
+        {
+            **Job,
+            "id": 203,
+            "url": f"{RunPath}/jobs/203",
+            "created_at": None,
+            "conclusion": "failure",
+        },
+        {
+            **Job,
+            "id": 204,
+            "url": f"{RunPath}/jobs/204",
+            "completed_at": None,
+            "conclusion": None,
+            "status": "in_progress",
+        },
+    ]
 
 
 # overlap and an open interval distinguish agent work time from elapsed active wall time
@@ -209,5 +255,16 @@ def AssertEvidence(
         "matched_cases": 2,
         "attested_case_gains": 2,
         "attested_document_gains": 1,
+    }
+    assert Report["ci_activity"] == {
+        "status": "partial",
+        "authority": "github_actions_job_observations",
+        "source_sha256": Sources["ci_activity"],
+        "conclusions": {"success": 1, "failure": 1, "skipped": 1},
+        "unfinished_observations": 1,
+        "pre_start_jobs": 1,
+        "created_to_start_job_seconds": 6,
+        "execution_timed_jobs": 2,
+        "start_to_finish_job_seconds": 16,
     }
     assert "private explanatory note" not in JsonCodec.dumps(Report)
