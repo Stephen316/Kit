@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
@@ -21,6 +23,8 @@ public sealed class SolidWorksScopeControl
     const string DirectRoute = "feature_cut4";
     const string RecoveryRoute = "modify_feature_scope";
     const double Mm = 1000;
+    const int RotUnavailable = unchecked((int)0x800401E3);
+    const int CallRejected = unchecked((int)0x80010001);
     static readonly JavaScriptSerializer Json = new JavaScriptSerializer { MaxJsonLength = 1024 * 1024 };
     readonly ISldWorks app;
     readonly Dictionary<string, object> spec;
@@ -651,10 +655,38 @@ public sealed class SolidWorksScopeControl
         }
     }
 
+    [DllImport("ole32.dll", ExactSpelling = true)]
+    static extern int GetRunningObjectTable(int reserved, out IRunningObjectTable table);
+
+    [DllImport("ole32.dll", CharSet = CharSet.Unicode, ExactSpelling = true)]
+    static extern int CreateItemMoniker(string separator, string item, out IMoniker moniker);
+
+    static object FindOwnedRegistration(int pid)
+    {
+        IRunningObjectTable table = null;
+        IMoniker moniker = null;
+        try
+        {
+            Marshal.ThrowExceptionForHR(GetRunningObjectTable(0, out table));
+            string item = "SolidWorks_PID_" + pid.ToString(CultureInfo.InvariantCulture);
+            Marshal.ThrowExceptionForHR(CreateItemMoniker(null, item, out moniker));
+            object registration;
+            int lookup = table.GetObject(moniker, out registration);
+            Marshal.ThrowExceptionForHR(lookup);
+            return registration;
+        }
+        finally
+        {
+            if (moniker != null) Marshal.ReleaseComObject(moniker);
+            if (table != null) Marshal.ReleaseComObject(table);
+        }
+    }
+
     static ISldWorks AttachOwned(OwnedProcess process)
     {
         var elapsed = Stopwatch.StartNew();
         int unavailable = 0;
+        int ownedMissing = 0;
         int rejected = 0;
         while (!process.Exited(0) && elapsed.Elapsed.TotalSeconds < 60)
         {
@@ -662,18 +694,31 @@ public sealed class SolidWorksScopeControl
             object active = null;
             try
             {
-                active = Marshal.GetActiveObject("SldWorks.Application");
+                process.Verify();
+                try { active = Marshal.GetActiveObject("SldWorks.Application"); }
+                catch (COMException error)
+                {
+                    if (error.ErrorCode != RotUnavailable) throw;
+                    unavailable++;
+                    active = FindOwnedRegistration(process.Pid);
+                    if (active == null)
+                    {
+                        ownedMissing++;
+                        Thread.Sleep(250);
+                        continue;
+                    }
+                }
                 var application = (ISldWorks)active;
                 Check(application.GetProcessID() == process.Pid && !process.Exited(0),
                     "COM returned a different SOLIDWORKS process");
+                process.Verify();
                 active = null;
                 return application;
             }
             catch (COMException error)
             {
-                if (error.ErrorCode == unchecked((int)0x800401E3)) unavailable++;
-                else if (error.ErrorCode == unchecked((int)0x80010001)) rejected++;
-                else throw;
+                if (error.ErrorCode != CallRejected) throw;
+                rejected++;
                 Thread.Sleep(250);
             }
             finally
@@ -683,7 +728,8 @@ public sealed class SolidWorksScopeControl
         }
         throw new InvalidOperationException(
             "The directly launched SOLIDWORKS process did not expose its COM object" +
-            " (ROT unavailable: " + unavailable + ", RPC rejected: " + rejected +
+            " (global ROT unavailable: " + unavailable + ", owned ROT unavailable: " + ownedMissing +
+            ", RPC rejected: " + rejected +
             ", process exited: " + process.Exited(0) + ")");
     }
 
