@@ -24,3 +24,9 @@ processes. It exercises Phase B1 reply loss before and after physical spool
 cleanup, checks that Phase A2 receives no claim before the intent drains,
 and verifies both pairs' accepted attempts and process identities. Hosted
 execution and signed-in Fusion verification are pending.
+
+The first hosted two-pair run stopped before Phase B1's first acknowledgement
+marker. The fixture parent now reaps the initial host and the continuing
+owner reaps the next host after verifying its exact exit, within the
+existing watch budget. The hosted diagnostic includes both hosts' logs.
+[Hosted failure](https://github.com/TryUniCAD/Kit/actions/runs/43794606581/job/133060521248)

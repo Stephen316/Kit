@@ -125,6 +125,32 @@ def worker(installation, session):
 
 
 class Continuous(Disposable):
+    # each disposable replacement remains owned until its observed exit is reaped
+    def __init__(self):
+        super().__init__("continuous", 0)
+        self.replacement_process = None
+
+    # normal restart checks require the observed child to disappear from the process table
+    def watch(
+        self, installation, store, queue, lifecycle, seconds, *, request_quit, admit
+    ):
+        deadline = time.monotonic() + seconds
+        observed = super().watch(
+            installation,
+            store,
+            queue,
+            lifecycle,
+            seconds,
+            request_quit=request_quit,
+            admit=admit,
+        )
+        process = self.replacement_process
+        if process is not None:
+            assert process.pid == observed["peer"]["pid"]
+            assert process.wait(timeout=max(0, deadline - time.monotonic())) == 0
+            self.replacement_process = None
+        return observed
+
     def launch(self, args, root, config, installation, *, admit):
         assert admit() > 0 and config["installation"]
         active = record(root / driver.ACTIVE)
@@ -146,11 +172,13 @@ class Continuous(Disposable):
         }
         raw = encoded(request)
         write_new(request_path, raw)
-        process = subprocess.Popen(
-            [sys.executable, "-B", __file__, "host", str(args.installation)],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL,
-        )
+        with (root.parent / "host.log").open("a", encoding="utf-8") as output:
+            process = subprocess.Popen(
+                [sys.executable, "-B", __file__, "host", str(args.installation)],
+                stdout=output,
+                stderr=subprocess.STDOUT,
+            )
+        self.replacement_process = process
         ready = wait_marker(
             root, "ready.json", process, "replacement fixture did not start"
         )["host"]
@@ -199,7 +227,7 @@ class Continuous(Disposable):
 
 
 def owner(arguments):
-    providers = Continuous("continuous", 0)
+    providers = Continuous()
     driver.watch = providers.watch
     driver.request_launch = providers.launch
     driver.read_launch = providers.phase_b
