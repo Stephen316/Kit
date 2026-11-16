@@ -10,7 +10,7 @@ to you under it immediately and permanently.
 
 # Configuration manager feature and mass properties
 
-The generation-19000 configuration continues from the [visual properties](CmgrVisual.md) return through inherited feature fields, mass properties and the base configuration's maps. A typed replay from byte 1095 reaches the [linked-atom map](CmgrAtoms.md) for all 25 receipt-pinned captures. The ordinary part path preserves archive index 9 throughout.
+The generation-19000 configuration continues from the [visual properties](CmgrVisual.md) return through inherited feature fields, mass properties and the base configuration's maps. A typed replay from byte 1095 reaches the [linked-atom map](CmgrAtoms.md) for all 25 receipt-pinned captures. The ordinary part path preserves archive index 9 throughout. [Configuration manager opening](CmgrOpening.md)
 
 ## Inherited feature
 
