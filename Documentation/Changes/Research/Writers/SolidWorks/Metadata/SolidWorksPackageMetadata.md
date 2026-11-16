@@ -13,9 +13,11 @@ to you under it immediately and permanently.
 The generation-19000 manifest constructor uses the exact extended, core
 and custom property paths in the supplied emission inventory. It emits the
 native relationship IDs, ordering, content type defaults and overrides.
-It requires an existing nonempty stream for each target. The document
-property payloads are separate ownership and are still open work.
+It requires an existing nonempty stream for each target. The native
+document property serializers supply these payloads with caller-owned
+metadata.
 [Package constructor](../../../../../../re/solidworks/WriterResearch/PartOpc.py)
+[Document property writers](SolidWorksDocumentProperties.md)
 
 ## Native source
 

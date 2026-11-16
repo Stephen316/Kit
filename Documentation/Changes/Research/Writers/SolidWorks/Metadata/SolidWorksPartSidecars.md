@@ -81,10 +81,12 @@ be needed to omit another member. [Licensed omission measurements](../SolidWorks
 | Open | `SwDocContentMgr/SwDocContentMgrInfo`, `ThirdPtyStore/VisualStates` | Content manager and visualization state constructors or licensed omission evidence |
 | Typed payload with prerequisites | `[Content_Types].xml`, `_rels/.rels` | `PartOpc.EncodePartOpc` requires actual emitted extended, core and custom property streams |
 | Full typed payload | `docProps/OpenTime.xml` | `PartOpenTime.EncodePartOpenTime` for the measured fresh and once-open histories |
-| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml`, `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | Typed document, configuration and application metadata owners and serialization |
+| Full typed payload | `docProps/app.xml`, `docProps/core.xml`, `docProps/custom.xml` | `PartDocProperties.EncodeDocumentProperties` from caller metadata and the native fresh-property defaults |
+| Open | `docProps/Config-0-Properties.xml`, `docProps/ISolidWorksInformation.xml` | Typed configuration and SOLIDWORKS information metadata owners and serialization |
 | Open | `swXmlContents/Features`, `swXmlContents/KeyWords` | XML derived from authored feature and document metadata or licensed omission evidence |
 
-There are 18 retained members with typed constructors, including two
+There are 21 retained members with typed constructors, including two
 fresh-document payloads and two manifests with property stream prerequisites.
-Fifteen remain open. Native acceptance of a fully generated archive is pending.
+Twelve remain open. Native acceptance of a fully generated archive is pending.
 [Package manifests and open timing](SolidWorksPackageMetadata.md)
+[Document property writers](SolidWorksDocumentProperties.md)

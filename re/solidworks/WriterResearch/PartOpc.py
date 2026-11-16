@@ -17,11 +17,15 @@ APP_PROPERTIES, CORE_PROPERTIES, CUSTOM_PROPERTIES_XML = (Part[0] for Part in KP
 
 
 # Native MSXML emits compact empty elements and a final carriage return and newline.
-def EncodePackageXml(Root: Element, *, Standalone: bool) -> bytes:
+def EncodePackageXml(
+    Root: Element, *, Standalone: bool, ShortEmptyElements: bool = True
+) -> bytes:
     Declaration = '<?xml version="1.0"'
     if Standalone:
         Declaration += ' encoding="UTF-8" standalone="yes"'
-    Body: bytes = tostring(Root, encoding="utf-8")
+    Body: bytes = tostring(
+        Root, encoding="utf-8", short_empty_elements=ShortEmptyElements
+    )
     return (Declaration + "?>\r\n").encode("ascii") + Body.replace(b" />", b"/>") + b"\r\n"
 
 
