@@ -34,7 +34,7 @@ def VerifyReserve(
     )
     assert Recovered["host"]["available_memory_bytes"] > Reserve
     assert Recovered["active_limit"] == 1 and Recovered["adaptive_revision"] == Revision
-    assert not [Event for Event in Events if Event["event"] == "adaptive_backoff"]
+    assert not [Event for Event in Events if Event.get("event") == "adaptive_backoff"]
     print(
         JsonCodec.dumps(
             {
