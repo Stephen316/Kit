@@ -291,16 +291,16 @@ def EncodeBrepModel(
             raise ParaWriteError("SOLIDWORKS feature ids must be positive i32 values")
     ValidateSupport(Model)
     Topology = BrepTopology(Model)
-    BodyData = EncodeBrepBody(
+    BodyData, Indices = EncodeBodyMap(
         Model, Topology, PartValue=PartValue, SolidFeatureIds=FeatureIds
-    )[0]
+    )
     PayloadData = ParaStream(
         BodyData,
         KParaSchema,
         KParaPartDesc if PartValue else KParaModelDesc,
         UserFieldSize=0,
     )
-    VerifyBrepData(Model, PayloadData)
+    VerifyBrepData(Model, PayloadData, Indices)
     return PayloadData
 
 
@@ -379,8 +379,40 @@ def ValidateSupport(Model: BrepModel) -> None:
                 )
 
 
+# writer verification must match each loop to its emitted face and record identity
+def VerifyLoopRoles(
+    Model: BrepModel, Decoded: BrepModel, Indices: EncodeIndices | None
+) -> None:
+    if Indices is None:
+        if tuple(LoopValue.outer for LoopValue in Model.loops) != tuple(
+            LoopValue.outer for LoopValue in Decoded.loops
+        ):
+            raise ParaWriteError("generated Parasolid B-rep changes loop roles")
+        return
+    Faces = {FaceValue.id: FaceValue for FaceValue in Decoded.faces}
+    Roles = {LoopValue.id: LoopValue.outer for LoopValue in Decoded.loops}
+    for FaceValue in Model.faces:
+        Restored = Faces.get(NativeId("face", Indices.KFaces[FaceValue.id] + 1))
+        LoopIds = tuple(
+            NativeId("loop", Indices.KLoops[LoopId] + 1)
+            for LoopId in FaceValue.loop_ids
+        )
+        if Restored is None or Restored.loop_ids != LoopIds:
+            raise ParaWriteError(
+                f"generated Parasolid B-rep changes loop order for face {FaceValue.id}"
+            )
+    for LoopValue in Model.loops:
+        LoopId = NativeId("loop", Indices.KLoops[LoopValue.id] + 1)
+        if Roles.get(LoopId) != LoopValue.outer:
+            raise ParaWriteError(
+                f"generated Parasolid B-rep changes loop role for {LoopValue.id}"
+            )
+
+
 # this declaration exists because focused behavior needs one stable owner
-def VerifyBrepData(Model: BrepModel, PayloadData: bytes) -> None:
+def VerifyBrepData(
+    Model: BrepModel, PayloadData: bytes, Indices: EncodeIndices | None = None
+) -> None:
     Decoded, Reason = ReadBrepResult(PayloadData)
     if Decoded is None:
         raise ParaWriteError(f"generated Parasolid B-rep cannot be decoded ({Reason})")
@@ -418,10 +450,7 @@ def VerifyBrepData(Model: BrepModel, PayloadData: bytes) -> None:
         (Region.solid for Region in Decoded.regions)
     ):
         raise ParaWriteError("generated Parasolid B-rep changes region solidity")
-    if tuple((LoopDataData.outer for LoopDataData in Model.loops)) != tuple(
-        (LoopDataData.outer for LoopDataData in Decoded.loops)
-    ):
-        raise ParaWriteError("generated Parasolid B-rep changes loop roles")
+    VerifyLoopRoles(Model, Decoded, Indices)
     if any(
         (
             Distance(Source.point, Restored.point) > 1e-09
@@ -780,6 +809,20 @@ def EncodeBrepBody(
     PartValue: bool = True,
     SolidFeatureIds: Mapping[str, int] | None = None,
 ) -> tuple[bytes, bool]:
+    Result, Indices = EncodeBodyMap(
+        Model, Topology, PartValue=PartValue, SolidFeatureIds=SolidFeatureIds
+    )
+    return Result, Indices.KSheet
+
+
+# verification needs record identities from the same allocator that emitted the body
+def EncodeBodyMap(
+    Model: BrepModel,
+    Topology: BrepTopology,
+    *,
+    PartValue: bool = True,
+    SolidFeatureIds: Mapping[str, int] | None = None,
+) -> tuple[bytes, EncodeIndices]:
     Config = MakeEncConfig(Model, Topology, SolidFeatureIds)
     Allocator = MakeAllocator(Config, PartValue)
     Indices = MakeEncodeIndex(Model, Topology, Config, Allocator)
@@ -808,7 +851,7 @@ def EncodeBrepBody(
         if Config.KSolidTri and not PartValue
         else bytes(Output)
     )
-    return Result, Indices.KSheet
+    return Result, Indices
 
 
 # encoder configuration derives deterministic vendor layout modes from model topology
