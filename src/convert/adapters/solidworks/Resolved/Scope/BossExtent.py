@@ -8,7 +8,7 @@ from convert.adapters.solidworks.Container.ArchiveCursor import ArchiveCursor
 from convert.adapters.solidworks.Resolved.BossDepth import (
     DepthDisplay,
     DepthReference as SavedDistance,
-    ReadBossDepthRefs,
+    ReadDepthRefs,
 )
 from convert.adapters.solidworks.Resolved.BossEnd import (
     EndSpec,
@@ -58,11 +58,11 @@ def ReadScopeStart(
     bytes | None,
 ]:
     StartObject = ReadStartHead(Cursor, KindValue, 0)
-    (Mode,) = Cursor.ReadInts("<i")
-    RequireArch(Mode, 0 if First else 5, "witnessed scoped boss start condition")
+    (ModeValue,) = Cursor.ReadInts("<i")
+    RequireArch(ModeValue, 0 if First else 5, "witnessed scoped boss start condition")
     if First:
-        return StartObject, Mode, None, None, 0.0, Cursor.ReadInts("<5i"), None
-    Display, Reference = ReadBossDepthRefs(Cursor, KClassRefKind, DisplayMode=200)
+        return StartObject, ModeValue, None, None, 0.0, Cursor.ReadInts("<5i"), None
+    Display, Reference = ReadDepthRefs(Cursor, KClassRefKind, DisplayMode=200)
     RequireArch(
         IsClose(
             PointOffset(Reference["points_metres"][:3], DatumOrigin, Normal),
@@ -73,21 +73,23 @@ def ReadScopeStart(
         True,
         "offset display starts on the reached sketch support",
     )
-    Lead, Token, Tail = CastValue(tuple[int, bytes, int], Cursor.ReadValue("<i16si"))
-    RequireArch((Lead, Tail), (1, 1), "witnessed offset start framing")
+    LeadWord, Token, TailWord = CastValue(
+        tuple[int, bytes, int], Cursor.ReadValue("<i16si")
+    )
+    RequireArch((LeadWord, TailWord), (1, 1), "witnessed offset start framing")
     return (
         StartObject,
-        Mode,
+        ModeValue,
         Display,
         Reference,
         SignedDistance(Display, Reference, Normal),
-        (Lead, Tail),
+        (LeadWord, TailWord),
         Token,
     )
 
 
 # signed extent must agree with both display geometry and the direct native direction field
-def ReadScopedExtent(
+def ReadBossExtent(
     Cursor: ArchiveCursor,
     Datum: DatumData,
     Centre: tuple[float, ...],
@@ -97,7 +99,7 @@ def ReadScopedExtent(
     KindValue = KDefinitionKind if First else KClassRefKind
     EndSpec = ReadEndHead(Cursor, KindValue, (0, 1))
     RequireArch(EndSpec["conditions"], (0, 0), "witnessed scoped blind extent")
-    Depth, Reference = ReadBossDepthRefs(
+    Depth, Reference = ReadDepthRefs(
         Cursor,
         KindValue,
         DisplayMode=200,
@@ -111,7 +113,7 @@ def ReadScopedExtent(
         int(SignedDepth < 0),
         "scope blind direction agrees with its signed distance",
     )
-    StartObject, Mode, Start, StartRef, Offset, RawWords, Token = ReadScopeStart(
+    StartObject, ModeValue, Start, StartRef, Offset, RawWords, Token = ReadScopeStart(
         Cursor, KindValue, Normal, Origin, First=First
     )
     RequireArch(
@@ -139,7 +141,7 @@ def ReadScopedExtent(
         Reference,
         SignedDepth,
         StartObject,
-        Mode,
+        ModeValue,
         Start,
         StartRef,
         Offset,
