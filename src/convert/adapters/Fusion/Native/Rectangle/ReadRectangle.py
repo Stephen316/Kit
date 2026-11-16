@@ -5,10 +5,12 @@ from convert.adapters.Fusion.Native.Graph.GraphChecks import (
 )
 from convert.adapters.Fusion.Native.Graph.GraphValues import PointCoords
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
+from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Rectangle.OrderLines import OrderLines
 from convert.adapters.Fusion.Native.Rectangle.ReadLine import ReadLine
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
+from convert.adapters.Fusion.Native.Rectangle.RectSketchProof import RectSketchProof
 from interchange.Enums.EnumGeometry import GeometryKind
 from interchange.geometry.Models.GeometryCurves import PointGeometry
 from interchange.geometry.Models.Sketch import SketchEntity
@@ -16,29 +18,19 @@ from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the rectangle operation needs a distinct decoding boundary so public document claims remain grounded in native records
-def ReadRectangle(Graph: NativeGraph, Context: ExtrudeContext) -> RectGeometry:
+def ReadRectangle(
+    Graph: NativeGraph,
+    Context: ExtrudeContext,
+    Rectangle: RectSketchProof | None = None,
+) -> RectGeometry:
     if Graph.ByClass("CircArc3D"):
         raise ValueError(
             "Native rectangle profile contains an unaccounted circular curve"
         )
-    Children = LinkedNodes(Graph, Context.Sketch, "children")
-    if any(
-        Graph.Resolve(NodeValue.Fields["rParent"]) != Context.Sketch
-        for NodeValue in Children
-    ):
-        raise ValueError("Native sketch child belongs to another parent")
-    Points = tuple(
-        NodeValue for NodeValue in Children if NodeValue.ClassName == "Point3D"
-    )
-    Lines = tuple(
-        NodeValue for NodeValue in Children if NodeValue.ClassName == "Line3D"
-    )
-    if len(Points) != 5 or len(Lines) != 4 or len(Children) != 9:
-        raise ValueError("Native rectangle requires five points and four lines")
-    SameNodes(Points, Graph.ByClass("Point3D"))
-    SameNodes(Lines, Graph.ByClass("Line3D"))
+    Points, Lines = ReadRectNodes(Graph, Context, Rectangle)
     LineNodes = OrderLines(Graph, Lines)
-    Geometry = tuple(ReadLine(Graph, NodeValue) for NodeValue in LineNodes)
+    Normal = (0.0, 0.0, 1.0 if Rectangle else -1.0)
+    Geometry = tuple(ReadLine(Graph, NodeValue, Normal) for NodeValue in LineNodes)
     if (
         sum(
             LineValue.start.x * LineValue.end.y - LineValue.end.x * LineValue.start.y
@@ -79,6 +71,7 @@ def ReadRectangle(Graph: NativeGraph, Context: ExtrudeContext) -> RectGeometry:
                 Point.Identity,
                 GeometryKind.KPoint,
                 PointGeometry(PlaneVector(Coordinates[0] * 10, Coordinates[1] * 10)),
+                construction=Rectangle is not None and Point is Rectangle.Origin,
                 fixed=Point.Fields["isFixed"] is True,
             )
         )
@@ -94,3 +87,30 @@ def ReadRectangle(Graph: NativeGraph, Context: ExtrudeContext) -> RectGeometry:
         max(YValues) - min(YValues),
         (min(XValues), min(YValues), 0.0),
     )
+
+
+# every sketch child must be one of the proved native entities for its reader path
+def ReadRectNodes(
+    Graph: NativeGraph,
+    Context: ExtrudeContext,
+    Rectangle: RectSketchProof | None,
+) -> tuple[tuple[NativeNode, ...], tuple[NativeNode, ...]]:
+    Children = LinkedNodes(Graph, Context.Sketch, "children")
+    if any(
+        Graph.Resolve(NodeValue.Fields["rParent"]) != Context.Sketch
+        for NodeValue in Children
+    ):
+        raise ValueError("Native sketch child belongs to another parent")
+    Points = tuple(
+        NodeValue for NodeValue in Children if NodeValue.ClassName == "Point3D"
+    )
+    Lines = tuple(
+        NodeValue for NodeValue in Children if NodeValue.ClassName == "Line3D"
+    )
+    Dimensions = Rectangle.Dimensions if Rectangle else ()
+    if len(Points) != 5 or len(Lines) != 4 or len(Children) != 9 + len(Dimensions):
+        raise ValueError("Native rectangle requires five points and four lines")
+    SameNodes(Children, (*Points, *Lines, *Dimensions))
+    SameNodes(Points, Graph.ByClass("Point3D"))
+    SameNodes(Lines, Graph.ByClass("Line3D"))
+    return Points, Lines

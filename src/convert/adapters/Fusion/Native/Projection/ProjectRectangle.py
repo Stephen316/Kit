@@ -2,6 +2,7 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import NumberValue, TextVa
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
+from convert.adapters.Fusion.Native.Rectangle.RectSketchProof import RectSketchProof
 from convert.Geometry.Extrude.Polygon.PolygonExtrude import BuildPrism
 from interchange.brep.Topology.BrepModel import BrepModel
 from interchange.Enums.EnumFeatures import BooleanOp, FeatureKind
@@ -15,12 +16,18 @@ from interchange.Records.RecordTopology import TopologyCounts
 
 
 # the project sketch contract needs a shared interpretation so public document claims remain grounded in native records
-def ProjectSketch(Context: ExtrudeContext, Shape: RectGeometry) -> Sketch:
+def ProjectSketch(
+    Context: ExtrudeContext,
+    Shape: RectGeometry,
+    Rectangle: RectSketchProof | None = None,
+) -> Sketch:
     return Sketch(
         Context.Sketch.Identity,
         TextValue(Context.Sketch.Fields["userName"]),
         Context.Plane.Identity,
         Shape.Entities,
+        constraints=Rectangle.Relations if Rectangle else (),
+        parameter_ids=RectParamIds(Rectangle),
         closed_profile_entity_ids=(
             tuple(NodeValue.Identity for NodeValue in Shape.LineNodes),
         ),
@@ -29,7 +36,9 @@ def ProjectSketch(Context: ExtrudeContext, Shape: RectGeometry) -> Sketch:
 
 # the project features contract needs a shared interpretation so public document claims remain grounded in native records
 def ProjectFeatures(
-    Graph: NativeGraph, Context: ExtrudeContext
+    Graph: NativeGraph,
+    Context: ExtrudeContext,
+    Rectangle: RectSketchProof | None = None,
 ) -> tuple[FeatureStep, ...]:
     Along = Graph.Resolve(Context.Along.Fields["parameter"])
     Taper = Graph.Resolve(Context.Taper.Fields["parameter"])
@@ -45,6 +54,7 @@ def ProjectFeatures(
         FeatureKind.KReference,
         0,
         sketch_id=Context.Sketch.Identity,
+        parameter_ids=RectParamIds(Rectangle),
     )
     Definition = DistanceExtrude(
         Along.Identity, SpaceVector(0.0, 0.0, 1.0), TaperParameterId=Taper.Identity
@@ -61,6 +71,15 @@ def ProjectFeatures(
         Definition,
     )
     return Sketch, Extrude
+
+
+# the sketch and its history feature share the same verified owned parameters
+def RectParamIds(Rectangle: RectSketchProof | None) -> tuple[str, ...]:
+    return (
+        tuple(NodeValue.Identity for NodeValue in Rectangle.Parameters)
+        if Rectangle
+        else ()
+    )
 
 
 # the project body contract needs a shared interpretation so public document claims remain grounded in native records

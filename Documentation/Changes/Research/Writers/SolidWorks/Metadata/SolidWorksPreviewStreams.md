@@ -35,3 +35,9 @@ constructors. The measured thumbnail fallback also makes joint preview
 omission a candidate for controlled native verification. The existing
 generation-19000 licensed campaign retained both previews.
 [Licensed omission scope](../SolidWorksArchiveOmissions.md)
+
+## Fresh package integration
+
+The ordinary package can supply three caller-owned colors and render both previews from the authored perimeter and signed Boss. The renderer passes its complete indexed and RGBA rasters to the existing wrappers. Unused indexed palette entries repeat the caller's background color. The PNG stores the observed 3779 × 3779 pixels per metre. [Package binding](../../../../../../re/solidworks/WriterResearch/PackPartPreviews.py)
+
+The independently authored 38.25 × 22.5 × −7.75 mm fixture reproduced all 30 previously generated members byte-for-byte and added the two previews. The independent decoders recovered the exact fresh index and RGBA images. The 32-member research package SHA-256 was `267af41fcfbd64bf4f74f81a78d9c18ea6b4f631066ef2f4592f9df5dde3c574`. The renderer evidence separately covers both principal datums and signed directions. VisualStates and licensed whole-file acceptance remain open. [Integration replay](../../../../../../re/solidworks/WriterResearch/VerifyPackPreviews.py), [geometry replay](../../../../../../re/solidworks/WriterResearch/PartPreview.md)

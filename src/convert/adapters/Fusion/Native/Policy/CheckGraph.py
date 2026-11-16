@@ -19,17 +19,21 @@ from convert.adapters.Fusion.Native.Policy.CheckPlacement import CheckPlacement
 from convert.adapters.Fusion.Native.Graph.ExtrudeContext import ExtrudeContext
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
 from convert.adapters.Fusion.Native.Rectangle.RectGeometry import RectGeometry
+from convert.adapters.Fusion.Native.Rectangle.RectSketchProof import RectSketchProof
 from convert.Formats.Fusion.BrepCodec.Prism.Models.PrismHistory import PrismHistory
 
 
 # invalid base input must fail here so public document claims remain grounded in native records
 def CheckBase(
-    Graph: NativeGraph, Context: KSketchContexts, Dimension: NativeNode | None = None
+    Graph: NativeGraph,
+    Context: KSketchContexts,
+    Dimension: NativeNode | None = None,
+    Rectangle: RectSketchProof | None = None,
 ) -> None:
-    CheckClasses(Graph, Dimension)
+    CheckClasses(Graph, Dimension, Rectangle)
     CheckAssembly(Graph, Context)
     CheckContainers(Graph, Context)
-    CheckPlacement(Graph, Context, Dimension)
+    CheckPlacement(Graph, Context, Dimension, Rectangle)
     CheckFeature(Graph, Context.SketchFeature)
     Overrides = ObjectFields(Context.Component.Fields["massProperties"])
     if any(Value != -1.0 for Value in Overrides.values()):
@@ -37,8 +41,12 @@ def CheckBase(
 
 
 # invalid graph input must fail here so public document claims remain grounded in native records
-def CheckGraph(Graph: NativeGraph, Context: ExtrudeContext) -> None:
-    CheckBase(Graph, Context)
+def CheckGraph(
+    Graph: NativeGraph,
+    Context: ExtrudeContext,
+    Rectangle: RectSketchProof | None = None,
+) -> None:
+    CheckBase(Graph, Context, Rectangle=Rectangle)
     CheckFeature(Graph, Context.Extrude)
     CheckExtrusion(Graph, Context)
     Overrides = ObjectFields(Context.BodyNode.Fields["massProperties"])

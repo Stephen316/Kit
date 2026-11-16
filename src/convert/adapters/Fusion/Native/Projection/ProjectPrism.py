@@ -18,6 +18,7 @@ from convert.adapters.Fusion.Native.Rectangle.CheckOperations import CheckOperat
 from convert.adapters.Fusion.Native.Rectangle.CheckRegion import CheckRegion
 from convert.adapters.Fusion.Native.Rectangle.CheckPrismTags import CheckPrismTags
 from convert.adapters.Fusion.Native.Rectangle.ReadRectangle import ReadRectangle
+from convert.adapters.Fusion.Native.Rectangle.ReadRectRules import ReadRectRules
 from convert.adapters.Fusion.Native.Graph.SelectExtrusion import SelectExtrusion
 from convert.adapters.Fusion.State.EncodeState import EncodeState
 from convert.Formats.Fusion.DocumentCodec.Model.DocumentModel import DocumentModel
@@ -34,10 +35,11 @@ def ProjectPrism(
     Model: DocumentModel, Source: CadSource, Graph: NativeGraph
 ) -> CadDocument:
     Context = SelectExtrusion(Graph)
-    CheckGraph(Graph, Context)
+    Rectangle = ReadRectRules(Graph, Context)
+    CheckGraph(Graph, Context, Rectangle)
     CheckScopes(Graph, Context, Model.Asset.AssetId)
-    Shape = ReadRectangle(Graph, Context)
-    Parameters = ReadParameters(Graph, Context)
+    Shape = ReadRectangle(Graph, Context, Rectangle)
+    Parameters = ReadParameters(Graph, Context, Rectangle=Rectangle)
     CheckRegion(Graph, Context, Shape.LineNodes, Model.Asset.AssetId)
     History = CheckBodyJoins(Graph, Context, Model)
     if not isinstance(History, PrismHistory):
@@ -50,18 +52,23 @@ def ProjectPrism(
     Material = ReadMaterial(Graph, Context, Model)
     Geometry, BodyValue = ProjectBody(Context, Shape, Material.id)
     Title = dict(Model.Asset.Properties).get("documentName", "")
+    Metadata: dict[str, object] = {
+        "fusion.native_state": {"version": 2, "model": EncodeState(Model)}
+    }
+    if Rectangle is not None:
+        Metadata["fusion.read_only"] = True
     Document = CadDocument(
         Source,
         (Configuration("default", Title, True),),
         Parameters,
         (SupportPlane(Context.Plane.Identity, "XY", Transform()),),
-        (ProjectSketch(Context, Shape),),
+        (ProjectSketch(Context, Shape, Rectangle),),
         (),
-        ProjectFeatures(Graph, Context),
+        ProjectFeatures(Graph, Context, Rectangle),
         (BodyValue,),
         brep=Geometry,
         materials=(Material,),
-        metadata={"fusion.native_state": {"version": 2, "model": EncodeState(Model)}},
+        metadata=Metadata,
     )
     Document.AssertValid()
     return Document

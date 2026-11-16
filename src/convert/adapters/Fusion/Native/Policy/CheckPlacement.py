@@ -14,11 +14,15 @@ from convert.adapters.Fusion.Native.Graph.GraphValues import (
 from convert.adapters.Fusion.Native.Graph.NativeGraph import NativeGraph
 from convert.adapters.Fusion.Native.Graph.NativeNode import NativeNode
 from convert.adapters.Fusion.Native.Graph.SketchContexts import KSketchContexts
+from convert.adapters.Fusion.Native.Rectangle.RectSketchProof import RectSketchProof
 
 
 # invalid placement input must fail here so public document claims remain grounded in native records
 def CheckPlacement(
-    Graph: NativeGraph, Context: KSketchContexts, Dimension: NativeNode | None = None
+    Graph: NativeGraph,
+    Context: KSketchContexts,
+    Dimension: NativeNode | None = None,
+    Rectangle: RectSketchProof | None = None,
 ) -> None:
     Instance = Graph.OneClass("ComponentInstance")
     if Graph.Resolve(Instance.Fields["rTargetComponent"]) != Context.Component:
@@ -49,10 +53,7 @@ def CheckPlacement(
             "rOwningDeriveFeature": None,
         },
     )
-    EmptyFields(Context.Sketch, ("constraints", "offsets"))
-    if Dimension is None:
-        EmptyFields(Context.Sketch, ("dimensions",))
-        EmptyFields(Context.SketchFeature, ("dcParameters",))
+    CheckSketchRefs(Graph, Context, Dimension, Rectangle)
     EmptyFields(
         Context.SketchFeature,
         (
@@ -65,6 +66,27 @@ def CheckPlacement(
     if Graph.Resolve(Context.Sketch.Fields["rDcNode"]) != Context.SketchFeature:
         raise ValueError("Native sketch feature link is not reciprocal")
     CheckMatrix(Graph, Context)
+
+
+# the constrained rectangle may carry only the rules and bindings already proved against its geometry
+def CheckSketchRefs(
+    Graph: NativeGraph,
+    Context: KSketchContexts,
+    Dimension: NativeNode | None,
+    Rectangle: RectSketchProof | None,
+) -> None:
+    EmptyFields(Context.Sketch, ("offsets",))
+    if Rectangle is None:
+        EmptyFields(Context.Sketch, ("constraints",))
+        if Dimension is None:
+            EmptyFields(Context.Sketch, ("dimensions",))
+            EmptyFields(Context.SketchFeature, ("dcParameters",))
+        return
+    SameNodes(LinkedNodes(Graph, Context.Sketch, "constraints"), Rectangle.Rules)
+    SameNodes(LinkedNodes(Graph, Context.Sketch, "dimensions"), Rectangle.Dimensions)
+    SameNodes(
+        LinkedNodes(Graph, Context.SketchFeature, "dcParameters"), Rectangle.Bindings
+    )
 
 
 # the native sketch matrix and its unique plane recipe must agree with the xy frame

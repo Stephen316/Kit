@@ -13,7 +13,11 @@ from interchange.geometry.Models.VectorPlane import PlaneVector
 
 
 # the line operation needs a distinct decoding boundary so public document claims remain grounded in native records
-def ReadLine(Graph: NativeGraph, NodeValue: NativeNode) -> LineGeometry:
+def ReadLine(
+    Graph: NativeGraph,
+    NodeValue: NativeNode,
+    Normal: tuple[float, float, float] = (0.0, 0.0, -1.0),
+) -> LineGeometry:
     Start = ResolveField(Graph, NodeValue, "rStartPoint", "Point3D")
     Finish = ResolveField(Graph, NodeValue, "rEndPoint", "Point3D")
     First = PointCoords(Start.Fields["point"])
@@ -29,7 +33,7 @@ def ReadLine(Graph: NativeGraph, NodeValue: NativeNode) -> LineGeometry:
         PointCoords(NodeValue.Fields["lineDirection"]),
         tuple(Value / Length for Value in Delta),
     )
-    SameNumbers(PointCoords(NodeValue.Fields["planeNormal"]), (0.0, 0.0, -1.0))
+    SameNumbers(PointCoords(NodeValue.Fields["planeNormal"]), Normal)
     RequireFields(
         NodeValue,
         {
