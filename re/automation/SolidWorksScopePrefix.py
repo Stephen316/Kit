@@ -1,4 +1,5 @@
 from functools import partial
+from math import isclose
 
 from PairedCaptureIntake import require, sha256
 
@@ -14,16 +15,23 @@ from convert.adapters.solidworks.container.Archive import (
     ReadTag,
 )
 from convert.adapters.solidworks.container.ArchiveCursor import ArchiveCursor
+from convert.adapters.solidworks.resolved.BossChooser import CheckChoiceOwn, ReadCap, ReadCapAlias, ReadChoiceTail
+from convert.adapters.solidworks.resolved.BossDepth import ReadFeatHandle, ReadParDepthMut
+from convert.adapters.solidworks.resolved.BossEnd import ReadEndHead, ReadEndTail
+from convert.adapters.solidworks.resolved.BossEntry import ReadBodyReturn
 from convert.adapters.solidworks.resolved.ContourChain import ReadChainState
-from convert.adapters.solidworks.resolved.FaceIdentity import KCapClass, ReadFaceHead
+from convert.adapters.solidworks.resolved.FaceIdentity import KCapClass, KEdgeClass, ReadFaceHead, ReadFaceReturn, ReadSurfaceId
 from convert.adapters.solidworks.resolved.NamedNode import ReadNamedNode
 from convert.adapters.solidworks.resolved.OriginProfile import ReadOrigin
+from convert.adapters.solidworks.resolved.PlaneAtom import ReadAtomMaps
 from convert.adapters.solidworks.resolved.ProfilePlane import ReadProfileRef
 from convert.adapters.solidworks.resolved.ProfileSketch import ReadProfileBody
 from convert.adapters.solidworks.resolved.RectanglePart import ResolveDatum
 from convert.adapters.solidworks.resolved.ResolvedHead import OpenResolved
 from convert.adapters.solidworks.resolved.SavedFileRef import ReadFileRef
 from convert.adapters.solidworks.resolved.SystemPrefix import ReadSysPrefix
+from convert.adapters.solidworks.sketch.DisplayFields import ReadCache, ReadDisplayTail
+from convert.adapters.solidworks.sketch.DisplayOpen import ReadDisplayOpen
 
 
 def read_block_manager(cursor, pointer):
@@ -133,6 +141,74 @@ def read_first_cap(cursor, boss):
     }
 
 
+def read_boss_choosers(cursor, boss, cap):
+    file_index = cap["file_reference"]["object_index"]
+    owner = {"object_index": boss["object_index"], "native_feature_id": boss["feature_id"], "file_ref_object": file_index}
+    sides = [
+        ReadSurfaceId(cursor, KEdgeClass, kind)
+        for kind in (KDefinitionKind, KClassRefKind, KClassRefKind, KClassRefKind)
+    ]
+    sources = {(side["file_ref_object"], side["feature_id"], side["time_word"]) for side in sides}
+    require(
+        sources == {(file_index, boss["feature_id"], cap["clock_word"])},
+        "scoped first cap and sides differ on their feature reference",
+    )
+    ReadFaceReturn(cursor)
+    second = ReadCap(cursor, KClassRefKind, 1, owner)
+    primary = ReadChoiceTail(cursor, KDefinitionKind)
+    CheckChoiceOwn(cursor, owner)
+    require(cursor.ReadInts("<3H") == (1, 1, 0), "unexpected secondary scoped chooser")
+    CheckChoiceOwn(cursor, owner)
+    require(cursor.ReadInts("<i2H") == (1, 1, 1), "unexpected repeated scoped chooser")
+    cursor.TakePointer(("moPerBodyChooserData_c",), KClassRefKind, CompactOnly=True)
+    require(cursor.ReadInts("<H") == (2,), "expected two repeated scoped caps")
+    ReadCapAlias(cursor, {"primary": {"object_index": cap["object_index"]}, "edges": sides})
+    ReadCapAlias(cursor, second)
+    repeated = ReadChoiceTail(cursor, KClassRefKind)
+    require(repeated["centre_and_scale"] == primary["centre_and_scale"], "repeated scoped centre differs")
+    CheckChoiceOwn(cursor, owner)
+    return {
+        "end": cursor.Offset, "centre_and_scale": primary["centre_and_scale"],
+        "side_occurrences": [side["occurrence"] for side in sides],
+    }
+
+
+def read_boss_depth(cursor, spec):
+    require(cursor.ReadInts("<H3i") == (0, 0, 0, 1), "unexpected scoped partition fields")
+    _, _, marker = cursor.TakePointer(("moPMarkRecord_c",), KClassRefKind, CompactOnly=True)
+    (state,) = cursor.ReadInts("<i")
+    ReadAtomMaps(cursor)
+    ReadBodyReturn(cursor)
+    extent = ReadEndHead(cursor, KDefinitionKind, (0,))
+    require(extent["conditions"] == (0, 0), "scoped first boss is not blind")
+    display_offset = cursor.Offset
+    cursor.TakePointer(("moDisplayDistanceDim_c",), KDefinitionKind, CompactOnly=True)
+    ReadDisplayOpen(cursor, DisplayMode=200)
+    ReadFeatHandle(cursor, KDefinitionKind)
+    dimension = ReadParDepthMut(cursor, KDefinitionKind)
+    require(ReadCache(cursor) == (dimension["metres"],) * 2, "scoped boss depth copies differ")
+    cursor.TakePointer(("moFavoriteHandle_c",), KDefinitionKind, CompactOnly=True)
+    ReadDisplayTail(cursor)
+    ReadEndTail(cursor, KDefinitionKind, 0)
+    require(cursor.ReadValue("<di") == (0, -1), "unexpected scoped boss return")
+    lower, upper = spec["bodies"]["A"]["bounds_mm"]
+    depth_mm = dimension["metres"] * 1000
+    require(
+        isclose(depth_mm, upper[2] - lower[2], abs_tol=spec["tolerances"]["length_mm_absolute"], rel_tol=0),
+        "scoped first boss depth differs from the recipe",
+    )
+    following = ReadTag(cursor.BlobValue, cursor.Offset)
+    require(
+        following.kind == KClassRefKind and cursor.Classes.get(following.index) == "moProfileFeature_c",
+        "scoped first boss did not close at another typed profile",
+    )
+    return {
+        "end": cursor.Offset, "next_map_index": cursor.NextIndex,
+        "partition_object": marker, "partition_state": state, "blind_extent": extent,
+        "display_offset": display_offset, "display_mode": 200, "dimension": dimension, "depth_mm": depth_mm,
+    }
+
+
 def read_scope_prefix(archive, resolved, spec, generation):
     config_map, config_report = read_config_map(archive.require("Contents/Config-0"))
     cursor = OpenResolved(resolved, config_map, 23)
@@ -148,6 +224,9 @@ def read_scope_prefix(archive, resolved, spec, generation):
     datum, _ = ResolveDatum(ReadProfileRef(cursor, generation), system.Planes)
     trim = read_uncached_trim(cursor)
     boss = read_boss_entry(cursor, profile, producer)
+    cap = read_first_cap(cursor, boss)
+    choosers = read_boss_choosers(cursor, boss, cap)
+    depth = read_boss_depth(cursor, spec)
     return {
         "configuration": config_report, "resolved_list_count": 23,
         "first_profile": {
@@ -156,5 +235,6 @@ def read_scope_prefix(archive, resolved, spec, generation):
             "datum": datum.NameValue, "datum_feature_id": datum.FeatureId, "trim": trim,
         },
         "first_boss": boss,
-        "first_cap": read_first_cap(cursor, boss),
+        "first_cap": cap,
+        "first_operation": {"choosers": choosers, **depth},
     }

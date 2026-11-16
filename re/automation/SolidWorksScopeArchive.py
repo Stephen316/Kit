@@ -462,7 +462,7 @@ def report(path, repeat_path=None, *, inspect_map=False):
         if inspect_map:
             left, right = primary["resolved_prefix"], repeat["resolved_prefix"]
             require(
-                left["first_profile"] == right["first_profile"] and left["first_boss"] == right["first_boss"],
+                all(left[field] == right[field] for field in ("first_profile", "first_boss", "first_operation")),
                 "typed first profile or boss differs across saves",
             )
             result["repeat_comparison"]["resolved_prefix_matched"] = True

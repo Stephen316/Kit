@@ -6,7 +6,9 @@ from convert.adapters.solidworks.sketch.DisplayFields import ReadEmptyTexts, Rea
 
 
 # the model and sketch variants share their display frame before choosing the mode
-def ReadDisplayBase(Cursor: ArchiveCursor, SketchMode: bool) -> None:
+def ReadDisplayBase(
+    Cursor: ArchiveCursor, SketchMode: bool, *, DisplayMode: int | None = None
+) -> None:
     RequireArch(Cursor.ReadInts("<H"), (0,), "witnessed display opening")
     ReadNulls(Cursor, 3)
     Visual = Cursor.ReadValue("<2i2HBIHhf2Hi")
@@ -29,16 +31,19 @@ def ReadDisplayBase(Cursor: ArchiveCursor, SketchMode: bool) -> None:
     Cursor.ReadNull()
     RequireArch(Cursor.ReadPoint(3), (0, 0, 0), "empty display reference point")
     RequireArch(ReadLocalPose(Cursor), (None, (0, 0, 0, 1)), "identity display setup")
+    Mode = DisplayMode if DisplayMode is not None else (200 if SketchMode else 201)
     RequireArch(
         Cursor.ReadValue("<2iBd2i"),
-        (1, 200 if SketchMode else 201, 0, 0, 0, 0),
+        (1, Mode, 0, 0, 0, 0),
         "guarded display mode",
     )
 
 
 # appearance fields must finish before the shared display can allocate its handle
-def ReadDisplayOpen(Cursor: ArchiveCursor, SketchMode: bool = False) -> None:
-    ReadDisplayBase(Cursor, SketchMode)
+def ReadDisplayOpen(
+    Cursor: ArchiveCursor, SketchMode: bool = False, *, DisplayMode: int | None = None
+) -> None:
+    ReadDisplayBase(Cursor, SketchMode, DisplayMode=DisplayMode)
     Cursor.ReadNull()
     StyleValue = Cursor.ReadValue("<d2ihf2ihf8ihf5i")
     RequireArch(StyleValue[-5:], (0, 0, 0, 0, 4), "guarded display appearance mode")
