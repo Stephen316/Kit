@@ -155,6 +155,13 @@ def CheckEndRefusal(ModeName: str) -> None:
 
 if __name__ == "__main__":
     if System.argv[1] == "roster":
-        print(EncodeJson({Case.Name: ObserveCase(Case) for Case in KReadinessCases}))
+        print(
+            EncodeJson(
+                {
+                    CaseValue.Name: ObserveCase(CaseValue)
+                    for CaseValue in KReadinessCases
+                }
+            )
+        )
     else:
         print(EncodeJson(ObserveModified(System.argv[1])))

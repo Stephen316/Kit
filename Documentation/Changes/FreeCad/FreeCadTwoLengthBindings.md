@@ -5,6 +5,7 @@ The native FreeCAD emitter now uses explicit ordered `length_parameter_ids` to c
 Equal scalar values and a reordered generic parameter roster cannot exchange end ownership.
 
 Every explicit driver must occur in the feature's parameter roster, belong to that feature, have a driving length role and agree with the corresponding inline typed length after unit conversion.
+The cached lengths must agree within an absolute `1e-9` mm, with no relative tolerance.
 The shared length conversion factors normalize native distance properties to millimetres while spreadsheet cells retain the parameter's declared units.
 Invalid, repeated, missing, unrelated or stale end owners refuse before output is published.
 Two-ended features with a parameter roster require explicit end ownership instead of value-based inference.
@@ -18,7 +19,7 @@ Existing linked-distance, linked-plane, open-profile and unsupported-grammar ref
 
 ## Verification evidence
 
-The dedicated process coverage reuses the independently authored 37 × 21 mm rectangle controls from the [historical readiness preflight](../../Research/Readers/Comparison/FreeCadTwoLengthReadiness.md).
+The dedicated process coverage reuses the independently authored 37 × 21 mm rectangle controls from the [historical readiness preflight](../Research/Readers/Comparison/FreeCadTwoLengthReadiness.md).
 It invokes the actual public `WriteDocument` route and inspects the emitted FCStd `Document.xml`, sketch link, spreadsheet aliases and both expression dependencies.
 The controls cover 11/5 mm, equal 7/7 mm, each parameter roster order, and a symmetric 16 mm total.
 Additional process cases cover equivalent inch/millimetre bindings and malformed, duplicate, unknown, unowned, non-driving or stale end owners.
