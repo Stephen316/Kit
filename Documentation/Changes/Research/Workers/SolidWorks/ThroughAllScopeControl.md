@@ -16,6 +16,8 @@ Startup cleanup verifies the original process handle before any forced exit. For
 
 Per-case checkpoints keep the measurements and source pins for each completed authoring or reopen case. When a case raises an exception, the failure record preserves the case, failing step, HRESULT, and message. [Scope case checkpoints](ScopeCaseCheckpoints.md)
 
+A null explicit `FeatureCut4` result after verified selection permits one fresh-document retry through the editable feature definition. The original selection, intended policy, and retry route remain visible in the evidence. [Explicit Cut retry](ScopeExplicitFallback.md)
+
 Use the standalone watchdog when the campaign needs a hard deadline across synchronous COM calls. It retains the original capture artifacts and the outer job-drain receipt. [Scope campaign watchdog](ScopeWatchdog.md)
 
 ## Observed checkpoint
